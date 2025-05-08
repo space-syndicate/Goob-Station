@@ -227,11 +227,28 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             hairStyleId = HairStyles.DefaultHairStyle;
         }
 
+        // Corvax-Sponsors-Start
+        if (proto.TryIndex(hairStyleId, out MarkingPrototype? hairProto) &&
+            hairProto.SponsorOnly &&
+            !sponsorPrototypes.Contains(hairStyleId))
+        {
+            hairStyleId = HairStyles.DefaultHairStyle;
+        }
+        // Corvax-Sponsors-End
+
         if (!markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(facialHairStyleId))
         {
             facialHairStyleId = HairStyles.DefaultFacialHairStyle;
         }
 
+        // Corvax-Sponsors-Start
+        if (proto.TryIndex(facialHairStyleId, out MarkingPrototype? facialHairProto) &&
+            facialHairProto.SponsorOnly &&
+            !sponsorPrototypes.Contains(facialHairStyleId))
+        {
+            facialHairStyleId = HairStyles.DefaultFacialHairStyle;
+        }
+        // Corvax-Sponsors-End
         var markingSet = new MarkingSet();
         var skinColor = appearance.SkinColor;
         if (proto.TryIndex(species, out SpeciesPrototype? speciesProto))
@@ -246,6 +263,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
             markingSet.EnsureSpecies(species, skinColor, markingManager);
             markingSet.EnsureSexes(sex, markingManager);
+            markingSet.FilterSponsor(sponsorPrototypes, markingManager); // Corvax-Sponsors
+
         }
 
         return new HumanoidCharacterAppearance(

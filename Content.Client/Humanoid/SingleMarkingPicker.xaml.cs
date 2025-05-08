@@ -20,6 +20,7 @@ namespace Content.Client.Humanoid;
 public sealed partial class SingleMarkingPicker : BoxContainer
 {
     [Dependency] private readonly MarkingManager _markingManager = default!;
+	private ISharedSponsorsManager? _sponsorsManager; // Corvax-Sponsors
 
     /// <summary>
     ///     What happens if a marking is selected.
@@ -131,6 +132,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Corvax-Sponsors
 
         MarkingList.OnItemSelected += SelectMarking;
         AddButton.OnPressed += _ =>
@@ -199,6 +201,11 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         {
             var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), marking.Sprites[0].Frame0());
             item.Metadata = marking.ID;
+            
+            // Corvax-Sponsors-Start
+            if (marking.SponsorOnly && _sponsorsManager != null)
+                item.Disabled = !_sponsorsManager.GetClientPrototypes().Contains(marking.ID);
+            // Corvax-Sponsors-End
 
             if (_markings[Slot].MarkingId == id)
             {

@@ -70,6 +70,15 @@ namespace Content.Client.Lobby.UI
             StatsButton.OnPressed += _ => new PlaytimeStatsWindow().OpenCentered();
 
             _cfg.OnValueChanged(CCVars.SeeOwnNotes, p => AdminRemarksButton.Visible = p, true);
+            // Corvax-Sponsors-Start
+            if (IoCManager.Instance!.TryResolveType<ISponsorWindowCreator>(out var creator))
+            {
+                SponsorButton.Visible = true;
+                SponsorButton.OnPressed += _ => creator.OpenWindow();
+            }
+            // Corvax-Sponsors-End
+
+
         }
 
         /// <summary>
