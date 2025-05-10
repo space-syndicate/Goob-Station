@@ -18,6 +18,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Preferences;
 using Robust.Client;
 using Robust.Client.Player;

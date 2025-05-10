@@ -36,6 +36,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Corvax.Interfaces.Shared;
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Preferences;

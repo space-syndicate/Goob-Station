@@ -84,6 +84,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Preferences.Loadouts.Effects;
 
+
 /// <summary>
 /// Checks for a job requirement to be met such as playtime.
 /// </summary>
@@ -92,7 +93,7 @@ public sealed partial class JobRequirementLoadoutEffect : LoadoutEffect
     [DataField(required: true)]
     public JobRequirement Requirement = default!;
 
-    public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession? session, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
+    public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, LoadoutPrototype proto, ICommonSession? session, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         if (session == null)
         {
