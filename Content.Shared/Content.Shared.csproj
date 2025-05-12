@@ -42,8 +42,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Corvax\Content.Corvax.Interfaces.Shared\Content.Corvax.Interfaces.Shared.csproj" />
-    <ProjectReference Include="..\Corvax\Content.Corvax.Interfaces.Client\Content.Corvax.Interfaces.Client.csproj" />
     <ProjectReference Include="..\Content.Goobstation.Common\Content.Goobstation.Common.csproj" />
     <ProjectReference Include="..\Content.Goobstation.Maths\Content.Goobstation.Maths.csproj" />
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
@@ -56,6 +54,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <ProjectReference Include="..\RobustToolbox\Robust.Shared\Robust.Shared.csproj">
       <Private>false</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Corvax\Content.Corvax.Interfaces.Shared\Content.Corvax.Interfaces.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goobstation\Changeling\Changeling.Actions.cs" />
