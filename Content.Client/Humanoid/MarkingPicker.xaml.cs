@@ -146,6 +146,8 @@ public sealed partial class MarkingPicker : Control
 
         _sprite = _entityManager.System<SpriteSystem>();
 
+        _sprite = _entityManager.System<SpriteSystem>();
+
         CMarkingCategoryButton.OnItemSelected +=  OnCategoryChange;
         CMarkingsUnused.OnItemSelected += item =>
             _selectedUnusedMarking = CMarkingsUnused[item.ItemIndex];
