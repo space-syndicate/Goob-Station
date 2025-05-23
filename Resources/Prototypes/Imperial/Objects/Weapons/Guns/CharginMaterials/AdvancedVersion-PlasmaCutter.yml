@@ -15,7 +15,7 @@
     sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi
     size: Small
     shape:
-    - 0,1, 1,0
+    - 0,1, 2,0
     - 2,0, 0,1
   - type: Clothing
     sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi

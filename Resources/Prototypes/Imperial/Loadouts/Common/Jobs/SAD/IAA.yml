@@ -2,7 +2,6 @@
   id: JobRFI
   groups:
   - GroupTankHarness
-  - RFIBriefcase
   - RFIJumpsuit
   - RFIBackpack
   - RFIHat
@@ -14,12 +13,6 @@
   - GroupSpeciesBreathTool
 
 # Groups Start
-
-- type: loadoutGroup
-  id: RFIBriefcase
-  name: loadout-group-RFI-briefcase
-  loadouts:
-  - BriefcaseRFI
 
 - type: loadoutGroup
   id: RFIJumpsuit
@@ -67,13 +60,6 @@
 # Groups End
 
 # Loadouts Start
-
-# BreafcaseRFIFilled
-
-- type: loadout
-  id: BriefcaseRFI
-  equipment:
-    inhand: BriefcaseRFIFilled
 
 # ClothingUniformJumpsuitRFI
 

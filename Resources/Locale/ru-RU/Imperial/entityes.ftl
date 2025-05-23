@@ -115,7 +115,7 @@ ent-ChemicalOrder = Заказ на химические вещества
 ent-AtmosSystemReport = Отчет о работе системы АТМОС
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
 
-ent-InternalAffairsAgentReport = Отчёт Агента Внутренних Дел
+ent-InternalAffairsAgentReport = Отчёт Регионального Фронтир Инспектора
 .desc = Распечатанный документ с заголовком отдела: юридический департамент
 
 ent-GasPipeSensorTEGCold = Датчик газовых труб

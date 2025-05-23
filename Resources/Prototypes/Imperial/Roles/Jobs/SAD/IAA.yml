@@ -60,6 +60,8 @@
   equipment:
     id: RFIPDA
     ears: ClothingHeadsetRFI
+  inhand:
+  - BriefcaseRFIFilled
 
 - type: playTimeTracker 
   id: JobRFI
