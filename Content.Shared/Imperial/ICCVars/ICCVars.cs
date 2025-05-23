@@ -10,7 +10,7 @@ public sealed partial class ICCVars : CVars
     public static readonly CVarDef<bool>
         VoteAutoStartInLobby = CVarDef.Create("vote.autostartinlobby", true, CVar.SERVERONLY);
     public static readonly CVarDef<int>
-        GameEndRoundDuration = CVarDef.Create("game.endroundduration", 180, CVar.SERVERONLY);
+        GameEndRoundDuration = CVarDef.Create("game.endroundduration", 40, CVar.SERVERONLY);
     #region Sponsors
     public static readonly CVarDef<string> SponsorsApiUrl =
         CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
