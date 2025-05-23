@@ -182,8 +182,8 @@
 - type: entity
   parent: Paper
   id: InternalAffairsAgentReport
-  name: "Отчёт Регионального фронтир инспектора"
-  description: "Распечатанный документ с заголовком отдела: департамент эффективности станции"
+  name: "Отчёт Агента Внутренних Дел"
+  description: "Распечатанный документ с заголовком отдела: юридический департамент"
   components:
     - type: Paper
       content: doc-text-printer-rfi-report
