@@ -128,6 +128,42 @@
     contents:
       - id: CartridgePistol
 
+- type: localizedDataset
+  id: SavirWords
+  values:
+    prefix: plushie-savir-
+    count: 7
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieSavir
+  name: Савир Мёрфи
+  suffix: Crook, COMMUNITY, TOY
+  description: Скользкий парень.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/savirmurphy.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: SavirSaid
+  - type: SpeakOnTrigger
+    pack: SavirWords
+  
+- type: speechSounds
+  id: SavirSaid
+  saySound:
+    path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+  askSound:
+    path: /Audio/Voice/Talk/Silicon/syndieborg_ask.ogg
+  exclaimSound:
+    path: /Audio/Voice/Talk/Silicon/syndieborg_exclaim.ogg
+
 # Фумо @buhoj_med
 
 # Datasets for Fumo

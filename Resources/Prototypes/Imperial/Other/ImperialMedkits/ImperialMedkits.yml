@@ -153,8 +153,8 @@
       - id: AntiPoisonMedipen
       - id: SyringeIpecac
       - id: SyringeEthylredoxrazine
-      - id: PillCanister
-        amount: 2
+      - id: PillCanisterCharcoal
+      - id: PillCanisterDylovene
       - id: AmpulaDylo
         amount: 2
 

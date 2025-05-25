@@ -32,6 +32,12 @@
     - map: [ "enum.EdgeLayer.West" ]
       state: rock_asteroid_west
   - type: MiningScannerViewable
+  # Imperial "fix-plasmaCutters" Start
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+  # Imperial "fix-plasmaCutters" End
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Rock

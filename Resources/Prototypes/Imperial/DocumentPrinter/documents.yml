@@ -182,8 +182,8 @@
 - type: entity
   parent: Paper
   id: InternalAffairsAgentReport
-  name: "Отчёт Регионального фронтир инспектора"
-  description: "Распечатанный документ с заголовком отдела: департамент эффективности станции"
+  name: "Отчёт Регионального фронтир испектора"
+  description: "Распечатанный документ с заголовком отдела: юридический департамент"
   components:
     - type: Paper
       content: doc-text-printer-rfi-report
@@ -511,3 +511,30 @@
   components:
     - type: Paper
       content: doc-text-printer-divorce-certificate
+
+- type: entity
+  parent: Paper
+  id: BiodataList
+  name: "Учёт биоданных сотрудников"
+  description: "Распечатанный документ для особых целей"
+  components:
+    - type: Paper
+      content: doc-text-printer-biodata-list
+
+- type: entity
+  parent: Paper
+  id: EliminationReport
+  name: "Отчёт об устранении последствий"
+  description: "Распечатанный документ для особых целей"
+  components:
+    - type: Paper
+      content: doc-text-printer-elimination-report
+
+- type: entity
+  parent: Paper
+  id: QualityReport
+  name: "Отчёт об оценке качества"
+  description: "Распечатанный документ для особых целей"
+  components:
+    - type: Paper
+      content: doc-text-printer-quality-report
