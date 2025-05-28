@@ -1,0 +1,34 @@
+- type: traitCategory
+  id: RPTraits
+  name: trait-category-aquila-roleplay
+  maxTraitPoints: 1
+
+- type: trait
+  id: RPJob
+  name: trait-job-name
+  description: trait-job-desc
+  category: RPTraits
+  cost: 1
+  components:
+  - type: PushMarkupOnInit
+    markup: "trait-job"
+
+- type: trait
+  id: RPComfy
+  name: trait-comfyRP-name
+  description: trait-comfyRP-desc
+  category: RPTraits
+  cost: 1
+  components:
+  - type: PushMarkupOnInit
+    markup: "trait-comfyRP"
+
+- type: trait
+  id: RPFull
+  name: trait-fullRP-name
+  description: trait-fullRP-desc
+  category: RPTraits
+  cost: 1
+  components:
+  - type: PushMarkupOnInit
+    markup: "trait-fullRP"
