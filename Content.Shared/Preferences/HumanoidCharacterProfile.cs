@@ -554,6 +554,7 @@ namespace Content.Shared.Preferences
             {
                 flavortext = FlavorText;
             }
+            // Imperial end
 
             /*if (FlavorText.Length > maxFlavorTextLength)
             {
