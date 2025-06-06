@@ -4,6 +4,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Imperial.ICCVar; //Imperial
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
@@ -541,14 +542,28 @@ namespace Content.Shared.Preferences
             }
 
             string flavortext;
-            if (FlavorText.Length > MaxDescLength)
+
+            //Imperial start
+            var disableLengthLimit = configManager.GetCVar(ICCVars.DisableFlavorTextLengthLimit);
+
+            if (!disableLengthLimit && FlavorText.Length > MaxDescLength)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
+                flavortext = FlavorText[..MaxDescLength];
+            }
+            else
+            {
+                flavortext = FlavorText;
+            }
+            // Imperial end
+
+            /*if (FlavorText.Length > maxFlavorTextLength)
+            {
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
             }
             else
             {
                 flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
-            }
+            }*/
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
 

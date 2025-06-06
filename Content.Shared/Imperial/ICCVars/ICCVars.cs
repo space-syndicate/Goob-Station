@@ -7,6 +7,13 @@ namespace Content.Shared.Imperial.ICCVar;
 // ReSharper disable once InconsistentNaming
 public sealed partial class ICCVars : CVars
 {
+    /// <summary>
+    /// If true, disables the character flavor text length limit,
+    /// allowing players to input flavor text of any length.
+    /// </summary>
+    public static readonly CVarDef<bool> DisableFlavorTextLengthLimit =
+        CVarDef.Create("imperial.flavor_text_length_limit_disable", false, CVar.SERVER | CVar.REPLICATED);
+
     public static readonly CVarDef<bool>
         VoteAutoStartInLobby = CVarDef.Create("vote.autostartinlobby", true, CVar.SERVERONLY);
     public static readonly CVarDef<int>
