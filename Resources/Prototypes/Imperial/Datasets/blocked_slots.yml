@@ -1,0 +1,15 @@
+- type: dataset
+  id: OuterBlockedSlots
+  values:
+  - gloves
+  - shoes
+  - jumpsuit
+  - id
+
+- type: dataset
+  id: HeadBlockedSlots
+  values:
+  - mask
+  - ears
+  - eyes
+  - neck

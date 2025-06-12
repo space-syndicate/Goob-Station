@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Examine;
+using Content.Client.Imperial.HiddenSlots; // Imperial add hidden slot
 using Content.Client.Strip;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -37,6 +38,9 @@ namespace Content.Client.Inventory
         private readonly InventorySystem _inv;
         private readonly SharedCuffableSystem _cuffable;
         private readonly StrippableSystem _strippable;
+        // Imperial add hidden slot start
+        private readonly HiddenSlotsSystem _hiddenSlot;
+        // Imperial add hidden slot end
 
         [ViewVariables]
         private const int ButtonSeparation = 4;
@@ -58,6 +62,10 @@ namespace Content.Client.Inventory
             _strippable = EntMan.System<StrippableSystem>();
 
             _virtualHiddenEntity = EntMan.SpawnEntity(HiddenPocketEntityId, MapCoordinates.Nullspace);
+
+            // Imperial add hidden slot start
+            _hiddenSlot = EntMan.System<HiddenSlotsSystem>();
+            // Imperial add hidden slot end
         }
 
         protected override void Open()
@@ -209,8 +217,19 @@ namespace Content.Client.Inventory
 
             // If this is a full pocket, obscure the real entity
             // this does not work for modified clients because they are still sent the real entity
-            if (entity != null && _strippable.IsStripHidden(slotDef, _player.LocalEntity))
-                entity = _virtualHiddenEntity;
+
+            // Imperial: Replace the actual entity with a virtual placeholder when the item is hidden.
+            // This applies both to standard hidden items (like those in pockets)
+            // and to items hidden via custom logic (such as being hidden by suit or helmet)
+            if (entity != null)
+            {
+                if (_strippable.IsStripHidden(slotDef, _player.LocalEntity))
+                    entity = _virtualHiddenEntity;
+
+                if (_hiddenSlot.IsHidden(Owner, slotDef))
+                    entity = _virtualHiddenEntity;
+            }
+            // Imperial end
 
             var button = new SlotButton(new SlotData(slotDef, container));
             button.Pressed += SlotPressed;
