@@ -177,6 +177,14 @@
     - Snout
     - HeadTop
     - HeadSide
+  # Imperial: Add hidden slots and toggle marking start
+  - type: HiddenSlots
+    blockedSlots: HeadBlockedSlots
+  - type: ToggleMarking
+    action: ActionSuitToggleMarkingEars
+    marking: HeadTop
+    toggleText: imperial-toggle-marking-ears
+  # Imperial: Add hidden slots and toggle marking end
 
 - type: entity
   abstract: true
