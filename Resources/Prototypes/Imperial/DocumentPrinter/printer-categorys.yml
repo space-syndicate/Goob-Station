@@ -1,19 +1,23 @@
 - type: latheCategory
   id: DocumentPrinterCommand
-  name: "Документы глав станции"
+  name: "Командование"
 
 - type: latheCategory
   id: Law
-  name: "Документы Юридического Департамента"
+  name: "Юридический Департамент"
 
 - type: latheCategory
   id: Sec
-  name: "Документы Службы Безопасности"
+  name: "Служба Безопасности"
 
 - type: latheCategory
   id: Science
-  name: "Документы Научного отдела"
+  name: "Научный"
 
 - type: latheCategory
   id: Supplies
-  name: "Документы отдела Снабжения"
+  name: "Снабжение"
+
+- type: latheCategory
+  id: Special
+  name: "Особые документы"

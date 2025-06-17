@@ -153,6 +153,14 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  # Imperial: Add hidden slots and toggle marking start
+  - type: HiddenSlots
+    blockedSlots: OuterBlockedSlots
+  - type: ToggleMarking
+    action: ActionSuitToggleMarkingTail
+    marking: Tail
+    toggleText: imperial-toggle-marking-tail
+  # Imperial: Add hidden slots and toggle marking end
 
 - type: entity
   abstract: true

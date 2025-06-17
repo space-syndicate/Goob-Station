@@ -58,6 +58,9 @@
   - DangerousSkillsTrainingRequestRecipe
   - MarriageCertificateRecipe
   - DivorceCertificateRecipe
+  - BiodataListRecipe
+  - EliminationReportRecipe
+  - QualityReportRecipe
 
 - type: latheRecipe
   id: ReportOnTheStationSituationRecipe
@@ -581,4 +584,29 @@
   materials:
     Paper: 100
 
+- type: latheRecipe
+  id: BiodataListRecipe
+  result: BiodataList
+  categories: [Special]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
 
+- type: latheRecipe
+  id: EliminationReportRecipe
+  result: EliminationReport
+  categories: [Special]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: QualityReportRecipe
+  result: QualityReport
+  categories: [Special]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100

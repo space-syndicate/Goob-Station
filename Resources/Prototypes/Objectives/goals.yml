@@ -33,3 +33,23 @@
 - type: stationGoal
   id: StationGoalPlatform
   text: station-goal-observation-platform
+
+- type: stationGoal
+  id: StationGoalDonor
+  text: station-goal-donor
+
+- type: stationGoal
+  id: StationGoalTransit
+  text: station-goal-transit
+
+- type: stationGoal
+  id: StationGoalHall
+  text: station-goal-hall
+
+- type: stationGoal
+  id: StationGoalConsequences
+  text: station-goal-consequences
+
+- type: stationGoal
+  id: StationGoalStaf
+  text: station-goal-staf
