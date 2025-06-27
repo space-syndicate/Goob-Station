@@ -13,7 +13,7 @@ public sealed class NrpPanelEui : BaseEui
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     private readonly NrpMessagesSystem _nrpSystem;
-    private ISawmill _sawmill = default!;
+    private readonly ISawmill _sawmill;
 
     public NrpPanelEui()
     {
@@ -68,10 +68,10 @@ public sealed class NrpPanelEui : BaseEui
                 var isNrp = resolve.IsNrp;
                 if (isNrp)
                 {
-                    var violations = await _nrpSystem.GetPlayerNrpViolations(resolve.Message.PlayerId, 3);
-                    // TODO: punishment
-
                     await _nrpSystem.AddPlayerNrpViolation(resolve.Message.PlayerId);
+                    var violations = await _nrpSystem.GetPlayerNrpViolations(resolve.Message.PlayerId, 3);
+                    _sawmill.Debug($"{resolve.Message.PlayerName}: {violations} nrp messages");
+                    _nrpSystem.OnViolation(resolve.Message, violations, Player.UserId);
                 }
                 _nrpSystem.RemoveMessage(resolve.Message);
                 _nrpSystem.AddResolveToStats(Player.Name);

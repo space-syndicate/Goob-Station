@@ -12,4 +12,7 @@ nrp-panel-dialog-confirm = Да
 nrp-panel-dialog-cancel = Нет
 
 nrp-panel-stats-title = Статистика
-nrp-panel-stats-entry = {$administrator}: {$resolves} 
+nrp-panel-stats-entry = {$administrator}: {$resolves}
+
+nrp-panel-ahelp-message = placeholder
+nrp-panel-ban-message = placeholder

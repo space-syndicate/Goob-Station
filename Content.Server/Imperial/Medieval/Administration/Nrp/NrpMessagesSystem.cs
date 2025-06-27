@@ -13,6 +13,9 @@ using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
+using Content.Shared.Administration;
+using Content.Shared.Database;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -23,6 +26,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;
+
 
 
     private readonly Dictionary<string, bool> _bannedWords = new() { };
@@ -55,6 +60,41 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     public void RemoveMessage(NrpMessage message)
     {
         _unsolvedMessages.Remove(message);
+    }
+
+    private void Bwoink(ICommonSession player, NetUserId sender)
+    {
+        var bwoinkMessage = new SharedBwoinkSystem.BwoinkTextMessage(
+            player.UserId,
+            sender,
+            Loc.GetString("nrp-panel-ahelp-message"));
+
+        RaiseNetworkEvent(bwoinkMessage, player.Channel);
+    }
+
+    public void OnViolation(NrpMessage message, int violationCount, NetUserId sender)
+    {
+        var playerId = message.PlayerId;
+        var playerName = message.PlayerName;
+
+        if (violationCount == 1)
+        {
+            if (_playerManager.TryGetSessionById(playerId, out var session))
+                Bwoink(session, sender);
+        }
+        else
+        {
+            var banHours = (uint)(Math.Pow(2, 2 * (violationCount - 2)));
+            var banMinutes = banHours * 60;
+            _banManager.CreateServerBan(playerId,
+                playerName,
+                sender,
+                null, // думаю бан по ip и hwid здесь неуместен
+                null,
+                banMinutes,
+                NoteSeverity.Minor,
+                Loc.GetString(Loc.GetString("nrp-panel-ban-message")));
+        }
     }
 
 
