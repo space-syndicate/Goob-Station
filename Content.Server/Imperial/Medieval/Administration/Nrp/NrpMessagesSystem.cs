@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Administration.Managers;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.Chat.V2.Repository;
+using Content.Server.Database;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Filter = Robust.Shared.Player.Filter;
@@ -12,6 +11,8 @@ using Content.Server.GameTicking;
 using Content.Shared.Imperial.Medieval.Admin;
 using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
+using Robust.Shared.Network;
+using System.Threading.Tasks;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -21,6 +22,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;
 
 
     private readonly Dictionary<string, bool> _bannedWords = new() { };
@@ -68,6 +70,16 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     public List<NrpMessage> GetAllMessages()
     {
         return _unsolvedMessages;
+    }
+
+    public async Task<int> GetPlayerNrpViolations(NetUserId player, int daysCount)
+    {
+        return await _db.GetLastNrpViolationsCount(player, daysCount);
+    }
+
+    public async Task AddPlayerNrpViolation(NetUserId player)
+    {
+        await _db.AddNrpViolation(player);
     }
 
     private void OnMapInit(RoundStartAttemptEvent ev)

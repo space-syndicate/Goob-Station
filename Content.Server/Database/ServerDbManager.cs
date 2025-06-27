@@ -166,6 +166,13 @@ namespace Content.Server.Database
             DateTimeOffset editedAt);
         #endregion
 
+        #region Imperial Medieval
+
+        Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel = default);
+        Task AddNrpViolation(Guid player, CancellationToken cancel = default);
+
+        #endregion
+
         #region Playtime
 
         /// <summary>
@@ -607,6 +614,21 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.EditServerRoleBan(id, reason, severity, expiration, editedBy, editedAt));
+        }
+        #endregion
+
+        #region Imperial Medieval
+
+        public Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetLastNrpViolationsCount(player, daysCount, cancel));
+        }
+
+        public Task AddNrpViolation(Guid player, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddNrpViolation(player, cancel));
         }
         #endregion
 

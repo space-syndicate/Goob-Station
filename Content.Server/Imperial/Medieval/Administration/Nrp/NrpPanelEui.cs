@@ -4,6 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.Eui;
 using Content.Server.Administration;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
+using Microsoft.Extensions.Logging;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -12,10 +13,12 @@ public sealed class NrpPanelEui : BaseEui
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     private readonly NrpMessagesSystem _nrpSystem;
+    private ISawmill _sawmill = default!;
 
     public NrpPanelEui()
     {
         IoCManager.InjectDependencies(this);
+        _sawmill = Logger.GetSawmill("NrpPanelEui");
         _nrpSystem = _entitySystemManager.GetEntitySystem<NrpMessagesSystem>();
     }
     public override void Opened()
@@ -47,7 +50,7 @@ public sealed class NrpPanelEui : BaseEui
         SendMessage(new NewNrpMessageMsg(message));
     }
 
-    public override void HandleMessage(EuiMessageBase msg)
+    public override async void HandleMessage(EuiMessageBase msg)
     {
         base.HandleMessage(msg);
 
@@ -63,6 +66,13 @@ public sealed class NrpPanelEui : BaseEui
                 break;
             case ResolveNrpMessageMsg resolve:
                 var isNrp = resolve.IsNrp;
+                if (isNrp)
+                {
+                    var violations = await _nrpSystem.GetPlayerNrpViolations(resolve.Message.PlayerId, 3);
+                    // TODO: punishment
+
+                    await _nrpSystem.AddPlayerNrpViolation(resolve.Message.PlayerId);
+                }
                 _nrpSystem.RemoveMessage(resolve.Message);
                 _nrpSystem.AddResolveToStats(Player.Name);
                 SendMessage(new RemoveNrpMessageMsg(resolve.Message));

@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -64,6 +65,19 @@ namespace Content.Server.Database
             modelBuilder.Entity<Trait>()
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
+
+            // imperial medieval start
+            modelBuilder.Entity<Language>()
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
+                .IsUnique();
+
+            modelBuilder.Entity<Skill>()
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.SkillName })
+                .IsUnique();
+
+            modelBuilder.Entity<NrpViolation>()
+                .HasIndex(p => p.UserId);
+            // imperial medieval end
 
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
@@ -462,6 +476,36 @@ namespace Content.Server.Database
 
         public string TraitName { get; set; } = null!;
     }
+
+    #region Imperial Medieval
+    public class Language
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string LanguageName { get; set; } = null!;
+    }
+
+    public class Skill
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string SkillName { get; set; } = null!;
+
+        public int SkillLevel { get; set; } = 10;
+    }
+
+    [Table("nrp_violation")]
+    public class NrpViolation
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public DateTime ViolationTime { get; set; }
+    }
+    #endregion
 
     #region Loadouts
 
