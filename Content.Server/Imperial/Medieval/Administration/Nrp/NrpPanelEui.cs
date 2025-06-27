@@ -1,27 +1,38 @@
 ﻿using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Shared.Administration;
-using Content.Shared.Administration.Logs;
 using Content.Shared.Eui;
 using Content.Server.Administration;
+using Content.Shared.Imperial.Medieval.Administration.Nrp;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
 public sealed class NrpPanelEui : BaseEui
 {
+    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-
+    private readonly NrpMessagesSystem _nrpSystem;
 
     public NrpPanelEui()
     {
         IoCManager.InjectDependencies(this);
+        _nrpSystem = _entitySystemManager.GetEntitySystem<NrpMessagesSystem>();
     }
     public override void Opened()
     {
         base.Opened();
-
+        _nrpSystem.RegisterEui(this);
         _adminManager.OnPermsChanged += OnPermsChanged;
     }
+
+    public override void Closed()
+    {
+        base.Closed();
+
+        _nrpSystem.UnregisterEui(this);
+        _adminManager.OnPermsChanged -= OnPermsChanged;
+    }
+
 
     private void OnPermsChanged(AdminPermsChangedEventArgs args)
     {
@@ -31,15 +42,9 @@ public sealed class NrpPanelEui : BaseEui
         }
     }
 
-    public override EuiStateBase GetNewState()
+    public void SendNewMessage(NrpMessage message)
     {
-        // TODO
-        // var state = new State(...);
-        // return state;
-
-        // placeholder
-        var state = new AdminLogsEuiState(1, new Dictionary<Guid, string>(), 0);
-        return state;
+        SendMessage(new NewNrpMessageMsg(message));
     }
 
     public override void HandleMessage(EuiMessageBase msg)
@@ -47,26 +52,27 @@ public sealed class NrpPanelEui : BaseEui
         base.HandleMessage(msg);
 
         if (!_adminManager.HasAdminFlag(Player, AdminFlags.Logs))
-        {
             return;
-        }
+
 
         switch (msg)
         {
-
+            case NrpMessagesRequest:
+                var messages = _nrpSystem.GetAllMessages();
+                SendMessage(new NrpMessagesResponse(messages));
+                break;
+            case ResolveNrpMessageMsg resolve:
+                var isNrp = resolve.IsNrp;
+                _nrpSystem.RemoveMessage(resolve.Message);
+                _nrpSystem.AddResolveToStats(Player.Name);
+                SendMessage(new RemoveNrpMessageMsg(resolve.Message));
+                break;
+            case NrpStatsRequest:
+                var stats = _nrpSystem.GetStats();
+                SendMessage(new NrpStatsResponse(stats));
+                break;
         }
     }
 
-    private void SendNrp(bool replace)
-    {
-        // TODO
-        // SendMessage(message);
-    }
 
-    public override void Closed()
-    {
-        base.Closed();
-
-        _adminManager.OnPermsChanged -= OnPermsChanged;
-    }
 }

@@ -1,0 +1,7 @@
+﻿<Control xmlns="https://spacestation14.io">
+    <PanelContainer HorizontalAlignment="Stretch" StyleClasses="WindowHeadingBackground" Margin="5">
+        <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical">
+            <RichTextLabel Name="EntryLabel"/>
+        </BoxContainer>
+    </PanelContainer>
+</Control>
