@@ -4,7 +4,6 @@ using Content.Shared.Administration;
 using Content.Shared.Eui;
 using Content.Server.Administration;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
-using Microsoft.Extensions.Logging;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 

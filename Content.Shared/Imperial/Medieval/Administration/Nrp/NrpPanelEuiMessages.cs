@@ -5,10 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.Medieval.Administration.Nrp;
 
 [Serializable, NetSerializable]
-public sealed class NrpMessagesRequest : EuiMessageBase
-{
-    public NrpMessagesRequest() { }
-}
+public sealed class NrpMessagesRequest : EuiMessageBase;
 
 [Serializable, NetSerializable]
 public sealed class NrpMessagesResponse : EuiMessageBase
@@ -89,10 +86,7 @@ public sealed class RemoveNrpMessageMsg : EuiMessageBase
 }
 
 [Serializable, NetSerializable]
-public sealed class NrpStatsRequest : EuiMessageBase
-{
-    public NrpStatsRequest() { }
-}
+public sealed class NrpStatsRequest : EuiMessageBase;
 
 [Serializable, NetSerializable]
 public sealed class NrpStatsResponse : EuiMessageBase

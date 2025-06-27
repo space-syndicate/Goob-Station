@@ -140,7 +140,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     private IEnumerable<string> TokenizeText(string input)
     {
         if (string.IsNullOrEmpty(input))
-            return Enumerable.Empty<string>();
+            return [];
 
         return _compiledPattern
             .Matches(input)
@@ -171,7 +171,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         return matches;
     }
 
-    public string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords)
+    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords)
     {
         if (string.IsNullOrEmpty(input) || bannedWords.Count == 0)
             return input;

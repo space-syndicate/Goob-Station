@@ -1,5 +1,4 @@
-﻿using Content.Client.Administration;
-using Content.Client.Eui;
+﻿using Content.Client.Eui;
 using Content.Shared.Eui;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 
