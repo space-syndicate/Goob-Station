@@ -1,6 +1,9 @@
 ﻿<DefaultWindow
     xmlns="https://spacestation14.io"
     Title="{Loc nrp-panel-stats-title}" MinSize="200 300">
-    <ScrollContainer Name="Entries" HScrollEnabled="False">
-    </ScrollContainer>
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical" VerticalExpand="True">
+        <ScrollContainer VerticalExpand="True" Name="Scroll" HScrollEnabled="False">
+            <BoxContainer Orientation="Vertical" Name="Entries" VerticalExpand="True" HorizontalAlignment="Stretch"></BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
 </DefaultWindow>
