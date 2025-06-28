@@ -62,14 +62,26 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         _unsolvedMessages.Remove(message);
     }
 
-    private void Bwoink(ICommonSession player, NetUserId sender)
+    private void Bwoink(ICommonSession player, NetUserId sender, string message)
     {
         var bwoinkMessage = new SharedBwoinkSystem.BwoinkTextMessage(
             player.UserId,
             sender,
-            Loc.GetString("nrp-panel-ahelp-message"));
+            Loc.GetString("nrp-panel-ahelp-message", ("message", message)));
 
         RaiseNetworkEvent(bwoinkMessage, player.Channel);
+    }
+
+    private void Ban(NetUserId playerId, string playerName, NetUserId sender, string message, uint banMinutes)
+    {
+        _banManager.CreateServerBan(playerId,
+            playerName,
+            sender,
+            null, // думаю бан по ip и hwid здесь неуместен
+            null,
+            banMinutes,
+            NoteSeverity.Minor,
+            Loc.GetString(Loc.GetString("nrp-panel-ban-message", ("message", message))));
     }
 
     public void OnViolation(NrpMessage message, int violationCount, NetUserId sender)
@@ -80,20 +92,13 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         if (violationCount == 1)
         {
             if (_playerManager.TryGetSessionById(playerId, out var session))
-                Bwoink(session, sender);
+                Bwoink(session, sender, message.Message);
         }
         else
         {
             var banHours = (uint)(Math.Pow(2, 2 * (violationCount - 2)));
             var banMinutes = banHours * 60;
-            _banManager.CreateServerBan(playerId,
-                playerName,
-                sender,
-                null, // думаю бан по ip и hwid здесь неуместен
-                null,
-                banMinutes,
-                NoteSeverity.Minor,
-                Loc.GetString(Loc.GetString("nrp-panel-ban-message")));
+            Ban(playerId, playerName, sender, message.Message, banMinutes);
         }
     }
 

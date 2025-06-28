@@ -14,5 +14,5 @@ nrp-panel-dialog-cancel = Нет
 nrp-panel-stats-title = Статистика
 nrp-panel-stats-entry = {$administrator}: {$resolves}
 
-nrp-panel-ahelp-message = placeholder
-nrp-panel-ban-message = placeholder
+nrp-panel-ahelp-message = Вы получили предупреждение за употребление НРП речи в фразе {$message}. Дальнейшие нарушения повлекут за собой блокировку
+nrp-panel-ban-message = Вы получили блокировку за употребление НРП речи в фразе {$message}. Дальнейшие нарушения повлекут за собой увеличение сроки блокировки
