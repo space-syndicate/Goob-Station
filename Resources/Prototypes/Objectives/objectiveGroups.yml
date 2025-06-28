@@ -28,7 +28,7 @@
   id: TraitorObjectiveGroupKill
   weights:
     KillRandomPersonObjective: 1
-    KillRandomHeadObjective: 0.25
+    #KillRandomHeadObjective: 0.25 # Imperial remove kill objective start
 
 - type: weightedRandom
   id: TraitorObjectiveGroupState
