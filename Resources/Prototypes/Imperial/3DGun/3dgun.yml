@@ -43,5 +43,3 @@
     state: icon-mag
   - type: Item
     size: Small
-    sprite: Imperial/3DGun.rsi
-    state: icon-mag
