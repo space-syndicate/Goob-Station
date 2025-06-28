@@ -9,8 +9,6 @@
     state: base
   - type: Item
     size: Normal
-    sprite: Imperial/3DGun.rsi
-    state: icon
   - type: Appearance
   - type: ContainerContainer
     containers:
