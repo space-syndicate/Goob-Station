@@ -41,9 +41,9 @@
   components:
   - type: DecalGunMag
   - type: Sprite
-    sprite: Imperial/3DGun.rsi/cartridge
-    state: icon
+    sprite: Imperial/3DGun.rsi
+    state: icon-mag
   - type: Item
     size: Small
-    sprite: Imperial/3DGun.rsi/cartridge
-    state: icon
+    sprite: Imperial/3DGun.rsi
+    state: icon-mag
