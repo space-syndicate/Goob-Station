@@ -94,24 +94,26 @@
   - type: KillPersonCondition
     requireMaroon: true
 
-- type: entity
-  parent: [BaseTraitorObjective, BaseKillObjective]
-  id: KillRandomHeadObjective
-  description: Нам нужно убрать эту главу, и вы, вероятно, знаете почему. Удачи, агент. # Imperial Translate
-  components:
-  - type: Objective
-    # technically its still possible for KillRandomPersonObjective to roll a head but this is guaranteed, so higher difficulty
-    difficulty: 3.0
-    # killing 1 head is enough
-    unique: true
-  - type: TargetObjective
-    title: objective-condition-kill-maroon-title
-  - type: PickRandomHead
-  - type: KillPersonCondition
-    # don't count missing evac as killing as heads are higher profile, so you really need to do the dirty work
-    # if ce flies a shittle to centcom you better find a way onto it
-    requireDead: true
-    requireMaroon: true
+# Imperial remove kill objective start
+#- type: entity
+#  parent: [BaseTraitorObjective, BaseKillObjective]
+#  id: KillRandomHeadObjective
+#  description: Нам нужно убрать эту главу, и вы, вероятно, знаете почему. Удачи, агент. # Imperial Translate
+#  components:
+#  - type: Objective
+#    # technically its still possible for KillRandomPersonObjective to roll a head but this is guaranteed, so higher difficulty
+#    difficulty: 3.0
+#    # killing 1 head is enough
+#    unique: true
+#  - type: TargetObjective
+#    title: objective-condition-kill-maroon-title
+#  - type: PickRandomHead
+#  - type: KillPersonCondition
+#    # don't count missing evac as killing as heads are higher profile, so you really need to do the dirty work
+#    # if ce flies a shittle to centcom you better find a way onto it
+#    requireDead: true
+#    requireMaroon: true
+# Imperial remove kill objective end
 
 # social
 
