@@ -1,6 +1,10 @@
 - type: vendingMachineInventory
   id: EngiVendInventory
   startingInventory:
+    #imperial add decal gun start
+    DecalGun: 2
+    DecalGunMag: 3
+    #imperial add decal gun end
     ClothingEyesGlassesMeson: 4
     ClothingHeadHatWelding: 6
     CrowbarYellow: 8

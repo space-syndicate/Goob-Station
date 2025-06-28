@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseItem
+  id: DecalGun
+  name: decal gun
+  components:
+  - type: DecalGun
+  - type: Sprite
+    sprite: Imperial/3DGun.rsi
+    state: base
+  - type: Item
+    size: Normal
+    sprite: Imperial/3DGun.rsi
+    state: icon
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      magazine: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      magazine:
+        name: Magazine
+  - type: ItemMapper
+    mapLayers:
+      mag-0:
+        whitelist:
+          components:
+          - DecalGunMag
+  - type: ActivatableUI
+    inHandsOnly: true
+    singleUser: true
+    key: enum.DecalGunKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DecalGunKey.Key:
+        type: DecalGunBoundUserInterface
+
+- type: entity
+  id: DecalGunMag
+  parent: BaseItem
+  name: decal gun mag
+  components:
+  - type: DecalGunMag
+  - type: Sprite
+    sprite: Imperial/3DGun.rsi/cartridge
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/3DGun.rsi/cartridge
+    state: icon
