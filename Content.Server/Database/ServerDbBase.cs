@@ -135,7 +135,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Shared._RMC14.LinkAccount;
+//using Content.Shared._RMC14.LinkAccount; CorvaxGoob-Coins
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -1933,6 +1933,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #region RMC14
 
+        /* CorvaxGoob-Coins-start
         public async Task<Guid?> GetLinkingCode(Guid player)
         {
             await using var db = await GetDb();
@@ -2066,6 +2067,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
             return (ntName);
         }
+        CorvaxGoob-Coins-end */
 
         #endregion
 

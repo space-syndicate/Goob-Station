@@ -165,7 +165,7 @@
 using Content.Server._CorvaxGoob.TTS;
 //using Content.Server._durkcode.ServerCurrency; // CorvaxGoob-Coins
 using Content.Server._Goobstation.Antag;
-using Content.Server._RMC14.LinkAccount; // RMC - Patreon
+//using Content.Server._RMC14.LinkAccount; // RMC - Patreon // CorvaxGoob-Coins
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -247,7 +247,7 @@ namespace Content.Server.IoC
             IoCManager.Register<CVarControlManager>();
             //IoCManager.Register<ServerCurrencyManager>(); // Goobstation - Server Currency // CorvaxGoob-Coins
             IoCManager.Register<LastRolledAntagManager>(); // Goobstation - antag pity
-            IoCManager.Register<LinkAccountManager>(); // RMC - Patreon
+            //IoCManager.Register<LinkAccountManager>(); // RMC - Patreon // CorvaxGoob-Coins
             IoCManager.Register<TTSManager>(); // CorvaxGoob-TTS
         }
     }

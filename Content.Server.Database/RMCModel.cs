@@ -26,6 +26,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -154,3 +155,4 @@ public sealed class RMCPatronRoundEndNTShoutout
     [StringLength(100), Required]
     public string Name { get; set; } = default!;
 }
+CorvaxGoob-Coins-end */

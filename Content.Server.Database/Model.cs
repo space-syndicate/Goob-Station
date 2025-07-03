@@ -180,6 +180,7 @@ namespace Content.Server.Database
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
 
         // RMC14
+        /* CorvaxGoob-Coins-start
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
         public DbSet<RMCLinkedAccount> RMCLinkedAccounts { get; set; } = default!;
         public DbSet<RMCPatronTier> RMCPatronTiers { get; set; } = default!;
@@ -188,6 +189,7 @@ namespace Content.Server.Database
         public DbSet<RMCLinkedAccountLogs> RMCLinkedAccountLogs { get; set; } = default!;
         public DbSet<RMCPatronLobbyMessage> RMCPatronLobbyMessages { get; set; } = default!;
         public DbSet<RMCPatronRoundEndNTShoutout> RMCPatronRoundEndNTShoutouts { get; set; } = default!;
+        CorvaxGoob-Coins-end */
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -515,6 +517,7 @@ namespace Content.Server.Database
                 .HasDefaultValue(HwidType.Legacy);
 
             // RMC14
+            /* CorvaxGoob-Coins-start
             modelBuilder.Entity<RMCLinkedAccount>()
                 .HasOne(l => l.Player)
                 .WithOne(p => p.LinkedAccount)
@@ -567,6 +570,7 @@ namespace Content.Server.Database
                 .HasForeignKey(l => l.DiscordId)
                 .HasPrincipalKey(p => p.Id)
                 .OnDelete(DeleteBehavior.Cascade);
+            CorvaxGoob-Coins-end */
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -797,10 +801,12 @@ namespace Content.Server.Database
         public List<RoleWhitelist> JobWhitelists { get; set; } = null!;
 
         // RMC14
+        /* CorvaxGoob-Coins-start
         public RMCLinkedAccount? LinkedAccount { get; set; }
         public RMCPatron? Patron { get; set; }
         public RMCLinkingCodes? LinkingCodes { get; set; }
         public List<RMCLinkedAccountLogs> LinkedAccountLogs { get; set; } = default!;
+        CorvaxGoob-Coins-end */
     }
 
     [Table("whitelist")]

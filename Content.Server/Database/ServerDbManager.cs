@@ -423,6 +423,7 @@ namespace Content.Server.Database
 
         #region RMC14
 
+        /* CorvaxGoob-Coins-start
         Task<Guid?> GetLinkingCode(Guid player);
 
         Task SetLinkingCode(Guid player, Guid code);
@@ -442,6 +443,7 @@ namespace Content.Server.Database
         Task<(string Message, string User)?> GetRandomLobbyMessage();
 
         Task<string?> GetRandomShoutout();
+        CorvaxGoob-Coins-end */
 
         #endregion
 
@@ -1172,6 +1174,7 @@ namespace Content.Server.Database
 
         #region RMC
 
+        /* CorvaxGoob-Coins-start
         public Task<Guid?> GetLinkingCode(Guid player)
         {
             DbReadOpsMetric.Inc();
@@ -1231,6 +1234,7 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetRandomShoutout());
         }
+        CorvaxGoob-Coins-end */
 
         #endregion
 

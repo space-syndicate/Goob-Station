@@ -26,6 +26,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
@@ -233,3 +234,4 @@ public sealed class LinkAccountManager : IPostInjectInit
         _userDb.AddOnPlayerDisconnect(ClientDisconnected);
     }
 }
+CorvaxGoob-Coins-end */
