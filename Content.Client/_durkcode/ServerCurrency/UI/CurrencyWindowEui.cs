@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using Content.Client.Eui;
 using Content.Shared._durkcode.ServerCurrency;
 using Content.Shared._durkcode.ServerCurrency.UI;
@@ -40,4 +41,4 @@ namespace Content.Client._durkcode.ServerCurrency.UI
             _window.Close();
         }
     }
-}
+} CorvaxGoob-Coins-end */

@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using Content.Shared._durkcode.ServerCurrency;
 
 namespace Content.Client._durkcode.ServerCurrency;
@@ -57,3 +58,4 @@ public sealed class ServerCurrencySystem : EntitySystem
         ? $"{amount} {Loc.GetString("server-currency-name-singular")}"
         : $"{amount} {Loc.GetString("server-currency-name-plural")}";
 }
+CorvaxGoob-Coins-end */

@@ -803,6 +803,7 @@ namespace Content.Server.Database
                 player.LastSeenHWId);
         }
 
+        /* CorvaxGoob-Coins-start
         public async Task<int> GetServerCurrency(NetUserId userId) // Goobstation
         {
             await using var db = await GetDb();
@@ -837,6 +838,7 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
             return dbPlayer.ServerCurrency;
         }
+        CorvaxGoob-Coins-end */
 
         public async Task<TimeSpan> GetLastRolledAntag(NetUserId userId) // Goobstation
         {

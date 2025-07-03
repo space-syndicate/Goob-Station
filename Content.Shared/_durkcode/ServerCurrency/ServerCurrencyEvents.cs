@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -81,3 +82,4 @@ public sealed class PlayerBalanceRequestEvent : EntityEventArgs
     /// </summary>
     public PlayerBalanceRequestEvent(){}
 }
+CorvaxGoob-Coins-end */

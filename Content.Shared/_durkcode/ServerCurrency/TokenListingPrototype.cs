@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._durkcode.ServerCurrency;
@@ -30,3 +31,4 @@ public sealed class TokenListingPrototype : IPrototype
     [DataField("adminNote", required: true)]
     public string AdminNote { get; private set; } = string.Empty;
 }
+CorvaxGoob-Coins-end */

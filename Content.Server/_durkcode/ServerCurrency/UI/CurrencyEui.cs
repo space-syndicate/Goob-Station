@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* CorvaxGoob-Coins-start
 using Content.Server.Administration.Notes;
 using Content.Server.EUI;
 using Content.Shared._durkcode.ServerCurrency;
@@ -59,9 +60,10 @@ namespace Content.Server._durkcode.ServerCurrency.UI
             if (balance < token.Price)
                 return;
 
-            await _notesMan.AddAdminRemark(Player, Player.UserId, 0, 
+            await _notesMan.AddAdminRemark(Player, Player.UserId, 0,
                 Loc.GetString(token.AdminNote), 0, false, null);
             _currencyMan.RemoveCurrency(Player.UserId, token.Price);
         }
     }
 }
+CorvaxGoob-Coins-end */

@@ -270,9 +270,11 @@ namespace Content.Server.Database
             ImmutableTypedHwid? hwId);
         Task<PlayerRecord?> GetPlayerRecordByUserName(string userName, CancellationToken cancel = default);
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
+        /* CorvaxGoob-Coins-start
         Task<int> GetServerCurrency(NetUserId userId); // Goobstation
         Task SetServerCurrency(NetUserId userId, int currency); // Goobstation
         Task<int> ModifyServerCurrency(NetUserId userId, int currencyDelta); // Goobstation
+        CorvaxGoob-Coins-end */
 
         Task<bool> SetLastRolledAntag(NetUserId userId, TimeSpan to); // Goobstation
         Task<TimeSpan> GetLastRolledAntag(NetUserId userId); // Goobstation
@@ -750,6 +752,7 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetPlayerRecordByUserId(userId, cancel));
         }
 
+        /* CorvaxGoob-Coins-start
         public Task<int> GetServerCurrency(NetUserId userId) // Goobstation
         {
             DbReadOpsMetric.Inc();
@@ -766,6 +769,7 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.ModifyServerCurrency(userId, currencyDelta));
         }
+        CorvaxGoob-Coins-end */
 
         public Task<TimeSpan> GetLastRolledAntag(NetUserId userId) // Goobstation
         {
