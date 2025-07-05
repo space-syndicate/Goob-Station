@@ -2,20 +2,22 @@
   id: ActionSuitToggleMarkingEars
   name: Toggle Suit Ears Marking
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     itemIconStyle: NoItem
     icon: Imperial/ToggleMarking/hide_ears.png
     iconOn: Imperial/ToggleMarking/show_ears.png
+  - type: InstantAction
     event: !type:ToggleMarkingEarsEvent
 
 - type: entity
   id: ActionSuitToggleMarkingTail
   name: Toggle Suit Tail Marking
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     useDelay: 1
     icon: Imperial/ToggleMarking/hide_tail.png
     iconOn: Imperial/ToggleMarking/show_tail.png
+  - type: InstantAction
     event: !type:ToggleMarkingTailEvent
