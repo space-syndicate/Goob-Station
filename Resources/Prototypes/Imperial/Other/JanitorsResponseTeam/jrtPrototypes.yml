@@ -1,0 +1,76 @@
+- type: entity
+  parent: MobHuman
+  id: JRTEVAPreset
+  name: JRT
+  suffix: JRT, EVA
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertjanitoreva
+    - type: Loadout
+      prototypes: [ JRTGearEVA ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+
+- type: entity
+  id: CrateJRTSpaceSprayNozzle
+  parent: CratePlastic
+  name: janitorial supplies crate
+  suffix: JRT
+  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, broom, spray cleaner, rag, and trash bag.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSprayNozzle
+      - id: ClothingBackpackWaterTankWithSpaceCleaner
+
+
+- type: entity
+  parent: [ClothingBackpackWaterTank]
+  id: ClothingBackpackWaterTankWithSpaceCleaner
+  name: backpack water tank
+  suffix: JRT, Full, Space Cleaner reagents
+  description: Holds a large amount of fluids. Supplies to spray nozzles in your hands, and has a slot on the side for said spray nozzles.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 1000
+        reagents:
+          - ReagentId: SpaceCleaner
+            Quantity: 1000
+
+
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelWithHydra
+  name: Duffel bag
+  suffix: JRT
+  description: A duffel bag of S-o.N.A. AI Dynamics corporation, with additional BlueSpace storage, which was leased from NanoTrasen.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherHydra
+      - id: GrenadeCleanade
+        amount: 8
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelWithGrenadesCleanade
+  name: Duffel bag
+  suffix: JRT
+  description: A duffel bag of S-o.N.A. AI Dynamics corporation, with additional BlueSpace storage, which was leased from NanoTrasen.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeCleanade
+        amount: 12

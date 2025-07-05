@@ -13,6 +13,7 @@
   startingGear: SeniorResearcherGear
   icon: "JobIconSeniorResearcher"
   supervisors: job-supervisors-rd
+  canBeAntag: false
   access:
   - Research
   - Maintenance
@@ -31,6 +32,9 @@
   - skillHacking
   - skillBasicAtmos
   - skillNeuroSurgery
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SeniorResearcherGear

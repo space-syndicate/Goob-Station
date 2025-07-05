@@ -1,0 +1,42 @@
+- type: entity
+  name: true pirate parrot
+  parent: MobParrot
+  id: MobParrotPirate
+  description: Pirates' besta pal.
+  suffix: Pirate
+  components:
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+    - id: PirateHandyFlag
+      amount: 1
+    - id: GoldOre1
+      amount: 1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Critical
+      200: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: parrot
+      sprite: Imperial/PiratesNewHorizon/parrot_pirate.rsi
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-parrot-pirate-name
+    description: ghost-role-information-parrot-pirate-description
+    rules: ghost-role-information-parrot-pirate-rules
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 18
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Pirate
+  - type: PirateAccent

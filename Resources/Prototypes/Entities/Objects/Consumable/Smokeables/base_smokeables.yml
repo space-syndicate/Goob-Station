@@ -20,6 +20,7 @@
     price: 5
   - type: InjectableSolution
     solution: smokable
+  - type: Trash # Imperial "OperationalErtCleaners"
 
 # Base for all cigars and cigarettes.
 - type: entity
@@ -74,8 +75,8 @@
   components:
   - type: Vape
     damage:
-      groups:
-        Burn: 2
+      types:
+        Heat: 2
   - type: SolutionContainerManager
     solutions:
       smokable:

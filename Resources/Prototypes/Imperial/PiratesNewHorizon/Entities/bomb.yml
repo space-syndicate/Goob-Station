@@ -1,0 +1,53 @@
+- type: entity
+  parent: BaseItem
+  id: PirateGrenade
+  name: Pirate bomb
+  suffix: Pirate
+  description: Th' classic of all pirates.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/pirate_grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: TriggerOnHeat
+    delay: 5
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg
+  - type: RandomTimerTrigger
+    min: 7
+    max: 12
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1000
+    intensitySlope: 3
+    maxIntensity: 100
+    canCreateVacuum: false
+  - type: TimerTriggerVisuals
+  - type: MultiHandedItem
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt

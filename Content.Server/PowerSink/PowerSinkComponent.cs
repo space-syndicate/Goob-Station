@@ -41,5 +41,22 @@ namespace Content.Server.PowerSink
                     .WithVolume(15f) // audible even behind walls
                     .WithRolloffFactor(10)
             };
+
+        // Imperial Space Pirates: New Horizon; Start
+
+        /// <summary>
+        /// If PowerSink reached it's full charge, defines if it explodes.
+        /// </summary>
+        [DataField("explodeOnFullCharge")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool ExplodeOnFullCharge = true;
+        /// <summary>
+        /// The message, sent when power sink is nearing it's full charge
+        /// </summary>
+        [DataField("imminentExplosionMessage")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public string ImminentExplosionMessage = "powersink-immiment-explosion-announcement";
+
+        // Imperial Space Pirates: New Horizon; End
     }
 }

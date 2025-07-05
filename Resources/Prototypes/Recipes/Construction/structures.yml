@@ -209,8 +209,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Диагональная стена шаттла # Imperial Recipes Locale
   id: DiagonalShuttleWall
+  name: Диагональная стена шаттла # Imperial Recipes Locale
   graph: Girder
   startNode: start
   targetNode: diagonalshuttleWall

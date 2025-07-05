@@ -31,7 +31,7 @@
         amount: 5
         doAfter: 2
   - node: pipebomb
-    entity: PipeBomb
+    entity: PipeBombNewRemastered
     edges:
     - to: cable
       completed:

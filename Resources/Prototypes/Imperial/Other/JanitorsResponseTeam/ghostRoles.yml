@@ -1,0 +1,19 @@
+- type: entity
+  id: SpawnJRTEVAPreset
+  name: ghost role JRT spawn point
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: jrt-eva-name
+      description: jrt-eva-desc
+      rules: jrt-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: JRTEVAPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertjanitoreva

@@ -1,0 +1,23 @@
+- type: gamePreset
+  id: Pirates
+  alias:
+  - capers
+  name: pirates-title
+  description: pirates-description
+  showInVote: false
+  rules:
+  - Pirates
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: PiratesDebug
+  alias:
+  - capersdebug
+  name: pirates-title
+  description: all-at-once-description
+  showInVote: false
+  rules:
+  - PiratesDebug
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation

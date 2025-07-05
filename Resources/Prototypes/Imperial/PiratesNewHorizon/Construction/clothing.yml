@@ -1,0 +1,87 @@
+- type: construction
+  name: пивная повязка
+  id: ClothingEyesEyepatchHudBeer
+  graph: BeerEyepatchHud
+  startNode: start
+  targetNode: beerEyepatch
+  category: construction-category-clothing
+  description: Повязка и пивные очки объединены воедино.
+  #icon: { sprite: Clothing/Eyes/Hud/beerpatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: охранная повязка на глаза
+  id: ClothingEyesEyepatchHudSecurity
+  graph: SecurityEyepatchHud
+  startNode: start
+  targetNode: securityEyepatch
+  category: construction-category-clothing
+  description: Повязка на глаза и охранный визор объединены воедино.
+  #icon: { sprite: Clothing/Eyes/Hud/secpatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: медицинская повязка на глаза
+  id: ClothingEyesEyepatchHudMedical
+  graph: MedicalEyepatchHud
+  startNode: start
+  targetNode: medicalEyepatch
+  category: construction-category-clothing
+  description: Повязка на глаза и медицинский визор объединены воедино.
+  #icon: { sprite: Clothing/Eyes/Hud/medpatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: диагностическая повязка на глаза
+  id: ClothingEyesEyepatchHudDiagnostic
+  graph: DiagnosticEyepatchHud
+  startNode: start
+  targetNode: diagnosticEyepatch
+  category: construction-category-clothing
+  description: Повязка на глаза и диагностический визор объединены воедино
+  #icon: { sprite: Clothing/Eyes/Hud/diagpatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: химическая повязка на глаза
+  id: ClothingEyesEyepatchHudChemical
+  graph: ChemicalEyepatchHud
+  startNode: start
+  targetNode: chemicalEyepatch
+  category: construction-category-clothing
+  description: Повязка на глаза и очки для химического анализа объединены воедино.
+  #icon: { sprite: Imperial/PiratesNewHorizon/chempatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: светозащитная повязка на глаза
+  id: ClothingEyesEyepatchFlashProof
+  graph: FlashProofEyepatch
+  startNode: start
+  targetNode: flashEyepatch
+  category: construction-category-clothing
+  description: Какого хрена? Никто не знает
+  #icon: { sprite: Imperial/PiratesNewHorizon/flashpatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: инженерная повязка на глаза
+  id: ClothingEyesEyepatchEngineering
+  graph: EngineeringEyepatch
+  startNode: start
+  targetNode: engEyepatch
+  category: construction-category-clothing
+  description: Повязка на глаза и инженерный визор объединены воедино
+  #icon: { sprite: Imperial/PiratesNewHorizon/engpatch.rsi, state: icon }
+  objectType: item
+
+- type: construction
+  name: повязка на глаза всевиденья
+  id: ClothingEyesEyepatchHudOmni
+  graph: OmniEyepatchHud
+  startNode: start
+  targetNode: omniEyepatch
+  category: construction-category-clothing
+  description: Порази своим взором всех!
+  #icon: { sprite: Imperial/PiratesNewHorizon/omnipatch.rsi, state: icon }
+  objectType: item

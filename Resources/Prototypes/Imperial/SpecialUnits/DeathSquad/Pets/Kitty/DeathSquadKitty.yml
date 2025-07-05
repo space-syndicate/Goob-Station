@@ -1,0 +1,380 @@
+#DeathSquad kitty
+- type: entity
+  name: deathcat
+  id: MobCatDeathSquad
+  parent: MobCat
+  description: Stroke him properly and maybe he won't rip your head off...
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: deathcat_alive
+    - map: [ "mask" ]
+#    - map: [ "blade" ] #Легаси от прошлой реализации лазерных когтей.
+#      state: inhand_blade
+#      color: "#FFFFFF"
+#      visible: false
+#      shader: unshaded
+  - type: Inventory
+    speciesId: cat
+    templateId: deathsquadcat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathcat_alive
+      Critical:
+        Base: deathcat_dead
+      Dead:
+        Base: deathcat_dead
+  - type: GhostRole
+    prob: 1
+    name: ghost-role-information-dscat-name
+    allowMovement: true
+    description: ghost-role-information-dscat-description
+    rules: ghost-role-information-dscat-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: StandingState
+  - type: RotationVisuals
+    defaultRotation: 180
+    horizontalRotation: 180
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: NpcFactionMember
+    factions:
+    - DeathSquad
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 5
+  - type: ComplexInteraction
+  - type: Access #Доступы тоже.
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+  - type: IntrinsicRadioReceiver #Радио также прифигачино прямо в моба.
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - SODDeathSquad
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: ActiveRadio
+    channels:
+    - SODDeathSquad
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: ZombieImmune
+  - type: Loadout
+    prototypes: [ DeathSquadCatLodout ]
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - PressureImmunity
+    - SlowedDown
+    - Stutter
+#    - Electrocution #Это тоже можно пофиксить, но я не хочу еще сильнее менять и без того сильно измененого от базовых мобов кота.
+#    - ForcedSleep #Я мог бы выдать в темплейт инвентаря голову и аутер клозинг, сделать шлем скафандру, но мне гига лень. Так что котика невозможно усыпить насильно. Живите с этим)
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+#    - Flashed #По аналогии с предыдущеми пунктами. Я вообще был бы рад глобально переработать котиков, и не только. Скафандры им сделать, Синдика поменять. Но для этого надо сильно менять ванильные прототипы.
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
+  - type: NoSlip
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - CanPilot
+  - type: MovementAlwaysTouching
+  - type: Barotrauma
+    protectionSlots:
+    - mask
+    damage:
+      types:
+        Blunt: 0.15
+  - type: InteractionPopup
+    successChance: 0.7
+    interactSuccessString: petting-success-deathcat
+    interactFailureString: petting-failure-deathcat
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: CrewSkills #То самое чувство, когда котенок со своими лапками, и лошадь на ходу остановит, и шаттлом управлять умеет, и товарища вылечить может, и мета наварит, пока ты только в носу ковыряться умеешь...
+    skills:
+      - skillBotany #Base
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillCooking  #Easy
+      - skillBartending
+      - skillHacking
+      - skillInstrumentation #Medium
+      - skillMaintenance
+      - skillMediumConstruction
+      - skillMediumBotany
+      - skillBasicAtmos
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillPiloting #Hard
+      - skillAtmos
+      - skillHardInstrumentation
+      - skillRobotics
+      - skillResearch
+      - skillPharmaceuticals
+      - skillShooting
+      - skillSurgery
+      - skillNeuroSurgery
+  - type: Puller
+    needsHands: false
+  - type: Body
+    prototype: DeathSquadKitty
+  - type: Hands
+#door pry
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+#energy_claws #Легаси от прошлой реализации лазерных когтей.
+#  - type: EnergySword
+#  - type: ItemToggle
+#    soundActivate:
+#      path: /Audio/Weapons/ebladeon.ogg
+#    soundDeactivate:
+#      path: /Audio/Weapons/ebladeoff.ogg
+#  - type: ItemToggleActiveSound
+#    activeSound:
+#      path: /Audio/Weapons/ebladehum.ogg
+#  - type: ItemTogglePointLight
+#  - type: ItemToggleMeleeWeapon
+#    activatedSoundOnHit:
+#      path: /Audio/Weapons/eblade1.ogg
+#      params:
+#        variation: 0.250
+#    activatedSoundOnHitNoDamage:
+#      path: /Audio/Weapons/eblade1.ogg
+#      params:
+#        variation: 0.250
+#        volume: -10
+#    activatedSoundOnSwing:
+#      path: /Audio/Weapons/eblademiss.ogg
+#      params:
+#        variation: 0.125
+#    activatedDamage:
+#      types:
+#        Slash: 10
+#        Heat: 10
+#        Structural: 40
+#  - type: ComponentToggler
+#    components:
+#    - type: Sharp
+#    - type: DisarmMalus
+#      malus: 0.6
+#    - type: Execution
+#      doAfterDuration: 4.0
+#  - type: PointLight
+#    enabled: false
+#    radius: 2
+#    energy: 2
+#    color: white
+#    netsync: false
+#  - type: ToggleableLightVisuals
+#    spriteLayer: blade
+#    state: inhand_blade
+#    shader: unshaded
+#  - type: Appearance
+#  - type: Reflect
+#    reflectProb: 0.4
+#    spread: 5
+#  - type: IgnitionSource
+#    temperature: 700
+#  - type: UseDelay
+#    delay: 1.0
+
+- type: body
+  id: DeathSquadKitty
+  name: "cot"
+  root: torso
+  slots:
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_hand
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+    right_hand:
+      part: RightHandHuman
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: startingGear #gear
+  id: DeathSquadCatLodout
+  equipment:
+    mask: CatHardsuitDeathSquad
+    suitstorage: OxygenTankFilled
+  inhand:
+  - KittyEnergyClaws
+
+#- type: entity
+#  name: energy claws #Лазерные когти
+#  parent: BaseItem
+#  id: BaseKittyEnergyClaws
+#  abstract: true
+#  categories: [ HideSpawnMenu ]
+#  description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
+#  components:
+#  - type: EnergySword
+#  - type: MeleeWeapon
+#    altDisarm: false
+#    angle: 0
+#    animation: WeaponArcClaw
+#    wideAnimationRotation: -135
+#    attackRate: 2
+#    damage:
+#      types:
+#        Blunt: 4.5
+#  - type: ItemToggle
+#    soundActivate:
+#      path: /Audio/Weapons/ebladeon.ogg
+#    soundDeactivate:
+#      path: /Audio/Weapons/ebladeoff.ogg
+#  - type: ItemToggleActiveSound
+#    activeSound:
+#      path: /Audio/Weapons/ebladehum.ogg
+#  - type: ItemTogglePointLight
+#  - type: ItemToggleMeleeWeapon
+#    activatedSoundOnHit:
+#      path: /Audio/Weapons/eblade1.ogg
+#      params:
+#        variation: 0.250
+#    activatedSoundOnHitNoDamage:
+#      path: /Audio/Weapons/eblade1.ogg
+#      params:
+#        variation: 0.250
+#        volume: -10
+#    activatedSoundOnSwing:
+#      path: /Audio/Weapons/eblademiss.ogg
+#      params:
+#        variation: 0.125
+#    activatedDamage:
+#      types:
+#        Slash: 10
+#        Heat: 10
+#        Structural: 40
+#  - type: ComponentToggler
+#    components:
+#    - type: Sharp
+#    - type: DisarmMalus
+#      malus: 0.6
+#    - type: Execution
+#      doAfterDuration: 4.0
+#  - type: PointLight
+#    enabled: false
+#    radius: 2
+#    energy: 2
+#    color: white
+#    netsync: false
+#  - type: ToggleableLightVisuals
+#    spriteLayer: blade
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left-blade
+#        shader: unshaded
+#      right:
+#      - state: inhand-right-blade
+#        shader: unshaded
+#  - type: Appearance
+#  - type: Reflect
+#    reflectProb: 0.75
+#    spread: 10
+#  - type: IgnitionSource
+#    temperature: 700
+#  - type: UseDelay
+#    delay: 1.0
+
+- type: entity
+  name: energy claws #Лазерные когти
+  parent: BaseMeleeWeaponEnergy
+  id: KittyEnergyClaws
+  categories: [ HideSpawnMenu ]
+  description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi ##Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi
+    layers:
+    - state: e_claws
+    - state: e_claws_blade
+      color: white
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws_inhands.rsi
+  - type: Unremoveable
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 4.5
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 10
+        Heat: 10
+        Structural: 40

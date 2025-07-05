@@ -92,9 +92,9 @@
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieErika
-  name: Эрика Штейнхофер
+  name: Erika Steinhofer
   suffix: Crook, COMMUNITY, TOY
-  description: Не верит в совпадения. Особенно когда пассажир стоит рядом с телом
+  description: Doesn't believe in coincidences. Especially when a passenger is standing next to a body.
   components:
   - type: Item
     size: Normal
@@ -111,9 +111,9 @@
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieAiden
-  name: Айден Бисмарк
+  name: Aiden Bismarck
   suffix: Crook, COMMUNITY, TOY
-  description: Выдайте мне СоХ, БоХ, МСоХ, Тох, белт, инженерные инструменты абдукторов, хирургические инструменты абдукторов, музыкальные инструменты абдукторов, красное зелье, синее зелье, радужное зелье, серобуромалиновое зелье, зелье против сноса, зелье против поноса, РЦД, РПД, РПЦ, РКС, СВД, СКС, ПТУР, мур, мяу, гав, кря, хрю, х-рей имплант, у-рей имплант, z-рей имплант, СБ-худ, мед-худ, антаг-худ, админ-худ, связки бога, развязки бога, помпу плюс, помпу минус, помпу умножение, помпу разделение. Дыхательную трубку, выдыхательную трубку, вздыхательную трубку осуждающе вздыхательную трубку, анти-дроп, анти-рейв, анти-порчу, анти-перелом, анти-внутртяк, анти-щиткур, АЕГ, пепег, иммолятор, аннигилятор, аллигатор, крокодил, сокол, тесла-револьвер, тесла-карабин, тесла-рогатка, тесла-кастеты, взрывычатку Т4, Х4, ТНТ4, кибер сердце, кибер лёгкие, кибер-тяжёлые, кибер-силу воли, ген прыжка, ген распрыжки, ген разбега, ген побега, ген полного улета. И побыстрее пожалуйста!
+  description: Give me SoX, BoX, MSoX, ToX, belt, abductor engineering tools, abductor surgical tools, abductor musical instruments, red potion, blue potion, rainbow potion, grey-brown-red potion, anti-demolition potion, anti-diarrhoea potion, RCD, RPD, RPC, RKS, SVD, SKS, PTUR, mur, meow, woof, kria, oink, x-ray implant, u-ray implant, z-ray implant, SB-hood, med-hood, antag-hud, admin-hud, god's bonds, god's untying, pump plus, pump minus, pump multiplication, pump division. Breathing tube, exhalation tube, sighing tube, condemning sighing tube, anti-drop, anti-rave, anti-damage, anti-fracture, anti-vnutrtjak, anti-shchitkur, AEG, pepeg, immolator, annihilator, alligator, crocodile, falcon, tesla revolver, tesla carbine, tesla slingshot, tesla brass knuckles, explosives T4, X4, TNT4, cyber heart, cyber lungs, cyber heavy, cyber willpower, jump gene, splash gene, run gene, escape gene, full flight gene. And quickly, please!
   components:
   - type: Item
     size: Normal
@@ -129,9 +129,9 @@
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieKainov
-  name: Александр Каинов
+  name: Alexander Kainov
   suffix: Crook, COMMUNITY, TOY
-  description: Он из тех кто напомнит вам, что доблесть превосходит количество, а верность своей Родине не оценивается количеством текущих проблем.
+  description: He is one of those who will remind you that valour surpasses quantity, and loyalty to one's homeland cannot be measured by the number of current problems.
   components:
   - type: Item
     size: Normal
@@ -147,9 +147,9 @@
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieKarner
-  name: Анастасия Карнер
+  name: Anastasia Karner
   suffix: Crook, COMMUNITY, TOY
-  description: Пахнет болью, страданиями и бюрократией. Р.S. Не ставьте её рядом с игрушкой офицера Амелии... Иначе это будет слишком мило.
+  description: Smells of pain, suffering, and bureaucracy. P.S. Don't put her next to Officer Amelia's toy... Otherwise, it will be too cute.
   components:
   - type: Item
     size: Normal
@@ -192,9 +192,9 @@
 - type: entity
   parent: PlushieFumoJunko
   id: PlushieSavir
-  name: Савир Мёрфи
+  name: Savir Murphy
   suffix: Crook, COMMUNITY, TOY
-  description: Скользкий парень.
+  description: A slippery fellow.
   components:
   - type: Sprite
     sprite: Imperial/Crook/Plushie/savirmurphy.rsi

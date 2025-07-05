@@ -12,3 +12,38 @@
   - type: StorageFill
     contents:
       - id: EnergyDagger
+  - type: ContainerFill
+    containers:
+      stash:
+      - VoiceTrigger
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: PlushieNya

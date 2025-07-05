@@ -16,7 +16,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.1
   - type: FireProtection
     reduction: 0.8
   - type: Armor
@@ -42,6 +42,9 @@
     chance: 1
   - type: Speech
     speechSounds: Pai
+  - type: Tag
+    tags:
+      - MonkeyWearable
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -76,4 +79,4 @@
     clothingVisuals:
       head:
       - state: on-equipped-HELMET
-        shader: unshaded
+#        shader: unshaded

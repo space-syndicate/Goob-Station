@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: NamesPirateFirst
+  values:
+    prefix: names-pirate-first-dataset-
+    count: 52
+
+- type: localizedDataset
+  id: NamesPirateLast
+  values:
+    prefix: names-pirate-last-dataset-
+    count: 33

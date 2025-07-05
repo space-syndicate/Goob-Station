@@ -2,11 +2,8 @@ using Content.Client.Stylesheets;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Timing;
-using Content.Shared.Borgs;
-using Robust.Shared.Prototypes;
-using Content.Shared.Chemistry.Reagent;
 using Content.Client.Message;
-using static Robust.Shared.Physics.DynamicTree;
+using Content.Shared.Imperial.ImperialBorgs;
 
 namespace Content.Client.Borgs
 {

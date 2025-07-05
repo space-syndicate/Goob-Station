@@ -1,0 +1,20 @@
+- type: entity
+  id: StorePresetPirate
+  storeName: Ol' Mate Freebooter
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - PiratesAmmunition
+    - PiratesUtilities
+    - PiratesMedicine
+    - PiratesBooze
+    - PiratesPointless
+    - PiratesClothing
+    currencyWhitelist:
+    - Doubloon
+    balance:
+      Doubloon: 0
+  #ilovepirates
+
+#add more shit plz

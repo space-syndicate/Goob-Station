@@ -1,0 +1,14 @@
+- type: startingGear
+  id: JRTGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTJanitor
+    back: ClothingBackpackCallERTJanitorFilled
+    shoes: ClothingShoesGaloshes
+    mask: ClothingMaskGasERT
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterHardsuitJRT
+    suitstorage: OxygenTankFilled
+    id: ERTJanitorPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltJanitorFilled
+    pocket1: JRTUplink

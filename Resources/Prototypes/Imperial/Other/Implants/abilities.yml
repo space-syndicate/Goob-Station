@@ -1,0 +1,31 @@
+- type: entity
+  id: ActivateSmokeImplant
+  name: smoke implant
+  description: smoke implant
+  components:
+  - type: InstantAction
+    useDelay: 90
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Weapons/Grenades/smoke.rsi
+      state: icon
+    event: !type:ActivateImplantEvent
+
+- type: entity
+  id: ActionImplantBlink
+  name: Blink
+  description: Teleport to the clicked location.
+  components:
+  - type: WorldTargetAction
+    useDelay: 60
+    range: 12
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/blink.ogg
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    repeat: false
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    event: !type:TeleportSpellEvent

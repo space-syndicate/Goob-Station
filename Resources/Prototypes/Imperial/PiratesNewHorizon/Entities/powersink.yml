@@ -1,0 +1,20 @@
+- type: entity
+  parent: PowerSink
+  id: PiratePowerSink
+  name: Th' storm sucker
+  suffix: Pirate
+  description: Fancy pirate device capable consuming the power of wire's storm for profit of th' great pirates.
+  components:
+  - type: PowerSink
+    explodeOnFullCharge: false
+    electricSound:
+      path: /Audio/Imperial/PiratesNewHorizon/pirate_bell.ogg
+      params:
+        volume: 15
+        rolloffFactor: 10
+  - type: Battery
+    maxCharge: 3750000
+    pricePerJoule: 0.005
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/pirate_powersink.rsi
+    state: pirate_powersink

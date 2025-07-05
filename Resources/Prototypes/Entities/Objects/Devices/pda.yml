@@ -1425,7 +1425,8 @@
   description: Yargh!
   components:
   - type: Pda
-    id: PirateIDCard
+  #Imperial Space Pirates: New Horizon
+    id: PirateIDCardNewHorizon
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

@@ -77,6 +77,8 @@
       Glass: 100
   - type: SpaceGarbage
   - type: DnaSubstanceTrace
+  - type: Trash # Imperial "OperationalErtCleaners"
+    size: Medium # Imperial "OperationalErtCleaners"
 
 - type: entity
   name: base empty bottle
@@ -143,6 +145,8 @@
     materialComposition:
       Cardboard: 20
   - type: SpaceGarbage
+  - type: Trash # Imperial "OperationalErtCleaners"
+    size: Medium # Imperial "OperationalErtCleaners"
 
 - type: entity
   name: base empty bottle

@@ -1,0 +1,204 @@
+
+- type: entity
+  id: PiratesDebug
+  components:
+  - type: GameRule
+    minPlayers: 1
+  - type: RandomMetadata #this generates the random operation name cuz it's cool.
+    nameSegments:
+    - NamesPirateFirst
+    - NamesPirateLast
+  - type: AntagLoadProfileRule
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/Imperial/Maps/PiratesNewHorizon/pirate_map_debug.yml
+  - type: PiratesRule
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ CaptainPirate ]
+      fallbackRoles: [ Pirate ]
+      startingGear: ImperialPirateCaptainGear
+      spawnerPrototype: SpawnPointCaptainPirate
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: RandomMetadata
+        nameSegments:
+        - NamesPirateFirst
+        - NamesPirateLast
+        nameFormat: name-format-standard
+      - type: PirateAccent
+      - type: CrewSkills
+        skills:
+          - skillBotany #base
+          - skillBaseMed
+          - skillBaseConstraction
+          - skillCooking  #Easy
+          - skillBartending
+          - skillHacking
+          - skillInstrumentation #Medium
+          - skillMaintenance
+          - skillMediumConstruction
+          - skillMediumBotany
+          - skillBasicAtmos
+          - skillMedicalEquipment
+          - skillPharmacology
+          - skillPiloting #Hard
+          - skillAtmos
+          - skillHardInstrumentation
+          - skillRobotics
+          - skillResearch
+          - skillPharmaceuticals
+          - skillShooting
+          - skillSurgery
+          - skillNeuroSurgery
+      - type: PirateCaptain
+      mindRoles:
+      - MindRoleCaptainPirate
+    - prefRoles: [ Pirate ]
+      fallbackRoles: [ CaptainPirate ]
+      spawnerPrototype: SpawnPointPrivateer
+      max: 14
+      playerRatio: 1
+      startingGear: ImperialPirateGear
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: RandomMetadata
+        nameSegments:
+        - NamesPirateFirst
+        - NamesPirateLast
+        nameFormat: name-format-standard
+      - type: PirateAccent
+      - type: Loadout
+        prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
+      - type: CrewSkills
+        skills:
+          - skillBotany #base
+          - skillBaseMed
+          - skillBaseConstraction
+          - skillCooking  #Easy
+          - skillBartending
+          - skillHacking
+          - skillInstrumentation #Medium
+          - skillMaintenance
+          - skillMediumConstruction
+          - skillMediumBotany
+          - skillBasicAtmos
+          - skillMedicalEquipment
+          - skillPharmacology
+          - skillPiloting #Hard
+          - skillAtmos
+          - skillHardInstrumentation
+          - skillRobotics
+          - skillResearch
+          - skillPharmaceuticals
+          - skillShooting
+          - skillSurgery
+          - skillNeuroSurgery
+      - type: Pirate
+      mindRoles:
+      - MindRolePirate
+
+- type: entity
+  id: Pirates
+  components:
+  - type: GameRule
+    minPlayers: 10
+  - type: AntagLoadProfileRule
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/Imperial/Maps/PiratesNewHorizon/pirate_map_debug.yml
+  - type: PiratesRule
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ CaptainPirate ]
+      fallbackRoles: [ Pirate ]
+      startingGear: ImperialPirateCaptainGear
+      spawnerPrototype: SpawnPointCaptainPirate
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: PirateAccent
+      - type: RandomMetadata
+        nameSegments:
+        - NamesPirateFirst
+        - NamesPirateLast
+        nameFormat: name-format-standard
+      - type: PirateCaptain
+      - type: CrewSkills
+        skills:
+          - skillBotany #base
+          - skillBaseMed
+          - skillBaseConstraction
+          - skillCooking  #Easy
+          - skillBartending
+          - skillHacking
+          - skillInstrumentation #Medium
+          - skillMaintenance
+          - skillMediumConstruction
+          - skillMediumBotany
+          - skillBasicAtmos
+          - skillMedicalEquipment
+          - skillPharmacology
+          - skillPiloting #Hard
+          - skillAtmos
+          - skillHardInstrumentation
+          - skillRobotics
+          - skillResearch
+          - skillPharmaceuticals
+          - skillShooting
+          - skillSurgery
+          - skillNeuroSurgery
+      mindRoles:
+      - MindRoleCaptainPirate
+    - prefRoles: [ Pirate ]
+      fallbackRoles: [ CaptainPirate ]
+      spawnerPrototype: SpawnPointPrivateer
+      max: 14
+      playerRatio: 7
+      startingGear: ImperialPirateGear
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: PirateAccent
+      - type: RandomMetadata
+        nameSegments:
+        - NamesPirateFirst
+        - NamesPirateLast
+        nameFormat: name-format-standard
+      - type: Pirate
+      - type: Loadout
+        prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
+      - type: CrewSkills
+        skills:
+          - skillBotany #base
+          - skillBaseMed
+          - skillBaseConstraction
+          - skillCooking  #Easy
+          - skillBartending
+          - skillHacking
+          - skillInstrumentation #Medium
+          - skillMaintenance
+          - skillMediumConstruction
+          - skillMediumBotany
+          - skillBasicAtmos
+          - skillMedicalEquipment
+          - skillPharmacology
+          - skillPiloting #Hard
+          - skillAtmos
+          - skillHardInstrumentation
+          - skillRobotics
+          - skillResearch
+          - skillPharmaceuticals
+          - skillShooting
+          - skillSurgery
+          - skillNeuroSurgery
+      mindRoles:
+      - MindRolePirate

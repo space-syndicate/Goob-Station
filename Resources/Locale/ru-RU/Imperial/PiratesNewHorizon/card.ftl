@@ -1,0 +1,1 @@
+ent-PirateCaptainIDCard = ID карта капитана каперов

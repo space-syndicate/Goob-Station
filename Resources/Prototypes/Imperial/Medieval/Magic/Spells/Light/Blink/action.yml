@@ -19,16 +19,18 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 3
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
       state: blink
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
         delay: 1
@@ -106,16 +108,18 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 25
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 7
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
       state: blink
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
         delay: 1

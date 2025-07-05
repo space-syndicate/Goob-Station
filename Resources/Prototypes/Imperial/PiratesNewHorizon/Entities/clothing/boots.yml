@@ -1,0 +1,31 @@
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesCaptainPirateBoots
+  name: captain's elite boots
+  suffix: Pirate
+  description: Boots made of high-class security's skin, everyone around you will be jealous.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/boots/boots_c.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/boots/boots_c.rsi
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
+      
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesPirateBootsHorizon
+  name: pirate's trusted boots
+  suffix: Pirate
+  description: The only thing that keeps a pirate standing... Literally.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/boots/p_boots.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/boots/p_boots.rsi
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife

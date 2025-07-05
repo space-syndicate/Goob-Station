@@ -10,6 +10,7 @@
   - AllHostile
   - Wizard
   - SyndicateAgent # Imperial Syndicate Agent Fix
+  - Pirate # Imperial Space Pirates: New Horizon
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
 
@@ -61,6 +62,7 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - Pirate
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
   - Xenoborg
@@ -79,6 +81,7 @@
   - Dragon
   - AllHostile
   - Wizard
+  - Pirate
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
   - Xenoborg
@@ -95,6 +98,7 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - Pirate
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
   - Dragon
@@ -113,6 +117,7 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - Pirate
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
   - Dragon
@@ -166,8 +171,9 @@
   - Revolutionary
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
+  - Pirate
   - DeathSquad # Imperial Space Death Squad faction Fix
-  - RiotControlUnit # Imperial Space RCU faction adding
+  - RiotControlUnit # Imperial Space RCU faction addin
   - Xenoborg
 
 - type: npcFaction
@@ -181,7 +187,6 @@
   - Wizard
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Xeno # rivalry
-
   # cause they are hostile to them
   - SimpleHostile
   - AllHostile

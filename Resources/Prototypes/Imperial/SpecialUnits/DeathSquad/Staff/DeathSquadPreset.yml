@@ -84,3 +84,33 @@
       layers:
         - sprite: Markers/imperial_jobs.rsi
           state: deathsquad-icon #new icon
+
+- type: job
+  id: ImperialDeathSquad
+  name: job-name-imperial-deathsquad
+  description: job-description-imperial-deathsquad
+  playTimeTracker: JobImperialDeathSquad
+  weight: 40
+  setPreference: false
+  startingGear: DeathSquadEVALodout
+  icon: "JobIconImperialDeathSquad"
+  supervisors: job-supervisors-specialofficer
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: playTimeTracker
+  id: JobImperialDeathSquad
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconImperialDeathSquad
+  icon:
+    sprite: /Textures/Imperial/SpecialUnits/job_icon.rsi
+    state: Deathsquad
+  jobName: job-name-imperial-deathsquad

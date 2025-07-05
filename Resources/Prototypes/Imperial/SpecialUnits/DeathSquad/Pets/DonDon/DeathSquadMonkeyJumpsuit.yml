@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitDeathSquadMonkey
+  name: death squad jumpsuit monkey
+  description: A robust jumpsuit, for a robust monkey.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/DonDon/death_squad_monkey_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/DonDon/death_squad_monkey_jumpsuit.rsi
+  - type: SuitSensor
+    controlsLocked: false
+    randomMode: false
+    mode: SensorCords

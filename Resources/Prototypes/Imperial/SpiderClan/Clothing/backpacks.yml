@@ -12,6 +12,8 @@
   - type: Storage
     grid:
     - 0,0,10,3
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: [ClothingBackpack, BaseMajorContraband]
@@ -27,6 +29,8 @@
   - type: Storage
     grid:
     - 0,0,10,3
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: [ClothingBackpack, BaseMajorContraband]
@@ -42,3 +46,5 @@
   - type: Storage
     grid:
     - 0,0,10,3
+  - type: StaticPrice
+    price: 15000

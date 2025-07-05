@@ -8,6 +8,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Content.Shared.Stacks; // Imperial Space Pirates: New Horizon
 
 namespace Content.Server.Cargo.Systems;
 
@@ -153,8 +154,8 @@ public sealed partial class CargoSystem
     {
         goods = new HashSet<(EntityUid, OverrideSellComponent?, double)>();
         toSell = new HashSet<EntityUid>();
-
-        foreach (var (palletUid, _, _) in GetCargoPallets(gridUid, BuySellType.Sell))
+        // Imperial Space: Pirates New Horizon
+        foreach (var (palletUid, palletComp, _) in GetCargoPallets(gridUid, BuySellType.Sell))
         {
             // Containers should already get the sell price of their children so can skip those.
             _setEnts.Clear();
@@ -178,7 +179,10 @@ public sealed partial class CargoSystem
                 }
 
                 if (_blacklistQuery.HasComponent(ent))
-                    continue;
+                    //Imperial Space Pirates: New Horizon
+                    // Allows selling entities that are blacklisted using a component
+                    if(palletComp.AvoidSellBlacklist == false)
+                        continue;
 
                 var price = _pricing.GetPrice(ent);
                 if (price == 0)
@@ -211,15 +215,28 @@ public sealed partial class CargoSystem
 
         return true;
     }
-
+    //Imperial Space Pirates: New Horizon; Start (yeah i edited a lot)
     private void OnPalletSale(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletSellMessage args)
     {
         var xform = Transform(uid);
 
-        if (_station.GetOwningStation(uid) is not { } station ||
-            !TryComp<StationBankAccountComponent>(station, out var bankAccount))
+        EntityUid station = default;
+        StationBankAccountComponent? bankAccount = null;
+        bool hasBankAccount = false;
+        // i hate this crap i had to rewrite it cause i change 1 single line of code (and got 6 fricking errors)
+        if (!component.SpawnStack)
         {
-            return;
+            if (_station.GetOwningStation(uid) is { } owningStation &&
+                TryComp<StationBankAccountComponent>(owningStation, out var account))
+            {
+                station = owningStation;
+                bankAccount = account;
+                hasBankAccount = true;
+            }
+            else
+            {
+                return;
+            }
         }
 
         if (xform.GridUid is not { } gridUid)
@@ -230,35 +247,56 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!SellPallets(gridUid, station, out var goods))
+        if (!SellPallets(gridUid, hasBankAccount ? station : default, out var goods))
             return;
 
-        var baseDistribution = CreateAccountDistribution((station, bankAccount));
-        foreach (var (_, sellComponent, value) in goods)
+        if (component.SpawnStack == false)
         {
-            Dictionary<ProtoId<CargoAccountPrototype>, double> distribution;
-            if (sellComponent != null)
+            if (!hasBankAccount || bankAccount == null)
             {
-                var cut = _lockboxCutEnabled ? bankAccount.LockboxCut : bankAccount.PrimaryCut;
-                distribution = new Dictionary<ProtoId<CargoAccountPrototype>, double>
-                {
-                    { sellComponent.OverrideAccount, cut },
-                    { bankAccount.PrimaryAccount, 1.0 - cut },
-                };
-            }
-            else
-            {
-                distribution = baseDistribution;
+                return;
             }
 
-            UpdateBankAccount((station, bankAccount), (int) Math.Round(value), distribution, false);
+            var stationEntity = new Entity<StationBankAccountComponent>(station, bankAccount);
+            var baseDistribution = CreateAccountDistribution(stationEntity);
+
+            foreach (var (_, sellComponent, value) in goods)
+            {
+                Dictionary<ProtoId<CargoAccountPrototype>, double> distribution;
+                if (sellComponent != null)
+                {
+                    var cut = _lockboxCutEnabled ? bankAccount.LockboxCut : bankAccount.PrimaryCut;
+                    distribution = new Dictionary<ProtoId<CargoAccountPrototype>, double>
+                    {
+                        { sellComponent.OverrideAccount, cut },
+                        { bankAccount.PrimaryAccount, 1.0 - cut },
+                    };
+                }
+                else
+                {
+                    distribution = baseDistribution;
+                }
+
+                UpdateBankAccount(new Entity<StationBankAccountComponent?>(station, bankAccount),
+                    (int)Math.Round(value), distribution, false);
+            }
+
+            if (bankAccount != null)
+            {
+                Dirty(station, bankAccount);
+            }
+        }
+        else
+        {
+            var totalCash = goods.Sum(t => t.Item3);
+            var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
+            _stack.Spawn((int)totalCash, stackPrototype, xform.Coordinates);
         }
 
-        Dirty(station, bankAccount);
         _audio.PlayPvs(ApproveSound, uid);
         UpdatePalletConsoleInterface(uid);
     }
-
+    //Imperial Space Pirates: New Horizon; End
     #endregion
 }
 

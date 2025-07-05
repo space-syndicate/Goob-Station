@@ -1,0 +1,31 @@
+- type: entity
+  id: CratePirateBelt
+  name: pirate belt lootbox
+  description: Belty-belty box, what mysteries does it contain.
+  parent: CratePrivateSecure
+  components:
+  #never make a storage fill this large
+  - type: StorageFill
+    contents:
+    - id: ClothingBeltPirateSpeed
+      prob: 0.25
+    - id: ClothingBeltPirateBlackBelt
+      prob: 0.25
+    - id: ClothingBeltPirateBeltGunsman
+      prob: 0.25
+    - id: ClothingBeltPirateRedBelt
+      prob: 0.25
+    - id: ClothingUniformJumpsuitBotsmanPirate
+      prob: 0.45
+    - id: ClothingUniformJumpsuitPirateVest
+      prob: 0.45
+    - id: ClothingUniformJumpsuitPirateWhite
+      prob: 0.45
+    - id: ClothingUniformJumpskirtPirateWhite
+      prob: 0.45
+    - id: ClothingUniformJumpsuitPirateWhiteCaptain
+      prob: 0.45
+    - id: ClothingUniformJumpskirtPirateWhiteCaptain
+      prob: 0.45
+    - id: ClothingNeckPirateParrot
+      prob: 0.3

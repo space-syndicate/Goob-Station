@@ -631,3 +631,41 @@
     state: nostopping
     drawdepth: Overdoors
     offset: 0,0.8
+
+- type: entity
+  id: MonumentFelix
+  parent: BaseStructure
+  name: monument
+  suffix: Felix
+  description: This monument was erected to honor those who died in some important event.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/monument.rsi
+    state: icon
+    drawdepth: Overdoors
+    offset: 0,0.3
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-0.2,0.8,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline

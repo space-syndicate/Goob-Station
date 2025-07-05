@@ -6,7 +6,7 @@
   description: medieval-store-spells-multi-currency-weakening-wave-senior-desc
   components:
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 185
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -14,6 +14,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
       state: 3
+  - type: InstantAction
     event: !type:MedievalInstantSpawnEvent
       spawnedEntityPrototype: WeakeningWave
       spellCastDoAfter:

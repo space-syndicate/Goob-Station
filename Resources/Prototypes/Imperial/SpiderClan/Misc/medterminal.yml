@@ -19,7 +19,10 @@
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
-    range: 500
+    range: 5000
   - type: StationLimitedNetwork
   - type: StaticPrice
-    price: 2500
+    price: 5000
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0

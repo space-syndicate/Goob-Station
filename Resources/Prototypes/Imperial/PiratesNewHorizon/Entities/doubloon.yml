@@ -1,0 +1,76 @@
+- type: entity
+  name: doubloon
+  parent: BaseItem
+  id: Doubloon
+  suffix: 100 DB
+  description: The real treasure of every pirate.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/PiratesNewHorizon/doubloon.rsi
+    state: doubloon
+  - type: Item
+    sprite: /Textures/Imperial/PiratesNewHorizon/doubloon.rsi
+    size: Tiny
+  - type: Stack
+    count: 100
+    stackType: Doubloon
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1
+  - type: Currency
+    price:
+      Doubloon: 1
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon1
+  suffix: 1 DB
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon1000
+  suffix: 1000 DB
+  components:
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon100K
+  suffix: 100K DB
+  components:
+  - type: Stack
+    count: 100000
+
+- type: entity
+  parent: BaseItem
+  name: the black mark
+  description: Arghh! the required resource by a pirate.
+  suffix: Pirate
+  id: BlackMark
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/PiratesNewHorizon/doubloon.rsi
+    state: black_mark
+  - type: Tag
+    tags:
+    - BlackMark
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+  - type: SolutionContainerManager
+    solutions:
+      blackmark:
+        reagents:
+        - ReagentId: PirateEssence
+          Quantity: 5
+        canReact: false
+  - type: Extractable
+    grindableSolutionName: blackmark

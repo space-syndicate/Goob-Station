@@ -3,8 +3,9 @@
   name: Магазин
   description: Открывает магазин способностей.
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shockradius}
+  - type: InstantAction
     event: !type:ElectroMouseShopActionEvent
 
 - type: entity
@@ -12,76 +13,83 @@
   name: Перегрузка света
   description: Перезарядка 30 секунд.
   components:
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shop}
-    event: !type:ElectroMouseOverloadLightsActionEvent
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_shop}
+  - type: InstantAction
+    event: !type:ElectroMouseOverloadLightsActionEvent
 
 - type: entity
   id: ActionElectroDash
   name: Рывок
   description: Телепортирует вас на пару клеток вперед.
   components:
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_dash}
-    event: !type:ElectroMouseDashEvent
+  - type: Action
     useDelay: 15
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_dash}
+  - type: InstantAction
+    event: !type:ElectroMouseDashEvent
 
 - type: entity
   id: ActionElectroMouseEmp
   name: Активировать ЭМИ
   description: Вызывает небольшой ЭМИ-импульс вокруг вас.
   components:
-  - type: InstantAction
-    event: !type:ElectroMouseEmpEvent
+  - type: Action
     icon: { sprite: Imperial/electromouse.rsi, state: sm_EMP}
     useDelay: 30
     itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ElectroMouseEmpEvent
 
 - type: entity
   id: ActionElectroMouseHeal
   name: Залечиться
   description: Вылечить себя.
   components:
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_heal}
-    event: !type:ElectroMouseHealEvent
+  - type: Action
     useDelay: 15
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_heal}
+  - type: InstantAction
+    event: !type:ElectroMouseHealEvent
 
 - type: entity
   id: ActionElectroMouseShield
   name: Использовать щит.
   description: Всего на пару секунд вы получаете защиту от всех пуль, выпущенных в вас
   components:
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
-    event: !type:ElectroMouseShieldEvent
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
+  - type: InstantAction
+    event: !type:ElectroMouseShieldEvent
 
 - type: entity
   id: ActionElectroMouseSpeed
   name: Сверхшокирующая скорость
   description: Находясь рядом с проводами вы обретаете скорость 150%
   components:
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_superspeed}
-    event: !type:ElectroMouseSpeedEvent
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_superspeed}
+  - type: InstantAction
+    event: !type:ElectroMouseSpeedEvent
 
 - type: entity
   id: ActionElectroMouseDouble
   name: Резервное шокирование
   description: Позволяет создать вторую шокомышь (1 раз)
   components:
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_copying}
-    event: !type:ElectroMouseDoubleEvent
+  - type: Action
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_copying}
+  - type: InstantAction
+    event: !type:ElectroMouseDoubleEvent
   - type: LimitedCharges
     maxCharges: 1
 
@@ -90,10 +98,11 @@
   name: Улучшения
   description: Все ваши способности становятся лучше
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Imperial/electromouse.rsi, state: sm_upgrade}
-    event: !type:ElectroMouseUpgradeEvent
     itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ElectroMouseUpgradeEvent
   - type: LimitedCharges
     maxCharges: 1
 
@@ -102,20 +111,22 @@
   name: Молния
   description: Создает молнию, которая парализует жертву почти на 10 секунд
   components:
-  - type: EntityTargetAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shock1}
-    event: !type:ElectroMouseLightningEvent
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
+    icon: { sprite: Imperial/electromouse.rsi, state: sm_shock1}
+  - type: EntityTargetAction
+    event: !type:ElectroMouseLightningEvent
 
 - type: entity
   id: ActionElectroMouseElevation
   name: Возвышение
   description: Вы достигаете окончательного прогресса своего существования. Ваши способности становятся еще лучше. Вы получаете бесконечную энергию. Постарайтесь выжить, и привести электропитание станции в упадок
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Imperial/electromouse.rsi, state: sm_elevation}
-    event: !type:ElectroMouseElevationEvent
     itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ElectroMouseElevationEvent
   - type: LimitedCharges
     maxCharges: 1

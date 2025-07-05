@@ -1,0 +1,87 @@
+- type: entity
+  id: CratePirateShotgunAmmo
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Black market shotgun ammo
+  description: Contains all sorts of ammo for shotguns. A great opportunity to start genocide on one of NanoTrasen's stations. 
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxLethalshot
+        amount: 2
+      - id: BoxShellTranquilizer
+        amount: 4
+      - id: BoxShotgunSlug
+        amount: 1
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateMedicalBundle
+  id: ClothingBackpackDuffelPirateDrugs
+  name: drug bundle
+  description: Contains varios sorts of drugs and toxins, not so legal in here. Make sure not to harm yourself.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SyringeSpaceDrugs
+        amount: 3
+      - id: SyringeBananadine
+        amount: 2
+      - id: SyringeTHC
+      - id: SyringeDesoxyephedrine
+      - id: SyringeImpedrezene
+      - id: SyringePax
+      - id: SyringeCitaloporam
+      - id: SyringeMindbreakerToxin
+        amount: 3
+      - id: SyringeChloralHydrate
+      - id: SyringeHonk
+      - id: SyringeMuteToxin
+      - id: SyringeHeartbreakerToxin
+      - id: SyringeNorepinephricAcid
+      - id: SyringeCalomel
+        amount: 5
+      - id: SyringeSodiumHydroxide
+        amount: 3
+      - id: CigarGold
+        amount: 2
+      - id: FlippoEngravedLighter
+      - id: Lighter
+        amount: 2
+      - id: CigaretteBanana
+        amount: 3
+      - id: CigaretteSyndicate
+      - id: Cigarette
+        amount: 5
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CratePirateSecure
+  name: pirate chest
+  description: A space pirate chest, not for station lubbers.
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/Crates/piratechest.rsi
+    layers:
+    - state: crate
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: crate_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "0.0,-0.09375"
+      map: ["enum.PaperLabelVisuals.Layer"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: Icon
+    sprite: Structures/Storage/Crates/piratechest.rsi
+    state: crate_icon
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateDoorOpen: crate_open
+    stateDoorClosed: crate_door
+  - type: AccessReader
+    access: [["CaptainPirate"]]

@@ -29,8 +29,8 @@
   objectType: Structure
 
 - type: construction
-  name: Холодильник # Imperial Recipes Locale
   id: CrateFreezer
+  name: Холодильник # Imperial Recipes Locale
   graph: CrateFreezer
   startNode: start
   targetNode: done

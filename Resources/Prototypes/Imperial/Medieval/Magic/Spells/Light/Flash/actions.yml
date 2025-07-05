@@ -19,16 +19,18 @@
       groups:
         Burn: 10
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 17
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/flashbang_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFlashBeginner
@@ -57,16 +59,18 @@
       groups:
         Burn: 10
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 12
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/flashbang_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFlashMiddle

@@ -538,3 +538,12 @@
   components:
     - type: Paper
       content: doc-text-printer-quality-report
+
+- type: entity
+  parent: Paper
+  id: ChallengeJRT
+  name: "Запрос на вызов УБР"
+  description: "Распечатанный документ с заголовком отдела: запрос на вызов уборщиков быстрого реагирования"
+  components:
+    - type: Paper
+      content: doc-text-printer-challenge-jrt

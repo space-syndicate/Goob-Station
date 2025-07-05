@@ -47,6 +47,8 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
   - type: GunRequiresWield
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   name: Hristov
@@ -83,6 +85,8 @@
   - type: GunWieldBonus # Imperial balance
     minAngle: -20
     maxAngle: -10
+  - type: StaticPrice
+    price: 3500
 
 - type: entity
   name: musket

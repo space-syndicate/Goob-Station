@@ -1,0 +1,47 @@
+- type: entity
+  parent: BaseMobFlesh
+  id: MobAbominationPiratesNewHorizon
+  name: mutated abomination
+  description: A mutant made by pirates. In constant pain and seeking revenge, killing any NT pest.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Demons/abomination.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: abomination
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: abomination
+      Dead:
+        Base: dead
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Imperial/PiratesNewHorizon/brutal_punch.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    attackRate: 0.1
+    damage:
+      types:
+        Slash: 175
+  - type: NpcFactionMember
+    factions:
+    - Pirate
+    - SimpleHostile
+  - type: Puller
+    needsHands: false
+  - type: Reflect
+    reflectProb: 0.3
+    spread: 90

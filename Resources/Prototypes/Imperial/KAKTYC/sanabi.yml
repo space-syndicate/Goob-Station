@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseBullet
   id: GeneralHandHook
-  name: крюк
+  name: hook
   suffix: KCL, kaktyc
   categories: [ HideSpawnMenu ]
   components:
@@ -47,8 +47,8 @@
     - type: GrapplingProjectile
 
 - type: entity
-  name: рука генерала
-  description: Если ты боишься упасть — лети быстрее.
+  name: the general's hand
+  description: If you're afraid of falling — fly faster.
   parent: BaseItem
   id: GeneralHandGrapplingGun
   suffix: KCL, kaktyc
@@ -82,9 +82,9 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckGeneralCloak
-  name: плащ генерала
+  name: general's cloak
   suffix: KCL, kaktyc
-  description: Неважно, дойдёшь ли ты до конца.
+  description: It doesn't matter if you reach the end.
   components:
   - type: Sprite
     sprite: Imperial/KAKTYC/sanabi/sanabicloak.rsi
@@ -94,9 +94,9 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadGeneralHat
-  name: шляпа генерала
+  name: general's hat
   suffix: KCL, kaktyc
-  description: Иногда единственный способ выжить — это забыть, кто ты.
+  description: Sometimes the only way to survive is to forget who you are.
   components:
   - type: Sprite
     sprite: Imperial/KAKTYC/sanabi/sanabihat.rsi

@@ -1,6 +1,7 @@
 job-name-rcuoperator = IJYLUNIL
 job-name-rcuofficer = IZZCWYL
-
+job-description-rcuoperator = Руководите вверенным отрядом для выполнения цели.
+job-description-rcuofficer = Выполняйте инструкции оператора.
 ent-RCUOperatorPreset = оператор RCU
 ent-RCUOfficerPreset = офицер RCU
 ent-RCUOperatorPDA = КПК RCU
@@ -24,8 +25,12 @@ ent-ClothingMaskRCU = защитный противогаз
     .desc = Хороший противогаз с защитой глаз.
 ent-ClothingOuterHardsuitRCUOperator = элитный скафандр оператора
     .desc = Скафандр элиты ОБР НТ.
+ent-ClothingHeadHelmetHardsuitRCUOperator = шлем скафандра оператора
+    .desc = Элитный шлем для спецопераций.
 ent-ClothingOuterHardsuitRCUOfficer = элитный скафандр офицера
     .desc = Скафандр элиты ОБР НТ.
+ent-ClothingHeadHelmetHardsuitRCUOfficer = шлем скафандра офицера
+    .desc = Элитный шлем для спецопераций.
 ent-BootsMagRCU = темно-красные экспериментальные ботинки
     .desc = Экспериментальный вариант ботинок, который, наоборот ускоряет владельца. Темно-красная версия.
 ent-WeaponRevolverUnica9 = Уника-9

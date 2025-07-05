@@ -442,24 +442,8 @@
   - CruentaConstruction
 
 - type: listing
-  id: CruentaCapacitorStockPart
-  productEntity: CapacitorStockPart
-  cost:
-    Telecrystal_sacerdos: 75
-  categories:
-  - CruentaConstruction
-
-- type: listing
   id: CruentaMicroManipulatorStockPart
   productEntity: MicroManipulatorStockPart
-  cost:
-    Telecrystal_sacerdos: 75
-  categories:
-  - CruentaConstruction
-
-- type: listing
-  id: CruentaMatterBinStockPart
-  productEntity: MatterBinStockPart
   cost:
     Telecrystal_sacerdos: 75
   categories:

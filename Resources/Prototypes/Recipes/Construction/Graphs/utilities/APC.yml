@@ -16,6 +16,9 @@
           steps:
             - component: ApcElectronics
               name: микросхема ЛКП # Imperial Recipes Locale
+              icon:
+                sprite: "Objects/Misc/module.rsi"
+                state: "charger_APC"
               doAfter: 2
         - to: start
           completed:

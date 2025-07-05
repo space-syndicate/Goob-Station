@@ -839,6 +839,7 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
+  - ClothingControlModsuitAtmosphericsSealed # Imperial Modsuit for Atmos
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes

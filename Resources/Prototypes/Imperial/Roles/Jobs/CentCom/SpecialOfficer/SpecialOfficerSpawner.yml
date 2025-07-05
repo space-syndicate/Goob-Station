@@ -3,26 +3,26 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSpecialOfficer
     neck: ClothingNeckCloakSpecialOfficer
-    back: ClothingBackpackCallERTLeaderFilled
-    mask: ClothingMaskGasSwat
+    back: ClothingControlModsuitSpecialOfficerFilled ## Р.И.Г. ОСО
+#    mask: ClothingMaskGasSwat
     shoes: ClothingShoesBootsJackSpecialOfficer
     head: ClothingHeadHatSpecialOfficer
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingDSOGlassesWhite ## Белые очки владига
     gloves: ClothingHandsGlovesCombat
-    id: DeadSquadPDA
-    ears: ClothingHeadsetAltCentCom
+    id: SpecialOfficerPDA
+    ears: SODDeathSquadHeadset ## Гарнитура ЭС
     belt: ClothingBeltHolsterSpecialOfficer
 
 - type: entity ## Спавнер
   parent: MobHuman
   id: SpecialOfficerPreset
   name: Special Officer
-  suffix: ДСО
+  suffix: SOO
   components:
     - type: RandomMetadata
       nameSegments:
       - SpecialOfficerName
-      - NamesLast
+      nameFormat: name-format-special-officer ## Формат имени с пасхалками.
     - type: Loadout
       prototypes: [ SpecialOfficerGear ]
     - type: RandomHumanoidAppearance
@@ -30,9 +30,68 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+      - FreedomImplant
+      - EmpImplant
+    - type: NpcFactionMember ## Чтобы Р.И.Г.ом не могли завладеть станционные абобусы и чтобы он не взрывался на самом офицере.
+      factions:
+        - DeathSquad
+    - type: CrewSkills ## Фикс отсутствия навыков.
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: job
+  id: SpecialOfficer
+  name: job-name-specialofficer
+  description: job-description-specialofficer
+  playTimeTracker: JobSpecialOfficer
+  weight: 50
+  setPreference: false
+  startingGear: SpecialOfficerGear
+  icon: "JobIconSpecialOfficer"
+  supervisors: job-supervisors-board-of-directors
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSpecialOfficer
+  icon:
+    sprite: /Textures/Imperial/SpecialUnits/job_icon.rsi
+    state: Specialofficer
+  jobName: job-name-specialofficer
+
+- type: playTimeTracker
+  id: JobSpecialOfficer
 
 - type: localizedDataset ## Датасет, чтобы ОСО начинался с офицер
   id: SpecialOfficerName
   values:
-    prefix: imperial-space-special-officer-
-    count: 1
+    prefix: special-officer- ## Новые имена для спешал офицера.
+    count: 4

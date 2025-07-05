@@ -6,12 +6,12 @@
   result: EmptyWeaponPlasmaCutter
   categories:
   - Weapons
-  completetime: 5
+  completetime: 4
   materials:
     Steel: 1000
-    Glass: 700
+    Glass: 500
     Plasma: 500
-    Silver: 100
+    Silver: 300
 
 - type: latheRecipePack
   id: SalvagePlasmaCutterWeapons
@@ -25,13 +25,13 @@
   result: Advanced-EmptyWeaponPlasmaCutter
   categories:
   - Weapons
-  completetime: 10
+  completetime: 7
   materials:
     Steel: 1500
     Silver: 1000
     Plasma: 1000
     Glass: 500
-    Gold: 500
+    Gold: 300
 
 - type: latheRecipePack
   id: SalvageAdvancedPlasmaCutterWeapons

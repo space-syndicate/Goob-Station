@@ -30,26 +30,28 @@
   name: hardsuitinjection-toggle
   description: hardsuitinjection-toggledescription
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     useDelay: 1 # equip noise spam.
-    event: !type:ToggleECEvent
     icon:
       sprite: Imperial/Other/HardsuitInjection/main.rsi
       state: closeopen
+  - type: InstantAction
+    event: !type:ToggleECEvent
 
 - type: entity
   id: ActionInjection
   name: hardsuitinjection-injection
   description: hardsuitinjection-injectiondescription
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     useDelay: 1 # equip noise spam.
-    event: !type:InjectionEvent
     icon:
       sprite: Imperial/Other/HardsuitInjection/main.rsi
       state: inject
+  - type: InstantAction
+    event: !type:InjectionEvent
 
 - type: entity
   parent: Ampula

@@ -21,6 +21,7 @@ entities:
   entities:
   - uid: 1
     components:
+    - type: PiratesShuttle
     - type: MetaData
     - type: Transform
       pos: 2.2710133,-2.4148211

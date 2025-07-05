@@ -1,0 +1,9 @@
+- files: ["pirate_bell.ogg"]
+  licensee: "CC0 1.0"
+  copyright: "florianreichelt"
+  source: "https://freesound.org/people/florianreichelt/sounds/563016/"
+
+- files: ["weak_bang.ogg"]
+  license: "CC0-1.0"
+  copyright: "Taken from wyronroberth via freesound.org and mixed from stereo to mono."
+  source: "https://freesound.org/people/wyronroberth/sounds/516245/"

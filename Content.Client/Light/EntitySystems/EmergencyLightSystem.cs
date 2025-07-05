@@ -16,13 +16,13 @@ public sealed class EmergencyLightSystem : VisualizerSystem<EmergencyLightCompon
         if (!AppearanceSystem.TryGetData<bool>(uid, EmergencyLightVisuals.On, out var on, args.Component))
             on = false;
 
-        _sprite.LayerSetVisible((uid, args.Sprite), EmergencyLightVisualLayers.LightOff, !on);
-        _sprite.LayerSetVisible((uid, args.Sprite), EmergencyLightVisualLayers.LightOn, on);
+        SpriteSystem.LayerSetVisible((uid, args.Sprite), EmergencyLightVisualLayers.LightOff, !on);
+        SpriteSystem.LayerSetVisible((uid, args.Sprite), EmergencyLightVisualLayers.LightOn, on);
 
         if (AppearanceSystem.TryGetData<Color>(uid, EmergencyLightVisuals.Color, out var color, args.Component))
         {
-            _sprite.LayerSetColor((uid, args.Sprite), EmergencyLightVisualLayers.LightOn, color);
-            _sprite.LayerSetColor((uid, args.Sprite), EmergencyLightVisualLayers.LightOff, color);
+            SpriteSystem.LayerSetColor((uid, args.Sprite), EmergencyLightVisualLayers.LightOn, color);
+            SpriteSystem.LayerSetColor((uid, args.Sprite), EmergencyLightVisualLayers.LightOff, color);
         }
     }
 }

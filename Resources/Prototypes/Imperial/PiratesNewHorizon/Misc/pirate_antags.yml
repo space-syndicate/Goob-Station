@@ -1,0 +1,72 @@
+- type: startingGear
+  id: ImperialPirateGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirateNewHorizon
+    back: ClothingBackpackSatchelLeather
+    head: ClothingHeadBandBlack
+    shoes: ClothingShoesPirateBootsHorizon
+    id: PiratePDANewHorizon
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+
+- type: startingGear
+  id: ImperialPirateCaptainGear
+  parent: PirateGear
+  equipment:
+    id: CaptainPiratePDANewHorizon
+    head: ClothingHeadHatPirateCaptain
+    pocket2: EnergyCutlass
+    jumpsuit: ClothingUniformJumpsuitPirateWhiteCaptain
+    outerClothing: ClothingOuterCoatPirateNewHorizon
+    shoes: ClothingShoesCaptainPirateBoots
+
+- type: startingGear
+  id: ImperialPirateFirstmateGear
+  parent: PirateGear
+  equipment:
+    head: ClothingHeadHatBowlerHatBrown
+    jumpsuit: ClothingUniformJumpsuitPirateWhite
+
+- type: startingGear
+  id: ImperialPirateBotsmanGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBotsmanPirate
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesPirateBootsHorizon
+    id: PiratePDANewHorizon
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+
+- type: startingGear
+  id: ImperialPirateTelyNyashkaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirateVest
+    head: ClothingHeadBandBlue
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesPirateBootsHorizon
+    id: PiratePDANewHorizon
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+    pocket2: Doubloon1
+- type: antag
+  id: Pirate
+  name: roles-antag-pirate-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-pirate-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+
+- type: antag
+  id: CaptainPirate
+  name: roles-antag-captainpirate-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-pirate-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 108000
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000

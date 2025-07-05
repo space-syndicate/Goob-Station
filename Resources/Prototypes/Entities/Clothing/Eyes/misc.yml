@@ -28,6 +28,11 @@
     sprite: Clothing/Eyes/Misc/eyepatch.rsi
   - type: EyeProtection
     protectionTime: 5
+    #Imperial Space Pirates: New Horizon start
+  - type: Tag
+    tags:
+      - Eyepatch
+      #Imperial Space Pirates: New Horizon end
 
 - type: entity
   parent: [ClothingEyesEyepatch, ClothingHeadEyeBaseFlipped]

@@ -4,6 +4,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.PDA.Ringer;
 using Content.Server.Stack;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
@@ -353,10 +354,9 @@ public sealed partial class ImperialStoreSystem
 
             component.BoughtEntities.RemoveAt(i);
 
-            if (_actions.TryGetActionData(purchase, out var actionComponent, logError: false))
-            {
-                _actionContainer.RemoveAction(purchase, actionComponent);
-            }
+            var action = _actions.GetAction(purchase);
+            if (action != null)
+                _actionContainer.RemoveAction((action.Value.Owner, action.Value.Comp));
 
             EntityManager.DeleteEntity(purchase);
         }

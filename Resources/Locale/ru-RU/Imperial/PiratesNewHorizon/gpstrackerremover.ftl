@@ -1,0 +1,6 @@
+gps-removed-result = GPS трекер был удален, повыщая цену!
+gps-missing-result = Кажется, здесь нету GPS трекера
+gps-found-result = Вы начинаете бережно удалять GPS трекер.
+
+gpstracker-examine-missing = Кажется, что-то маленькое и механическое было вырвано отсюда...
+gpstracker-examine-installed = Кажется, здесь вживлен GPS трекер...

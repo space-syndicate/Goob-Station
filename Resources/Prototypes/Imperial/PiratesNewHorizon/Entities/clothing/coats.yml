@@ -1,0 +1,8 @@
+- type: entity
+  parent: ClothingOuterCoatPirate
+  id: ClothingOuterCoatPirateNewHorizon
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/pirate_coat.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/pirate_coat.rsi

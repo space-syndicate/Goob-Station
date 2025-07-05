@@ -1,9 +1,9 @@
 - type: entity
   id: StructureRatvarPylon
   parent: BaseStructure
-  name: маяк Вестника
+  name: beacon of the Herald
   suffix: KCL, kaktyc
-  description: Неопознанная структура, издающая резонирующий звук.
+  description: An unidentified structure that emits a resonating sound.
   components:
   - type: Sprite
     sprite: Imperial/KAKTYC/Ratvar/pylon.rsi

@@ -1,0 +1,4 @@
+- type: ertCall
+  id: JRT
+  path: "Maps/Imperial/JanitorsResponseTeam/JRT.yml"
+  desc: "Внушительный шаттл. Содержит 6 УБР"

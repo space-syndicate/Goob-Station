@@ -135,6 +135,8 @@
     - DrinkCan
     - Recyclable
     - Trash
+  - type: Trash # Imperial "OperationalErtCleaners"
+    size: Medium # Imperial "OperationalErtCleaners"
 
 - type: entity
   parent: DrinkCanBaseFull

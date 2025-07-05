@@ -20,7 +20,6 @@ using Content.Shared.Verbs;
 using Content.Shared.Zombies;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Server.Imperial.Revolutionary;
 using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Revolutionary
@@ -77,7 +76,8 @@ namespace Content.Server.Imperial.Revolutionary
                 || !verbArgs.CanInteract
                 || HasComp<RevolutionaryComponent>(verbArgs.Target)
                 || !_mobStateSystem.IsAlive(verbArgs.Target)
-                || HasComp<ZombieComponent>(verbArgs.Target))
+                || HasComp<ZombieComponent>(verbArgs.Target)
+                || HasComp<ZombieComponent>(userUid)) // Добавлена проверка, что сам глава революции не зомби
             {
                 return;
             }
@@ -124,7 +124,7 @@ namespace Content.Server.Imperial.Revolutionary
                         }
 
                         if (HasComp<MindShieldComponent>(verbArgs.Target) ||
-                            HasComp<CommandStaffComponent>(verbArgs.Target))
+                            HasComp<ZombieComponent>(verbArgs.Target))
                         {
                             _popupSystem.PopupEntity(
                                 Loc.GetString("rev-consent-convert-attempted-to-be-converted", ("user", Identity.Entity(verbArgs.User, EntityManager))),

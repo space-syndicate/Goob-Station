@@ -1,0 +1,335 @@
+- type: entity
+  parent:
+  - MobSiliconBase
+  - ShowMedicalIcons
+  - StripableInventoryBase
+  id: MobHamsterDeathSquad
+  name: Grey
+  description: A mechanical copy of the universally beloved Hamlet. Moreover, a decent doctor.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Grey/death_squad_hamster.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: hamster
+  - type: Appearance
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-dshamster
+    interactFailureString: petting-failure-dshamster
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: Inventory
+    speciesId: hamster
+    templateId: hamster
+  - type: DoAfter
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-dshamster-name
+    description: ghost-role-information-dshamster-description
+    rules: ghost-role-information-dshamster-rules
+  - type: GhostTakeoverAvailable
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - Hamster
+    - VimPilot
+    - ChefPilot
+    - CanPilot
+  - type: ComplexInteraction
+  - type: CrewSkills #Да-да, маленький хомячок умеет все)
+    skills:
+      - skillBotany #Base
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillCooking  #Easy
+      - skillBartending
+      - skillHacking
+      - skillInstrumentation #Medium
+      - skillMaintenance
+      - skillMediumConstruction
+      - skillMediumBotany
+      - skillBasicAtmos
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillPiloting #Hard
+      - skillAtmos
+      - skillHardInstrumentation
+      - skillRobotics
+      - skillResearch
+      - skillPharmaceuticals
+      - skillShooting
+      - skillSurgery
+      - skillNeuroSurgery
+  - type: Access #Доступы тоже.
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - SODDeathSquad
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: ActiveRadio
+    channels:
+    - SODDeathSquad
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: ZombieImmune
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 120
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5.5
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: hamster
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: CanEscapeInventory
+    baseResistTime: 3
+  - type: MobPrice
+    price: 30000
+  - type: NonSpreaderZombie
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+  - type: Body
+    prototype: DeathSquadHamster
+  - type: Hands
+  - type: CombatMode
+  - type: NoSlip
+  - type: Item
+    size: Tiny
+  - type: Physics
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      160: Dead
+  - type: ShowHealthBars
+    damageContainers:
+    - Silicon
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: Repairable
+    doAfterDelay: 10
+    allowSelfRepair: false
+  - type: Puller
+    needsHands: false
+  - type: Loadout
+    prototypes: [ DeathSquadHamsterInstrumental ]
+#hud
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowContrabandDetails
+
+- type: entity
+  name: Grey hypospray # Кастомный гипоспрей Грея
+  parent: BaseItem
+  description: A sterile injector for rapid administration of drugs to patients.
+  id: HyposprayGrey
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Grey/hypo.rsi
+    state: borghypo
+  - type: Item
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 11750
+  - type: BorgHypo
+    Solutions:
+      - reagents:
+        - ReagentId: Bicaridine
+          Quantity: 1
+      - reagents:
+        - ReagentId: Dermaline
+          Quantity: 1
+      - reagents:
+        - ReagentId: Dexalin
+          Quantity: 1
+      - reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 1
+      - reagents:
+        - ReagentId: Hyronalin
+          Quantity: 1
+      - reagents:
+        - ReagentId: Dylovene
+          Quantity: 1
+      - reagents:
+        - ReagentId: Omnizine
+          Quantity: 1
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+        - ReagentId: Epinephrine
+          Quantity: 1
+
+- type: entity
+  id: GreyDefibrillatorCompact
+  parent: BaseDefibrillator
+  name: Grey's compact defibrillator
+  description: Now in fun size!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Grey/defib.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+  - type: Item
+    size: Normal
+#  - type: ToggleCellDraw
+#  - type: PowerCellDraw
+#    useRate: 0
+  - type: Defibrillator
+    zapHeal:
+      types:
+        Asphyxiation: -40
+    doAfterDuration: 6
+  - type: DoAfter
+  - type: UseDelay
+#  - type: ItemSlots
+#    slots:
+#      cell_slot:
+#        name: power-cell-slot-component-slot-name-default
+#        startingItem: PowerCellHyper
+
+- type: entity
+  id: GreyHealthAnalyzer
+  parent: HandheldHealthAnalyzerUnpowered
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Grey/analyzer.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: analyzer
+        shader: unshaded
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+
+- type: body
+  id: DeathSquadHamster
+  name: "homster"
+  root: torso
+  slots:
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_hand
+      - left_hand2
+      - left_hand
+      - legs
+    right_hand:
+      part: RightHandHuman
+    left_hand2:
+      part: LeftHandHuman
+    left_hand:
+      part: LeftHandHuman
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: startingGear
+  id: DeathSquadHamsterInstrumental
+  equipment:
+    suitstorage: OxygenTankFilled
+  inhand:
+  - HyposprayGrey
+  - GreyDefibrillatorCompact
+  - GreyHealthAnalyzer

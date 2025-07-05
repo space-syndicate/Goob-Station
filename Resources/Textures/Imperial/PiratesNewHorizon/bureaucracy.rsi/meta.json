@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by hammaggotson (discord) for Imperal Space server Space Station 14", 
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+        "name": "stamp-hm"
+    },
+    {
+        "name": "paper_stamp-hm"
+    }
+  ]
+}

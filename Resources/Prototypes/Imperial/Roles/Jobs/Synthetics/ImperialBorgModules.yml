@@ -74,30 +74,36 @@
   - type: StaticPrice
     price: 750
   - type: BorgHypo
-    Solutions:
+    solutions:
       - reagents:
-        - ReagentId: Bicaridine
-          Quantity: 1
+        - reagentId: Bicaridine
+          quantity: 1
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/brutekit.png
       - reagents:
-        - ReagentId: Dermaline
-          Quantity: 1
+        - reagentId: Dermaline
+          quantity: 1
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/burnkit.png
       - reagents:
-        - ReagentId: Dexalin
-          Quantity: 1
+        - reagentId: Dexalin
+          quantity: 1
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/o2kit.png
       - reagents:
-        - ReagentId: Inaprovaline
-          Quantity: 1
+        - reagentId: Inaprovaline
+          quantity: 1
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/firstaid.png
       - reagents:
-        - ReagentId: Hyronalin
-          Quantity: 1
+        - reagentId: Hyronalin
+          quantity: 1
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/radkit.png
       - reagents:
-        - ReagentId: Dylovene
-          Quantity: 1
+        - reagentId: Dylovene
+          quantity: 1
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
-        - ReagentId: Epinephrine
+        - ReagentId: Bicaridine
           Quantity: 1
 
 - type: entity
@@ -105,13 +111,14 @@
   name: action-name-change-reagent
   description: action-description-change-reagent
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 1
     itemIconStyle: NoItem
     icon:
       sprite: Objects/Specific/Medical/hypospray.rsi
       state: borghypo
+  - type: InstantAction
     event: !type:ChangeReagentAction
-    useDelay: 1
 
 ## Медицинский киборг синдиката
 - type: entity
@@ -172,30 +179,36 @@
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
-    Solutions:
+    solutions:
       - reagents:
-        - ReagentId: Bicaridine
-          Quantity: 2
+        - reagentId: Bicaridine
+          quantity: 2
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/brutekit.png
       - reagents:
-        - ReagentId: Dermaline
-          Quantity: 2
+        - reagentId: Dermaline
+          quantity: 2
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/burnkit.png
       - reagents:
-        - ReagentId: Dexalin
-          Quantity: 2
+        - reagentId: Dexalin
+          quantity: 2
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/o2kit.png
       - reagents:
-        - ReagentId: Inaprovaline
-          Quantity: 2
+        - reagentId: Inaprovaline
+          quantity: 2
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/firstaid.png
       - reagents:
-        - ReagentId: Hyronalin
-          Quantity: 2
+        - reagentId: Hyronalin
+          quantity: 2
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/radkit.png
       - reagents:
-        - ReagentId: Dylovene
-          Quantity: 2
+        - reagentId: Dylovene
+          quantity: 2
+          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
-        - ReagentId: Epinephrine
+        - ReagentId: Bicaridine
           Quantity: 1
 
 - type: entity
@@ -224,14 +237,14 @@
   name: action-name-mimicry
   description: action-description-mimicry
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 4
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Interface/Actions/borgs_imperial.rsi
       state: mimicry
+  - type: InstantAction
     event: !type:MimicryEvent
-    useDelay: 4
-
 
 ## Борг СБ'шник
 - type: entity

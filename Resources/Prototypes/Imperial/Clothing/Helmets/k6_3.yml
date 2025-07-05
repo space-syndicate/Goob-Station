@@ -34,5 +34,4 @@
   description: Toggles all glove actions on left click. Includes your doorjack, draining power, stunning enemies and hacking certain computers.
   components:
   - type: InstantAction
-    priority: -13
     event: !type:ToggleActionEvent {}

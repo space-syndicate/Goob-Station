@@ -3,16 +3,18 @@
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30 #ибо нехуй спамить заклинанием на сон
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/fireball.ogg
     icon:
       sprite: Imperial/DRGbeer/gnomeprojectile.rsi
       state: spell
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: BulletGnomish
 

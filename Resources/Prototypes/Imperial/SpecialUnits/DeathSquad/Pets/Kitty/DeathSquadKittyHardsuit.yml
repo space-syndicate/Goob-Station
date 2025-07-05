@@ -1,0 +1,157 @@
+#kitty equipment
+- type: entity
+  abstract: true
+  parent: [ClothingOuterBase, GeigerCounterClothing, AllowSuitStorageClothing]
+  id: CatOuterHardsuitBase
+  name: base cat hardsuit
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.4
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Ginormous
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.90
+        Radiation: 0.25
+  - type: Inject # imperial hardsuit injection
+  - type: ItemSlots # imperial hardsuit injection
+    slots: # imperial hardsuit injection
+      beakerSlot: # imperial hardsuit injection
+        whitelist: # imperial hardsuit injection
+          tags: # imperial hardsuit injection
+          - FitsHardsuit # imperial hardsuit injection
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot # imperial hardsuit injection
+  - type: GroupExamine
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: MASK
+
+- type: entity
+  parent: CatOuterHardsuitBase
+  id: CatHardsuitDeathSquad
+  name: death squad kitty hardsuit
+  description: An advanced armored suit used in special operations by the toughest cats in the galaxy.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsuqad_kitty_hardsuit.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsuqad_kitty_hardsuit.rsi
+#    layers:
+#    state: equipped-MASK
+#      map: [ "mask" ]
+#    - state: on-equipped-MASK
+#      visible: false
+#      map: [ "light" ]
+    slots: [mask]
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+        Cold: 0.1
+        Shock: 0.1
+        Stamina: 0.3
+  - type: ProtectedFromStepTriggers
+  - type: Insulated
+  - type: BreathMask
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: HeldSpeedModifier
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+  - type: Tag
+    tags:
+    - CatHardsuit
+    - Hardsuit
+#Magboots
+#  - type: ToggleClothing
+#    action: ActionToggleMagboots
+#    mustEquip: false
+#  - type: ComponentToggler
+#    components:
+#    - type: NoSlip
+#Light
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    color: "#9defee"
+    radius: 5
+    energy: 2.5
+    autoRot: true
+    mask: /Textures/Effects/LightMasks/cone.png
+    netsync: false
+    enabled: false
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      mask:
+      - state: equipped-MASK
+      - state: on-equipped-MASK
+        shader: unshaded
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 3
+#Jetpack
+#  - type: GasTank
+#    outputPressure: 42.6
+#    air:
+#      volume: 5
+#      temperature: 293.15
+#      moles:
+#        - 1.025689525
+#        - 1.025689525
+#  - type: Jetpack
+#    moleUsage: 0
+#  - type: ActivatableUI
+#    key: enum.SharedGasTankUiKey.Key
+#  - type: UserInterface
+#    interfaces:
+#      enum.SharedGasTankUiKey.Key:
+#        type: GasTankBoundUserInterface
+
+- type: Tag
+  id: CatHardsuit #only for cute kittys!

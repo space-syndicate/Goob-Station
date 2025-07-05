@@ -272,4 +272,11 @@
 
 ### WHITE
 ### WHITE
-### WHITE 
+### WHITE
+
+- type: decal
+  id: NuclearDawnLogo
+  tags: ["syndicate"]
+  sprite:
+    sprite: Imperial/Crook/Decals/nucleardawn.rsi
+    state: logo

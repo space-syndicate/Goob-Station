@@ -1,0 +1,6 @@
+- type: emoteSounds
+  id: SomethingVoice
+  sound:
+    path: /Audio/Imperial/Omori/something.ogg
+  params:
+   volume: -6

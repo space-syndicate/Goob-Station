@@ -36,6 +36,13 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalIan
+    #Imperial Space Pirates: New Horizon; Start
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 23000
+    #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   name: Old Ian

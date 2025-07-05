@@ -1,0 +1,154 @@
+- type: entity
+  abstract: true
+  parent:
+  - BaseSimpleMob
+  - MobAtmosExposed
+  - MobCombat
+  - MobBloodstream
+  - MobFlammable
+  id: SimpleSpaceMobBaseSomething # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
+  suffix: AI
+  components:
+  - type: MeleeWeapon
+    angle: 0
+    range: 0.9
+    animation: WeaponArcBite
+    damage:
+      types:
+       Piercing: 0
+  - type: Body
+    prototype: Animal
+  - type: Climbing
+
+- type: entity
+  parent: [ SimpleSpaceMobBaseSomething, FlyingMobBase ]
+  id: Something_AI
+  name: Mari
+  suffix: Omori, HTN
+  description: There's something watching you.
+  components:
+  - type: Sprite
+    sprite: Imperial/Omori/Something.rsi
+    scale: 0.4, 0.4
+    layers:
+     - state: something
+  - type: Appearance
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 6
+    baseSprintSpeed: 8
+  - type: NoSlip
+  - type: Actions
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        7
+      AggroVisionRadius: !type:Single
+        7
+      NavSmash: !type:Bool
+        true
+  - type: Speech
+    speechVerb: LargeMob
+  - type: Vocal
+    sounds:
+      Unsexed: SomethingVoice
+  - type: Fixtures
+    fixtures:
+      fix2:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 10
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+        hard: true
+  - type: TriggerOnCollide
+    fixtureID: fix2
+    ignoreOtherNonHard: false
+  - type: TriggerOnActivate
+  - type: SoundOnTrigger
+    sound:
+      path: /Audio/Imperial/Omori/something.ogg
+      params:
+        volume: -10
+  - type: DeleteOnTrigger
+  - type: Reflect
+    reflectProb: 1
+    spread: 360
+  - type: TriggerWhitelist
+    whitelist:
+     components:
+     - MobState
+    blacklist:
+     components:
+     - HTN
+
+- type: entity
+  parent: [ SimpleSpaceMobBaseSomething, FlyingMobBase ]
+  id: Something
+  name: Mari
+  suffix: Omori
+  description: There's something watching you.
+  components:
+  - type: Sprite
+    sprite: Imperial/Omori/Something.rsi
+    scale: 0.4, 0.4
+    layers:
+     - state: something
+  - type: Appearance
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 6
+    baseSprintSpeed: 8
+  - type: NoSlip
+  - type: Actions
+  - type: Speech
+    speechVerb: LargeMob
+  - type: Vocal
+    sounds:
+      Unsexed: SomethingVoice
+  - type: Fixtures
+    fixtures:
+      fix2:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 10
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+        hard: true
+  - type: TriggerOnCollide
+    fixtureID: fix2
+    ignoreOtherNonHard: false
+  - type: TriggerOnActivate
+  - type: Reflect
+    reflectProb: 1
+    spread: 360
+  - type: SoundOnTrigger
+    sound:
+      path: /Audio/Imperial/Omori/something.ogg
+      params:
+        volume: -10
+  - type: DeleteOnTrigger
+  - type: TriggerWhitelist
+    whitelist:
+     components:
+     - MobState
+    blacklist:
+     components:
+     - HTN

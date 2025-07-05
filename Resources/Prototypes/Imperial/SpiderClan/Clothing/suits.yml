@@ -9,6 +9,8 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Suits/redninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Suits/redninja.rsi
+  - type: StaticPrice
+    price: 35000
 
 - type: entity
   parent: ClothingOuterSuitSpaceNinja
@@ -21,6 +23,8 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Suits/blueninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Suits/blueninja.rsi
+  - type: StaticPrice
+    price: 35000
 
 - type: entity
   parent: ClothingOuterSuitSpaceNinja
@@ -33,6 +37,8 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Suits/greenninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Suits/greenninja.rsi
+  - type: StaticPrice
+    price: 35000
 
 - type: entity
   parent: ClothingOuterSuitSpaceNinja
@@ -45,6 +51,8 @@
     sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/redninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/redninja.rsi
+  - type: StaticPrice
+    price: 35000
 
 - type: entity
   parent: ClothingOuterSuitSpaceNinja
@@ -57,6 +65,8 @@
     sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/blueninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/blueninja.rsi
+  - type: StaticPrice
+    price: 35000
 
 - type: entity
   parent: ClothingOuterSuitSpaceNinja
@@ -69,3 +79,5 @@
     sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/greenninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/greenninja.rsi
+  - type: StaticPrice
+    price: 35000

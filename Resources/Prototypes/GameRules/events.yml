@@ -199,12 +199,18 @@
   - type: AntagObjectives
     objectives:
     - LeaveNoTraceObjective # Imperial Space Ninja
-    - StealResearchObjective
+    #- StealResearchObjective; Imperial Space Ninja
     - DoorjackObjective
     - SpiderChargeObjective
     - TerrorObjective
     - MassArrestObjective
     - NinjaSurviveObjective
+  #Imperial Space Ninja; Start
+  - type: AntagRandomObjectives
+    sets:
+    - groups: NinjaObjectiveGroupMisc
+    maxDifficulty: 1.5
+  #Imperial Space Ninja; End
   - type: AntagSelection
     agentName: ninja-round-end-agent-name
     definitions:

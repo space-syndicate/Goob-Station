@@ -5,20 +5,8 @@
   maxCount: 30
 
 - type: stack
-  id: Capacitor
-  name: конденсатор
-  icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: capacitor }
-  spawn: CapacitorStockPart
-  maxCount: 10
-
-- type: stack
   id: Manipulator
-  name: микро-манипулятор
+  name: микро-манипулятор # Imperial Translate
+  icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: micro_mani }
   spawn: MicroManipulatorStockPart
-  maxCount: 10
-
-- type: stack
-  id: MatterBin
-  name: емкость материи
-  spawn: MatterBinStockPart
   maxCount: 10

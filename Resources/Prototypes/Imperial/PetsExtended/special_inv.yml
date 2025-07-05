@@ -1,0 +1,186 @@
+- type: inventoryTemplate
+  id: deathsquadcat
+  slots:
+  - name: mask
+    slotTexture: mask
+    slotFlags: MASK
+    uiWindowPos: 0,2
+    strippingWindowPos: 1,1
+    displayName: Mask
+    whitelist:
+      tags:
+        - PetWearable
+        - CatHardsuit
+
+  - name: suitstorage
+    slotTexture: suit_storage
+    slotFlags: SUITSTORAGE
+    stripTime: 3
+    uiWindowPos: 0,1
+    strippingWindowPos: 2,5
+    displayName: Suit Storage
+    whitelist:
+      components:
+        - GasTank
+
+- type: inventoryTemplate
+  id: deathsquadmonkey
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,2
+    strippingWindowPos: 0,0
+    displayName: Head
+  - name: pocket1
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 0,4
+    dependsOn: jumpsuit
+    displayName: Pocket 1
+    stripHidden: true
+  - name: pocket2
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 2,3
+    strippingWindowPos: 1,4
+    dependsOn: jumpsuit
+    displayName: Pocket 2
+    stripHidden: true
+  - name: ears
+    slotTexture: ears
+    slotFlags: EARS
+    stripTime: 3
+    uiWindowPos: 0,2
+    strippingWindowPos: 1,2
+    displayName: Ears
+  - name: mask
+    slotTexture: mask
+    slotFlags: MASK
+    uiWindowPos: 0,1
+    strippingWindowPos: 1,1
+    displayName: Mask
+  - name: eyes
+    slotTexture: glasses
+    slotFlags: EYES
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 0,0
+    displayName: Eyes
+  - name: jumpsuit
+    slotTexture: uniform
+    slotFlags: INNERCLOTHING
+    stripTime: 6
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,2
+    displayName: Jumpsuit
+  - name: id
+    slotTexture: id
+    fullTextureName: template_small
+    slotFlags: IDCARD
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,4
+    dependsOn: jumpsuit
+    displayName: ID
+  - name: suitstorage
+    slotTexture: suit_storage
+    slotFlags:   SUITSTORAGE
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 2,0
+    strippingWindowPos: 2,5
+    dependsOn: outerClothing
+    dependsOnComponents:
+    - type: AllowSuitStorage
+    displayName: Suit Storage
+  - name: outerClothing
+    slotTexture: suit
+    slotFlags: OUTERCLOTHING
+    stripTime: 6
+    uiWindowPos: 1,1
+    strippingWindowPos: 1,3
+    displayName: Suit
+    whitelist:
+      tags:
+        - MonkeyWearable
+#  - name: belt #Слишком упорото выглядит на монке.
+#    slotTexture: belt
+#    fullTextureName: template_small
+#    slotFlags: BELT
+#    slotGroup: SecondHotbar
+#    stripTime: 6
+#    uiWindowPos: 3,1
+#    strippingWindowPos: 1,5
+#    displayName: Belt
+  - name: back
+    slotTexture: back
+    fullTextureName: template_small
+    slotFlags: BACK
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 3,0
+    strippingWindowPos: 0,5
+    displayName: Back
+
+#Legacy
+#  - type: StatusEffects
+#    allowed:
+#    - Stun
+#    - KnockedDown
+#    - PressureImmunity #Imperial Space cats hardsuit fix
+#    - SlowedDown
+#    - Stutter
+#    - Electrocution
+#    - ForcedSleep
+#    - TemporaryBlindness
+#    - Pacified
+#    - StaminaModifier
+#    - Flashed
+#    - RadiationProtection
+#    - Drowsiness
+#    - Adrenaline
+
+#  - type: Inventory
+#    speciesId: cat
+#    templateId: catpet
+
+# Used for mobs that require regular atmospheric conditions. Simple mobs ver.
+#- type: entity
+#  parent: MobAtmosExposed
+#  id: MobAtmosStandardSimple
+#  abstract: true
+#  components:
+#  - type: ThermalRegulator
+#    metabolismHeat: 800
+#    radiatedHeat: 100
+#    implicitHeatRegulation: 250
+#    sweatHeatRegulation: 500
+#    shiveringHeatRegulation: 500
+#    normalBodyTemperature: 310.15
+#    thermalRegulationTemperatureThreshold: 2
+#  - type: Temperature
+#    heatDamageThreshold: 325
+#    coldDamageThreshold: 260
+#    currentTemperature: 310.15
+#    specificHeat: 42
+#    coldDamage:
+#      types:
+#        Cold: 1 #per second, scales with temperature & other constants
+#    heatDamage:
+#      types:
+#        Heat: 1.5 #per second, scales with temperature & other constants
+#  - type: Barotrauma
+#    protectionSlots:
+#    - mask
+#    damage:
+#      types:
+#        Blunt: 0.15 #per second, scales with pressure and other constants.

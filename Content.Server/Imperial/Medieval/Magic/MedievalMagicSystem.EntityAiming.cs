@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.CoordsHelper;
@@ -36,8 +37,8 @@ public sealed partial class MedievalMagicSystem
         var sender = GetEntity(args.Sender.Value);
 
         if (!TryComp<MedievalSpellCasterComponent>(performer, out var spellCasterComponent)) return;
-        if (!TryComp<WorldTargetActionComponent>(sender, out var worldTargetActionComponent)) return;
-        if (worldTargetActionComponent.Cooldown.HasValue && worldTargetActionComponent.Cooldown.Value.End >= _timing.CurTime) return;
+        if (!TryComp<ActionComponent>(sender, out var actionComponent)) return;
+        if (actionComponent.Cooldown.HasValue && actionComponent.Cooldown.Value.End >= _timing.CurTime) return;
 
         if (!spellCasterComponent.TargetStack.TryAdd(sender, args.Targets))
             spellCasterComponent.TargetStack[sender] = spellCasterComponent.TargetStack[sender].Concat(args.Targets).ToList();

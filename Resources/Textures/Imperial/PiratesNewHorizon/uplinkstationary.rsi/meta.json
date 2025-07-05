@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894. pirate screen by H.M, Taken from tgstation at https://github.com/tgstation/tgstation/commit/0d9c9a8233dfc3fc55edc538955a761a6328bee0 computer frames modified by Jesse, Machine frames sprites remade by Ubaser and then remade by H.M.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "screen",
+            "directions": 4,
+            "delays": [
+                [
+                    0.9
+                ],
+                [
+                    0.9
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "computer",
+            "directions": 4
+        }
+    ]
+}

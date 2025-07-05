@@ -1,0 +1,20 @@
+- type: entity
+  id: AirlockFederationPoliceLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime
+  name: airlock
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/airlocks/police.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  id: AirlockFederationPolice
+  parent: Airlock
+  suffix: ElysiumPrime
+  name: airlock
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/airlocks/police.rsi

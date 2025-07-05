@@ -1,0 +1,78 @@
+- type: entity
+  parent: ClothingBeltBase
+  id: ClothingBeltPirateSpeed
+  name: steadfast belt
+  suffix: Pirate
+  description: Allows yall not to be let down by lack of speed.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/belt_c.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/belt_c.rsi
+  - type: Appearance
+  - type: ClothingSpeedModifier
+    # ninja are masters of sneaking around relatively quickly, won't break cloak
+    walkModifier: 1.05
+    sprintModifier: 1.15
+
+- type: entity
+  parent: ClothingBeltBase
+  id: ClothingBeltPirateBlackBelt
+  name: black pirate belt
+  suffix: Pirate
+  description: Allows you not to be let down by lack of survivability.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/blackbelt.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/blackbelt.rsi
+  - type: Appearance
+  - type: Reflect
+    reflects:
+    - NonEnergy
+    reflectProb: 0.1
+    spread: 360
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltPirateBeltGunsman
+  name: mighty gunsman belt
+  suffix: Pirate
+  description: Allows you not to be let down by lack of ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/gunman.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/gunman.rsi
+  - type: Appearance
+  - type: Storage
+    maxItemSize: Normal
+    # TODO: Fill this out more.
+    whitelist:
+      tags:
+        - CigPack
+      components:
+        - BallisticAmmoProvider
+        - Ammo
+        - CartridgeAmmo
+        - Explosive
+
+- type: entity
+  parent: ClothingBeltBase
+  id: ClothingBeltPirateRedBelt
+  name: forsaken belt
+  suffix: Pirate
+  description: Allows you not to be let down by lack of survivability.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/redbelt.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/belt/redbelt.rsi
+  - type: Appearance
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.7

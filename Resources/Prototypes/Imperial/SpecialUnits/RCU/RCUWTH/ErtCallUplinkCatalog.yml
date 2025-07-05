@@ -627,9 +627,12 @@
   description: ert-uplink-utilities-ami2-desc
   productEntity: PlushieSOO
   cost:
-    BlueSpaceCube: 1
+    BlueSpaceCube: 10
   categories:
   - RCUUtilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: RCUCallUplinkHandheldGPSBasic

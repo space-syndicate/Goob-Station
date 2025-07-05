@@ -8,6 +8,7 @@
     sprite: Imperial/Other/TFG/Murasama/murasama_blade.rsi
     state: icon
   - type: MeleeWeapon
+    resistanceBypass: true
     wideAnimationRotation: -60
     damage:
       types:

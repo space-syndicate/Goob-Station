@@ -1,0 +1,334 @@
+#I love pirates 
+#ahoy mateeee
+
+#The damage is pretty nice, i kinda think such price is reasonable
+- type: listing
+  id: PirateCatalogBullet
+  name: pirate-ammunition-cart-name
+  description: pirate-ammunition-cart-description
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi, state: base }
+  productEntity: CartridgeAntiMateriel
+  cost:
+    Doubloon: 200
+  categories:
+  - PiratesAmmunition
+# It sucks tbh
+- type: listing
+  id: PirateCatalogGrapeshot
+  name: pirate-ammunition-grapeshot-name
+  description: pirate-ammunition-grapeshot-description
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: grapeshot }
+  productEntity: CannonBallGrapeshot
+  cost:
+    Doubloon: 450
+  categories:
+  - PiratesAmmunition
+#Op
+- type: listing
+  id: PirateCatalogGlassball
+  name: pirate-ammunition-glassball-name
+  description: pirate-ammunition-glassball-description
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: glassshot }
+  productEntity: CannonBallGlassshot
+  cost:
+    Doubloon: 1950
+  categories:
+  - PiratesAmmunition
+#A lot of ammo
+- type: listing
+  id: PirateCatalogPirateRevolverAmmo
+  name: pirate-ammunition-rev-ammo-name
+  description: pirate-ammunition-rev-ammo-description
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  productEntity: MagazineBoxMagnum
+  cost:
+    Doubloon: 2750
+  categories:
+  - PiratesAmmunition
+#Walls oneshot, great
+- type: listing
+  id: PirateCatalogCannonball
+  name: pirate-ammunition-cannonball-name
+  description: pirate-ammunition-cannonball-description
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball }
+  productEntity: CannonBall
+  cost:
+    Doubloon: 3500
+  categories:
+  - PiratesAmmunition
+#kaboom
+- type: listing
+  id: PirateCatalogBomb
+  name: pirate-ammunition-bomb-name
+  description: pirate-ammunition-bomb-description
+  icon: { sprite: /Textures/Imperial/PiratesNewHorizon/pirate_grenade.rsi, state: icon }
+  productEntity: PirateGrenade
+  cost:
+    Doubloon: 9999
+  categories:
+  - PiratesAmmunition
+#It is just so great for pirates
+- type: listing
+  id: PirateCatalog
+  name: pirate-ammunition-shotgunammo-name
+  description: pirate-ammunition-shotgunammo-description
+  icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
+  productEntity: CratePirateShotgunAmmo
+  cost:
+    Doubloon: 12000
+  categories:
+  - PiratesAmmunition
+# Mb useful???
+- type: listing
+  id: PirateCatalogMultitool
+  name: pirate-utilities-multitool-name
+  description: pirate-utilities-multitool-description
+  icon: { sprite: /Textures/Objects/Tools/multitool.rsi, state: icon }
+  productEntity: Multitool
+  cost:
+    Doubloon: 1850
+  categories:
+  - PiratesUtilities
+#Insane
+- type: listing
+  id: PirateCatalogIsolated
+  name: pirate-utilities-isolated-name
+  description: pirate-utilities-isolated-description
+  icon: { sprite: /Textures/Clothing/Hands/Gloves/Color/yellow.rsi, state: icon }
+  productEntity: ClothingHandsGlovesColorYellow
+  cost: 
+    Doubloon: 3750
+  categories:
+  - PiratesUtilities
+#A pirate nerf
+- type: listing
+  id: PirateCatalogMagBoots
+  name: pirate-utilities-magboots-name
+  description: pirate-utilities-magboots-description
+  icon: { sprite: /Textures/Imperial/PiratesNewHorizon/magboots-pirate.rsi, state: icon }
+  productEntity: ClothingShoesBootsMagPirate
+  cost: 
+    Doubloon: 2250
+  categories:
+  - PiratesUtilities
+#Pirate Miner
+- type: listing
+  id: PirateCatalogSink
+  name: pirate-utilities-powersink-name
+  description: pirate-utilities-powersink-description
+  icon: { sprite: /Textures/Imperial/PiratesNewHorizon/pirate_powersink.rsi, state: pirate_powersink }
+  productEntity: PiratePowerSink
+  cost: 
+    Doubloon: 11500
+  categories:
+  - PiratesUtilities
+#Must-have
+- type: listing
+  id: PirateCatalogMedkit
+  name: pirate-medicine-medkit-name
+  description: pirate-medicine-medkit-description
+  icon: { sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi, state: firstaid }
+  productEntity: MedkitFilled
+  cost: 
+    Doubloon: 1200
+  categories:
+  - PiratesMedicine
+#Must-have as well
+- type: listing
+  id: PirateCatalogSurgery
+  name: pirate-medicine-surgery-name
+  description: pirate-medicine-surgery-description
+  icon: { sprite: /Textures/Clothing/Back/Duffels/medical.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSurgeryFilled
+  cost: 
+    Doubloon: 6750
+  categories:
+  - PiratesMedicine
+#Has meth, and some useful toxins, overall 8/10
+- type: listing
+  id: PirateCatalogDrugs
+  name: pirate-medicine-drugs-name
+  description: pirate-medicine-drugs-description
+  icon: { sprite: /Textures/Clothing/Back/Duffels/syndicate.rsi, state: icon-med }
+  productEntity: ClothingBackpackDuffelPirateDrugs
+  cost: 
+    Doubloon: 17500
+  categories:
+  - PiratesMedicine
+#idk, but is pretty great, also has a lot of dmg
+#- type: listing
+#  id: PirateCatalogGiga
+#  name: pirate-medicine-giga-name
+#  description: pirate-medicine-giga-description
+#  icon: { sprite: /Textures/Imperial/PiratesNewHorizon/gigapirate_potion.rsi, state: icon }
+#  productEntity: MuddyHarbourBottle
+#  cost: 
+#    Doubloon: 62500
+#  categories:
+#  - PiratesMedicine
+
+#BOOZE
+- type: listing
+  id: PirateCatalogBeer
+  name: pirate-booze-beer-name
+  description: pirate-booze-beer-description
+  icon: { sprite: /Textures/Objects/Consumable/Drinks/beer.rsi, state: icon }
+  productEntity: DrinkBeerBottleFull
+  cost: 
+    Doubloon: 750
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogCognac
+  name: pirate-booze-cognac-name
+  description: pirate-booze-cognac-description
+  icon: { sprite: /Textures/Objects/Consumable/Drinks/cognacbottle.rsi, state: icon }
+  productEntity: DrinkCognacBottleFull
+  cost: 
+    Doubloon: 750
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogRum
+  name: pirate-booze-rum-name
+  description: pirate-booze-rum-description
+  icon: { sprite: /Textures/Objects/Consumable/Drinks/rumbottle.rsi, state: icon }
+  productEntity: DrinkRumBottleFull
+  cost: 
+    Doubloon: 750
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogWine
+  name: pirate-booze-wine-name
+  description: pirate-booze-wine-description
+  icon: { sprite: /Textures/Objects/Consumable/Drinks/winebottle.rsi, state: icon }
+  productEntity: DrinkWineBottleFull
+  cost: 
+    Doubloon: 750
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogAtomic
+  name: pirate-booze-atomic-name
+  description: pirate-booze-atomic-description
+  icon: { sprite: /Textures/Objects/Consumable/Drinks/atomicbombglass.rsi, state: icon }
+  productEntity: DrinkAtomicBombGlass
+  cost: 
+    Doubloon: 1350
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogIceSpirits
+  name: pirate-booze-icespirits-name
+  description: pirate-booze-icespirits-description
+  icon: { sprite: /Textures/Imperial/Food/Bizarre/BizarreCookingDrinks.rsi, state: icespiritsbottle }
+  productEntity: DrinkIceSpiritsBottleFull
+  cost: 
+    Doubloon: 3250
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogBoozeRestock
+  name: pirate-booze-restock-name
+  description: pirate-booze-restock-description
+  icon: { sprite: /Textures/Objects/Specific/Service/vending_machine_restock.rsi, state: base}
+  productEntity: VendingMachineRestockBooze
+  cost: 
+    Doubloon: 5750
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogRumCooler
+  name: pirate-booze-rumcooler-name
+  description: pirate-booze-rumcooler-description
+  icon: { sprite: /Textures/Structures/Storage/tanks.rsi, state: watercooler-2}
+  productEntity: RumCooler
+  cost: 
+    Doubloon: 6250
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogGrogBottle
+  name: pirate-booze-grog-name
+  description: pirate-booze-grog-description
+  icon: { sprite: Imperial/PiratesNewHorizon/grogbottle.rsi, state: icon}
+  productEntity: DrinkGrogBottleFull
+  cost: 
+    Doubloon: 1350
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogNTCahors
+  name: pirate-booze-cahors-name
+  description: pirate-booze-cahors-description
+  icon: { sprite: Objects/Consumable/Drinks/wineglass.rsi, state: icon}
+  productEntity: DrinkNTCahors
+  cost:
+    Doubloon: 1750
+  categories:
+  - PiratesBooze
+
+- type: listing
+  id: PirateCatalogBlackMark
+  name: pirate-useless-blackmark-name
+  description: pirate-useless-blackmark-description
+  icon: { sprite: /Textures/Imperial/PiratesNewHorizon/doubloon.rsi, state: black_mark}
+  productEntity: BlackMark
+  cost: 
+    Doubloon: 1450
+  categories:
+  - PiratesPointless
+
+- type: listing
+  id: PirateCatalogParrot
+  name: pirate-useless-parrot-name
+  description: pirate-useless-parrot-description
+  icon: { sprite: Imperial/PiratesNewHorizon/parrot_pirate.rsi, state: icon}
+  productEntity: MobParrotPirate
+  cost: 
+    Doubloon: 13500
+  categories:
+  - PiratesPointless
+
+- type: listing
+  id: PirateCatalogFunCrate
+  name: pirate-useless-funcrate-name
+  description: pirate-useless-funcrate-description
+  icon: { sprite: Structures/Storage/Crates/piratechest.rsi, state: crate_icon}
+  productEntity: CrateFunPirate
+  cost:
+    Doubloon: 3500
+  categories:
+  - PiratesPointless
+
+- type: listing
+  id: PirateCatalogBirdToy
+  name: pirate-useless-birdtoy-name
+  description: pirate-useless-birdtoy-description
+  icon: { sprite: Objects/Fun/Instruments/otherinstruments.rsi, state: birdtoy}
+  productEntity: BirdToyInstrument
+  cost:
+    Doubloon: 1500
+  categories:
+  - PiratesPointless
+
+- type: listing
+  id: PirateCatalogBeltLootbox
+  name: pirate-clothing-beltlootbox-name
+  description: pirate-clothing-beltlootbox-description
+  icon: { sprite: Imperial/PiratesNewHorizon/clothing/belt/belt_c.rsi, state: icon}
+  productEntity: CratePirateBelt
+  cost:
+    Doubloon: 5678
+  categories:
+  - PiratesClothing

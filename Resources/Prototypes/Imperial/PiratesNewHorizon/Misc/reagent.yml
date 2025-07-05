@@ -1,0 +1,220 @@
+- type: reagent
+  id: MuddyHarbour
+  name: reagent-name-pirate
+  group: Toxins
+  desc: reagent-desc-pirate
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: bitter
+  color: "#152332"
+  metabolisms:
+    Poison:
+      metabolismRate : 0.25
+      effects:
+      - !type:Polymorph
+        prototype: AbominationMorph 
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        - !type:OrganType
+          type: Animal
+          shouldHave: false
+      - !type:PopupMessage
+        type: Local
+        messages: [ "muddy-harbour-popup" ]
+        probability: 0.3
+        visualType: Large
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+
+- type: reagent
+  id: WineEssence
+  parent: BaseAlcohol
+  name: reagent-name-wineessence
+  desc: reagent-description-wineessence
+  physicalDesc: reagent-physical-desc-roaring
+  flavor: chaos
+  color: "#4e0105"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Imperial/PiratesNewHorizon/wineessence.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: true
+  pricePerUnit: 250
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 30
+      - !type:AdjustReagent
+        reagent: Blood
+        amount: 1
+      - !type:ModifyBloodLevel
+        amount: 10
+
+- type: reagent
+  id: BeerEssence
+  name: reagent-name-beeressence
+  parent: BaseAlcohol
+  desc: reagent-desc-beeressence
+  physicalDesc: reagent-physical-desc-fluffy
+  flavor: dunce
+  recognizable: true
+  color: "#664300"
+  metamorphicSprite:
+    sprite: Imperial/PiratesNewHorizon/beeressence.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  pricePerUnit: 350
+  metabolisms:
+    Drink:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+      - !type:ChemVomit
+        probability: 0.04
+      - !type:Drunk
+        boozePower: 30
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        - !type:OrganType
+          type: Dwarf
+        damage:
+          groups:
+            Brute: -1
+
+
+- type: reagent
+  id: PirateEssence
+  name: reagent-name-pirateessence
+  desc: reagent-desc-pirateessence
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: oily
+  color: "black"
+  recognizable: true
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2
+
+- type: reagent
+  id: VodkaEssence
+  parent: BaseAlcohol
+  name: reagent-name-vodkaessence
+  desc: reagent-description-vodkaessence
+  physicalDesc: reagent-physical-desc-rocky
+  flavor: sadness
+  color: "#abb2b3"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Imperial/PiratesNewHorizon/vodkaessence.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: true
+  pricePerUnit: 300
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: -3
+      - !type:ResistChange
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Piercing: 0.75
+- type: reagent
+  id: Detoxificator
+  name: reagent-name-detoxificator
+  desc: reagent-description-detoxificator
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: acid
+  color: "#202905"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: 0.1
+    Medicine:
+      effects:
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: -1
+
+- type: reagent
+  id: AlhocolEssence
+  parent: BaseAlcohol
+  name: reagent-name-alhocolessence
+  desc: reagent-description-alhocolessence
+  physicalDesc: reagent-physical-desc-enigmatic
+  flavor: magical
+  color: "#ffffff"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Imperial/PiratesNewHorizon/alhocolessence.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  pricePerUnit: 1250
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 60
+      - !type:ResistChange
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Piercing: 0.5
+            Heat: 0.8
+            Shock: 0.7
+            Slash: 0.8
+      - !type:HealthChange
+        conditions:
+        damage:
+          groups:
+            Brute: -1
+          types:
+            Piercing: -3
+            Heat: -3
+            Shock: -3
+            Slash: -3
+      - !type:ModifyBloodLevel
+        amount: 30
+      - !type:Oxygenate
+      - !type:ChemHealEyeDamage
+      - !type:CureZombieInfection
+    Poison:
+      effects:
+      - !type:ChemVomit
+        probability: 0.005
+      - !type:HealthChange
+        conditions:
+        damage:
+          types:
+            Poison: 0.1
+      - !type:ResistChange
+        modifiers:
+          coefficients:
+            Poison: 2
+    Narcotic:
+      effects:
+      - !type:Jitter
+      - !type:Drunk
+        boozePower: 15
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4

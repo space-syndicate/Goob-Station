@@ -19,17 +19,19 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalIceBarrierBeginner
       spawnType: SpawnOnMousePosition
@@ -71,17 +73,19 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalIceBarrierMiddle
       spawnType: SpawnOnMousePosition
@@ -117,17 +121,19 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 18
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 29
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
       state: 3
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalIceBarrierSenior
       spawnType: SpawnOnMousePosition

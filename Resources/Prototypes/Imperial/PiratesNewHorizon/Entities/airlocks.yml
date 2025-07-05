@@ -1,0 +1,26 @@
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttlePirate
+  suffix: Docking
+  name: external airlock
+  description: Necessary fer connectin' a couple of ships togetherrr'.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/shuttle_pirate.rsi
+
+- type: entity
+  parent: AirlockShuttlePirate
+  id: AirlockShuttlePirateLocked
+  suffix: Pirate, Locked, Docking
+  components:
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyShuttlePirate
+  suffix: Shuttle, Assembly
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/shuttle_pirate.rsi
+    state: "assembly"

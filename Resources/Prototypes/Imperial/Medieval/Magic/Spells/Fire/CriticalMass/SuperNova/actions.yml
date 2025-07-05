@@ -20,16 +20,18 @@
       groups:
         Burn: 19
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: supermass2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectCriticalMassMiddle
       spawnType: SpawnOnMousePosition
@@ -65,16 +67,18 @@
       groups:
         Burn: 19
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 25
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: supermass3
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectCriticalMassSenior
       spawnType: SpawnOnMousePosition

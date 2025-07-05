@@ -5,8 +5,188 @@
   id: DefaultRuleset
   name: guide-entry-rules
   ruleEntry: true
-  text: "/ServerInfo/Guidebook/ServerRules/RulesImperial.xml" # Imperial Rules
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/RulesImperial.xml" # Imperial Rules
   priority: 10
+  children: # Imperial Rules
+  - GameRulesImperial
+  - CommunityRulesImperial
+  - AdditionalRulesImperial
+
+# Imperial Rules Start
+- type: guideEntry 
+  id: GameRulesImperial # Основная страница игровых правил
+  name: Game rules
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRulesImperial.xml"
+  children: 
+  - ImperialGameRule0
+  - ImperialGameRule1
+  - ImperialGameRule2
+  - ImperialGameRule3
+  - ImperialGameRule4
+  - ImperialGameRule5
+  - ImperialGameRule6
+  - ImperialGameRule7
+  - ImperialGameRule8
+
+- type: guideEntry
+  id: CommunityRulesImperial # Основная страница правил сообщества
+  name: Community Rules
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRulesImperial.xml"
+  children: 
+  - CommunityRule1
+  - CommunityRule2
+  - CommunityRule3
+  - CommunityRule4
+  - CommunityRule5
+  - CommunityRule6
+  - CommunityRule7
+  - CommunityRule8
+  - CommunityRule9
+
+- type: guideEntry
+  id: AdditionalRulesImperial # Дополнительные правила всех серверов
+  name: Additional Rules
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/AdditionalRulesImperial.xml"
+  children: 
+  - AdditionalRule1
+  - AdditionalRule2 
+  - AdditionalRule3
+
+# Игровые правила Imperial Space
+- type: guideEntry
+  id: ImperialGameRule0
+  name: guide-entry-rules-imperial-game-0
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule0.xml"
+
+- type: guideEntry
+  id: ImperialGameRule1
+  name: guide-entry-rules-imperial-game-1
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule1.xml"
+
+- type: guideEntry
+  id: ImperialGameRule2
+  name: guide-entry-rules-imperial-game-2
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule2.xml"
+
+- type: guideEntry
+  id: ImperialGameRule3
+  name: guide-entry-rules-imperial-game-3
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule3.xml"
+
+- type: guideEntry
+  id: ImperialGameRule4
+  name: guide-entry-rules-imperial-game-4
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule4.xml"
+
+- type: guideEntry
+  id: ImperialGameRule5
+  name: guide-entry-rules-imperial-game-5
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule5.xml"
+
+- type: guideEntry
+  id: ImperialGameRule6
+  name: guide-entry-rules-imperial-game-6
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule6.xml"
+
+- type: guideEntry
+  id: ImperialGameRule7
+  name: guide-entry-rules-imperial-game-7
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule7.xml"
+
+- type: guideEntry
+  id: ImperialGameRule8
+  name: guide-entry-rules-imperial-game-8
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule8.xml"
+
+# Правила сообщества Imperial Space
+
+- type: guideEntry
+  id: CommunityRule1
+  name: guide-entry-rules-imperial-community-1
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule1.xml"
+
+- type: guideEntry
+  id: CommunityRule2
+  name: guide-entry-rules-imperial-community-2
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule2.xml"
+
+- type: guideEntry
+  id: CommunityRule3
+  name: guide-entry-rules-imperial-community-3
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule3.xml"
+
+- type: guideEntry
+  id: CommunityRule4
+  name: guide-entry-rules-imperial-community-4
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule4.xml"
+
+- type: guideEntry
+  id: CommunityRule5
+  name: guide-entry-rules-imperial-community-5
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule5.xml"
+
+- type: guideEntry
+  id: CommunityRule6
+  name: guide-entry-rules-imperial-community-6
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule6.xml"
+
+- type: guideEntry
+  id: CommunityRule7
+  name: guide-entry-rules-imperial-community-7
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule7.xml"
+
+- type: guideEntry
+  id: CommunityRule8
+  name: guide-entry-rules-imperial-community-8
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule8.xml"
+
+- type: guideEntry
+  id: CommunityRule9
+  name: guide-entry-rules-imperial-community-9
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/CommunityRules/ImperialCommunityRule9.xml"
+
+# Дополнительные правила всех серверов
+
+- type: guideEntry
+  id: AdditionalRule1
+  name: guide-entry-rules-imperial-additional-1
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/AdditionalRules/ImperialAdditionalRule1.xml"
+
+- type: guideEntry
+  id: AdditionalRule2
+  name: guide-entry-rules-imperial-additional-2
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/AdditionalRules/ImperialAdditionalRule2.xml"
+
+- type: guideEntry
+  id: AdditionalRule3
+  name: guide-entry-rules-imperial-additional-3
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/AdditionalRules/ImperialAdditionalRule3.xml"
+
+# Imperial Rules End
 
 - type: guideEntry
   id: CoreRuleset

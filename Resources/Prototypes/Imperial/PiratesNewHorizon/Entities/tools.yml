@@ -1,0 +1,24 @@
+- type: entity
+  id: GPSTrackerRemover
+  name: GPS tracker remover
+  description: Useful for selling extremely valuable things of NanoTrasen, by removing GPS trackers to increase it's cost.
+  suffix: Pirate
+  parent: BaseItem
+  components:
+  - type: GPSTrackerRemover
+    itemsToSpawn:
+    - id: GPSTrackerTrash
+  - type: UseDelay
+    delay: 20
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 0.2
+    damage:
+      types:
+        Piercing: 50
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/gpstrackerremover.rsi
+    state: icon
+  - type: Clothing
+    slots: [belt]
+    sprite: Imperial/PiratesNewHorizon/gpstrackerremover.rsi

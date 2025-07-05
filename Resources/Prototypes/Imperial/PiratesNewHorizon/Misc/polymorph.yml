@@ -1,0 +1,10 @@
+- type: polymorph
+  id: AbominationMorph
+  configuration:
+    entity: MobAbominationPiratesNewHorizon
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false

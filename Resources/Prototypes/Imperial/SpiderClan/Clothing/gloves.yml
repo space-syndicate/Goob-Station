@@ -9,16 +9,18 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/redninja.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/redninja.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: off-icon}
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: ClothingHandsGlovesSpaceNinja
@@ -31,16 +33,18 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/blueninja.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/blueninja.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: off-icon}
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: ClothingHandsGlovesSpaceNinja
@@ -53,13 +57,15 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/greenninja.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/greenninja.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: off-icon}
+  - type: StaticPrice
+    price: 15000

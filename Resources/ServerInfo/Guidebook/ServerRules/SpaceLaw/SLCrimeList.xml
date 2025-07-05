@@ -276,7 +276,7 @@
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"> Крайняя необходимость </Box>
     </ColorBox>
     <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"> 
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
       Вынужденные действия в целях самозащиты, защиты здоровья и жизни своих коллег, а также сохранности своего рабочего места и станции в целом.
       Бездействие обусловленное нахождением в критическом состоянии здоровья.</Box>
     </ColorBox>
@@ -328,7 +328,7 @@
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"> Должностное преступление </Box>
     </ColorBox>
     <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"> 
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
       Нарушение космического закона должностным лицом. Должностные лица призваны
       не только обеспечивать порядок и соблюдение Космического Закона на объектах NanoTrasen,
       но и быть образцом и примером для подражания, на который будут ориентироваться прочие члены экипажа.</Box>

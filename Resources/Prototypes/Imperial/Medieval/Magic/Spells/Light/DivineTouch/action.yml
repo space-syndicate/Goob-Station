@@ -19,7 +19,7 @@
       groups:
         Burn: 10
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 15
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -27,6 +27,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
       state: 1
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchBeginner
       spellCastDoAfter:
@@ -64,7 +65,7 @@
       groups:
         Burn: 15
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 19
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -72,6 +73,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
       state: 2
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchMiddle
       spellCastDoAfter:
@@ -104,7 +106,7 @@
       groups:
         Burn: 22
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 27
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -112,6 +114,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
       state: 3
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchSenior
       spellCastDoAfter:

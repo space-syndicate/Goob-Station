@@ -196,8 +196,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Удобная красная скамейка # Imperial Recipes Locale
   id: RedComfBench
+  name: Удобная красная скамейка # Imperial Recipes Locale
   graph: Seat
   startNode: start
   targetNode: redComfBench

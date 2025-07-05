@@ -1,0 +1,270 @@
+- type: constructionGraph
+  id: BeerEyepatchHud
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: beerEyepatch
+          steps:
+            - tag: Eyepatch
+              name: повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: HudBeer
+              name: пивные очки
+              icon:
+                sprite: Clothing/Eyes/Hud/beergoggles.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: beerEyepatch
+      entity: ClothingEyesEyepatchHudBeer
+
+- type: constructionGraph
+  id: SecurityEyepatchHud
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: securityEyepatch
+          steps:
+            - tag: Eyepatch
+              name: повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: HudSecurity
+              name: охранный визор
+              icon:
+                sprite: Clothing/Eyes/Hud/sec.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: securityEyepatch
+      entity: ClothingEyesEyepatchHudSecurity
+
+- type: constructionGraph
+  id: MedicalEyepatchHud
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: medicalEyepatch
+          steps:
+            - tag: Eyepatch
+              name: повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: HudMedical
+              name: медицинский визор
+              icon:
+                sprite: Clothing/Eyes/Hud/med.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: medicalEyepatch
+      entity: ClothingEyesEyepatchHudMedical
+
+- type: constructionGraph
+  id: DiagnosticEyepatchHud
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: diagnosticEyepatch
+          steps:
+            - tag: Eyepatch
+              name: повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: HudDiagnostic
+              name: диагностический визор
+              icon:
+                sprite: Clothing/Eyes/Hud/diag.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: diagnosticEyepatch
+      entity: ClothingEyesEyepatchHudDiag
+
+- type: constructionGraph
+  id: ChemicalEyepatchHud
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: chemicalEyepatch
+          steps:
+            - tag: Eyepatch
+              name: повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: HudChemical
+              name: очки химического анализа
+              icon:
+                sprite: Clothing/Eyes/Glasses/science.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: chemicalEyepatch
+      entity: ClothingEyesEyepatchHudChemical
+
+- type: constructionGraph
+  id: FlashProofEyepatch
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: flashEyepatch
+          steps:
+            - tag: Eyepatch
+              name: черная метка
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: Sunglasses
+              name: солнцезащитные очки
+              icon:
+                sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: flashEyepatch
+      entity: ClothingEyesEyepatchFlashProof
+
+- type: constructionGraph
+  id: EngineeringEyepatch
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: engEyepatch
+          steps:
+            - tag: Eyepatch
+              name: повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Misc/eyepatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: Meson
+              name: инженерные очки
+              icon:
+                sprite: Clothing/Eyes/Glasses/meson.rsi
+                state: icon
+              doAfter: 10
+            - tag: BlackMark
+              name: черная метка
+              icon:
+                sprite: Imperial/PiratesNewHorizon/doubloon.rsi
+                state: black_mark
+              doAfter: 10
+    - node: engEyepatch
+      entity: ClothingEyesEyepatchEngineering
+
+- type: constructionGraph
+  id: OmniEyepatchHud
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: omniEyepatch
+          steps:
+            - tag: EyepatchMedical
+              name: медицинская повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Hud/medpatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: EyepatchSecurity
+              name: охранная повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Hud/secpatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: EyepatchBeer
+              name: пивная повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Hud/beerpatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: EyepatchDiagnostic
+              name: диагностическая повязка на глаза
+              icon:
+                sprite: Clothing/Eyes/Hud/diagpatch.rsi
+                state: icon
+              doAfter: 10           
+            - tag: EyepatchChemical
+              name: химическая повязка на глаза
+              icon:
+                sprite: Imperial/PiratesNewHorizon/chempatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: EyepatchFlashproof
+              name: солнцезащитная повязка на глаза
+              icon:
+                sprite: Imperial/PiratesNewHorizon/flashpatch.rsi
+                state: icon
+              doAfter: 10
+            - tag: EyepatchEngineering
+              name: инженерная повязка на глаза
+              icon:
+                sprite: Imperial/PiratesNewHorizon/engpatch.rsi
+                state: icon
+              doAfter: 10        
+            - material: Cable
+              amount: 15
+              doAfter: 10
+            - tag: TrayScanner
+              name: т-лучевой сканер
+              icon:
+                sprite: Objects/Tools/t-ray.rsi
+                state: tray-on
+              doAfter: 10     
+            - tag: CapacitorStockPart
+              name: конденсатор
+              icon:
+                sprite: Objects/Misc/stock_parts.rsi
+                state: capacitor
+              doAfter: 10
+    - node: omniEyepatch
+      entity: ClothingEyesEyepatchHudOmni

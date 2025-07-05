@@ -27,7 +27,7 @@
         - state: blackcard
         - state: deadsquadID # we have the sprites but don't need individual ID entities for now.
     - type: PresetIdCard
-      job: DeathSquad
+      job: ImperialDeathSquad
 
 - type: entity
   id: ThriveninChemistryBottle

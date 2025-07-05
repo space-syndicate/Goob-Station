@@ -389,13 +389,11 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // - Имеет защиту от контроля разума
         // - Не гуманоидный облик (если не принудительная)
         // - Мертв или является зомби
-        // - Принадлежит к командному составу (кастомное правило)
         if (HasComp<RevolutionaryComponent>(uid) ||
             HasComp<MindShieldComponent>(uid) ||
             !HasComp<HumanoidAppearanceComponent>(uid) && !alwaysConvertible ||
             !_mobState.IsAlive(uid) ||
-            HasComp<ZombieComponent>(uid)
-            || HasComp<CommandStaffComponent>(uid)) // Кастомное правило: командный состав нельзя преобразовать
+            HasComp<ZombieComponent>(uid))
         {
             return false;
         }

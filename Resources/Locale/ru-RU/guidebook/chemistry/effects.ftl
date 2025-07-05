@@ -380,3 +380,16 @@ reagent-effect-guidebook-add-to-solution-reaction =
         [1] Заставляет
        *[other] заставляют
     } химикаты, применённые к объекту, добавиться во внутренний контейнер для растворов этого объекта
+reagent-effect-guidebook-resistance-change =
+    { $chance ->
+        [1] { $gainsorloses ->
+                [heals] добавляет
+                [deals] убавляет
+                *[both] Изменяет защиту на
+             }
+        *[other] { $gainsorloses ->
+                    [heals] добавлять
+                    [deals] убавлять
+                    *[both] изменяют защиту на
+                 }
+    } { $changes }

@@ -1,0 +1,58 @@
+- type: entity
+  parent: [BaseNinjaObjective, BaseKeepAliveObjective]
+  id: NinjaImperialKeepAliveObjective
+  name: Protect the target
+  description: Apply every effort to keep the target alive. But there's a catch - you may be hindered # Imperial Translate
+  components:
+  - type: Objective
+    difficulty: 1.5
+    icon:
+      sprite: Objects/Weapons/Melee/shields.rsi
+      state: riot-icon
+  - type: TargetObjective
+    title: objective-condition-ninja-keep-alive-title
+  - type: PickRandomSyndicateTarget
+  
+- type: entity
+  parent: BaseNinjaObjective
+  id: NinjaImperialDealDamageObjective
+  name: Frighten the target
+  description: Intimidate the target so it doesn't dare cross your clan's path. # Imperial Translate
+  components:
+  - type: Objective
+    difficulty: 1.5
+    icon:
+      sprite: Objects/Weapons/Melee/survival_knife.rsi
+      state: icon
+  - type: TargetObjective
+    title: objective-condition-ninja-deal-damage-title-alt
+  - type: PickRandomPerson
+  - type: DealDamageCondition
+    title: objective-condition-ninja-deal-damage-title
+    damageTypePool:
+    - Radiation
+    - Cellular
+    - Shock
+    - Caustic
+    - Poison
+
+- type: weightedRandom
+  id: NinjaObjectiveGroupMisc
+  weights:
+    NinjaImperialKeepAliveGroup: 1
+    NinjaImperialDealDamageGroup: 1
+    StealResearchGroup: 1
+- type: weightedRandom
+  id: NinjaImperialKeepAliveGroup
+  weights:
+    NinjaImperialKeepAliveObjective: 1
+
+- type: weightedRandom
+  id: NinjaImperialDealDamageGroup
+  weights:
+    NinjaImperialDealDamageObjective: 1
+
+- type: weightedRandom
+  id: StealResearchGroup
+  weights:
+    StealResearchObjective: 1

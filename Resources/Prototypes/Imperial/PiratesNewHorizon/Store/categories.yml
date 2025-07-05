@@ -1,0 +1,31 @@
+- type: storeCategory
+  id: PiratesAmmunition
+  name: store-category-ammo
+  priority: 0
+
+- type: storeCategory
+  id: PiratesUtilities
+  name: store-category-utilities-pirate
+  priority: 1
+
+- type: storeCategory
+  id: PiratesMedicine
+  name: store-category-medicine-pirate
+  priority: 2
+
+- type: storeCategory
+  id: PiratesBooze
+  name: store-category-booze-pirate
+  priority: 3
+
+- type: storeCategory
+  id: PiratesClothing
+  name: store-category-clothing-pirate
+  priority: 4
+
+- type: storeCategory
+  id: PiratesPointless
+  name: store-category-pointless
+  priority: 5
+
+#ADD MORE CATEGORIES!!!

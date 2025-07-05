@@ -2,6 +2,7 @@
   name: stamp
   parent: RubberStampMime
   id: ResearchStamp
+  suffix: ElysiumPrime, Other
   components:
     - type: Stamp
       stampedName: stamp-component-stamped-name-research
@@ -15,24 +16,166 @@
   name: stamp
   parent: RubberStampMime
   id: FederationStamp
+  suffix: ElysiumPrime, Other
   components:
     - type: Stamp
       stampedName: stamp-component-stamped-name-federation
       stampedColor: "#2E8B57"
-      stampState: "paper_stamp-federation"
+      stampState: "paper_stamp-fedadmin"
     - type: Sprite
       sprite: Imperial/DeadSector/items/stamps.rsi
-      state: stamp-federation
+      state: stamp-fedadmin
 
 - type: entity
   name: stamp
   parent: RubberStampMime
-  id: FederationMilitaryStamp
+  id: FBCStamp
+  suffix: ElysiumPrime, Other
   components:
     - type: Stamp
-      stampedName: stamp-component-stamped-name-federation-military
-      stampedColor: "#556B2F"
-      stampState: "paper_stamp-federation-military"
+      stampedName: stamp-component-stamped-name-fbc
+      stampedColor: "#696969"
+      stampState: "paper_stamp-fbc"
     - type: Sprite
       sprite: Imperial/DeadSector/items/stamps.rsi
-      state: stamp-federation-military
+      state: stamp-fbc
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: FinanceStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-finance
+      stampedColor: "#006400"
+      stampState: "paper_stamp-finance"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-finance
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: JudgeStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-judge
+      stampedColor: "#008B8B"
+      stampState: "paper_stamp-judge"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-judge
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: ElysiumLawyerStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-elysiumlawyer
+      stampedColor: "#008B8B"
+      stampState: "paper_stamp-lawyer"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-lawyer
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: SpaceMilitaryStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-spacemilitary
+      stampedColor: "#556B2F"
+      stampState: "paper_stamp-spacemilitary"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-spacemilitary
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: PoliceCaptainStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-policecpt
+      stampedColor: "#191970"
+      stampState: "paper_stamp-policecpt"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-policecpt
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: PoliceCriminalistStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-policecrim
+      stampedColor: "#191970"
+      stampState: "paper_stamp-policecrim"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-policecrim
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: PoliceDetectiveStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-policedet
+      stampedColor: "#191970"
+      stampState: "paper_stamp-policedet"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-policedet
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: PoliceInspectorStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-policeinsp
+      stampedColor: "#191970"
+      stampState: "paper_stamp-policeinsp"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-policeinsp
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: PoliceProsecutorStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-prosecutor
+      stampedColor: "#191970"
+      stampState: "paper_stamp-prosecutor"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-prosecutor
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: SecurityStamp
+  suffix: ElysiumPrime, Other
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-security
+      stampedColor: "#006400"
+      stampState: "paper_stamp-security"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-security

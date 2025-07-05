@@ -12,7 +12,7 @@
         addedEssences:
           MagicMedievalFire1: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 90
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -20,6 +20,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
       state: 1
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostBeginner
       spellCastDoAfter:
@@ -64,7 +65,7 @@
       groups:
         Burn: 19
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 75
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -72,6 +73,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
       state: 2
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostMiddle
       spellCastDoAfter:
@@ -104,7 +106,7 @@
       groups:
         Burn: 19
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 70
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -112,6 +114,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
       state: 3
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostSenior
       spellCastDoAfter:

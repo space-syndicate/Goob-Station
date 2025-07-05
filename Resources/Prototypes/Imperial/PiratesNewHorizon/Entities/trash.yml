@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseItem
+  id: GPSTrackerTrash
+  name: broken GPS tracker
+  description: Broken NanoTrasen GPS tracker. 1984?
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/gpstracker.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Trash
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: SpaceGarbage
+  - type: StaticPrice
+    price: 0

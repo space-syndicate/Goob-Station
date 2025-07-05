@@ -2,7 +2,7 @@
   parent: ClothingUniformJumpskirtHoSAlt ## Комбез ОСО
   id: ClothingUniformJumpskirtSpecialOfficer
   name: SpecialOfficer uniform
-  suffix: ДСО
+  suffix: SOO
   description: A form that instills fear in enemies of NanoTrasen
   components:
   - type: Sprite
@@ -14,7 +14,7 @@
   parent: ClothingNeckBase ## Плащ ОСО
   id: ClothingNeckCloakSpecialOfficer
   name: Special Officer cloack
-  suffix: ДСО
+  suffix: SOO
   description: It's black color makes your heart beat faster
   components:
   - type: Sprite
@@ -24,7 +24,7 @@
   parent: ClothingHeadBase ## Фуражка ОСО
   id: ClothingHeadHatSpecialOfficer
   name: Special Officer hat cap
-  suffix: ДСО
+  suffix: SOO
   description: She inspires confidence in you
   components:
   - type: Sprite
@@ -33,22 +33,84 @@
     sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficerhatcap.rsi
 
 - type: entity
-  parent: ClothingShoesBootsJack ## Ботинки с уникальным звуком ОСО
+  parent: ClothingShoesBootsJack ## Ботинки с уникальным звуком ОСО ## Не таким уж теперь и уникальным)
   id: ClothingShoesBootsJackSpecialOfficer
   name: Shoes boots for Special Officer
-  suffix: ДСО
+  suffix: SOO
   description: You can see the baked blood on them
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: NoSlip ## Небольшой баф.
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1 ## Конец небольшого бафа...
   - type: Matchbox
-  - type: Storage
-    whitelist:
-      tags:
-        - Knife
-        - Sidearm
+  - type: ItemSlots ## Фикс хранилища ножа для ботинок ОСО
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpecialOfficer
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.2
+
+- type: entity
+  parent: BasePDA
+  id: SpecialOfficerPDA ## КПК Офицера ДСО
+  name: special officer PDA
+  description: It smells of power that his father never even dreamed of.
+  suffix: SOO
+  components:
+  - type: Pda
+    id: SpecialOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  - type: Icon
+    state: pda-bartender
+
+- type: entity
+  parent: CentcomIDCard
+  id: SpecialOfficerIDCard ## Айди карта Офицера ДСО
+  name: special officer ID card
+  description: Best card.
+  suffix: SOO
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
+      layers:
+        - state: blackcard
+        - state: deadsquadID
+    - type: PresetIdCard
+      job: SpecialOfficer
+
+- type: entity
+  parent: ClothingControlModsuitSpecialOfficer
+  id: ClothingControlModsuitSpecialOfficerFilled
+  name: SOO modsuit
+  description: Special hardsuit backpack.
+  suffix: SOO, Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: SpecialOfficerUplink
+        - id: PillAmbuzolPlus
+        - id: OxygenTankFilled

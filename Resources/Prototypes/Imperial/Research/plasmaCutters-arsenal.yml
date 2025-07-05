@@ -8,8 +8,8 @@
     sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/base.rsi
     state: icon
   discipline: Industrial
-  tier: 2
-  cost: 7500
+  tier: 1
+  cost: 5000
   recipeUnlocks:
   - EmptyWeaponPlasmaCutter
 
@@ -21,7 +21,7 @@
     sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi
     state: icon
   discipline: Industrial
-  tier: 3
-  cost: 15000
+  tier: 2
+  cost: 10000
   recipeUnlocks:
   - Advanced-EmptyWeaponPlasmaCutter

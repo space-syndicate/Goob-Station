@@ -14,16 +14,18 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 4
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalEntityTargetProjectileSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowKunaiBeginner
       speechPoints:
@@ -78,16 +80,18 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 5
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalEntityTargetProjectileSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowKunaiMiddle
       speechPoints:
@@ -169,16 +173,18 @@
             allowedState: Alive
         addedEssences:
           MagicMedievalFire1: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 6
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 3
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalEntityTargetProjectileSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowKunaiSenior
       speechPoints:

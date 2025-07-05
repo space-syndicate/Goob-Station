@@ -10,11 +10,16 @@
     state: icon
   - type: Item
     sprite: Imperial/SpiderClan/Weapon/redkatana.rsi
+    storedSprite:
+      state: storage
+      sprite: Imperial/SpiderClan/Weapon/redkatana_item.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Weapon/redkatana.rsi
     slots:
     - Back
     - Belt
+  - type: StaticPrice
+    price: 75000
 
 - type: entity
   name: blue energy katana
@@ -28,11 +33,16 @@
     state: icon
   - type: Item
     sprite: Imperial/SpiderClan/Weapon/bluekatana.rsi
+    storedSprite:
+      state: storage
+      sprite: Imperial/SpiderClan/Weapon/bluekatana_item.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Weapon/bluekatana.rsi
     slots:
     - Back
     - Belt
+  - type: StaticPrice
+    price: 75000
 
 - type: entity
   name: blue energy katana
@@ -46,8 +56,13 @@
     state: icon
   - type: Item
     sprite: Imperial/SpiderClan/Weapon/greenkatana.rsi
+    storedSprite:
+      state: storage
+      sprite: Imperial/SpiderClan/Weapon/greenkatana_item.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Weapon/greenkatana.rsi
     slots:
     - Back
     - Belt
+  - type: StaticPrice
+    price: 75000

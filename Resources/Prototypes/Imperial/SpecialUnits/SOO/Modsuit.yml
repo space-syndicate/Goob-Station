@@ -1,0 +1,192 @@
+#Рюкзак
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitSpecialOfficer
+  name: SOO modsuit
+  description: Special hardsuit backpack.
+  suffix: SOO
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/Modsuit/Backpack.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/SOO/Modsuit/Backpack.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Shock: 0.8
+        Radiation: 0.8
+        Stamina: 0.9
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 200
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitSpecialOfficer
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    grid:
+    - 0,0,12,5
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 8
+    energy: 5
+    softness: 15
+    autoRot: true
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: UnpoweredFlashlight
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
+
+#Основа рига
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterChestplateModsuitSpecialOfficer
+  name: special suit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/Modsuit/Chestplate.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/SOO/Modsuit/Chestplate.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: FireProtection
+    reduction: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.05 #Буквально эталон лучшего сьюта в игре.
+        Slash: 0.05
+        Piercing: 0.05
+        Heat: 0.05
+        Radiation: 0
+        Caustic: 0
+        Cold: 0
+        Shock: 0
+        Stamina: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitSpecialOfficer
+    slot: head
+    requiredSlot: outerClothing
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 0.75
+      temperature: 293.15
+      moles:
+        - 0.153853429 # oxygen
+        - 0.153853429 # nitrogen
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: Jetpack
+    moleUsage: 0
+  - type: CanMoveInAir
+  - type: InputMover
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.5
+    weightlessFriction: 0.3
+    weightlessModifier: 1.5
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 55
+
+#Шлем
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetModsuitSpecialOfficer
+  name: special officer helmet
+  description: Designed to protect your head from enemy forces.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/Modsuit/Head.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/SOO/Modsuit/Head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Shock: 0.9
+        Caustic: 0.9
+        Radiation: 0.85
+  - type: PressureProtection
+    highPressureMultiplier: 0.001
+    lowPressureMultiplier: 1000
+  - type: FlashImmunity
+  - type: EyeProtection
+
+#Cиловые перчатки
+#- type: entity
+#  parent: ClothingHandsBase
+#  id: ClothingGlovesModsuitSpecialOfficer
+#  name: special officer gloves
+#  description: Thanks to them, your hands are safe. Probably...
+#  components:
+#  - type: Sprite
+#    sprite: Imperial/SpecialUnits/SOO/Modsuit/Hands.rsi
+#  - type: Clothing
+#    sprite: Imperial/SpecialUnits/SOO/Modsuit/Hands.rsi
+#  - type: Armor
+#    modifiers:
+#      coefficients:
+#        Blunt: 0.85
+#        Slash: 0.85
+#        Piercing: 0.85
+#        Shock: 0.85
+#        Radiation: 0.85
+#  - type: MeleeWeapon
+#    autoAttack: true
+#    attackRate: 3
+#    damage:
+#      types:
+#       Blunt: 25
+#    soundHit:
+#      collection: Punch
+#    animation: WeaponArcFist
+#    mustBeEquippedToUse: true
+#  - type: PressureProtection
+#    highPressureMultiplier: 0.001
+#    lowPressureMultiplier: 1000
+#  - type: ToggleableClothing
+#    clothingPrototype: ClothingHeadHelmetModsuitSpecialOfficer
+#    slot: head
+#    requiredSlot: gloves
+#  - type: Insulated

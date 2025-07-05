@@ -19,17 +19,19 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 42
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/smoke_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalSmokeBeginner
       spawnType: SpawnOnMousePosition
@@ -67,17 +69,19 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 35
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/smoke_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalSmokeMiddle
       spawnType: SpawnOnMousePosition
@@ -103,17 +107,19 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/smoke_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
       state: 3
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalSmokeSenior
       spawnType: SpawnOnMousePosition

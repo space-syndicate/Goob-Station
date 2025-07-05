@@ -1,0 +1,16 @@
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioDeathSquadHamsterGrey
+  name: death squad reinforcement radio
+  description: Summons a good hamster medi-robot to your aid.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-dshamster-name
+    description: ghost-role-information-dshamster-description
+    rules: ghost-role-information-dshamster-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobHamsterDeathSquad
+  - type: EmitSoundOnUse
+    sound: /Audio/Animals/fox_squeak.ogg

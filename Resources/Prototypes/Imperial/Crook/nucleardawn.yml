@@ -1,0 +1,10 @@
+- type: entity
+  id: NuclearDawnBanner
+  parent: BannerBase
+  name: nuclear nawn banner
+  suffix: Crook, NuclearDawn
+  description: Born out of the collapse of the CUSP, the Nuclear Dawn movement saw corporations as the root cause of all the galaxy's problems.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/nucleardawn.rsi
+    state: banner

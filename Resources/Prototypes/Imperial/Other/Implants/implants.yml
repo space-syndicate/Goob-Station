@@ -1,0 +1,59 @@
+## Smoke Implant
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialSmokeImplant
+  name: smoke implant
+  description: smoke implant
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActivateSmokeImplant
+    - type: TriggerImplantAction
+    - type: SmokeOnTrigger
+      spreadAmount: 25
+      duration: 16
+    - type: SoundOnTrigger
+      sound: /Audio/Effects/smoke.ogg
+
+- type: entity
+  id: ImperialSmokeImplanter
+  name: smoke implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: ImperialSmokeImplant
+## Nutrient Pump
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialNutrimentPumpImplant
+  name: nutriment pump implant
+  description: nutriment pump implant
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: NutrimentPump
+
+- type: entity
+  id: ImperialNutrimentPumpImplanter
+  name: nutriment pump implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: ImperialNutrimentPumpImplant
+## Blink
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialBlinkImplant
+  name: blink implant
+  description: blink implant
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionImplantBlink
+
+- type: entity
+  id: ImperialBlinkImplanter
+  name: blink implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: ImperialBlinkImplant

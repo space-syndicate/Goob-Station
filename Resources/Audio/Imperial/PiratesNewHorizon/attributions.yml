@@ -1,0 +1,15 @@
+- files: [pirate_bell.ogg]
+  license: CC-BY-3.0
+  copyright: '"Pirate Bell" by florianreichelt on Freesound.org.'
+  source: https://freesound.org/people/florianreichelt/sounds/563016/
+
+
+- files: ["weak_bang.ogg"]
+  license: "CC0-1.0"
+  copyright: "Taken from wyronroberth via freesound.org and mixed from stereo to mono."
+  source: "https://freesound.org/people/wyronroberth/sounds/516245/"
+
+- files: ["brutal_punch.ogg"]
+  license: "CC0-1.0"
+  copyright: "Taken from magnuswaker via freesound.org and mixed from stereo to mono."
+  source: "https://freesound.org/people/magnuswaker/sounds/641046/"

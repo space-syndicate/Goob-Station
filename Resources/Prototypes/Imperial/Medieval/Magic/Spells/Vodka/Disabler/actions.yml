@@ -19,16 +19,18 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 3
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/stun_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileDisablerBeginner
@@ -57,16 +59,18 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 5
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/stun_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileDisablerMiddle

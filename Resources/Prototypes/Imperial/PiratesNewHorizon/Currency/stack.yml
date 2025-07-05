@@ -1,0 +1,5 @@
+- type: stack
+  id: Doubloon
+  name: doubloon
+  spawn: Doubloon1
+  maxCount: 10000000

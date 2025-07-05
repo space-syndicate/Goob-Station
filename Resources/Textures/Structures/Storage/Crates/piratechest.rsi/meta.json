@@ -35,6 +35,12 @@
     },
     {
       "name": "crate_open"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
     }
   ]
 }

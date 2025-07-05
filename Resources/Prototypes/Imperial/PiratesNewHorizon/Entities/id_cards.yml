@@ -1,0 +1,24 @@
+- type: entity
+  parent: IDCardStandard
+  id: PirateIDCardNewHorizon
+  name: pirate ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: pirate
+  - type: Access
+    tags:
+    - Pirate
+
+- type: entity
+  parent: IDCardStandard
+  id: CaptainPirateIDCardNewHorizon
+  name: pirate ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: pirate
+  - type: Access
+    tags:
+    - Pirate
+    - CaptainPirate

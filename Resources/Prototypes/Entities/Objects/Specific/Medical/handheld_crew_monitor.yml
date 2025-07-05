@@ -31,7 +31,11 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: HandheldCrewMonitor
-
+  #Imperial Space Pirates: New Horizon start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 5500
+    #Imperial Space Pirates: New Horizon end
 - type: entity
   id: HandheldCrewMonitorEmpty
   parent: HandheldCrewMonitor

@@ -1,0 +1,9 @@
+- type: entity
+  parent: CargoPalletSell
+  id: PiratePalletSell
+  name: pirate selling pallet
+  description: Designates valid items to sell with a selling computer.
+  components:
+  - type: CargoPallet
+    palletType: sell
+    avoidSellBlacklist: true

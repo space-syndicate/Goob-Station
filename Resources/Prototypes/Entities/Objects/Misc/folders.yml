@@ -311,3 +311,10 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: BoxFolderQmClipboard
+    #Imperial Space Pirates: New Horizon; Start
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 7250
+    #Imperial Space Pirates: New Horizon; end

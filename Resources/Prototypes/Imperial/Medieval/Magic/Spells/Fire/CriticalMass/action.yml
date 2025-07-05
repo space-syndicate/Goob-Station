@@ -19,16 +19,18 @@
       groups:
         Burn: 12
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 3
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: supermass
+  - type: TargetAction
+    checkCanAccess: false
+    range: 3
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectCriticalMassBeginner
       spawnType: SpawnOnMousePosition

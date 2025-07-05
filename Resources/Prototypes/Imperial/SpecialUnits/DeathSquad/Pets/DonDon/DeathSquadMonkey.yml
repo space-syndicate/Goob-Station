@@ -1,0 +1,147 @@
+- type: entity
+  name: Don Don
+  parent: MobBaseAncestor
+  id: MobMonkeyDondon
+  description: Pun Pun's older brother. A good strategist and a professional fighter.
+  suffix: DeathSquad
+  components:
+  - type: NameIdentifier
+    group: Monkey
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-dsmonkey-name
+    description: ghost-role-information-dsmonkey-description
+    rules: ertcall-deathsquad-security-eva-rules
+  - type: GhostTakeoverAvailable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: Body
+    prototype: PrimateAdv
+    requiredLegs: 1
+  - type: Tag
+    tags:
+    - CanPilot
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: Loadout
+    prototypes: [ DeathSquadDondonGear ]
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: AutoImplant
+    implants:
+    - FreedomImplant
+    - EmpImplant
+    - MindShieldImplant
+  - type: NpcFactionMember
+    factions:
+    - DeathSquad
+  - type: ZombieImmune
+  - type: CrewSkills
+    skills:
+      - skillBotany #Base
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillCooking  #Easy
+      - skillBartending
+      - skillHacking
+      - skillInstrumentation #Medium
+      - skillMaintenance
+      - skillMediumConstruction
+      - skillMediumBotany
+      - skillBasicAtmos
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillPiloting #Hard
+      - skillAtmos
+      - skillHardInstrumentation
+      - skillRobotics
+      - skillResearch
+      - skillPharmaceuticals
+      - skillShooting
+      - skillSurgery
+      - skillNeuroSurgery
+  - type: Inventory
+    speciesId: monkey
+    templateId: deathsquadmonkey
+
+- type: startingGear
+  id: DeathSquadDondonGear
+  equipment:
+    mask: ClothingMaskDeathSquadAlt
+    eyes: GlassesDeathSquad
+    back: ClothingBackpackDeadSquadSecurity
+    ears: SODDeathSquadHeadset
+    jumpsuit: ClothingUniformJumpsuitDeathSquadMonkey
+    suitstorage: OxygenTankFilled
+    outerClothing: ClothingOuterHardsuitDeathsquadAlt
+    id: DeadSquadIDCard
+  inhand:
+  - WeaponSniperHristovDonDon
+
+- type: body
+  id: PrimateAdv #Дон Дон крайне умен и это не шутка. Его IQ составляет 120.
+  name: "primateext"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - right_hand #Вторая рука для применения минигана и импульсного дробовика. А еще потому что так монки становится действительно полезным.
+      - left_hand
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+    right_hand:
+      part: HandAnimalAdvR
+    left_hand:
+      part: HandAnimalAdvL
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: entity
+  id: HandAnimalAdvL
+  name: animal hands
+  parent: PartAnimal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  id: HandAnimalAdvR
+  name: animal hands
+  parent: PartAnimal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right

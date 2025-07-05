@@ -16,6 +16,7 @@
   startingGear: SeniorPhysicianGear
   icon: "JobIconSeniorPhysician"
   supervisors: job-supervisors-cmo
+  canBeAntag: false
   access:
   - Medical
   - Maintenance
@@ -29,6 +30,9 @@
   - skillSurgery
   - skillMedicalEquipment
   - skillNeuroSurgery
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SeniorPhysicianGear

@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckPirateParrot
+  name: stuffed shoulder parrot
+  suffix: Pirate
+  description: Greatest pirates' fel, unfortunately (?) undead.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/neck/popug.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/neck/popug.rsi

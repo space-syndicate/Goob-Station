@@ -1,0 +1,35 @@
+- type: listing
+  id: UplinkSmokeImplanter
+  name: uplink-smoke-implanter-name
+  description: uplink-smoke-implanter-desc
+  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
+  productEntity: ImperialSmokeImplanter
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkImplants
+
+- type: listing
+  id: UplinkNutrimentPumpImplanter
+  name: uplink-nutriment-implant-name
+  description: uplink-nutriment-implant-desc
+  icon: { sprite: Objects/Consumable/Food/burger.rsi, state: bacon }
+  productEntity: ImperialNutrimentPumpImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkBlinkImplanter
+  name: uplink-blink-implant-name
+  description: uplink-blink-implant-desc
+  icon: { sprite: Objects/Magic/magicactions.rsi, state: blink }
+  productEntity: ImperialBlinkImplanter
+  cost:
+    Telecrystal: 13
+  categories:
+  - UplinkImplants

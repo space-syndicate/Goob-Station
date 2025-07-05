@@ -1,0 +1,132 @@
+- type: reaction
+  id: PoisonWine
+  reactants:
+    Wine:
+      amount: 5
+    ToxinsSpecial:
+      amount: 5
+  products:
+    PoisonWine: 10
+- type: reaction
+  id: Neurotoxin
+  reactants:
+    Mustard:
+      amount: 1
+    DrGibb:
+      amount: 2
+  products:
+    Neurotoxin: 3
+- type: reaction
+  id: MeatWine
+  reactants:
+    Wine:
+      amount: 1
+    UncookedAnimalProteins:
+      amount: 1
+  products:
+    MeatWine: 2
+
+- type: reaction
+  id: WineEssence
+  reactants:
+    Wine:
+      amount: 1
+    Vermouth:
+      amount: 1
+    AcidSpit:
+      amount: 1
+    MeatWine:
+      amount: 1
+    NTCahors:
+      amount: 1
+    PoisonWine:
+      amount: 1
+    DemonsBlood:
+      amount: 1
+    DevilsKiss:
+      amount: 1
+    PirateEssence:
+      amount: 1
+  products:
+    WineEssence: 7
+
+- type: reaction
+  id: BeerEssence
+  reactants:
+    RandoVeisser:
+      amount: 1
+    WhiteGilgamesh:
+      amount: 1
+    SnowWhite:
+      amount: 1
+    SyndicateBomb:
+      amount: 1
+    Beer:
+      amount: 1
+    ManlyDorf:
+      amount: 1
+    IcedBeer:
+      amount: 1
+    BlackoutStout:
+      amount: 1
+    PirateEssence:
+      amount: 1
+  products:
+    BeerEssence: 10
+
+- type: reaction
+  id: AlhocolEssence
+  reactants:
+    BeerEssence:
+      amount: 1
+    WineEssence:
+      amount: 1
+    VodkaEssence:
+      amount: 1
+    Detoxificator:
+      amount: 5
+  products:
+    AlhocolEssence: 3
+
+- type: reaction
+  id: VodkaEssence
+  reactants:
+    Antifreeze:
+      amount: 1
+    Vodka:
+      amount: 1
+    VodkaMartini:
+      amount: 1
+    VodkaTonic:
+      amount: 1
+    Gildlager:
+      amount: 1
+    AlliesCocktail:
+      amount: 1
+    TheMartinez:
+      amount: 1
+    ScrewdriverCocktail:
+      amount: 1
+    DoomVodka:
+      amount: 1
+    FourteenLoko:
+      amount: 1
+    BlackRussian:
+      amount: 1
+    PirateEssence:
+      amount: 1
+  products:
+    VodkaEssence: 12
+
+- type: reaction
+  id: Detoxificator
+  minTemp: 310
+  reactants:
+    Hotsauce:
+      amount: 1
+    Blackpepper:
+      amount: 1
+    Plasma:
+      amount: 3
+  products:
+    Detoxificator: 5

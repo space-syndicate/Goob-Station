@@ -1,0 +1,31 @@
+- type: entity
+  name: MilkorDL
+  parent: BaseWeaponLauncher
+  id: WeaponLauncherMilkorDL
+  description: A modified grenade launcher, based on MilkorMGL.
+  suffix: DeathSquad
+  components:
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Weapones/MilkorMGL/icon.rsi
+    state: icon
+    scale: 0.93, 0.93
+  - type: Item
+    sprite: Imperial/SpecialUnits/RCU/Weapones/MilkorMGL/inhand.rsi
+    size: Large
+  - type: AmmoCounter
+  - type: BallisticAmmoProvider
+    proto: GrenadeFrag
+    capacity: 40
+  - type: Gun
+    minAngle: 1
+    maxAngle: 2
+    fireRate: 1
+    soundGunshot:
+      path:  /Audio/Imperial/SpecialUnits/RCU/Criminality/nuhuh.ogg
+  - type: Appearance
+  - type: MultiHandedItem

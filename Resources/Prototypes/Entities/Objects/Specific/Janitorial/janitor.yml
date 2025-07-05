@@ -25,6 +25,9 @@
       collection: MetalThud
   - type: Spillable
     solution: absorbed
+    spillWhenThrown: false
+  - type: DrainableSolution
+    solution: absorbed
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -34,6 +37,7 @@
     size: Large
     sprite: Objects/Specific/Janitorial/mop.rsi
   - type: Absorbent
+    useAbsorberSolution: true
   - type: SolutionContainerManager
     solutions:
       absorbed:
@@ -50,7 +54,14 @@
   - type: GuideHelp
     guides:
     - Janitorial
-  - type: DnaSubstanceTrace
+  # Imperial "OperationalERTCleaners" Start
+  - type: SolutionDynamicColorOfStamp
+    checkValidRole: true
+    roleName: Janitor
+    falseStampedName: stamp-component-stamped-name-false-role-mop
+    trueStampedName: stamp-component-stamped-name-mop
+  - type: Stamp
+  # Imperial "OperationalERTCleaners" End
 
 - type: entity
   parent: BaseItem
@@ -79,6 +90,9 @@
          collection: MetalThud
     - type: Spillable
       solution: absorbed
+      spillWhenThrown: false
+    - type: DrainableSolution
+      solution: absorbed
     - type: Wieldable
     - type: IncreaseDamageOnWield
       damage:
@@ -89,6 +103,7 @@
       sprite: Objects/Specific/Janitorial/advmop.rsi
     - type: Absorbent
       pickupAmount: 100
+      useAbsorberSolution: true
     - type: UseDelay
       delay: 1.0
     - type: SolutionRegeneration
@@ -111,6 +126,14 @@
         - Mop
         - MopAdv
     - type: DnaSubstanceTrace
+    # Imperial "OperationalERTCleaners" Start
+    - type: SolutionDynamicColorOfStamp
+      checkValidRole: true
+      roleName: Janitor
+      falseStampedName: stamp-component-stamped-name-false-role-mop
+      trueStampedName: stamp-component-stamped-name-mop
+    - type: Stamp
+    # Imperial "OperationalERTCleaners" End
 
 - type: entity
   name: wet floor sign
@@ -311,6 +334,9 @@
       fillBaseName: fill-
     - type: Spillable
       solution: absorbed
+      spillWhenThrown: false
+    - type: DrainableSolution
+      solution: absorbed
     - type: MeleeWeapon
       soundNoDamage:
         path: "/Audio/Effects/Fluids/splat.ogg"
@@ -322,6 +348,7 @@
       sprite: Objects/Specific/Janitorial/rag.rsi
     - type: Absorbent
       pickupAmount: 15
+      useAbsorberSolution: true
     - type: Construction
       graph: Rag
       node: rag

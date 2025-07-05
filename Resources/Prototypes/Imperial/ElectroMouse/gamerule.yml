@@ -6,9 +6,9 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    earliestStart: 30
+    earliestStart: 15
     minimumPlayers: 25
-    weight: 5
+    weight: 8
     duration: 1
   - type: RandomSpawnRule
     prototype: SpawnPointGhostElectroMouse

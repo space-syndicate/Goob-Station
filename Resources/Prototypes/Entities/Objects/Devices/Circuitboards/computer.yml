@@ -331,7 +331,11 @@
     - type: Tag
       tags:
       - HighRiskItem
-
+    #Imperial Space Pirates: New Horizon; Start
+    - type: GPSTrackerPrice
+      startprice: 0
+      endprice: 8000
+    #Imperial Space Pirates: New Horizon; End
 - type: entity
   parent: BaseComputerCircuitboard
   id: BodyScannerComputerCircuitboard

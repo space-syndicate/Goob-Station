@@ -1,0 +1,3 @@
+ent-PhoneInstrumentElysium = телефон
+    .desc = Если что-то пойдёт не так...
+    .suffix = { "Elysium Prime" }

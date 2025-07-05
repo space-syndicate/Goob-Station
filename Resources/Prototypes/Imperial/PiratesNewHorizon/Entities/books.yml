@@ -1,0 +1,16 @@
+- type: entity
+  parent: BookBase
+  id: PirateCodeBook
+  name: The Great Pirate Code
+  suffix: Pirate
+  description: The only book a pirate has read.
+  components:
+    - type: Sprite
+      sprite: Imperial/PiratesNewHorizon/piratecodebook.rsi
+      layers:
+        - state: icon
+    - type: Paper
+      content: book-text-piratecode
+      stampedBy:
+      - stampedName: stamp-component-stamped-name-hm
+        stampedColor: "#964b00"

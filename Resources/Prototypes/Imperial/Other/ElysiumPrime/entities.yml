@@ -31,6 +31,10 @@
 - type: accessLevel
   id: Federation
   name: id-card-access-level-federation
+
+- type: accessLevel
+  id: Federationadmin
+  name: id-card-access-level-federation-admin
 #Federation access
 
 #Door Electronics
@@ -41,6 +45,14 @@
   components:
   - type: AccessReader
     access: [["Federation"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsFederationadmin
+  suffix: ЗАКРЫТ, ElysiumPrime, ElysiumPrime-admin
+  components:
+  - type: AccessReader
+    access: [["Federationadmin"]]
 #Door Electronics END
 
 #Tables
@@ -163,6 +175,43 @@
     node: chair
 #Chairs END
 
+#CrateSecure
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureArmoredElysiumPrime
+  name: secure crate
+  suffix: ElysiumPrime
+  components:
+    - type: Icon
+      sprite: Imperial/Other/ElysiumPrime/CrateSecure/Armored.rsi
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/CrateSecure/Armored.rsi
+    - type: AccessReader
+      access: [["Federation"]]
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureElysiumPrime
+  name: secure crate
+  suffix: ElysiumPrime
+  components:
+    - type: Icon
+      sprite: Imperial/Other/ElysiumPrime/CrateSecure/Secure.rsi
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/CrateSecure/Secure.rsi
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureWheelsArmoredElysiumPrime
+  name: secure crate
+  suffix: ElysiumPrime
+  components:
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/CrateSecure/WheelsArmored.rsi
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/CrateSecure/WheelsArmored.rsi
+
 #Airlocks
 - type: entity
   id: AirlockMaintElysiumFederation
@@ -185,6 +234,19 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsFederation ]
+
+- type: entity
+  id: AirlockElysiumFederationadminLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime, ElysiumPrime-Admin
+  name: airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/federation.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
 
 - type: entity
   id: AirlockElysiumFederation
@@ -352,4 +414,254 @@
   - type: Gateway
     enabled: true
 #Gateway END
+
+- type: vendingMachineInventory
+  id: ElysiumCitizenClothingInventory
+  startingInventory:
+    ClothingUniformJumpsuitCitizen: 3
+    ClothingUniformJumpsuitCitizenPrisoner: 3
+    ClothingUniformJumpsuitCitizenSmoking: 3
+    ClothingUniformJumpsuitElysiumSecurityPatrol: 3
+    ClothingUniformJumpsuitElysiumCitizenWork: 3
+    ClothingUniformJumpsuitElysiumCitizenAlt: 3
+    ClothingUniformJumpsuitElysiumDepartamentWorkerAlt: 3
+    ClothingUniformJumpsuitElysiumCitizenLoyal: 3
+    ClothingUniformJumpsuitElysiumDepartamentWorkerAlter: 3
+    ClothingUniformJumpsuitSecBlue: 3
+    ClothingUniformJumpsuitHawaiBlue: 3
+    ClothingUniformJumpsuitHawaiBlack: 3
+    ClothingUniformJumpsuitDetectiveGrey: 3
+    ClothingUniformJumpskirtDetectiveGrey: 3
+    ClothingOuterCoatDetectiveDark: 3
+    ClothingOuterCoatDetectiveLoadout: 3
+    ClothingOuterCoatRFI: 3
+    ClothingUniformJumpsuitLawyerLazy: 3
+    ClothingUniformJumpsuitLawyerOld: 3
+    ClothingUniformJumpsuitLawyerSporting: 3
+    FancyUniform: 3
+    ClothingUniformJumpsuitPsychologist: 3
+    ClothingUniformJumpsuitDetective: 3
+    ClothingUniformJumpskirtDetective: 3
+    ClothingUniformJumpsuitLawyerBlue: 3
+    ClothingUniformJumpskirtLawyerBlue: 3
+    ClothingUniformJumpskirtLawyerBlack: 3
+    ClothingUniformJumpsuitLawyerBlack: 3
+    ClothingHandsGlovesFingerless: 3
+    ClothingHandsGlovesMercFingerless: 3
+    ClothingHandsGlovesColorBlack: 3
+    VlPCGlassesTwo: 3
+    ClothingEyesGlassesCheapSunglasses: 3
+    ClothingEyesGlassesMercenary: 3
+    ClothingEyesGlasses: 3
+    DressCapArmyB: 3
+    DressCapArmyG: 3
+    DressCapArmyS: 3
+    DressCapArmyY: 3
+    BladedFlatcapBrown: 3
+    BladedFlatcapGrey: 3
+    ClothingHeadMinutemanCap: 3
+    ClothingCapCapMinuteman: 3
+    ClothingShoesColorBrown: 3
+    ClothingShoesColorRed: 3
+    ClothingShoesColorBlue: 3
+    ClothingShoesColorWhite: 3
+    ClothingShoesColorBlack: 3
+    VlPCGeishaBoots: 3
+    ClothingShoesBootsLaceup: 3
+    ClothingShoesBootsPerformer: 3
+    ClothingShoesBootsJack: 3
+
+- type: vendingMachineInventory
+  id: ElysiumSpecialForceClothingInventory
+  startingInventory:
+    ClothingUniformJumpsuitSpecialForceOffice: 3
+    ClothingUniformJumpsuitSpecialForcePoliceV1: 3
+    ClothingUniformJumpsuitSpecialForcePoliceV2: 3
+    ClothingOuterSpecialForceCoatBlue: 3
+    ClothingOuterSpecialForceCoatDark: 3
+    ClothingOuterSpecialForceJacketNoRem: 3
+    ClothingOuterSpecialForceJacketRem: 3
+    ClothingOuterSpecialForceSpecialCoat: 3
+    SpecialForcePoliceBeret: 3
+    SpecialForcePoliceCap: 3
+    ClothingOuterArmorElysium: 5
+
+- type: vendingMachineInventory
+  id: ElysiumAdminClothingInventory
+  startingInventory:
+    ClothingHandsGlovesAdministration: 3
+    AdministrationBeret: 3
+    ClothingAdministrationNeck: 3
+    ClothingUniformJumpsuitAdminSmokingV1: 3
+    ClothingUniformJumpsuitAdminSmokingV2: 3
+    ClothingUniformJumpsuitElysiumDepartamentAdmin: 3
+    ClothingUniformJumpsuitElysiumDepartamentMigration: 3
+    ClothingUniformJumpsuitElysiumCitizenLoyal: 3
+    ClothingUniformJumpsuitElysiumSecurityPatrol: 3
+    ClothingUniformJumpsuitElysiumCitizenWork: 3
+
+- type: vendingMachineInventory
+  id: ElysiumStampMateInventory
+  startingInventory:
+    FederationStamp: 2
+    FBCStamp: 2
+    FinanceStamp: 2
+    JudgeStamp: 2
+    ElysiumLawyerStamp: 2
+    SpaceMilitaryStamp: 2
+    PoliceCaptainStamp: 2
+    PoliceCriminalistStamp: 2
+    PoliceDetectiveStamp: 2
+    PoliceInspectorStamp: 2
+    PoliceProsecutorStamp: 2
+    SecurityStamp: 2
+
+- type: vendingMachineInventory
+  id: ElysiumMaterialMachineInventory
+  startingInventory:
+    ClothingNeckScarfStripedBrown: 2
+    ClothingNeckScarfStripedSyndieGreen: 2
+    ClothingNeckScarfStripedGreen: 2
+    ClothingNeckScarfStripedLightBlue: 2
+    ClothingNeckScarfStripedBlack: 2
+    ClothingNeckScarfStripedRed: 2
+    ClothingNeckScarfStripedOrange: 2
+    ClothingNeckScarfStripedPurple: 2
+    ClothingNeckScarfStripedBlue: 2
+    ClothingNeckScarfStripedCentcom: 2
+    PhoneInstrumentElysium: 2
+    ClothingEyesGlassesElysium: 2
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineElysiumCitizenClothing
+  name: CitizenClothingMate
+  components:
+  - type: VendingMachine
+    pack: ElysiumCitizenClothingInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/vendings/CitizenClothes.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#3db83b"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineElysiumSpecialForceClothing
+  name: PoliceClothingMate
+  components:
+  - type: VendingMachine
+    pack: ElysiumSpecialForceClothingInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/vendings/PoliceClothes.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#3db83b"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineElysiumAdminClothing
+  name: AdminClothingMate
+  components:
+  - type: VendingMachine
+    pack: ElysiumAdminClothingInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/vendings/AdminClothes.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#3db83b"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineElysiumStampMate
+  name: StampMate
+  components:
+  - type: VendingMachine
+    pack: ElysiumStampMateInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/sustenance.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#3db83b"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineElysiumMaterialMachine
+  name: MaterialMachine
+  components:
+  - type: VendingMachine
+    pack: ElysiumMaterialMachineInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/vendings/MaterialMachine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#3db83b"
 

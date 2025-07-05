@@ -271,6 +271,7 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
+    - id: SpaceMedipen #Imperial "FixMimeEmergencyKit"
     - id: Flare
     - id: FoodBreadBaguette
     - id: DrinkWaterBottleFull

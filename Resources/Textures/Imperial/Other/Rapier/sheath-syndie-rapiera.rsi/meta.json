@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Paradise Station at https://github.com/ParadiseSS13/Paradise",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+        "name": "equipped-BELT",
+        "directions": 4
+    },
+    {
+        "name": "sheath-full"
+    },
+    {
+        "name": "sheath"
+    }
+  ]
+}

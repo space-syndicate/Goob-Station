@@ -1,0 +1,4 @@
+- type: preloadedGrid
+  id: PirateShuttle
+  path: /Maps/Shuttles/pirate.yml
+  copies: 1

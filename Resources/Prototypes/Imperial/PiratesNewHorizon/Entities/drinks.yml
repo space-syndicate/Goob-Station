@@ -1,0 +1,28 @@
+- type: entity
+  name: almighty piraty grog bottle
+  parent: DrinkBottleBaseEmpty
+  id: DrinkBottleGrog
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/grogbottle_empty.rsi
+
+- type: entity
+  parent: [DrinkBottleVisualsAll, DrinkBottleGlassBaseFull]
+  id: DrinkGrogBottleFull
+  name: almighty piraty grog bottle
+  description: This isn't just rum, oh no, it is EVEN BETTER!!!
+  suffix: Filled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Grog
+          Quantity: 100
+  - type: Label
+  #Империал перевод
+    currentLabel: грог
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/grogbottle.rsi
+  - type: Sealable

@@ -5,8 +5,8 @@
   components:
     - type: CargoSellBlacklist
     - type: Sprite
-      sprite: Objects/Fun/toys.rsi
-      state: orb
+      sprite: Objects/Fun/pondering_orb.rsi
+      state: icon
     - type: MedievalParticles
       color: cyan
       speed: 2.0

@@ -1,0 +1,13 @@
+- type: entity
+  parent: WaterCooler
+  id: RumCooler
+  name: rum cooler
+  description: Stolen water cooler, filled with rum. Perfect place for a pirate.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Rum
+          Quantity: 1000
+        maxVol: 1000

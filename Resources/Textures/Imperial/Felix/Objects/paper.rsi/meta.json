@@ -1,0 +1,116 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprite made by @crookielv for @lune_felix",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "passport"
+      },
+      {
+        "name": "ksiva"
+      },
+      {
+        "name": "blue"
+      },
+      {
+        "name": "grey"
+      },
+      {
+        "name": "passport_words"
+      },
+      {
+        "name": "ksiva_words"
+      },
+      {
+        "name": "blue_words"
+      },
+      {
+        "name": "grey_words"
+      },
+      {
+        "name": "paper_stamp-generic"
+      },
+    {
+      "name": "paper_stamp-cap"
+    },
+    {
+      "name": "paper_stamp-ce"
+    },
+    {
+      "name": "paper_stamp-centcom"
+    },
+    {
+      "name": "paper_stamp-chaplain"
+    },
+    {
+      "name": "paper_stamp-lawyer"
+    },
+    {
+      "name": "paper_stamp-clown"
+    },
+    {
+      "name": "paper_stamp-cmo"
+    },
+    {
+      "name": "paper_stamp-deny"
+    },
+    {
+      "name": "paper_stamp-detective"
+    },
+    {
+      "name": "paper_stamp-hop"
+    },
+    {
+      "name": "paper_stamp-hos"
+    },
+    {
+      "name": "paper_stamp-ok"
+    },
+    {
+      "name": "paper_stamp-mime"
+    },
+    {
+      "name": "paper_stamp-qm"
+    },
+    {
+      "name": "paper_stamp-rd"
+    },
+    {
+      "name": "paper_stamp-syndicate"
+    },
+    {
+      "name": "paper_stamp-trader"
+    },
+    {
+      "name": "paper_stamp-warden"
+    },
+    {
+      "name": "paper_stamp-rfi"
+    },
+    {
+      "name": "paper_stamp-coroner"
+    },
+    {
+      "name": "paper_stamp-greytide"
+    },
+    {
+      "name": "paper_stamp-psychologist"
+    },
+    {
+      "name": "paper_stamp-research"
+    },
+    {
+      "name": "paper_stamp-federation"
+    },
+    {
+      "name": "paper_stamp-federation-military"
+    },
+    {
+      "name": "paper_stamp-wizard"
+    }
+    ]
+  }

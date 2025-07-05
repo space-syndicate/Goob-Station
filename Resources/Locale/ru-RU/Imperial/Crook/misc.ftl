@@ -38,3 +38,7 @@ ent-ClothingShoesMadzima = брейкданс ботинки
     .desc = Пора надрать задницу!
 ent-ClothingOuterMadzima = брейкданс куртка
     .desc = Пора сходить с ума!
+
+ent-WallInvisibleCrook = невидимая стена
+    .desc = Даже тут невидимые стены...
+ent-WallForceCrook = силовой барьер

@@ -129,6 +129,13 @@
         reagents:
         - ReagentId: SpaceCleaner
           Quantity: 500
+  - type: SolutionRegeneration # Imperial Space ребаланс киборгов
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 5
+
 
 # Vapor
 - type: entity

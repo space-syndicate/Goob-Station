@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagPirate
+  name: Magboots prototype
+  suffix: Pirate
+  description: Arg, a prototype of god damn magboots. Used by pirates to withstand the cursed power of vacuum.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.65
+  - type: ToggleClothing
+    action: ActionToggleMagbootsPirate
+    mustEquip: false
+
+- type: entity
+  id: ActionToggleMagbootsPirate
+  parent: ActionToggleMagboots
+  components:
+  - type: Action
+    #icon: { sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi, state: icon }
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent

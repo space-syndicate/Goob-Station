@@ -36,13 +36,15 @@
   name: Spawn web
   description: it spans the web. A little stronger than usual.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 2.5
-    range: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebTerrorRusar
@@ -194,13 +196,15 @@
   name: Spawn web
   description: it spans the web. A little stronger than usual.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 2
-    range: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebTerrorDron
@@ -914,13 +918,15 @@
   name: Spawn web
   description: it spans the web. A little stronger than usual.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 3
-    range: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebTerrorGuardian
@@ -1324,13 +1330,15 @@
   name: Spawn web
   description: it spans the web. A little stronger than usual.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 2
-    range: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebPrincess
@@ -1350,13 +1358,15 @@
   name: Spawnd egg 1 tir
   description: Lays an egg
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 160
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg1Tir
@@ -1376,13 +1386,15 @@
   name: Spawnd egg 2 tir
   description: Lays an egg
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 300
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg2Tir
@@ -1512,9 +1524,10 @@
   description: яички
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi, state: lay_eggs }
     useDelay: 160
+  - type: InstantAction
     event: !type:EggLayInstantActionEvent
 
 - type: entity
@@ -1558,13 +1571,15 @@
   name: Spawnd egg 2 tir
   description: Lays an egg
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 400
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg2Tir
@@ -1584,13 +1599,15 @@
   name: Spawnd egg 1 tir
   description: Lays an egg
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 220
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg1Tir
@@ -1611,13 +1628,15 @@
   name: Spawnd egg 3 tir
   description: Lays an egg
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 1600
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg3Tir
@@ -2036,12 +2055,9 @@
 
 - type: entity
   id: SpiderWebTerrorRusar
+  parent: SpiderWebBase
   name: Web terror spider
   description: TERROR!
-  placement:
-    mode: SnapgridCenter
-    snap:
-      - Wall
   components:
     - type: MeleeSound
       soundGroups:
@@ -2049,22 +2065,7 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/spiderweb.rsi
-      layers:
-        - state: spider_web_1
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: spider_web_1}
-            2:  {state: spider_web_2}
-    - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
+      color: "#ffffffdd"
     - type: Fixtures
       fixtures:
         fix1:
@@ -2075,8 +2076,6 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
-    - type: Damageable
-      damageModifierSet: Wood
     - type: Destructible
       thresholds:
       - trigger:
@@ -2114,6 +2113,7 @@
 - type: entity
   id: SpiderWebTerrorDron
   name: Web terror spider
+  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2126,22 +2126,7 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/spiderweb.rsi
-      layers:
-        - state: spider_web_1
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: spider_web_1}
-            2:  {state: spider_web_2}
-    - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
+      color: "#ffffffdd"
     - type: Fixtures
       fixtures:
         fix1:
@@ -2152,8 +2137,6 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
-    - type: Damageable
-      damageModifierSet: Wood
     - type: Destructible
       thresholds:
       - trigger:
@@ -2461,14 +2444,16 @@
   description: terror web
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
-    icon: Imperial/TerrorSpider/Spider/actions_animal.rsi/lay_web.png
-    event: !type:SpiderWebActionEvent
+  - type: Action
     useDelay: 8
+    icon: Imperial/TerrorSpider/Spider/actions_animal.rsi/lay_web.png
+  - type: InstantAction
+    event: !type:SpiderWebActionEvent
 
 - type: entity
   id: SpiderWebTerrorGuardian
   name: web terror spider
+  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2481,22 +2466,7 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/spiderweb.rsi
-      layers:
-        - state: spider_web_1
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: spider_web_1}
-            2:  {state: spider_web_2}
-    - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
+      color: "#ffffffdd"
     - type: Fixtures
       fixtures:
         fix1:
@@ -2507,8 +2477,6 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
-    - type: Damageable
-      damageModifierSet: Wood
     - type: Destructible
       thresholds:
       - trigger:
@@ -2561,6 +2529,7 @@
 - type: entity
   id: SpiderWebPrincess
   name: web terror spider
+  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2573,22 +2542,7 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/spiderweb.rsi
-      layers:
-        - state: spider_web_1
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: spider_web_1}
-            2:  {state: spider_web_2}
-    - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
+      color: "#ffffffdd"
     - type: Fixtures
       fixtures:
         fix1:
@@ -2864,6 +2818,7 @@
 - type: entity
   id: SpiderWebTerrorUwU
   name: web terror spider
+  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2876,22 +2831,7 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/spiderweb.rsi
-      layers:
-        - state: spider_web_1
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: spider_web_1}
-            2:  {state: spider_web_2}
-    - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
+      color: "#ffffffdd"
     - type: Fixtures
       fixtures:
         fix1:

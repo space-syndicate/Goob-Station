@@ -735,13 +735,15 @@
   name: spider-spawn-egg-guard
   description: spider-spawn-egg-guard-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 200
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderEggDrone
@@ -752,13 +754,15 @@
   id: ActionSpawnMagicarpSpellSpiderHunter
   name: spider-spawn-egg-hunt
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 300 #КД
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderEggHunter
@@ -769,13 +773,15 @@
   id: ActionSpawnMagicarpSpellSpiderGhost
   name: spider-spawn-egg-ghost
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 350 #КД
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderEggGhost
@@ -786,13 +792,15 @@
   id: ActionSpawnMagicarpSpellSpiderShooter
   name: spider-spawn-egg-shooter
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 380
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderEggShooter
@@ -804,13 +812,15 @@
   name: spider-spawn-kristal
   description: spider-spawn-kristal-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/Decoration/crystal.rsi
       state: crystal_grey
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: CrystalBlue
@@ -822,13 +832,15 @@
   name: spider-spawn-smallspider
   description: spider-spawn-smallspider-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 40
-    range: 2
     itemIconStyle: BigAction
     icon:
       sprite: Mobs/Animals/spider.rsi
       state: viper_dead
+  - type: TargetAction
+    range: 2
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: MobSpiderSpaceLittle
@@ -839,13 +851,15 @@
   id: ActionSpawnMagicarpSpellSpiderWallWeb
   name: spider-spawn-wall
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 8
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/Walls/web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: FloorTileItemWebSpiders
@@ -856,13 +870,15 @@
   id: ActionSpawnMagicarpSpellSpiderWallWeb2
   name: spider-spawn-wall3
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 10
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/Walls/web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: FloorTileItemWebSpiders2
@@ -874,13 +890,15 @@
   name: spider-spawn-web
   description: spider-spawn-web-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 5 #КД
-    range: 1.5
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebUsual
@@ -892,13 +910,15 @@
   name: spider-spawn-web-hunt
   description: spider-spawn-web-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 20
-    range: 1.5
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWeb
@@ -910,13 +930,15 @@
   name: spider-spawn-web-queen
   description: spider-spawn-web-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 6 #КД
-    range: 1.5
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_1
+      sprite: Structures/floor_web.rsi
+      state: full
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebQueen
@@ -928,19 +950,21 @@
   name: spider-spawn-web-clown
   description: spider-spawn-web-desc
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30 #КД
-    range: 1.3
     itemIconStyle: BigAction
     icon:
-      sprite: Objects/Misc/spiderweb.rsi
-      state: spider_web_clown_1
+      sprite: Structures/floor_web.rsi
+      state: full
+      color: "#ffa3fc"
+  - type: TargetAction
+    range: 1.3
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: SpiderWebClown
         amount: 1
       offset: 0, 1
-
 #Egg
 - type: entity
   parent: BaseItemSpider
@@ -1060,12 +1084,9 @@
 #Web
 - type: entity
   id: SpiderWebUsual
+  parent: SpiderWebBase
   name: web
   description: web
-  placement:
-    mode: SnapgridCenter
-    snap:
-      - Wall
   components:
     - type: MeleeSound
       soundGroups:
@@ -1073,22 +1094,7 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/spiderweb.rsi
-      layers:
-        - state: spider_web_1
-          map: ["spiderWebLayer"]
-      drawdepth: WallMountedItems
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: spider_web_1}
-            2:  {state: spider_web_2}
-    - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
+      color: "#ffffffdd"
     - type: Fixtures
       fixtures:
         fix1:
@@ -1099,8 +1105,6 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
-    - type: Damageable
-      damageModifierSet: Wood
     - type: Destructible
       thresholds:
       - trigger:

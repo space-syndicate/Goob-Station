@@ -10,6 +10,8 @@
     state: icon-on
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Boots/redninja.rsi
+  - type: StaticPrice
+    price: 45000
 
 - type: entity
   parent: ClothingShoesSpaceNinja
@@ -23,6 +25,8 @@
     state: icon-on
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Boots/blueninja.rsi
+  - type: StaticPrice
+    price: 45000
 
 - type: entity
   parent: ClothingShoesSpaceNinja
@@ -36,3 +40,5 @@
     state: icon-on
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Boots/greenninja.rsi
+  - type: StaticPrice
+    price: 45000

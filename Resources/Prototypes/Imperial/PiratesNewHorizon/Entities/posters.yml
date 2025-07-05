@@ -1,0 +1,39 @@
+- type: entity
+  parent: PosterBase
+  id: PosterPirateCode
+  name: "The Pirate Code"
+  suffix: Pirate
+  description: A poster, containing the pirate code, approved by Horizontal Municipality.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/posters.rsi
+    state: poster_code
+  - type: Paper
+    content: book-text-piratecode
+    stampedBy:
+    - stampedName: stamp-component-stamped-name-hm
+      stampedColor: "#964b00"
+    contentSize: 12000
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PosterBroken:
+            min: 1
+            max: 1
+        offset: 0

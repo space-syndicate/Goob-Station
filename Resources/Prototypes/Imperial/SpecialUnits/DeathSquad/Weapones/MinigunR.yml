@@ -6,17 +6,19 @@
   suffix: DeathSquad
   components:
   - type: Sprite
-    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/MinigunR.yml
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/MinigunR.rsi
     layers:
     - state: icon
   - type: Item
-    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/MinigunR.yml
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/MinigunR.rsi
   - type: Gun
     minAngle: 12
     maxAngle: 12
     fireRate: 15
     soundGunshot:
       path: /Audio/Imperial/SpecialUnits/DeathSquad/minigun.ogg
+      params:
+        volume: -3
   - type: BallisticAmmoProvider
     proto: CartridgeMinigunR
     capacity: 1000

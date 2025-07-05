@@ -1,0 +1,146 @@
+- type: entity
+  parent: [BaseERTUplink]
+  id: JRTUplink
+  suffix: JRT, 20
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkUtilities
+    - ERTUplinkJunitor
+    - ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 20
+# Catalog:
+
+- type: listing
+  id: ErtCallUplinkSoapNT
+  name: jrt-uplink-soapnt-name
+  description: jrt-uplink-soapnt-desc
+  productEntity: SoapNT
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkTrashBag
+  name: jrt-uplink-trashbag-name
+  description: jrt-uplink-trashbag-desc
+  productEntity: TrashBag
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkMopItem
+  name: jrt-uplink-mopitem-name
+  description: jrt-uplink-mopitem-desc
+  productEntity: MopItem
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ERTUplinkJunitor
+
+
+- type: listing
+  id: ErtCallUplinkBoxLightMixed
+  name: jrt-uplink-boxlightmixed-name
+  description: jrt-uplink-boxlightmixed-desc
+  productEntity: BoxLightMixed
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkHoloprojector
+  name: jrt-uplink-holoprojector-name
+  description: jrt-uplink-holoprojector-desc
+  productEntity: Holoprojector
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkSoapOmega
+  name: jrt-uplink-soapomega-name
+  description: jrt-uplink-soapomega-desc
+  productEntity: SoapOmega
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkClothingBackpackDuffelWithGrenadesCleanade
+  name: jrt-uplink-clothingbackpackduffelwithgrenadescleanade-name
+  description: jrt-uplink-clothingbackpackduffelwithgrenadescleanade-desc
+  productEntity: ClothingBackpackDuffelWithGrenadesCleanade
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkSpaceMobCleanBot
+  name: jrt-uplink-mobcleanbot-name
+  description: jrt-uplink-mobcleanbot-desc
+  productEntity: MobCleanBot
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkBoxCleanerGrenades
+  name: jrt-uplink-boxcleanergrenades-name
+  description: jrt-uplink-boxcleanergrenades-desc
+  productEntity: BoxCleanerGrenades
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkJanitorialTrolley
+  name: jrt-uplink-janitorialtrolley-name
+  description: jrt-uplink-janitorialtrolley-desc
+  productEntity: JanitorialTrolley
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkClothingBackpackDuffelWithHydra
+  name: jrt-uplink-clothingbackpackduffelwithhydra-name
+  description: jrt-uplink-clothingbackpackduffelwithhydra-desc
+  productEntity: ClothingBackpackDuffelWithHydra
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkMegaSpaceCleanerSprayBottleFull
+  name: jrt-uplink-megaspacecleanerspraybottlefull-name
+  description: jrt-uplink-megaspacecleanerspraybottlefull-desc
+  productEntity: MegaSpaceCleanerSprayBottleFull
+  cost:
+    BlueSpaceCube: 14
+  categories:
+  - ERTUplinkJunitor
+
+- type: listing
+  id: ErtCallUplinkCrateERTSpaceSprayNozzle
+  name: jrt-uplink-crateJRTspacespraynozzler-name
+  description: jrt-uplink-crateJRTspacespraynozzler-desc
+  productEntity: CrateJRTSpaceSprayNozzle
+  cost:
+    BlueSpaceCube: 14
+  categories:
+  - ERTUplinkJunitor

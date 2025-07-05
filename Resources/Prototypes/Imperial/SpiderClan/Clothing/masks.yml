@@ -9,6 +9,8 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/redninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/redninja.rsi
+  - type: StaticPrice
+    price: 700
 
 - type: entity
   parent: ClothingMaskNinja
@@ -21,6 +23,8 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/blueninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/blueninja.rsi
+  - type: StaticPrice
+    price: 700
 
 - type: entity
   parent: ClothingMaskNinja
@@ -33,3 +37,5 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/greenninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/greenninja.rsi
+  - type: StaticPrice
+    price: 700

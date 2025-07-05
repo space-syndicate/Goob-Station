@@ -1,0 +1,6 @@
+gps-removed-result = The GPS tracker has succesfully been removed, increasing the price.
+gps-missing-result = There seems to be no GPS tracker inside.
+gps-found-result = You start removing GPS tracker.
+
+gpstracker-examine-missing = Something small seems to be ripped out of here...
+gpstracker-examine-installed = A GPS tracker seems to be installed here... 

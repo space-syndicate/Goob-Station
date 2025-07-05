@@ -46,7 +46,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 400
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -59,13 +59,11 @@
   - type: Appearance
   - type: Climbable
   - type: ApcPowerReceiver
-    powerLoad: 200 #Receives most of its power from the console
+    powerLoad: 0
+    needsPower: false
   - type: EmptyOnMachineDeconstruct
     containers:
     - scanner-bodyContainer
-  - type: GuideHelp
-    guides:
-    - Cloning  
   - type: AmbientSound
     volume: -20
     range: 3

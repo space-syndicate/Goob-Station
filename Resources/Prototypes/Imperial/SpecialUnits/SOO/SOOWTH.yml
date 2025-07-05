@@ -1,0 +1,17 @@
+- type: entity
+  parent: [ BaseERTUplink, DeathSquadUplinkPresetAlt ]
+  id: SpecialOfficerUplink
+  name: officer's uplink
+  description: It seems that blood has been spilled on him...
+  suffix: SOO
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/SOOWTH.rsi
+    layers:
+    - state: device-on
+    - state: device-deadsquad-anim
+      shader: unshaded
+      visible: true
+  - type: Store
+    balance:
+      BlueSpaceCube: 200

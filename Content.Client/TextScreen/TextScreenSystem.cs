@@ -90,11 +90,11 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
 
         for (var i = 0; i < screen.RowLength; i++)
         {
-            _sprite.LayerMapReserve((uid, sprite), TimerMapKey + i);
+            SpriteSystem.LayerMapReserve((uid, sprite), TimerMapKey + i);
             timer.LayerStatesToDraw.Add(TimerMapKey + i, null);
-            _sprite.LayerSetRsi((uid, sprite), TimerMapKey + i, new ResPath(TextPath));
-            _sprite.LayerSetColor((uid, sprite), TimerMapKey + i, screen.Color);
-            _sprite.LayerSetRsiState((uid, sprite), TimerMapKey + i, DefaultState);
+            SpriteSystem.LayerSetRsi((uid, sprite), TimerMapKey + i, new ResPath(TextPath));
+            SpriteSystem.LayerSetColor((uid, sprite), TimerMapKey + i, screen.Color);
+            SpriteSystem.LayerSetRsiState((uid, sprite), TimerMapKey + i, DefaultState);
         }
     }
 
@@ -154,7 +154,7 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
             return;
 
         foreach (var key in timer.LayerStatesToDraw.Keys)
-            _sprite.RemoveLayer((uid, sprite), key);
+            SpriteSystem.RemoveLayer((uid, sprite), key);
 
         RemComp<TextScreenTimerComponent>(uid);
 
@@ -190,7 +190,7 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
             return;
 
         foreach (var key in component.LayerStatesToDraw.Keys)
-            _sprite.RemoveLayer((uid, sprite), key);
+            SpriteSystem.RemoveLayer((uid, sprite), key);
 
         component.LayerStatesToDraw.Clear();
 
@@ -198,11 +198,11 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
             for (var i = 0; i < component.RowLength; i++)
             {
                 var key = TextMapKey + row + i;
-                _sprite.LayerMapReserve((uid, sprite), key);
+                SpriteSystem.LayerMapReserve((uid, sprite), key);
                 component.LayerStatesToDraw.Add(key, null);
-                _sprite.LayerSetRsi((uid, sprite), key, new ResPath(TextPath));
-                _sprite.LayerSetColor((uid, sprite), key, component.Color);
-                _sprite.LayerSetRsiState((uid, sprite), key, DefaultState);
+                SpriteSystem.LayerSetRsi((uid, sprite), key, new ResPath(TextPath));
+                SpriteSystem.LayerSetColor((uid, sprite), key, component.Color);
+                SpriteSystem.LayerSetRsiState((uid, sprite), key, DefaultState);
             }
     }
 
@@ -228,7 +228,7 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
             for (var chr = 0; chr < min; chr++)
             {
                 component.LayerStatesToDraw[TextMapKey + rowIdx + chr] = GetStateFromChar(row[chr]);
-                _sprite.LayerSetOffset(
+                SpriteSystem.LayerSetOffset(
                     (uid, sprite),
                     TextMapKey + rowIdx + chr,
                     Vector2.Multiply(
@@ -259,7 +259,7 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
         for (var i = 0; i < min; i++)
         {
             timer.LayerStatesToDraw[TimerMapKey + i] = GetStateFromChar(time[i]);
-            _sprite.LayerSetOffset(
+            SpriteSystem.LayerSetOffset(
                 (uid, sprite),
                 TimerMapKey + i,
                 Vector2.Multiply(
@@ -279,7 +279,7 @@ public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsCompone
             return;
 
         foreach (var (key, state) in layerStates.Where(pairs => pairs.Value != null))
-            _sprite.LayerSetRsiState((uid, sprite), key, state);
+            SpriteSystem.LayerSetRsiState((uid, sprite), key, state);
     }
 
     public override void Update(float frameTime)

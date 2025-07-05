@@ -90,9 +90,10 @@
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "gloves" ]
       - map: [ "shoes" ]
-      - map: [ "belt" ]
+      # - map: [ "belt" ]
       - map: [ "id" ]
-      # - map: [ "outerClothing" ]
+      - map: [ "outerClothing" ]  
+      - map: [ "belt" ] # Imperial Space для корректного отображения слоев одежды и РПС
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
       - map: [ "neck" ]
@@ -100,7 +101,6 @@
       - map: [ "enum.HumanoidVisualLayers.Hair" ] # Do these need to be here? (arachnid hair arachnid hair)
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
       - map: [ "ears" ]
-      - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
       - map: [ "eyes" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
       - map: [ "mask" ]

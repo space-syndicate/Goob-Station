@@ -1,0 +1,88 @@
+- type: entity
+  name: rapier
+  parent: [ BaseSword, BaseSyndicateContraband ]
+  id: SyndieRapier
+  description: rapier.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/Rapier/syndie-rapiera.rsi
+    state: rapier
+  - type: Item
+    sprite: Imperial/Other/Rapier/syndie-rapiera.rsi
+  - type: DisarmMalus
+    malus: 0.6
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    angle: 0
+    animation: WeaponArcThrust
+    attackRate: 1.2
+    damage:
+      types:
+        Piercing: 17
+    resistanceBypass: true
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 90
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: PirateAccent
+  - type: Tag
+    tags:
+    - SindieRapier
+
+- type: entity
+  parent: [ ClothingBeltBase, ClothingSlotBase, BaseSyndicateContraband ]
+  id: ClothingBeltSheathRapier
+  name: rapier sheath
+  description: An ornate sheath designed to hold an officer's blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/Rapier/sheath-syndie-rapiera.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Other/Rapier/sheath-syndie-rapiera.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Rapier
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - SindieRapier
+  - type: ItemMapper
+    mapLayers:
+      sheath-full:
+        whitelist:
+          tags:
+          - SindieRapier
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltSheathRapierFilled
+  parent: ClothingBeltSheathRapier
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - SyndieRapier
+
+- type: Tag
+  id: SindieRapier

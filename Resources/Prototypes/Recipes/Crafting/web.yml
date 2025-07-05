@@ -51,8 +51,8 @@
   objectType: Item
 
 - type: construction
-  name: Ткань # Imperial Recipes Locale
   id: SilkWovenCloth
+  name: Ткань # Imperial Recipes Locale
   graph: WebObjects
   startNode: start
   targetNode: cloth

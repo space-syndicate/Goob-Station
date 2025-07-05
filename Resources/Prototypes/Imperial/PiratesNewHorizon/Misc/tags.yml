@@ -1,0 +1,41 @@
+- type: Tag
+  id: BlackMark
+
+- type: Tag
+  id: EyepatchBeer
+
+- type: Tag
+  id: EyepatchDiagnostic
+
+- type: Tag
+  id: EyepatchChemical
+
+- type: Tag
+  id: EyepatchFlashproof
+
+- type: Tag
+  id: EyepatchEngineering
+
+- type: Tag
+  id: EyepatchSecurity
+
+- type: Tag
+  id: EyepatchMedical
+
+- type: Tag
+  id: Eyepatch
+
+- type: Tag
+  id: HudBeer
+
+- type: Tag 
+  id: HudDiagnostic
+
+- type: Tag
+  id: HudChemical
+
+- type: Tag
+  id: Meson
+
+- type: Tag
+  id: TrayScanner

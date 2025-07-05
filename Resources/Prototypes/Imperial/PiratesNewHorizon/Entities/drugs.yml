@@ -1,0 +1,216 @@
+- type: entity
+  name: funny syringe
+  parent: PrefilledSyringe
+  description: Let the fun begin.
+  id: DrugPrefilledSyringe
+
+
+- type: entity
+  name: space drugs syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeSpaceDrugs
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: SpaceDrugs
+          Quantity: 15
+
+- type: entity
+  name: bananadine syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeBananadine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Bananadine
+          Quantity: 15
+
+- type: entity
+  name: THC syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeTHC
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: THC
+          Quantity: 15
+
+- type: entity
+  name: desoxyephedrine syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeDesoxyephedrine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 15
+
+- type: entity
+  name: impedrezene syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeImpedrezene
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Impedrezene
+          Quantity: 15
+
+- type: entity
+  name: pax syringe
+  parent: DrugPrefilledSyringe
+  id: SyringePax
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Pax
+          Quantity: 15
+
+- type: entity
+  name: citaloporam syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeCitaloporam
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Citaloporam
+          Quantity: 15
+
+- type: entity
+  name: mindbreaker toxin syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeMindbreakerToxin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: MindbreakerToxin
+          Quantity: 15
+
+- type: entity
+  name: chloralhydrate syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeChloralHydrate
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 15
+
+- type: entity
+  name: honk syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeHonk
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Honk
+          Quantity: 15
+
+
+- type: entity
+  name: mute toxin syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeMuteToxin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: MuteToxin
+          Quantity: 15
+
+- type: entity
+  name: heartbreaker toxin syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeHeartbreakerToxin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: HeartbreakerToxin
+          Quantity: 15
+
+- type: entity
+  name: norepinephric acid syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeNorepinephricAcid
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: NorepinephricAcid
+          Quantity: 15
+
+- type: entity
+  name: calomel syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeCalomel
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Calomel
+          Quantity: 15
+
+- type: entity
+  name: sodium hydroxide syringe
+  parent: DrugPrefilledSyringe
+  id: SyringeSodiumHydroxide
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: SodiumHydroxide
+          Quantity: 15
+
+- type: entity
+  id: MuddyHarbourBottle
+  name: Muddy harbour
+  description: Filled with sand and muddy water bottle, summons a giant pirate's pal to help with all the troubles.
+  parent: BaseChemistryBottleFilled
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        drink:
+          maxVol: 30
+          reagents:
+            - ReagentId: MuddyHarbour
+              Quantity: 15

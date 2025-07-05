@@ -15,7 +15,7 @@ public sealed partial class ImperialStoreSystem
 
     private void OnEntityRemoved(EntityUid uid, ImperialStoreRefundComponent component, EntRemovedFromContainerMessage args)
     {
-        if (component.StoreEntity == null || _actions.TryGetActionData(uid, out _) || !TryComp<ImperialStoreComponent>(component.StoreEntity.Value, out var storeComp))
+        if (component.StoreEntity == null || _actions.GetAction(uid) == null || !TryComp<ImperialStoreComponent>(component.StoreEntity.Value, out var storeComp))
             return;
 
         DisableRefund(component.StoreEntity.Value, storeComp);
@@ -23,7 +23,7 @@ public sealed partial class ImperialStoreSystem
 
     private void OnEntityInserted(EntityUid uid, ImperialStoreRefundComponent component, EntInsertedIntoContainerMessage args)
     {
-        if (component.StoreEntity == null || _actions.TryGetActionData(uid, out _) || !TryComp<ImperialStoreComponent>(component.StoreEntity.Value, out var storeComp))
+        if (component.StoreEntity == null || _actions.GetAction(uid) == null || !TryComp<ImperialStoreComponent>(component.StoreEntity.Value, out var storeComp))
             return;
 
         DisableRefund(component.StoreEntity.Value, storeComp);

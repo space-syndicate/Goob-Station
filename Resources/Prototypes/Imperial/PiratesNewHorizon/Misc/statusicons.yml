@@ -1,0 +1,24 @@
+- type: factionIcon
+  id: PirateFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - Pirate
+      - PirateCaptain
+  icon:
+    sprite: /Textures/Imperial/PiratesNewHorizon/statusicons.rsi
+    state: pirate
+- type: factionIcon
+  id: PirateCaptainFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - PirateCaptain
+      - Pirate
+  icon:
+    sprite: /Textures/Imperial/PiratesNewHorizon/statusicons.rsi
+    state: piratecaptain

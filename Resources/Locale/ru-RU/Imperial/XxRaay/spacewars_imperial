@@ -1,0 +1,13 @@
+ent-ElectroEnergySword = электроэнергетический меч
+.desc = Очень громкий, и столь же опасный. Выключенным может храниться в кармане.
+.suffix = { "XxRaay" }
+
+ent-WeaponLaserAutoPistol = ПП лазер
+.desc = Он стреляет быстрее скорости света.
+.suffix = { "XxRaay" }
+
+ent-MagazineGrenadeStation = кассета гранат типа "RS-W6"
+.suffix = { "XxRaay" }
+
+ent-GrenadeStation = кассета гранат типа "RS-W6"
+.suffix = { "XxRaay" }

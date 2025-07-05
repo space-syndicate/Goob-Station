@@ -3,13 +3,15 @@
   name: The Wendigo Appeal
   description: This spell summons an aggressive Wendigo.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Other/Witchers/SpellsIcons.rsi
       state: Vendigo_spell
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: WitchersVendigoVr
@@ -23,13 +25,15 @@
   name: Summoning snails
   description: This spell summons two aggressive snails.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Other/Witchers/SpellsIcons.rsi
       state: Ylitka_spell
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: WitchersYlitkaVr
@@ -43,13 +47,15 @@
   name: The Call of the Ravens
   description: This spell summons three aggressive ravens.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 15
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Other/Witchers/SpellsIcons.rsi
       state: Voron_spell
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: MobVoronVr

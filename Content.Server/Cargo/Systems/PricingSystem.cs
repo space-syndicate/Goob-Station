@@ -4,6 +4,7 @@ using Content.Server.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
+using Content.Shared.Cargo;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
@@ -17,6 +18,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Research.Prototypes;
+//Imperial Space Pirates: New Horizon
+using Content.Server.Imperial.PiratesNewHorizon.GPS.Components;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -83,6 +86,22 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         }
     }
 
+// Imperial Space Pirates: New Horizon; Start
+    private double GetGPSTrackerPrice(EntityUid uid)
+    {
+        double price = 0;
+
+        if(TryComp<GPSTrackerPriceComponent>(uid, out var gpsTracker))
+        {
+            if (gpsTracker.GPSTrackerInstalled == true)
+            {
+                price = gpsTracker.StartPrice;
+            }
+            else price = gpsTracker.EndPrice;
+        }
+        return price;
+    }
+// Imperial Space Pirates: New Horizon; End
     private void CalculateMobPrice(EntityUid uid, MobPriceComponent component, ref PriceCalculationEvent args)
     {
         // TODO: Estimated pricing.
@@ -183,10 +202,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
     /// </summary>
     public double GetEstimatedPrice(EntityPrototype prototype)
     {
-        var ev = new EstimatedPriceCalculationEvent()
-        {
-            Prototype = prototype,
-        };
+        var ev = new EstimatedPriceCalculationEvent(prototype);
 
         RaiseLocalEvent(ref ev);
 
@@ -240,6 +256,8 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         if (oldPrice.Equals(price))
         {
             price += GetStaticPrice(uid);
+            //Imperial Space Pirates: New Horizon
+            price += GetGPSTrackerPrice(uid);
         }
 
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
@@ -398,40 +416,4 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
 
         return price;
     }
-}
-
-/// <summary>
-/// A directed by-ref event fired on an entity when something needs to know it's price. This value is not cached.
-/// </summary>
-[ByRefEvent]
-public record struct PriceCalculationEvent()
-{
-    /// <summary>
-    /// The total price of the entity.
-    /// </summary>
-    public double Price = 0;
-
-    /// <summary>
-    /// Whether this event was already handled.
-    /// </summary>
-    public bool Handled = false;
-}
-
-/// <summary>
-/// Raised broadcast for an entity prototype to determine its estimated price.
-/// </summary>
-[ByRefEvent]
-public record struct EstimatedPriceCalculationEvent()
-{
-    public required EntityPrototype Prototype;
-
-    /// <summary>
-    /// The total price of the entity.
-    /// </summary>
-    public double Price = 0;
-
-    /// <summary>
-    /// Whether this event was already handled.
-    /// </summary>
-    public bool Handled = false;
 }

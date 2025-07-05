@@ -6,7 +6,7 @@
   description: medieval-store-spells-light-magic-light-beginner-desc
   components:
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -14,6 +14,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/light.rsi
       state: light
+  - type: InstantAction
     event: !type:MedievalInstantSpawnEvent
       spawnedEntityPrototype: MedievalProjectileLightFollower
       speechPoints:

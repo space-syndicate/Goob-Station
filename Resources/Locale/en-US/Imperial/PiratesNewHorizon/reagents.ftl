@@ -1,0 +1,15 @@
+reagent-name-pirate = muddy harbour
+reagent-desc-pirate = Filled with sand and muddy water, the mixture summons a giant pirate's pal to help with all the troubles.
+muddy-harbour-popup = You feel your organs burning inside, while getting to feel otherworld appearance.
+reagent-name-wineessence = wine essence
+reagent-description-wineessence = Magestic blood-looking substance, made of different kinds of wonderful wines. With it's magic power it's droplets rise, making a unbeliveable sight. No wonder, it is popular with vampires.
+reagent-name-beeressence = beer essence
+reagent-desc-beeressence = Extremely fluffy, light. Makes you feel, like you are floating.
+reagent-name-pirateessence = pirate essence
+reagent-desc-pirateessence = unbeliveably black and oily, as all pirates are inside. Not consumable, but is required for pirate delicacies.
+reagent-name-vodkaessence = vodka essence
+reagent-description-vodkaessence = Seems like concrete, you can hardly consume it. Despite it's concrete look, it is still a fluid (probably).
+reagent-name-alhocolessence = Alhocol essence
+reagent-description-alhocolessence = Insane product of black market. It combines 3 best drinks in one, saving only the best traits of each one. It's magical strength makes glass shatter, and orbit around. It is capable of healing most injuries, but also poisons it's consumer.
+reagent-name-detoxificator = alhocol detoxificator
+reagent-description-detoxificator = Acidic substance, capable of withstanding alhocol toxification.

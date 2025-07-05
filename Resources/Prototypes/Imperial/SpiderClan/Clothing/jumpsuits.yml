@@ -19,6 +19,8 @@
     modifiers:
       coefficients:
         Heat: 0.95
+  - type: StaticPrice
+    price: 700
 
 - type: entity
   parent: UnsensoredClothingUniformBase
@@ -35,3 +37,5 @@
     modifiers:
       coefficients:
         Heat: 0.95
+  - type: StaticPrice
+    price: 700

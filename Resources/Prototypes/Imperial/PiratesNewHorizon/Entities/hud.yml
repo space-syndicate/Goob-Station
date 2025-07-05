@@ -1,0 +1,112 @@
+- type: entity
+  parent: [ClothingEyesBase, ClothingHeadEyeBaseFlippable, BaseRestrictedContraband]
+  id: ClothingEyesEyepatchHudChemical
+  name: chemical hud eyepatch
+  description: A heads-up display that can scan the chemical composition of a solution.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/chempatch.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/chempatch.rsi
+  - type: SolutionScanner
+  - type: Construction
+    graph: ChemicalEyepatchHud
+    node: chemicalEyepatch
+  - type: Tag
+    tags:
+    - EyepatchChemical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudChemicalFlipped
+  name: chemical hud eyepatch
+
+- type: entity
+  parent: [ClothingEyesBase, ClothingHeadEyeBaseFlippable, BaseRestrictedContraband]
+  id: ClothingEyesEyepatchFlashProof
+  name: flashproof eyepatch
+  description: An eyepatch, capable of protecting your eyes from flashes.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/flashpatch.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/flashpatch.rsi
+  - type: Construction
+    graph: FlashProofEyepatch
+    node: flashEyepatch
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - EyepatchFlashproof
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchFlashProofFlipped
+  name: flashproof eyepatch
+
+- type: entity
+  parent: [ClothingEyesBase, ClothingHeadEyeBaseFlippable, BaseRestrictedContraband]
+  id: ClothingEyesEyepatchEngineering
+  name: engineering eyepatch
+  description: An eyepatch, capable of protecting your eyes while welding.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/engpatch.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/engpatch.rsi
+  - type: Construction
+    graph: EngineeringEyepatch
+    node: engEyepatch
+  - type: EyeProtection
+  - type: Tag
+    tags:
+    - EyepatchEngineering
+- type: entity
+  parent: [ClothingEyesEyepatchEngineering, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchEngineeringFlipped
+  name: engineering eyepatch
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, BaseRestrictedContraband, ClothingHeadEyeBaseFlippable]
+  id: ClothingEyesEyepatchHudOmni
+  name: the all seeing eyepatch
+  description: An eyepatch, capable of everything.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/omnipatch.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/omnipatch.rsi
+  - type: Construction
+    graph: OmniEyepatchHud
+    node: omniEyepatch
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - Biological
+  - type: ShowThirstIcons
+  - type: ShowHungerIcons
+  - type: ShowSyndicateIcons
+  - type: TrayScanner
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.1
+  - type: StaticPrice
+    price: 62350
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+
+- type: entity
+  parent: [ClothingEyesEyepatchEngineering, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudOmniFlipped
+  name: the all seeing eyepatch

@@ -1,0 +1,92 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBotsmanPirate
+  suffix: Pirate
+  name: gold stained jumpsuit
+  description: A pirate variation of a space security's jumpsuit.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/botsman.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/botsman.rsi
+  - type: AddAccentClothing
+    accent: PirateAccent
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPirateVest
+  name: space sailor jumpsuit
+  suffix: Pirate
+  description: A classic of sailors of all time.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/telnyaha.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/telnyaha.rsi
+  - type: AddAccentClothing
+    accent: PirateAccent
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPirateWhite
+  name: space outlaw jumpsuit
+  suffix: Pirate
+  description: YARrR!
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/pirat_rubaha_male.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/pirat_rubaha_male.rsi
+  - type: AddAccentClothing
+    accent: PirateAccent
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPirateWhite
+  name: space outlaw jumpskirt
+  suffix: Pirate
+  description: YARrR!
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/pirat_rubaha_fem.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/pirat_rubaha_fem.rsi
+  - type: AddAccentClothing
+    accent: PirateAccent
+
+- type: entity
+  parent: ClothingUniformBase
+  suffix: Pirate
+  id: ClothingUniformJumpsuitPirateWhiteCaptain
+  name: space outlaw leader jumpsuit
+  description: Made by elite space goblins.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/uni_male_c.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/uni_male_c.rsi
+  - type: AddAccentClothing
+    accent: PirateAccent
+
+- type: entity
+  parent: ClothingUniformBase
+  suffix: Pirate
+  id: ClothingUniformJumpskirtPirateWhiteCaptain
+  name: space outlaw leader jumpskirt
+  description: Made by elite space goblins.
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/uni_male_c.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/uni_male_c.rsi
+  - type: AddAccentClothing
+    accent: PirateAccent
+
+- type: entity
+  parent: ClothingUniformJumpsuitPirate
+  id: ClothingUniformJumpsuitPirateNewHorizon
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/pirate_uni.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/uniform/pirate_uni.rsi

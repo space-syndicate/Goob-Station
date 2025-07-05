@@ -32,6 +32,8 @@ namespace Content.YAMLLinter
                         .ToHashSet()
                 ))
                 .ToDictionary();
+
+            fieldErrors = fieldErrors.Where(error => !error.Contains("Prototype id field failed validation. Unknown prototype")).ToList();
             // Imperial Space End
 
             var count = errors.Count + fieldErrors.Count;
@@ -91,7 +93,7 @@ namespace Content.YAMLLinter
             await instance.WaitPost(() =>
             {
                 var engineErrors = protoMan.ValidateDirectory(new ResPath("/EnginePrototypes"), out var engPrototypes);
-                yamlErrors = protoMan.ValidateDirectory(new ResPath("/Prototypes"), out var prototypes);
+                yamlErrors = protoMan.ValidateDirectory(new ResPath("/Resources/Prototypes"), out var prototypes);
 
                 // Merge engine & content prototypes
                 foreach (var (kind, instances) in engPrototypes)

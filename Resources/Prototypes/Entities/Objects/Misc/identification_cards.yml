@@ -119,8 +119,15 @@
     - WhitelistChameleon
     - WhitelistChameleonIdCard
     - HighRiskItem
+  - type: StaticPrice
+    price: 2000 #Imperial Space Pirates: New Horizon
   - type: StealTarget
     stealGroup: CaptainIDCard
+  #Imperial Space Pirates: New Horizon; Start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 10000
+  #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   parent: IDCardStandard
@@ -814,6 +821,7 @@
     - state: idcluwne
   - type: IdCard
     jobTitle: job-title-cluwne
+    jobIcon: JobIconCluwne
   - type: Unremoveable
 
 - type: entity

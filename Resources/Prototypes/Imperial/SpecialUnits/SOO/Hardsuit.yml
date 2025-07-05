@@ -1,0 +1,78 @@
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitSpecialOfficer
+  name: special officer hardsuit
+  description: The best spacesuit ever created by NanoTrasen.
+  suffix: SOO
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/Hardsuit/hardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/SOO/Hardsuit/hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.05
+        Heat: 0.05
+        Radiation: 0.0
+        Caustic: 0.0
+        Cold: 0.0
+        Shock: 0.0
+        Stamina: 0
+  - type: FireProtection
+    reduction: 1
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSpecialOfficer
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitSpecialOfficer
+  name: special officer hardsuit helmet
+  description: The best hardsuit helmet ever created by NanoTrasen.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/Hardsuit/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/SOO/Hardsuit/helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+        Stamina: 0.90
+  - type: PointLight
+    color: "#9defee"
+    radius: 7
+    energy: 3
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+#        shader: unshaded

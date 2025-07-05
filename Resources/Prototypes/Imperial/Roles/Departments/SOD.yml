@@ -1,0 +1,19 @@
+- type: department
+  id: SpecialOperations ## Не более чем дебаг фича. У них даже спавнеров нет.
+  name: department-SpecialOperationsDepartment
+  description: department-SpecialOperationsDepartment-description
+  color: "#333333"
+  roles:
+  - SpecialOfficer
+  - ImperialDeathSquad
+  - JobRCUOperator
+  - JobRCUOfficer
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  editorHidden: true
+  weight: 130

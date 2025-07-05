@@ -425,3 +425,16 @@ reagent-effect-guidebook-plant-seeds-remove =
         [1] Removes the
         *[other] remove the
     } seeds of the plant
+reagent-effect-guidebook-resistance-change =
+    { $chance ->
+        [1] { $gainsorloses ->
+                [heals] Gains
+                [deals] Loses
+                *[both] Modifies resistance by
+             }
+        *[other] { $gainsorloses ->
+                    [heals] gain
+                    [deals] lose
+                    *[both] modify resistance by
+                 }
+    } { $changes }

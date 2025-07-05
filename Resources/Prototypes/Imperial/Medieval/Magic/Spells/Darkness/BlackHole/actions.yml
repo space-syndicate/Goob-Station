@@ -12,16 +12,18 @@
         addedEssences:
           MagicMedievalDarkness1: 1
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/blackhole_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileBlackHoleBeginner
@@ -63,16 +65,18 @@
   description: medieval-store-spells-darkness-black-hole-middle-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/blackhole_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileBlackHoleMiddle
@@ -103,16 +107,18 @@
   description: medieval-store-spells-darkness-black-hole-senior-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/blackhole_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
       state: 3
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileBlackHoleSenior

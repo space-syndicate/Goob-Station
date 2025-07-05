@@ -41,3 +41,21 @@
   id: WhiteShoes
   equipment:
     shoes: ClothingShoesColorWhite
+
+# Imperial Modsuit
+- type: loadout
+  id: ClothingControlModsuitAtmosphericsSealed
+  equipment:
+   back: ClothingControlModsuitAtmosphericsSealed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: AtmosModsuitEffect
+
+- type: loadoutEffectGroup
+  id: AtmosModsuitEffect
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 72000 # 20 h

@@ -1,0 +1,13 @@
+- type: entity
+  parent: PiratePDA
+  id: PiratePDANewHorizon
+  components:
+  - type: Pda
+    id: PirateIDCardNewHorizon
+
+- type: entity
+  parent: PiratePDA
+  id: CaptainPiratePDANewHorizon
+  components:
+  - type: Pda
+    id: CaptainPirateIDCardNewHorizon

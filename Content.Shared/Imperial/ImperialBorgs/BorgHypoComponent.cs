@@ -1,16 +1,15 @@
-using Content.Shared.Actions;
-using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
-namespace Content.Shared.Borgs
+namespace Content.Shared.Imperial.ImperialBorgs
 {
     [RegisterComponent, NetworkedComponent]
     public sealed partial class BorgHypoComponent : Component
     {
-        [DataField("Solutions")]
-        public List<Solution> Solutions = new List<Solution>();
+        [DataField("solutions")]
+        public List<BorgHypoSolution> Solutions = new();
 
         public int CurrentIndex = 0;
 
@@ -26,17 +25,18 @@ namespace Content.Shared.Borgs
         [DataField]
         public EntityUid? ActionEntity;
     }
-    [Serializable, NetSerializable]
-    public sealed class BorgHypoComponentState : ComponentState
-    {
-        public readonly bool UiUpdateNeeded;
-        public readonly string CurrentReagentName;
 
-        public BorgHypoComponentState(bool uiUpdateNeeded, string currentReagenName)
-        {
-            UiUpdateNeeded = uiUpdateNeeded;
-            CurrentReagentName = currentReagenName;
-        }
+    [DataDefinition]
+    [Serializable, NetSerializable]
+    public sealed partial class ImperialBorgsReagent
+    {
+        [DataField("reagentId")]
+        public string ReagentId = null!;
+
+        [DataField("quantity")]
+        public float Quantity = 1.0f;
+
+        [DataField("sprite")]
+        public ResPath? Sprite;
     }
-    public sealed partial class ChangeReagentAction : InstantActionEvent { }
 }

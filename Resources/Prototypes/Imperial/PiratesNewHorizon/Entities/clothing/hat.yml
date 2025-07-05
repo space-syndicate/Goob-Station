@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPirateCaptain
+  name: captain pirate hat
+  suffix: Pirate
+  description: If you think this hat representing tight-fistness, then yall are wrong...
+  components:
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/clothing/hat/hat_c.rsi
+  - type: Clothing
+    sprite: Imperial/PiratesNewHorizon/clothing/hat/hat_c.rsi

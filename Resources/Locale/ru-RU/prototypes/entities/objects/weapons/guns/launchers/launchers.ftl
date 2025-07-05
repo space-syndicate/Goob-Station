@@ -30,3 +30,5 @@ ent-WeaponForceGunAdmin = силовая пушка
     .suffix = Админ
 ent-WeaponGrapplingGun = крюк-пушка
     .desc = { ent-BaseItem.desc }
+ent-WeaponLauncherHydra = Hydra
+    .desc = ПЛУП... ФССССС

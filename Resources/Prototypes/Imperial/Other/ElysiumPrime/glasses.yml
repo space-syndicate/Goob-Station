@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesElysium
+  name: glasses
+  description: A pair of spectacular spectacles with prescription lenses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/glasses.rsi
+  - type: Clothing
+    sprite: Imperial/Other/ElysiumPrime/Clothing/glasses.rsi
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon

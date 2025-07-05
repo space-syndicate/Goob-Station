@@ -28,6 +28,10 @@
         "directions": 4
     },
     {
+        "name": "bananium_crab",
+        "directions": 4
+    },
+    {
       "name": "quartz_crab",
       "directions": 4
     }

@@ -1,0 +1,48 @@
+- type: entity
+  parent: BaseComputer
+  id: ComputerPalletConsolePirate
+  name: Pirrrrate booty console
+  description: Aye, it is such a sweet trade to rip off those lads.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/PiratesNewHorizon/pirate_console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: pirate
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: Computer
+    board: CargoPalletComputerPirateCircuitboard #Imperial Space
+  - type: ActivatableUI
+    key: enum.CargoPalletConsoleUiKey.Sale
+  - type: UserInterface
+    interfaces:
+      enum.CargoPalletConsoleUiKey.Sale:
+        type: CargoPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: CargoPalletConsole
+    cashType: "Doubloon"
+    spawnStack: true
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+
+- type: entity # Imperial Space
+  parent: BaseComputerCircuitboard
+  id: CargoPalletComputerPirateCircuitboard
+  name: the most pirate circuitboard ever, mate
+  description: Smells with drugs and alchohol, made specially for selling the loot from station.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerPalletConsolePirate
+    - type: StaticPrice
+      price: 2000

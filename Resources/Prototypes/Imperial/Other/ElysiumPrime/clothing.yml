@@ -471,3 +471,247 @@
         Heat: 0.70
         Radiation: 0.55
         Caustic: 0.85
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesAdministration
+  name: gloves
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/hands/admin.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/hands/admin.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-green
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHeadBase
+  id: AdministrationBeret
+  name: beret
+  suffix: ElysiumPrime
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/DeadSector/head/beretv.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/head/beretv.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: SpecialForcePoliceBeret
+  name: beret
+  suffix: ElysiumPrime
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/DeadSector/head/beret.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/head/beret.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: SpecialForcePoliceCap
+  name: cap
+  suffix: ElysiumPrime
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/DeadSector/head/Cap.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/head/Cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingAdministrationNeck
+  name: cloak
+  suffix: ElysiumPrime
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/DeadSector/neck/admin.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdminSmokingV1
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/SmokingV1.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/SmokingV1.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdminSmokingV2
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/SmokingV2.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/SmokingV2.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCitizen
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/CitizenJumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/CitizenJumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCitizenPrisoner
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/Prisoner.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/Prisoner.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCitizenSmoking
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/Smoking.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/Smoking.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSpecialForceOffice
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/Office.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/Office.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSpecialForcePoliceV1
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/PoliceV1.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/PoliceV1.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSpecialForcePoliceV2
+  name: uniform
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/PoliceV2.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/PoliceV2.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterSpecialForceCoatBlue
+  name: blue coat
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/CoatBlue.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/CoatBlue.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterSpecialForceCoatDark
+  name: dark coat
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/CoatDark.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/CoatDark.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterSpecialForceJacketNoRem
+  name: jacket
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/JacketNoRem.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/JacketNoRem.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterSpecialForceJacketRem
+  name: jacket
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/JacketRem.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/JacketRem.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterSpecialForceSpecialCoat
+  name: special coat
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/SpecialCoat.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/SpecialCoat.rsi
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorElysium
+  name: vest
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BasicArmor.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BasicArmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.6
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.75
+        Caustic: 0.85
+        Stamina: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.80

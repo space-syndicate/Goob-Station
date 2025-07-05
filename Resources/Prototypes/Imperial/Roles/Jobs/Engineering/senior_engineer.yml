@@ -10,6 +10,7 @@
   startingGear: SeniorEngineerGear
   icon: "JobIconSeniorEngineer"
   supervisors: job-supervisors-ce
+  canBeAntag: false
   access:
   - Maintenance
   - Engineering
@@ -27,6 +28,9 @@
   - skillMaintenance
   - skillMediumConstruction
   - skillHacking
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SeniorEngineerGear

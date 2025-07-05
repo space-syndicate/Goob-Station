@@ -1,0 +1,14 @@
+- type: entity
+  name: H.M. rubber stamp
+  parent: RubberStampMime
+  id: RubberStampHM
+  description: Horizontal Municipality's rubber stamp.
+  suffix: Pirate
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-hm
+      stampedColor: "#964b00"
+      stampState: "paper_stamp-hm"
+    - type: Sprite
+      sprite: Imperial/PiratesNewHorizon/bureaucracy.rsi
+      state: stamp-hm
