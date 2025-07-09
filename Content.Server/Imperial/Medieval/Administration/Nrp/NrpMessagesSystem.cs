@@ -60,6 +60,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     public void RemoveMessage(NrpMessage message)
     {
         _unsolvedMessages.Remove(message);
+        foreach (var eui in _activeEuis)
+            eui.SendRemoveMessage(message);
     }
 
     private void Bwoink(ICommonSession player, NetUserId sender, string message)

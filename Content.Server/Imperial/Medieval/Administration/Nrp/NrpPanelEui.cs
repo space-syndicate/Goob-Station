@@ -49,6 +49,11 @@ public sealed class NrpPanelEui : BaseEui
         SendMessage(new NewNrpMessageMsg(message));
     }
 
+    public void SendRemoveMessage(NrpMessage message)
+    {
+        SendMessage(new RemoveNrpMessageMsg(message));
+    }
+
     public override async void HandleMessage(EuiMessageBase msg)
     {
         base.HandleMessage(msg);
@@ -74,7 +79,6 @@ public sealed class NrpPanelEui : BaseEui
                 }
                 _nrpSystem.RemoveMessage(resolve.Message);
                 _nrpSystem.AddResolveToStats(Player.Name);
-                SendMessage(new RemoveNrpMessageMsg(resolve.Message));
                 break;
             case NrpStatsRequest:
                 var stats = _nrpSystem.GetStats();
