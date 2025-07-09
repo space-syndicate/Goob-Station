@@ -91,7 +91,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             banMinutes,
             NoteSeverity.Minor,
             text
-            );
+        );
     }
 
     public void OnViolation(NrpMessage message, int violationCount, NetUserId senderId)
@@ -161,6 +161,11 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     public async Task AddPlayerNrpViolation(NetUserId player)
     {
         await _db.AddNrpViolation(player);
+    }
+
+    public async Task RemovePlayerNrpViolation(NetUserId player)
+    {
+        await _db.RemoveNrpViolation(player);
     }
 
     private void OnMapInit(RoundStartAttemptEvent ev)

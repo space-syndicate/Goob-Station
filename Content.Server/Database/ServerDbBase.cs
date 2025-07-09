@@ -587,6 +587,23 @@ namespace Content.Server.Database
             await db.DbContext.NrpViolations.AddAsync(violation, cancel);
             await db.DbContext.SaveChangesAsync(cancel);
         }
+        public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var violations = await db.DbContext.NrpViolations
+                .Where(v => v.UserId == player)
+                .OrderBy(v => v.ViolationTime)
+                .ToListAsync(cancel);
+
+            if (violations.Count <= 0)
+                return;
+
+            var violation = violations.Last();
+
+            db.DbContext.NrpViolations.Remove(violation);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
         #endregion
 
         #region Playtime

@@ -170,6 +170,7 @@ namespace Content.Server.Database
 
         Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel = default);
         Task AddNrpViolation(Guid player, CancellationToken cancel = default);
+        Task RemoveNrpViolation(Guid player, CancellationToken cancel = default);
 
         #endregion
 
@@ -629,6 +630,11 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.AddNrpViolation(player, cancel));
+        }
+        public Task RemoveNrpViolation(Guid player, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveNrpViolation(player, cancel));
         }
         #endregion
 
