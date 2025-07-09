@@ -13,9 +13,13 @@ using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
+using Content.Server.MedievalPasport.Components;
+using Content.Server.Mind;
 using Content.Shared.Administration;
 using Content.Shared.Database;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.Player;
+using Content.Shared.IdentityManagement;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -27,6 +31,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
+    [Dependency] private readonly MindSystem _minds = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
 
 
 
@@ -64,17 +70,18 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             eui.SendRemoveMessage(message);
     }
 
-    private void Bwoink(ICommonSession player, NetUserId sender, string message)
+    private void Bwoink(ICommonSession player, NetUserId sender, string text)
     {
         var bwoinkMessage = new SharedBwoinkSystem.BwoinkTextMessage(
             player.UserId,
             sender,
-            Loc.GetString("nrp-panel-ahelp-message", ("message", message)));
+            text
+            );
 
         RaiseNetworkEvent(bwoinkMessage, player.Channel);
     }
 
-    private void Ban(NetUserId playerId, string playerName, NetUserId sender, string message, uint banMinutes)
+    private void Ban(NetUserId playerId, string playerName, NetUserId sender, string text, uint banMinutes)
     {
         _banManager.CreateServerBan(playerId,
             playerName,
@@ -83,24 +90,51 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             null,
             banMinutes,
             NoteSeverity.Minor,
-            Loc.GetString(Loc.GetString("nrp-panel-ban-message", ("message", message))));
+            text
+            );
     }
 
-    public void OnViolation(NrpMessage message, int violationCount, NetUserId sender)
+    public void OnViolation(NrpMessage message, int violationCount, NetUserId senderId)
     {
-        var playerId = message.PlayerId;
-        var playerName = message.PlayerName;
+        var targetId = message.PlayerId;
+        var targetName = message.PlayerName;
 
+        var adminName = "неизвестно";
+        if (_playerManager.TryGetSessionById(senderId, out var senderSession))
+            adminName = senderSession.Name;
+
+        var bwoinkText = Loc.GetString("nrp-panel-ahelp-message", ("message", message.Message), ("adminName", adminName));
+        var banText = Loc.GetString("nrp-panel-ban-message",
+            ("message", message.Message),
+            ("adminName", adminName));
+
+        _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, banText);
+    }
+
+    public void OnViolation(NetUserId targetId, string targetName, string reason, int violationCount, NetUserId senderId)
+    {
+        var adminName = "неизвестно";
+        if (_playerManager.TryGetSessionById(senderId, out var senderSession))
+            adminName = senderSession.Name;
+
+        var bwoinkText = Loc.GetString("nrp-ahelp-message", ("reason", reason), ("adminName", adminName));
+        var banText = Loc.GetString("nrp-ban-message", ("reason", reason), ("adminName", adminName));
+
+        _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, banText);
+    }
+
+    private void _onViolation(int violationCount, NetUserId targetId, NetUserId senderId, string targetName, string bwoinkText, string banText)
+    {
         if (violationCount == 1)
         {
-            if (_playerManager.TryGetSessionById(playerId, out var session))
-                Bwoink(session, sender, message.Message);
+            if (_playerManager.TryGetSessionById(targetId, out var session))
+                Bwoink(session, senderId, bwoinkText);
         }
         else
         {
             var banHours = (uint)(Math.Pow(2, 2 * (violationCount - 2)));
             var banMinutes = banHours * 60;
-            Ban(playerId, playerName, sender, message.Message, banMinutes);
+            Ban(targetId, targetName, senderId, banText, banMinutes);
         }
     }
 
@@ -220,6 +254,9 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         if (!_playerManager.TryGetSessionByEntity(ev.Source, out var session))
             return;
 
+        if (!session.AttachedEntity.HasValue)
+            return;
+
         var message = ev.Message;
         var matches = GetBannedWords(message, _bannedWords);
         if (matches.Count == 0)
@@ -228,8 +265,13 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         var formattedMessage = WrapBannedWordsInTag(message, matches);
 
         var senderNetEntity = GetNetEntity(session.AttachedEntity);
+        string? playerJob = null;
+        if (TryComp<MedievalPasportPersonComponent>(session.AttachedEntity.Value, out var passport))
+            playerJob = passport.PersonJob;
 
-        var nrpMessage = new NrpMessage(formattedMessage, session.Name, session.UserId, senderNetEntity);
+        var name = Identity.Name(session.AttachedEntity.Value, EntityManager);
+
+        var nrpMessage = new NrpMessage(formattedMessage, session.Name, session.UserId, senderNetEntity, name, playerJob);
         _unsolvedMessages.Add(nrpMessage);
 
         foreach (var eui in _activeEuis)

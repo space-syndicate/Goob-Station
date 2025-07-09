@@ -1,4 +1,5 @@
-﻿using Content.Client.Eui;
+﻿using System.Security.Principal;
+using Content.Client.Eui;
 using Content.Shared.Eui;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 
@@ -43,7 +44,7 @@ public sealed class NrpPanelEui : BaseEui
 
     private void CreateMessageControl(NrpMessage message)
     {
-        var messageControl = new NrpMessageControl(message.PlayerName, message.PlayerId, message.Message);
+        var messageControl = new NrpMessageControl(message.PlayerName, message.EntityName, message.JobName, message.PlayerId, message.Message);
         messageControl.ResolveRpButton.OnPressed += _ => OnNrpResolve(message, false);
         messageControl.ResolveNrpButton.OnPressed += _ => OpenConfirmDialog(message);
         _messageControls.Add(message, messageControl);

@@ -7,7 +7,7 @@ using Content.Server.Imperial.Medieval.Administration.Nrp;
 
 namespace Content.Server.Imperial.Medieval.Administration.Commands;
 
-[AdminCommand(AdminFlags.Logs)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed class OpenNrpPanelCommand : IConsoleCommand
 {
     public string Command => "nrppanel";

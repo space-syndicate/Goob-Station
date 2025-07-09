@@ -35,12 +35,16 @@ public sealed class NrpMessage : EuiMessageBase
     public string PlayerName { get; }
     public NetUserId PlayerId { get; }
     public NetEntity? PlayerAttachedEntity { get; }
-    public NrpMessage(string message, string playerName, NetUserId playerId, NetEntity? playerAttachedEntity)
+    public string EntityName { get; }
+    public string? JobName { get; }
+    public NrpMessage(string message, string playerName, NetUserId playerId, NetEntity? playerAttachedEntity, string entityName, string? jobName)
     {
         Message = message;
         PlayerId = playerId;
         PlayerName = playerName;
         PlayerAttachedEntity = playerAttachedEntity;
+        EntityName = entityName;
+        JobName = jobName;
     }
 
     public override bool Equals(object? obj) => Equals(obj as NrpMessage);
