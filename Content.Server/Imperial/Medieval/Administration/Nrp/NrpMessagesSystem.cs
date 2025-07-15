@@ -70,6 +70,11 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             eui.SendRemoveMessage(message);
     }
 
+    public bool ContainsMessage(NrpMessage message)
+    {
+        return _unsolvedMessages.Contains(message);
+    }
+
     private void Bwoink(ICommonSession player, NetUserId sender, string text)
     {
         var bwoinkMessage = new SharedBwoinkSystem.BwoinkTextMessage(
