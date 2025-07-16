@@ -104,7 +104,7 @@ public sealed class NrpPanelEui : BaseEui
 
     private void CreateMessageControl(NrpMessage message)
     {
-        var messageControl = new NrpMessageControl(message.PlayerName, message.EntityName, message.JobName, message.PlayerId, message.Message);
+        var messageControl = new NrpMessageControl(message);
         messageControl.ResolveRpButton.OnPressed += _ => OnNrpResolve(message, false);
         messageControl.ResolveNrpButton.OnPressed += _ => OpenConfirmDialog(message);
         _messageControls.Add(message, messageControl);
