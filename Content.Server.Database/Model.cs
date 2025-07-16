@@ -47,6 +47,7 @@ namespace Content.Server.Database
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
         public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
+        public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -76,6 +77,9 @@ namespace Content.Server.Database
                 .IsUnique();
 
             modelBuilder.Entity<NrpViolation>()
+                .HasIndex(p => p.UserId);
+
+            modelBuilder.Entity<NrpResolves>()
                 .HasIndex(p => p.UserId);
             // imperial medieval end
 
@@ -504,6 +508,13 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public Guid UserId { get; set; }
         public DateTime ViolationTime { get; set; }
+    }
+    [Table("nrp_resolves")]
+    public class NrpResolves
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public int Resolves { get; set; }
     }
     #endregion
 

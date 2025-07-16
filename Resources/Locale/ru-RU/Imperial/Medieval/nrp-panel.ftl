@@ -12,7 +12,7 @@ nrp-panel-dialog-confirm = Да
 nrp-panel-dialog-cancel = Нет
 
 nrp-panel-stats-title = Статистика
-nrp-panel-stats-entry = {$administrator}: {$resolves}
+nrp-panel-stats-entry = {$administrator}: {$resolves} [color=gray]| {$roundResolves}[/color]
 
 nrp-panel-ahelp-message = Вы получили предупреждение за употребление НРП речи в фразе "{$message}". Дальнейшие нарушения повлекут за собой блокировку. Администратор, выдавший предупреждение: {$adminName}
 nrp-panel-curse-message = Вы получите блокировку за употребление НРП речи в фразе "{$message}" через {$minutes} мин. Дальнейшие нарушения повлекут за собой увеличение сроки блокировки. Администратор, выдавший блокировку: {$adminName}

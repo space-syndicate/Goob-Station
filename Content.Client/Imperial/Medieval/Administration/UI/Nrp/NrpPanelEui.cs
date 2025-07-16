@@ -134,7 +134,8 @@ public sealed class NrpPanelEui : BaseEui
                 break;
             case NrpStatsResponse response:
                 var stats = response.Entries;
-                _statsWindow.PopulateEntries(stats);
+                var roundStats = response.RoundEntries;
+                _statsWindow.PopulateEntries(stats, roundStats);
                 _statsWindow.OpenCentered();
                 break;
         }

@@ -102,8 +102,10 @@ public sealed class NrpStatsRequest : EuiMessageBase;
 public sealed class NrpStatsResponse : EuiMessageBase
 {
     public Dictionary<string, int> Entries { get; }
-    public NrpStatsResponse(Dictionary<string, int> entries)
+    public Dictionary<string, int> RoundEntries { get; }
+    public NrpStatsResponse(Dictionary<string, int> entries, Dictionary<string, int> roundEntries)
     {
         Entries = entries;
+        RoundEntries = roundEntries;
     }
 }

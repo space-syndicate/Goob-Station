@@ -13,6 +13,7 @@ using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
+using Content.Server.Administration;
 using Content.Server.MedievalPasport.Components;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -33,6 +34,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly NrpCurseSystem _curse = default!;
+    [Dependency] private readonly IPlayerLocator _locator = default!;
 
 
 
@@ -45,13 +47,33 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     private readonly List<NrpPanelEui> _activeEuis = new();
     private readonly Dictionary<string, int> _stats = new();
 
-    public void AddResolveToStats(string administrator)
+    public async void AddResolveToStats(string administrator, NetUserId id)
     {
         _stats.TryAdd(administrator, 0);
         _stats[administrator]++;
+        await _db.AddNrpResolve(id);
     }
 
-    public Dictionary<string, int> GetStats() => _stats;
+    public Dictionary<string, int> GetRoundStats() => _stats;
+
+    public async Task<Dictionary<string, int>> GetDbStats()
+    {
+        var dict = new Dictionary<string, int>();
+
+        var resolves =  await _db.GetNrpResolves();
+
+        foreach (var resolve in resolves)
+        {
+            var located = await _locator.LookupIdAsync((NetUserId)resolve.UserId);
+
+            if (located == null)
+                continue;
+
+            dict[located.Username] = resolve.Resolves;
+        }
+
+        return dict;
+    }
 
     public void RegisterEui(NrpPanelEui eui)
     {
@@ -203,6 +225,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     {
         if (ev.Cancelled)
             return;
+
+        _stats.Clear();
 
         var notifPrototypes = _prototype.EnumeratePrototypes<MessageNotifPrototype>().ToList();
         foreach (var i in notifPrototypes)

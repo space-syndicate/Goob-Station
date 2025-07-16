@@ -604,6 +604,67 @@ namespace Content.Server.Database
             db.DbContext.NrpViolations.Remove(violation);
             await db.DbContext.SaveChangesAsync(cancel);
         }
+
+        public async Task<int> GetNrpResolves(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel) ?? new NrpResolves
+            {
+                UserId = player,
+                Resolves = 0,
+            };
+            return current.Resolves;
+        }
+
+        public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .ToListAsync(cancel);
+            return current;
+        }
+
+        public async Task AddNrpResolve(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel);
+
+            if (current == null)
+            {
+                await db.DbContext.AddAsync(new NrpResolves
+                {
+                    UserId = player,
+                    Resolves = 1
+                },
+                    cancel);
+            }
+            else current.Resolves++;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemoveNrpResolve(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel);
+
+            if (current == null)
+            {
+                await db.DbContext.AddAsync(new NrpResolves
+                    {
+                        UserId = player,
+                        Resolves = 0
+                    },
+                    cancel);
+            }
+            else current.Resolves--;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
         #endregion
 
         #region Playtime
