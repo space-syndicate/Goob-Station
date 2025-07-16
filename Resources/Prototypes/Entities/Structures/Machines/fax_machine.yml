@@ -180,7 +180,6 @@
   - type: FaxMachine
     name: "Central Command"
     notifyAdmins: true
-    receiveAllStationGoals: true # CorvaxGoob-StationGoal
 
 - type: entity
   parent: FaxMachineBase
@@ -209,6 +208,5 @@
     - type: FaxMachine
       name: "Captain's Office"
       receiveNukeCodes: true
-      receiveStationGoal: true # CorvaxGoob-StationGoal
     - type: StealTarget
       stealGroup: FaxMachineCaptain
