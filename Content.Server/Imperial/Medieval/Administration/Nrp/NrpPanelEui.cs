@@ -84,7 +84,7 @@ public sealed class NrpPanelEui : BaseEui
                     _nrpSystem.OnViolation(resolve.Message, violations, Player.UserId);
                 }
                 _nrpSystem.RemoveMessage(resolve.Message);
-                _nrpSystem.AddResolveToStats(Player.Name, Player.UserId);
+                _nrpSystem.AddResolveToStats(Player.Name, !isNrp, Player.UserId);
                 break;
             case NrpStatsRequest:
                 var roundStats = _nrpSystem.GetRoundStats();

@@ -514,7 +514,8 @@ namespace Content.Server.Database
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }
-        public int Resolves { get; set; }
+        public int Rp { get; set; }
+        public int Nrp { get; set; }
     }
     #endregion
 

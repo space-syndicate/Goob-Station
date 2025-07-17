@@ -101,9 +101,9 @@ public sealed class NrpStatsRequest : EuiMessageBase;
 [Serializable, NetSerializable]
 public sealed class NrpStatsResponse : EuiMessageBase
 {
-    public Dictionary<string, int> Entries { get; }
-    public Dictionary<string, int> RoundEntries { get; }
-    public NrpStatsResponse(Dictionary<string, int> entries, Dictionary<string, int> roundEntries)
+    public Dictionary<string, (int, int)> Entries { get; }
+    public Dictionary<string, (int, int)> RoundEntries { get; }
+    public NrpStatsResponse(Dictionary<string, (int, int)> entries, Dictionary<string, (int, int)> roundEntries)
     {
         Entries = entries;
         RoundEntries = roundEntries;

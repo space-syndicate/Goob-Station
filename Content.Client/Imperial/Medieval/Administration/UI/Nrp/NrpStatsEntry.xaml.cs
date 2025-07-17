@@ -8,11 +8,16 @@ namespace Content.Client.Imperial.Medieval.Administration.UI.Nrp;
 [GenerateTypedNameReferences]
 public sealed partial class NrpStatsEntry : Control
 {
-    public NrpStatsEntry(string administrator, int resolves, int roundResolves)
+    public NrpStatsEntry(string administrator, int rp, int nrp)
     {
         RobustXamlLoader.Load(this);
-
-        EntryLabel.SetMarkup(Loc.GetString("nrp-panel-stats-entry", ("administrator", administrator), ("resolves", resolves), ("roundResolves", roundResolves)));
+        var total = rp + nrp;
+        var percent = total > 0 ? ((double)nrp / total * 100) : 0;
+        EntryLabel.SetMarkup(Loc.GetString("nrp-panel-stats-entry",
+            ("administrator", administrator),
+            ("rp", rp),
+            ("nrp", nrp),
+            ("percent", Math.Floor(percent))));
     }
 
 }

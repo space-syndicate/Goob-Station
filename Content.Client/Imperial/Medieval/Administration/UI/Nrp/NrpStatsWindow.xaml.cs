@@ -7,30 +7,18 @@ namespace Content.Client.Imperial.Medieval.Administration.UI.Nrp;
 [GenerateTypedNameReferences]
 public sealed partial class NrpStatsWindow : DefaultWindow
 {
-    public void PopulateEntries(Dictionary<string, int> dbEntries, Dictionary<string, int> roundEntries)
+    public void PopulateEntries(Dictionary<string, (int, int)> dbEntries, Dictionary<string, (int, int)> roundEntries)
     {
-        var entries = new Dictionary<string, (int, int)>();
-
-        var keys = new HashSet<string>(dbEntries.Keys.Concat(roundEntries.Keys));
-        foreach (var key in keys)
-        {
-            dbEntries.TryGetValue(key, out var val1);
-            roundEntries.TryGetValue(key, out var val2);
-            entries[key] = (val1, val2);
-        }
-
-        Entries.DisposeAllChildren();
-        var sortedEntries = entries.OrderByDescending(d => d.Value.Item1);
-        foreach (var (administrator, resolves) in sortedEntries)
-        {
-            var entryControl = new NrpStatsEntry(administrator, resolves.Item1, resolves.Item2);
-            Entries.AddChild(entryControl);
-        }
+        GlobalStatsTab.PopulateEntries(dbEntries);
+        RoundStatsTab.PopulateEntries(roundEntries);
     }
 
     public NrpStatsWindow()
     {
         RobustXamlLoader.Load(this);
+
+        Tabs.SetTabTitle(0, Loc.GetString("nrp-panel-stats-tab-db"));
+        Tabs.SetTabTitle(1, Loc.GetString("nrp-panel-stats-tab-round"));
     }
 
 }

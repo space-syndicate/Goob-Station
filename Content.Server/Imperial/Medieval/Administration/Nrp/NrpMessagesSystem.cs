@@ -45,20 +45,24 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     private readonly List<NrpMessage> _unsolvedMessages = new();
     private readonly List<NrpPanelEui> _activeEuis = new();
-    private readonly Dictionary<string, int> _stats = new();
+    private readonly Dictionary<string, (int, int)> _stats = new();
 
-    public async void AddResolveToStats(string administrator, NetUserId id)
+    public async void AddResolveToStats(string administrator, bool isRp, NetUserId id)
     {
-        _stats.TryAdd(administrator, 0);
-        _stats[administrator]++;
-        await _db.AddNrpResolve(id);
+        _stats.TryAdd(administrator, (0, 0));
+        var stat = _stats[administrator];
+        if (isRp)
+            _stats[administrator] = (stat.Item1 + 1, stat.Item2);
+        else
+            _stats[administrator] = (stat.Item1, stat.Item2 + 1);
+        await _db.AddNrpResolve(id, isRp);
     }
 
-    public Dictionary<string, int> GetRoundStats() => _stats;
+    public Dictionary<string, (int, int)> GetRoundStats() => _stats;
 
-    public async Task<Dictionary<string, int>> GetDbStats()
+    public async Task<Dictionary<string, (int, int)>> GetDbStats()
     {
-        var dict = new Dictionary<string, int>();
+        var dict = new Dictionary<string, (int, int)>();
 
         var resolves =  await _db.GetNrpResolves();
 
@@ -69,7 +73,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             if (located == null)
                 continue;
 
-            dict[located.Username] = resolve.Resolves;
+            dict[located.Username] = (resolve.Rp, resolve.Nrp);
         }
 
         return dict;

@@ -605,7 +605,7 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync(cancel);
         }
 
-        public async Task<int> GetNrpResolves(Guid player, CancellationToken cancel)
+        public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
@@ -613,9 +613,10 @@ namespace Content.Server.Database
                 .FirstOrDefaultAsync(cancel) ?? new NrpResolves
             {
                 UserId = player,
-                Resolves = 0,
+                Rp = 0,
+                Nrp = 0,
             };
-            return current.Resolves;
+            return (current.Rp, current.Nrp);
         }
 
         public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
@@ -626,7 +627,7 @@ namespace Content.Server.Database
             return current;
         }
 
-        public async Task AddNrpResolve(Guid player, CancellationToken cancel)
+        public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
@@ -638,15 +639,20 @@ namespace Content.Server.Database
                 await db.DbContext.AddAsync(new NrpResolves
                 {
                     UserId = player,
-                    Resolves = 1
+                    Rp = isRp ? 1 : 0,
+                    Nrp = isRp ? 0 : 1,
                 },
                     cancel);
             }
-            else current.Resolves++;
+            else
+            {
+                if(isRp) current.Rp++;
+                else current.Nrp++;
+            }
             await db.DbContext.SaveChangesAsync(cancel);
         }
 
-        public async Task RemoveNrpResolve(Guid player, CancellationToken cancel)
+        public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
@@ -658,11 +664,16 @@ namespace Content.Server.Database
                 await db.DbContext.AddAsync(new NrpResolves
                     {
                         UserId = player,
-                        Resolves = 0
+                        Rp = 0,
+                        Nrp = 0,
                     },
                     cancel);
             }
-            else current.Resolves--;
+            else
+            {
+                if(isRp) current.Rp--;
+                else current.Nrp--;
+            }
             await db.DbContext.SaveChangesAsync(cancel);
         }
         #endregion
