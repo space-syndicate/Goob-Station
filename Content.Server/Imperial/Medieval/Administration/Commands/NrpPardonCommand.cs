@@ -5,6 +5,7 @@ using Robust.Shared.Console;
 using Content.Server.Administration;
 using Content.Server.Imperial.Medieval.Administration.Nrp;
 using Content.Shared.CCVar;
+using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Imperial.Medieval.Administration.Commands;
@@ -23,7 +24,7 @@ public sealed class NrpPardonCommand : IConsoleCommand
 
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_cfg.GetCVar(CCVars.NrpPanelEnabled))
+        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
         {
             shell.WriteLine("Command is disabled on server");
             return;

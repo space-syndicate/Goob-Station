@@ -9,6 +9,7 @@ using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 
@@ -28,7 +29,7 @@ public sealed class NrpWarnCommand : IConsoleCommand
 
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_cfg.GetCVar(CCVars.NrpPanelEnabled))
+        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
         {
             shell.WriteLine("Command is disabled on server");
             return;
@@ -69,5 +70,6 @@ public sealed class NrpWarnCommand : IConsoleCommand
         await _nrpSystem.AddPlayerNrpViolation(targetUid);
         var violations = await _nrpSystem.GetPlayerNrpViolations(targetUid, 3);
         _nrpSystem.OnViolation(targetUid, targetName, reason, violations, player.UserId);
+        _nrpSystem.AddResolveToStats(player.Name, true, located.UserId);
     }
 }

@@ -15,6 +15,7 @@ using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 
@@ -32,7 +33,7 @@ public sealed class OpenNrpPanelCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_cfg.GetCVar(CCVars.NrpPanelEnabled))
+        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
         {
             shell.WriteLine("Command is disabled on server");
             return;
