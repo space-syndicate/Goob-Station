@@ -17,8 +17,8 @@ public sealed partial class NrpStatsWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
 
-        Tabs.SetTabTitle(0, Loc.GetString("nrp-panel-stats-tab-db"));
-        Tabs.SetTabTitle(1, Loc.GetString("nrp-panel-stats-tab-round"));
+        Tabs.SetTabTitle(0, Loc.GetString("nrp-panel-stats-tab-round"));
+        Tabs.SetTabTitle(1, Loc.GetString("nrp-panel-stats-tab-db"));
     }
 
 }
