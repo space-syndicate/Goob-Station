@@ -1,0 +1,139 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBeerzavr
+  name: beerzavr clothing
+  description: For true drinkers of all ages.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/beerzavr.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/beerzavr.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitWomenOriental
+  name: oriental robe
+  description: Limited edition clothing for women. I wonder where it came from...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/womenoriental.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/womenoriental.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMenOriental
+  name: oriental robe
+  description: Limited edition clothing for men. I wonder where it came from...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/menoriental.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/menoriental.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAltWomenOriental
+  name: oriental robe
+  description: Limited edition clothing for women. I wonder where it came from...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/altwomenoriental.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/altwomenoriental.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAltMenOriental
+  name: oriental robe
+  description: Limited edition clothing for men. I wonder where it came from...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/altmenoriental.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/altmenoriental.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHairPin
+  name: needle hairpin
+  description: Elegant and especially sharp at the end.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/hairpin.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/hairpin.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    angle: 0
+    animation: WeaponArcThrust
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 5
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 10
+  - type: ThrowingAngle
+    angle: 225
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitJaneDoe
+  name: rat thiren clothing
+  description: Oh, it's you, Manager!
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/janedoe.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/janedoe.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHairJaneDoe
+  name: rat thiren wig
+  description: I just wanted to say sweet dreams.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/janedoe.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/janedoe.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsJaneDoe
+  name: rat thiren boots
+  description: What a pain. I just can't crack this clue...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Shoes/janedoe.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Shoes/janedoe.rsi
+  - type: Matchbox
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatJaneDoe
+  name: rat thiren jacket
+  description: I didn't expect to see you at this hour.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/janedoe.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/janedoe.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckJaneDoeTail
+  name: rat thiren tail
+  description: I didn't have anything special in mind, but actually...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Neck/janedoe.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Neck/janedoe.rsi
