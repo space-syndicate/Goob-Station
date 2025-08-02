@@ -11,7 +11,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 750
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -29,12 +29,8 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: BallisticAmmoProvider
-    proto: CartridgePistol
-    capacity: 100
-  - type: Construction
-    deconstructionTarget: null
-    graph: WeaponTurretSyndicateDisposable
-    node: disposableTurret
+    proto: CartridgeCaselessRifle
+    capacity: 350
   - type: Repairable
     qualityNeeded: "Anchoring"
     doAfterDelay: 3

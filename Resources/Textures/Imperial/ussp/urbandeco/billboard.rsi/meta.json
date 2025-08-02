@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by @totally_not_don_kot",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bigboard"
+    },
+    {
+      "name": "billboard"
+    },
+    {
+      "name": "billboard1"
+    },
+    {
+      "name": "billboard2"
+    },
+    {
+      "name": "billboard3"
+    },
+    {
+      "name": "billboard4"
+    },
+    {
+      "name": "billboard5"
+    }
+  ]
+}

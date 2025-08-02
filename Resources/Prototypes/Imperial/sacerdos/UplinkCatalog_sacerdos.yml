@@ -356,6 +356,14 @@
   - sacerdosWeapon
 
 - type: listing
+  id: SacerdosUplinkWeaponRifleEstoc
+  productEntity: WeaponRifleEstoc
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - sacerdosWeapon
+
+- type: listing
   id: SacerdosUplinkCSWeaponSCAR-L
   productEntity: CSWeaponSCAR-L
   cost:
@@ -607,6 +615,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterTricordrazine
+  description: Pill-Canister-Tricordrazine-des
   productEntity: PillCanisterTricordrazine
   cost:
     Telecrystal_sacerdos: 40
@@ -615,6 +624,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterHyronalin
+  description: Pill-Canister-Hyronalin-des
   productEntity: PillCanisterHyronalin
   cost:
     Telecrystal_sacerdos: 45
@@ -623,6 +633,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterDylovene
+  description: Pill-Canister-Dylovene-des
   productEntity: PillCanisterDylovene
   cost:
     Telecrystal_sacerdos: 75
@@ -631,6 +642,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterDexalin
+  description: Pill-Canister-Dexalin-des
   productEntity: PillCanisterDexalin
   cost:
     Telecrystal_sacerdos: 75
@@ -834,6 +846,14 @@
   productEntity: Bloodpack
   cost:
     Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosMaterialBiomass
+  productEntity: MaterialBiomass
+  cost:
+    Telecrystal_sacerdos: 250
   categories:
   - sacerdosMed
 

@@ -67,8 +67,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8
-        Radiation: 7
+        Piercing: 6
     ignoreResistances: true
 
 #new minigun

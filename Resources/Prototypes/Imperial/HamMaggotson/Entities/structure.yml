@@ -1,0 +1,122 @@
+- type: entity
+  id: NecropolisTendrilHamMaggotson
+  parent: BaseStructure
+  name: necropolis tendril
+  suffix: XxRaay, Lavasec
+  description: A vile tendril of corruption, originating deep underground. Terrible monsters are pouring out of it.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/HamMaggotson/tendril.rsi
+    state: icon
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobGoliath:
+            min: 3
+            max: 3
+          MobGlockroach:
+            min: 0
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobWatcherMagmawing:
+            min: 3
+            max: 3
+          MobGlockroach:
+            min: 0
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+          MobWatcherIcewing:
+            min: 3
+            max: 3
+          MobWatcherPride:
+            min: 0
+            max: 1
+          MobGlockroach:
+            min: 0
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobWatcherIcewing:
+            min: 3
+            max: 3
+          MobWatcherMagmawing:
+            min: 3
+            max: 3
+          MobWatcherPride:
+            min: 0
+            max: 1
+          MobGlockroach:
+            min: 0
+            max: 2
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobWatcherIcewing:
+            min: 3
+            max: 3
+          MobWatcherMagmawing:
+            min: 3
+            max: 3
+          MobWatcherPride:
+            min: 1
+            max: 1
+          MobGlockroach:
+            min: 0
+            max: 5
+          MobGoliath: 
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

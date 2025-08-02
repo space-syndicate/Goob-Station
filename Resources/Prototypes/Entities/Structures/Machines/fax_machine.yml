@@ -116,5 +116,5 @@
     - type: FaxMachine
       name: "Captain's Office"
       receiveNukeCodes: true
-    - type: StealTarget
-      stealGroup: FaxMachineCaptain
+    # - type: StealTarget # Закомментировано, т.к данного факса на картах нет // Imperial Space
+    #   stealGroup: FaxMachineCaptain

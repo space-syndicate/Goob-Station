@@ -1,0 +1,64 @@
+- type: entity
+  parent: HighSecDoor
+  id: HighSecSCPLocked
+  name: One
+  suffix: seriozha, Недра, Locked
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/airlocks/one.rsi
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 200
+    openSound:
+      path: /Audio/Imperial/Seriozha/SCP/oneopen.ogg
+    closeSound:
+      path: /Audio/Imperial/Seriozha/SCP/oneclose.ogg
+    denySound:
+      path: /Audio/Imperial/Seriozha/SCP/oneotkaz.ogg
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPOne ]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPOne
+  name: For One
+  suffix: seriozha, Недра, DONOTSPAWN
+  components:
+  - type: AccessReader
+    access: [["SCPAccesOne"]]
+
+- type: entity
+  parent: DoorRemoteDefault
+  id: DoorRemoteSCPAll
+  name: super door remote
+  suffix: seriozha, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/airlocks/doorremoreall.rsi
+    state: icon
+  - type: Access
+    tags:
+    - SCPAccesOne
+    - SCPAccesTwo
+    - SCPAccesThree
+    - SCPAccesFour
+    - SCPAccesFive
+    groups:
+    - AllAccess
+
+- type: entity
+  parent: DoorRemoteDefault
+  id: DoorRemoteSCP
+  name: super door remote
+  suffix: seriozha, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/airlocks/doorremote.rsi
+    state: icon
+  - type: Access
+    tags:
+    - SCPAccesOne
+    - SCPAccesTwo
+    - SCPAccesThree

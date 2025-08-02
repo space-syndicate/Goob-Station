@@ -1,0 +1,12 @@
+advertisement-gibb-1 = Восхитительно!
+advertisement-gibb-2 = Одобрено как минимум одним врачом!
+advertisement-gibb-3 = Более 1 миллиона проданных баночек!
+advertisement-gibb-4 = Доктор ГиБб: что может пойти не так?
+advertisement-gibb-5 = Доктор ГиБб - вкусовой взрыв!
+advertisement-gibb-6 = Поверьте мне, я доктор!
+advertisement-gibb-7 = Мощнейший сахарный заряд галактики!
+advertisement-gibb-8 = Космическая кола?! Только Доктор ГиБб!
+thankyou-gibb-1 = Доктор теперь в вашем желудке!
+thankyou-gibb-2 = Диагноз: вкуснятина!
+thankyou-gibb-3 = Наслаждайтесь 42 вкусами!
+thankyou-gibb-4 = Погрузитесь в сладкое сиропное блаженство!

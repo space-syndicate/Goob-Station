@@ -1,0 +1,427 @@
+- type: entity
+  parent: BaseStructure
+  id: GaqutPlatform
+  suffix: Gaqut, Decor
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform
+  - type: Icon
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railing
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: BaseStructure
+  id: GaqutPlatformCorner
+  suffix: Gaqut, Decor
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform_corner
+  - type: Icon
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform_corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railingCorner
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: BaseStructure
+  id: GaqutPlatformCornerSmall
+  suffix: Gaqut, Decor
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform_deco
+  - type: Icon
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform_deco
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railingCornerSmall
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: BaseStructure
+  id: GaqutPlatformRound
+  suffix: Gaqut, Decor
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform_round
+  - type: Icon
+    sprite: Imperial/Gaqut/platform.rsi
+    state: platform_round
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,-0.25,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix3:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railingRound
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretGaqut
+  name: beret
+  description: An USSP beret. It has some protection.
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: BlackShieldBeretGaqut
+  name: trivium beret
+  suffix: Gaqut, SideTrivium
+  description: A Trivium beret. It has some protection.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSBeret.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/BSBeret.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  id: BannerSideTrivium
+  parent: BannerBase
+  name: trivium banner
+  description: A banner displaying the Trivium corp. logo. It looks shabby.
+  suffix: Gaqut, Void, SideTrivium, Decor
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/banners.rsi
+    state: banner-trivium
+
+- type: entity
+  id: BannerSideTriviumSound1
+  parent: BannerSideTrivium
+  name: trivium banner
+  description: Some modern bannern with the Trivium corp. logo on it. It has some speakers with Trivium propaganda
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Gaqut/propaganda-trivium-1.ogg
+      loop: True
+
+- type: entity
+  id: BannerSideTriviumSound2
+  parent: BannerSideTrivium
+  name: trivium banner
+  description: Some modern bannern with the Trivium corp. logo on it. It has some speakers with Trivium propaganda
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Gaqut/propaganda-trivium-2.ogg
+      loop: True
+
+- type: entity
+  id: BannerSideTriviumSound3
+  parent: BannerSideTrivium
+  name: trivium banner
+  description: Some modern bannern with the Trivium corp. logo on it. It has some speakers with Trivium propaganda
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Gaqut/propaganda-trivium-2.ogg
+      loop: True
+
+- type: entity
+  id: BannerSideUSSP
+  parent: BannerBase
+  name: ussp banner
+  description: A banner displaying the USSP logo. It looks shabby.
+  suffix: Gaqut, Void, SideUSSP, Decor
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/banners.rsi
+    state: banner-ussp
+
+- type: entity
+  id: BannerSideUSSPSound1
+  parent: BannerSideUSSP
+  name: ussp banner
+  description: Some modern bannern with the USSP logo on it. It has some speakers with USSP propaganda
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Gaqut/propaganda-ussp-1.ogg
+      loop: True
+
+- type: entity
+  id: BannerSideUSSPSound2
+  parent: BannerSideUSSP
+  name: ussp banner
+  description: Some modern bannern with the USSP logo on it. It has some speakers with USSP propaganda
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Gaqut/propaganda-ussp-2.ogg
+      loop: True
+
+- type: entity
+  id: BannerSideUSSPSound3
+  parent: BannerSideUSSP
+  name: ussp banner
+  description: Some modern bannern with the USSP logo on it. It has some speakers with USSP propaganda
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Gaqut/propaganda-ussp-2.ogg
+      loop: True
+
+- type: entity
+  id: GaqutBrokenWall
+  parent: BaseStructure
+  name: Broken reinforced wall
+  suffix: Gaqut, Decor
+  description: Destroyed reinforced wall. Maybe it was destroyed during the war?
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Gaqut/wall.rsi
+    state: icon
+    #drawdepth: Mobs
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 15
+        layer:
+        - WallLayer
+  - type: Climbable

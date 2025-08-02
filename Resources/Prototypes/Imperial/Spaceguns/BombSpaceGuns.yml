@@ -1,0 +1,17 @@
+- type: entity
+  parent: PresentRandom
+  id: BombSpaceGunsBeacon
+  suffix: SpaceGuns, Phantom4502
+  name: mystery spacemen minifigure box
+  description: A box containing a mystery minifigure. The side of the box depicts a few blacked-out 'rare' figures, including one with a large, non-humanoid shilouette.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/station_beacon.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: blink
+  - type: SpawnItemsOnUse
+    items: 
+      - id: SyndicateBomb
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg

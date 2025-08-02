@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: BorgChassisSelectableSacerdos
+  suffix: sacerdos, Phantom4502
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: security
+    - state: security_e
+  - type: Advertise
+    pack: BorglocalizedDatasetsacerdos
+    minimumWait: 30
+    maximumWait: 60
+  - type: Speech
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+
+- type: localizedDataset
+  id: BorglocalizedDatasetsacerdos
+  values:
+    prefix: advertisement-sacerdos-
+    count: 1

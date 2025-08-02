@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by Phantom4502",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mag-2",
+      "directions": 4
+    },
+    {
+      "name": "mag-1",
+      "directions": 4
+    },
+    {
+      "name": "BSA",
+      "directions": 4
+    },
+    {
+      "name": "projectileBSA",
+      "delays": [
+        [
+          0.3, 
+          0.2, 
+          0.2, 
+          0.2, 
+          0.2, 
+          0.2, 
+          0.2, 
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "BulletGrenadeFragBSA",
+      "delays": 
+      [
+        [
+          0.3, 
+          0.2, 
+          0.2, 
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "frag-spent"
+    }
+  ]
+}

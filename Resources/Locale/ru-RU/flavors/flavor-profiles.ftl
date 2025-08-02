@@ -274,6 +274,7 @@ flavor-complex-ginger-soda = как имбирь
 flavor-complex-false-meat = не совсем похоже на мясо
 flavor-complex-cosmopolitan = сладко и терпко
 flavor-complex-compressed-meat = как спрессованное мясо
+flavor-complex-dog-food = как собачья еда
 flavor-complex-coconut-rum = как ореховый ферментированный сахар
 flavor-complex-cherry = как вишни
 flavor-complex-budget-insuls-drink = как взлом шлюза

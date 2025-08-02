@@ -19,6 +19,10 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "о-о", "chatsan-wide-eyed" }, // cyrillic о
         { "о.о", "chatsan-wide-eyed" }, // cyrillic о
         { "0_о", "chatsan-wide-eyed" }, // cyrillic о
+        { "0_0", "chatsan-wide-eyed" }, // cyrillic о
+        { "О_О", "chatsan-wide-eyed" }, // cyrillic о
+        { "о_о", "chatsan-wide-eyed" }, // cyrillic о
+        { "о_0", "chatsan-wide-eyed" }, // cyrillic о
         { "о/", "chatsan-waves" }, // cyrillic о
         { "0_o", "chatsan-wide-eyed" },
         { "лмао", "chatsan-laughs" },
@@ -42,9 +46,12 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "о/.", "chatsan-waves" }, // cyrillic о
         { "о7", "chatsan-salutes" }, // cyrillic о
         { "0_o.", "chatsan-wide-eyed" },
+        { "лол", "chatsan-laughs" },
         { "лмао.", "chatsan-laughs" },
         { "яхз.", "chatsan-shrugs" },
         { ":0.", "chatsan-surprised" },
+        { ":О.", "chatsan-surprised" }, // cyrillic о
+        { ":о.", "chatsan-surprised" }, // cyrillic о
         { ":р.", "chatsan-stick-out-tongue" }, // cyrillic р
         { "кек.", "chatsan-laughs" },
         { "T_T.", "chatsan-cries" },
@@ -56,7 +63,7 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "!х.", "chatsan-claps" },
         { "!п.", "chatsan-cries" },
         { "!щ.", "chatsan-snaps" },
-        //imperial rus replace end @keeyn
+        //imperial rus replace end @keeyn and @Ser1-1y
         // I could've done this with regex, but felt it wasn't the right idea.
         { ":)", "chatsan-smiles" },
         { ":]", "chatsan-smiles" },

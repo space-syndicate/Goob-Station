@@ -589,7 +589,6 @@
         Caustic: 0.05
         Heat: 0.1
         Radiation: 0.1
-        Stamina: 0.5 ## Stamina resistance
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetModsuitApocryphalSealed
     requiredSlot: outerClothing
@@ -623,6 +622,8 @@
   - type: Tag
     tags:
       - WhitelistChameleon
+  - type: StaminaResistance
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
 
 - type: entity
   parent: ClothingOuterChestplateModsuitSealedBase

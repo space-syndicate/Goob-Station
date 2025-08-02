@@ -469,6 +469,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - HonkmotherFace ## Imperial space honkmother loadout
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -478,6 +479,7 @@
   - ClownSkirt
   - JesterSuit
   - JesterAltSuit
+  - HonkmotherSuit ## Imperial space honkmother loadout
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -501,6 +503,7 @@
   loadouts:
   - ClownShoes
   - JesterShoes
+  - HonkmotherShoes ## Imperial space honkmother loadout
 
 - type: loadoutGroup
   id: SurvivalClown

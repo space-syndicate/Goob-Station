@@ -1,4 +1,6 @@
-ent-CratePirateShotgunAmmo = Ящик ружейных патронов черного рынка
+ent-CratePirateShotgunAmmo = ящик ружейных патронов черного рынка
     .desc = Содержит разные сорта ружейных патронов. Хорошая возможность устроить геноцид на станциях НаноТрейзен.
-ent-ClothingBackpackDuffelPirateDrugs = Набор наркоты
+ent-ClothingBackpackDuffelPirateDrugs = набор наркоты
     .desc = «Содержит гигантское количество различных наркотиков, токсинов. Лучше не показываться с этим на станции».
+ent-CratePirateSecure = ящик пирата
+    .desc = Не для станционных бюрократов!

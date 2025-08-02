@@ -1,0 +1,12 @@
+- type: gas
+  id: 9
+  name: gases-thermonium
+  specificHeat: 5
+  heatCapacityRatio: 1.3
+  molarMass: 33
+  gasOverlaySprite: /Textures/Imperial/Gases/Thermonium/thermonium.rsi
+  gasOverlayState: thermonium
+  gasMolesVisible: 0.6
+  color: FFA500
+  reagent: Thermonium
+  pricePerMole: 20

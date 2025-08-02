@@ -36,6 +36,13 @@ ent-ClothingNeckShoulderPadGreen = тактические наплечники
 ent-ClothingNeckShoulderPadYellow = тактические наплечники
     .desc = Представляют собой кусок подкладочного материала и служат для обозначения принадлежности к подразделению.
 
+ent-ClothingNeckFelixGreenMedal = медаль
+    .desc = Зелёная медаль за заслуги.
+ent-ClothingNeckFelixSilverMedal = медаль
+    .desc = Серебряная медаль за заслуги.
+ent-ClothingNeckFelixSapphireMedal = медаль
+    .desc = Сапфировая медаль за заслуги.
+
 ent-GuardCloak = гвардейский плащ
     .desc = Излучает превосходство.
 
@@ -58,7 +65,7 @@ ent-ClothingUniformJumpsuitRegularForcePilot = униформа пилота
 
 ent-ClothingOuterHardsuitRegularForce = Тактический Скафандр "Соната Mk1"
     .desc = Тактический скафандр, воплощающий в себе передовые решения для операций в самых экстремальных условиях.
-ent-ClothingOuterHardsuitRegularForceMedic = Энергетическая Броня "Орбитал" 
+ent-ClothingOuterHardsuitRegularForceMedic = Энергетическая Броня "Орбитал"
     .desc = Вершина технологий экзоскелетной медицины, предоставляет неплохой уровень защиты и мобильности медицинскому персоналу.
 ent-ClothingOuterHardsuitRegularForceGuard = Тактический Скафандр "Соната Mk2"
     .desc = Тактический скафандр, воплощающий в себе передовые решения для операций в самых экстремальных условиях. Обеспечивает неплохую защиту от баллистических угроз.

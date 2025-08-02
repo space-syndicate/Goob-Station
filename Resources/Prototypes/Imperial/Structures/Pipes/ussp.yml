@@ -1,0 +1,112 @@
+- type: entity
+  id: DecorationPipeUSSP
+  name: bronze pipe
+  parent: StorageTank
+  description: its pumping water
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/pipes.rsi
+    state: pipe-s
+    drawdepth: ThickPipe
+  - type: Transform
+    anchored: true
+    noRot: False
+  - type: InteractionOutline
+  - type: Clickable
+  - type: SubFloorHide
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.5"
+        mask:
+        - SubfloorMask
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Phlogiston
+          Quantity: 10
+        - ReagentId: Napalm
+          Quantity: 20
+  - type: DrainableSolution
+    solution: tank
+  - type: ReagentTank
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+
+- type: entity
+  id: DecorationPipeCornerUSSP
+  name: bronze pipe
+  parent: DecorationPipeUSSP
+  description: its pumping water
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: pipe-c
+
+- type: entity
+  id: DecorationLatticeUSSP
+  name: lattice
+  description: it up there
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/pipes.rsi
+    state: lattice
+    drawdepth: BlastDoors
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+
+- type: entity
+  id: DecorationLatticeEndUSSP
+  name: lattice
+  parent: DecorationLatticeUSSP
+  description: it up there
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: lattice_end

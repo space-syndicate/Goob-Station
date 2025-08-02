@@ -1,0 +1,119 @@
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoCollector
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/collector.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoCore
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/core.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoCoreAlt
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/corealt.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoEggMorth
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/eggmorth.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoEvopod
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/evopod.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoPoolMutagen
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/poot_mutagen.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoPylonDecor
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/pylon-decor.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  parent: XenoWardingTower
+  id: FelixXenoRecoDecor
+  name: xeno
+  suffix: Xeno, ElysiumPrime
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/xeno/reco-decor.rsi
+    layers:
+      - state: icon

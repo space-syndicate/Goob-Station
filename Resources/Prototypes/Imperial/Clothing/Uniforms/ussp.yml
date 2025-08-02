@@ -42,3 +42,93 @@
     tags:
     - WhitelistChameleon
     - ClothMade
+
+- type: entity 
+  parent: UnsensoredClothingUniformBase
+  id: USSPComissarUniformRed
+  name: operative jumpsuit
+  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/agitcomissar/comissaruniform.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/agitcomissar/comissaruniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity 
+  parent: UnsensoredClothingUniformBase
+  id: USSPComissarUniformGreen
+  name: operative jumpsuit
+  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/battlecomissar/comissaruniform.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/battlecomissar/comissaruniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity 
+  parent: UnsensoredClothingUniformBase
+  id: USSPMilitiaUniform
+  name: operative jumpsuit
+  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/police/uniform.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/police/uniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity 
+  parent: UnsensoredClothingUniformBase
+  id: USSPMilitiaMajorUniform
+  name: operative jumpsuit
+  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/policemajor/uniform.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/policemajor/uniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity 
+  parent: UnsensoredClothingUniformBase
+  id: USSPServiceUniform
+  name: operative jumpsuit
+  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/uniform.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/uniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity 
+  parent: UnsensoredClothingUniformBase
+  id: USSPMarshalUniform
+  name: operative jumpsuit
+  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/uniform.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/uniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade

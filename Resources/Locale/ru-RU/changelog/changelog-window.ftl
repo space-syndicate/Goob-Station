@@ -5,6 +5,7 @@ changelog-author-changed = [color=#EEE]{ $author }[/color] изменил:
 changelog-today = Сегодня
 changelog-yesterday = Вчера
 changelog-new-changes = новые изменения
+changelog-version-unknown = Неизвестная версия
 changelog-version-tag = версия v{ $version }
 
 changelog-button = Обновление
@@ -13,3 +14,6 @@ changelog-button-new-entries = Обновление (!)
 changelog-tab-title-Changelog = Обновление
 changelog-tab-title-Admin = Админ
 changelog-tab-title-Maps = Карты
+
+cmd-changelog-desc = Открывает ченджлог.
+cmd-changelog-help = Использование: ченджлог

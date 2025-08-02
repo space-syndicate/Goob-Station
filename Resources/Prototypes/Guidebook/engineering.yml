@@ -301,6 +301,9 @@
   - PortableGenerator
   - AME
   - SingularityTeslaEngine
+  # Imperial Supermatter Engine Guide Start
+  - SupermatterEngine
+  # Imperial Supermatter Engine Guide End
   - TEG
   - RTG
   - SolarPanels
@@ -347,3 +350,8 @@
   id: SolarPanels
   name: guide-entry-solarpanels
   text: "/ServerInfo/Guidebook/Engineering/SolarPanels.xml"
+
+- type: guideEntry
+  id: SupermatterEngine
+  name: guide-entry-supermatterengine
+  text: "/ServerInfo/Guidebook/Engineering/SupermatterEngine.xml"

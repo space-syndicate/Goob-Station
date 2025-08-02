@@ -213,6 +213,42 @@
   - type: Sprite
     sprite: Imperial/Felix/Clothing/neck/guard_cloak.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFelixGreenMedal
+  name: medal
+  description: medal
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver1.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver1.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFelixSilverMedal
+  name: medal
+  description: medal
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver2.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver2.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFelixSapphireMedal
+  name: medal
+  description: medal
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Medals/RMK/ver3.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Medals/RMK/ver3.rsi
+
 # Униформа
 - type: entity
   parent: ClothingUniformBase
@@ -344,7 +380,7 @@
   id: ClothingHeadHelmetHardsuitRegularForce
   name: Regular Force spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -400,7 +436,7 @@
   id: ClothingHeadHelmetHardsuitRegularForceMedic
   name: medic spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -456,7 +492,7 @@
   id: ClothingHeadHelmetHardsuitRegularForceGuard
   name: guardsman's spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -510,7 +546,7 @@
   id: ClothingHeadHelmetHardsuitRegularForcePilot
   name: pilot spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -540,8 +576,8 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: -10 
-      lastVisibility: -1 
+      minVisibility: -10
+      lastVisibility: -1
       maxVisibility: 1
   - type: Item
     size: Large
@@ -577,7 +613,7 @@
   id: ClothingHeadHelmetHardsuitRegularForceAssassin
   name: assassin spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:

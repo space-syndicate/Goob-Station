@@ -1,0 +1,240 @@
+- type: accessLevel
+  id: SCPAccesOne
+  name: SCPOne
+
+- type: accessLevel
+  id: SCPAccesTwo
+  name: SCPTwo
+
+- type: accessLevel
+  id: SCPAccesThree
+  name: SCPThree
+
+- type: accessLevel
+  id: SCPAccesFour
+  name: SCPFour
+
+- type: accessLevel
+  id: SCPAccesFive
+  name: SCPFive
+
+- type: accessLevel
+  id: SCPAccesAdministration
+  name: SCPAdministration
+
+- type: entity
+  id: SCPAccessConfigurator
+  parent: AccessConfigurator
+  name: admemonly
+  description: special for engineer seriozha
+  suffix: seriozha, Недра
+  components:
+    - type: AccessOverrider
+      accessLevels:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      - SCPAccesAdministration
+
+- type: entity
+  id: SCPIDCardOne
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/one.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/one.rsi
+
+- type: entity
+  id: SCPIDCardTwo
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/two.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/two.rsi
+
+- type: entity
+  id: SCPIDCardThree
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - Research
+      - Medical
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/three.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/three.rsi
+
+- type: entity
+  id: SCPIDCardThreeGray
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - Security
+      - Brig
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/threegray.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/threegray.rsi
+
+- type: entity
+  id: SCPIDCardFour
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - Security
+      - Brig
+      - Armory
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/four.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/four.rsi
+
+- type: entity
+  id: SCPIDCardCI
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - NuclearOperative
+      - SyndicateAgent
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/ci.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/ci.rsi
+
+- type: entity
+  id: SCPIDCardFive
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconFive
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      groups:
+      - AllAccess
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/five.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/five.rsi
+
+- type: entity
+  id: SCPIDCardAdm
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconAdministration
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      - SCPAccesAdministration
+      - CentralCommand
+      - NuclearOperative
+      - SyndicateAgent
+      groups:
+      - AllAccess
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/adm.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/adm.rsi
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconAdministration
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/admicon.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconFive
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/fiveicon.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSCP
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/icon.rsi
+    state: icon

@@ -1,0 +1,13 @@
+- type: startingGear
+  id: AshwalkerGearFull
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAncient
+    outerClothing: ClothingOuterArmorBoneAshwalker
+    head: ClothingHeadHelmetBone
+    suitstorage: SpearBone
+
+- type: startingGear
+  id: AshwalkerLeaderGearFull
+  parent: AshwalkerGearFull
+  equipment:
+    neck: ClothingNeckCloakGoliathCloak

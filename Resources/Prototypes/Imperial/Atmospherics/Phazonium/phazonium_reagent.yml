@@ -1,0 +1,49 @@
+- type: reagent
+  id: Phazonium
+  name: reagent-name-phazonium
+  desc: reagent-desc-phazonium
+  physicalDesc: reagent-physical-desc-phazonium
+  flavor: bitter
+  color: "#4B0082"
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 2.0
+  - !type:CreateEntityTileReaction
+    entity: BluespaceHoleEffect
+  - !type:TeleportTileReaction
+    energyPerUnit: 1
+    teleportType: Random
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:FlammableReaction
+        multiplier: 0.8
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 12
+    Gas:
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: false
+        ignoreResistances: true
+        damage:
+           groups:
+            Airloss: 2
+            Brute: 4
+            Burn: 3
+            Toxin: 4
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Phazonium
+          min: 1
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 500
+        refresh: true

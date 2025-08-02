@@ -1,0 +1,54 @@
+- type: entity
+  name: Pseudo Urist McAsh
+  parent: BaseMobSpecies
+  id: MobAshwalker
+  suffix: XxRaay, Lavasec
+  components:
+    - type: Hunger
+    - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
+      sprite: Mobs/Species/Human/parts.rsi
+      state: full
+    - type: Thirst
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+      - id: FoodMeatHuman
+        amount: 5
+    - type: HumanoidAppearance
+      species: Ashwalker
+      hideLayersOnEquip:
+      - Hair
+      - Snout
+    - type: Inventory
+      femaleDisplacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Human/displacement.rsi
+              state: jumpsuit-female
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - Ashwalker
+    - type: ActiveRadio
+      channels:
+      - Ashwalker
+    - type: IntrinsicRadioReceiver
+    - type: Damageable
+      damageContainer: Biological
+      damageModifierSet: Ashwalker
+    - type: DamageVisuals
+      damageOverlayGroups:
+        Brute:
+          sprite: Mobs/Effects/brute_damage.rsi
+          color: "#555555AA"
+        Burn:
+          sprite: Mobs/Effects/burn_damage.rsi
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        100: Critical
+        200: Dead
+    - type: NpcFactionMember
+      factions:
+      - SimpleNeutral

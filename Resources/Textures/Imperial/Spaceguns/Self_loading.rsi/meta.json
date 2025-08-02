@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by Phantom4502",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mag-3",
+      "directions": 4
+    },
+    {
+      "name": "CannonCryo",
+      "directions": 4
+    },
+    {
+      "name": "CannonCumulative",
+      "directions": 4
+    },
+    {
+      "name": "CannonDemolitionCharge",
+      "directions": 4
+    },
+    {
+      "name": "CannonEMP",
+      "directions": 4
+    },
+    {
+      "name": "Cannonfrag",
+      "directions": 4
+    },
+    {
+      "name": "Cannonfrag2",
+      "directions": 4
+    },
+    {
+      "name": "CannonRadioactive",
+      "directions": 4
+    },
+    {
+      "name": "CannonSmoke",
+      "directions": 4
+    }
+  ]
+}

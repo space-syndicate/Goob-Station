@@ -1,0 +1,371 @@
+- type: entity
+  id: SpaceGunsBSA
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/BSA.rsi
+    layers:
+    - state: icon
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 250
+    rechargeSound:
+      path: /Audio/Imperial/Lavaland/PlasmaCutter/replenishment-of-the-firearm.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragBSA
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunBSA
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.42,-0.85,0.42,0.88"
+        density: 70
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: WarpPoint
+    follow: true
+    location: BSA
+
+- type: entity
+  id: SpaceGunsBSA3
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/BSA1.rsi
+    layers:
+    - state: BSA
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 250
+    rechargeSound:
+      path: /Audio/Imperial/Lavaland/PlasmaCutter/replenishment-of-the-firearm.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragBSA
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunBSA3
+  - type: WarpPoint
+    follow: true
+    location: BSA
+
+- type: entity
+  id: SpaceGunsBSA1
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: EXP-2100g "Duster"
+  suffix: SpaceGuns, Phantom4502
+  description: A powerful stationary grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/BSA.rsi
+    layers:
+    - state: icon
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 0.05
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+      params:
+        variation: 0.12
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - SpaceGunsBSAGrenade
+    capacity: 1
+    soundInsert:
+      path: /Audio/Imperial/Lavaland/PlasmaCutter/replenishment-of-the-firearm.ogg
+  - type: Machine
+    board: MachineSpaceGunBSA1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.42,-0.85,0.42,0.88"
+        density: 70
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: WarpPoint
+    follow: true
+    location: BSA
+
+- type: entity
+  id: SpaceGunsBSA2
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: EXP-2100g "Duster"
+  suffix: SpaceGuns, Phantom4502
+  description: A powerful stationary grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/BSA1.rsi
+    layers:
+    - state: BSA
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 0.05
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+      params:
+        variation: 0.12
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - SpaceGunsBSAGrenade
+    capacity: 1
+    soundInsert:
+      path: /Audio/Imperial/Lavaland/PlasmaCutter/replenishment-of-the-firearm.ogg
+  - type: Machine
+    board: MachineSpaceGunBSA2
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: WarpPoint
+    follow: true
+    location: BSA
+
+- type: entity
+  id: BulletGrenadeFragBSA
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/BSA1.rsi
+    layers:
+      - state: projectileBSA
+  - type: SingularityDistortion
+    falloffPower: 2.4
+    intensity: 2000
+  - type: PointLight
+    color: "#00ccff"
+    castShadows: false
+    energy: 99
+    radius: 99999
+  - type: TimedDespawn
+    lifetime: 180
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 5
+    totalIntensity: 850000
+  - type: RadiationSource
+    intensity: 85
+  - type: WarpPoint
+    follow: true
+    location: FragBSA
+
+- type: entity
+  parent: BaseGrenade
+  id: CoreBluespaceBSA
+  suffix: SpaceGuns, Phantom4502
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/BSA1.rsi
+    layers:
+    - state: BulletGrenadeFragBSA
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragBSA
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+  - type: PointLight
+    radius: 1.5
+    energy: 3.5
+    color: "#00ccff"
+    castShadows: false
+  - type: Tag
+    tags:
+    - SpaceGunsBSAGrenade
+
+- type: entity
+  id: MachineSpaceGunBSA
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsBSA
+    stackRequirements:
+      Manipulator: 20
+      Steel: 70
+      CableHV: 50
+
+- type: entity
+  id: MachineSpaceGunBSA1
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsBSA1
+    stackRequirements:
+      Manipulator: 20
+      Steel: 70
+      CableHV: 50
+
+- type: entity
+  id: MachineSpaceGunBSA2
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsBSA2
+    stackRequirements:
+      Manipulator: 20
+      Steel: 70
+      CableHV: 50
+
+- type: entity
+  id: MachineSpaceGunBSA3
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsBSA3
+    stackRequirements:
+      Manipulator: 20
+      Steel: 70
+      CableHV: 50
+
+- type: entity
+  id: ClothingBackpackDuffelSacerdos_3BSACore
+  parent: ClothingBackpackDuffelSacerdos_3
+  suffix: SpaceGuns, Phantom4502
+  components:
+  - type: StorageFill
+    contents:
+      - id: CoreBluespaceBSA
+        amount: 22

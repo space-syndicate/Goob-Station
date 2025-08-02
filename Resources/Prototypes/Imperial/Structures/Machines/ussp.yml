@@ -1,0 +1,8 @@
+- type: entity
+  parent: KitchenElectricGrill
+  id: MachineGrillUSSP
+  name: electric grill
+  description: A microwave? No, a real man cooks steaks on a grill!
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/electric_grill.rsi

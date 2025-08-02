@@ -1,0 +1,20 @@
+- type: entity
+  id: ClothingOuterArmorBoneAshwalker
+  name: ashwalker bone armor
+  parent: ClothingOuterArmorBone
+  suffix: XxRaay, Lavasec
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.8
+        Caustic: 0.7
+        Stamina: 0.85

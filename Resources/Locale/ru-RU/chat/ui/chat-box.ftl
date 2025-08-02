@@ -1,4 +1,7 @@
 hud-chatbox-info = {$talk-key} для разговора, {$cycle-key} для переключения каналов.
+hud-chatbox-info-talk = { $talk-key } чтобы говорить.
+hud-chatbox-info-cycle = Нажмите здесь чтобы говорить, { $cycle-key } для переключения каналов.
+hud-chatbox-info-unbound = Нажмите здесь чтобы говорить.
 
 hud-chatbox-select-name-prefixed = {$prefix} {$name}
 hud-chatbox-select-channel-Admin = Админ
@@ -27,7 +30,13 @@ hud-chatbox-channel-Server = Сервер
 hud-chatbox-channel-Visual = Визуальный
 hud-chatbox-channel-Damage = Повреждения
 hud-chatbox-channel-Unspecified = Неопределённый
-hud-chatbox-info-unbound = Нажмите здесь чтобы говорить.
-hud-chatbox-info-talk = { $talk-key } чтобы говорить.
-hud-chatbox-info-cycle = Нажмите здесь чтобы говорить, { $cycle-key } для переключения каналов.
 hud-chatbox-channel-Notifications = Уведомления
+
+hud-chatbox-highlights = Выделение:
+hud-chatbox-highlights-button = Принять
+hud-chatbox-highlights-tooltip = Слова должны быть разделены новой строкой,
+                                 если они перенесены внутри ", они будут выделены
+                                 только если разделены пробелами или знаками препинания.
+hud-chatbox-highlights-placeholder = МакХэндс
+                                     "Суд"
+                                     Мед

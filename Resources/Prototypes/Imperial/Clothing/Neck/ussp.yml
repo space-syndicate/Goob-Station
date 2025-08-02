@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: USSPArmbandRed
-  name: red-tie
-  description: A neosilk clip-on red tie.
+  name: Red armband
+  description: A neosilk red armband.
   components:
   - type: Sprite
     sprite: Imperial/ussp/armbands/redband.rsi
@@ -16,13 +16,73 @@
 - type: entity
   parent: ClothingNeckBase
   id: USSPArmbandEng
-  name: red-tie
-  description: A neosilk clip-on red tie.
+  name: Engineer armband
+  description: A neosilk orange armband.
   components:
   - type: Sprite
     sprite: Imperial/ussp/armbands/yelband.rsi
   - type: Clothing
     sprite: Imperial/ussp/armbands/yelband.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPArmbandBlu
+  name: Blue armband
+  description: A neosilk blue armband.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/armbands/bluband.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/armbands/bluband.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPComissarCapeGreen
+  name: ComissarCape
+  description: A neosilk blue armband.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/battlecomissar/comissarcape.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/battlecomissar/comissarcape.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPComissarCapeRed
+  name: ComissarCape
+  description: A neosilk blue armband.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/agitcomissar/comissarcape.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/agitcomissar/comissarcape.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPMajorPin
+  name: ComissarCape
+  description: A neosilk blue armband.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/policemajor/pin.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/policemajor/pin.rsi
   - type: Tag
     tags:
     - WhitelistChameleon

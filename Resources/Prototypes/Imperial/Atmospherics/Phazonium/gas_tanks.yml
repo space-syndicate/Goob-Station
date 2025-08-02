@@ -1,0 +1,175 @@
+- type: entity
+  parent: ExtendedEmergencyOxygenTank
+  id: DoubleEmergencyPhazoniumTank
+  name: double emergency phazonium tank
+  description: A high-grade dual-tank emergency life support container. It holds a decent amount of phazonium for its small size. It can hold 2.5 L of gas.
+  components:
+  - type: Sprite
+    sprite: Imperial/Gases/Phazonium/emergency_double.rsi
+  - type: Item
+    sprite: Imperial/Gases/Phazonium/emergency_double.rsi
+  - type: GasTank
+    air:
+      volume: 2.5
+      temperature: 293.15
+  - type: Clothing
+    sprite: Imperial/Gases/Phazonium/emergency_double.rsi
+  - type: MeleeWeapon
+    attackRate: 0.9
+    damage:
+      types:
+        Blunt: 7.5
+
+- type: entity
+  parent: GasTankBase
+  id: GasTankBasePhazonium
+  name: phazonium tank
+  description: Contains dangerous phazonium. Do not inhale. Extremely flammable. It can hold 5 L of gas.
+  components:
+  - type: Sprite
+    sprite: Imperial/Gases/Phazonium/tank.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Gases/Phazonium/tank.rsi
+  - type: Tag
+    tags:
+    - GasTank
+  - type: Clothing
+    quickEquip: false
+    sprite: Imperial/Gases/Phazonium/tank.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      # If gas tank volume is changed, adjust MinimumTritiumOxyburnEnergy in Atmospherics.cs by the same proportions
+      volume: 5
+      temperature: 293.15
+    tankLowPressure: 30.0
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 185
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  parent: GasTankRoundBase
+  id: EmergencyPhazoniumTank
+  name: emergency phazonium tank
+  description: An easily portable tank for emergencies. Contains very little phazonium, rated for survival use only. It can hold 0.66 L of gas.
+  components:
+  - type: Sprite
+    sprite: Imperial/Gases/Phazonium/emergency.rsi
+  - type: Item
+    size: Small
+    sprite: Imperial/Gases/Phazonium/emergency.rsi
+  - type: GasTank
+    air:
+      volume: 0.66
+      temperature: 293.15
+  - type: Clothing
+    sprite: Imperial/Gases/Phazonium/emergency.rsi
+    slots:
+    - Pocket
+    - Belt
+    - suitStorage
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+
+- type: entity
+  id: EmergencyPhazoniumTankFilled
+  parent: EmergencyPhazoniumTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      # 4 minutes
+      volume: 0.66
+      moles:
+        - 0     # oxygen
+        - 0     # nitrogen
+        - 0     # carbon dioxide
+        - 0     # plasma
+        - 0     # tritium
+        - 0     # vapor
+        - 0     # ammonia
+        - 0     # n2o
+        - 0     # frezon
+        - 0     # thermonium
+        - 0.270782035 # phazonium
+        - 0 # ozonium
+      temperature: 293.15
+
+- type: entity
+  id: DoubleEmergencyPhazoniumTankFilled
+  parent: DoubleEmergencyPhazoniumTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      # 15 minutes
+      volume: 2.5
+      moles:
+        - 0     # oxygen
+        - 0     # nitrogen
+        - 0     # carbon dioxide
+        - 0     # plasma
+        - 0     # tritium
+        - 0     # vapor
+        - 0     # ammonia
+        - 0     # n2o
+        - 0     # frezon
+        - 0     # thermonium
+        - 1.025689525 # phazonium
+        - 0     # ozonium
+      temperature: 293.15
+
+- type: entity
+  id: PhazoniumTankFilled
+  parent: GasTankBasePhazonium
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 101.3
+    air:
+      # 6 minutes due to output pressure
+      volume: 5
+      moles:
+        - 0     # oxygen
+        - 0     # nitrogen
+        - 0     # carbon dioxide
+        - 0     # plasma
+        - 0     # tritium
+        - 0     # vapor
+        - 0     # ammonia
+        - 0     # n2o
+        - 0     # frezon
+        - 0     # thermonium
+        - 2.051379050 # phazonium
+        - 0 # ozonium
+      temperature: 293.15

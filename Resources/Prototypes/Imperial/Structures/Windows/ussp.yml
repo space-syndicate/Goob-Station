@@ -1,0 +1,114 @@
+
+- type: entity
+  id: ReinforcedWindowImperialUSSP
+  name: reinforced window
+  parent: Window
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/ussp/urbandeco/window.rsi
+      state: strata_window0
+    drawdepth: WallTops
+  - type: Icon
+    sprite: Imperial/ussp/urbandeco/window.rsi
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 6
+    fx: EffectRCDDeconstruct6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          ReinforcedWindowFrameImperialUSSP:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: strata_window
+    mode: CardinalFlags
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [150]
+    damageDivisor: 1
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Imperial/ussp/urbandeco/window.rsi
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: ReinforcedWindowFrameImperialUSSP
+  name: reinforced window
+  parent: TableBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/ussp/urbandeco/frame.rsi
+      state: strata_frame0
+    drawdepth: WallTops
+  - type: Icon
+    sprite: Imperial/ussp/urbandeco/frame.rsi
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 6
+    fx: EffectRCDDeconstruct6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: strata_frame
+    mode: CardinalFlags
+  - type: Appearance
+  - type: Transform
+    noRot: true

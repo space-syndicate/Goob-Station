@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: BorgChassisSelectableSpaceGuns
+  suffix: SpaceGuns, Phantom4502
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: security
+    - state: security_e
+  - type: Advertise
+    pack: BorglocalizedDataset
+    minimumWait: 30
+    maximumWait: 60
+  - type: Speech
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+
+- type: localizedDataset
+  id: BorglocalizedDataset
+  values:
+    prefix: advertisement-space-guns-
+    count: 1

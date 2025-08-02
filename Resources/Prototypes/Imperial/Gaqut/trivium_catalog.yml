@@ -1,0 +1,269 @@
+- type: listing
+  id: TriviumShopWater
+  name: trivium-shop-water-name
+  description: trivium-shop-water-desc
+  productEntity: DrinkWaterBottleFull
+  cost:
+    TriviumMark: 7
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopTinBean
+  name: trivium-shop-tin-bean-name
+  description: trivium-shop-tin-bean-desc
+  productEntity: FoodTinBeans
+  cost:
+    TriviumMark: 5
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopTinPeaches
+  name: trivium-shop-tin-peaches-name
+  description: trivium-shop-tin-peaches-desc
+  productEntity: FoodTinPeaches
+  cost:
+    TriviumMark: 5
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopTinMRE
+  name: trivium-shop-tin-mre-name
+  description: trivium-shop-tin-mre-desc
+  productEntity: FoodTinMRE
+  cost:
+    TriviumMark: 5
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopBeet
+  name: trivium-shop-beet-name
+  description: trivium-shop-beet-desc
+  productEntity: FoodSoupBeet
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopBeetRed
+  name: trivium-shop-beet-red-name
+  description: trivium-shop-beet-red-desc
+  productEntity: FoodSoupBeetRed
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopBacon
+  name: trivium-shop-bacon-name
+  description: trivium-shop-bacon-desc
+  productEntity: FoodMeatBaconCooked
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopFoodstuff
+
+- type: listing
+  id: TriviumShopPistolViper
+  name: trivium-shop-pistol-viper-name
+  description: trivium-shop-pistol-viper-desc
+  productEntity: WeaponPistolViper
+  cost:
+    TriviumMark: 20
+  categories:
+  - TriviumShopWeaponry
+
+- type: listing
+  id: TriviumShopPistolMk58
+  name: trivium-shop-pistol-mk58-name
+  description: trivium-shop-pistol-mk58-desc
+  productEntity: WeaponPistolMk58
+  cost:
+    TriviumMark: 20
+  categories:
+  - TriviumShopWeaponry
+
+- type: listing
+  id: TriviumShopShotgun
+  name: trivium-shop-shotgun-name
+  description: trivium-shop-shotgun-desc
+  productEntity: WeaponShotgunDoubleBarreled
+  cost:
+    TriviumMark: 30
+  categories:
+  - TriviumShopWeaponry
+
+- type: listing
+  id: TriviumShopSurvivalKnife
+  name: trivium-shop-survival-knife-name
+  description: trivium-shop-survival-knife-desc
+  productEntity: SurvivalKnife
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopWeaponry
+
+- type: listing
+  id: TriviumShopMagazine20
+  name: trivium-shop-magazine-20-name
+  description: trivium-shop-magazine-20-desc
+  productEntity: MagazineRifle
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopAmmo
+
+- type: listing
+  id: TriviumShopMagazine30
+  name: trivium-shop-magazine-30-name
+  description: trivium-shop-magazine-30-desc
+  productEntity: MagazineLightRifle
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopAmmo
+
+- type: listing
+  id: TriviumShopMagazinePistol
+  name: trivium-shop-magazine-pistol-name
+  description: trivium-shop-magazine-pistol-desc
+  productEntity: MagazinePistol
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopAmmo
+
+- type: listing
+  id: TriviumShopMagazineSubMachine
+  name: trivium-shop-magazine-sub-machine-name
+  description: trivium-shop-magazine-sub-machine-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopAmmo
+
+- type: listing
+  id: TriviumShopMagazineShotgunSlug
+  name: trivium-shop-magazine-shotgun-slug-name
+  description: trivium-shop-magazine-shotgun-slug-desc
+  productEntity: MagazineShotgunSlug
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopAmmo
+
+- type: listing
+  id: TriviumShopMagazineShotgun
+  name: trivium-shop-magazine-shotgun-name
+  description: trivium-shop-magazine-shotgun-desc
+  productEntity: MagazineShotgun
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopAmmo
+
+- type: listing
+  id: TriviumShopGauze
+  name: trivium-shop-gauze-name
+  description: trivium-shop-gauze-desc
+  productEntity: Gauze
+  cost:
+    TriviumMark: 20
+  categories:
+  - TriviumShopMedicine
+
+- type: listing
+  id: TriviumShopBrutepack
+  name: trivium-shop-brutepack-name
+  description: trivium-shop-brutepack-desc
+  productEntity: Brutepack
+  cost:
+    TriviumMark: 20
+  categories:
+  - TriviumShopMedicine
+
+- type: listing
+  id: TriviumShopOintment
+  name: trivium-shop-ointment-name
+  description: trivium-shop-ointment-desc
+  productEntity: Ointment
+  cost:
+    TriviumMark: 15
+  categories:
+  - TriviumShopMedicine
+
+- type: listing
+  id: TriviumShopEmergencyMedipen
+  name: trivium-shop-emergency-medipen-name
+  description: trivium-shop-emergency-medipen-desc
+  productEntity: EmergencyMedipen
+  cost:
+    TriviumMark: 35
+  categories:
+  - TriviumShopMedicine
+
+- type: listing
+  id: TriviumShopPillDexalin
+  name: trivium-shop-pill-dexalin-name
+  description: trivium-shop-pill-dexalin-desc
+  productEntity: PillDexalin
+  cost:
+    TriviumMark: 30
+  categories:
+  - TriviumShopMedicine
+
+- type: listing
+  id: TriviumShopFlare
+  name: trivium-shop-flare-name
+  description: trivium-shop-flare-desc
+  productEntity: Flare
+  cost:
+    TriviumMark: 10
+  categories:
+  - TriviumShopSurvival
+
+- type: listing
+  id: TriviumShopSmallOxygenTank
+  name: trivium-shop-small-oxygen-tank-name
+  description: trivium-shop-small-oxygen-tank-desc
+  productEntity: EmergencyOxygenTankFilled # Помещается в карман, 2 минуты до 500 кПа - Плохое
+  cost:
+    TriviumMark: 30
+  categories:
+  - TriviumShopSurvival
+
+- type: listing
+  id: TriviumShopExtendedOxygenTank
+  name: trivium-shop-extended-oxygen-tank-name
+  description: trivium-shop-extended-oxygen-tank-desc
+  productEntity: ExtendedEmergencyOxygenTankFilled # Помещается в карман, 5 минут до 500 кПа - Хорошее
+  cost:
+    TriviumMark: 40
+  categories:
+  - TriviumShopSurvival
+
+- type: listing
+  id: TriviumShopDoubleOxygenTank
+  name: trivium-shop-double-oxygen-tank-name
+  description: trivium-shop-double-oxygen-tank-desc
+  productEntity: DoubleEmergencyOxygenTankFilled # Помещается в карман, 8 минут до 500 кПа - Лучшее
+  cost:
+    TriviumMark: 150
+  categories:
+  - TriviumShopSurvival
+
+- type: listing
+  id: TriviumShopOxygenTank
+  name: trivium-shop-oxygen-tank-name
+  description: trivium-shop-oxygen-tank-desc
+  productEntity: OxygenTankFilled # Не помещается в карман, 15 минут до 500 кПа - Хорошее
+  cost:
+    TriviumMark: 70
+  categories:
+  - TriviumShopSurvival

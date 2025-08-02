@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseLightTube
+  name: led light tube
+  description: A high power high energy bulb.
+  id: LightTubeUSSP
+  components:
+  - type: LightBulb
+    color: "#F5B164FF"
+    lightEnergy: 4
+    lightRadius: 5
+    lightSoftness: 1
+    BurningTemperature: 350
+    PowerUse: 12

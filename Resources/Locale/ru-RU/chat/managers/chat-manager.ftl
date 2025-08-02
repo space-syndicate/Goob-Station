@@ -19,6 +19,7 @@ chat-manager-no-such-channel = Нет канала с ключём '{$key}'!
 chat-manager-whisper-headset-on-message = Вы не можете шептать в радио!
 
 chat-manager-server-wrap-message = [bold]{$message}[/bold]
+chat-manager-sender-announcement = Центральное командование
 chat-manager-sender-announcement-wrap-message = [font size=14][bold]Объявление {$sender}:[/font][font size=12]
                                                 {$message}[/bold][/font]
 chat-manager-entity-say-wrap-message = [BubbleHeader][bold][Name]{$entityName}[/Name][/bold][/BubbleHeader] {$verb}, [font={$fontType} size={$fontSize}]"[BubbleContent]{$message}[/BubbleContent]"[/font]
@@ -36,7 +37,6 @@ chat-manager-entity-me-wrap-message = [italic]{ PROPER($entity) ->
 chat-manager-entity-looc-wrap-message = LOOC: [bold]{$entityName}:[/bold] {$message}
 chat-manager-send-ooc-wrap-message = OOC: [bold]{$playerName}:[/bold] {$message}
 chat-manager-send-ooc-patron-wrap-message = OOC: [bold][color={$patronColor}]{$playerName}[/color]:[/bold] {$message}
-chat-manager-entity-looc-patron-wrap-message = LOOC: [bold][color={$patronColor}]{$entityName}[/color]:[/bold] {$message}
 
 chat-manager-send-dead-chat-wrap-message = {$deadChannelName}: [bold][BubbleHeader]{$playerName}[/BubbleHeader]:[/bold] [BubbleContent]{$message}[/BubbleContent]
 chat-manager-send-admin-dead-chat-wrap-message = {$adminChannelName}: [bold]([BubbleHeader]{$userName}[/BubbleHeader]):[/bold] [BubbleContent]{$message}[/BubbleContent]
@@ -44,6 +44,7 @@ chat-manager-send-admin-chat-wrap-message = {$adminChannelName}: [bold]{$playerN
 chat-manager-send-admin-announcement-wrap-message = [bold]{$adminChannelName}: {$message}[/bold]
 
 chat-manager-send-hook-ooc-wrap-message = OOC: [bold](D){$senderName}:[/bold] {$message}
+chat-manager-send-hook-admin-wrap-message = ADMIN: [bold](D){$senderName}:[/bold] {$message}
 
 chat-manager-dead-channel-name = МЁРТВЫЕ
 chat-manager-admin-channel-name = АДМИН
@@ -118,6 +119,11 @@ chat-speech-verb-canine-1 = лает
 chat-speech-verb-canine-2 = гавкает
 chat-speech-verb-canine-3 = воет
 
+chat-speech-verb-name-goat = Коза
+chat-speech-verb-goat-1 = блеет
+chat-speech-verb-goat-2 = хрюкает
+chat-speech-verb-goat-3 = кличит
+
 chat-speech-verb-name-small-mob = Мышь
 chat-speech-verb-small-mob-1 = пищит
 chat-speech-verb-small-mob-2 = пипает
@@ -151,4 +157,6 @@ chat-speech-verb-name-electricity = Электричество
 chat-speech-verb-electricity-1 = трещит
 chat-speech-verb-electricity-2 = гудит
 chat-speech-verb-electricity-3 = скрипит
-chat-manager-sender-announcement = Центральное командование
+
+# Не переведено у оффициалов, оставлю это тут чтобы не нарушать нумерацию строк
+chat-manager-entity-looc-patron-wrap-message = LOOC: [bold][color={$patronColor}]{$entityName}[/color]:[/bold] {$message}

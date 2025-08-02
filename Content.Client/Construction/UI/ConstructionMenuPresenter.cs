@@ -177,7 +177,14 @@ namespace Content.Client.Construction.UI
 
             PopulateInfo(_selected);
         }
-
+        //Imperial Space; Start
+        private string NormalizeRussianText(string text)
+        {
+            return text
+                .Replace('ё', 'е')
+                .Replace('Ё', 'Е');
+        }
+        //Imperial Space Search; End
         private void OnViewPopulateRecipes(object? sender, (string search, string catagory) args)
         {
             if (_constructionSystem is null)
@@ -271,7 +278,7 @@ namespace Content.Client.Construction.UI
                     continue;
 
                 if (!string.IsNullOrEmpty(search) && (recipe.Name is { } name &&
-                                                      !name.Contains(search.Trim(),
+                                                      !NormalizeRussianText(name).Contains(NormalizeRussianText(search.Trim()), //Imperial Space Search
                                                           StringComparison.InvariantCultureIgnoreCase)))
                     continue;
 

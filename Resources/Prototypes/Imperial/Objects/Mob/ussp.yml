@@ -1,0 +1,7 @@
+- type: entity
+  id: CageHamsterUSSP
+  parent: CrateSyndicateCage
+  components:
+    - type: StorageFill
+      contents:
+        - id: MobHamsterJoseph

@@ -1,0 +1,173 @@
+- type: startingGear
+  id: TriviumCMDUSSPgear
+  equipment:
+    head: ClothingHeadHatWarden
+    mask: VlPCMask
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponRifleLecter
+    id: USSPIDCardHead
+    #jumpsuit: ClothingUniformJumpsuitRobotechImperial На привейте раскомментить
+    neck: ClothingNeckCloakHos
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPHead
+    belt: BlackShieldWebbing
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - ExtendedEmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumHeadUSSPgear
+  equipment:
+    head: ClothingHeadHatBeretGaqut
+    mask: VlPCMask
+    outerClothing: ArmoredUnloading6B43Raptor
+    suitstorage: WeaponRifleLecter
+    id: USSPIDCardHead
+    #jumpsuit: ClothingUniformJumpsuitRobotechImperial На привейте раскомментить
+    neck: SquadFightersMantle_Cruenta
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPHead
+    belt: BlackShieldWebbing
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - ExtendedEmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumSoldierUSSPgear
+  equipment:
+    #head: ClothingHeadHelmetIibada На привейте раскомментить
+    mask: VlPCMask
+    outerClothing: ArmoredUnloading6B43Raptor
+    suitstorage: WeaponRifleLecter
+    id: USSPIDCardMain
+    #jumpsuit: ClothingUniformJumpsuitRobotechImperial На привейте раскомментить
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPMain
+    belt: BlackShieldWebbing
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumPilotUSSPgear
+  equipment:
+    #head: ClothingHeadHelmetPilot На привейте раскомментить
+    mask: ClothingMaskGasMinuteMan
+    outerClothing: ClothingOuterArmorBasic
+    #jumpsuit: ClothingUniformJumpsuitRobotechImperial На привейте раскомментить
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    belt: ClothingBeltSecurity
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumCMDTriviumgear
+  equipment:
+    head: ClothingHeadHatSpecialOfficer
+    mask: ClothingMaskGasMinuteMan
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponRifleLecter
+    id: TriviumIDCardHead
+    jumpsuit: BlackShieldJumpsuit
+    neck: SquadFightersraincoat_sacerdos
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumHead
+    belt: BlackShieldWebbing
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - ExtendedEmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumHeadTriviumgear
+  equipment:
+    head: BlackShieldBeretGaqut
+    mask: ClothingMaskGasMinuteMan
+    outerClothing: ArmoredUnloading6B43Raptor
+    suitstorage: WeaponRifleLecter
+    id: TriviumIDCardHead
+    jumpsuit: BlackShieldJumpsuit
+    neck: SquadFightersMantle_sacerdos
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumHead
+    belt: BlackShieldWebbing
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - ExtendedEmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumSoldierTriviumgear
+  equipment:
+    #head: ClothingHeadHelmetIibada На привейте раскомментить
+    mask: ClothingMaskGasMinuteMan
+    outerClothing: ArmoredUnloading6B43Raptor
+    suitstorage: WeaponRifleLecter
+    id: TriviumIDCardMain
+    jumpsuit: BlackShieldJumpsuit
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumMain
+    belt: BlackShieldWebbing
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter
+
+- type: startingGear
+  id: TriviumPilotTriviumgear
+  equipment:
+    #head: ClothingHeadHelmetPilot На привейте раскомментить
+    mask: ClothingMaskGasMinuteMan
+    outerClothing: ClothingOuterArmorBasic
+    jumpsuit: BlackShieldJumpsuit
+    back: BlackShieldBackpack
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesCombat
+    belt: ClothingBeltSecurity
+    pocket1: FlashlightSeclite
+    pocket2: TriviumMark50
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - MagazineRifle
+    - GeigerCounter

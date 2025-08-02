@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "by @totally_not_don_kot",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "envelope_closed"
+    },
+    {
+      "name": "envelope_open"
+    },
+    {
+      "name": "envelope_torn"
+    },
+    {
+      "name": "postmark"
+    }
+  ]
+}

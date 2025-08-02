@@ -1,0 +1,2 @@
+ent-SpawnAshwalkerLeaderGhostRoleHamMaggotson = спавнер лидера пеплоходцев
+ent-SpawnAshwalkerGhostRoleHamMaggotson = спавнер представителя пеплоходцев

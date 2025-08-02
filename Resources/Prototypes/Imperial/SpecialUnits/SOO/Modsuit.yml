@@ -10,15 +10,6 @@
     sprite: Imperial/SpecialUnits/SOO/Modsuit/Backpack.rsi
   - type: Clothing
     sprite: Imperial/SpecialUnits/SOO/Modsuit/Backpack.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Shock: 0.8
-        Radiation: 0.8
-        Stamina: 0.9
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 200
@@ -79,21 +70,16 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.01
-  - type: FireProtection
-    reduction: 1
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.05 #Буквально эталон лучшего сьюта в игре.
-        Slash: 0.05
-        Piercing: 0.05
-        Heat: 0.05
-        Radiation: 0
-        Caustic: 0
-        Cold: 0
-        Shock: 0
-        Stamina: 0
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Radiation: 0.25
+        Caustic: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 1.1
     sprintModifier: 1.1
@@ -123,9 +109,8 @@
     weightlessAcceleration: 1.5
     weightlessFriction: 0.3
     weightlessModifier: 1.5
-  - type: Reflect
-    reflectProb: 0.25
-    spread: 55
+  - type: StaminaResistance
+    damageCoefficient: 0.5 # Needs 21 hits with a disabler to stun :godo:
 
 #Шлем
 - type: entity
@@ -141,12 +126,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Shock: 0.9
-        Caustic: 0.9
-        Radiation: 0.85
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
   - type: PressureProtection
     highPressureMultiplier: 0.001
     lowPressureMultiplier: 1000

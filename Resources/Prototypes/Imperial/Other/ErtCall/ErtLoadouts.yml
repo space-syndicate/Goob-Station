@@ -228,7 +228,7 @@
 ## outerClothing: ClothingOuterHardsuitDeathsquad В связи с наличием РИГ'а скафандр убран
     shoes: ClothingShoesBootsMagAdv #DOTO black variant
     id: DeadSquadPDA
-    pocket1: ERTUplinkDeadSquad
+    pocket1: ERTUplinkDeadSquadAlt
     pocket2: ToolDebug
     suitstorage: OxygenTankFilled
     belt: ClothingBeltDeadSquadFilled

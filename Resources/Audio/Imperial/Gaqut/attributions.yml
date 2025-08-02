@@ -1,0 +1,19 @@
+- files: ["propaganda-trivium-1.ogg", "propaganda-trivium-2.ogg", "propaganda-trivium-3.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by @space__explorer"
+  source: "https://genny.lovo.ai/"
+
+- files: ["propaganda-ussp-1.ogg", "propaganda-ussp-2.ogg", "propaganda-ussp-3.ogg", "supply-good.ogg", "supply-confirm.ogg", "warning.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by @space__explorer"
+  source: "https://genny.lovo.ai/"
+
+- files: ["supply-medium.ogg", "supply-bad.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Cinematic Battle Song by TheoJT | Edited by @space__explorer"
+  source: "https://freesound.org/s/510953/"
+
+- files: ["ussp-attack.ogg", "trivium-attack.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Cinematic Battle Song by TheoJT | Edited by @space__explorer"
+  source: "https://freesound.org/s/510953/"

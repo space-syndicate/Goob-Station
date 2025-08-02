@@ -1,0 +1,20 @@
+- type: startingGear #gear
+  id: JestmasterGear
+  equipment:
+    jumpsuit: ClothingUniformHonkmotherSuit
+    back: ClothingBackpackClown
+#    eyes:
+    mask: ClothingMaskHonkmotherFace
+    ears: ClothingHeadsetService
+    gloves: ClothingHandsGlovesLatex
+#    outerClothing:
+    shoes: ClothingHonkmotherShoes
+    id: ClownPDA
+    pocket1: BikeHorn
+#    pocket2:
+#    suitstorage:
+#    belt:
+  storage:
+    back:
+    - RubberStampClown
+    - CrayonRainbow

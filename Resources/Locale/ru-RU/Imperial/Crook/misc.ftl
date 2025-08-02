@@ -42,3 +42,15 @@ ent-ClothingOuterMadzima = брейкданс куртка
 ent-WallInvisibleCrook = невидимая стена
     .desc = Даже тут невидимые стены...
 ent-WallForceCrook = силовой барьер
+
+ent-WeaponEnergyTurretSyndicateControlPanel = панель управления синдиката
+    .desc = Панель для настройки лазерных турелей синдиката
+ent-WeaponEnergyTurretSyndicateMachineCircuitboard = машинная плата (лазерная турель синдиката)
+    .desc = Машинная плата.
+ent-WeaponEnergyTurretSyndicate = лазерная турель синдиката
+    .desc = Стреляет в бюрократические принадлежности, как только их видит.
+
+ent-DrinkKvassBestDrink = квас
+    .desc = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.
+reagent-name-kvass-bestdrink = квас
+reagent-desc-kvass-bestdrink = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.

@@ -1,28 +1,27 @@
 <Document>
-  
-  # Specialized Brute Chemicals
 
-  Nanotrasen's greatest scientists have synthesized three more specific brute chemicals! Each one heals a specific damage subtype.
+  # Специализированный медикаменты от физического урона
+
+Одни из лучших учёных NanoTrasen синтезировали ещё три специализированных лекарства! Каждое лечит свой подтип урона.
 
   <GuideReagentEmbed Reagent="Bruizine"/>
   <GuideReagentEmbed Reagent="Puncturase"/>
   <GuideReagentEmbed Reagent="Lacerinol"/>
 
-  # Razorium
+  # Бритвинид
 
-  [color=red]USE CAUTION[/color] when using the aforementioned specialized brute chemicals. Should one mix together with a different type of brute chemical, the resulting mixture will create a dangerous chemical known as Razorium!
+  [color=red]ПРЕДУПРЕЖДЕНИЕ[/color] перед использованием вышеперечисленных химикатов. При смешении двух или более химикатов из списка выше, будет создан опасный химикат [color=red]Бритвинид[/color]!!!
   <GuideReagentEmbed Reagent="Razorium"/>
-  To avoid this, make sure the patient is done metabolizing one brute medication before giving them another. Keep an eye on the rate their health is changing.
+  Для избежание таких ситуаций, убедитесь в том, что первый химикатов уже был метаболизировался организмом пациента — следите за скоростью с которой меняется их здоровье.
 
-  [bold]Some examples of mixtures that create Razorium are as follows:[/bold]
+  [bold]Примеры микстур, создающих Бритвинид:[/bold]
+  Бикаридин и Пунктураз
 
-  Bicaridine and Puncturase
+  Пунктураз и Лацеринол
 
-  Puncturase and Lacerinol
+  Бруизин и Бикаридин
 
-  Bruizine and Bicaridine
+  Лацеринол и Бруизин
 
-  Lacerinol and Bruizine
-
-  Please note that [bold]any[/bold] combination of these 4 chemicals will likely mix and create Razorium! Be careful when creating these chemicals, as they contain Bicaridine. Any leftover Bicaridine will likely mix to create Razorium!
+Пожалуйста, учтите что [bold]ЛЮБАЯ[/bold] комбинация этих четырёх химикатов скорее всего приведёт к созданию Бритвинида! Будьте осторожны при создании этих химикатов, любой лишний Бикаридин при их создании приведёт к синтезу Бритвинида!
 </Document>

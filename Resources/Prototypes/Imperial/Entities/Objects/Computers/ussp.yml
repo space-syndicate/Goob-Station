@@ -1,0 +1,28 @@
+- type: entity
+  parent: ComputerComms
+  id: USSPComputerComms
+  name: soviet communications computer
+  description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerScreen"]
+      state: error
+  - type: AccessReader
+    access: [[ "Command" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-IMPERIALSSSP
+    color: "#e74c3c"
+    canShuttle: false
+    global: true 
+    announceSentBy: false
+    sound: /Audio/Imperial/ussp/war.ogg
+  - type: Computer
+    board: SyndicateCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#f71713"

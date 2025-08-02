@@ -111,6 +111,5 @@
     - type: StorageFill
       contents:
         - id: BoxSurvival
-        - id: SpecialOfficerUplink
         - id: PillAmbuzolPlus
         - id: OxygenTankFilled

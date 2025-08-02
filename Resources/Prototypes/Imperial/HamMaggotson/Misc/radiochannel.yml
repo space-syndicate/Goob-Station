@@ -1,0 +1,7 @@
+- type: radioChannel
+  id: Ashwalker
+  name: chat-radio-ashwalker
+  keycode: '.'
+  frequency: 1099
+  color: "#6a6c6d"
+  longRange: true

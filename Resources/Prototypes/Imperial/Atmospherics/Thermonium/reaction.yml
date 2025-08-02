@@ -1,0 +1,18 @@
+- type: gasReaction
+  id: ThermoniumProduction
+  priority: -2
+  minimumTemperature: 3273
+  minimumRequirements:
+  - 0     # oxygen
+  - 0.01  # nitrogen
+  - 0.01  # carbon dioxide
+  - 0     # plasma
+  - 0.01  # tritium
+  - 0     # vapor
+  - 0     # ammonia
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # thermonium
+  - 0     # phazonium
+  effects:
+  - !type:ThermoniumProductionReaction {}

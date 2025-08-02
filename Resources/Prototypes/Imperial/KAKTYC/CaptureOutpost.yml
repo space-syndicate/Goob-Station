@@ -1,0 +1,135 @@
+- type: entity
+  parent: MobHuman
+  id: NTOfficerKCLPreset
+  name: Officer NT
+  suffix:  kaktyc900, KCL
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NTOfficerKCLName
+      - NamesLast
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  id: SpawnNTOfficerKCLPreset
+  name: ghost-role-spawn-point-Officer-NT
+  suffix:  kaktyc900, KCL
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: SpawnNTOfficerKCLPreset-name
+      description: SpawnNTOfficerKCLPreset-desc
+      rules: SpawnNTOfficerKCLPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: NTOfficerKCLPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/KAKTYC/CaptureOutpost.rsi
+          state: SpawnNTOfficerKCLPreset
+
+
+- type: localizedDataset 
+  id: NTOfficerKCLName
+  values:
+    prefix: imperial-NT-role-Officer-dataset-
+    count: 1
+
+- type: entity
+  parent: MobHuman
+  id: SyndicateNuclearOperativeKCLPreset
+  name: Syndicate Nuclear Operative
+  suffix:  kaktyc900, KCL
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - SyndicateNuclearOperativeKCLName
+      - NamesLast
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  id: SpawnSyndicateNuclearOperativeKCLPreset
+  name: ghost-role-spawn-point-Officer-NT
+  suffix:  kaktyc900, KCL
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: SpawnSyndicateNuclearOperativeKCLPreset-name
+      description: SpawnSyndicateNuclearOperativeKCLPreset-desc
+      rules: SpawnSyndicateNuclearOperativeKCLPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SyndicateNuclearOperativeKCLPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/KAKTYC/CaptureOutpost.rsi
+          state: SpawnSyndicateNuclearOperativeKCLPreset
+
+
+- type: localizedDataset 
+  id: SyndicateNuclearOperativeKCLName 
+  values:
+    prefix: imperial-Syndicate-role-Nuclear-Operative-dataset-
+    count: 1

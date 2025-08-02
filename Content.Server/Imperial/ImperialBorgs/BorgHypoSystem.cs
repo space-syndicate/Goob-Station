@@ -99,7 +99,6 @@ namespace Content.Server.Imperial.ImperialBorgs
                 return;
             }
 
-
             if (reagent != null)
             {
                 var index = component.Solutions.FindIndex(x => x.GetPrimaryReagentId() == reagent.ID);
@@ -108,11 +107,12 @@ namespace Content.Server.Imperial.ImperialBorgs
                     return;
                 }
 
+                if (index == component.CurrentIndex)
+                {
+                    return;
+                }
+
                 component.CurrentIndex = index;
-            }
-            else
-            {
-                component.CurrentIndex = (component.CurrentIndex + 1) % component.Solutions.Count;
             }
 
             var newSolution = component.Solutions[component.CurrentIndex];

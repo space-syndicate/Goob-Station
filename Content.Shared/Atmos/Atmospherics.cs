@@ -177,6 +177,9 @@ namespace Content.Shared.Atmos
             [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
+            [Gas.Thermonium] = Loc.GetString("gas-thermonium-abbreviation"), /// Imperial Added Thermonium
+            [Gas.Phazonium] = Loc.GetString("gas-phazonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
+            [Gas.Ozonium] = Loc.GetString("gas-ozonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
         };
 
         #region Excited Groups
@@ -206,7 +209,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 12; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -283,6 +286,19 @@ namespace Content.Shared.Atmos
         ///     Divisor for Ammonia Oxygen reaction so that it doesn't happen instantaneously.
         /// </summary>
         public const float AmmoniaOxygenReactionRate = 10f;
+        /// Imperial Added Thermonium Start
+
+         public const float ThermoniumProductionConversionRate = 2273f;
+         public const float ThermoniumProductionMaxEfficiencyTemperature = 2273f;
+        /// Imperial Added Thermonium end
+        /// Imperial Added Phazonium and Ozonium start
+        public const float PhazoniumProductionConversionRate = 2273f;
+        public const float PhazoniumProductionMaxEfficiencyTemperature = 13.15f;
+
+        public const float OzoniumProductionConversionRate = 2273f;
+        public const float OzoniumProductionMaxEfficiencyTemperature = 33.15f;
+
+        /// Imperial Added Phazonium and Ozonium end
 
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
@@ -369,6 +385,9 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8, /// Imperial Added Thermonium
+        Thermonium = 9, /// Imperial Added Thermonium
+        Phazonium = 10, /// Imperial Added Phazonium and Ozonium
+        Ozonium = 11 /// Imperial Added Phazonium and Ozonium
     }
 }

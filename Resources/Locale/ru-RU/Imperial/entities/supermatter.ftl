@@ -1,0 +1,27 @@
+ent-Supermatter = кристалл суперматерии
+    .desc = Странно прозрачный и радужно переливающийся кристалл.
+
+ent-SupermatterMonitorConsole = консоль мониторинга суперматерии
+    .desc = Консоль, отображающая точную целостность ближайшего кристалла суперматерии.
+supermatter-event-none = Суперматерия стабилизирована. Нет аномальных всплесков.
+supermatter-event-lightning = ВНИМАНИЕ: Зафиксирован энергетический всплеск! Кристалл выпускает молнии!
+supermatter-event-radiation = ВНИМАНИЕ: Зафиксирован радиационный выброс! Уровень радиации повышен!
+supermatter-event-plasma = ВНИМАНИЕ: Зафиксирован выброс плазмы! Вокруг кристалла появляется горящая плазма!
+supermatter-desc-pristine = Кристалл выглядит абсолютно целым.
+supermatter-desc-scratched = На кристалле видны небольшие царапины.
+supermatter-desc-cracked = На кристалле появились трещины.
+supermatter-desc-badly-cracked = Кристалл покрыт множеством трещин и выглядит нестабильно.
+supermatter-desc-critical = Кристалл вот-вот разрушится! Он светится и вибрирует.
+supermatter-warn-10 = !!! СУПЕРМАТЕРИЯ НА ГРАНИ РАЗРУШЕНИЯ !!!
+supermatter-warn-25 = ВНИМАНИЕ! Целостность суперматерии критически низкая! Немедленно стабилизируйте кристалл!
+supermatter-warn-50 = Внимание! Суперматерия сильно повреждена. Ситуация опасна.
+supermatter-warn-75 = Суперматерия получила повреждения. Рекомендуется проверить состояние кристалла.
+supermatter-warn-90 = Зарегистрированы незначительные повреждения суперматерии.
+supermatter-station-critical = ВНИМАНИЕ! Суперматерия на грани разрушения! Немедленно стабилизируйте кристалл!
+supermatter-monitor-integrity = Целостность ближайшей суперматерии: {current} / {max}
+supermatter-monitor-atmos = Атмосфера: давление {pressure} кПа, температура {temperature} K
+supermatter-monitor-next-event = До следующего энергетического всплеска: {minutes} мин.
+supermatter-monitor-none-nearby = Поблизости не найдено кристаллов суперматерии.
+supermatter-monitor-integrity-prefix = Целостность ближайшей суперматерии:
+supermatter-monitor-atmos-prefix = Атмосфера:
+supermatter-monitor-next-event-prefix = До следующего энергетического всплеска:

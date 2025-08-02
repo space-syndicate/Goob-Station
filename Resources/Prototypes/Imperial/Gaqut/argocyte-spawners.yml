@@ -1,0 +1,179 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteSlurva
+  name: argocyte slurva spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: slurva
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteSlurva
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteBarrier
+  name: argocyte barrier spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: barrier
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteBarrier
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteSkitter
+  name: argocyte skitter spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: skitter
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteSkitter
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteSwiper
+  name: argocyte swiper spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: swiper
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteSwiper
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteMolder
+  name: argocyte molder spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: molder
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteMolder
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocytePouncer
+  name: argocyte pouncer spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: pouncer
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocytePouncer
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteGlider
+  name: argocyte glider spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: glider
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteGlider
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteHarvester
+  name: argocyte harvester spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: harvester
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteHarvester
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteCrawler
+  name: argocyte crawler spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: crawler
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteCrawler
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteEnforcer
+  name: argocyte enforcer spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: enforcer
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteEnforcer
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteFounder
+  name: argocyte founder spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+      state: founder
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteFounder
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMobArgocyteLeviathing
+  name: argocyte leviathing spawner
+  suffix: Gaqut
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+      state: leviathing
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteLeviathing

@@ -9,7 +9,7 @@
       stampedColor: "#4682B4"
       stampState: "paper_stamp-research"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-research
 
 - type: entity
@@ -23,7 +23,7 @@
       stampedColor: "#2E8B57"
       stampState: "paper_stamp-fedadmin"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-fedadmin
 
 - type: entity
@@ -37,7 +37,7 @@
       stampedColor: "#696969"
       stampState: "paper_stamp-fbc"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-fbc
 
 - type: entity
@@ -51,7 +51,7 @@
       stampedColor: "#006400"
       stampState: "paper_stamp-finance"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-finance
 
 - type: entity
@@ -65,7 +65,7 @@
       stampedColor: "#008B8B"
       stampState: "paper_stamp-judge"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-judge
 
 - type: entity
@@ -77,10 +77,10 @@
     - type: Stamp
       stampedName: stamp-component-stamped-name-elysiumlawyer
       stampedColor: "#008B8B"
-      stampState: "paper_stamp-lawyer"
+      stampState: "paper_stamp-elysiumlawyer"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
-      state: stamp-lawyer
+      sprite: Imperial/Felix/Objects/paper.rsi
+      state: stamp-elysiumlawyer
 
 - type: entity
   name: stamp
@@ -93,7 +93,7 @@
       stampedColor: "#556B2F"
       stampState: "paper_stamp-spacemilitary"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-spacemilitary
 
 - type: entity
@@ -107,7 +107,7 @@
       stampedColor: "#191970"
       stampState: "paper_stamp-policecpt"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-policecpt
 
 - type: entity
@@ -121,7 +121,7 @@
       stampedColor: "#191970"
       stampState: "paper_stamp-policecrim"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-policecrim
 
 - type: entity
@@ -135,7 +135,7 @@
       stampedColor: "#191970"
       stampState: "paper_stamp-policedet"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-policedet
 
 - type: entity
@@ -149,7 +149,7 @@
       stampedColor: "#191970"
       stampState: "paper_stamp-policeinsp"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-policeinsp
 
 - type: entity
@@ -163,7 +163,7 @@
       stampedColor: "#191970"
       stampState: "paper_stamp-prosecutor"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-prosecutor
 
 - type: entity
@@ -177,5 +177,5 @@
       stampedColor: "#006400"
       stampState: "paper_stamp-security"
     - type: Sprite
-      sprite: Imperial/DeadSector/items/stamps.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       state: stamp-security

@@ -1,9 +1,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: USSPSoldierUshanka
-  name: Helmet S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
+  name: Soviet Ushanka
+  description: Armed and dangerous.
   components:
   - type: Item
     size: Small
@@ -27,9 +26,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: USSPSoldierBeret
-  name: Helmet S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
+  name: Soviet beret
+  description: I am the order!
   components:
   - type: Item
     size: Small
@@ -53,9 +51,8 @@
 - type: entity 
   parent: ClothingHeadBase
   id: USSPstormdivisionUshanka
-  name: Helmet USSP
-  suffix: Vl, USSP
-  description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
+  name: Storm Helmet
+  description: Helmet of the elite security of the USSP.
   components:
   - type: Item
     size: Small
@@ -79,9 +76,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: USSPstormdivisionBeret
-  name: Helmet S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
+  name: Storm elite helmet
+  description: This is the most elite helmet. Or is it?
   components:
   - type: Item
     size: Small
@@ -105,9 +101,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: USSPguardsmenBeret
-  name: Helmet S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
+  name: Guardsmen Helmet
+  description: Defend the Ship!
   components:
   - type: Item
     size: Small
@@ -131,8 +126,8 @@
 - type: entity
   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
   id: USSPHardsuitSoldierHelmet
-  name: brigmedic hardsuit helmet
-  description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
+  name: Military hardsuit helmet
+  description: The lightweight helmet of a hardsuit.
   components:
   - type: BreathMask
   - type: Sprite
@@ -159,8 +154,8 @@
 - type: entity
   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
   id: USSPHardsuitStormHelmet
-  name: brigmedic hardsuit helmet
-  description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
+  name: Elite hardsuit helmet
+  description: The lightweight helmet of the elite military hardsuit.
   components:
   - type: BreathMask
   - type: Sprite
@@ -187,8 +182,8 @@
 - type: entity
   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
   id: USSPHardsuitGuardHelmet
-  name: brigmedic hardsuit helmet
-  description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
+  name: Guard hardsuit helmet
+  description: What does this button do?
   components:
   - type: BreathMask
   - type: Sprite
@@ -239,3 +234,195 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPComissarHelmRed
+  name: comissar cap
+  description: I am the law.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/agitcomissar/comissar.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/agitcomissar/comissar.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+    
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPComissarHelmGreen
+  name: comissar cap
+  description: I am the law.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/battlecomissar/comissar.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/battlecomissar/comissar.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPMilitiaHelm
+  name: militia cap
+  description: I am the law.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/police/hat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/police/hat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadHatChef
+  id: USSPChefHelm
+  name: general cap
+  description: All remaining systems will BOW TO THE SOVIET UNION! FIRE!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/chef/hat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/chef/hat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPMilitiaMajorHelm
+  name: militia major cap
+  description: I am the law.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/policemajor/hat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/policemajor/hat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPGeneralHelm
+  name: general cap
+  description: All remaining systems will BOW TO THE SOVIET UNION! FIRE!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/general/hat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/general/hat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPMarshalHelm
+  name: general cap
+  description: All remaining systems will BOW TO THE SOVIET UNION! FIRE!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/hat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/hat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPRedSecHelm
+  name: general cap
+  description: the most cool beret
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/hat2.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/hat2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable

@@ -1,0 +1,14 @@
+store-category-space-guns-uplink-Food = Провизия
+store-category-space-guns-uplink-Weapon = Вооружение
+store-category-space-guns-uplink-Melee = Ближний бой
+store-category-space-guns-uplink-Ammunition = Боеприпасы
+store-category-space-guns-uplink-Explosives = Взрывчатое
+store-category-space-guns-uplink-Armor = Броня
+store-category-space-guns-uplink-Med = Медицина
+store-category-space-guns-uplink-Clothing = Одежда
+store-category-space-guns-uplink-Construction = Строительство
+store-category-space-guns-uplink-Laserguns = Лазерные орудия
+store-category-space-guns-uplink-Rocketguns = Ракетные орудия
+store-category-space-guns-uplink-Energycells = Силовые ячейки
+store-category-space-guns-uplink-rocket-shells = Ракетные снаряды
+store-category-space-guns-uplink-Misc = Разное

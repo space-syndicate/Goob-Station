@@ -1,0 +1,167 @@
+- type: entity
+  parent: [BaseHandheldComputer, FaxMachineBase]
+  id: FaxMachinePortable
+  name: long range fax machine
+  description: Bluespace technologies on the application of bureaucracy.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/fax_machine.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+      map: [ "enum.FaxMachineVisuals.VisualState" ]
+  - type: Icon
+    sprite: Imperial/ussp/fax_machine.rsi
+    state: icon
+  - type: Appearance
+  - type: ActivatableUI
+    inHandsOnly: False
+    singleUser: true
+    key: enum.FaxUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.FaxUiKey.Key:
+        type: FaxBoundUi
+  - type: Faxecute
+    damage:
+      types:
+        Blunt: 100
+  - type: FaxMachine
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - FaxableObject #used to be PaperComponent - brainfood1183
+      blacklist:
+        components:
+          - CargoSlip
+  - type: GenericVisualizer
+    visuals:
+      enum.FaxMachineVisuals.VisualState:
+        enum.FaxMachineVisuals.VisualState:
+          Printing: { state: printing }
+          Normal: {state: idle}
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: idle }
+          False: { state: icon }
+  - type: PowerCellDraw
+    drawRate: 1.5
+  - type: ToggleCellDraw
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      Paper: !type:ContainerSlot
+  - type: WirelessNetworkConnection
+    range: 5000
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Fax
+    transmitFrequencyId: Fax
+
+- type: entity
+  parent: [ BaseItem ]
+  id: HolopadPortable
+  name: holopad
+  description: "A floor-mounted device for projecting holographic images."
+  components:
+  - type: Transform
+    bodyType: Dynamic
+  - type: StationAiVision
+  - type: Sprite
+    sprite: Imperial/ussp/holopad.rsi
+    drawdepth: Items
+    snapCardinals: true
+    layers:
+    - state: base
+    - map: [ "lights" ]
+      state: blank
+      shader: unshaded
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: panel_open
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TelephoneVisuals.Key:
+        lights:
+          Idle: { state: blank }
+          Calling: { state: lights_calling }
+          Ringing: { state: lights_ringing }
+          InCall: { state: lights_in_call }
+          EndingCall: { state: lights_hanging_up }
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          False: { visible: true }
+          True: { visible: false }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+  - type: Machine
+    board: HolopadMachineCircuitboard
+  - type: StationAiWhitelist
+  - type: PointLight
+    radius: 1.3
+    energy: 1.8
+    color: "#afe1fe"
+    enabled: false
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/buzzing.ogg
+  - type: Holopad
+    hologramProtoId: HolopadHologram
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    speechBubbleOffset: 0.45
+  - type: Telephone
+    ringTone: /Audio/Machines/double_ring.ogg
+    listeningRange: 2.5
+    speakerVolume: Speak
+  - type: AccessReader
+    access: [[ "Command" ]]
+  - type: ActivatableUI
+    key: enum.HolopadUiKey.InteractionWindow
+  - type: UserInterface
+    interfaces:
+        enum.HolopadUiKey.InteractionWindow:
+          type: HolopadBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Wires
+    boardName: wires-board-name-holopad
+    layoutId: Holopad
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: USSP stamp
+  parent: RubberStampMime
+  id: RubberStampUSSP
+  components:
+    - type: Stamp
+      stampedName: comms-console-announcement-title-IMPERIALSSSP
+      stampState: paper_stamp-generic
+      stampedColor: "#e74c3c"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp

@@ -1,0 +1,7 @@
+- type: entity
+  name: phazonium gas miner
+  parent: GasMinerBase
+  id: GasMinerPhazonium
+  components:
+    - type: GasMiner
+      spawnGas: Phazonium

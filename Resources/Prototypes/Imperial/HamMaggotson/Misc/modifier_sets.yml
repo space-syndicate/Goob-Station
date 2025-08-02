@@ -1,0 +1,13 @@
+- type: damageModifierSet
+  id: Ashwalker
+  coefficients:
+    Blunt: 1
+    Slash: 1
+    Piercing: 1
+    Cold: 0.0
+    Poison: 1
+    Radiation: 1
+    Asphyxiation: 0.0
+    Bloodloss: 1
+    Cellular: 1
+    Heat: 0.0

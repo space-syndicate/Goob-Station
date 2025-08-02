@@ -30,7 +30,6 @@
         Caustic: 0.1
         Cold: 0.1
         Shock: 0.1 ## Added after adding stamina resist by Artur.
-        Stamina: 0.3 ## Stamina resistance Imperial
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -45,6 +44,8 @@
   - type: Tag
     tags:
       - MonkeyWearable
+  - type: StaminaResistance
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]

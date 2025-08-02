@@ -3,6 +3,7 @@
   damage:
     types:
       Radiation: 25
+      Heat: 10
   muzzleFlash:
     sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
     state: muzzle_blue

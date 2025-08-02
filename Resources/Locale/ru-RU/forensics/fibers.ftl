@@ -1,32 +1,32 @@
 forensic-fibers = {LOC($material)} волокна
 forensic-fibers-colored = {LOC($color)} {LOC($material)} волокна
 
-fibers-insulative = изолирующие
+fibers-insulative = изоляционные
+fibers-insulative-frayed = изношенные изоляционные
 fibers-synthetic = синтетические
 fibers-leather = кожаные
 fibers-durathread = дюратканевые
 fibers-latex = латексные
 fibers-nitrile = нитриловые
-fibers-nanomachines = изолирующие наномашинные
+fibers-nanomachines = наномашинные изоляционные
 fibers-chameleon = голографические хамелеонные
+fibers-rubber = резиновые
 
 fibers-purple = фиолетовые
 fibers-red = красные
 fibers-black = чёрные
 fibers-blue = синие
+fibers-teal = бирюзовые
 fibers-brown = коричневые
+fibers-light-brown = светло-коричневые
 fibers-grey = серые
 fibers-green = зелёные
 fibers-orange = оранжевые
 fibers-white = белые
 fibers-yellow = жёлтые
 fibers-regal-blue = королевские синие
-fibers-teal = бирюзовые
-fibers-silver = серебристые
-fibers-rubber = резиновые
 fibers-olive = оливковые
-fibers-maroon = бордовое
-fibers-insulative-frayed = изношенные изолирующие
+fibers-silver = серебристые
 fibers-gold = золотые
+fibers-maroon = бордовые
 fibers-pink = розовые
-

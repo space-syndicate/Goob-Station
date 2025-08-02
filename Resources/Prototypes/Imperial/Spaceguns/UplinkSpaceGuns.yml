@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseItem
+  id: BaseUplinl_Spaceguns
+  name: Uplinl_Spaceguns
+  description: super Spaceguns uplink
+  suffix: Phantom4502, Spaceguns
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/UplinkSpaceGuns.rsi
+    layers:
+    - state: terminal-item
+    - state: terminal-anim
+      shader: unshaded
+      visible: true
+  - type: Item
+    sprite: Imperial/Spaceguns/UplinkSpaceGuns.rsi
+    heldPrefix: terminal-item
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - SpacegunsFood
+    - SpacegunsWeapon
+    - SpacegunsMelee
+    - SpacegunsMed
+    - SpacegunsAmmunition
+    - SpacegunsArmor
+    - SpacegunsMisc
+    - SpacegunsClothing
+    - SpacegunsExplosives
+    - SpacegunsConstruction
+    - SpacegunsLaserguns
+    - SpacegunsRocketguns
+    - SpacegunsEnergycells
+    - SpacegunsRocketshells
+    currencyWhitelist:
+    - Telecrystal_sacerdos
+    balance:
+      Telecrystal_sacerdos: 0

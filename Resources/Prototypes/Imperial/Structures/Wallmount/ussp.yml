@@ -1,0 +1,104 @@
+- type: entity
+  id: BaseOverheadBillboard
+  name: billboard
+  abstract: true
+  description: even your girlfriend looks at me -Billboard
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: WallMount
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/billboard.rsi
+    state: billboard
+    drawdepth: Overdoors
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+
+- type: entity
+  id: Billboard
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: billboard
+
+- type: entity
+  id: Billboard1
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: billboard1
+
+- type: entity
+  id: Billboard2
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: billboard2
+
+- type: entity
+  id: Billboard3
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: billboard3
+
+- type: entity
+  id: Billboard4
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: billboard4
+
+- type: entity
+  id: Billboard5
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: billboard5
+
+- type: entity
+  id: BillboardBig
+  parent: BaseOverheadBillboard
+  name: Billboard
+  description: it is a billboard
+  components:
+  - type: Sprite
+    state: bigboard
+
+- type: entity
+  parent: PosterBase
+  id: PosterUSSP
+  name: A soviet poster
+  description: Vodka,mushka, balalajka
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/posters.rsi
+    state: clock
+
+- type: entity
+  id: PosterUSSP2
+  parent: PosterUSSP
+  components:
+  - type: Sprite
+    state: flag
+
+- type: entity
+  id: PosterUSSP3
+  parent: PosterUSSP
+  components:
+  - type: Sprite
+    state: swords

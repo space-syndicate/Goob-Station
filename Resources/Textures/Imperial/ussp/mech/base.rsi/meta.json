@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by @totally_not_don_kot",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "reinf_construct-0"
+        },
+        {
+            "name": "reinf_construct-1"
+        },
+        {
+            "name": "reinf_construct-2"
+        },
+        {
+            "name": "reinf_construct-3"
+        },
+        {
+            "name": "reinf_construct-4"
+        },
+        {
+            "name": "reinf_construct-5"
+        },
+
+        {
+            "name": "rgeneric"
+        },
+        {
+            "name": "reinforced_wall_girder"
+        }
+    ]
+}

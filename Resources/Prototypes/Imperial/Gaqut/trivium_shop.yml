@@ -1,0 +1,40 @@
+- type: entity
+  parent: [ StorePresetTrivium, BaseMachinePowered]
+  id: VendingMachineTrivium
+  name: Trivend
+  description: A vending machine where you can buy some stuff.
+  suffix: Gaqut, Void
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      TriviumMark: 0
+  - type: AmbientSound
+    volume: -6
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: Sprite
+    sprite: Imperial/Gaqut/Machines/Trivend.rsi
+    state: normal
+  - type: Animateable
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#78645c"
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't do anything
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

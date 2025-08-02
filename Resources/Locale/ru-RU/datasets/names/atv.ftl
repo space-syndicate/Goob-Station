@@ -1,0 +1,16 @@
+descriptions-atv-dataset-1 = Цельнометаллический автомобиль.
+descriptions-atv-dataset-2 = И-Препятствующее транспортное средство.
+descriptions-atv-dataset-3 = Овощ в любое время суток.
+descriptions-atv-dataset-4 = На самом деле - Две машины.
+descriptions-atv-dataset-5 = Любая типизированная переменная.
+descriptions-atv-dataset-6 = Транспортное средство для оказания помощи при травмах.
+descriptions-atv-dataset-7 = Вирус, передаваемый алгоритмом.
+descriptions-atv-dataset-8 = Вакансия для детей-алкоголиков.
+descriptions-atv-dataset-9 = Вулкан, раздирающий задницы.
+descriptions-atv-dataset-10 = Телевизор.
+descriptions-atv-dataset-11 = Неуклюжий бродяга-щипач.
+descriptions-atv-dataset-12 = Волонтер арт-трагедии.
+descriptions-atv-dataset-13 = Вакансия автоматического Тако.
+descriptions-atv-dataset-14 = Еще один - Потрясающий вид.
+descriptions-atv-dataset-15 = Все - Девственницы.
+descriptions-atv-dataset-16 = Ужасное транспортное средство.

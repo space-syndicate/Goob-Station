@@ -1,0 +1,209 @@
+- type: stack
+  id: PokerChipStackWhite
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: white-chip }
+  spawn: PokerChipWhite
+  maxCount: 100
+
+- type: stack
+  id: PokerChipStackRed
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: red-chip }
+  spawn: PokerChipRed
+  maxCount: 100
+
+- type: stack
+  id: PokerChipStackBlue
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: blue-chip }
+  spawn: PokerChipBlue
+  maxCount: 100
+
+- type: stack
+  id: PokerChipStackGreen
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: green-chip }
+  spawn: PokerChipGreen
+  maxCount: 100
+
+- type: stack
+  id: PokerChipStackBlack
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: black-chip }
+  spawn: PokerChipBlack
+  maxCount: 100
+
+- type: stack
+  id: PokerChipStackViolet
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: violet-chip }
+  spawn: PokerChipViolet
+  maxCount: 100
+
+- type: stack
+  id: PokerChipStackYellow
+  name: stack-poker-chip
+  icon: { sprite: Imperial/Gaqut/poker-chips.rsi, state: yellow-chip }
+  spawn: PokerChipYellow
+  maxCount: 100
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipWhite
+  name: white chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: white-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackWhite
+    count: 1
+  - type: StaticPrice
+    price: 1
+  - type: StackPrice
+    price: 1
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipRed
+  name: red chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: red-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackRed
+    count: 1
+  - type: StaticPrice
+    price: 5
+  - type: StackPrice
+    price: 5
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipBlue
+  name: blue chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: blue-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackBlue
+    count: 1
+  - type: StaticPrice
+    price: 10
+  - type: StackPrice
+    price: 10
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipGreen
+  name: green chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: green-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackGreen
+    count: 1
+  - type: StaticPrice
+    price: 25
+  - type: StackPrice
+    price: 25
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipBlack
+  name: black chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: black-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackBlack
+    count: 1
+  - type: StaticPrice
+    price: 100
+  - type: StackPrice
+    price: 100
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipViolet
+  name: violet chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: violet-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackViolet
+    count: 1
+  - type: StaticPrice
+    price: 500
+  - type: StackPrice
+    price: 500
+
+- type: entity
+  parent: BaseItem
+  id: PokerChipYellow
+  name: yellow chip
+  suffix: Gaqut, poker
+  description: Gambling chip
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/poker-chips.rsi
+    state: yellow-chip
+    scale: 0.25, 0.25
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: PokerChipStackYellow
+    count: 1
+  - type: StaticPrice
+    price: 1000
+  - type: StackPrice
+    price: 1000

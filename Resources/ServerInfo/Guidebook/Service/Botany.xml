@@ -1,84 +1,84 @@
 <Document>
-# Botany
-As a botanist, it is your job to grow enough food to stop the chef from seeking "alternative sources". Grow lots of wheat, and when you get tired of that, grow weed. Make weed smoothies and spike drinks with nettles. Just keep growing plants, and you'll do great!
+# Ботаник
+Ваша работа как ботаника - вырастить столько еды, чтобы остановить Шеф-Повара от нахождения её через "альтернативные пути". Растите поля пшеницы, а когда вам надоест - растите марихуану. Просто продолжайте растить, неважно что, просто растите!
 
-## Starting your shift
-First identify the machines around you that you will be using. Coordinate with the Chef to see if they want anything specific to be grown, otherwise grow wheat and bananas and whatever else you feel like growing. You may also grow plants for Chemistry (Medbay), the Bartender, or to sell by Cargo.
+## Начало смены
+Сначала посмотрите на вашу округу и то, с чем вы будете работать. Уточните у Шеф-Повара, не нужно ли ему что-то определённое. Если нет, то растите пшеницу и бананы, ну или что угодно что вам захочется. Вы можете растить растения, которые помогут медицинскому отделу, Бармену или отделу поставок, на продажу.
 
 
-# Tools
-There are many tools that can be used to keep your crops healthy and growing. The Hydroponics Tray is where you will spend most of your time as a botanist.
+# Инструменты
+Есть много инструментов, позволяющих вашим растениям жить долго и счастливо. Но основной машиной ботаника является гидропонный лоток.
 
-## Hydroponics Tray
+## Гидропонный лоток
 <Box>
 <GuideEntityEmbed Entity="hydroponicsTray"/>
 </Box>
-It's a hydroponics tray, it grows plants with water. First fill the tray with water, then add seeds.
-Hydroponics tray lights indicate different things depending on color and position:
-- [color=red]Red Light, Left[/color]: Dead plant that needs re-planting. Use a spade to remove the plant.
-- [color=orange]Flashing Orange Light, Center[/color]: The environment is sub-optimal. Check what is affecting the plant by Shift Clicking on it. It is likely weeds but it could be undesirable pressure or lack of oxygen. If weeds, use a mini hoe or spray 1 time with weed spray. Be warned, however, that overuse of weed killers can lead to unhealthy plants, possibly killing them.
-- [color=#0336ff]Blue Light, Right[/color]: Needs water. Use bucket on the water tank and fill the tray.
-- [color=green]Green Light, Left[/color]: Ready for harvest. Left click to harvest.
-- [color=yellow]Yellow Light, Right[/color]: Needs nutrients. Use any fruit and put it into the soil or get EZ nutrients from chemistry.
+Это лоток, он заставляет растения расти с помощью воды. Залейте его водой, затем посадите семена.
+На гидропонном лотке есть лампочки, показывающие состояние растения и самого лотка:
+- [color=red]Красный, Слева[/color]: Растение мертво и требуется его вытащить. Используйте лопату.
+- [color=orange]Мигающий оранжевый, Центр[/color]: Растение находится не в лучших условиях. Осмотрите растение чтобы узнать точную причину. Если причина - сорняки, уберите их с помощью тяпки или используйте спрей против сорняков. Учитывайте, что многократное использование спрея может убить растение.
+- [color=#0336ff]Синий, Справа[/color]: Недостаточно воды. Наполните лоток водой с помощью ведра.
+- [color=green]Зелёный, Слева[/color]: Растение готово к сбору. Нажмите [color=yellow][bold][keybind="Use"][/bold][/color] на растение чтобы собрать урожай.
+- [color=yellow]Жёлтый, Справа[/color]: Недостаточно питательных веществ. Вы можете использовать любой плод в виде удобрения или воспользоваться спреем EZ Harvest.
 
-The lifecycle of a hydroponics tray is the following:
-- [color=lightgreen]Empty[/color]: no water, seed or nutrients
-- [color=lightgreen]Hydrated[/color]: you've added water to it (e.g. from a bottle or bucket).
-- [color=lightgreen]Ready for planting[/color]: you've added water and nutrients to it (i.e. fertilizer).
-- [color=lightgreen]Planted[/color]: you've added a seed to it
-- [color=lightgreen]Ready for Harvest[/color]: you've waited for the plant to grow
-- [color=lightgreen]Sampled[/color]: you've taken a sample (seed)
-- [color=lightgreen]Harvested[/color]: you've picked ready plants. Some plants will then grow again. Others will die and need replanting.
-- [color=lightgreen]Unhealthy[/color]: You've sampled too many seeds or sprayed it with deadly chemicals. The plant isn't coping too well. It'll continue to grow. Health can be restored by fertilizers or you can cut your losses and extract a seed (plant clippers) and replant.
-- [color=lightgreen]Old / Wilted[/color]: the plant has matured and will soon die. It will still be harvestable and you can extract seeds but only for a short duration. Extract the seed and then pluck it out / chop it down.
-- [color=lightgreen]Dead[/color]: the plant has been harvested and ceased growing. It should be plucked out / chopped down. No seeds can be extracted.
+Жизненный цикл гидропонного лотка:
+- [color=lightgreen]Пусто[/color]: нет воды, семян или питательных веществ
+- [color=lightgreen]Увлажнено[/color]: Вы добавили воду (из бутылки или ведра).
+- [color=lightgreen]Готово к посадке[/color]: Вы добавили воду и питательные вещества.
+- [color=lightgreen]Засажено[/color]: Вы посадили семя.
+- [color=lightgreen]Готово к сбору[/color]: Вы дождались, пока растение вырастет.
+- [color=lightgreen]Образец взят[/color]: Вы собрали семена с помощью кусачек.
+- [color=lightgreen]Урожай собран[/color]: Вы сняли созревшие растения. Некоторые растения вырастут снова. Другие погибнут, и их нужно пересаживать.
+- [color=lightgreen]Больное[/color]: Вы взяли слишком много образцов или опрыскали растение смертоносными химикатами. Растению плохо, но оно продолжит рост. Здоровье можно восстановить удобрениями, или можно заменить растение: вытащить его лопаткой и посадить новое.
+- [color=lightgreen]Старое / Увядающее[/color]: растение созрело и скоро погибнет. Его ещё можно собрать и извлечь семена, но только короткое время. Извлеките семя, а затем выдерните/срубите растение.
+- [color=lightgreen]Мёртвое[/color]: растение собрано и прекратило рост. Его следует выдернуть/срубить. Семена извлечь невозможно.
 
-## Seed Extractor
+## Экстрактор семян
 <Box>
 <GuideEntityEmbed Entity="SeedExtractor"/>
 </Box>
-It extracts seeds. Insert crop, receive seeds.
+Извлекает семена из плодов. Вставьте плод, получите семена.
 
 
-# Plant Genetics
-Like all other forms of life known to NanoTrasen, plants pass traits to offspring in their genes. By manipulating plant genetics, botanists can produce plant varieties with desirable mutations that increase plant health and yield.
+# Генетика растений
+Как и все формы жизни, знакомые NanoTrasen, растения передают признаки потомству через гены. Изменяя генетику растений, ботаники могут выводить сорта с полезными мутациями, повышающими здоровье и урожайность растений.
 
-## Traits
-The phenotype, or set of observable characteristics and traits of a plant, can be determined through careful observation and study. A few common traits include:
+## Признаки
+Фенотип растения — совокупность его наблюдаемых характеристик и признаков — можно определить путём тщательного изучения. Вот несколько распространённых признаков:
 
-- [color=lightgreen]Bioluminescence[/color]: plants with this trait glow in the dark
-- [color=lightgreen]High yield[/color]: plants with this trait yield more fruit per harvest
-- [color=lightgreen]Less water[/color]: plants with this trait require less water than normal to grow
-- [color=lightgreen]Ligneous[/color]: plants with this trait require sharp tools to harvest
-- [color=lightgreen]Long life[/color]: plants with this trait live for more harvest cycles before dying
-- [color=lightgreen]Low light[/color]: plants with this trait need less light than normal to grow
-- [color=lightgreen]Pest resistance[/color]: plants with this trait are more resistant to pests
-- [color=lightgreen]Seedless[/color]: plants with this trait do not produce viable seeds
-- [color=lightgreen]Weed resistance[/color]: plants with this trait suppress weed growth
+- [color=lightgreen]Биолюминесценция[/color]: такие растения светятся в темноте
+- [color=lightgreen]Высокая урожайность[/color]: дают больше плодов за сбор
+- [color=lightgreen]Малотребовательные к воде[/color]: требуют меньше воды для роста
+- [color=lightgreen]Древесные[/color]: для сбора требуются инструменты типа топорика
+- [color=lightgreen]Долгоживущие[/color]: живут больше циклов сбора перед гибелью
+- [color=lightgreen]Малотребовательные к свету[/color]: требуют меньше света для роста
+- [color=lightgreen]Устойчивость к вредителям[/color]: более устойчивы к паразитам
+- [color=lightgreen]Бессемянные[/color]: не производят жизнеспособных семян
+- [color=lightgreen]Устойчивость к сорнякам[/color]: подавляют рост сорных растений
 
-You can determine the phenotype of a plant simply by growing them and observing them! This is how Gregor Mendel, father of genetics, studied them in 1866.
+Фенотип можно определить, просто выращивая растения и наблюдая за ними! Именно так Грегор Мендель, отец генетики, изучал их в 1866 году.
 
-## Mutations
-Plants treated with [color=cyan]unstable mutagen[/color] will experience random genetic mutations, which can alter their genes and result in changes to their traits. You can save the plants with mutations you want by harvesting their seeds.
+## Мутации
+Растения, обработанные [color=cyan]нестабильным мутагеном[/color], получают случайные генетические мутации. Это изменяет их гены и может привести к появлению новых признаков. Желательные мутации можно сохранить, собрав семена таких растений.
 
-The more unstable mutagen you use, the more mutations you will get. Since many genes are vital to a plant's survival, most mutations will cause a plant to die.
+Чем больше мутагена использовано — тем больше мутаций возникнет. Так как многие гены критичны для выживания растения, многие мутации их убивают.
 
 <Box>
 <GuideEntityEmbed Entity="ChemistryBottleUnstableMutagen"/>
 </Box>
 
-## Cross-Pollination
-You can use a [color=cyan]sterile swab[/color] to transfer pollen from one plant to another. Plants that are cross-pollinated have a chance to transfer traits. Be careful re-using swabs; pollen is sticky!
+## Перекрёстное опыление
+Используя [color=cyan]стерильные палочки[/color], Вы можете перенести гены одного растения на другое. Будьте осторожны; пыльца липкая!
 
 <Box>
 <GuideEntityEmbed Entity="BoxMouthSwab"/>
 <GuideEntityEmbed Entity="DiseaseSwab"/>
 </Box>
 
-## Chemicals
-Some chemicals have special effects on plants.
+## Химикаты
+Некоторые химикаты имеют особые эффекты на растения.
 
-[textlink="Click here to see all botanical chemicals." link="Botanical"]
+[textlink="Нажмите здесь чтобы перейти ко всем Ботаническим химикатам." link="Botanical"]
 
 <GuideReagentEmbed Reagent="Dylovene"/>
 <GuideReagentEmbed Reagent="Cryoxadone"/>

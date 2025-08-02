@@ -9,6 +9,8 @@
     - Vocal
   chatMessages: ["chat-emote-msg-scream"]
   chatTriggers:
+    - кричит # Imperial rus replace @Ser1-1y
+    - орёт # Imperial rus replace @Ser1-1y
     - scream
     - screams
     - screaming
@@ -39,6 +41,8 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-laugh"]
   chatTriggers:
+    - смеётся # Imperial rus replace @Ser1-1y
+    - хихикает # Imperial rus replace @Ser1-1y
     - laugh
     - laughs
     - laughing
@@ -86,6 +90,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-sigh"]
   chatTriggers:
+    - вздыхает # Imperial rus replace @Ser1-1y
     - sigh
     - sighs
     - sighed
@@ -103,6 +108,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-whistle"]
   chatTriggers:
+    - свистит # Imperial rus replace @Ser1-1y
     - whistle
     - whistles
     - whistleblowing
@@ -120,6 +126,9 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-crying"]
   chatTriggers:
+    - плачет # Imperial rus replace @Ser1-1y
+    - ревёт # Imperial rus replace @Ser1-1y
+    - рыдает # Imperial rus replace @Ser1-1y
     - cry
     - crying
     - cries
@@ -212,6 +221,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
+    - хлопает # Imperial rus replace @Ser1-1y
     - claps
     - clapping
     - clapped
@@ -229,6 +239,7 @@
     - SiliconEmotes
   chatMessages: [ "chat-emote-msg-clap-single" ]
   chatTriggers:
+    - хлопает один раз # Imperial rus replace @Ser1-1y
     - clap
     - claps their hands together
     - claps her hands together
@@ -248,6 +259,8 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-snap"]
   chatTriggers:
+    - щёлкает пальцами # Imperial rus replace @Ser1-1y
+    - щёлкает # Imperial rus replace @Ser1-1y
     - snap
     - snaps
     - snapping
@@ -299,6 +312,8 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
+    - салютует # Imperial rus replace @Ser1-1y
+    - отдаёт честь # Imperial rus replace @Ser1-1y
     - salute
     - salutes
 

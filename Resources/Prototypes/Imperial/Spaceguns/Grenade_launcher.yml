@@ -1,0 +1,1384 @@
+- type: entity
+  id: SpaceGunsEXP_1
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: EXP-2100g "Duster"
+  suffix: SpaceGuns, Phantom4502
+  description: A powerful stationary grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: base
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    fireRate: 0.5
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 15
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - SpaceGunsGrenade
+    capacity: 1
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: MachineSpaceGunSpaceGunsEXP_1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+
+- type: entity
+  id: SpaceGunsEXP
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: EXP-2100g "Duster"
+  suffix: SpaceGuns, Phantom4502
+  description: A powerful stationary grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: base3
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    fireRate: 0.5
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 15
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - SpaceGunsGrenade
+    capacity: 2
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: MachineSpaceGunSpaceGunsEXP
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+
+- type: entity
+  id: SpaceGunsDuster2
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: EXP-2100g "Duster"
+  description: A powerful stationary grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: base4
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 40
+    fireRate: 0.2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        variation: 0.7
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: MachineSpaceGunSpaceGunsDuster2
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - SpaceGunsMagazineGrenade
+        insertSound:
+          path: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+
+- type: entity
+  id: SpaceGunsGrenadeFrag1
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFrag1
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: frag
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragSpaceGuns1
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragSpaceGuns1
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFrag2
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragSpaceGuns
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fraglittle
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragEMP
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: SpaceGunsBulletGrenadeEMP
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: emp
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragEMP2
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: SpaceGunsBulletGrenadeEMP2
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: emp
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragEMP3
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: SpaceGunsBulletGrenadeEMP3
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: emp
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragRadioactive
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragRadioactive
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragRadioactive
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragRadioactive2
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragRadioactive2
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragRadioactivelittle
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFrag4
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFrag4
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragDemolitionCharge
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragCryo
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragCryo
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragCryo
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragCryo2
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFragCryo2
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragCryolittle
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFrag6
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeFrag6
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragFireBomb
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragShrapnel
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: PelletGrapeshotSpreadShrapnel
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: Fragmentation
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFragShrapnel2
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: PelletGrapeshotSpreadShrapnel2
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: Fragmentationlittle
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFrag8
+  name: frag grenade
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: PelletShotgunSlugCumulative
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Cumulative.rsi
+    layers:
+    - state: fragCumulative
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: SpaceGunsGrenadeFrag9
+  name: frag grenade
+  parent: BaseGrenade
+  suffix: SpaceGuns, Phantom4502
+  components:
+  - type: CartridgeAmmo
+    proto: GrenadeFlashEffect9
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: fragSmokelittle
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - SpaceGunsGrenade
+
+- type: entity
+  id: BulletGrenadeFrag1
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 175 
+    intensitySlope: 1
+    maxIntensity: 10
+
+- type: entity
+  id: BulletGrenadeFragSpaceGuns1
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100
+    intensitySlope: 1
+    maxIntensity: 10
+
+- type: entity
+  id: BulletGrenadeFragSpaceGuns
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50 
+    intensitySlope: 1
+    maxIntensity: 10
+
+- type: entity
+  id: SpaceGunsBulletGrenadeEMP
+  name: EMP rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: EmpOnTrigger
+    range: 10
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  id: SpaceGunsBulletGrenadeEMP2
+  name: EMP rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: EmpOnTrigger
+    range: 8
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  id: SpaceGunsBulletGrenadeEMP3
+  name: EMP rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: EmpOnTrigger
+    range: 5
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  id: BulletGrenadeFragRadioactive
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Radioactive
+    totalIntensity: 80
+    intensitySlope: 1
+    maxIntensity: 40.6
+
+- type: entity
+  id: BulletGrenadeFragRadioactive2
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Radioactive
+    totalIntensity: 60.0
+    intensitySlope: 1
+    maxIntensity: 40.6
+
+- type: entity
+  id: BulletGrenadeFrag4
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 90
+    intensitySlope: 10
+    totalIntensity: 100
+
+- type: entity
+  id: BulletGrenadeFragCryo
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Cryo
+    totalIntensity: 100
+    intensitySlope: 1
+    maxIntensity: 10
+    canCreateVacuum: false
+
+- type: entity
+  id: BulletGrenadeFragCryo2
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Cryo
+    totalIntensity: 90
+    intensitySlope: 10
+    maxIntensity: 100
+    canCreateVacuum: false
+
+- type: entity
+  id: BulletGrenadeFrag6
+  name: frag grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 100
+    intensitySlope: 1
+    maxIntensity: 10
+    canCreateVacuum: false
+
+- type: entity
+  id: PelletGrapeshotSpreadShrapnel
+  categories: [ HideSpawnMenu ]
+  parent: PelletGrapeshot
+  components:
+  - type: ProjectileSpread
+    proto: PelletGrapeshotShrapnel1
+    count: 8
+    spread: 40
+
+- type: entity
+  id: PelletGrapeshotSpreadShrapnel2
+  categories: [ HideSpawnMenu ]
+  parent: PelletGrapeshot
+  components:
+  - type: ProjectileSpread
+    proto: PelletGrapeshotShrapnel2
+    count: 8
+    spread: 40
+
+- type: entity
+  id: PelletGrapeshotShrapnel2
+  name: grapeshot pellet
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grapeshot
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 80
+
+- type: entity
+  id: PelletGrapeshotShrapnel1
+  name: grapeshot pellet
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grapeshot
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 60
+        Structural: 90
+
+- type: entity
+  id: PelletShotgunSlugCumulative
+  name: pellet (.50 slug)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: slug
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50
+        Structural: 250
+        Heat: 35
+        Caustic: 10    
+    penetrationThreshold: 650
+    penetrationDamageTypeRequirement:
+    - Structural
+
+- type: entity
+  id: GrenadeFlashEffect9
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade 
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 50
+  - type: FlashOnTrigger
+    range: 7
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 1
+  - type: StaminaDamageOnCollide
+    damage: 80
+
+- type: entity
+  id: BaseMagazineGrenadeSpaceGuns
+  name: grenade cartridge
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - SpaceGunsMagazineGrenade
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - SpaceGunsGrenade
+    capacity: 5
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Large
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineGrenadeEmpty1
+  suffix: SpaceGuns, 10, Phantom4502
+  name: grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - SpaceGunsGrenade
+    capacity: 10
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: MagazineGrenadeEmpty2
+  suffix: SpaceGuns, 20, Phantom4502
+  name: grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - SpaceGunsGrenade
+    capacity: 20
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: MagazineGrenadeEmpty3
+  suffix: SpaceGuns, 5, Phantom4502
+  name: grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+
+- type: entity
+  id: MagazineGrenadeFraglittle1
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag1
+
+- type: entity
+  id: MagazineGrenadeFraglittle2
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragSpaceGuns1
+
+- type: entity
+  id: MagazineGrenadeFraglittle3
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag2
+
+- type: entity
+  id: MagazineGrenadeFragEMPlittle1
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP
+
+- type: entity
+  id: MagazineGrenadeFragEMPlittle2
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP2
+
+- type: entity
+  id: MagazineGrenadeFragEMPlittle3
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP3
+
+- type: entity
+  id: MagazineGrenadeFraglittleRadioactive1
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragRadioactive
+
+- type: entity
+  id: MagazineGrenadeFraglittleRadioactive2
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragRadioactive2
+
+- type: entity
+  id: MagazineGrenadeFraglittle4
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag4
+
+- type: entity
+  id: MagazineGrenadeFraglittleCryo1
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragCryo
+
+- type: entity
+  id: MagazineGrenadeFraglittleCryo2
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragCryo2
+
+- type: entity
+  id: MagazineGrenadeFraglittle6
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag6
+
+- type: entity
+  id: MagazineGrenadeFragShrapnellittle1
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragShrapnel
+
+- type: entity
+  id: MagazineGrenadeFragShrapnellittle2
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragShrapnel2
+
+- type: entity
+  id: MagazineGrenadeFraglittle8
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag8
+
+- type: entity
+  id: MagazineGrenadeFraglittle9
+  suffix: SpaceGuns, 5, Phantom4502
+  name: frag grenade cartridge
+  parent: BaseMagazineGrenadeSpaceGuns
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag9
+
+- type: entity
+  id: MagazineGrenadeFragAverage1
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag1
+
+- type: entity
+  id: MagazineGrenadeFragAverage2
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragSpaceGuns1
+
+- type: entity
+  id: MagazineGrenadeFragAverage3
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag2
+
+- type: entity
+  id: MagazineGrenadeFragEMPAverage1
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP
+
+- type: entity
+  id: MagazineGrenadeFragEMPAverage2
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP2
+
+- type: entity
+  id: MagazineGrenadeFragEMPAverage3
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP3
+
+- type: entity
+  id: MagazineGrenadeFragRadioactiveAverage1
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragRadioactive
+
+- type: entity
+  id: MagazineGrenadeFragRadioactiveAverage2
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragRadioactive2
+
+- type: entity
+  id: MagazineGrenadeFragAverage4
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag4
+
+- type: entity
+  id: MagazineGrenadeFragCryoAverage1
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragCryo
+
+- type: entity
+  id: MagazineGrenadeFragCryoAverage2
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragCryo2
+
+- type: entity
+  id: MagazineGrenadeFragAverage6
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag6
+
+- type: entity
+  id: MagazineGrenadeFragShrapnelAverage1
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragShrapnel
+
+- type: entity
+  id: MagazineGrenadeFragShrapnelAverage2
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragShrapnel2
+
+- type: entity
+  id: MagazineGrenadeFragAverage8
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag8
+
+- type: entity
+  id: MagazineGrenadeFragAverage9
+  suffix: SpaceGuns, 10, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty1
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag9
+
+- type: entity
+  id: MagazineGrenadeFragbig1
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag1
+
+- type: entity
+  id: MagazineGrenadeFragbig2
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragSpaceGuns1
+
+- type: entity
+  id: MagazineGrenadeFragbig3
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag2
+
+- type: entity
+  id: MagazineGrenadeFragEMPbig1
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP
+
+- type: entity
+  id: MagazineGrenadeFragEMPbig2
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP2
+
+- type: entity
+  id: MagazineGrenadeFragEMPbig3
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragEMP3
+
+- type: entity
+  id: MagazineGrenadeFragRadioactivebig1
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragRadioactive
+
+- type: entity
+  id: MagazineGrenadeFragRadioactivebig2
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragRadioactive2
+
+- type: entity
+  id: MagazineGrenadeFragbig4
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag4
+
+- type: entity
+  id: MagazineGrenadeFragCryobig1
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragCryo
+
+- type: entity
+  id: MagazineGrenadeFragCryobig2
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragCryo2
+
+- type: entity
+  id: MagazineGrenadeFragbig6
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag6
+
+- type: entity
+  id: MagazineGrenadeFragShrapnelbig1
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragShrapnel
+
+- type: entity
+  id: MagazineGrenadeFragShrapnelbig2
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFragShrapnel2
+
+- type: entity
+  id: MagazineGrenadeFragbig8
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag8
+
+- type: entity
+  id: MagazineGrenadeFragbig9
+  suffix: SpaceGuns, 20, Phantom4502
+  name: frag grenade cartridge
+  parent: MagazineGrenadeEmpty2
+  components:
+  - type: BallisticAmmoProvider
+    proto: SpaceGunsGrenadeFrag9
+
+- type: entity
+  id: MachineSpaceGunSpaceGunsEXP_1
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsEXP_1
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunSpaceGunsEXP
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsEXP
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunSpaceGunsDuster2
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsDuster2
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5

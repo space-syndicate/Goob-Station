@@ -1,75 +1,163 @@
+
 - type: entity
   parent: IDCardStandard
   id: USSPBattleIDcard
-  name: The Mercenary's ID Card
+  name: Soviet military ID
   description: It looks unusual. Taken from military samples.
-  suffix: Vl, Arcane
   components:
   - type: Sprite
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
     layers:
-    - state: Merc
-    - state: idcentcom
+    - state: icon
   - type: Clothing
     slots:
     - idcard
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
     jobTitle: Военный СССП
+  - type: Access
+    tags:
+    - Security
 
 - type: entity
   parent: IDCardStandard
   id: USSPofficerIDcard
-  name: The Mercenary's ID Card
+  name: Soviet officer ID
   description: It looks unusual. Taken from military samples.
-  suffix: Vl, Arcane
   components:
   - type: Sprite
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
     layers:
-    - state: Merc
-    - state: idcentcom
+    - state: icon
   - type: Clothing
     slots:
     - idcard
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
     jobTitle: Офицер СССП
+  - type: Access
+    tags:
+    - Security
 
 - type: entity
   parent: IDCardStandard
   id: USSPComissarIDcard
-  name: The Mercenary's ID Card
+  name: Soviet comissar ID
   description: It looks unusual. Taken from military samples.
-  suffix: Vl, Arcane
   components:
   - type: Sprite
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
     layers:
-    - state: Merc
-    - state: idcentcom
+    - state: iconcomm
   - type: Clothing
     slots:
     - idcard
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
     jobTitle: Комиссар СССП
+  - type: Access
+    tags:
+    - Command
+    - Security
 
 - type: entity
   parent: IDCardStandard
   id: USSPSergeantIDcard
-  name: The Mercenary's ID Card
+  name: Soviet sergeant ID
   description: It looks unusual. Taken from military samples.
-  suffix: Vl, Arcane
   components:
   - type: Sprite
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
     layers:
-    - state: Merc
-    - state: idcentcom
+    - state: iconcomm
   - type: Clothing
     slots:
     - idcard
-    sprite: Imperial/ussp/Merc/Card.rsi
+    sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
     jobTitle: Cержант СССП
+  - type: Access
+    tags:
+    - Command
+    - Security
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPMajorIDcard
+  name: Soviet major ID
+  description: It looks unusual. Taken from military samples.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/idcard.rsi
+    layers:
+    - state: iconcomm
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/idcard.rsi
+  - type: IdCard
+    jobTitle: Майор СССП
+  - type: Access
+    tags:
+    - Command
+    - Security
+    - Service
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPGeneralIDcard
+  name: Soviet general ID
+  description: It looks unusual. Taken from military samples.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/idcard.rsi
+    layers:
+    - state: iconhigh
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/idcard.rsi
+  - type: IdCard
+    jobTitle: Генерал-лейтенант СССП
+  - type: Access
+    tags:
+    - Command
+    - Security
+    - Service
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPServiceIDcard
+  name: Client service ID
+  description: It looks unusual. Taken from clown samples.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/idcard.rsi
+    layers:
+    - state: iconserv
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/idcard.rsi
+  - type: IdCard
+    jobTitle: Работник обслуживания
+  - type: Access
+    tags:
+    - Service
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPTouristIDcard
+  name: Tourist ID
+  description: It looks unusual. 
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/idcard.rsi
+    layers:
+    - state: iconguest
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/idcard.rsi
+  - type: IdCard
+    jobTitle: Турист

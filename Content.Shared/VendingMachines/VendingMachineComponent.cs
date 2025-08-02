@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-
+using Robust.Shared.Map;
 namespace Content.Shared.VendingMachines
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
@@ -76,7 +76,12 @@ namespace Content.Shared.VendingMachines
         public bool CanShoot = false;
 
         public bool ThrowNextItem = false;
-
+        /// Imperial Space Vending Machine; Start
+        /// <summary>
+        /// Where the item shall be thrown
+        /// </summary>
+        public EntityCoordinates? TargetDirection;
+        /// Imperial Space Vending Machine; End
         /// <summary>
         ///     The chance that a vending machine will randomly dispense an item on hit.
         ///     Chance is 0 if null.
@@ -274,7 +279,7 @@ namespace Content.Shared.VendingMachines
     {
 
     };
-
+    
     [Serializable, NetSerializable]
     public sealed class VendingMachineComponentState : ComponentState
     {

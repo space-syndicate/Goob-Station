@@ -142,3 +142,6 @@ construction-graph-tag-fire-helmet = пожарный шлем
 
 # salvage
 construction-graph-tag-spationaut-hardsuit = скафандр космонавта
+
+# clothing
+construction-graph-tag-backpack = рюкзак

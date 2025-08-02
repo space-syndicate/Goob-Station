@@ -1,0 +1,373 @@
+- type: entity
+  parent: MobHuman
+  id: TriviumCMDUSSP
+  name: TriviumCMDUSSP
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: TriviumCMDUSSP-ghost-name
+    description: TriviumCMDUSSP-ghost-desc
+    rules: TriviumCMDUSSP-ghost-rules
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ TriviumCMDUSSPgear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: TriviumCMDUSSP
+  id: TriviumHighUSSP
+  name: TriviumHighUSSP
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Loadout
+    prototypes: [ TriviumHeadUSSPgear ]
+  - type: GhostRole
+    name: TriviumHighUSSP-ghost-name
+    description: TriviumHighUSSP-ghost-desc
+    rules: TriviumHighUSSP-ghost-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: TriviumCMDUSSP
+  id: TriviumSoldierUSSP
+  name: TriviumSoldierUSSP
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Loadout
+    prototypes: [ TriviumSoldierUSSPgear ]
+  - type: GhostRole
+    name: TriviumSoldierUSSP-ghost-name
+    description: TriviumSoldierUSSP-ghost-desc
+    rules: TriviumSoldierUSSP-ghost-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Gaqut, Void, SideUSSP, Dead
+  save: false # mobs are currently not saveable.
+  id: TriviumPilotUSSPDead
+  name: ussp pilot corpse
+  description: I think they're dead.
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Damageable
+    damage:
+      types:
+        Bloodloss: 49
+        Asphyxiation: 76
+        Slash: 56
+        Blunt: 19
+  - type: Loadout
+    prototypes: [ TriviumPilotUSSPgear ]
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Gaqut, Void, SideUSSP, Dead
+  save: false # mobs are currently not saveable.
+  id: TriviumSoldierUSSPDead
+  name: ussp soldier corpse
+  description: I think they're dead.
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Damageable
+    damage:
+      types:
+        Bloodloss: 49
+        Asphyxiation: 76
+        Slash: 56
+        Blunt: 19
+  - type: Loadout
+    prototypes: [ TriviumSoldierUSSPgear ]
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Gaqut, Void, SideTrivium, Dead
+  save: false # mobs are currently not saveable.
+  id: TriviumPilotTriviumDead
+  name: trivium pilot corpse
+  description: I think they're dead.
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Damageable
+    damage:
+      types:
+        Bloodloss: 49
+        Asphyxiation: 76
+        Slash: 56
+        Blunt: 19
+  - type: Loadout
+    prototypes: [ TriviumPilotTriviumgear ]
+
+- type: entity
+  parent: BaseMobHuman
+  suffix: Gaqut, Void, SideTrivium, Dead
+  save: false # mobs are currently not saveable.
+  id: TriviumSoldierTriviumDead
+  name: trivium soldier corpse
+  description: I think they're dead.
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Damageable
+    damage:
+      types:
+        Bloodloss: 49
+        Asphyxiation: 76
+        Slash: 56
+        Blunt: 19
+  - type: Loadout
+    prototypes: [ TriviumSoldierTriviumgear ]
+
+- type: entity
+  parent: TriviumCMDUSSP
+  id: TriviumCMDTrivium
+  name: TriviumCMDTrivium
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Loadout
+    prototypes: [ TriviumCMDTriviumgear ]
+  - type: GhostRole
+    name: TriviumCMDTrivium-ghost-name
+    description: TriviumCMDTrivium-ghost-desc
+    rules: TriviumCMDTrivium-ghost-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: TriviumCMDUSSP
+  id: TriviumHeadTrivium
+  name: TriviumHeadTrivium
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Loadout
+    prototypes: [ TriviumHeadTriviumgear ]
+  - type: GhostRole
+    name: TriviumHeadTrivium-ghost-name
+    description: TriviumHeadTrivium-ghost-desc
+    rules: TriviumHeadTrivium-ghost-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: TriviumCMDUSSP
+  id: TriviumSoldierTrivium
+  name: TriviumSoldierTrivium
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Loadout
+    prototypes: [ TriviumSoldierTriviumgear ]
+  - type: GhostRole
+    name: TriviumSoldierTrivium-ghost-name
+    description: TriviumSoldierTrivium-ghost-desc
+    rules: TriviumSoldierTrivium-ghost-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# USSP side spawners
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumCMDUSSP
+  name: USSP cmd spawner
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumCMDUSSP
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumHighUSSP
+  name: USSP head spawner
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumHighUSSP
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumSoldierUSSP
+  name: USSP soldier spawner
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumSoldierUSSP
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumSoldierUSSPDead
+  name: USSP soldier corpse spawner
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumSoldierUSSPDead
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumPilotUSSPDead
+  name: USSP pilot corpse spawner
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumPilotUSSPDead
+
+# Trivium side spawners
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumCMDTrivium
+  name: Trivium cmd spawner
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumCMDTrivium
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumHighTrivium
+  name: Trivium head spawner
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumHeadTrivium
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumSoldierTrivium
+  name: Trivium soldier spawner
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumSoldierTrivium
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumSoldierTriviumDead
+  name: Trivium soldier corpse spawner
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumSoldierTriviumDead
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTriviumPilotTriviumDead
+  name: Trivium pilot corpse spawner
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - TriviumPilotTriviumDead

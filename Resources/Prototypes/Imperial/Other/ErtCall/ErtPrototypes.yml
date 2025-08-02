@@ -182,6 +182,7 @@
 - type: entity
   parent: MobHuman
   id: DeadSquadSecurityEVAPreset
+  suffix: РИГ
   name: Dead Squad Agent
   components:
     # - type: RandomMetadata

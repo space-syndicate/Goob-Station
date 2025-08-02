@@ -1,0 +1,67 @@
+- type: vendingMachineInventory
+  id: AquilaMateInventory
+  startingInventory:
+      ClothingUniformJumpsuitBeerzavr: 3
+      ClothingUniformJumpsuitWomenOriental: 3
+      ClothingUniformJumpsuitMenOriental: 3
+      ClothingUniformJumpsuitAltWomenOriental: 3
+      ClothingUniformJumpsuitAltMenOriental: 3
+      ClothingHeadHairPin: 2
+      ClothingUniformJumpsuitJaneDoe: 1
+      ClothingHeadHairJaneDoe: 1
+      ClothingShoesBootsJaneDoe: 1
+      ClothingOuterCoatJaneDoe: 1
+      ClothingNeckJaneDoeTail: 1
+
+- type: localizedDataset
+  id: AquilaMateAdv
+  values:
+    prefix: advertisement-aquila-
+    count: 10
+
+- type: localizedDataset
+  id: AquilaMateGoodbyes
+  values:
+    prefix: thankyou-aquila-
+    count: 7
+
+- type: localizedDataset
+  id: SpookySpeakerMessagesAquila
+  values:
+    prefix: spooky-speaker-aquila-
+    count: 5
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineAquila
+  name: AquilaMate
+  description: brainrot
+  components:
+  - type: VendingMachine
+    pack: AquilaMateInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: SpookySpeaker
+    messageSet: SpookySpeakerMessagesAquila
+    speakChance: 0.3
+  - type: Advertise
+    pack: AquilaMateAdv
+  - type: SpeakOnUIClosed
+    pack: AquilaMateGoodbyes
+  - type: Sprite
+    sprite: Imperial/Aquila/Objects/AquilaMate.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#ffa500"

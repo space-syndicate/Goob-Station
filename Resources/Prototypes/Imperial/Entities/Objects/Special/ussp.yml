@@ -1,0 +1,316 @@
+#мех
+
+- type: entity
+  id: USSPObjectSpecialMech
+  parent: BaseStructure
+  name: memorial
+  description: Commemorating something.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/mech/base.rsi
+    state: rgeneric
+    scale: "1.5, 1.5"
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: InteractionOutline
+  - type: GenericVisualizer
+    visuals:
+      enum.ReinforcedWallVisuals.DeconstructionStage:
+        ReinforcedWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: reinf_construct-0, visible: true}
+          1: { state: reinf_construct-1, visible: true}
+          2: { state: reinf_construct-2, visible: true}
+          3: { state: reinf_construct-3, visible: true}
+          4: { state: reinf_construct-4, visible: true}
+          5: { state: reinf_construct-5, visible: true}
+  - type: ReinforcedWallReplacementMarker
+  - type: Construction
+    graph: USSPObjectMechDeconstruction
+    node: Mech
+
+- type: entity
+  id: USSPObjectSpecialMechDeconstructed
+  parent: BaseStructure
+  name: memorial
+  description: Commemorating something.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/mech/base.rsi
+    state: reinforced_wall_girder
+    scale: "1.5, 1.5"
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Construction
+    graph: USSPObjectMechDeconstruction
+    node: Deconstructed
+  - type: InteractionOutline
+
+- type: constructionGraph
+  id: USSPObjectMechDeconstruction
+  start: start
+  graph:
+  - node: start
+
+  - node: Mech
+    entity: USSPObjectSpecialMech
+    edges:
+      - to: Deconstructed
+        completed:
+          - !type:SpawnPrototype
+            prototype: USSPObjectSpecialMechHand
+            amount: 1
+        steps:
+          - tool: Cutting
+            doAfter: 1
+            completed:
+              - !type:VisualizerDataInt
+                key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                data: 5
+          - tool: Screwing
+            doAfter: 1
+          - tool: Welding
+            doAfter: 5
+            completed:
+              - !type:VisualizerDataInt
+                key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                data: 4
+          - tool: Prying
+            doAfter: 1
+          - tool: Anchoring
+            doAfter: 1
+            completed:
+              - !type:VisualizerDataInt
+                key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                data: 3
+          - tool: Welding
+            doAfter: 10
+            completed:
+              - !type:VisualizerDataInt
+                key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                data: 2
+          - tool: Prying
+            doAfter: 1
+            completed:
+              - !type:VisualizerDataInt
+                key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                data: 1
+          - tool: Screwing
+            doAfter: 1
+            completed:
+              - !type:VisualizerDataInt
+                key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                data: 0
+          - tool: Cutting
+            doAfter: 1
+
+  - node: Deconstructed
+    entity: USSPObjectSpecialMechDeconstructed
+
+- type: entity
+  parent: BaseScrap
+  id: USSPObjectSpecialMechHand
+  name: blasted steel pile
+  description: An pile of steel welded together in extreme heat. It's of a decent size overall; you could probably get a fair amount of sheets out of it.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/mech/hand.rsi
+    layers:
+      - state: icon
+        map: [ "base" ]
+    scale: "1.5, 1.5"
+  - type: Item
+    sprite: Imperial/ussp/mech/hand.rsi
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+#досье
+
+- type: entity
+  id: PaperWrittenUSSPDossierViktorGolt
+  parent: Paper
+  components:
+  - type: Paper
+    content: delivery-USSP-dossier1
+
+- type: entity
+  id: PaperWrittenUSSPDossierRentir
+  parent: Paper
+  components:
+  - type: Paper
+    content: delivery-USSP-dossier2
+
+- type: entity
+  id: PaperWrittenUSSPDossierAlexandraChance
+  parent: Paper
+  components:
+  - type: Paper
+    content: delivery-USSP-dossier3
+
+- type: entity
+  name: envelope
+  parent: BaseItem
+  id: USSPDocumentFolder
+  description: 'A small envelope for keeping prying eyes off of your sensitive documents.'
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/doc.rsi
+    layers:
+    - state: envelope_open
+      map: ["enum.EnvelopeVisualLayers.Open"]
+      offset: "-0.5,0"
+    - state: envelope_closed
+      map: ["enum.EnvelopeVisualLayers.Sealed"]
+      visible: false
+      offset: "-0.5,0"
+    - state: envelope_torn
+      map: ["enum.EnvelopeVisualLayers.Torn"]
+      visible: false
+      offset: "-0.5,0"
+  - type: Paper
+    content: envelope-default-message
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_syndicate_logo.svg.96dpi.png"
+    headerMargin: 216.0, 0.0, 0.0, 0.0
+    contentMargin: 0.0, 0.0, 0.0, 0.0
+    maxWritableArea: 368.0, 256.0
+  - type: Envelope
+  - type: ContainerContainer
+    containers:
+      letter_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      letter_slot:
+        name: envelope-letter-slot
+        insertSound: /Audio/Effects/packetrip.ogg
+        ejectSound: /Audio/Effects/packetrip.ogg
+        whitelist:
+          tags:
+            - Paper
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: Item
+    size: small
+  - type: Tag
+    tags:
+    - Trash
+    - Document
+
+- type: entity
+  parent: BaseItem
+  name: envelope
+  description: 'A small envelope for keeping prying eyes off of your sensitive documents.'
+  id: USSPDocumentFolderClosed
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/doc.rsi
+    layers:
+    - state: envelope_closed
+      map: [ "enum.DeliveryVisualLayers.Icon" ]
+      offset: "-0.5,0"
+    - state: envelope_torn
+      map: [ "enum.DeliveryVisualLayers.Trash" ]
+      offset: "-0.5,0"
+      visible: false
+    - state: postmark
+    - map: [ "enum.DeliveryVisualLayers.JobStamp" ]
+      offset: "-0.5,0"
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.DeliveryVisuals.IsTrash:
+        enum.DeliveryVisualLayers.Trash:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+#  - type: Label
+#    examinable: false
+  - type: Delivery
+  - type: ContainerContainer
+    containers:
+      delivery: !type:Container
+  - type: StealTarget
+    stealGroup: Mail
+  - type: Item
+    storedRotation: 90
+  - type: SimpleToolUsage
+    doAfter: 4
+    usageVerb: delivery-slice-verb
+  - type: ContainerFill
+    containers:
+      delivery: [ MailSpamLetter ]
+
+- type: entity
+  name: Golt
+  parent: USSPDocumentFolderClosed
+  id: USSPDocumentFolderDossier1
+  description: 'A small envelope for keeping prying eyes off of your sensitive documents.'
+  components:
+    - type: ContainerFill
+      containers:
+        delivery: [ PaperWrittenUSSPDossierViktorGolt ]
+
+- type: entity
+  name: Rentir
+  parent: USSPDocumentFolderClosed
+  id: USSPDocumentFolderDossier2
+  description: 'A small envelope for keeping prying eyes off of your sensitive documents.'
+  components:
+    - type: ContainerFill
+      containers:
+        delivery: [ PaperWrittenUSSPDossierRentir ]
+      
+- type: entity
+  name: Chance
+  parent: USSPDocumentFolderClosed
+  id: USSPDocumentFolderDossier3
+  description: 'A small envelope for keeping prying eyes off of your sensitive documents.'
+  components:
+    - type: ContainerFill
+      containers:
+        delivery: [ PaperWrittenUSSPDossierAlexandraChance ]
+
+- type: entity
+  name: Chance
+  parent: USSPDocumentFolderClosed
+  id: USSPDocumentFolderDossier4
+  description: 'A small envelope for keeping prying eyes off of your sensitive documents.'
+  components:
+    - type: ContainerFill
+      containers:
+        delivery: [ PaperWrittenUSSPDossierAlexandraChance ]
+
+
+

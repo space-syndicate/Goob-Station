@@ -28464,6 +28464,7 @@
 /Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-yourfirstcharacter = Ваш первый персонаж
 /Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-toxins = Токсины
 /Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-thieves = Воры
+/Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-wizard = Маги
 /Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-service = Сервис
 /Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-rules-space-law = Корпоративный закон
 /Locale/ru-RU/guidebook/guides.ftl鎰guide-entry-rules-sl-restricted-weapons = Запрещённое вооружение

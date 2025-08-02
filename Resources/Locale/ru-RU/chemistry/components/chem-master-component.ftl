@@ -4,7 +4,6 @@ chem-master-component-activate-no-hands = У тебя нет рук.
 chem-master-component-cannot-put-entity-message = Вы не можете поместить это в Мастер реагентов!
 
 ## Bound UI
-
 chem-master-bound-user-interface-title = ХимМастер 4000
 
 ## UI
@@ -30,3 +29,7 @@ chem-master-window-dose-label = Дозировка (ед.):
 chem-master-window-create-button = Создать
 chem-master-window-bottles-label = Бутылочки:
 chem-master-window-unknown-reagent-text = Неизвестный реагент
+chem-master-window-sort-type-none = Сортировка: Сначала старые
+chem-master-window-sort-type-alphabetical = Сортировка: Алфавит
+chem-master-window-sort-type-quantity = Сортировка: Количество
+chem-master-window-sort-type-latest = Сортировка: Сначала новые

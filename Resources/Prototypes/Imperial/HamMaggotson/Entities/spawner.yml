@@ -1,0 +1,45 @@
+- type: entity
+  id: SpawnAshwalkerLeaderGhostRoleHamMaggotson
+  name: ashwalker leader spawner
+  suffix:  XxRaay, Lavasec
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ashwalker-leader-name
+      description: ghost-role-information-ashwalker-leader-desc
+      rules: ghost-role-information-rules-team-antagonist
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostRoleTeamAntagonist
+    - type: GhostRoleMobSpawner
+      prototype: AshwalkerLeaderPresetHamMaggotson
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Clothing/Head/Helmets/bone_helmet.rsi
+          state: icon
+
+- type: entity
+  id: SpawnAshwalkerGhostRoleHamMaggotson
+  name: ashwalker spawner
+  suffix:  XxRaay, Lavasec
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ashwalker-name
+      description: ghost-role-information-ashwalker-desc
+      rules: ghost-role-information-rules-team-antagonist
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostRoleTeamAntagonist
+    - type: GhostRoleMobSpawner
+      prototype: AshwalkerPresetHamMaggotson
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Clothing/Head/Helmets/bone_helmet.rsi
+          state: icon

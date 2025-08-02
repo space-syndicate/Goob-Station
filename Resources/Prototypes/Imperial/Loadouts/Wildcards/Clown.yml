@@ -1,0 +1,33 @@
+# Проведение матери
+- type: loadout
+  id: HonkmotherFace
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 360000 # 100hr
+  equipment:
+    mask: ClothingMaskHonkmotherFace
+
+- type: loadout
+  id: HonkmotherSuit
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 360000 # 100hr
+  equipment:
+    jumpsuit: ClothingUniformHonkmotherSuit
+
+- type: loadout
+  id: HonkmotherShoes
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 360000 # 100hr
+  equipment:
+    shoes: ClothingHonkmotherShoes

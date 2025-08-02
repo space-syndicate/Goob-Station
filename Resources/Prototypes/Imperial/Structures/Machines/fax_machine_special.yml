@@ -65,6 +65,8 @@
     name: "Капитан"
     receiveNukeCodes: true
     receiveStationGoal: true
+  - type: StealTarget 
+    stealGroup: FaxMachineCaptain
 
 - type: entity
   parent: FaxMachineBase

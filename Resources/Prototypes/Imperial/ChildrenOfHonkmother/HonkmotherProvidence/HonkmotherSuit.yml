@@ -1,0 +1,12 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformHonkmotherSuit
+  name: honkmother suit
+  description: Honkmother's business suit for important negotiations.
+  components:
+  - type: Sprite
+    sprite: Imperial/ChildrenOfHonkmother/suit.rsi
+  - type: Clothing
+    sprite: Imperial/ChildrenOfHonkmother/suit.rsi
+  - type: StaticPrice
+    price: 1000

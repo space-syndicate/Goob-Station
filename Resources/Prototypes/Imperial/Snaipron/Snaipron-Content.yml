@@ -1,0 +1,228 @@
+- type: entity
+  parent: BaseLightbulb
+  name: Старая лампа накаливания
+  id: SemiPowerLightBulb
+  suffix: Snaipron, Gigahrush
+  description: Эта лампа была потрёпана жизнью, от старости почти перегорела...
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#947507FF"
+    lightEnergy: 1
+    lightRadius: 5
+    lightSoftness: 0.5
+
+- type: entity
+  parent: SmallLight
+  name: Старая лампа
+  id: SmallLightOld
+  suffix: Snaipron, Gigahrush, Always Powered
+  description: Никто не знает, от чего она работает, но лишь её тусклый свет освещает ваш путь...
+  components:
+    - type: AmbientSound
+      volume: -15
+      range: 2
+      sound:
+        path: /Audio/Ambience/Objects/light_hum.ogg
+    - type: Sprite
+      sprite: Structures/Wallmounts/Lighting/light_small.rsi
+      state: base
+    - type: PointLight
+      energy: 0.5
+      radius: 4
+      softness: 0.5
+      enabled: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,0.5,0.1,0.255"
+          density: 190
+          mask:
+          - None
+          layer:
+          - TabletopMachineLayer
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors: #excess damage, don't spawn entities.
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 25
+        behaviors:
+        - !type:EmptyAllContainersBehaviour
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Construction
+      graph: LightFixture
+      node: bulbLight
+
+- type: entity
+  id: EgidaComplexCommsStationAllert
+  parent: ComputerComms
+  name: Консоль связи комплекса "Недра"
+  suffix: seriozha, Недра, Snaipron, СТАНЦИИ НЕ РЕАГИРОВАТЬ
+  components:
+  - type: Sprite
+    sprite: Imperial/Snaipron-Content/communication-egida.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: scp_comm
+    - map: ["computerLayerKeys"]
+      state: scp_comm_key
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-egida-station
+    color: "#ff7e2e"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: true
+    sound: /Audio/Announcements/war.ogg
+  - type: PointLight
+    radius: 3
+    energy: 3.2
+    color: "#ff7e2e"
+
+- type: entity
+  id: EgidaComplexComms
+  parent: ComputerComms
+  name: Консоль связи комплекса "Недра"
+  suffix: seriozha, Недра, Snaipron
+  components:
+  - type: Sprite
+    sprite: Imperial/Snaipron-Content/communication-egida.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: scp_comm
+    - map: ["computerLayerKeys"]
+      state: scp_comm_key
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-egida
+    color: "#ff7e2e"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: true
+    sound: /Audio/Announcements/war.ogg
+  - type: PointLight
+    radius: 3
+    energy: 3.2
+    color: "#ff7e2e"
+
+- type: entity
+  id: NoCollisionCatwalk
+  name: мостик
+  suffix: Fake, SG, Zevs622
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          collection: GlassBreak
+    - type: Sprite
+      sprite: Structures/catwalk.rsi
+      drawdepth: FloorTiles
+    - type: Icon
+      sprite: Structures/catwalk.rsi
+      state: catwalk_preview
+    - type: Transform
+      anchored: true
+    - type: IconSmooth
+      key: catwalk
+      base: catwalk_
+    - type: Clickable
+    - type: Tag
+      tags: [ Ice ]
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: hitscan
+  id: ChefEngeneerLaser
+  damage:
+    types:
+      Heat: 1
+      Structural: 150
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+
+- type: entity
+  id: ChefEngeneerRevolverLaser
+  parent: WeaponLaserSvalinn
+  name: Револьвер "Новый рассвет"
+  description: Удобный инструмент, разработанный по специальному заказу для старших инженеров, который позволит ему уничтожать любые препятствия на своём пути за считанные секунды!
+  components:
+    - type: Gun
+      fireRate: 1.2
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    - type: HitscanBatteryAmmoProvider
+      proto: ChefEngeneerLaser
+      fireCost: 80
+    
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieZevs
+  name: Александа Шанс
+  suffix: Snaipron, COMMUNITY, TOY
+  description: Известный в узких кругах музыкант, готовый помочь каждому. Она никогда не расстаётся со своей гитарой, а в её карманах чего только не найдешь. Ходят слухи, что в детстве её ударила молния..
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Sprite
+    sprite: Imperial/Snaipron-Content/pushie-zevs.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: CombatMedipen
+  
+      
+        
+

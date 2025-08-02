@@ -1,0 +1,5 @@
+
+- type: startingGear
+  id: PetGearJoseph
+  equipment:
+    head: USSPComissarHelmRed

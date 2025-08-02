@@ -2,7 +2,11 @@
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-
+//Imperial Space; Start
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Chemistry.Reagent;
+//Imperial Space; End
 namespace Content.Server.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(VentClogRule))]
@@ -51,6 +55,12 @@ public sealed partial class VentClogRuleComponent : Component
         "SpaceLube", "SpaceGlue"
     };
 
+    //Imperial Space; Start
+    public List<ProtoId<ReagentPrototype>> BlacklistedReagents = new()
+    {
+        "UnstableBluespaceLiquid", "ConcentratedBluespaceLiquid"
+    };
+    //Imperial Space; End
     /// <summary>
     /// Quantity of weak reagents to put in the foam.
     /// </summary>

@@ -1,0 +1,16 @@
+- type: entity
+  id: StorePresetTrivium
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-trivium-shop
+    categories:
+    - TriviumShopWeaponry
+    - TriviumShopAmmo
+    - TriviumShopMedicine
+    - TriviumShopFoodstuff
+    - TriviumShopSurvival
+    currencyWhitelist:
+    - TriviumMark
+    balance:
+      TriviumMark: 0

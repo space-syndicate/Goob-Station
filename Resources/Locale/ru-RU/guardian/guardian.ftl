@@ -11,11 +11,6 @@ guardian-no-soul = У вашего стража нет души.
 guardian-available = У вашего стража теперь есть душа.
 guardian-inside-container = Недостаточно места для освобождения вашего стража!
 
-# Guardian action
-
-action-name-guardian = Призвать/отозвать стража
-action-description-guardian = Призывает либо отзывает стража обратно в ваше тело
-
 ## Guardian entity specific
 
 guardian-entity-recall = Страж исчезает в воздухе!

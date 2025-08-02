@@ -192,6 +192,30 @@
     sprite: Imperial/Felix/Objects/pda.rsi
     state: pda
 
+- type: entity
+  id: ElysiumFederationadminIDCard
+  parent: IDCardStandard
+  name: Federation ID card
+  description: Identification Card.
+  suffix: ElysiumPrime, admin
+  components:
+    - type: IdCard
+      jobIcon: FederationJobIcon
+      jobTitle: job-name-federation
+    - type: Access
+      tags:
+      - Federationadmin
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
+      layers:
+        - state: federation
+    - type: Clothing
+      slots:
+        - idcard
+      sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
+    - type: PresetIdCard
+      job: null
+
 # Шлюзы
 
 - type: entity
@@ -692,3 +716,724 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+
+- type: entity
+  name: paper
+  parent: Paper
+  id: ElysiumPrimeFelixPaper
+  description: paper
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/paper.rsi
+    layers:
+    - state: paper
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+
+- type: entity
+  id: FelixFlagBlue
+  parent: DeadSectorDecorRoadSignNoEntry
+  name: flag
+  suffix: DeadSector, Decoration
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Felix/Objects/Flags.rsi
+    state: blue
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: FelixFlagGreen
+  parent: DeadSectorDecorRoadSignNoEntry
+  name: flag
+  suffix: DeadSector, Decoration
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Felix/Objects/Flags.rsi
+    state: green
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: DarkMateryCrystalBase
+  parent: BaseStructure
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_1
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+
+- type: entity
+  id: DarkMateryCrystal1
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_2
+
+- type: entity
+  id: DarkMateryCrystal2
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_3
+
+- type: entity
+  id: DarkMateryCrystal3
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_4
+
+- type: entity
+  id: DarkMateryCrystal4
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_5
+
+- type: entity
+  id: DarkMateryCrystal5
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_6
+
+- type: entity
+  id: DarkMateryCrystal6
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_7
+
+- type: entity
+  id: DarkMateryCrystal7
+  parent: DarkMateryCrystalBase
+  name: dark matery
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Felix/Objects/Misc/BlackMateryCristal.rsi
+    state: icon_8
+
+- type: entity
+  id: FelixBigLightsBroken
+  parent: DeadSectorDecorTrafficlight
+  name: light
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/Lights/BigLights.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    noRot: true
+    layers:
+    - state: broken
+  - type: PointLight
+    radius: 0
+    energy: 0
+    color: "#c0baba"
+
+- type: entity
+  id: FelixBigLights
+  parent: DeadSectorDecorTrafficlight
+  name: light
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/Lights/BigLights.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    noRot: true
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: bigflood
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: bigfloodon
+  - type: PoweredLight
+    bulb: Tube
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 1
+    color: "#c0baba"
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+
+- type: entity
+  id: FelixMiniLights
+  parent: DeadSectorDecorTrafficlight
+  name: light
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/Lights/MiniLights.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    offset: 0,0.4
+    noRot: true
+    layers:
+    - state: longred
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 1
+    color: "#962323"
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+
+- type: entity
+  id: FelixMiniLightsLightRed
+  parent: FelixMiniLights
+  name: light
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/Lights/MiniLights.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    offset: 0,0.2
+    noRot: true
+    layers:
+    - state: lightred
+
+- type: entity
+  id: FelixMiniLightsBlue
+  parent: FelixMiniLights
+  name: light
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Misc/Lights/MiniLights.rsi
+    snapCardinals: true
+    drawdepth: Objects
+    offset: 0,0.2
+    noRot: true
+    layers:
+    - state: lightblue
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 1
+    color: "#2f69b6"
+
+- type: entity
+  name: sec case
+  id: FelixSecurityCase
+  parent: ClosetBase
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/Misc/SecurityCase.rsi
+      layers:
+      - state: generic
+        map: ["enum.StorageVisualLayers.Base"]
+      - state: generic_door
+        map: ["enum.StorageVisualLayers.Door"]
+      - state: welded
+        visible: false
+        map: ["enum.WeldableLayers.BaseWelded"]
+
+- type: entity
+  name: handheld radio
+  description: A handy handheld radio.
+  parent: RadioHandheld
+  id: FelixRadioHandheldRadio10
+  suffix: ElysiumPrime
+  components:
+  - type: RadioMicrophone
+    broadcastChannel: Radio10
+    listenRange: 1
+  - type: RadioSpeaker
+    channels:
+    - Radio10
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Radio.rsi
+    layers:
+    - state: icon
+
+- type: entity
+  parent: BaseBarrelChem
+  id: FelixBarrelChemFilledWater
+  suffix: Вода, ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/Barrel.rsi
+    state: barrel_blue
+    noRot: true
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Water
+          Quantity: 1000
+
+- type: entity
+  parent: BaseBarrelChemRadioactive
+  id: FelixBarrelChemFilledMutagen
+  suffix: Мутаген, ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/Barrel.rsi
+    state: barrel_green
+    noRot: true
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+        reagents:
+        - ReagentId: UnstableMutagen
+          Quantity: 1000
+
+- type: entity
+  parent: BaseBarrelChem
+  id: FelixBarrelChemFilledBlood
+  suffix: Кровь, ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/Barrel.rsi
+    state: barrel_red
+    noRot: true
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Blood
+          Quantity: 1000
+
+- type: entity
+  parent: BaseBarrelChem
+  id: FelixBarrelChemFilledOmnizine
+  suffix: Омнизин, ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/Barrel.rsi
+    state: barrel_white
+    noRot: true
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 160
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 160
+
+- type: entity
+  parent: BaseBarrelChem
+  id: FelixBarrelChemFilledFuel
+  suffix: Топливо, ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/Barrel.rsi
+    state: barrel_yellow
+    noRot: true
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 1000
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: FelixTelecomServerMachine
+  name: telecommunication server
+  suffix: ElysiumPrime
+  description: When powered and filled with encryption keys it allows radio headset communication.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/CommunicationsMachine.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+    - state: on
+      shader: unshaded
+      visible: false
+      map: ["telecom-on"]
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    energy: 1.6
+    color: "#39b8ee"
+  - type: LitOnPowered
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        telecom-on:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: WiresVisuals
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Machine
+    board: TelecomServerCircuitboard
+  - type: WiresPanel
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 30
+  - type: TelecomServer
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  parent: BaseStructure
+  id: FelixBrokenTelecomServer
+  name: telecommunication server
+  suffix: ElysiumPrime
+  description: When powered and filled with encryption keys it allows radio headset communication.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/CommunicationsMachine.rsi
+    snapCardinals: true
+    layers:
+    - state: broken
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: BaseStructure
+  id: FelixDrillMachine
+  name: drill
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/drill.rsi
+    layers:
+    - state: icon
+    drawdepth: Overdoors
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: MonumentFelixRMK
+  parent: MonumentFelix
+  name: monument
+  suffix: ElysiumPrime
+  description: This monument was erected to honor those who died in some important event.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Felix/Objects/Structures/Monuments/RMK.rsi
+    state: icon
+    drawdepth: Overdoors
+    offset: 0,0.3
+
+- type: entity
+  parent: BaseStructure
+  id: FelixBrokenMachineCarBase
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a1
+    drawdepth: Overdoors
+  - type: Physics
+    bodyType: Static
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar1
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a2
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar2
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a3
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar3
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a4
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar4
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a5
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar5
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a6
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar6
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a7
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar7
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
+    layers:
+    - state: a8
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar8
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles2.rsi
+    layers:
+    - state: a1
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar9
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles2.rsi
+    layers:
+    - state: a2
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar10
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles3.rsi
+    layers:
+    - state: a1
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: FelixBrokenMachineCar11
+  name: car
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/vehicles3.rsi
+    layers:
+    - state: a2
+    drawdepth: Overdoors
+
+- type: entity
+  name: quro machine gun
+  id: FelixWeaponQuroMachineGun
+  parent: BaseWeaponAssaultPKM
+  description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
+  components:
+  - type: Item
+    sprite: Imperial/Felix/Objects/Weapons/QuroMachineGun/qyj_72_inhands.rsi
+    size: Huge
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Weapons/QuroMachineGun/qyj_72_inhands.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Weapons/QuroMachineGun/qyj_72_icon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

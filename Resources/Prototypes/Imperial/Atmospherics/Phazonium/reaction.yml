@@ -1,0 +1,19 @@
+- type: gasReaction
+  id: PhazoniumProduction
+  priority: -2
+  maximumTemperature: 13.15
+  minimumRequirements:
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # ammonia
+  - 0     # n2o
+  - 0.1   # frezon
+  - 0.1   # thermonium
+  - 0     # phazonium
+  - 0.1   # ozonium
+  effects:
+  - !type:PhazoniumProductionReaction {}

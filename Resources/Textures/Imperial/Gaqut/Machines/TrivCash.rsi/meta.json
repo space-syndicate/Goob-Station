@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "size": {
+      "x": 256,
+      "y": 256
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by space__explorer with https://pixie.haus/",
+    "states": [
+        {
+            "name": "cash"
+        }
+    ]
+}

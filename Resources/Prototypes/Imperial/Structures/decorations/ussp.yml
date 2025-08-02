@@ -1,0 +1,463 @@
+- type: entity
+  parent: BaseStructure
+  id: BasePlatformImperialUSSP
+  abstract: true
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Imperial/ussp/urbandeco/objects.rsi
+  - type: Icon
+    sprite: Imperial/ussp/urbandeco/objects.rsi
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Climbable
+
+- type: entity
+  parent: BasePlatformImperialUSSP
+  id: PlatformImperialUSSP
+  components:
+  - type: Sprite
+    state: side
+  - type: Icon
+    state: side
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:ChangeConstructionNodeBehavior
+        node: platformBroken
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: PlatformImperialUSSPdestructable
+    node: start
+
+- type: entity
+  parent: BasePlatformImperialUSSP
+  id: PlatformCornerImperialUSSP
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BasePlatformImperialUSSP
+  id: PlatformCornerSmallImperialUSSP
+  components:
+  - type: Sprite
+    state: cornersmall
+  - type: Icon
+    state: cornersmall
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: constructionGraph
+  id: PlatformImperialUSSPdestructable
+  start: start
+  graph:
+  - node: start
+
+  - node: platformBroken
+    entity: PlatformBrokenImperialUSSP
+
+- type: entity
+  parent: PlatformImperialUSSP
+  id: PlatformBrokenImperialUSSP
+  components:
+  - type: Sprite
+    state: broken
+  - type: Icon
+    state: broken
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        hard: false
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: PlatformImperialUSSPdestructable
+    node: PlatformBrokenImperialUSSP
+
+- type: entity
+  parent: PlatformImperialUSSP
+  id: PlatformStairImperialUSSP
+  components:
+  - type: Sprite
+    state: stair
+  - type: Icon
+    state: stair
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: PlatformImperialUSSP
+  id: PlatformStair2ImperialUSSP
+  components:
+  - type: Sprite
+    state: stair2
+  - type: Icon
+    state: stair2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  id: StairUrbanImperialUSSP
+  parent: Stairs
+  suffix: Steel, stage
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/objects.rsi
+    state: rampbottom
+    color: "#a6aeab"
+    drawdepth: FloorTiles
+
+
+- type: entity
+  parent: BaseStructure
+  id: RailingUrbanUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/objects.rsi
+    state: rail
+    drawdepth: Overdoors
+  - type: Icon
+    sprite: Imperial/ussp/urbandeco/objects.rsi
+    state: rail
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Climbable
+
+- type: entity
+  id: ShuttersUrbanUSSP
+  parent: BaseShutter
+  name: radiation shutters
+  description: Why did they make these shutters radioactive?
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/shutter.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Occluder
+  - type: RadiationBlocker
+    resistance: 4
+
+- type: entity
+  id: ShuttersUrbanUSSPOpen
+  parent: ShuttersUrbanUSSP
+  suffix: Open
+  components:
+  - type: Door
+    state: Open
+  - type: Occluder
+    enabled: false
+  - type: Physics
+    canCollide: false
+  - type: Airtight
+    airBlocked: false
+  - type: RadiationBlocker
+    enabled: false
+
+- type: entity
+  id: LightPostUrbanUSSP
+  name: post light
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: ""
+  parent: PoweredLightPostSmallEmpty
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/streetlight.rsi
+    state: base
+    drawdepth: Overdoors
+    noRot: true
+    offset: 0,0.8
+  - type: PointLight
+    enabled: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: PoweredLight
+    hasLampOnSpawn: LightTubeUSSP
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  parent: Airlock
+  id: AirlockUrbanUSSP
+  components:
+  - type: Sprite
+    noRot: False 
+    sprite: Imperial/ussp/urbandeco/basic.rsi
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockGlassUrbanUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/glass.rsi
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  id: LockerFreezeUrbanUSSP
+  parent: LockerBase
+  name: freezer
+  suffix: No Access
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/urbandeco/fridge.rsi
+    noRot: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      offset: "-0.065,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: ExplosionResistance
+    damageCoefficient: 0.50
+  - type: AntiRottingContainer
+  - type: Construction
+    graph: ClosetFreezer
+    node: done
+    containers:
+    - entity_storage
+
+- type: entity
+  id: USSPStatue
+  parent: BaseStructure
+  name: memorial
+  description: Commemorating something.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/lenin.rsi
+    state: memorial
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.9,0.45,0.9"
+        density: 85
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+
+- type: entity
+  id: USSPStatue2
+  parent: BaseStructure
+  name: memorial
+  description: Commemorating something.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/marx.rsi
+    state: memorial
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.30"
+        density: 85
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+

@@ -1,0 +1,121 @@
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVoidTriviumMain
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: AccessReader
+    access: [["TriviumMainAccess"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockHatchTrivium
+  name: trivium main airtight hatch
+  suffix: Gaqut, Void, SideTrivium
+  description: Just some hatch for soldiers
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/hatch-trivium.rsi
+  - type: AccessReader
+    access: [ [ "TriviumMainAccess" ] ]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVoidTriviumMain ]
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 15
+    openSound:
+      path: /Audio/Machines/airlock_open.ogg
+    closeSound:
+      path: /Audio/Machines/airlock_close.ogg
+    denySound:
+      path: /Audio/Machines/airlock_deny.ogg
+    closeTimeOne: 0.1
+    closeTimeTwo: 1.6
+    openTimeOne: 0.1
+    openTimeTwo: 1.6
+    openingAnimationTime: 1.6
+    closingAnimationTime: 1.6
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVoidTriviumHead
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: AccessReader
+    access: [["TriviumHeadAccess"]]
+
+- type: entity
+  parent: AirlockHatchTrivium
+  id: AirlockHatchTriviumHead
+  name: trivium command airtight hatch
+  suffix: Gaqut, Void, SideTrivium
+  description: Just some hatch for Commanders.
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/hatch-trivium.rsi
+  - type: AccessReader
+    access: [ [ "TriviumHeadAccess" ] ]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVoidTriviumHead ]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVoidUSSPMain
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: AccessReader
+    access: [["USSPMainAccess"]]
+
+- type: entity
+  parent: Airlock
+  id: AirlockHatchUSSP
+  name: ussp main airtight hatch
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/hatch-ussp.rsi
+  - type: AccessReader
+    access: [ [ "USSPMainAccess" ] ]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVoidUSSPMain ]
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 15
+    openSound:
+      path: /Audio/Machines/airlock_open.ogg
+    closeSound:
+      path: /Audio/Machines/airlock_close.ogg
+    denySound:
+      path: /Audio/Machines/airlock_deny.ogg
+    closeTimeOne: 0.1
+    closeTimeTwo: 1.6
+    openTimeOne: 0.1
+    openTimeTwo: 1.6
+    openingAnimationTime: 1.6
+    closingAnimationTime: 1.6
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVoidUSSPHead
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: AccessReader
+    access: [["USSPHeadAccess"]]
+
+- type: entity
+  parent: AirlockHatchUSSP
+  id: AirlockHatchUSSPHead
+  name: ussp command airtight hatch
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/hatch-ussp.rsi
+  - type: AccessReader
+    access: [ [ "USSPHeadAccess" ] ]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVoidUSSPHead ]

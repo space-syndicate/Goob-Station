@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "PR by crookielv",
+  "size": {
+    "x": 96,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "a1"
+    },
+    {
+      "name": "a2"
+    },
+    {
+      "name": "a3"
+    },
+    {
+      "name": "a4"
+    },
+    {
+      "name": "a5"
+    },
+    {
+      "name": "a6"
+    },
+    {
+      "name": "a7",
+      "delays": [[0.2, 0.2]]
+    },
+    {
+      "name": "a8",
+      "delays": [[0.2, 0.2]]
+    }
+  ]
+}

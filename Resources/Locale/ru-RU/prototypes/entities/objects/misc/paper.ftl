@@ -134,3 +134,5 @@ ent-RubberStampDetective = печать детектива
 ent-RubberStampLawyer = печать юриста
     .desc = { ent-RubberStampMime.desc }
     .suffix = НЕ МАППИТЬ
+ent-PaperSalvageJobLabel = манифест задачи утилизаторов
+    .desc = Бумажная этикетка, обозначающая, что ящик содержит то что нужно для задач утилизаторов. Продажа ящика с этой этикеткой приведет к выполнению задачи.

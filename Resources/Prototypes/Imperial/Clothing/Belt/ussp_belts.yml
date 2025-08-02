@@ -24,3 +24,29 @@
           - SmokeOnTrigger
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+
+- type: entity
+  id: USSPMilitiaWeaponizer
+  parent: ClothingBeltSecurity
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/holsterbelt.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/holsterbelt.rsi
+  - type: StorageFill
+    contents:
+        - id: USSPWeaponTT
+        - id: MagazinePistolCaselessRifle
+        - id: MagazinePistolCaselessRifle
+        - id: CigPackBlack
+        - id: Flash
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,10,1

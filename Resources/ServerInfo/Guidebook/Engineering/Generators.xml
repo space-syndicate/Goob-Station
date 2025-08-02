@@ -7,9 +7,10 @@
   <Box>
     <GuideEntityEmbed Entity="SingularityGenerator" Caption=""/>
     <GuideEntityEmbed Entity="TeslaGenerator" Caption=""/>
+    <GuideEntityEmbed Entity="Supermatter" Caption=""/>
   </Box>
   <Box>
-    ## Singularity and Tesla Engine
+    ## Singularity, Tesla, and Supermatter Engine
   </Box>
   <Box>
     [color=#999999][italic]Devices capable of infinite energy — and destructive potential[italic][/color]

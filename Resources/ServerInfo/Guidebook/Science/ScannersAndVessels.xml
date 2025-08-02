@@ -1,24 +1,32 @@
 <Document>
-## Anomaly Scanner
+## Сканер аномалий
 
-The Anomaly Scanner is used to gather various information on anomalies. They can be found inside of the lockers in the science department.
+Используется для получения различной информации об аномалия может быть найден в шкафах Научного отдела.
 
 <Box>
 <GuideEntityEmbed Entity="AnomalyScanner"/>
 </Box>
 
-Scanning an anomaly shows the severity, general stability, approximate point output, reactions with particle types, and time until the next pulse. The reaction types, specifically, can be used in conjunction with the A.P.E. to manipulate anomalies.
+Сканирование аномалии показывает Вам её:
+ - Опасность
+ - Статус
+ - Приблизительное количество производимых в секунду очков
+ - Виды эффектов и частиц, их вызывающих
+ - Время до следующего импульса
 
-## Anomaly Vessel
+Виды эффектов используются вместе с И.А.Чем для управления аномалиями.
 
-The anomaly vessel is a machine that generates points from anomalies. Use the anomaly scanner on an empty vessel, and the anomaly that was last scanned will be synced with the vessel.
+## Сосуд аномалии
+
+Сосуд аномалии - машина, генерирующая очки исследований из аномалии. Просканируйте аномалии, а затем используйте сканер на пустом сосуде. Таким образом, Вы свяжите аномалию и сосуд, начав добычу очков.
 
 <Box>
 <GuideEntityEmbed Entity="MachineAnomalyVessel"/>
 </Box>
 
-The amount of points a vessel generates per second is based on the severity, stability, and health of an anomaly. The higher each of these values, the higher the point output will be.
+Количество генерируюемых очков зависит от уровня опасности, статуса и здоровья аномалии. Чем больше выше каждый из этих пунктов, тем больше будет генерироваться очков.
 
-Be careful: if an anomaly goes [color=#a4885c]supercritical[/color], the vessel it is linked to will explode. This may damage the station and nearby equipment.
+
+Осторожно: если у аномалии случится [color=#a4885c]суперкрит[/color], связанный с ней сосуд тоже [color=red]взорвётся[/color]. Взрыв может привести к поломке станции или машин вокруг сосуда.
 
 </Document>

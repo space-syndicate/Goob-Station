@@ -17,3 +17,7 @@ SacerdosCloningPodMachineCircuitboard = Печатная плата капсул
 SacerdosMedicalScannerMachineCircuitboard = Печатная плата медицинского сканера
 SacerdosTurboItemRechargerCircuitboard = Печатная плата турбо зарядника
 SacerdosChemDispenserMachineCircuitboard = Печатная плата раздатчика реагентов
+Pill-Canister-Tricordrazine-des = Вмещает до 10 таблеток. Внутри таблетка трикордразина
+Pill-Canister-Hyronalin-des = Вмещает до 10 таблеток. Внутри таблетка хироналина
+Pill-Canister-Dylovene-des = Вмещает до 10 таблеток. Внутри таблетка диловена
+Pill-Canister-Dexalin-des = Вмещает до 10 таблеток. Внутри таблетка дексалина

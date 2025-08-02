@@ -1,0 +1,126 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorCI
+  name: ci suit
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/ci_armor_2.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/ci_armor_2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Stamina: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+
+- type: entity
+  parent: [ClothingHeadHelmetBase]
+  id: ClothingHeadHelmetCI
+  name: ci helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/ci_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/ci_helmet.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorMTF
+  name: mtf suit
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/mtf_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/mtf_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Stamina: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: GroupExamine
+
+- type: entity
+  parent: [ClothingHeadHelmetBase]
+  id: ClothingHeadHelmetMTF
+  name: mtf helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/mtf_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/mtf_helmet.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: [ClothingHeadHelmetBase]
+  id: ClothingHeadHelmetSCPSecurity
+  name: scp security helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/security_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/security_helmet.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Stamina: 0.95
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorSCPSecurity
+  name: scp security suit
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/scp_security_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/scp_security_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Stamina: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: GroupExamine

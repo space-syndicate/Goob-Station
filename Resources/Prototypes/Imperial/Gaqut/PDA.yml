@@ -1,0 +1,161 @@
+- type: accessLevel
+  id: TriviumMainAccess
+  name: id-card-access-level-trivium-main
+
+- type: accessLevel
+  id: TriviumHeadAccess
+  name: id-card-access-level-trivium-head
+
+- type: accessLevel
+  id: USSPMainAccess
+  name: id-card-access-level-ussp-main
+
+- type: accessLevel
+  id: USSPHeadAccess
+  name: id-card-access-level-ussp-head
+
+- type: entity
+  id: TriviumIDCardMain
+  parent: IDCardStandard
+  name: Trivium ID card
+  suffix: Gaqut, Void, SideTrivium
+  description: Identification Card.
+  components:
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Gaqut/Clothing/id-trivium-main.rsi
+    - type: IdCard
+      jobIcon: TriviumJobIcon
+      jobTitle: job-name-trivium-main
+    - type: Access
+      tags:
+      - TriviumMainAccess
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/id-trivium-main.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      quickEquip: true
+      slots:
+        - idcard
+      sprite: Imperial/Gaqut/Clothing/id-trivium-main.rsi
+    - type: PresetIdCard
+      job: null
+
+- type: entity
+  id: TriviumIDCardHead
+  parent: IDCardStandard
+  name: Trivium command ID card
+  suffix: Gaqut, Void, SideTrivium
+  description: Identification Card.
+  components:
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Gaqut/Clothing/id-trivium-head.rsi
+    - type: IdCard
+      jobIcon: TriviumHeadJobIcon
+      jobTitle: job-name-trivium-head
+    - type: Access
+      tags:
+      - TriviumHeadAccess
+      - TriviumMainAccess
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/id-trivium-head.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      quickEquip: true
+      slots:
+        - idcard
+      sprite: Imperial/Gaqut/Clothing/id-trivium-head.rsi
+    - type: PresetIdCard
+      job: null
+
+- type: entity
+  id: USSPIDCardMain
+  parent: IDCardStandard
+  name: USSP ID card
+  suffix: Gaqut, Void, SideUSSP
+  description: Identification Card.
+  components:
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Gaqut/Clothing/id-ussp-main.rsi
+    - type: IdCard
+      jobIcon: USSPJobIcon
+      jobTitle: job-name-ussp-main
+    - type: Access
+      tags:
+      - USSPMainAccess
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/id-ussp-main.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      quickEquip: true
+      slots:
+        - idcard
+      sprite: Imperial/Gaqut/Clothing/id-ussp-main.rsi
+    - type: PresetIdCard
+      job: null
+
+- type: entity
+  id: USSPIDCardHead
+  parent: IDCardStandard
+  name: USSP command ID card
+  suffix: Gaqut, Void, SideUSSP
+  description: Identification Card.
+  components:
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Gaqut/Clothing/id-ussp-head.rsi
+    - type: IdCard
+      jobIcon: USSPHeadJobIcon
+      jobTitle: job-name-ussp-head
+    - type: Access
+      tags:
+      - USSPHeadAccess
+      - USSPMainAccess
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/id-ussp-head.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      quickEquip: true
+      slots:
+        - idcard
+      sprite: Imperial/Gaqut/Clothing/id-ussp-head.rsi
+    - type: PresetIdCard
+      job: null
+
+- type: jobIcon
+  parent: JobIcon
+  id: TriviumJobIcon
+  icon:
+    sprite: /Textures/Imperial/Gaqut/jobicons.rsi
+    state: trivium
+  jobName: job-name-trivium-main
+
+- type: jobIcon
+  parent: JobIcon
+  id: TriviumHeadJobIcon
+  icon:
+    sprite: /Textures/Imperial/Gaqut/jobicons.rsi
+    state: trivium-head
+  jobName: job-name-trivium-head
+
+- type: jobIcon
+  parent: JobIcon
+  id: USSPJobIcon
+  icon:
+    sprite: /Textures/Imperial/Gaqut/jobicons.rsi
+    state: ussp
+  jobName: job-name-ussp-main
+
+- type: jobIcon
+  parent: JobIcon
+  id: USSPHeadJobIcon
+  icon:
+    sprite: /Textures/Imperial/Gaqut/jobicons.rsi
+    state: ussp-head
+  jobName: job-name-ussp-head

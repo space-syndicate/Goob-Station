@@ -1,48 +1,36 @@
-﻿implanter-component-implanting-target = {$user} пытается вам что-то вживить!
-implanter-draw-failed-permanent = {$implant} в {$target} слился организмом и не может быть извлечен!
-implanter-draw-failed = Вы попытались извлечь имплант, но ничего не обнаружили.
+﻿## Сообщения при попытке имплантации
+
+implanter-component-implanting-target = {$user} пытается вживить вам что-то!
+implanter-component-implant-failed = Невозможно вживить {$implant} {$target}!
+implanter-draw-failed-permanent = {$implant} в {$target} сросся с { OBJECT($target) } и не может быть извлечен!
+implanter-draw-failed = Вы попытались извлечь имплант, но ничего не нашли.
+implanter-draw-failed-catastrophically = Имплантер не находит ничего и катастрофически выходит из строя, выбрасывая генетический материал в руку {$user}!
 implanter-component-implant-already = {$target} уже имеет {$implant}!
 
+## Интерфейс
+implanter-set-draw-verb = Установить извлечение импланта
+implanter-set-draw-window = Настройка извлечения импланта
+implanter-set-draw-info = Выберите тип импланта для извлечения:
+implanter-set-draw-type = Тип импланта:
 
-implanter-draw-text = Извлечение
-implanter-inject-text = Вживление
+implanter-draw-text = Извлечь
+implanter-inject-text = Вживить
 
 implanter-empty-text = Пусто
 
-implanter-label = Имплантат: [color=green]{$implantName}[/color] | [color=white]{$modeString}[/color]{$lineBreak}{$implantDescription}
+implanter-label-inject = [color=green]{$implantName}[/color]
+    Режим: [color=white]{$modeString}[/color]
+
+implanter-label-draw = [color=red]{$implantName}[/color]
+    Режим: [color=white]{$modeString}[/color]
 
 implanter-contained-implant-text = [color=green]{$desc}[/color]
 
+## Всплывающие сообщения имплантов
 
+scramble-implant-activated-popup = Ваша внешность изменяется и преобразуется!
 
-open-storage-implant-action-name = Открыть имплант хранилище
-open-storage-implant-action-description = Открывает имплантат хранилище, установленный под кожей.
+## Сообщения имплантов
 
-activate-micro-bomb-action-name = Активировать микробомбу
-activate-micro-bomb-action-description = Активирует вживленную микробомбу, полностью уничтожая вас и ваше снаряжение.
-
-use-freedom-implant-action-name = Вырваться на свободу
-use-freedom-implant-action-description = Активация импланта свободы снимет с вас любые оковы.
-
-open-uplink-implant-action-name = Открыть аплинк
-open-uplink-implant-action-description = Открывает аплинк синдиката, установленный под кожей.
-
-action-name-honk = Хонк!
-action-desc-honk = Активирует ваш гудящий имплант, который издаёт типичный звук клоуна.
-
-use-emp-implant-action-name = Активировать ЭМИ
-use-emp-implant-action-description = Вызывает небольшой ЭМИ импульс вокруг вас.
-
-use-dna-scrambler-implant-action-name = Переписать ДНК
-use-dna-scrambler-implant-action-description = Меняет вашу внешность до неузнаваемости.
-
-
-
-scramble-attempt-while-scrambled-popup = Обнаружено переписанное ДНК, пожалуйста, извлеките имплант перед отменой текущей маскировки.
-scramble-implant-activated-popup = Вы трансформировались в {$identity}
-
-
-
-deathrattle-implant-dead-message = {$user} умер в {$position}.
-deathrattle-implant-critical-message = {$user} жизненные показатели критические, требуется немедленная помощь по координатам {$position}.
-implanter-component-implant-failed = Имплантат {$implant} не может быть передан {$target}!
+deathrattle-implant-dead-message = {$user} погиб {$position}.
+deathrattle-implant-critical-message = Показатели жизни {$user} критические, требуется немедленная помощь {$position}.

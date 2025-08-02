@@ -366,7 +366,7 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
   - type: GasThermoMachine
-    minTemperature: 23.15
+    minTemperature: 11.15 #Imperial Added Phazonium and Ozonium
     heatCapacity: 40000
     energyLeakPercentage: 0.15
   - type: Machine

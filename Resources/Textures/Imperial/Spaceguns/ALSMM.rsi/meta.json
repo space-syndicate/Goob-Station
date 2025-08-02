@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by Phantom4502",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mag-1",
+      "directions": 4
+    },
+    {
+      "name": "mag-2",
+      "directions": 4
+    },
+    {
+      "name": "mag-3",
+      "directions": 4
+    },
+    {
+      "name": "base4",
+      "directions": 4
+    },
+    {
+      "name": "base3",
+      "directions": 4
+    },
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "lock",
+      "directions": 4
+    },
+    {
+      "name": "unlock",
+      "directions": 4
+    },
+    {
+      "name": "fragCryo"
+    },
+    {
+      "name": "fragCryolittle"
+    },
+    {
+      "name": "fragDemolitionCharge"
+    },
+    {
+      "name": "fragFireBomb"
+    },
+    {
+      "name": "Fragmentation"
+    },
+    {
+      "name": "fragRadioactive"
+    },
+    {
+      "name": "fragRadioactivelittle"
+    },
+    {
+      "name": "fragSmokelittle"
+    },
+    {
+      "name": "fraglittle"
+    },
+    {
+      "name": "Fragmentationlittle"
+    },
+    {
+      "name": "spent"
+    }
+  ]
+}

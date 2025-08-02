@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by lune_felix and modified by space__explorer",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {"name": "trivium-head"},
+      {"name": "trivium-main"},
+      {"name": "ussp-head"},
+      {"name": "ussp-main"}
+    ]
+  }

@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingHonkmotherShoes
+  name: honkmother shoes
+  description: As light as the owner's thoughts.
+  components:
+  - type: Sprite
+    sprite: Imperial/ChildrenOfHonkmother/shoes.rsi
+  - type: Clothing
+    sprite: Imperial/ChildrenOfHonkmother/shoes.rsi
+  - type: Matchbox
+  - type: StaticPrice
+    price: 1000

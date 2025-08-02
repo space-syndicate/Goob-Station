@@ -1,0 +1,90 @@
+- type: entity
+  id: Supermatter
+  name: supermatter crystal
+  description: A strangely translucent and iridescent crystal.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadiationSource
+      intensity: 5
+    - type: AmbientSound
+      range: 5
+      volume: 0
+      sound:
+        path: /Audio/Ambience/Objects/engine_hum.ogg
+    - type: Physics
+    - type: Speech
+      speechSounds: Pai
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.25,-0.25,0.25,0.25"
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    - type: Transform
+      anchored: true
+      noRot: true
+    - type: CollisionWake
+      enabled: false
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      drawdepth: WallMountedItems
+      sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
+      state: supermatter
+    - type: Icon
+      sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
+      state: supermatter
+    - type: PointLight
+      enabled: true
+      radius: 10
+      energy: 5
+      color: "#ffe000"
+    - type: Explosive
+      explosionType: Radioactive
+      maxIntensity: 10000
+      intensitySlope: 5
+      totalIntensity: 10000
+    - type: WarpPoint
+      follow: true
+      location: supermatter
+    - type: SupermatterTouch
+    - type: Damageable
+      damageContainer: Structural
+    - type: SupermatterIntegrity
+      integrity: 100
+      maxIntegrity: 100
+      tickDamage:
+        types:
+          Blunt: 0.5
+      catastropheThreshold: 0
+    - type: SupermatterEvent
+      initialEventDelaySeconds: 900.0  # 15 минут до первого ивента
+      consoleCacheLifetime: 10.0       # 10 секунд время жизни кэша консоли
+      # Настройки событий
+      noneEventDuration: 300.0         # 5 минут для None события
+      lightningEventDuration: 120.0    # 2 минуты для Lightning события
+      lightningCooldownDuration: 2.0   # 2 секунды кулдаун для молний
+      lightningSpawnDuration: 1.0      # 1 секунда для спавна молнии
+      lightningMinNextEvent: 180.0     # 3 минуты минимальное время до следующего события
+      lightningMaxNextEvent: 420.0     # 7 минут максимальное время до следующего события
+      radiationEventDuration: 120.0    # 2 минуты для Radiation события
+      radiationIntensity: 10.0         # Интенсивность радиации во время события
+      radiationMinNextEvent: 180.0     # 3 минуты минимальное время до следующего события
+      radiationMaxNextEvent: 420.0     # 7 минут максимальное время до следующего события
+      plasmaEventDuration: 120.0       # 2 минуты для Plasma события
+      plasmaMinNextEvent: 180.0        # 3 минуты минимальное время до следующего события
+      plasmaMaxNextEvent: 420.0        # 7 минут максимальное время до следующего события
+      plasmaTickInterval: 10.0         # 10 секунд интервал для генерации плазмы
+      plasmaMolesAmount: 5.0           # Количество молей плазмы и кислорода для генерации
+      plasmaHotspotTemperature: 1500.0 # Температура хотспота плазмы
+      plasmaHotspotVolume: 50.0        # Объем хотспота плазмы
+      defaultRadiationIntensity: 5.0   # Интенсивность радиации по умолчанию
+    - type: GuideHelp
+      guides:
+      - SupermatterEngine
+      - Power

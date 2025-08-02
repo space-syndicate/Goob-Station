@@ -36,3 +36,6 @@
         Cold: 0.7
   - type: ExplosionResistance
     damageCoefficient: 1
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1

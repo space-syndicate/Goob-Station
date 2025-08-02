@@ -9,6 +9,7 @@ general-station-record-console-record-species = Раса: {$species}
 general-station-record-console-record-gender = Гендер: {$gender}
 general-station-record-console-record-fingerprint = Отпечатки пальцев: {$fingerprint}
 general-station-record-console-record-dna = ДНК: {$dna}
+
 general-station-record-for-filter-line-placeholder = Введите текст...
 general-station-record-name-filter = Имя сотрудника
 general-station-record-job-filter = Должность

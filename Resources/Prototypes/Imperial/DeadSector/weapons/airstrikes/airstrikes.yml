@@ -18,9 +18,9 @@
   suffix: DeadSector
   components:
   - type: Sprite
-    sprite: Objects/Devices/communication.rsi
+    sprite: Imperial/Felix/Objects/OrbitalCall/imperial.rsi
     layers:
-    - state: old-radio
+    - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ImperialScatteringGrenade
     fillPrototype:

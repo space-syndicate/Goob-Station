@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingMaskClownBase
+  id: ClothingMaskHonkmotherFace
+  name: honkmother face
+  description: The face of the Honkmother sees everything and everyone. Always.
+  components:
+  - type: Sprite
+    sprite: Imperial/ChildrenOfHonkmother/mask.rsi
+  - type: Clothing
+    sprite: Imperial/ChildrenOfHonkmother/mask.rsi
+  - type: Tag
+    tags:
+    - ClownMask
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots: ## Не надо добавлять срез HeadTop
+    - Snout
+    - HeadSide
+    - Hair
+  - type: StaticPrice
+    price: 1000

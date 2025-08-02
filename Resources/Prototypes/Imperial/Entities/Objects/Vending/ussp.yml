@@ -1,0 +1,171 @@
+- type: entity
+  parent: VendingMachineClothing
+  id: VendingMachineTouristJumpsuit
+  name: ClothesMate
+  description: A vending machine for clothing.
+  components:
+  - type: VendingMachine
+    pack: TouristMateJumpsuitInv
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/ussp/vending/clothing.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: vendingMachineInventory
+  id: TouristMateJumpsuitInv
+  startingInventory:
+    ClothingBackpack: 20
+    ClothingBackpackDuffel: 20
+    ClothingBackpackSatchel: 20
+    ClothingBackpackSatchelLeather: 10
+    ClothingUniformJumpsuitSyndieFormal: 3
+    ClothingUniformJumpsuitReporter: 3
+    ClothingUniformJumpsuitMusician: 3
+    ClothingUniformJumpsuitFamilyGuy: 3
+    ClothingUniformJumpsuitMinuteBoy: 3
+    ClothingUniformJumpsuitMinuteManFormal: 3
+    ClothingUniformJumpsuitSecBlue: 3
+    ClothingUniformJumpsuitCitizenSmoking: 3
+    ClothingUniformJumpsuitDameDane: 3
+    ClothingUniformJumpsuitLawyerPurple: 3
+    ClothingUniformJumpsuitHawaiYellow: 3
+    ClothingUniformJumpsuitMinuteMan: 3
+    ClothingUniformJumpsuitDetectiveGrey: 3
+    UniformShortsRedWithTop: 3
+    ClothingUniformJumpsuitFlannel: 3
+    ClothingUniformJumpsuitHawaiBlack: 3
+    ClothingUniformJumpsuitMenOriental: 3
+    ClothingUniformJumpsuitHawaiRed: 3
+    ClothingUniformJumpsuitHawaiBlue: 3
+    ClothingUniformJumpsuitLawyerSporting: 3
+    ClothingUniformJumpsuitLawyerOld: 3
+    ClothingUniformJumpsuitLawyerStrange: 3
+    ClothingUniformJumpsuitLawyerGood: 3
+    ClothingUniformJumpsuitLawyerLazy: 3
+    ClothingUniformJumpsuitLawyerOrange: 3
+    ClothingUniformJumpsuitLawyerBrutal: 3
+    ClothingUniformJumpsuitLawyerBlack: 3
+    ClothingUniformJumpsuitLawyerCool: 3
+    ClothingUniformJumpsuitCurator: 3
+    ClothingUniformJumpsuitLawyerRed: 3
+    ClothingUniformJumpsuitLawyerBlue: 3
+    ClothingUniformJumpsuitLawyerStupid: 3
+    ClothingUniformJumpskirtYellowTurtleneckDress: 3
+    ClothingUniformJumpskirtPurpleTurtleneckDress: 3
+    ClothingUniformJumpskirtBlueTurtleneckDress: 3
+    ClothingUniformJumpskirtRedTurtleneckDress: 3
+    ClothingUniformJumpskirtYellowOldDress: 3
+    ClothingUniformJumpskirtOrangeStripedDress: 3
+    ClothingUniformJumpskirtRedStripedDress: 3
+    ClothingUniformJumpskirtGreenStripedDress: 3
+    ClothingUniformJumpskirtCyanStripedDress: 3
+    ClothingUniformJumpskirtPinkStripedDress: 3
+    ClothingUniformJumpskirtBlackElegantDress: 3
+    ClothingUniformJumpskirtPurpleElegantDress: 3
+    ClothingUniformJumpskirtGreenElegantDress: 3
+    ClothingUniformJumpskirtBlueElegantDress: 3
+    ClothingUniformJumpskirtRedElegantDress: 3
+
+- type: entity
+  parent: VendingMachineClothing
+  id: VendingMachineTouristHats
+  name: ClothesMate
+  description: A vending machine for clothing.
+  components:
+  - type: VendingMachine
+    pack: TouristMateHatsInv
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/ussp/vending/hats.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: vendingMachineInventory
+  id: TouristMateHatsInv
+  startingInventory:
+    ClothingHeadHatCanadaBeanie: 3
+    ClothingHeadHatBeretCommand: 3
+    ClothingHeadHatCowboyWhite: 3
+    ClothingHeadHatTrucker: 3
+    ClothingHeadHatBowlerOrange: 3
+    ClothingHeadHatBeretBonBon: 3
+    ClothingHeadHatCommandSoft: 3
+    ClothingHeadHatSyndie: 3
+    ClothingHeadHatSolidHeadband: 3
+    ClothingHeadHatBowlerHatBrown: 3
+    ClothingHeadHatBowlerCool: 3
+    ClothingHeadHatBizarreSoft: 3
+    ClothingHeadHatBowlerPink: 3
+    ClothingHeadHatBeret: 3
+    ClothingHeadHatFedoraBrown: 3
+    ClothingHeadHatCowboyRed: 3
+    ClothingHeadHatCowboyBountyHunter: 3
+    ClothingHeadHatCowboyBrown: 3
+    ClothingHeadHatRedsoft: 3
+    ClothingHeadHatCorpsoft: 3
+    ClothingHeadHatCowboyGrey: 3
+    ClothingHeadHatStrawHat: 3
+    ClothingHeadHatSombrero: 3
+    ClothingHeadHatBowlerHat: 3
+    ClothingHeadHatOutlawHat: 3
+    ClothingHeadHatSyndieMAA: 3
+    ClothingHeadHatTophat: 3
+    ClothingHeadHatBlacksoft: 3
+    ClothingHeadHatBeretFrench: 3
+
+- type: entity
+  parent: VendingMachineClothing
+  id: VendingMachineTouristCoats
+  name: ClothesMate
+  description: A vending machine for clothing.
+  components:
+  - type: VendingMachine
+    pack: TouristMateCoatsInv
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/ussp/vending/coat.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: vendingMachineInventory
+  id: TouristMateCoatsInv
+  startingInventory:
+    ClothingOuterDameDane: 3
+    ClothingOuterCoatSpaceAsshole: 3
+    ClothingOuterCoatTrench: 3
+    ClothingOuterFlannelRed: 3
+    ClothingOuterFlannelGreen: 3
+    ClothingOuterWinterSec: 3
+    ClothingOuterCoatJensen: 3
+    ClothingOuterCoatGentle: 3
+    ClothingOuterCoatBomber: 3
+    ClothingOuterCoatTrenchLawyer: 3
+    ClothingOuterVest: 3

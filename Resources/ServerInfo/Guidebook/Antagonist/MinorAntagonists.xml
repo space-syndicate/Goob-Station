@@ -1,30 +1,31 @@
 <Document>
-  # Minor Antagonists
+  # Минорные Антагонисты
 
-  Most if not all Minor Antagonists are ghost-controlled roles that gives dead people new ways to cause chaos around the station. They are spawned by random events.
+  Большая, если не вся, часть минорных антагонистов - роли, контролируемые призраками. Это даёт мертвецам новые пути для создания хаоса на станции. Минорные антагонисты создаются случайными событиям.
 
-  # Paradox Clone
+  # Парадоксальный клон
 
   <Box>
-    <GuideEntityEmbed Entity="ParadoxCloneDummy"/>
+    <GuideEntityEmbed Entity="ParadoxCloneDummy" Caption="парадоксальный клон"/>
   </Box>
 
-  A perfect copy of a random crewmember that was thrown into our universe by a space-time anomaly. To fix the paradox and survive they have to find and kill their original counterpart. They have no special abilities, but are have identical appearance, DNA, fingerprints, clothing, equipment and IDs, making it hard to figure out who is the orginal and who is the clone, unless you know your fellow crewmembers well.
+  Идеальная копия случайного члена экипажа, отправленная в эту вселенную через пространственно-временную аномалию. Чтобы исправить парадокс и остаться в живых, ему необходимо убить оригинал. Никаких специальных способностей клон не имеют, он просто идеальная копия оригинала - от одежды, до ДНК и ID карты. Таким образом, понять кто есть оригинал, а кто клон очень сложно.
 
-  # Revenant
+  # Ревенант
 
   <Box>
     <GuideEntityEmbed Entity="MobRevenant"/>
   </Box>
 
-  Revenants are ethereal beings made of ectoplasm that haunt the crew and steal [color=#8f63e6]life essence[/color] from them.
-  - Your essence is your very own [bold]life force[/bold]. Taking damage reduces your essence.
-  - Essence is also spent to use [bold]abilities[/bold].
-  - To gain essence you first [bold]inspect[/bold] various souls for their worth. More worthy souls grant more essence. Then you must [bold]siphon[/bold] it either when the victim is crit, dead or asleep. All of this is done with [color=yellow][bold][keybind="Use"][/bold][/color].
-  - [bold]Stolen essence[/bold] is used to purchase new abilities to incapacitate the crew easier.
-  - You are [bold]vulnerable[/bold] to attacks when you siphon a soul or use an ability. You can tell when you are vulnerable when you have a [color=#8f63e6][italic]Corporeal[/italic][/color] status effect.
 
-  # Rat King
+  Ревенанты — бесплотные существа, состоящие из эктоплазмы, преследующие команду и крадущие у неё [color=#8f63e6]жизненную эссенцию[/color].
+  - Ваша эссенция - ваша [bold]кровь[/bold]. Получение урона снижает уровень эссенции.
+  - Вы можете тратить эссенцию чтобы покупать [bold]способности[/bold].
+  - Чтобы получить эссенцию, сначала [bold]осмотрите[/bold] несколько душ на их ценность. За более ценные души Вы получаете больше эссенции. Затем, Вы должны [bold]высосать[/bold] душу когда Ваша цель в крите, мертва или спит. Все эти действия выполняются с помощью [color=yellow][bold][keybind="Use"][/bold][/color].
+  - [bold]Украденная эссенция[/bold] используется для покупки новых способностей.
+  - Вас [bold]можно атаковать[/bold] когда Вы высасываете душу или используете способность. Если Вас могут видеть, справа появится статус-эффект о Вашей [color=#8f63e6][italic]материальности[/italic][/color].
+
+  # Король крыс
 
   <Box>
     <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
@@ -34,15 +35,15 @@
     <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
   </Box>
 
-  Rat kings are abnormally large rodents capable of [color=yellow]raising huge rat armies[/color] by eating equally huge amounts of food.
-  - You have several abilities that come at the cost of your [bold]hunger.[/bold]
-  - One such ability is [color=yellow][italic]Raise Army[/italic][/color], which summons a [bold]Rat Servant[/bold]. You can [bold]command[/bold] your servants to stay in place, follow you, attack a target of your choice or attack indiscriminately.
-  - You can conjure a cloud of [color=#77b58e]ammonia[/color] using [color=purple][italic]Rat King's Domain[/italic][/color]. This purple gas is mildly poisonous to humans but heals rats.
-  - [color=#9daa98][italic]Rummage[/italic][/color] through a disposal unit by using the context menu. Use this to find [bold]scraps of food[/bold] to grow your army.
-  - Besides your abilities, [bold]you are stronger than most other animals.[/bold] You and your servants are capable of speech and you're both small enough to fit under airlocks and tables.
-  - [bold]Your underlings are still very fragile![/bold] Beware of spacings, explosions and the buisness end of a melee weapon.
+  Крысиные короли - огромные грызуны, способные [color=yellow]создавать огромные крысиные армии[/color], поедаяя огромные объёмы еды.
+  - У вас есть несколько способностей, которые тратят [bold]голод[/bold].
+  - Одна из таких способностей - [color=yellow][italic]Raise Army[/italic][/color] (поднять армию), что создаёт [bold]Крысиного слугу[/bold]. Вы можете [bold]командовать[/bold] Вашими слугами - стоять на месте, следовать за Вами, атаковать по указке и т.д..
+  - Вы можете выпустить облако [color=#77b58e]амииака[/color], использовав способность [color=purple][italic]Rat King's Domain[/italic][/color] (владения крысиного короля). Этот фиолетовый газ ядовит для людей, но лечит Вас и Ваших слуг.
+  - [color=#9daa98][italic]Покопайтесь[/italic][/color] в утилазционном блоке через контекстное меню. Вы можете найти здесь [bold]остатки еды[/bold] чтобы вырастить ещё большую армию.
+  - Ваши способности мощны, [bold]но и Вы сами не слабы[/bold]. Вы и Ваши слуги можете разговаривать, а также проходить под всеми шлюзами, будь они пожарные или стеклянные.
+  - [bold]Ваши слуги не очень сильны![/bold] Опасайтесь разгерметизаций, взрывов и острого конца ножей.
 
-  # Space Dragon
+  # Космический дракон
 
   <Box>
     <GuideEntityEmbed Entity="MobCarp" Caption=""/>
@@ -52,23 +53,23 @@
     <GuideEntityEmbed Entity="MobCarp" Caption=""/>
   </Box>
 
-  Space dragons are giant extradimensional fish that can [color=red]eat crew[/color] and create [color=#4b7fcc]carp rifts.[/color]
-  - Dragons have powerful jaws that allow them to [color=red][italic]Devour[/italic][/color] infrastructure such as doors, windows, and walls.
-  - They can also heal themselves by using [color=red][italic]Devour[/italic][/color] on crew members that have gone unconscious or have died.
-  - Your [color=orange][italic]Dragon's Breath[/italic][/color] is a [bold]flaming projectile[/bold] which travels a straight flight path, exploding multiple times and igniting things along the way. Try not to hit your carps with this!
-  - You have the ability to [color=#4b7fcc][italic]Summon a Carp Rift[/italic][/color]. Rifts periodically spawn [bold]space carp[/bold] and charge up energy over a period of 5 minutes, [bold]which is when it's vulnerable.[/bold] After 5 minutes, it becomes invulnerable and will continue summoning carp as long as the dragon lives.
-  - You'll suffer a [bold]temporary debilitating feedback effect[/bold] if one of your rifts are destroyed before it's done charging.
-  - If a period of five minutes passes since your spawn or since the last time a rift was charging, [bold]you'll disappear.[/bold]
-  - Dragons who have the maximum of 3 fully charged rifts will [bold]never disappear[/bold], but they are still mortal.
+  Космические драконы являются огромными межпространственными рыбами, способными [color=red]есть экипаж[/color] и создавать [color=#4b7fcc]карповые разломы[/color].
+  - У драконов очень сильные челюсти, позволяющие им [color=red][italic]Поглощать[/italic][/color] (Devour) двери, стены и окна.
+  - Они могут лечиться, [color=red][italic]Поглощая[/italic][/color] мёртвый или без сознания экипаж.
+  - Ваше [color=orange][italic]Dragon's Breath[/italic][/color] (драконье дыхание) - медленный [bold]фаербол[/bold], которые летит по прямой траектории, взрываясь по пути и поджигая существ. Попытайтесь не попасть по своим карпам!
+  - У Вас есть способность [color=#4b7fcc][italic]Summon a Carp Rift[/italic][/color] (призвать карповый разлом). Разломы периодически создают [bold]космических карпов[/bold] и заряжаются энергией в течение пяти минут, [bold]в это время им можно нанести урон[/bold]. Через пять минут, разлом становится неразрушимым и будет призывать карпов до смерти дракона.
+  - Если один из разломов будет уничтожен за 5 минут, Вы почувствуете [bold]временный ослабляющий эффект[/bold].
+  - Если в течение пяти минут Вы не создадите разлом, или ни один разлом не будет заряжаться, Вы [bold]исчезните[/bold].
+  - Драконы с тремя заряженными разломами [bold]никогда не исчезнут[/bold], но всё ещё могут умереть.
 
-  # Slimes and Spiders
+  # Слаймы и пауки
 
   <Box>
     <GuideEntityEmbed Entity="MobAdultSlimesBlueAngry" Caption=""/>
     <GuideEntityEmbed Entity="MobGiantSpiderAngry" Caption=""/>
   </Box>
 
-  Slimes and spiders have no remarkable features, but will [color=cyan]infest the station[/color] from time to time regardless. Both will give chase and attack anything they see.
-  - Slimes may [bold]deal extra cellular or poison damage[/bold], based upon their color. Water hurts them just as it would hurt a slime person.
-  - Spiders have a venomous bite and can [bold]create webs[/bold] that are hard to move though. Webs are easily destroyed with a blade. They can also pry open doors, windoors, and airlocks.
+  У слаймов и пуков нет каких-то интересных способностей, время от времени они [color=cyan]будут появляться на станции[/color]. Они атакуют и преследуют всё что видят.
+  - Слаймы, в зависимости от своего цвета, [bold]наносят дополнительный клеточный или урон ядом[/bold]. Вода наносит им такой же урон, как и слаймолюдам.
+  - Пауки кусают своими ядовитыми челюстями и могут [bold]создавать сети[/bold], через которые сложно передвигаться, но легко уничтожить. Пауки могут взламывать двери и шлюзы.
 </Document>

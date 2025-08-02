@@ -1,0 +1,19 @@
+- type: storeCategory
+  id: TriviumShopWeaponry
+  name: store-category-trivium-shop-weaponry
+
+- type: storeCategory
+  id: TriviumShopAmmo
+  name: store-category-trivium-shop-ammo
+
+- type: storeCategory
+  id: TriviumShopMedicine
+  name: store-category-trivium-shop-medicine
+
+- type: storeCategory
+  id: TriviumShopFoodstuff
+  name: store-category-trivium-shop-foodstuff
+
+- type: storeCategory
+  id: TriviumShopSurvival
+  name: store-category-trivium-shop-survival

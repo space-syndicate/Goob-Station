@@ -5,7 +5,7 @@ random-metadata-description-format-default = {$part0}
 name-format-standard = {$part0} {$part1}
 
 name-format-regal-rat = {$part0} {$part1}
-name-format-revenant = The {$part0} of {$part1} {$part2}
+name-format-revenant = {$part0} {$part1} {$part2}
 name-format-ninja = {$part0} {$part1}
 name-format-wizard = {$part0} {$part1}
 name-format-dragon = {$part0} {$part1}

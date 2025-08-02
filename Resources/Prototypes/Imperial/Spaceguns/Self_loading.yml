@@ -1,0 +1,1071 @@
+- type: entity
+  id: SpaceGunsCannon1
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: Cannonfrag
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 45
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFrag1
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon1
+
+- type: entity
+  id: SpaceGunsCannon2
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: Cannonfrag
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 45
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragSpaceGuns1
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon2
+
+- type: entity
+  id: SpaceGunsCannon3
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: Cannonfrag
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 35
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragSpaceGuns
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon3
+
+- type: entity
+  id: SpaceGunsCannon4
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonEMP
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 60
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: SpaceGunsBulletGrenadeEMP
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCanno4
+
+- type: entity
+  id: SpaceGunsCannon5
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonEMP
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 55
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: SpaceGunsBulletGrenadeEMP2
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon5
+
+- type: entity
+  id: SpaceGunsCannon6
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonEMP
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: SpaceGunsBulletGrenadeEMP3
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon6
+
+- type: entity
+  id: SpaceGunsCannon7
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonRadioactive
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 55
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragRadioactive
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon7
+
+- type: entity
+  id: SpaceGunsCannon8
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonRadioactive
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 45
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragRadioactive2
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon8
+
+- type: entity
+  id: SpaceGunsCannon9
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonDemolitionCharge
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFrag4
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon9
+
+- type: entity
+  id: SpaceGunsCannon10
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonCryo
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragCryo
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon10
+
+- type: entity
+  id: SpaceGunsCannon11
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonCryo
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFragCryo2
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon11
+
+- type: entity
+  id: SpaceGunsCannon12
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/ALSMM.rsi
+    layers:
+    - state: base4
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 35
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletGrenadeFrag6
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon12
+
+- type: entity
+  id: SpaceGunsCannon13
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: Cannonfrag
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 35
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: PelletGrapeshotSpreadShrapnel
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon13
+
+- type: entity
+  id: SpaceGunsCannon14
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: Cannonfrag
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 35
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: PelletGrapeshotSpreadShrapnel2
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon14
+
+- type: entity
+  id: SpaceGunsCannon15
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonCumulative
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 65
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: PelletShotgunSlugCumulative
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon15
+
+- type: entity
+  id: SpaceGunsCannon16
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: PTK-800 "Matter Dematerializer"
+  description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/Self_loading.rsi
+    layers:
+    - state: CannonSmoke
+    - state: mag-3
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 30
+    rechargeSound:
+      path: /Audio/Weapons/Guns/rifle_load.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: GrenadeFlashEffect9
+    capacity: 1
+    count: 1
+  - type: Machine
+    board: MachineSpaceGunCannon16
+
+- type: entity
+  id: MachineSpaceGunCannon1
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon1
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon2
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon2
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon3
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon3
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCanno4
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon4
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon5
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon5
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon6
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon6
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon7
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon7
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon8
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon8
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon9
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon9
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon10
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon10
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon11
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon11
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon12
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon12
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon13
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon13
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon14
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon14
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon15
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon15
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunCannon16
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunsCannon16
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5

@@ -1,3 +1,3 @@
-ent-ClothingShoesBootsMagPirate = Прототип магнитных сапогов
+ent-ClothingShoesBootsMagPirate = прототип магнитных сапогов
     .desc = Созданные пиратами для пиратов, способные противостоять проклятой мощи космического вакума.
     .suffix = { "Пират" }

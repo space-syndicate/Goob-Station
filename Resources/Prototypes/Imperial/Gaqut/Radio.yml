@@ -1,0 +1,167 @@
+- type: radioChannel
+  id: TriviumMain
+  name: chat-radio-trivium-main
+  keycode: 'a'
+  frequency: 1623
+  color: "#095872"
+  longRange: true
+
+- type: entity
+  parent: EncryptionKeyCustomBase
+  id: EncryptionKeyTriviumMain
+  name: trivium encryption key
+  description: An encryption key
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: EncryptionKey
+    channels:
+    - TriviumMain
+    defaultChannel: TriviumMain
+  - type: Sprite
+    sprite: Imperial/Gaqut/radio.rsi
+    state: trivium-main
+    netsync: false
+
+- type: radioChannel
+  id: USSPMain
+  name: chat-radio-ussp-main
+  keycode: 'c'
+  frequency: 1356
+  color: "#8f0d0d"
+  longRange: true
+
+- type: entity
+  parent: EncryptionKeyCustomBase
+  id: EncryptionKeyUSSPMain
+  name: ussp encryption key
+  description: An encryption key
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: EncryptionKey
+    channels:
+    - USSPMain
+    defaultChannel: USSPMain
+  - type: Sprite
+    sprite: Imperial/Gaqut/radio.rsi
+    state: ussp-main
+    netsync: false
+
+- type: radioChannel
+  id: USSPHead
+  name: chat-radio-ussp-head
+  keycode: 'b'
+  frequency: 1423
+  color: "#be3e3e"
+  longRange: true
+
+- type: entity
+  parent: EncryptionKeyCustomBase
+  id: EncryptionKeyUSSPHead
+  name: ussp head encryption key
+  description: An encryption key
+  suffix: Gaqut, Void, SideUSSP
+  components:
+  - type: EncryptionKey
+    channels:
+    - USSPHead
+    defaultChannel: USSPHead
+  - type: Sprite
+    sprite: Imperial/Gaqut/radio.rsi
+    state: ussp-head
+    netsync: false
+
+- type: radioChannel
+  id: TriviumHead
+  name: chat-radio-trivium-head
+  keycode: 'v'
+  frequency: 1712
+  color: "#5a3ebe"
+  longRange: true
+
+- type: entity
+  parent: EncryptionKeyCustomBase
+  id: EncryptionKeyTriviumHead
+  name: trivium head encryption key
+  description: An encryption key
+  suffix: Gaqut, Void, SideTrivium
+  components:
+  - type: EncryptionKey
+    channels:
+    - TriviumHead
+    defaultChannel: TriviumHead
+  - type: Sprite
+    sprite: Imperial/Gaqut/radio.rsi
+    state: trivium-head
+    netsync: false
+
+# Гарнитуры
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetTriviumMain
+  name: trivium main headset
+  description: Some normal trivium headset
+  suffix: Gaqut, Void, SideTrivium
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyTriviumMain
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/trivium-main-headset.rsi
+      state: icon-trivium
+    - type: Clothing
+      sprite: Imperial/Gaqut/Clothing/trivium-main-headset.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetTriviumHead
+  name: trivium cmd headset
+  description: Some important trivium headset
+  suffix: Gaqut, Void, SideTrivium
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyTriviumHead
+        - EncryptionKeyTriviumMain
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/trivium-head-headset.rsi
+      state: icon-trivium
+    - type: Clothing
+      sprite: Imperial/Gaqut/Clothing/trivium-head-headset.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetUSSPMain
+  name: ussp main headset
+  description: Some normal ussp headset
+  suffix: Gaqut, Void, SideUSSP
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyUSSPMain
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/ussp-main-headset.rsi
+      state: icon-ussp
+    - type: Clothing
+      sprite: Imperial/Gaqut/Clothing/ussp-main-headset.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetUSSPHead
+  name: ussp cmd headset
+  description: Some important ussp headset
+  suffix: Gaqut, Void, SideUSSP
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyUSSPHead
+        - EncryptionKeyUSSPMain
+    - type: Sprite
+      sprite: Imperial/Gaqut/Clothing/ussp-head-headset.rsi
+      state: icon-ussp
+    - type: Clothing
+      sprite: Imperial/Gaqut/Clothing/ussp-head-headset.rsi

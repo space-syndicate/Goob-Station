@@ -6,6 +6,7 @@
                       MinSize="960 762">
     <BoxContainer Orientation="Vertical">
         <!-- Top row mode buttons -->
+        <!-- Imperial Space Translation Start-->
         <BoxContainer Name="ModeButtons"
                        Orientation="Horizontal"
                        HorizontalAlignment="Stretch"
@@ -15,21 +16,22 @@
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    Text="NAV"
+                    Text="{Loc 'shuttle-console-window-mode-nav'}"
                     Margin="5"/>
             <Button Name="MapModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    Text="MAP"
+                    Text="{Loc 'shuttle-console-window-mode-map'}"
                     Margin="5"/>
             <Button Name="DockModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    Text="DOCK"
+                    Text="{Loc 'shuttle-console-window-mode-dock'}"
                     Margin="5"/>
         </BoxContainer>
+        <!-- Imperial Space Translation End-->
         <!-- Contents box -->
         <BoxContainer Name="Contents"
                       HorizontalAlignment="Stretch"

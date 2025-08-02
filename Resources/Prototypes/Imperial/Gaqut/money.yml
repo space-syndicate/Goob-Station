@@ -1,0 +1,70 @@
+- type: entity
+  parent: BaseItem
+  id: TriviumMark
+  name: trivium mark
+  suffix: Gaqut, Void, 1 TM
+  description: Trivium corp. uses those marks as money
+  components:
+  - type: Sprite
+    sprite: Imperial/Gaqut/Machines/TrivCash.rsi
+    state: cash
+    scale: 0.07, 0.07
+  - type: Item
+    shape:
+    - 0,0,0,0
+    storedOffset: 0,0
+  - type: Stack
+    stackType: TriviumMark
+    count: 1
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      TriviumMark: 1
+
+- type: currency
+  id: TriviumMark
+  displayName: store-currency-display-trivium-mark
+  cash:
+    1: TriviumMark
+  canWithdraw: true
+
+- type: stack
+  id: TriviumMark
+  name: triviumMark
+  icon: Imperial/Gaqut/Machines/TrivCash.rsi
+  spawn: TriviumMark
+
+- type: entity
+  parent: TriviumMark
+  id: TriviumMark10
+  suffix: Gaqutm Void, 10 TM
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: TriviumMark
+  id: TriviumMark100
+  suffix: Gaqut, Void, 100 TM
+  components:
+  - type: Stack
+    count: 100
+
+- type: entity
+  parent: TriviumMark
+  id: TriviumMark1000
+  suffix: Gaqut, Void, 1000 TM
+  components:
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: TriviumMark
+  id: TriviumMark50
+  suffix: Gaqut, Void, 50 TM
+  components:
+  - type: Stack
+    count: 50

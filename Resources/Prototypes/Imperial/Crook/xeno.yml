@@ -15,16 +15,9 @@
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
       sprite: Imperial/Crook/Xeno/structuralgel.rsi
-      drawdepth: WallMountedItems
       layers:
         - state: icon-1
-          map: ["spiderWebLayer"]
     - type: Appearance
-    - type: RandomSprite
-      available:
-      - spiderWebLayer:
-        icon-3: ""
-        icon-1: ""
     - type: Clickable
     - type: Transform
       anchored: true
@@ -74,8 +67,9 @@
 
 - type: entity
   parent: XenoStructuralGel
-  id: XenoStructuralGelAlt
+  id: XenoStructuralGelOne
   name: xeno structural gel
+  description: A black liquid substance.
   suffix: Felix
   placement:
     mode: SnapgridCenter
@@ -84,16 +78,47 @@
   components:
     - type: Sprite
       sprite: Imperial/Crook/Xeno/structuralgel.rsi
-      drawdepth: WallMountedItems
+      layers:
+        - state: icon-2
+
+- type: entity
+  parent: XenoStructuralGel
+  id: XenoStructuralGelTwo
+  name: xeno structural gel
+  description: A black liquid substance.
+  suffix: Felix
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Crook/Xeno/structuralgel.rsi
       layers:
         - state: icon-3
-          map: ["spiderWebLayer"]
-    - type: Appearance
+
+- type: entity
+  parent: XenoStructuralGel
+  id: XenoStructuralGelRandom
+  name: xeno structural gel
+  description: A black liquid substance.
+  suffix: Felix, Random
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Crook/Xeno/structuralgel.rsi
+      layers:
+        - state: icon-1
+          map: ["random"]
     - type: RandomSprite
       available:
-      - spiderWebLayer:
-        icon-2: ""
-        icon-3: ""
+        - random:
+            icon-1: ""
+            icon-2: ""
+            icon-3: ""
 
 - type: entity
   name: facehugger

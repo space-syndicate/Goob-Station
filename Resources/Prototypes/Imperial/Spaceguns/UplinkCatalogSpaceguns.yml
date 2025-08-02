@@ -1,0 +1,3216 @@
+- type: listing
+  id: SpacegunsUplinkDrinkWaterBottleFull
+  productEntity: DrinkWaterBottleFull
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkDrinkMREFlask
+  productEntity: DrinkMREFlask
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkDrinkJuiceOrangeCarton
+  productEntity: DrinkJuiceOrangeCarton
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkDrinkWineCan
+  productEntity: DrinkWineCan
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkDrinkCreamCartonn
+  productEntity: DrinkCreamCarton
+  cost:
+    Telecrystal_sacerdos: 135
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkDrinkSunshineCloudGlass
+  productEntity: DrinkSunshineCloudGlass
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBakedPretzel
+  productEntity: FoodBakedPretzel
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBakedBunMeat
+  productEntity: FoodBakedBunMeat
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadGarlicSlice
+  productEntity: FoodBreadGarlicSlice
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodOnionRings
+  productEntity: FoodOnionRings
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBerries
+  productEntity: FoodBerries
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodMealQueso
+  productEntity: FoodMealQueso
+  cost:
+    Telecrystal_sacerdos: 10
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodMeatChickenFried
+  productEntity: FoodMeatChickenFried
+  cost:
+    Telecrystal_sacerdos: 10
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBurgerCheese
+  productEntity: FoodBurgerCheese
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBurgerChicken
+  productEntity: FoodBurgerChicken
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBurgerBacon
+  productEntity: FoodBurgerBacon
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBurgerFive
+  productEntity: FoodBurgerFive
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBurgerBig
+  productEntity: FoodBurgerBig
+  cost:
+    Telecrystal_sacerdos: 45
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodMeatCooked
+  productEntity: FoodMeatCooked
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBakedDumplings
+  productEntity: FoodBakedDumplings
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodPieMeat
+  productEntity: FoodPieMeat
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodPieCherry
+  productEntity: FoodPieCherry
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodCheese
+  productEntity: FoodCheese
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadCorn
+  productEntity: FoodBreadCorn
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadPlain
+  productEntity: FoodBreadPlain
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadBanana
+  productEntity: FoodBreadBanana
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadMeat
+  productEntity: FoodBreadMeat
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadCreamcheese
+  productEntity: FoodBreadCreamcheese
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodBreadCotton
+  productEntity: FoodBreadCotton
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodApple
+  productEntity: FoodApple
+  cost:
+    Telecrystal_sacerdos: 10
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodGoldenApple
+  productEntity: FoodGoldenApple
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsFood
+
+- type: listing
+  id: SpacegunsUplinkFoodTartGapple
+  productEntity: FoodTartGapple
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsFood
+
+#SpacegunsWeapon
+- type: listing
+  id: SpacegunsUplinkWeaponMakeshiftLaser
+  productEntity: WeaponMakeshiftLaser
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponPistolMk58-name
+  productEntity: WeaponPistolMk58
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponLaserSvalinn
+  productEntity: WeaponLaserSvalinn
+  cost:
+    Telecrystal_sacerdos: 155
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponLaserGun
+  productEntity: WeaponLaserGun
+  cost:
+    Telecrystal_sacerdos: 170
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponSniperMosin
+  productEntity: WeaponSniperMosin
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponRevolverDeckard
+  productEntity: WeaponRevolverDeckard
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponLaserCarbine
+#  description: It's just cheaper... what...?-description
+  productEntity: WeaponLaserCarbine
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponSubMachineGunDrozd
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    Telecrystal_sacerdos: 575
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponSubMachineGunWt550
+  productEntity: WeaponSubMachineGunWt550
+  cost:
+    Telecrystal_sacerdos: 650
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponSubMachineGunC20r
+  productEntity: WeaponSubMachineGunC20r
+  cost:
+    Telecrystal_sacerdos: 975
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponRifleLecter
+  productEntity: WeaponRifleLecter
+  cost:
+    Telecrystal_sacerdos: 700
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponRifleEstoc
+  productEntity: WeaponRifleEstoc
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkCSWeaponSCAR-L
+  productEntity: CSWeaponSCAR-L
+  cost:
+    Telecrystal_sacerdos: 2200
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponShotgunKammerer
+  productEntity: WeaponShotgunKammerer
+  cost:
+    Telecrystal_sacerdos: 700
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponShotgunEnforcer
+  productEntity: WeaponShotgunEnforcer
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponShotgunBulldog
+  productEntity: WeaponShotgunBulldog
+  cost:
+    Telecrystal_sacerdos: 2000
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponSniperHristov
+  productEntity: WeaponSniperHristov
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponRifleAk
+  productEntity: WeaponRifleAk
+  cost:
+    Telecrystal_sacerdos: 2300
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponLightMachineGunL6
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    Telecrystal_sacerdos: 4300
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponXrayCannon
+  productEntity: WeaponXrayCannon
+  cost:
+    Telecrystal_sacerdos: 1800
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponAdvancedLaser
+  productEntity: WeaponAdvancedLaser
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponRevolverMateba
+  productEntity: WeaponRevolverMateba
+  cost:
+    Telecrystal_sacerdos: 900
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponPulsePistol
+  productEntity: WeaponPulsePistol
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsWeapon
+
+- type: listing
+  id: SpacegunsUplinkWeaponTemperatureGun
+  productEntity: WeaponTemperatureGun
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsWeapon
+
+#SpacegunsMelee
+- type: listing
+  id: SpacegunsUplinkCombatKnife
+  productEntity: CombatKnife
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkTruncheon
+  productEntity: Truncheon
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkThrowingKnife
+  productEntity: ThrowingKnife
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkKatana
+  productEntity: Katana
+  cost:
+    Telecrystal_sacerdos: 430
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkMachete
+  productEntity: Machete
+  cost:
+    Telecrystal_sacerdos: 430
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkPresentableCane
+  productEntity: PresentableCane
+  cost:
+    Telecrystal_sacerdos: 650
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkCaptainSabre
+  productEntity: CaptainSabre
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkPickaxe
+  productEntity: Pickaxe
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkMiningDrill
+  productEntity: MiningDrill
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkMiningDrillDiamond
+  productEntity: MiningDrillDiamond
+  cost:
+    Telecrystal_sacerdos: 650
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkEnergyCutlass
+  productEntity: EnergyCutlass
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkEnergySword
+  productEntity: EnergySword
+  cost:
+    Telecrystal_sacerdos: 1850
+  categories:
+  - SpacegunsMelee
+
+- type: listing
+  id: SpacegunsUplinkEnergySwordDouble_Sacerdos
+  productEntity: EnergySwordDouble_Sacerdos
+  cost:
+    Telecrystal_sacerdos: 4550
+  categories:
+  - SpacegunsMelee
+
+#SpacegunsMed
+- type: listing
+  id: SpacegunsUplinkBrutepack
+  productEntity: Brutepack
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkOintment
+  productEntity: Ointment
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkGauze
+  productEntity: Gauze
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkTourniquet
+  productEntity: Tourniquet
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkMedicatedSuture
+  productEntity: MedicatedSuture
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkRegenerativeMesh
+  productEntity: RegenerativeMesh
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkPillCanisterTricordrazine
+  description: Pill-Canister-Tricordrazine-des
+  productEntity: PillCanisterTricordrazine
+  cost:
+    Telecrystal_sacerdos: 40
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkPillCanisterHyronalin
+  description: Pill-Canister-Hyronalin-des
+  productEntity: PillCanisterHyronalin
+  cost:
+    Telecrystal_sacerdos: 45
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkPillCanisterDylovene
+  description: Pill-Canister-Dylovene-des
+  productEntity: PillCanisterDylovene
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkPillCanisterDexalin
+  description: Pill-Canister-Dexalin-des
+  productEntity: PillCanisterDexalin
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringeInaprovaline
+  productEntity: SyringeInaprovaline
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringeSaline
+  productEntity: SyringeSaline
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringeTranexamicAcid
+  productEntity: SyringeTranexamicAcid
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringePhalanximine
+  productEntity: SyringePhalanximine
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringeEphedrine
+  productEntity: SyringeEphedrine
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringeSigynate
+  productEntity: SyringeSigynate
+  cost:
+    Telecrystal_sacerdos: 870
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSyringeAmbuzol
+  productEntity: SyringeAmbuzol
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkAntiholChemistryBottle
+  productEntity: AntiholChemistryBottle
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkThriveninChemistryBottle
+  productEntity: ThriveninChemistryBottle
+  cost:
+    Telecrystal_sacerdos: 780
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkDefibrillator
+  productEntity: Defibrillator
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkDefibrillatorCompact
+  productEntity: DefibrillatorCompact
+  cost:
+    Telecrystal_sacerdos: 740
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkEmergencyMedipen
+  productEntity: EmergencyMedipen
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkAntiPoisonMedipen
+  productEntity: AntiPoisonMedipen
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkRadAutoInjector
+  productEntity: RadAutoInjector
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkBurnAutoInjector
+  productEntity: BurnAutoInjector
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkBruteAutoInjector
+  productEntity: BruteAutoInjector
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkAirlossAutoInjector
+  productEntity: AirlossAutoInjector
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkPunctAutoInjector
+  productEntity: PunctAutoInjector
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkPyraAutoInjector
+  productEntity: PyraAutoInjector
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkSpaceMedipen
+  productEntity: SpaceMedipen
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkStimpackMini
+  productEntity: StimpackMini
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkStimpack
+  productEntity: Stimpack
+  cost:
+    Telecrystal_sacerdos: 1675
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsUplinkCombatMedipen
+  productEntity: CombatMedipen
+  cost:
+    Telecrystal_sacerdos: 2000
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsClothingEyesHudMedSec
+  productEntity: ClothingEyesHudMedSec
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsBloodpack
+  productEntity: Bloodpack
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsMaterialBiomass
+  productEntity: MaterialBiomass
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsClothingBackpackDuffelSurgeryFilled
+  productEntity: ClothingBackpackDuffelSurgeryFilled
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsMed
+
+- type: listing
+  id: SpacegunsHypospray
+  productEntity: Hypospray
+  cost:
+    Telecrystal_sacerdos: 2300
+  categories:
+  - SpacegunsMed
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+#sacerdosAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazinePistol
+#  name: MagazinePistol-name
+  description: A-magazine-with-the-simplest-bullets-des
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+  productEntity: MagazinePistol
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkSCARMagazine
+#  name: SCAR-Magazine-name
+  description: A-magazine-with-the-simplest-bullets-des
+  icon: { sprite: Imperial/Other/CS/Ammunition/scar_mag.rsi,  state: base }
+  productEntity: SCAR-Magazine
+  cost:
+    Telecrystal_sacerdos: 115
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazinePistolSubMachineGunTopMounted
+#  name: MagazinePistolSubMachineGunTopMounted-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazinePistolSubMachineGunTopMounted
+  cost:
+    Telecrystal_sacerdos: 80
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazinePistolSubMachineGun
+#  name: MagazinePistolSubMachineGun-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    Telecrystal_sacerdos: 80
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxPistol
+#  name: MagazineBoxPistol-name
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxPistol
+  cost:
+    Telecrystal_sacerdos: 160
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxPistolIncendiary
+#  name: MagazineBoxPistolIncendiary-name
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxPistolIncendiary
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxPistolUranium
+#  name: MagazineBoxPistolUranium-name
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxPistolUranium
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkPowerCellSmall
+  productEntity: PowerCellSmall
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkPowerCellMedium
+  productEntity: PowerCellMedium
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkPowerCellHigh
+  productEntity: PowerCellHigh
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineShotgun
+#  name: MagazineShotgun-name
+  description: A-shotgun-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineShotgunIncendiary
+#  name: MagazineShotgunIncendiary-name
+  description: SacerdosUplinkMagazineShotgunIncendiary
+  productEntity: MagazineShotgunIncendiary
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineShotgunSlug
+#  name: MagazineShotgunSlug-name
+  description: SacerdosUplinkMagazineShotgunSlug
+  productEntity: MagazineShotgunSlug
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkBoxShotgunUranium
+#  name: BoxShotgunUranium-name
+  description: SacerdosUplinkBoxShotgunUranium
+  productEntity: BoxShotgunUranium
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineRifle
+#  name: MagazineRifle-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineRifle
+  cost:
+    Telecrystal_sacerdos: 70
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxRifle
+#  name: MagazineBoxRifle-name
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxRifle
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxRifleIncendiary
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxRifleIncendiary
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxRifleUranium
+#  name: MagazineBoxRifleUranium-name
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxRifleUranium
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxRifleBig
+#  name: MagazineBoxRifleBig-name
+  description: SacerdosUplinkMagazineBoxRifleBig
+  productEntity: MagazineBoxRifleBig
+  cost:
+    Telecrystal_sacerdos: 475
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkSpeedLoaderMagnum
+#  name: SpeedLoaderMagnum-name
+  description: SacerdosUplinkSpeedLoaderMagnum
+  productEntity: SpeedLoaderMagnum
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxMagnum
+#  name: MagazineBoxMagnum-name
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxMagnum
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxMagnumIncendiary
+#  name: MagazineBoxMagnumIncendiary-name
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxMagnumIncendiary
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxMagnumUranium
+#  name: MagazineBoxMagnumUranium-name
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxMagnumUranium
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkSpeedLoaderLightRifle
+#  name: SpeedLoaderLightRifle-name
+  description: SacerdosUplinkSpeedLoaderMagnum
+  productEntity: SpeedLoaderLightRifle
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineLightRifle
+#  name: MagazineLightRifle-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineLightRifle
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxLightRifle
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxPistol
+  cost:
+    Telecrystal_sacerdos: 245
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxLightRifleIncendiary
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxLightRifleIncendiary
+  cost:
+    Telecrystal_sacerdos: 345
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxLightRifleUranium
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxLightRifleUranium
+  cost:
+    Telecrystal_sacerdos: 420
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineLightRifleBox
+  description: A-box-with-the-simplest-bullets-des
+  productEntity: MagazineLightRifleBox
+  cost:
+    Telecrystal_sacerdos: 285
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxLightRifleBig
+  description: SacerdosUplinkMagazineBoxRifleBig
+  productEntity: MagazineBoxLightRifleBig
+  cost:
+    Telecrystal_sacerdos: 785
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxAntiMateriel
+  description: MagazineBoxAntiMateriel
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsAmmunition
+
+- type: listing
+  id: SpacegunsUplinkMagazineBoxAntiMaterielBig
+  name: MagazineBoxAntiMaterielBig-name
+  description: MagazineBoxAntiMateriel
+  productEntity: MagazineBoxAntiMaterielBig
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsAmmunition
+
+#sacerdosArmor
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsStandard
+  productEntity: ClothingControlModsuitSpaceGunsStandard
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsArmor
+
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsEngineer
+  productEntity: ClothingControlModsuitSpaceGunsEngineer
+  cost:
+    Telecrystal_sacerdos: 2400
+  categories:
+  - SpacegunsArmor
+
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsElite
+  productEntity: ClothingControlModsuitSpaceGunsElite
+  cost:
+    Telecrystal_sacerdos: 3800
+  categories:
+  - SpacegunsArmor
+
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsMedical
+  productEntity: ClothingControlModsuitSpaceGunsMedical
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsArmor
+
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsPilot
+  productEntity: ClothingControlModsuitSpaceGunsPilot
+  cost:
+    Telecrystal_sacerdos: 3500
+  categories:
+  - SpacegunsArmor
+
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsStormtrooper
+  productEntity: ClothingControlModsuitSpaceGunsStormtrooper
+  cost:
+    Telecrystal_sacerdos: 4500
+  categories:
+  - SpacegunsArmor
+
+- type: listing
+  id: SpacegunsUplinkClothingControlModsuitSpaceGunsStormtrooperElite
+  productEntity: ClothingControlModsuitSpaceGunsStormtrooperElite
+  cost:
+    Telecrystal_sacerdos: 5400
+  categories:
+  - SpacegunsArmor
+
+#SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBrigmedic
+  productEntity: ClothingShoesBrigmedic
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsCombatFilled
+  productEntity: ClothingShoesBootsCombatFilled
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingMaskNeckGaiter
+  productEntity: ClothingMaskNeckGaiter
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsSalvage
+  productEntity: ClothingShoesBootsSalvage
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesSwat
+  productEntity: ClothingShoesSwat
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingUniformJumpsuitTacticool
+  productEntity: ClothingUniformJumpsuitTacticool
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatBeretBrigmedic
+  productEntity: ClothingHeadHatBeretBrigmedic
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsJackFilled
+  productEntity: ClothingShoesBootsJackFilled
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsWorklisting
+  productEntity: ClothingShoesBootsWork
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingClothingMaskGasSecurity
+  productEntity: ClothingMaskGasSecurity
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingMaskBreathMedicalSecurity
+  productEntity: ClothingMaskBreathMedicalSecurity
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingClothingOuterCoatBomber
+  productEntity: ClothingOuterCoatBomber
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatBeretFrench
+  productEntity: ClothingHeadHatBeretFrench
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsWinterSyndicate
+  productEntity: ClothingShoesBootsWinterSyndicate
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingMaskGasExplorer
+  productEntity: ClothingMaskGasExplorer
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsWinter
+  productEntity: ClothingShoesBootsWinter
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHandsGlovesCombat
+  productEntity: ClothingHandsGlovesCombat
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatSyndie
+  productEntity: ClothingHeadHatSyndie
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingUniformJumpskirtOperative
+  productEntity: ClothingUniformJumpskirtOperative
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesLeather
+  productEntity: ClothingShoesLeather
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHandsGlovesFingerless
+  productEntity: ClothingHandsGlovesFingerless
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingOuterWinterCoat
+  productEntity: ClothingOuterWinterCoat
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatBeretSecurity
+  productEntity: ClothingHeadHatBeretSecurity
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatBeret
+  productEntity: ClothingHeadHatBeret
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatBeretEngineering
+  productEntity: ClothingHeadHatBeretEngineering
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHandsGlovesColorBlack
+  productEntity: ClothingHandsGlovesColorBlack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingOuterWinterColorBlack
+  productEntity: ClothingOuterWinterColorBlack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesColorBlack
+  productEntity: ClothingShoesColorBlack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingShoesBootsLaceup
+  productEntity: ClothingShoesBootsLaceup
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingEyesHudSecurity
+  productEntity: ClothingEyesHudSecurity
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingEyesEyepatchHudSecurity
+  productEntity: ClothingEyesEyepatchHudSecurity
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingEyesGlassesSunglasses
+  productEntity: ClothingEyesGlassesSunglasses
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingCentComGlassesEmerald
+  productEntity: ClothingCentComGlassesEmerald
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadFlowerDSOWhite
+  productEntity: ClothingHeadFlowerDSOWhite
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingCentComGlassesGold
+  productEntity: ClothingCentComGlassesGold
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadFlowerCentComGoldn
+  productEntity: ClothingHeadFlowerCentComGold
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadFlowerCentComEmerald
+  productEntity: ClothingHeadFlowerCentComEmerald
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingCentComGlassesGreen
+  productEntity: ClothingCentComGlassesGreen
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingCentComGlassesYellow
+  productEntity: ClothingCentComGlassesYellow
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingDSOGlassesWhite
+  productEntity: ClothingDSOGlassesWhite
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingUniformJumpskirtJanimaidmini
+  productEntity: ClothingUniformJumpskirtJanimaidmini
+  cost:
+    Telecrystal_sacerdos: 70000
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingUniformJumpskirtJanimaid
+  productEntity: ClothingUniformJumpskirtJanimaid
+  cost:
+    Telecrystal_sacerdos: 70000
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingNeckMaidChoker
+  productEntity: ClothingNeckMaidChoker
+  cost:
+    Telecrystal_sacerdos: 70000
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingUniformJumpskirtTacticalMaid
+  productEntity: ClothingUniformJumpskirtTacticalMaid
+  cost:
+    Telecrystal_sacerdos: 70000
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHandsTacticalMaidGloves
+  productEntity: ClothingHandsTacticalMaidGloves
+  cost:
+    Telecrystal_sacerdos: 70000
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingHeadHatCatEars
+  description: Ny~a
+  productEntity: ClothingHeadHatCatEars
+  cost:
+    Telecrystal_sacerdos: 75000
+  categories:
+  - SpacegunsClothing
+
+- type: listing
+  id: SpacegunsClothingUniformJumpsuitLoungewear
+  productEntity: ClothingUniformJumpsuitLoungewear
+  cost:
+    Telecrystal_sacerdos: 35
+  categories:
+  - SpacegunsClothing
+
+#SpacegunsExplosives
+- type: listing
+  id: SpacegunsGrenadeIncendiary
+  productEntity: GrenadeIncendiary
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsGrenadeShrapnel
+  productEntity: GrenadeShrapnel
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsWhiteholeGrenade
+  productEntity: WhiteholeGrenade
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsMetalFoamGrenade
+  productEntity: MetalFoamGrenade
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsEmpGrenade
+  productEntity: EmpGrenade
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsSmokeGrenade
+  productEntity: SmokeGrenade
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsC4
+  productEntity: C4
+  cost:
+    Telecrystal_sacerdos: 1750
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsX4
+  productEntity: X4
+  cost:
+    Telecrystal_sacerdos: 4000
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsBombSpaceGunsBeacon
+  productEntity: BombSpaceGunsBeacon
+  cost:
+    Telecrystal_sacerdos: 3000
+  categories:
+  - SpacegunsExplosives
+
+- type: listing
+  id: SpacegunsAirGrenade
+  productEntity: AirGrenade
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsExplosives
+
+#SpacegunsConstruction
+- type: listing
+  id: SpacegunsMultitool
+  productEntity: Multitool
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsCableApcStack
+  productEntity: CableApcStack
+  cost:
+    Telecrystal_sacerdos: 185
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsCableMVStack
+  productEntity: CableMVStack
+  cost:
+    Telecrystal_sacerdos: 285
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsCableHVStack
+  productEntity: CableHVStack
+  cost:
+    Telecrystal_sacerdos: 285
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunstrayScanner
+  description: SacerdostrayScanner
+  productEntity: trayScanner
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsGasAnalyzer
+  productEntity: GasAnalyzer
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPartRodMetal
+  description: SacerdosPartRodMetal
+  productEntity: PartRodMetal
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsRCDAmmo
+  productEntity: RCDAmmo
+  cost:
+    Telecrystal_sacerdos: 430
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsShuttleConsoleCircuitboard
+  productEntity: ShuttleConsoleCircuitboard
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSheetSteel
+  productEntity: SheetSteel
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSheetGlass
+  productEntity: SheetGlass
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsClothingEyesGlassesMeson
+  productEntity: ClothingEyesGlassesMeson
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSheetPlastic
+  productEntity: SheetPlastic
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSheetPlasma
+  productEntity: SheetPlasma
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSheetUranium
+  productEntity: SheetUranium
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSheetPlasteel
+  productEntity: SheetPlasteel
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsClothingBeltUtilityEngineering
+  productEntity: ClothingBeltUtilityEngineering
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsClothingBeltChiefEngineerFilled
+  productEntity: ClothingBeltChiefEngineerFilled
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsRCD
+  productEntity: RCD
+  cost:
+    Telecrystal_sacerdos: 1430
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsMaterialCloth
+  productEntity: MaterialCloth
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsMaterialDurathread
+  productEntity: MaterialDurathread
+  cost:
+    Telecrystal_sacerdos: 585
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsComputerCloningConsole
+  productEntity: ComputerCloningConsole
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsCloningPod
+  productEntity: CloningPod
+  cost:
+    Telecrystal_sacerdos: 900
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsMedicalScanner
+  productEntity: MedicalScanner
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsKitchenReagentGrinder
+  productEntity: KitchenReagentGrinder
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsTurboItemRecharger
+  productEntity: TurboItemRecharger
+  cost:
+    Telecrystal_sacerdos: 1550
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsWeaponCapacitorRecharger
+  description: Weapon-Capacitor-Recharger-des
+  productEntity: WeaponCapacitorRecharger
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsChemMaster
+  productEntity: ChemMaster
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsChemDispenser
+  productEntity: ChemDispenser
+  cost:
+    Telecrystal_sacerdos: 1150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsChemistryHotplate
+  productEntity: ChemistryHotplate
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsStasisBed
+  productEntity: StasisBed
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsMicroManipulatorStockPart
+  productEntity: MicroManipulatorStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsGravityGeneratorMini
+  productEntity: GravityGeneratorMini
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPortableGeneratorJrPacman
+  productEntity: PortableGeneratorJrPacman
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPortableGeneratorPacman
+  productEntity: PortableGeneratorPacman
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPortableGeneratorSuperPacman
+  productEntity: PortableGeneratorSuperPacman
+  cost:
+    Telecrystal_sacerdos: 1100
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsContainmentFieldGeneratorFlatpack
+  productEntity: ContainmentFieldGeneratorFlatpack
+  cost:
+    Telecrystal_sacerdos: 950
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsWeldingFuelTank2HighCapacityFull
+  productEntity: WeldingFuelTank2HighCapacityFull
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsWaterTank2Full
+  productEntity: WaterTank2Full
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsEmitterFlatpack
+  productEntity: EmitterFlatpack
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsGyroscopeFlatpack
+  productEntity: GyroscopeFlatpack
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsThrusterFlatpack
+  productEntity: ThrusterFlatpack
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsDoorElectronics
+  description: Door-Electronics-des
+  productEntity: DoorElectronics
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsAtmosDeviceFanTiny
+  productEntity: AtmosDeviceFanTiny
+  cost:
+    Telecrystal_sacerdos: 1150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsClothingHandsGlovesColorYellow
+  productEntity: ClothingHandsGlovesColorYellow
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsOxygenCanister
+  productEntity: OxygenCanister
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsNitrogenCanister
+  productEntity: NitrogenCanister
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSubstationBasic
+  productEntity: SubstationBasic
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSMESBasic
+  productEntity: SMESBasic
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsSMESAdvanced
+  productEntity: SMESAdvanced
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsBoxLightMixed
+  productEntity: BoxLightMixed
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsBoxLighttube
+  productEntity: BoxLighttube
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsBoxLightbulb
+  productEntity: BoxLightbulb
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsFloodlight
+  productEntity: Floodlight
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsAPCElectronics
+  productEntity: APCElectronics
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsCrateEngineeringAMEControl
+  productEntity: CrateEngineeringAMEControl
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: CrateEngineeringAMEShielding
+  productEntity: CrateEngineeringAMEShielding
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsCrateEngineeringAMEJar
+  productEntity: CrateEngineeringAMEJar
+  cost:
+    Telecrystal_sacerdos: 570
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPowerCageRechargerSpaceGuns
+  productEntity: PowerCageRechargerSpaceGuns
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPowerCageRecharger
+  description: Power-Cage-Recharger-des
+  productEntity: PowerCageRecharger
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsConstruction
+
+- type: listing
+  id: SpacegunsPowerCellRecharger
+  description: Power-Cell-Recharger-des
+  productEntity: PowerCellRecharger
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsConstruction
+
+#SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator4
+  productEntity: SpaceGunPerforator4
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator7
+  productEntity: SpaceGunPerforator7
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator5
+  productEntity: SpaceGunPerforator5
+  cost:
+    Telecrystal_sacerdos: 5500
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator1
+  productEntity: SpaceGunPerforator1
+  cost:
+    Telecrystal_sacerdos: 3500
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator6
+  productEntity: SpaceGunPerforator6
+  cost:
+    Telecrystal_sacerdos: 5500
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator2
+  productEntity: SpaceGunPerforator2
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunPerforator3
+  productEntity: SpaceGunPerforator3
+  cost:
+    Telecrystal_sacerdos: 5500
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunSvalinnGun2
+  productEntity: SpaceGunSvalinnGun2
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunSvalinnGun5
+  productEntity: SpaceGunSvalinnGun5
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunSvalinnGun1
+  productEntity: SpaceGunSvalinnGun1
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunSvalinnGun4
+  productEntity: SpaceGunSvalinnGun4
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunSvalinnGun3
+  productEntity: SpaceGunSvalinnGun3
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsLaserguns
+
+- type: listing
+  id: SpacegunsSpaceGunSvalinnGun6
+  productEntity: SpaceGunSvalinnGun6
+  cost:
+    Telecrystal_sacerdos: 2000
+  categories:
+  - SpacegunsLaserguns
+
+#SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon1
+  productEntity: SpaceGunsCannon1
+  cost:
+    Telecrystal_sacerdos: 3500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon2
+  productEntity: SpaceGunsCannon2
+  cost:
+    Telecrystal_sacerdos: 3000
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon3
+  productEntity: SpaceGunsCannon3
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon4
+  productEntity: SpaceGunsCannon4
+  cost:
+    Telecrystal_sacerdos: 3000
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon5
+  productEntity: SpaceGunsCannon5
+  cost:
+    Telecrystal_sacerdos: 1900
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon6
+  productEntity: SpaceGunsCannon6
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon7
+  productEntity: SpaceGunsCannon7
+  cost:
+    Telecrystal_sacerdos: 3000
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon8
+  productEntity: SpaceGunsCannon8
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon9
+  productEntity: SpaceGunsCannon9
+  cost:
+    Telecrystal_sacerdos: 5500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon10
+  productEntity: SpaceGunsCannon10
+  cost:
+    Telecrystal_sacerdos: 3000
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon11
+  productEntity: SpaceGunsCannon11
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon12
+  productEntity: SpaceGunsCannon12
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon13
+  productEntity: SpaceGunsCannon13
+  cost:
+    Telecrystal_sacerdos: 3500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon14
+  productEntity: SpaceGunsCannon14
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon15
+  productEntity: SpaceGunsCannon15
+  cost:
+    Telecrystal_sacerdos: 5000
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsCannon16
+  productEntity: SpaceGunsCannon16
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsEXP
+  productEntity: SpaceGunsEXP
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsEXP_1
+  productEntity: SpaceGunsEXP_1
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - SpacegunsRocketguns
+
+- type: listing
+  id: SpacegunsSpaceSpaceGunsDuster2
+  productEntity: SpaceGunsDuster2
+  cost:
+    Telecrystal_sacerdos: 2500
+  categories:
+  - SpacegunsRocketguns
+
+#SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCageSmall
+  productEntity: PowerCageSmall
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCageMedium
+  productEntity: PowerCageMedium
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCageMediumSpaceGunsLaser1
+  productEntity: PowerCageMediumSpaceGunsLaser1
+  cost:
+    Telecrystal_sacerdos: 2750
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCageMediumSpaceGunsLaser2
+  productEntity: PowerCageMediumSpaceGunsLaser2
+  cost:
+    Telecrystal_sacerdos: 650
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCageMediumSpaceGunsLaser3
+  productEntity: PowerCageMediumSpaceGunsLaser3
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCellSmall
+  productEntity: PowerCellSmall
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCellMedium
+  productEntity: PowerCellMedium
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCellHigh
+  productEntity: PowerCellHigh
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCellHyper
+  productEntity: PowerCellHyper
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCellMicroreactor
+  productEntity: PowerCellMicroreactor
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsEnergycells
+
+- type: listing
+  id: SpacegunsPowerCageHigh
+  productEntity: PowerCageHigh
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsEnergycells
+
+#SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle1
+  productEntity: MagazineGrenadeFraglittle1
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle2
+  productEntity: MagazineGrenadeFraglittle2
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle3
+  productEntity: MagazineGrenadeFraglittle3
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPlittle1
+  productEntity: MagazineGrenadeFragEMPlittle1
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPlittle2
+  productEntity: MagazineGrenadeFragEMPlittle2
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPlittle3
+  productEntity: MagazineGrenadeFragEMPlittle3
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittleRadioactive1
+  productEntity: MagazineGrenadeFraglittleRadioactive1
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittleRadioactive2
+  productEntity: MagazineGrenadeFraglittleRadioactive2
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle4
+  productEntity: MagazineGrenadeFraglittle4
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittleCryo1
+  productEntity: MagazineGrenadeFraglittleCryo1
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittleCryo2
+  productEntity: MagazineGrenadeFraglittleCryo2
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle6
+  productEntity: MagazineGrenadeFraglittle6
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragShrapnellittle1
+  productEntity: MagazineGrenadeFragShrapnellittle1
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: MagazineGrenadeFragShrapnellittle2
+  productEntity: MagazineGrenadeFragShrapnellittle2
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle8
+  productEntity: MagazineGrenadeFraglittle8
+  cost:
+    Telecrystal_sacerdos: 212
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFraglittle9
+  productEntity: MagazineGrenadeFraglittle9
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage1
+  productEntity: MagazineGrenadeFragAverage1
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage2
+  productEntity: MagazineGrenadeFragAverage2
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage3
+  productEntity: MagazineGrenadeFragAverage3
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPAverage1
+  productEntity: MagazineGrenadeFragEMPAverage1
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPAverage2
+  productEntity: MagazineGrenadeFragEMPAverage2
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPAverage3
+  productEntity: MagazineGrenadeFragEMPAverage3
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragRadioactiveAverage1
+  productEntity: MagazineGrenadeFragRadioactiveAverage1
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragRadioactiveAverage2
+  productEntity: MagazineGrenadeFragRadioactiveAverage2
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage4
+  productEntity: MagazineGrenadeFragAverage4
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragCryoAverage1
+  productEntity: MagazineGrenadeFragCryoAverage1
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragCryoAverage2
+  productEntity: MagazineGrenadeFragCryoAverage2
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage6
+  productEntity: MagazineGrenadeFragAverage6
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragShrapnelAverage1
+  productEntity: MagazineGrenadeFragShrapnelAverage1
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragShrapnelAverage2
+  productEntity: MagazineGrenadeFragShrapnelAverage2
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage8
+  productEntity: MagazineGrenadeFragAverage8
+  cost:
+    Telecrystal_sacerdos: 425
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragAverage9
+  productEntity: MagazineGrenadeFragAverage9
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig1
+  productEntity: MagazineGrenadeFragbig1
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig2
+  productEntity: MagazineGrenadeFragbig2
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig3
+  productEntity: MagazineGrenadeFragbig3
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPbig1
+  productEntity: MagazineGrenadeFragEMPbig1
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPbig2
+  productEntity: MagazineGrenadeFragEMPbig2
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragEMPbig3
+  productEntity: MagazineGrenadeFragEMPbig3
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragRadioactivebig1
+  productEntity: MagazineGrenadeFragRadioactivebig1
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragRadioactivebig2
+  productEntity: MagazineGrenadeFragRadioactivebig2
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig4
+  productEntity: MagazineGrenadeFragbig4
+  cost:
+    Telecrystal_sacerdos: 1200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragCryobig1
+  productEntity: MagazineGrenadeFragCryobig1
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragCryobig2
+  productEntity: MagazineGrenadeFragCryobig2
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig6
+  productEntity: MagazineGrenadeFragbig6
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragShrapnelbig1
+  productEntity: MagazineGrenadeFragShrapnelbig1
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragShrapnelbig2
+  productEntity: MagazineGrenadeFragShrapnelbig2
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig8
+  productEntity: MagazineGrenadeFragbig8
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - SpacegunsRocketshells
+
+- type: listing
+  id: SpacegunsMagazineGrenadeFragbig9
+  productEntity: MagazineGrenadeFragbig9
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsRocketshells
+
+#SpacegunsMisc
+- type: listing
+  id: SpacegunsHandheldGPSBasic
+  productEntity: HandheldGPSBasic
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsBoxFlare
+  productEntity: BoxFlare
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunslBlueFlareBoxisting
+  productEntity: BlueFlareBox
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsHandTeleporter
+  productEntity: HandTeleporter
+  cost:
+    Telecrystal_sacerdos: 3450
+  categories:
+  - SpacegunsMisc
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SpacegunsBluespaceBeaker
+  productEntity: BluespaceBeaker
+  cost:
+    Telecrystal_sacerdos: 900
+  categories:
+  - SpacegunsMisc
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: SpacegunsBoxBeaker
+  productEntity: BoxBeaker
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsBoxPillCanister
+  productEntity: BoxPillCanister
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsBoxBottle
+  productEntity: BoxBottle
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsPlushieSpaceLizard
+  productEntity: PlushieSpaceLizard
+  cost:
+    Telecrystal_sacerdos: 5000
+  categories:
+  - SpacegunsMisc
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SpacegunsRiotShield
+  productEntity: RiotShield
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsRiotBulletShield
+  productEntity: RiotBulletShield
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsRiotLaserShield
+  productEntity: RiotLaserShield
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsEnergyShield
+  productEntity: EnergyShield
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsFlashlightSeclite
+  productEntity: FlashlightSeclite
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsFlashlightLantern
+  productEntity: FlashlightLantern
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsLantern
+  productEntity: Lantern
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsClothingShoesBootsMag
+  productEntity: ClothingShoesBootsMag
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsClothingShoesBootsMagAdv
+  productEntity: ClothingShoesBootsMagAdv
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsEmpImplanter
+  productEntity: EmpImplanter
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsBarberScissors
+  productEntity: BarberScissors
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsSoapNT
+  productEntity: SoapNT
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsSoapSyndie
+  productEntity: SoapSyndie
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsSlipocalypseClusterSoap
+  productEntity: SlipocalypseClusterSoap
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsSoapOmega
+  productEntity: SoapOmega
+  cost:
+    Telecrystal_sacerdos: 560
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsOxygenTankFilled
+  productEntity: OxygenTankFilled
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsJetpackMiniFilled
+  productEntity: JetpackMiniFilled
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsClothingShoesBootsMagSyndie
+  productEntity: ClothingShoesBootsMagSyndie
+  cost:
+    Telecrystal_sacerdos: 570
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsJetpackBlackFilled
+  productEntity: JetpackBlackFilled
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsJetpackVoidFilled
+  productEntity: JetpackVoidFilled
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsJetpackCaptainFilled
+  productEntity: JetpackCaptainFilled
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsHandHeldMassScanner
+  productEntity: HandHeldMassScanner
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsAdvMopItem
+  productEntity: AdvMopItem
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsClothingBeltMilitaryWebbing
+  productEntity: ClothingBeltMilitaryWebbing
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsBinoculars
+  productEntity: Binoculars
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - SpacegunsMisc
+
+- type: listing
+  id: SpacegunsWeaponGrapplingGun
+  description: Weapon-Grapp-ling-Gun-des
+  productEntity: WeaponGrapplingGun
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - SpacegunsMisc

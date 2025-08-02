@@ -1,0 +1,17 @@
+- type: entity
+  parent: WallSolid
+  id: WallReinforcedImperialUSSP
+  name: reinforced wall
+  suffix: wall
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Imperial/ussp/urbandeco/wall.rsi
+    - type: Icon
+      sprite: Imperial/ussp/urbandeco/wall.rsi
+    - type: IconSmooth
+      key: walls
+      base: strata_ribbed_outpost_
+    

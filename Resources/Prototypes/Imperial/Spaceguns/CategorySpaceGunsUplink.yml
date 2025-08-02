@@ -1,0 +1,70 @@
+  
+- type: storeCategory
+  id: SpacegunsFood
+  name: store-category-space-guns-uplink-Food
+  priority: 0
+
+- type: storeCategory
+  id: SpacegunsWeapon
+  name: store-category-space-guns-uplink-Weapon
+  priority: 1
+
+- type: storeCategory
+  id: SpacegunsMelee
+  name: store-category-space-guns-uplink-Melee
+  priority: 2
+
+- type: storeCategory
+  id: SpacegunsAmmunition
+  name: store-category-space-guns-uplink-Ammunition
+  priority: 3
+
+- type: storeCategory
+  id: SpacegunsExplosives
+  name: store-category-space-guns-uplink-Explosives
+  priority: 4
+
+- type: storeCategory
+  id: SpacegunsArmor
+  name: store-category-space-guns-uplink-Armor
+  priority: 5
+
+- type: storeCategory
+  id: SpacegunsMed
+  name: store-category-space-guns-uplink-Med
+  priority: 6
+
+- type: storeCategory
+  id: SpacegunsClothing
+  name: store-category-space-guns-uplink-Clothing
+  priority: 7
+
+- type: storeCategory
+  id: SpacegunsConstruction
+  name: store-category-space-guns-uplink-Construction
+  priority: 8
+
+- type: storeCategory
+  id: SpacegunsLaserguns
+  name: store-category-space-guns-uplink-Laserguns
+  priority: 9
+
+- type: storeCategory
+  id: SpacegunsRocketguns
+  name: store-category-space-guns-uplink-Rocketguns
+  priority: 10
+
+- type: storeCategory
+  id: SpacegunsEnergycells
+  name: store-category-space-guns-uplink-Energycells
+  priority: 11
+
+- type: storeCategory
+  id: SpacegunsRocketshells
+  name: store-category-space-guns-uplink-rocket-shells
+  priority: 12
+
+- type: storeCategory
+  id: SpacegunsMisc
+  name: store-category-space-guns-uplink-Misc
+  priority: 13

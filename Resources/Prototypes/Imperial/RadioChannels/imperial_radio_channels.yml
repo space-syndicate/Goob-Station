@@ -486,6 +486,24 @@
 
 - type: entity
   parent: EncryptionKeyCustomBase
+  id: EncryptionKeyRadioXenoborg
+  name: encryption key
+  description: An encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - Xenoborg
+    - Binary
+    - Mothership
+    defaultChannel: Xenoborg
+  - type: Item
+    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+  - type: Sprite
+    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    state: card.OFC-Radio
+
+- type: entity
+  parent: EncryptionKeyCustomBase
   id: EncryptionKeyRadioCMD
   name: encryption key
   description: An encryption key

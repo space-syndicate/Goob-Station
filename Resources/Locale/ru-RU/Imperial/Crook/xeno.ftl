@@ -1,6 +1,10 @@
 ent-XenoStructuralGel = структурный гель
     .desc = Чёрное жидкое вещество.
-ent-XenoStructuralGelAlt = структурный гель
+ent-XenoStructuralGelOne = структурный гель
+    .desc = Чёрное жидкое вещество.
+ent-XenoStructuralGelTwo = структурный гель
+    .desc = Чёрное жидкое вещество.
+ent-XenoStructuralGelRandom = структурный гель
     .desc = Чёрное жидкое вещество.
 
 ent-MobFacehuggerXeno = лицехват

@@ -15,6 +15,9 @@
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
       Frezon: danger
+      Thermonium: danger #Imperial Added Thermonium
+      Phazonium: danger #Imperial Added Phazonium and Ozonium
+      Ozonium: danger #Imperial Added Phazonium and Ozonium
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
@@ -39,6 +42,9 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    - Thermonium #Imperial Added Thermonium
+    - Phazonium #Imperial Added Phazonium and Ozonium
+    - Ozonium #Imperial Added Phazonium and Ozonium
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

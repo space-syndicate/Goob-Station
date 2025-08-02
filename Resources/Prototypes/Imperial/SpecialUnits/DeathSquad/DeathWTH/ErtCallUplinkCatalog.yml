@@ -662,18 +662,18 @@
   categories:
   - Utilities
 
-- type: listing
-  id: DSAmeliaPlushieEasterEgg
-  name: ert-uplink-utilities-ami-name
-  description: ert-uplink-utilities-ami-desc
-  productEntity: PlushieSOO
-  cost:
-    BlueSpaceCube: 10
-  categories:
-  - Utilities
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+# - type: listing #Убрано для соблюдения игровой атмосферы
+#   id: DSAmeliaPlushieEasterEgg
+#   name: ert-uplink-utilities-ami-name
+#   description: ert-uplink-utilities-ami-desc
+#   productEntity: PlushieSOO
+#   cost:
+#     BlueSpaceCube: 10
+#   categories:
+#   - Utilities
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
 
 - type: listing
   id: DSCallUplinkHandheldGPSBasicAlt

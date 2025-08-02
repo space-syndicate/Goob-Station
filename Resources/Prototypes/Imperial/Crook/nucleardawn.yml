@@ -6,5 +6,53 @@
   description: Born out of the collapse of the CUSP, the Nuclear Dawn movement saw corporations as the root cause of all the galaxy's problems.
   components:
   - type: Sprite
-    sprite: Imperial/Crook/nucleardawn.rsi
+    sprite: Imperial/Crook/NuclearDawn/banner.rsi
     state: banner
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSyndieScoutNuclearDawn
+  name: blood-red hardsuit helmet
+  description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/NuclearDawn/scouthelmet.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/NuclearDawn/scouthelmet.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ ClothingOuterHardsuitSyndie, BaseToggleClothing ]
+  id: ClothingOuterHardsuitSyndieScoutNuclearDawn
+  name: blood-red hardsuit
+  description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
+  suffix: Crook, NuclearDawn
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/NuclearDawn/scoutsuit.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Imperial/Crook/NuclearDawn/scoutsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndieScoutNuclearDawn
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.05
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.3
+      lastVisibility: 0.3
+  - type: Speech
+    speechSounds: Pai
+  - type: ClothingFactionExplosion

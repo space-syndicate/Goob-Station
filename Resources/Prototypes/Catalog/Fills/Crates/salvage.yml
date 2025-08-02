@@ -38,7 +38,7 @@
         prob: 0.065
       - id: ClothingOuterChestplateModsuitRND2Sealed
         prob: 0.065
-      - id: ClothingControlModsuitMinerSealed 
+      - id: ClothingControlModsuitMinerSealed
         prob: 0.095
       #Imperia end
         # Normal (10%)

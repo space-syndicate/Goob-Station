@@ -1,0 +1,119 @@
+- type: species
+  id: Ashwalker
+  name: species-name-ashwalker
+  roundStart: false
+  prototype: MobAshwalker
+  sprites: MobAshwalkerSprites
+  markingLimits: MobHumanMarkingLimits
+  dollPrototype: MobAshwalkerDummy
+  skinColoration: Hues
+  femaleLastNames: NamesLastFemale #Imperial
+  defaultSkinTone: "#6a6c6d"
+
+
+- type: speciesBaseSprites
+  id: MobAshwalkerSprites
+  sprites:
+    Special: MobHumanoidAnyMarking
+    Head: MobAshwalkerHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobAshwalkerTorso
+    Eyes: MobHumanoidEyes
+    HeadTop: MobHumanoidAnyMarking
+    LArm: MobAshwalkerLArm
+    RArm: MobAshwalkerRArm
+    LHand: MobAshwalkerLHand
+    RHand: MobAshwalkerRHand
+    LLeg: MobAshwalkerLLeg
+    RLeg: MobAshwalkerRLeg
+    LFoot: MobAshwalkerLFoot
+    RFoot: MobAshwalkerRFoot
+    Tail: MobHumanoidAnyMarking # imperial HairAndTail
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerHead
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerHeadMale
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerHeadFemale
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerTorso
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerTorsoMale
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerTorsoFemale
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerLLeg
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerLArm
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerLHand
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerLFoot
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerRLeg
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerRArm
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerRHand
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobAshwalkerRFoot
+  baseSprite:
+    sprite: Imperial/HamMaggotson/parts.rsi
+    state: r_foot

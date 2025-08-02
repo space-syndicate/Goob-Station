@@ -1,0 +1,1282 @@
+- type: entity
+  id: SpaceGunsBase
+  suffix: SpaceGuns, Phantom4502
+  parent: BaseStructure
+  name: shittle gun
+  abstract: true
+  components:
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Rotatable
+  - type: ContainerContainer
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+    - Toggle
+    - On
+    - Off
+  - type: GunSignalControl
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: [ BaseItemRecharger, ConstructibleMachine ]
+  id: PowerCageRechargerSpaceGuns
+  suffix: SpaceGuns, Phantom4502
+  name: cage recharger
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    color: "#03fc4e"
+    energy: 0.7
+  - type: Charger
+    chargeRate: 100
+  - type: Sprite
+    sprite: Structures/Power/cage_recharger.rsi
+  - type: PowerCellSlot
+    cellSlotId: charger_slot
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        name: Power cage
+        whitelist:
+          tags:
+          - PowerCage
+  - type: Machine
+    board: PowerCageRechargerCircuitboard
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: PowerCageMediumSpaceGunsLaser1
+  suffix: SpaceGuns, Phantom4502
+  parent: BasePowerCage
+  name: medium-capacity power cage
+  description: A rechargeable power cage for big devices. The gold standard of capacity and cost.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: medium
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 9200
+    startingCharge: 9200
+
+- type: entity
+  id: PowerCageMediumSpaceGunsLaser2
+  description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, boasting 66% more capacity than its predecessor.
+  name: PowerCageMediumSpaceGunsLaser2
+  suffix: SpaceGuns, Phantom4502
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: hyper
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 2700
+    startingCharge: 2700
+
+- type: entity
+  id: PowerCageMediumSpaceGunsLaser3
+  description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, boasting 66% more capacity than its predecessor.
+  name: PowerCageMediumSpaceGunsLaser3
+  suffix: SpaceGuns, Phantom4502
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: hyper
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsSniper
+  maxLength: 60
+  damage:
+    types:
+      Heat: 50
+      Structural: 25
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_beam_heavy_Blue
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_heavy_Blue
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_beam_heavy_Blue 
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsSniper2
+  maxLength: 60
+  damage:
+    types:
+      Heat: 60
+      Structural: 35
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_beam_heavy_Purple
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_heavy_Purple
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_beam_heavy_Purple
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsStructuralWeak
+  maxLength: 60
+  damage:
+    types:
+      Heat: 15
+      Structural: 25
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy2
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy2
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy2  
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsStructuralStrong
+  maxLength: 60
+  damage:
+    types:
+      Heat: 25
+      Structural: 50
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_beam_heavy_Blue
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_heavy_Blue
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_beam_heavy_Blue 
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsRadiation
+  maxLength: 60
+  damage:
+    types:
+      Heat: 25
+      Caustic: 5
+      Radiation: 15
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_beam_heavy_Green
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_heavy_Green
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_beam_heavy_Green 
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsChemical
+  maxLength: 60
+  damage:
+    types:
+      Heat: 25
+      Caustic: 15
+      Radiation: 5
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_beam_heavy_Green
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_heavy_Green
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_beam_heavy_Green 
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsRadiationhemical
+  maxLength: 60
+  damage:
+    types:
+      Heat: 15
+      Caustic: 20
+      Radiation: 20
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_beam_heavy_Green
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_heavy_Green
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_beam_heavy_Green 
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsAverage
+  maxLength: 60
+  damage:
+    types:
+      Heat: 35
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_laser_Blue
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_Blue
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_laser_Blue
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsWeak
+  maxLength: 60
+  damage:
+    types:
+      Heat: 25
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsRadiationhemical2
+  maxLength: 60
+  damage:
+    types:
+      Heat: 15
+      Caustic: 5
+      Radiation: 10
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_laser_Green
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_Green
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_laser_Green
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsRadiationhemical3
+  maxLength: 60
+  damage:
+    types:
+      Heat: 15
+      Caustic: 10
+      Radiation: 5
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_laser_Green
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_Green
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_laser_Green
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsStructural3
+  maxLength: 60
+  damage:
+    types:
+      Heat: 15
+      Structural: 25
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: hitscan
+  id: RedSpaceLaserSpaceGunsStructural2
+  maxLength: 60
+  damage:
+    types:
+      Heat: 25
+      Structural: 35
+  muzzleFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: muzzle_laser_Purple
+  travelFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: beam_Purple
+  impactFlash:
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    state: impact_laser_Purple
+
+- type: entity
+  id: SpaceGunPerforator1
+  suffix: SpaceGuns, Phantom4502
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    layers:
+    - state: base_Blue_2
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 825
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Machine
+    board: MachineSpaceGunPerforator1
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsSniper
+    fireCost: 250
+
+- type: entity
+  id: SpaceGunPerforator2
+  suffix: SpaceGuns, Phantom4502
+  parent: [SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator2
+  description: Advanced stationary laser unit. Annihilates electronics and is extremely dangerous to health! Uses the power cage to fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    layers:
+    - state: vanguard
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 825
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineSpaceGunPerforator2
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsChemical
+    fireCost: 200
+
+- type: entity
+  id: SpaceGunPerforator3
+  suffix: SpaceGuns, Phantom4502
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator2.rsi
+    layers:
+    - state: demon
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 825
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Machine
+    board: MachineSpaceGunPerforator3
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsSniper2
+    fireCost: 270
+
+- type: entity
+  id: SpaceGunPerforator4
+  suffix: SpaceGuns, Phantom4502
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    layers:
+    - state: base_red
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 825
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.9
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Machine
+    board: MachineSpaceGunPerforator4
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsStructuralWeak
+    fireCost: 150
+
+- type: entity
+  id: SpaceGunPerforator5
+  suffix: SpaceGuns, Phantom4502
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    layers:
+    - state: base_Blue
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 825
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Machine
+    board: MachineSpaceGunPerforator5
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsStructuralStrong
+    fireCost: 170
+
+- type: entity
+  id: SpaceGunPerforator6
+  suffix: SpaceGuns, Phantom4502
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    layers:
+    - state: base_Green1
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.07
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Machine
+    board: MachineSpaceGunPerforator6
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsRadiationhemical
+    fireCost: 250
+
+- type: entity
+  id: SpaceGunPerforator7
+  suffix: SpaceGuns, Phantom4502
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: SpaceGunPerforator
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator.rsi
+    layers:
+    - state: base
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.9
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: Machine
+    board: MachineSpaceGunPerforator7
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsRadiation
+    fireCost: 150
+
+- type: entity
+  id: SpaceGunSvalinnGun1
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: LSE-400c "Svalinn machine gun"
+  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator1.rsi
+    layers:
+    - state: base_Blue
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 3
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineGunSvalinnGun1
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsAverage
+    fireCost: 70
+
+- type: entity
+  id: SpaceGunSvalinnGun2
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: LSE-400c "Svalinn machine gun"
+  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator1.rsi
+    layers:
+    - state: base_red
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 5
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineSpaceGunSvalinnGun2
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsWeak
+    fireCost: 50
+
+- type: entity
+  id: SpaceGunSvalinnGun3
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: LSE-400c "Svalinn machine gun"
+  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator1.rsi
+    layers:
+    - state: base_Green1
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 3
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineSpaceGunSvalinnGun3
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsRadiationhemical2
+    fireCost: 70
+
+- type: entity
+  id: SpaceGunSvalinnGun4
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: LSE-400c "Svalinn machine gun"
+  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator1.rsi
+    layers:
+    - state: base_Green
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 3
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineSpaceGunSvalinnGun4
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsRadiationhemical3
+    fireCost: 70
+
+- type: entity
+  id: SpaceGunSvalinnGun5
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: LSE-400c "Svalinn machine gun"
+  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator1.rsi
+    layers:
+    - state: base_red
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 3
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineSpaceGunSvalinnGun5
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsStructural3
+    fireCost: 70
+
+- type: entity
+  id: SpaceGunSvalinnGun6
+  parent: [ SpaceGunsBase, ConstructibleMachine]
+  name: LSE-400c "Svalinn machine gun"
+  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Spaceguns/plasma_accelerator1.rsi
+    layers:
+    - state: base_Violet
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 4
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Machine
+    board: MachineSpaceGunSvalinnGun6
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: HitscanBatteryAmmoProvider
+    proto: RedSpaceLaserSpaceGunsStructural2
+    fireCost: 100
+
+- type: entity
+  id: MachineSpaceGunPerforator1
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator1
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunPerforator2
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator2
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunPerforator3
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator3
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunPerforator4
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator4
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunPerforator5
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator5
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunPerforator6
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator6
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunPerforator7
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunPerforator7
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineGunSvalinnGun1
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunSvalinnGun1
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunSvalinnGun2
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunSvalinnGun2
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunSvalinnGun3
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunSvalinnGun3
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunSvalinnGun4
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunSvalinnGun4
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+      
+- type: entity
+  id: MachineSpaceGunSvalinnGun5
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunSvalinnGun5
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5
+
+- type: entity
+  id: MachineSpaceGunSvalinnGun6
+  parent: BaseMachineCircuitboard
+  name: EXP-320g "Friendship" machine board
+  description: A machine printed circuit board for an EXP-320g "Friendship".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: SpaceGunSvalinnGun6
+    stackRequirements:
+      Manipulator: 2
+      Steel: 7
+      CableHV: 5

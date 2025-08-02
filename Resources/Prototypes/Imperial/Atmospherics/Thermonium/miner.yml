@@ -1,0 +1,7 @@
+- type: entity
+  name: thermonium gas miner
+  parent: GasMinerBase
+  id: GasMinerThermonium
+  components:
+    - type: GasMiner
+      spawnGas: Thermonium

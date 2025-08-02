@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseAction
+  id: ActionVendingThrowMaggotson
+  name: Dispense Item
+  description: Randomly dispense an item from your stock.
+  components:
+  - type: WorldTargetAction
+    event: !type:VendingMachineSelfDispenseTargetEvent
+  - type: TargetAction
+    range: 16
+    repeat: false
+    checkCanAccess: false
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Structures/Machines/VendingMachines/vendomat.rsi
+      state: off

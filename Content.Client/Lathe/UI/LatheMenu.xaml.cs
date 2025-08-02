@@ -104,7 +104,14 @@ public sealed partial class LatheMenu : DefaultWindow
         _useCardId = useCardId;
         UseCardIdCheckBox.Pressed = useCardId;
     }
-
+    //Imperial Space Search; Start
+    private string NormalizeRussianText(string text)
+    {
+        return text
+            .Replace('ё', 'е')
+            .Replace('Ё', 'Е');
+    }
+    //Imperial Space Search; End
     /// <summary>
     /// Populates the list of all the recipes
     /// </summary>
@@ -130,7 +137,11 @@ public sealed partial class LatheMenu : DefaultWindow
 
             if (SearchBar.Text.Trim().Length != 0)
             {
-                if (_lathe.GetRecipeName(recipe).ToLowerInvariant().Contains(SearchBar.Text.Trim().ToLowerInvariant()))
+                //Imperial Space Search; Start
+                var normalizedRecipeName = NormalizeRussianText(_lathe.GetRecipeName(recipe).ToLowerInvariant());
+                var normalizedSearchText = NormalizeRussianText(SearchBar.Text.Trim().ToLowerInvariant());
+                if (normalizedRecipeName.Contains(normalizedSearchText))
+                //Imperial Space Search; End
                     recipesToShow.Add(proto);
             }
             else
