@@ -11,7 +11,7 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// <summary>
 /// Событие "Плазма" - суперматерия генерирует плазму
 /// </summary>
-public sealed class SupermatterPlasmaEvent : ISupermatterEvent
+public sealed class SupermatterPlasmaEvent
 {
     public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
     {

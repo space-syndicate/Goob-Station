@@ -73,6 +73,12 @@ namespace Content.Server.Imperial.Power.Components
         [DataField]
         public string HealTag = "EmitterBolt";
 
+        /// <summary>
+        /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float EmitterHealAmount = 0.35f;
+
         // Описания состояния кристалла по проценту целостности
         [DataField]
         public Dictionary<float, LocId> IntegrityDescriptions = new()

@@ -7,7 +7,7 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// <summary>
 /// Событие "Радиация" - суперматерия излучает повышенную радиацию
 /// </summary>
-public sealed class SupermatterRadiationEvent : ISupermatterEvent
+public sealed class SupermatterRadiationEvent
 {
     public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
     {

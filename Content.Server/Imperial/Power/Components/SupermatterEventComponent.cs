@@ -61,7 +61,7 @@ namespace Content.Server.Imperial.Power.Components
         public float LightningEventDuration = 120f; // 2 минуты для Lightning события
 
         [DataField]
-        public float LightningCooldownDuration = 2f; // 2 секунды кулдаун для молний
+        public float LightningCooldownDuration = 8f; // 8 секунд кулдаун для молний
 
         [DataField]
         public float LightningSpawnDuration = 1f; // 1 секунда для спавна молнии

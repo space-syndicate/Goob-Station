@@ -6,7 +6,7 @@ using Content.Server.Imperial.Power.EntitySystems.Events;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Radiation.Components;
 using Content.Server.Radiation.Systems;
-using Content.Server.Imperial.ImperialLightning;
+using Content.Server.Lightning;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Radiation.Components;
@@ -32,13 +32,13 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] public readonly RadioSystem Radio = default!;
         [Dependency] public readonly IRobustRandom Random = default!;
         [Dependency] public readonly SharedMapSystem MapSystem = default!;
-        [Dependency] public readonly ImperialLightningSystem ImperialLightning = default!;
+        [Dependency] public readonly LightningSystem LightningSystem = default!;
         [Dependency] public readonly TransformSystem TransformSystem = default!;
         [Dependency] public readonly DamageableSystem Damageable = default!;
         [Dependency] public readonly IGameTiming GameTiming = default!;
 
         // Словарь событий для быстрого доступа
-        private readonly Dictionary<SupermatterEventType, ISupermatterEvent> _events = new()
+        private readonly Dictionary<SupermatterEventType, object> _events = new()
         {
             { SupermatterEventType.None, new SupermatterNoneEvent() },
             { SupermatterEventType.Lightning, new SupermatterLightningEvent() },
@@ -127,16 +127,46 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
                     if (_events.TryGetValue(evtType, out var eventHandler))
                     {
-                        eventHandler.Activate(uid, comp, this);
-                        var msg = eventHandler.GetAnnouncement();
-                        AnnounceFromConsole(uid, msg);
+                        switch (eventHandler)
+                        {
+                            case SupermatterNoneEvent noneEvent:
+                                noneEvent.Activate(uid, comp, this);
+                                AnnounceFromConsole(uid, noneEvent.GetAnnouncement());
+                                break;
+                            case SupermatterLightningEvent lightningEvent:
+                                lightningEvent.Activate(uid, comp, this);
+                                AnnounceFromConsole(uid, lightningEvent.GetAnnouncement());
+                                break;
+                            case SupermatterRadiationEvent radiationEvent:
+                                radiationEvent.Activate(uid, comp, this);
+                                AnnounceFromConsole(uid, radiationEvent.GetAnnouncement());
+                                break;
+                            case SupermatterPlasmaEvent plasmaEvent:
+                                plasmaEvent.Activate(uid, comp, this);
+                                AnnounceFromConsole(uid, plasmaEvent.GetAnnouncement());
+                                break;
+                        }
                     }
                 }
                 if (comp.EventEndTime > TimeSpan.Zero)
                 {
                     if (_events.TryGetValue(comp.CurrentEvent, out var eventHandler))
                     {
-                        eventHandler.Process(uid, comp, this, currentTime);
+                        switch (eventHandler)
+                        {
+                            case SupermatterNoneEvent noneEvent:
+                                noneEvent.Process(uid, comp, this, currentTime);
+                                break;
+                            case SupermatterLightningEvent lightningEvent:
+                                lightningEvent.Process(uid, comp, this, currentTime);
+                                break;
+                            case SupermatterRadiationEvent radiationEvent:
+                                radiationEvent.Process(uid, comp, this, currentTime);
+                                break;
+                            case SupermatterPlasmaEvent plasmaEvent:
+                                plasmaEvent.Process(uid, comp, this, currentTime);
+                                break;
+                        }
                     }
                 }
             }

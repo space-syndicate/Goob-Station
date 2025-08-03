@@ -7,7 +7,7 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// <summary>
 /// Событие "Ничего" - период спокойствия суперматерии
 /// </summary>
-public sealed class SupermatterNoneEvent : ISupermatterEvent
+public sealed class SupermatterNoneEvent
 {
     public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
     {

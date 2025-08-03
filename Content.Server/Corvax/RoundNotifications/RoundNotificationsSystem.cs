@@ -20,7 +20,7 @@ public sealed class RoundNotificationsSystem : EntitySystem
     private ISawmill _sawmill = default!;
     private readonly HttpClient _httpClient = new();
 
-    private string _webhookUrl = String.Empty;
+    private string _webhooksUrl = String.Empty;
     private string _roleId = String.Empty;
     private bool _roundStartOnly;
 
@@ -31,7 +31,7 @@ public sealed class RoundNotificationsSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundEndedEvent>(OnRoundEnded);
 
-        _config.OnValueChanged(ICCVars.DiscordRoundWebhook, value => _webhookUrl = value, true);
+        _config.OnValueChanged(ICCVars.DiscordRoundWebhook, value => _webhooksUrl = value, true);
         _config.OnValueChanged(ICCVars.DiscordRoundRoleId, value => _roleId = value, true);
         _config.OnValueChanged(ICCVars.DiscordRoundStartOnly, value => _roundStartOnly = value, true);
 
@@ -40,7 +40,7 @@ public sealed class RoundNotificationsSystem : EntitySystem
 
     private void OnRoundRestart(RoundRestartCleanupEvent e)
     {
-        if (String.IsNullOrEmpty(_webhookUrl))
+        if (String.IsNullOrEmpty(_webhooksUrl))
             return;
 
         var payload = new WebhookPayload()
@@ -65,7 +65,7 @@ public sealed class RoundNotificationsSystem : EntitySystem
 
     private void OnRoundStarted(RoundStartedEvent e)
     {
-        if (String.IsNullOrEmpty(_webhookUrl))
+        if (String.IsNullOrEmpty(_webhooksUrl))
             return;
 
         var map = _gameMapManager.GetSelectedMap();
@@ -80,7 +80,7 @@ public sealed class RoundNotificationsSystem : EntitySystem
 
     private void OnRoundEnded(RoundEndedEvent e)
     {
-        if (String.IsNullOrEmpty(_webhookUrl) || _roundStartOnly)
+        if (String.IsNullOrEmpty(_webhooksUrl) || _roundStartOnly)
             return;
 
         var text = Loc.GetString("discord-round-end",
@@ -95,14 +95,19 @@ public sealed class RoundNotificationsSystem : EntitySystem
 
     private async void SendDiscordMessage(WebhookPayload payload)
     {
-        var request = await _httpClient.PostAsync(_webhookUrl,
-            new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+        var webhooksUrl = _webhooksUrl.Split(",");
 
-        var content = await request.Content.ReadAsStringAsync();
-        if (!request.IsSuccessStatusCode)
+        foreach (var webhookUrl in webhooksUrl)
         {
-            _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
-            return;
+            var request = await _httpClient.PostAsync(webhookUrl,
+                new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+
+            var content = await request.Content.ReadAsStringAsync();
+            if (!request.IsSuccessStatusCode)
+            {
+                _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
+                return;
+            }
         }
     }
 
