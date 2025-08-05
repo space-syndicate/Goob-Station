@@ -128,7 +128,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     private void Curse(NetUserId playerId, NetUserId sender, string text, uint banMinutes)
     {
         AddCurseComponent(playerId);
-        var banTime = _gameTiming.CurTime + TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.NrpMinutesBeforeBan));
+        var banTime = _gameTiming.CurTime + TimeSpan.FromMinutes(_cfg.GetCVar(NrpCCVars.NrpMinutesBeforeBan));
         var cursedEntity = new CursedEntity(playerId, sender, text, banTime, banMinutes);
         _curse.CurseEntity(cursedEntity);
     }
@@ -146,7 +146,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         var curseText = Loc.GetString("nrp-panel-curse-message",
             ("message", message.Message),
             ("adminName", adminName),
-            ("minutes", _cfg.GetCVar(CCVars.NrpMinutesBeforeBan)));
+            ("minutes", _cfg.GetCVar(NrpCCVars.NrpMinutesBeforeBan)));
         var banMessage = WrapBannedWordsInTag(message.UnformattedMessage, message.BannedWords, "->", "<-");
         var banText = Loc.GetString("nrp-panel-ban-message",
             ("message", banMessage),
@@ -163,7 +163,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
         var bwoinkText = Loc.GetString("nrp-ahelp-message", ("reason", reason), ("adminName", adminName));
         var banText = Loc.GetString("nrp-ban-message", ("reason", reason), ("adminName", adminName));
-        var curseText = Loc.GetString("nrp-curse-message", ("reason", reason), ("adminName", adminName), ("minutes", _cfg.GetCVar(CCVars.NrpMinutesBeforeBan)));
+        var curseText = Loc.GetString("nrp-curse-message", ("reason", reason), ("adminName", adminName), ("minutes", _cfg.GetCVar(NrpCCVars.NrpMinutesBeforeBan)));
 
         _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
     }

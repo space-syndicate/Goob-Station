@@ -33,7 +33,7 @@ public sealed class OpenNrpPanelCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_cfg.GetCVar(CCVars.NrpPanelEnabled))
+        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
         {
             shell.WriteLine("Command is disabled on server");
             return;
