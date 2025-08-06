@@ -1,22 +1,22 @@
 <Document>
-# Writing
+  # Письменность
 
-Using a pen, you can write on paper or in books. Nanotrasen provides everyone with a spare pen in their PDA.
+  Вы можете писать на бумаге или в книжках с помощью ручки. Каждое КПК NanoTrasen поставляется со стандартной ручкой.
 
-## Formatting
+  ## Форматирование
 
-You can use the following sigils:
+  Вы можете воспользоваться следующими оборотами:
 
-- [color=tan]\[color=color\]\[\/color\][/color] — to change the color of the text
-- [color=tan]\[head=n\]\[\/head\][/color] — where [italic]n[/italic] is the heading level (1 – 3)
-- [color=tan]\[bullet\/\][/color] — to insert a bullet point (useful for lists)
-- [color=tan][bold]\[bold\]\[\/bold\][/bold][/color], [color=tan][italic]\[italic\]\[\/italic\][/italic][/color] — for emphasis
+  - [color=tan]\[color=цвет\]текст\[\/color\][/color] — чтобы изменить цвет текста
+  - [color=tan]\[head=n\]текст\[\/head\][/color] — где [italic]n[/italic] это уровень заголовка (1–3)
+  - [color=tan]\[bullet\/\][/color] — перед строкой чтобы создать точку для списка
+  - [color=tan][bold]\[bold\]текст\[\/bold\][/bold][/color], [color=tan][italic]\[italic\]текст\[\/italic\][/italic][/color] — для жирного текста и курсива
 
-You can combine [bold][italic]bold and italic[/italic][/bold] tags, or use the shortcut [color=tan][bolditalic]\[bolditalic\][/bolditalic][/color].
+  Вы можете совместить [bold]bold[/bold] и [italic]italic[/italic] или воспользоваться [color=tan][bolditalic]\[bolditalic\][/bolditalic][/color].
 
-Color supports either hexadecimal or most HTML color names. For example:
+  Поддерживаемые цвета включают в себя HEX и большую часть цветов HTML:
 
-- [color=#ff0000]\[color=#ff0000\]\[\/color\][/color]
-- [color=red]\[color=red\]\[\/color\][/color]
+  - [color=#ff0000]\[color=#ff0000\]\[\/color\][/color]
+  - [color=red]\[color=red\]\[\/color\][/color]
 
 </Document>

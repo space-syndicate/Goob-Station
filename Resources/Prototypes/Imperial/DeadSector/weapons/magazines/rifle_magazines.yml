@@ -1,13 +1,24 @@
 - type: entity
+  id: BaseFelixMagazineRifle
+  name: base magazine rifle
+  parent: [BaseItem, BaseMinorContraband]
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Appearance
+
+- type: entity
   id: BaseMagazineAR57
   name: magazine AR-57 (7x62x51 NATO)
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   components:
   - type: Tag
     tags:
       - MagazineAR57
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAR57
     mayTransfer: true
@@ -15,9 +26,6 @@
       tags:
         - CartridgeAR57
     capacity: 35
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
     layers:
@@ -29,18 +37,15 @@
     magState: mag
     steps: 2
     zeroVisible: false
-  - type: Appearance
 
 - type: entity
   id: BaseMagazineAR57Piercing
   name: magazine AR-57 (7x62x51 NATO-AP)
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   components:
   - type: Tag
     tags:
       - MagazineAR57
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAR57Piercing
     mayTransfer: true
@@ -48,9 +53,6 @@
       tags:
         - CartridgeAR57
     capacity: 35
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
     layers:
@@ -62,18 +64,15 @@
     magState: mag
     steps: 2
     zeroVisible: false
-  - type: Appearance
 
 - type: entity
   id: BaseMagazineAR57LongRange
   name: magazine AR-57 (7x62x51 NATO-T)
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   components:
   - type: Tag
     tags:
       - MagazineAR57
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAR57LongRange
     mayTransfer: true
@@ -81,9 +80,6 @@
       tags:
         - CartridgeAR57
     capacity: 35
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
     layers:
@@ -95,11 +91,10 @@
     magState: mag
     steps: 2
     zeroVisible: false
-  - type: Appearance
 
 - type: entity
   id: BaseMagazineAR15
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   name: pistol magazine (.35 MP9)
   abstract: true
   components:
@@ -109,12 +104,6 @@
       tags:
         - CartridgeFelixCarabineAR
     capacity: 40
-  - type: Appearance
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Tag
     tags:
       - MagazineAR15
@@ -136,13 +125,8 @@
 - type: entity
   id: BaseMagazineAR15Piercing
   name: magazine AR-15
-  parent: BaseItem
+  parent: BaseMagazineAR15
   components:
-  - type: Tag
-    tags:
-      - MagazineAR15
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAR15Piercing
     mayTransfer: true
@@ -150,9 +134,6 @@
       tags:
         - CartridgeFelixCarabineAR
     capacity: 40
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
     layers:
@@ -167,13 +148,8 @@
 - type: entity
   id: BaseMagazineAR15LongRange
   name: magazine AR-15
-  parent: BaseItem
+  parent: BaseMagazineAR15
   components:
-  - type: Tag
-    tags:
-      - MagazineAR15
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAR15LongRange
     mayTransfer: true
@@ -181,9 +157,6 @@
       tags:
         - CartridgeFelixCarabineAR
     capacity: 40
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
     layers:
@@ -197,7 +170,7 @@
 
 - type: entity
   id: BaseMagazineHK416
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   name: pistol magazine (.35 MP9)
   abstract: true
   components:
@@ -207,11 +180,6 @@
       tags:
         - CartridgeFelixCarabineHK416
     capacity: 15
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Tag
     tags:
       - MagazineHK416
@@ -247,13 +215,8 @@
 - type: entity
   id: BaseMagazineHK416LongRange
   name: magazine HK416
-  parent: BaseItem
+  parent: BaseMagazineHK416
   components:
-  - type: Tag
-    tags:
-      - MagazineHK416
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeHK416LongRange
     mayTransfer: true
@@ -261,9 +224,6 @@
       tags:
         - CartridgeFelixCarabineHK416
     capacity: 15
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/HK416_mag.rsi
     layers:
@@ -278,7 +238,7 @@
 - type: entity
   id: BaseMagazineAK102
   name: pistol magazine (.35 MP9)
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -287,12 +247,6 @@
       tags:
         - CartridgeLightRifle
     capacity: 20
-  - type: Appearance
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Tag
     tags:
       - MagazineLightRifle
@@ -300,7 +254,7 @@
 - type: entity
   id: BaseMagazineAKS74y
   name: pistol magazine (.35 MP9)
-  parent: BaseItem
+  parent: BaseFelixMagazineRifle
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -309,12 +263,6 @@
       tags:
         - CartridgeFelixCarabineAKS74y
     capacity: 15
-  - type: Appearance
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Tag
     tags:
       - MagazineAKS74y
@@ -350,13 +298,8 @@
 - type: entity
   id: BaseMagazineAKS74yLongRange
   name: magazine AKS74y
-  parent: BaseItem
+  parent: BaseMagazineAKS74y
   components:
-  - type: Tag
-    tags:
-      - MagazineAKS74y
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAKS74yLongRange
     mayTransfer: true
@@ -364,9 +307,6 @@
       tags:
         - CartridgeFelixCarabineAKS74y
     capacity: 15
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AKS74y_mag.rsi
     layers:

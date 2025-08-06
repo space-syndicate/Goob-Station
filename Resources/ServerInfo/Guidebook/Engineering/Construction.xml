@@ -1,5 +1,5 @@
 <Document>
-  # Construction
+  # Строительство
 
   <Box>
     <GuideEntityEmbed Entity="Bed" Caption=""/>
@@ -8,19 +8,16 @@
     <GuideEntityEmbed Entity="Chair" Caption=""/>
   </Box>
 
-  Предметы в игре создаются через меню Создания.
-  Вы можете его открыть, нажав [color=yellow][bold][keybind="OpenCraftingMenu"][/bold][/color].
+  Предметы в игре создаются через меню [bold]Создания[/bold].
+  Вы можете его [bold]открыть[/bold], нажав [color=yellow][bold][keybind="OpenCraftingMenu"][/bold][/color].
 
-  Если Вы строите объекты, закреплённые к сетке, зажмите [color=yellow][bold][keybind="EditorLinePlace"][/bold][/color] что провести из них линию и [color=yellow][bold][keybind="EditorGridPlace"][/bold][/color] чтобы рисовать сеткой.
+  Если Вы строите объекты, [bold]закреплённые к сетке[/bold], зажмите [color=yellow][bold][keybind="EditorLinePlace"][/bold][/color] чтобы провести из них [bold]линию[/bold] и [color=yellow][bold][keybind="EditorGridPlace"][/bold][/color] чтобы рисовать [bold]сеткой[/bold].
 
-  Если Вы создаёте что-то с множеством ингредиентов, необязательно их все держать в руках. Положите их на пол, в рюкзак или на стол рядом с Вами. При создании они израсходуются автоматически.
+  Если Вы создаёте что-то с множеством ингредиентов, [bold]необязательно их все держать[/bold] в руках. [bold]Положите их[/bold] на пол, в рюкзак или на стол рядом с Вами. При создании они израсходуются [bold]автоматически[/bold].
 
-  Когда Вы ставите "призрак постройки" где-то в мире, нажмите [color=yellow][bold][keybind="EditorRotateObject"][/bold][/color] чтобы повернуть его по часовой стрелке.
-  Если же Вы строите что-то, что может быть отзрекалено (например, газовые фильтры/насосы), нажмите [color=yellow][bold][keybind="EditorFlipObject"][/bold][/color] чтобы это отразить.
+  Когда Вы ставите "[bold]призрак постройки[/bold]" где-то в мире, нажмите [color=yellow][bold][keybind="EditorRotateObject"][/bold][/color] чтобы повернуть его [bold]по часовой стрелке[/bold].
+  Если же Вы строите что-то, что может быть отзеркалено (например, газовые фильтры/насосы), нажмите [color=yellow][bold][keybind="EditorFlipObject"][/bold][/color] чтобы это [bold]отразить[/bold].
 
-  [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] и [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] могут использоваться для вращения уже построенных незакреплённых объектов.
-
-
-
+  [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] и [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] могут также использоваться для вращения [bold]уже построенных[/bold] незакреплённых объектов.
 
 </Document>

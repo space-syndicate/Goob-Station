@@ -30,7 +30,7 @@ health-examinable-carbon-Asphyxiation-75 = [color=lightblue]{ CAPITALIZE(POSS-AD
 health-examinable-carbon-Heat-8 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } небольшой ожог.[/color]
 health-examinable-carbon-Heat-15 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько ожогов первой степени.[/color]
 health-examinable-carbon-Heat-30 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько ожогов второй степени.[/color]
-health-examinable-carbon-Heat-50 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-BE($target) } покрыт ожогоами второй степени.[/color]
+health-examinable-carbon-Heat-50 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-BE($target) } покрыт ожогами второй степени.[/color]
 health-examinable-carbon-Heat-75 = [color=red]{ CAPITALIZE(POSS-ADJ($target)) } тело покрыто тяжелыми ожогами третьей степени.[/color]
 health-examinable-carbon-Heat-100 = [color=red]{ CAPITALIZE(POSS-ADJ($target)) } тело покрыто обширными ожогами четвертой степени.[/color]
 health-examinable-carbon-Heat-200 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } тело полностью сгорело до тла![/color]

@@ -118,7 +118,7 @@ reagent-effect-guidebook-adjust-reagent-reagent =
                 [1] добавляют
                *[-1] удаляют
             }
-    } { NATURALFIXED($amount, 2) }ед. от { $reagent } { $deltasign ->
+    } { NATURALFIXED($amount, 2) }ед. { $reagent } { $deltasign ->
         [1] к
        *[-1] из
     } раствора
@@ -195,7 +195,7 @@ reagent-effect-guidebook-cure-eye-damage =
 reagent-effect-guidebook-chem-vomit =
     { $chance ->
         [1] Вызывает
-       *[other] вызывают
+       *[other] вызвать
     } рвоту
 reagent-effect-guidebook-create-gas =
     { $chance ->

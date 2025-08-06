@@ -726,7 +726,12 @@
     sprite: Imperial/Crook/Misc/kvass.rsi
     layers:
       - state: icon
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill-1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
       - state: icon_empty
+        map: [ "enum.SolutionContainerLayers.Overlay" ]
   - type: Icon
     sprite: Imperial/Crook/Misc/kvass.rsi
     state: icon

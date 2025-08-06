@@ -1,7 +1,7 @@
 - type: entity
   id: SpeedLoaderAstra903
   name: speed loader Astra-903 (5x14)
-  parent: BaseSpeedLoaderMagnum
+  parent: [BaseSpeedLoaderMagnum, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -29,7 +29,7 @@
 - type: entity
   id: SpeedLoaderAstra903Piercing
   name: speed loader Astra-903 (5x14 AP)
-  parent: BaseSpeedLoaderMagnum
+  parent: [BaseSpeedLoaderMagnum, BaseMinorContraband]
   components:
   - type: Tag
     tags:

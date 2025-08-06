@@ -31,5 +31,5 @@ gas-analyzer-window-text-inlet = Вход
 gas-analyzer-window-text-outlet = Выход
 gas-analyzer-window-text-filter = Фильтр
 gas-analyzer-window-volume-val-text = { $volume } л
-gas-analyzer-window-volume-text = Объём:
+gas-analyzer-window-volume-text = Объём устройства:
 gas-analyzer-object-out-of-range = Объект вышел за пределы зоны обнаружения.

@@ -1,6 +1,6 @@
 - type: entity
   name: Astra-903
-  parent: BaseWeaponRevolver
+  parent: [BaseWeaponRevolver, BaseMinorContraband]
   id: WeaponRevolverAstra903
   description: A small-sized pistol with an open body design and a magazine for 5 rounds. Looks like an unfinished revolver from the wild west era.
   components:

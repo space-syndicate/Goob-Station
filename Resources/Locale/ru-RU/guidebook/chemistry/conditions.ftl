@@ -46,5 +46,5 @@ reagent-effect-condition-guidebook-has-tag =
        *[false] имеет
     } метку { $tag }
 
-reagent-effect-condition-guidebook-this-reagent = этот реагент
+reagent-effect-condition-guidebook-this-reagent = этого реагента
 reagent-effect-condition-guidebook-job-condition = должность цели - { $job }

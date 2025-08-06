@@ -2,8 +2,8 @@
 
 battery-menu-footer-left = Внимание: высокое напряжение
 battery-menu-footer-right = 7.2 REV 6
-battery-menu-out = OUT
-battery-menu-in = IN
+battery-menu-out = ВЫХОД
+battery-menu-in = ВХОД
 battery-menu-charge-header = Сила зарядки
 battery-menu-discharge-header = Сила разрядки
 battery-menu-storage-header = Ячейки хранения

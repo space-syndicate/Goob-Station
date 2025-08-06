@@ -1,6 +1,6 @@
 - type: entity
   name: squad shield
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   id: SquadShield
   description: null
   components:

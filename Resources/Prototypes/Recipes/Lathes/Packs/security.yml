@@ -83,6 +83,7 @@
   - ShuttleGunFriendshipCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunSvalinnMachineGunCircuitboard
+  - MetalDetectorCircuitboard # Imperial Space Metal Detector
 
 - type: latheRecipePack
   parent:

@@ -1,7 +1,7 @@
 # General
 ai-wire-snipped = Провод перерезан в точке {$coords}.
-wire-name-ai-vision-light = AIV
-wire-name-ai-act-light = AIA
+wire-name-ai-vision-light = ИИ
+wire-name-ai-act-light = ИИ
 station-ai-takeover = Захват ИИ
 
 # Radial actions

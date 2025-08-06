@@ -1,0 +1,39 @@
+- type: radioChannel
+  id: SCPconnection
+  name: Объекты
+  keycode: '?'
+  frequency: 8899
+  color: "#800000"
+  longRange: true
+
+- type: radioChannel
+  id: Nedraconnection
+  name: Недра
+  keycode: '%'
+  frequency: 8899
+  color: "#ff7e2e"
+  longRange: true
+
+- type: radioChannel
+  id: NedraCMDconnection
+  name: Руководство комплекса
+  keycode: '!'
+  frequency: 8899
+  color: "#CC0000"
+  longRange: true
+
+- type: radioChannel
+  id: NedraCIconnection
+  name: Повстанцы хаоса
+  keycode: 'ё'
+  frequency: 8899
+  color: "#006600"
+  longRange: true
+
+- type: radioChannel
+  id: NedraMTFconnection
+  name: Мобильная Оперативная Группа
+  keycode: 'ж'
+  frequency: 8899
+  color: "#000099"
+  longRange: true

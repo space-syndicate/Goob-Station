@@ -1,6 +1,6 @@
 - type: entity
   name: AR-57
-  parent: BaseWeaponRifle
+  parent: [BaseWeaponRifle, BaseMinorContraband]
   id: WeaponRifleAR57
   description: The carbine is larger than average and has above average ammunition capacity. It has a dark gray color. Uses 7x62x51 NATO ammo.
   components:
@@ -59,7 +59,7 @@
 
 - type: entity
   id: WeaponFelixAR15
-  parent: WeaponRifleAk
+  parent: [WeaponRifleAk, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite
@@ -118,7 +118,7 @@
 
 - type: entity
   id: WeaponFelixHK416
-  parent: WeaponRifleAk
+  parent: [WeaponRifleAk, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite
@@ -177,7 +177,7 @@
 
 - type: entity
   id: WeaponFelixAKS74y
-  parent: WeaponRifleAk
+  parent: [WeaponRifleAk, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite

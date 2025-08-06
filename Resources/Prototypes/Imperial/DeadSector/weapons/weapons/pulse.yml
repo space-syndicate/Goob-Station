@@ -1,6 +1,6 @@
 - type: entity
   name: pistol NDF-1
-  parent: BaseWeaponBatterySmall
+  parent: [BaseWeaponBatterySmall, BaseMinorContraband]
   id: WeaponPistolNDF1
   description: Plasma pistol technology NDF Mod 1. Rapid-fire, but weak. It has plasma charge cells.
   components:
@@ -31,7 +31,7 @@
 
 - type: entity
   name: rifle RLT-1
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseMinorContraband]
   id: WeaponRifleRLT1
   description: Plasma rifle based on RLT Mod 1 technology. Quick-firing, but weak. It has plasma charge cells.
   components:
@@ -63,7 +63,7 @@
 
 - type: entity
   name: rifle RLT-2
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseMinorContraband]
   id: WeaponRifleRLT2
   description: Plasma rifle using RLT Mod 2 technology. High power, but low rate of fire. It has plasma charge cells.
   components:

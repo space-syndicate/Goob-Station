@@ -1,0 +1,52 @@
+# Encryption Keys
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeySCPconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SCPconnection
+    defaultChannel: SCPconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/scpencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/scpencryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Nedraconnection
+    defaultChannel: Nedraconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/encryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/encryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraCMDconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraCMDconnection
+    defaultChannel: NedraCMDconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
+

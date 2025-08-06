@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineASP
   name: magazine ASP (9x19)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -67,7 +67,7 @@
 - type: entity
   id: BaseMagazineASPLongRange
   name: magazine ASP (9x19 T)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -100,7 +100,7 @@
 - type: entity
   id: BaseMagazineAstra60
   name: magazine Astra-60 (9x19)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -133,7 +133,7 @@
 - type: entity
   id: BaseMagazineAstra60Piercing
   name: magazine Astra-60 (9x19 AP)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -166,7 +166,7 @@
 - type: entity
   id: BaseMagazineAstra60LongRange
   name: magazine Astra-60 (9x19 T)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -199,7 +199,7 @@
 - type: entity
   id: BaseMagazineAstra100
   name: magazine Astra-100 (9x19)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -226,7 +226,7 @@
 - type: entity
   id: BaseMagazineAstra100Piercing
   name: magazine Astra-100 (9x19 AP)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -253,7 +253,7 @@
 - type: entity
   id: BaseMagazineAstra100LongRange
   name: magazine Astra-100 (9x19 T)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:

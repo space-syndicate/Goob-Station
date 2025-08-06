@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineAgram
   name: magazine Agram (9x21)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -33,7 +33,7 @@
 
 - type: entity
   id: BaseMagazineMP5
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   abstract: true
   components:

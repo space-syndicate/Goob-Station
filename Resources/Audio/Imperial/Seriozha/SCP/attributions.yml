@@ -6,6 +6,10 @@
   license: "CC-BY-SA-3.0"
   copyright: "-, Converted from mp3 to .ogg"
   source: "https://scpcontainmentbreach.fandom.com/ru/wiki/%D0%9C%D1%83%D0%B7%D1%8B%D0%BA%D0%B0_%D0%B8_%D0%B7%D0%B2%D1%83%D0%BA%D0%B8"
+- files: ["doorotkaz.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "-, Converted from mp3 to .ogg"
+  source: "https://scpcontainmentbreach.fandom.com/ru/wiki/%D0%9C%D1%83%D0%B7%D1%8B%D0%BA%D0%B0_%D0%B8_%D0%B7%D0%B2%D1%83%D0%BA%D0%B8"
 - files: ["oneopen.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "-, Converted from mp3 to .ogg"
@@ -14,7 +18,13 @@
   license: "CC-BY-SA-3.0"
   copyright: "-, Converted from mp3 to .ogg"
   source: "https://scpcontainmentbreach.fandom.com/ru/wiki/%D0%9C%D1%83%D0%B7%D1%8B%D0%BA%D0%B0_%D0%B8_%D0%B7%D0%B2%D1%83%D0%BA%D0%B8"
+- files: ["twoopen.ogg"]
+  license: "CC-BY-SA-3.0"
 - files: ["oneotkaz.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "-, Converted from mp3 to .ogg"
+  source: "https://scpcontainmentbreach.fandom.com/ru/wiki/%D0%9C%D1%83%D0%B7%D1%8B%D0%BA%D0%B0_%D0%B8_%D0%B7%D0%B2%D1%83%D0%BA%D0%B8"
+- files: ["twoclose.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "-, Converted from mp3 to .ogg"
   source: "https://scpcontainmentbreach.fandom.com/ru/wiki/%D0%9C%D1%83%D0%B7%D1%8B%D0%BA%D0%B0_%D0%B8_%D0%B7%D0%B2%D1%83%D0%BA%D0%B8"

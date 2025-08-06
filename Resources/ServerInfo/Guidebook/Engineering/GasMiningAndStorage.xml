@@ -1,20 +1,20 @@
 ﻿<Document>
-  # Gas Mining and Storage
-  Gasses are often permanently used. Whether they are lost to [textlink="space" link="Spacing"] or used in a burn chamber, the station needs to be able to produce more gas to replace what is lost.
-  It also needs to store this gas in a safe and efficient manner.
+  # Газодобыча и хранение
+  Газы часто пропадают. Будь это из-за [textlink="разгерметизации" link="Spacing"], реакции в камере сгорания или чего-либо другого.
+  Станции нужно как-то восполнить пропавшие запасы. Также, новые запасы надо безопасно и эффективно хранить.
 
-  ## Gas Miners
-  Gas miners are used to replenish the station's gas supply. They are found in the gas storage tanks in Atmospherics.
+  ## Газодобытчики
+  Они находятся в атмосферном отделе и постоянно добывают газ, снабжая станцию.
 
   <Box>
     <GuideEntityEmbed Entity="GasMinerOxygenStation"/>
     <GuideEntityEmbed Entity="GasMinerNitrogenStation"/>
   </Box>
 
-  Gas miners constantly produce room temperature gas and push it into the exposed atmosphere. They require no power to function, and never stop working unless they have reached the defined [bold]cutoff pressure[/bold].
+  Они постоянно добывают газ (комнатной температуры) и выпускают в атмосферу рядом с ними. Им не нужна энергия и они не перестают работать, пока не достигают [bold]порога давления[/bold].
 
-  You can see more information about the gas miners by inspecting them using [color=yellow][bold][keybind="ExamineEntity"][/bold][/color].
-  Try inspecting the gas miners presented above.
+  Вы можете осмотреть газодобытчик для получения дополнительной информации с помощью [color=yellow][bold][keybind="ExamineEntity"][/bold][/color].
+  Вы можете осмотреть газодобытчики на этой странице.
 
   Gas miners come in tiers, with the larger versions having a higher pressure cutoff than the smaller versions.
 

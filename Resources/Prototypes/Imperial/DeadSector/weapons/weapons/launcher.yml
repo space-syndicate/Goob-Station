@@ -1,6 +1,6 @@
 - type: entity
   name: RPG-8
-  parent: BaseWeaponLauncher
+  parent: [BaseWeaponLauncher, BaseMinorContraband]
   id: WeaponLauncherRPG8
   description: Extra-large rocket launcher model 8. It has a black color mixed with a set of wooden body parts.
   components:

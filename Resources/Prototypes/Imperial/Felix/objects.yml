@@ -1414,7 +1414,7 @@
 - type: entity
   name: quro machine gun
   id: FelixWeaponQuroMachineGun
-  parent: BaseWeaponAssaultPKM
+  parent: [BaseWeaponAssaultPKM, BaseMinorContraband]
   description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
   components:
   - type: Item

@@ -15,16 +15,40 @@
     closeSound:
       path: /Audio/Imperial/Seriozha/SCP/oneclose.ogg
     denySound:
-      path: /Audio/Imperial/Seriozha/SCP/oneotkaz.ogg
+      path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSCPOne ]
+      board: [ DoorElectronicsSCP ]
+
+- type: entity
+  parent: AirlockRCDResistant
+  id: AirlockSCPLocked
+  name: Two
+  suffix: seriozha, Недра, Locked
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/airlocks/two.rsi
+  - type: Door
+    openSound:
+      path: /Audio/Imperial/Seriozha/SCP/twoopen.ogg
+    closeSound:
+      path: /Audio/Imperial/Seriozha/SCP/twoclose.ogg
+    denySound:
+      path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCP ]
 
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsSCPOne
-  name: For One
-  suffix: seriozha, Недра, DONOTSPAWN
+  id: DoorElectronicsSCP
+  name: Idk
+  suffix: seriozha, Недра
   components:
   - type: AccessReader
     access: [["SCPAccesOne"]]

@@ -21,14 +21,14 @@ cargo-console-menu-populate-categories-all-text = Все
 cargo-console-menu-populate-orders-cargo-order-row-product-name-text = {$productName} (x{ $orderAmount }) от { $orderRequester } с счета [color={$accountColor}]{$account}[/color]
 cargo-console-menu-cargo-order-row-approve-button = Одобрить
 cargo-console-menu-cargo-order-row-cancel-button = Отказать
-cargo-console-menu-tab-title-orders = Orders
-cargo-console-menu-tab-title-funds = Transfers
+cargo-console-menu-tab-title-orders = Заказы
+cargo-console-menu-tab-title-funds = Переводы
 cargo-console-menu-account-action-transfer-limit = [bold]Лимит перевода:[/bold] ${$limit}
 cargo-console-menu-account-action-transfer-limit-unlimited-notifier = [color=gold](Безлимитно)[/color]
 cargo-console-menu-account-action-select = [bold]Действие по счету:[/bold]
 cargo-console-menu-account-action-amount = [bold]Количество:[/bold] $
 cargo-console-menu-account-action-button = Перевести
-cargo-console-menu-toggle-account-lock-button = Включить лимит перевода
+cargo-console-menu-toggle-account-lock-button = Переключить лимит перевода
 cargo-console-menu-account-action-option-withdraw = Вывести кредиты
 cargo-console-menu-account-action-option-transfer = Перевести кредиты на счет {$code}
 

@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineAssaultPKM
   name: magazine assult PKM (7x62x51)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   abstract: true
   components:
   - type: Tag
@@ -30,6 +30,7 @@
   id: MagazineAssaultPKMBox
   name: Assault PKM magazine box (7x62x51)
   parent: BaseMagazineAssaultPKM
+  suffix: Felix
   components:
   - type: Tag
     tags:
@@ -49,6 +50,7 @@
   id: MagazineAssaultPKMBoxPiercing
   name: Assault PKM magazine box (7x62x51 AP)
   parent: BaseMagazineAssaultPKM
+  suffix: Felix
   components:
   - type: Tag
     tags:

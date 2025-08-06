@@ -1,6 +1,6 @@
 - type: entity
   name: ASP
-  parent: BaseWeaponPistol
+  parent: [BaseWeaponPistol, BaseMinorContraband]
   id: WeaponPistolASP
   description: A low-loading 8-shot pistol small enough to hide in your pocket.
   components:
@@ -41,7 +41,7 @@
 
 - type: entity
   name: Astra-60
-  parent: BaseWeaponPistol
+  parent: [BaseWeaponPistol, BaseMinorContraband]
   id: WeaponPistolAstra60
   description: Small-sized pistol with medium ammunition. It has a silver color throughout the body. Uses 9x19 auto ammo.
   components:
@@ -79,7 +79,7 @@
 
 - type: entity
   name: Astra-100
-  parent: BaseWeaponPistol
+  parent: [BaseWeaponPistol, BaseMinorContraband]
   id: WeaponPistolAstra100
   description: Medium-sized pistol with 12 rounds of ammunition. It is dark gray on the top and khaki gray on the bottom. Uses 9x19 auto ammo.
   components:

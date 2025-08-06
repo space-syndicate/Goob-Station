@@ -1,6 +1,6 @@
 - type: entity
   name: Agram
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseMinorContraband]
   id: WeaponSubMachineGunAgram
   description: A small-sized SMG with above-average ammunition and a 32-round magazine. It has a dark gray color.
   components:
@@ -46,7 +46,7 @@
 
 - type: entity
   id: WeaponFelixMP5
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite
@@ -104,7 +104,7 @@
 
 - type: entity
   id: WeaponFelixMP9
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite

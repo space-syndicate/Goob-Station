@@ -17,10 +17,16 @@
         path: /Audio/Effects/Smoke-grenade.ogg
     - type: NoSlip
     - type: MovementIgnoreGravity
-    - type: NonSpreaderZombie
+    - type: SlowOnDamage
+      enabled: false
     - type: ZombieImmune
+    - type: NonSpreaderZombie
+    - type: Damageable
+      damageModifierSet: SCPStandart
     - type: Body
       prototype: Human
+    - type: Bloodstream
+      bloodMaxVolume: 0
     - type: NpcFactionMember
       factions:
       - Xeno
@@ -31,6 +37,7 @@
     - type: IntrinsicRadioTransmitter
       channels:
       - SCPconnection
+    - type: FlashImmunity
     - type: Grammar
       attributes:
         gender: male
@@ -43,7 +50,6 @@
   description: Pray.
   components:
     - type: Sprite
-      color: "#f6e5e5dd"
       drawdepth: Mobs
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
@@ -69,6 +75,7 @@
       damage:
         types:
           Blunt: 90
+      resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
       allowedEmotes: ['Scream', 'Laugh']
@@ -78,9 +85,6 @@
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Seriozha/SCP/ded.ogg
-    - type: Grammar
-      attributes:
-        gender: male
     - type: Vocal
       sounds:
         Male: DedVoice
@@ -117,14 +121,17 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.48
-        Slash: 0.48
-        Piercing: 0.48
-        Heat: 0.48
-        Radiation: 0.48
-        Caustic: 0.48
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.45
+        Cold: 0.45
+        Heat: 0.45
+        Poison: 0.45
+        Radiation: 0.45
+        Caustic: 0.45
+        Stamina: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.48
+    damageCoefficient: 0.5
 
 - type: entity
   name: Doctor
@@ -158,18 +165,20 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 122
+          Blunt: 150
+      resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2
-      baseSprintSpeed: 1.7
+      baseWalkSpeed: 3
+      baseSprintSpeed: 2.4
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Seriozha/SCP/doc.ogg
     - type: Loadout
       prototypes: [ ImperialDocGear ]
     - type: Hands
+      showInHands: true
     - type: Stripping
     - type: Puller
       needsHands: false
@@ -177,9 +186,6 @@
       templateId: docinv
     - type: Body
       prototype: Human
-    - type: Grammar
-      attributes:
-        gender: male
     - type: Vocal
       sounds:
         Male: DocVoice
@@ -200,31 +206,6 @@
           - MobMask
           layer:
           - MobLayer
-
-- type: entity
-  parent: EncryptionKey
-  id: EncryptionKeySCPconnection
-  name: common encryption key
-  suffix: seriozha, Недра
-  description: An encryption key used by anyone.
-  components:
-  - type: EncryptionKey
-    channels:
-    - SCPconnection
-    defaultChannel: SCPconnection
-  - type: Sprite
-    sprite: Imperial/Seriozha/SCP/encryptionkey.rsi
-    state: icon
-  - type: Item
-    sprite: Imperial/Seriozha/SCP/encryptionkey.rsi
-
-- type: radioChannel
-  id: SCPconnection
-  name: Объекты
-  keycode: '?'
-  frequency: 8888
-  color: "#800000"
-  longRange: true
 
 - type: emoteSounds
   id: DedVoice
@@ -287,3 +268,13 @@
   inhand:
   - CaneSheathFilled
 
+- type: damageModifierSet
+  id: SCPStandart
+  coefficients:
+    Blunt: 0.2
+    Slash: 0.2
+    Piercing: 0.4
+    Poison: 0.9
+    Cellular: 0.9
+    Radiation: 0.9
+    Caustic: 0.0

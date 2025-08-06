@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponAssaultPKM
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   id: BaseWeaponAssaultPKM
   description: A rooty tooty point and shooty.
   abstract: true
@@ -64,7 +64,7 @@
 - type: entity
   name: Assault PKM
   id: WeaponAssaultPKM
-  parent: BaseWeaponAssaultPKM
+  parent: [BaseWeaponAssaultPKM, BaseMinorContraband]
   description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
   components:
   - type: Item
