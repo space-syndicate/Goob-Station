@@ -3,3 +3,5 @@ ent-MachineBluespaceHarvesterCircuitboard = плата блюспейс харв
 ent-MachineBluespaceTransitorCircuitboard = плата блюспейс Т.Р.А.Н.З.И.Т.
     .desc = { ent-BaseMachineCircuitboard.desc }
 
+ent-StasisOperatingTableCircuitboard = плата стазисного операционного стола
+    .desc = { ent-BaseMachineCircuitboard.desc }
