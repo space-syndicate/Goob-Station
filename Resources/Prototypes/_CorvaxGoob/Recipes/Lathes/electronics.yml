@@ -7,3 +7,8 @@
   parent: BaseGoldCircuitboardRecipe
   id: MachineBluespaceTransitorCircuitboard
   result: MachineBluespaceTransitorCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: StasisOperatingTableCircuitboard
+  result: StasisOperatingTableCircuitboard
