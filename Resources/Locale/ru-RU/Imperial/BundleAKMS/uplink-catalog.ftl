@@ -1,2 +1,2 @@
-uplink-bundle-akms-name = {ent-ClothingBackpackDuffelSyndicateAKMS}
+uplink-bundle-akms-name = Набор "АКМС"
 uplink-bundle-akms-desc = {ent-ClothingBackpackDuffelSyndicateAKMS.desc}

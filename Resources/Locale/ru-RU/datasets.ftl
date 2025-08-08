@@ -170,15 +170,15 @@ imperial-space-gnomes-last-10 = Инно
 imperial-space-gnomes-last-11 = Тургард
 imperial-space-gnomes-last-12 = Арангард
 
-imperial-space-cs-ct-name-1 = Контр-террорист
+imperial-space-cs-ct-name-1 = контр-террорист
 
-imperial-space-cs-ct-name-t-1 = Террорист
+imperial-space-cs-ct-name-t-1 = террорист
 
 imperial-space-cs-group-name-1 = Феникса
 
-imperial-space-special-officer-1 = Офицер
+imperial-space-special-officer-1 = офицер
 
-imperial-space-intergalactic-ce-1 = Старший сотрудник
-imperial-space-intergalactic-engineer-1 = Младший сотрудник
-imperial-space-intergalactic-atmos-1 = Сотрудник
-imperial-space-intergalactic-employee-1 = Сотрудник ПВЗ
+imperial-space-intergalactic-ce-1 = старший сотрудник
+imperial-space-intergalactic-engineer-1 = младший сотрудник
+imperial-space-intergalactic-atmos-1 = сотрудник
+imperial-space-intergalactic-employee-1 = сотрудник ПВЗ

@@ -110,8 +110,13 @@ namespace Content.Server.Imperial.Crook.Systems
             if (currentDepth > maxDepth)
                 return false;
 
-            if (HasComp<ContrabandComponent>(entity))
+            if (TryComp<ContrabandComponent>(entity, out var contraband))
+            {
+                if (IsContrabandAllowed(detector, entity))
+                    return false;
+
                 return true;
+            }
 
             if (TryComp<InventoryComponent>(entity, out var inventory))
             {
@@ -148,8 +153,8 @@ namespace Content.Server.Imperial.Crook.Systems
         }
 
         private void HandleDetectionResults(EntityUid detector, EntityUid entity,
-                                 MetalDetectorComponent comp,
-                                 bool hasContraband)
+                         MetalDetectorComponent comp,
+                         bool hasContraband)
         {
             if (HasRequiredAccess(entity, comp))
             {
@@ -178,12 +183,103 @@ namespace Content.Server.Imperial.Crook.Systems
 
             if (hasContraband && comp.CheckContraband)
             {
-                SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
+                if (HasUnauthorizedContraband(entity))
+                {
+                    SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
+                }
+                else
+                {
+                    SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
+                }
             }
             else
             {
                 SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
             }
+        }
+
+        private bool HasUnauthorizedContraband(EntityUid user)
+        {
+            if (TryComp<InventoryComponent>(user, out var inventory))
+            {
+                foreach (var slotDef in inventory.Slots)
+                {
+                    if (_inventory.TryGetSlotEntity(user, slotDef.Name, out var item) &&
+                        HasContrabandRecursive(item.Value, user))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            foreach (var heldItem in _hands.EnumerateHeld(user))
+            {
+                if (HasContrabandRecursive(heldItem, user))
+                {
+                    return true;
+                }
+            }
+
+            if (TryComp<ContainerManagerComponent>(user, out var containerManager))
+            {
+                foreach (var container in containerManager.Containers.Values)
+                {
+                    foreach (var containedItem in container.ContainedEntities)
+                    {
+                        if (HasContrabandRecursive(containedItem, user))
+                            return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool HasContrabandRecursive(EntityUid item, EntityUid user, int depth = 0, int maxDepth = 5)
+        {
+            if (depth > maxDepth)
+                return false;
+
+            if (HasComp<ContrabandComponent>(item) && !IsContrabandAllowed(user, item))
+                return true;
+
+            if (TryComp<ContainerManagerComponent>(item, out var containerManager))
+            {
+                foreach (var container in containerManager.Containers.Values)
+                {
+                    foreach (var containedItem in container.ContainedEntities)
+                    {
+                        if (HasContrabandRecursive(containedItem, user, depth + 1, maxDepth))
+                            return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsContrabandAllowed(EntityUid user, EntityUid contrabandItem)
+        {
+            if (!TryComp<ContrabandComponent>(contrabandItem, out var contraband))
+                return false;
+
+            if (!_idCard.TryFindIdCard(user, out var idCard))
+                return false;
+
+            if (idCard.Comp.JobDepartments.Intersect(contraband.AllowedDepartments).Any())
+                return true;
+
+            if (idCard.Comp.JobPrototype != null)
+            {
+                var jobId = idCard.Comp.JobPrototype.Value;
+                foreach (var allowedJob in contraband.AllowedJobs)
+                {
+                    if (allowedJob == jobId)
+                        return true;
+                }
+            }
+
+            return false;
         }
 
         private void SetState(EntityUid uid, MetalDetectorVisualState state, MetalDetectorComponent comp)

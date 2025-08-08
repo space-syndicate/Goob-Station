@@ -20,7 +20,7 @@ ent-ClothingHeadHelmetHardsuitJRT = шлем скафандра УБР
 
 ent-JRTEVAPreset = УБР
 
-ent-SpawnJRTEVAPreset = Спавн УБР
+ent-SpawnJRTEVAPreset = спавн УБР
     .desc = Спавнит УБРчика маленького такого ути-пути
 jrt-eva-name = УБР
 jrt-eva-desc = Уборщик Быстрого Реагирования

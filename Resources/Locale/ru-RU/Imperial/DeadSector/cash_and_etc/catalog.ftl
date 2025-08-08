@@ -470,7 +470,7 @@ CompressionPack-des = Хорошо подходит для оказания пе
 
 # FegerationTerminalOther
 SquadShield-name = squad shield
-SquadShield-des =  высокоэффективный щит.
+SquadShield-des = высокоэффективный щит.
 BoxFlare-name = коробка красных фальшфейеров
 BoxFlare-des = Выглядит как белая тема приложения ночью.
 GreenFlareBox-name = коробка зелёных фальшфейеров

@@ -1,0 +1,25 @@
+- type: loadoutEffectGroup # Лодаут эффект для визора ГП
+  id: VisorHOPImperial
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 360000 #100 hrs
+
+- type: loadoutGroup
+  id: HoPImperialGlasses
+  name: loadout-group-hop-glasses
+  loadouts:
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - HoPGlasses
+  
+- type: loadout
+  id: HoPGlasses
+  equipment:
+    eyes: ClothingEyesGlassesCommand
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VisorHOPImperial

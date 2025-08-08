@@ -63,22 +63,22 @@ ent-ClothingUniformJumpsuitRegularForceArmyOfficer = армейская униф
 ent-ClothingUniformJumpsuitRegularForcePilot = униформа пилота
     .desc = Комбинезон, используемый войсками специального назначения при проведении специальных операций.
 
-ent-ClothingOuterHardsuitRegularForce = Тактический Скафандр "Соната Mk1"
+ent-ClothingOuterHardsuitRegularForce = тактический скафандр "Соната Mk1"
     .desc = Тактический скафандр, воплощающий в себе передовые решения для операций в самых экстремальных условиях.
-ent-ClothingOuterHardsuitRegularForceMedic = Энергетическая Броня "Орбитал"
+ent-ClothingOuterHardsuitRegularForceMedic = энергетическая Броня "Орбитал"
     .desc = Вершина технологий экзоскелетной медицины, предоставляет неплохой уровень защиты и мобильности медицинскому персоналу.
-ent-ClothingOuterHardsuitRegularForceGuard = Тактический Скафандр "Соната Mk2"
+ent-ClothingOuterHardsuitRegularForceGuard = тактический скафандр "Соната Mk2"
     .desc = Тактический скафандр, воплощающий в себе передовые решения для операций в самых экстремальных условиях. Обеспечивает неплохую защиту от баллистических угроз.
-ent-ClothingOuterHardsuitRegularForcePilot = Тактический Скафандр "Феникс"
+ent-ClothingOuterHardsuitRegularForcePilot = тактический скафандр "Феникс"
     .desc = Инновационное изделие, созданное для выполнения сложнейших задач в самых экстремальных условиях.
-ent-ClothingOuterHardsuitRegularForceAssassin = Стелс-Броня "Ассасин Mk1"
+ent-ClothingOuterHardsuitRegularForceAssassin = стелс-броня "Ассасин Mk1"
     .desc = Совершенное сочетание технологии и искусства маскировки, созданное для тактики скрытого передвижения и точечных атак. Внешне она выглядит как гармоничное слияние черной и темно-серой наноткани, что позволяет носителю сливаться с тенями и окружающей местностью.
 
-ent-ClothingHeadHelmetHardsuitRegularForce = Шлем "Соната Mk1"
-ent-ClothingHeadHelmetHardsuitRegularForceMedic = Шлем "Орбитал"
-ent-ClothingHeadHelmetHardsuitRegularForceGuard = Шлем "Соната Mk2"
-ent-ClothingHeadHelmetHardsuitRegularForcePilot = Шлем "Феникс"
-ent-ClothingHeadHelmetHardsuitRegularForceAssassin = Капюшон "Ассасин Mk1"
+ent-ClothingHeadHelmetHardsuitRegularForce = шлем "Соната Mk1"
+ent-ClothingHeadHelmetHardsuitRegularForceMedic = шлем "Орбитал"
+ent-ClothingHeadHelmetHardsuitRegularForceGuard = шлем "Соната Mk2"
+ent-ClothingHeadHelmetHardsuitRegularForcePilot = шлем "Феникс"
+ent-ClothingHeadHelmetHardsuitRegularForceAssassin = капюшон "Ассасин Mk1"
 
 ent-ClothingNanoMask = наномаска
     .desc = Дыхательная маска, созданная с применением наноткани.

@@ -20,10 +20,11 @@
   - HoPJumpsuit
   - HoPBackpack
   - HoPOuterClothing
-  - Glasses
+  # - Glasses # Imperial Space Административные очки ГП за наигранное время
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - HoPImperialGlasses # Imperial Space Административные очки ГП за наигранное время
 
 # Silicons
 - type: roleLoadout

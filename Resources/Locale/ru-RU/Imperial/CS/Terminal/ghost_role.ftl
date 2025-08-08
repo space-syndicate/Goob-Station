@@ -3,7 +3,7 @@ ent-PresetCT800 = { ent-PresetCT }
 ent-PresetCT4000 = { ent-PresetCT }
 ent-PresetCT6500 = { ent-PresetCT }
 
-ent-SpawnCT = Спавн контр-террориста
+ent-SpawnCT = спавн контр-террориста
     .desc = Cпавн поинт контр-террориста
     .suffix = CS, Пустой
 ent-SpawnCT800 = { ent-SpawnCT }
@@ -25,7 +25,7 @@ ent-PresetT800 = { ent-PresetT }
 ent-PresetT4000 = { ent-PresetT }
 ent-PresetT6500 = { ent-PresetT }
 
-ent-SpawnT = Спавн террориста
+ent-SpawnT = спавн террориста
     .desc = Cпавн поинт террориста
     .suffix = CS, Пустой
 ent-SpawnT800 = { ent-SpawnT }

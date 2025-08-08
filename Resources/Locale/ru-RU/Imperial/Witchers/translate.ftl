@@ -31,35 +31,35 @@ ent-WitchersMrSlow = Мистер Слоу
 ent-WitchersOliver = Оливер
     .desc = Огромное пушистое и страшное чудовище. Обычно они служат ведьмам. Либо бегите, либо рискните его погладить.
 
-ent-WitcherDressvOne = Платье темной ведьмы
+ent-WitcherDressvOne = платье темной ведьмы
     .desc = Красивое длинное платье темной ведьмы.
 
-ent-WitcherDressvTwo = Платье красной ведьмы
+ent-WitcherDressvTwo = платье красной ведьмы
     .desc = Красивое длинное платье красной ведьмы.
 
-ent-WitcherPurpleDress = Платье пурпурной ведьмы
+ent-WitcherPurpleDress = платье пурпурной ведьмы
     .desc = Красивое длинное платье пурпурной ведьмы.
 
-ent-WitchersPurpleGloves = Перчатки пурпурной ведьмы
+ent-WitchersPurpleGloves = перчатки пурпурной ведьмы
     .desc = Красивые перчатки пурпурной ведьмы.
 
-ent-WitchersPurpleHat = Шляпа ведьмы
+ent-WitchersPurpleHat = шляпа ведьмы
     .desc = Пурпурная шляпа ведьмы.
 
-ent-WitcherRedDress = Платье алой ведьмы
+ent-WitcherRedDress = платье алой ведьмы
     .desc = Красивое длинное платье алой ведьмы.
 
-ent-WitchersRedGloves = Перчатки алой ведьмы
+ent-WitchersRedGloves = перчатки алой ведьмы
     .desc = Красивые перчатки алой ведьмы.
 
-ent-WitchersRedHat = Шляпа ведьмы
+ent-WitchersRedHat = шляпа ведьмы
     .desc = Алая шляпа ведьмы.
 
-ent-WtchersBookVendigo = Книга призыва Вендиго
+ent-WtchersBookVendigo = книга призыва Вендиго
 
-ent-WtchersBookYlitka = Книга призыва улиток
+ent-WtchersBookYlitka = книга призыва улиток
 
-ent-WtchersBookVorons = Книга призыва воронов
+ent-WtchersBookVorons = книга призыва воронов
 
 ent-WitchersSpellVendigo = Призыв Вендиго
     .desc = Это заклинание призывает агрессивного Вендиго.
@@ -76,14 +76,14 @@ ent-WitchersVendigo = Вендиго
 ent-WitchersVendigoVr = Вендиго
     .desc = Огромное пушистое и страшное чудовище. Обычно они служат ведьмам. Либо бегите, либо рискните его погладить.
 
-ent-MobVoron = Тёмный ворон
+ent-MobVoron = тёмный ворон
     .desc = Красивый, чёрный, злой, ворон.
 
-ent-MobVoronVr = Тёмный ворон
+ent-MobVoronVr = тёмный ворон
     .desc = Красивый, чёрный, злой, ворон.
 
-ent-WitchersYlitka = Большая улитка
+ent-WitchersYlitka = большая улитка
     .desc = Это... Просто большая улитка... Почему у неё глаза снизу?...
 
-ent-WitchersYlitkaVr = Большая улитка
+ent-WitchersYlitkaVr = большая улитка
     .desc = Это... Просто большая улитка... Почему у неё глаза снизу?...

@@ -1,12 +1,12 @@
-ent-MobChronoLegionnaire = Хроно легионер
+ent-MobChronoLegionnaire = хронолегионер
     .desc = Он прибыл сюда, чтобы вычеркнуть кого то из реальности.
     .suffix = { "ADMIN" }
 
-ent-chronoEffectIn = Эффект хронолегионера
+ent-chronoEffectIn = эффект хронолегионера
     .desc = Он прибыл.
     .suffix = { "IN" }
 
-ent-chronoEffectOut = Эффект хронолегионера
+ent-chronoEffectOut = эффект хронолегионера
     .desc = Он ушёл.
     .suffix = { "OUT" }
 

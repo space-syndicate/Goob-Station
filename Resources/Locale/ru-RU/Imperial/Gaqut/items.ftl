@@ -1,12 +1,12 @@
-ent-TriviumMark = Марка Тривиума
+ent-TriviumMark = марка Тривиума
     .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
-ent-TriviumMark10 = Марка Тривиума
+ent-TriviumMark10 = марка Тривиума
     .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
-ent-TriviumMark100 = Марка Тривиума
+ent-TriviumMark100 = марка Тривиума
     .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
-ent-TriviumMark1000 = Марка Тривиума
+ent-TriviumMark1000 = марка Тривиума
     .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
-ent-TriviumMark50 = Марка Тривиума
+ent-TriviumMark50 = марка Тривиума
     .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
 
 ent-ClothingHeadHatBeretGaqut = берет СССП
@@ -26,14 +26,14 @@ job-name-trivium-head = Командир Тривиума
 job-name-ussp-main = Солдат СССП
 job-name-ussp-head = Командир СССП
 
-ent-TriviumIDCardMain = Карта солдата Тривиума
+ent-TriviumIDCardMain = карта солдата Тривиума
     .desc = Карта идентификации личности
-ent-TriviumIDCardHead = Карта командования Тривиума
+ent-TriviumIDCardHead = карта командования Тривиума
     .desc = Пахнет властью
 
-ent-USSPIDCardMain = Карта солдата СССП
+ent-USSPIDCardMain = карта солдата СССП
     .desc = Карта идентификации личности
-ent-USSPIDCardHead = Карта командования СССП
+ent-USSPIDCardHead = карта командования СССП
     .desc = Пахнет властью
 
 ent-EncryptionKeyTriviumMain = ключ шифрования

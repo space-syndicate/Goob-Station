@@ -8,88 +8,88 @@ spider-terroregg-name = Яйцо паука ужаса
 spider-terroregg-desc = Готово к вылупрелнию нового защитника улья!
 spider-terroregg-rul = Превратитеть в полноценного защитника улья.
 
-ent-MobRusarSpider = Рыцарь ужаса
+ent-MobRusarSpider = рыцарь ужаса
     .desc = Сражается с экипажем, защищает других пауков. За счёт своей устойчивости Создаёт свободное пространство, чтобы другие пауки могли расширять гнездо.
 
-ent-MobRusarSpiderAngrys = Рыцарь ужаса
+ent-MobRusarSpiderAngrys = рыцарь ужаса
     .desc = Сражается с экипажем, защищает других пауков. За счёт своей устойчивости Создаёт свободное пространство, чтобы другие пауки могли расширять гнездо.
     .suffix = пауки ужаса
 
-ent-MobDronSpider = Дрон Ужаса
+ent-MobDronSpider = дрон Ужаса
     .desc =  Оплетает всё вокруг паутиной, отгоняет плевками экипаж, защищает гнездо.
 
-ent-MobDronSpiderAngrys = Дрон Ужаса
+ent-MobDronSpiderAngrys = дрон Ужаса
     .desc =  Оплетает всё вокруг паутиной, отгоняет плевками экипаж, защищает гнездо.
     .suffix = пауки ужаса
 
-ent-MobreaperSpider = Жнец Ужаса
+ent-MobreaperSpider = жнец Ужаса
     .desc =  Берсерк, обязан вести себя агрессивно и регулярно кусать кого-нибудь чтобы выживать. Абсолютно смертоносен в ближнем бою.
 
-ent-MobGiantreaperSpiderAngry = Жнец Ужаса
+ent-MobGiantreaperSpiderAngry = жнец Ужаса
     .desc =  Берсерк, обязан вести себя агрессивно и регулярно кусать кого-нибудь чтобы выживать. Абсолютно смертоносен в ближнем бою.
     .suffix = пауки ужаса
 
-ent-MobDestroyerSpider = Разрушитель Ужаса
+ent-MobDestroyerSpider = разрушитель Ужаса
     .desc =  Взламывает стены и двери, саботирует работу станции, уничтожает отделы. Главный враг синтетиков.
 
-ent-MobGiantDestroyerSpiderAngry = Разрушитель Ужаса
+ent-MobGiantDestroyerSpiderAngry = разрушитель Ужаса
     .desc =  Взламывает стены и двери, саботирует работу станции, уничтожает отделы. Главный враг синтетиков.
     .suffix = пауки ужаса
 
-ent-MobWidowSpider = Вдова Ужаса
+ent-MobWidowSpider = вдова Ужаса
     .desc =  Один из самых смертоносных пауков, убивает любую органическую цель за несколько укусов, обладает опасными плевками, но имеет мало здоровья. Охотится на одиночек, или атакует вместе с другими пауками.
 
-ent-MobGiantWidowSpiderAngry = Вдова Ужаса
+ent-MobGiantWidowSpiderAngry = вдова Ужаса
     .desc =  Один из самых смертоносных пауков, убивает любую органическую цель за несколько укусов, обладает опасными плевками, но имеет мало здоровья. Охотится на одиночек, или атакует вместе с другими пауками.
     .suffix = пауки ужаса
 
-ent-MobGuardianSpider = Страж Ужаса
+ent-MobGuardianSpider = страж Ужаса
     .desc =  Охраняет королев/принцесс, безопасность, жертвуя своей жизнью в случае необходимости. Самый верный слуга и защитник.
 
-ent-MobGiantGuardianSpiderAngry = Страж Ужаса
+ent-MobGiantGuardianSpiderAngry = страж Ужаса
     .desc =  Охраняет королев/принцесс, безопасность, жертвуя своей жизнью в случае необходимости. Самый верный слуга и защитник.
     .suffix = пауки ужаса
 
-ent-MobMotherSpider = Мать Ужаса
+ent-MobMotherSpider = мать Ужаса
     .desc =  Массовый исцеляет пауков своей аурой, и также массово истребляет ею экипаж. Сражается вместе с другими паукам на передовой, оказывая им поддержку.
 
-ent-MobGiantMotherSpiderAngry = Мать Ужаса
+ent-MobGiantMotherSpiderAngry = мать Ужаса
     .desc =  Массовый исцеляет пауков своей аурой, и также массово истребляет ею экипаж. Сражается вместе с другими паукам на передовой, оказывая им поддержку.
     .suffix = пауки ужаса
 
-ent-MobPrinceSpider = Принц Ужаса
+ent-MobPrinceSpider = принц Ужаса
     .desc =  Уничтожает всё живое и неживое, что окажется у него на пути.
 
-ent-MobGiantPrinceSpiderAngry = Принц Ужаса
+ent-MobGiantPrinceSpiderAngry = принц Ужаса
     .desc =  Уничтожает всё живое и неживое, что окажется у него на пути.
     .suffix = пауки ужаса
 
-ent-MobPrincessSpider = Принцесса Ужаса
+ent-MobPrincessSpider = принцесса Ужаса
     .desc =  Создает логово, откладывает яйца, старается не попадаться экипажу на глаза.
 
-ent-MobGiantPrincessSpiderAngry = Принцесса Ужаса
+ent-MobGiantPrincessSpiderAngry = принцесса Ужаса
     .desc =  Создает логово, откладывает яйца, старается не попадаться экипажу на глаза.
     .suffix = пауки ужаса
 
-ent-MobQueenSpider = Королева Ужаса
+ent-MobQueenSpider = королева Ужаса
     .desc =  Создает логово, массово производит пауков, сражается с пауками на передовой, используя свои опасные плевки и крик.
 
-ent-MobGiantQueenSpiderAngry = Королева Ужаса
+ent-MobGiantQueenSpiderAngry = королева Ужаса
     .desc =  Создает логово, массово производит пауков, сражается с пауками на передовой, используя свои опасные плевки и крик.
     .suffix = пауки ужаса
 
-ent-MobHealerSpider = Целитель Ужаса
+ent-MobHealerSpider = целитель Ужаса
     .desc =  оказывает поддержку лечением другим паукам, старается держаться в стороне.
 
-ent-MobGiantHealerSpiderAngry = Целитель Ужаса
+ent-MobGiantHealerSpiderAngry = целитель Ужаса
     .desc =  оказывает поддержку лечением другим паукам, старается держаться в стороне.
     .suffix = пауки ужаса
 
-ent-SpiderWebTerrorRusar = Паутина паука ужаса
+ent-SpiderWebTerrorRusar = паутина паука ужаса
     .desc = УЖАСНО!
     .suffix = пауки ужаса
 
-ent-SpiderWebTerrorDron = Паутина паука ужаса
+ent-SpiderWebTerrorDron = паутина паука ужаса
     .desc = УЖАСНО!
     .suffix = пауки ужаса
 
@@ -109,11 +109,11 @@ ent-TerrorEgg3Tir = яйцо паука ужаса
     .desc = На вид мерзкое.
     .suffix = пауки ужаса
 
-ent-SpiderWebTerrorGuardian = Паутина паука ужаса
+ent-SpiderWebTerrorGuardian = паутина паука ужаса
     .desc = УЖАСНО!
     .suffix = пауки ужаса
 
-ent-SpiderWebPrincess = Паутина паука ужаса
+ent-SpiderWebPrincess = паутина паука ужаса
     .desc = УЖАСНО!
     .suffix = пауки ужаса
 
@@ -129,13 +129,13 @@ ent-TerrorEgg1Tir = яйцо паука ужаса
     .desc = На вид мерзкое.
     .suffix = пауки ужаса
 
-ent-SpiderWebTerrorUwU = Паутина паука ужаса
+ent-SpiderWebTerrorUwU = паутина паука ужаса
     .desc = УЖАСНО!
     .suffix = пауки ужаса
 
-ent-LightImplantSpiderRusar = Спавн паутины
+ent-LightImplantSpiderRusar = спавн паутины
 
-ent-ActionSpawnSpiderRusar = Спавн паутины
+ent-ActionSpawnSpiderRusar = спавн паутины
     .desc = спанит паутину. Немного крепче обычной.
 
 ent-TerrorRavAcid = плевок ужаса ЭМИ

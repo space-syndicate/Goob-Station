@@ -1,45 +1,45 @@
-ent-ResearchStamp = Исследовательский Штамп
+ent-ResearchStamp = исследовательский Штамп
     .desc = Похоже на очень умную печать, на её уголке можно заметить маленький значок с монтировкой, поднятой рукой вверх.
     .suffix = Felix, Singularity
 stamp-component-stamped-name-research = Исследовательские проекты «НИИМАГ»
 
-ent-FederationStamp = Федеративный Штамп
+ent-FederationStamp = федеративный Штамп
     .desc = Выглядит как капиталистический злобный штамп, лучше не доверяйте ему свои деньги...
     .suffix = Felix, Elysium_Prime
 stamp-component-stamped-name-federation = Административное Управление Федерации
 
-ent-SpaceMilitaryStamp = Федеративный Военный Штамп
+ent-SpaceMilitaryStamp = федеративный Военный Штамп
     .desc = Выглядит очень крепко, похоже, с такой вещью можно идти в бой за Федерацию.
     .suffix = Felix, Elysium_Prime
 stamp-component-stamped-name-spacemilitary = Космические Вооружённые Силы
 
-ent-FBCStamp = Штамп ФБК
+ent-FBCStamp = штамп ФБК
 stamp-component-stamped-name-fbc = Федеральное Бюро Контроля
 
-ent-FinanceStamp = Штамп Министра Финансов
+ent-FinanceStamp = штамп Министра Финансов
 stamp-component-stamped-name-finance = Председатель Финансов
 
-ent-JudgeStamp = Штамп Судьи
+ent-JudgeStamp = штамп Судьи
 stamp-component-stamped-name-judge = Судья
 
-ent-ElysiumLawyerStamp = Штамп коллегии Юристов
+ent-ElysiumLawyerStamp = штамп коллегии Юристов
 stamp-component-stamped-name-elysiumlawyer = Юридическое Бюро
 
-ent-PoliceCaptainStamp = Штамп Капитана
+ent-PoliceCaptainStamp = штамп Капитана
 stamp-component-stamped-name-policecpt = Капитан Полицейского Управления
 
-ent-PoliceCriminalistStamp = Штамп Криминалиста
+ent-PoliceCriminalistStamp = штамп Криминалиста
 stamp-component-stamped-name-policecrim = Криминалист
 
-ent-PoliceDetectiveStamp = Штамп Следователя
+ent-PoliceDetectiveStamp = штамп Следователя
 stamp-component-stamped-name-policedet = Следователь
 
-ent-PoliceInspectorStamp = Штамп Инспектора
+ent-PoliceInspectorStamp = штамп Инспектора
 stamp-component-stamped-name-policeinsp = Транспортный Инспектор
 
-ent-PoliceProsecutorStamp = Штамп Прокуратуры
+ent-PoliceProsecutorStamp = штамп Прокуратуры
 stamp-component-stamped-name-prosecutor = Прокурор
 
-ent-SecurityStamp = Штамп Министра Безопасности
+ent-SecurityStamp = штамп Министра Безопасности
 stamp-component-stamped-name-security = Председатель Гос.Безопасности
 

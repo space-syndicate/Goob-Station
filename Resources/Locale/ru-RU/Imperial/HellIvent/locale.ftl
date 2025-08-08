@@ -1,10 +1,10 @@
-ent-Hive = Улей
+ent-Hive = улей
     .desc = Логово монстров.
-ent-PinpointerHive = Детектор Ульев
+ent-PinpointerHive = детектор Ульев
     .desc = Поможет вам найти мерзкие ульи, которые заполонили планету.
-ent-HellBomb = Адская бомба
+ent-HellBomb = адская бомба
     .desc = Она вообще может взорваться?
-ent-AdditionalMission = Образец мутированной личинки 
+ent-AdditionalMission = образец мутированной личинки
     .desc = Замаринованный червяк?
-ent-HellPod = Адская капсула
+ent-HellPod = адская капсула
     .desc = Имеется ли шанс того, что капсула упадёт вам на голову?

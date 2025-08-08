@@ -1,51 +1,51 @@
-ent-MarineCmdACard = Жетон командира "Альфа"
+ent-MarineCmdACard = жеток командира "Альфа"
 
-ent-MarineCmdBCard = Жетон командира "Браво"
+ent-MarineCmdBCard = жеток командира "Браво"
 
-ent-MarineCmdCCard = Жетон командира "Чарли"
+ent-MarineCmdCCard = жеток командира "Чарли"
 
-ent-MarineCmdDCard = Жетон командира "Дельта"
-
-
-ent-MarineACard = Жетон бойца "Альфа"
-
-ent-MarineBCard = Жетон бойца "Браво"
-
-ent-MarineCCard = Жетон бойца "Чарли"
-
-ent-MarineDCard = Жетон бойца "Дельта"
+ent-MarineCmdDCard = жеток командира "Дельта"
 
 
-ent-MedicACard = Жетон медика "Альфа"
+ent-MarineACard = жеток бойца "Альфа"
 
-ent-MedicBCard = Жетон медика "Браво"
+ent-MarineBCard = жеток бойца "Браво"
 
-ent-MedicCCard = Жетон медика "Чарли"
+ent-MarineCCard = жеток бойца "Чарли"
 
-ent-MedicDCard = Жетон медика "Дельта"
-
-
-ent-EngineerACard = Жетон инженера "Альфа"
-
-ent-EngineerBCard = Жетон инженера "Браво"
-
-ent-EngineerCCard = Жетон инженера "Чарли"
-
-ent-EngineerDCard = Жетон инженера "Дельта"
+ent-MarineDCard = жеток бойца "Дельта"
 
 
-ent-MarineCmdOperCard = Жетон Командира Операции
+ent-MedicACard = жеток медика "Альфа"
 
-ent-MarineCmdFieldCard = Жетон Полевого Командира
+ent-MedicBCard = жеток медика "Браво"
+
+ent-MedicCCard = жеток медика "Чарли"
+
+ent-MedicDCard = жеток медика "Дельта"
 
 
-ent-MarinePilotCard = Жетон пилота шаттла
+ent-EngineerACard = жеток инженера "Альфа"
+
+ent-EngineerBCard = жеток инженера "Браво"
+
+ent-EngineerCCard = жеток инженера "Чарли"
+
+ent-EngineerDCard = жеток инженера "Дельта"
 
 
-ent-MarinePilotMechACard = Жетон пилота меха "Альфа"
+ent-MarineCmdOperCard = жеток Командира Операции
 
-ent-MarinePilotMechBCard = Жетон пилота меха "Браво"
+ent-MarineCmdFieldCard = жеток Полевого Командира
 
-ent-MarinePilotMechCCard = Жетон пилота меха "Чарли"
 
-ent-MarinePilotMechDCard = Жетон пилота меха "Дельта"
+ent-MarinePilotCard = жеток пилота шаттла
+
+
+ent-MarinePilotMechACard = жеток пилота меха "Альфа"
+
+ent-MarinePilotMechBCard = жеток пилота меха "Браво"
+
+ent-MarinePilotMechCCard = жеток пилота меха "Чарли"
+
+ent-MarinePilotMechDCard = жеток пилота меха "Дельта"

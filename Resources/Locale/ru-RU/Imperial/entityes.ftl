@@ -1,131 +1,131 @@
-ent-RequestForERT = Запрос на вызов ОБР
+ent-RequestForERT = запрос на вызов ОБР
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-ApplicationForDismissHead = Заявление об увольнении главы отдела
+ent-ApplicationForDismissHead = заявление об увольнении главы отдела
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-Coal15 = Уголь
+ent-Coal15 = уголь
 .desc = Кусок неочищенной руды.
 .suffix = 15
-ent-CrewMonitoringServerFlatpack = Упаковка сервера мониторинга экипажа
+ent-CrewMonitoringServerFlatpack = упаковка сервера мониторинга экипажа
 .desc = Универсально-сборная упаковка, используемая для сборки сервера мониторинга экипажа.
 
-ent-ArrestWarrant = Ордер на арест
+ent-ArrestWarrant = ордер на арест
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
 
-ent-CrewMonitoringComputerFlatpack = Упаковка консоли мониторинга экипажа
+ent-CrewMonitoringComputerFlatpack = упаковка консоли мониторинга экипажа
 .desc = Универсально-сборная упаковка, используемая для сборки консоли мониторинга экипажа.
 
-ent-RequestForAppointmentOfActingHeadOfDepartment = Запрос о назначении ВрИО Главы отдела
+ent-RequestForAppointmentOfActingHeadOfDepartment = запрос о назначении ВрИО Главы отдела
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-SubjectStudyReport = Отчет об изучении предмета
+ent-SubjectStudyReport = ртчет об изучении предмета
 .desc = Распечатанный документ с заголовком отдела: научный отдел
 
-ent-ReportOnTheStationSituation = Отчёт о ситуации на станции
+ent-ReportOnTheStationSituation = ртчёт о ситуации на станции
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-ApplicationForConstructionWork = Заявление на проведение строительных работ
+ent-ApplicationForConstructionWork = заявление на проведение строительных работ
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
 
-ent-Complaint = Жалоба
+ent-Complaint = жалоба
 .desc = Распечатанный документ с заголовком отдела: юридический департамент
 
-ent-EliminationOrder = Приказ о ликвидации
+ent-EliminationOrder = приказ о ликвидации
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
 
-ent-CableTerminalUncuttable = Кабельный терминал
+ent-CableTerminalUncuttable = кабельный терминал
 .desc = На красных кабелях вы видите небольшое предупреждение. "ПОДКЛЮЧИТЬ КРАСНЫМ К АККУМУЛЯТОРУ ДЛЯ ЕГО ЗАРЯДКИ".
 .suffix = Неразрезаемый
-ent-VoluntaryConfession = Явка с повинной
+ent-VoluntaryConfession = явка с повинной
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
 
-ent-SearchWarrant = Ордер на обыск
+ent-SearchWarrant = ордер на обыск
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
 
-ent-InvestigationReport = Отчет о расследовании
+ent-InvestigationReport = отчет о расследовании
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
 
-ent-ApplicationForPDA = Заявление на получение КПК
+ent-ApplicationForPDA = заявление на получение КПК
 .desc = Распечатанный документ с заголовком отдела: командование
 
 ent-CrateCrewMonitoring = ящик мониторинга экипажа
 .desc = Содержит упаковку сервера мониторинга экипажа и несколько консолей мониторинга экипажа. Для открытия необходим доступ "Научный"..
 
-ent-GasPipeSensorDistribution = Датчик газовых труб
+ent-GasPipeSensorDistribution = датчик газовых труб
 .desc = Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
 .suffix = Дистра
-ent-PrintedDocumentReportStation = Утверждённый чертёж цели
+ent-PrintedDocumentReportStation = утверждённый чертёж цели
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
 
-ent-DivorceCertificate = Свидетельство о расторжении брака
+ent-DivorceCertificate = свидетельство о расторжении брака
 .desc = Распечатанный документ с заголовком отдела: сервисный отдел
 
-ent-MedicalPrescription = Лекарственный рецепт
+ent-MedicalPrescription = лекарственный рецепт
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
 
-ent-GasPipeSensorMixedAir = Датчик газовых труб
+ent-GasPipeSensorMixedAir = датчик газовых труб
 .desc = Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
 .suffix = Смешанный
-ent-ParoleRequestForPrisoner = Запрос на УДО для заключенного
+ent-ParoleRequestForPrisoner = запрос на УДО для заключенного
 .desc = Распечатанный документ с заголовком отдела: юридический департамент
 
-ent-ApprovedGoalBlueprint = Отчет о проведении технических работ
+ent-ApprovedGoalBlueprint = отчет о проведении технических работ
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
 
-ent-PosterLegitOppenhopper = Оппенхоппер
+ent-PosterLegitOppenhopper = оппенхоппер
 .desc = Плакат к давно забытому фильму. В нем рассказывается о группе упорных новичков из сектора новичков, которые защищаются от нападений печально известных ядерных оперативников. Слоган гласит: «Ядерные оперативники продолжат до тех пор, пока робастность не повысится».
 
-ent-RequestForCBURN = Запрос на вызов РХБЗЗ
+ent-RequestForCBURN = запрос на вызов РХБЗЗ
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-AccessDeniedOrder = Приказ о лишении доступа
+ent-AccessDeniedOrder = приказ о лишении доступа
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-ReportGoalAchievement = Отчет о выполнении цели
+ent-ReportGoalAchievement = отчёт о выполнении цели
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-ApplicationForPassengerEmployment = Заявление о трудоустройстве пассажира
+ent-ApplicationForPassengerEmployment = заявление о трудоустройстве пассажира
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-ArtifactReport = Отчёт об артефакте
+ent-ArtifactReport = отчёт об артефакте
 .desc = Распечатанный документ с заголовком отдела: научный отдел
 
-ent-GasPipeSensor = Датчик газовых труб
+ent-GasPipeSensor = датчик газовых труб
 .desc = Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
 
-ent-CreatureSapienceRecognition = Признание разумности существа
+ent-CreatureSapienceRecognition = признание разумности существа
 .desc = Распечатанный документ с заголовком отдела: научный отдел
 
-ent-PlayerBorgSyndicateMedicalBattery = Медицинский борг Синдиката
+ent-PlayerBorgSyndicateMedicalBattery = медицинский киборг Синдиката
 .desc = Боевой медицинский киборг. Имеет ограниченный наступательный потенциал, но с лихвой компенсирует его возможностями поддержки.
 .suffix = Батарея, модули, оперативник
-ent-PsychologicalHealthConclusion = Заключение о психологическом здоровье
+ent-PsychologicalHealthConclusion = заключение о психологическом здоровье
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
 
-ent-JudicialProceeding = Судебное производство
+ent-JudicialProceeding = судебное производство
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
 
-ent-RequestForCentCom = Запрос на вызов пЦК
+ent-RequestForCentCom = запрос на вызов пЦК
 .desc = Распечатанный документ с заголовком отдела: командование
 
-ent-ChemicalOrder = Заказ на химические вещества
+ent-ChemicalOrder = заказ на химические вещества
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
 
-ent-AtmosSystemReport = Отчет о работе системы АТМОС
+ent-AtmosSystemReport = отчёт о работе системы АТМОС
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
 
-ent-InternalAffairsAgentReport = Отчёт Регионального Фронтир Инспектора
+ent-InternalAffairsAgentReport = отчёт Регионального Фронтир Инспектора
 .desc = Распечатанный документ с заголовком отдела: юридический департамент
 
-ent-GasPipeSensorTEGCold = Датчик газовых труб
+ent-GasPipeSensorTEGCold = датчик газовых труб
 .desc = Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
 .suffix = ТЭГ (холодный цикл)
-ent-CrewSRPViolationReport = Заявление о нарушении СРП членом экипажа
+ent-CrewSRPViolationReport = заявление о нарушении СРП членом экипажа
 .desc = Распечатанный документ с заголовком отдела: юридический департамент
-ent-CertificationOfQualificationUpgrade = Сертификат о повышении квалификации
+ent-CertificationOfQualificationUpgrade = сертификат о повышении квалификации
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-RequestForBonus = Запрос на выдачу премии
+ent-RequestForBonus = запрос на выдачу премии
 .desc = Распечатанный документ с заголовком отдела: командование
 ent-CableHVUncuttable = ВВ кабель
 .desc = Оранжевый высоковольтный кабель.
@@ -133,82 +133,82 @@ ent-CableHVUncuttable = ВВ кабель
 ent-CableMVUncuttable = СВ кабель
 .desc = Средневольтный кабель.
 .suffix = Неразрезаемый
-ent-PermissionToCarryEquipment = Разрешение на ношение снаряжения
+ent-PermissionToCarryEquipment = разрешение на ношение снаряжения
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-DischargeSummary = Выписной эпикриз
+ent-DischargeSummary = выписной эпикриз
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
-ent-BuildingPermit = Разрешение на строительство
+ent-BuildingPermit = разрешение на строительство
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
-ent-PresentRandomCoal = Подарок
+ent-PresentRandomCoal = подарок
 .desc = Маленькая коробочка с невероятными сюрпризами внутри.
-.suffix = Уголь
-ent-DutyOrder = Приказ о дежурствах
+.suffix = уголь
+ent-DutyOrder = приказ о дежурствах
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
-ent-Coal5 = Уголь
+ent-Coal5 = уголь
 .desc = Кусок неочищенной руды.
 .suffix = 5
-ent-EuthanasiaRequest = Запрос на проведение эвтаназии
+ent-EuthanasiaRequest = запрос на проведение эвтаназии
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
-ent-PowerSystemReport = Отчет о работе системы электроснабжения
+ent-PowerSystemReport = отчёт о работе системы электроснабжения
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
-ent-BorgModuleAdvancedTreatmentSyndicate = Продвинутый лечащий модуль
-.desc = Технология, дающая боргу новые способности.
-ent-Zipties10 = Кабельные стяжки
+ent-BorgModuleAdvancedTreatmentSyndicate = продвинутый лечащий модуль
+.desc = Технология, дающая киборгу новые способности.
+ent-Zipties10 = кабельные стяжки
 .desc = Прочные одноразовые пластиковые кабельные стяжки, идеально подходящие для сдерживания буйных заключенных.
 .suffix = 10, стяжки
-ent-WeaponOrder = Заказ оружия
+ent-WeaponOrder = заказ оружия
 .desc = Распечатанный документ с заголовком отдела: отдел снабжения
-ent-GasPipeSensorWaste = Датчик газовых труб
+ent-GasPipeSensorWaste = датчик газовых труб
 .desc = Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
 .suffix = Вейст (отходы)
-ent-RequestForAppointmentOfActingCaptain = Запрос о назначении ВрИО Капитана
+ent-RequestForAppointmentOfActingCaptain = запрос о назначении ВрИО Капитана
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-MarriageCertificate = Свидетельство о заключении брака
+ent-MarriageCertificate = свидетельство о заключении брака
 .desc = Распечатанный документ с заголовком отдела: сервисный отдел
-ent-ApplicationForIDCard = Заявление на получение ID карты
+ent-ApplicationForIDCard = заявление на получение ID карты
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-Order = Заказ
+ent-Order = заказ
 .desc = Распечатанный документ с заголовком отдела: отдел снабжения
-ent-ApplicationForPositionChange = Заявление о смене должности
+ent-ApplicationForPositionChange = заявление о смене должности
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-BorgChassisSecurity = Охранный борг
+ent-BorgChassisSecurity = охранный киборг
 .desc = Гибрид человека и машины, помогающий в работе станции. Им нравится, когда их просят излагать свои законы снова и снова.
-ent-GasPipeSensorTEGHot = Датчик газовых труб
+ent-GasPipeSensorTEGHot = датчик газовых труб
 .desc = Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
 .suffix = ТЭГ (горячий цикл)
-ent-DeathCertificate = Свидетельство о смерти
+ent-DeathCertificate = свидетельство о смерти
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
-ent-SearchOrder = Постановление о розыске
+ent-SearchOrder = постановление о розыске
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
-ent-OrderCreateProduct = Заказ на производство продукта
+ent-OrderCreateProduct = заказ на производство продукта
 .desc = Распечатанный документ с заголовком отдела: научный отдел
-ent-InterrogationReport = Отчёт о допросе
+ent-InterrogationReport = отчёт о допросе
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
-ent-AccessIncreaseOrder = Ордер на повышение доступа
+ent-AccessIncreaseOrder = ордер на повышение доступа
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-DangerousSkillsTrainingRequest = Запрос на обучение потенциально опасным навыкам
+ent-DangerousSkillsTrainingRequest = запрос на обучение потенциально опасным навыкам
 .desc = Распечатанный документ с заголовком отдела: сервисный отдел
-ent-Coal10 = Уголь
+ent-Coal10 = уголь
 .desc = Кусок неочищенной руды.
 .suffix = 10
-ent-TrackerImplantInstallationOrder = Постановление об установке импланта Трекер
+ent-TrackerImplantInstallationOrder = постановление об установке импланта Трекер
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
-ent-PlayerBorgSyndicateMedicalGhostRole = Медицинский борг Синдиката
+ent-PlayerBorgSyndicateMedicalGhostRole = Медицинский киборг Синдиката
 .desc = Боевой медицинский киборг. Имеет ограниченный наступательный потенциал, но с лихвой компенсирует его возможностями поддержки.
 .suffix = Гост роль
 ent-CableApcExtensionUncuttable = НВ кабель
 .desc = Кабель, используемый для подключения устройств к ЛКП.
 .suffix = Несрезаемый
-ent-RepairWorkRequest = Запрос на проведение ремонтных работ
+ent-RepairWorkRequest = запрос на проведение ремонтных работ
 .desc = Распечатанный документ с заголовком отдела: инженерный отдел
 ent-WeaponCarryingPermit = Разрешение на ношение оружия
 .desc = Распечатанный документ с заголовком отдела: служба безопасности
-ent-DismissalOrder = Приказ об увольнении
+ent-DismissalOrder = приказ об увольнении
 .desc = Распечатанный документ с заголовком отдела: командование
-ent-FloraTreeChristmas03 = Рождественская ель
+ent-FloraTreeChristmas03 = рождественская ель
 .desc = Да, это дерево.
 .suffix = Подарки
-ent-RequestForPharmaceuticalProduction = Запрос на производство лекарственных препаратов
+ent-RequestForPharmaceuticalProduction = запрос на производство лекарственных препаратов
 .desc = Распечатанный документ с заголовком отдела: медицинский отдел
-ent-FinalExamReport = Отчёт о проведении итогового зачёта
+ent-FinalExamReport = отчёт о проведении итогового зачёта
 .desc = Распечатанный документ с заголовком отдела: служба безопасности

@@ -1,9 +1,9 @@
-﻿ent-ERTLeaderEVAPresetAlternative = Лидер ОБР
+﻿ent-ERTLeaderEVAPresetAlternative = лидер ОБР
 
-ent-ERTMedicEVAPresetAlternative = Медик ОБР
+ent-ERTMedicEVAPresetAlternative = медик ОБР
 
-ent-ERTSecurityEVAPresetAlternative = Боец ОБР
+ent-ERTSecurityEVAPresetAlternative = боец ОБР
 
-ent-ERTEngineerEVAPresetAlternative = Инженер ОБР
+ent-ERTEngineerEVAPresetAlternative = инженер ОБР
 
-ent-ERTJanitorEVAPresetAlternative = Уборщик ОБР
+ent-ERTJanitorEVAPresetAlternative = уборщик ОБР

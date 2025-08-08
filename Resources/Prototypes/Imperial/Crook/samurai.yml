@@ -175,6 +175,18 @@
   parent: MobHuman
   id: SpaceSamurai
   components:
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0
+    damageRecovery:
+      types:
+        Asphyxiation: 0
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0
+        Heat: 0
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
@@ -207,29 +219,15 @@
     - DeathAcidifierImplant
     - FreedomImplant
     - ScramImplant
-    - EmpImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
 
 - type: entity
   name: Space Samurai
   suffix: Ghost, Crook, Samurai
-  parent: MobHuman
+  parent: SpaceSamurai
   id: SpaceSamuraiGhostRole
   components:
-  - type: TypingIndicator
-    proto: syndibot
-  - type: Speech
-    speechSounds: SyndieBorg
-    allowedEmotes:
-    - Laugh
-  - type: Hunger
-    baseDecayRate: 0
-  - type: Thirst
-    baseDecayRate: 0
-  - type: Vocal
-    sounds:
-      Unsexed: UnisexSiliconSyndicate
   - type: GhostRole
     name: ghost-role-information-space-samurai-name
     description: ghost-role-information-space-samurai-description
@@ -237,25 +235,3 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-    nameSegments:
-    - NamesNinjaTitle
-    - NamesNinja
-  - type: Sprite
-    netsync: false
-    sprite: Markers/jobs.rsi
-    state: ertleadereva
-  - type: Loadout
-    prototypes: [ SpaceSamuraiGear ]
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: SpaceNinja
-  - type: AutoImplant
-    implants:
-    - DeathAcidifierImplant
-    - FreedomImplant
-    - ScramImplant
-    - EmpImplant
-  - type: RandomHumanoidAppearance
-    randomizeName: false

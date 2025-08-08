@@ -1,10 +1,10 @@
 ent-BaseHealingItem = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
     .suffix = { "" }
-ent-Bloodpack = Пакет с кровью
+ent-Bloodpack = пакет с кровью
     .desc = Содержит инновационный универсальный заменитель крови, созданный передовой медицинской наукой Nanotrasen.
     .suffix = { "" }
-ent-Bloodpack10Lingering = Пакет с кровью
+ent-Bloodpack10Lingering = пакет с кровью
     .desc = Содержит инновационный универсальный заменитель крови, созданный передовой медицинской наукой Nanotrasen.
     .suffix = Борги, 10
 ent-Ointment = мазь
@@ -127,7 +127,7 @@ ent-SyringeSaline = шприц физраствора
 ent-PillCharcoal = таблетка угля
     .desc = { ent-Pill.desc }
 
-ent-HealingToolbox = Лечащий набор инструментов
+ent-HealingToolbox = лечащий набор инструментов
     .desc = Мощный набор инструментов, наполненный мощной энергией. Он может залечить ваши раны и наполнить вас убийственным намерением.
     .suffix = НЕ МАППИТЬ!
 

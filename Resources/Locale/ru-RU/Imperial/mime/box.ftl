@@ -1,4 +1,4 @@
-ent-BoxMime = Мимская коробка
+ent-BoxMime = мимская коробка
     .desc = Полосатая коробка.
     .suffix = { "" }
 ent-BoxSurvivalMime = { ent-BoxMime }

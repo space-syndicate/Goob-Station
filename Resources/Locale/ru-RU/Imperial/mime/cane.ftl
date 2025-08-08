@@ -1,4 +1,4 @@
-ent-MimeCane = Полосатая трость
+ent-MimeCane = полосатая трость
     .desc = Полосатая трость.
     .suffix = { "" }
 ent-WeaponShotgunMimeCane = { ent-MimeCane }

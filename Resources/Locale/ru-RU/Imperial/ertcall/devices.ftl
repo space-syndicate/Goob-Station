@@ -1,15 +1,15 @@
 ent-DeadSquadPDA = КПК эскадрона смерти
     .desc = Пахнет геноцидом
-ent-DeadSquadIDCard = id карта эскадрона смерти
+ent-DeadSquadIDCard = ID карта эскадрона смерти
     .desc = Стильная чёрная карта
 
 ent-PDAMedicalERT = КПК медика ОБР
     .desc = Кажется, будто он пережил многочисленные бои.
 
-ent-ClothingEyesExperimentalVisionDeathSquad = Очки экспериментального зрения эскадрона смерти
+ent-ClothingEyesExperimentalVisionDeathSquad = очки экспериментального зрения эскадрона смерти
     .desc = Засекреченная технология НТ, позволяющая видеть живых (а иногда и не очень) существ через стены. Также увеличивает видимость в темноте
 
-ent-ClothingShoesBootsMagDeathSquad = Магнитные сапоги Эскадрона смерти
+ent-ClothingShoesBootsMagDeathSquad = магнитные сапоги Эскадрона смерти
     .desc = Улучшенная версия продвинутых магнитных сапог. За счет стабилизации движения двигаться становиться легче
 
 ent-WeaponPulseRifleDeathSquad = импульсная винтовка

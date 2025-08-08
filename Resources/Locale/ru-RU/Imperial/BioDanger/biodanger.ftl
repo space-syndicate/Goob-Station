@@ -1,7 +1,7 @@
 infection-infect-succes = Заражение успешно
 infection-infect-fail = Провал заражения. Попробуйте еще раз.
 infection-infect-no = Уже заражен
-ent-MobBioDanger = Вирус
+ent-MobBioDanger = вирус
     .desc = Plague inc онлайн
     .suffix = НЕ СПАВНИТЬ ВРУЧНУЮ НИГДЕ
 infection-infect-immune = Имеет иммунитет

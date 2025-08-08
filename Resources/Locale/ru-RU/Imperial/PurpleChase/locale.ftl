@@ -1,55 +1,55 @@
-ent-VlPCBackpack = Рюкзак
+ent-VlPCBackpack = рюкзак
     .desc = Рюкзак работников корпорации Purple Chase. Пахнет алкоголем.
 
-ent-VlPCDuffel = Вещмешок
+ent-VlPCDuffel = вещмешок
     .desc = Вещмешок работников корпорации Purple Chase. Внутри пахнет различными духами.
 
-ent-VlPCSatchel = Сумка
+ent-VlPCSatchel = сумка
     .desc = Сумка работников корпорации Purple Chase. Для модниц и модников.
 
-ent-VlPCUniformOne = Женская униформа
+ent-VlPCUniformOne = женская униформа
     .desc = Стандартная одежда работниц Purple Chase.
 
-ent-VlPCUniformTwo = Женская униформа
+ent-VlPCUniformTwo = женская униформа
     .desc = Стандартная одежда работниц Purple Chase.
 
-ent-VlPCUniformThree = Униформа
+ent-VlPCUniformThree = униформа
     .desc = Стандартная одежда сотрудников Purple Chase.
 
-ent-VlPCKey = Ключ шифрования Purple Chase
+ent-VlPCKey = ключ шифрования Purple Chase
     .desc = Стандартный ключ шифрования.
 
-ent-VlPCHeadSet = Гарнитура PurpleChase
+ent-VlPCHeadSet = гарнитура PurpleChase
     .desc = Стандартная гарнитура заводил.
 
-ent-VlPCFlowerOne = Пурпурный цветок
+ent-VlPCFlowerOne = пурпурный цветок
     .desc = Для скрытых в душе бунтарок.
 
-ent-VlPCFlowerTwo = Нежный цветок
+ent-VlPCFlowerTwo = нежный цветок
     .desc = Для ванильных красавиц.
 
-ent-VlPCBeret = Берет
+ent-VlPCBeret = берет
     .desc = Для дисциплинированных дебоширов.
 
-ent-VlPCCap = Кепка
+ent-VlPCCap = кепка
     .desc = Кепка стандартных работников PurpleChase.
 
-ent-VlPCBoots = Кроссовки
+ent-VlPCBoots = кроссовки
     .desc = Стильные кроссовки работников PurpleChase.
 
-ent-VlPCGloves = Нежные перчатки
+ent-VlPCGloves = нежные перчатки
     .desc = Подходят для работы с ювелирными изделиями.
 
-ent-VlPCPoyas = Охранный пояс
+ent-VlPCPoyas = охранный пояс
     .desc = Пояс охранников PurpleChase.
 
 ent-VlPCWebbing = РПС Purple Chase
     .desc = РПС бойцов корпорации Purple Chase.
 
-ent-VlPCGlassesOne = Охранные очки Purple Chase
+ent-VlPCGlassesOne = охранные очки Purple Chase
     .desc = Охранные очки корпорации Purple Chase со встроенным визором.
 
-ent-VlPCGlassesTwo = Барные очки PurpleChase
+ent-VlPCGlassesTwo = барные очки PurpleChase
     .desc = Барные очки корпорации Purple Chase со встроенным визором жажды.
 
 ent-VlPCard = ID карта Purple Chase
@@ -58,7 +58,7 @@ ent-VlPCard = ID карта Purple Chase
 ent-VlPPDA = КПК Purple Chase
     .desc = КПК работников Purple Chase. Пропитан алкоголем, как он вообще работает?..
 
-ent-VlPArmor = Бронежилет Purple Chase
+ent-VlPArmor = бронежилет Purple Chase
     .desc = На ощуп эластичен. На воротнике имеется надпись "Сделано по заказу S-o.N.A AI Dynamics".
 
 ent-VlPCPosterOne = Purple Chase | Новые напитки!

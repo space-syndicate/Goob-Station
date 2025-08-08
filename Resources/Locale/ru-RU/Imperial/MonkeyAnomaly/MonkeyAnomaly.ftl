@@ -1,7 +1,7 @@
 ent-AnomalyMonkey = { ent-BaseAnomaly }
     .suffix = Монке
     .desc = { ent-BaseAnomaly.desc }
-ent-MobGigaMonkeyAnomaly = Гига-обезьяна
+ent-MobGigaMonkeyAnomaly = гига-обезьяна
     .desc = Люди произошли от нас. На вкус они как свинина, а убивать их весело и приятно.
     .suffix = Люти пон
 ent-MobMonkeyAnomaly = обезьяна

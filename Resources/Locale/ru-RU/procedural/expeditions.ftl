@@ -22,7 +22,7 @@ salvage-expedition-difficulty-Hazardous = Высокая
 salvage-expedition-difficulty-Extreme = Экстремальная
 salvage-expedition-not-all-present = Не все утилизаторы вернулись на борт шаттла!
 salvage-expedition-announcement-countdown-minutes =
-    До окончания экспедиции осталась { $duration } { $duration ->
+    До окончания экспедиции осталось { $duration } { $duration ->
         [one] минута
         [few] минуты
        *[other] минут

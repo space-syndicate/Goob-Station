@@ -1,4 +1,4 @@
-ent-ModsuitFab = Фабрикатор Р.И.Г-ов
+ent-ModsuitFab = фабрикатор Р.И.Г-ов
     .desc = Используется для фабрикации Р.И.Г-ов
 research-technology-operative-modsuits = Оперативные Р.И.Г-и
 research-advanced-modsuits = Продвинутые Р.И.Г-и

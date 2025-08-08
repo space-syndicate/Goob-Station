@@ -776,13 +776,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalSlam
+          collection: GlassBreak
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -876,7 +876,7 @@
   - type: Sprite
     sprite: Imperial/Felix/Objects/Misc/Lights/BigLights.rsi
     snapCardinals: true
-    drawdepth: Objects
+    drawdepth: Overdoors
     noRot: true
     layers:
     - state: broken
@@ -894,7 +894,7 @@
   - type: Sprite
     sprite: Imperial/Felix/Objects/Misc/Lights/BigLights.rsi
     snapCardinals: true
-    drawdepth: Objects
+    drawdepth: Overdoors
     noRot: true
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -924,7 +924,7 @@
   - type: Sprite
     sprite: Imperial/Felix/Objects/Misc/Lights/MiniLights.rsi
     snapCardinals: true
-    drawdepth: Objects
+    drawdepth: Overdoors
     offset: 0,0.4
     noRot: true
     layers:
@@ -949,7 +949,7 @@
   - type: Sprite
     sprite: Imperial/Felix/Objects/Misc/Lights/MiniLights.rsi
     snapCardinals: true
-    drawdepth: Objects
+    drawdepth: Overdoors
     offset: 0,0.2
     noRot: true
     layers:
@@ -964,7 +964,7 @@
   - type: Sprite
     sprite: Imperial/Felix/Objects/Misc/Lights/MiniLights.rsi
     snapCardinals: true
-    drawdepth: Objects
+    drawdepth: Overdoors
     offset: 0,0.2
     noRot: true
     layers:
@@ -1246,6 +1246,15 @@
   suffix: ElysiumPrime
   description: This monument was erected to honor those who died in some important event.
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-0.5,0.8,0.1"
+        density: 1000
+        layer:
+        - WallLayer
   - type: Sprite
     noRot: true
     sprite: Imperial/Felix/Objects/Structures/Monuments/RMK.rsi
@@ -1266,6 +1275,17 @@
     drawdepth: Overdoors
   - type: Physics
     bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-1,1.5,-0.3"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: Destructible
     thresholds:
     - trigger:
@@ -1286,6 +1306,17 @@
   name: car
   suffix: ElysiumPrime
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1,0.8,-0.3"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: Sprite
     sprite: Imperial/Felix/Objects/Structures/vehicles.rsi
     layers:
@@ -1305,7 +1336,7 @@
     drawdepth: Overdoors
 
 - type: entity
-  parent: FelixBrokenMachineCarBase
+  parent: FelixBrokenMachineCar1
   id: FelixBrokenMachineCar3
   name: car
   suffix: ElysiumPrime
@@ -1329,7 +1360,7 @@
     drawdepth: Overdoors
 
 - type: entity
-  parent: FelixBrokenMachineCarBase
+  parent: FelixBrokenMachineCar1
   id: FelixBrokenMachineCar5
   name: car
   suffix: ElysiumPrime
@@ -1353,7 +1384,7 @@
     drawdepth: Overdoors
 
 - type: entity
-  parent: FelixBrokenMachineCarBase
+  parent: FelixBrokenMachineCar1
   id: FelixBrokenMachineCar7
   name: car
   suffix: ElysiumPrime
@@ -1393,6 +1424,17 @@
   name: car
   suffix: ElysiumPrime
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.9,-1,1.9,-0.3"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: Sprite
     sprite: Imperial/Felix/Objects/Structures/vehicles3.rsi
     layers:
@@ -1400,7 +1442,7 @@
     drawdepth: Overdoors
 
 - type: entity
-  parent: FelixBrokenMachineCarBase
+  parent: FelixBrokenMachineCar10
   id: FelixBrokenMachineCar11
   name: car
   suffix: ElysiumPrime

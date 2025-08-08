@@ -1,4 +1,4 @@
-ent-DroneImperial = Дрон
+ent-DroneImperial = дрон
     .desc = Дрон техосблуживания, кажется ему нет до вас дела.
     .suffix = { "" }
 

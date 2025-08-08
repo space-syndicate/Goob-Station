@@ -1,4 +1,4 @@
-ent-AmeController = Контроллер ДАМ
+ent-AmeController = контроллер ДАМ
     .desc = Это контроллер для двигателя антиматерии.
     .suffix = { "" }
 ent-AmeControllerUnanchored = { ent-AmeController }

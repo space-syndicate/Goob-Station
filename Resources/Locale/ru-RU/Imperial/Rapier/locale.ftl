@@ -1,10 +1,10 @@
 uplink-rapier-name = Рапира Синдиката
 uplink-rapier-desc = Идеальное оружие ближнего боя, способно отражать пули и лазеры. Игнорирует броню. В комплекте идут удобные ножны которые можно закрепить на поясе
 
-ent-SyndieRapier = Рапира Синдиката
+ent-SyndieRapier = рапира Синдиката
     .desc = Верный спутник агентов синдиката, игнорирует броню
-ent-ClothingBeltSheathRapier = Ножны рапиры
+ent-ClothingBeltSheathRapier = ножны рапиры
     .desc = Ножны рапиры синдиката
-ent-ClothingBeltSheathRapierFilled = Ножны рапиры
+ent-ClothingBeltSheathRapierFilled = ножны рапиры
     .desc = Ножны рапиры синдиката
     .suffix = Заполненные

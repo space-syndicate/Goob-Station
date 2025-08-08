@@ -1,10 +1,10 @@
-﻿ent-HandHeldAtmosAlertsMonitor =  Портативная консоль атмосферных угроз
+﻿ent-HandHeldAtmosAlertsMonitor =  портативная консоль атмосферных угроз
     .desc = Отображает состояние системы АТМОС на станции.
     .suffix = Заряжена
 ent-HandHeldAtmosAlertsMonitorEmpty = {ent-HandHeldAtmosAlertsMonitor}
     .desc = {ent-HandHeldAtmosAlertsMonitor.desc}
     .suffix = Пустая
-ent-HandHeldSecurityMonitor = Портативная консоль криминальных записей
+ent-HandHeldSecurityMonitor = портативная консоль криминальных записей
     .desc = Компактная версия монитора для учета преступлений.
     .suffix = НЕ МАППИТЬ, Заряжена
 ent-HandHeldSecurityMonitorEmpty = {ent-HandHeldSecurityMonitor}

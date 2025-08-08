@@ -1,4 +1,4 @@
-ent-BriefcaseMime = Молчаливый чемодан
+ent-BriefcaseMime = молчаливый чемодан
     .desc = Полосатый чемоданчик.
     .suffix = { "" }
 ent-BriefcaseSyndieMime = { ent-BriefcaseMime }

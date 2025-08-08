@@ -1,41 +1,41 @@
-ent-HorrorMobChyd = Поглощённое чудище
+ent-HorrorMobChyd = поглощённое чудище
     .desc = Чудище из иного измерения, которое было поглощено алой порчей.
 
-ent-HorrorMobGylOne = Гуль
+ent-HorrorMobGylOne = гуль
     .desc = Ранее он был человеком, но теперь его разум навсегда поглощён алой порчей.
 
-ent-HorrorMobGylTwo = Гуль
+ent-HorrorMobGylTwo = гуль
     .desc = Ранее он был человеком, но теперь его разум навсегда поглощён алой порчей.
 
-ent-HorrorMobGylThree = Гуль
+ent-HorrorMobGylThree = гуль
     .desc = Ранее он был человеком, но теперь его разум навсегда поглощён алой порчей.
 
-ent-HorrorMobBrain = Поработитель
+ent-HorrorMobBrain = поработитель
     .desc = Огромный летающий мозг. Выглядит мерзко.
 
-ent-HorrorMobKnight = Алый Рыцарь
+ent-HorrorMobKnight = алый рыцарь
     .desc = Личная гвардия Алой Розы.
 
-ent-HorrorMobLancer = Багровый Ланцер
+ent-HorrorMobLancer = багровый ланцер
     .desc = Проклятое чудовище, созданное культом Алой Розы.
 
-ent-HorrorRedRose = Алая Роза
+ent-HorrorRedRose = алая Роза
     .desc = Молись.
 
-ent-HorrorMobFrog = Лягушка ночи
+ent-HorrorMobFrog = лягушка ночи
     .desc = Ранее он был животным, но теперь его разум и тело навсегда поглощён тьмой.
 
-ent-HorrorMobMoose = Лось ночи
+ent-HorrorMobMoose = лось ночи
     .desc = Ранее он был животным, но теперь его разум и тело навсегда поглощён тьмой.
 
-ent-HorrorMobHare = Заяц ночи
+ent-HorrorMobHare = заяц ночи
     .desc = Ранее он был животным, но теперь его разум и тело навсегда поглощён тьмой.
 
-ent-HorrorMobDevilBos = Дьявол
+ent-HorrorMobDevilBos = дьявол
     .desc = Это создание пришло, прямиком из глубин твоего сознание, твои самые скверные страхи порождают его..
 
-ent-HorrorMobDevil = Дьявол
+ent-HorrorMobDevil = дьявол
     .desc = Это создание пришло, прямиком из глубин твоего сознание, твои самые скверные страхи порождают его..
 
-ent-HorrorMobFDamn = Чёрт ночи
+ent-HorrorMobFDamn = чёрт ночи
     .desc = Ранее он был животным, но теперь его разум и тело навсегда поглощён тьмой.

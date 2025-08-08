@@ -1,16 +1,16 @@
-ent-ClothingUniformJumpskirtSpecialOfficer = Комбинезон Офицера Специальных Операций
+ent-ClothingUniformJumpskirtSpecialOfficer = комбинезон Офицера Специальных Операций
      .desc = Форма, вселяющая страх в глазах врагов НаноТрайзен.
 
-ent-ClothingShoesBootsJackSpecialOfficer = Сапоги Офицера Специальных Операций
+ent-ClothingShoesBootsJackSpecialOfficer = сапоги Офицера Специальных Операций
      .desc = Сапоги с нано плетением, технология любезно позаимственна у клана паука. На них видна запекшаяся кровь.
 
-ent-ClothingNeckCloakSpecialOfficer = Плащ Офицера Специальных Операций
+ent-ClothingNeckCloakSpecialOfficer = плащ Офицера Специальных Операций
      .desc = Этот черный цвет заставляет твое сердце биться быстрее.
 
-ent-ClothingHeadHatSpecialOfficer = Фуражка Офицера Специальных Операций
+ent-ClothingHeadHatSpecialOfficer = фуражка Офицера Специальных Операций
      .desc = Она внушает вам доверие.
 
-ent-ClothingBeltHolsterSpecialOfficer = Плечевая кобура Офицера Специальных Операций
+ent-ClothingBeltHolsterSpecialOfficer = плечевая кобура Офицера Специальных Операций
      .desc = Специально оборудованная под нужды Офицеров Специальных Операций плечевая кобура.
 
 ent-SpecialOfficerPreset = Офицер Специальных Операций

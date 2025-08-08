@@ -1,4 +1,5 @@
-ent-BorgChassisSelectableSacerdos = Борг
+ent-BorgChassisSelectableSacerdos = киборг
     .desc = Сейчас идёт ивент, чтобы принять в нём участие, нужно выйти в госты. Подробней можно узнать у нас в Discord
+    .suffix = Ивент, Говорит информацию
 
 advertisement-sacerdos-1 = Внимание! Сейчас идёт ивент, чтобы принять в нём участие, нужно выйти в госты. Подробней можно узнать у нас в Discord

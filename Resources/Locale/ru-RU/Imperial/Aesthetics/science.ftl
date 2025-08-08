@@ -1,8 +1,8 @@
-ent-ClothingHeadHelmetScienceMask = Защитная Маска
+ent-ClothingHeadHelmetScienceMask = защитная маска
     .desc = Маска, или, скорей всего, шлем, немного защищающий от взрывов и всего того, что можно встретить в научном отделе.
-ent-ClothingHandsGlovesLatexLong = Длинные Латексные Перчатки
+ent-ClothingHandsGlovesLatexLong = длинные латексные перчатки
     .desc = Очень длинные латексные перчатки.
-ent-ClothingShoesBootsScienceImperial = Продвинутые Ботинки Научного Отдела
+ent-ClothingShoesBootsScienceImperial = продвинутые ботинки Научного отдела
     .desc = Эти ботинки являются продвинутыми сугубо из-за того, что их производитель, дочерняя компания Nanotrasen -- "Northwind Shipping" сделала верх белым, а низ чёрным. Такого еще не было! Мы серьёзно.
-ent-ClothingUniformJumpsuitRDTurtleNeck = Водолазка Научного Руководителя
+ent-ClothingUniformJumpsuitRDTurtleNeck = водолазка Научного Руководителя
     .desc = Альтернативный вариант одежды для тех научных руководителей, что предпочитают иметь как можно меньше общего со своим отделом. Даже в вопросах униформы.

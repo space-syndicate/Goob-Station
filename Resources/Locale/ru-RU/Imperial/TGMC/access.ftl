@@ -1,15 +1,15 @@
-ent-MarineLeader = Лидер отряда
+ent-MarineLeader = лидер отряда
 
-ent-Marinesoldier = Морпех
+ent-Marinesoldier = морпех
 
-ent-MarineMedic = Морпех Медик
+ent-MarineMedic = морпех медик
 
-ent-MarineEngineer = Морпех Инженер
+ent-MarineEngineer = морпех инженер
 
-ent-MarinePilotMech = Пилот меха
+ent-MarinePilotMech = пилот меха
 
-ent-Marinepilot = Пилот шаттла
+ent-Marinepilot = пилот шаттла
 
 ent-MarineComOper = Командир операции
 
-ent-MarineFieldCommander = Полевой командир
+ent-MarineFieldCommander = полевой Командир

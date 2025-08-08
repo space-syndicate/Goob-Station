@@ -1,2 +1,2 @@
-ent-BombSpaceGunsBeacon = Телепортер-бомбы
+ent-BombSpaceGunsBeacon = телепортер бомбы
     .desc = Мгновенно телепортирует бомбу на место активации.

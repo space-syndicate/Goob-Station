@@ -1,4 +1,4 @@
-ent-ModSuitStorageCE = Хранилище Р.И.Г-а
+ent-ModSuitStorageCE = хранилище Р.И.Г-а
     .desc = Хранилище специально для Р.И.Г-а, да всего необходимого для выхода в космос.
     .suffix = Старший Инженер, Модсьют
 ent-ModSuitStorageCapSpace = { ent-ModSuitStorageCE }

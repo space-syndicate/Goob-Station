@@ -1,6 +1,6 @@
-ent-MobIliardGhost = Призрак
+ent-MobIliardGhost = призрак
     .desc = Призрак, но не прозрачный
-ent-MobIliardHead = Летающая голова
+ent-MobIliardHead = летающая голова
     .desc = Интересно она кусается?
 ent-MobIliardMoth = Бог
     .desc = Молись

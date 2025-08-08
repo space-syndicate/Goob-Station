@@ -1,5 +1,5 @@
 # Terminal
-ent-TerminalCT = Терминал контр-террористов
+ent-TerminalCT = терминал контр-террористов
     .desc = Необходим для закупа блюстителей закона.
     .suffix = CS, Пустой
 ent-TerminalCT800 = { ent-TerminalCT }
@@ -12,7 +12,7 @@ ent-TerminalCT6500 = { ent-TerminalCT }
     .desc = { ent-TerminalCT.desc }
     .suffix = CS, 6500
 
-ent-TerminalT = Терминал террористов
+ent-TerminalT = терминал террористов
     .desc = Необходим для закупа нарушителей закона.
     .suffix = CS, Пустой
 ent-TerminalT800 = { ent-TerminalT }
@@ -25,7 +25,7 @@ ent-TerminalT6500 = { ent-TerminalT }
     .desc = { ent-TerminalT.desc }
     .suffix = CS, 6500
 
-ent-TerminalDEBUG = ДЕБАГ терминал
+ent-TerminalDEBUG = терминал террористов и контр-террористов
     .desc = Необходим для закупа АДМЕМОВ.
     .suffix = CS, DEBUG
 

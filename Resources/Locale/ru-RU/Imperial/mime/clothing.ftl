@@ -1,6 +1,6 @@
-ent-ClothingHeadHatBeretBonBon = Озорной берет
+ent-ClothingHeadHatBeretBonBon = озорной берет
     .desc = Берет, любимый головной убор творцов.
     .suffix = { "" }
-ent-ClothingNeckShawlRed = Красный нашейный платок
+ent-ClothingNeckShawlRed = красный нашейный платок
     .desc = Красивый платок.
     .suffix = { "" }

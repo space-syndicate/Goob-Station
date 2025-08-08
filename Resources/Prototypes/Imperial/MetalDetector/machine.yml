@@ -197,8 +197,8 @@
   completetime: 8
   materials:
     Plasma: 100
-    Steel: 150
-    Gold: 10
+    Steel: 200
+    Gold: 50
 
 - type: technology
   id: MetalDetectorTech

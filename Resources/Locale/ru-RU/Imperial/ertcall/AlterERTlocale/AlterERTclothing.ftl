@@ -1,24 +1,24 @@
-﻿ent-ClothingOuterHardsuitERTLeaderAlternative = Скафандр лидера ОБР
+﻿ent-ClothingOuterHardsuitERTLeaderAlternative = скафандр лидера ОБР
     .desc = Защитный скафандр, который носят члены бригады экстренного реагирования.
-ent-ClothingHeadHelmetHardsuitERTLeaderAlternative = Шлем скафандра лидера ОБР
+ent-ClothingHeadHelmetHardsuitERTLeaderAlternative = шлем скафандра лидера ОБР
     .desc = Специальный шлем защитного скафандра, который носят члены бригады экстренного реагирования.
 
-ent-ClothingOuterHardsuitERTMedicalAlternative = Скафандр медика ОБР
+ent-ClothingOuterHardsuitERTMedicalAlternative = скафандр медика ОБР
     .desc = Защитный скафандр, который носят члены бригады экстренного реагирования.
-ent-ClothingHeadHelmetHardsuitERTEngineerAlternative = Шлем скафандра медика ОБР
+ent-ClothingHeadHelmetHardsuitERTEngineerAlternative = шлем скафандра медика ОБР
     .desc = Специальный шлем защитного скафандра, который носят члены бригады экстренного реагирования.
 
-ent-ClothingOuterHardsuitERTEngineerAlternative = Скафандр инженера ОБР
+ent-ClothingOuterHardsuitERTEngineerAlternative = скафандр инженера ОБР
     .desc = Защитный скафандр, который носят члены бригады экстренного реагирования.
-ent-ClothingHeadHelmetHardsuitERTMedicalAlternative = Шлем скафандра инженера ОБР
+ent-ClothingHeadHelmetHardsuitERTMedicalAlternative = шлем скафандра инженера ОБР
     .desc = Специальный шлем защитного скафандра, который носят члены бригады экстренного реагирования.
 
-ent-ClothingOuterHardsuitERTSecurityAlternative = Скафандр офицера безопасности ОБР
+ent-ClothingOuterHardsuitERTSecurityAlternative = скафандр офицера безопасности ОБР
     .desc = Защитный скафандр, который носят члены бригады экстренного реагирования.
-ent-ClothingHeadHelmetHardsuitERTSecurityAlternative = Шлем скафандра офицера безопасности ОБР
+ent-ClothingHeadHelmetHardsuitERTSecurityAlternative = шлем скафандра офицера безопасности ОБР
     .desc = Специальный шлем защитного скафандра, который носят члены бригады экстренного реагирования.
 
-ent-ClothingOuterHardsuitERTJanitorAlternative = Скафандр уборщика ОБР
+ent-ClothingOuterHardsuitERTJanitorAlternative = скафандр уборщика ОБР
     .desc = Защитный скафандр, который носят члены бригады экстренного реагирования.
-ent-ClothingHeadHelmetHardsuitERTJanitorAlternative = Шлем скафандра уборщика ОБР
+ent-ClothingHeadHelmetHardsuitERTJanitorAlternative = шлем скафандра уборщика ОБР
     .desc = Специальный шлем защитного скафандра, который носят члены бригады экстренного реагирования.

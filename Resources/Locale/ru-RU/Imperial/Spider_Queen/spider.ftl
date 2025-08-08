@@ -1,5 +1,5 @@
 ﻿spider-roy-name = Паук улья
-spider-roy-desc = Ваша задача — построить максимально большой улей. Защищайте свою королеву всеми возможными способами. Не позволяйте причинить вред потомству. Экипаж - ваша пища. 
+spider-roy-desc = Ваша задача — построить максимально большой улей. Защищайте свою королеву всеми возможными способами. Не позволяйте причинить вред потомству. Экипаж - ваша пища.
 
 ent-MobSpiderSpaceQueen = королева пауков
     .desc = Он так светится, что выглядит опасным.
@@ -26,42 +26,42 @@ ent-MobSpiderSpaceLittle = паучок
     .suffix = Улей пауков
 
 
-ent-SpiderEggHunter = Яйцо паука охотника
+ent-SpiderEggHunter = яйцо паука охотника
     .desc = Это драгоценный камень? Это яйцо? Оно выглядит дорогим.
     .suffix = Улей пауков
 
-ent-SpiderEggDrone = Яйцо охранного паука
+ent-SpiderEggDrone = яйцо охранного паука
     .desc = Это драгоценный камень? Это яйцо? Оно выглядит дорогим.
     .suffix = Улей пауков
 
-ent-SpiderEggGhost = Яйцо паука призрака
+ent-SpiderEggGhost = яйцо паука призрака
     .desc = Это драгоценный камень? Это яйцо? Оно выглядит дорогим.
     .suffix = Улей пауков
 
-ent-SpiderEggShooter = Яйцо паука стрелка
+ent-SpiderEggShooter = яйцо паука стрелка
     .desc = Это драгоценный камень? Это яйцо? Оно выглядит дорогим.
     .suffix = Улей пауков
 
 
-ent-SpiderWebUsual = Паутина
+ent-SpiderWebUsual = паутина
     .desc = Липкая паутина.. Интересно, откуда она?
     .suffix = Улей пауков
 
-ent-SpiderWebQueen = Королевская паутина
+ent-SpiderWebQueen = королевская паутина
     .desc = Липкая паутина.. Интересно, откуда она?
     .suffix = Улей пауков
 
-ent-SpiderWebAbility = Паутина
+ent-SpiderWebAbility = паутина
     .desc = Липкая паутина.. Интересно, откуда она?
     .suffix = Улей пауков
 
 ent-TableWebSpiders = каркас стены из паутины
     .desc = Очень гладкий и удивительно прочный.
-    .suffix = Улей пауков	
+    .suffix = Улей пауков
 
 ent-FloorTileItemWebSpiders = конструкция из паутины
     .desc = Очень гладкий и удивительно прочный.
-    .suffix = Улей пауков	
+    .suffix = Улей пауков
 
 ent-FloorTileItemWebSpiders2 = конструкция из паутины
     .desc = Очень гладкий и удивительно прочный.
@@ -76,7 +76,7 @@ ent-WallWebDurable = прочная паутинная стена
     .suffix = Улей пауков
 
 ent-EggshellsSpider = скорлупа
-    .desc = Ты ходишь по ней, приятель.	
+    .desc = Ты ходишь по ней, приятель.
     .suffix = Улей пауков
 
 spider-split = Ядовитый плевой
@@ -108,7 +108,7 @@ spider-spawn-wall2 = Создать стену
 spider-spawn-wall3 = Создать прочную стену
 
 ent-ActionSpiderWeb = Пустить паутину
-    .desc = Создаёт паутину, которая замедляет вашу добычу. 
+    .desc = Создаёт паутину, которая замедляет вашу добычу.
 
 
 spider-spawn-smallspider = Выпустить паучат
@@ -121,4 +121,4 @@ spider-spawn-web-queen = Пустить королевскую паутину
 spider-spawn-web-clown = Пустить клоунскую паутину
 spider-spawn-web-desc = Создаёт паутину, которая замедляет вашу добычу.
 
-action-speech-spell-spider = Кссс...!?? 
+action-speech-spell-spider = Кссс...!??
