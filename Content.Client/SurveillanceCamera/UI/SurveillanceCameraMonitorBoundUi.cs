@@ -35,7 +35,9 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
     {
         base.Open();
 
-        _window = this.CreateWindow<SurveillanceCameraMonitorWindow>();
+        _window = new SurveillanceCameraMonitorWindow(Owner);
+        _window.OpenCentered();
+        _window.OnClose += Close;
 
         _window.CameraSelected += OnCameraSelected;
         _window.SubnetOpened += OnSubnetRequest;
@@ -86,7 +88,7 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
 
         if (active == null)
         {
-            _window.UpdateState(null, cast.Subnets, cast.ActiveAddress, cast.ActiveSubnet, cast.Cameras);
+            _window.UpdateState(null, cast.Subnets, cast.ActiveAddress, cast.ActiveSubnet, cast.Cameras, cast.CameraEntityById); // Corvax-Goob
 
             if (_currentCamera != null)
             {
@@ -111,7 +113,7 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
 
             if (EntMan.TryGetComponent<EyeComponent>(active, out var eye))
             {
-                _window.UpdateState(eye.Eye, cast.Subnets, cast.ActiveAddress, cast.ActiveSubnet, cast.Cameras);
+                _window.UpdateState(eye.Eye, cast.Subnets, cast.ActiveAddress, cast.ActiveSubnet, cast.Cameras, cast.CameraEntityById); // Corvax-Goob
             }
         }
     }

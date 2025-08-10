@@ -570,7 +570,24 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
             return;
         }
 
-        var state = new SurveillanceCameraMonitorUiState(GetNetEntity(monitor.ActiveCamera), monitor.KnownSubnets.Keys.ToHashSet(), monitor.ActiveCameraAddress, monitor.ActiveSubnet, monitor.KnownCameras);
+        // Corvax-Goob-New-Camera End
+        var camerasById = new Dictionary<string, NetEntity>();
+
+        if (monitor.ActiveCamera is { Valid: true } activeCamera)
+        {
+            var deviceNet = _deviceNetworkSystem.GetDeviceNetForDevice(activeCamera, null);
+            if (deviceNet != null)
+            {
+                foreach (var knownCameraId in monitor.KnownCameras.Keys)
+                {
+                    camerasById.Add(knownCameraId, GetNetEntity(deviceNet.Devices[knownCameraId].Owner));
+                }
+            }
+        }
+
+        var state = new SurveillanceCameraMonitorUiState(GetNetEntity(monitor.ActiveCamera), monitor.KnownSubnets.Keys.ToHashSet(), monitor.ActiveCameraAddress, monitor.ActiveSubnet, monitor.KnownCameras, camerasById);
+        // Corvax-Goob-New-Camera End
+
         _userInterface.SetUiState(uid, SurveillanceCameraMonitorUiKey.Key, state);
     }
 }

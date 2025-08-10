@@ -29,13 +29,17 @@ public sealed class SurveillanceCameraMonitorUiState : BoundUserInterfaceState
     // Known cameras, by address and name.
     public Dictionary<string, string> Cameras { get; }
 
-    public SurveillanceCameraMonitorUiState(NetEntity? activeCamera, HashSet<string> subnets, string activeAddress, string activeSubnet, Dictionary<string, string> cameras)
+    // Все известные камеры, только возвращает NetEntity вместо имени камеры
+    public Dictionary<string, NetEntity> CameraEntityById { get; } // Corvax-Goob-New-Camera
+
+    public SurveillanceCameraMonitorUiState(NetEntity? activeCamera, HashSet<string> subnets, string activeAddress, string activeSubnet, Dictionary<string, string> cameras, Dictionary<string, NetEntity> camerasById)
     {
         ActiveCamera = activeCamera;
         Subnets = subnets;
         ActiveAddress = activeAddress;
         ActiveSubnet = activeSubnet;
         Cameras = cameras;
+        CameraEntityById = camerasById; // Corvax-Goob-New-Camera
     }
 }
 
