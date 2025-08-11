@@ -11,6 +11,9 @@
       "name": "broken"
     },
     {
+      "name": "icon_lathe"
+    },
+    {
       "name": "panel",
       "directions": 4
     },
