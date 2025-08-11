@@ -24,9 +24,9 @@ ent-ActionActivateDnaScramblerImplant = Перемешать ДНК
     .desc = Меняет ваше имя и внешность случайным образом.
 ent-ActionToggleSuitPiece = Переключить элементы костюма
     .desc = Не забудьте экипировать важные части костюма, прежде чем приступать к действиям.
-ent-ActionCombatModeToggle = [color=red]Боевой режим[/color]
+ent-ActionCombatModeToggle =  [color=red]Боевой режим[/color]
     .desc = Войти в боевой режим
-ent-ActionCombatModeToggleOff = [color=red]Боевой режим[/color]
+ent-ActionCombatModeToggleOff =  [color=red]Боевой режим[/color]
     .desc = Войти в боевой режим
 ent-ActionChangeVoiceMask = Изменить имя
     .desc = Измените имя, которое все слышат, на другое.
@@ -52,5 +52,7 @@ ent-ActionToggleEyes = Открыть/закрыть глаза
     .desc = Закройте глаза, чтобы защитить их, или откройте, чтобы насладиться яркими цветами.
 ent-ActionToggleWagging = Махать хвостом
     .desc = Начать/перестать махать хвостом.
-ent-FakeMindShieldToggleAction = [color=green]Переключить фальшивый Щит разума[/color]
+ent-ActionToggleRootable = action-name-toggle-rootable
+    .desc = action-description-toggle-rootable
+ent-FakeMindShieldToggleAction =  [color=green]Переключить фальшивый Щит разума[/color]
     .desc = Переключить трансляцию фальшивого Щита разума
