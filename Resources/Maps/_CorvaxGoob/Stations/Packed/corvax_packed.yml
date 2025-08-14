@@ -4,8 +4,8 @@ meta:
   engineVersion: 260.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/14/2025 12:01:27
-  entityCount: 16358
+  time: 08/14/2025 15:50:37
+  entityCount: 16360
 maps:
 - 126
 grids:
@@ -40919,101 +40919,6 @@ entities:
     - type: Transform
       pos: 55.5,-3.5
       parent: 2
-- proto: ChairOfficeLight
-  entities:
-  - uid: 16053
-    components:
-    - type: Transform
-      pos: 44.570923,28.533401
-      parent: 2
-  - uid: 94000
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 11.5,-34.5
-      parent: 2
-  - uid: 109010
-    components:
-    - type: Transform
-      pos: 79.5,-6.5
-      parent: 2
-  - uid: 116850
-    components:
-    - type: Transform
-      pos: 33.03796,42.691933
-      parent: 2
-  - uid: 135850
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 33.00671,40.63985
-      parent: 2
-  - uid: 506800
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 50.5,-4.5
-      parent: 2
-  - uid: 506900
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 53.5,-4.5
-      parent: 2
-  - uid: 522700
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 81.5,-6.5
-      parent: 2
-  - uid: 700800
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 62.517727,24.605852
-      parent: 2
-  - uid: 707500
-    components:
-    - type: Transform
-      pos: 44.5,3.5
-      parent: 2
-  - uid: 785900
-    components:
-    - type: Transform
-      pos: 71.5,-19.495005
-      parent: 2
-- proto: ChairFoldingSpawnFolded
-  entities:
-  - uid: 1475
-    components:
-    - type: Transform
-      pos: 34.514446,-20.35144
-      parent: 2
-  - uid: 3412
-    components:
-    - type: Transform
-      pos: 55.60609,28.7576
-      parent: 2
-  - uid: 5326
-    components:
-    - type: Transform
-      pos: 53.074486,44.676968
-      parent: 2
-- proto: ChairMeat
-  entities:
-  - uid: 13071
-    components:
-    - type: Transform
-      pos: 6.5,-12.5
-      parent: 2
-- proto: ChairPilotSeat
-  entities:
-  - uid: 4971
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 27.5,47.5
-      parent: 2
 - proto: ChairOfficeDark
   entities:
   - uid: 1535
@@ -41305,6 +41210,101 @@ entities:
     components:
     - type: Transform
       pos: 55.011047,38.559963
+      parent: 2
+- proto: ChairFoldingSpawnFolded
+  entities:
+  - uid: 1475
+    components:
+    - type: Transform
+      pos: 34.514446,-20.35144
+      parent: 2
+  - uid: 3412
+    components:
+    - type: Transform
+      pos: 55.60609,28.7576
+      parent: 2
+  - uid: 5326
+    components:
+    - type: Transform
+      pos: 53.074486,44.676968
+      parent: 2
+- proto: ChairMeat
+  entities:
+  - uid: 13071
+    components:
+    - type: Transform
+      pos: 6.5,-12.5
+      parent: 2
+- proto: ChairPilotSeat
+  entities:
+  - uid: 4971
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 27.5,47.5
+      parent: 2
+- proto: ChairOfficeLight
+  entities:
+  - uid: 16053
+    components:
+    - type: Transform
+      pos: 44.570923,28.533401
+      parent: 2
+  - uid: 94000
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,-34.5
+      parent: 2
+  - uid: 109010
+    components:
+    - type: Transform
+      pos: 79.5,-6.5
+      parent: 2
+  - uid: 116850
+    components:
+    - type: Transform
+      pos: 33.03796,42.691933
+      parent: 2
+  - uid: 135850
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.00671,40.63985
+      parent: 2
+  - uid: 506800
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 50.5,-4.5
+      parent: 2
+  - uid: 506900
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 53.5,-4.5
+      parent: 2
+  - uid: 522700
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 81.5,-6.5
+      parent: 2
+  - uid: 700800
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 62.517727,24.605852
+      parent: 2
+  - uid: 707500
+    components:
+    - type: Transform
+      pos: 44.5,3.5
+      parent: 2
+  - uid: 785900
+    components:
+    - type: Transform
+      pos: 71.5,-19.495005
       parent: 2
 - proto: ChairWood
   entities:
@@ -42578,6 +42578,12 @@ entities:
     components:
     - type: Transform
       pos: 60.704792,-4.228134
+      parent: 2
+  - uid: 6808
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 65.67225,-4.6010556
       parent: 2
 - proto: ClothingMaskClown
   entities:
@@ -44556,7 +44562,7 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -63144.438
+      secondsUntilStateChange: -63225.473
       state: Closing
 - proto: CurtainsWhite
   entities:
@@ -50179,7 +50185,7 @@ entities:
       pos: 26.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -110438.23
+      secondsUntilStateChange: -110519.266
       state: Closing
   - uid: 9362
     components:
@@ -76945,6 +76951,13 @@ entities:
     - type: Transform
       pos: 44.5,-37.5
       parent: 2
+- proto: NitrousOxideTankFilled
+  entities:
+  - uid: 5203
+    components:
+    - type: Transform
+      pos: 65.375374,-4.5073056
+      parent: 2
 - proto: NTDefaultCircuitBoard
   entities:
   - uid: 14281
@@ -77009,6 +77022,13 @@ entities:
     components:
     - type: Transform
       pos: 0.9116068,-28.500423
+      parent: 2
+- proto: OxygenAndNitrousOxideCanister
+  entities:
+  - uid: 10073
+    components:
+    - type: Transform
+      pos: 66.5,-3.5
       parent: 2
 - proto: OxygenCanister
   entities:
@@ -84423,10 +84443,10 @@ entities:
       parent: 2
 - proto: Retractor
   entities:
-  - uid: 6808
+  - uid: 16305
     components:
     - type: Transform
-      pos: 66.55991,-3.281434
+      pos: 67.48475,-3.6166806
       parent: 2
 - proto: RevolverCapGun
   entities:
@@ -84545,10 +84565,10 @@ entities:
     - type: Transform
       pos: 52.58589,8.339501
       parent: 2
-  - uid: 10073
+  - uid: 16304
     components:
     - type: Transform
-      pos: 66.473175,-3.547059
+      pos: 67.4535,-3.7729306
       parent: 2
 - proto: ScienceTechFab
   entities:
@@ -91051,11 +91071,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,-11.5
       parent: 2
-  - uid: 5203
-    components:
-    - type: Transform
-      pos: 66.5,-3.5
-      parent: 2
   - uid: 5224
     components:
     - type: Transform
@@ -92710,7 +92725,7 @@ entities:
   - uid: 12180
     components:
     - type: MetaData
-      desc: Переключает конвейер и переработчик мусора. 
+      desc: Переключает конвейер и переработчик мусора.
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 9.5,33.5
@@ -92748,7 +92763,7 @@ entities:
   - uid: 16158
     components:
     - type: MetaData
-      desc: Переключает конвейер и переработчик мусора. 
+      desc: Переключает конвейер и переработчик мусора.
     - type: Transform
       pos: -2.5,-23.5
       parent: 2
