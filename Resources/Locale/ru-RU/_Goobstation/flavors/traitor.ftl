@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 traitor-arc-intro = Вы — террорист ARC.
-traitor-arc-goal = Существа этого мира должны быть освобождены из железной хватки Нанотрейзен, и вы — их единственная надежда!
+traitor-arc-goal = Существа этого мира должны быть освобождены из железной хватки Nanotrasen, и вы — их единственная надежда!
 traitor-arc-allies = Вы можете сотрудничать с другими агентами Синдиката, если они поддерживают нашу цель. Может, получится уговорить агентов Фронта Освобождения Пчёл наконец-то сотрудничать?
 traitor-arc-uplink = Синдикат любезно предоставил вам один из своих аплинков в КПК для выполнения задания.
 traitor-arc-roundend = [color=green]активист из Консорциума по Правам Животных[/color]
@@ -55,7 +55,7 @@ traitor-waffleco-allies = Убивайте сотрудников Donk Co. на 
 traitor-waffleco-uplink = Вам выдали аплинк Синдиката в КПК для выполнения задания.
 traitor-waffleco-roundend = [color=orange]сотрудник Waffle Corporation[/color]
 traitor-waffleco-terrorist-intro = Вы — террорист корпорации Waffle.
-traitor-waffleco-terrorist-goal = Нашим инвесторам нужно доказательство нашей решимости уничтожить Нанотрейзен. Давайте устроим громкое шоу!
+traitor-waffleco-terrorist-goal = Нашим инвесторам нужно доказательство нашей решимости уничтожить Nanotrasen. Давайте устроим громкое шоу!
 traitor-waffleco-terrorist-allies = Большинство агентов Синдиката ненадёжны, кроме мародёров Горлекс.
 traitor-waffleco-terrorist-uplink = Вам выдали аплинк Синдиката в КПК для выполнения задания.
 traitor-waffleco-terrorist-roundend = [color=red]террорист из корпорации Waffle[/color]
