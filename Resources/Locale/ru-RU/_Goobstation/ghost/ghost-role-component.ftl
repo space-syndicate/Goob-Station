@@ -83,5 +83,5 @@ ghost-role-information-loneop-name-token = Одинокий Оперативни
 ghost-role-information-derelict-cyborg-syndicate-name-token = Заброшенный Штурмовой Киборг (Токен)
 ghost-role-information-bingle-name-token = Бингл (Токен)
 blob-carrier-role-name-token = Носитель Блоба (Токен)
-abductor-lone-ghost-role-name-token = Одинокий Похититель (Токен)
+abductor-lone-ghost-role-name-token = Одинокий Абдуктор (Токен)
 roles-wizard-name-token = Волшебник (Токен)

@@ -1,5 +1,6 @@
 # UI
 
+
 ## Window
 
 air-alarm-ui-title = Air Alarm
@@ -40,6 +41,7 @@ air-alarm-ui-mode-panic = Паника
 air-alarm-ui-mode-none = Нет
 
 ## Widgets
+
 
 ### General
 

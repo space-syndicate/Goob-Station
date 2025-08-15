@@ -31,7 +31,7 @@ job-name-highcommander = Офицер Синдиката
 
 job-name-hecu = агент HECU
 job-name-governmentman = The G-Man
-job-name-gman = Г-Мэн
+job-name-gman = G-Man
 
 # Misc
 
@@ -48,7 +48,7 @@ JobNavyOfficer = офицер ЦК
 JobNavyOfficerUndercover = офицер под прикрытием
 JobNavyCaptain = капитан ВКФ
 JobDiplomat = дипломат Нанотрейзен
-JobGovernmentMan = Г-Мэн
+JobGovernmentMan = G-Man
 JobConquest = конквест
 JobInspector = инспектор ЦК
 JobMercenaryCaptain = капитан Наёмников
