@@ -120,7 +120,7 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         return proto.LocalizedName;
     }
-private string LabelMultiple(List<ReagentQuantity> reagents)
+    private string LabelMultiple(List<ReagentQuantity> reagents)
 {
     var names = new List<string>();
 
