@@ -1,11 +1,11 @@
 - type: guideEntry
   id: Devil
-  name: guide-entry-devil # Corvax-Goob-Locale
+  name: "Дьявол" # Corvax-Goob-Locale
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/Devil.xml"
   children:
   - DevilClauses
 
 - type: guideEntry
   id: DevilClauses
-  name: guide-entry-devil-clauses # Corvax-Goob-Locale
+  name: "Пункты соглашений" # Corvax-Goob-Locale
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/DevilClauses.xml"
