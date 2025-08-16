@@ -4,8 +4,8 @@ meta:
   engineVersion: 262.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/16/2025 22:01:30
-  entityCount: 26040
+  time: 08/16/2025 22:16:57
+  entityCount: 26042
 maps:
 - 1
 grids:
@@ -64651,7 +64651,7 @@ entities:
       pos: 24.5,19.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -15225.434
+      secondsUntilStateChange: -15482.834
       state: Closing
     - type: Forensics
       residues: []
@@ -112866,6 +112866,16 @@ entities:
         =============================================
                                     [italic]Место для печатей[/italic]
       editingDisabled: True
+  - uid: 26041
+    components:
+    - type: Transform
+      pos: -41.252308,-34.328453
+      parent: 2
+  - uid: 26042
+    components:
+    - type: Transform
+      pos: -41.252308,-34.328453
+      parent: 2
 - proto: PaperBin10
   entities:
   - uid: 597
