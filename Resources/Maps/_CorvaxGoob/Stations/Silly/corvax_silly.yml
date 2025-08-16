@@ -23284,7 +23284,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -23320,7 +23320,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -23357,7 +23357,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -23393,7 +23393,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -23465,7 +23465,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -23510,7 +23510,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -23557,7 +23557,7 @@ entities:
         8109:
           position: 8,0
           _rotation: South
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         storagebase: !type:Container
           showEnts: False
@@ -23585,7 +23585,7 @@ entities:
         8387:
           position: 0,0
           _rotation: South
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         storagebase: !type:Container
           showEnts: False
@@ -23746,7 +23746,7 @@ entities:
       - food
     - type: Physics
       canCollide: False
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         solution@food: !type:ContainerSlot
           ent: 15
@@ -23797,7 +23797,7 @@ entities:
       - food
     - type: Physics
       canCollide: False
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         solution@food: !type:ContainerSlot
           ent: 11
@@ -24020,7 +24020,7 @@ entities:
       - food
     - type: Physics
       canCollide: False
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         solution@food: !type:ContainerSlot
           ent: 13
@@ -24182,7 +24182,7 @@ entities:
     - type: ToggleableClothing
       clothingUid: 7
       actionEntity: 6
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         toggleable-clothing: !type:ContainerSlot
           showEnts: False
@@ -24535,7 +24535,7 @@ entities:
       - food
     - type: Physics
       canCollide: False
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         solution@food: !type:ContainerSlot
           ent: 9
@@ -25138,7 +25138,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -25175,7 +25175,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -25232,7 +25232,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -25334,7 +25334,7 @@ entities:
     - type: Transform
       pos: -254.5,-366.5
       parent: 1
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -25394,7 +25394,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -30344,7 +30344,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,14.5
       parent: 6325
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         storagebase: !type:Container
           showEnts: False
@@ -30436,7 +30436,7 @@ entities:
         3007:
           position: 3,1
           _rotation: East
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         storagebase: !type:Container
           showEnts: False
@@ -36453,7 +36453,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -36492,7 +36492,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37090,7 +37090,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: ActionsContainer
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         actions: !type:Container
           ents:
@@ -37400,7 +37400,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37444,7 +37444,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37481,7 +37481,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37518,7 +37518,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37602,7 +37602,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37634,7 +37634,7 @@ entities:
     - type: Transform
       pos: 2.5,-29.5
       parent: 2
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37671,7 +37671,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37687,7 +37687,7 @@ entities:
     - type: Transform
       pos: -10.5,-0.5
       parent: 8381
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37727,7 +37727,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37763,7 +37763,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37812,7 +37812,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37891,7 +37891,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37927,7 +37927,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -37997,7 +37997,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -38804,7 +38804,7 @@ entities:
     - type: GasTank
       toggleActionEntity: 23
     - type: ActionsContainer
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         actions: !type:Container
           ents:
@@ -46546,7 +46546,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -58513,7 +58513,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -58552,7 +58552,7 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
@@ -58578,7 +58578,7 @@ entities:
     - type: Transform
       pos: -3.5,16.5
       parent: 2
-    - type: ContainerContainer
+    - type: containerManager
       containers:
         entity_storage: !type:Container
           showEnts: False
