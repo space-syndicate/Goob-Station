@@ -253,7 +253,7 @@ namespace Content.Server.Zombies
             {
                 // Groaning when damaged
                 EnsureComp<EmoteOnDamageComponent>(uid);
-                _emoteOnDamage.AddEmote(uid, 60, "Scream"); // CorvaxGoob : Args changes
+                _emoteOnDamage.AddEmote(uid, "Scream");
 
                 // Random groaning
                 EnsureComp<AutoEmoteComponent>(uid);
@@ -262,7 +262,7 @@ namespace Content.Server.Zombies
             else
             {
                 // Stop groaning when damaged
-                _emoteOnDamage.RemoveEmote(uid, 60, "Scream"); // CorvaxGoob : Args changes
+                _emoteOnDamage.RemoveEmote(uid, "Scream");
 
                 // Stop random groaning
                 _autoEmote.RemoveEmote(uid, "ZombieGroan");
