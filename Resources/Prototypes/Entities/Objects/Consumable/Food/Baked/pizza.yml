@@ -143,6 +143,37 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_meal.yml & food_single.yml
+# Crust
+
+- type: entity
+  name: pizza crust
+  parent: FoodInjectableBase
+  id: FoodPizzaCrust
+  description: Pizza without toppings — just dough with ambition.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+  - type: Food
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: crust
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1.5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Pizza
+    - ReptilianFood
+    - Slice
+
 # Base
 
 - type: entity
@@ -187,6 +218,8 @@
       - oily
       - bread
   - type: Food
+    trash:
+    - FoodPizzaCrust
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
   - type: SolutionContainerManager

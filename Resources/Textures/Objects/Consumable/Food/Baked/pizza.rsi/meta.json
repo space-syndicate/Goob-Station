@@ -259,6 +259,9 @@
     {
       "name": "worldpeas-slice-inhand-left",
       "directions": 4
+    },
+    {
+        "name": "crust"
     }
   ]
 }
