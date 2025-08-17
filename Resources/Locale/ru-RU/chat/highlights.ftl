@@ -36,6 +36,7 @@ highlights-chaplain = Священник, Святоша
 highlights-chef = Шеф, Повар, Кухня
 highlights-clown = Клоун, Клуня, Хонк
 highlights-janitor = Уборщик
+highlights-passenger = Пассажир, Грейтайд
 highlights-lawyer = АВД, Адвокат
 highlights-librarian = Библиотекарь, Библиотека
 highlights-mime = Мим
@@ -47,5 +48,6 @@ highlights-reporter = Репортер, Журналист
 highlights-zookeeper = Зоотехник
 highlights-psychologist = Психолог, Психология
 # Silicon
+highlights-personal-ai = Персональный ИИ, "пИИ"
 highlights-cyborg = Киборг, Борг, Силикон, Закон 2
 highlights-station-ai = Станционный ИИ, "ИИ", "СИИ", Силикон, Закон 2, Закон 3
