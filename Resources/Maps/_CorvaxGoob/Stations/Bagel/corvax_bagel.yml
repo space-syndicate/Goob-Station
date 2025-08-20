@@ -488,8 +488,8 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
-    - type: CorvaxBagel
-      id: Bagel
+    - type: BecomesStation
+      id: CorvaxBagel
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
