@@ -9,7 +9,7 @@
 - type: radioChannel
   id: Nedraconnection
   name: Недра
-  keycode: '%'
+  keycode: '!'
   frequency: 8899
   color: "#ff7e2e"
   longRange: true
@@ -17,7 +17,7 @@
 - type: radioChannel
   id: NedraCMDconnection
   name: Руководство комплекса
-  keycode: '!'
+  keycode: 'ю'
   frequency: 8899
   color: "#CC0000"
   longRange: true
@@ -32,8 +32,16 @@
 
 - type: radioChannel
   id: NedraMTFconnection
-  name: Мобильная Оперативная Группа
+  name: Оперативная Группа
   keycode: 'ж'
   frequency: 8899
   color: "#000099"
+  longRange: true
+
+- type: radioChannel
+  id: NedraAlphaconnection
+  name: Багряная Десница
+  keycode: 'ш'
+  frequency: 8899
+  color: "#AA0000FF"
   longRange: true

@@ -206,11 +206,9 @@
 - type: reaction
   id: ZenStar
   reactants:
-    Karmotrine:
+    BlueFairy:
       amount: 1
     Ice:
-      amount: 1
-    BlueCuracao:
       amount: 1
     SunshineCloud:
       amount: 1

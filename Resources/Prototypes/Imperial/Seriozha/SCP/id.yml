@@ -25,7 +25,7 @@
 - type: entity
   id: SCPAccessConfigurator
   parent: AccessConfigurator
-  name: admemonly
+  name: accesonly
   description: special for engineer seriozha
   suffix: seriozha, Недра
   components:

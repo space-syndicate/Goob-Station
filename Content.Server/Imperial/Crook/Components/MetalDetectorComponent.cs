@@ -2,6 +2,7 @@ using Robust.Shared.Audio;
 using Content.Shared.Imperial.Crook.Visuals;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared.Damage;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Crook.Components
 {
@@ -62,6 +63,10 @@ namespace Content.Server.Imperial.Crook.Components
 
         [DataField("alertSound")]
         public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
+
+        [ViewVariables]
+        [DataField("ignoredPrototypes")]
+        public HashSet<EntProtoId> IgnoredPrototypes = new();
 
         [ViewVariables]
         public bool Powered;

@@ -178,6 +178,12 @@
   - type: Construction
     graph: HudMedSec
     node: medsecHud
+  # Imperial Space Surgery Start
+  - type: Tag
+    tags:
+    - HudMedical
+    - HudSecurity
+  # Imperial Space Surgery End
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]

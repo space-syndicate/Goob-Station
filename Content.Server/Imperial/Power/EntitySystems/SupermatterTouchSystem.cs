@@ -1,15 +1,9 @@
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Physics.Events;
 using Content.Server.Effects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Utility;
-using Content.Shared.Effects;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
@@ -30,32 +24,20 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!EntityManager.HasComponent<MobStateComponent>(other))
                 return;
 
-            var xform = EntityManager.GetComponentOrNull<TransformComponent>(other);
-            if (xform == null)
-                return;
+            var transformComp = Transform(other);
 
-            PlayGibSound(component, xform);
-            ShowColorFlash(component, other);
-            SpawnAshAndDelete(component, xform, other);
+            GibCollidedEntity(component, transformComp, other, uid);
             RaiseLocalEvent(uid, new SupermatterTouchedEvent());
         }
 
-        private void PlayGibSound(SupermatterTouchComponent component, TransformComponent xform)
+        private void GibCollidedEntity(SupermatterTouchComponent supermatterTouchComponent, TransformComponent transformComp, EntityUid entityUid, EntityUid supermatterUid)
         {
-            _audio.PlayPvs(component.GibSound, xform.Coordinates);
-        }
-
-        private void ShowColorFlash(SupermatterTouchComponent component, EntityUid other)
-        {
-            _colorFlash.RaiseEffect(component.FlashColor, new List<EntityUid> { other }, Filter.Pvs(other));
-        }
-
-        private void SpawnAshAndDelete(SupermatterTouchComponent component, TransformComponent xform, EntityUid other)
-        {
-            EntityManager.SpawnEntity(component.AshPrototype, xform.Coordinates);
-            EntityManager.QueueDeleteEntity(other);
+            _audio.PlayPvs(supermatterTouchComponent.GibSound, transformComp.Coordinates);
+            _colorFlash.RaiseEffect(supermatterTouchComponent.FlashColor, [supermatterUid], Filter.Pvs(supermatterUid));
+            EntityManager.QueueDeleteEntity(entityUid);
+            EntityManager.SpawnEntity(supermatterTouchComponent.AshPrototype, transformComp.Coordinates);
         }
     }
 
-    public sealed class SupermatterTouchedEvent : EntityEventArgs {}
+    public sealed class SupermatterTouchedEvent : EntityEventArgs;
 }

@@ -1,35 +1,10 @@
 - type: entity
   name: dual toy sword
-  parent: EnergySword
+  parent: EnergySwordDouble
   id: DualToySword
   components:
-  - type: EnergySword
-  - type: ItemToggle
-    soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
-      params:
-        volume: 3
-    soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
-      params:
-        volume: 3
-  - type: ItemToggleMeleeWeapon
-    activatedSoundOnSwing:
-      path: /Audio/Weapons/eblademiss.ogg
-      params:
-        volume: 3
-        variation: 0.250
-    activatedDamage:
-        types:
-            Blunt: 0
-  - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
-      params:
-        volume: 3
   - type: DisarmMalus
     malus: 0
-  - type: Wieldable
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1.5
@@ -37,29 +12,6 @@
     damage:
       types:
         Blunt: 0
-  - type: Sprite
-    sprite: Objects/Weapons/Melee/e_sword_double.rsi
-    layers:
-      - state: e_sword_double
-      - state: e_sword_double_blade
-        color: "#FFFFFF"
-        visible: false
-        shader: unshaded
-        map: [ "blade" ]
-  - type: Item
-    size: Small
-    sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
-  - type: UseDelay
-    delay: 1
-  - type: ToggleableLightVisuals
-    spriteLayer: blade
-    inhandVisuals:
-      left:
-      - state: inhand-left-blade
-        shader: unshaded
-      right:
-      - state: inhand-right-blade
-        shader: unshaded
   - type: Construction
     graph: DualToySword
     node: DualToySword

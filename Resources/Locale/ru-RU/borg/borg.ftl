@@ -59,3 +59,4 @@ borg-type-security-transponder = Охранный борг
 
 ent-ActionSelectBorgType = Выбрать тип шасси
 ent-ActionViewLaws = Просмотреть законы
+    .desc = Просмотреть законы, которым вы должны следовать.

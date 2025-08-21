@@ -1,5 +1,3 @@
-using Robust.Shared.Localization;
-using System;
 using Content.Server.Imperial.Power.Components;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
@@ -9,75 +7,31 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterRadiationEvent
 {
-    public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
         // Валидация входных параметров
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");
             return;
         }
 
-        if (comp == null)
-        {
-            return;
-        }
+        var currentTime = supermatterSystem.GameTiming.CurTime;
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Radiation;
+        comp.EventEndTime = comp.RadiationEventDuration;
+        comp.NextEventTimer = comp.EventAfterRadiationTime;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
 
-        if (system == null)
-        {
-            return;
-        }
-
-        // Валидация конфигурации компонента
-        if (comp.RadiationEventDuration <= 0)
-        {
-            system.Log.Warning($"SupermatterRadiationEvent.Activate: Invalid RadiationEventDuration: {comp.RadiationEventDuration}");
-            return;
-        }
-
-        if (comp.RadiationMinNextEvent <= 0 || comp.RadiationMaxNextEvent <= 0)
-        {
-            system.Log.Warning($"SupermatterRadiationEvent.Activate: Invalid next event range: min={comp.RadiationMinNextEvent}, max={comp.RadiationMaxNextEvent}");
-            return;
-        }
-
-        if (comp.RadiationMinNextEvent > comp.RadiationMaxNextEvent)
-        {
-            system.Log.Warning($"SupermatterRadiationEvent.Activate: Min next event time greater than max: min={comp.RadiationMinNextEvent}, max={comp.RadiationMaxNextEvent}");
-            return;
-        }
-
-        if (comp.RadiationIntensity <= 0)
-        {
-            system.Log.Warning($"SupermatterRadiationEvent.Activate: Invalid RadiationIntensity: {comp.RadiationIntensity}");
-            return;
-        }
-
-        try
-        {
-            var currentTime = system.GameTiming.CurTime;
-            comp.CurrentEvent = SupermatterEventType.Radiation;
-            comp.EventEndTime = TimeSpan.FromSeconds(comp.RadiationEventDuration);
-            comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.RadiationMinNextEvent, comp.RadiationMaxNextEvent));
-            comp.LastEventEndTimeUpdate = currentTime;
-            comp.LastNextEventTimerUpdate = currentTime;
-
-            // Обработка потенциальных исключений при установке радиации
-            system.SetRadiation(uid, comp.RadiationIntensity);
-        }
-        catch (Exception ex)
-        {
-            system.Log.Error($"SupermatterRadiationEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
-        }
+        supermatterSystem.SetRadiation(uid, comp.RadiationEventIntensity);
     }
 
-    public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
-        // Поддерживаем радиацию на заданном уровне
-        system.SetRadiation(uid, comp.RadiationIntensity);
+        supermatterSystem.SetRadiation(uid, comp.RadiationEventIntensity);
     }
 
-    public string GetAnnouncement()
+    public static string GetAnnouncement()
     {
         return Loc.GetString("supermatter-event-radiation");
     }

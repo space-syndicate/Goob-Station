@@ -1,0 +1,54 @@
+- type: entity
+  name: pulse pistol
+  suffix: seriozha, Недра
+  parent: BaseWeaponBatterySmall
+  id: WeaponAlphaPulsePistol
+  description: A state of the art energy pistol favoured as a sidearm by the NT operatives.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/weapons/alpha1_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/weapons/alpha1_pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: HitscanBatteryAmmoProvider
+    proto: RedHeavyLaserAlpha
+    fireCost: 200
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+
+- type: hitscan
+  id: RedHeavyLaserAlpha
+  damage:
+    types:
+      Heat: 25
+      Radiation: 20
+      Structural: 100
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy

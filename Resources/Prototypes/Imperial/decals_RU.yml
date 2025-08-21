@@ -1,0 +1,265 @@
+- type: decal
+  id: aRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: a_RU
+
+- type: decal
+  id: bRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: b_RU
+
+- type: decal
+  id: ceRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ce_RU
+
+- type: decal
+  id: cheRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: che_RU
+
+- type: decal
+  id: dRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: d_RU
+
+- type: decal
+  id: eRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: e_RU
+
+- type: decal
+  id: fRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: f_RU
+
+- type: decal
+  id: gRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: g_RU
+
+- type: decal
+  id: hardeRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: hard_e_RU
+
+- type: decal
+  id: hardiRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: hard_i_RU
+
+- type: decal
+  id: hardsignRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: hard_sign_RU
+
+- type: decal
+  id: ikratkayaRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: i_kratkaya_RU
+
+- type: decal
+  id: iRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: i_RU
+
+- type: decal
+  id: jeRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: je_RU
+
+- type: decal
+  id: kRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: k_RU
+
+- type: decal
+  id: khRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: kh_RU
+
+- type: decal
+  id: lRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: l_RU
+
+- type: decal
+  id: mRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: m_RU
+
+- type: decal
+  id: nRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: n_RU
+
+- type: decal
+  id: oRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: o_RU
+
+- type: decal
+  id: pRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: p_RU
+
+- type: decal
+  id: rRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: r_RU
+
+- type: decal
+  id: sRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: s_RU
+
+- type: decal
+  id: shaRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: sha_RU
+
+- type: decal
+  id: shyaRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: shya_RU
+
+- type: decal
+  id: softsignRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: soft_sign_RU
+
+- type: decal
+  id: tRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: tRU
+
+- type: decal
+  id: uRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: uRU
+
+- type: decal
+  id: vRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: v_RU
+
+- type: decal
+  id: yaRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ya_RU
+
+- type: decal
+  id: yoRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: yo_RU
+
+- type: decal
+  id: yuRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: yu_RU
+
+- type: decal
+  id: zeRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ze_RU
+
+- type: decal
+  id: citizenRU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals.rsi
+    state: citizen
+
+- type: decal
+  id: Immigrants1RU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals.rsi
+    state: Immigrants1_RU
+
+- type: decal
+  id: Immigrants2RU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals.rsi
+    state: Immigrants2_RU
+
+- type: decal
+  id: ohranajemajaterritorija1RU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals.rsi
+    state: ohranajemaja_territorija1_RU
+
+- type: decal
+  id: ohranajemajaterritorija2RU
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Felix/decals.rsi
+    state: ohranajemaja_territorija2_RU

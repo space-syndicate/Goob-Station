@@ -8,6 +8,60 @@ ent-AirlockElysiumFederationadminLocked = Федеративный шлюз
 ent-AirlockElysiumFederation = Федеративный шлюз
     .desc = Выглядит очень капиталистически.
 
+ent-ShadowGlasses = Стеклянный воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-ShadowGlassesFederation = Стеклянный воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-ShadowGlassesAdmin = Стеклянный воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-ShadowMain = Воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-ShadowMainFederation = Воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-ShadowMainAdmin = Воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-WhiteGlasses = Стеклянный воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-WhiteGlassesFederation = Стеклянный воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-WhiteGlassesAdmin = Стеклянный воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-WhiteMain = Воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-WhiteMainFederation = Воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-WhiteMainAdmin = Воздушный шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+
+ent-ShadowGlassesShuttle = стыковочный шлюз
+    .desc = Новомодный стыковочный шлюз для работы в космосе.
+
+ent-ShadowGlassesFederationShuttle = стыковочный шлюз
+    .desc = Новомодный стыковочный шлюз для работы в космосе.
+
+ent-ShadowGlassesAdminShuttle = стыковочный шлюз
+    .desc = Новомодный стыковочный шлюз для работы в космосе.
+
+ent-WhiteMainGlassShuttle = стыковочный шлюз
+    .desc = Новомодный стыковочный шлюз для работы в космосе.
+
+ent-WhiteMainGlassFederationShuttle = стыковочный шлюз
+    .desc = Новомодный стыковочный шлюз для работы в космосе.
+
+ent-WhiteMainGlassAdminShuttle = стыковочный шлюз
+    .desc = Новомодный стыковочный шлюз для работы в космосе.
+
 ent-DoorElectronicsFederation = микросхема шлюза
     .desc = Выглядит очень капиталистически.
 ent-DoorElectronicsFederationadmin = микросхема шлюза
@@ -60,3 +114,8 @@ ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
 ent-VendingMachineElysiumAdminClothing = АдминистратоМат
 ent-VendingMachineElysiumStampMate = ШтампоМат
 ent-VendingMachineElysiumMaterialMachine = ШарфоМат
+
+ent-ReinforcedWindowShadowElysiumPrime = армированное окно
+    .desc = Смотри не заляпай.
+ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
+    .desc = Смотри не заляпай.

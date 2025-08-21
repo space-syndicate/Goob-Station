@@ -1,5 +1,3 @@
-using Robust.Shared.Localization;
-using System;
 using Content.Server.Imperial.Power.Components;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
@@ -9,53 +7,29 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterNoneEvent
 {
-    public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
-        // Валидация входных параметров
+
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterNoneEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterNoneEvent.Activate: Invalid EntityUid provided");
             return;
         }
 
-        if (comp == null)
-        {
-            return;
-        }
-
-        if (system == null)
-        {
-            return;
-        }
-
-        // Валидация конфигурации компонента
-        if (comp.NoneEventDuration <= 0)
-        {
-            system.Log.Warning($"SupermatterNoneEvent.Activate: Invalid NoneEventDuration: {comp.NoneEventDuration}");
-            return;
-        }
-
-        try
-        {
-            var currentTime = system.GameTiming.CurTime;
-            comp.CurrentEvent = SupermatterEventType.None;
-            comp.EventEndTime = TimeSpan.Zero;
-            comp.NextEventTimer = TimeSpan.FromSeconds(comp.NoneEventDuration);
-            comp.LastEventEndTimeUpdate = currentTime;
-            comp.LastNextEventTimerUpdate = currentTime;
-        }
-        catch (Exception ex)
-        {
-            system.Log.Error($"SupermatterNoneEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
-        }
+        var currentTime = supermatterSystem.GameTiming.CurTime;
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.None;
+        comp.EventEndTime = TimeSpan.Zero;
+        comp.NextEventTimer = comp.NoneEventDuration;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
     }
 
-    public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
-        // None событие не требует обработки во время выполнения
+
     }
 
-    public string GetAnnouncement()
+    public static string GetAnnouncement()
     {
         return Loc.GetString("supermatter-event-none");
     }

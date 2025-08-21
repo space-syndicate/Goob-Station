@@ -26,6 +26,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Nutrition.EntitySystems;
@@ -53,6 +54,7 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly INetManager _netManager = default!; // Imperial Space Bugfix
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -339,6 +341,8 @@ public sealed class FoodSystem : EntitySystem
 
         var dev = new DestructionEventArgs();
         RaiseLocalEvent(food, dev);
+
+        if (_netManager.IsClient) return; // Imperial Space Bugfix
 
         if (component.Trash.Count == 0)
         {

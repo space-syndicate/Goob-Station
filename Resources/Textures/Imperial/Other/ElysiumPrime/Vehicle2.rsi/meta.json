@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Made by Sir_Felix",
+  "size": {
+    "x": 123,
+    "y": 82
+  },
+  "states": [
+    {
+      "name": "car_pileup",
+      "directions": 4
+    }
+  ]
+}

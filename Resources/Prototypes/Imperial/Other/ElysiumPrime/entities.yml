@@ -257,7 +257,306 @@
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Airlocks/federation.rsi
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: ShadowGlasses
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/ShadowGlasses.rsi
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: ShadowGlassesFederation
+  suffix: ElysiumPrime, Structure, Worker
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/ShadowGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: ShadowGlassesAdmin
+  suffix: ElysiumPrime, Structure, Admin
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/ShadowGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  parent: AirlockExternal
+  id: ShadowMain
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/ShadowMain.rsi
+
+- type: entity
+  parent: AirlockExternal
+  id: ShadowMainFederation
+  suffix: ElysiumPrime, Structure, Worker
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/ShadowMain.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  parent: AirlockExternal
+  id: ShadowMainAdmin
+  suffix: ElysiumPrime, Structure, Admin
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/ShadowMain.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: WhiteGlasses
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/WhiteGlasses.rsi
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: WhiteGlassesFederation
+  suffix: ElysiumPrime, Structure, Worker
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/WhiteGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: WhiteGlassesAdmin
+  suffix: ElysiumPrime, Structure, Admin
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/WhiteGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  parent: AirlockExternal
+  id: WhiteMain
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/WhiteMain.rsi
+
+- type: entity
+  parent: AirlockExternal
+  id: WhiteMainFederation
+  suffix: ElysiumPrime, Structure, Worker
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/WhiteMain.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  parent: AirlockExternal
+  id: WhiteMainAdmin
+  suffix: ElysiumPrime, Structure, Admin
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/AirlockPack/WhiteMain.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: ShadowGlassesShuttle
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ShuttleAirlockPack/ShadowGlasses.rsi
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: ShadowGlassesFederationShuttle
+  suffix: ElysiumPrime, Structure, Worker
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ShuttleAirlockPack/ShadowGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: ShadowGlassesAdminShuttle
+  suffix: ElysiumPrime, Structure, Admin
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ShuttleAirlockPack/ShadowGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: WhiteMainGlassShuttle
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ShuttleAirlockPack/WhiteGlasses.rsi
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: WhiteMainGlassFederationShuttle
+  suffix: ElysiumPrime, Structure, Worker
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ShuttleAirlockPack/WhiteGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: WhiteMainGlassAdminShuttle
+  suffix: ElysiumPrime, Structure, Admin
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ShuttleAirlockPack/WhiteGlasses.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
 #Airlocks END
+
+- type: entity
+  id: ReinforcedWindowShadowElysiumPrime
+  name: reinforced window
+  suffix: ElysiumPrime, Structure
+  parent: Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ReinforcedWindowPack/Shadow.rsi
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ReinforcedWindowPack/Shadow.rsi
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 6
+    fx: EffectRCDDeconstruct6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    base: rwindow
+  - type: Construction
+    graph: Window
+    node: reinforcedWindow
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 3
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+
+- type: entity
+  id: ReinforcedWindowWhiteElysiumPrime
+  name: reinforced window
+  suffix: ElysiumPrime, Structure
+  parent: Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ReinforcedWindowPack/White.rsi
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/StarCorps/ReinforcedWindowPack/White.rsi
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 6
+    fx: EffectRCDDeconstruct6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    base: rwindow
+  - type: Construction
+    graph: Window
+    node: reinforcedWindow
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 3
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
 
 #Banners and flags
 - type: entity

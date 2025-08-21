@@ -1,4 +1,3 @@
-using Robust.Shared.GameObjects;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Power.Components
@@ -6,10 +5,14 @@ namespace Content.Server.Imperial.Power.Components
     [RegisterComponent]
     public sealed partial class SupermatterMonitorConsoleComponent : Component
     {
-        // Таймер до следующего пиликанья
-        [DataField]
+        /// <summary>
+        /// Таймер до следующего пиликанья
+        /// </summary>
         public TimeSpan BeepCooldownTimer = TimeSpan.Zero;
-        // Звук пиликанья при низкой целостности
+
+        /// <summary>
+        /// Звук пиликанья при низкой целостности
+        /// </summary>
         [DataField]
         public SoundPathSpecifier BeepSound = new("/Audio/Machines/beep.ogg");
     }

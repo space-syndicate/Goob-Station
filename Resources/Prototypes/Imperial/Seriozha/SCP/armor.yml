@@ -124,3 +124,53 @@
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: GroupExamine
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorSCPAlpha
+  name: scp security suit
+  suffix: seriozha, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/alpha1_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/alpha1_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.25
+        Radiation: 0.0
+        Caustic: 0.0
+        Stamina: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: GroupExamine
+
+- type: entity
+  parent: [ClothingHeadHelmetBase]
+  id: ClothingHeadHelmetSCPAlpha
+  name: scp security helmet
+  suffix: seriozha, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/alpha1_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/alpha1_helmet.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.6
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD

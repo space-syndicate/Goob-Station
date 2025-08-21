@@ -1,0 +1,305 @@
+- type: entity
+  abstract: true
+  parent: MobHuman
+  id: ImperialSCPBasePreset
+  components:
+    - type: NoSlip
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMTF
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ MTFGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMTFCMD
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ MTFCMDGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPAlpha
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ AlphaGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - DeathAcidifierImplant
+      - ScramImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxrana
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDoc
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DocGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDocCMD
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DocCMDGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMAdm
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ ADMGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomHumanoidAppearance
+      enabled: false
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPCI
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ CIGear ]
+
+
+- type: startingGear
+  id: MTFGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteMan
+    back: ClothingBackpackSatchelDSO
+    mask: ProtectiveBalaclava
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHelmetMTF
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorMTF
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponRifleAk
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraMTFconnection
+    - AdvancedFirstAidMedkitImperialFilled
+
+- type: startingGear
+  id: MTFCMDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteMan
+    back: ClothingBackpackSatchelDSO
+    mask: ProtectiveBalaclava
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHelmetMTF
+    neck: USSPMajorPin
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorMTF
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    suitstorage: WeaponRifleAk
+    belt: ClothingBeltSecurityFilled
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraMTFconnection
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MedkitCobmatImperialFilled
+    - DoorRemoteSCP
+
+- type: startingGear
+  id: OxranaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHelmetSCPSecurity
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurity
+    id: SCPIDCardThreeGray
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: CSWeaponP90
+    pocket1: p90-Magazine
+    pocket2: p90-Magazine
+  inhand:
+  - EncryptionKeyNedraconnection
+
+- type: startingGear
+  id: DocGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    back: ClothingBackpackSatchelScience
+    neck: ClothingNeckTieSci
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlasses
+    gloves: ClothingHandsGlovesColorPurple
+    outerClothing: ClothingOuterCoatRnd
+    id: SCPIDCardThree
+    ears: ClothingHeadsetSCPMain
+    belt: BoxFolderClipboard
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+
+- type: startingGear
+  id: DocCMDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    back: ClothingBackpackSatchelScience
+    neck: ClothingNeckTieSci
+    shoes: ClothingShoesBootsLaceup
+    head: ClothingHeadHatBeretRND
+    eyes: ClothingEyesGlasses
+    gloves: ClothingHandsGlovesColorPurple
+    outerClothing: ClothingOuterCoatRD
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    belt: BoxFolderClipboard
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+    - EncryptionKeyNedraCMDconnection
+
+- type: startingGear
+  id: ADMGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCCAgent
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsJackFilled
+    head: AdministrationBeret
+    eyes: ClothingCentComGlassesEmerald
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckDSOMedal
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    belt: BlackShieldPistol
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+    - EncryptionKeyNedraCMDconnection
+
+- type: startingGear
+  id: CIGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackSatchel
+    mask: ClothingMaskGasMerc
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHelmetCI
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCI
+    id: SCPIDCardCI
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponSubMachineGunC20r
+    pocket1: MagazinePistolSubMachineGun
+    pocket2: MagazinePistolSubMachineGun
+  storage:
+    back:
+    - EncryptionKeyRadio1
+    - FirstAidMedkitImperialFilled
+
+- type: startingGear
+  id: AlphaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAlpha
+    back: AlphaBackpack
+    mask: AlphaGasMask
+    shoes: ClothingShoesAlpha
+    head: ClothingHeadHelmetSCPAlpha
+    neck: USSPMajorPin
+    eyes: AlphaVisor
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPAlpha
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    suitstorage: WeaponRifleAk
+    belt: WeaponAlphaPulsePistol
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraAlphaconnection
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MedkitCobmatImperialFilled
+    - MedkitCobmatImperialFilled
+    - DoorRemoteSCPAll

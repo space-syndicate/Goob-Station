@@ -1,0 +1,110 @@
+{
+"version": 1,
+    "license": "CC0-1.0",
+    "copyright": "sprite made by @onionsenpai, PR made by @bobrpupsik",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "a_RU"
+        },
+        {
+            "name": "b_RU"
+        },
+        {
+            "name": "ce_RU"
+        },
+        {
+            "name": "che_RU"
+        },
+        {
+            "name": "d_RU"
+        },
+        {
+            "name": "e_RU"
+        },
+        {
+            "name": "f_RU"
+        },
+        {
+            "name": "g_RU"
+        },
+        {
+            "name": "hard_e_RU"
+        },
+        {
+            "name": "hard_i_RU"
+        },
+        {
+            "name": "hard_sign_RU"
+        },
+        {
+            "name": "i_kratkaya_RU"
+        },
+        {
+            "name": "i_RU"
+        },
+        {
+            "name": "je_RU"
+        },
+        {
+            "name": "k_RU"
+        },
+        {
+            "name": "kh_RU"
+        },
+        {
+            "name": "l_RU"
+        },
+        {
+            "name": "m_RU"
+        },
+        {
+            "name": "n_RU"
+        },
+        {
+            "name": "o_RU"
+        },
+        {
+            "name": "p_RU"
+        },
+        {
+            "name": "r_RU"
+        },
+        {
+            "name": "s_RU"
+        },
+        {
+            "name": "sha_RU"
+        },
+        {
+            "name": "shya_RU"
+        },
+        {
+            "name": "soft_sign_RU"
+        },
+        {
+            "name": "t_RU"
+        },
+        {
+            "name": "u_RU"
+        },
+        {
+            "name": "v_RU"
+        },
+        {
+            "name": "ya_RU"
+        },
+        {
+            "name": "yo_RU"
+        },
+        {
+            "name": "yu_RU"
+        },
+        {
+            "name": "ze_RU"
+        }
+    ]
+}

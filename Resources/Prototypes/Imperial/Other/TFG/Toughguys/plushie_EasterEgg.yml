@@ -133,5 +133,5 @@
     sprite: Objects/Misc/pens.rsi
     state: pen_centcom_gift
   - type: Item
-    sprite: Objects\Misc/pens.rsi
+    sprite: Objects/Misc/pens.rsi
     heldPrefix: gift_pen_centcom

@@ -1,25 +1,19 @@
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Examine;
-using Robust.Shared.Map;
-using Robust.Shared.Utility;
 using System.Linq;
-using Robust.Shared.GameObjects;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Atmos;
 using Robust.Shared.Random;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using System;
-using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
     public sealed class SupermatterMonitorConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly SharedTransformSystem _xforms = default!;
-        [Dependency] private readonly AtmosphereSystem _atmos = default!;
+        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly AtmosphereSystem _atmosSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -31,66 +25,62 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!args.IsInDetailsRange)
                 return;
 
-            // Найти ближайший кристалл суперматерии
             var nearestUid = FindNearestSupermatter(uid);
-            if (nearestUid != null && EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
-            {
-                // Цвет по уровню прочности
-                var percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
-                var color = percent > 0.75f ? "green" : percent > 0.25f ? "yellow" : "red";
-                var integrityPrefix = Loc.GetString("supermatter-monitor-integrity-prefix");
-                var integrityText = $"{integrityPrefix} {nearest.Integrity:0} / {nearest.MaxIntegrity:0}";
-                args.PushMarkup($"[color={color}]{integrityText}[/color]\n");
-                // Пиликанье при низкой прочности
-                if (percent <= 0.25f)
-                {
-                    _audio.PlayPvs(component.BeepSound, uid);
-                }
-                // Получаем атмосферу вокруг кристалла
-                var smXform = Transform(nearestUid.Value);
-                var gas = _atmos.GetContainingMixture((nearestUid.Value, smXform));
-                if (gas != null)
-                {
-                    var atmosPrefix = Loc.GetString("supermatter-monitor-atmos-prefix");
-                    var pressure = gas.Pressure.ToString("0.0");
-                    var temperature = gas.Temperature.ToString("0.0");
-                    args.PushMarkup($"{atmosPrefix} pressure {pressure} kPa, temperature {temperature} K\n");
-                }
-                // Примерное время до следующего всплеска
-                if (EntityManager.TryGetComponent<SupermatterEventComponent>(nearestUid.Value, out var events))
-                {
-                    var nextEventPrefix = Loc.GetString("supermatter-monitor-next-event-prefix");
-                    var next = events.NextEventTimer.TotalSeconds;
-                    var approx = Math.Max(0, next + _random.Next(-60, 61));
-                    var minutes = (int)Math.Round(approx / 60.0);
-                    args.PushMarkup($"{nextEventPrefix} {minutes} min.\n");
-                }
-            }
-            else
+            if (nearestUid == null || !TryComp(nearestUid, out SupermatterIntegrityComponent? nearest))
             {
                 args.PushMarkup(Loc.GetString("supermatter-monitor-none-nearby"));
+                return;
             }
+
+            var (integrityPercent, level) = CalculateIntegrity(nearest);
+            var integrity = (int)Math.Round(integrityPercent);
+
+            args.PushMarkup(Loc.GetString("supermatter-monitor-integrity",
+                ("integrity", integrity),
+                ("color", level.Color)));
+
+            var transComp = Transform(nearestUid.Value);
+            var gas = _atmosSystem.GetContainingMixture((nearestUid.Value, transComp));
+            if (gas != null)
+            {
+                var pressure = (int)Math.Round(gas.Pressure);
+                var temperature = (int)Math.Round(gas.Temperature);
+                args.PushMarkup(Loc.GetString("supermatter-monitor-atmospherics",
+                    ("pressure", pressure),
+                    ("temperature", temperature)));
+            }
+
+            if (!EntityManager.TryGetComponent<SupermatterEventComponent>(nearestUid.Value, out var events))
+                return;
+
+            var next = events.NextEventTimer.TotalSeconds;
+            var approx = Math.Max(0, next + _random.Next(-60, 61));
+            var minutes = (int)Math.Round(approx / 60.0);
+            args.PushMarkup(Loc.GetString("supermatter-monitor-next-event", ("minutes", minutes)));
         }
 
         private EntityUid? FindNearestSupermatter(EntityUid consoleUid)
         {
-            var xform = Transform(consoleUid);
-            var mapId = xform.MapID;
-            var pos = _xforms.GetMapCoordinates(xform).Position;
+            var transformCompConsole = Transform(consoleUid);
+            var mapId = transformCompConsole.MapID;
+            var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
+
             EntityUid? nearest = null;
             var minDist = float.MaxValue;
+
             var smEnumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
-            while (smEnumerator.MoveNext(out var smUid, out var sm, out var smXform))
+            while (smEnumerator.MoveNext(out var smUid, out _, out var transComp))
             {
-                if (smXform.MapID != mapId)
+                if (transComp.MapID != mapId)
                     continue;
-                var smPos = _xforms.GetMapCoordinates(smUid).Position;
+
+                var smPos = _transformSystem.GetMapCoordinates(smUid).Position;
                 var dist = (smPos - pos).LengthSquared();
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    nearest = smUid;
-                }
+                if (dist > minDist)
+                    continue;
+
+                minDist = dist;
+                nearest = smUid;
             }
             return nearest;
         }
@@ -98,33 +88,43 @@ namespace Content.Server.Imperial.Power.EntitySystems
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
             var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
-            while (enumerator.MoveNext(out var uid, out var console, out var xform))
+            while (enumerator.MoveNext(out var uid, out var console, out _))
             {
-                // Найти ближайший кристалл суперматерии
                 var nearestUid = FindNearestSupermatter(uid);
-                if (nearestUid != null && EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
+                if (nearestUid == null ||
+                    !EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
                 {
-                    var percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
-                    if (percent <= 0.25f)
-                    {
-                        console.BeepCooldownTimer -= TimeSpan.FromSeconds(frameTime);
-                        if (console.BeepCooldownTimer <= TimeSpan.Zero)
-                        {
-                            _audio.PlayPvs(console.BeepSound, uid);
-                            console.BeepCooldownTimer = TimeSpan.FromSeconds(2);
-                        }
-                    }
-                    else
-                    {
-                        console.BeepCooldownTimer = TimeSpan.Zero;
-                    }
+                    console.BeepCooldownTimer = TimeSpan.Zero;
+                    continue;
                 }
-                else
+
+                var (integrityPercent, level) = CalculateIntegrity(nearest);
+                var integrity = (int)Math.Round(integrityPercent);
+
+                if (integrity >= nearest.SupermatterIntegrity.Min().Threshold)
                 {
                     console.BeepCooldownTimer = TimeSpan.Zero;
                 }
+                else
+                {
+                    console.BeepCooldownTimer -= TimeSpan.FromSeconds(frameTime);
+                    if (console.BeepCooldownTimer > TimeSpan.Zero)
+                        continue;
+
+                    _audioSystem.PlayPvs(console.BeepSound, uid);
+                    console.BeepCooldownTimer = TimeSpan.FromSeconds(2);
+                }
             }
+        }
+
+        private static (float integrity, (float Threshold, Color Color, LocId Description, LocId Warning, bool Flag) integrityLevel)
+            CalculateIntegrity(SupermatterIntegrityComponent component)
+        {
+            var integrity = component.Integrity / component.MaxIntegrity * 100f;
+            var integrityLevel = component.SupermatterIntegrity.First(entry => integrity > entry.Threshold);
+            return (integrity, integrityLevel);
         }
     }
 }

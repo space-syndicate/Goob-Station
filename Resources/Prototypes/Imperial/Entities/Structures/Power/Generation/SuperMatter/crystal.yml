@@ -56,35 +56,10 @@
     - type: Damageable
       damageContainer: Structural
     - type: SupermatterIntegrity
-      integrity: 100
-      maxIntegrity: 100
       tickDamage:
         types:
           Blunt: 0.65
-      catastropheThreshold: 0
-      emitterHealAmount: 0.35  # Количество здоровья за выстрел эмиттера
     - type: SupermatterEvent
-      initialEventDelaySeconds: 800.0  # ~13 минут до первого ивента
-      consoleCacheLifetime: 10.0       # 10 секунд время жизни кэша консоли
-      # Настройки событий
-      noneEventDuration: 300.0         # 5 минут для None события
-      lightningEventDuration: 120.0    # 2 минуты для Lightning события
-      lightningCooldownDuration: 8.0   # 8 секунд кулдаун для молний
-      lightningSpawnDuration: 1.0      # 1 секунда для спавна молнии
-      lightningMinNextEvent: 180.0     # 3 минуты минимальное время до следующего события
-      lightningMaxNextEvent: 420.0     # 7 минут максимальное время до следующего события
-      radiationEventDuration: 120.0    # 2 минуты для Radiation события
-      radiationIntensity: 10.0         # Интенсивность радиации во время события
-      radiationMinNextEvent: 180.0     # 3 минуты минимальное время до следующего события
-      radiationMaxNextEvent: 420.0     # 7 минут максимальное время до следующего события
-      plasmaEventDuration: 120.0       # 2 минуты для Plasma события
-      plasmaMinNextEvent: 180.0        # 3 минуты минимальное время до следующего события
-      plasmaMaxNextEvent: 420.0        # 7 минут максимальное время до следующего события
-      plasmaTickInterval: 10.0         # 10 секунд интервал для генерации плазмы
-      plasmaMolesAmount: 5.0           # Количество молей плазмы и кислорода для генерации
-      plasmaHotspotTemperature: 1500.0 # Температура хотспота плазмы
-      plasmaHotspotVolume: 50.0        # Объем хотспота плазмы
-      defaultRadiationIntensity: 5.0   # Интенсивность радиации по умолчанию
     - type: GuideHelp
       guides:
       - SupermatterEngine

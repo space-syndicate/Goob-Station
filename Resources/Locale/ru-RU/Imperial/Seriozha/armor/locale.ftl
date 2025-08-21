@@ -16,3 +16,7 @@ ent-ClothingHeadHelmetSCPSecurity = шлем охраны
 ent-ClothingOuterArmorSCPSecurity = броня охраны
     .desc = Базовая экипировка
     .suffix = seriozha, недра
+ent-ClothingOuterArmorSCPAlpha = Багряная броня
+    .desc = Предназначено исключительно для элитных спец подразделений Недр
+ent-ClothingHeadHelmetSCPAlpha = Багряный шлем
+    .desc = Предназначено исключительно для элитных спец подразделений Недр

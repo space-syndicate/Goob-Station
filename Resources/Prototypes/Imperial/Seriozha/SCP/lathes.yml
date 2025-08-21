@@ -1,0 +1,53 @@
+- type: latheRecipePack
+  id: NedraTechFab
+  recipes:
+  - p90-Magazine
+  - MagazinePistolSubMachineGun
+  - MagazineLightRifle
+  - ClothingOuterArmorSCPSecurity
+  - ClothingHeadHelmetSCPSecurity
+  - DoorRemoteSCP
+  - EncryptionKeyNedraconnection
+
+# Weapons
+
+# Ammo
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: p90-Magazine
+  result: p90-Magazine
+  materials:
+    Steel: 300
+
+# Armor
+- type: latheRecipe
+  id: ClothingOuterArmorSCPSecurity
+  result: ClothingOuterArmorSCPSecurity
+  completetime: 21
+  materials:
+    Steel: 1500
+
+- type: latheRecipe
+  id: ClothingHeadHelmetSCPSecurity
+  result: ClothingHeadHelmetSCPSecurity
+  completetime: 14
+  materials:
+    Steel: 500
+
+#Other
+- type: latheRecipe
+  id: DoorRemoteSCP
+  result: DoorRemoteSCP
+  completetime: 7
+  materials:
+    Steel: 400
+    Plastic: 400
+    Silver: 130
+
+- type: latheRecipe
+  id: EncryptionKeyNedraconnection
+  result: EncryptionKeyNedraconnection
+  completetime: 2
+  materials:
+    Steel: 300
+    Plastic: 100

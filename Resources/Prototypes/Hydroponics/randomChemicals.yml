@@ -2,7 +2,7 @@
   id: RandomPickBotanyReagent
   fills:
   - quantity: 5
-    weight: 0.5
+    weight: 0.4 # Imperial Botany Nerf 0.5 --> 0.4
     reagents:
     - Omnizine
     - Nocturine
@@ -10,8 +10,16 @@
     - Honk
     - BuzzochloricBees
     - Stimulants
+    # Imperial Botany New Reagents start
+    - Thrivenin
+    - Tessine
+    - Ambrosia
+    - Tazinide
+    - Ichor
+    - Rororium
+    # Imperial Botany New Reagents end
   - quantity: 5
-    weight: 1
+    weight: 0.8 # Imperial Botany Nerf 1 --> 0.8
     reagents:
     - Cognizine
     - Toxin
@@ -31,6 +39,13 @@
     - ChangelingSting
     - CogChamp
     - JuiceThatMakesYouWeh
+    # Imperial Botany New Reagents start
+    - Laughter
+    - StrangeReagent
+    - Citaloporam
+    - Fresium
+    - Coffee
+    # Imperial Botany New Reagents end
   - quantity: 5
     weight: 2
     reagents:

@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseItem
+  id: RemoteSignallerElysiumPrime
+  suffix: ElysiumPrime, Other
+  name: remote signaller ElysiumPrime
+  description: A handheld device used for remotely sending signals to objects within a small radius of about 20000 meters.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/RemoteSignaller.rsi
+    state: icon
+  - type: Signaller
+  - type: UseDelay
+  - type: DeviceLinkSource
+    ports:
+      - Pressed
+  - type: Tag
+    tags:
+    - Payload
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 20000
+  - type: StaticPrice
+    price: 40

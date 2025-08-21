@@ -1,0 +1,131 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]
+  id: AlphaVisor
+  name: AlphaOne Visor
+  suffix: seriozha, Недра
+  description: idc
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_visor.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_visor.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  id: AlphaGasMask
+  parent: ClothingMaskGas
+  name: gas mask
+  suffix: seriozha, Недра
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_gasmask.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_gasmask.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 17
+  - type: RadiationReceiver
+  - type: EyeProtection
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Stamina: 0.6
+        Radiation: 0.5
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAlpha
+  name: jumpsut
+  suffix: seriozha, Недра
+  description: Advanced armored jumpsuit used by special forces in special operations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_jumpsuit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.85
+        Stamina: 0.8
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesSCPRGB
+  name: jackboots
+  suffix: seriozha, Недра, RGB
+  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/rgb_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/rgb_boots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.0
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpecialOfficer
+  - type: NoSlip
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Stamina: 0.8
+        Radiation: 0.0
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesAlpha
+  name: jackboots
+  suffix: seriozha, Недра
+  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_boots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.0
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpecialOfficer
+  - type: NoSlip
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingBackpack
+  id: AlphaBackpack
+  name: Backpack
+  suffix: seriozha, Недра
+  description: so real
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/alpha1_backpack.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
