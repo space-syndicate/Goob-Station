@@ -28394,6 +28394,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 14.5,-11.5
       parent: 2
+  - uid: 11071
+    components:
+    - type: Transform
+      pos: 15,39.5
+      parent: 2
 - proto: ChairFolding
   entities:
   - uid: 47
