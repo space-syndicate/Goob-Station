@@ -28450,13 +28450,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -22.42302,-3.5863707
       parent: 2
-- proto: ChairOfficeLight
-  entities:
-  - uid: 11071
-    components:
-    - type: Transform
-      pos: 15,39.5
-      parent: 2
 - proto: ChairPilotSeat
   entities:
   - uid: 2191
