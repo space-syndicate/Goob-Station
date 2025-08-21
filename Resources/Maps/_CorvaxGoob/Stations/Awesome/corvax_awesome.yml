@@ -9770,30 +9770,6 @@ entities:
       color: '#8B00FFFF'
       flags: HideLabel
     - type: ImplicitRoof
-- proto: ActionToggleInternals
-  entities:
-  - uid: 8054
-    components:
-    - type: Transform
-      parent: 8053
-  - uid: 8142
-    components:
-    - type: Transform
-      parent: 8141
-- proto: ActionToggleLight
-  entities:
-  - uid: 277
-    components:
-    - type: Transform
-      parent: 1243
-  - uid: 13415
-    components:
-    - type: Transform
-      parent: 13414
-  - uid: 23586
-    components:
-    - type: Transform
-      parent: 20903
 - proto: AirAlarm
   entities:
   - uid: 23
@@ -68550,16 +68526,8 @@ entities:
     components:
     - type: Transform
       parent: 8048
-    - type: GasTank
-      toggleActionEntity: 8054
     - type: Physics
       canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 8054
     - type: InsideEntityStorage
 - proto: EmergencyOxygenTankFilled
   entities:
@@ -93405,8 +93373,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0000FFFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14612
   - uid: 4720
@@ -95250,8 +95216,6 @@ entities:
     - type: AtmosPipeColor
       color: '#FF0000FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14612
   - uid: 3826
@@ -106251,22 +106215,8 @@ entities:
     - type: Transform
       pos: -3.5870948,-3.3489125
       parent: 2
-    - type: HandheldLight
-      toggleActionEntity: 277
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 277
     - type: Physics
       canCollide: True
-    - type: ActionsContainer
   - uid: 1471
     components:
     - type: Transform
@@ -106304,22 +106254,8 @@ entities:
     - type: Transform
       pos: -2.616333,46.237305
       parent: 15658
-    - type: HandheldLight
-      toggleActionEntity: 23586
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 23586
     - type: Physics
       canCollide: True
-    - type: ActionsContainer
   - uid: 21854
     components:
     - type: Transform
@@ -106425,20 +106361,6 @@ entities:
       rot: 1.5184364492350666 rad
       pos: 20.363422,45.489143
       parent: 2
-    - type: HandheldLight
-      toggleActionEntity: 13415
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 13415
-    - type: ActionsContainer
 - proto: LedLightBulb
   entities:
   - uid: 2667
@@ -110406,14 +110328,6 @@ entities:
     - type: Transform
       pos: 46.514423,-7.3972187
       parent: 2
-    - type: GasTank
-      toggleActionEntity: 8142
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 8142
 - proto: NoticeBoard
   entities:
   - uid: 902
