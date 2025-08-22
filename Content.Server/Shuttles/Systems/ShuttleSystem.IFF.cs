@@ -173,7 +173,7 @@ public sealed partial class ShuttleSystem
 
         // If we anchor / re-anchor then make sure flags up to date.
         if (!args.Anchored ||
-            !TryComp<IFFComponent>(xform.GridUid, out var iff))
+            !TryComp<IFFComponent>(xform.GridUid, out var iff)) // CorvaxGoob-IFF-Changes : removed !TryComp(uid, out TransformComponent? xform)
         {
             _uiSystem.SetUiState(uid, IFFConsoleUiKey.Key, new IFFConsoleBoundUserInterfaceState()
             {

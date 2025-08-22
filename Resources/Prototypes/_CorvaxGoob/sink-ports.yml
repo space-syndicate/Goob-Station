@@ -2,4 +2,3 @@
   id: ShuttleDroneReceiver
   name: shuttle-drone-receiver-port-name
   description: shuttle-drone-receiver-port-description
-  defaultLinks: [ ShuttleDroneReceiver ]
