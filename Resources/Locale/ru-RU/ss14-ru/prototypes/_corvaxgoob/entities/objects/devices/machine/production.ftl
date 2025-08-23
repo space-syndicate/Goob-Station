@@ -5,3 +5,5 @@ ent-MachineBluespaceTransitorCircuitboard = блюспейс Т.Р.А.Н.З.И.�
 
 ent-StasisOperatingTableCircuitboard = стазисный операционный стол (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
+ent-MachineMedipenRefillerCircuitboard = заполнитель медипенов (машинная плата)
+    .desc = Печатная плата заполнителя медипенов.
