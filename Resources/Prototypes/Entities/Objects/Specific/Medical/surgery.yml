@@ -48,6 +48,7 @@
 # SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
+# SPDX-FileCopyrightText: 2025 JrInventor05Next <205915704+JrInventor05Next@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Base
@@ -481,10 +482,22 @@
           sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
           state: e-scalpel
         components:
-          - type: Scalpel
-            speed: 2
-          - type: BoneSaw
-            speed: 2
+        - type: Scalpel
+          speed: 2
+        soundStateActivate:
+          collection: sparks
+          params:
+            variation: 0.125
+            volume: -5
+
+      bonesaw: !type:ItemSwitchState
+        verb: bonesaw
+        sprite:
+          sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
+          state: e-scalpel-on
+        components:
+        - type: BoneSaw
+          speed: 2
         soundStateActivate:
           collection: sparks
           params:
