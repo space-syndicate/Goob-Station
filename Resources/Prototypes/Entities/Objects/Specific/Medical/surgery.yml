@@ -48,7 +48,6 @@
 # SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2025 JrInventor05Next <205915704+JrInventor05Next@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Base
@@ -504,20 +503,6 @@
             variation: 0.125
             volume: -5
 
-      drill: !type:ItemSwitchState
-        verb: drill
-        sprite:
-          sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
-          state: e-scalpel-on
-        components:
-        - type: Drill
-          speed: 2
-        soundStateActivate:
-          collection: sparks
-          params:
-            variation: 0.125
-            volume: -5
-
 - type: entity
   name: power pinches
   id: AdvancedRetractor
@@ -626,19 +611,21 @@
         components:
         - type: Cautery
           speed: 2
+        - type: Stitches # should be unlimited when the actual stitches become limited
+          speed: 2
         soundStateActivate:
           collection: WelderOn
           params:
             variation: 0.125
             volume: -5
 
-      stitches: !type:ItemSwitchState
-        verb: stitches
+      drill: !type:ItemSwitchState
+        verb: drill
         sprite:
           sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-cautery.rsi
           state: e-cautery-on
         components:
-        - type: Stitches # should be unlimited when the actual stitches become limited
+        - type: Drill
           speed: 2
         soundStateActivate:
           collection: sparks
