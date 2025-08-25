@@ -11,43 +11,42 @@ itemswitch-component-on-examine-detailed-message = Текущий режим: { 
 # CorvaxGoob-shitcode-localization-start
 # gloves
 
-itemswitch-component-state-gauntlet =
-itemswitch-component-state-claws =
+itemswitch-component-state-gauntlet = перчатки
+itemswitch-component-state-claws = когти
 
 # justice
 
-
-itemswitch-component-state-ion =
-itemswitch-component-state-lethal =
+itemswitch-component-state-ion = ионный
+itemswitch-component-state-lethal = летальный
 itemswitch-component-state-emprowered =
 
 # # also for security
 
-itemswitch-component-state-off =
+itemswitch-component-state-off = выключен
 
 # # also for wonderprod
 
-itemswitch-component-state-stun =
+itemswitch-component-state-stun = оглушение
 
 # security
 
-itemswitch-component-state-on =
+itemswitch-component-state-on = включен
 
 # armor
 
-itemswitch-component-state-Stealth =
-itemswitch-component-state-Combat =
+itemswitch-component-state-Stealth = Зачем я это пишу, никто ведь это никогда не увидет...
+itemswitch-component-state-Combat = Зачем я это пишу, никто ведь это никогда не увидет...
 
 # wonderprod
 
-itemswitch-component-state-cuffs =
-itemswitch-component-state-sleep =
-itemswitch-component-state-damage =
+itemswitch-component-state-cuffs = заковывание
+itemswitch-component-state-sleep = усыпление
+itemswitch-component-state-damage = боевой
 
 # tools
 
-itemswitch-component-state-link =
-itemswitch-component-state-hijack =
+itemswitch-component-state-link = соединение
+itemswitch-component-state-hijack = захватить
 
 # surgery
 
