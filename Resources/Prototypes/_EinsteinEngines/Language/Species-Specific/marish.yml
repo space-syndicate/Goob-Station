@@ -1,0 +1,38 @@
+# Spoken by Shadowkins.
+- type: language
+  id: Marish
+  isVisibleLanguage: true
+  speech:
+    color: "#be3cc5"
+    # fontId: Lymphatic #* FONTS NOT ALREADY HERE ARE NOT BEING ADDED
+    empathySpeech: false
+    speechVerbOverrides:
+    - chat-speech-verb-marish
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 5
+    replacement: # CorvaxGoob-Localization
+    - мар
+    - мвуррр
+    - мааАр
+    - ааррр
+    - вруррл
+    - ммар
+    - мвар
+    - млар
+    - млвар
+    - мваарр
+    - мАаАр
+    - лмвар
+    - влуррл
+    - влмвар
+    - аррмав
+    - мвАлвар
+    - врлурлл
+    - вларрул
+    - влАмур
+    - АлвуРм
+    - мрррАв
+    - вурлМур
+    - ууРлммр

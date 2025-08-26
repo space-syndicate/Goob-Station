@@ -18,7 +18,13 @@ public sealed class CCCVars
     /// </summary>
     public static readonly CVarDef<bool> StationGoal =
         CVarDef.Create("game.station_goal", true, CVar.SERVERONLY);
-  
+
+    /// <summary>
+    /// Deny any VPN connections.
+    /// </summary>
+    public static readonly CVarDef<bool> PanicBunkerDenyVPN =
+        CVarDef.Create("game.panic_bunker.deny_vpn", false, CVar.SERVERONLY);
+
     /**
      * TTS (Text-To-Speech)
      */
@@ -71,4 +77,10 @@ public sealed class CCCVars
     /// </summary>
     public static readonly CVarDef<int> TTSRateLimitCount =
         CVarDef.Create("tts.rate_limit_count", 3, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Will skills be applied to players.
+    /// </summary>
+    public static readonly CVarDef<bool> SkillsEnabled =
+        CVarDef.Create("skills.enabled", true, CVar.SERVERONLY);
 }

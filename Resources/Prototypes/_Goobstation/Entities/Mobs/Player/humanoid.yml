@@ -48,8 +48,10 @@
   parent: EventHumanoid
   components:
     - type: GhostRole
-      name: Lost Salvager
-      description: Lost crew from Frontier Sector
+      # Corvax-Goob-Locale-start
+      name: Потерявшийся утилизатор
+      description: Потерявшийся экипаж Фронтира.
+      # Corvax-Goob-Locale-end
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
@@ -245,3 +247,14 @@
     nameSegments:
     - NamesShadowkin
     nameFormat: random-metadata-name-format-default
+
+- type: entity
+  parent: MobChitinid
+  id: MobChitinidRandom
+  name: Urist McAnt
+  suffix: Random Appearance
+  components:
+  - type: RandomHumanoidAppearance
+  - type: RandomMetadata
+    nameSegments:
+    - NamesChitinidFirstMale

@@ -1,0 +1,70 @@
+# Spoken by moths and mothroaches.
+# TODO: Replace this with a much better language.
+- type: language
+  id: Moffic
+  isVisibleLanguage: true
+  speech:
+    color: "#c7df2edd"
+    # fontId: Copperplate #* FONTS NOT ALREADY HERE ARE NOT BEING ADDED
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2 # Replacements are really short
+    maxSyllables: 4
+    replacement: # CorvaxGoob-Localization
+    - ор
+    - и
+    - гор
+    - сек
+    - мо
+    - фф
+    - ок
+    - гй
+    - ё
+    - го
+    - ла
+    - ле
+    - лит
+    - игг
+    - ван
+    - дор
+    - нэ
+    - мёт
+    - идд
+    - хво
+    - йа
+    - по
+    - хан
+    - со
+    - он
+    - дет
+    - атт
+    - но
+    - гё
+    - бра
+    - инт
+    - тыц
+    - ом
+    - нэр
+    - тво
+    - мо
+    - даг
+    - шё
+    - вии
+    - вуо
+    - эйл
+    - тун
+    - кёйт
+    - тех
+    - вэ
+    - хей
+    - хуо
+    - суо
+    - ээ
+    - тен
+    - йа
+    - хеу
+    - сту
+    - ур
+    - кён
+    - ве
+    - хён

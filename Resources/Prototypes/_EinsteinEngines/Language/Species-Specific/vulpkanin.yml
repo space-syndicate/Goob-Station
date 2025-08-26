@@ -1,0 +1,69 @@
+# Spoken by Vulpknanin.
+# TODO: Replace this with a much better language.
+- type: language
+  id: Canilunzt
+  isVisibleLanguage: true
+  speech:
+    color: "#d69b3dcc"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement: # CorvaxGoob-Localization
+    - рур
+    - я
+    - сен
+    - раур
+    - бар
+    - кук
+    - тек
+    - кат
+    - ук
+    - ву
+    - вух
+    - тах
+    - тч
+    - щз
+    - аух
+    - ист
+    - айн
+    - енч
+    - цвих
+    - тут
+    - мир
+    - во
+    - бис
+    - эс
+    - фор
+    - ник
+    - гро
+    - енем
+    - зандт
+    - тч
+    - нох
+    - хел
+    - ишт
+    - фар
+    - ва
+    - барам
+    - иренг
+    - тех
+    - лах
+    - сам
+    - мак
+    - лих
+    - ген
+    - ор
+    - аг
+    - ек
+    - гец
+    - стаг
+    - онн
+    - бин
+    - кет
+    - ярл
+    - вульф
+    - айнех
+    - крештз
+    - азунайн
+    - гхзтх

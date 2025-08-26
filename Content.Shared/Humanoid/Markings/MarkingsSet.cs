@@ -4,7 +4,12 @@
 // SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2023 csqrb <56765288+CaptainSqrBeard@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+// SPDX-FileCopyrightText: 2024 Skubman <ba.fallaria@gmail.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Froffy025 <scotttaco025@gmail.com>
+// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -208,6 +213,43 @@ public sealed partial class MarkingSet
         }
     }
 
+    // CorvaxGoob-Sponsors-Start
+    /// <summary>
+    ///     Filters sponsor markings unavailable for not sponsors check that from their prototype and allowed param
+    /// </summary>
+    /// <param name="sponsorMarkings">Sponsor markings that allowed to have.</param>
+    /// <param name="markingManager">Markings manager.</param>
+    /// <param name="prototypeManager">Prototype manager.</param>
+    public void FilterSponsor(string[] sponsorMarkings, MarkingManager? markingManager = null, IPrototypeManager? prototypeManager = null)
+    {
+        IoCManager.Resolve(ref markingManager);
+        IoCManager.Resolve(ref prototypeManager);
+
+        var toRemove = new List<(MarkingCategories category, string id)>();
+        foreach (var (category, list) in Markings)
+        {
+            foreach (var marking in list)
+            {
+                if (prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var proto) && !proto.SponsorOnly)
+                {
+                    continue;
+                }
+
+                var allowedToHave = sponsorMarkings.Contains(marking.MarkingId);
+                if (!allowedToHave)
+                {
+                    toRemove.Add((category, marking.MarkingId));
+                }
+            }
+        }
+
+        foreach (var marking in toRemove)
+        {
+            Remove(marking.category, marking.id);
+        }
+    }
+    // CorvaxGoob-Sponsors-End
+
     /// <summary>
     ///     Filters markings based on sex and it's restrictions in the marking's prototype from this marking set.
     /// </summary>
@@ -292,8 +334,9 @@ public sealed partial class MarkingSet
                 continue;
             }
 
-            var index = 0;
-            while (points.Points > 0 || index < points.DefaultMarkings.Count)
+            var index = Markings.TryGetValue(category, out var markings) ? markings.Count : 0;
+
+            while (points.Points > 0 && index < points.DefaultMarkings.Count)
             {
                 if (markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype))
                 {

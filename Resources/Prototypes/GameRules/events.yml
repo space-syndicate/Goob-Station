@@ -130,6 +130,8 @@
 # SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
 # SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
 # SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
 # SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
@@ -444,7 +446,6 @@
         - Surgery
         - MedicalEquipment
         - Butchering
-      - type: CanChokeGrab # CorvaxGoob-Grab
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -477,6 +478,11 @@
     objectiveBlacklist:
       tags:
       - ParadoxCloneObjectiveBlacklist
+    targetBlacklist: # Goobstation
+      components:
+      - BorgBrain # No copying the AI or borgs.
+      - AntagImmune # No copying people who are immune to antags. (Gemini Hologram, Ghost bar, etcetera.)
+
   - type: AntagObjectives
     objectives:
     - ParadoxCloneKillObjective
@@ -492,12 +498,22 @@
       startingGear: ParadoxCloneGear
       roleLoadout:
       - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
+      - RoleSurvivalPlasmaTank # Goobstation
       briefing:
         text: paradox-clone-role-greeting
         color: lightblue
         sound: /Audio/Misc/paradox_clone_greeting.ogg
       mindRoles:
       - MindRoleParadoxClone
+      components:
+      - type: Skills # CorvaxGoob-Skills
+        skills:
+        - ShuttleControl
+        - Shooting
+        - AdvancedBuilding
+        - Surgery
+        - MedicalEquipment
+        - Butchering
 
 - type: entity
   parent: BaseGameRule
@@ -823,7 +839,6 @@
         maxInitialInfectedGrace: 450
       - type: ZombifyOnDeath
       - type: IncurableZombie
-      - type: CanChokeGrab # CorvaxGoob-Grab
       - type: Skills # CorvaxGoob-Skills
         skills:
         - ShuttleControl
@@ -883,7 +898,6 @@
         - NamesSyndicatePrefix
         - NamesSyndicateNormal
         nameFormat: name-format-nukie-generic
-      - type: CanChokeGrab # CorvaxGoob-Grab
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -913,7 +927,6 @@
     eventType: HostilesSpawn # Goobstation
   # Goobstation
   - type: GameRule
-    chaosScore: 500
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:
@@ -922,9 +935,11 @@
       min: 1
       max: 2
       playerRatio: 10
+      chaosScore: 200 # Goobstation - same as roundstart traitor gamerule
       blacklist:
         components:
         - AntagImmune
+        - CommandStaff
       components: # CorvaxGoob-Skills
       - type: Skills
         skills:
@@ -934,7 +949,6 @@
         - Surgery
         - MedicalEquipment
         - Butchering
-      - type: CanChokeGrab # CorvaxGoob-Grab
       mindRoles:
       - MindRoleTraitorSleeper
 
@@ -1068,3 +1082,24 @@
       min: 1
       max: 1
       pickPlayer: false
+
+- type: entity
+  id: AncientRogueKingSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    earliestStart: 20
+    weight: 8
+    duration: 10
+    minimumPlayers: 45
+    chaos: # Goobstation
+      Hostile: 100
+      Friend: 20
+      Combat: 100
+      Death: 100
+      Medical: 100
+    eventType: HostilesSpawn
+  - type: GameRule
+    chaosScore: 400
+  - type: RandomSpawnRule
+    prototype: CMMobXenoRogueKingSentient

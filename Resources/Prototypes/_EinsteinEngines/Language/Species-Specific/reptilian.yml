@@ -1,0 +1,118 @@
+# Spoken by Unathi, reptilians.
+- type: language
+  id: Draconic
+  isVisibleLanguage: true
+  speech:
+    color: "#2aca2add"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement: # CorvaxGoob-Localization
+    - за
+    - аз
+    - зе
+    - ез
+    - зи
+    - из
+    - зо
+    - оз
+    - зу
+    - уз
+    - зс
+    - сз
+    - ха
+    - ах
+    - хе
+    - ех
+    - хи
+    - их
+    - хо
+    - ох
+    - ху
+    - ух
+    - хс
+    - ш
+    - ла
+    - ал
+    - ле
+    - ел
+    - ли
+    - ил
+    - ло
+    - ол
+    - лу
+    - ул
+    - лс
+    - сл
+    - ка
+    - ак
+    - ке
+    - ек
+    - ки
+    - ик
+    - ко
+    - ок
+    - ку
+    - ук
+    - кс
+    - ск
+    - са
+    - ас
+    - се
+    - ес
+    - си
+    - ис
+    - со
+    - ос
+    - су
+    - ус
+    - сс
+    - сс
+    - ра
+    - ар
+    - ре
+    - ер
+    - ри
+    - ир
+    - ро
+    - ор
+    - ру
+    - ур
+    - рс
+    - ср
+    - а
+    - а
+    - е
+    - е
+    - и
+    - и
+    - о
+    - о
+    - у
+    - у
+    - с
+    - с
+
+# Reptilian-Specific "Rare" Language
+# !Do Not Make A Translator For This Language.
+- type: language
+  id: Azaziba
+  speech:
+    color: "#2aca2add"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement: # CorvaxGoob-Localization
+      - азс
+      - зис
+      - зау
+      - азуа
+      - скиу
+      - зуакз
+      - изо
+      - аэй
+      - ки
+      - кут
+      - зо

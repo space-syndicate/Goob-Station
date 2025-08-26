@@ -1,0 +1,13 @@
+ent-ClothingModsuitCorporate = Corporate hardsuit control unit
+    .desc = The main controller for a Corporate hardsuit.
+ent-ClothingModsuitGauntletsCorporate = Corporate hardsuit gauntlets
+    .desc = A pair of gauntlets made for the Corporate hardsuit.
+ent-ClothingModsuitHelmetCorporate = Corporate hardsuit helmet
+    .desc = A state-of-the-art helmet designed by NanoTrasen for the Corporate hardsuit. It includes a built-in HUD.
+ent-ClothingModsuitChestplateCorporate = Corporate hardsuit chestplate
+    .desc = A state of the art chestplate designed by NanoTrasen for the Corporate hardsuit. It incorporates powered servos to reduce the equipment load.
+ent-ClothingModsuitBootsCorporate = Corporate hardsuit boots
+    .desc = A state-of-the-art pair of magboots for the Corporate hardsuit. So long as the suit is powered, these will not slow the wearer down.
+ent-SuitStorageCorporate = { ent-SuitStorageBase }
+    .suffix = Corporate Modsuit
+    .desc = { ent-SuitStorageBase.desc }

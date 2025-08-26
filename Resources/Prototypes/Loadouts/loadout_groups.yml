@@ -250,6 +250,17 @@
   - CheapSunglasses # Goobstation
 
 - type: loadoutGroup
+  id: Animals  # Goobstation
+  name: loadout-group-animals
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Squackroach
+  - Mouse
+  - Mothroach
+  - Goldfish
+
+- type: loadoutGroup
   id: GroupTankHarness
   name: loadout-group-tank-harness
   minLimit: 1
@@ -265,7 +276,9 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
+  - EmergencyPlasma
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -300,10 +313,6 @@
   loadouts:
   - CaptainHead
   - CaptainCap
-  # Corvax-Loadouts-Start
-  - CaptainJumpsuitTurtleneck
-  - CaptainJumpskirtTurtleneck
-  # Corvax-Loadouts-End
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -314,6 +323,10 @@
   - CaptainFormalSuit
   - CaptainFormalSkirt
   - CaptainJumpsuitMilitary # goob
+  # CorvaxGoob-Loadouts-Start
+  - CaptainJumpsuitTurtleneck
+  - CaptainJumpskirtTurtleneck
+  # CorvaxGoob-Loadouts-End
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -355,10 +368,10 @@
   - HoPJumpsuit
   - HoPJumpskirt
   - HoPJumpsuitMilitary # goob
-  # Corvax-Loadouts-Start
+  # CorvaxGoob-Loadouts-Start
   - HoPJumpsuitTurtleneck
   - HoPJumpskirtTurtleneck
-  # Corvax-Loadouts-End
+  # CorvaxGoob-Loadouts-End
 
 - type: loadoutGroup
   id: HoPNeck
@@ -716,7 +729,9 @@
   loadouts:
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
+  - EmergencyPlasmaClown
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 - type: loadoutGroup
   id: MimeHead
@@ -774,7 +789,9 @@
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
   - EmergencySpeciesMothMime
+  - EmergencyPlasmaMime
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 - type: loadoutGroup
   id: MusicianJumpsuit
@@ -1083,7 +1100,9 @@
   loadouts:
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
+  - EmergencyPlasmaExtended
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 # Science
 - type: loadoutGroup
@@ -1229,10 +1248,10 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
-  # Corvax-Loadouts-Start
+  # CorvaxGoob-Loadouts-Start
   - HeadofSecurityJumpsuitBlack
   - HeadofSecurityJumpskirtBlack
-  # Corvax-Loadouts-End
+  # CorvaxGoob-Loadouts-End
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1386,7 +1405,9 @@
   loadouts:
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
+  - EmergencyPlasmaSecurity
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 - type: loadoutGroup
   id: SecurityStar
@@ -1603,7 +1624,9 @@
   loadouts:
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
+  - EmergencyPlasmaMedical
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 # Wildcards
 - type: loadoutGroup
@@ -1646,7 +1669,9 @@
   loadouts:
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
+  - EmergencyPlasmaSyndicate
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesPlasma # Goobstation
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

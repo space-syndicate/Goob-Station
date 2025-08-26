@@ -10,30 +10,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-ent-SpawnPointGhostBlob = Blob spawner
-    .suffix = DEBUG, Ghost Role Spawner
-    .desc = { ent-MarkerBase.desc }
-ent-MobBlobPod = Blob Drop
-    .desc = An ordinary blob fighter.
-ent-MobBlobBlobbernaut = Blobbernaut
-    .desc = An elite blob fighter.
-ent-BaseBlob = basic blob.
-    .desc = { "" }
-ent-NormalBlobTile = Regular Tile Blob
-    .desc = An ordinary part of the blob required for the construction of more advanced tiles.
-ent-CoreBlobTile = Blob Core
-    .desc = The most important organ of the blob. By destroying the core, the infection will cease.
-ent-FactoryBlobTile = Blob Factory
-    .desc = Spawns Blob Drops and Blobbernauts over time.
-ent-ResourceBlobTile = Resource Blob
-    .desc = Produces resources for the blob.
-ent-NodeBlobTile = Blob Node
-    .desc = A mini version of the core that allows you to place special blob tiles around itself.
-ent-StrongBlobTile = Strong Blob Tile
-    .desc = A reinforced version of the regular tile. It does not allow air to pass through and protects against brute damage.
-ent-ReflectiveBlobTile = Blob Reflective Tiles
-    .desc = It reflects lasers, but does not protect against brute damage as well.
-    .desc = { "" }
 objective-issuer-blob = Blob
 
 
@@ -106,31 +82,10 @@ blob-alert-critical = Biohazard level critical, nuclear authentication codes hav
 blob-alert-critical-NoNukeCode = Biohazard level critical. Central Command orders any remaining personnel to seek shelter, and await resque.
 
 # Actions
-blob-create-factory-action-name = Place Factory Blob (80)
-blob-create-factory-action-desc = Turns selected normal blob into a factory blob, which will produce up to 3 spores and a blobbernaut if placed next to a core or a node.
-blob-create-resource-action-name = Place Resource Blob (60)
-blob-create-resource-action-desc = Turns selected normal blob into a resource blob which will generates resources if placed next to a core or a node.
-blob-create-node-action-name = Place Node Blob (50)
-blob-create-node-action-desc = Turns selected normal blob into a node blob.
-                                A node blob will activate effects of factory and resource blobs, heal other blobs and slowly expand, destroying walls and creating normal blobs.
-blob-produce-blobbernaut-action-name = Produce a Blobbernaut (60)
-blob-produce-blobbernaut-action-desc = Creates a blobbernaut on the selected factory. Each factory can only do this once. The blobbernaut will take damage outside of blob tiles and heal when close to nodes.
-blob-split-core-action-name = Split Core (400)
-blob-split-core-action-desc = You can only do this once. Turns selected node into an independent core that will act on its own.
-blob-swap-core-action-name = Relocate Core (200)
-blob-swap-core-action-desc = Swaps the location of your core and the selected node.
-blob-teleport-to-core-action-name = Jump to Core (0)
-blob-teleport-to-core-action-desc = Teleports you to your Blob Core.
 blob-teleport-to-node-action-name = Jump to Node (0)
 blob-teleport-to-node-action-desc = Teleports you to a random blob node.
 blob-help-action-name = Help
 blob-help-action-desc = Get basic information about playing as blob.
-blob-swap-chem-action-name = Swap chemicals (70)
-blob-swap-chem-action-desc = Lets you swap your current chemical.
-blob-carrier-transform-to-blob-action-name = Transform into a blob
-blob-carrier-transform-to-blob-action-desc = Instantly destoys your body and creates a blob core. Make sure to stand on a floor tile, otherwise you will simply disappear.
-blob-downgrade-action-name = downgrade blob(0)
-blob-downgrade-action-desc = Turns the selected tile back into a normal blob to install other types of cages.
 
 # Ghost role
 blob-carrier-role-name = Blob carrier
@@ -189,3 +144,8 @@ objective-condition-fail = { $condition } | [color={ $markupColor }]Failure![/co
 
 admin-verb-make-blob = Make the target into a blob carrier.
 admin-verb-text-make-blob = Make Blob Carrier
+
+# Language
+language-Blob-name = Blob
+chat-language-Blob-name = Blob
+language-Blob-description = Bleeb bob! Blob blob!

@@ -94,17 +94,17 @@ public sealed partial class ChangelingIdentityComponent : Component
     /// <summary>
     ///     The default stasis time (in s).
     /// </summary>
-    public readonly int DefaultStasisTime = 30;
+    public readonly int DefaultStasisTime = 15;
 
     /// <summary>
     ///     The typical longest time that stasis can last (in s).
     /// </summary>
-    public readonly int MaxStasisTime = 90;
+    public readonly int MaxStasisTime = 45;
 
     /// <summary>
     ///     The time a changeling must stay in stasis upon taking catastrophic damage (in s).
     /// </summary>
-    public readonly int CatastrophicStasisTime = 120;
+    public readonly int CatastrophicStasisTime = 60;
 
     /// <summary>
     ///     Time in seconds the changeling must spend in stasis.
@@ -216,6 +216,13 @@ public sealed partial class TransformData
     /// </summary>
     [DataField("dna")]
     public string DNA;
+
+    // CorvaxGoob TTS Support
+    /// <summary>
+    ///     Entity's voice.
+    /// </summary>
+    [DataField("voice")]
+    public string? Voice;
 
     /// <summary>
     ///     Entity's humanoid appearance component.

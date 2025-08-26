@@ -69,7 +69,7 @@
   startingGear: BotanistGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-hop
-  goobcoins: 15 #Goob content
+  #goobcoins: 15 #Goob content Corvax-Goob-coins
   access:
   - Service
   - Maintenance
@@ -92,3 +92,14 @@
   #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: BotanistChameleonOutfit
+  job: Botanist
+  equipment:
+    head: ClothingHeadBandBotany
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedGreen
+    outerClothing: ClothingOuterApronBotanist
+    gloves: ClothingHandsGlovesLeather

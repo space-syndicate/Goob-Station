@@ -20,6 +20,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server._CorvaxGoob.Skills;
 using Content.Server.Popups;
 using Content.Shared._CorvaxGoob.Skills;
 using Content.Shared.DoAfter;
@@ -37,7 +38,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedSkillsSystem _skills = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
 
     // CorvaxGoob-Skills-Start
     private const float ImplantDelayModifierWithoutSkill = 10;

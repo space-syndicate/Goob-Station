@@ -54,7 +54,7 @@
   recipes:
   - ClothingShoesBootsMagSci
   - ClothingShoesBootsMoon
-  - ClothingShoesBootsSpeed
+#  - ClothingShoesBootsSpeed - Goobstation - Nuked due to sprinting.
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
@@ -86,6 +86,7 @@
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  - TileItemBluespace # Corvax-Goob-BluespaceTile
 
 - type: latheRecipePack
   id: ScienceBoards
@@ -133,6 +134,8 @@
 - type: latheRecipePack
   id: ShuttleBoards
   recipes:
+  - ShuttleRemoteControlSystemCircuitboard # CorvaxGoob-LinkableDrones
+  - ComputerIFFCircuitboard # CorvaxGoob-IIF-Improves
   - ShuttleConsoleCircuitboard
   - RadarConsoleCircuitboard
   - ThrusterMachineCircuitboard

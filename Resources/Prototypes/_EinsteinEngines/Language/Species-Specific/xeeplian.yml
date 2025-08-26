@@ -1,0 +1,60 @@
+﻿# Spoken by Abductors
+- type: language
+  id: Xeeplian
+  speech:
+    color: "#a4bb98"
+    # fontId: YoureGone #* FONTS NOT ALREADY HERE ARE NOT BEING ADDED
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 1
+    replacement: # CorvaxGoob-Localization
+    - Нарп
+    - Хнарп
+    - Знарп
+    - Внарп
+    - Гнарп
+    - Нлорп
+    - Хлорп
+    - Злорп
+    - Влорп
+    - Глорп
+    - Нлиб
+    - Хлиб
+    - Злиб
+    - Влиб
+    - Глиб
+    - Горп
+    - Норп
+    - Хорп
+    - Зорп
+    - Ворп
+    - Горп
+    - Норпл
+    - Хорпл
+    - Зорпл
+    - Ворпл
+    - Горпл
+    - Нип
+    - Хип
+    - Зип
+    - Вип
+    - Гип
+    - Ноп
+    - Хоп
+    - Зоп
+    - Воп
+    - Гоп
+    - Нигл
+    - Хигл
+    - Зигл
+    - Вигл
+    - Гигл
+    - Су'эрги
+    - Ли'др
+    - Айс
+    - Хёрт
+    - Тулгл
+    - Субжарпл
+    - Эксекзтрак
+    - Прибобо

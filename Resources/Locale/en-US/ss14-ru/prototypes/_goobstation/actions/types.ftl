@@ -1,0 +1,16 @@
+ent-ActionActivateBluespaceLifeline = Activate Bluespace Lifeline
+    .desc = Activates your bluespace lifeline implant, teleporting you far-far away from this station. You won't be able to come back.
+ent-ActionHorn = Honk!
+    .desc = Beep the horn at whoever you will run over.
+ent-ActionSiren = Siren
+    .desc = Alert your victim to your presence.
+ent-ActivateSmokeImplant = Release a cloud of smoke
+    .desc = Releases a cloud of smoke around you.
+ent-ActionDashMoth = Wing dash
+    .desc = Sharply flap your wings, dashing to the side!
+ent-ActionToggleRightMantisBlade = Toggle Right Mantis Blade
+    .desc = Extend or retract the mantis blade in your right arm.
+ent-ActionToggleLeftMantisBlade = Toggle Left Mantis Blade
+    .desc = Extend or retract the mantis blade in your left arm.
+ent-ActionToggleSandevistan = Toggle Sandevistan
+    .desc = Enable or disable your improved reflexes provided by the Sandevistan.

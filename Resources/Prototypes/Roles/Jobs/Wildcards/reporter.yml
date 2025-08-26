@@ -60,7 +60,7 @@
   playTimeTracker: JobReporter
   startingGear: ReporterGear
   icon: "JobIconReporter"
-  goobcoins: 15 #Goob content
+  #goobcoins: 15 #Goob content Corvax-Goob-coins
   supervisors: job-supervisors-hop
   access:
   - Service
@@ -79,3 +79,13 @@
     - CassetteTape
     - MicrophoneInstrument # Goobstation
 
+- type: chameleonOutfit
+  id: ReporterChameleonOutfit
+  job: Reporter
+  equipment:
+    head: ClothingHeadHatFedoraGrey
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterCoatTrench
+    neck: ClothingNeckTieRed
+    gloves: ClothingHandsGlovesFingerless

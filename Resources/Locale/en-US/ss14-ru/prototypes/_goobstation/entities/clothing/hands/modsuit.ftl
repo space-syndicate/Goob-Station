@@ -1,0 +1,16 @@
+ent-ClothingModsuitGauntletsStandard = standard hardsuit gauntlets
+    .desc = Special modular suit gloves that protect wearer from electric shock.
+ent-ClothingModsuitGauntletsSecurity = soldat hardsuit gauntlets
+    .desc = Robust modular suit gloves for gripping perps and guns tight.
+ent-ClothingModsuitGauntletsParamedic = sanitater hardsuit gauntlets
+    .desc = Black and white modular suit gloves for gripping percs and patients tight.
+ent-ClothingModsuitGauntletsHeadOfSecurity = bulwark hardsuit gauntlets
+    .desc = Robust modular suit gloves for gripping perps and guns tight. Insulated.
+ent-ClothingModsuitGauntletsEngineer = sapper hardsuit gauntlets
+    .desc = Oil stained modular suit gloves for easily pushing buttons on an RCD.
+ent-ClothingModsuitGauntletsAtmostech = aeolus hardsuit gauntlets
+    .desc = Asbestos-lined modular suit gloves for easily pushing buttons on an RPD.
+ent-ClothingModsuitGauntletsResearchDirector = minerva hardsuit gauntlets
+    .desc = For keeping your digits at 10 after the artifact goes thermonuclear on you.
+ent-ClothingModsuitGauntletsCaptain = magnate hardsuit gauntlets
+    .desc = Has specialised grooves and cuts for holding dat fukn diiisskk easier.

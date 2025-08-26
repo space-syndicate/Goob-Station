@@ -20,6 +20,8 @@ namespace Content.Packaging;
 
 public static class ClientPackaging
 {
+    private static readonly bool UseSecrets = File.Exists(Path.Combine("Secrets", "CorvaxSecrets.sln")); // CorvaxGoob-Secrets
+
     /// <summary>
     /// Be advised this can be called from server packaging during a HybridACZ build.
     /// Be also advised this goes against god and nature
@@ -49,6 +51,24 @@ public static class ClientPackaging
                         "/m"
                     }
                 });
+                if (UseSecrets)
+                {
+                    await ProcessHelpers.RunCheck(new ProcessStartInfo
+                            {
+                            FileName = "dotnet",
+                            ArgumentList =
+                            {
+                            "build",
+                            Path.Combine("Secrets","Content.Corvax.Client", "Content.Corvax.Client.csproj"),
+                            "-c", "Release",
+                            "--nologo",
+                            "/v:m",
+                            "/t:Rebuild",
+                            "/p:FullRelease=true",
+                            "/m"
+                            }
+                            });
+                }
             }
         }
 
@@ -97,7 +117,11 @@ public static class ClientPackaging
         if (string.IsNullOrEmpty(path))
             path = ".";
 
-        var modules = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.ModuleManager" };
+        var modules = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.ModuleManager", "Content.Corvax.Interfaces.Client", "Content.Corvax.Interfaces.Shared" }; // CorvaxGoob-Packaging
+        if (UseSecrets) {
+            modules.AddRange(new [] { "Content.Corvax.Shared", "Content.Corvax.Client" });
+        }
+
         // Goobstation - Modular Packaging
         modules.AddRange(ModuleDiscovery.DiscoverModules(path)
             .Where(m => m.Type is not ModuleType.Server)
@@ -151,8 +175,26 @@ public static class ClientPackaging
             modules.ToArray(),
             cancel: cancel);
 
-        await RobustClientPackaging.WriteClientResources(contentDir, inputPass, cancel);
+        await WriteClientResources(contentDir, inputPass, cancel);
 
         inputPass.InjectFinished();
     }
+    // CorvaxGoob-Secrets-Start
+    public static IReadOnlySet<string> ContentClientIgnoredResources { get; } = new HashSet<string>
+    {
+        "CorvaxSecretsServer"
+    };
+
+    private static async Task WriteClientResources(
+            string contentDir,
+            AssetPass pass,
+            CancellationToken cancel = default)
+    {
+        var ignoreSet = RobustClientPackaging.ClientIgnoredResources
+            .Union(RobustSharedPackaging.SharedIgnoredResources)
+            .Union(ContentClientIgnoredResources).ToHashSet();
+
+        await RobustSharedPackaging.DoResourceCopy(Path.Combine(contentDir, "Resources"), pass, ignoreSet, cancel: cancel);
+    }
+    // CorvaxGoob-Secrets-End
 }

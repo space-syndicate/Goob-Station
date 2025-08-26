@@ -19,7 +19,7 @@
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
   canBeAntag: false
-  goobcoins: 35
+  #goobcoins: 35 Corvax-Goob-coins
   access: # intentionally no medical access, not even hos has it, ask chemists instead of silently stealing meds
   - Security
   - Brig
@@ -27,9 +27,34 @@
   - Service
   - External
   - Cryogenics
+  - Medical #Corvax-Goob-brigmedic-loadout-update
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components: # Intentionally no surgery buff, you're reliable but not powerful as a real doctor
     - type: SecurityStaff
+    #Corvax-Goob-brigmedic-loadout-update-start
+    - type: SurgerySpeedModifier
+      speedModifier: 1.5
+    - type: Skills # Corvax-Goob-Skills
+      skills:
+      - Shooting
+      - Surgery
+      - MedicalEquipment
+    #Corvax-Goob-brigmedic-loadout-update-end
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic
+  equipment:
+    eyes: ClothingEyesGlassesMed
+    mask: ClothingMaskSecurityMedicalRespirator #Corvax-Goob-brigmedic-loadout-update
+    ears: ClothingHeadsetBrigmedic
+    outerClothing: ClothingOuterCoatAMG
+    gloves: ClothingHandsGlovesColorWhite
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
+    id: BrigmedicPDA
+    back: ClothingBackpackBrigmedic
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadHatBeretBrigmedic

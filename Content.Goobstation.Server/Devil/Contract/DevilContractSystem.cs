@@ -4,6 +4,7 @@
 // SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+// SPDX-FileCopyrightText: 2025 loltart <lo1tartyt@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -18,6 +19,7 @@ using Content.Goobstation.Shared.Devil.Condemned;
 using Content.Goobstation.Shared.Devil.Contract;
 using Content.Server._Imp.Drone;
 using Content.Server.Body.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Hands.Systems;
 using Content.Server.Implants;
 using Content.Server.Polymorph.Systems;
@@ -25,6 +27,7 @@ using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Mindshield.Components;
+using Content.Shared.Nutrition;
 using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -33,6 +36,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using System.Diagnostics.Contracts;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Goobstation.Server.Devil.Contract;
 
@@ -48,6 +53,7 @@ public sealed partial class DevilContractSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = null!;
     [Dependency] private readonly SubdermalImplantSystem _implant = null!;
     [Dependency] private readonly PolymorphSystem _polymorph = null!;
+    [Dependency] private readonly ExplosionSystem _explosion = null!;
 
     private ISawmill _sawmill = null!;
 
@@ -61,6 +67,7 @@ public sealed partial class DevilContractSystem : EntitySystem
         SubscribeLocalEvent<DevilContractComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DevilContractComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<DevilContractComponent, SignSuccessfulEvent>(OnSignStep);
+        SubscribeLocalEvent<DevilContractComponent, AfterFullyEatenEvent>(OnEaten);
 
         _sawmill = Logger.GetSawmill("devil-contract");
     }
@@ -96,7 +103,7 @@ public sealed partial class DevilContractSystem : EntitySystem
         {
             Act = () => TryBurnContract(contract, (user, devilComp)),
             Text = Loc.GetString("burn-contract-prompt"),
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Effects/fire.rsi"), "fire"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Effects/fire.rsi"), "fire"),
         };
 
         args.Verbs.Add(burnVerb);
@@ -106,7 +113,7 @@ public sealed partial class DevilContractSystem : EntitySystem
     {
         var coordinates = Transform(contract).Coordinates;
 
-        if (contract.Comp is not { IsContractFullySigned: true})
+        if (contract.Comp is not { IsContractFullySigned: true })
         {
             Spawn(devil.Comp.FireEffectProto, coordinates);
             _audio.PlayPvs(devil.Comp.FwooshPath, coordinates, new AudioParams(-2f, 1f, SharedAudioSystem.DefaultSoundRange, 1f, false, 0f));
@@ -124,6 +131,18 @@ public sealed partial class DevilContractSystem : EntitySystem
 
         UpdateContractWeight(contract);
         args.PushMarkup(Loc.GetString("devil-contract-examined", ("weight", contract.Comp.ContractWeight)));
+    }
+
+    private void OnEaten(Entity<DevilContractComponent> contract, ref AfterFullyEatenEvent args)
+    {
+        _explosion.QueueExplosion(
+            args.User,
+            typeId: "Default",
+            totalIntensity: 1, // contract explosions should not cause any kind of major structural damage. you should at worst need to weld a window or repair a table.
+            slope: 1,
+            maxTileIntensity: 1,
+            maxTileBreak: 0,
+            addLog: false);
     }
 
     #region Signing Steps
@@ -148,7 +167,7 @@ public sealed partial class DevilContractSystem : EntitySystem
             return;
 
         // Death to sec powergame
-        if (HasComp<MindShieldComponent>(args.Signer))
+        if (HasComp<MindShieldComponent>(args.Signer) && !HasComp<DevilComponent>(args.Signer))
         {
             var mindshieldedPopup = Loc.GetString("devil-contract-mind-shielded-failed");
             _popupSystem.PopupEntity(mindshieldedPopup, args.Signer, args.Signer, PopupType.MediumCaution);
@@ -255,6 +274,10 @@ public sealed partial class DevilContractSystem : EntitySystem
         var newWeight = 0;
 
         var matches = _clauseRegex.Matches(paper.Content);
+
+        if (!_prototypeManager.TryGetInstances<DevilClausePrototype>(out var clauses)) // CorvaxGoob-TTS
+            return;
+
         foreach (Match match in matches)
         {
             if (!match.Success)
@@ -262,11 +285,11 @@ public sealed partial class DevilContractSystem : EntitySystem
 
             var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
 
-            if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clauseProto)
-                || !contract.Comp.CurrentClauses.Add(clauseProto))
-                continue;
-
-            newWeight += clauseProto.ClauseWeight;
+            if (TryGetClauseByKey(clauseKey, out var clauseProto)) // CorvaxGoob-TTS
+            {
+                contract.Comp.CurrentClauses.Add(clauseProto);
+                newWeight += clauseProto.ClauseWeight;
+            }
         }
 
         contract.Comp.ContractWeight = newWeight;
@@ -299,7 +322,7 @@ public sealed partial class DevilContractSystem : EntitySystem
                 continue;
             }
 
-            if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clause))
+            if (!TryGetClauseByKey(clauseKey, out var clause)) // CorvaxGoob-TTS
             {
                 _sawmill.Warning($"Unknown contract clause: {clauseKey}");
                 continue;
@@ -469,4 +492,23 @@ public sealed partial class DevilContractSystem : EntitySystem
     }
 
     #endregion
+
+    // CorvaxGoob-TTS-Start
+    private bool TryGetClauseByKey(string clauseKey, [NotNullWhen(true)] out DevilClausePrototype? prototype)
+    {
+        prototype = null;
+
+        if (!_prototypeManager.TryGetInstances<DevilClausePrototype>(out var clauses))
+            return false;
+
+        foreach (var clauseProto in clauses)
+            if (clauseProto.Value.Name is not null && clauseProto.Value.Name.Trim().ToLowerInvariant().Replace(" ", "") == clauseKey)
+            {
+                prototype = clauseProto.Value;
+                return true;
+            }
+
+        return false;
+    }
+    // CorvaxGoob-TTS-En
 }

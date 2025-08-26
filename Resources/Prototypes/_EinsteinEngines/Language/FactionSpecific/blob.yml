@@ -1,0 +1,27 @@
+# Used by Blob.
+- type: language
+  id: Blob
+  speech:
+    fontId: Monospace
+    color: "#800080"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement: # CorvaxGoob-Localization
+    - баб
+    - боб
+    - беб
+    - буб
+    - габ
+    - гоб
+    - геб
+    - губ
+    - блаб
+    - блоб
+    - блеб
+    - блуб
+    - глаб
+    - глоб
+    - глеб
+    - глуб

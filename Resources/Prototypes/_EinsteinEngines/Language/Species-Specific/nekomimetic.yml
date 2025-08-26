@@ -1,0 +1,62 @@
+# Spoken by Felinids.
+# Jargon language of Japanese tidbits and memes.
+# TODO: Replace this with a much better language.
+- type: language
+  id: Nekomimetic
+  isVisibleLanguage: true
+  speech:
+    color: "#df57aaee"
+    # fontId: Manga #* FONTS NOT ALREADY HERE ARE NOT BEING ADDED
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3 # May be too long even, we'll see.
+    replacement: # CorvaxGoob-Localization
+    - неко
+    - нян
+    - мими
+    - моэ
+    - мофу
+    - фува
+    - кяа
+    - каваи
+    - пoка
+    - мунья
+    - пуни
+    - мунью
+    - уфуфу
+    - ича
+    - дoки
+    - кюн
+    - кусу
+    - ня
+    - няа
+    - дэсу
+    - кис
+    - ама
+    - чю
+    - бака
+    - хево
+    - буп
+    - гато
+    - кит
+    - сунэ
+    - ёри
+    - соу
+    - бака
+    - чан
+    - сан
+    - кун
+    - махо
+    - ятта
+    - суки
+    - усаги
+    - домо
+    - ори
+    - ува
+    - заазаа
+    - шику
+    - пуру
+    - ира
+    - хето
+    - этто

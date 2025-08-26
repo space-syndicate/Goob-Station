@@ -110,7 +110,7 @@
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
   canBeAntag: false
-  goobcoins: 30 #Goob content
+  #goobcoins: 30 #Goob content Corvax-Goob-coins
   access:
   - Security
   - Brig
@@ -142,5 +142,16 @@
   storage:
     back:
     - Flash
-    - Handcuffs
-    - ClothingMaskGasSecurity # Goobstation
+    - MagazinePistol
+
+- type: chameleonOutfit
+  id: SecurityCadetChameleonOutfit
+  job: SecurityCadet
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetBasic
+    eyes: ClothingEyesHudSecurity
+    mask: ClothingMaskGasSecurity
+    neck: ClothingNeckScarfStripedRed
+    belt: ClothingBeltSecurity
+    gloves: ClothingHandsGlovesColorBlack

@@ -1,0 +1,9 @@
+ent-HolopadCommandNTR = { ent-Holopad }
+    .suffix = NTR
+    .desc = { ent-Holopad.desc }
+ent-HolopadCommandBSO = { ent-Holopad }
+    .suffix = BSO
+    .desc = { ent-Holopad.desc }
+ent-HolopadCentComm = { ent-HolopadBluespace }
+    .suffix = Centcomm
+    .desc = { ent-HolopadBluespace.desc }

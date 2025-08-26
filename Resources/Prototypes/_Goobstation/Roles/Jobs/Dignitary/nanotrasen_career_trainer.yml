@@ -3,7 +3,7 @@
   name: job-name-nct
   description: job-description-nct
   playTimeTracker: JobNanotrasenCareerTrainer
-  goobcoins: 45
+  #goobcoins: 45 Corvax-Goob-coins
   weight: 20
   startingGear: NanotrasenCareerTrainerGear
   icon: "JobIconNanotrasenTrainer"
@@ -38,3 +38,19 @@
     - Flash
     - TelescopicBatonAdvanced
     - CentralCommandBusinessCard
+
+- type: chameleonOutfit
+  id: NanotrasenCareerTrainerChameleonOutfit
+  job: NanotrasenCareerTrainer
+  equipment:
+    eyes: ClothingEyesGlassesCentComm
+    mask: ClothingMaskBreath
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesHeavyGoldenTrim
+    jumpsuit: ClothingUniformJumpsuitTrainer
+    id: TrainerPDA
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsLaceup
+    outerClothing: ClothingOuterWinterCoatTrainer
+    head: ClothingHeadHatTrainer
+    neck: ClothingNeckChameleon

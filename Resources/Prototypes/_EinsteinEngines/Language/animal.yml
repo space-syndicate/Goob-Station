@@ -1,0 +1,240 @@
+# Languages spoken by various animals and critters.
+- type: language
+  id: Cat
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - мурр
+    - мяу
+    - мряу
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Dog
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - вуф
+    - гаф
+    - гоф
+    - гар
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Fox
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - руфф
+    - рафф
+    - гарр
+    - йип
+    - йап
+    - мяух
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Xeno
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 8 # I was crazy once
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - с
+    - С
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Monkey
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 8 # They locked me in a room...
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - А
+    - Г
+    - У
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Mouse
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - ску
+    - ик
+    - пи
+    - ип
+    - чуу
+    - ее
+    - фии
+    - хи
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Chicken
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - ку
+    - куу
+    - дах
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Duck
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - кв
+    - ак
+    - квак
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Cow
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - му
+    - мууу
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Sheep
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - бе
+    - бее
+    - аа
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Kangaroo
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - шре
+    - екк
+    - чуу
+    - чоо
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Pig
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - хрюю # Please someone come up with something better
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Crab
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvxGoob-Localization-Start
+    - клац
+    - клак
+    - ти
+    - пи
+    - щёлк
+    - щё
+    - лк
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Kobold
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - йип
+    - йап
+    - гар
+    - грр
+    - ар
+    - ск
+    - ри
+    - хисс
+    - сс
+    - ее
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Hissing
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - хисс
+    - сс
+    - хи
+    - ис
+    # CorvaxGoob-Localization-End
+
+- type: language
+  id: Penguin
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 3
+    replacement: # I'm out of ideas
+    # CorvaxGoob-Localization-Start
+    - пен
+    - пенг
+    - вон
+    - вонк
+    - вонг
+    # CorvaxGoob-Localization-End
+
+- type: language # Goobstation - For Deer
+  id: Deer
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # CorvaxGoob-Localization-Start
+    - ни
+    - брр
+    # CorvaxGoob-Localization-End

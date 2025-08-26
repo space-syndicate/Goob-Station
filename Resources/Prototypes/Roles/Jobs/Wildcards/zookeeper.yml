@@ -62,7 +62,7 @@
   startingGear: ZookeeperGear
   icon: "JobIconZookeeper"
   supervisors: job-supervisors-hop
-  goobcoins: 15 #Goob content
+  #goobcoins: 15 #Goob content Corvax-Goob-coins
   access:
   - Service
   - Maintenance
@@ -74,11 +74,23 @@
 - type: startingGear
   id: ZookeeperGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSafari
-    head: ClothingHeadSafari
+    #jumpsuit: ClothingUniformJumpsuitSafari
+    #head: ClothingHeadSafari
     shoes: ClothingShoesColorWhite
     id: ZookeeperPDA
     ears: ClothingHeadsetService
   #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: ZookeeperChameleonOutfit
+  job: Zookeeper
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterColorLightBrown
+    neck: ClothingNeckScarfStripedBrown
+    belt: ClothingBeltStorageWaistbag
+    gloves: ClothingHandsGlovesColorBrown
+

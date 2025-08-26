@@ -334,6 +334,9 @@
   description: Used to pilot a shuttle.
   abstract: true
   components:
+  - type: DeviceLinkSink # CorvaxGoob-IIF-Improves
+    ports:
+      - ShuttleDroneReceiver
   - type: ShuttleConsole
   - type: ActivatableUI
     key: enum.ShuttleConsoleUiKey.Key
@@ -1144,7 +1147,7 @@
     account: Engineering
     announcementChannel: Engineering
     removeLimitAccess: [ "ChiefEngineer" ]
-    slipPrinter: false # goob
+    mode: SendToPrimary
   - type: ActiveRadio
     channels:
     - Engineering
@@ -1177,7 +1180,7 @@
     account: Medical
     announcementChannel: Medical
     removeLimitAccess: [ "ChiefMedicalOfficer" ]
-    slipPrinter: false # goob
+    mode: SendToPrimary
   - type: ActiveRadio
     channels:
     - Medical
@@ -1210,7 +1213,7 @@
     account: Science
     announcementChannel: Science
     removeLimitAccess: [ "ResearchDirector" ]
-    slipPrinter: false # goob
+    mode: SendToPrimary
   - type: ActiveRadio
     channels:
     - Science
@@ -1243,7 +1246,7 @@
     account: Security
     announcementChannel: Security
     removeLimitAccess: [ "HeadOfSecurity" ]
-    slipPrinter: false # goob
+    mode: SendToPrimary
   - type: ActiveRadio
     channels:
     - Security
@@ -1276,7 +1279,7 @@
     account: Service
     announcementChannel: Service
     removeLimitAccess: [ "HeadOfPersonnel" ]
-    slipPrinter: false # goob
+    mode: SendToPrimary
   - type: ActiveRadio
     channels:
     - Service
@@ -1350,7 +1353,7 @@
     key: enum.FundingAllocationConsoleUiKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["Quartermaster"]] # Corvax-Goob-FundingConsoleAccess
   - type: UserInterface
     interfaces:
       enum.FundingAllocationConsoleUiKey.Key:
@@ -1752,6 +1755,21 @@
     access: [["ResearchDirector"]]
   - type: Lock
     unlockOnClick: false
+  # Corvax-Goob-MutableLaws-Start
+  - type: ItemSlots
+    slots:
+      circuit_holder:
+        name: circuit-holder
+        whitelist:
+          requireAll: true
+          components:
+          - SiliconLawProvider
+          - Item
+  - type: ContainerContainer
+    containers:
+      circuit_holder: !type:ContainerSlot
+      board: !type:Container
+  # Corvax-Goob-MutableLaws-End
 
 - type: entity
   id: StationAiUploadComputer

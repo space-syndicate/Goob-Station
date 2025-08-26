@@ -141,12 +141,16 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 36000 #10 hrs
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
   canBeAntag: false
-  goobcoins: 35 #Goob content
+  #goobcoins: 35 #Goob content Corvax-Goob-coins
   access:
   - Security
   - Brig
@@ -165,7 +169,6 @@
       - type: Skills # CorvaxGoob-Skills
         skills:
         - Shooting
-      - type: CanChokeGrab # CorvaxGoob-Skills
 
 - type: startingGear
   id: WardenGear
@@ -179,3 +182,17 @@
     - Flash
     - MagazinePistol
     - ClothingMaskGasSecurity # Goobstation
+
+- type: chameleonOutfit
+  id: WardenChameleonOutfit
+  job: Warden
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatWarden
+    mask: ClothingMaskGasSecurity
+    outerClothing: ClothingOuterCoatWarden
+    jumpsuit: ClothingUniformJumpsuitWarden
+    neck: Dinkystar
+    belt: ClothingBeltSecurity
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
