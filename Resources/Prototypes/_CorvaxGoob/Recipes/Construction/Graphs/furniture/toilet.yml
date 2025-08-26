@@ -4,7 +4,7 @@
   graph:
     - node: start
       edges:
-        - to: toilet
+        - to: prisonToilet
           completed:
             - !type:SnapToGrid { }
           steps:

@@ -9,6 +9,8 @@
   - type: Construction
     graph: PrisonToilet
     node: prisonToilet
+  - type: Toilet
+    toggleSeat: false
   - type: Destructible
     thresholds:
     - trigger:
