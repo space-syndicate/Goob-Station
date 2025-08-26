@@ -53,6 +53,12 @@ public sealed class SmartFridgeSystem : EntitySystem
                 sub.Event<SmartFridgeDispenseItemMessage>(OnDispenseItem);
             });
     }
+    //CorvaxGoob-Sort-By-Alphabet-START
+    private void SortEntries(SmartFridgeComponent comp)
+    {
+        comp.Entries.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
+    }
+    //CorvaxGoob-Sort-By-Alphabet-END
     //CorvaxGoob-Refresh-UI-START
     private void OnActivate(EntityUid uid, SmartFridgeComponent comp, ActivateInWorldEvent args)
     {
@@ -88,6 +94,7 @@ public sealed class SmartFridgeSystem : EntitySystem
         var entries = ent.Comp.ContainedEntries[key];
         if (!entries.Contains(GetNetEntity(args.Used)))
             entries.Add(GetNetEntity(args.Used));
+        SortEntries(ent.Comp); //CorvaxGoob-Sort-By-Alphabet
         Dirty(ent);
     }
     //CorvaxGoob-ReagentLable-START
