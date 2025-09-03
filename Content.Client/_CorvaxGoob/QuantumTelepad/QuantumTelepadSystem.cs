@@ -1,10 +1,10 @@
-using Content.Shared._CorvaxNext.QuantumTelepad;
+using Content.Shared._CorvaxGoob.QuantumTelepad;
 using JetBrains.Annotations;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 
-namespace Content.Client._CorvaxNext.QuantumTelepad;
+namespace Content.Client._CorvaxGoob.QuantumTelepad;
 
 public sealed class QuantumTelepadSystem : EntitySystem
 {
