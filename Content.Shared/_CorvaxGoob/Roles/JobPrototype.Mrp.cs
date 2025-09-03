@@ -5,8 +5,11 @@ namespace Content.Shared.Roles;
 public sealed partial class JobPrototype
 {
     /// <summary>
-    ///     Whether this job should only appear when MRP jobs are enabled.
+    ///     MRP visibility flag.
+    ///     null: neutral (show regardless of CVar)
+    ///     true: show only when MRP is enabled
+    ///     false: show only when MRP is disabled
     /// </summary>
     [DataField("mrp")]
-    public bool Mrp { get; private set; } = false;
+    public bool? Mrp { get; private set; } = null;
 }

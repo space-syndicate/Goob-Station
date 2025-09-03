@@ -17,9 +17,7 @@ public sealed class MrpJobServerSystem : EntitySystem
 
     private void OnStationInitialized(StationInitializedEvent ev)
     {
-        if (_cfg.GetCVar(CVars.MrpJobsEnabled))
-            return;
-
-        _stationJobs.RemoveMrpJobs(ev.Station);
+        var mrpEnabled = _cfg.GetCVar(CVars.MrpJobsEnabled);
+        _stationJobs.ApplyMrpJobsFilter(ev.Station, mrpEnabled);
     }
 }

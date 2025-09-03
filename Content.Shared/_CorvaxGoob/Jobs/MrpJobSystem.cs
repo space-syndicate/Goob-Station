@@ -14,19 +14,28 @@ public sealed partial class MrpJobSystem : EntitySystem
     {
         base.Initialize();
 
-        RemoveMrpJobPreferences();
+        ApplyMrpJobPreferences();
         InitializeMrpSystem();
     }
 
-    private void RemoveMrpJobPreferences()
+    private void ApplyMrpJobPreferences()
     {
-        if (_cfg.GetCVar(CVars.MrpJobsEnabled))
-            return;
+        var mrpEnabled = _cfg.GetCVar(CVars.MrpJobsEnabled);
 
         foreach (var department in _prototypes.EnumeratePrototypes<DepartmentPrototype>())
         {
             department.Roles.RemoveAll(jobId =>
-                _prototypes.TryIndex(jobId, out JobPrototype? proto) && proto.Mrp);
+            {
+                if (!_prototypes.TryIndex(jobId, out JobPrototype? proto))
+                    return false;
+
+                // Neutral (null) => never hide via this system
+                if (proto.Mrp is null)
+                    return false;
+
+                // When MRP is enabled, hide explicit false; when disabled, hide explicit true
+                return mrpEnabled ? proto.Mrp == false : proto.Mrp == true;
+            });
         }
     }
 
