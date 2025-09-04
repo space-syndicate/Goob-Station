@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Station.Components;
-using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Station.Systems;
@@ -23,7 +21,6 @@ public sealed partial class StationJobsSystem
         if (!Resolve(station, ref jobs, false))
             return;
 
-        var toRemove = new List<ProtoId<JobPrototype>>();
         foreach (var jobId in jobs.JobList.Keys.ToList())
         {
             if (!_prototypes.TryIndex(jobId, out var proto))
@@ -33,11 +30,8 @@ public sealed partial class StationJobsSystem
                 continue;
 
             if ((mrpEnabled && proto.Mrp == false) || (!mrpEnabled && proto.Mrp == true))
-                toRemove.Add(jobId);
+                jobs.JobList.Remove(jobId);
         }
-
-        foreach (var job in toRemove)
-            jobs.JobList.Remove(job);
 
         jobs.TotalJobs = jobs.JobList.Values.Select(x => x ?? 0).Sum();
         UpdateJobsAvailable();
