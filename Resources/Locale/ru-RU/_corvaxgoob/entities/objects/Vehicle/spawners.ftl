@@ -1,1 +1,1 @@
-ent-SpawnVehicleMotobike = Спавнер мотоцикла
+ent-SpawnVehicleMotobike = спавнер мотоцикла
