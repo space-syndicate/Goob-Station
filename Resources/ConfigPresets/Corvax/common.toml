@@ -20,6 +20,7 @@ maximum_width = 26
 lobbyduration = 240
 map_pool = "CorvaxMapPool"
 round_restart_time = 240
+fallbackpreset = "secretplusmid"
 
 [server]
 rules_file = "CorvaxRuleset"
