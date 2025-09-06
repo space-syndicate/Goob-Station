@@ -11,9 +11,11 @@
 
 using System.Linq;
 using System.Numerics;
+using Content.Client._CorvaxGoob.Animation;
 using Content.Client.Animations;
 using Content.Client.DamageState;
 using Content.Goobstation.Shared.Emoting;
+using Content.Shared._CorvaxGoob.Animation;
 using Content.Shared._Goobstation.Wizard.SupermatterHalberd;
 using Content.Shared.Chat.Prototypes;
 using Robust.Client.Animations;
@@ -29,6 +31,7 @@ namespace Content.Goobstation.Client.Emoting;
 public sealed partial class AnimatedEmotesSystem : SharedAnimatedEmotesSystem
 {
     [Dependency] private readonly AnimationPlayerSystem _anim = default!;
+    [Dependency] private readonly PrototypedAnimationPlayerSystem _protoAnim = default!;
     [Dependency] private readonly IPrototypeManager _prot = default!;
     [Dependency] private readonly RaysSystem _rays = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -90,6 +93,9 @@ public sealed partial class AnimatedEmotesSystem : SharedAnimatedEmotesSystem
 
         if (emote.Event != null)
             RaiseLocalEvent(uid, emote.Event);
+        else if (emote.AnimationId is not null && _prot.TryIndex<AnimationPrototype>(emote.AnimationId, out var animationPrototype)) // CorvaxGoob-PrototypedAnimations
+            _protoAnim.PlayAnimation(uid, animationPrototype);
+
     }
 
     private void OnFlip(Entity<AnimatedEmotesComponent> ent, ref AnimationFlipEmoteEvent args)
