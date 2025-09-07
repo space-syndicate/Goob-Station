@@ -2327,3 +2327,17 @@
     Telecrystal: 10 # Goobstation
   categories:
   - UplinkDeception
+
+- type: listing
+  id: uplinkfire-guitar
+  name: uplink-fire-guitar-name
+  description: uplink-fire-guitar-desc
+  productEntity: FierGuitarInstrument
+  cost:
+    Telecrystal: 20 # corvax-goob
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Musician
