@@ -207,7 +207,7 @@
       Atmos: 25
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
-    announcementSound: /Audio/Announcements/attention.ogg
+    announcementSound: /Audio/_CorvaxGoob/Announcements/dust.ogg # CorvaxGoob-Announcements #base:/Audio/Announcements/attention.ogg
     nonDirectional: true
     meteors:
       MeteorSpaceDust: 1
