@@ -280,3 +280,31 @@
     size: Large
     shape:
     - 0,0,1,3
+
+- type: entity
+  parent: BaseStringInstrumentClothing
+  id: FierGuitarInstrument
+  name: fier-rock guitar
+  description: Fire scene!
+  components:
+  - type: Instrument
+    program: 29
+  - type: SwappableInstrument
+    instrumentList:
+      "Overdrive": {29: 0}
+      "Electric": {27: 0}
+      "Bass": {33: 0}
+      "Rock": {29: 0}
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Weapon/fire-guitar.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    animationRotation: -45 # WWDP
+    damage:
+      types:
+        Heat: 18
+    bluntStaminaDamageFactor: 1.5
+    heavyStaminaCost: 10
+    angle: 90 # WWDP
+  - type: IgniteOnMeleeHit
+    fireStacks: 2
