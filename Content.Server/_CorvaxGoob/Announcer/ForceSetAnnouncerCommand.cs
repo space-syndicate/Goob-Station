@@ -33,12 +33,12 @@ public sealed class ForceSetAnnouncerCommand : IConsoleCommand
 
         if (args.Length == 2 && !int.TryParse(args[1], out rounds))
         {
-            shell.WriteError(Loc.GetString("set-game-preset-optional-argument-not-integer"));
+            shell.WriteError(Loc.GetString("force-set-announcer-optional-argument-not-integer"));
             return;
         }
 
         announcerSystem.ForceSetAnnouncer(prototype, rounds);
-        shell.WriteLine(Loc.GetString("force-set-announcer-annpuncer-set-finite", ("announcer", prototype.ID), ("rounds", rounds.ToString())));
+        shell.WriteLine(Loc.GetString("force-set-announcer-set-finite", ("announcer", prototype.ID), ("rounds", rounds.ToString())));
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
