@@ -37,6 +37,7 @@ public sealed class AnnouncerSystem : EntitySystem
     {
         _resetCountdown = rounds;
         _forcePresetAnnouncer = announcer;
+        _announcerToday = announcer;
     }
 
     /// <summary>
