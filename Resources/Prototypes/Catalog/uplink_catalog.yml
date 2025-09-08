@@ -2334,7 +2334,7 @@
   description: uplink-fire-guitar-desc
   productEntity: FierGuitarInstrument
   cost:
-    Telecrystal: 20 # corvax-goob
+    Telecrystal: 40 # corvax-goob
   categories:
   - UplinkJob
   conditions:
