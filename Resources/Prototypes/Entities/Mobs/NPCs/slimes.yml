@@ -136,7 +136,7 @@
     proto: slime
   - type: NpcFactionMember
     factions:
-    - SimpleNeutral
+    - Passive ##Замена фракции, чтобы не абузить нейтральность фракции против агрессивных мобов
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

@@ -1,5 +1,7 @@
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Damage;
+using Robust.Shared.Localization;
+using System;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
 
@@ -14,6 +16,28 @@ public sealed class SupermatterLightningEvent
         if (uid == EntityUid.Invalid)
         {
             supermatterSystem.Log.Error("SupermatterLightningEvent.Activate: Invalid EntityUid provided");
+            return;
+        }
+        if (comp == null)
+        {
+            return;
+        }
+
+        if (supermatterSystem == null)
+        {
+            return;
+        }
+
+        // Валидация конфигурации компонента
+        if (comp.LightningEventDuration <= TimeSpan.Zero)
+        {
+            supermatterSystem.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningEventDuration: {comp.LightningEventDuration}");
+            return;
+        }
+
+        if (comp.LightningCooldownDuration <= TimeSpan.Zero)
+        {
+            supermatterSystem.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningCooldownDuration: {comp.LightningCooldownDuration}");
             return;
         }
 
@@ -54,7 +78,7 @@ public sealed class SupermatterLightningEvent
     private static void ShootRandomLightnings(EntityUid uid, SupermatterEventSystem supermatterSystem, SupermatterEventComponent component)
     {
         // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе
-        supermatterSystem.LightningSystem.ShootRandomLightnings(uid, component.LightningBoltRadius, component.LightningBoltCount);
+        supermatterSystem.LightningSystem?.ShootRandomLightnings(uid, component.LightningBoltRadius, component.LightningBoltCount, "Lightning", 0, true);
     }
 
     public static string GetAnnouncement()
@@ -62,3 +86,4 @@ public sealed class SupermatterLightningEvent
         return Loc.GetString("supermatter-event-lightning");
     }
 }
+

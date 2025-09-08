@@ -41,6 +41,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - AtmosianHardsuit #Imperial Added Hydrogen
 
 #Engineering Hardsuit
 - type: entity
@@ -475,13 +476,13 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
-    price: 750
+    price: 42
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
     #Imperial Space Pirates: New Horizon; Start
   - type: GPSTrackerPrice
     startprice: 0
-    endprice: 6750
+    endprice: 42000
     #Imperial Space Pirates: New Horizon; End
 
 #Head of Security's Hardsuit

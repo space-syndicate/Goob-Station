@@ -85,6 +85,23 @@
     sprite: Imperial/Seriozha/SCP/misc/alphaencryptionkey.rsi
 
 - type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraLastHopeconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraLastHopeconnection
+    defaultChannel: NedraLastHopeconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/lasthopeencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/lasthopeencryptionkey.rsi
+
+- type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetSCPMain
   name: scpe

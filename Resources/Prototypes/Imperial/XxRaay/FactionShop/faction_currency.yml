@@ -1,0 +1,34 @@
+- type: currency
+  id: NTFactionPoints
+  displayName: faction-currency-nt
+  canWithdraw: true
+
+- type: currency
+  id: SindiFactionPoints
+  displayName: faction-currency-sindi
+  canWithdraw: true
+
+- type: currency
+  id: GreenFactionPoints
+  displayName: faction-currency-green
+  canWithdraw: true
+
+- type: currency
+  id: YellowFactionPoints
+  displayName: faction-currency-yellow
+  canWithdraw: true
+
+- type: currency
+  id: RedFactionPoints
+  displayName: faction-currency-red
+  canWithdraw: true
+
+- type: currency
+  id: BlueFactionPoints
+  displayName: faction-currency-blue
+  canWithdraw: true
+
+- type: currency
+  id: USSPFactionPoints
+  displayName: faction-currency-ussp
+  canWithdraw: true

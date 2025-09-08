@@ -529,6 +529,11 @@
     - Kangaroo
   - type: StealTarget
     stealGroup: ClothingHandsKnuckleDustersQM
+    #Imperial Space Pirates: New Horizon; Start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 33333
+    #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   parent: [ClothingHandsBase, BaseSyndicateContraband]

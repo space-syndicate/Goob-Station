@@ -1,0 +1,167 @@
+- type: listing
+  id: ATMCCR_10
+  productEntity: SpaceCash10
+  cost:
+    FederationCash: 2
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_100
+  productEntity: SpaceCash100
+  cost:
+    FederationCash: 20
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_500
+  productEntity: SpaceCash500
+  cost:
+    FederationCash: 100
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_1000
+  productEntity: SpaceCash1000
+  cost:
+    FederationCash: 200
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_2500
+  productEntity: SpaceCash2500
+  cost:
+    FederationCash: 500
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_5000
+  productEntity: SpaceCash5000
+  cost:
+    FederationCash: 1000
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_10000
+  productEntity: SpaceCash10000
+  cost:
+    FederationCash: 2000
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_20000
+  productEntity: SpaceCash20000
+  cost:
+    FederationCash: 4000
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_30000
+  productEntity: SpaceCash30000
+  cost:
+    FederationCash: 6000
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMCCR_1000000
+  productEntity: SpaceCash1000000
+  cost:
+    FederationCash: 200000
+  categories:
+  - CCR
+
+- type: listing
+  id: ATMFCR_1
+  productEntity: FederationCash1
+  cost:
+    SpaceCredit: 5
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_100
+  productEntity: FederationCash100
+  cost:
+    SpaceCredit: 500
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_500
+  productEntity: FederationCash500
+  cost:
+    SpaceCredit: 2500
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_1000
+  productEntity: FederationCash1000
+  cost:
+    SpaceCredit: 5000
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_2500
+  productEntity: FederationCash2500
+  cost:
+    SpaceCredit: 12500
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_5000
+  productEntity: FederationCash5000
+  cost:
+    SpaceCredit: 25000
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_10000
+  productEntity: FederationCash10000
+  cost:
+    SpaceCredit: 50000
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_20000
+  productEntity: FederationCash20000
+  cost:
+    SpaceCredit: 100000
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_30000
+  productEntity: FederationCash30000
+  cost:
+    SpaceCredit: 150000
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_100000
+  productEntity: FederationCash100000
+  cost:
+    SpaceCredit: 500000
+  categories:
+  - FCR
+
+- type: listing
+  id: ATMFCR_1000000
+  productEntity: FederationCash1000000
+  cost:
+    SpaceCredit: 5000000
+  categories:
+  - FCR

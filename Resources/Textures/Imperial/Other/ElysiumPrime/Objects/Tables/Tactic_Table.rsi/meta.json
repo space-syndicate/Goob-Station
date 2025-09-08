@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "made by Certified Reptilian, aka @rikitheparrot",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "map_table",
+      "directions": 4,
+      "delays": [
+        [0.2, 0.2, 0.2, 0.2],
+        [0.2, 0.2, 0.2, 0.2],
+        [0.2, 0.2, 0.2, 0.2],
+        [0.2, 0.2, 0.2, 0.2]
+      ]
+    }
+  ]
+}

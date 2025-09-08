@@ -629,6 +629,17 @@
     - type: PresetIdCard
       job: null
 
+#Federation ID (empty)
+- type: entity
+  id: ElysiumFederationIDCardEmpty
+  parent: ElysiumFederationIDCard
+  name: Federation ID card
+  description: Identification Card.
+  suffix: ElysiumPrime, empty
+  components:
+    - type: Access
+      tags: []
+
 #Federation PDA
 - type: entity
   id: ElysiumFederationPDA
@@ -657,6 +668,17 @@
   - type: Icon
     sprite: Imperial/Other/ElysiumPrime/Misc/pda.rsi
     state: pda
+
+#Federation PDA (empty)
+- type: entity
+  id: ElysiumFederationPDAEmpty
+  parent: ElysiumFederationPDA
+  name: Federation PDA
+  description: Smells like patriotism
+  suffix: ElysiumPrime, empty
+  components:
+  - type: Pda
+    id: ElysiumFederationIDCardEmpty
 #PDA, ID card END.
 
 #Federation folders
@@ -784,6 +806,16 @@
     SpecialForcePoliceBeret: 3
     SpecialForcePoliceCap: 3
     ClothingOuterArmorElysium: 5
+    ChestBeaconBlue: 3
+    ChestBeaconBlueRed: 3
+    ChestBeaconRed: 3
+    ChestBeaconWhite: 3
+    ChestBeaconYellow: 3
+    ShoulderBeaconBlue: 3
+    ShoulderBeaconBlueRed: 3
+    ShoulderBeaconRed: 3
+    ShoulderBeaconWhite: 3
+    ShoulderBeaconYellow: 3
 
 - type: vendingMachineInventory
   id: ElysiumAdminClothingInventory
@@ -814,6 +846,15 @@
     PoliceInspectorStamp: 2
     PoliceProsecutorStamp: 2
     SecurityStamp: 2
+    ElysiumPrimeFelixPaper: 100
+    ElysiumFederationIDCardEmpty: 100
+    ElysiumFederationPDAEmpty: 100
+    EncryptionKeyAirGroup: 100 
+    FederationAccessManipulator: 1
+    RubberStampApproved: 3
+    RubberStampDenied: 3
+    ClothingHeadsetFADAK9M: 100
+
 
 - type: vendingMachineInventory
   id: ElysiumMaterialMachineInventory
@@ -963,4 +1004,330 @@
     radius: 1.8
     energy: 1.6
     color: "#3db83b"
+
+- type: entity
+  parent: AccessConfigurator
+  name: Access manipulator
+  description: Smells like key of capitalism
+  suffix: ElysiumPrime
+  id: FederationAccessManipulator
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+    - type: Icon
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+      state: icon
+    - type: Item
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+    - type: AccessOverrider
+      accessLevels: 
+      - Federationadmin
+      - Federation
+
+- type: entity
+  parent: Poweredlight
+  name: floor lamp
+  description: lighting for floor
+  id: FloorLamp
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/floorlamps.rsi
+    state: base
+  - type: PoweredLightVisuals
+    spriteStateMap:
+      empty: empty
+      off: base
+      on: glow
+      broken: broken
+      burned: burned
+
+- type: entity
+  parent: PoweredlightEmpty
+  name: floor lamp
+  description: lighting for floor
+  id: FloorLampEmpty
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/floorlamps.rsi
+    state: empty
+  - type: PoweredLightVisuals
+    spriteStateMap:
+      empty: empty
+      off: base
+      on: glow
+      broken: broken
+      burned: burned
+
+- type: entity
+  id: TechAirlockElysiumFederationadminLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime, ElysiumPrime-Admin
+  name: technical airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  id: TechAirlockElysiumFederationLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime
+  name: technical airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  id: TechAirlockElysiumFederation
+  parent: Airlock
+  suffix: ElysiumPrime
+  name: technical airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconBlue
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Blue
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/BBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconBlueRed
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, BlueRed
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/BRBeacon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconRed
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Red
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/RBeacon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconWhite
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, White
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/WBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconYellow
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Yellow
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/YBeacon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconBlue
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Blue
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/BBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconBlueRed
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, BlueRed
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/BRBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconRed
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Red
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/RBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconWhite
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, White
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/WBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconYellow
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Yellow
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/YBeacon.rsi 
+
+- type: entity
+  parent: ElysiumPrimeTable
+  id: ElysiumPrimeTacticTable
+  name: Tactic Table
+  description: Tactic table for planning.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/Tactic_Table.rsi
+    state: map_table
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/Tactic_Table.rsi
+    state: map_table
+
+- type: entity
+  parent: BaseItem
+  id: TabletElysiumPrime 
+  name: Tablet
+  description: Contains all the corruption schemes going on behind the scenes, but he is passworded
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      state: icon
+    - type: Icon
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      state: icon
+    - type: Item
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      size: Small
+    - type: Clothing
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      quickEquip: false
+      slots:
+        - Belt
+
+- type: entity
+  id: RedTicket
+  name: Red ticket
+  parent: Paper
+  description: Just a red ticket.
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/paper.rsi
+      layers:
+      - state: Red_Ticket
+      - state: Red_Ticket
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+
+- type: entity
+  id: BlueTicket
+  name: Blue ticket
+  parent: Paper
+  description: Just a blue ticket.
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/paper.rsi
+      layers:
+      - state: Blue_Ticket
+      - state: Blue_Ticket
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+
+- type: entity
+  id: BlackTicket
+  name: Black ticket
+  parent: Paper
+  description: Just a black ticket.
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/paper.rsi
+      layers:
+      - state: Black_Ticket
+      - state: Black_Ticket
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+
+- type: entity
+  parent: ComputerComms
+  id: ElysiumPrimeComputerComms
+  name: Federation communications computer
+  description: It allows you to make promises that will never come true.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: console
+    - map: ["computerLayerScreen"]
+      state: Comm
+  - type: AccessReader
+    access: [[ "Federationadmin" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-Federation
+    color: "#244e17"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/ElysiumPrime/AdminAnons.ogg
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#00FF00"
 

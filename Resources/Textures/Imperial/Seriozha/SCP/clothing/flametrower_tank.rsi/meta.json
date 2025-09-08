@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "Created by: @fufunuru Discord",
+  "size": {
+      "x": 32,
+      "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4
+    }
+  ]
+}

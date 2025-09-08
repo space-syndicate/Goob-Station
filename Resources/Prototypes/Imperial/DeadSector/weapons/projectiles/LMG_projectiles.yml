@@ -6,7 +6,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 13.9
+        Piercing: 19
 
 - type: entity
   id: AssaultPKMBulletPiercing
@@ -16,5 +16,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8.3
+        Piercing: 15
     ignoreResistances: true

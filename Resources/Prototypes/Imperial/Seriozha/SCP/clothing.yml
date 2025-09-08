@@ -16,6 +16,23 @@
     protectionTime: 5
 
 - type: entity
+  parent: ClothingEyesBase
+  id: SteampunkGoogles
+  name: Steampunk googles
+  suffix: seriozha, Кастомизация
+  description: idc
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
   id: AlphaGasMask
   parent: ClothingMaskGas
   name: gas mask
@@ -77,13 +94,16 @@
     footstepSoundCollection:
       collection: FootstepSpecialOfficer
   - type: NoSlip
+  - type: ClothingSpeedModifier
+    walkModifier: 1.4
+    sprintModifier: 1.4
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Stamina: 0.8
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Stamina: 0.5
         Radiation: 0.0
 
 - type: entity
@@ -103,12 +123,16 @@
     footstepSoundCollection:
       collection: FootstepSpecialOfficer
   - type: NoSlip
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
+        Stamina: 0.95
 
 - type: entity
   parent: ClothingBackpack
@@ -129,3 +153,69 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+
+- type: entity
+  parent: [Clothing, ClothingSlotBase]
+  id: ClothingBackpackFlametrowherTank
+  name: backpack water tank
+  suffix: seriozha, Недра
+  description: Holds a large amount of fluids. Supplies to spray nozzles in your hands, and has a slot on the side for said spray nozzles.
+  components:
+  - type: Tag
+    tags:
+    - FlametrowherTank
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/flametrower_tank.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    slots: BACK
+    sprite: Imperial/Seriozha/SCP/clothing/flametrower_tank.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        priority: 2
+        whitelist:
+          tags:
+          - Flametrowher
+  - type: Appearance
+  - type: SolutionAmmoProvider
+    solutionId: tank
+    proto: BulletWaterShot
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 2000
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 100
+    minTransferAmount: 25
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: DrawableSolution
+    solution: tank
+  - type: RefillableSolution
+    solution: tank
+  - type: DrainableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+
+- type: entity
+  parent: ClothingBackpackFlametrowherTank
+  id: ClothingBackpackFlametrowherTankFilled
+  suffix: seriozha, Недра, Filled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Napalm
+          Quantity: 1900
+        - ReagentId: Phlogiston
+          Quantity: 100
+        maxVol: 2000

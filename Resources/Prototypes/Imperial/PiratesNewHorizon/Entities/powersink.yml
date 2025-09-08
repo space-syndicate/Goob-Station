@@ -13,8 +13,8 @@
         volume: 15
         rolloffFactor: 10
   - type: Battery
-    maxCharge: 3750000
-    pricePerJoule: 0.005
+    maxCharge: 1875000
+    pricePerJoule: 0.01
   - type: Sprite
     sprite: Imperial/PiratesNewHorizon/pirate_powersink.rsi
     state: pirate_powersink

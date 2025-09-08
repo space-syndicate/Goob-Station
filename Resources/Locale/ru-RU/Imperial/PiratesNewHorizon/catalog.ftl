@@ -1,4 +1,4 @@
-pirate-ammunition-cart-name = Проклятый антиматериальный патрон .60
+pirate-ammunition-cart-name = Проклятый магнум патрон .45
 pirate-ammunition-cart-description = Лучшая пуля для пирата, а также подружка твоей кремневой пушки.
 pirate-ammunition-rev-ammo-name = Куча магнум патронов
 pirate-ammunition-rev-ammo-description = Матрос, этих патронов вам на весь трюм хватит в два счета.
@@ -24,7 +24,7 @@ pirate-medicine-medkit-name = Экстренная медицинская бре
 pirate-medicine-medkit-description = Полезная вещица, если шальная пуля угодила вашему матросу в печень.
 pirate-medicine-surgery-name = Хирургический лут
 pirate-medicine-surgery-description = На случаи, когда "Якорь тебе в печень!!!" стало реальностью.
-pirate-medicine-drugs-name = Накросокровище
+pirate-medicine-drugs-name = Наркосокровище
 pirate-medicine-drugs-description = Комплект для веселья каждой озорной пройдохе!
 pirate-medicine-giga-name = Мутная гавань
 pirate-medicine-giga-description = Забитая песком смешанным с грязной водой бутылочка, призывающая громадного помощника пиратов в наш мир.

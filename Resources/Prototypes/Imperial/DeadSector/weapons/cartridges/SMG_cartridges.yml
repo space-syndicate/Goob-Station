@@ -61,3 +61,19 @@
   components:
   - type: CartridgeAmmo
     proto: BulletArmorPiercingSubmachine
+
+- type: entity
+  id: CartridgeSubmachineMP9
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeSubmachine
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSubmachineMP9
+
+- type: entity
+  id: CartridgeArmorPiercingSubmachineMP9
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeSubmachine
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArmorPiercingSubmachineMP9

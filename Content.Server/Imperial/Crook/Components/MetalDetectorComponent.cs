@@ -1,3 +1,6 @@
+// this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla
+// Copyright: @crookielv
+
 using Robust.Shared.Audio;
 using Content.Shared.Imperial.Crook.Visuals;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;

@@ -1,0 +1,71 @@
+#- type: reaction
+#  id: JuiceWhatMakesYouUwU ## Лучше не стоит
+#  impact: Medium
+#  reactants:
+#    JuiceThatMakesYouWeh:
+#      amount: 3
+#    Ethanol:
+#      amount: 1
+#  products:
+#    JuiceThatMakesYouUwU: 1
+
+- type: reagent
+  id: JuiceThatMakesYouUwU
+  name: reagent-name-uwu
+  group: Toxins
+  desc: reagent-desc-uwu
+  physicalDesc: reagent-physical-desc-vibrant
+  flavor: uwu
+  color: "#ff80e8"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.25
+      effects:
+      - !type:Emote
+        emote: UwU
+        showInChat: true
+        showInGuidebook: true
+        force: true
+        probability: 0.5
+      - !type:Polymorph
+        prototype: ReagentUwUReaction
+        conditions:
+        - !type:OrganType
+          type: Animal
+          shouldHave: false
+        - !type:ReagentThreshold
+          min: 50
+      - !type:AdjustReagent
+        reagent: JuiceThatMakesYouUwU
+        amount: -20
+        conditions:
+        - !type:ReagentThreshold
+          min: 50
+
+- type: polymorph
+  id: ReagentUwUReaction
+  configuration:
+    entity: MobCat
+    forced: true
+    transferName: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 15
+
+- type: soundCollection
+  id: UwU
+  files:
+  - /Audio/Imperial/PinkAK/uwu_last.ogg
+
+- type: emote
+  id: UwU
+  name: chat-emote-name-uwu
+  category: Vocal
+  icon: Interface/Emotes/weh.png
+  chatMessages: ["chat-emote-msg-uwu"]
+
+- type: flavor
+  id: uwu
+  flavorType: Base
+  description: flavor-uwu

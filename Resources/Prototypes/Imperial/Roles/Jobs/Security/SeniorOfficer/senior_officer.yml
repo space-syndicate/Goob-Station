@@ -39,3 +39,6 @@
     ears: ClothingHeadsetSecurity
     neck: SecurityWhistle
     pocket1: WeaponPistolMk58Nonlethal
+  storage:
+    back:
+    - EmergencyButton # Imperial Emergency Button

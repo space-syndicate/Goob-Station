@@ -34,7 +34,7 @@
   #Imperial Space Pirates: New Horizon start
   - type: GPSTrackerPrice
     startprice: 0
-    endprice: 5500
+    endprice: 7500
     #Imperial Space Pirates: New Horizon end
 - type: entity
   id: HandheldCrewMonitorEmpty

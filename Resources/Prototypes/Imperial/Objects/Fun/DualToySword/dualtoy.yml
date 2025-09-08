@@ -12,6 +12,15 @@
     damage:
       types:
         Blunt: 0
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: 3
+        variation: 0.250
+    activatedDamage:
+        types:
+            Blunt: 0
   - type: Construction
     graph: DualToySword
     node: DualToySword

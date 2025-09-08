@@ -1,0 +1,9 @@
+- type: storeCategory
+  id: FCR
+  name: FCR
+  priority: 0
+
+- type: storeCategory
+  id: CCR
+  name: CCR
+  priority: 1

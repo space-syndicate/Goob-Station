@@ -38,8 +38,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
-      params:
-        volume: -15
   - type: BallisticAmmoProvider
     capacity: 16
     proto: CartridgeSniperSVUMkI
@@ -191,7 +189,7 @@
     minAngle: -32
     maxAngle: -32
   - type: Gun
-    fireRate: 0.75
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -200,7 +198,7 @@
       params:
         volume: -15
   - type: BallisticAmmoProvider
-    capacity: 16
+    capacity: 15
     proto: CartridgeSniperVSSMkI
     whitelist:
       tags:
@@ -245,7 +243,7 @@
     minAngle: -32
     maxAngle: -32
   - type: Gun
-    fireRate: 0.75
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -254,7 +252,7 @@
       params:
         volume: -15
   - type: BallisticAmmoProvider
-    capacity: 16
+    capacity: 20
     proto: CartridgeSniperVSSMkII
     whitelist:
       tags:

@@ -185,14 +185,14 @@
   tags: ["station", "markings"]
   sprite:
     sprite: Imperial/Felix/decals_RU.rsi
-    state: tRU
+    state: t_RU
 
 - type: decal
   id: uRU
   tags: ["station", "markings"]
   sprite:
     sprite: Imperial/Felix/decals_RU.rsi
-    state: uRU
+    state: u_RU
 
 - type: decal
   id: vRU
@@ -241,25 +241,25 @@
   tags: ["station", "markings"]
   sprite:
     sprite: Imperial/Felix/decals.rsi
-    state: Immigrants1_RU
+    state: Immigrants1
 
 - type: decal
   id: Immigrants2RU
   tags: ["station", "markings"]
   sprite:
     sprite: Imperial/Felix/decals.rsi
-    state: Immigrants2_RU
+    state: Immigrants2
 
 - type: decal
   id: ohranajemajaterritorija1RU
   tags: ["station", "markings"]
   sprite:
     sprite: Imperial/Felix/decals.rsi
-    state: ohranajemaja_territorija1_RU
+    state: ohranajemaja_territorija1
 
 - type: decal
   id: ohranajemajaterritorija2RU
   tags: ["station", "markings"]
   sprite:
     sprite: Imperial/Felix/decals.rsi
-    state: ohranajemaja_territorija2_RU
+    state: ohranajemaja_territorija2

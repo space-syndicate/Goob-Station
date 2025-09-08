@@ -70,10 +70,10 @@
   - AmmoCombat
 
 - type: listing
-  id: DSCallUplinkMagazineBoxDelivererUAPAlt
-  name: ert-uplink-ammononcombat-magazinedelivereruap-name
-  description: ert-uplink-ammononcombat-magazinedelivereruap-desc
-  productEntity: ItemDelivererMagazineUAP
+  id: DSCallUplinkMagazineBoxDelivererAPAlt
+  name: ert-uplink-ammononcombat-magazinedelivererap-name
+  description: ert-uplink-ammononcombat-magazinedelivererap-desc
+  productEntity: ItemDelivererMagazineAP
   cost:
     BlueSpaceCube: 6
   categories:

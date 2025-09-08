@@ -18,7 +18,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/Imperial/SpecialUnits/RCU/Criminality/uts.ogg
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticAmmoProvider

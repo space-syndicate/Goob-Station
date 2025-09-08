@@ -1,0 +1,19 @@
+- type: storeCategory
+  id: FactionWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: FactionAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: FactionMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: FactionTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc

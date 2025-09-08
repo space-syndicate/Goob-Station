@@ -66,33 +66,55 @@ chat-radio-8 = 8
 chat-radio-9 = 9
 chat-radio-10 = 10
 
-ent-EncryptionKeyRadioCadet = ключ шифрования Рядовые
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+Administration = Администрация
 
-ent-EncryptionKeyRadioSGT = ключ шифрования Сержанты
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+Bank = Банк
 
-ent-EncryptionKeyRadioOFC = ключ шифрования Офицеры
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+CommoditySpecialist = Торговый Док
 
-ent-EncryptionKeyRadioCMD = ключ шифрования Командование
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+Miner = Шахты
 
-ent-EncryptionKeyRadioPiloting = ключ шифрования Пилоты
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+Police = Полиция
 
-ent-EncryptionKeyRadioENG = ключ шифрования Инженеры
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+Shipyard = Верфь
 
-ent-EncryptionKeyRadioSEC = ключ шифрования Гарнизон
-    .desc = Отдельный канал связи.
-    .suffix = Кастомный ключ, Felix
+Wastes = Фабрика Отходов
+
+AdministrativeSector = Сектор Администрации
+
+FinancialSector = Сектор производства
+
+ManufacturingSector = Сектор Финансов
+
+ent-EncryptionKeyRadioAdministration = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelBank = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-FelixradioChannelCommoditySpecialist = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelMiner = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelPolice = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelShipyard = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelWastes = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelAdministrativeSector = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelFinancialSector = Ключ шифрования
+    .desc = На усмотрение, можно и без.
+
+ent-EncryptionKeyRadioFelixradioChannelManufacturingSector = Ключ шифрования
+    .desc = На усмотрение, можно и без.
 
 Cadets = Кадеты
 Sergaunts = Сержанты

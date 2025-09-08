@@ -1,0 +1,166 @@
+- type: entity
+  name: UWUMS
+  parent: [BaseWeaponRifle, BaseSecurityContraband]
+  id: WeaponRifleAkPink
+  description: Feews fwom .30 wifle magawines QwQ ## Отличаеися от АКМС только спрайтами и звуками.
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/PinkAK/pinkak_icon.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: Imperial/Other/TFG/PinkAK/pinkak_inhand.rsi
+  - type: Clothing
+    sprite: Imperial/Other/TFG/PinkAK/pinkak_inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/PinkAK/uwu_shot.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Imperial/PinkAK/uwu_last.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Imperial/PinkAK/uwu_reload.ogg
+        ejectSound: /Audio/Imperial/PinkAK/uwu_reload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: UWUMS
+  parent: [BaseWeaponRiflePink, BaseSecurityContraband]
+  id: WeaponRifleAkPinkDebug
+  description: Feews fwom special wifle magawines what makes QwQ ## Использует вещество, которое заставляет увукать owo
+  suffix: Debug, Admeme
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/PinkAK/pinkak_icon.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    sprite: Imperial/Other/TFG/PinkAK/pinkak_inhand.rsi
+  - type: Clothing
+    sprite: Imperial/Other/TFG/PinkAK/pinkak_inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/PinkAK/uwu_shot.ogg
+  - type: BallisticAmmoProvider
+    capacity: 999
+    proto: CartridgeUwU
+    whitelist:
+      tags:
+      - UWUMSDebugProjectile
+  - type: Appearance
+
+- type: entity
+  id: CartridgeUwU
+  name: uwu cartridge
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - UWUMSDebugProjectile
+  - type: CartridgeAmmo
+    proto: BulletUwU
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: JuiceThatMakesYouUwU
+          Quantity: 10
+  - type: SolutionTransfer
+    maxTransferAmount: 10
+
+- type: entity
+  id: BulletUwU
+  name: uwu bullet
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletPractice
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 15
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 15
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+
+- type: Tag
+  id: UWUMSDebugProjectile
+
+- type: entity
+  name: BaseWeaponRiflePink
+  parent: [BaseItem, BaseGunWieldable]
+  id: BaseWeaponRiflePink
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: StaticPrice
+    price: 500

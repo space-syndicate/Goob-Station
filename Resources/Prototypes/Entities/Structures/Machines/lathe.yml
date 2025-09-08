@@ -410,6 +410,7 @@
     - SecurityAmmo
     - SecurityWeapons
     - ImperialSecurityDynamic # Imperial Space
+    - ImperialSecurityEquipment # Imperial Space Emergency Button
     - SecurityDisablers
   - type: MaterialStorage
     whitelist:

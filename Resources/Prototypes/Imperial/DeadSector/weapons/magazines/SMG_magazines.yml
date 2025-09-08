@@ -108,7 +108,7 @@
   suffix: Felix
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeSubmachine
+    proto: CartridgeSubmachineMP9
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/SMG/MP9_mag.rsi
     layers:
@@ -124,7 +124,7 @@
   suffix: Felix
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeArmorPiercingSubmachine
+    proto: CartridgeArmorPiercingSubmachineMP9
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/SMG/MP9_mag.rsi
     layers:

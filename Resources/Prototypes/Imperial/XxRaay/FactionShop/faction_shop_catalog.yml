@@ -1,0 +1,145 @@
+# Faction Shop Catalog (cleaned: only requested weapons and ammo)
+
+# Weapons
+- type: listing
+  id: FactionLecter
+  name: lecter
+  description: lecter-desc
+  productEntity: WeaponRifleLecter
+  cost:
+    NTFactionPoints: 120
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionDrozd
+  name: drozd
+  description: drozd-desc
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    NTFactionPoints: 90
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionL6
+  name: l6-saw
+  description: l6-saw-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    NTFactionPoints: 200
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionAKMS
+  name: akms
+  description: akms-desc
+  productEntity: WeaponRifleAk
+  cost:
+    NTFactionPoints: 100
+  categories:
+  - FactionWeapons
+
+# Ammo (basic examples / adjust if needed specific shops)
+- type: listing
+  id: FactionAmmoLightRifle
+  name: ammo-light-rifle
+  description: ammo-light-rifle-desc
+  productEntity: MagazineLightRifle
+  cost:
+    NTFactionPoints: 15
+  categories:
+  - FactionAmmo
+
+# Armor
+- type: listing
+  id: FactionArmorBulletproof
+  name: faction-armor-bulletproof
+  description: faction-armor-bulletproof-desc
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    NTFactionPoints: 120
+  categories:
+  - FactionTools
+
+
+- type: listing
+  id: FactionArmorRiot
+  name: faction-armor-riot
+  description: faction-armor-riot-desc
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    NTFactionPoints: 140
+  categories:
+  - FactionTools
+
+- type: listing
+  id: FactionArmorWeb
+  name: faction-armor-web
+  description: faction-armor-web-desc
+  productEntity: ClothingOuterVestWeb
+  cost:
+    NTFactionPoints: 100
+  categories:
+  - FactionTools
+
+- type: listing
+  id: FactionMedkit
+  name: faction-medkit
+  description: faction-medkit-desc
+  productEntity: Medkit
+  cost:
+    NTFactionPoints: 40
+  categories:
+  - FactionMedical
+
+- type: listing
+  id: FactionGauze
+  name: faction-gauze
+  description: faction-gauze-desc
+  productEntity: Gauze
+  cost:
+    NTFactionPoints: 8
+  categories:
+  - FactionMedical
+
+- type: listing
+  id: FactionOintment
+  name: faction-ointment
+  description: faction-ointment-desc
+  productEntity: Ointment
+  cost:
+    NTFactionPoints: 8
+  categories:
+  - FactionMedical
+
+- type: listing
+  id: FactionBruisePack
+  name: faction-bruise-pack
+  description: faction-bruise-pack-desc
+  productEntity: Brutepack
+  cost:
+    NTFactionPoints: 10
+  categories:
+  - FactionMedical
+
+- type: listing
+  id: FactionAmmoSMG
+  name: ammo-smg
+  description: ammo-smg-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    NTFactionPoints: 12
+  categories:
+  - FactionAmmo
+
+- type: listing
+  id: FactionAmmoL6Belt
+  name: ammo-l6-belt
+  description: ammo-l6-belt-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    NTFactionPoints: 40
+  categories:
+  - FactionAmmo

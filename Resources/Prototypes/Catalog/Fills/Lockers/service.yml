@@ -93,8 +93,6 @@
       - id: BookSpaceLaw
       - id: ToyHammer
       - id: Pen
-      - id: PlushieIsaac
-        prob: 0.3
       - id: ToyFigurineLawyer
         prob: 0.2
       - id: BoxFolderRed

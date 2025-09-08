@@ -41,7 +41,9 @@
   id: JobAdjutant
   groups:
   - AdjutantJumpsuit
+  - AdjutantBackpack
   - Trinkets
+  - Survival
 
 - type: loadoutGroup
   id: AdjutantJumpsuit
@@ -49,6 +51,14 @@
   loadouts:
   - ClothingUniformJumpsuitAdjutant
   - ClothingUniformJumpskirtAdjutant
+
+- type: loadoutGroup
+  id: AdjutantBackpack
+  name: loadout-group-adjutant-backpack
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
 
 - type: loadout
   id: ClothingUniformJumpsuitAdjutant
@@ -66,9 +76,11 @@
 - type: startingGear
   id: AdjutantGear
   equipment:
-    back: ClothingBackpackHOPFilled
     shoes: ClothingShoesBootsLaceup
     id: AdjutantPDA
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAdjutant
     belt: BoxFolderClipboard
+  storage:
+    back:
+    - Flash

@@ -3,7 +3,7 @@
   parent: MobHuman
   id: ImperialSCPBasePreset
   components:
-    - type: NoSlip
+    - type: AntagImmune
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
@@ -45,6 +45,18 @@
 
 - type: entity
   parent: ImperialSCPBasePreset
+  id: PresetSCPMTFNU
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ NuGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
   id: PresetSCPMTFCMD
   name: Preset
   suffix: seriozha, Недра
@@ -57,10 +69,23 @@
 
 - type: entity
   parent: ImperialSCPBasePreset
+  id: PresetSCPMTFNUCMD
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ NuCMDGear]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
   id: PresetSCPAlpha
   name: Preset
   suffix: seriozha, Недра
   components:
+    - type: NoSlip
     - type: Loadout
       prototypes: [ AlphaGear ]
     - type: AutoImplant
@@ -182,6 +207,45 @@
     - DoorRemoteSCP
 
 - type: startingGear
+  id: NuGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackFlametrowherTankFilled
+    mask: ClothingMaskSterile
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHardsuitSingularitySienceOrange
+    eyes: ClothingEyesGlassesChemical
+    gloves: ClothingHandsGlovesNitrile
+    outerClothing: ClothingOuterHardsuitSingularitySienceOrangeArmored
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltParamedicFilled
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  inhand:
+  - WeaponSCPFlametrowher
+
+- type: startingGear
+  id: NuCMDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackFlametrowherTankFilled
+    mask: ClothingMaskSterile
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHardsuitSingularitySienceOrange
+    neck: USSPMajorPin
+    eyes: ClothingEyesGlassesChemical
+    gloves: ClothingHandsGlovesNitrile
+    outerClothing: ClothingOuterHardsuitSingularitySienceOrangeArmored
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPAlt
+    belt: ClothingBeltParamedicFilled
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  inhand:
+  - WeaponSCPFlametrowher
+
+- type: startingGear
   id: OxranaGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
@@ -283,7 +347,6 @@
     mask: AlphaGasMask
     shoes: ClothingShoesAlpha
     head: ClothingHeadHelmetSCPAlpha
-    neck: USSPMajorPin
     eyes: AlphaVisor
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorSCPAlpha

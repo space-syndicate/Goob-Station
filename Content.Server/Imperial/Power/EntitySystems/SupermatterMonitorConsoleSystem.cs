@@ -103,7 +103,8 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 var (integrityPercent, level) = CalculateIntegrity(nearest);
                 var integrity = (int)Math.Round(integrityPercent);
 
-                if (integrity >= nearest.SupermatterIntegrity.Min().Threshold)
+                var highestThreshold = nearest.SupermatterIntegrity.MaxBy(e => e.Threshold).Threshold;
+                if (integrity >= highestThreshold)
                 {
                     console.BeepCooldownTimer = TimeSpan.Zero;
                 }
@@ -123,8 +124,21 @@ namespace Content.Server.Imperial.Power.EntitySystems
             CalculateIntegrity(SupermatterIntegrityComponent component)
         {
             var integrity = component.Integrity / component.MaxIntegrity * 100f;
-            var integrityLevel = component.SupermatterIntegrity.First(entry => integrity > entry.Threshold);
-            return (integrity, integrityLevel);
+
+            // Выбираем самый высокий уровень, порог которого меньше или равен текущей целостности.
+            var ordered = component.SupermatterIntegrity.OrderByDescending(e => e.Threshold).ToList();
+            var idx = ordered.FindIndex(entry => integrity >= entry.Threshold);
+            (float Threshold, Color Color, LocId Description, LocId Warning, bool Flag) level;
+            if (idx >= 0)
+            {
+                level = ordered[idx];
+            }
+            else
+            {
+                level = component.SupermatterIntegrity.MinBy(e => e.Threshold);
+            }
+
+            return (integrity, level);
         }
     }
 }

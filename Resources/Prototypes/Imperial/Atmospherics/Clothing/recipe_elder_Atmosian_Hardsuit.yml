@@ -1,0 +1,30 @@
+- type: constructionGraph
+  id: ElderHardsuit
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: elderHardsuit
+      steps:
+      - tag: AtmosianHardsuit
+        icon:
+          sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+          state: icon
+        name: atmos hardsuit
+        doAfter: 10
+      - material: Durathread
+        amount: 5
+        doAfter: 10
+      - material: Hydrogen
+        amount: 15
+        doAfter: 10
+  - node: elderHardsuit
+    entity: ElderAtmosianHardsuit
+
+- type: construction
+  id: ElderHardsuit
+  graph: ElderHardsuit
+  startNode: start
+  targetNode: elderHardsuit
+  category: construction-category-clothing
+  objectType: Item

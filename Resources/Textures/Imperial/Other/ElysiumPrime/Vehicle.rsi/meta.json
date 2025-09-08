@@ -8,32 +8,46 @@
   },
   "states": [
     {
-      "name": "crane_cargo",
-      "directions": 4
+      "name": "crane_cargo"
     },
     {
-      "name": "crawler",
-      "directions": 4
+      "name": "crane_cargo2"
     },
     {
-      "name": "crawler_crate_alt2",
-      "directions": 4
+      "name": "crawler"
     },
     {
-      "name": "crawler_fuel",
-      "directions": 4
+      "name": "crawler2"
     },
     {
-      "name": "tractor_damaged",
-      "directions": 4
+      "name": "crawler_crate_alt"
     },
     {
-      "name": "truck_damaged",
-      "directions": 4
+      "name": "crawler_crate_alt2"
     },
     {
-      "name": "truck_mining",
-      "directions": 4
+      "name": "crawler_fuel"
+    },
+    {
+      "name": "crawler_fuel2"
+    },
+    {
+      "name": "tractor_damaged"
+    },
+    {
+      "name": "tractor_damaged2"
+    },
+    {
+      "name": "truck_damaged"
+    },
+    {
+      "name": "truck_damaged2"
+    },
+    {
+      "name": "truck_mining"
+    },
+    {
+      "name": "truck_mining2"
     }
   ]
 }

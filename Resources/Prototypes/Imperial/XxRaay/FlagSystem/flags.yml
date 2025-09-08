@@ -1,0 +1,134 @@
+- type: entity
+  id: ImperialXxRaayBaseFlag
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/XxRaay/flags.rsi
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-1.0,-0.1,-0.6"
+        density: 1000
+        hard: true
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        - Impassable
+  - type: Transform
+    anchored: true
+  - type: FlagCapture
+    captureRadius: 2.0
+    captureTime: 30
+  - type: NpcFactionMember
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialUSSPFlag
+  name: USSP Flag
+  description: Флаг Союза Советских Социалистических Планет. Развевается с гордостью.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: ussp-flag
+  - type: NpcFactionMember
+    factions:
+    - USSP
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialNTFlag
+  name: NT Flag
+  description: Корпоративный флаг Nanotrasen. Символ капиталистической империи.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: NT-flag
+  - type: NpcFactionMember
+    factions:
+    - Nanotrasen
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialSindiFlag
+  name: Syndicate Flag
+  description: Флаг Синдиката. Пахнет порохом и революцией.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: sindi-flag
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialGreenFlag
+  name: Green Flag
+  description: Зеленый флаг. Простой, но элегантный.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: green-flag
+  - type: NpcFactionMember
+    factions:
+    - GreenFaction
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialYellowFlag
+  name: Yellow Flag
+  description: Желтый флаг. Яркий и заметный.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: yellow-flag
+  - type: NpcFactionMember
+    factions:
+    - YellowFaction
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialRedFlag
+  name: Red Flag
+  description: Красный флаг. Цвет революции и страсти.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: red-flag
+  - type: NpcFactionMember
+    factions:
+    - RedFaction
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialBlueFlag
+  name: Blue Flag
+  description: Синий флаг. Спокойный как космическая бездна.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: blue-flag
+  - type: NpcFactionMember
+    factions:
+    - BlueFaction
+
+- type: entity
+  parent: ImperialXxRaayBaseFlag
+  id: ImperialWhiteFlag
+  name: White Flag
+  description: Белый флаг. Символ мира... или капитуляции. Можно захватить для своей фракции.
+  suffix: XxRaay, FlagsTDM
+  components:
+  - type: Sprite
+    state: white-flag

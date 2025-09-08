@@ -6,10 +6,10 @@
   id: PirateCatalogBullet
   name: pirate-ammunition-cart-name
   description: pirate-ammunition-cart-description
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi, state: base }
-  productEntity: CartridgeAntiMateriel
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi, state: base }
+  productEntity: CartridgeMagnum
   cost:
-    Doubloon: 200
+    Doubloon: 150
   categories:
   - PiratesAmmunition
 # It sucks tbh

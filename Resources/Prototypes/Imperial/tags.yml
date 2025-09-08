@@ -1,2 +1,5 @@
 - type: Tag
   id: OnlyMaterialEnergy
+
+- type: Tag
+  id: DoesNotRecycleThisShit

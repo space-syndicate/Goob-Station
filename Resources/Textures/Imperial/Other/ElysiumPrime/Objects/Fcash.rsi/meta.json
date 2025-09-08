@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made for the Imperial Space community, authors'es discord nickname: limemint",
+    "states": [
+        {
+            "name": "cash"
+        },
+        {
+            "name": "cash_10"
+        },
+        {
+            "name": "cash_100"
+        },
+        {
+            "name": "cash_1000"
+        },
+        {
+            "name": "cash_2500"
+        },
+        {
+            "name": "cash_5000"
+        },
+        {
+            "name": "cash_10000"
+        },
+        {
+            "name": "cash_20000"
+        },
+        {
+            "name": "cash_30000"
+        },
+        {
+            "name": "cash_100000"
+        },
+        {
+            "name": "cash_1000000"
+        }
+    ]
+}

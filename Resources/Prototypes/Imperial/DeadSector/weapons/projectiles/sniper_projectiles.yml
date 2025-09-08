@@ -6,7 +6,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 55.5
+        Piercing: 68.5
 
 - type: entity
   id: BulletSVUMkIIPiercing
@@ -16,7 +16,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 33.3
+        Piercing: 40
     ignoreResistances: true
 
 - type: entity
@@ -29,7 +29,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 55.5
+        Piercing: 68.5
 
 - type: entity
   id: BulletSVUMkIIExplosive
@@ -39,7 +39,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40.5
+        Piercing: 60
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -105,7 +105,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 53.5
+        Piercing: 18
 
 - type: entity
   id: BulletArmorPiercingSniperVSSMkI
@@ -116,7 +116,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 32.1
+        Piercing: 18
     ignoreResistances: true
 
 - type: entity
@@ -129,7 +129,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 53.5
+        Piercing: 18
 
 - type: entity
   id: BulletExplosiveSniperVSSMkI
@@ -139,7 +139,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 48.5
+        Piercing: 16
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -156,7 +156,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 65.5
+        Piercing: 30
 
 - type: entity
   id: BulletArmorPiercingSniperVSSMkII
@@ -167,7 +167,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 39.3
+        Piercing: 22
     ignoreResistances: true
 
 - type: entity
@@ -180,7 +180,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 65.5
+        Piercing: 30
 
 - type: entity
   id: BulletExplosiveSniperVSSMkII
@@ -190,7 +190,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 60.5
+        Piercing: 25
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -207,7 +207,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 50.5
+        Piercing: 55.5
 
 - type: entity
   id: BulletArmorPiercingSniperSVUMkI
@@ -231,7 +231,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 50.5
+        Piercing: 55.5
 
 - type: entity
   id: BulletExplosiveSniperSVUMkI
@@ -241,7 +241,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 45.5
+        Piercing: 50.5
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default

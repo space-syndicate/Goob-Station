@@ -170,9 +170,9 @@
   sprite: /Textures/Tiles/lino.png
   isSubfloor: true
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepCarpet
   heatCapacity: 99910000
-  weather: true
+  weather: false
   indestructible: true
 
 - type: entity
@@ -256,9 +256,9 @@
 - type: emoteSounds
   id: SmilerVoice
   sound:
-    path: /Audio/Imperial/Crook/smiler/smilerscream.ogg
+    path: /Audio/Imperial/Crook/backrooms/smiler/smilerscream.ogg
     params:
-      variation: 2
+      volume: -4
 
 - type: entity
   name: basic smiler
@@ -284,7 +284,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.30
+          radius: 0.45
         density: 80
         mask:
         - MobMask
@@ -295,8 +295,8 @@
       0: Alive
       120: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 5
+    baseWalkSpeed: 4
+    baseSprintSpeed: 3
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
@@ -311,8 +311,21 @@
     angle: 0
     animation: WeaponArcPunch
   - type: GhostTakeoverAvailable
+  - type: ReplacementAccent
+    accent: genericAggressive
   - type: TypingIndicator
-    proto: slime
+    proto: alien
+
+- type: shader
+  id: SmilerGlitch
+  kind: source
+  path: "/Textures/Imperial/Shaders/glitch.swsl"
+  params:
+    shake_power: 0.001
+    shake_rate: 0.5
+    shake_speed: 2
+    shake_block_size: 1
+    shake_color_rate: 0.1
 
 - type: entity
   name: Smiler
@@ -330,10 +343,11 @@
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
+        shader: SmilerGlitch
       - state: unshaded
         shader: unshaded
   - type: PointLight
-    radius: 1.2
+    radius: 1.4
     energy: 2.1
     color: "#ffffff"
   - type: MobState
@@ -343,10 +357,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      50: 0.4
+      250: Dead
   - type: Bloodstream
     bloodReagent: MuteToxin
     chemicalMaxVolume: 60
@@ -357,11 +368,11 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 10
-        Structural: 50
+        Slash: 12
+        Structural: 75
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 5
+    transferAmount: 1
   - type: DamageStateVisuals
     rotate: true
     states:
@@ -389,21 +400,36 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 150
+          damage: 250
         behaviors:
           - !type:DoActsBehavior
              acts: [ "Destruction" ]
+  - type: AmbientSound
+    range: 5
+    volume: -11
+    sound:
+      path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
+
+- type: entity
+  name: Smiler
+  id: SmilerVisibility
+  suffix: Backrooms, Visibility5
+  parent: Smiler
+  description: Smiling means kind.
+  components:
+  - type: Visibility
+    layer: 5
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
 
 - type: entity
   name: deathmoth
-  parent: MobCockroach
+  parent: SimpleSpaceMobBase
   id: MobDeathmoth
   suffix: Backrooms, Crook
   description: This moth will bite off your head if you stroke it. But you don't care.
   components:
-  - type: Item
-    size: Huge
-  - type: CanEscapeInventory
   - type: SolutionContainerManager
     solutions:
       food:
@@ -417,17 +443,17 @@
   - type: MobState
     allowedStates:
     - Alive
-    - Critical
     - Dead
   - type: MeleeWeapon
+    attackRate: 0.65
     soundHit:
       collection: AlienClaw
     animation: WeaponArcBite
     damage:
       types:
-        Piercing: 10
-        Caustic: 2
-        Structural: 25
+        Piercing: 15
+        Caustic: 10
+        Structural: 75
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -443,47 +469,38 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.2
+          radius: 0.7
         density: 120
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
+    allowedEmotes: ['Click', 'Chitter']
   - type: MothAccent
   - type: Sprite
-    drawdepth: SmallMobs
+    drawdepth: Mobs
     sprite: Imperial/Crook/Misc/deathmoth.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: deathmoth
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: deathmoth-moving
-    noMovementLayers:
-      movement:
-        state: deathmoth
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
   - type: Appearance
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: deathmoth
-      Critical:
-        Base: deathmoth_dead
+        Base: alive
       Dead:
-        Base: deathmoth_dead
+        Base: dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      140: Dead
+      450: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
-    baseSprintSpeed : 5.5
+    baseSprintSpeed : 2
     weightlessAcceleration: 1.5
     weightlessFriction: 1
     weightlessModifier: 1
@@ -492,9 +509,12 @@
     damageModifierSet: Moth
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcid
-    bloodMaxVolume: 100
+    bloodMaxVolume: 200
   - type: CombatMode
   - type: Butcherable
+    spawned:
+      - id: FoodMeatXeno
+        amount: 6
   - type: Extractable
     grindableSolutionName: food
   - type: ReplacementAccent
@@ -505,22 +525,31 @@
       Female: UnisexMoth
       Unsexed: UnisexMoth
     wilhelmProbability: 0.001
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
   - type: MobPrice
-    price: 150
+    price: 15000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Stamina: 0.2
   - type: Tag
     tags:
-    - CannotSuicide
-    - VimPilot
+      - FootstepSound
+      - CannotSuicide
   - type: Body
     prototype: Mothroach
   - type: TypingIndicator
-    proto: moth
+    proto: alien
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 200
+        damage: 600
       behaviors:
       - !type:GibBehavior { }
   - type: HTN
@@ -540,6 +569,169 @@
       - FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: NonSpreaderZombie
+
+- type: entity
+  id: PortalGatewayBackrooms
+  parent: BasePortal
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Crook/Misc/backrooms/portal.rsi
+    layers:
+    - state: icon
+      shader: SmilerGlitch
+  - type: DamageOnInteract
+    damage:
+      types:
+        Cellular: 15
+    popupText: hand-glitch-hurt
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    netsync: false
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Crook/backrooms/glitchspawn.ogg
+      params:
+        range: 6
+        volume: -6
+  - type: AmbientSound
+    range: 4
+    volume: -3
+    sound:
+      path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
+
+- type: entity
+  id: HandTeleporterBackrooms
+  suffix: Backrooms, Crook
+  parent: BaseItem
+  name: interdimensional teleporter
+  description: Allows you to open stable portal gates that are not limited by distance.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/backrooms/portal.rsi
+    layers:
+    - state: icon
+  - type: HandTeleporter
+    allowPortalsOnDifferentGrids: true
+    allowPortalsOnDifferentMaps: true
+    firstPortalPrototype: PortalGatewayBackrooms
+    secondPortalPrototype: PortalGatewayBackrooms
+
+- type: emoteSounds
+  id: BacteriaVoice
+  sound:
+    path: /Audio/Imperial/Crook/backrooms/bacteria/bacteriascream.ogg
+    params:
+      volume: -4
+
+- type: shader
+  id: BacteriaGlitch
+  kind: source
+  path: "/Textures/Imperial/Shaders/glitch.swsl"
+  params:
+    shake_power: 0.0002
+    shake_rate: 0.1
+    shake_speed: 1
+    shake_block_size: 25
+    shake_color_rate: 0.001
+
+- type: entity
+  name: bacteria
+  suffix: Backrooms, Crook
+  parent: SimpleSpaceMobBase
+  id: BackroomsBacteria
+  description: wth is that...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        shader: BacteriaGlitch
+        sprite: Imperial/Crook/Misc/backrooms/bacteria.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        1500: Dead
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        750: 0.7
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.7
+          Stamina: 0.2
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcPunch
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Blunt: 30
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+        params:
+          volume: -4
+    - type: Speech
+      speechVerb: LargeMob
+    - type: Vocal
+      sounds:
+        Unsexed: BacteriaVoice
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 8
+      baseSprintSpeed: 3
+    - type: NoSlip
+
+- type: shader
+  id: SignGlitch
+  kind: source
+  path: "/Textures/Imperial/Shaders/glitch.swsl"
+  params:
+    shake_power: 0.0005
+    shake_rate: 0.5
+    shake_speed: 0.5
+    shake_block_size: 5
+    shake_color_rate: 0.01
+
+- type: entity
+  id: ExitSignBackrooms
+  parent: PosterBase
+  name: exit sign
+  suffix: Backrooms, Crook
+  description: Finally! Exit.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/backrooms/exitsign.rsi
+    layers:
+      - state: green
+        shader: SignGlitch
+        scale: 0.25, 0.25
+      - state: unshaded
+        shader: unshaded
+        scale: 0.25, 0.25
+  - type: PointLight
+    radius: 1.3
+    energy: 5
+    color: "#75a743"
+    netsync: false
 
 # Majima
 
@@ -735,3 +927,311 @@
   - type: Icon
     sprite: Imperial/Crook/Misc/kvass.rsi
     state: icon
+
+# double bed
+
+- type: entity
+  name: bed
+  id: DoubleBed
+  parent: BaseStructure
+  description: This is used to lie in, sleep in or strap on. Resting here provides extremely slow healing.
+  components:
+  - type: HealOnBuckle
+    damage:
+      types:
+        Poison: -0.1
+        Blunt: -0.1
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
+        density: 190
+        mask:
+        - TableMask
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: bed
+  - type: Strap
+    position: Down
+    rotation: -90
+  - type: PlaceableSurface
+    placeCentered: true
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+  - type: Pullable
+
+- type: entity
+  id: DoubleBedsheetBlack
+  parent: BedsheetBase
+  name: black bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: black
+
+- type: entity
+  id: DoubleBedsheetBlue
+  parent: BedsheetBase
+  name: blue bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: blue
+
+- type: entity
+  id: DoubleBedsheetBrown
+  parent: BedsheetBase
+  name: brown bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: brown
+
+- type: entity
+  id: DoubleBedsheetCap
+  parent: BedsheetBase
+  name: cap bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: cap
+
+- type: entity
+  id: DoubleBedsheetCat
+  parent: BedsheetBase
+  name: cat bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: cat
+
+- type: entity
+  id: DoubleBedsheetCC
+  parent: BedsheetBase
+  name: centcomm bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: cc
+
+- type: entity
+  id: DoubleBedsheetCE
+  parent: BedsheetBase
+  name: CE bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: ce
+
+- type: entity
+  id: DoubleBedsheetChaplain
+  parent: BedsheetBase
+  name: chaplain bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: chaplain
+
+- type: entity
+  id: DoubleBedsheetClown
+  parent: BedsheetBase
+  name: clown bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: clown
+
+- type: entity
+  id: DoubleBedsheetCMO
+  parent: BedsheetBase
+  name: CMO bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: cmo
+
+- type: entity
+  id: DoubleBedsheetCommand
+  parent: BedsheetBase
+  name: command bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: command
+
+- type: entity
+  id: DoubleBedsheetCult
+  parent: BedsheetBase
+  name: cult bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: cult
+
+- type: entity
+  id: DoubleBedsheetGreen
+  parent: BedsheetBase
+  name: green bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: green
+
+- type: entity
+  id: DoubleBedsheetGrey
+  parent: BedsheetBase
+  name: grey bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: grey
+
+- type: entity
+  id: DoubleBedsheetHOP
+  parent: BedsheetBase
+  name: HOP bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: hop
+
+- type: entity
+  id: DoubleBedsheetHOS
+  parent: BedsheetBase
+  name: HOS bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: hos
+
+- type: entity
+  id: DoubleBedsheetIan
+  parent: BedsheetBase
+  name: Ian bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: ian
+
+- type: entity
+  id: DoubleBedsheetMed
+  parent: BedsheetBase
+  name: med bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: med
+
+- type: entity
+  id: DoubleBedsheetMime
+  parent: BedsheetBase
+  name: mime bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: mime
+
+- type: entity
+  id: DoubleBedsheetOrange
+  parent: BedsheetBase
+  name: orange bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: orange
+
+- type: entity
+  id: DoubleBedsheetPink
+  parent: BedsheetBase
+  name: pink bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: pink
+
+- type: entity
+  id: DoubleBedsheetPurple
+  parent: BedsheetBase
+  name: purple bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: purple
+
+- type: entity
+  id: DoubleBedsheetRainbow
+  parent: BedsheetBase
+  name: rainbow bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: rainbow
+
+- type: entity
+  id: DoubleBedsheetRD
+  parent: BedsheetBase
+  name: RD bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: rd
+
+- type: entity
+  id: DoubleBedsheetSyndie
+  parent: BedsheetBase
+  name: syndie bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: syndie
+
+- type: entity
+  id: DoubleBedsheetWhite
+  parent: BedsheetBase
+  name: white bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: white
+
+- type: entity
+  id: DoubleBedsheetWinter
+  parent: BedsheetBase
+  name: winter bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: winter
+
+- type: entity
+  id: DoubleBedsheetYellow
+  parent: BedsheetBase
+  name: yellow bedsheet
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/doublebed.rsi
+    state: yellow
+
+# double bed

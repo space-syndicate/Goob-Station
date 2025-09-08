@@ -1,49 +1,49 @@
-- files: ["RegAnons.ogg"]
+- files: ["Registration/RegAnons-4.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["MainTradeAnons.ogg"]
+- files: ["Station/MainTradeAnons.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["PoliceControl.ogg"]
+- files: ["Announce/PoliceControl.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["Flight3.ogg"]
+- files: ["Announce/Flight3.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["LoyalAnons1.ogg"]
+- files: ["Station/LoyalAnons1.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["LoyalAnons2.ogg"]
+- files: ["Station/LoyalAnons2.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["AvariyaSierra.ogg"]
+- files: ["Announce/AvariyaSierra.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["EPThanks.ogg"]
+- files: ["Announce/EPThanks.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["Flight1.ogg"]
+- files: ["Announce/Flight1.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["Flight2.ogg"]
+- files: ["Announce/Flight2.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
@@ -52,3 +52,28 @@
   license: "CC0-1.0"
   copyright: "Taken from https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
+
+- files: ["Announce/Announce-1.ogg", "Announce/EndEventAnnounce.ogg", "Announce/GreenSecLevel.ogg", "Announce/Transport-Offline.ogg", "Announce/Transport-Online.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
+  source: "https://genny.lovo.ai/"
+
+- files: ["Emergency/Avariynoe.ogg", "Emergency/Evacuation.ogg", "Emergency/HighSecLevel.ogg", "Emergency/Isolation-Global.ogg", "Emergency/Isolation-Local.ogg", "Emergency/Military-Level.ogg"]
+  license: "CC0-1.0"
+  copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/1353-zvuki-signala-trevogi-ob-utechki-virusa.html"
+  source: "https://zvukipro.com/situacii/1353-zvuki-signala-trevogi-ob-utechki-virusa.html"
+
+- files: ["Registration/End-3.ogg", "Registration/Main-1.ogg", "Registration/Rules-2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
+  source: "https://genny.lovo.ai/"
+
+- files: ["Space/AutomatingSystem.ogg", "Space/ScanningBadEnd.ogg", "Space/ScanningGoodEnd.ogg", "Space/ScanningStart.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
+  source: "https://genny.lovo.ai/"
+
+- files: ["Station/Arrival-1.ogg", "Station/Arrival-3.ogg", "Station/Arrival-4.ogg", "Station/Arrival-6.ogg", "Station/Information-Pilot.ogg", "Station/Information-Service.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
+  source: "https://genny.lovo.ai/"

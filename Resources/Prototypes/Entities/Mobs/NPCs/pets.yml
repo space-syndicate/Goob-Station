@@ -41,7 +41,7 @@
     price: 2000
   - type: GPSTrackerPrice
     startprice: 0
-    endprice: 23000
+    endprice: 88888
     #Imperial Space Pirates: New Horizon; End
 
 - type: entity

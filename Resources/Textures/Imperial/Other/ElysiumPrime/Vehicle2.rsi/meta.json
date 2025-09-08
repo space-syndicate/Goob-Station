@@ -8,8 +8,10 @@
   },
   "states": [
     {
-      "name": "car_pileup",
-      "directions": 4
+      "name": "car_pileup"
+    },
+    {
+      "name": "car_pileup2"
     }
   ]
 }

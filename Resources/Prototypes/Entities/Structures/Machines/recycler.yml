@@ -79,6 +79,7 @@
       - IdCard
       tags:
       - HighRiskItem
+      - DoesNotRecycleThisShit # Imperial Space Bugfix
     sound:
       path: /Audio/Effects/saw.ogg
       params:

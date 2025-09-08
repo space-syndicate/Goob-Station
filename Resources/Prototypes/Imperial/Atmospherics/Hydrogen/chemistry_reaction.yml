@@ -1,0 +1,13 @@
+- type: reaction
+  id: HydrogenSheet
+  impact: Low
+  quantized: true
+  minTemp: 292
+  reactants:
+    Hydrogen:
+      amount: 5
+    Frezon:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: SheetHydrogen1

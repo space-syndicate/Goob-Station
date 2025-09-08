@@ -443,6 +443,14 @@
       prob: 0.02
     - id: MobAdultSlimesYellowAngry
       prob: 0.02
+  ## Imperial Space slimesspawn update start
+    - id: MobAdultSlimesBlue
+      prob: 0.02
+    - id: MobAdultSlimesGreen
+      prob: 0.02
+    - id: MobAdultSlimesYellow
+      prob: 0.02
+  ## Imperial Space slimesspawn update end
 
 - type: entity
   id: SnakeSpawn

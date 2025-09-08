@@ -1,0 +1,41 @@
+- type: gasReaction
+  id: HydrogenProduction
+  priority: -2
+  maximumTemperature: 93.15
+  minimumRequirements:
+  - 0.1   # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0.1   # vapor
+  - 0     # ammonia
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # thermonium
+  - 0     # phazonium
+  - 0     # ozonium
+  - 0     # hydrogen
+  effects:
+  - !type:HydrogenProductionReaction {}
+
+- type: gasReaction
+  id: HydrogenFire
+  priority: -1
+  minimumTemperature: 373.149
+  minimumRequirements:
+  - 0.1   # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # ammonia
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # thermonium
+  - 0     # phazonium
+  - 0     # ozonium
+  - 0.1   # hydrogen
+  effects:
+  - !type:HydrogenFireReaction {}

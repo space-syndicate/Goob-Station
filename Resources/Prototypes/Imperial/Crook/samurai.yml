@@ -19,7 +19,7 @@
     coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
     walkModifier: 1
-    sprintModifier: 1.1
+    sprintModifier: 1.05
   - type: Armor
     modifiers:
       coefficients:
@@ -123,8 +123,7 @@
     wideAnimationRotation: -60
     damage:
       types:
-        Slash: 15
-        Heat: 4
+        Slash: 20
   - type: PointLight
     radius: 5
     energy: 1.6
@@ -135,7 +134,7 @@
     sound:
       path: /Audio/Weapons/ebladehum.ogg
   - type: Reflect
-    reflectProb: 0.6
+    reflectProb: 0.8
     spread: 45
 
 - type: entity

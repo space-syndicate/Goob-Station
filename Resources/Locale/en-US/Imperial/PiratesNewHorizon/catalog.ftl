@@ -1,5 +1,5 @@
 
-pirate-ammunition-cart-name = Bullet .60 antimat.
+pirate-ammunition-cart-name = Bullet .45 magnum.
 pirate-ammunition-cart-description = Th' best thing for a pirate, and a girlfren' fo ya flintlock. 
 pirate-ammunition-rev-ammo-name = Magazine box fo' ya revolvers
 pirate-ammunition-rev-ammo-description = Pal, these are mo' than enough. Ya could fill up a total of 12 of them, mate.

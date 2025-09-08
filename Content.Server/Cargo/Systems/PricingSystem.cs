@@ -18,8 +18,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Research.Prototypes;
-//Imperial Space Pirates: New Horizon
+//Imperial Space Pirates: New Horizon; Start
 using Content.Server.Imperial.PiratesNewHorizon.GPS.Components;
+using Content.Shared.Store.Components;
+//Imperial Space Pirates: New Horizon; End
 
 namespace Content.Server.Cargo.Systems;
 
@@ -101,6 +103,40 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         }
         return price;
     }
+
+    private double GetStorePrice(EntityUid uid)
+    {
+        double price = 0;
+
+        if (!TryComp<StoreComponent>(uid, out var storeComp) || storeComp.Balance == null)
+            return price;
+
+        foreach (var (currencyProto, amount) in storeComp.Balance)
+        {
+            if (!_prototypeManager.TryIndex<EntityPrototype>(currencyProto, out var currencyEntityProto))
+                continue;
+            double unitPrice = GetStackPricePerUnit(currencyEntityProto);
+            price += amount.Double() * unitPrice;
+        }
+
+        return price;
+    }
+
+    private double GetStackPricePerUnit(EntityPrototype prototype)
+    {
+        var price = 0.0;
+
+        if (prototype.Components.TryGetValue(Factory.GetComponentName<StackPriceComponent>(), out var stackpriceProto) &&
+            prototype.Components.TryGetValue(Factory.GetComponentName<StackComponent>(), out var stackProto) &&
+            !prototype.Components.ContainsKey(Factory.GetComponentName<MaterialComponent>()))
+        {
+            var stackPrice = (StackPriceComponent) stackpriceProto.Component;
+            var stack = (StackComponent) stackProto.Component;
+            price += stackPrice.Price;
+        }
+
+        return price;
+    }
 // Imperial Space Pirates: New Horizon; End
     private void CalculateMobPrice(EntityUid uid, MobPriceComponent component, ref PriceCalculationEvent args)
     {
@@ -119,7 +155,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         var totalPartsPresent = partList.Sum(_ => 1);
         var totalParts = partList.Count;
 
-        var partRatio = totalPartsPresent / (double) totalParts;
+        var partRatio = totalPartsPresent / (double)totalParts;
         var partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
 
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty);
@@ -266,6 +302,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         // Imperial Lathe Nerf; Start
         price = ApplyPriceModifier(uid, price);
         price += GetSolutionsPrice(uid);
+        price += GetStorePrice(uid);
         // Imperial Lathe Nerf; End
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {

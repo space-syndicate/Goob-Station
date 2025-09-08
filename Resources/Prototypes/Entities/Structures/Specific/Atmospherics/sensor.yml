@@ -28,6 +28,7 @@
       Thermonium: danger #Imperial Added Thermonium
       Phazonium: danger #Imperial Added Phazonium and Ozonium
       Ozonium: danger #Imperial Added Phazonium and Ozonium
+      Hydrogen: danger #Imperial Added Hydrogen
   - type: Tag
     tags:
       - AirSensor

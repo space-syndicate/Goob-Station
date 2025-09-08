@@ -137,12 +137,13 @@ namespace Content.Server.Atmos.EntitySystems
 
             var plasma = tile.Air.GetMoles(Gas.Plasma);
             var tritium = tile.Air.GetMoles(Gas.Tritium);
+            var hydrogen = tile.Air.GetMoles(Gas.Hydrogen); ///Imperial Added Hydrogen
 
             if (tile.Hotspot.Valid)
             {
                 if (soh)
                 {
-                    if (plasma > 0.5f || tritium > 0.5f)
+                    if (plasma > 0.5f || tritium > 0.5f || hydrogen > 0.5f) ///Imperial Added Hydrogen
                     {
                         if (tile.Hotspot.Temperature < exposedTemperature)
                             tile.Hotspot.Temperature = exposedTemperature;
@@ -154,10 +155,10 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
             }
 
-            if ((exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature) && (plasma > 0.5f || tritium > 0.5f))
+            if ((exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature) && (plasma > 0.5f || tritium > 0.5f || hydrogen > 0.5f)) ///Imperial Added Hydrogen
             {
                 if (sparkSourceUid.HasValue)
-                    _adminLog.Add(LogType.Flammable, LogImpact.High, $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: {tile.Air.Temperature.ToString():temperature}K - {oxygen}mol Oxygen, {plasma}mol Plasma, {tritium}mol Tritium");
+                    _adminLog.Add(LogType.Flammable, LogImpact.High, $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: {tile.Air.Temperature.ToString():temperature}K - {oxygen}mol Oxygen, {plasma}mol Plasma, {tritium}mol Tritium, {hydrogen}mol Hydrogen"); ///Imperial Added Hydrogen
 
                 tile.Hotspot = new Hotspot
                 {

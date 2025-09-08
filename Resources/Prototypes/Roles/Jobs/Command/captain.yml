@@ -49,6 +49,7 @@
   storage:
     back:
     - Flash
+    - EmergencyButton # Imperial Emergency Button
     # - StationCharter
 
 - type: chameleonOutfit

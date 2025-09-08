@@ -55,6 +55,7 @@
         Blunt: 0.4
         Slash: 0.4
         Piercing: 0.4
+        Caustic: 0.4
         Heat: 0.4
         Stamina: 0.5
   - type: ExplosionResistance
@@ -119,6 +120,7 @@
         Blunt: 0.7
         Slash: 0.7
         Piercing: 0.7
+        Caustic: 0.7
         Heat: 0.7
         Stamina: 0.8
   - type: ExplosionResistance
@@ -141,9 +143,9 @@
         Blunt: 0.3
         Slash: 0.3
         Piercing: 0.3
+        Caustic: 0.3
         Heat: 0.25
         Radiation: 0.0
-        Caustic: 0.0
         Stamina: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.1

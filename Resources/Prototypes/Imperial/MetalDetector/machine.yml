@@ -49,6 +49,7 @@
       usesApcPower: true
     - type: MetalDetector
       ignoredPrototypes:
+        # Syndicate
         - ClothingBackpackDuffelSyndicateDecoyKitFilled
         - ClothingBackpackDuffelSyndicateAKMS
         - ClothingBackpackDuffelSyndicateMedicalBundleFilled
@@ -75,6 +76,16 @@
         - ClothingBackpackDuffelSyndicateFilledMedical
         - ClothingBackpackSyndicate
         - ClothingOuterEVASuitSyndicate
+        - SyndicatePersonalAIImperial
+        - SyndieHandyFlag
+        - ClothingUniformJumpsuitRecruitSyndie
+        - ClothingUniformJumpsuitParamedicSyndie
+        - ClothingUniformJumpsuitRepairmanSyndie
+        - ClothingShoesBootsWinterSyndicate
+        - ClothingHeadHatSyndie
+        - TowelColorSyndicate
+        - ClothingUniformJumpskirtSyndieFormalDress
+        - ClothingUniformJumpsuitSyndieFormal
         - JetpackBlackFilled
         - ToolboxSyndicateFilled
         - ClothingNeckScarfStripedSyndieRed
@@ -106,9 +117,88 @@
         - ClothingBackpackSatchelSmuggler
         - ClothingBackpackSatchelSmugglerUnanchored
         - ClothingBackpackSatchelSmugglerFilled
+        - StorageImplant
+        - ClothingUniformJumpsuitChiefEngineerSyndie
+        # Captain CAP
+        - ClothingUniformJumpsuitWhiteCaptain
+        - ClothingUniformJumpskirtWhiteCaptain
+        - ClothingHandsGlovesCaptainWhite
+        - ClothingHandsGlovesCaptainSheriff
+        - ClothingMaskGasCaptain
+        - ClothingHeadHatCaptain
+        - ClothingHandsGlovesCaptain
+        - ClothingUniformJumpsuitCaptain
+        - ClothingNeckMantleCap
+        - ClothingNeckCloakCap
+        - ClothingUniformJumpsuitCapFormal
+        - ClothingNeckCloakCapFormal
+        - ClothingUniformJumpskirtCaptain
+        - ClothingUniformJumpskirtCaptainAlt
+        - ClothingUniformJumpskirtPirateWhiteCaptain
+        - ClothingUniformJumpsuitCaptainAlt
+        - ClothingUniformJumpsuitPirateWhiteCaptain
+        - ClothingUniformJumpsuitSheriffCaptain
+        # Head of Security HOS
+        - ClothingUniformJumpsuitHoS
+        - ClothingUniformJumpskirtHoSAlt
+        - ClothingUniformJumpsuitHoSAlt
+        - ClothingNeckMantleHOS
+        - ClothingUniformJumpsuitHoSParadeMale
+        - ClothingUniformJumpsuitHoSBlue
+        - ClothingUniformJumpskirtHoSParadeMale
+        - ClothingUniformJumpsuitHoSGrey
+        - ClothingUniformJumpskirtHosFormal
+        - ClothingUniformJumpsuitHosFormal
+        - ClothingUniformJumpskirtHoS
+        - ClothingHeadHatHoshat
+        # Head of Personnel HOP
+        - ClothingHeadHatHopcap
+        - ClothingUniformJumpskirtHoP
+        - ClothingNeckCloakHop
+        - ClothingUniformJumpsuitHoP
+        - ClothingNeckMantleHOP
+        # Research Director RD
+        - ClothingUniformJumpsuitResearchDirector
+        - ClothingNeckMantleRD
+        - ClothingNeckCloakRd
+        - ClothingUniformJumpskirtResearchDirector
+        # Quartermaster QM
+        - ClothingUniformJumpskirtQM
+        - ClothingUniformJumpsuitQM
+        - ClothingUniformJumpsuitQMFormal
+        - ClothingNeckCloakQm
+        - ClothingUniformJumpskirtQMTurtleneck
+        - ClothingUniformJumpsuitQMTurtleneck
+        # Chief Engineer CE
+        - ClothingNeckMantleCE
+        - ClothingNeckCloakCe
+        - ClothingUniformJumpsuitChiefEngineer
+        - ClothingUniformJumpskirtChiefEngineer
+        - ClothingUniformJumpskirtChiefEngineerTurtle
+        - ClothingUniformJumpsuitChiefEngineerNT
+        - ClothingUniformJumpsuitChiefEngineerTurtle
+        # Security
+        - ClothingUniformJumpsuitSeniorOfficer
+        - ClothingUniformJumpskirtSeniorOfficer
         - ClothingHandsGlovesCombat
         - ClothingShoesBootsJack
-        - StorageImplant
+        - ClothingMaskClownSecurity
+        - ClothingUniformJumpsuitSec
+        - ClothingUniformJumpskirtSec
+        - ClothingMaskGasSecurity
+        - ClothingShoesBootsWinterSec
+        - FlashlightSeclite
+        - ClothingUniformSecurityTrooper
+        - ClothingHandsGlovesForensic
+        - ClothingUniformJumpskirtWarden
+        - ClothingUniformJumpsuitWarden
+        # Central Command CC
+        - ClothingUniformJumpsuitCentcomAgent
+        - ClothingNeckScarfStripedCentcom
+        - ClothingMaskGasCentcom
+        - ClothingHandsGlovesCentCom
+        - ClothingUniformJumpsuitCentcomOfficer
+        - ClothingUniformJumpskirtSpecialOfficer
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection

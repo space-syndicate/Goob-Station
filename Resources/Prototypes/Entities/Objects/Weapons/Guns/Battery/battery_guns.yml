@@ -625,7 +625,7 @@
   #Imperial Space Pirates: New Horizon; Start
   - type: GPSTrackerPrice
     startprice: 0
-    endprice: 50000
+    endprice: 90000
    #Imperial Space Pirates: New Horizon; End
 - type: entity
   name: advanced laser pistol
@@ -807,6 +807,11 @@
     autoRechargeRate: 24
     autoRechargePause: true
     autoRechargePauseTime: 30
+    #Imperial Space Pirates: New Horizon; Start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 75557
+    #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   name: temperature gun

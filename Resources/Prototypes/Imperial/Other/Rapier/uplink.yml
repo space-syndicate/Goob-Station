@@ -5,10 +5,10 @@
   icon: { sprite: /Textures/Imperial/Other/Rapier/syndie-rapiera.rsi, state: rapier }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 12
+    Telecrystal: 11
   productEntity: ClothingBeltSheathRapierFilled
   cost:
-    Telecrystal: 14
+    Telecrystal: 13
   categories:
   - UplinkWeaponry
   conditions:

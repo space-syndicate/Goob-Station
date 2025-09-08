@@ -38,6 +38,9 @@
       shader: unshaded
       visible: false
       offset: 0, 1.875
+  - type: Anchorable
+    flags:
+    - Anchorable
 
 - type: entity
   id: ThrusterLarge
@@ -78,6 +81,9 @@
       shader: unshaded
       visible: false
       offset: 0, 2.65625
+  - type: Anchorable
+    flags:
+    - Anchorable
 
 - type: entity
   id: Thruster_small

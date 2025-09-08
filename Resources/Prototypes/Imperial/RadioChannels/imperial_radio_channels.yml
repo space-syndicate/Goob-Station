@@ -381,187 +381,241 @@
     netsync: false
 
 - type: radioChannel
-  id: Cadet
-  name: Cadets
+  id: FelixradioChannelAdministration
+  name: Administration
   keycode: 'w'
   frequency: 1084
-  color: "#CDC7BD"
-  longRange: true
+  color: "#B22222"
 
 - type: radioChannel
-  id: SGT
-  name: Sergaunts
+  id: FelixradioChannelBank
+  name: Bank
   keycode: 'e'
   frequency: 1085
-  color: "#85AA5E"
-  longRange: true
+  color: "#32CD32"
 
 - type: radioChannel
-  id: OFC
-  name: Officers
+  id: FelixradioChannelCommoditySpecialist
+  name: CommoditySpecialist
   keycode: 'r'
   frequency: 1086
-  color: "#B8CDE8"
-  longRange: true
+  color: "#9ACD32"
 
 - type: radioChannel
-  id: CMD
-  name: Command
+  id: FelixradioChannelMiner
+  name: Miner
   keycode: 't'
   frequency: 1087
-  color: "#FF4343"
-  longRange: true
+  color: "#B8860B"
 
 - type: radioChannel
-  id: Piloting
-  name: Piloting
+  id: FelixradioChannelPolice
+  name: Police
   keycode: 'y'
   frequency: 1088
-  color: "#6F727B"
-  longRange: true
+  color: "#4682B4"
 
 - type: radioChannel
-  id: ENG
-  name: Engineer
+  id: FelixradioChannelShipyard
+  name: Shipyard
   keycode: 'u'
   frequency: 1089
-  color: "#F69400"
-  longRange: true
+  color: "#808000"
 
 - type: radioChannel
-  id: SEC
-  name: SEC
+  id: FelixradioChannelWastes
+  name: Wastes
   keycode: 'i'
-  frequency: 1071
-  color: "#611701"
-  longRange: true
+  frequency: 1095
+  color: "#A0522D"
+
+- type: radioChannel
+  id: FelixradioChannelAdministrativeSector
+  name: AdministrativeSector
+  keycode: 'а'
+  frequency: 1155
+  color: "#66CDAA"
+
+- type: radioChannel
+  id: FelixradioChannelFinancialSector
+  name: FinancialSector
+  keycode: 'f'
+  frequency: 1175
+  color: "#66CDAA"
+
+- type: radioChannel
+  id: FelixradioChannelManufacturingSector
+  name: ManufacturingSector
+  keycode: 'm'
+  frequency: 1085
+  color: "#66CDAA"
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioCadet
+  id: EncryptionKeyRadioAdministration
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - Cadet
-    defaultChannel: Cadet
+    - FelixradioChannelAdministration
+    defaultChannel: FelixradioChannelAdministration
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/Administration.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.Cadet-radio
+    sprite: Imperial/Other/ElysiumPrime/Radio/Administration.rsi
+    state: radio-channel-admin
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioSGT
+  id: EncryptionKeyRadioFelixradioChannelBank
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - SGT
-    defaultChannel: SGT
+    - FelixradioChannelBank
+    defaultChannel: FelixradioChannelBank
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/Bank.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.SGT-Radio
+    sprite: Imperial/Other/ElysiumPrime/Radio/Bank.rsi
+    state: radio-channel-bank
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioOFC
+  id: FelixradioChannelCommoditySpecialist
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - OFC
-    defaultChannel: OFC
+    - FelixradioChannelCommoditySpecialist
+    defaultChannel: FelixradioChannelCommoditySpecialist
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommoditySpecialist.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.OFC-Radio
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommoditySpecialist.rsi
+    state: radio-channel-suply
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioXenoborg
+  id: EncryptionKeyRadioFelixradioChannelMiner
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - Xenoborg
-    - Binary
-    - Mothership
-    defaultChannel: Xenoborg
+    - FelixradioChannelMiner
+    defaultChannel: FelixradioChannelMiner
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/Miner.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.OFC-Radio
+    sprite: Imperial/Other/ElysiumPrime/Radio/Miner.rsi
+    state: radio-channel-miner
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioCMD
+  id: EncryptionKeyRadioFelixradioChannelPolice
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - CMD
-    defaultChannel: CMD
+    - FelixradioChannelPolice
+    defaultChannel: FelixradioChannelPolice
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/Police.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.CMD-Radio
+    sprite: Imperial/Other/ElysiumPrime/Radio/Police.rsi
+    state: radio-channel-police
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioPiloting
+  id: EncryptionKeyRadioFelixradioChannelShipyard
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - Piloting
-    defaultChannel: Piloting
+    - FelixradioChannelShipyard
+    defaultChannel: FelixradioChannelShipyard
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/Shipyard.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.piloting
+    sprite: Imperial/Other/ElysiumPrime/Radio/Shipyard.rsi
+    state: radio-channel-shipyard
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioENG
+  id: EncryptionKeyRadioFelixradioChannelWastes
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - ENG
-    defaultChannel: ENG
+    - FelixradioChannelWastes
+    defaultChannel: FelixradioChannelWastes
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/Wastes.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.engineer
+    sprite: Imperial/Other/ElysiumPrime/Radio/Wastes.rsi
+    state: radio-channel-cargotech
 
 - type: entity
   parent: EncryptionKeyCustomBase
-  id: EncryptionKeyRadioSEC
+  id: EncryptionKeyRadioFelixradioChannelAdministrativeSector
+  suffix: ElysiumPrime, Other
   name: encryption key
   description: An encryption key
   components:
   - type: EncryptionKey
     channels:
-    - SEC
-    defaultChannel: SEC
+    - FelixradioChannelAdministrativeSector
+    defaultChannel: FelixradioChannelAdministrativeSector
   - type: Item
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommonChannels/AdministrativeSector.rsi
   - type: Sprite
-    sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.security
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommonChannels/AdministrativeSector.rsi
+    state: radio-channel-adminsector
+
+- type: entity
+  parent: EncryptionKeyCustomBase
+  id: EncryptionKeyRadioFelixradioChannelFinancialSector
+  suffix: ElysiumPrime, Other
+  name: encryption key
+  description: An encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - FelixradioChannelFinancialSector
+    defaultChannel: FelixradioChannelFinancialSector
+  - type: Item
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommonChannels/FinancialSector.rsi
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommonChannels/FinancialSector.rsi
+    state: radio-channel-tradingsector
+
+- type: entity
+  parent: EncryptionKeyCustomBase
+  id: EncryptionKeyRadioFelixradioChannelManufacturingSector
+  suffix: ElysiumPrime, Other
+  name: encryption key
+  description: An encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - FelixradioChannelManufacturingSector
+    defaultChannel: FelixradioChannelManufacturingSector
+  - type: Item
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommonChannels/ManufacturingSector.rsi
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Radio/CommonChannels/ManufacturingSector.rsi
+    state: radio-channel-fabricsector

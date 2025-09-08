@@ -1,37 +1,3 @@
-
-- type: entity
-  parent: PlushieFumoJunko
-  id: PlushieIsaac
-  name: Isaac Claude
-  suffix: HOMAK, COMMUNITY, TOY
-  description: The infamous lawyer of the Akila state. You're really doomed if Isaac doesn't know the solution to your problem.
-  components:
-  - type: Sprite
-    sprite: Imperial/HOMAK/isaac.rsi
-    state: icon
-  - type: Speech
-    speechSounds: IsaacSounds
-  - type: SpeakOnTrigger
-    pack: IsaacSaid
-
-      
-- type: speechSounds
-  id: IsaacSounds
-  saySound:
-    path: /Audio/Items/Toys/weh.ogg
-  askSound:
-    path: /Audio/Items/Toys/weh.ogg
-  exclaimSound:
-    path: /Audio/Items/Toys/weh.ogg
-
-
-- type: localizedDataset
-  id: IsaacSaid
-  values:
-    prefix: isaac-said-
-    count: 101
-
-
 - type: entity
   id: BriefcasePresentableAristocrat
   parent: BriefcasePresentable
@@ -94,9 +60,6 @@
         prob: 0.15
         orGroup: Bonus
       - id: ArmenianStuff
-        prob: 0.1
-        orGroup: Bonus
-      - id: PlushieIsaac
         prob: 0.1
         orGroup: Bonus
       - id: CombatKnife
@@ -292,9 +255,6 @@
       prob: 0.15
       orGroup: bonus
     - id: ClothingHeadHatTophat
-      prob: 0.1
-      orGroup: bonus
-    - id: PlushieIsaac
       prob: 0.1
       orGroup: bonus
 

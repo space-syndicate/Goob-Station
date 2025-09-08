@@ -15,7 +15,7 @@ public sealed class SupermatterRadiationEvent
             supermatterSystem.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");
             return;
         }
-
+      
         var currentTime = supermatterSystem.GameTiming.CurTime;
         comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Radiation;
         comp.EventEndTime = comp.RadiationEventDuration;

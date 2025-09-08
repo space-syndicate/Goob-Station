@@ -1,0 +1,6 @@
+# Пакеты рецептов для техфаба СБ Imperial Space
+
+- type: latheRecipePack
+  id: ImperialSecurityEquipment
+  recipes:
+  - EmergencyButton

@@ -16,7 +16,14 @@ using Content.Server.Cargo.Systems;
 using Content.Shared.Cargo.Systems;
 using Content.Server.Imperial.PiratesNewHorizon.GPS.Components;
 using Content.Shared.Imperial.PiratesNewHorizon.GPS.Events;
+using Content.Shared.Body.Components;
+using Content.Shared.Hands.Components;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
+using Robust.Shared.Utility;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
 namespace Content.Server.Imperial.PiratesNewHorizon.GPS.Systems;
+
 public sealed class GPSTrackerRemoverSystem : EntitySystem
 {
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
@@ -25,10 +32,12 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
     [Dependency] private readonly CargoSystem _bountySystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<GPSTrackerRemoverComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<GPSTrackerRemoverComponent, GPSTrackerRemoveDoAfterEvent>(DoAfterInteract);
+        SubscribeLocalEvent<GPSTrackerPriceComponent, GetVerbsEvent<AlternativeVerb>>(AddGPSVerb);
     }
 
     private void DoAfterInteract(Entity<GPSTrackerRemoverComponent> entity, ref GPSTrackerRemoveDoAfterEvent args)
@@ -82,5 +91,53 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
         _popupSystem.PopupEntity(Loc.GetString("gps-found-result"), args.User, args.User);
         args.Handled = true;
+    }
+    private void AddGPSVerb(Entity<GPSTrackerPriceComponent> entity, ref GetVerbsEvent<AlternativeVerb> ev)
+    {
+        if (entity.Owner == ev.User ||
+            !ev.CanInteract ||
+            !ev.CanAccess ||
+            !TryComp<BodyComponent>(ev.User, out var body) ||
+            !TryComp<HandsComponent>(ev.User, out var hands) ||
+            hands.ActiveHand == null ||
+            !hands.ActiveHand.HeldEntity.HasValue ||
+            !_entityManager.EntityExists(hands.ActiveHand.HeldEntity.Value) ||
+            !TryComp<GPSTrackerRemoverComponent>(hands.ActiveHand.HeldEntity.Value, out var remover))
+            return;
+        var user = ev.User;
+        var target = ev.Target;
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                if (!TryComp(hands.ActiveHand.HeldEntity.Value, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((hands.ActiveHand.HeldEntity.Value, useDelay)))
+                    return;
+                if (!TryComp(target, out GPSTrackerPriceComponent? gpsTracker) || gpsTracker.GPSTrackerInstalled == false)
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("gps-missing-result"), user, user);
+                    return;
+                }
+                var doAfterArgs = new DoAfterArgs(EntityManager,
+                user,
+                TimeSpan.FromSeconds(remover.Delay),
+                new GPSTrackerRemoveDoAfterEvent(),
+                eventTarget: hands.ActiveHand.HeldEntity.Value,
+                target: target,
+                used: hands.ActiveHand.HeldEntity.Value)
+                {
+                    BreakOnMove = true,
+                    BreakOnDamage = true,
+                    MovementThreshold = 0.01f,
+                    DistanceThreshold = 1.0f,
+                    NeedHand = true,
+                };
+                _doAfter.TryStartDoAfter(doAfterArgs);
+                _popupSystem.PopupEntity(Loc.GetString("gps-found-result"), user, user);
+            },
+            Text = Loc.GetString("gps-system-verb-remove"),
+            Priority = -1
+        };
+
+        ev.Verbs.Add(verb);
     }
 }

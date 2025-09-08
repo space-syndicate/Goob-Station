@@ -30,3 +30,6 @@ supermatter-monitor-next-event = Следующий импульс через: {
     [few] {$minutes} минуты
     *[other] {$minutes} минут
 }
+
+supermatter-station-catastrophe = Внимание! Станция подвергается катастрофе суперматерии! Немедленно эвакуируйтесь и удалите персонал от кристалла!
+supermatter-catastrophe-warning = Внимание: Суперматерия теряет стабильность! Требуется срочная стабилизация!

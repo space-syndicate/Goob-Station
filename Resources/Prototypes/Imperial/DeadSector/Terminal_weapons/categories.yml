@@ -4,7 +4,7 @@
   #description: Self-loading pistol for 8 shots. Small enough to hide it in your pocket. Uses 9x19 caliber cartridges.-des
   productEntity: WeaponPistolASP
   cost:
-    FederationCash: 5000
+    FederationCash: 1500
   categories:
   - Pistols
 
@@ -14,7 +14,7 @@
   #description: A small pistol with medium ammunition. It has a silver color all over the body. Uses 9x19 caliber cartridges.-des
   productEntity: WeaponPistolAstra60
   cost:
-    FederationCash: 6500
+    FederationCash: 2000
   categories:
   - Pistols
 
@@ -24,7 +24,7 @@
   description: Astra-100-des
   productEntity: WeaponPistolAstra100
   cost:
-    FederationCash: 12000
+    FederationCash: 6500
   categories:
   - Pistols
 
@@ -34,7 +34,7 @@
   #description: A small pistol with an open-body design and a 5-round magazine. It looks like an unfinished revolver from the days of the wild West. Uses 5x14 caliber cartridges.-des
   productEntity: WeaponRevolverAstra903
   cost:
-    FederationCash: 6500
+    FederationCash: 8000
   categories:
   - Pistols
 
@@ -44,7 +44,7 @@
   #description: Classics from 1975. Uses ammo .35 cars.-des
   productEntity: CSWeaponBeretta
   cost:
-    FederationCash: 8000
+    FederationCash: 4000
   categories:
   - Pistols
 
@@ -54,7 +54,7 @@
   #description: A loyal friend of his brother P90.-des
   productEntity: CSWeaponFiveSeven
   cost:
-    FederationCash: 9500
+    FederationCash: 5000
   categories:
   - Pistols
 
@@ -64,7 +64,7 @@
   description: TerminalCSWeaponGlock-18weapon-des
   productEntity: CSWeaponGlock-18
   cost:
-    FederationCash: 8000
+    FederationCash: 5000
   categories:
   - Pistols
 
@@ -74,7 +74,7 @@
   #description: A small, easily concealed, but low-powered pistol. Uses caliber cartridges .35 cars.-des
   productEntity: WeaponPistolViper
   cost:
-    FederationCash: 7000
+    FederationCash: 5000
   categories:
   - Pistols
 
@@ -84,7 +84,7 @@
   #description: A cheap and common pistol produced by a subsidiary of NanoTrasen. Uses caliber cartridges .35 cars.-des
   productEntity: WeaponPistolMk58
   cost:
-    FederationCash: 7000
+    FederationCash: 5000
   categories:
   - Pistols
 
@@ -94,19 +94,19 @@
   #description: A pistol of harsh, robust agents, with an integrated silencer. Uses caliber cartridges .25 caseless.-des
   productEntity: WeaponPistolCobra
   cost:
-    FederationCash: 8500
+    FederationCash: 11000
   categories:
   - Pistols
 
-- type: listing
-  id: TerminalWeaponPistolNDF1weapon
+#- type: listing
+  #id: TerminalWeaponPistolNDF1weapon
   #name: WeaponPistolNDF1-name
   #description: Plasma pistol technology NDF Mod 1. Quick-firing, but weak. It has plasma charge cells.-des
-  productEntity: WeaponPistolNDF1
-  cost:
-    FederationCash: 50000
-  categories:
-  - Pistols
+  #productEntity: WeaponPistolNDF1
+  #cost:
+    #FederationCash: 50000
+  #categories:
+  #- Pistols
 
 - type: listing
   id: TerminalWeaponSubMachineGunAtreidesweapon
@@ -114,7 +114,7 @@
   #description: Ple-ke-ke-ke-ke! Uses caliber cartridges .35 cars.-des
   productEntity: WeaponSubMachineGunAtreides
   cost:
-    FederationCash: 7000
+    FederationCash: 10000
   categories:
   - Pistols
 
@@ -124,7 +124,7 @@
   description: TerminalCSWeaponTEC-9weapon-des
   productEntity: CSWeaponTEC-9
   cost:
-    FederationCash: 8500
+    FederationCash: 10000
   categories:
   - Pistols
 
@@ -144,7 +144,7 @@
   #description: Excellent fully automatic heavy submachine gun.-des
   productEntity: WeaponSubMachineGunDrozd
   cost:
-    FederationCash: 15000
+    FederationCash: 16000
   categories:
   - Pistols
 
@@ -154,7 +154,7 @@
   #description: Expensive, high-quality, lots of bullets... a lot of inconveniences.-des
   productEntity: CSWeaponP90
   cost:
-    FederationCash: 18000
+    FederationCash: 16000
   categories:
   - Pistols
 
@@ -164,7 +164,7 @@
   #description: A small PP with an above-average ammunition package and a 32-round magazine. It has a dark gray color. Uses 9x21 caliber cartridges.-des
   productEntity: WeaponSubMachineGunAgram
   cost:
-    FederationCash: 7000
+    FederationCash: 6500
   categories:
   - Pistols
 
@@ -174,7 +174,7 @@
   #description: Medium-sized PP with an above-average ammunition package. It has a dark gray color, an LCU and a 32-round magazine ammunition.-des
   productEntity: WeaponFelixMP5
   cost:
-    FederationCash: 7000
+    FederationCash: 12500
   categories:
   - Pistols
 
@@ -184,7 +184,7 @@
   #description: Medium-sized PP with an above-average ammunition package. It has a dark gray color, a mount for the sight module, an LCU and ammunition magazine for 30 rounds.-des
   productEntity: WeaponFelixMP9
   cost:
-    FederationCash: 8000
+    FederationCash: 14000
   categories:
   - Pistols
 
@@ -195,7 +195,7 @@
   #description: First-class army assault rifle. Uses caliber cartridges .20 rifle type.-des
   productEntity: WeaponRifleLecter
   cost:
-    FederationCash: 26000
+    FederationCash: 14000
   categories:
   - Carbines
 
@@ -205,7 +205,7 @@
   #description: The combat assault rifle of the Special Operations Forces is too scary a word for the weapons of forest scouts.-des
   productEntity: CSWeaponSCAR-L
   cost:
-    FederationCash: 29000
+    FederationCash: 18000
   categories:
   - Carbines
 
@@ -215,7 +215,7 @@
   #description: The iconic weapon of all wars. Uses caliber cartridges .30 rifle.-des
   productEntity: WeaponRifleAk
   cost:
-    FederationCash: 35000
+    FederationCash: 18000
   categories:
   - Carbines
 
@@ -225,7 +225,7 @@
   #description: An old-model carbine, made according to the bullpup scheme, with an under-barrel grenade launcher. Uses caliber cartridges .20 rifle type.-des
   productEntity: WeaponRifleM90GrenadeLauncher
   cost:
-    FederationCash: 60000
+    FederationCash: 18000
   categories:
   - Carbines
 
@@ -235,7 +235,7 @@
   #description: Automatic Kalashnikov model S-74-u, Medium, small ammunition package. It has a dark gray color. Magazine ammunition for 15 rounds. It has wooden components inside the hull structure.-des
   productEntity: WeaponFelixAKS74y
   cost:
-    FederationCash: 20000
+    FederationCash: 6500
   categories:
   - Carbines
 
@@ -245,7 +245,7 @@
   #description: Automatic Kalashnikov model S-74-u, Medium, small ammunition package. It has a dark gray color. Magazine ammunition for 15 rounds. It has wooden components inside the hull structure.-des
   productEntity: WeaponRifleAR57
   cost:
-    FederationCash: 26000
+    FederationCash: 14000
   categories:
   - Carbines
 
@@ -255,7 +255,7 @@
   #description: The carbine is larger than the average and has an above-average ammunition package. It has a dark gray color on the body and khaki colors on the magazine. Magazine ammunition for 40 rounds.-des
   productEntity: WeaponFelixAR15
   cost:
-    FederationCash: 32000
+    FederationCash: 25000
   categories:
   - Carbines
 
@@ -265,7 +265,7 @@
   #description: Carbine model 416, larger than average in size, with an average ammunition package. It has a sandy color. Magazine ammunition for 30 rounds.-des
   productEntity: WeaponFelixHK416
   cost:
-    FederationCash: 40000
+    FederationCash: 33000
   categories:
   - Carbines
 
@@ -276,7 +276,7 @@
   #description: Weapons of hunting, or endless trench warfare. Uses caliber cartridges .30 rifle.-des
   productEntity: WeaponSniperMosin
   cost:
-    FederationCash: 6000
+    FederationCash: 2500
   categories:
   - Rifles
 
@@ -286,7 +286,7 @@
   #description: The rifle model IED Mk-I is medium-sized, the ammunition package is small. It has a silver color. Magazine ammunition for 6 rounds.-des
   productEntity: WeaponFelixSVUMkI
   cost:
-    FederationCash: 35000
+    FederationCash: 23000
   categories:
   - Rifles
 
@@ -296,7 +296,7 @@
   #description: -des
   productEntity: WeaponSniperSVUMkII
   cost:
-    FederationCash: 38000
+    FederationCash: 31000
   categories:
   - Rifles
 
@@ -306,7 +306,7 @@
   #description: The rifle of the VSS Mk-I model is large in size, the ammunition package is average. It has a silver color mixed with a complete set of wooden body parts. Magazine ammunition for 16 rounds.-des
   productEntity: WeaponFelixVSSMkI
   cost:
-    FederationCash: 38000
+    FederationCash: 50000
   categories:
   - Rifles
 
@@ -316,19 +316,19 @@
   #description: The rifle of the VSS Mk-II model is large in size, the ammunition package is average. It has a black color. Magazine ammunition for 16 rounds.-des
   productEntity: WeaponFelixVSSMkII
   cost:
-    FederationCash: 45000
+    FederationCash: 70000
   categories:
   - Rifles
 
-- type: listing
-  id: TerminalWeaponPulseSniperweapon
-  #name: WeaponPulseSniper-name
-  #description: The latest energy weapon preferred by the most experienced OBR NT operatives as their primary weapon.-des
-  productEntity: WeaponPulseSniper
-  cost:
-    FederationCash: 80000
-  categories:
-  - Rifles
+#- type: listing
+#  id: TerminalWeaponPulseSniperweapon
+#  #name: WeaponPulseSniper-name
+#  #description: The latest energy weapon preferred by the most experienced OBR NT operatives as their primary weapon.-des
+#  productEntity: WeaponPulseSniper
+# cost:
+#    FederationCash: 80000
+#  categories:
+#  - Rifles
 
 - type: listing
   id: TerminalWeaponSniperHristovweapon
@@ -336,7 +336,7 @@
   #description: Portable large-caliber sniper rifle. It fires powerful armor-piercing cartridges, caliber.60 Antimaterial.-des
   productEntity: WeaponSniperHristov
   cost:
-    FederationCash: 45000
+    FederationCash: 28000
   categories:
   - Rifles
 
@@ -346,7 +346,7 @@
   #description: A large SVD model rifle with 22 rounds of ammunition. It has a silver color mixed with a complete set of wooden body parts. It uses 7x62x39 caliber cartridges.-des
   productEntity: WeaponSniperSVD
   cost:
-    FederationCash: 90000
+    FederationCash: 45000
   categories:
   - Rifles
 
@@ -367,7 +367,7 @@
   #description: A super-large machine gun with a stock of 125 rounds. It has a black color mixed with a complete set of wooden body parts. It uses 7x62x51 caliber cartridges.-des
   productEntity: WeaponAssaultPKM
   cost:
-    FederationCash: 45000
+    FederationCash: 35000
   categories:
   - Heavy
 
@@ -377,7 +377,7 @@
   #description: Whozzzz! Rah-rah-rah! Grrrrr! Uses caliber cartridges .10 rifle.-des
   productEntity: WeaponMinigun
   cost:
-    FederationCash: 120000
+    FederationCash: 200000
   categories:
   - Heavy
 
@@ -387,7 +387,23 @@
   #description: Super-large rocket launcher model 8. It has a black color mixed with a complete set of wooden body parts.-des
   productEntity: WeaponLauncherRPG8
   cost:
-    FederationCash: 70000
+    FederationCash: 35000
+  categories:
+  - Heavy
+
+- type: listing
+  id: TerminalWeaponLauncherRPG7weapon
+  productEntity: WeaponLauncherRocket
+  cost:
+    FederationCash: 50000
+  categories:
+  - Heavy
+
+- type: listing
+  id: TerminalWeaponQuroMachineGunweapon
+  productEntity: FelixWeaponQuroMachineGun
+  cost:
+    FederationCash: 45000
   categories:
   - Heavy
 
@@ -609,7 +625,7 @@
   #description: That's what happens when the old Remington design is combined with modern materials. The militia's favorite weapon on many worlds. Uses caliber cartridges .50 armory.-des
   productEntity: WeaponShotgunKammerer
   cost:
-    FederationCash: 3000
+    FederationCash: 2500
   categories:
   - Shotguns
 
@@ -619,19 +635,19 @@
   #description: A new generation Frozen Star shotgun. Uses caliber cartridges .50 armory.-des
   productEntity: WeaponShotgunEnforcer
   cost:
-    FederationCash: 6000
+    FederationCash: 15000
   categories:
   - Shotguns
 
-- type: listing
-  id: TerminalWeaponEnergyShotgunweapon
-  #name: WeaponEnergyShotgun-name
-  #description: A one-of-a-kind prototype energy weapon that uses shotguns of various configurations. It makes it possible to produce both lethal and non-lethal shots, which makes it a versatile weapon.-des
-  productEntity: WeaponEnergyShotgun
-  cost:
-    FederationCash: 70000
-  categories:
-  - Shotguns
+#- type: listing
+# id: TerminalWeaponEnergyShotgunweapon
+#  #name: WeaponEnergyShotgun-name
+#  #description: A one-of-a-kind prototype energy weapon that uses shotguns of various configurations. It makes it possible to produce both lethal and non-lethal shots, which makes it a versatile weapon.-des
+#  productEntity: WeaponEnergyShotgun
+#  cost:
+#    FederationCash: 70000
+#  categories:
+#  - Shotguns
 
 - type: listing
   id: TerminalWeaponShotgunDoubleBarreledweapon
@@ -660,7 +676,7 @@
   #description: A deadly knife designed for hand-to-hand combat.-des
   productEntity: CombatKnife
   cost:
-    FederationCash: 1000
+    FederationCash: 2500
   categories:
   - Manual
 
@@ -670,7 +686,7 @@
   #description: This blood-red knife is very aerodynamic and easy to throw, but good luck in hand-to-hand combat.-des
   productEntity: ThrowingKnife
   cost:
-    FederationCash: 1500
+    FederationCash: 1350
   categories:
   - Manual
 
@@ -680,7 +696,7 @@
   #description: Professionals have rules. Be polite. Work efficiently. Kill everyone you meet.-des
   productEntity: KukriKnife
   cost:
-    FederationCash: 2500
+    FederationCash: 15000
   categories:
   - Manual
 
@@ -690,7 +706,7 @@
   #description: A crookedly curved blade that is often seen in the hands of space pirates.-des
   productEntity: Cutlass
   cost:
-    FederationCash: 1500
+    FederationCash: 15000
   categories:
   - Manual
 
@@ -700,7 +716,7 @@
   #description: A ceremonial weapon belonging to the station captain.-des
   productEntity: CaptainSabre
   cost:
-    FederationCash: 4500
+    FederationCash: 40000
   categories:
   - Manual
 
@@ -710,7 +726,7 @@
   #description: Exotic energy weapons.-des
   productEntity: EnergyCutlass
   cost:
-    FederationCash: 4500
+    FederationCash: 50000
   categories:
   - Manual
 
@@ -720,7 +736,7 @@
   #description: This is a double energy sword, feel the power!-des
   productEntity: EnergySwordDouble 
   cost:
-    FederationCash: 15000
+    FederationCash: 60000
   categories:
   - Manual
 
@@ -730,7 +746,7 @@
   #description: Very loud, and just as dangerous. It can be stored in your pocket when turned off. And if you're lucky, you can combine two swords!-des
   productEntity: EnergySword
   cost:
-    FederationCash: 10000
+    FederationCash: 50000
   categories:
   - Manual
 
@@ -740,7 +756,7 @@
   #description: An ancient work made from not so ancient plasteel.-des
   productEntity: Katana
   cost:
-    FederationCash: 15000
+    FederationCash: 40000
   categories:
   - Manual
 
@@ -750,7 +766,7 @@
   #description: An electrified katana that causes minor cuts, medium burns, and acts as a taser.-des
   productEntity: ElectroKatanaSona
   cost:
-    FederationCash: 18000
+    FederationCash: 50000
   categories:
   - Manual
 
@@ -760,7 +776,7 @@
   #description: A katana filled with strong energy.-des
   productEntity: EnergyKatana
   cost:
-    FederationCash: 18000
+    FederationCash: 60000
   categories:
   - Manual
 
@@ -770,7 +786,7 @@
   #description: A katana filled with strong energy.-des
   productEntity: RedEnergyKatana
   cost:
-    FederationCash: 18000
+    FederationCash: 60000
   categories:
   - Manual
 
@@ -780,7 +796,7 @@
   #description: A katana filled with strong energy.-des
   productEntity: BlueEnergyKatana
   cost:
-    FederationCash: 18000
+    FederationCash: 60000
   categories:
   - Manual
 
@@ -790,7 +806,7 @@
   #description: A crimson katana flickering with scarlet lightning. It was received by the family Before Him from a strange blond man with a mechanical dog about 1000 years ago.-des
   productEntity: MurasamaBlade
   cost:
-    FederationCash: 90000
+    FederationCash: 300000
   categories:
   - Manual
 

@@ -145,7 +145,7 @@
           - MagazineMP9
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeSubmachine
+        startingItem: CartridgeSubmachineMP9
         priority: 1
         whitelist:
           tags:

@@ -6,7 +6,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 11.2
+        Piercing: 15
 
 - type: entity
   id: BulletAR57Piercing
@@ -16,7 +16,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 6.7
+        Piercing: 7.5
     ignoreResistances: true
 
 - type: entity
@@ -29,7 +29,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 11.2
+        Piercing: 15
 
 - type: entity
   id: BulletCarabineAK

@@ -24,7 +24,7 @@
     Gas:
       effects:
       - !type:HealthChange
-        scaleByQuantity: false
+        scaleByQuantity: true
         ignoreResistances: true
         damage:
            groups:

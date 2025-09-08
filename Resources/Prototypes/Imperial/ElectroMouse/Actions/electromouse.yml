@@ -80,18 +80,18 @@
   - type: InstantAction
     event: !type:ElectroMouseSpeedEvent
 
-- type: entity
-  id: ActionElectroMouseDouble
-  name: Резервное шокирование
-  description: Позволяет создать вторую шокомышь (1 раз)
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_copying}
-  - type: InstantAction
-    event: !type:ElectroMouseDoubleEvent
-  - type: LimitedCharges
-    maxCharges: 1
+# - type: entity
+#   id: ActionElectroMouseDouble
+#   name: Резервное шокирование
+#   description: Позволяет создать вторую шокомышь (1 раз)
+#   components:
+#   - type: Action
+#     itemIconStyle: BigAction
+#     icon: { sprite: Imperial/electromouse.rsi, state: sm_copying}
+#   - type: InstantAction
+#     event: !type:ElectroMouseDoubleEvent
+#   - type: LimitedCharges
+#     maxCharges: 1
 
 - type: entity
   id: ActionElectroMouseUpgrade

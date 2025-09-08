@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Zevs622",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "ussp-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "NT-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "sindi-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "green-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "yellow-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "red-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "blue-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    },
+    {
+      "name": "white-flag",
+      "delays": [[0.25, 0.25, 0.25, 0.25]]
+    }
+  ]
+}

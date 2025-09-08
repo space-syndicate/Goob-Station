@@ -1,0 +1,13 @@
+# T1 исследования для оборудования службы безопасности Imperial Space
+
+- type: technology
+  id: SecurityCommunications
+  name: research-technology-security-communications
+  icon:
+    sprite: Imperial/Objects/Items/emergency-button.rsi
+    state: EmergencyButton
+  discipline: Arsenal
+  tier: 1
+  cost: 6000
+  recipeUnlocks:
+  - EmergencyButton

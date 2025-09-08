@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by @crookielv",
+  "size": {
+    "x": 96,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "green"
+    },
+    {
+      "name": "unshaded"
+    }
+  ]
+}

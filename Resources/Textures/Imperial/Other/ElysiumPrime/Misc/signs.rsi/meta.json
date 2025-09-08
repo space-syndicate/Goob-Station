@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "admin",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "bank",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "court",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "dock",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "med",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "bar",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "journalistics",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
+      "name": "police",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    }
+  ]
+}

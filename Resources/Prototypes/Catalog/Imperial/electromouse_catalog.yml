@@ -89,18 +89,18 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-- type: listing
-  id: ElectromDouble
-  name: Резервное шокирование
-  description: Позволяет создать вторую шокомышь (1 раз)
-  productAction: ActionElectroMouseDouble
-  categories:
-  - ElectromouseAbilities
-  cost:
-    StolenEnergy: 300
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+# - type: listing
+#   id: ElectromDouble
+#   name: Резервное шокирование
+#   description: Позволяет создать вторую шокомышь (1 раз)
+#   productAction: ActionElectroMouseDouble
+#   categories:
+#   - ElectromouseAbilities
+#   cost:
+#     StolenEnergy: 300
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
 
 - type: listing
   id: ElectromUpgrade

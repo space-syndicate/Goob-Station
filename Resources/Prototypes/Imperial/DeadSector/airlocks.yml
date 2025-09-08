@@ -18,3 +18,13 @@
   components:
   - type: Sprite
     sprite: Imperial/DeadSector/airlocks/police.rsi
+
+- type: entity
+  id: AirlockFederationPoliceLockedAdmin
+  parent: AirlockFederationPoliceLocked
+  name: airlock
+  suffix: ЗАКРЫТ, admin, ElysiumPrime
+  components:
+    - type: ContainerFill
+      containers: 
+        board: [ DoorElectronicsFederationadmin ]

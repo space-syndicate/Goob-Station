@@ -45,3 +45,11 @@
   frequency: 8899
   color: "#AA0000FF"
   longRange: true
+
+- type: radioChannel
+  id: NedraLastHopeconnection
+  name: Последняя Надежда
+  keycode: 'ы'
+  frequency: 8899
+  color: "#4a00aa"
+  longRange: true

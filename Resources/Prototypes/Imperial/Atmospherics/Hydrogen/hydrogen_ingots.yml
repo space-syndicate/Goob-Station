@@ -1,0 +1,76 @@
+- type: stack
+  id: Hydrogen
+  name: водород
+  icon: { sprite: /Textures/Imperial/Gases/Hydrogen/HydrogenIngots.rsi, state: hydrogen }
+  spawn: SheetHydrogen1
+  maxCount: 30
+
+- type: entity
+  parent: SheetHydrogen
+  id: SheetHydrogen1
+  name: hydrogen
+  suffix: Single
+  components:
+  - type: Sprite
+    state: hydrogen
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: BaseItem
+  id: SheetHydrogen
+  name: hydrogen
+  description: A sheet of material, used often on the station in various applications.
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Hydrogen: 100
+  - type: Stack
+    stackType: Hydrogen
+    baseLayer: base
+    layerStates:
+    - hydrogen
+    - hydrogen_2
+    - hydrogen_3
+  - type: Sprite
+    sprite: /Textures/Imperial/Gases/Hydrogen/HydrogenIngots.rsi
+    state: hydrogen_3
+    layers:
+    - state: hydrogen_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: hydrogen
+    size: Normal
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: hydrogen
+  - type: SolutionContainerManager
+    solutions:
+      hydrogen:
+        reagents:
+        - ReagentId: Hydrogen
+          Quantity: 5
+        - ReagentId: Tritium
+          Quantity: 5
+        canReact: false
+
+- type: material
+  id: Hydrogen
+  stackEntity: SheetHydrogen1
+  name: materials-hydrogen
+  icon: { sprite: /Textures/Imperial/Gases/Hydrogen/HydrogenIngots.rsi, state: hydrogen }
+  color: "#0e0e4d"
+  price: 0.50 # $50 for 1 unit
+
+- type: entity
+  parent: SheetHydrogen
+  id: SheetHydrogen10
+  name: hydrogen
+  suffix: 10
+  components:
+  - type: Sprite
+    state: hydrogen
+  - type: Stack
+    count: 10

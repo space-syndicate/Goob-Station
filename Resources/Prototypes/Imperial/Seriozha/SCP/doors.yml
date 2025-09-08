@@ -3,7 +3,7 @@
   parent: HighSecDoor
   id: HighSecSCPLocked
   name: One
-  suffix: seriozha, Недра, 1
+  suffix: seriozha, Недра, Locked
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/SCP/airlocks/one.rsi
@@ -17,15 +17,16 @@
       path: /Audio/Imperial/Seriozha/SCP/oneclose.ogg
     denySound:
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSCP ]
 
 - type: entity
   parent: HighSecSCPLocked
   id: HighSecSCPOneLocked
   name: One
-  suffix: seriozha, Недра, Locked
+  suffix: seriozha, Недра, 1
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCP ]
 
 - type: entity
   parent: HighSecSCPLocked
@@ -76,7 +77,7 @@
   parent: AirlockRCDResistant
   id: AirlockSCPLocked
   name: Two
-  suffix: seriozha, Недра, 1
+  suffix: seriozha, Недра, Locked
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/SCP/airlocks/two.rsi
@@ -87,9 +88,6 @@
       path: /Audio/Imperial/Seriozha/SCP/twoclose.ogg
     denySound:
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSCP ]
   - type: Destructible
     thresholds:
     - trigger:
@@ -102,8 +100,11 @@
 - type: entity
   parent: AirlockSCPLocked
   id: AirlockSCPOneLocked
-  suffix: seriozha, Недра, Locked
-
+  suffix: seriozha, Недра, 1
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCP ]
 - type: entity
   parent: AirlockSCPLocked
   id: AirlockSCPTwoLocked
@@ -117,7 +118,7 @@
   parent: AirlockSecurityGlass
   id: AirlockWindowedSCPLocked
   name: Three
-  suffix: seriozha, Недра, 1
+  suffix: seriozha, Недра, Locked
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/SCP/airlocks/three.rsi
@@ -128,9 +129,6 @@
       path: /Audio/Imperial/Seriozha/SCP/twoclose.ogg
     denySound:
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSCP ]
   - type: Destructible
     thresholds:
     - trigger:
@@ -143,7 +141,11 @@
 - type: entity
   parent: AirlockWindowedSCPLocked
   id: AirlockWindowedSCPOneLocked
-  suffix: seriozha, Недра, Locked
+  suffix: seriozha, Недра, 1
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCP ]
 
 - type: entity
   parent: AirlockWindowedSCPLocked

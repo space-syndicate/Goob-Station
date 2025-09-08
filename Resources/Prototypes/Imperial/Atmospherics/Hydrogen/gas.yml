@@ -1,0 +1,10 @@
+- type: gas
+  id: 12
+  name: gases-hydrogen
+  specificHeat: 15
+  heatCapacityRatio: 1.3
+  molarMass: 2
+  color: ffffff
+  reagent: Hydrogen
+  pricePerMole: 1
+

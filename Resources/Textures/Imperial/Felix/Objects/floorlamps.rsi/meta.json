@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "made by Certified Reptilian, aka @rikitheparrot",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken",
+      "directions": 4
+    },
+    {
+      "name": "burned",
+      "directions": 4
+    },
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "empty",
+      "directions": 4
+    },
+	{
+      "name": "glow",
+      "directions": 4
+    }
+  ]
+}

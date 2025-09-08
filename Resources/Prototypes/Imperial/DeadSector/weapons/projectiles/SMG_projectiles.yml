@@ -6,7 +6,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 4.2
+        Piercing: 10.4
 
 - type: entity
   id: BulletSubmachine
@@ -17,7 +17,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 5.4
+        Piercing: 18
 
 - type: entity
   id: BulletArmorPiercingSubmachine
@@ -28,4 +28,28 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 9.4
+        Piercing: 15
+    ignoreResistances: true
+
+- type: entity
+  id: BulletSubmachineMP9
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 9.3
+
+- type: entity
+  id: BulletArmorPiercingSubmachineMP9
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5.3
+    ignoreResistances: true

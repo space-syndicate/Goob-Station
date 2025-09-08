@@ -39,7 +39,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8.6
+        Piercing: 12
 
 - type: entity
   id: Astra60BulletPiercing
@@ -49,7 +49,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 5.1
+        Piercing: 8.5
     ignoreResistances: true
 
 - type: entity
@@ -62,7 +62,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8.6
+        Piercing: 12
 
 - type: entity
   id: Astra100Bullet
@@ -72,7 +72,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8.6
+        Piercing: 15.6
 
 - type: entity
   id: Astra100BulletPiercing
@@ -82,7 +82,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 5.1
+        Piercing: 12.1
     ignoreResistances: true
 
 - type: entity
@@ -95,4 +95,4 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8.6
+        Piercing: 15.6

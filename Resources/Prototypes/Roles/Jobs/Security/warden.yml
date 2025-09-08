@@ -35,6 +35,7 @@
     back:
     - Flash
     - MagazinePistol
+    - EmergencyButton # Imperial Emergency Button
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

@@ -205,6 +205,7 @@
     - type: Access
       tags:
       - Federationadmin
+      - Federation
     - type: Sprite
       sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
       layers:
@@ -541,6 +542,10 @@
         visible: true
         shader: unshaded
         map: [ "light" ]
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#75a743"
 - type: entity
   id: BannerElysiumSecurity
   parent: BannerBase
@@ -556,6 +561,10 @@
         visible: true
         shader: unshaded
         map: [ "light" ]
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#a53030"
 - type: entity
   parent: PosterBase
   id: ElysiumPosterHolo
@@ -571,6 +580,10 @@
         visible: true
         shader: unshaded
         map: [ "light" ]
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#75a743"
 
 # Торговая точка
 - type: entity
@@ -1418,6 +1431,40 @@
     layers:
     - state: car_pileup
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.85, -1.4, 1.8, 1.2"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCar1
+  id: carpileup2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle2.rsi
+    layers:
+    - state: car_pileup2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "1.9, -1.4, -1.8, 1.2"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1430,6 +1477,40 @@
     layers:
     - state: crane_cargo
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -0.95, -0.9, 0.5"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: cranecargo2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crane_cargo2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -0.95, -0.9, 0.5"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1442,6 +1523,63 @@
     layers:
     - state: crawler
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.9, -1, -0.75, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: crawler2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crawler2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.8, -1, -0.9, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: crawlercratealt
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crawler_crate_alt
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.9, -1, -0.75, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1454,6 +1592,17 @@
     layers:
     - state: crawler_crate_alt2
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.8, -1, -0.9, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1466,6 +1615,40 @@
     layers:
     - state: crawler_fuel
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.9, -1, -0.75, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: crawlerfuel2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crawler_fuel2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.8, -1, -0.9, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1478,6 +1661,40 @@
     layers:
     - state: tractor_damaged
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -1, -0.9, 0.5"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: tractordamaged2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: tractor_damaged2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -1, -0.95, 0.5"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1490,6 +1707,40 @@
     layers:
     - state: truck_damaged
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -0.98, -0.95, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: truckdamaged2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: truck_damaged2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.92, -0.98, -0.95, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase
@@ -1502,6 +1753,40 @@
     layers:
     - state: truck_mining
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -0.98, -0.92, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: truckmining2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: truck_mining2
+    drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.95, -0.98, -0.95, 0.1"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCarBase

@@ -180,6 +180,8 @@ namespace Content.Shared.Atmos
             [Gas.Thermonium] = Loc.GetString("gas-thermonium-abbreviation"), /// Imperial Added Thermonium
             [Gas.Phazonium] = Loc.GetString("gas-phazonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
             [Gas.Ozonium] = Loc.GetString("gas-ozonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
+            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"), /// Imperial Added Hydrogen
+
         };
 
         #region Excited Groups
@@ -209,7 +211,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 12; /// Imperial Added Thermonium
+        public const int TotalNumberOfGases = 13; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -244,6 +246,16 @@ namespace Content.Shared.Atmos
         public const float TritiumBurnOxyFactor = 100f;
         public const float TritiumBurnTritFactor = 10f;
 
+        /// Imperial Added Hydrogen start
+        public const float MinimumHydrogenOxyburnEnergy = 143000f;
+        public const float HydrogenBurnOxyFactor = 100f;
+        public const float HydrogenBurnHydrFactor = 10f;
+        public const float HydrogenProductionMaxEfficiencyTemperature = 2273f;
+        public const float HydrogenProductionConversionRate = 2273f;
+        public const float N2OzonProductionMaxEfficiencyTemperature = 2273f;
+        public const float N2OzonProductionConversionRate = 2273f;
+
+        /// Imperial Added Hydrogen end
         public const float FrezonCoolLowerTemperature = 23.15f;
 
         /// <summary>
@@ -388,6 +400,7 @@ namespace Content.Shared.Atmos
         Frezon = 8, /// Imperial Added Thermonium
         Thermonium = 9, /// Imperial Added Thermonium
         Phazonium = 10, /// Imperial Added Phazonium and Ozonium
-        Ozonium = 11 /// Imperial Added Phazonium and Ozonium
+        Ozonium = 11, /// Imperial Added Phazonium and Ozonium
+        Hydrogen = 12 /// Imperial Added Hydrogen
     }
 }

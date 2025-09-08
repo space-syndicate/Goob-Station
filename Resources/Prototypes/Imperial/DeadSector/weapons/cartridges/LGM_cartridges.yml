@@ -24,7 +24,7 @@
   parent: BaseCartridgeASP
   components:
   - type: CartridgeAmmo
-    proto: ASPBullet
+    proto: AssaultPKMBullet
 
 - type: entity
   id: BaseCartridgeAssaultPKMPiercing

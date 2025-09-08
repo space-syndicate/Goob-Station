@@ -78,12 +78,3 @@
       key_slots:
       - EncryptionKeyCommand
       - EncryptionKeyCommon
-
-- type: entity
-  parent: ClothingBackpack
-  id: ClothingBackpackHOPFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: Flash

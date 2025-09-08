@@ -17,6 +17,7 @@
   - type: Clothing
     sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponPistolNDF1.rsi
   - type: Gun
+    fireRate: 0.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

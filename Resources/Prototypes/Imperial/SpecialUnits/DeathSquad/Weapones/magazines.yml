@@ -22,6 +22,7 @@
       ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/SpecialUnits/DeathSquad/Magazines/DelMag.rsi
+    scale: 0.7, 0.7 
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -34,34 +35,35 @@
   - type: Appearance
 
 - type: entity
-  id: ItemDelivererMagazineUAP
+  id: ItemDelivererMagazineAP
   parent: ItemDelivererMagazine
-  name: deliverer magazine (.20m UAP)
-  description: Mag of a deadly weapon. UAP.
+  name: deliverer magazine (.20m AP)
+  description: Mag of a deadly weapon. AP.
   suffix: DeathSquad
   components:
   - type: Sprite
     sprite: Imperial/SpecialUnits/DeathSquad/Magazines/DelMag.rsi
+    scale: 0.7, 0.7 
     layers:
     - state: piercing
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleUAP
+    proto: CartridgeRifleAP
     mayTransfer: true
 
 - type: entity #exclusive for death squad
-  id: CartridgeRifleUAP
-  name: cartridge (.20 rifle UAP)
+  id: CartridgeRifleAP
+  name: cartridge (.20 rifle AP)
   parent: BaseCartridgeRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleUAP
+    proto: BulletRifleAP
 
 - type: entity #exclusive for death squad
-  id: BulletRifleUAP
-  name: bullet (0.20 rifle UAP)
+  id: BulletRifleAP
+  name: bullet (0.20 rifle AP)
   parent: BaseBulletAP
   components:
   - type: Projectile

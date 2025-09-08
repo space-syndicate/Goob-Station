@@ -1,0 +1,18 @@
+- type: entity
+  id: BaseFactionShopConsole
+  abstract: true
+  parent: BaseComputer
+  components:
+  - type: Store
+    # title will use default if omitted
+    categories:
+    - FactionWeapons
+    - FactionAmmo
+    - FactionMedical
+    - FactionTools
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key

@@ -26,7 +26,8 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Frezon, /// Imperial Added Thermonium
             Gas.Thermonium, /// Imperial Added Thermonium
             Gas.Phazonium, /// Imperial Added Phazonium and Ozonium
-            Gas.Ozonium /// Imperial Added Phazonium and Ozonium
+            Gas.Ozonium, /// Imperial Added Phazonium and Ozonium
+            Gas.Hydrogen /// Imperial Added Hydrogen
         };
 
         // Presets for 'dumb' air alarm modes

@@ -30,18 +30,21 @@
     angleDecay: 10
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+       - FullAuto
+    soundGunshot:
+     path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: ItemDelivererMagazine
+        startingItem: MagazineRifle
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
             - ItemDelivererMagazine
+            - MagazineRifle
         blacklist:
           tags:
             - MagazineLightRifleBox

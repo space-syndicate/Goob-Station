@@ -29,3 +29,13 @@
       prob: 0.45
     - id: ClothingNeckPirateParrot
       prob: 0.3
+    - id: ClothingEyesEyepatch
+      prob: 1
+    - id: ClothingHeadHatDetGadget
+      prob: 0.05
+    - id: ClothingHeadHatRichard
+      prob: 0.05
+    - id: ClothingOuterChameleon
+      prob: 0.05
+    - id: ClothingNeckTieCCAgent
+      prob: 0.1

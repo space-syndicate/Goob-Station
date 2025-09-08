@@ -14,7 +14,7 @@
       - FullAuto
       - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: ClothingFactionExplosion
     friendlyFaction: RiotControlUnit
     chance: 1

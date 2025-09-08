@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseItem
+  id: EmergencyButton
+  name: ent-EmergencyButton
+  description: ent-EmergencyButton.desc
+  components:
+  - type: Item
+    size: Normal
+    storedRotation: -90
+  - type: Sprite
+    sprite: Imperial/Objects/Items/emergency-button.rsi
+    layers:
+    - state: EmergencyButton
+  - type: Clothing
+    sprite: Imperial/Objects/Items/emergency-button.rsi
+    quickEquip: true
+    slots:
+    - neck
+  - type: EmergencyButton
+    maxCharges: 1
+    currentCharges: 1
+    alertMessage: "alert-emergency-button-message"
+    useMessage: "alert-emergency-button-used"
+    noChargesMessage: "alert-emergency-button-no-charges"
+

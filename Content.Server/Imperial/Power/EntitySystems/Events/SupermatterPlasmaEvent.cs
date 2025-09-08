@@ -10,16 +10,16 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterPlasmaEvent
 {
-    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
         // Валидация входных параметров
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterPlasmaEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterPlasmaEvent.Activate: Invalid EntityUid provided");
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
+        var currentTime = supermatterSystem.GameTiming.CurTime;
         comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Plasma;
         comp.EventEndTime = comp.PlasmaEventDuration;
         comp.NextEventTimer = comp.EventAfterPlasmaTime;
@@ -28,7 +28,7 @@ public sealed class SupermatterPlasmaEvent
         comp.LastPlasmaTickUpdate = currentTime;
     }
 
-    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
         comp.PlasmaTickAccumulator ??= TimeSpan.Zero;
 
@@ -40,12 +40,12 @@ public sealed class SupermatterPlasmaEvent
             return;
 
         // Получаем компоненты один раз
-        if (!system.TryGetComponent<TransformComponent>(uid, out var transformComponent) || transformComponent == null)
+        if (!supermatterSystem.TryGetComponent<TransformComponent>(uid, out var xform) || xform == null)
         {
             return;
         }
 
-        var gas = system.Atmos.GetContainingMixture(uid, true);
+        var gas = supermatterSystem.Atmos.GetContainingMixture(uid, true);
         if (gas == null)
             return;
 
@@ -54,25 +54,25 @@ public sealed class SupermatterPlasmaEvent
         gas.AdjustMoles((int)Gas.Oxygen, comp.PlasmaMolesAmount);
 
         // Создаём хотспот
-        if (!TryGetGridUid(transformComponent, out var gridUid))
+        if (!TryGetGridUid(xform, out var gridUid))
         {
-            system.Log.Warning($"Supermatter plasma event triggered for entity {uid} without grid");
+            supermatterSystem.Log.Warning($"Supermatter plasma event triggered for entity {uid} without grid");
             return;
         }
 
-        if (!system.TryGetComponent<MapGridComponent>(gridUid, out var grid) || grid == null)
+        if (!supermatterSystem.TryGetComponent<MapGridComponent>(gridUid, out var grid) || grid == null)
             return;
 
-        var tile = system.MapSystem.TileIndicesFor(gridUid, grid, transformComponent.Coordinates);
-        CreateHotspot(system.Atmos, gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid);
+        var tile = supermatterSystem.MapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+        CreateHotspot(supermatterSystem.Atmos, gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid);
 
         comp.PlasmaTickAccumulator -= comp.PlasmaTickInterval;
     }
 
-    private static bool TryGetGridUid(TransformComponent transformComponent, out EntityUid gridUid)
+    private static bool TryGetGridUid(TransformComponent xform, out EntityUid gridUid)
     {
-        gridUid = transformComponent.GridUid ?? default;
-        return transformComponent.GridUid.HasValue;
+        gridUid = xform.GridUid ?? default;
+        return xform.GridUid.HasValue;
     }
 
     private static void CreateHotspot(AtmosphereSystem atmos, EntityUid gridUid, Vector2i tile, float temp, float volume, EntityUid uid)

@@ -20,6 +20,7 @@
         - PlushieBMGift
       rareChance: 0.15
       prototypes:
+        - PlushiePassenger
         - PlushieCapitan
         - PlushieChemist
         - PlushieCP
@@ -43,9 +44,9 @@
         - PlushieErika
         - PlushieAiden
         - PlushieKainov
-        - PlushieIsaac
         - PlushieSavir
         - PlushieKarner
+        - PlushieVenya
 # CentCom plushies...
         - PlushieYesenia
         - PlushieBM

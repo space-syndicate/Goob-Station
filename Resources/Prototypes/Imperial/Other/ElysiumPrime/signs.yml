@@ -1,0 +1,95 @@
+- type: entity
+  parent: BaseSign
+  id: AdministrationElysiumSign
+  name: Администрация
+  suffix: ElysiumPrime, Decoration
+  description: Упрощенный логотип Элизиум Прайм скрывает за собой не самых простых людей.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: admin
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: BankElysiumSign
+  name: Финансовый центр
+  suffix: ElysiumPrime, Decoration
+  description: Если миром правят деньги, то они — правят деньгами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: bank
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: CourtElysiumSign
+  name: Суд
+  suffix: ElysiumPrime, Decoration
+  description: Прийдя сюда, вы можете наблюдать судебные процессы. Прийдя туда, вы сможете увидеть как происходят тудебные процессы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: court
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: DockElysiumSign
+  name: Торговые доки
+  suffix: ElysiumPrime, Decoration
+  description: Здесь, как правило, собираются люди, которые смогут продать вам ручку.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: dock
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: PoliceElysiumSign
+  name: Полиция
+  suffix: ElysiumPrime, Decoration
+  description: "Если вам когда-нибудь покажется, что полиция не работает, ведь уровень преступности высок, задумайтесь: а если бы полиции не было вовсе?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: police
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: MedElysiumSign
+  name: Медицинский отсек
+  suffix: ElysiumPrime, Decoration
+  description: Споря с врачами, не забывайте о том, что они знают про ваше тело больше, чем вы сами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: med
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: BarElysiumSign
+  name: Бар
+  suffix: ElysiumPrime, Decoration
+  description: "Помни: алкоголь — акцизный товар. Покупая алкоголь, ты поддерживаешь власть..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: bar
+    shader: unshaded
+
+- type: entity
+  parent: BaseSign
+  id: JournalisticsElysiumSign
+  name: Журналистика
+  suffix: ElysiumPrime, Decoration
+  description: СРОЧНЫЕ НОВОСТИ! ДЕНЬГИ ПАДАЮТ С НЕБА! А теперь когда мы привлекли ваше внимание...
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: journalistics
+    shader: unshaded

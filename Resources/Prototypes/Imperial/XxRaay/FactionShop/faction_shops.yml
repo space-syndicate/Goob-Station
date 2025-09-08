@@ -1,0 +1,160 @@
+- type: entity
+  id: NTShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: NTFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-nt
+    currencyWhitelist:
+    - NTFactionPoints
+    balance:
+      NTFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#3366FF"
+    energy: 0.5
+    radius: 2.0
+
+- type: entity
+  id: SindiShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: SindiFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-sindi
+    currencyWhitelist:
+    - SindiFactionPoints
+    balance:
+      SindiFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#FF3333"
+    energy: 0.5
+    radius: 2.0
+
+- type: entity
+  id: GreenShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: GreenFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-green
+    currencyWhitelist:
+    - GreenFactionPoints
+    balance:
+      GreenFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#33FF33"
+    energy: 0.5
+    radius: 2.0
+
+- type: entity
+  id: YellowShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: YellowFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-yellow
+    currencyWhitelist:
+    - YellowFactionPoints
+    balance:
+      YellowFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#FFFF33"
+    energy: 0.5
+    radius: 2.0
+
+- type: entity
+  id: RedShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: RedFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-red
+    currencyWhitelist:
+    - RedFactionPoints
+    balance:
+      RedFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#FF3333"
+    energy: 0.5
+    radius: 2.0
+
+- type: entity
+  id: BlueShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: BlueFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-blue
+    currencyWhitelist:
+    - BlueFactionPoints
+    balance:
+      BlueFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#3333FF"
+    energy: 0.5
+    radius: 2.0
+
+- type: entity
+  id: USSPShopConsole
+  suffix: XxRaay, FlagsTDM
+  parent: BaseFactionShopConsole
+  components:
+  - type: FactionShop
+    faction: USSPFaction
+    pointsInterval: 20.0
+    pointsPerFlag: 10
+  - type: Store
+    name: faction-store-title-ussp
+    currencyWhitelist:
+    - USSPFactionPoints
+    balance:
+      USSPFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
+  - type: PointLight
+    color: "#CC6600"
+    energy: 0.5
+    radius: 2.0

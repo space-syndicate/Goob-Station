@@ -1,0 +1,12 @@
+# Рецепт крафта тревожной кнопки для техфаба СБ
+
+- type: latheRecipe
+  id: EmergencyButton
+  result: EmergencyButton
+  categories:
+  - Security
+  completetime: 3
+  materials:
+    Steel: 400
+    Plastic: 200
+    Glass: 100

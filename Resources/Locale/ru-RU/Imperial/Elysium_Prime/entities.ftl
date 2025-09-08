@@ -90,6 +90,10 @@ ent-ElysiumFederationIDCard = ID карта Федерации
     .desc = Карта идентификации.
 ent-ElysiumFederationPDA = КПК Федерации
     .desc = Пахнет патриотизмом!
+ent-ElysiumFederationIDCardEmpty = ID карта Федерации
+    .desc = Карта идентификации.
+ent-ElysiumFederationPDAEmpty = КПК Федерации
+    .desc = Пахнет патриотизмом!
 ent-BoxFolderFederation = папка
     .desc = Содержит в себе все коррупционные схемы, происходящие за кулисами.
 ent-FederationHandyFlag = флажок Федерации
@@ -107,7 +111,11 @@ ent-FederationGateway = врата Федерации
     .desc = От Федерации нельзя убежать.
 
 ent-AirlockFederationPoliceLocked = шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
 ent-AirlockFederationPolice = шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+ent-AirlockFederationPoliceLockedAdmin = шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
 
 ent-VendingMachineElysiumCitizenClothing = ГражданскоМат
 ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
@@ -119,3 +127,60 @@ ent-ReinforcedWindowShadowElysiumPrime = армированное окно
     .desc = Смотри не заляпай.
 ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
     .desc = Смотри не заляпай.
+
+
+
+ent-FederationAccessManipulator = Манипулятор доступов
+    .desc = Пахнет ключами капитализма.
+
+ent-FloorLamp = Напольная лампа
+    .desc = Напольное освещение
+ent-FloorLampEmpty = Напольная лампа
+    .desc = Напольное освещение
+
+ent-TechAirlockElysiumFederationLocked = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+ent-TechAirlockElysiumFederationadminLocked = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+ent-TechAirlockElysiumFederation = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+
+ent-ElysiumPrimeTacticTable = Тактический стол
+    .desc = Тактический стол для планирования.
+
+ent-TabletElysiumPrime = Планшет
+    .desc = Содержит в себе все коррупционные схемы, происходящие за кулисами, но он запаролен.
+
+ent-RedTicket = Красный талончик
+    .desc = Просто красный талончик.
+ent-BlueTicket = Синий талончик
+    .desc = Просто синий талончик.
+ent-BlackTicket = Черный талончик
+    .desc = Просто черный талончик.
+
+ent-ChestBeaconBlue = Синий нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconBlueRed = Сине-красный нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconRed = Красный нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconWhite = Белый нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconYellow = Желтый нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+
+ent-ShoulderBeaconBlue = Синий наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconBlueRed = Сине-красный наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconRed = Красный наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconWhite = Белый наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconYellow = Желтый наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+
+comms-console-announcement-title-Federation = Федерации Elysium Prime
+
+ent-ElysiumPrimeComputerComms = Консоль федеративной связи
+    .desc = С помощью нее можно давать обещания, которым не суждено сбыться.

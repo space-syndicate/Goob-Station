@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
+using Content.Shared.Explosion;
 
 namespace Content.Server.Imperial.Power.Components
 {
@@ -112,6 +113,12 @@ namespace Content.Server.Imperial.Power.Components
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
         /// <summary>
+        /// Продолжительность катастрофы до финального события (взрыва).
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public TimeSpan CatastropheDuration = TimeSpan.FromSeconds(120);
+
+        /// <summary>
         /// Тег, прототипы с которым лечат Суперматерию
         /// </summary>
         [DataField]
@@ -120,7 +127,55 @@ namespace Content.Server.Imperial.Power.Components
         /// <summary>
         /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
         /// </summary>
-        [DataField]
-        public float EmitterHealAmount = 0.35f;
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float EmitterHealAmount = 0.1f;
+
+        /// <summary>
+        /// Идентификатор прототипа взрыва, который будет использован при катастрофе.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public ProtoId<ExplosionPrototype> ExplosionPrototypeId = "Supermatter";
+
+        /// <summary>
+        /// Общая интенсивность взрыва при катастрофе.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float CatastropheTotalIntensity = 20000f;
+
+        /// <summary>
+        /// Крутизна спадания интенсивности взрыва.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float CatastropheSlope = 1f;
+
+        /// <summary>
+        /// Максимальная интенсивность на тайле для взрыва.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float CatastropheMaxTileIntensity = 70f;
+
+        /// <summary>
+        /// Интервал между молниями во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
+
+        /// <summary>
+        /// Таймер для молний во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
+
+        /// <summary>
+        /// Дальность молний во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float CatastropheLightningRange = 15f;
+
+        /// <summary>
+        /// Количество молний за раз во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public int CatastropheLightningCount = 3;
     }
 }

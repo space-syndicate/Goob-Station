@@ -13,6 +13,7 @@ ent-ClothingHeadsetAdjutant = гарнитура Адъютанта
     .desc = Микрофон выглядит погрызанным...
 
 loadout-group-adjutant-jumpsuit = Комбинезон
+loadout-group-adjutant-backpack = Адъютант, рюкзак
 job-name-adjutant = Адъютант
 job-description-adjutant = Постигните все тонкости управления!
 job-supervisors-command = всему командному составу

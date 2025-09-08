@@ -1,0 +1,20 @@
+- type: explosion
+  id: Supermatter
+  name: supermatter blast
+  description: A dazzling but destructive release of supermatter energy.
+  damagePerIntensity:
+    types:
+      Radiation: 6
+      Heat: 6
+      Blunt: 4
+      Structural: 12
+  tileBreakChance: [0, 0.6, 1]
+  tileBreakIntensity: [0, 20, 50]
+  tileBreakRerollReduction: 15
+  intensityPerState: 40
+  intensityPerStateVariation: 8
+  lightColor: Yellow
+  fireColor: Yellow
+  texturePath: /Textures/Effects/fire_greyscale.rsi
+  fireStates: 4
+  fireStacks: 2

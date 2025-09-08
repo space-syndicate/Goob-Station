@@ -3,7 +3,7 @@
   id: FederationCash1
   name: federation cash
   description: You gotta have money.
-  suffix: Elysium Prime
+  suffix: Elysium Prime, Admin
   components:
   - type: Cash
   - type: Item
@@ -13,7 +13,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Credit: 1
+      Credit: 5
   - type: StaticPrice
     price: 0
   - type: Stack
@@ -24,11 +24,19 @@
     - cash
     - cash_10
     - cash_100
-    - cash_500
     - cash_1000
+    - cash_2500
+    - cash_5000
+    - cash_10000
+    - cash_20000
+    - cash_30000
+    - cash_100000
     - cash_1000000
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [10, 100, 100, 1000, 2500, 5000, 10000, 20000, 30000, 100000, 1000000]
   - type: Sprite
-    sprite: Objects/Economy/cash.rsi
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
     state: cash
     layers:
     - state: cash
@@ -52,16 +60,16 @@
 - type: stack
   id: FederationCredit
   name: federation credit
-  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  icon: { sprite: /Textures/Imperial/Other/ElysiumPrime/Objects/Fcash.rsi, state: cash }
   spawn: FederationCash1
 
 - type: entity
   parent: FederationCash1
   id: FederationCash10
-  suffix: Elysium Prime, 10
+  suffix: Elysium Prime, Admin, 10
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
     state: cash_10
   - type: Stack
     count: 10
@@ -69,10 +77,10 @@
 - type: entity
   parent: FederationCash1
   id: FederationCash100
-  suffix: Elysium Prime, 100
+  suffix: Elysium Prime, Admin, 100
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
     state: cash_100
   - type: Stack
     count: 100
@@ -80,21 +88,21 @@
 - type: entity
   parent: FederationCash1
   id: FederationCash500
-  suffix: Elysium Prime, 500
+  suffix: Elysium Prime, Admin, 500
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
-    state: cash_500
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_100
   - type: Stack
     count: 500
 
 - type: entity
   parent: FederationCash1
   id: FederationCash1000
-  suffix: Elysium Prime, 1000
+  suffix: Elysium Prime, Admin, 1000
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
     state: cash_1000
   - type: Stack
     count: 1000
@@ -102,65 +110,76 @@
 - type: entity
   parent: FederationCash1
   id: FederationCash2500
-  suffix: Elysium Prime, 2500
+  suffix: Elysium Prime, Admin, 2500
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
-    state: cash_1000
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_2500
   - type: Stack
     count: 2500
 
 - type: entity
   parent: FederationCash1
   id: FederationCash5000
-  suffix: Elysium Prime, 5000
+  suffix: Elysium Prime, Admin, 5000
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
-    state: cash_1000
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_5000
   - type: Stack
     count: 5000
 
 - type: entity
   parent: FederationCash1
   id: FederationCash10000
-  suffix: Elysium Prime, 10000
+  suffix: Elysium Prime, Admin, 10000
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
-    state: cash_1000
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_10000
   - type: Stack
     count: 10000
 
 - type: entity
   parent: FederationCash1
   id: FederationCash20000
-  suffix: Elysium Prime, 20000
+  suffix: Elysium Prime, Admin, 20000
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
-    state: cash_1000
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_20000
   - type: Stack
     count: 20000
 
 - type: entity
   parent: FederationCash1
   id: FederationCash30000
-  suffix: Elysium Prime, 30000
+  suffix: Elysium Prime, Admin, 30000
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
-    state: cash_1000
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_30000
   - type: Stack
     count: 30000
 
 - type: entity
   parent: FederationCash1
-  id: FederationCash1000000
-  suffix: Elysium Prime, 1000000
+  id: FederationCash100000
+  suffix: Elysium Prime, Admin, 100000
   components:
   - type: Icon
-    sprite: Objects/Economy/cash.rsi
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    state: cash_100000
+  - type: Stack
+    count: 100000
+
+- type: entity
+  parent: FederationCash1
+  id: FederationCash1000000
+  suffix: Elysium Prime, Admin, 1000000
+  components:
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
     state: cash_1000000
   - type: Stack
     count: 1000000
@@ -173,3 +192,47 @@
   cash:
     1: FederationCash1
   canWithdraw: true
+
+#Space credit currency
+
+- type: currency
+  id: SpaceCredit
+  displayName: Space cash
+  cash:
+    1: SpaceCash
+  canWithdraw: true
+
+# credit exchange
+
+- type: entity
+  parent: BaseMachine
+  id: ElysiumPrimeATM
+  suffix: ElysiumPrime
+  name: ATM
+  description: ATM, where can you exchange currency. 1 FCR = 5 CCR
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/ATM.rsi
+    noRot: true
+    layers:
+    - state: ATM
+    - state: ATM_light
+      shader: unshaded
+      visible: true
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - FCR
+    - CCR
+    currencyWhitelist:
+    - FederationCash
+    - SpaceCredit
+    balance:
+      FederationCash: 0
+      SpaceCredit: 0

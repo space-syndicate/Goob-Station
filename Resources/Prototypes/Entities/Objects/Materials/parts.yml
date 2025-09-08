@@ -71,6 +71,11 @@
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation
+  # Imperial Space Bugfix Start
+  - type: Tag
+    tags:
+      - DoesNotRecycleThisShit
+  # Imperial Space Bugfix End
 
 - type: entity
   parent: PartRodMetal
@@ -81,6 +86,7 @@
   - type: Tag
     tags:
     - RodMetal1
+    - DoesNotRecycleThisShit # Imperial Space Bugfix
   - type: Sprite
     state: rods
   - type: Stack
@@ -95,6 +101,7 @@
   - type: Tag
     tags:
     - RodMetal1
+    - DoesNotRecycleThisShit # Imperial Space Bugfix
   - type: Sprite
     state: rods
   - type: Stack

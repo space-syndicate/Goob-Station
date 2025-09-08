@@ -4,6 +4,9 @@
   id: ImperialSCPBase
   suffix: AI
   components:
+    - type: Tag
+      tags:
+      - SCP
     - type: TriggerOnMobstateChange
       mobState:
       - Dead
@@ -64,7 +67,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        5000: Dead
+        4000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -123,7 +126,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        3500: Dead
+        2500: Dead
     - type: Damageable
       damageModifierSet: SCPFireMan
     - type: MeleeWeapon
@@ -143,8 +146,8 @@
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3
-      baseSprintSpeed: 2.5
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 3
     - type: Tag
       tags:
       - DoorBumpOpener
@@ -153,6 +156,57 @@
       - SCPAccesOne
       - SCPAccesTwo
       - SCPAccesThree
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: Avel
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPAvel
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Avel.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        2000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.8
+    - type: Hands
+    - type: Puller
+    - type: Pullable
+    - type: Loadout
+      prototypes: [ ImperialAvelGear ]
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
     - type: Fixtures
       fixtures:
         fix1:
@@ -213,7 +267,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        4000: Dead
+        3000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -223,8 +277,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 150
-      resistanceBypass: true
+          Caustic: 150
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
@@ -264,6 +317,76 @@
           - MobLayer
 
 - type: entity
+  name: Jelly monster
+  suffix: seriozha, Недра
+  parent: BaseMobAdultSlimes
+  id: ImperialSCPJelly
+  description: The kindest blob of slime in the galaxy.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Jelly.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 3
+          Caustic: 3
+    - type: ReplacementAccent
+      accent: slimes
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.6
+      baseSprintSpeed: 3.2
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepSlime
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Speech
+      speechVerb: Slime
+      speechSounds: Slime
+      allowedEmotes: ['Squish']
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 200
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
   name: Katana
   suffix: seriozha, Недра
   parent: [ BaseSword, BaseMajorContraband ]
@@ -283,13 +406,13 @@
     attackRate: 1.25
     damage:
       types:
-        Structural: 80
+        Structural: 90
         Slash: 60
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: 0.25
-    spread: 70
+    reflectProb: 0.15
+    spread: 90
   - type: DisarmMalus
 
 - type: emoteSounds
@@ -371,3 +494,8 @@
     Poison: 0.0
     Radiation: 0.0
     Caustic: 0.0
+
+- type: startingGear
+  id: ImperialAvelGear
+  inhand:
+  - ImperialSCPKatana

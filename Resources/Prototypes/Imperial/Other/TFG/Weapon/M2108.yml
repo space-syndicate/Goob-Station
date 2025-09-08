@@ -50,7 +50,7 @@
   #Imperial Space Pirates: New Horizon start
   - type: GPSTrackerPrice
     startprice: 0
-    endprice: 13000
+    endprice: 27897
     #Imperial Space Pirates: New Horizon end
 - type: entity
   id: BoxAwardM2108
