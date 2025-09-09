@@ -1,0 +1,337 @@
+- type: marking
+  id: NewAndroidTorso
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/new_android_torso.rsi
+    state: new_android_torso
+
+- type: marking
+  id: OldAndroidTorso
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/old_android_torso.rsi
+    state: old_android_torso
+
+- type: marking
+  id: JointRArm
+  bodyPart: RArm
+  markingCategory: Hands
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_r_arm
+
+- type: marking
+  id: JointLArm
+  bodyPart: LArm
+  markingCategory: Hands
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_l_arm
+
+- type: marking
+  id: JointRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_r_leg
+
+- type: marking
+  id: JointLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_l_leg
+
+- type: marking
+  id: JointRHand
+  bodyPart: RHand
+  markingCategory: Hands
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_r_hand
+
+- type: marking
+  id: JointLHand
+  bodyPart: LHand
+  markingCategory: Hands
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_l_hand
+
+- type: marking
+  id: JointLShoulder
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_l_shoulder
+
+- type: marking
+  id: JointRShoulder
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_r_shoulder
+
+- type: marking
+  id: JointLShoulderW
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_l_shoulder_w
+
+- type: marking
+  id: JointRShoulderW
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#858585'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/joints.rsi
+    state: joint_r_shoulder_w
+
+- type: marking
+  id: AngryEyes
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
+    state: angry_eyes
+
+- type: marking
+  id: AnimeWhites
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
+    state: anime_whites
+
+- type: marking
+  id: AnimeEyes
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Human, Dwarf]
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#21DC21'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
+    state: anime_eyes
+
+- type: marking
+  id: SusEyes
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#323232'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
+    state: sus_eyes
+
+- type: marking
+  id: TiredEyes
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#323232'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
+    state: tired_eyes
+
+- type: marking
+  id: NoEyes
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  followSkinColor: true
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
+    state: no_eyes
+
+- type: marking
+  id: AllmierTattooChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/aquilla_tattoo.rsi
+    state: allmier_tattoo_chest
+
+- type: marking
+  id: AllmierTattooRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/aquilla_tattoo.rsi
+    state: allmier_tattoo_rarm
+
+- type: marking
+  id: AllmierTattooLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/aquilla_tattoo.rsi
+    state: allmier_tattoo_larm
+
+
+
+- type: marking
+  id: VitiligoHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_head
+
+- type: marking
+  id: VitiligoChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_chest
+
+- type: marking
+  id: VitiligoRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_rarm
+
+- type: marking
+  id: VitiligoLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_larm
+
+- type: marking
+  id: VitiligoRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_rhand
+
+- type: marking
+  id: VitiligoLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_lhand
+
+- type: marking
+  id: VitiligoRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_rleg
+
+- type: marking
+  id: VitiligoLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
+      state: vitiligo_lleg

@@ -65,15 +65,16 @@
     UndergarmentBottom:
       points: 1
       required: false
-    Chest:
-      points: 2
-      required: false
-    Legs:
-      points: 2
-      required: false
-    Arms:
-      points: 2
-      required: false
+    # Commented for Imperial Space, Aquilla branch
+    # Chest:
+    #   points: 1
+    #   required: false
+    # Legs:
+    #   points: 2
+    #   required: false
+    # Arms:
+    #   points: 2
+    #   required: false
 
 - type: humanoidBaseSprite
   id: MobHumanoidEyes

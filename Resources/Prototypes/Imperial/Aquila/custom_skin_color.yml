@@ -1,0 +1,237 @@
+- type: marking
+  id: CustomSkinColorHeadMale
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_head_male
+
+- type: marking
+  id: CustomSkinColorHeadFemale
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_head_female
+
+- type: marking
+  id: CustomSkinColorChestMale
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_chest_male
+
+- type: marking
+  id: CustomSkinColorChestFemale
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_chest_female
+
+- type: marking
+  id: CustomSkinColorRArmMale
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_rarm_male
+
+- type: marking
+  id: CustomSkinColorLArmMale
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_larm_male
+
+- type: marking
+  id: CustomSkinColorRArmFemale
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_rarm_female
+
+- type: marking
+  id: CustomSkinColorLArmFemale
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_larm_female
+
+- type: marking
+  id: CustomSkinColorRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_rhand
+
+- type: marking
+  id: CustomSkinColorLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_lhand
+
+- type: marking
+  id: CustomSkinColorRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_rleg
+
+- type: marking
+  id: CustomSkinColorLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_lleg
+
+- type: marking
+  id: CustomSkinColorRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_rfoot
+
+- type: marking
+  id: CustomSkinColorLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/custom_skin_color.rsi
+      state: custom_skin_color_lfoot
+
+# Shout out to Farrellka-dev, the original creator of Elves ears. They are so cute (´▽`ʃ♡ƪ)
+ 
+- type: marking
+  id: HumanLongEarsRGB
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/earsRGB.rsi
+    state: long_ears_standard
+
+- type: marking
+  id: LongEarsWideRGB
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/earsRGB.rsi
+    state: long_ears_wide
+
+- type: marking
+  id: LongEarsSmallRGB
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/earsRGB.rsi
+    state: long_ears_small
+
+- type: marking
+  id: LongEarsUpwardsRGB
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/earsRGB.rsi
+    state: long_ears_upwards
+
+- type: marking
+  id: LongEarsTallRGB
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/earsRGB.rsi
+    state: long_ears_tall
+
+- type: marking
+  id: LongEarsThinRGB
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/earsRGB.rsi
+    state: long_ears_thin
+
+# I don't know if anyone actually uses them, but it was requested so... SlamBamActionman, thank you!! <3
+
+- type: marking
+  id: HumanNoseSchnozzRGB
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/human_nosesRGB.rsi
+    state: schnozz
+
+- type: marking
+  id: HumanNoseNubbyRGB
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/human_nosesRGB.rsi
+    state: nubby
+
+- type: marking
+  id: HumanNoseDroopRGB
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/human_nosesRGB.rsi
+    state: droop
+
+- type: marking
+  id: HumanNoseBlobRGB
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/human_nosesRGB.rsi
+    state: blob
+
+- type: marking
+  id: HumanNoseUppieRGB
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/human_nosesRGB.rsi
+    state: uppie
+

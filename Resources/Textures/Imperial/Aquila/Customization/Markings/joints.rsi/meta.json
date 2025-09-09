@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "joint_r_arm",
+      "directions": 4
+    },
+    {
+      "name": "joint_l_arm",
+      "directions": 4
+    },
+    {
+      "name": "joint_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "joint_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "joint_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "joint_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "joint_r_shoulder",
+      "directions": 4
+    },
+    {
+      "name": "joint_l_shoulder",
+      "directions": 4
+    },
+    {
+      "name": "joint_l_shoulder_w",
+      "directions": 4
+    },
+    {
+      "name": "joint_r_shoulder_w",
+      "directions": 4
+    }
+    ]
+}

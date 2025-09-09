@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "vitiligo_chest",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_head",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_larm",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_lleg",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_rarm",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_rleg",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_rhand",
+      "directions": 4
+    },
+    {
+      "name": "vitiligo_lhand",
+      "directions": 4
+    }
+    ]
+}
