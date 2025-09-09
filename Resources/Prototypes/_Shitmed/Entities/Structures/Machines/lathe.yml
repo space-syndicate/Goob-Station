@@ -16,11 +16,8 @@
     sprite: _Shitmed/Structures/Machines/limbgrower.rsi
     snapCardinals: true
     layers:
-    - state: idleon
-      map: ["enum.LatheVisualLayers.IsRunning"]
     - state: idleoff
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: ["enum.LatheVisualLayers.IsRunning"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
