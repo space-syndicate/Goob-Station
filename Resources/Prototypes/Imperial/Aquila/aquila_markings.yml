@@ -242,7 +242,7 @@
   markingCategory: Chest
   speciesRestriction: [Human, Dwarf]
   sprites:
-  - sprite: Imperial/Aquila/Customization/Markings/aquilla_tattoo.rsi
+  - sprite: Imperial/Aquila/Customization/Markings/aquila_tattoo.rsi
     state: allmier_tattoo_chest
 
 - type: marking
@@ -251,7 +251,7 @@
   markingCategory: Arms
   speciesRestriction: [Human, Dwarf]
   sprites:
-  - sprite: Imperial/Aquila/Customization/Markings/aquilla_tattoo.rsi
+  - sprite: Imperial/Aquila/Customization/Markings/aquila_tattoo.rsi
     state: allmier_tattoo_rarm
 
 - type: marking
@@ -260,7 +260,7 @@
   markingCategory: Arms
   speciesRestriction: [Human, Dwarf]
   sprites:
-  - sprite: Imperial/Aquila/Customization/Markings/aquilla_tattoo.rsi
+  - sprite: Imperial/Aquila/Customization/Markings/aquila_tattoo.rsi
     state: allmier_tattoo_larm
 
 
