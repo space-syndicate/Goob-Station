@@ -1,14 +1,17 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from /tg/station at https://github.com/tgstation/tgstation/pull/75878, all icons under CC-BY-SA-3.0, unless otherwise indicated.",
+  "copyright": "Taken from /tg/station at https://github.com/tgstation/tgstation/pull/75878, all icons under CC-BY-SA-3.0, unless otherwise indicated. All sprite some changed by JrInventor05(github)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "fill",
+      "name": "icon"
+    },
+    {
+      "name": "inserting",
       "delays": [
         [
           0.2,
@@ -23,7 +26,7 @@
       ]
     },
     {
-      "name": "idleoff",
+      "name": "unlit",
       "delays": [
         [
           0.3,
@@ -34,7 +37,24 @@
       ]
     },
     {
-      "name": "idleon",
+      "name": "unlit-building",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "building",
       "delays": [
         [
           0.2,
