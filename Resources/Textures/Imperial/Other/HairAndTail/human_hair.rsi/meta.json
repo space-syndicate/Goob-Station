@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/commit/ad654e76b4c5dd3972cd2a07eb2d4f9658965807",
+  "copyright": "Taken from Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/commit/ad654e76b4c5dd3972cd2a07eb2d4f9658965807. gloomy_short and gloomy_short_alt by onionsenpai",
   "size": {
     "x": 32,
     "y": 32
@@ -285,6 +285,114 @@
     },
     {
       "name": "ziegler",
+      "directions": 4
+    },
+    {
+      "name": "gloomy_short_alt",
+      "directions": 4
+    },
+    {
+      "name": "gloomy_short",
+      "directions": 4
+    },
+    {
+      "name": "astolfo_new",
+      "directions": 4
+    },
+    {
+      "name": "curly_new",
+      "directions": 4    
+    },
+    {
+      "name": "flow_new",
+      "directions": 4    
+    },
+    {
+      "name": "fingerwave_new",
+      "directions": 4    
+    },
+    {
+      "name": "shaped_new",
+      "directions": 4    
+    },
+    {
+      "name": "twintail_floor_new",
+      "directions": 4    
+    },
+    {
+      "name": "kamskii",
+      "directions": 4    
+    },
+    {
+      "name": "bluntbangs_gradient",
+      "directions": 4    
+    },
+    {
+      "name": "classicfloorlength_bedhead_gradient",
+      "directions": 4    
+    },
+    {
+      "name": "doublebun_gradient",
+      "directions": 4    
+    },
+    {
+      "name": "doublebun_long_gradient",
+      "directions": 4    
+    },
+    {
+      "name": "longwithbangs_gradient",
+      "directions": 4    
+    },
+    {
+      "name": "cotton_gradient",
+      "directions": 4
+    },
+    {
+      "name": "himecut_gradient",
+      "directions": 4
+    },
+    {
+      "name": "himecut2_gradient",
+      "directions": 4
+    },
+    {
+      "name": "nitori_gradient",
+      "directions": 4
+    },
+    {
+      "name": "quadcurls_gradient",
+      "directions": 4
+    },
+    {
+      "name": "drillhairextended_gradient",
+      "directions": 4
+    },
+    {
+      "name": "fortuneteller_gradient",
+      "directions": 4
+    },
+    {
+      "name": "baum_gradient",
+      "directions": 4
+    },
+    {
+      "name": "long_bedhead2_gradient",
+      "directions": 4
+    },
+    {
+      "name": "wisp_gradient",
+      "directions": 4
+    },
+    {
+      "name": "twostrands_gradient",
+      "directions": 4
+    },
+    {
+      "name": "undercutleft_gradient",
+      "directions": 4
+    },
+    {
+      "name": "undercutright_gradient",
       "directions": 4
     }
   ]
