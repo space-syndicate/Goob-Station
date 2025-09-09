@@ -16,6 +16,7 @@
     sprite: _Shitmed/Structures/Machines/limbgrower.rsi
     snapCardinals: true
     layers:
+    # CorvaxGoob-MB-sprite-start
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
     - state: unlit
@@ -25,6 +26,7 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    # CorvaxGoob-MB-sprite-end
   - type: Machine
     board: MedicalBiofabMachineBoard
   - type: MaterialStorage
@@ -33,10 +35,12 @@
       - Sheet
       - RawMaterial
   - type: Lathe
+    # CorvaxGoob-MB-sprite-start
     idleState: icon
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+    # CorvaxGoob-MB-sprite-end
     staticPacks:
     - BiofabPartsStatic
   - type: EmagLatheRecipes
