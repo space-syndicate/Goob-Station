@@ -4,5 +4,5 @@
   source: "https://github.com/ParadiseSS13/Paradise/commit/a62233000443a5f57acfae6847748aabad5cdbdb"
 
 - files: ["blue.ogg", "delta.ogg", "green_down.ogg", "red.ogg"]
-  license: ""
+  license: "CC-BY-SA-3.0"
   copyright: "Made by Basia"

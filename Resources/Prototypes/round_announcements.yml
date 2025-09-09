@@ -7,4 +7,4 @@
 
 - type: roundAnnouncement
   id: Welcome
-  sound: /Audio/_CorvaxGoob/Announcements/enjoyyourstay.ogg # CorvaxGoob-Announcements # base: /Audio/Announcements/welcome.ogg
+  sound: /Audio/Announcements/welcome.ogg
