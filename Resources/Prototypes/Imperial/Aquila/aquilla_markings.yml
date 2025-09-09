@@ -25,7 +25,7 @@
 - type: marking
   id: JointRArm
   bodyPart: RArm
-  markingCategory: Hands
+  markingCategory: Arms
   speciesRestriction: [Human, Dwarf]
   coloring:
     default:
@@ -38,7 +38,7 @@
 - type: marking
   id: JointLArm
   bodyPart: LArm
-  markingCategory: Hands
+  markingCategory: Arms
   speciesRestriction: [Human, Dwarf]
   coloring:
     default:
@@ -77,7 +77,7 @@
 - type: marking
   id: JointRHand
   bodyPart: RHand
-  markingCategory: Hands
+  markingCategory: Arms
   speciesRestriction: [Human, Dwarf]
   coloring:
     default:
@@ -90,7 +90,7 @@
 - type: marking
   id: JointLHand
   bodyPart: LHand
-  markingCategory: Hands
+  markingCategory: Arms
   speciesRestriction: [Human, Dwarf]
   coloring:
     default:
