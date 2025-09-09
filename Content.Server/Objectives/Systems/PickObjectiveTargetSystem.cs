@@ -8,6 +8,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Objectives.Components;
+using Content.Server._CorvaxGoob.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Server.GameTicking.Rules;
@@ -66,6 +67,14 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
+        // CorvaxGoob change start
+        if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // CorvaxGoob change end
+
         _target.SetTarget(ent.Owner, targetComp.Target.Value);
     }
 
@@ -100,6 +109,14 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        // CorvaxGoob change start
+        if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // CorvaxGoob change end
 
         _target.SetTarget(ent.Owner, _random.Pick(allHumans), target);
     }
@@ -138,6 +155,14 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        // CorvaxGoob change start
+        if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // CorvaxGoob change end
 
         _target.SetTarget(ent.Owner, _random.Pick(allHeads), target);
     }
