@@ -78,7 +78,7 @@ marking-AnimeEyes = Аниме глаза (Зрачок) [Акила]
 marking-AnimeWhites = Аниме глаза (Склера) [Акила]
 marking-SusEyes = Подозрительные глаза [Акила]
 marking-TiredEyes = Уставшие глаза [Акила]
-marking-NoEyes = Нет глаз (ДЛЯ "УСТАВШИХ" ГЛАЗ) [Акила]
+marking-NoEyes = Нет глаз (для использования с «Уставшими глазами») [Акила]
 
 marking-VitiligoHead = Витилиго, голова [Акила]
 marking-VitiligoChest = Витилиго, тело [Акила]
