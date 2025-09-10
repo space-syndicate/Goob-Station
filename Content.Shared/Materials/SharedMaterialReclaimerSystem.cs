@@ -85,14 +85,15 @@ using Content.Goobstation.Common.Materials;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body.Components;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Lock;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -113,7 +114,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] protected readonly SharedContainerSystem Container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly LockSystem _lockSystem = default!; // Goobstation - Recycle Update
 
     public const string ActiveReclaimerContainerId = "active-material-reclaimer-container";
@@ -123,7 +123,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     {
         SubscribeLocalEvent<MaterialReclaimerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MaterialReclaimerComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<MaterialReclaimerComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<MaterialReclaimerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CollideMaterialReclaimerComponent, StartCollideEvent>(OnCollide);
         SubscribeLocalEvent<ActiveMaterialReclaimerComponent, ComponentStartup>(OnActiveStartup);
@@ -142,17 +141,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     private void OnExamined(EntityUid uid, MaterialReclaimerComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("recycler-count-items", ("items", component.ItemsProcessed)));
-    }
-
-    private void OnEmagged(EntityUid uid, MaterialReclaimerComponent component, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            return;
-
-        args.Handled = true;
     }
 
     private void OnCollide(EntityUid uid, CollideMaterialReclaimerComponent component, ref StartCollideEvent args)
@@ -184,7 +172,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         if (HasComp<RecyclableOnUnlockComponent>(item) && _lockSystem.IsLocked(item))
             return false;
 
-        if (HasComp<MobStateComponent>(item) && !CanGib(uid, item, component)) // whitelist? We be gibbing, boy!
+        if (TryComp<MobStateComponent>(item, out var mobstate))
             return false;
 
         if (_whitelistSystem.IsWhitelistFail(component.Whitelist, item) ||
@@ -196,8 +184,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         if (user != null)
         {
-            _adminLog.Add(LogType.Action,
-                LogImpact.High,
+            _adminLog.Add(LogType.Action, LogImpact.High,
                 $"{ToPrettyString(user.Value):player} destroyed {ToPrettyString(item)} in the material reclaimer, {ToPrettyString(uid)}");
         }
 
@@ -293,19 +280,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
             return false;*/
 
         return component.Powered && component.Enabled && !component.Broken;
-    }
-
-    /// <summary>
-    /// Whether or not the reclaimer satisfies the conditions
-    /// allowing it to gib/reclaim a living creature.
-    /// </summary>
-    public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
-    {
-        return component.Powered &&
-               component.Enabled &&
-               !component.Broken &&
-               HasComp<BodyComponent>(victim) &&
-               _emag.CheckFlag(uid, EmagType.Interaction);
     }
 
     /// <summary>

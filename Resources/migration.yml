@@ -553,7 +553,7 @@ VehicleSecwayStealObjective: null
 #VehicleKeyJanicart: null Goobstation - Re-add vehicles
 #VehicleKeySecway: null Goobstation - Re-add vehicles
 #VehicleKeyATV: null Goobstation - Re-add vehicles
-VehicleKeySkeleton: null 
+VehicleKeySkeleton: null
 #VehicleKeySyndicateSegway: null Goobstation - Re-add vehicles
 #VehicleKeySkeletonMotorcycle: null Corvax Goobstation - Re-add vehicles
 #VehicleSecway: null Goobstation - Re-add vehicles
@@ -753,10 +753,6 @@ SignHydro3: SignHydro1
 
 # 2024-07-27
 LogicGate: LogicGateOr
-
-# 2024-08-08
-MaterialReclaimer: null
-MaterialReclaimerMachineCircuitboard: null
 
 # 2024-08-11
 FoodTacoBeef: FoodTacoShell
