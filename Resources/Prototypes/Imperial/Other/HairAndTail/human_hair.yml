@@ -567,3 +567,213 @@
   sprites:
     - sprite: Imperial/Other/HairAndTail/human_hair.rsi
       state: ziegler
+
+# by onionsenpai
+
+- type: marking
+  id: HumanHairShortGloomy
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: gloomy_short
+
+- type: marking
+  id: HumanHairShortGloomyAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: gloomy_short_alt
+
+- type: marking
+  id: HumanHairAstolfoNew
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: astolfo_new
+
+- type: marking
+  id: HumanHairCurlyNew
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: curly_new
+
+- type: marking
+  id: HumanHairFlowNew
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: flow_new
+
+- type: marking
+  id: HumanHairFingerwaveNew
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: fingerwave_new
+
+- type: marking
+  id: HumanHairShapedNew
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: shaped_new
+
+- type: marking
+  id: HumanHairTwintailFloorNew
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: twintail_floor_new
+
+- type: marking
+  id: HumanHairKamskii
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: kamskii
+
+- type: marking
+  id: HumanHairBluntbangsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: bluntbangs_gradient
+
+- type: marking
+  id: HumanHairClassicFloorLengthBedheadGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: classicfloorlength_bedhead_gradient
+
+- type: marking
+  id: HumanHairDoubleBunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: doublebun_gradient
+
+- type: marking
+  id: HumanHairDoubleBunLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: doublebun_long_gradient
+
+- type: marking
+  id: HumanHairLongWithBangsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: longwithbangs_gradient
+
+- type: marking
+  id: HumanHairHimecutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: himecut_gradient
+
+- type: marking
+  id: HumanHairHimecutTwoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: himecut2_gradient
+
+- type: marking
+  id: HumanHairNitoriGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: nitori_gradient
+
+- type: marking
+  id: HumanHairQuadcurlsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: quadcurls_gradient
+
+- type: marking
+  id: HumanHairDrillHairExtendedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: drillhairextended_gradient
+
+- type: marking
+  id: HumanHairFortunetellerGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: fortuneteller_gradient
+
+- type: marking
+  id: HumanHairBaumGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: baum_gradient
+
+- type: marking
+  id: HumanHairLongBedheadTwoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: long_bedhead2_gradient
+
+- type: marking
+  id: HumanHairWispGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: wisp_gradient
+
+- type: marking
+  id: HumanHairTwoStrandsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: twostrands_gradient
+
+- type: marking
+  id: HumanHairUndercutLeftGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: undercutleft_gradient
+
+- type: marking
+  id: HumanHairUndercutRightGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: undercutright_gradient

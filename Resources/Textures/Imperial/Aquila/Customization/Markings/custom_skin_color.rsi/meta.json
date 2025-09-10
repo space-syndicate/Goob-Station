@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "custom_skin_color_chest_male",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_chest_female",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_head_male",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_head_female",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_larm_male",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_rarm_male",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_larm_female",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_rarm_female",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_lhand",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_rhand",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_lleg",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_rleg",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_lfoot",
+      "directions": 4
+    },
+    {
+      "name": "custom_skin_color_rfoot",
+      "directions": 4
+    }
+    ]
+}
