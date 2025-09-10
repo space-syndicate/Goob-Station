@@ -16,23 +16,6 @@
     protectionTime: 5
 
 - type: entity
-  parent: ClothingEyesBase
-  id: SteampunkGoogles
-  name: Steampunk googles
-  suffix: seriozha, Кастомизация
-  description: idc
-  components:
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
-  - type: Clothing
-    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-
-- type: entity
   id: AlphaGasMask
   parent: ClothingMaskGas
   name: gas mask
@@ -50,12 +33,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
-        Stamina: 0.6
-        Radiation: 0.5
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Stamina: 0.7
 
 - type: entity
   parent: ClothingUniformBase
@@ -74,7 +56,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Heat: 0.85
+        Heat: 0.9
         Stamina: 0.8
 
 - type: entity
@@ -95,15 +77,15 @@
       collection: FootstepSpecialOfficer
   - type: NoSlip
   - type: ClothingSpeedModifier
-    walkModifier: 1.4
-    sprintModifier: 1.4
+    walkModifier: 1.2
+    sprintModifier: 1.24
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.55
-        Stamina: 0.5
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Stamina: 0.55
         Radiation: 0.0
 
 - type: entity
@@ -129,10 +111,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.85
+        Slash: 0.85
         Piercing: 0.9
-        Stamina: 0.95
+        Stamina: 0.9
 
 - type: entity
   parent: ClothingBackpack
@@ -219,3 +201,48 @@
         - ReagentId: Phlogiston
           Quantity: 100
         maxVol: 2000
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPMain
+  name: scpe
+  description: scp is real
+  suffix: seriozha, Недра
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyNedraconnection
+    - type: EncryptionKeyHolder
+      keySlots: 6
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/misc/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/misc/headset.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPAlt
+  name: scpe
+  description: scp is real
+  suffix: seriozha, Недра
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyNedraconnection
+    - type: EncryptionKeyHolder
+      keySlots: 8
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/misc/altheadset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/misc/altheadset.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+          Radiation: 0.9
+          Stamina: 0.9

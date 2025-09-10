@@ -559,53 +559,6 @@ namespace Content.Server.Database
         }
         #endregion
 
-        #region Imperial Medieval
-
-        public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-
-            var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
-
-            var count = await db.DbContext.NrpViolations
-                .Where(v => v.UserId == player && v.ViolationTime >= daysAgo)
-                .CountAsync(cancel);
-
-            return count;
-        }
-
-        public async Task AddNrpViolation(Guid player, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-
-            var violation = new NrpViolation
-            {
-                UserId = player,
-                ViolationTime = DateTime.UtcNow
-            };
-
-            await db.DbContext.NrpViolations.AddAsync(violation, cancel);
-            await db.DbContext.SaveChangesAsync(cancel);
-        }
-        public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-
-            var violations = await db.DbContext.NrpViolations
-                .Where(v => v.UserId == player)
-                .OrderBy(v => v.ViolationTime)
-                .ToListAsync(cancel);
-
-            if (violations.Count <= 0)
-                return;
-
-            var violation = violations.Last();
-
-            db.DbContext.NrpViolations.Remove(violation);
-            await db.DbContext.SaveChangesAsync(cancel);
-        }
-        #endregion
-
         #region Playtime
         public async Task<List<PlayTime>> GetPlayTimes(Guid player, CancellationToken cancel)
         {

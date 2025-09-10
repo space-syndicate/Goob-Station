@@ -33,6 +33,25 @@
 
 - type: entity
   parent: ImperialSCPBasePreset
+  id: PresetSCPDClass
+  name: Preset
+  suffix: seriozha, Недра, GhostRole
+  components:
+    - type: Loadout
+      prototypes: [ DClassGear ]
+    - type: GhostRole
+      makeSentient: true
+      name: ghost-role-information-dclass-name
+      description: ghost-role-information-dclass-desc
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: ImperialSCPBasePreset
   id: PresetSCPMTF
   name: Preset
   suffix: seriozha, Недра
@@ -132,7 +151,7 @@
 
 - type: entity
   parent: ImperialSCPBasePreset
-  id: PresetSCPMAdm
+  id: PresetSCPAdm
   name: Preset
   suffix: seriozha, Недра
   components:
@@ -237,7 +256,7 @@
     eyes: ClothingEyesGlassesChemical
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterHardsuitSingularitySienceOrangeArmored
-    id: SCPIDCardFour
+    id: SCPIDCardFive
     ears: ClothingHeadsetSCPAlt
     belt: ClothingBeltParamedicFilled
     pocket1: EncryptionKeyNedraMTFconnection
@@ -363,6 +382,21 @@
     - EncryptionKeyNedraAlphaconnection
     - MagazineLightRifle
     - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
     - MedkitCobmatImperialFilled
     - MedkitCobmatImperialFilled
+    - ThriveninChemistryBottle
+    - ThriveninChemistryBottle
+    - ThriveninChemistryBottle
+    - ThriveninChemistryBottle
+    - ThriveninChemistryBottle
+    - Hypospray
+    - CompactDefibrillator
     - DoorRemoteSCPAll
+
+- type: startingGear
+  id: DClassGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    shoes: ClothingShoesColorBlack

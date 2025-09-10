@@ -4,3 +4,5 @@ ent-ForensicScanner = криминалистический сканер
 ent-ForensicReportPaper = заключение криминалистической экспертизы
     .desc = В лучшем случае, косвенные улики.
     .suffix = { "" }
+ent-PaperAccessLogs = журнал доступа
+    .desc = Выписка из ЛогШлюза Детектива.

@@ -24,6 +24,8 @@
       enabled: false
     - type: ZombieImmune
     - type: NonSpreaderZombie
+    - type: Clumsy
+    - type: CanHostGuardian
     - type: Damageable
       damageModifierSet: SCPStandart
     - type: Body
@@ -171,7 +173,7 @@
 - type: entity
   name: Avel
   suffix: seriozha, Недра
-  parent: ImperialSCPBase
+  parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPAvel
   description: Pray.
   components:
@@ -197,6 +199,7 @@
       baseWalkSpeed: 3.2
       baseSprintSpeed: 2.8
     - type: Hands
+      showInHands: true
     - type: Puller
     - type: Pullable
     - type: Loadout
@@ -218,6 +221,35 @@
           - MobMask
           layer:
           - MobLayer
+
+- type: entity
+  name: Katana
+  suffix: seriozha, Недра
+  parent: [ BaseSword, BaseMajorContraband ]
+  id: ImperialSCPKatana
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Structural: 90
+        Slash: 60
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 90
+  - type: DisarmMalus
 
 - type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
@@ -359,6 +391,13 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.6
       baseSprintSpeed: 3.2
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
     - type: FootstepModifier
       footstepSoundCollection:
         collection: FootstepSlime
@@ -385,35 +424,6 @@
           - MobMask
           layer:
           - MobLayer
-
-- type: entity
-  name: Katana
-  suffix: seriozha, Недра
-  parent: [ BaseSword, BaseMajorContraband ]
-  id: ImperialSCPKatana
-  description: An ancient war blade.
-  components:
-  - type: Sprite
-    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
-  - type: Item
-    size: Ginormous
-    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
-  - type: Clothing
-    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
-    slots:
-    - Belt
-  - type: MeleeWeapon
-    attackRate: 1.25
-    damage:
-      types:
-        Structural: 90
-        Slash: 60
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
-  - type: Reflect
-    reflectProb: 0.15
-    spread: 90
-  - type: DisarmMalus
 
 - type: emoteSounds
   id: DedVoice
@@ -479,13 +489,14 @@
 - type: damageModifierSet
   id: SCPStandart
   coefficients:
-    Poison: 0.1
-    Blunt: 0.4
-    Slash: 0.7
-    Piercing: 0.8
+    Poison: 0.2
+    Blunt: 0.5
+    Slash: 0.8
+    Piercing: 0.9
     Cellular: 0.9
     Radiation: 0.0
     Caustic: 0.0
+    Stun: 0.0
 
 - type: damageModifierSet
   id: SCPFireMan
@@ -494,6 +505,7 @@
     Poison: 0.0
     Radiation: 0.0
     Caustic: 0.0
+    Stun: 0.0
 
 - type: startingGear
   id: ImperialAvelGear

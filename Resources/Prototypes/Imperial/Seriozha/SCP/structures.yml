@@ -113,6 +113,83 @@
     sprite: Imperial/Seriozha/SCP/structures/signs.rsi
     state: ofc
 
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPGates
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: gate
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPAvel
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: avel
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPDed
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: ded
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPDoc
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: doc
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPMask
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: mask
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPDog
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: dog
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPFire
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    state: fire
+
 # Posters
 - type: entity
   parent: PosterBase

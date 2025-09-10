@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetNinja
+  suffix: Ninja
+  name: ninja headset
+  description: The Spider Clan's cutting-edge technological development.
+  components:
+  - type: EncryptionKeyHolder
+    keySlots: 0
+  - type: NinjaHeadset
+  - type: ContainerFill
+    containers:
+      key_slots: []
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi

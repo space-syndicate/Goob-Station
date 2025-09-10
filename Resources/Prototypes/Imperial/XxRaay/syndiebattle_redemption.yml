@@ -1,0 +1,28 @@
+- type: entity
+  name: Machine of Redemption
+  description: A machine that allows you to redeem enemy PDAs for TC.
+  id: SyndieBattleRedemptionMachine
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Objects/Misc/traitordm.rsi
+    state: redemption
+  - type: SyndieBattleRedemption
+    baseReward: 4
+  - type: Anchorable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer: 1
+        mask: 1
+  - type: Appearance
+  - type: PointLight
+    color: "#FF0000"
+    radius: 2
+  - type: Clickable

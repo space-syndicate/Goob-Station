@@ -422,6 +422,8 @@
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
+  - type: Eye
+    visMask: 5
 
 - type: entity
   name: deathmoth
@@ -1235,3 +1237,122 @@
     state: yellow
 
 # double bed
+
+
+# hydroponics
+
+- type: reagent
+  id: ParadoxalJuice
+  name: reagent-name-paradoxal-juice
+  group: Unknown
+  desc: reagent-desc-paradoxal-juice
+  physicalDesc: reagent-physical-desc-chaotic
+  flavor: strange
+  pricePerUnit: 100
+  color: "#b75ef3"
+  tileReactions:
+    - !type:CreateEntityTileReaction
+      entity: BluespaceHoleEffect
+    - !type:TeleportTileReaction
+      radiusPerUnit: 1
+      energyPerUnit: 1
+      teleportType: Random
+
+- type: reaction
+  id: ParadoxalJuiceCollapse
+  impact: High
+  minTemp: 288
+  reactants:
+    ParadoxalJuice:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 1
+      teleportType: Random
+
+- type: entity
+  name: bluespace tomato
+  parent: FoodBlueTomato
+  id: FoodBlueSpaceTomato
+  description: This one is blue.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: ParadoxalJuice
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 4
+        canReact: false
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: blueSpaceTomato
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Fruit
+    - Vegetable
+
+- type: seed
+  id: blueSpaceTomato
+  name: seeds-bluespacetomato-name
+  noun: seeds-noun-seeds
+  displayName: seeds-bluespacetomato-display-name
+  plantRsi: Objects/Specific/Hydroponics/blue_tomato.rsi
+  packetPrototype: BlueSpaceTomatoSeeds
+  productPrototypes:
+    - FoodBlueSpaceTomato
+  harvestRepeat: Repeat
+  lifespan: 45
+  maturation: 8
+  production: 6
+  yield: 3
+  potency: 30
+  waterConsumption: 1.5
+  nutrientConsumption: 1.5
+  idealLight: 9
+  idealHeat: 298
+  splatPrototype: PuddleSplatter
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    ParadoxalJuice:
+      Min: 1
+      Max: 1
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  name: packet of blue tomato seeds
+  id: BlueSpaceTomatoSeeds
+  components:
+    - type: Seed
+      seedId: blueSpaceTomato
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/blue_tomato.rsi

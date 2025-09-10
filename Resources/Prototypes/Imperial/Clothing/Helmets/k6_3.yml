@@ -22,6 +22,9 @@
         Slash: 0.7
         Piercing: 0.93
         Heat: 0.93
+        Shock: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
   - type: HideLayerClothing
     slots:
     - Hair

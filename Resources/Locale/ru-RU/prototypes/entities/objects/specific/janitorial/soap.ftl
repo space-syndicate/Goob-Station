@@ -18,3 +18,6 @@ ent-SoapOmega = омега мыло
     .suffix = { "" }
 ent-SoapNinja = Мыло ниндзи
     .desc = Самое важное мыло во всей вселенной, без него мы бы все перестали существовать. Запах чести.
+ent-SoapBorg = { ent-SoapNT }
+    .desc = { ent-SoapNT.desc }
+    .suffix = Борги

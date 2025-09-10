@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: SteampunkGoogles
+  name: Steampunk googles
+  suffix: seriozha, Кастомизация
+  description: idc
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/steampunk_googles.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/misc/steampunk_googles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95

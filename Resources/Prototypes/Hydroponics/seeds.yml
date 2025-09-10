@@ -525,6 +525,7 @@
   mutationPrototypes:
     - blueTomato
     - bloodTomato
+    - blueSpaceTomato # Imperial Space BST
   harvestRepeat: Repeat
   lifespan: 25
   maturation: 8
