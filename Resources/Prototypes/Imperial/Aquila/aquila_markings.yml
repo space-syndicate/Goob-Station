@@ -23,6 +23,98 @@
     state: old_android_torso
 
 - type: marking
+  id: CyborgTorsoM
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Male]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/cyborg_torso.rsi
+    state: cyborg_torso_m
+
+- type: marking
+  id: CyborgTorsoW
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sexRestriction: [Female]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/cyborg_torso.rsi
+    state: cyborg_torso_w
+
+- type: marking
+  id: CyborgRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/cyborg_torso.rsi
+    state: cyborg_rleg
+
+- type: marking
+  id: CyborgLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/cyborg_torso.rsi
+    state: cyborg_lleg
+
+- type: marking
+  id: CyborgRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/cyborg_torso.rsi
+    state: cyborg_rarm
+
+- type: marking
+  id: CyborgLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  followSkinColor: false
+  coloring:
+    default:
+      type: null
+      fallbackColor: '#FFFFFF'
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/cyborg_torso.rsi
+    state: cyborg_larm
+
+- type: marking
   id: JointRArm
   bodyPart: RArm
   markingCategory: Arms

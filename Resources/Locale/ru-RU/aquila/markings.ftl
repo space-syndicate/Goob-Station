@@ -1,5 +1,11 @@
 marking-NewAndroidTorso = Торс андроида нового поколения [Акила]
 marking-OldAndroidTorso = Торс андроида старого поколения [Акила]
+marking-CyborgTorsoM = Торс киборга [Акила]
+marking-CyborgTorsoW = Торс киборга [Акила]
+marking-CyborgLArm = Рука киборга (левая) [Акила]
+marking-CyborgRArm = Рука киборга (правая) [Акила]
+marking-CyborgLLeg = Нога киборга (левая) [Акила]
+marking-CyborgRLeg = Нога киборга (правая) [Акила]
 
 marking-JointRArm = Шарнир андроида (правая рука) [Акила]
 marking-JointLArm = Шарнир андроида (левая рука) [Акила]

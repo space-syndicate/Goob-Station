@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cyborg_torso_m",
+      "directions": 4
+    },
+    {
+      "name": "cyborg_torso_w",
+      "directions": 4
+    },
+    {
+      "name": "cyborg_lleg",
+      "directions": 4
+    },
+    {
+      "name": "cyborg_rleg",
+      "directions": 4
+    },
+        {
+      "name": "cyborg_larm",
+      "directions": 4
+    },
+    {
+      "name": "cyborg_rarm",
+      "directions": 4
+    }
+    ]
+}
