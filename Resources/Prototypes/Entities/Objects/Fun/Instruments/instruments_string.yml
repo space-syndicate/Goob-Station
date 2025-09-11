@@ -327,3 +327,19 @@
     angle: 90 # WWDP
   - type: IgniteOnMeleeHit
     fireStacks: 2
+
+- type: entity
+  parent: BaseStringInstrument
+  id: DoubleGuitarInstrument
+  name: GuitarDouble
+  description: Discription
+  components:
+  - type: Instrument
+    program: 120
+  - type: SwappableInstrument
+    instrumentList:
+      "Overdrive": {29: 0}
+      "Bass": {33: 0}
+      "GuitarFretNoise": {120: 0}
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Fun/Instrumental/double-guitar.rsi

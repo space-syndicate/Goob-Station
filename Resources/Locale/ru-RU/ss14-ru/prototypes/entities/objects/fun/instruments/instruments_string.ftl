@@ -23,3 +23,5 @@ ent-CelloInstrument = виолончель
     .desc = Пижоны называют такие chell'ями.
 ent-FierGuitarInstrument = Огненая-рок гитара!
     .desc = Сожги эту сцену!
+ent-DoubleGuitarInstrument = Двойная гитара!
+    .desc = Как гитара но двойная! огонь в подарок.

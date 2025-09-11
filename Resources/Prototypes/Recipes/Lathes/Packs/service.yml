@@ -43,6 +43,7 @@
   - MopItem
   - Holoprojector
   - WetFloorSign
+  - DoubleGuitarInstrument
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
