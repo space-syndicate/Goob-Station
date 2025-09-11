@@ -67,13 +67,13 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        // CorvaxGoob change start
+        // CorvaxGoob antag-target-immunity start
         if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
         {
             args.Cancelled = true;
             return;
         }
-        // CorvaxGoob change end
+        // CorvaxGoob antag-target-immunity end
 
         _target.SetTarget(ent.Owner, targetComp.Target.Value);
     }
@@ -110,13 +110,13 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        // CorvaxGoob change start
+        // CorvaxGoob antag-target-immunity start
         if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
         {
             args.Cancelled = true;
             return;
         }
-        // CorvaxGoob change end
+        // CorvaxGoob antag-target-immunity end
 
         _target.SetTarget(ent.Owner, _random.Pick(allHumans), target);
     }
@@ -156,13 +156,13 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        // CorvaxGoob change start
+        // CorvaxGoob antag-target-immunity start
         if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
         {
             args.Cancelled = true;
             return;
         }
-        // CorvaxGoob change end
+        // CorvaxGoob antag-target-immunity end
 
         _target.SetTarget(ent.Owner, _random.Pick(allHeads), target);
     }

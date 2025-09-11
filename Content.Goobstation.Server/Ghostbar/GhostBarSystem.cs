@@ -116,7 +116,7 @@ public sealed class GhostBarSystem : EntitySystem
         _entityManager.EnsureComponent<MindShieldComponent>(mobUid);
         _entityManager.EnsureComponent<AntagImmuneComponent>(mobUid);
         _entityManager.EnsureComponent<IsDeadICComponent>(mobUid);
-        _entityManager.EnsureComponent<AntagObjectiveImmunityComponent>(mobUid); // CorvaxGoob change
+        _entityManager.EnsureComponent<AntagObjectiveImmunityComponent>(mobUid); // CorvaxGoob antag-target-immunity
 
         if (mind.Objectives.Count == 0)
             _mindSystem.WipeMind(player);
