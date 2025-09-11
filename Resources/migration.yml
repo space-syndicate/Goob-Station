@@ -754,11 +754,11 @@ SignHydro3: SignHydro1
 # 2024-07-27
 LogicGate: LogicGateOr
 
-# CorvaxGoob change start
+# CorvaxGoob revert recyclerOverhaul start
 # # 2024-08-08
 # MaterialReclaimer: null
 # MaterialReclaimerMachineCircuitboard: null
-# CorvaxGoob change end
+# CorvaxGoob revert recyclerOverhaul end
 
 # 2024-08-11
 FoodTacoBeef: FoodTacoShell
