@@ -63,7 +63,6 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
-using Content.Shared.Emag.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -176,8 +175,6 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
     private void OnBreakage(Entity<MaterialReclaimerComponent> ent, ref BreakageEventArgs args)
     {
-        //un-emags itself when it breaks
-        RemComp<EmaggedComponent>(ent);
         SetBroken(ent, true);
     }
 
@@ -236,19 +233,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
         var xform = Transform(uid);
 
         SpawnMaterialsFromComposition(uid, item, completion * component.Efficiency, xform: xform);
+        SpawnChemicalsFromComposition(uid, item, completion, true, component, xform);
 
-        if (CanGib(uid, item, component))
-        {
-            var logImpact = HasComp<HumanoidAppearanceComponent>(item) ? LogImpact.Extreme : LogImpact.Medium;
-            _adminLogger.Add(LogType.Gib, logImpact, $"{ToPrettyString(item):victim} was gibbed by {ToPrettyString(uid):entity} ");
-            SpawnChemicalsFromComposition(uid, item, completion, false, component, xform);
-            _body.GibBody(item, true);
-            _appearance.SetData(uid, RecyclerVisuals.Bloody, true);
-        }
-        else
-        {
-            SpawnChemicalsFromComposition(uid, item, completion, true, component, xform);
-        }
 
         QueueDel(item);
     }
@@ -297,6 +283,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
     {
         if (!Resolve(reclaimer, ref reclaimerComponent, ref xform))
             return;
+        if (!_solutionContainer.TryGetSolution(reclaimer, reclaimerComponent.SolutionContainerId, out var outputSolution))
+            return;
 
         efficiency *= reclaimerComponent.Efficiency;
 
@@ -312,13 +300,15 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
         }
 
         // if the item we inserted has reagents, add it in.
-
-        if (reclaimerComponent.OnlyReclaimDrainable)
+        if (TryComp<SolutionContainerManagerComponent>(item, out var solutionContainer))
         {
-            // Are we a recycler? Only use drainable solution.
-            if (_solutionContainer.TryGetDrainableSolution(item, out _, out var drainableSolution))
+            foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((item, solutionContainer)))
             {
-                totalChemicals.AddSolution(drainableSolution, _prototype);
+                var solution = soln.Comp.Solution;
+                foreach (var quantity in solution.Contents)
+                {
+                    totalChemicals.AddReagent(quantity.Reagent.Prototype, quantity.Quantity * efficiency, false);
+                }
             }
         }
         else
@@ -330,9 +320,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             }
         }
 
-        if (!_solutionContainer.TryGetSolution(reclaimer, reclaimerComponent.SolutionContainerId, out var outputSolution) ||
-            !_solutionContainer.TryTransferSolution(outputSolution.Value, totalChemicals, totalChemicals.Volume) ||
-            totalChemicals.Volume > 0)
+        _solutionContainer.TryTransferSolution(outputSolution.Value, totalChemicals, totalChemicals.Volume);
+        if (totalChemicals.Volume > 0)
         {
             _puddle.TrySpillAt(reclaimer, totalChemicals, out _, sound, transformComponent: xform);
         }
