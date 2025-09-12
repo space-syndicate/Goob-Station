@@ -298,6 +298,8 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    startAudio: # CorvaxGoob-Announcements
+      path: /Audio/_CorvaxGoob/Announcements/apc.ogg
     weight: 7
     duration: 1
     minimumPlayers: 15
