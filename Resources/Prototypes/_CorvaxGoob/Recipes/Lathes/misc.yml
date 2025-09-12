@@ -22,3 +22,11 @@
     Steel: 100
     Glass: 100
     Plastic: 300
+
+- type: latheRecipe
+  id: DoubleGuitarInstrument
+  result: DoubleGuitarInstrument
+  completetime: 3
+  materials:
+    Plastic: 200
+    Steel: 200
