@@ -13,7 +13,6 @@ public sealed class CopyOutfitCommand : LocalizedEntityCommands
     [Dependency] private readonly InventorySystem _inventory = default!;
     // No hands manipulation; rely on cloning system only
     
-
     public override string Command => "copyoutfit";
 
     public override string Description => Loc.GetString("cmd-copyoutfit-desc");
@@ -67,8 +66,6 @@ public sealed class CopyOutfitCommand : LocalizedEntityCommands
 
         // Do not copy items held in hands; only equipment via cloning system
     }
-
-    
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
