@@ -14,6 +14,13 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
+    //CorvaxGoob-ReagentLable-START
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Labels.EntitySystems;
+using Robust.Shared.Prototypes;
+   //CorvaxGoob-ReagentLable-END
 
 namespace Content.Shared._DV.SmartFridge;
 
@@ -26,6 +33,11 @@ public sealed class SmartFridgeSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!; // Frontier
+    //CorvaxGoob-ReagentLable-START
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly LabelSystem _label = default!;
+    //CorvaxGoob-ReagentLable-END
 
     public override void Initialize()
     {
@@ -33,6 +45,7 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         SubscribeLocalEvent<SmartFridgeComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SmartFridgeComponent, EntRemovedFromContainerMessage>(OnItemRemoved);
+        SubscribeLocalEvent<SmartFridgeComponent, ActivateInWorldEvent>(OnActivate); //CorvaxGoob-Refresh-UI
 
         Subs.BuiEvents<SmartFridgeComponent>(SmartFridgeUiKey.Key,
             sub =>
@@ -40,6 +53,19 @@ public sealed class SmartFridgeSystem : EntitySystem
                 sub.Event<SmartFridgeDispenseItemMessage>(OnDispenseItem);
             });
     }
+    //CorvaxGoob-Sort-By-Alphabet-START
+    private void SortEntries(SmartFridgeComponent comp)
+    {
+        comp.Entries.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
+    }
+    //CorvaxGoob-Sort-By-Alphabet-END
+    //CorvaxGoob-Refresh-UI-START
+    private void OnActivate(EntityUid uid, SmartFridgeComponent comp, ActivateInWorldEvent args)
+    {
+        Dirty(uid, comp);
+
+    }
+    //CorvaxGoob-Refresh-UI-END
 
     private void OnInteractUsing(Entity<SmartFridgeComponent> ent, ref InteractUsingEvent args)
     {
@@ -60,6 +86,7 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         _audio.PlayPredicted(ent.Comp.InsertSound, ent, args.User);
         _container.Insert(args.Used, container);
+        TryApplyReagentLabel(args.Used); //CorvaxGoob-ReagentLable
         var key = new SmartFridgeEntry(Identity.Name(args.Used, EntityManager));
         if (!ent.Comp.Entries.Contains(key))
             ent.Comp.Entries.Add(key);
@@ -67,8 +94,54 @@ public sealed class SmartFridgeSystem : EntitySystem
         var entries = ent.Comp.ContainedEntries[key];
         if (!entries.Contains(GetNetEntity(args.Used)))
             entries.Add(GetNetEntity(args.Used));
+        SortEntries(ent.Comp); //CorvaxGoob-Sort-By-Alphabet
         Dirty(ent);
     }
+    //CorvaxGoob-ReagentLable-START
+    private void TryApplyReagentLabel(EntityUid entity)
+{
+    if (!_solution.TryGetDrainableSolution(entity, out _, out var solution) || solution.Volume <= 0)
+        return;
+
+    var reagents = solution.Contents;
+        if (reagents.Count == 0)
+            return;
+        string label;
+
+    if (reagents.Count == 1)
+    {
+        label = LabelSingle(reagents[0]);
+    }
+    else
+    {
+        label = LabelMultiple(reagents);
+    }
+
+    _label.Label(entity, label);
+}
+
+    private string LabelSingle(ReagentQuantity reagent)
+    {
+        if (!_proto.TryIndex<ReagentPrototype>(reagent.Reagent.Prototype, out var proto))
+            return string.Empty;
+
+        return proto.LocalizedName;
+    }
+    private string LabelMultiple(List<ReagentQuantity> reagents)
+{
+    var names = new List<string>();
+
+    foreach (var reagent in reagents)
+    {
+        if (_proto.TryIndex<ReagentPrototype>(reagent.Reagent.Prototype, out var proto))
+        {
+            names.Add(proto.LocalizedName);
+        }
+    }
+
+    return string.Join(" + ", names);
+}
+//CorvaxGoob-ReagentLable-END
 
     private void OnItemRemoved(Entity<SmartFridgeComponent> ent, ref EntRemovedFromContainerMessage args)
     {
