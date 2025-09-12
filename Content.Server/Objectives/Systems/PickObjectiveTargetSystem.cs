@@ -68,7 +68,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         }
 
         // CorvaxGoob antag-target-immunity start
-        if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
+        if (HasComp<AntagObjectiveImmunityComponent>(ent.Owner))
         {
             args.Cancelled = true;
             return;
@@ -111,7 +111,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         }
 
         // CorvaxGoob antag-target-immunity start
-        if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
+        if (HasComp<AntagObjectiveImmunityComponent>(ent.Owner))
         {
             args.Cancelled = true;
             return;
@@ -157,7 +157,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         }
 
         // CorvaxGoob antag-target-immunity start
-        if (TryComp<AntagObjectiveImmunityComponent>(ent.Owner, out var _))
+        if (HasComp<AntagObjectiveImmunityComponent>(ent.Owner))
         {
             args.Cancelled = true;
             return;
