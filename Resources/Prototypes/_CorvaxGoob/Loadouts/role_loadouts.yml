@@ -4,48 +4,56 @@
   - Inventory
   - SurgeonHead
   - SurgeonJumpsuit
+  - MedicalGloves
   - MedicalBackpack
-  - Survival
-  - GroupSpeciesBreathTool
+  - MedicalShoes
+  - MedicalEyewear
   - SurgeonScalpel
-  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-start
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
   - MedicalDoctorEnvirogloves
-  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-end
+  - Trinkets
+  - Animals
+  - SurvivalMedical
+  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: JobWardenHelper
   groups:
   - Inventory
+  - WardenHead
   - WardenJumpsuit
   - SecurityBackpack
+  - SecurityMelee
+  - SecurityNeck
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
   - SurvivalSecurity
   - SecurityStar
+  - Trinkets
+  - Animals
   - GroupSpeciesBreathToolSecurity
-  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-start
   - WardenEnvirohelm
   - WardenEnvirosuit
   - WardenEnvirogloves
-  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-end
 
 - type: roleLoadout
   id: JobPilot
   groups:
   - Inventory
+  - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
+  - SecurityMelee
+  - SecurityNeck
   - SecurityOuterClothing
   - SecurityBelt
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
-  - GroupSpeciesBreathTool
-  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-start
+  - Animals
+  - GroupSpeciesBreathToolSecurity
   - SecurityOfficerEnvirohelm
   - SecurityOfficerEnvirosuit
   - SecurityOfficerEnvirogloves
-  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-end
