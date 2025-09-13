@@ -1228,7 +1228,7 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
             {
-                Title = jobProto?.ID + "-loadout",
+                Title = Loc.GetString(jobProto?.ID + "-loadout"), // CorvaxGoob-loadouts
             };
 
             // Refresh the buttons etc.
