@@ -8,6 +8,11 @@
   - Survival
   - GroupSpeciesBreathTool
   - SurgeonScalpel
+  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-start
+  - MedicalDoctorEnvirohelm
+  - MedicalDoctorEnvirosuit
+  - MedicalDoctorEnvirogloves
+  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-end
 
 - type: roleLoadout
   id: JobWardenHelper
@@ -21,6 +26,11 @@
   - SurvivalSecurity
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
+  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-start
+  - WardenEnvirohelm
+  - WardenEnvirosuit
+  - WardenEnvirogloves
+  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-end
 
 - type: roleLoadout
   id: JobPilot
@@ -34,3 +44,8 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathTool
+  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-start
+  - SecurityOfficerEnvirohelm
+  - SecurityOfficerEnvirosuit
+  - SecurityOfficerEnvirogloves
+  # CorvaxGoob-(Goobstation - EE Plasmeme Change.)-end
