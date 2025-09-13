@@ -39,6 +39,8 @@ public sealed class SharedDynamicAudioSystem : EntitySystem
     private int _maxAreaScanRadius = 8; // prefer to set value of pvs divided by 2
     private int _maxTilesScanCount = 200;
 
+    private int _soundMuffleInSpace = -10;
+
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -91,7 +93,7 @@ public sealed class SharedDynamicAudioSystem : EntitySystem
         if (TryComp<TTSComponent>(source, out var ttsComp) && ttsComp.InBarotrauma || soundTransform.GridUid is null || HasComp<InBarotraumaAudioEffectComponent>(soundTransform.Owner)
             || _playerManager.LocalEntity.HasValue && HasComp<InBarotraumaAudioEffectComponent>(_playerManager.LocalEntity))
         {
-            _audio.SetVolume(audio, -10);
+            _audio.SetVolume(audio, _soundMuffleInSpace);
             return _inSpacePreset;
         }
 
