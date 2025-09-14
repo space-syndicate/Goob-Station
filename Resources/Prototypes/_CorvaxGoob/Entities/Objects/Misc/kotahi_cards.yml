@@ -1,4 +1,17 @@
 - type: entity
+  parent: BookBase
+  id: BookKotahiRules
+  name: "Kotahi rulebook"
+  description: "Just read it before play."
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Fun/Tabletop/Kotahi/rulebook.rsi
+    layers:
+    - state: classic
+  - type: Paper
+    content: book-text-kotahi-rules
+
+- type: entity
   parent: CardBase
   id: CardBaseKotahi
   name: card
@@ -26,6 +39,11 @@
     contents:
     - id: CardDeckKotahi
       amount: 1
+    - id: BookKotahiRules
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,1
 
 - type: entity
   parent: CardDeckBase

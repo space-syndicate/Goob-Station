@@ -4,7 +4,8 @@ ent-CardBoxKotahi = колода карт Kotahi
     .desc = { ent-CardBoxBase.desc }
 ent-CardDeckKotahi = колода карт
     .desc = { ent-CardDeckBase.desc }
-
+ent-BookKotahiRules = книга правил "Kotahi"
+    .desc = Просто прочитайте её перед игрой.
 # Blue
 ent-CardBlueSc0Kotahi = { ent-CardBaseKotahi }
     .desc = { ent-CardBaseKotahi.desc }

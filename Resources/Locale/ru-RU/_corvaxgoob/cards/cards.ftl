@@ -59,3 +59,6 @@ card-yellow-sc-reverse-kotahi =  смена направления, жёлтая
 card-yellow-sc-skip-kotahi =  пропуск хода, жёлтая
 
 # Black
+
+card-black-sc-draw4-kotahi = возьми четыре
+card-black-sc-wildcard-kotahi = смена цвета
