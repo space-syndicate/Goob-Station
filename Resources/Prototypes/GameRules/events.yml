@@ -158,7 +158,7 @@
     - id: ClericalError
     - id: CockroachMigration
     - id: GasLeak
-    - id: GreytideVirus
+    - id: Virus
     - id: IonStorm # its calm like 90% of the time smh
     - id: KudzuGrowth
     - id: MassHallucinations
@@ -1060,7 +1060,7 @@
   components:
   - type: StationEvent
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_CorvaxGoob/Announcements/greytide.ogg # CorvaxGoob-Announcements #base:/Audio/Announcements/attention.ogg
     announcersStartAudio: # CorvaxGoob-CustomAnnouncers
       Intern:
         path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/greytide.ogg
