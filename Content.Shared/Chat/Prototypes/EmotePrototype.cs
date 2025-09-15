@@ -86,6 +86,10 @@ public sealed partial class EmotePrototype : IPrototype
     // goob edit - animations
     [DataField]
     public object? Event = null;
+
+    // CorvaxGoob-PrototypedAnimations
+    [DataField]
+    public string? AnimationId;
 }
 
 /// <summary>
