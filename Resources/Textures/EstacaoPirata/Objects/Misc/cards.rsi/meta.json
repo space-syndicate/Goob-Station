@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "copyright": "Cards, Decks and Hands Sprites were originally from Paradise Station (https://github.com/ParadiseSS13/Paradise) and modified by VictorJob. Boxes are from VictorJob, ep_ by Ko4erga (discord)",
+  "copyright": "Cards, Decks and Hands Sprites were originally from Paradise Station (https://github.com/ParadiseSS13/Paradise) and modified by VictorJob. Boxes are from VictorJob, ep_ and other EvacPod by Ko4erga (discord)",
   "license": "CC-BY-SA-3.0",
   "size": {
     "x": 32,
@@ -611,6 +611,12 @@
         "name": "nanotrasen_box_open"
     },
     {
+      "name": "EvacPod_profession_box"
+    },
+    {
+      "name": "EvacPod_profession_box_open"
+    },
+    {
       "name": "deck_ep_profession_full"
     },
     {
@@ -767,6 +773,12 @@
       "name": "ep_profession_writer"
     },
     {
+      "name": "EvacPod_biology_box"
+    },
+    {
+      "name": "EvacPod_biology_box_open"
+    },
+    {
       "name": "deck_ep_biology_full"
     },
     {
@@ -861,6 +873,12 @@
     },
     {
       "name": "ep_biology_w_99"
+    },
+    {
+      "name": "EvacPod_health_box"
+    },
+    {
+      "name": "EvacPod_health_box_open"
     },
     {
       "name": "deck_ep_health_full"
@@ -959,6 +977,12 @@
       "name": "ep_health_unknown"
     },
     {
+      "name": "EvacPod_hobby_box"
+    },
+    {
+      "name": "EvacPod_hobby_box_open"
+    },
+    {
       "name": "deck_ep_hobby_full"
     },
     {
@@ -1055,6 +1079,12 @@
       "name": "ep_hobby_striptease"
     },
     {
+      "name": "EvacPod_baggage_box"
+    },
+    {
+      "name": "EvacPod_baggage_box_open"
+    },
+    {
       "name": "deck_ep_baggage_full"
     },
     {
@@ -1149,6 +1179,12 @@
     },
     {
       "name": "ep_baggage_voodoo"
+    },
+    {
+      "name": "EvacPod_fact_box"
+    },
+    {
+      "name": "EvacPod_fact_box_open"
     },
     {
       "name": "deck_ep_fact_full"
@@ -1289,6 +1325,12 @@
       "name": "ep_fact_wood"
     },
     {
+      "name": "EvacPod_catastrophe_box"
+    },
+    {
+      "name": "EvacPod_catastrophe_box_open"
+    },
+    {
       "name": "deck_ep_catastrophe_full"
     },
     {
@@ -1343,6 +1385,12 @@
       "name": "ep_catastrophe_zombie"
     },
     {
+      "name": "EvacPod_danger_box"
+    },
+    {
+      "name": "EvacPod_danger_box_open"
+    },
+    {
       "name": "deck_ep_danger_full"
     },
     {
@@ -1352,6 +1400,12 @@
       "name": "ep_danger"
     },
     {
+      "name": "EvacPod_special_box"
+    },
+    {
+      "name": "EvacPod_special_box_open"
+    },
+    {
       "name": "deck_ep_special_full"
     },
     {
@@ -1359,6 +1413,12 @@
     },
     {
       "name": "ep_special"
+    },
+    {
+      "name": "EvacPod_shuttle_box"
+    },
+    {
+      "name": "EvacPod_shuttle_box_open"
     },
     {
       "name": "deck_ep_shuttle_full"
