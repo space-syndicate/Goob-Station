@@ -155,7 +155,8 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 
         if (proto.Mode is RcdMode.ConstructTile or RcdMode.ConstructObject
             && proto.Prototype != null
-            && _prototypeManager.TryIndex(proto.Prototype, out var entProto, logError: false))
+            && _prototypeManager.TryIndex(proto.Prototype, out var entProto, logError: false)
+            && proto.SetName == "Unknown") // CorvaxGoob-RCD-update
         {
             tooltip = Loc.GetString(entProto.Name);
         }

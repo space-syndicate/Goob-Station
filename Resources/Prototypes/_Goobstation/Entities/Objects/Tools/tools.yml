@@ -107,6 +107,38 @@
   - type: Item
     sprite: _Goobstation/Objects/Tools/rcd_chrono.rsi
   - type: RCD
+    # CorvaxGoob-RCD-update-start
+    isChrono: true
+    availablePrototypes:
+    - WallSolid
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - ReinforcedWindow
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    - Deconstruct
+    - Camera
+    - MachineFrame
+    - Windoor
+    - WindoorSecure
+    - WallReinforced
+    - APC50
+    - APC100
+    - APC150
+    - APC200
+    # CorvaxGoob-RCD-update-end
 
 - type: entity
   name: handheld fax

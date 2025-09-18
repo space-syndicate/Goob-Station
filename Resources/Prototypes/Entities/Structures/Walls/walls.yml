@@ -877,6 +877,11 @@
     damagePenalty: 0.25
   - type: CosmicCorruptible # DeltaV - Cosmic Cult
     convertTo: WallCosmicCult
+  - type: RCDDeconstructable # CorvaxGoob-RCD-update
+    cost: 6
+    delay: 8
+    chrono: true
+    fx: EffectRCDDeconstruct8
 
 - type: entity
   parent: WallReinforced

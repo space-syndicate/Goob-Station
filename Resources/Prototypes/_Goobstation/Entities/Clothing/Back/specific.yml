@@ -68,6 +68,7 @@
       - id: HandheldGPSBasic # Mass Scanner Removed by Lavaland
       - id: Flash
       - id: TimelineDisruptorFlatpack
+      - id: RPDChrono # CorvaxGoob-RCD-update
 
 - type: entity
   parent: ClothingBackpackMerc

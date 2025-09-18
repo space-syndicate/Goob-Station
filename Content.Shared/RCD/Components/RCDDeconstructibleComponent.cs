@@ -21,13 +21,13 @@ public sealed partial class RCDDeconstructableComponent : Component
     /// Number of charges consumed when the deconstruction is completed
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int Cost = 1;
+    public int Cost = 10; // CorvaxGoob-RCD-update
 
     /// <summary>
     /// The length of the deconstruction-
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float Delay = 1f;
+    public float Delay = 4f; // CorvaxGoob-RCD-update
 
     /// <summary>
     /// The visual effect that plays during deconstruction
@@ -47,4 +47,12 @@ public sealed partial class RCDDeconstructableComponent : Component
     /// </summary>
     [DataField("rpd"), ViewVariables(VVAccess.ReadWrite)]
     public bool RpdDeconstructable = false;
+
+    // CorvaxGoob-RCD-update-start
+    /// <summary>
+    /// Toggles when this entity is deconstructable by chrono RPD and RCD or not
+    /// </summary>
+    [DataField("chrono"), ViewVariables(VVAccess.ReadWrite)]
+    public bool OnlyChrono = false;
+    // CorvaxGoob-RCD-update-end
 }
