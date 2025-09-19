@@ -525,7 +525,7 @@ public sealed class RCDSystem : EntitySystem
         if (target == null)
         {
             // CorvaxGoob-RCD-update-start
-            if (component.IsChrono)
+            if (!component.IsChrono)
             {
                 if (component.IsRpd)
                 {
@@ -571,10 +571,10 @@ public sealed class RCDSystem : EntitySystem
         else
         {
             // CorvaxGoob-RCD-update-start
-            if (component.IsChrono)
+            if (!component.IsChrono)
             {
                 // The object need chrono RCD / chrono RPD to deconstrustion
-                if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.OnlyChrono)
+                if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || deconstructible.OnlyChrono)
                 {
                     if (popMsgs)
                         _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);

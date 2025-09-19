@@ -252,6 +252,11 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: RCDDeconstructable # CorvaxGoob-RCD-update
+    cost: 10
+    delay: 4
+    chrono: true
+    fx: EffectRCDDeconstruct8
 
 # Constructed APC
 - type: entity
