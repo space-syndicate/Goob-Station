@@ -27,7 +27,7 @@ public sealed partial class RCDDeconstructableComponent : Component
     /// The length of the deconstruction-
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float Delay = 4f; // CorvaxGoob-RCD-update
+    public float Delay = 8f; // CorvaxGoob-RCD-update
 
     /// <summary>
     /// The visual effect that plays during deconstruction
