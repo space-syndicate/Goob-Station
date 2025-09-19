@@ -32,6 +32,7 @@
     BooksBag: 3
     CardBoxBlack: 3 # GoobStation
     CarcBoxClassic: 1 # CorvaxGoob Spacessonne
+    CardBoxKotahi: 3 # CorvaxGoob-kotahi
   contrabandInventory:
     Basketball: 1
     FoodSnackBoritos: 3
