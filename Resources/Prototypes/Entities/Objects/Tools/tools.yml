@@ -551,6 +551,12 @@
     - HVCable
     - CableTerminal
     - Deconstruct
+    # CorvaxGoob-RCD-update-start
+    - Camera
+    - MachineFrame
+    - Windoor
+    - WindoorSecure
+    # CorvaxGoob-RCD-update-end
   - type: LimitedCharges
     maxCharges: 45
   - type: Sprite

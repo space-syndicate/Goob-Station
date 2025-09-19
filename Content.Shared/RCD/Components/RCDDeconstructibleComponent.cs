@@ -47,4 +47,12 @@ public sealed partial class RCDDeconstructableComponent : Component
     /// </summary>
     [DataField("rpd"), ViewVariables(VVAccess.ReadWrite)]
     public bool RpdDeconstructable = false;
+
+    // CorvaxGoob-RCD-update-start
+    /// <summary>
+    /// Toggles when this entity is deconstructable by chrono RPD and RCD or not
+    /// </summary>
+    [DataField("chrono"), ViewVariables(VVAccess.ReadWrite)]
+    public bool OnlyChrono = false;
+    // CorvaxGoob-RCD-update-end
 }

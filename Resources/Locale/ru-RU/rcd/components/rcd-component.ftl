@@ -29,16 +29,21 @@ rcd-component-cannot-build-identical-tile = Эта клетка уже тут и
 
 rcd-component-walls-and-flooring = Стены и полы
 rcd-component-windows-and-grilles = Окна и решётки
-rcd-component-airlocks = Шлюзы
+rcd-component-airlocks = Двери
 rcd-component-electrical = Электроприборы
 rcd-component-lighting = Освещение
 
+rcd-component-piping = Трубы
+rcd-component-atmosphericutility = Атмосферные приборы
+rcd-component-pumps = Насосы & Вентили
+rcd-component-vents = Вентиляции
+
 ### Prototype names (note: constructable items will be puralized)
 
-rcd-component-piping = Piping
-rcd-component-atmosphericutility = Atmospheric Utility
-rcd-component-pumps = Pumps & Valves
-rcd-component-vents = Vents
-rcd-component-deconstruct = демонтаж
-rcd-component-floor-steel = стальной пол
-rcd-component-plating = корпусное покрытие
+rcd-component-deconstruct = Демонтаж
+rcd-component-floor-steel = Стальной пол
+rcd-component-plating = Корпусное покрытие
+rcd-component-apc50 = ЛКП 50кДж
+rcd-component-apc100 = ЛКП 100кДж
+rcd-component-apc150 = ЛКП 150кДж
+rcd-component-apc200 = ЛКП 200кДж

@@ -53,6 +53,11 @@
     penetrateDamage: 25
     damagePenalty: 0.1
   - type: Structure # WD EDIT. TODO: Kill me pls
+  - type: RCDDeconstructable # CorvaxGoob-RCD-update
+    cost: 6
+    delay: 6
+    chrono: true
+    fx: EffectRCDDeconstruct6
 
 - type: entity
   # This means that it's not anchored on spawn.

@@ -1,0 +1,19 @@
+- type: entity
+  name: futuristic RPD
+  parent: RPD
+  id: RPDChrono
+  description: A tool that can build a atmos in station from scratch in minutes.
+  components:
+  - type: LimitedCharges
+    maxCharges: 100
+  - type: UseDelay
+    delay: 0.1
+  - type: AutoRecharge
+    rechargeDuration: 5
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Tools/rpd_chrono.rsi
+    state: icon
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Tools/rpd_chrono.rsi
+  - type: RCD
+    isChrono: true

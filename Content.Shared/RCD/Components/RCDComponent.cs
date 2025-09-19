@@ -55,6 +55,14 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsRpd { get; set; } = false;
 
+    // CorvaxGoob-RCD-update-start
+    /// <summary>
+    /// Indicates whether this is chrono RCD or RPD
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsChrono { get; set; } = false;
+    // CorvaxGoob-RCD-update-end
+
     /// <summary>
     /// The direction constructed entities will face upon spawning
     /// </summary>

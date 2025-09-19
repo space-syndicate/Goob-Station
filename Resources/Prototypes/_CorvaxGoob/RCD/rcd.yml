@@ -1,0 +1,107 @@
+# Electrical
+- type: rcd
+  id: Camera
+  category: Electrical
+  sprite: /Textures/Structures/Wallmounts/camera.rsi/cameracase.png
+  mode: ConstructObject
+  prototype: SurveillanceCameraConstructed
+  cost: 3
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: MachineFrame
+  category: Electrical
+  sprite: /Textures/Structures/Machines/parts.rsi/box_1.png
+  mode: ConstructObject
+  prototype: MachineFrame
+  cost: 6
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+# Airlocks
+- type: rcd
+  id: Windoor
+  category: Airlocks
+  sprite: /Textures/_CorvaxGoob/RCD/Structures/Windoors/windoor.png
+  mode: ConstructObject
+  prototype: Windoor
+  cost: 4
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: WindoorSecure
+  category: Airlocks
+  sprite: /Textures/_CorvaxGoob/RCD/Structures/Windoors/windoor_secure.png
+  mode: ConstructObject
+  prototype: WindoorSecure
+  cost: 6
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+# Walls
+- type: rcd
+  id: WallReinforced
+  category: WallsAndFlooring
+  sprite: /Textures/Structures/Walls/solid.rsi/rgeneric.png
+  mode: ConstructObject
+  prototype: WallReinforced
+  cost: 5
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct4
+
+# APC
+- type: rcd
+  id: APC50
+  name: rcd-component-apc50
+  category: Electrical
+  sprite: /Textures/Structures/Power/apc.rsi/static.png
+  mode: ConstructObject
+  prototype: APCBasic
+  cost: 5
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: APC100
+  name: rcd-component-apc100
+  category: Electrical
+  sprite: /Textures/Structures/Power/apc.rsi/static.png
+  mode: ConstructObject
+  prototype: APCHighCapacity
+  cost: 5
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: APC150
+  name: rcd-component-apc150
+  category: Electrical
+  sprite: /Textures/Structures/Power/apc.rsi/static.png
+  mode: ConstructObject
+  prototype: APCSuperCapacity
+  cost: 5
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: APC200
+  name: rcd-component-apc200
+  category: Electrical
+  sprite: /Textures/Structures/Power/apc.rsi/static.png
+  mode: ConstructObject
+  prototype: APCHyperCapacity
+  cost: 5
+  delay: 4
+  rotation: User
+  fx: EffectRCDConstruct4

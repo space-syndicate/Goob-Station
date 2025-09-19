@@ -153,6 +153,11 @@
     noRot: false
   - type: Pullable
   - type: DamageExaminable
+  - type: RCDDeconstructable # CorvaxGoob-RCD-update
+    cost: 6
+    delay: 4
+    chrono: true
+    fx: EffectRCDDeconstruct4
 
 - type: entity
   name: "storage item"
