@@ -590,7 +590,6 @@ public sealed class RCDSystem : EntitySystem
                     return false;
                 }
             }
-            // CorvaxGoob-RCD-update-end
 
             // The object is not in the whitelist
             if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructable) || !deconstructable.Deconstructable)
@@ -600,6 +599,7 @@ public sealed class RCDSystem : EntitySystem
 
                 return false;
             }
+            // CorvaxGoob-RCD-update-end
         }
         return true;
     }
