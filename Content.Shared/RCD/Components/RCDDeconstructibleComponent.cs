@@ -21,13 +21,13 @@ public sealed partial class RCDDeconstructableComponent : Component
     /// Number of charges consumed when the deconstruction is completed
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int Cost = 10; // CorvaxGoob-RCD-update
+    public int Cost = 1;
 
     /// <summary>
     /// The length of the deconstruction-
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float Delay = 8f; // CorvaxGoob-RCD-update
+    public float Delay = 1f;
 
     /// <summary>
     /// The visual effect that plays during deconstruction

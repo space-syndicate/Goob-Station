@@ -589,17 +589,17 @@ public sealed class RCDSystem : EntitySystem
 
                     return false;
                 }
-
-                // The object is not in the whitelist
-                if (!deconstructible.Deconstructable)
-                {
-                    if (popMsgs)
-                        _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
-
-                    return false;
-                }
             }
             // CorvaxGoob-RCD-update-end
+
+            // The object is not in the whitelist
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructable) || !deconstructable.Deconstructable)
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
+
+                return false;
+            }
         }
         return true;
     }
