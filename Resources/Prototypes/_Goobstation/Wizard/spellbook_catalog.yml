@@ -797,8 +797,8 @@
 
 - type: listing
   id: Spellbook-fire-guitar
-  name: uplink-fire-guitar-name
-  description: uplink-fire-guitar-desc
+  name: Spellbook-fire-guitar-name
+  description: Spellbook-fire-guitar-desc
   productEntity: FierGuitarInstrument
   cost:
     WizCoin: 1
