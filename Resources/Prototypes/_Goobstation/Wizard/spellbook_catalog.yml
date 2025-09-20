@@ -795,6 +795,16 @@
   - SpellbookEquipment
   disableRefund: true
 
+- type: listing
+  id: Spellbook-fire-guitar
+  name: Spellbook-fire-guitar-name
+  description: Spellbook-fire-guitar-desc
+  productEntity: FierGuitarInstrument
+  cost:
+    WizCoin: 1
+  categories:
+  - SpellbookEquipment
+
 # Summons
 - type: listing
   id: SpellbookMagicalLamp
