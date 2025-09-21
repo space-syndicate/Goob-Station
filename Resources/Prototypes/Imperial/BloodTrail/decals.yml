@@ -1,0 +1,69 @@
+- type: decal
+  id: trail1
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail1
+
+- type: decal
+  id: trail2
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail2
+
+- type: decal
+  id: trail3
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail3
+
+- type: decal
+  id: trail4
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail4
+
+- type: decal
+  id: trail5
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail5
+
+- type: decal
+  id: trail6
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail6
+
+- type: decal
+  id: trail7
+  tags: ["crayon"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/BloodTrail/decals.rsi
+    state: trail7
