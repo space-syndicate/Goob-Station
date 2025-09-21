@@ -14,13 +14,15 @@ using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
 using Content.Server.Administration;
-using Content.Server.MedievalPasport.Components;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Player;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+using Content.Server.Mind;
+using Content.Shared.Roles.Jobs;
+
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -35,6 +37,10 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly NrpCurseSystem _curse = default!;
     [Dependency] private readonly IPlayerLocator _locator = default!;
+
+    [Dependency] private readonly MindSystem _minds = default!;
+
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
 
 
 
@@ -333,9 +339,13 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
         var senderNetEntity = GetNetEntity(session.AttachedEntity);
         string? playerJob = null;
-        if (TryComp<MedievalPasportPersonComponent>(session.AttachedEntity.Value, out var passport))
-            playerJob = passport.PersonJob;
-
+        if (_minds.TryGetMind(session.AttachedEntity.Value, out var mindId, out var mindComp))
+        {
+            if (_jobs.MindTryGetJob(mindId, out var jobProto))
+            {
+                playerJob = jobProto.LocalizedName;
+            }
+        }
         var name = Identity.Name(session.AttachedEntity.Value, EntityManager);
         var violations = await GetPlayerNrpViolations(session.UserId, 3);
         var nrpMessage = new NrpMessage(message, matches, formattedMessage, session.Name, session.UserId, senderNetEntity, name, playerJob, violations);
