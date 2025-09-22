@@ -137,13 +137,15 @@ namespace Content.Server.Imperial.BloodTrail
             if (TryComp(sourceUid, out TransformComponent? sourceXform))
             {
                 var sourceMapPos = _transformSystem.GetMapCoordinates(sourceUid, xform: sourceXform);
-                var directionVector = targetMapPos.Position - sourceMapPos.Position;
 
-                if (directionVector.LengthSquared() > 0.01f)
+                var sourceToTarget = targetMapPos.Position - sourceMapPos.Position;
+
+                if (sourceToTarget.LengthSquared() > 0.01f)
                 {
-                    return directionVector.ToWorldAngle() + MathF.PI;
+                    return sourceToTarget.ToWorldAngle() + MathF.PI;
                 }
             }
+
             return Angle.FromDegrees(_random.Next(0, 360));
         }
 
@@ -229,7 +231,7 @@ namespace Content.Server.Imperial.BloodTrail
                 return;
             }
 
-            var worldPos = _transformSystem.GetWorldPosition(xform);
+            var worldPos = _transformSystem.GetMapCoordinates(uid, xform: xform).Position;
 
             int spawnedCount = 0;
             for (int i = 0; i < decalCount; i++)
@@ -257,7 +259,7 @@ namespace Content.Server.Imperial.BloodTrail
             var direction = new Vector2((float)Math.Cos(bloodDirection.Theta), (float)Math.Sin(bloodDirection.Theta));
 
             var distanceMultiplier = (index + 1f) / totalDecals;
-            var mainOffset = direction * baseSpreadDistance * distanceMultiplier * 1.5f;
+            var mainOffset = direction * baseSpreadDistance * distanceMultiplier * 0.3f;
 
             var perpendicular = new Vector2(-direction.Y, direction.X);
             var perpendicularOffset = perpendicular * _random.NextFloat(-0.2f, 0.2f);
