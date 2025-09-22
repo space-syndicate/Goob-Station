@@ -31,7 +31,9 @@ namespace Content.Server.Imperial.BloodTrail
             "trail2",
             "trail3",
             "trail4",
-            "trail5"
+            "trail5",
+            "trail6",
+            "trail7"
         };
 
         [DataField("damageGroups")]
@@ -46,6 +48,14 @@ namespace Content.Server.Imperial.BloodTrail
             "Blunt",
             "Slash",
             "Piercing"
+        };
+
+        [DataField("damageTypeChances")]
+        public Dictionary<string, float> DamageTypeChances = new()
+        {
+            ["Blunt"] = 0.3f,
+            ["Slash"] = 0.9f,
+            ["Piercing"] = 0.8f,
         };
 
         [DataField("bloodColor")]

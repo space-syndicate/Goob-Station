@@ -5,6 +5,8 @@
   id: BaseMobMoth
   abstract: true
   components:
+  - type: BloodTrail # Imperial Space BloodTrail
+    bloodColor: "#4E4B26" # Imperial Space BloodTrail
   - type: HumanoidAppearance
     species: Moth
     hideLayersOnEquip:

@@ -5,6 +5,8 @@
   id: BaseMobArachnid
   abstract: true
   components:
+  - type: BloodTrail # Imperial Space BloodTrail
+    bloodColor: "#0B113E" # Imperial Space BloodTrail
   - type: Body
     prototype: Arachnid
     requiredLegs: 2 # It would be funny if arachnids could use their little back limbs to move around once they lose their legs, but just something to consider post-woundmed
@@ -92,7 +94,7 @@
       - map: [ "shoes" ]
       # - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "outerClothing" ]  
+      - map: [ "outerClothing" ]
       - map: [ "belt" ] # Imperial Space для корректного отображения слоев одежды и РПС
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
