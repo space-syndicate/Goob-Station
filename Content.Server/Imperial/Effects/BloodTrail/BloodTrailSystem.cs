@@ -21,6 +21,7 @@ namespace Content.Server.Imperial.BloodTrail
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly DecalSystem _decalSystem = default!;
+        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
         private const int MaxBloodDecalsPerTile = 5;
         private readonly Dictionary<string, bool> _damageGroupCache = new();
@@ -40,6 +41,9 @@ namespace Content.Server.Imperial.BloodTrail
 
         private void OnDamageChanged(EntityUid uid, BloodTrailComponent component, DamageChangedEvent args)
         {
+            if (!component.Enabled)
+                return;
+
             if (!args.DamageIncreased || args.DamageDelta == null)
                 return;
 
@@ -146,14 +150,14 @@ namespace Content.Server.Imperial.BloodTrail
             {
                 var decalType = GetRandomDecal(component);
 
-                if (SpawnDecal(decalType, mapCoords, component.BloodColor, tilePos, uid, damageSource))
+                if (SpawnDecal(decalType, mapCoords, component.BloodColor, tilePos, uid, damageSource, component))
                 {
                     component.CurrentDecalCount++;
                 }
             }
         }
 
-        private bool SpawnDecal(string decalId, MapCoordinates mapCoords, Color bloodColor, Vector2i tilePos, EntityUid victimUid, EntityUid? damageSource)
+        private bool SpawnDecal(string decalId, MapCoordinates mapCoords, Color bloodColor, Vector2i tilePos, EntityUid victimUid, EntityUid? damageSource, BloodTrailComponent component)
         {
             if (!_prototypeManager.TryIndex<DecalPrototype>(decalId, out _))
                 return false;
@@ -161,7 +165,7 @@ namespace Content.Server.Imperial.BloodTrail
             if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out _))
                 return false;
 
-            var finalPosition = CalculateDecalPosition(victimUid, damageSource, mapCoords);
+            var finalPosition = CalculateDecalPosition(victimUid, damageSource, mapCoords, component.SpreadDistance);
             var mapCoordsFinal = new MapCoordinates(finalPosition, mapCoords.MapId);
             var entityCoords = _transformSystem.ToCoordinates(gridUid, mapCoordsFinal);
 
@@ -202,15 +206,15 @@ namespace Content.Server.Imperial.BloodTrail
             return success;
         }
 
-        private Vector2 CalculateDecalPosition(EntityUid victimUid, EntityUid? damageSource, MapCoordinates victimCoords)
+        private Vector2 CalculateDecalPosition(EntityUid victimUid, EntityUid? damageSource, MapCoordinates victimCoords, float spreadDistance)
         {
             if (damageSource == null || !Exists(damageSource.Value) ||
                 !TryComp(damageSource.Value, out TransformComponent? sourceXform) ||
                 !TryComp(victimUid, out TransformComponent? victimXform))
             {
                 return victimCoords.Position + new Vector2(
-                    _random.NextFloat(-0.3f, 0.3f),
-                    _random.NextFloat(-0.3f, 0.3f)
+                    _random.NextFloat(-spreadDistance, spreadDistance),
+                    _random.NextFloat(-spreadDistance, spreadDistance)
                 );
             }
 
@@ -223,7 +227,7 @@ namespace Content.Server.Imperial.BloodTrail
             {
                 var normalizedDirection = direction.Normalized();
 
-                float offsetDistance = _random.NextFloat(0.2f, 0.4f);
+                var offsetDistance = _random.NextFloat(spreadDistance * 0.5f, spreadDistance * 1.5f);
 
                 return victimPos + normalizedDirection * offsetDistance;
             }
