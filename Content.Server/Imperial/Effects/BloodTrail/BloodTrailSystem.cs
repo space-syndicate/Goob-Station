@@ -162,12 +162,14 @@ namespace Content.Server.Imperial.BloodTrail
             if (!_prototypeManager.TryIndex<DecalPrototype>(decalId, out _))
                 return false;
 
-            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out _))
+            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var gridComponent))
                 return false;
 
-            var finalPosition = CalculateDecalPosition(victimUid, damageSource, mapCoords, component.SpreadDistance);
-            var mapCoordsFinal = new MapCoordinates(finalPosition, mapCoords.MapId);
-            var entityCoords = _transformSystem.ToCoordinates(gridUid, mapCoordsFinal);
+            var finalWorldPosition = CalculateDecalPosition(victimUid, damageSource, mapCoords, component.SpreadDistance);
+
+            var localPos = _mapSystem.WorldToLocal(gridUid, gridComponent, finalWorldPosition);
+
+            var entityCoords = new EntityCoordinates(gridUid, localPos);
 
             Angle rotation = Angle.Zero;
 
