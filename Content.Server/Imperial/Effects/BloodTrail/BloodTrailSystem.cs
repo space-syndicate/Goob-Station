@@ -2,12 +2,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Physics.Components;
-using Robust.Server.GameObjects;
 using Content.Shared.Mobs.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Decals;
-using Content.Shared.Projectiles;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -21,10 +18,9 @@ namespace Content.Server.Imperial.BloodTrail
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly MapSystem _mapSystem = default!;
-        [Dependency] private readonly DecalSystem _decalSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
+        [Dependency] private readonly DecalSystem _decalSystem = default!;
 
         private const int MaxBloodDecalsPerTile = 5;
         private readonly Dictionary<string, bool> _damageGroupCache = new();
@@ -45,134 +41,62 @@ namespace Content.Server.Imperial.BloodTrail
         private void OnDamageChanged(EntityUid uid, BloodTrailComponent component, DamageChangedEvent args)
         {
             if (!args.DamageIncreased || args.DamageDelta == null)
-            {
                 return;
-            }
 
             bool hasBleedingDamage = false;
             float highestChance = 0f;
 
             foreach (var (damageType, amount) in args.DamageDelta.DamageDict)
             {
-                var causesBleeding = ShouldCauseBleeding(damageType, component);
-
-                if (amount > 0 && causesBleeding)
+                if (amount > 0 && ShouldCauseBleeding(damageType, component))
                 {
                     hasBleedingDamage = true;
                     var chance = GetDamageTypeChance(damageType, component);
                     if (chance > highestChance)
-                    {
                         highestChance = chance;
-                    }
                 }
             }
 
-            if (!hasBleedingDamage)
-            {
+            if (!hasBleedingDamage || _random.NextFloat() > highestChance)
                 return;
-            }
-
-            if (_random.NextFloat() > highestChance)
-            {
-                return;
-            }
 
             if (_gameTiming.CurTime < component.NextSpawnTime)
-            {
                 return;
-            }
 
             if (!TryComp(uid, out TransformComponent? xform) || xform.MapID == MapId.Nullspace)
-            {
                 return;
-            }
 
             if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
-            {
                 return;
-            }
 
             var mechanicalDamage = GetMechanicalDamage(args.DamageDelta, component);
-
             if (mechanicalDamage <= 0)
-            {
                 return;
-            }
 
-            Angle bloodDirection = CalculateBloodDirection(uid, xform, args.Origin);
-
-            SpawnBloodDecals(uid, mechanicalDamage, component, bloodDirection, xform, args.Origin);
-
+            SpawnBloodDecals(uid, mechanicalDamage, component, xform, args.Origin);
             component.NextSpawnTime = _gameTiming.CurTime + component.SpawnCooldown;
         }
 
         private float GetDamageTypeChance(string damageTypeId, BloodTrailComponent component)
         {
-            if (component.DamageTypeChances.TryGetValue(damageTypeId, out var chance))
-            {
-                return chance;
-            }
-
-            return 0.7f;
-        }
-
-        private Angle CalculateBloodDirection(EntityUid targetUid, TransformComponent targetXform, EntityUid? damageSource)
-        {
-            if (damageSource == null || !Exists(damageSource))
-            {
-                return Angle.FromDegrees(_random.Next(0, 360));
-            }
-
-            var sourceUid = damageSource.Value;
-            var targetMapPos = _transformSystem.GetMapCoordinates(targetUid, xform: targetXform);
-
-            if (HasComp<ProjectileComponent>(sourceUid) && TryComp<PhysicsComponent>(sourceUid, out var physics))
-            {
-                if (physics.LinearVelocity.LengthSquared() > 0.1f)
-                {
-                    return physics.LinearVelocity.ToWorldAngle() + MathF.PI;
-                }
-            }
-
-            if (TryComp(sourceUid, out TransformComponent? sourceXform))
-            {
-                var sourceMapPos = _transformSystem.GetMapCoordinates(sourceUid, xform: sourceXform);
-
-                var sourceToTarget = targetMapPos.Position - sourceMapPos.Position;
-
-                if (sourceToTarget.LengthSquared() > 0.01f)
-                {
-                    return sourceToTarget.ToWorldAngle() + MathF.PI;
-                }
-            }
-
-            return Angle.FromDegrees(_random.Next(0, 360));
+            return component.DamageTypeChances.TryGetValue(damageTypeId, out var chance) ? chance : 0.7f;
         }
 
         private FixedPoint2 GetMechanicalDamage(DamageSpecifier damageSpec, BloodTrailComponent component)
         {
             FixedPoint2 totalDamage = FixedPoint2.Zero;
-
             foreach (var (damageTypeId, amount) in damageSpec.DamageDict)
             {
-                if (amount <= 0)
-                    continue;
-
-                if (ShouldCauseBleeding(damageTypeId, component))
-                {
+                if (amount > 0 && ShouldCauseBleeding(damageTypeId, component))
                     totalDamage += amount;
-                }
             }
-
             return totalDamage;
         }
 
         private bool ShouldCauseBleeding(string damageTypeId, BloodTrailComponent component)
         {
             if (component.DamageTypes.Contains(damageTypeId))
-            {
                 return true;
-            }
 
             foreach (var groupId in component.DamageGroups)
             {
@@ -191,173 +115,142 @@ namespace Content.Server.Imperial.BloodTrail
                 }
 
                 if (causesBleeding)
-                {
                     return true;
-                }
             }
 
             return false;
         }
 
-        private void SpawnBloodDecals(EntityUid uid, FixedPoint2 damage, BloodTrailComponent component, Angle bloodDirection, TransformComponent xform, EntityUid? damageSource)
+        private void SpawnBloodDecals(EntityUid uid, FixedPoint2 damage, BloodTrailComponent component, TransformComponent xform, EntityUid? damageSource)
         {
             if (damage < component.MinDamageToSpawn)
-            {
                 return;
-            }
 
             var decalCount = CalculateDecalCount(damage);
-            var baseSpreadDistance = CalculateBaseSpreadDistance(damage, damageSource);
+            var victimWorldPos = _transformSystem.GetWorldPosition(xform);
+            var mapCoords = new MapCoordinates(victimWorldPos, xform.MapID);
 
-            var mapCoordinates = _transformSystem.GetMapCoordinates(uid, xform: xform);
-
-            if (!_mapManager.TryFindGridAt(mapCoordinates, out var gridUid, out var grid))
-            {
-                return;
-            }
-
-            var tileRef = _mapSystem.GetTileRef(gridUid, grid, xform.Coordinates);
-            var tilePos = tileRef.GridIndices;
+            var tilePos = new Vector2i(
+                (int)MathF.Floor(mapCoords.X),
+                (int)MathF.Floor(mapCoords.Y)
+            );
 
             if (_bloodDecalCountPerTile.TryGetValue(tilePos, out var currentCount) && currentCount >= MaxBloodDecalsPerTile)
-            {
                 return;
-            }
 
             decalCount = Math.Min(decalCount, component.MaxDecals - component.CurrentDecalCount);
-
             if (decalCount <= 0)
-            {
                 return;
-            }
 
-            var worldPos = _transformSystem.GetMapCoordinates(uid, xform: xform).Position;
-
-            int spawnedCount = 0;
             for (int i = 0; i < decalCount; i++)
             {
                 var decalType = GetRandomDecal(component);
 
-                var offsetPos = CalculateOffsetPosition(worldPos, baseSpreadDistance, i, Math.Max(1, decalCount), bloodDirection, damageSource);
-
-                if (SpawnDecal(decalType, offsetPos, xform.MapID, component.BloodColor, bloodDirection, tilePos))
+                if (SpawnDecal(decalType, mapCoords, component.BloodColor, tilePos, uid, damageSource))
                 {
                     component.CurrentDecalCount++;
-                    spawnedCount++;
                 }
             }
         }
 
-        private string GetRandomDecal(BloodTrailComponent component)
+        private bool SpawnDecal(string decalId, MapCoordinates mapCoords, Color bloodColor, Vector2i tilePos, EntityUid victimUid, EntityUid? damageSource)
         {
-            var decal = _random.Pick(component.Decals);
-            return decal;
-        }
-
-        private Vector2 CalculateOffsetPosition(Vector2 worldPosition, float baseSpreadDistance, int index, int totalDecals, Angle bloodDirection, EntityUid? damageSource)
-        {
-            var direction = new Vector2((float)Math.Cos(bloodDirection.Theta), (float)Math.Sin(bloodDirection.Theta));
-
-            var distanceMultiplier = (index + 1f) / totalDecals;
-            var mainOffset = direction * baseSpreadDistance * distanceMultiplier * 0.3f;
-
-            var perpendicular = new Vector2(-direction.Y, direction.X);
-            var perpendicularOffset = perpendicular * _random.NextFloat(-0.2f, 0.2f);
-
-            var randomForwardOffset = direction * _random.NextFloat(-0.05f, 0.1f);
-
-            return worldPosition + mainOffset + perpendicularOffset + randomForwardOffset;
-        }
-
-        private int CalculateDecalCount(FixedPoint2 damage)
-        {
-            var floatDamage = damage.Float();
-            var count = floatDamage switch
-            {
-                >= 50 => _random.Next(2, 4),
-                >= 30 => _random.Next(2, 3),
-                >= 15 => _random.Next(1, 2),
-                >= 5 => _random.Next(1, 2),
-                _ => 0
-            };
-            return count;
-        }
-
-        private float CalculateBaseSpreadDistance(FixedPoint2 damage, EntityUid? damageSource)
-        {
-            var floatDamage = damage.Float();
-            var distance = floatDamage switch
-            {
-                >= 50 => _random.NextFloat(0.8f, 1.5f),
-                >= 30 => _random.NextFloat(0.6f, 1.0f),
-                >= 15 => _random.NextFloat(0.4f, 0.7f),
-                >= 5 => _random.NextFloat(0.2f, 0.4f),
-                _ => 0.1f
-            };
-
-            if (damageSource.HasValue && HasComp<ProjectileComponent>(damageSource.Value))
-            {
-                distance *= 1.5f;
-            }
-
-            return distance;
-        }
-
-        private bool SpawnDecal(string decalId, Vector2 position, MapId mapId, Color bloodColor, Angle bloodDirection, Vector2i tilePos)
-        {
-            var mapCoords = new MapCoordinates(position, mapId);
-            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
-            {
-                return false;
-            }
-
             if (!_prototypeManager.TryIndex<DecalPrototype>(decalId, out _))
-            {
                 return false;
+
+            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out _))
+                return false;
+
+            var finalPosition = CalculateDecalPosition(victimUid, damageSource, mapCoords);
+            var mapCoordsFinal = new MapCoordinates(finalPosition, mapCoords.MapId);
+            var entityCoords = _transformSystem.ToCoordinates(gridUid, mapCoordsFinal);
+
+            Angle rotation = Angle.Zero;
+
+            if (damageSource != null && Exists(damageSource.Value) &&
+                TryComp(damageSource.Value, out TransformComponent? sourceXform) &&
+                TryComp(victimUid, out TransformComponent? victimXform))
+            {
+                var sourcePos = _transformSystem.GetWorldPosition(sourceXform);
+                var victimPos = _transformSystem.GetWorldPosition(victimXform);
+
+                var direction = victimPos - sourcePos;
+
+                if (direction.LengthSquared() > 0.1f)
+                {
+                    var hitAngle = Angle.FromWorldVec(direction.Normalized());
+                    rotation = hitAngle + MathF.PI;
+                }
             }
-
-            var localPos = _mapSystem.WorldToLocal(gridUid, grid, mapCoords.Position);
-            var coordinates = new EntityCoordinates(gridUid, localPos);
-
-            var rotationVariation = _random.NextFloat(-MathF.PI / 6f, MathF.PI / 6f);
-            var finalRotation = bloodDirection + rotationVariation;
 
             var decal = new Decal(
-                coordinates.Position,
-                decalId,
-                bloodColor,
-                finalRotation,
+                coordinates: entityCoords.Position,
+                id: decalId,
+                color: bloodColor,
+                angle: rotation,
                 zIndex: 1,
                 cleanable: true
             );
 
-            var success = _decalSystem.TryAddDecal(
-                decal,
-                coordinates,
-                out _
-            );
+            var success = _decalSystem.TryAddDecal(decal, entityCoords, out _);
 
             if (success)
             {
-                if (_bloodDecalCountPerTile.ContainsKey(tilePos))
-                {
-                    _bloodDecalCountPerTile[tilePos]++;
-                }
-                else
-                {
-                    _bloodDecalCountPerTile[tilePos] = 1;
-                }
+                _bloodDecalCountPerTile[tilePos] = _bloodDecalCountPerTile.GetValueOrDefault(tilePos) + 1;
             }
 
             return success;
         }
 
+        private Vector2 CalculateDecalPosition(EntityUid victimUid, EntityUid? damageSource, MapCoordinates victimCoords)
+        {
+            if (damageSource == null || !Exists(damageSource.Value) ||
+                !TryComp(damageSource.Value, out TransformComponent? sourceXform) ||
+                !TryComp(victimUid, out TransformComponent? victimXform))
+            {
+                return victimCoords.Position + new Vector2(
+                    _random.NextFloat(-0.3f, 0.3f),
+                    _random.NextFloat(-0.3f, 0.3f)
+                );
+            }
+
+            var sourcePos = _transformSystem.GetWorldPosition(sourceXform);
+            var victimPos = _transformSystem.GetWorldPosition(victimXform);
+
+            var direction = victimPos - sourcePos;
+
+            if (direction.LengthSquared() > 0.1f)
+            {
+                var normalizedDirection = direction.Normalized();
+
+                float offsetDistance = _random.NextFloat(0.2f, 0.4f);
+
+                return victimPos + normalizedDirection * offsetDistance;
+            }
+
+            return victimCoords.Position;
+        }
+        private string GetRandomDecal(BloodTrailComponent component)
+        {
+            return _random.Pick(component.Decals);
+        }
+
+        private int CalculateDecalCount(FixedPoint2 damage)
+        {
+            var floatDamage = damage.Float();
+            return floatDamage switch
+            {
+                >= 50 => _random.Next(2, 4),
+                >= 30 => _random.Next(1, 3),
+                >= 15 => _random.Next(1, 2),
+                >= 5 => 1,
+                _ => 0
+            };
+        }
+
         public void CleanupTile(Vector2i tilePos)
         {
-            if (_bloodDecalCountPerTile.ContainsKey(tilePos))
-            {
-                _bloodDecalCountPerTile[tilePos] = 0;
-            }
+            _bloodDecalCountPerTile[tilePos] = 0;
         }
 
         public void ResetSpawnCooldown(BloodTrailComponent component)

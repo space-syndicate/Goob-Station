@@ -27,13 +27,13 @@ namespace Content.Server.Imperial.BloodTrail
         [DataField("decals", customTypeSerializer: typeof(PrototypeIdListSerializer<DecalPrototype>))]
         public List<string> Decals = new()
         {
-            "trail1",
-            "trail2",
-            "trail3",
-            "trail4",
-            "trail5",
-            "trail6",
-            "trail7"
+            "bloodtrail1",
+            "bloodtrail2",
+            "bloodtrail3",
+            "bloodtrail4",
+            "bloodtrail5",
+            "bloodtrail6",
+            "bloodtrail7"
         };
 
         [DataField("damageGroups")]

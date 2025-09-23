@@ -1,5 +1,5 @@
 - type: decal
-  id: trail1
+  id: bloodtrail1
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
@@ -9,7 +9,7 @@
     state: trail1
 
 - type: decal
-  id: trail2
+  id: bloodtrail2
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
@@ -19,7 +19,7 @@
     state: trail2
 
 - type: decal
-  id: trail3
+  id: bloodtrail3
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
@@ -29,7 +29,7 @@
     state: trail3
 
 - type: decal
-  id: trail4
+  id: bloodtrail4
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
@@ -39,7 +39,7 @@
     state: trail4
 
 - type: decal
-  id: trail5
+  id: bloodtrail5
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
@@ -49,7 +49,7 @@
     state: trail5
 
 - type: decal
-  id: trail6
+  id: bloodtrail6
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
@@ -59,7 +59,7 @@
     state: trail6
 
 - type: decal
-  id: trail7
+  id: bloodtrail7
   tags: ["crayon"]
   defaultCleanable: true
   defaultCustomColor: true
