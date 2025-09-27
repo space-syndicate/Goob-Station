@@ -1,67 +1,42 @@
 using Content.Shared.Decals;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.BloodTrail
 {
     [RegisterComponent]
     public sealed partial class BloodTrailComponent : Component
     {
-        [DataField("minDamageToSpawn")]
-        public float MinDamageToSpawn = 5f;
+        [DataField] public FixedPoint2 MinDamageToSpawn = FixedPoint2.New(5f);
+        [DataField] public int MaxDecals = 20;
+        [DataField] public float SpreadDistance = 0.3f;
+        [DataField] public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(0.5f);
+        [DataField] public bool Enabled = true;
 
-        [DataField("maxDecals")]
-        public int MaxDecals = 20;
+        [ViewVariables] public int CurrentDecalCount;
+        [ViewVariables] public TimeSpan NextSpawnTime;
 
-        [DataField("spreadDistance")]
-        public float SpreadDistance = 0.3f;
-
-        [ViewVariables]
-        public int CurrentDecalCount = 0;
-
-        [DataField("spawnCooldown")]
-        public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(0.5f);
-
-        [ViewVariables(VVAccess.ReadWrite)]
-        public TimeSpan NextSpawnTime = TimeSpan.Zero;
-
-        [DataField("decals", customTypeSerializer: typeof(PrototypeIdListSerializer<DecalPrototype>))]
-        public List<string> Decals = new()
+        [DataField("decals")]
+        public List<ProtoId<DecalPrototype>> Decals = new()
         {
-            "bloodtrail1",
-            "bloodtrail2",
-            "bloodtrail3",
-            "bloodtrail4",
-            "bloodtrail5",
-            "bloodtrail6",
-            "bloodtrail7"
+            "bloodtrail1", "bloodtrail2", "bloodtrail3",
+            "bloodtrail4", "bloodtrail5", "bloodtrail6", "bloodtrail7"
         };
 
-        [DataField("damageGroups")]
-        public HashSet<string> DamageGroups = new()
-        {
-            "Brute"
-        };
+        [DataField] public HashSet<string> DamageGroups = new() { "Brute" };
 
-        [DataField("damageTypes")]
+        [DataField]
         public HashSet<string> DamageTypes = new()
         {
-            "Blunt",
-            "Slash",
-            "Piercing"
+            "Blunt", "Slash", "Piercing"
         };
 
-        [DataField("damageTypeChances")]
-        public Dictionary<string, float> DamageTypeChances = new()
+        [DataField]
+        public Dictionary<string, float> DamageTypeModifiers = new()
         {
-            ["Blunt"] = 0.3f,
-            ["Slash"] = 0.9f,
-            ["Piercing"] = 0.8f,
+            ["Blunt"] = 0.2f,
+            ["Slash"] = 1.0f,
+            ["Piercing"] = 0.8f
         };
-
-        [DataField("bloodColor")]
-        public Color BloodColor = Color.DarkRed;
-
-        [DataField("enabled")]
-        public bool Enabled = true;
     }
 }
