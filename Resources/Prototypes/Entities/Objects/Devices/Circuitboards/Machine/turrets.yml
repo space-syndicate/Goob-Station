@@ -23,6 +23,9 @@
         amount: 1
         defaultPrototype: PowerCellMedium
         examineName: construction-insert-info-examine-name-power-cell
+    stackRequirements: # Imperial Space Усложнен рецепт турелей СБ для избежания дюпов
+      Steel: 30
+      PlasmaGlass: 15
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase

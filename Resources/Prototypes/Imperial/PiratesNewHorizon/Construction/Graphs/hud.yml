@@ -260,11 +260,5 @@
                 sprite: Objects/Tools/t-ray.rsi
                 state: tray-on
               doAfter: 10     
-            - tag: CapacitorStockPart
-              name: конденсатор
-              icon:
-                sprite: Objects/Misc/stock_parts.rsi
-                state: capacitor
-              doAfter: 10
     - node: omniEyepatch
       entity: ClothingEyesEyepatchHudOmni

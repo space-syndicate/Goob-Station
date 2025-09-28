@@ -656,14 +656,12 @@
 - type: reaction
   id: SalineGlucose
   reactants:
-    TableSalt:
-      amount: 1
-    Water:
+    Saline:
       amount: 1
     Sugar:
       amount: 1
   products:
-    SalineGlucose: 5
+    SalineGlucose: 2
 
 - type: reaction
   id: SilverSulfadiazine

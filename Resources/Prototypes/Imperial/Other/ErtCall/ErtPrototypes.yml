@@ -21,6 +21,14 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-leader-eva-name
+      description: ertcall-leader-eva-desc
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+
 
 #Medic
 - type: entity
@@ -43,6 +51,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-medic-eva-name
+      description: ertcall-medic-eva-desc
+      rules: ertcall-medic-eva-rules
+      raffle:
+        settings: short
 
 #Security
 - type: entity
@@ -65,6 +80,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-security-eva-name
+      description: ertcall-security-eva-desc
+      rules: ertcall-security-eva-rules
+      raffle:
+        settings: short
 
 #Engineer
 - type: entity
@@ -87,6 +109,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-engineer-eva-name
+      description: ertcall-engineer-eva-desc
+      rules: ertcall-engineer-eva-rules
+      raffle:
+        settings: short
 
 #Junitor
 - type: entity
@@ -109,6 +138,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-junitor-eva-name
+      description: ertcall-junitor-eva-desc
+      rules: ertcall-junitor-eva-rules
+      raffle:
+        settings: short
 
 #ERT END
 
@@ -134,6 +170,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-cburn-leader-eva-name
+      description: ertcall-cburn-leader-eva-desc
+      rules: ertcall-cburn-leader-eva-rules
+      raffle:
+        settings: short
 
 #Security
 - type: entity
@@ -155,6 +198,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-cburn-security-eva-name
+      description: ertcall-cburn-security-eva-desc
+      rules: ertcall-cburn-security-eva-rules
+      raffle:
+        settings: short
 
 #Medic
 - type: entity
@@ -176,6 +226,14 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-cburn-medic-eva-name
+      description: ertcall-cburn-medic-eva-desc
+      rules: ertcall-cburn-medic-eva-rules
+      raffle:
+        settings: short
+
 #CBURN END
 
 #DEAD SQUAD START
@@ -203,6 +261,13 @@
     - type: NpcFactionMember
       factions:
       - DeathSquad
+    - type: GhostRole
+      name: ertcall-deadsquad-security-eva-name
+      description: ertcall-deadsquad-security-eva-desc
+      rules: ertcall-deadsquad-security-eva-rules
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
 
 - type: npcFaction ##Новая фракция для эскадрона смерти
   id: DeathSquad

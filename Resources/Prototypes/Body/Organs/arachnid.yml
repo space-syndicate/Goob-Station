@@ -24,6 +24,7 @@
   - type: Tag
     tags:
       - Meat
+      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать органы
 
 - type: entity
   id: OrganArachnidStomach

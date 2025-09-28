@@ -34,7 +34,6 @@
   id: SeniorOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatSeniorOfficerBeret
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
     neck: SecurityWhistle
