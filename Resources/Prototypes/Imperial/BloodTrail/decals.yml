@@ -57,13 +57,3 @@
   sprite:
     sprite: Imperial/BloodTrail/decals.rsi
     state: trail6
-
-- type: decal
-  id: bloodtrail7
-  tags: ["crayon"]
-  defaultCleanable: true
-  defaultCustomColor: true
-  defaultSnap: false
-  sprite:
-    sprite: Imperial/BloodTrail/decals.rsi
-    state: trail7

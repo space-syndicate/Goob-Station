@@ -24,6 +24,8 @@ namespace Content.Server.Imperial.BloodTrail
         [Dependency] private readonly DecalSystem _decal = default!;
 
         private const float MinDistanceBetweenDecals = 0.3f;
+        private readonly List<Vector2> _recentDecalPositions = new();
+        private TimeSpan _lastCleanupTime;
 
         public override void Initialize()
         {
@@ -35,29 +37,10 @@ namespace Content.Server.Imperial.BloodTrail
         {
             base.Update(frameTime);
 
-            var query = EntityQueryEnumerator<BloodTrailComponent>();
-            while (query.MoveNext(out var uid, out var comp))
+            if (_timing.CurTime - _lastCleanupTime > TimeSpan.FromSeconds(5))
             {
-                CleanupOldPositions(uid, comp);
-            }
-        }
-
-        private void CleanupOldPositions(EntityUid uid, BloodTrailComponent comp)
-        {
-            var currentTime = _timing.CurTime;
-            var positionsToRemove = new List<Vector2>();
-
-            foreach (var (pos, time) in comp.RecentDecalPositions)
-            {
-                if (currentTime - time > TimeSpan.FromSeconds(5))
-                {
-                    positionsToRemove.Add(pos);
-                }
-            }
-
-            foreach (var pos in positionsToRemove)
-            {
-                comp.RecentDecalPositions.Remove(pos);
+                _recentDecalPositions.Clear();
+                _lastCleanupTime = _timing.CurTime;
             }
         }
 
@@ -158,7 +141,7 @@ namespace Content.Server.Imperial.BloodTrail
             var victimWorldPos = _transform.GetWorldPosition(victimXform);
             var (worldPos, rotation) = CalculateDecalPositionAndRotation(victimWorldPos, damageSource, comp.SpreadDistance);
 
-            if (IsTooCloseToRecentDecals(victim, worldPos, comp))
+            if (IsTooCloseToRecentDecals(worldPos))
                 return false;
 
             var mapCoords = new MapCoordinates(worldPos, victimXform.MapID);
@@ -172,16 +155,14 @@ namespace Content.Server.Imperial.BloodTrail
             var success = _decal.TryAddDecal(decal, entityCoords, out _);
 
             if (success)
-            {
-                comp.RecentDecalPositions[worldPos] = _timing.CurTime;
-            }
+                _recentDecalPositions.Add(worldPos);
 
             return success;
         }
 
-        private bool IsTooCloseToRecentDecals(EntityUid victim, Vector2 position, BloodTrailComponent comp)
+        private bool IsTooCloseToRecentDecals(Vector2 position)
         {
-            foreach (var (existingPos, time) in comp.RecentDecalPositions)
+            foreach (var existingPos in _recentDecalPositions)
             {
                 if (Vector2.DistanceSquared(existingPos, position) < MinDistanceBetweenDecals * MinDistanceBetweenDecals)
                     return true;
@@ -229,7 +210,7 @@ namespace Content.Server.Imperial.BloodTrail
             var floatDamage = effectiveDamage.Float();
             return floatDamage switch
             {
-                >= 40 => _random.Next(3, 5),
+                >= 40 => _random.Next(3, 5),    // Высокий эффективный урон - больше декалей
                 >= 25 => _random.Next(2, 4),
                 >= 12 => _random.Next(1, 3),
                 >= 5 => 1,
@@ -245,7 +226,6 @@ namespace Content.Server.Imperial.BloodTrail
         public void ResetDecalCount(BloodTrailComponent component)
         {
             component.CurrentDecalCount = 0;
-            component.RecentDecalPositions.Clear();
         }
     }
 }
