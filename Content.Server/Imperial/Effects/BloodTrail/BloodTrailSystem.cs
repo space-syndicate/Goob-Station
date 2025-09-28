@@ -122,42 +122,37 @@ namespace Content.Server.Imperial.BloodTrail
 
             for (int i = 0; i < decalCount; i++)
             {
-                if (TrySpawnDecal(victim, damageSource, comp))
+                if (!TryComp(victim, out TransformComponent? victimXform))
+                    continue;
+
+                var decalId = _random.Pick(comp.Decals);
+                if (!_prototype.HasIndex<DecalPrototype>(decalId))
+                    continue;
+
+                var bloodColor = GetBloodColor(victim);
+
+                var victimWorldPos = _transform.GetWorldPosition(victimXform);
+                var (worldPos, rotation) = CalculateDecalPositionAndRotation(victimWorldPos, damageSource, comp.SpreadDistance);
+
+                if (IsTooCloseToRecentDecals(worldPos))
+                    continue;
+
+                var mapCoords = new MapCoordinates(worldPos, victimXform.MapID);
+
+                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+                    continue;
+
+                var entityCoords = _transform.ToCoordinates(gridUid, mapCoords);
+
+                var decal = new Decal(entityCoords.Position, decalId, bloodColor, rotation, 1, true);
+                var success = _decal.TryAddDecal(decal, entityCoords, out _);
+
+                if (success)
+                {
+                    _recentDecalPositions.Add(worldPos);
                     comp.CurrentDecalCount++;
+                }
             }
-        }
-
-        private bool TrySpawnDecal(EntityUid victim, EntityUid? damageSource, BloodTrailComponent comp)
-        {
-            if (!TryComp(victim, out TransformComponent? victimXform))
-                return false;
-
-            var decalId = _random.Pick(comp.Decals);
-            if (!_prototype.HasIndex<DecalPrototype>(decalId))
-                return false;
-
-            var bloodColor = GetBloodColor(victim);
-
-            var victimWorldPos = _transform.GetWorldPosition(victimXform);
-            var (worldPos, rotation) = CalculateDecalPositionAndRotation(victimWorldPos, damageSource, comp.SpreadDistance);
-
-            if (IsTooCloseToRecentDecals(worldPos))
-                return false;
-
-            var mapCoords = new MapCoordinates(worldPos, victimXform.MapID);
-
-            if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid))
-                return false;
-
-            var entityCoords = _transform.ToCoordinates(gridUid, mapCoords);
-
-            var decal = new Decal(entityCoords.Position, decalId, bloodColor, rotation, 1, true);
-            var success = _decal.TryAddDecal(decal, entityCoords, out _);
-
-            if (success)
-                _recentDecalPositions.Add(worldPos);
-
-            return success;
         }
 
         private bool IsTooCloseToRecentDecals(Vector2 position)
