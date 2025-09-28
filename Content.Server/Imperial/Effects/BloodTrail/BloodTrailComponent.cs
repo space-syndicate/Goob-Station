@@ -1,3 +1,5 @@
+using System.Numerics;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Decals;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
@@ -15,6 +17,7 @@ namespace Content.Server.Imperial.BloodTrail
 
         [ViewVariables] public int CurrentDecalCount;
         [ViewVariables] public TimeSpan NextSpawnTime;
+        [ViewVariables] public Dictionary<Vector2, TimeSpan> RecentDecalPositions = new();
 
         [DataField("decals")]
         public List<ProtoId<DecalPrototype>> Decals = new()
@@ -23,16 +26,16 @@ namespace Content.Server.Imperial.BloodTrail
             "bloodtrail4", "bloodtrail5", "bloodtrail6", "bloodtrail7"
         };
 
-        [DataField] public HashSet<string> DamageGroups = new() { "Brute" };
+        [DataField] public HashSet<ProtoId<DamageGroupPrototype>> DamageGroups = new() { "Brute" };
 
         [DataField]
-        public HashSet<string> DamageTypes = new()
+        public HashSet<ProtoId<DamageTypePrototype>> DamageTypes = new()
         {
             "Blunt", "Slash", "Piercing"
         };
 
         [DataField]
-        public Dictionary<string, float> DamageTypeModifiers = new()
+        public Dictionary<ProtoId<DamageTypePrototype>, float> DamageTypeModifiers = new()
         {
             ["Blunt"] = 0.2f,
             ["Slash"] = 1.0f,
