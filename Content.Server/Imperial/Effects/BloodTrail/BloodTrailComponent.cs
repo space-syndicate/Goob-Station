@@ -23,7 +23,7 @@ namespace Content.Server.Imperial.BloodTrail
         public List<ProtoId<DecalPrototype>> Decals = new()
         {
             "bloodtrail1", "bloodtrail2", "bloodtrail3",
-            "bloodtrail4", "bloodtrail5", "bloodtrail6", "bloodtrail7"
+            "bloodtrail4", "bloodtrail5", "bloodtrail6"
         };
 
         [DataField] public HashSet<ProtoId<DamageGroupPrototype>> DamageGroups = new() { "Brute" };
