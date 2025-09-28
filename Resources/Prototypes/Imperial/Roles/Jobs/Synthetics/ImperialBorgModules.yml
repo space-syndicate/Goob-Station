@@ -132,7 +132,7 @@
     - state: icon-diagnosis
   - type: ItemBorgModule
     items:
-    - SawAdvanced
+    - Saw
     - Retractor
     - ScalpelLaser
     - Cautery
@@ -144,6 +144,9 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleSurgeryTools
   result: BorgModuleSurgeryTools
+
+- type: Tag
+  id: MedicalBorgItem
 
 ## Медицинский киборг синдиката
 - type: entity

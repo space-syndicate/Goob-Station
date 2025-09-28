@@ -26,6 +26,7 @@
   - type: Tag
     tags:
       - Meat
+      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать органы
 
 - type: entity
   id: BaseHumanOrgan
@@ -53,6 +54,7 @@
   - type: Tag
     tags:
       - Meat
+      - MedicalBorgItem
   - type: SolutionContainerManager
     solutions:
       organ:

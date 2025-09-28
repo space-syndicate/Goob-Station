@@ -473,3 +473,26 @@
   - type: SpaceGarbage
 
 # Фумо @buhoj_med
+
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieClaud
+  name: Claudius the Great
+  suffix: Vl, COMMUNITY, TOY
+  description: A toy of a thoughtful captain with gorgeous hair holding a chess piece of a pawn in his hand.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/plushclaud.rsi
+    state: Plush
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoJunko
+  - type: StorageFill
+    contents:
+      - id: ChessBoardTabletop

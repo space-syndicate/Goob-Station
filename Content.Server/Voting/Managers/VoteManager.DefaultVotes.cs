@@ -223,6 +223,7 @@ namespace Content.Server.Voting.Managers
             var options = new VoteOptions
             {
                 Title = Loc.GetString("ui-vote-gamemode-title"),
+                DisplayVotes = false, // Imperial Space Disable Votes Count
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset))
@@ -269,6 +270,7 @@ namespace Content.Server.Voting.Managers
             var options = new VoteOptions
             {
                 Title = Loc.GetString("ui-vote-map-title"),
+                DisplayVotes = false, // Imperial Space Disable Votes Count
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap))
