@@ -210,7 +210,7 @@ namespace Content.Server.Imperial.BloodTrail
             var floatDamage = effectiveDamage.Float();
             return floatDamage switch
             {
-                >= 40 => _random.Next(3, 5),    // Высокий эффективный урон - больше декалей
+                >= 40 => _random.Next(3, 5),
                 >= 25 => _random.Next(2, 4),
                 >= 12 => _random.Next(1, 3),
                 >= 5 => 1,
