@@ -107,7 +107,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         return _unsolvedMessages.Contains(message);
     }
 
-    private void Bwoink(ICommonSession player, NetUserId? sender, string text)
+    public void Bwoink(ICommonSession player, NetUserId? sender, string text)
     {
 
         var bwoinkMessage = new SharedBwoinkSystem.BwoinkTextMessage(
@@ -119,7 +119,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         RaiseNetworkEvent(bwoinkMessage, player.Channel);
     }
 
-    private void AddCurseComponent(NetUserId playerId)
+    public void AddCurseComponent(NetUserId playerId)
     {
         if (!_playerManager.TryGetSessionById(playerId, out var senderSession))
             return;
@@ -176,20 +176,32 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     private void _onViolation(int violationCount, NetUserId targetId, NetUserId senderId, string targetName, string bwoinkText, string curseText, string banText)
     {
-        if (violationCount == 1)
+        if (violationCount <= 2)
         {
+            // Первые 2 нарушения - только предупреждение
             if (_playerManager.TryGetSessionById(targetId, out var session))
                 Bwoink(session, senderId, bwoinkText);
         }
         else
         {
-            var banHours = (uint)(Math.Pow(2, 2 * (violationCount - 2)));
-            var banMinutes = banHours * 60;
-            //Ban(targetId, targetName, senderId, banText, banMinutes);
+            var banMinutes = GetBanMinutesByViolationCount(violationCount);
+
             if (_playerManager.TryGetSessionById(targetId, out var session))
                 Bwoink(session, senderId, curseText);
             Curse(targetId, senderId, banText, banMinutes);
         }
+    }
+
+    private uint GetBanMinutesByViolationCount(int violationCount)
+    {
+        return violationCount switch
+        {
+            3 => 1,    // 1 минута
+            4 => 10,   // 10 минут
+            5 => 30,   // 30 минут
+            >= 6 => 60, // 1 час (максимум)
+            _ => 1     // На всякий случай
+        };
     }
 
 
