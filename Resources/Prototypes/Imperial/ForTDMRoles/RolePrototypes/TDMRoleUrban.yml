@@ -9,11 +9,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -23,10 +22,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanRiflemanGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -50,11 +45,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -64,10 +58,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanMachineGunnerGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -91,11 +81,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -105,10 +94,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanGrenadierGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -132,11 +117,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteammedicfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -146,10 +130,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanMedicalGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -174,11 +154,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
+      - redteamcommanderfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -188,10 +167,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanCommanderGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -215,11 +190,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -229,10 +203,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanSniperGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -258,11 +228,10 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -272,10 +241,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanRiflemanGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -299,11 +264,10 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -313,10 +277,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanMachineGunnerGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -340,11 +300,10 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -354,10 +313,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanGrenadierGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -381,11 +336,10 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteammedicfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -395,10 +349,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanMedicalGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -423,11 +373,10 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
+      - blueteamcommanderfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -437,10 +386,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanCommanderGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -464,11 +409,10 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -478,10 +422,6 @@
     - type: Loadout
       prototypes: [ TDMUrbanSniperGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
