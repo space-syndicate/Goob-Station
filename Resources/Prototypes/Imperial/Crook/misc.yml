@@ -1348,3 +1348,120 @@
       seedId: blueSpaceTomato
     - type: Sprite
       sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurPuro
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurPuro
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/purosuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/purosuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+      - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurKiss
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurKiss
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/kisssuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/kisssuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+      - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurBeige
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurBeige
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+      - Tail
+
+- type: entity
+  id: CrateCargoFursuits
+  parent: CratePrivateSecure
+  name: fursuit crate
+  description: Finally, furry friday.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadHatFurPuro
+    - id: ClothingOuterFurPuro
+    - id: ClothingHeadHatFurKiss
+    - id: ClothingOuterFurKiss
+    - id: ClothingHeadHatFurBeige
+    - id: ClothingOuterFurBeige
+    - id: ClothingHeadHatRedRacoon
+    - id: ClothingOuterRedRacoon
+    - id: ClothingOuterSuitMonkey
+    - id: ClothingHeadHatAnimalMonkey
+    - id: ClothingOuterSuitCarp
+    - id: ClothingOuterSuitIan
+    - id: ClothingOuterSuitChicken
+    - id: ClothingHeadHatChickenhead
+
+- type: cargoProduct
+  id: FunCrateFursuits
+  icon:
+    sprite: Clothing/Head/Misc/red_racoon.rsi
+    state: icon
+  product: CrateCargoFursuits
+  cost: 25000
+  category: cargoproduct-category-name-fun
+  group: market

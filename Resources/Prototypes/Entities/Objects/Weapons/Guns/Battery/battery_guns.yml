@@ -209,7 +209,7 @@
   description: This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-icons.rsi # Imperial Space Изменение спрайта оружия
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -222,7 +222,7 @@
     zeroVisible: false
   - type: Appearance
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-inhands.rsi # Imperial Space Изменение спрайта оружия
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -232,6 +232,8 @@
     fireCost: 62.5
   - type: StaticPrice
     price: 300
+  - type: Item # Imperial Space Изменение спрайта оружия
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-inhands.rsi
 
 - type: entity
   name: laser rifle

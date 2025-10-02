@@ -20,6 +20,14 @@
       "directions": 4
     },
     {
+      "name": "gate",
+      "directions": 4
+    },
+    {
+      "name": "dclass",
+      "directions": 4
+    },
+    {
       "name": "avel",
       "directions": 4
     },
@@ -41,10 +49,6 @@
     },
     {
       "name": "mask",
-      "directions": 4
-    },
-    {
-      "name": "gate",
       "directions": 4
     }
   ]

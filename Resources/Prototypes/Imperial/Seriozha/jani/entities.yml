@@ -1,0 +1,83 @@
+# another branch
+- type: entity
+  name: mega space cleaner spray bottle
+  parent: MegaSprayBottle
+  id: UltraMegaSprayBottle
+  suffix: seriozha, Арена
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 500
+        reagents:
+        - ReagentId: SpaceCleaner
+          Quantity: 500
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 25
+  - type: UseDelay
+    delay: 0.01
+  - type: Spray
+    transferAmount: 50
+    sprayedPrototype: UltraVapor
+    sprayVelocity: 4.5
+    sprayDistance: 16
+    spraySound:
+      path: /Audio/Effects/spray2.ogg
+
+- type: entity
+  id: UltraVapor
+  parent: Vapor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/chempuff.rsi
+    rotation: 180
+    layers:
+    - state: chempuff
+      scale: 3, 2
+      map: ["enum.VaporVisualLayers.Base"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.6,0.6,0.6"
+        hard: false
+        mask:
+        - FullTileMask
+        - Opaque
+
+- type: entity
+  parent: CleanerGrenade
+  id: UltraCleanerGrenade
+  suffix: seriozha, Арена
+  name: cleanade
+  description: Special grenade for janitors, releasing large cloud of space cleaner foam.
+  components:
+  - type: SmokeOnTrigger
+    duration: 35
+    spreadAmount: 900
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 900
+
+- type: entity
+  name: trash bag
+  id: UltraTrashBag
+  parent: TrashBagBlue
+  components:
+  - type: UseDelay
+    delay: 0.01
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,52,14
+    quickInsert: true
+    areaInsert: true
+    areaInsertRadius: 50

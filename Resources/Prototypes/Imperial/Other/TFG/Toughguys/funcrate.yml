@@ -36,6 +36,7 @@
       - id: PlushieCSCC
       - id: PlushieSavir
       - id: PlushieKarner
+      - id: PlushieAid
 
 - type: cargoProduct
   id: FunPlushieCommunity

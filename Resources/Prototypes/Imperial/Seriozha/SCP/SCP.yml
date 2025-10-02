@@ -13,8 +13,6 @@
     - type: SmokeOnTrigger
       duration: 15
       spreadAmount: 3
-    - type: SoundOnTrigger
-      sound: /Audio/Effects/smoke.ogg
     - type: TimerTriggerVisuals
       primingSound:
         path: /Audio/Effects/Smoke-grenade.ogg
@@ -25,7 +23,6 @@
     - type: ZombieImmune
     - type: NonSpreaderZombie
     - type: Clumsy
-    - type: CanHostGuardian
     - type: Damageable
       damageModifierSet: SCPStandart
     - type: Body
@@ -200,6 +197,19 @@
       baseSprintSpeed: 2.8
     - type: Hands
       showInHands: true
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 2000
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
     - type: Puller
     - type: Pullable
     - type: Loadout
@@ -248,7 +258,7 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
     reflectProb: 0.15
-    spread: 90
+    spread: 60
   - type: DisarmMalus
 
 - type: entity
