@@ -126,7 +126,7 @@ namespace Content.Server.Imperial.BloodTrail
                     continue;
 
                 var decalId = _random.Pick(comp.Decals);
-                if (!_prototype.HasIndex<DecalPrototype>(decalId))
+                if (!_prototype.HasIndex(decalId))
                     continue;
 
                 var bloodColor = GetBloodColor(victim);
@@ -168,7 +168,7 @@ namespace Content.Server.Imperial.BloodTrail
         private Color GetBloodColor(EntityUid victim)
         {
             if (TryComp<BloodstreamComponent>(victim, out var bloodstream) &&
-                _prototype.TryIndex<ReagentPrototype>(bloodstream.BloodReagent, out var reagent))
+                _prototype.TryIndex(bloodstream.BloodReagent, out var reagent))
                 return reagent.SubstanceColor;
 
             return Color.DarkRed;
