@@ -11,7 +11,7 @@ public sealed partial class SyndieBattleScoreComponent : Component
 
     [DataField]
     public int KillCount;
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public double SpawnTime;

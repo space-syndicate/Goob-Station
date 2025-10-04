@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatImam
+  name: imam head wrap
+  description: Praise Allah
+  components:
+  - type: Sprite
+    sprite: Imperial/Bush/Clothing/imam.rsi
+  - type: Clothing
+    sprite: Imperial/Bush/Clothing/imam.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair

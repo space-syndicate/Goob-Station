@@ -39,6 +39,7 @@
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
+  - BorgModuleSurgeryTools # Imperial Space хирургия
 
 - type: latheRecipePack
   id: MechParts

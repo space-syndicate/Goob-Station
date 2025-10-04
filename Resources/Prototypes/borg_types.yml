@@ -164,6 +164,7 @@
   - BorgModuleTopicals
   - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
   - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
+  - BorgModuleSurgeryTools # Imperial Space хирургия
 
   radioChannels:
   - Science
@@ -177,6 +178,10 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  - type: BorgHandsImperial # Imperial Space Добавлена рука медицинскому боргу
+    whitelistHandTag: MedicalBorgItem
+  - type: Body # Imperial Space Добавлена рука медицинскому боргу
+    prototype: ImperialBorg 
 
   # Visual
   inventoryTemplateId: borgDutch

@@ -13,6 +13,7 @@
       sound:
         path: /Audio/Ambience/Objects/engine_hum.ogg
     - type: Physics
+      bodyType: Static
     - type: Speech
       speechSounds: Pai
     - type: Fixtures
@@ -21,6 +22,7 @@
           shape:
             !type:PhysShapeAabb
             bounds: "-0.25,-0.25,0.25,0.25"
+          density: 1000
           mask:
           - MachineMask
           layer:

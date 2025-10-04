@@ -1496,7 +1496,7 @@
   id: TerminalweaponClothingOuterArmorReflective
   productEntity: ClothingOuterArmorReflective
   cost:
-    FederationCash: 1500
+    FederationCash: 18000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1504,7 +1504,7 @@
   id: TerminalweaponCTVestLight
   productEntity: CTVestLight
   cost:
-    FederationCash: 2500
+    FederationCash: 14750
   categories:
   - Armor_Terminal_Weapon
 
@@ -1512,7 +1512,7 @@
   id: TerminalweaponClothingOuterArmorCentCom
   productEntity: ClothingOuterArmorCentCom
   cost:
-    FederationCash: 5000
+    FederationCash: 12000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1520,7 +1520,7 @@
   id: TerminalweaponClothingOuterArmorCaptainCarapace
   productEntity: ClothingOuterArmorCaptainCarapace
   cost:
-    FederationCash: 15000
+    FederationCash: 17500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1528,7 +1528,7 @@
   id: TerminalweaponVlPArmor
   productEntity: VlPArmor
   cost:
-    FederationCash: 10000
+    FederationCash: 15000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1536,7 +1536,7 @@
   id: TerminalweaponClothingOuterSonaArmor
   productEntity: ClothingOuterSonaArmor
   cost:
-    FederationCash: 10000
+    FederationCash: 15000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1544,7 +1544,7 @@
   id: TerminalweaponClothingOuterArmorBasicSlim
   productEntity: ClothingOuterArmorBasicSlim
   cost:
-    FederationCash: 7000
+    FederationCash: 11000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1552,7 +1552,7 @@
   id: TerminalweaponClothingOuterArmorBasic
   productEntity: ClothingOuterArmorBasic
   cost:
-    FederationCash: 7000
+    FederationCash: 11000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1560,7 +1560,7 @@
   id: TerminalweaponClothingOuterArmorHeavy
   productEntity: ClothingOuterArmorHeavy
   cost:
-    FederationCash: 50000
+    FederationCash: 60000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1568,7 +1568,7 @@
   id: TerminalweaponClothingOuterArmorHeavyGreen
   productEntity: ClothingOuterArmorHeavyGreen
   cost:
-    FederationCash: 50000
+    FederationCash: 60000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1576,7 +1576,7 @@
   id: TerminalweaponClothingOuterArmorHeavyRed
   productEntity: ClothingOuterArmorHeavyRed
   cost:
-    FederationCash: 50000
+    FederationCash: 60000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1584,7 +1584,7 @@
   id: TerminalweaponClothingOuterArmorMinutemanRiotSuit
   productEntity: ClothingOuterArmorMinutemanRiotSuit
   cost:
-    FederationCash: 25000
+    FederationCash: 15000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1592,7 +1592,7 @@
   id: TerminalweaponClothingOuterArmorMinutemanTrenchcoat
   productEntity: ClothingOuterArmorMinutemanTrenchcoat
   cost:
-    FederationCash: 25000
+    FederationCash: 14000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1600,7 +1600,7 @@
   id: TerminalweaponClothingOuterCoatWarden
   productEntity: ClothingOuterCoatWarden
   cost:
-    FederationCash: 20000
+    FederationCash: 12500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1608,7 +1608,7 @@
   id: TerminalweaponClothingOuterWinterSyndieCapArmored
   productEntity: ClothingOuterWinterSyndieCapArmored
   cost:
-    FederationCash: 20000
+    FederationCash: 13500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1617,7 +1617,7 @@
   productEntity: ClothingOuterHardsuitSingularitySienceGreen
   description: TerminalweaponClothingOuterHardsuitSingularitySience-des
   cost:
-    FederationCash: 6000
+    FederationCash: 2500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1626,7 +1626,7 @@
   description: TerminalweaponClothingOuterHardsuitSingularitySience-des
   productEntity: ClothingOuterHardsuitSingularitySienceOrange
   cost:
-    FederationCash: 6000
+    FederationCash: 7500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1635,7 +1635,7 @@
   productEntity: ClothingOuterHardsuitSingularitySienceBlack
   description: TerminalweaponClothingOuterHardsuitSingularitySience-des
   cost:
-    FederationCash: 18000
+    FederationCash: 2500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1644,7 +1644,7 @@
   description: TerminalweaponClothingOuterHardsuitSingularitySience-des
   productEntity: ClothingOuterHardsuitSingularitySienceWhite
   cost:
-    FederationCash: 8000
+    FederationCash: 5000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1652,7 +1652,7 @@
   id: TerminalweaponClothingOuterArmorRiot
   productEntity: ClothingOuterArmorRiot
   cost:
-    FederationCash: 6000
+    FederationCash: 12000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1660,7 +1660,7 @@
   id: TerminalweaponArmorUnloading6B5
   productEntity: ArmorUnloading6B5
   cost:
-    FederationCash: 1500
+    FederationCash: 5000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1668,7 +1668,7 @@
   id: TerminalweaponBZBeryozaGraphite
   productEntity: BZBeryozaGraphite
   cost:
-    FederationCash: 2000
+    FederationCash: 8000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1676,7 +1676,7 @@
   id: TerminalweaponBZBeryozaPolos
   productEntity: BZBeryozaPolos
   cost:
-    FederationCash: 2000
+    FederationCash: 12500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1684,7 +1684,7 @@
   id: TerminalweaponBZBeryozaZarya
   productEntity: BZBeryozaZarya
   cost:
-    FederationCash: 2000
+    FederationCash: 12000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1692,7 +1692,7 @@
   id: TerminalweaponBZSGranit
   productEntity: BZSGranit
   cost:
-    FederationCash: 9000
+    FederationCash: 19500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1700,7 +1700,7 @@
   id: TerminalweaponBodyArmorUN
   productEntity: BodyArmorUN
   cost:
-    FederationCash: 2500
+    FederationCash: 17500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1708,7 +1708,7 @@
   id: TerminalweaponCoatBZ
   productEntity: CoatBZ
   cost:
-    FederationCash: 2500
+    FederationCash: 15500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1716,7 +1716,7 @@
   id: TerminalweaponBodyArmorMultikam
   productEntity: BodyArmorMultikam
   cost:
-    FederationCash: 6000
+    FederationCash: 13000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1724,7 +1724,7 @@
   id: TerminalweaponBodyArmorMultikamRaptor
   productEntity: BodyArmorMultikamRaptor
   cost:
-    FederationCash: 6000
+    FederationCash: 17500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1732,7 +1732,7 @@
   id: TerminalweaponBodyArmorTacticalRaptor
   productEntity: BodyArmorTacticalRaptor
   cost:
-    FederationCash: 6000
+    FederationCash: 19500
   categories:
   - Armor_Terminal_Weapon
 
@@ -1740,7 +1740,7 @@
   id: TerminalweaponBeryl5MPantsir
   productEntity: Beryl5MPantsir
   cost:
-    FederationCash: 15000
+    FederationCash: 25000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1748,7 +1748,7 @@
   id: TerminalweaponArmoredUnloading6B43Raptor
   productEntity: ArmoredUnloading6B43Raptor
   cost:
-    FederationCash: 15000
+    FederationCash: 22000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1756,7 +1756,7 @@
   id: TerminalweaponArmoredUnloading6B43Desert
   productEntity: ArmoredUnloading6B43Desert
   cost:
-    FederationCash: 15000
+    FederationCash: 18000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1764,7 +1764,7 @@
   id: TerminalweaponArmoredUnloading6B43Military
   productEntity: ArmoredUnloading6B43Military
   cost:
-    FederationCash: 15000
+    FederationCash: 25000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1772,7 +1772,7 @@
   id: TerminalweaponPSZ10uTomb
   productEntity: PSZ10uTomb
   cost:
-    FederationCash: 25000
+    FederationCash: 30000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1780,7 +1780,7 @@
   id: TerminalweaponExoskeletonExplorer
   productEntity: ExoskeletonExplorer
   cost:
-    FederationCash: 35000
+    FederationCash: 30000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1788,7 +1788,7 @@
   id: TerminalweaponTBZETSavior
   productEntity: TBZETSavior
   cost:
-    FederationCash: 50000
+    FederationCash: 70000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1796,7 +1796,39 @@
   id: TerminalweaponCTVestHeavy
   productEntity: CTVestHeavy
   cost:
-    FederationCash: 7000
+    FederationCash: 19500
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceOrangeArmored
+  productEntity: ClothingOuterHardsuitSingularitySienceOrangeArmored
+  cost:
+    FederationCash: 20000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceGreenArmored
+  productEntity: ClothingOuterHardsuitSingularitySienceGreenArmored
+  cost:
+    FederationCash: 25000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceWhiteArmored
+  productEntity: ClothingOuterHardsuitSingularitySienceWhiteArmored
+  cost:
+    FederationCash: 45000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceBlackArmored
+  productEntity: ClothingOuterHardsuitSingularitySienceBlackArmored
+  cost:
+    FederationCash: 40000
   categories:
   - Armor_Terminal_Weapon
 
@@ -1805,7 +1837,7 @@
   id: TerminalweaponClothingHeadHelmetBulat
   productEntity: ClothingHeadHelmetBulat
   cost:
-    FederationCash: 20000
+    FederationCash: 25000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1813,7 +1845,7 @@
   id: TerminalweaponClothingHeadHelmetWarrior
   productEntity: ClothingHeadHelmetWarrior
   cost:
-    FederationCash: 15000
+    FederationCash: 25000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1821,7 +1853,7 @@
   id: TerminalweaponClothingHeadHelmetGoldenEagle
   productEntity: ClothingHeadHelmetGoldenEagle
   cost:
-    FederationCash: 17000
+    FederationCash: 25000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1829,7 +1861,7 @@
   id: TerminalweaponSonaArmoryHelmet
   productEntity: SonaArmoryHelmet
   cost:
-    FederationCash: 4500
+    FederationCash: 2500
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1837,7 +1869,7 @@
   id: TerminalweaponClothingHeadHelmetOpsCore
   productEntity: ClothingHeadHelmetOpsCore
   cost:
-    FederationCash: 13000
+    FederationCash: 20000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1845,7 +1877,7 @@
   id: TerminalweaponClothingHeadHelmetBrigmedic
   productEntity: ClothingHeadHelmetBrigmedic
   cost:
-    FederationCash: 3500
+    FederationCash: 7500
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1853,7 +1885,7 @@
   id: TerminalweaponClothingHeadHelmetK63
   productEntity: ClothingHeadHelmetK63
   cost:
-    FederationCash: 3500
+    FederationCash: 7500
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1861,7 +1893,7 @@
   id: TerminalweaponClothingHeadRiotHelmetMinuteman
   productEntity: ClothingHeadRiotHelmetMinuteman
   cost:
-    FederationCash: 4000
+    FederationCash: 10000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1869,7 +1901,7 @@
   id: TerminalweaponClothingHeadHelmetJustice
   productEntity: ClothingHeadHelmetJustice
   cost:
-    FederationCash: 1500
+    FederationCash: 2500
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1885,7 +1917,7 @@
   id: TerminalweaponCTHelmet
   productEntity: CTHelmet
   cost:
-    FederationCash: 30000
+    FederationCash: 25000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1893,7 +1925,7 @@
   id: TerminalweaponClothingHeadHelmetBasic
   productEntity: ClothingHeadHelmetBasic
   cost:
-    FederationCash: 1500
+    FederationCash: 2500
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1901,7 +1933,7 @@
   id: TerminalweaponClothingHeadHelmetSwat
   productEntity: ClothingHeadHelmetSwat
   cost:
-    FederationCash: 4500
+    FederationCash: 10000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1909,7 +1941,7 @@
   id: TerminalweaponClothingHeadHelmetSwatSyndicate
   productEntity: ClothingHeadHelmetSwatSyndicate
   cost:
-    FederationCash: 4500
+    FederationCash: 10000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1917,7 +1949,7 @@
   id: TerminalweaponAssaultACHML
   productEntity: AssaultACHML
   cost:
-    FederationCash: 1500
+    FederationCash: 6000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1925,7 +1957,7 @@
   id: TerminalweaponAssaultACH
   productEntity: AssaultACH
   cost:
-    FederationCash: 1500
+    FederationCash: 6000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1933,7 +1965,7 @@
   id: TerminalweaponAssaultACHUN
   productEntity: AssaultACHUN
   cost:
-    FederationCash: 1500
+    FederationCash: 6000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1941,7 +1973,7 @@
   id: TerminalweaponAirCVC
   productEntity: AirCVC
   cost:
-    FederationCash: 1500
+    FederationCash: 6000
   categories:
   - Helmet_Terminal_Weapon
 
@@ -1949,6 +1981,6 @@
   id: TerminalweaponAssaultHelmetAltyn
   productEntity: AssaultHelmetAltyn
   cost:
-    FederationCash: 4500
+    FederationCash: 14000
   categories:
   - Helmet_Terminal_Weapon

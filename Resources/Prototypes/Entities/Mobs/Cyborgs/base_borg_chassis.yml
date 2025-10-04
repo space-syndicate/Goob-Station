@@ -82,7 +82,7 @@
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
-    laws: Crewsimov
+    laws: NTDefault #Imperial Space Замена на дефолтные законы ИИ
   - type: Inventory
     templateId: borg
   - type: Hands

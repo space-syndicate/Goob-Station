@@ -100,3 +100,43 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/lasthopeencryptionkey.rsi
+
+# Stamps
+- type: entity
+  name: Nedra stamp
+  parent: RubberStampMime
+  id: RubberStampNedra
+  components:
+    - type: Stamp
+      stampedName: stamp-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#FFA500"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp
+
+- type: entity
+  name: Nedra command stamp
+  parent: RubberStampMime
+  id: RubberStampNedraCommand
+  components:
+    - type: Stamp
+      stampedName: stamp-command-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#ff7e2e"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp
+
+- type: entity
+  name: Nedra comitet stamp
+  parent: RubberStampMime
+  id: RubberStampNedraComitet
+  components:
+    - type: Stamp
+      stampedName: stamp-comitet-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#60008f"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp

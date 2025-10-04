@@ -1,0 +1,10 @@
+- type: entity
+  parent: Bible
+  name: Quaran
+  description: "Inshallah"
+  id: Quaran
+  components:
+  - type: Sprite
+    sprite: Imperial/Bush/allah.rsi
+  - type: Item
+    sprite: Imperial/Bush/allah.rsi

@@ -94,7 +94,7 @@
   id: PlushieErika
   name: Erika Steinhofer
   suffix: Crook, COMMUNITY, TOY
-  description: Doesn't believe in coincidences. Especially when a passenger is standing next to a body.
+  description: Believes that the perfect mixture exists. Unlike perfect people.
   components:
   - type: Item
     size: Normal
@@ -105,8 +105,7 @@
     state: icon
   - type: StorageFill
     contents:
-      - id: ForensicPad
-      - id: ForensicPad
+      - id: GasAnalyzer
 
 - type: entity
   parent: BasePlushieCharacter
@@ -209,7 +208,7 @@
     speechSounds: SavirSaid
   - type: SpeakOnTrigger
     pack: SavirWords
-  
+
 - type: speechSounds
   id: SavirSaid
   saySound:
@@ -474,3 +473,26 @@
   - type: SpaceGarbage
 
 # Фумо @buhoj_med
+
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieClaud
+  name: Claudius the Great
+  suffix: Vl, COMMUNITY, TOY
+  description: A toy of a thoughtful captain with gorgeous hair holding a chess piece of a pawn in his hand.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/plushclaud.rsi
+    state: Plush
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoJunko
+  - type: StorageFill
+    contents:
+      - id: ChessBoardTabletop

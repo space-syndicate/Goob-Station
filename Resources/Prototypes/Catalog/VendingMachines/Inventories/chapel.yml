@@ -21,6 +21,8 @@
     BoxCandleSmall: 2
     Urn: 5
     Bible: 1
+    Quaran: 1 #Imperial Added Quaran
+    ClothingHeadHatImam: 2 #Imperial Added Quaran
   contrabandInventory:
     FoodBakedBunHotX: 2
     DrinkWineBottleFull: 1

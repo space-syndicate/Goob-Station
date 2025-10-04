@@ -21,3 +21,6 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: Tag
+    tags:
+    - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать органы

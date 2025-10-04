@@ -1,0 +1,35 @@
+- type: localizedDataset
+  id: blueteamfirstname
+  values:
+   prefix: imperial-space-TDM-role-blueteam-dataset-
+   count: 1
+
+- type: localizedDataset
+  id: blueteammedicfirstname
+  values:
+   prefix: imperial-space-TDM-role-blueteam_medic-dataset-
+   count: 1
+
+- type: localizedDataset
+  id: blueteamcommanderfirstname
+  values:
+   prefix: imperial-space-TDM-role-blueteam_commander-dataset-
+   count: 1
+
+- type: localizedDataset
+  id: redteamfirstname
+  values:
+   prefix: imperial-space-TDM-role-redteam-dataset-
+   count: 1
+
+- type: localizedDataset
+  id: redteammedicfirstname
+  values:
+   prefix: imperial-space-TDM-role-redteam_medic-dataset-
+   count: 1
+
+- type: localizedDataset
+  id: redteamcommanderfirstname
+  values:
+   prefix: imperial-space-TDM-role-redteam_commander-dataset-
+   count: 1

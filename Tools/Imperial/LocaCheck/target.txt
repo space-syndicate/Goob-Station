@@ -19124,7 +19124,7 @@
 /Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰ent-VendingMachineCola = Прохладительные напитки Робаст
 /Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰    .desc = Автомат прохладительных напитков, предоставленный компанией Робаст Индастриз, ООО.
 /Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰    .suffix = { "" }
-/Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰ent-VendingMachineDinnerware = Кухонно-пластальная поварская утварь
+/Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰ent-VendingMachineDinnerware = Кухонные инструменты
 /Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰    .desc = Поставщик оборудования для кухонь и ресторанов.
 /Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰    .suffix = { "" }
 /Locale/ru-RU/prototypes/entities/structures/machines/vending_machines.ftl鎰ent-VendingMachineDiscount = Дискаунтер Дэна
@@ -41336,8 +41336,8 @@
 /Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰ent-VendingMachineRestockCostumes = набор пополнения ТеатроШкаф
 /Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰    .desc = Паноптикум сотрудников NanoTrasen пестрит в красочной трагикомедии. Присоединяйтесь к ним и вы! Загрузите это в ближайший торгомат ТеатроШкаф.
 /Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰    .suffix = { "" }
-/Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰ent-VendingMachineRestockDinnerware = набор пополнения Кухонно-пластальная поварская утварь
-/Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰    .desc = На этой кухне всегда жарко! Поместите в слот для пополнения Кухонно-пластальной поварской утвари чтобы начать.
+/Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰ent-VendingMachineRestockDinnerware = набор пополнения Кухонные инструменты
+/Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰    .desc = На этой кухне всегда жарко! Поместите в слот для пополнения Кухонных инструментов чтобы начать.
 /Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰    .suffix = { "" }
 /Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰ent-VendingMachineRestockDiscountDans = набор пополнения Дискаунтер Дэна
 /Locale/ru-RU/prototypes/entities/objects/specific/service/vending_machine_restock.ftl鎰    .desc = Коробка, набитая солью и крахмалом. Зачем терпеть качество, когда есть количество? Дискаунтер Дэна!
@@ -45831,8 +45831,8 @@
 /Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰    .desc = Содержит набор пополнения торгомата АлкоМат.
 /Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰ent-CrateVendingMachineRestockClothesFilled = ящик пополнения одежды
 /Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰    .desc = Содержит несколько наборов пополнения торгоматов, ОдеждоМата и ТеатроШкафа.
-/Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰ent-CrateVendingMachineRestockDinnerwareFilled = ящик пополнения Кухонно-пластальная поварская утварь
-/Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰    .desc = Содержит набор пополнения торгомата Кухонно-пластальная поварская утварь.
+/Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰ent-CrateVendingMachineRestockDinnerwareFilled = ящик пополнения Кухонные инструменты
+/Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰    .desc = Содержит набор пополнения торгомата Кухонные инструменты.
 /Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰ent-CrateVendingMachineRestockEngineeringFilled = ящик пополнения ИнжеШкаф
 /Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰    .desc = Содержит набор пополнения торгомата ИнжеШкаф. Он же может пополнить торгомат ТвоИнструменты.
 /Locale/ru-RU/prototypes/catalog/fills/crates/vending-crates.ftl鎰ent-CrateVendingMachineRestockGamesFilled = ящик пополнения Безобидные развлечения

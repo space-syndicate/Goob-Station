@@ -120,6 +120,34 @@
   - type: InstantAction
     event: !type:ChangeReagentAction
 
+- type: entity
+  id: BorgModuleSurgeryTools
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: surgery tools cyborg module
+  description: Medical module containing surgery tools.
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-diagnosis
+  - type: ItemBorgModule
+    items:
+    - Saw
+    - Retractor
+    - ScalpelLaser
+    - Cautery
+    # Добавить степлер, руку с вайтлистом для скоб и ампутатор из привата
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleSurgeryTools
+  result: BorgModuleSurgeryTools
+
+- type: Tag
+  id: MedicalBorgItem
+
 ## Медицинский киборг синдиката
 - type: entity
   id: PlayerBorgSyndicateMedicalBattery
@@ -135,6 +163,7 @@
         - BorgModuleTopicals
         - BorgModuleRescue
         - BorgModuleAdvancedTreatmentSyndicate
+        - BorgModuleSurgeryTools
   - type: ItemSlots
     slots:
       cell_slot:

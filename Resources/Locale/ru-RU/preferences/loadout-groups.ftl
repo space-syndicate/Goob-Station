@@ -163,6 +163,12 @@ loadout-group-detective-outerclothing = Детектив, верхняя оде�
 
 loadout-group-security-cadet-jumpsuit = Кадет СБ, комбинезон
 
+loadout-group-SeniorOfficer-jumpsuit = Старший офицер, комбинезон
+loadout-group-SeniorOfficer-backpack = Старший офицер, рюкзак
+loadout-group-SeniorOfficer-belt = Старший офицер, пояс
+loadout-group-SeniorOfficer-gloves = Старший офицер, перчатки
+loadout-group-SeniorOfficer-head = Старший офицер, голова
+
 # Medical
 loadout-group-medical-gloves = Медицинский отдел, перчатки
 loadout-group-medical-mask = Медицинский отдел, маска

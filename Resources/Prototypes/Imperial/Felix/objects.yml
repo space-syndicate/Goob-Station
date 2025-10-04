@@ -590,7 +590,7 @@
   id: StarCorpsTradingTerminal
   parent: BaseStructure
   name: trading terminal
-  suffix: Felix
+  suffix: Felix, ElysiumPrime
   description: Multiple holographic displays that you can interact with.
   placement:
     mode: SnapgridCenter
@@ -635,6 +635,29 @@
         acts: [ "Destruction" ]
   - type: Climbable
   - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - FEmergencyequipment
+    - FEngineering
+    - FMaterials
+    - FMedicine
+    - FRnD
+    - FSecure
+    - FProvisions
+    - FEntertainments
+    - FService
+    currencyWhitelist:
+    - FederationCash
+    balance:
+      FederationCash: 0
+
 
 - type: entity
   id: ElysiumBannerFlag

@@ -117,6 +117,7 @@
        0: Alive
        250: Critical
        350: Dead
+    - type: FlashImmunity #Imperial Space Добавлен иммунитет к вспышкам штурмовому киборгу синдиката
 
 - type: entity
   id: BorgChassisSyndicateMedical

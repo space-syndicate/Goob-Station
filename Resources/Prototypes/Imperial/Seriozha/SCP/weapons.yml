@@ -42,7 +42,7 @@
     types:
       Heat: 25
       Radiation: 20
-      Structural: 100
+      Structural: 90
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_beam_heavy
@@ -94,4 +94,3 @@
       - FlametrowherTank
   - type: UseDelay
     delay: 2.0
-

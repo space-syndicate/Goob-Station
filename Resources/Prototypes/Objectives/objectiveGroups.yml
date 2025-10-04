@@ -80,7 +80,7 @@
     MedicalTechFabCircuitboardStealObjective: 1
     ClothingHeadsetAltMedicalStealObjective: 1
     FireAxeStealObjective: 1                            #eng
-    AmePartFlatpackStealObjective: 1
+    # AmePartFlatpackStealObjective: 1 # Imperial Space Удалена цель на кражу частей ДАМ, т.к на некоторых картах его нет
     ExpeditionsCircuitboardStealObjective: 1            #sup
     CargoShuttleCircuitboardStealObjective: 1
     ClothingEyesHudBeerStealObjective: 1                #srv

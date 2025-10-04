@@ -199,14 +199,13 @@
         - ClothingHandsGlovesCentCom
         - ClothingUniformJumpsuitCentcomOfficer
         - ClothingUniformJumpskirtSpecialOfficer
+        # Other
+        - ClothingGaloshesExplosive
+        - ClothingShoesGaloshes
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
-      range: 1000
-    - type: DeviceLinkSource
-      range: 1000
-      ports:
-        - SignalMetalDetector
+      range: 200
     - type: Construction
       graph: ImperialMetalDetector
       node: detector
@@ -230,11 +229,12 @@
           shape: !type:PhysShapeAabb
             bounds: "-0.45,-0.45,0.45,0.45"
           hard: false
-          density: 1500
+          density: 100
           mask:
-            - DoorPassable
+          - Impassable
+          - HighImpassable
           layer:
-            - AirlockLayer
+          - AirlockLayer
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTrigger

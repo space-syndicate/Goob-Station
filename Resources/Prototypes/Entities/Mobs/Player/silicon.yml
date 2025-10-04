@@ -252,7 +252,7 @@
   - type: BlockMovement
     blockInteraction: false
   - type: SiliconLawProvider
-    laws: Crewsimov
+    laws: NTDefault #Imperial Space Замена на дефолтные законы ИИ
   - type: SiliconLawBound
   - type: ActionGrant
     actions:

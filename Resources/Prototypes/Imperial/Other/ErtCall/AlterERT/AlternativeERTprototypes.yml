@@ -18,6 +18,14 @@
       prototypes: [ ERTCallLeaderGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-leader-eva-name-alternative
+      description: ertcall-leader-eva-desc-alternative
+      rules: ertcall-leader-eva-rules-alternative
+      raffle:
+        settings: short
+
 
 #Medic
 - type: entity
@@ -37,6 +45,13 @@
       prototypes: [ ERTCallMedicalGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-medic-eva-name-alternative
+      description: ertcall-medic-eva-desc-alternative
+      rules: ertcall-medic-eva-rules-alternative
+      raffle:
+        settings: short
 
 #Security
 - type: entity
@@ -56,6 +71,13 @@
       prototypes: [ ERTCallSecurityGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-security-eva-name-alternative
+      description: ertcall-security-eva-desc-alternative
+      rules: ertcall-security-eva-rules-alternative
+      raffle:
+        settings: short
 
 #Engineer
 - type: entity
@@ -75,6 +97,13 @@
       prototypes: [ ERTCallEngineerGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-engineer-eva-name-alternative
+      description: ertcall-engineer-eva-desc-alternative
+      rules: ertcall-engineer-eva-rules-alternative
+      raffle:
+        settings: short
 
 #Janitor
 - type: entity
@@ -94,3 +123,10 @@
       prototypes: [ ERTCallJanitorGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ertcall-junitor-eva-name-alternative
+      description: ertcall-junitor-eva-desc-alternative
+      rules: ertcall-junitor-eva-rules-alternative
+      raffle:
+        settings: short

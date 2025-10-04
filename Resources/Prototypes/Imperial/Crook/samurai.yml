@@ -10,7 +10,6 @@
     sprite: Imperial/Crook/Samurai/suit.rsi
   - type: Clothing
     sprite: Imperial/Crook/Samurai/suit.rsi
-  # hardsuit stuff
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -27,37 +26,13 @@
         Slash: 0.7
         Piercing: 0.3
         Heat: 0.4
-        Radiation: 0.05
-        Caustic: 0.05
+        Radiation: 0
+        Caustic: 0
         Stamina: 0.45
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
-  - type: PowerCellDraw
-    drawRate: 0
-  - type: ToggleCellDraw
-  - type: ItemCreator
-    action: ActionCreateThrowingStar
-    charge: 0
-    spawnedPrototype: ThrowingStarNinja
-    noPowerPopup: ninja-no-power
-  - type: NinjaSuit
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: false
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        disableEject: true
-        whitelist:
-          tags:
-            - PowerCell
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
@@ -162,39 +137,20 @@
     gloves: ClothingHandsGlovesCombatUnremoveable
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
-    pocket2: DoubleEmergencyOxygenTankFilled
     belt: RedEnergyKatanaSamurai
-  inhand:
-    - JetpackBlackFilled
 
 - type: entity
   name: Space Samurai
   suffix: Crook, Samurai
-  parent: MobHuman
+  parent: MobMechanic
   id: SpaceSamurai
   components:
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0
-    damageRecovery:
-      types:
-        Asphyxiation: 0
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0
-        Heat: 0
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
-  - type: Hunger
-    baseDecayRate: 0
-  - type: Thirst
-    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -212,14 +168,32 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
-  - type: SpaceNinja
+  - type: Access
+    groups: []
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["NuclearOperative"]]
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
     - FreedomImplant
     - ScramImplant
+    - ImperialBlinkImplant
+    - ImperialSmokeImplant
+    - EmpImplant
+    - EmpImplant
+    - RadioImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: SiliconLawProvider
+    laws: EmptyLawset
+
+- type: siliconLawset
+  id: EmptyLawset
+  laws: []
+  obeysTo: laws-empty
 
 - type: entity
   name: Space Samurai
@@ -234,3 +208,255 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
+
+### Bases
+
+- type: reagent
+  id: AndroidBlood
+  name: reagent-name-android-blood
+  group: Toxins
+  desc: reagent-desc-android-blood
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: shocking
+  color: "#4d7ee7"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+      - !type:Electrocute
+        probability: 0.1
+        conditions:
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+      - !type:HealthChange
+        damage:
+          groups:
+            Airloss: 1
+        conditions:
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+
+- type: metabolizerType
+  id: Android
+  name: metabolizer-type-android
+
+- type: entity
+  id: OrganAndroidStomach
+  parent: OrganHumanStomach
+  name: stomach
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Android]
+    groups:
+      - id: Food
+      - id: Drink
+      - id: Medicine
+      - id: Poison
+      - id: Narcotic
+      - id: Alcohol
+        rateModifier: 0.2
+
+- type: body
+  id: Android
+  name: "android"
+  root: torso
+  slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        heart: OrganHumanHeart
+        lungs: OrganHumanLungs
+        stomach: OrganAndroidStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmHuman
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandHuman
+    left_hand:
+      part: LeftHandHuman
+    right_leg:
+      part: RightLegHuman
+      connections:
+      - right_foot
+    left_leg:
+      part: LeftLegHuman
+      connections:
+      - left_foot
+    right_foot:
+      part: RightFootHuman
+    left_foot:
+      part: LeftFootHuman
+
+- type: entity
+  save: false
+  parent: [BaseMobSpecies, MobBloodstream]
+  id: BaseMobMechanic
+  abstract: true
+  components:
+  - type: Body
+    prototype: Android
+  - type: Bloodstream
+    bloodReagent: AndroidBlood
+    chemicalMaxVolume: 150
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Flashed
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: ZombieImmune
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSecurityCyborg
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: SiliconLawProvider
+    laws: NTDefault
+  - type: EmagSiliconLaw
+    stunTime: 5
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
+  - type: UnblockableSpeech
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: WiresPanel
+    openingTool: Prying
+  - type: ActivatableUIRequiresPanel
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: ActivatableUIRequiresLock
+  - type: LockedWiresPanel
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 30
+  - type: FireVisuals
+    alternateState: Standing
+  - type: NoSlip
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: StaticPrice
+    price: 25000
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity
+  save: false
+  parent: BaseMobMechanic
+  id: MobMechanic
+  name: Android

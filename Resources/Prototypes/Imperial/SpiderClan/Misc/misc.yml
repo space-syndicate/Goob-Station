@@ -131,57 +131,36 @@
     - state: ninja
 
 - type: entity
-  parent: ClothingHeadset
+  parent: ClothingHeadsetNinja
   id: ClothingHeadsetSpiderClanGreen
-  suffix: КланПаука, Общий, Crook, SpiderClan
+  suffix: Crook, SpiderClan
   name: ninja headset
   description: The Spider Clan's cutting-edge technological development.
   components:
-  - type: EncryptionKeyHolder
-    keySlots: 30
-  - type: ContainerFill
-    containers:
-      key_slots:
-        - EncryptionKeySpiderClanChannel
-        - EncryptionKeyCommon
   - type: Sprite
     sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
 
 - type: entity
-  parent: ClothingHeadset
+  parent: ClothingHeadsetNinja
   id: ClothingHeadsetSpiderClanRed
-  suffix: КланПаука, Общий, Crook, SpiderClan
+  suffix: Crook, SpiderClan
   name: ninja headset
   description: The Spider Clan's cutting-edge technological development.
   components:
-  - type: EncryptionKeyHolder
-    keySlots: 30
-  - type: ContainerFill
-    containers:
-      key_slots:
-        - EncryptionKeySpiderClanChannel
-        - EncryptionKeyCommon
   - type: Sprite
     sprite: Imperial/SpiderClan/Clothing/headsets/red.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/headsets/red.rsi
 
 - type: entity
-  parent: ClothingHeadset
+  parent: ClothingHeadsetNinja
   id: ClothingHeadsetSpiderClanBlue
-  suffix: КланПаука, Общий, Crook, SpiderClan
+  suffix: Crook, SpiderClan
   name: ninja headset
   description: The Spider Clan's cutting-edge technological development.
   components:
-  - type: EncryptionKeyHolder
-    keySlots: 30
-  - type: ContainerFill
-    containers:
-      key_slots:
-        - EncryptionKeySpiderClanChannel
-        - EncryptionKeyCommon
   - type: Sprite
     sprite: Imperial/SpiderClan/Clothing/headsets/blue.rsi
   - type: Clothing

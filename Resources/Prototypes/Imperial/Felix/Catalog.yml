@@ -1,0 +1,887 @@
+- type: listing
+  id: F_CrateEmergencyInternalsLarge
+  productEntity: CrateEmergencyInternalsLarge
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEmergencyequipment
+
+- type: listing
+  id: F_CrateGenericBiosuit
+  productEntity: CrateGenericBiosuit
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEmergencyequipment
+
+- type: listing
+  id: F_CrateEmergencyInflatablewall
+  productEntity: CrateEmergencyInflatablewall
+  cost:
+    FederationCash: 500
+  categories:
+  - FEmergencyequipment
+
+- type: listing
+  id: F_CrateEmergencyFire
+  productEntity: CrateEmergencyFire
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEmergencyequipment
+
+- type: listing
+  id: F_CrateEmergencyRadiation
+  productEntity: CrateEmergencyRadiation
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEmergencyequipment
+
+- type: listing
+  id: F_CrateEmergencyExplosive
+  productEntity: CrateEmergencyExplosive
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEmergencyequipment
+
+
+
+- type: listing
+  id: F_CrateEvaKit
+  productEntity: CrateEvaKit
+  cost:
+    FederationCash: 2000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringAMEjar
+  productEntity: CrateEngineeringAMEJar
+  cost:
+    FederationCash: 500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringAMEjar1
+  productEntity: CrateEngineeringAMEJar1
+  cost:
+    FederationCash: 1250
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringAMEjar2
+  productEntity: CrateEngineeringAMEJar2
+  cost:
+    FederationCash: 1750
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringAMEjar3
+  productEntity: CrateEngineeringAMEJar3
+  cost:
+    FederationCash: 2500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringCableHV
+  productEntity: CrateEngineeringCableHV
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringCableMV
+  productEntity: CrateEngineeringCableMV
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringCableLV
+  productEntity: CrateEngineeringCableLV
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringTeslaGenerator
+  productEntity: CrateEngineeringTeslaGenerator
+  cost:
+    FederationCash: 10000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringMiniJetpack
+  productEntity: CrateEngineeringMiniJetpack
+  cost:
+    FederationCash: 4000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringTeslaGroundingRod
+  productEntity: CrateEngineeringTeslaGroundingRod
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateParticleDecelerators
+  productEntity: CrateParticleDecelerators
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateRCDAmmo
+  productEntity: CrateRCDAmmo
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringCableVulk
+  productEntity: CrateEngineeringCableBulk
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateCrateRCD
+  productEntity: CrateRCD
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringSingularityContaiment
+  productEntity: CrateEngineeringSingularityContainment
+  cost:
+    FederationCash: 6500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringSingularityGenerator
+  productEntity: CrateEngineeringSingularityGenerator
+  cost:
+    FederationCash: 10000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringTeslaCoil
+  productEntity: CrateEngineeringTeslaCoil
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringSingularityCollector
+  productEntity: CrateEngineeringSingularityCollector
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringSingularityEmitter
+  productEntity: CrateEngineeringSingularityEmitter
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringStationBeaconBundle
+  productEntity: CrateEngineeringStationBeaconBundle
+  cost:
+    FederationCash: 500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_CrateEngineeringSpaceHeater
+  productEntity: CrateEngineeringSpaceHeater
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEngineering
+
+- type: listing
+  id: F_PlasmaCanister
+  productEntity: PlasmaCanister
+  cost:
+    FederationCash: 3000
+  categories:
+  - FEngineering
+
+
+
+- type: listing
+  id: F_WaterTankFull
+  productEntity: WaterTankFull
+  cost:
+    FederationCash: 1000
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_WeldingFuelTankFull
+  productEntity: WeldingFuelTankFull
+  cost:
+    FederationCash: 2000
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialBasicResource
+  productEntity: CrateMaterialBasicResource
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialPaper
+  productEntity: CrateMaterialPaper
+  cost:
+    FederationCash: 500
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialCardboard
+  productEntity: CrateMaterialCardboard
+  cost:
+    FederationCash: 500
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialBrass
+  productEntity: CrateMaterialBrass
+  cost:
+    FederationCash: 1000
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialPlasteel
+  productEntity: CrateMaterialPlasteel
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialSteel
+  productEntity: CrateMaterialSteel
+  cost:
+    FederationCash: 1000
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialGlass
+  productEntity: CrateMaterialGlass
+  cost:
+    FederationCash: 1000
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialPlastic
+  productEntity: CrateMaterialPlastic
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMaterials
+
+- type: listing
+  id: F_CrateMaterialTextiles
+  productEntity: CrateMaterialTextiles
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMaterials
+
+
+
+- type: listing
+  id: F_MedkitRadiationImperialFilled
+  productEntity: MedkitRadiationImperialFilled
+  cost:
+    FederationCash: 600
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_MedkitOxygenImperialFilled
+  productEntity: MedkitOxygenImperialFilled
+  cost:
+    FederationCash: 600
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_BruteMedkitImperialFilled
+  productEntity: BruteMedkitImperialFilled
+  cost:
+    FederationCash: 600
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_ToxinMedkitImperialFilled
+  productEntity: ToxinMedkitImperialFilled
+  cost:
+    FederationCash: 600
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_MedkitBurnImperialFilled
+  productEntity: MedkitBurnImperialFilled
+  cost:
+    FederationCash: 600
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_AdvancedFirstAidMedkitImperialFilled
+  productEntity: AdvancedFirstAidMedkitImperialFilled
+  cost:
+    FederationCash: 1200
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_CrateMedicalSupplies
+  productEntity: CrateMedicalSupplies
+  cost:
+    FederationCash: 1200
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_CrateChemistryVials
+  productEntity: CrateChemistryVials
+  cost:
+    FederationCash: 500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_BoxBodyBag
+  productEntity: BoxBodyBag
+  cost:
+    FederationCash: 500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_SurgeryBoxOrgansFilled
+  productEntity: SurgeryBoxOrgansFilled
+  cost:
+    FederationCash: 2500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_SurgeryBoxSmallRenthenPhoto
+  productEntity: SurgeryBoxSmallRenthenPhoto
+  cost:
+    FederationCash: 500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_CrateChemistryD
+  productEntity: CrateChemistryD
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_CrateChemistryP
+  productEntity: CrateChemistryP
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_CrateChemistryS
+  productEntity: CrateChemistryS
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMedicine
+
+- type: listing
+  id: F_CrateChemistrySupplies
+  productEntity: CrateChemistrySupplies
+  cost:
+    FederationCash: 1500
+  categories:
+  - FMedicine
+
+
+
+- type: listing
+  id: F_CrateArtifactContainer
+  productEntity: CrateArtifactContainer
+  cost:
+    FederationCash: 5000
+  categories:
+  - FRnD
+
+- type: listing
+  id: F_HandheldArtifactContainer
+  productEntity: HandheldArtifactContainer
+  cost:
+    FederationCash: 7000
+  categories:
+  - FRnD
+
+- type: listing
+  id: F_ComplexXenoArtifactItem
+  productEntity: ComplexXenoArtifactItem
+  cost:
+    FederationCash: 3000
+  categories:
+  - FRnD
+
+- type: listing
+  id: F_ComplexXenoArtifact
+  productEntity: ComplexXenoArtifact
+  cost:
+    FederationCash: 2500
+  categories:
+  - FRnD
+
+
+
+- type: listing
+  id: F_CrateRestaints
+  productEntity: CrateRestraints
+  cost:
+    FederationCash: 6000
+  categories:
+  - FSecure
+
+- type: listing
+  id: F_CrateSecurityNonLethal
+  productEntity: CrateSecurityNonlethal
+  cost:
+    FederationCash: 2000
+  categories:
+  - FSecure
+
+- type: listing
+  id: F_CrateSecNonLethalThrowables
+  productEntity: CrateSecNonlethalThrowables
+  cost:
+    FederationCash: 1500
+  categories:
+  - FSecure
+
+- type: listing
+  id: F_CrateSecuritySupplies
+  productEntity: CrateSecuritySupplies
+  cost:
+    FederationCash: 1500
+  categories:
+  - FSecure
+
+- type: listing
+  id: F_ClothingMaskMuzzle
+  productEntity: ClothingMaskMuzzle
+  cost:
+    FederationCash: 150
+  categories:
+  - FSecure
+
+- type: listing
+  id: F_ClothingEyesBlinfold
+  productEntity: ClothingEyesBlindfold
+  cost:
+    FederationCash: 150
+  categories:
+  - FSecure
+
+
+
+- type: listing
+  id: F_FoodBoxPizzaFilled
+  productEntity: FoodBoxPizzaFilled 
+  cost:
+    FederationCash: 1500
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodBarSupply
+  productEntity: CrateFoodBarSupply
+  cost:
+    FederationCash: 1000
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodMRE
+  productEntity: CrateFoodMRE
+  cost:
+    FederationCash: 2500
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodDinnerware
+  productEntity: CrateFoodDinnerware
+  cost:
+    FederationCash: 1000
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodCooking
+  productEntity: CrateFoodCooking
+  cost:
+    FederationCash: 1000
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodSoftdrinks
+  productEntity: CrateFoodSoftdrinks
+  cost:
+    FederationCash: 1500
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodHappyHonkBigBite
+  productEntity: CrateFoodHappyHonkBigBite
+  cost:
+    FederationCash: 1500
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodIceCream
+  productEntity: CrateFoodIceCream
+  cost:
+    FederationCash: 2500
+  categories:
+  - FProvisions
+
+- type: listing
+  id: F_CrateFoodGetMore
+  productEntity: CrateFoodGetMore
+  cost:
+    FederationCash: 1500
+  categories:
+  - FProvisions
+
+
+
+- type: listing
+  id: F_BriefcaseBrown
+  productEntity: BriefcaseBrown
+  cost:
+    FederationCash: 1000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_BriefcasePresentable
+  productEntity: BriefcasePresentable
+  cost:
+    FederationCash: 5000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_MicrophoneInstrument
+  productEntity: MicrophoneInstrument
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_HarpInstrument
+  productEntity: HarpInstrument
+  cost:
+    FederationCash: 1500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunBoxing
+  productEntity: CrateFunBoxing
+  cost:
+    FederationCash: 1000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunToyBox
+  productEntity: CrateFunToyBox
+  cost:
+    FederationCash: 1000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunInstrumentsWoodwind
+  productEntity: CrateFunInstrumentsWoodwind
+  cost:
+    FederationCash: 2000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunDartsSet
+  productEntity: CrateFunDartsSet
+  cost:
+    FederationCash: 1000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunInstrumentsBrass
+  productEntity: CrateFunInstrumentsBrass
+  cost:
+    FederationCash: 2000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunInstrumentsKeyedPercussion
+  productEntity: CrateFunInstrumentsKeyedPercussion
+  cost:
+    FederationCash: 2000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunInstrumentsVariety
+  productEntity: CrateFunInstrumentsVariety
+  cost:
+    FederationCash: 2500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunInstrumentsSpecial
+  productEntity: CrateFunInstrumentsSpecial
+  cost:
+    FederationCash: 2000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunInstrumentsString
+  productEntity: CrateFunInstrumentsString
+  cost:
+    FederationCash: 2000
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_UprightPianoInstrument
+  productEntity: UprightPianoInstrument
+  cost:
+    FederationCash: 2500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_PianoInstrument
+  productEntity: PianoInstrument
+  cost:
+    FederationCash: 2500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_TrumpetInstrument
+  productEntity: TrumpetInstrument
+  cost:
+    FederationCash: 2500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_ChurchOrganInstrument
+  productEntity: ChurchOrganInstrument
+  cost:
+    FederationCash: 3500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunSharkPlushieBulk
+  productEntity: CrateFunSharkPlushieBulk
+  cost:
+    FederationCash: 500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CratePlants
+  productEntity: CratePlants
+  cost:
+    FederationCash: 500
+  categories:
+  - FEntertainments
+
+- type: listing
+  id: F_CrateFunMysteryFigurines
+  productEntity: CrateFunMysteryFigurines
+  cost:
+    FederationCash: 450
+  categories:
+  - FEntertainments
+
+
+
+- type: listing
+  id: F_LeafTunkFull
+  productEntity: LeafTankFull
+  cost:
+    FederationCash: 1500
+  categories:
+  - FService
+
+- type: listing
+  id: F_FoodCardHot
+  productEntity: FoodCartHot
+  cost:
+    FederationCash: 2500
+  categories:
+  - FService
+
+- type: listing
+  id: F_FoodCardCold
+  productEntity: FoodCartCold
+  cost:
+    FederationCash: 2500
+  categories:
+  - FService
+
+- type: listing
+  id: F_JanitorialTrolley
+  productEntity: JanitorialTrolley
+  cost:
+    FederationCash: 2500
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceReplacementLights
+  productEntity: CrateServiceReplacementLights
+  cost:
+    FederationCash: 1500
+  categories:
+  - FService
+
+- type: listing
+  id: F_BoxLighttube
+  productEntity: BoxLighttube
+  cost:
+    FederationCash: 1000
+  categories:
+  - FService
+
+- type: listing
+  id: F_BoxLighttubebulb
+  productEntity: BoxLightbulb
+  cost:
+    FederationCash: 1000
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceBooks
+  productEntity: CrateServiceBooks
+  cost:
+    FederationCash: 1000
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceGuideBooks
+  productEntity: CrateServiceGuidebooks
+  cost:
+    FederationCash: 2500
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceBox
+  productEntity: CrateServiceBox
+  cost:
+    FederationCash: 400
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceColorfulLights
+  productEntity: CrateServiceColorfulLights
+  cost:
+    FederationCash: 2500
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceJanitorialSupplies
+  productEntity: CrateServiceJanitorialSupplies
+  cost:
+    FederationCash: 2500
+  categories:
+  - FService
+
+- type: listing
+  id: F_BoxCandle
+  productEntity: BoxCandle
+  cost:
+    FederationCash: 450
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceSmokeables
+  productEntity: CrateServiceSmokeables
+  cost:
+    FederationCash: 5000
+  categories:
+  - FService
+
+- type: listing
+  id: F_CrateServiceFaxMachine
+  productEntity: CrateServiceFaxMachine
+  cost:
+    FederationCash: 5000
+  categories:
+  - FService

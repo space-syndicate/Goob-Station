@@ -154,6 +154,12 @@ public sealed class NinjaHeadsetSystem : EntitySystem
     {
         headsetUid = null;
 
+        if (HasComp<EncryptionKeyHolderComponent>(targetUid))
+        {
+            headsetUid = targetUid;
+            return true;
+        }
+
         if (_inventorySystem.TryGetSlotEntity(targetUid, "ears", out var earsItem) &&
             HasComp<EncryptionKeyHolderComponent>(earsItem))
         {

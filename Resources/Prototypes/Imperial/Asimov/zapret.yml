@@ -1,0 +1,16 @@
+- type: entity
+  parent: PaintingBase
+  id: Zona 
+  name: Restricted area
+  description: Restricted area 
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Asimov/tablyca.rsi
+    state: zona01
+  - type: Transform
+    anchored: true
+  - type: Physics
+    canCollide: false
+  - type: Fixtures

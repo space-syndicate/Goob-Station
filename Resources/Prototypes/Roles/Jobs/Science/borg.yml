@@ -24,7 +24,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10 hrs
-  canBeAntag: false
+  canBeAntag: true # Imperial SyndieBorg
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgBattery

@@ -88,7 +88,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: light
 
 - type: entity
@@ -99,7 +99,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: hard
 
 - type: entity
@@ -110,7 +110,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: ofc
 
 - type: entity
@@ -121,8 +121,19 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: gate
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalSCPDClass
+  name: atmos sign
+  suffix: seriozha, Недра
+  description: A direction sign, pointing out which way the Atmospherics department is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
+    state: dclass
 
 - type: entity
   parent: BaseSignDirectional
@@ -132,7 +143,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: avel
 
 - type: entity
@@ -143,7 +154,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: ded
 
 - type: entity
@@ -154,7 +165,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: doc
 
 - type: entity
@@ -165,7 +176,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: mask
 
 - type: entity
@@ -176,7 +187,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: dog
 
 - type: entity
@@ -187,7 +198,7 @@
   description: A direction sign, pointing out which way the Atmospherics department is.
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/signs.rsi
+    sprite: Imperial/Seriozha/SCP/structures/sign.rsi
     state: fire
 
 # Posters
@@ -199,8 +210,8 @@
   description: Poster about NDA and NDA and NDA
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/posters.rsi
-    state: poster
+    sprite: Imperial/Seriozha/SCP/structures/poster.rsi
+    state: poster_nda
 
 - type: entity
   parent: PosterBase
@@ -210,5 +221,16 @@
   description: Poster about NDA and NDA and NDA
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/structures/posters.rsi
-    state: posterscp
+    sprite: Imperial/Seriozha/SCP/structures/poster.rsi
+    state: poster_scp
+
+# Banners
+- type: entity
+  id: BannerSCPNDA
+  parent: BannerBase
+  name: NDA banner
+  description: A banner displaying the NDA logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/banner.rsi
+    state: nda

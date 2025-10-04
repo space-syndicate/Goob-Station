@@ -78,6 +78,15 @@ ent-ElysiumPosterHolo = голографический дисплей
 
 ent-StarCorpsTradingTerminal = торговый терминал
     .desc = Несколько голографических дисплеев, с которыми вы можете взаимодействовать.
+store-category-uplink-FEmergencyequipment = Аварийное Снаряжение
+store-category-uplink-FEngineering = Инженерия
+store-category-uplink-FMaterials = Материалы
+store-category-uplink-FMedicine = Медицина
+store-category-uplink-FRnD = RnD
+store-category-uplink-FSecure = Безопасность и сдерживание
+store-category-uplink-FProvisions = Провиант
+store-category-uplink-FEntertainments = Развлечения
+store-category-uplink-FService = Сервис
 ent-LaserBlastDoor = энергетический барьер
     .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
 ent-LaserBlastDoorOpen = энергетический барьер

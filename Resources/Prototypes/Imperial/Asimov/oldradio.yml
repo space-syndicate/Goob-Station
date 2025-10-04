@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseComputer
+  id: ImperialSimpleRadio
+  name: Simple Radio
+  description: A simple radio. It might play music.
+  components:
+  - type: Rotatable
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: on
+    sprite: Imperial/Asimov/oldradio.rsi
+  - type: ApcPowerReceiver
+    powerLoad: 100
+    needsPower: true
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Imperial/Asimov/Oldradio/Ashes.ogg
