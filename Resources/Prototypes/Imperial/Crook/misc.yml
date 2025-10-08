@@ -1370,9 +1370,6 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
-  - type: HideLayerClothing
-    slots:
-      - Tail
 
 - type: entity
   parent: ClothingHeadHatRedRacoon
@@ -1398,9 +1395,6 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
-  - type: HideLayerClothing
-    slots:
-      - Tail
 
 - type: entity
   parent: ClothingHeadHatRedRacoon
@@ -1426,9 +1420,31 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
-  - type: HideLayerClothing
-    slots:
-      - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurNixuelle
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurNixuelle
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nixusuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nixusuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
 
 - type: entity
   id: CrateCargoFursuits
@@ -1444,10 +1460,10 @@
     - id: ClothingOuterFurKiss
     - id: ClothingHeadHatFurBeige
     - id: ClothingOuterFurBeige
+    - id: ClothingHeadHatFurNixuelle
+    - id: ClothingOuterFurNixuelle
     - id: ClothingHeadHatRedRacoon
     - id: ClothingOuterRedRacoon
-    - id: ClothingOuterSuitMonkey
-    - id: ClothingHeadHatAnimalMonkey
     - id: ClothingOuterSuitCarp
     - id: ClothingOuterSuitIan
     - id: ClothingOuterSuitChicken

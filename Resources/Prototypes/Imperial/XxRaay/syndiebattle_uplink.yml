@@ -1333,20 +1333,6 @@
   - SyndiebattleUplinkImplants
 
 - type: listing
-  id: UplinkUplinkImplanterSyndieBattle # uplink uplink real
-  name: uplink-uplink-implanter-name
-  description: uplink-uplink-implanter-desc
-  icon: { sprite: /Textures/Objects/Devices/communication.rsi, state: old-radio }
-  productEntity: UplinkImplanter
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-  - SyndiebattleUplinkImplants
-
-- type: listing
   id: UplinkDeathRattleSyndieBattle
   name: uplink-deathrattle-implant-name
   description: uplink-deathrattle-implant-desc
@@ -1820,9 +1806,9 @@
   productEntity: HolyHandGrenade
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 14
+    Telecrystal: 35
   cost:
-    Telecrystal: 20
+    Telecrystal: 50
   categories:
   - SyndiebattleUplinkJob
 
@@ -2053,9 +2039,9 @@
   productEntity: Mjollnir
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 42
+    Telecrystal: 55
   cost:
-    Telecrystal: 54
+    Telecrystal: 85
   categories:
   - SyndiebattleUplinkCustom
 
@@ -2109,9 +2095,9 @@
   productEntity: EnergySwordDouble
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 55
+    Telecrystal: 42
   cost:
-    Telecrystal: 85
+    Telecrystal: 55
   categories:
   - SyndiebattleUplinkCustom
 
@@ -2140,10 +2126,95 @@
     name: Переродится
     description: Дойдите до выхода и вернитесь в битву
   - type: GhostRoleMobSpawner
-    prototype: MobCatSyndy
+    prototype: MobSyndieBattleCatSyndy
     availableTakeovers: 99
     deleteOnSpawn: true
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
     - state: green
+
+- type: entity
+  name: syndicat
+  id: MobSyndieBattleCatSyndy
+  parent: MobCatSpace
+  description: Explosive kitten.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: syndicat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: syndicat
+      Critical:
+        Base: syndicat_dead
+      Dead:
+        Base: syndicat_dead
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Body
+    prototype: SyndiebattlePrimate
+    requiredLegs: 1
+  - type: AutoImplant
+    implants:
+    - DeathAcidifierImplant
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 0
+
+- type: body
+  id: SyndiebattlePrimate
+  name: "primate"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - hands
+      - legs
+    hands:
+      part: HandsAnimal
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: entity
+  name: поисковик искупления
+  id: PinpointerSyndieBattle
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    component: SyndieBattleRedemption
+    targetName: машина искупления
+
+- type: listing
+  id: UplinkPinpointerSyndieBattle
+  name: Поисковик машин искупления
+  description: Показывает стрелку на машину искупления.
+  icon: { sprite: Objects/Devices/pinpointer.rsi, state: icon}
+  productEntity: PinpointerSyndieBattle
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  categories:
+  - SyndiebattleUplinkCustom

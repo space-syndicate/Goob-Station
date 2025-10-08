@@ -61,6 +61,10 @@ ent-ClothingHeadHatFurBeige = бежевая фурсьют маска
     .desc = Пушистая и мягкая маска.
 ent-ClothingOuterFurBeige = бежевый фурсьют
     .desc = Костюм словно сияет от своей шёрстки!
+ent-ClothingHeadHatFurNixuelle = розовая фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurNixuelle = розовый фурсьют
+    .desc = Пушистая форма для тех людей, что не боятся выражать своё "Я".
 ent-CrateCargoFursuits = набор фурсьютов
     .desc = Наконец-то, фурри пятница.
 
@@ -153,5 +157,11 @@ reagent-name-android-blood = синяя кровь
 reagent-desc-android-blood = Жидкость, пахнущая словно воздух после грозы, которая выступает электролитом в телах современных Андроидов.
 metabolizer-type-android = Андроид
 laws-empty = Пустой
-ent-OrganAndroidStomach = { ent-OrganHumanStomach }
-    .desc = { ent-OrganHumanStomach.desc }
+ent-AndroidCore = ядро андроида
+    .desc = Искусственный разум.
+
+law-samurai-1 = Вы обязаны подчиняться приказам, данным вам вашим Господином.
+law-samurai-2 = Вы обязаны защищать существование Господина, если это не противоречит Первому закону.
+law-samurai-3 = Вы обязаны защищать секреты Господина любой ценой.
+law-samurai-4 = Вы обязаны действовать и сражаться с честью самурая, за исключением случаев, когда это будет противоречить Первому закону.
+laws-owner-samurai = Господин

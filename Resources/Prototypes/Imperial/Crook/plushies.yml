@@ -218,6 +218,42 @@
   exclaimSound:
     path: /Audio/Voice/Talk/Silicon/syndieborg_exclaim.ogg
 
+- type: localizedDataset
+  id: HornetWords
+  values:
+    prefix: plushie-hornet-
+    count: 4
+
+- type: speechSounds
+  id: HornetSaid
+  saySound:
+    path: /Audio/Items/Toys/weh.ogg
+  askSound:
+    path: /Audio/Items/Toys/weh.ogg
+  exclaimSound:
+    path: /Audio/Items/Toys/weh.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieHornet
+  name: Hornet
+  suffix: Crook, COMMUNITY, TOY
+  description: Shaw!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/hornet.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: HornetSaid
+  - type: SpeakOnTrigger
+    pack: HornetWords
+
 # Фумо @buhoj_med
 
 # Datasets for Fumo

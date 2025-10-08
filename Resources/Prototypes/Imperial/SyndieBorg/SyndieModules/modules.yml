@@ -1,0 +1,77 @@
+- type: entity
+  id: BorgModuleAbduct
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: Cyborg Abductor Module
+  description: Sheep sheep it's time to sleep...
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - SyndiBorgHypo
+        - HandedHandcuffer
+    - type: BorgModuleIcon
+      icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: abduct-module }
+
+- type: entity
+  id: BorgModuleCombatAdvanced
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: Cyborg Advanced Combat Module
+  description: Makes cyborg a killing machine
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - WeaponSubmachinec220v
+        - CyborgEnergyShield
+        - EnergySword
+    - type: BorgModuleIcon
+      icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: advanced-fiting-module }
+
+- type: entity
+  id: BorgModuleGuardianAngel
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: Guardian Angel Module
+  description: Put your life into your cyborg buddy's hands.
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - SyndiBorgEpinephrineInjector
+        - HandheldHealthAnalyzerUnpowered
+        - Gauze10Lingering
+        - Brutepack10Lingering
+        - Ointment10Lingering
+        - Bloodpack10Lingering
+        - DefibrillatorSyndicateAgentCyborg
+    - type: BorgModuleIcon
+      icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: guardian-angel-module }
+
+- type: entity
+  id: BorgModuleAdvancedSyndicateTools
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: Advanced Syndicate Tools Module
+  description: The power of best syndicate tools for your silicon ally.
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - Omnitool
+        - WelderExperimental
+        - RCDRecharging
+        - SyndicateJawsOfLife
+        - RemoteSignallerAdvanced
+        - Multitool
+    - type: BorgModuleIcon
+      icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: advanced-tools }

@@ -25,6 +25,11 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
+      ### Imperial Syndie Borg
+      blacklist:
+        components:
+        - BorgTransponder
+      ### Imperial Syndie Borg End
       components:
       - type: Pacified
       - type: Thieving

@@ -20,6 +20,13 @@ ent-PlushieSavir = Савир Мёрфи
     .desc = Скользкий парень.
 ent-PlushieClaud = Клавдий Македонский
     .desc = Игрушка задумчивого капитана с шикарной шевелюрой, удерживающая в руке шахматную фигуру пешки.
+ent-PlushieHornet = Шершень
+    .desc = Жук в кедах, посмотрите, мне так это понравилось, жук в кедах!
+
+plushie-hornet-1 = Guarana!
+plushie-hornet-2 = Adida!
+plushie-hornet-3 = Git Gud!
+plushie-hornet-4 = Shaw!
 
 plushie-savir-1 = Боевой бот? Не понимаю о чём ты.
 plushie-savir-2 = Дойти до конца - это не главное.
