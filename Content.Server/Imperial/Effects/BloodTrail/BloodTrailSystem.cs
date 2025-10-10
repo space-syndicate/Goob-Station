@@ -1,5 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Decals;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
