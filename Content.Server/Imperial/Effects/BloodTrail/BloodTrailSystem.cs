@@ -186,14 +186,14 @@ namespace Content.Server.Imperial.BloodTrail
 
                 rotation = attackDirection.ToWorldAngle();
 
-                var offset = _random.NextFloat(spread * 0.8f, spread * 1.2f);
+                var offset = _random.NextFloat(spread * 0.8f, spread * 1.0f);
                 basePos = victimWorldPos + attackDirection * offset;
             }
             else
             {
                 rotation = Angle.FromDegrees(_random.Next(0, 360));
                 var randomDir = new Vector2(_random.NextFloat(-1, 1), _random.NextFloat(-1, 1)).Normalized();
-                var offset = _random.NextFloat(spread * 0.8f, spread * 1.2f);
+                var offset = _random.NextFloat(spread * 0.8f, spread * 1.0f);
                 basePos = victimWorldPos + randomDir * offset;
             }
 
@@ -210,9 +210,9 @@ namespace Content.Server.Imperial.BloodTrail
             var floatDamage = effectiveDamage.Float();
             return floatDamage switch
             {
-                >= 40 => _random.Next(3, 5),
-                >= 25 => _random.Next(2, 4),
-                >= 12 => _random.Next(1, 3),
+                >= 40 => _random.Next(3, 4),
+                >= 25 => _random.Next(2, 3),
+                >= 12 => _random.Next(1, 2),
                 >= 5 => 1,
                 _ => 0
             };
