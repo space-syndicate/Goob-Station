@@ -11,7 +11,7 @@ namespace Content.Server.Imperial.BloodTrail
     {
         [DataField] public FixedPoint2 MinDamageToSpawn = FixedPoint2.New(5f);
         [DataField] public int MaxDecals = 20;
-        [DataField] public float SpreadDistance = 0.3f;
+        [DataField] public float SpreadDistance = 1.0f;
         [DataField] public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(0.5f);
         [DataField] public bool Enabled = true;
 

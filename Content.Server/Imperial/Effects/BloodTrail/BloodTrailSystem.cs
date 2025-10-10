@@ -181,19 +181,25 @@ namespace Content.Server.Imperial.BloodTrail
             if (damageSource != null && TryComp(damageSource.Value, out TransformComponent? sourceXform))
             {
                 var sourcePos = _transform.GetWorldPosition(sourceXform);
-                var direction = victimWorldPos - sourcePos;
 
-                if (direction.LengthSquared() > 0.1f)
-                {
-                    rotation = Angle.FromWorldVec(direction.Normalized()) + MathF.PI;
-                    var offset = _random.NextFloat(spread * 0.2f, spread * 0.4f);
-                    basePos = victimWorldPos - direction.Normalized() * offset;
-                }
+                var attackDirection = (victimWorldPos - sourcePos).Normalized();
+
+                rotation = attackDirection.ToWorldAngle() + MathF.PI;
+
+                var offset = _random.NextFloat(spread * 0.8f, spread * 1.2f);
+                basePos = victimWorldPos + attackDirection * offset;
+            }
+            else
+            {
+                rotation = Angle.FromDegrees(_random.Next(0, 360));
+                var randomDir = new Vector2(_random.NextFloat(-1, 1), _random.NextFloat(-1, 1)).Normalized();
+                var offset = _random.NextFloat(spread * 0.8f, spread * 1.2f);
+                basePos = victimWorldPos + randomDir * offset;
             }
 
             var randomOffset = new Vector2(
-                _random.NextFloat(-spread * 0.02f, spread * 0.02f),
-                _random.NextFloat(-spread * 0.02f, spread * 0.02f)
+                _random.NextFloat(-spread * 0.8f, spread * 0.8f),
+                _random.NextFloat(-spread * 0.8f, spread * 0.8f)
             );
 
             return (basePos + randomOffset, rotation);
