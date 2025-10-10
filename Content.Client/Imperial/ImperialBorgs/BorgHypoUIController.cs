@@ -32,18 +32,18 @@ public sealed class BorgHypoUIController : UIController
     {
         base.Initialize();
         SubscribeNetworkEvent<OpenBorgHypoUIEvent>(OnOpenUI);
-        
+
         //_input.SetInputCommand(ContentKeyFunctions.OpenEmotesMenu,
         //  InputCmdHandler.FromDelegate(_ => ToggleMenu()));
     }
 
-    private RadialMenuOption ImperialBorgsRadialOption(ReagentPrototype proto, ImperialBorgsReagent reagent)
+    private RadialMenuOptionBase ImperialBorgsRadialOption(ReagentPrototype proto, ImperialBorgsReagent reagent)
     {
         var spritePath = reagent.Sprite ?? new ResPath("/Textures/Interface/Misc/beakerlarge.png");
 
         var option = new RadialMenuActionOption<ReagentPrototype>(HandleRadialButtonClick, proto)
         {
-            Sprite = new SpriteSpecifier.Texture(spritePath),
+            IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(spritePath)),
             ToolTip = Loc.GetString(proto.LocalizedName)
         };
         return option;
@@ -100,9 +100,9 @@ public sealed class BorgHypoUIController : UIController
         _menu = null;
     }
 
-    private IEnumerable<RadialMenuOption> ConvertToButtons(List<BorgHypoSolution> solutions)
+    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(List<BorgHypoSolution> solutions)
     {
-        var models = new List<RadialMenuOption>();
+        var models = new List<RadialMenuOptionBase>();
 
         foreach (var solution in solutions)
         {

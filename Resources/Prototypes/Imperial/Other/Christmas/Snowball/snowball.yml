@@ -59,7 +59,7 @@
     requiredTriggeredSpeed: 0
   #- type: ClothingRequiredStepTrigger
   - type: TriggerOnStepTrigger
-  - type: DamageUserOnTrigger
+  - type: DamageOnTrigger
     damage:
       types:
         Blunt: 1
@@ -75,7 +75,7 @@
   components:
   - type: Sprite
     color: "#fafffd"
-  - type: DamageUserOnTrigger
+  - type: DamageOnTrigger
     damage:
       types:
         Blunt: 1
@@ -91,7 +91,7 @@
   components:
   - type: Sprite
     color: "#ccffff"
-  - type: DamageUserOnTrigger
+  - type: DamageOnTrigger
     damage:
       types:
         Blunt: 1

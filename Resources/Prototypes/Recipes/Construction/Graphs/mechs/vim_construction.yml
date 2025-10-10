@@ -6,6 +6,9 @@
     edges:
     - to: vim
       steps:
+      - assemblyId: Vim
+        guideString: mech-construction-guide-string
+
       - tag: VoiceTrigger
         name: голосовой триггер # Imperial Recipes Locale
         icon:

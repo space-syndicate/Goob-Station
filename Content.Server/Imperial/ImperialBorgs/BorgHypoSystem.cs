@@ -8,6 +8,7 @@ using Content.Shared.Imperial.ImperialBorgs;
 using Content.Shared.Imperial.ImperialBorgs.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Chemistry.Components;
 namespace Content.Server.Imperial.ImperialBorgs
 {
     public sealed class BorgHypoSystem : EntitySystem

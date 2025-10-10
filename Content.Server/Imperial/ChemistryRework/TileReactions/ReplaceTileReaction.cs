@@ -19,7 +19,7 @@ namespace Content.Server.Chemistry.TileReactions
 
         public FixedPoint2 TileReact(TileRef tile, ReagentPrototype reagent, FixedPoint2 reactVolume, IEntityManager entityManager, List<ReagentData>? data = null)
         {
-            if (reactVolume < _minVolume || tile.IsSpace()) return FixedPoint2.Zero;
+            if (reactVolume < _minVolume) return FixedPoint2.Zero;
 
             var tileDefManager = IoCManager.Resolve<ITileDefinitionManager>();
 

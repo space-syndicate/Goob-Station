@@ -1,0 +1,57 @@
+- type: entity
+  name: c-220v
+  parent: BaseItem
+  id: WeaponSubmachinec220v
+  description: A cyborg-mounted weapon system based on the c-20r.
+  components:
+  - type: Gun
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-5
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletPistol
+    fireCost: 100
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
+
+- type: entity
+  name: energy shield
+  parent: EnergyShield
+  id: CyborgEnergyShield
+  description: Exotic energy shield, when folded, can even fit in your pocket.
+  components:
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+      flatReductions:
+        Heat: 5
+        Piercing: 4
+        Blunt: 7

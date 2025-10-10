@@ -8,11 +8,11 @@
   components:
     - type: SubdermalImplant
       implantAction: ActivateSmokeImplant
-    - type: TriggerImplantAction
+    - type: TriggerOnActivateImplant
     - type: SmokeOnTrigger
       spreadAmount: 25
       duration: 16
-    - type: SoundOnTrigger
+    - type: EmitSoundOnTrigger
       sound: /Audio/Effects/smoke.ogg
 
 - type: entity

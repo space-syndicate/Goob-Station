@@ -6,7 +6,7 @@ namespace Content.Client.Imperial.ImperialLightning;
 public record Lightning(
     (Vector2 StartCoords, EntityUid? StartEntityPoint) StartPoint,
     (Vector2 TargetCoords, EntityUid? TargetEntityPoint) TargetPoint,
-    Robust.Shared.Maths.Vector3 LightningColor,
+    Vector3 LightningColor,
     Vector2 Offset,
     float Speed,
     float Intensity,

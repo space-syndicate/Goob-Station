@@ -23,7 +23,7 @@
     - BaseStationMagnet
     - BaseStationExpeditions
     - BaseStationSalvageJobs
-    - BaseStationSiliconLawCrewsimov
+    - BaseStationSiliconLawNTDefault #Imperial Space Замена на дефолтные законы ИИ
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
     - BaseStationDeliveries

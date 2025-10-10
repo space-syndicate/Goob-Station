@@ -10,7 +10,6 @@
     sprite: Imperial/Crook/Samurai/suit.rsi
   - type: Clothing
     sprite: Imperial/Crook/Samurai/suit.rsi
-  # hardsuit stuff
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -27,37 +26,13 @@
         Slash: 0.7
         Piercing: 0.3
         Heat: 0.4
-        Radiation: 0.05
-        Caustic: 0.05
+        Radiation: 0
+        Caustic: 0
         Stamina: 0.45
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
-  - type: PowerCellDraw
-    drawRate: 0
-  - type: ToggleCellDraw
-  - type: ItemCreator
-    action: ActionCreateThrowingStar
-    charge: 0
-    spawnedPrototype: ThrowingStarNinja
-    noPowerPopup: ninja-no-power
-  - type: NinjaSuit
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: false
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        disableEject: true
-        whitelist:
-          tags:
-            - PowerCell
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
@@ -136,6 +111,8 @@
   - type: Reflect
     reflectProb: 0.8
     spread: 45
+  - type: StaticPrice
+    price: 5750
 
 - type: entity
   name: jumpsuit
@@ -162,39 +139,20 @@
     gloves: ClothingHandsGlovesCombatUnremoveable
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
-    pocket2: DoubleEmergencyOxygenTankFilled
     belt: RedEnergyKatanaSamurai
-  inhand:
-    - JetpackBlackFilled
 
 - type: entity
   name: Space Samurai
   suffix: Crook, Samurai
-  parent: MobHuman
+  parent: MobMechanicSyndicate
   id: SpaceSamurai
   components:
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0
-    damageRecovery:
-      types:
-        Asphyxiation: 0
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0
-        Heat: 0
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
-  - type: Hunger
-    baseDecayRate: 0
-  - type: Thirst
-    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -209,17 +167,24 @@
     state: ertleadereva
   - type: Loadout
     prototypes: [ SpaceSamuraiGear ]
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: SpaceNinja
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
     - FreedomImplant
     - ScramImplant
+    - ImperialBlinkImplant
+    - ImperialSmokeImplant
+    - EmpImplant
+    - EmpImplant
+    - RadioImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: SiliconLawProvider
+    laws: Samurai
+  - type: IntrinsicRadioTransmitter
+    channels: []
+  - type: ActiveRadio
+    channels: []
 
 - type: entity
   name: Space Samurai

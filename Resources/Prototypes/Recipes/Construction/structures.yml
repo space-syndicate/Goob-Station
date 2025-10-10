@@ -194,21 +194,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Внутренняя стена шаттла # Imperial Recipes Locale
-  id: InteriorShuttleWall
-  graph: Girder
-  startNode: start
-  targetNode: shuttleInteriorWall
-  category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: DiagonalShuttleWall
   name: Диагональная стена шаттла # Imperial Recipes Locale
   graph: Girder
@@ -257,7 +242,19 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Решётка # Imperial Recipes Locale
+  id: Cardwall
+  graph: Cardwall
+  startNode: start
+  targetNode: cardwall
+  category: construction-category-structures
+  conditions:
+  - !type:TileNotBlocked
+    failIfSpace: false
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
   id: Grille
   graph: Grille
   startNode: start
@@ -1409,7 +1406,16 @@
   canBuildInImpassable: false
 
 - type: construction
-  name: Пластиковые шторки # Imperial Recipes Locale
+  id: CardDoor
+  graph: DoorGraph
+  startNode: start
+  targetNode: cardDoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
   id: PlasticFlapsClear
   graph: PlasticFlapsGraph
   startNode: start
@@ -1516,6 +1522,19 @@
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StationAiCore
+  graph: StationAiCore
+  startNode: start
+  targetNode: stationAiCore
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked

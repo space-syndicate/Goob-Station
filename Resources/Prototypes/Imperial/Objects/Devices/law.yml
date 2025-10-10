@@ -1,0 +1,6 @@
+- type: entity
+  id: BaseStationSiliconLawNTDefault
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: NTDefault

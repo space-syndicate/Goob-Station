@@ -1,0 +1,361 @@
+- type: reagent
+  id: AndroidBlood
+  name: reagent-name-android-blood
+  group: Toxins
+  desc: reagent-desc-android-blood
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: shocking
+  color: "#4d7ee7"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+      - !type:Electrocute
+        probability: 0.1
+        conditions:
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+      - !type:HealthChange
+        damage:
+          groups:
+            Airloss: 1
+        conditions:
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+
+- type: metabolizerType
+  id: Android
+  name: metabolizer-type-android
+
+- type: entity
+  id: AndroidCore
+  parent: [BaseItem, OrganHumanBrain]
+  name: android core
+  description: "The source of incredible, unending gooeyness."
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      layers:
+        - state: cpu_super
+    - type: StaticPrice
+      price: 1750
+    - type: Stomach
+    - type: Metabolizer
+      maxReagents: 6
+      metabolizerTypes: [ Android ]
+      removeEmpty: true
+      groups:
+        - id: Food
+        - id: Drink
+        - id: Medicine
+        - id: Poison
+        - id: Narcotic
+        - id: Alcohol
+          rateModifier: 0.25
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 50.0
+        food:
+          maxVol: 5
+          reagents:
+          - ReagentId: GreyMatter
+            Quantity: 5
+        organ:
+          reagents:
+          - ReagentId: AndroidBlood
+            Quantity: 10
+
+- type: body
+  id: Android
+  name: "android"
+  root: torso
+  slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        core: AndroidCore
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmHuman
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandHuman
+    left_hand:
+      part: LeftHandHuman
+    right_leg:
+      part: RightLegHuman
+      connections:
+      - right_foot
+    left_leg:
+      part: LeftLegHuman
+      connections:
+      - left_foot
+    right_foot:
+      part: RightFootHuman
+    left_foot:
+      part: LeftFootHuman
+
+- type: entity
+  save: false
+  parent: [BaseMobSpecies, MobBloodstream]
+  id: BaseMobMechanic
+  abstract: true
+  components:
+  - type: Body
+    prototype: Android
+  - type: Bloodstream
+    bloodReagent: AndroidBlood
+    chemicalMaxVolume: 150
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Flashed
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: ZombieImmune
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSecurityCyborg
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: SiliconLawProvider
+    laws: NTDefault
+  - type: EmagSiliconLaw
+    stunTime: 5
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - AndroidCore
+  - type: Damageable
+    damageContainer: Silicon
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
+  - type: UnblockableSpeech
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: WiresPanel
+    openingTool: Prying
+  - type: ActivatableUIRequiresPanel
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: LockedWiresPanel
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 4
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 30
+  - type: NoSlip
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: StaticPrice
+    price: 25000
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity
+  save: false
+  parent: BaseMobMechanic
+  id: MobMechanic
+  name: Android
+  suffix: Crook, NanoTrasen
+
+- type: entity
+  save: false
+  parent: BaseMobMechanic
+  id: MobMechanicSyndicate
+  name: Android
+  suffix: Crook, Syndicate
+  components:
+  - type: TypingIndicator
+    proto: syndibot
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Access
+    groups: []
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["NuclearOperative"]]
+  - type: SiliconLawProvider
+    laws: SyndicateStatic
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Syndicate
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+  - type: ShowSyndicateIcons
+
+- type: siliconLawset
+  id: EmptyLawset
+  laws: []
+  obeysTo: laws-empty
+
+- type: siliconLaw
+  id: Samurai1
+  order: 1
+  lawString: law-samurai-1
+
+- type: siliconLaw
+  id: Samurai2
+  order: 2
+  lawString: law-samurai-2
+
+- type: siliconLaw
+  id: Samurai3
+  order: 3
+  lawString: law-samurai-3
+
+- type: siliconLawset
+  id: Samurai
+  laws:
+  - Samurai1
+  - Samurai2
+  - Samurai3
+  - Samurai4
+  obeysTo: laws-owner-samurai

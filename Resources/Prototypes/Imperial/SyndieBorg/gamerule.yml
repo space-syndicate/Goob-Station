@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseGameRule
+  id: SyndieBorgroundstart
+  components:
+  - type: GameRule
+    minPlayers: 20
+    delay:
+      min: 420
+      max: 600
+  - type: AntagObjectives
+    objectives:
+    - RandomSyndieBorgAliveObjective
+    - RandomSyndieBorgProgressObjective
+  - type: AntagSelection
+    agentName: syndie-borg-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ SyndieBorg ]
+      whitelist:
+        components:
+        - BorgTransponder
+      max: 1
+      playerRatio: 1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      components:
+      - type: Emagged
+        emagType: Interaction
+      - type: SyndieBorg
+      mindRoles:
+      - MindRoleTraitor
+      briefing:
+        text: syndie-borg-role-greeting
+        color: DarkRed
+        sound: "/Audio/Ambience/Antag/emagged_borg.ogg"

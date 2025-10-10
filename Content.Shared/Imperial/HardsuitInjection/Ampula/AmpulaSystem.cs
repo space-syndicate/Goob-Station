@@ -47,7 +47,7 @@ public sealed partial class AmpulaSystem : EntitySystem
             return;
 
         // Drop the held item onto the floor. Return if the user cannot drop.
-        if (!_handsSystem.TryDrop(args.User, args.Used, handsComp: handscomp))
+        if (!_handsSystem.TryDrop(args.User, args.Used))
             return;
 
         if (itemslot.Item != null)

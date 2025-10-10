@@ -11,7 +11,7 @@
   Зомби являются обращающими антагонистами, превращающими всё живое в себе подобное через укус, переносящий [color=#7e916e]Ромерол[/color], смертельный вирус, быстро разрастающийся по станции.
 
   <Box>
-    <GuideReagentEmbed Reagent="Romerol"></GuideReagentEmbed>
+    <GuideReagentEmbed Reagent="Romerol"/>
   </Box>
 
   ## Нулевой заражённый
@@ -43,10 +43,10 @@
   Если же Вы заражены, но ещё не обращены, [color=#86caf7]Амбузол[/color] Вас вылечит, однако не будет действовать как вакцина. [color=#1274b5]Амбузол Плюс[/color] работает и как лекарство, и как вакцина. К сожалению, если Вы умрёте, от превращения в зомби Вас уже не остановить.
 
   <Box>
-    <GuideReagentEmbed Reagent="Ambuzol"></GuideReagentEmbed>
+    <GuideReagentEmbed Reagent="Ambuzol"/>
   </Box>
   <Box>
-    <GuideReagentEmbed Reagent="AmbuzolPlus"></GuideReagentEmbed>
+    <GuideReagentEmbed Reagent="AmbuzolPlus"/>
   </Box>
 
 </Document>

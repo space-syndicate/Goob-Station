@@ -7,6 +7,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Imperial.CrewSkills;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Roles.Components;
 using Content.Shared.Survivor.Components;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;

@@ -1,0 +1,60 @@
+- type: entity
+  abstract: true
+  parent: [BaseTraitorObjective, BaseSocialObjective]
+  id: BaseSyndieBorgSocialObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/folders.rsi
+      state: folder-white
+
+- type: entity
+  parent: [BaseSyndieBorgSocialObjective, BaseKeepAliveObjective]
+  id: RandomSyndieBorgAliveObjective
+  name: "0011УБ3РЕ4ь010ОТ11СМ3рТИ"
+  components:
+  - type: Objective
+    difficulty: 1
+  - type: TargetObjective
+    title: objective-condition-other-traitor-alive-title-borg
+  - type: PickRandomPerson
+    filters:
+    - !type:HasRoleMindFilter
+      whitelist:
+        components:
+        - TraitorRole
+    # Can't have multiple objectives to help/save the same person
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - HelpProgressCondition
+        - KeepAliveCondition
+
+- type: entity
+  parent: [BaseSyndieBorgSocialObjective, BaseHelpProgressObjective]
+  id: RandomSyndieBorgProgressObjective
+  name: "0001ПОМ0чЬ0110ЗАД7НИЯ1101"
+  components:
+  - type: Objective
+    difficulty: 1
+  - type: TargetObjective
+    title: objective-condition-other-traitor-progress-title-borg
+  - type: PickRandomPerson
+    filters:
+    - !type:HasRoleMindFilter
+      whitelist:
+        components:
+        - TraitorRole
+    # Can't help anyone who is tasked with helping:
+    # 1. thats boring
+    # 2. no cyclic progress dependencies!!!
+    - !type:ObjectiveMindFilter
+      blacklist:
+        components:
+        - HelpProgressCondition
+    # Can't have multiple objectives to help/save the same person
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - HelpProgressCondition
+        - KeepAliveCondition

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [DrinkBottleVisualsAll, DrinkBottleGlassBaseFull, BaseMinorContraband]
+  parent: [DrinkVisualsAllFilled, DrinkBottleGlassBaseFull, BaseMinorContraband]
   id: MolotovCocktail
   name: Molotov cocktail
   description: An incendiary mixture, the principle of action of which is known to everyone. Don't even think about tasting it.

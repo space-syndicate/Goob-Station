@@ -1,0 +1,65 @@
+- type: entity
+  name: emergency epinephrine injector
+  parent: BaseItem
+  description: Generates epinephrine and tranexamic acid.
+  id: SyndiBorgEpinephrineInjector
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 12
+        - ReagentId: TranexamicAcid
+          Quantity: 3
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    transferAmount: 15
+    onlyAffectsMobs: true
+  - type: UseDelay
+    delay: 0.5
+  - type: Appearance
+  - type: SolutionRegeneration
+    solution: hypospray
+    duration: 1440 # 24 minutes
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 12
+      - ReagentId: TranexamicAcid
+        Quantity: 3
+
+- type: entity
+  id: DefibrillatorSyndicateAgentCyborg
+  parent: DefibrillatorSyndicate
+  name: Guardian Angel Defibrillator
+  description: Revives your syndicate partner and heals most of his wounds. Works only once, use carefully.
+  components:
+  - type: Defibrillator
+    zapHeal:
+      types:
+        Asphyxiation: -120
+        Blunt: -50
+        Slash: -50
+        Piercing: -50
+        Heat: -50
+        Shock: 20
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 360
+  
