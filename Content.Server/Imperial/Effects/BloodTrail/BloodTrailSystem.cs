@@ -184,7 +184,7 @@ namespace Content.Server.Imperial.BloodTrail
 
                 var attackDirection = (victimWorldPos - sourcePos).Normalized();
 
-                rotation = attackDirection.ToWorldAngle() + MathF.PI;
+                rotation = attackDirection.ToWorldAngle();
 
                 var offset = _random.NextFloat(spread * 0.8f, spread * 1.2f);
                 basePos = victimWorldPos + attackDirection * offset;
