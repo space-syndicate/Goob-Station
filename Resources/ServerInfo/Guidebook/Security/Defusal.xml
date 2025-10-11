@@ -31,7 +31,7 @@
   Для активации бомбы нажмите на неё [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] или откройте контекстное меню и сделайте это там. Она начнёт пищать.
 
   ## Таймер
-  Время таймера ограничено: минимум [protodata="SyndicateBomb" comp="OnUseTimerTrigger" member="ShortestDelayOption"/] секунд, максимум - [protodata="SyndicateBomb" comp="OnUseTimerTrigger" member="LongestDelayOption"/]. Таймер виден при осмотре с помощью [color=yellow][bold][keybind="ExamineEntity"][/bold][/color], если не перерезан провод PRCD. Как только цифра дойдёт до нуля, произойдёт взрыв.
+  Время таймера ограничено: минимум [protodata="SyndicateBomb" comp="TimerTrigger" member="ShortestDelayOption"/] секунд, максимум - [protodata="SyndicateBomb" comp="TimerTrigger" member="LongestDelayOption"/]. Таймер виден при осмотре с помощью [color=yellow][bold][keybind="ExamineEntity"][/bold][/color], если не перерезан провод PRCD. Как только цифра дойдёт до нуля, произойдёт взрыв.
 
   ## Болты
   После активации бомба прикручивается к полу. Для отключения болтов найдите и перережьте провод BOLT, затем открутите бомбу гаечным ключом и выбросьте в космос.

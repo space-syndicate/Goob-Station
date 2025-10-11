@@ -41,7 +41,7 @@
     intensitySlope: 3
     totalIntensity: 120
     canCreateVacuum: false
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 5
     beepSound:
       path: "/Audio/Effects/beep1.ogg"

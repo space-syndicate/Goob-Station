@@ -228,7 +228,6 @@
   - type: Lock
     locked: true
     unlockOnClick: false
-  - type: ActivatableUIRequiresLock
   - type: LockedWiresPanel
   - type: Tag
     tags:

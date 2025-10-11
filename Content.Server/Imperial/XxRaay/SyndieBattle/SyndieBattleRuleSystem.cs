@@ -35,6 +35,8 @@ using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
+using Content.Server.Hands.Systems;
+using Content.Shared.Station.Components;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
@@ -55,6 +57,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
 
 
     public override void Initialize()
@@ -119,9 +122,9 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             }
             if (TryComp<HandsComponent>(ent, out var hands))
             {
-                foreach (var hand in hands.Hands.Values)
+                foreach (var (handId, _) in hands.Hands)
                 {
-                    if (hand.HeldEntity == null || !TryComp<StoreComponent>(hand.HeldEntity.Value, out var store))
+                    if (_handsSystem.TryGetHeldItem(ent, handId, out var heldItem) || !TryComp<StoreComponent>(heldItem, out var store))
                         continue;
 
                     if (store.Balance.TryGetValue("Telecrystal", out var bal))
@@ -239,10 +242,10 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
             if (TryComp<HandsComponent>(player, out var hands))
             {
-                foreach (var hand in hands.Hands.Values)
+                foreach (var (handId, _) in hands.Hands)
                 {
-                    if (hand.HeldEntity != null)
-                        toDelete.Add(hand.HeldEntity.Value);
+                    if (_handsSystem.TryGetHeldItem(player, handId, out var helded))
+                        toDelete.Add(helded.Value);
                 }
             }
 

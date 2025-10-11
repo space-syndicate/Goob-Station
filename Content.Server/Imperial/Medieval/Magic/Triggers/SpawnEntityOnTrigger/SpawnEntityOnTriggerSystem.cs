@@ -1,4 +1,5 @@
 using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Trigger;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -20,7 +21,7 @@ public sealed partial class SpawnEntityOnTriggerSystem : EntitySystem
 
     private void OnTrigger(EntityUid uid, SpawnEntityOnTriggerComponent component, TriggerEvent args)
     {
-        var spawnCoord = _transformSystem.GetMapCoordinates(args.Triggered);
+        var spawnCoord = _transformSystem.GetMapCoordinates(uid);
 
         foreach (var entProtoId in component.SpawnedEntitiesPrototype)
         {

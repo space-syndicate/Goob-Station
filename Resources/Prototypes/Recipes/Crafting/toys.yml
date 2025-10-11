@@ -17,3 +17,11 @@
   category: construction-category-misc
   objectType: Item
   description: Сделайте себя похожим на Иана! # Imperial Recipes Locale
+
+- type: construction
+  id: MoproachShoes
+  graph: MoproachShoes
+  startNode: start
+  targetNode: shoes
+  category: construction-category-misc
+  objectType: Item

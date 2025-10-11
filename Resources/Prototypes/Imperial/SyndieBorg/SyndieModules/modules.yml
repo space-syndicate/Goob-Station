@@ -9,9 +9,9 @@
       - state: syndicate
       - state: icon-syndicate
     - type: ItemBorgModule
-      items:
-        - SyndiBorgHypo
-        - HandedHandcuffer
+      hands:
+        - item: SyndiBorgHypo
+        - item: HandedHandcuffer
     - type: BorgModuleIcon
       icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: abduct-module }
 
@@ -26,10 +26,10 @@
       - state: syndicate
       - state: icon-syndicate
     - type: ItemBorgModule
-      items:
-        - WeaponSubmachinec220v
-        - CyborgEnergyShield
-        - EnergySword
+      hands:
+        - item: WeaponSubmachinec220v
+        - item: CyborgEnergyShield
+        - item: EnergySword
     - type: BorgModuleIcon
       icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: advanced-fiting-module }
 
@@ -44,14 +44,14 @@
       - state: syndicate
       - state: icon-syndicate
     - type: ItemBorgModule
-      items:
-        - SyndiBorgEpinephrineInjector
-        - HandheldHealthAnalyzerUnpowered
-        - Gauze10Lingering
-        - Brutepack10Lingering
-        - Ointment10Lingering
-        - Bloodpack10Lingering
-        - DefibrillatorSyndicateAgentCyborg
+      hands:
+        - item: SyndiBorgEpinephrineInjector
+        - item: HandheldHealthAnalyzerUnpowered
+        - item: Gauze10Lingering
+        - item: Brutepack10Lingering
+        - item: Ointment10Lingering
+        - item: Bloodpack10Lingering
+        - item: DefibrillatorSyndicateAgentCyborg
     - type: BorgModuleIcon
       icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: guardian-angel-module }
 
@@ -66,12 +66,12 @@
       - state: syndicate
       - state: icon-syndicate
     - type: ItemBorgModule
-      items:
-        - Omnitool
-        - WelderExperimental
-        - RCDRecharging
-        - SyndicateJawsOfLife
-        - RemoteSignallerAdvanced
-        - Multitool
+      hands:
+        - item: Omnitool
+        - item: WelderExperimental
+        - item: RCDRecharging
+        - item: SyndicateJawsOfLife
+        - item: RemoteSignallerAdvanced
+        - item: Multitool
     - type: BorgModuleIcon
       icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: advanced-tools }

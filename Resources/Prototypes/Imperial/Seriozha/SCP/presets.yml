@@ -358,21 +358,6 @@
     - EncryptionKeyRadio1
     - FirstAidMedkitImperialFilled
 
-- type: entity
-  id: ChemistryBottleSaline
-  suffix: saline
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-saline
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Saline
-          Quantity: 30
-
 - type: startingGear
   id: AlphaGear
   equipment:

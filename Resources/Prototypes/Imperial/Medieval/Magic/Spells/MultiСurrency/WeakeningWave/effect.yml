@@ -19,7 +19,8 @@
   - type: TimedDespawn
     lifetime: 1.35
   - type: StaminaDamageOnTrigger
-    damage: 300
+    stamina: 300
+  - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Imperial/Medieval/Magic/Spells/stamina_damage.ogg
       params:

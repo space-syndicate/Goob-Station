@@ -3,7 +3,7 @@
   parent: [BaseItem, BaseMinorContraband]
   id: BaseAirStrike
   components:
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 0
   - type: Damageable
     damageContainer: Inorganic
@@ -57,7 +57,7 @@
       - StartAirStrikeGrenadeSec120
     distance: 8
     velocity: 8
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 0
   - type: ContainerContainer
     containers:
@@ -82,7 +82,7 @@
       - StartAirStrikeGrenadeSec120
     distance: 16
     velocity: 16
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 0
   - type: ContainerContainer
     containers:
@@ -108,7 +108,7 @@
       - StartAirStrikeGrenadeSec110
     distance: 24
     velocity: 24
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 0
   - type: ContainerContainer
     containers:
@@ -135,7 +135,7 @@
       - StartAirStrikeGrenadeSec114
     distance: 32
     velocity: 32
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 0
   - type: ContainerContainer
     containers:

@@ -266,7 +266,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     _shockedEntities.Add(entity);
                     _damageable.TryChangeDamage(entity, comp.ShockDamage);
-                    _stun.TryParalyze(entity, comp.ShockDuration, true);
+                    _stun.TryUpdateParalyzeDuration(entity, comp.ShockDuration);
                     _audio.PlayPvs(comp.ShockSound, detector);
                     DischargeBatteries(entity, comp);
 

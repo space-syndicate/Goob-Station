@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Imperial.Medieval.Magic.ProjectileCursorFollower;
 using Content.Shared.Singularity.Components;
+using Content.Shared.Trigger;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Systems;
@@ -86,9 +87,9 @@ public sealed partial class MedievalBlackHoleExplosionSystem : EntitySystem
 
     #region Helpers
 
-    private Robust.Shared.Maths.Vector4 GetColorStep(Color initialColor, Color targetColor, TimeSpan time)
+    private Vector4 GetColorStep(Color initialColor, Color targetColor, TimeSpan time)
     {
-        return new Robust.Shared.Maths.Vector4(
+        return new Vector4(
             (targetColor.R - initialColor.R) / (float)time.TotalSeconds,
             (targetColor.G - initialColor.G) / (float)time.TotalSeconds,
             (targetColor.B - initialColor.B) / (float)time.TotalSeconds,
@@ -96,7 +97,7 @@ public sealed partial class MedievalBlackHoleExplosionSystem : EntitySystem
         );
     }
 
-    private Robust.Shared.Maths.Vector4 ToRobustVector4(System.Numerics.Vector4 vector4) => new Robust.Shared.Maths.Vector4(vector4.X, vector4.Y, vector4.Z, vector4.W);
+    private Vector4 ToRobustVector4(System.Numerics.Vector4 vector4) => new Vector4(vector4.X, vector4.Y, vector4.Z, vector4.W);
 
     #endregion
 }
