@@ -78,27 +78,27 @@
       - reagents:
         - reagentId: Bicaridine
           quantity: 1
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/brutekit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/brutekit.png
       - reagents:
         - reagentId: Dermaline
           quantity: 1
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/burnkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/burnkit.png
       - reagents:
         - reagentId: Dexalin
           quantity: 1
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/o2kit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/o2kit.png
       - reagents:
         - reagentId: Inaprovaline
           quantity: 1
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/firstaid.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/firstaid.png
       - reagents:
         - reagentId: Hyronalin
           quantity: 1
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/radkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/radkit.png
       - reagents:
         - reagentId: Dylovene
           quantity: 1
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/toxinkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:

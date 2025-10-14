@@ -57,6 +57,9 @@
     ClothingShoesBootsCowboyWhite: 1
     ClothingHeadHatSnowmaiden: 2 #Imperial Space community costume
     ClothingUniformOuterSnowmaiden: 2 #Imperial Space community costume
+    ClothingUniformJumpsuitMadzima: 2 #Imperial Space community costume
+    ClothingShoesMadzima: 2 #Imperial Space community costume
+    ClothingOuterMadzima: 2 #Imperial Space community costume
   contrabandInventory:
     ClothingHeadHatRichard: 1
     ToyFigurineBoxer: 1
@@ -67,6 +70,3 @@
     ClothingMaskBlushingClown: 1
     ClothingMaskBlushingMime: 1
     ClothingHeadHatCowboyBountyHunter: 1
-    ClothingUniformJumpsuitMadzima: 1 #Imperial Space community costume
-    ClothingShoesMadzima: 1 #Imperial Space community costume
-    ClothingOuterMadzima: 1 #Imperial Space community costume

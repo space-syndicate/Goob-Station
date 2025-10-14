@@ -1359,3 +1359,7 @@ ent-PlasmaChemistryVial = пробирка
 ent-ShuttersWindowCentralCommand = оконные ставни
     .desc = Лучшее место чтобы поглядеть, как взрываются твои друзья!
     .suffix = ЦК, Закрыто
+ent-BoxFolderPlasticClipboardEmpty = пластиковый планшет
+    .desc = Дешёвый планшет из синего пластика. Для тех, кто ещё не готов держать бюрократическую мощь настоящего деревянного планшета.
+ent-BoxFolderPlasticClipboard = { ent-BoxFolderPlasticClipboardEmpty }
+    .desc = { ent-BoxFolderPlasticClipboardEmpty.desc }

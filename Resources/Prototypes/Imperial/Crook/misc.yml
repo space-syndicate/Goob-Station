@@ -1447,6 +1447,56 @@
     coolingCoefficient: 0.1
 
 - type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurNacho
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurNacho
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nachosuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nachosuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurMoki
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurMoki
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/mokisuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/mokisuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
   id: CrateCargoFursuits
   parent: CratePrivateSecure
   name: fursuit crate
@@ -1462,12 +1512,12 @@
     - id: ClothingOuterFurBeige
     - id: ClothingHeadHatFurNixuelle
     - id: ClothingOuterFurNixuelle
+    - id: ClothingHeadHatFurNacho
+    - id: ClothingOuterFurNacho
+    - id: ClothingHeadHatFurMoki
+    - id: ClothingOuterFurMoki
     - id: ClothingHeadHatRedRacoon
     - id: ClothingOuterRedRacoon
-    - id: ClothingOuterSuitCarp
-    - id: ClothingOuterSuitIan
-    - id: ClothingOuterSuitChicken
-    - id: ClothingHeadHatChickenhead
 
 - type: cargoProduct
   id: FunCrateFursuits

@@ -47,10 +47,36 @@
       hands:
         - item: SyndiBorgEpinephrineInjector
         - item: HandheldHealthAnalyzerUnpowered
-        - item: Gauze10Lingering
-        - item: Brutepack10Lingering
-        - item: Ointment10Lingering
-        - item: Bloodpack10Lingering
+        - item: DefibrillatorSyndicateAgentCyborg
+        - item: Gauze
+          hand:
+            emptyLabel: borg-slot-topicals-empty
+            emptyRepresentative: Gauze
+            whitelist:
+              components:
+              - Healing
+        - item: Brutepack
+          hand:
+            emptyLabel: borg-slot-topicals-empty
+            emptyRepresentative: Brutepack
+            whitelist:
+              components:
+              - Healing
+        - item: Ointment
+          hand:
+            emptyLabel: borg-slot-topicals-empty
+            emptyRepresentative: Ointment
+            whitelist:
+              components:
+              - Healing
+        - item: Bloodpack
+          hand:
+            emptyLabel: borg-slot-topicals-empty
+            emptyRepresentative: Bloodpack
+            whitelist:
+              components:
+              - Healing
+  - type: BorgModuleIcon
         - item: DefibrillatorSyndicateAgentCyborg
     - type: BorgModuleIcon
       icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: guardian-angel-module }
