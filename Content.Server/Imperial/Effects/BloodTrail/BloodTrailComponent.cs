@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Decals;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.BloodTrail

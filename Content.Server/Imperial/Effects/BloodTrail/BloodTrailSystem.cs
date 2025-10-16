@@ -1,7 +1,6 @@
 using Content.Server.Decals;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Decals;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -97,7 +96,7 @@ namespace Content.Server.Imperial.BloodTrail
 
             foreach (var group in comp.DamageGroups)
             {
-                if (_prototype.TryIndex<DamageGroupPrototype>(group, out var proto) &&
+                if (_prototype.TryIndex(group, out var proto) &&
                     proto.DamageTypes.Contains(damageType))
                     return true;
             }
@@ -107,8 +106,7 @@ namespace Content.Server.Imperial.BloodTrail
 
         private void SpawnBloodDecals(EntityUid victim, FixedPoint2 effectiveDamage, BloodTrailComponent comp, EntityUid? damageSource)
         {
-
-            if (!TryComp(victim, out TransformComponent? xform))
+            if (!TryComp(victim, out TransformComponent? _))
                 return;
 
             var decalCount = GetDecalCount(effectiveDamage);
@@ -135,8 +133,7 @@ namespace Content.Server.Imperial.BloodTrail
                     continue;
 
                 var mapCoords = new MapCoordinates(worldPos, victimXform.MapID);
-
-                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out _))
                     continue;
 
                 var entityCoords = _transform.ToCoordinates(gridUid, mapCoords);
@@ -173,9 +170,10 @@ namespace Content.Server.Imperial.BloodTrail
 
         private (Vector2 position, Angle rotation) CalculateDecalPositionAndRotation(Vector2 victimWorldPos, EntityUid? damageSource, float spread)
         {
-            var basePos = victimWorldPos;
-            Angle rotation = Angle.Zero;
+            _ = Angle.Zero;
 
+            Vector2 basePos;
+            Angle rotation;
             if (damageSource != null && TryComp(damageSource.Value, out TransformComponent? sourceXform))
             {
                 var sourcePos = _transform.GetWorldPosition(sourceXform);
