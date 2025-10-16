@@ -170,20 +170,19 @@ namespace Content.Server.Imperial.BloodTrail
 
         private (Vector2 position, Angle rotation) CalculateDecalPositionAndRotation(Vector2 victimWorldPos, EntityUid? damageSource, float spread)
         {
-            _ = Angle.Zero;
-
             Vector2 basePos;
             Angle rotation;
+
             if (damageSource != null && TryComp(damageSource.Value, out TransformComponent? sourceXform))
             {
                 var sourcePos = _transform.GetWorldPosition(sourceXform);
 
                 var attackDirection = (victimWorldPos - sourcePos).Normalized();
 
-                rotation = attackDirection.ToWorldAngle();
+                rotation = attackDirection.ToWorldAngle() + MathF.PI;
 
                 var offset = _random.NextFloat(spread * 0.8f, spread * 1.0f);
-                basePos = victimWorldPos + attackDirection * offset;
+                basePos = victimWorldPos - attackDirection * offset;
             }
             else
             {
