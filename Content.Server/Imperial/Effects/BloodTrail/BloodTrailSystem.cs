@@ -107,8 +107,6 @@ namespace Content.Server.Imperial.BloodTrail
 
         private void SpawnBloodDecals(EntityUid victim, FixedPoint2 effectiveDamage, BloodTrailComponent comp, EntityUid? damageSource)
         {
-            if (effectiveDamage < comp.MinDamageToSpawn)
-                return;
 
             if (!TryComp(victim, out TransformComponent? xform))
                 return;

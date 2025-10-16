@@ -9,7 +9,6 @@ namespace Content.Server.Imperial.BloodTrail
     [RegisterComponent]
     public sealed partial class BloodTrailComponent : Component
     {
-        [DataField] public FixedPoint2 MinDamageToSpawn = FixedPoint2.New(5f);
         [DataField] public int MaxDecals = 20;
         [DataField] public float SpreadDistance = 1.0f;
         [DataField] public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(0.5f);
