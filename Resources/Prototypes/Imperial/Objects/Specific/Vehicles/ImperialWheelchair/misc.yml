@@ -1,0 +1,39 @@
+- type: latheRecipe
+  id: ImperialVehicleWheelchairFolded
+  result: ImperialVehicleWheelchairFolded
+  completetime: 1
+  materials:
+    Steel: 500
+    Plastic: 300
+
+- type: latheRecipePack
+  id: MedicalImperialVehicleStatic
+  recipes:
+  - ImperialVehicleWheelchairFolded
+
+- type: trait
+  id: ImperialWheelchairBound
+  name: imperial-trait-wheelchair-bound-name
+  description: imperial-trait-wheelchair-bound-desc
+  category: Disabilities
+  blacklist:
+    components:
+      - BorgChassis
+  components:
+    - type: BuckleOnMapInit
+      prototype: ImperialVehicleWheelchair
+    - type: LegsStartParalyzed
+    - type: LegsParalyzed
+
+
+- type: entity
+  parent: BaseAction
+  id: ImperialActionHorn
+  name: Honk!
+  description: Beep the horn at whoever you will run over.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
+  - type: InstantAction
+    event: !type:HornActionEvent

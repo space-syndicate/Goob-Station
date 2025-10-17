@@ -76,8 +76,6 @@
             whitelist:
               components:
               - Healing
-  - type: BorgModuleIcon
-        - item: DefibrillatorSyndicateAgentCyborg
     - type: BorgModuleIcon
       icon: { sprite: Imperial/SyndieBorg/interface.rsi, state: guardian-angel-module }
 
