@@ -193,6 +193,7 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - MedicalImperialVehicleStatic # Imperial "ImperialVehicle"
     - ChemistryStatic
     - SurgeryStatic
     dynamicPacks:
@@ -478,6 +479,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - MedicalImperialVehicleStatic # Imperial "ImperialVehicle"
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic

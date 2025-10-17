@@ -114,12 +114,15 @@
       whitelist:
         components:
         - Hands # no use giving a mouse a storage implant, but a monkey is another story...
-    - type: Storage
+    # - type: Storage # Imperial Space Возвращение прежней вместимости импланту хранилища
+    #   grid:
+    #   - 0,0,0,1
+    #   - 1,0,1,0
+    #   - 1,2,1,2
+    #   - 2,1,2,2
+    - type: Storage # Imperial Space Возвращение прежней вместимости импланту хранилища
       grid:
-      - 0,0,0,1
-      - 1,0,1,0
-      - 1,2,1,2
-      - 2,1,2,2
+      - 0,0,2,2
     - type: ContainerContainer
       containers:
         storagebase: !type:Container

@@ -13,4 +13,8 @@
     plasma: PlasmaCanister
     storage: StorageCanister
     tritium: TritiumCanister
-    water-vapor: WaterVaporCanister
+    water-vapor: WaterVaporCanister # Imperial Space Gases
+    ozonium: OzoniumCanister # Imperial Space Gases
+    thermonium: ThermoniumCanister # Imperial Space Gases
+    hydrogen: HydrogenCanister # Imperial Space Gases
+    phazonium: PhazoniumCanister # Imperial Space Gases

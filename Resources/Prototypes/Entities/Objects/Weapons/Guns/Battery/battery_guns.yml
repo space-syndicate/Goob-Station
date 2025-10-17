@@ -251,6 +251,13 @@
   parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  components:
+  - type: Clothing
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-inhands.rsi # Imperial Space Изменение спрайта оружия
+  - type: Sprite
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-icons.rsi # Imperial Space Изменение спрайта оружия
+  - type: Item # Imperial Space Изменение спрайта оружия
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-inhands.rsi
 
 - type: entity
   name: practice laser carbine
@@ -268,6 +275,8 @@
     proto: RedLaserPractice
     fireCost: 62.5
   - type: PacifismAllowedGun
+  - type: Item # Imperial Space Изменение спрайта оружия
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-inhands.rsi
 
 - type: entity
   name: pulse pistol

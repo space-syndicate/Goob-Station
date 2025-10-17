@@ -24,15 +24,15 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.3
+        Piercing: 0.2
         Heat: 0.4
         Radiation: 0
         Caustic: 0
         Stamina: 0.45
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.15
   - type: FireProtection
-    reduction: 0.8
+    reduction: 1
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
@@ -147,15 +147,6 @@
   parent: MobMechanicSyndicate
   id: SpaceSamurai
   components:
-  - type: TypingIndicator
-    proto: syndibot
-  - type: Speech
-    speechSounds: SyndieBorg
-    allowedEmotes:
-    - Laugh
-  - type: Vocal
-    sounds:
-      Unsexed: UnisexSiliconSyndicate
   - type: RandomMetadata
     nameSegments:
     - NamesNinjaTitle
@@ -176,15 +167,21 @@
     - ImperialSmokeImplant
     - EmpImplant
     - EmpImplant
-    - RadioImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: SiliconLawProvider
-    laws: Samurai
+    laws: SamuraiLawset
   - type: IntrinsicRadioTransmitter
     channels: []
   - type: ActiveRadio
     channels: []
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 15
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Effects/metal_scrape2.ogg
 
 - type: entity
   name: Space Samurai
