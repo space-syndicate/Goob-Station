@@ -167,3 +167,11 @@ metabolizer-type-android = Андроид
 laws-empty = Пустой
 ent-AndroidCore = ядро андроида
     .desc = Искусственный разум.
+
+reagent-name-liquidpain = жидкая боль
+reagent-desc-liquidpain = Высокотоксичная, разлагающая, и кислотная субстанция.
+reagent-physical-desc-liquidpain = желеобразное
+
+reagent-name-almondwater = миндальная вода
+reagent-desc-almondwater = Нежная, почти прозрачная жидкость, приятно пахнущая свежим миндалём.
+reagent-physical-desc-almondwater = прозрачное

@@ -13,3 +13,5 @@ ent-ImperialActionHorn = Хонк!
 
 imperial-trait-wheelchair-bound-name = Инвалидность
 imperial-trait-wheelchair-bound-desc = Вы не сможете передвигаться без инвалидной коляски. Инвалидная коляска включена в стоимость.
+imperial-vehicle-distance-unbuckle = Вы растегнулись, ведь находитесь далеко от своего транспорта
+imperial-vehicle-cannot-insert-pilot = Невозможно вставить человека, управляющего транспортным средством. Отстегнитесь и попробуйте снова

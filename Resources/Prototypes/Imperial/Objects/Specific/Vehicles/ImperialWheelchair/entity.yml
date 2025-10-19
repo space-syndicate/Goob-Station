@@ -25,7 +25,7 @@
           mask:
             - MobMask
           layer:
-            - TableLayer
+            - MobLayer
     - type: StaticPrice
       price: 70
     - type: ImperialVehicle

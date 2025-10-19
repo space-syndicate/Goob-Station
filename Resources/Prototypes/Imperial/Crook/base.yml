@@ -260,7 +260,6 @@
     - FootstepSound
     - CanPilot
     - SiliconEmotes
-    - Unimplantable
   - type: Destructible
     thresholds:
     - trigger:

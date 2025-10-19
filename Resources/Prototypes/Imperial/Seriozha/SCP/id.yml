@@ -22,6 +22,10 @@
   id: SCPAccesAdministration
   name: SCPAdministration
 
+- type: accessLevel
+  id: SCPAccesO5
+  name: SCPO5
+
 - type: entity
   id: SCPAccessConfigurator
   parent: AccessConfigurator
@@ -37,6 +41,7 @@
       - SCPAccesFour
       - SCPAccesFive
       - SCPAccesAdministration
+      - SCPAccesO5
 
 - type: entity
   id: SCPIDCardOne
@@ -218,6 +223,36 @@
     - type: Clothing
       sprite: Imperial/Seriozha/SCP/id/adm.rsi
 
+- type: entity
+  id: SCPIDCardO5
+  parent: IDCardStandard
+  name: ID card of the Council of Guardians
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconO5
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      - SCPAccesO5
+      - SCPAccesAdministration
+      - CentralCommand
+      - NuclearOperative
+      - SyndicateAgent
+      groups:
+      - AllAccess
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/o5.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/o5.rsi
+
+
 - type: jobIcon
   parent: JobIcon
   id: JobIconAdministration
@@ -237,4 +272,11 @@
   id: JobIconSCP
   icon:
     sprite: /Textures/Imperial/Seriozha/SCP/id/icon.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconO5
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/icono5.rsi
     state: icon

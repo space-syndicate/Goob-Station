@@ -33,7 +33,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 30
+      BlueSpaceCube: 35
   - type: Tag
     tags:
       - ErtUplinkCombat
@@ -46,7 +46,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 20
+      BlueSpaceCube: 25
   # - type: Tag
   #   tags:
   #     - ErtUplinkCombat
@@ -60,7 +60,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 20
+      BlueSpaceCube: 25
   - type: Tag
     tags:
       - ErtUplinkCombat
@@ -73,7 +73,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 20
+      BlueSpaceCube: 25
   # - type: Tag
   #   tags:
   #     - ErtUplinkCombat
@@ -86,7 +86,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 20
+      BlueSpaceCube: 25
   # - type: Tag
   #   tags:
   #     - ErtUplinkCombat
@@ -100,7 +100,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 30
+      BlueSpaceCube: 35
   - type: Tag
     tags:
       - ErtUplinkCombat
@@ -113,7 +113,7 @@
   components:
   - type: Store
     balance:
-      BlueSpaceCube: 20
+      BlueSpaceCube: 25
   - type: Tag
     tags:
       - ErtUplinkCombat

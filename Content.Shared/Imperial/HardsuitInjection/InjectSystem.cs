@@ -54,12 +54,10 @@ public sealed partial class InjectSystem : EntitySystem
         if (!TryComp<SolutionContainerManagerComponent>(beakerUid, out var solutionContainerComponent)) return;
         if (!_solutions.TryGetSolution((beakerUid, solutionContainerComponent), "beaker", out var solutionEntity, out var _)) return;
 
-        var removedSolution = _solutions.SplitSolution((beakerUid, solutionEntity.Value.Comp), args.ReagentTransfer.Value);
+        var removedSolution = _solutions.SplitSolution(solutionEntity.Value, args.ReagentTransfer.Value);
         args.RemovedReagentAmount = removedSolution;
 
-        if (!TryComp<AppearanceComponent>(beakerUid, out var appearance)) return;
-
-        _solutions.UpdateAppearance((beakerUid, solutionEntity.Value.Comp, appearance));
+        _solutions.UpdateAppearance((solutionEntity.Value.Owner, solutionEntity.Value.Comp));
     }
 
     #endregion

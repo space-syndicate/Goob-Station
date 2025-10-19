@@ -9,6 +9,13 @@ namespace Content.Shared.Imperial.ImperialVehicle.Components;
 [Access(typeof(SharedImperialVehicleSystem))]
 public sealed partial class ImperialVehicleComponent : Component
 {
+    /// <summary>
+    /// At this distance from the driver to the center of the vehicle, the driver unbuckle
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float MaxRiderDistance = 0.1f;
+
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float BaseWalkSpeed = 2.0f;

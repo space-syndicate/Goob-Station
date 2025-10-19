@@ -371,6 +371,897 @@
     tags:
     - BorgModuleSecurityImperial
 
+# Imperial Space Модули киборгов ОБР и РХБЗЗ start
+
+- type: entity
+  id: BaseErtBorgModule
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: Base NT borg module
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#68AFCC"
+      - state: base-module-inhand-left
+        color: "#055A79"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#064D67"
+      right:
+      - state: base-icon-inhand-right
+        color: "#68AFCC"
+      - state: base-module-inhand-right
+        color: "#055A79"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#064D67"
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModulePulseCannon # Летальный модуль ОБР борга
+  parent: BaseErtBorgModule
+  name: Pulse Cannon Module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
+    - item: WeaponPulseCanonBorg
+    - item: PinpointerNuclear
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
+  - type: StaticPrice
+    price: 12000
+
+
+- type: entity
+  parent: BaseErtBorgModule
+  id: BorgModuleEswordErt
+  name: ert energy sword cyborg module
+  description: A weapons module that comes with an energy sword.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: EnergySword
+    - item: PinpointerNuclear
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-Energomech }
+  - type: StaticPrice
+    price: 12000
+
+- type: entity
+  id: ErtBorgModuleJaws
+  parent: BaseErtBorgModule
+  name: tool ert cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: JawsOfLife
+    - item: PinpointerNuclear
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-jaws }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleNonLethalSecurityErt # Нелетальный модуль ОБР борга
+  parent: BaseErtBorgModule
+  name: NonLethal Ert Module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: AdvancedStunbatonBorg
+    - item: ErtBorgWeaponTaser
+    - item: FlashBorg
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-nonlethal }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleSelfDefenseErt # Нелетальный модуль инжеборга и медборга ОБР
+  parent: BaseErtBorgModule
+  name: self-defense module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: ErtBorgWeaponDisablerSMG
+    - item: FlashBorg
+    - item: PinpointerNuclear
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-module-Stanner }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleFlameThrower # Летальный модуль РХБЗЗ борга
+  parent: BaseErtBorgModule
+  name: Flame Thrower Module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: FlameThrowerBorg
+    - item: PinpointerNuclear
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-flamethrower }
+  - type: StaticPrice
+    price: 12000
+
+- type: entity
+  name: borg taser
+  parent: WeaponTaser
+  id: ErtBorgWeaponTaser
+  components:
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 15
+
+- type: entity
+  name: ert borg stun baton
+  parent: Stunbaton
+  id: AdvancedStunbatonBorg
+  description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
+  components:
+  - type: Sprite
+    sprite: Imperial/Objects/Weapons/Melee/AdvancedStunBaton/stunbaton.rsi
+  - type: Stunbaton
+    energyPerUse: 25
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+    bluntStaminaDamageFactor: 2.0
+    angle: 60
+    animation: WeaponArcThrust
+  - type: Battery
+    maxCharge: 200
+    startingCharge: 200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+
+- type: entity
+  name: ert borg disabler SMG
+  parent: WeaponDisablerSMG
+  id: ErtBorgWeaponDisablerSMG
+  description: Advanced borg weapon that exhausts organic targets, weakening them until they collapse.
+  components:
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 10
+
+- type: entity
+  name: borg pulse cannon 
+  parent: BaseWeaponBattery
+  id: WeaponPulseCanonBorg
+  description: The intimidating weapons of the NanoTrasen corporation's military cyborgs.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT/pulse_cannon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: ToggleableVisuals
+    spriteLayer: flame
+    inhandVisuals:
+      left:
+      - state: inhand-left-flame
+        shader: unshaded
+      right:
+      - state: inhand-right-flame
+        shader: unshaded
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/Lighters/lighter3.ogg
+  - type: Appearance
+  - type: Clothing
+    sprite: Imperial/Roles/Synthetics/ERT/pulse_cannon.rsi
+  - type: Gun
+    fireRate: 1.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseDeathSquad
+    fireCost: 200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 45
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+
+- type: entity
+  id: FlameThrowerBorg
+  parent: BaseFlameThrower
+  name: borg flame thrower
+  description: The hallmark of the CBURN detachment. A massive tank with thickened fuel, durable hoses, and a reliable burner. It is excellent at cleaning rooms from unwanted flora and fauna. Borg edition
+  components:
+  - type: Sprite
+    sprite: Imperial/Flamethrower/flamethrower.rsi
+    layers:
+    - state: icon
+    - state: fire
+      shader: unshaded
+      visible: false
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    size: Large
+    sprite: Imperial/Flamethrower/inhands.rsi
+  - type: ToggleableVisuals
+    spriteLayer: flame
+    inhandVisuals:
+      left:
+      - state: inhand-left-flame
+        shader: unshaded
+      right:
+      - state: inhand-right-flame
+        shader: unshaded
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/Lighters/lighter3.ogg
+  - type: ComponentToggler
+    components:
+    - type: DisarmMalus
+      malus: 0.6
+    - type: Execution
+      doAfterDuration: 4.0
+    - type: Gun
+      cameraRecoilScalar: 0
+      projectileSpeed: 8
+      fireRate: 15
+      minAngle: 30
+      maxAngle: 30
+      angleIncrease: 0
+      angleDecay: 0
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Imperial/Flamethrower/flamethrower_fire.ogg
+    - type: ItemToggleHot
+    - type: ItemToggleSize
+      activatedSize: Huge
+  - type: ProjectileBatteryAmmoProvider
+    proto: FlamethrowerBullet
+    fireCost: 100
+  - type: Battery
+    maxCharge: 35000
+    startingCharge: 35000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 200
+  - type: AmmoCounter
+
+- type: entity
+  parent: BorgModuleMartyr
+  id: ErtBorgModuleBomb
+  name: cburn cyborg boom module
+  description: "A module that comes with an explosive you probably don't want to handle yourself."
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: SelfDestructSeq
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#68AFCC"
+      - state: base-module-inhand-left
+        color: "#055A79"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#064D67"
+      right:
+      - state: base-icon-inhand-right
+        color: "#68AFCC"
+      - state: base-module-inhand-right
+        color: "#055A79"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#064D67"
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-C4 }
+  - type: StaticPrice
+    price: 12000
+
+- type: entity
+  id: BorgModuleToolErt
+  parent: BaseErtBorgModule
+  name: ert cyborg tools module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: JawsOfLife
+    - item: PowerDrill
+    - item: WelderExperimental
+    - item: Multitool
+    - item: HolofanProjectorBorg
+    - item: GasAnalyzer
+    - item: trayScanner
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-tools }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleErtRCD
+  parent: BaseErtBorgModule
+  name: ert engineering cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: RCDRechargingErtBorg
+    - item: JetpackErtBorg
+    - item: BorgHandheldGPSBasic
+    - item: GasAnalyzer
+    - item: HolofanProjectorBorg
+    - item: GeigerCounter
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-RCS }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleConstructionErt
+  parent: BaseErtBorgModule
+  name: construction ert cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: DoorElectronics
+        emptyLabel: borg-slot-circuitboards-empty
+        whitelist:
+          components:
+          - Circuitboard
+        blacklist:
+          components:
+          - SiliconLawProvider
+    - hand:
+        emptyRepresentative: MicroManipulatorStockPart
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: SpaceHeaterFlatpack
+        emptyLabel: borg-slot-flatpacks-empty
+        whitelist:
+          components:
+          - Flatpack
+    - hand:
+        emptyRepresentative: FloorTileItemSteel
+        emptyLabel: borg-slot-tiles-empty
+        whitelist:
+          components:
+          - FloorTile
+    - hand:
+        emptyRepresentative: FloorTileItemWhite
+        emptyLabel: borg-slot-tiles-empty
+        whitelist:
+          components:
+          - FloorTile
+    - hand:
+        emptyRepresentative: FloorTileItemDark
+        emptyLabel: borg-slot-tiles-empty
+        whitelist:
+          components:
+          - FloorTile
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-materials }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleCableErt
+  parent: BaseErtBorgModule
+  name: cable cyborg module
+  description: A universal cyborg module which allows the unit to install and manipulate electrical systems.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: CableApcStack10
+      hand:
+        emptyRepresentative: CableApcStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: CableMVStack10
+      hand:
+        emptyRepresentative: CableMVStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: CableHVStack10
+      hand:
+        emptyRepresentative: CableHVStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: JawsOfLife
+    - item: trayScanner
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-module-Cable }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  parent: [ JetpackBlack ]
+  id: JetpackErtBorg
+  name: ert borg jetpack
+  suffix: Infinite
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      temperature: 293.15
+  - type: Jetpack
+    moleUsage: 0
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.3
+    weightlessFriction: 0.3
+    weightlessModifier: 1
+
+- type: entity
+  id: RCDRechargingErtBorg
+  parent: RCD
+  name: ert borg RCD
+  description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
+  suffix: AutoRecharge
+  components:
+  - type: LimitedCharges
+    maxCharges: 40
+  - type: AutoRecharge
+    rechargeDuration: 2
+
+- type: entity
+  id: ErtBorgModuleSurgeryTools
+  parent: BorgModuleSurgeryTools
+  name: surgery tools ert cyborg module
+  description: Medical module containing surgery tools.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: ErtBorgModuleTopicals
+  parent: BorgModuleTopicals
+  name: topicals cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: EmergencyRollerBedSpawnFolded
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: EmergencyRollerBedSpawnFolded
+        whitelist:
+          components:
+          - Foldable
+    - item: HandheldHealthAnalyzerErtBorg
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: HandheldHealthAnalyzerErtBorg
+        whitelist:
+          components:
+          - DiscreteHealthAnalyzer
+    - item: JawsOfLife
+    - item: MedicatedSuture
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: MedicatedSuture
+        whitelist:
+          components:
+          - Healing
+    - item: HardTraumapack
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: HardTraumapack
+        whitelist:
+          components:
+          - Healing
+    - item: HardBurnKit
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: HardBurnKit
+        whitelist:
+          components:
+          - Healing
+    - item: Bloodpack
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Bloodpack
+        whitelist:
+          components:
+          - Healing
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
+  - type: StaticPrice
+    price: 8000
+
+# Гипоспрей ОБР борга
+- type: entity
+  name: ert borg hypospray
+  parent: HyposprayBorg
+  description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
+  id: HyposprayBorgErt
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
+  - type: BorgHypo
+    solutions:
+      - reagents:
+        - reagentId: Retropine
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/firstaid.png
+      - reagents:
+        - reagentId: Dermaline
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/burnkit.png
+      - reagents:
+        - reagentId: DexalinPlus
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/o2kit.png
+      - reagents:
+        - reagentId: SalineGlucose
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/advkit.png
+      - reagents:
+        - reagentId: Puncturase
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/blackkit.png
+      - reagents:
+        - reagentId: Arithrazine
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/radkit.png
+      - reagents:
+        - reagentId: Diphenhydramine
+          quantity: 2
+          sprite: Imperial/BorgomatERT/firstaidkits/toxinkit.png
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+        - ReagentId: Bicaridine
+          Quantity: 1
+
+- type: entity
+  id: BorgModuleRescueErt
+  parent: BaseErtBorgModule
+  name: rescue ert cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldHealthAnalyzerUnpowered
+    - item: DefibrillatorOneHandedUnpowered
+    - item: JawsOfLife
+    - item: JetpackErtBorg
+    - item: BorgHandheldGPSBasic
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  id: BorgModuleAdvancedChemicalErt
+  parent: BaseErtBorgModule
+  name: advanced chemical cyborg module
+  description: Advanced medical module containing the cyborg adaptation of the highly coveted hypospray. Now your cyborgs can inject crew-harmers with chloral hydrate even faster!
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
+    layers:
+    - state: nanotrasen
+    - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldHealthAnalyzerUnpowered
+    - item: HyposprayBorgErt
+    - item: JetpackErtBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  parent: [ClothingShoesBootsMagBase ]
+  id: ClothingShoesBootsMagAdvErtBorg
+  name: advanced magnetic module
+  description: State-of-the-art magnetic boots that do not slow down their wearer.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/magboots-advanced
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Other/ertborgs/magbootsertborg
+    state: none
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Unremoveable
+
+- type: entity
+  id: HandheldHealthAnalyzerErtBorg
+  parent: HandheldHealthAnalyzerUnpowered
+  name: ert borg health analyzer
+  suffix: Always Powered
+  description: A hand-held body scanner capable of distinguishing vital signs of the subject.
+  components:
+  - type: Unremoveable
+
+- type: startingGear #gear
+  id: ErtAssaultBorgLodout
+  equipment:
+    shoes: ClothingShoesBootsMagAdvErtBorg
+
+- type: startingGear #gear
+  id: ErtBorgLodout
+  equipment:
+    shoes: ClothingShoesBootsMagAdvErtBorg
+
+- type: startingGear #gear
+  id: ErtMedicalBorgLodout
+  equipment:
+    head: ClothingErtMedicalBorgSiren
+    shoes: ClothingShoesBootsMagAdvErtBorg
+
+- type: startingGear #gear
+  id: ErtEngineerBorgLodout
+  equipment:
+    head: ClothingErtEngineerBorgSiren
+    shoes: ClothingShoesBootsMagAdvErtBorg
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingErtMedicalBorgSiren
+  name: medical siren
+  description: Loud medical cyborg siren.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+    state: icon-siren
+  - type: ItemToggle
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/flashlight_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/flashlight_off.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Effects/Vehicle/policesiren.ogg
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 1.0
+  - type: ToggleClothing
+    action: ActionToggleErtMedicSiren
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 5
+    energy: 5
+    color: blue
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingErtEngineerBorgSiren
+  name: engineer siren
+  description: Engineer cyborg siren.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+    state: icon-siren
+  - type: ItemToggle
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/flashlight_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/flashlight_off.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Effects/Vehicle/policesiren.ogg
+      params:
+        volume: -100
+  - type: UseDelay
+    delay: 1.0
+  - type: ToggleClothing
+    action: ActionToggleErtEngineerSiren
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 4
+    energy: 4
+    color: orange
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Unremoveable
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleErtMedicSiren
+  name: Toggle Ert Medic Siren
+  description: Toggles the ert medic siren on and off.
+  components:
+  - type: Action
+    icon:
+      sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+      state: icon-siren
+    useDelay: 1
+    itemIconStyle: BigAction
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleErtEngineerSiren
+  name: Toggle Ert Engineer Siren
+  description: Toggles the ert medic siren on and off.
+  components:
+  - type: Action
+    icon:
+      sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+      state: icon-siren
+    useDelay: 1
+    itemIconStyle: BigAction
+
+# Imperial Space Модули киборгов ОБР и РХБЗЗ end
 
 - type: entity
   name: borg's laser

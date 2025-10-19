@@ -1,0 +1,944 @@
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesBootsWorkSCP
+  name: Humanity Fighter Boots
+  suffix: Fredik21, Недра
+  description: you can feel every step in them
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Matchbox
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPMTF
+
+- type: soundCollection
+  id: FootstepSCPMTF
+  files:
+  - /Audio/Imperial/Seriozha/SCP/StepMTF1.OGG
+  - /Audio/Imperial/Seriozha/SCP/StepMTF2.OGG
+  - /Audio/Imperial/Seriozha/SCP/StepMTF3.OGG
+
+- type: entity
+  parent: PosterBase
+  id: PosterPHYSICS
+  name: PHYSICS Poster
+  suffix: Fredik21, Недра
+  description: GOK - PHYSICS THE LAWS OF NATURE IN THE SERVICE OF HUMANITY. Containment and destruction of anomalous physical phenomena. Precision is our priority.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: PHYSICS
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDAFredik21
+  name: NDA Poster
+  suffix: Fredik21, Недра
+  description: PROTECT THE ANOMALOUS. SAVE THE ORDINARY. Don't risk the future of humanity. An NDA is your only protection.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: scp
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDAClass
+  name: NDA Classification Poster
+  suffix: Fredik21, Недра
+  description: The Foundation reminds us of the importance of classifying objects.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: nda
+
+- type: entity
+  parent: PosterBase
+  id: PosterGOC
+  name: GOC Poster
+  suffix: Fredik21, Недра
+  description: We fight threats you cannot see. We do what is necessary to defend this world. Global Occult Coalition.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: goc
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA049
+  name: Poster NDA 049
+  suffix: Fredik21, Недра
+  description: NDA - Item 049. Class Euclid. Threat Level High. Unauthorized access, disclosure of information, or violation of containment protocols will result in disciplinary action and possible reassignment.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n049
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA106
+  name: Poster NDA 106
+  suffix: Fredik21, Недра
+  description: NDA - Item 106. Class - Keter. Constant monitoring required. Any breaches of containment protocol are to be reported immediately. Risk of reality erosion.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n106
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA076
+  name: Poster NDA 076
+  suffix: Fredik21, Недра
+  description: NDA - Object 076. Class - Keter. Constant monitoring of sarcophagus parameters is required. Any abnormal activity will trigger an alert.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n076
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA457
+  name: Poster NDA 457
+  suffix: Fredik21, Недра
+  description: NDA - Object 457. Class - Keter. Possesses a threat to personnel and the facility. Observe firefighting protocols. Report any contact immediately.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n457
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA999
+  name: Poster NDA 999
+  suffix: Fredik21, Недра
+  description: NDA - Object 999. Class - Safe. Regular staff interaction is required. Report any changes in behavior or appearance.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n999
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA035
+  name: Poster NDA 035
+  suffix: Fredik21, Недра
+  description: NDA - Object 035. Class - Keter. Constant monitoring required. Prolonged exposure to organic materials prohibited. Any changes in the subject's behavior or those around him/her should be reported immediately.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n035
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA500
+  name: Poster NDA 500
+  suffix: Fredik21, Недра
+  description: NDA - Object 500. Class - Safe (during storage). Use in accordance with medical commission protocols. Report any signs of substance degradation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n500
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA714
+  name: Poster NDA 714
+  suffix: Fredik21, Недра
+  description: NDA - Object 714. Class - Safe. Psi-suppression. Monitoring for side effects is required. Minimize exposure to prolonged expos
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n714
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA127
+  name: Poster NDA 127
+  suffix: Fredik21, Недра
+  description: NDA - Object 127. Class - Safe. Requires regular watering with a nutrient solution. Monitor the condition of the barrel and sight. Avoid contact with aggressive chemicals.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n127
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA268
+  name: Poster NDA 268
+  suffix: Fredik21, Недра
+  description: NDA - Object 268. Class - Euclid. Avoid physical contact with other objects. Check for integrity after each use. Report any operational anomalies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n268
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA207
+  name: Poster NDA 207
+  suffix: Fredik21, Недра
+  description: NDA - Item 207. Class - Safe. Medical supervision is required for all users. Dosage is strictly regulated.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n207
+
+- type: entity
+  parent: PosterBase
+  id: PosterChaos
+  name: CHAOS Poster
+  suffix: Fredik21, Недра
+  description: We will destroy the old world to create a new, better one. If needed, we will sacrifice everything. Chaos Insurgency.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: chaos
+
+- type: entity
+  parent: ClothingShoesColorBlack
+  id: ClothingShoesSCP
+  name: Work Boots
+  suffix: Fredik21, Недра
+  description: Field boots. Your connection to the ground. The only thing that can save you from something crawling from below.
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPMTF
+
+- type: entity
+  id: EmergencyLightSCP
+  parent: EmergencyLight
+  name: Emergency Lamp
+  description: looks hurt your ears when you look at it
+  suffix: Fredik21, Недра
+  components:
+  - type: AmbientSound
+    volume: -2
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/Alarm.ogg
+      params:
+        loop: true
+        stream: true
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSCPDeva
+  name: Deva Resonator
+  description: Resonator suit designed for combat in small squads. Provides excellent protection and extended comms/coordination. Resonant amplifiers allow fast movement and maneuverability on the battlefield.
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/hardsuitfighter.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/hardsuitfighter.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitSCPDeva
+    - type: AmbientSound
+      volume: -5
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/deva.ogg
+        params:
+          loop: true
+          stream: true
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSCPDeva
+  description: Durable and high-tech helmet protecting the wearer's head. Contains built-in communicator and display for tactical info.
+  name: Empire Deva Helmet
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/headhardsuitfighter.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/headhardsuitfighter.rsi
+    - type: PointLight
+      color: "#5814ce"
+
+- type: entity
+  parent: ClothingShoesBootsMagAdv
+  id: ClothingShoesBootsMagSCPDeva
+  name: Resonator Boots
+  description: Equipped with built-in resonators boosting each step, enabling long distances and absorbing impacts on landing. Integrated into armor system, ensuring stable connection to wearer's neural network for movement optimization.
+  suffix: Fredik21, Недра
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPADV
+
+- type: soundCollection
+  id: FootstepSCPADV
+  files:
+  - /Audio/Imperial/Seriozha/SCP/adv1.ogg
+  - /Audio/Imperial/Seriozha/SCP/adv2.ogg
+  - /Audio/Imperial/Seriozha/SCP/adv3.ogg
+
+- type: entity
+  parent: SurveillanceCameraAssembly
+  id: CameraSCP
+  suffix: Fredik21, Недра
+  name: CCTV Camera
+  description: One of the thousand eyes through which the Foundation watches this world. Records every step you take, every word you utter. Remember, you are always being watched.
+  components:
+    - type: AmbientSound
+      volume: -2
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/camera.ogg
+        params:
+          loop: true
+          stream: true
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: AtmosDeviceSCPFond
+  name: Ventilation
+  suffix: Fredik21, Недра
+  description: hums
+  components:
+    - type: AmbientSound
+      volume: -2
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/fan.ogg
+        params:
+          loop: true
+          stream: true
+
+- type: entity
+  id: WindowReinforcedDirectionalSCPWaterSound
+  parent: WindowReinforcedDirectionalSCPWater
+  name: Water Pipe
+  suffix: Fredik21, Недра, sound
+  description: you hear water flowing through it
+  components:
+    - type: AmbientSound
+      volume: -2
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/drip.ogg
+        params:
+          loop: true
+          stream: true
+
+- type: entity
+  id: WindowReinforcedDirectionalSCPWater
+  parent: WindowReinforcedDirectional
+  name: Water Pipe
+  suffix: Fredik21, Недра
+  description: you do not hear water flowing through it
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/water.rsi
+    state: reinforced_window
+  - type: Icon
+    sprite: Imperial/Seriozha/Fredik21/structure/water.rsi
+    state: reinforced_window
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDev
+  name: Imperial Deva Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DevGear ]
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+      - ScramImplant
+      - TrackingImplant
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPDev-name
+      description: ghost-role-information-PresetSCPDev-desc
+      rules: 1. The Empire will not incur losses; strive to stay alive. 2. Serve the Empire - obey the commander's orders. 3. Do your best, help teammates in your task.
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: DevGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpecialForcePoliceV1
+    back: ClothingBackpackSatchelHolding
+    mask: ClothingMaskGasSyndicate
+    shoes: ClothingShoesBootsMagSCPDeva
+    eyes: GlassesVisorRCU
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSCPDeva
+    ears: ClothingHeadsetSCPDev
+    suitstorage: WeaponPulseCarbineSCPDeva
+    belt: WeaponPulsePistolSCPDeva
+    pocket1: AccessBreaker
+    pocket2: AccessBreaker
+  storage:
+    back:
+    - JawsOfLife
+    - PowerDrill
+    - WelderExperimental
+    - Multitool
+    - MedkitCombatFilled
+    - EmpGrenade
+    - EmpGrenade
+    - ExGrenade
+    - GrenadeShrapnel
+    - CombatKnife
+    - Tourniquet
+    - Tourniquet
+    - TelescopicShield
+
+- type: entity
+  id: BannerDevSCP
+  parent: BannerBase
+  suffix: Fredik21, Недра
+  name: Dev Empire Banner
+  description: Technological banner of the Deva Empire. Made from tough yet flexible material resembling polymer silk. The golden trim contains microchips and emits a faint energy hum. At the center is a glowing symbol representing the doctrine of expansion and dominance.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/banner.rsi
+
+- type: entity
+  name: Projections Carbine “Calibrator”
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  id: WeaponPulseCarbineSCPDeva
+  suffix: Fredik21, Недра
+  description: High-precision beam projector designed to maintain clean lines and order in containment zones. Rather than a destructive beam, the “Calibrator” emits a focused coherent energy beam that penetrates armor with minimal spread, aimed precisely at vulnerable life-support or servo nodes.
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/gun/pulsedeva.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/gun/pulsedeva.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Seriozha/SCP/laser.ogg
+      volume: -4
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseViolet
+    fireCost: 200
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+
+- type: hitscan
+  id: PulseViolet
+  damage:
+    types:
+      Heat: 30
+  muzzleFlash:
+    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+    state: muzzle_violet
+  travelFlash:
+    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+    state: beam_violet
+  impactFlash:
+    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+    state: impact_violet
+
+- type: entity
+  name: Laser Cutter “Srez” (Slice)
+  parent: [BaseWeaponBatterySmall, BaseCentcommContraband]
+  id: WeaponPulsePistolSCPDeva
+  suffix: Fredik21, Недра
+  description: Compact self-defense weapon designed for rapid and efficient threat elimination. The “Slice” emits a concentrated beam of submillimeter radiation that penetrates most materials with minimal resistance.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/gun/pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: Item
+    storedOffset: -2,-5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/gun/pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Seriozha/SCP/laser.ogg
+      volume: -4
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseViolet
+    fireCost: 200
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPDev
+  suffix: Fredik21, Недра
+  name: Empire Deva Headset
+  description: Deva headset is elegant and minimalist, made from dark polished metal, suiting the head. Besides normal comms, it has a neural interface enabling environmental parameter control, tactical data reception, and even influencing the wearer's mood. Built-in voice analyzer suppresses unwanted sounds for perfect transmission clarity.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyImperialDevSCP
+    - type: EncryptionKeyHolder
+      keySlots: 8
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/headset.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyImperialDevSCP
+  name: Imperial Encryption Key
+  suffix: Fredik21, Недра
+  description: imperial communication key
+  components:
+  - type: EncryptionKey
+    channels:
+    - ImperialDevSCP
+    defaultChannel: ImperialDevSCP
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/empiredeva/key.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/empiredeva/key.rsi
+
+- type: radioChannel
+  id: ImperialDevSCP
+  name: Empire of Deva
+  keycode: 'щ'
+  frequency: 8899
+  color: "#4c0ba1"
+  longRange: true
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSCPDevaCommander
+  name: Deva Empire Commander's Resonator Suit
+  description: Commander's resonator suit is a symbol of power and invulnerability. Its dark, heavy silhouette inspires fear, while shimmering energy fields protect against any attack
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/hardsuitcommand.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/hardsuitcommand.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitSCPDevaCommander
+    - type: AmbientSound
+      volume: -5
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/deva.ogg
+        params:
+          loop: true
+          stream: true
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.35
+          Slash: 0.35
+          Piercing: 0.35
+          Heat: 0.35
+          Radiation: 0.35
+          Caustic: 0.35
+          Stamina: 0.35
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSCPDevaCommander
+  description: Durable and high-tech helmet protecting the wearer's head. Contains built-in communicator and display for tactical information.
+  name: Empire Deva Helmet
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/headhardsuitcommand.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/headhardsuitcommand.rsi
+    - type: PointLight
+      color: "#ccc90a"
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSCPDevaMedic
+  name: Deva Empire Medic Resonator Suit
+  description: Deva medic resonator suit is a mobile lab and operating room in one. It integrates with biosensors capable of scanning the body at molecular level, detecting the slightest injuries and diseases. The suit's resonators generate energy fields stimulating tissue regeneration, bone fusion, and pathogen destruction. Built-in manipulators enable complex field operations with unprecedented precision.
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/hardsuitmedic.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/empiredeva/hardsuitmedic.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitSCPDeva
+    - type: AmbientSound
+      volume: -5
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/deva.ogg
+        params:
+          loop: true
+          stream: true
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.7
+          Heat: 0.6
+          Radiation: 0.6
+          Caustic: 0.6
+          Stamina: 0.5
+    - type: ClothingSpeedModifier
+      walkModifier: 1.1
+      sprintModifier: 1.1
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDevMedic
+  name: Medic of the Deva Empire
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DevGearMedic ]
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+      - ScramImplant
+      - TrackingImplant
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPDevMedic-name
+      description: ghost-role-information-PresetSCPDevMedic-desc
+      rules: 1. The Empire will not incur losses; try to stay alive. 2. Serve the Empire - obey orders. 3. Do your best to help teammates in your task.
+      raffle:
+        settings: short
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDevCommand
+  name: Imperial Deva Commander
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DevGearCommand ]
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+      - ScramImplant
+      - TrackingImplant
+      - ImperialBlinkImplant
+
+- type: startingGear
+  id: DevGearCommand
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpecialForcePoliceV1
+    back: ClothingBackpackSatchelHolding
+    mask: ClothingMaskGasSyndicate
+    shoes: ClothingShoesBootsMagSCPDeva
+    eyes: GlassesVisorRCU
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSCPDevaCommander
+    ears: ClothingHeadsetSCPDev
+    suitstorage: WeaponPulseCarbineSCPDeva
+    belt: WeaponPulsePistolSCPDeva
+    pocket1: AccessBreaker
+    pocket2: AccessBreaker
+  storage:
+    back:
+    - JawsOfLife
+    - PowerDrill
+    - WelderExperimental
+    - Multitool
+    - MedkitCombatFilled
+    - HandTeleporterSCPDeva
+    - HandHeldMassScanner
+
+- type: startingGear
+  id: DevGearMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpecialForcePoliceV1
+    back: ClothingBackpackSatchelHolding
+    mask: ClothingMaskGasSyndicate
+    shoes: ClothingShoesBootsMagSCPDeva
+    eyes: GlassesVisorRCU
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSCPDevaMedic
+    ears: ClothingHeadsetSCPDev
+    suitstorage: WeaponPulseCarbineSCPDeva
+    belt: WeaponPulsePistolSCPDeva
+    pocket1: AccessBreaker
+    pocket2: AccessBreaker
+  storage:
+    back:
+    - JawsOfLife
+    - PowerDrill
+    - WelderExperimental
+    - Multitool
+    - MedkitCombatFilled
+    - Hypospray
+    - AdvancedFirstAidMedkitImperialFilled
+    - AmpulaBica
+    - AmpulaBica
+    - AmpulaDexa
+    - AmpulaDexa
+    - AmpulaDerm
+    - AmpulaDerm
+    - AmpulaDylo
+    - AmpulaDylo
+    - HandTeleporterSCPDeva
+
+- type: entity
+  parent: BaseItem
+  id: BoxSCPO5
+  suffix: Fredik21, Недра
+  name: Secret O5 Folder
+  description: Secret O5 Folder. Contains information sanctioned for access only by O5 Council members. Any unauthorized opening, copying, or distribution of this folder is met with immediate removal, regardless of rank. The data concerns fundamental Foundation SCP aspects and humanity's existence.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/folders.rsi
+    layers:
+    - state: folder-colormap
+      color: "#540daf"
+    - state: folder-base
+    - state: folder-stamp-inverse
+      color: "#000000"
+
+- type: entity
+  parent: BaseHealingItem
+  id: SCP500
+  suffix: Fredik21, Недра
+  name: Panacea
+  description: NDA-500 — red tablets stored in a small plastic bottle, 47 tablets at the time of writing. The tablet taken orally heals the subject from all diseases within two hours.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ChemistryRework/large_pill_canister.rsi
+    state: pill_canister
+  - type: Item
+    sprite: Imperial/Other/ChemistryRework/large_pill_canister.rsi
+  - type: Healing
+    damageContainers:
+    - Biological
+    damage:
+      groups:
+        Brute: -300
+        Burn: -300
+        Toxin: -300
+    bloodlossModifier: -20
+    delay: 1
+    selfHealPenaltyMultiplier: 0
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+
+- type: entity
+  name: Bottles of “Coca-Cola”
+  parent: BaseItem
+  suffix: Fredik21, Недра
+  description: NDA-207 is a box containing 24 bottles of Coca-Cola by the same brand. Bottles are labeled from SCP-207-A to -X. Currently only SCP-207-B is intended for research; opening other bottles without a Level 4 research staff approval is forbidden.
+  id: SCP207
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/colabottle.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 20
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Desoxyephedrine
+        Quantity: 1
+
+- type: entity
+  parent: [ RingBase, GoldRingBase ]
+  id: SCP714
+  suffix: Fredik21, Недра
+  name: Non-precious Ring
+  description: NDA-714 looks like a regular green nephrite ring. It can adapt to the finger size of the last person who touched it. It changes size only for “new” subjects, which is its least significant property.
+  components:
+  - type: Sprite
+    layers:
+    - state: ring
+      color: "#06531e"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+- type: entity
+  parent: [ ClothingHeadHeadHatBaseFlippable, BaseToggleClothing ]
+  id: SCP268
+  suffix: Fredik21, Недра
+  name: Cap of Invisibility
+  description: NDA-268 is a hat made of tweed wool, commonly worn by boy newspaper sellers. The shape and design match hats produced in Ireland.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/cargosoft.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/cargosoft.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 0.02
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: -10
+      lastVisibility: -1
+      maxVisibility: 1
+
+- type: entity
+  name: Living Weapon
+  id: SCP127
+  suffix: Fredik21, Недра
+  parent: BaseItem
+  description: NDA-127 externally looks like an MP5K submachine gun. Experiments show the device is organic inside the metal shell; ammo consists of teeth resembling human teeth.
+  components:
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: Sprite
+    sprite: Imperial/Other/CS/Weapon/mp5.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Huge
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgePistol
+    fireCost: 10
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 15
+  - type: AmmoCounter
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-SCP127-name
+    description: ghost-role-information-SCP127-desc
+    rules: You remember nothing from previous life.
+    raffle:
+      settings: short
+
+- type: entity
+  id: HandTeleporterSCPDeva
+  parent: [BaseItem, BaseGrandTheftContraband]
+  name: Portable Breakthrough “Dissonance”
+  suffix: Fredik21, Недра
+  description: “Dissonance” is a portable device operating on quantum entanglement principles. Upon activation, it creates a linked pair of particles—one at the current location, the other at the desired transfer point. The user then enters a quantum superposition and teleports after one of the particles. However, memory and personality may be partially distorted or replaced, making the user more susceptible to Deva influence.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/teleporter.rsi
+    layers:
+    - state: icon
+  - type: HandTeleporter
+  - type: StealTarget
+    stealGroup: HandTeleporter
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPO5
+  name: warden O5
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ O5Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: O5Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSunglasses
+    head: BlackShieldBeretGaqut
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetSCPAlt
+    id: SCPIDCardO5
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeySCPconnection
+    - EncryptionKeyNedraMTFconnection

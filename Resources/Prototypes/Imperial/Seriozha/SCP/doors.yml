@@ -72,6 +72,15 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSCPAdm ]
+
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPO5Locked
+  suffix: seriozha, Недра, O5
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPO5 ]
 # Two
 - type: entity
   parent: AirlockRCDResistant
@@ -224,6 +233,16 @@
   components:
   - type: AccessReader
     access: [["SCPAccesAdministration"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPO5
+  name: Idk
+  suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["SCPAccesO5"]]
 #Electronics end, start remotes
 - type: entity
   parent: DoorRemoteDefault
@@ -241,6 +260,7 @@
     - SCPAccesThree
     - SCPAccesFour
     - SCPAccesFive
+    - SCPAccesO5
     groups:
     - AllAccess
 

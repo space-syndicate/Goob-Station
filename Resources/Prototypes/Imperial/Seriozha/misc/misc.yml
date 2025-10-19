@@ -41,6 +41,7 @@
   parent: ClothingNeckBase
   id: CloakViolet
   name: vampire cloak
+  suffix: Seriozha, Кастомизация
   description: Worn by high ranking vampires of the transylvanian society of vampires.
   components:
   - type: Sprite
