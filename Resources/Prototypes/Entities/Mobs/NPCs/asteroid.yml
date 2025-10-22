@@ -500,7 +500,4 @@
     iconOn:
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
-    sound:
-      path: "/Audio/Weapons/slash.ogg"
-    useDelay: 30
     event: !type:PhantomorSummonTentacleAction
