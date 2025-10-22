@@ -11,7 +11,10 @@ public sealed partial class ShieldActiveComponent : Component
     public SpriteSpecifier? Effect;
 
     [ViewVariables, AutoNetworkedField]
-    public EntityUid ShieldUid;
+    public EntityUid SmasherUid;
+
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? UserUid;
 
     /// <summary>
     /// When will the shield end

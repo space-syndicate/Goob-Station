@@ -11,7 +11,7 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Systems;
 
 public abstract class SharedSmasherSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
@@ -26,56 +26,34 @@ public abstract class SharedSmasherSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<ShieldActiveComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var shield, out var xform))
+        var query = EntityQueryEnumerator<ShieldActiveComponent>();
+        while (query.MoveNext(out var uid, out var shield))
         {
-            if (!TryComp<SmasherComponent>(shield.ShieldUid, out var smasher))
-                continue;
-
-            if (!TryComp<ShieldActiveComponent>(shield.ShieldUid, out var shieldActive))
-                continue;
-
-            if (Timing.CurTime >= shieldActive.EndTime)
+            if (_timing.CurTime >= shield.EndTime)
             {
                 Log.Debug($"Щит для {ToPrettyString(uid)} деактивирован по времени");
-                DeactivateShield(uid, shield.ShieldUid);
+                RemComp<ShieldActiveComponent>(uid);
             }
         }
-    }
-
-    private void OnDamage(EntityUid uid, ShieldActiveComponent component, DamageModifyEvent args)
-    {
-        // TODO: change this
-        args.Damage *= 0f;
-        Log.Info($"ентити для отражения дамага: {ToPrettyString(uid)}");
     }
 
     private void OnShieldActivated(ShieldActivatedEvent ev, EntitySessionEventArgs args)
     {
         var user = args.SenderSession.AttachedEntity;
-        if (user == null)
+        if (user == null || !TryGetEntity(ev.Smasher, out var smasherUid) || !TryComp<SmasherComponent>(smasherUid, out var smasher))
             return;
 
-        if (!TryGetEntity(ev.Smasher, out var smasherUid))
+        if (!CanActivateShield(smasher) || HasComp<ShieldActiveComponent>(user.Value))
             return;
-
-        if (!TryComp<SmasherComponent>(smasherUid, out var smasher))
-            return;
-
-        if (!CanActivateShield(smasherUid.Value, smasher))
-        {
-            Log.Debug($"Щит еще на кулдауне для {ToPrettyString(user.Value)}");
-            return;
-        }
-
-        if (HasComp<ShieldActiveComponent>(user.Value))
-        {
-            Log.Debug($"Щит уже активирован для {ToPrettyString(user.Value)}");
-            return;
-        }
 
         Log.Debug($"Активируем щит для {ToPrettyString(user.Value)}");
         ActivateShield(smasherUid.Value, smasher, user.Value);
+    }
+
+    private void OnDamage(EntityUid uid, ShieldActiveComponent component, DamageModifyEvent args)
+    {
+        args.Damage *= 0.2f;
+        Log.Info($"Щит поглощает урон для {ToPrettyString(uid)}");
     }
 
     public void ActivateShield(EntityUid smasherUid, SmasherComponent smasher, EntityUid user)
@@ -83,32 +61,25 @@ public abstract class SharedSmasherSystem : EntitySystem
         var shieldActive = AddComp<ShieldActiveComponent>(user);
 
         shieldActive.Effect = smasher.Effect;
-        shieldActive.ShieldUid = smasherUid;
-        shieldActive.EndTime = Timing.CurTime + TimeSpan.FromSeconds(5);
+        shieldActive.SmasherUid = smasherUid;
+        shieldActive.EndTime = _timing.CurTime + TimeSpan.FromSeconds(5);
         Dirty(user, shieldActive);
 
         SetCooldown(smasherUid, smasher, TimeSpan.FromSeconds(10));
 
         _audio.PlayPvs(smasher.ActivateSound, user);
+
+        RaiseNetworkEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid), GetNetEntity(user), smasher.Effect));
     }
 
-    private void DeactivateShield(EntityUid user, EntityUid shieldUid)
+    public bool CanActivateShield(SmasherComponent component)
     {
-        if (!TryComp<SmasherComponent>(shieldUid, out var smasher))
-            return;
-
-        RemComp<ShieldActiveComponent>(user);
-        _audio.PlayPvs(smasher.DeactivateSound, user);
-    }
-
-    public bool CanActivateShield(EntityUid smasherUid, SmasherComponent component)
-    {
-        return Timing.CurTime >= component.NextActivationTime;
+        return _timing.CurTime >= component.NextActivationTime;
     }
 
     public void SetCooldown(EntityUid smasherUid, SmasherComponent component, TimeSpan cooldown)
     {
-        component.NextActivationTime = Timing.CurTime + cooldown;
+        component.NextActivationTime = _timing.CurTime + cooldown;
         Dirty(smasherUid, component);
     }
 
