@@ -478,18 +478,13 @@
         true
   - type: NPCUseActionOnTarget
     actionId: ActionPhantomorTentacle
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - Goliath
-    - FootstepSound
   - type: NoSlip
   - type: Butcherable
     spawned:
     - id: FoodMeatGoliath
-      amount: 3
+      amount: 1
     - id: MaterialGoliathHide1
-      amount: 3
+      amount: 2
 
 - type: entity
   parent: BaseAction
