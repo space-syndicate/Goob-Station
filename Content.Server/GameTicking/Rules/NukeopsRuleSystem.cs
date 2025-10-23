@@ -28,6 +28,7 @@ using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
+using Content.Server.Imperial.EnergyCore; // Imperial Space EnergyCore
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -49,6 +50,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     {
         base.Initialize();
 
+        SubscribeLocalEvent<CoreDetonatedEvent>(OnCoreDetonated); // Imperial EnergyCore event
         SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
         SubscribeLocalEvent<NukeDisarmSuccessEvent>(OnNukeDisarm);
@@ -179,6 +181,73 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         }
     }
 
+    // Imperial Space EnergyCore detonation event start
+    private void OnCoreDetonated(CoreDetonatedEvent ev)
+    {
+        var query = QueryActiveRules();
+        while (query.MoveNext(out var uid, out _, out var nukeops, out _))
+        {
+            if (ev.OwningStation != null)
+            {
+                if (ev.OwningStation == GetOutpost(uid))
+                {
+                    nukeops.WinConditions.Add(WinCondition.NukeExplodedOnNukieOutpost);
+                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive("Nukeops"));
+                    if (!GameTicker.IsGameRuleActive("Nukeops"))
+                        GameTicker.EndGameRule(uid);
+                    continue;
+                }
+
+                if (TryComp(nukeops.TargetStation, out StationDataComponent? data))
+                {
+                    var correctStation = false;
+                    foreach (var grid in data.Grids)
+                    {
+                        if (grid != ev.OwningStation)
+                        {
+                            continue;
+                        }
+
+                        nukeops.WinConditions.Add(WinCondition.CoreExploded); // Винтайп подрыва энерго ядра.
+                        SetWinType((uid, nukeops), WinType.OpsMajor);
+                        correctStation = true;
+                    }
+
+                    if (correctStation)
+                        continue;
+                }
+
+                nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
+            }
+            else
+            {
+                nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
+            }
+
+            if (GameTicker.IsGameRuleActive("Nukeops"))
+            {
+                _roundEndSystem.EndRound();
+            }
+            else
+            {
+                var handled = false;
+                foreach (var cond in nukeops.WinConditions)
+                {
+                    if (cond.ToString().ToLower() == "CoreExploded")
+                    {
+                        _roundEndSystem.EndRound(); // end the round!
+                        handled = true;
+                        break;
+                    }
+                }
+                if (!handled)
+                {
+                    GameTicker.EndGameRule(uid);
+                }
+            }
+        }
+    }
+    // Imperial Space EnergyCore detonation event end
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
     {
         if (ev.New is not GameRunLevel.PostRound)

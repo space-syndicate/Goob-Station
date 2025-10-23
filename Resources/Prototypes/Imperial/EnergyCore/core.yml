@@ -1,0 +1,95 @@
+- type: entity
+  id: EnergyCore
+  name: core
+  description: cooooreee
+  suffix: EnergyCore
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: EnergyCore
+  - type: Anchorable
+    flags:
+    - Unanchorable
+  - type: Clickable
+  - type: RequireProjectileTarget
+    active: False
+  - type: AmbientSound
+    volume: 2
+    range: 20
+    sound:
+      path: /Audio/Effects/singularity.ogg
+  - type: Physics
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        mask:
+        - SingularityLayer
+        layer:
+        - SingularityLayer
+        density: 1000
+  - type: PointLight
+    color: "#74aeff"
+    enabled: true
+    radius: 10
+    energy: 5
+  - type: Appearance
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: WarpPoint
+    follow: true
+    location: energycore
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: DeviceNetwork
+  - type: Sprite
+    sprite: Imperial/EnergyCore/CoreStates/core_state_1.rsi
+    layers:
+    - map: [ "VisualLevel" ]
+      state: core_1
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.CoreStatusVisual.Core_Visual:
+       VisualLevel:
+          1: ## Offline
+            sprite: Imperial/EnergyCore/CoreStates/core_state_1.rsi
+            state: core_1
+            scale: 1.0,1.0
+          2: ## Idle
+            sprite: Imperial/EnergyCore/CoreStates/core_state_1.rsi
+            state: core_1
+            scale: 1.0,1.0
+          3: ## Stable
+            sprite: Imperial/EnergyCore/CoreStates/core_state_2.rsi
+            state: core_2
+            scale: 1.0,1.0
+          4: ## Optimal
+            sprite: Imperial/EnergyCore/CoreStates/core_state_3.rsi
+            state: core_3
+            scale: 1.0,1.0
+          5: ## Moderate
+            sprite: Imperial/EnergyCore/CoreStates/core_state_4.rsi
+            state: core_4
+            scale: 1.0,1.0
+          6: ## High
+            sprite: Imperial/EnergyCore/CoreStates/core_state_5.rsi
+            state: core_5
+            scale: 1.0,1.0
+          7: ## Critical
+            sprite: Imperial/EnergyCore/CoreStates/core_state_6.rsi
+            state: core_6
+            scale: 1.0,1.0
+          8: ## Meltdown
+            sprite: Imperial/EnergyCore/CoreStates/core_state_7.rsi
+            state: core_7
+            scale: 1.0,1.0
+          9: ## Safe Protocol
+            sprite: Imperial/EnergyCore/CoreStates/core_state_4.rsi
+            state: core_4
+            scale: 1.0,1.0

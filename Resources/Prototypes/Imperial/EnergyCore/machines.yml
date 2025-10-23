@@ -1,0 +1,244 @@
+- type: entity
+  parent: BaseMachine
+  id: EnergyCoreGenerator
+  description: A high efficiency thermoelectric generator.
+  name: core generator
+  suffix: EnergyCore
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: CoreGenerator
+  - type: AmbientSound
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.5,0.4,0.3"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Structures/Power/power.rsi
+    state: generator
+    snapCardinals: true
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: Structures/Power/power.rsi
+    state: generator
+  - type: PowerSupplier
+    supplyRampRate: 3000
+    supplyRampTolerance: 500
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: PacifismDangerousAttack
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 2
+    totalIntensity: 200
+  - type: StaticPrice
+    price: 1500
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    highVoltageNode: output
+#  - type: GuideHelp
+#    guides:
+#    - ShuttleCraft
+
+- type: entity
+  id: CoreEmitter
+  name: emitter
+  abstract: true
+  parent: SmallConstructibleMachine
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  suffix: EnergyCore
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 400
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/emitter.rsi
+    layers:
+    - state: emitter
+    - state: beam
+      shader: unshaded
+      visible: false
+      map: ["enum.EmitterVisualLayers.Lights"]
+    - state: locked
+      shader: unshaded
+      visible: false
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Gun
+    projectileSpeed: 10
+    showExamineText: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/EnergyCore/core_emitter_laser.ogg
+  - type: PowerConsumer
+    voltage: Medium
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 800
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 5
+              max: 5
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+  - type: Appearance
+  - type: Lock
+    locked: false
+  - type: LockVisuals
+  - type: LockedAnchorable
+  - type: LockedWiresPanel
+  - type: AccessReader
+    access: [[ "Engineering" ]]
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+    - Toggle
+    - On
+    - Off
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: StaticPrice
+    price: 1500
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+
+- type: entity
+  id: CoreUpEmitter
+  name: temp up emitter
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  components:
+  - type: Machine
+    board: CoreUpEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreHeater
+    fireCost: 150
+
+- type: entity
+  id: CoreDownEmitter
+  name: temp down emitter
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  components:
+  - type: Machine
+    board: CoreDownEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreCooler
+    fireCost: 150
+
+- type: entity
+  id: CoreChangeRisingEmitter
+  name: emitter heater
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  components:
+  - type: Machine
+    board: CoreChangeRisingEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreTempChangerRising
+    fireCost: 150
+
+- type: entity
+  id: CoreChangeDecreasingEmitter
+  name: emitter cooler
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  components:
+  - type: Machine
+    board: CoreChangeDecreasingEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreTempChangerDecreasing
+    fireCost: 150
