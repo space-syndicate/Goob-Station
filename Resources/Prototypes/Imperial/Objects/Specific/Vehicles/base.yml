@@ -1,0 +1,85 @@
+- type: entity
+  id: BaseImperialVehicle
+  save: false
+  abstract: true
+  components:
+  - type: ImperialVehicle
+    southOverride: 0
+    northOverride: 0
+  - type: AmbientSound
+    sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
+    range: 10
+    volume: -10
+    enabled: false
+  - type: MovementSpeedModifier
+    weightlessModifier: 0
+    acceleration: 2
+    friction: 2
+    frictionNoInput: 6
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 6
+  - type: Repairable
+    fuelcost: 20
+    doAfterDelay: 20
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ExplodeBehavior
+
+- type: entity
+  parent: BaseImperialVehicle
+  id: BaseImperialVehicleRideable
+  abstract: true
+  name: Vehicle
+  components:
+  - type: InputMover
+  - type: Strap
+    buckleOffset: "0,0"
+    maxBuckleDistance: 1
+    position: Down
+  - type: InteractionOutline
+  - type: ImperialVehicle
+    autoAnimate: true
+    hideRider: false
+    useHand: false
+    southOverride: 0
+    northOverride: 0
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.0
+    acceleration: 1.0
+  - type: Pullable
+  - type: Physics
+    bodyType: KinematicController
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: StaticPrice
+    price: 750

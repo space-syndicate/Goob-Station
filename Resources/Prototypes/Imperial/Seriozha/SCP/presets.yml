@@ -49,6 +49,9 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+      nameSegments:
+        - NamesDClass
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -61,6 +64,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTF
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -73,6 +79,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFNU
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -85,6 +94,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFCom
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -97,6 +109,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFNUCom
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -112,6 +127,9 @@
       - MindShieldImplant
       - DeathAcidifierImplant
       - ScramImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesAlpha
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -124,6 +142,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscp
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -136,6 +157,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesscientistscp
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -148,6 +172,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesscientistcomscp
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -162,6 +189,9 @@
       - MindShieldImplant
     - type: RandomHumanoidAppearance
       enabled: false
+    - type: RandomMetadata
+      nameSegments:
+        - NamesAdmscp
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -171,6 +201,9 @@
   components:
     - type: Loadout
       prototypes: [ CIGear ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesCISCP
 
 
 - type: startingGear
@@ -192,7 +225,6 @@
     pocket2: MagazineLightRifle
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
     - AdvancedFirstAidMedkitImperialFilled
@@ -217,7 +249,6 @@
     pocket2: MagazineLightRifle
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
     - MagazineLightRifle
@@ -280,8 +311,6 @@
     suitstorage: CSWeaponP90
     pocket1: p90-Magazine
     pocket2: p90-Magazine
-  inhand:
-  - EncryptionKeyNedraconnection
 
 - type: startingGear
   id: DocGear
@@ -296,9 +325,6 @@
     id: SCPIDCardThree
     ears: ClothingHeadsetSCPMain
     belt: BoxFolderClipboard
-  storage:
-    back:
-    - EncryptionKeyNedraconnection
 
 - type: startingGear
   id: DocCMDGear
@@ -316,7 +342,6 @@
     belt: BoxFolderClipboard
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
 
 - type: startingGear
@@ -334,7 +359,6 @@
     belt: BlackShieldPistol
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
 
 - type: startingGear
@@ -356,6 +380,7 @@
   storage:
     back:
     - EncryptionKeyRadio1
+    - EncryptionKeyGanza
     - FirstAidMedkitImperialFilled
 
 - type: startingGear
@@ -368,6 +393,7 @@
     head: ClothingHeadHelmetSCPAlpha
     eyes: AlphaVisor
     gloves: ClothingHandsGlovesCombat
+    neck: ClothingSCPCloakRed
     outerClothing: ClothingOuterArmorSCPAlpha
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPAlt
@@ -377,7 +403,6 @@
     pocket2: MagazineLightRifle
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraAlphaconnection
     - MagazineLightRifle

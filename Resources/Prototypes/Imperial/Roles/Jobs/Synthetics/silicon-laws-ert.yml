@@ -1,0 +1,89 @@
+﻿# ERT borgs laws
+- type: siliconLaw
+  id: EmergencyResponseTeam1
+  order: 1
+  lawString: law-ert-1
+
+- type: siliconLaw
+  id: EmergencyResponseTeam2
+  order: 2
+  lawString: law-ert-2
+
+- type: siliconLaw
+  id: EmergencyResponseTeam3
+  order: 3
+  lawString: law-ert-3
+
+- type: siliconLaw
+  id: EmergencyResponseTeam4
+  order: 4
+  lawString: law-ert-4
+
+- type: siliconLaw
+  id: EmergencyResponseTeam5
+  order: 5
+  lawString: law-ert-5
+
+- type: siliconLawset
+  id: EmergencyResponseTeam
+  laws:
+  - EmergencyResponseTeam1
+  - EmergencyResponseTeam2
+  - EmergencyResponseTeam3
+  - EmergencyResponseTeam4
+  - EmergencyResponseTeam5
+  obeysTo: laws-owner-ert
+
+# ERT AI laws
+- type: siliconLaw
+  id: EmergencyResponseTeamAi1
+  order: 1
+  lawString: law-ertdirectives-1
+
+- type: siliconLaw
+  id: EmergencyResponseTeamAi2
+  order: 2
+  lawString: law-ertdirectives-2
+
+- type: siliconLaw
+  id: EmergencyResponseTeamAi3
+  order: 3
+  lawString: law-ertdirectives-3
+
+- type: siliconLaw
+  id: EmergencyResponseTeamAi4
+  order: 4
+  lawString: law-ertdirectives-4
+
+- type: siliconLawset
+  id: EmergencyResponseTeamAI
+  laws:
+  - EmergencyResponseTeamAi1
+  - EmergencyResponseTeamAi2
+  - EmergencyResponseTeamAi3
+  - EmergencyResponseTeamAi4
+  obeysTo: laws-owner-ert
+
+# Death Squad AI laws
+- type: siliconLaw
+  id: EpsilonAi1
+  order: 1
+  lawString: law-epsilon-1
+
+- type: siliconLaw
+  id: EpsilonAi2
+  order: 2
+  lawString: law-epsilon-2
+
+- type: siliconLaw
+  id: EpsilonAi3
+  order: 3
+  lawString: law-epsilon-3
+
+- type: siliconLawset
+  id: EpsilonAI
+  laws:
+  - EpsilonAi1
+  - EpsilonAi2
+  - EpsilonAi3
+  obeysTo: laws-owner-deathsquad

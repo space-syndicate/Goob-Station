@@ -1,0 +1,62 @@
+- type: inventoryTemplate
+  id: ertassaultborg
+  slots: 
+  - name: eyes
+    slotTexture: glasses
+    slotFlags: EYES
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 0,0
+    displayName: Eyes
+  - name: shoes
+    slotTexture: shoes
+    slotFlags: FEET
+    stripTime: 3
+    uiWindowPos: 1,0
+    strippingWindowPos: 1,3
+    displayName: Shoes
+
+- type: inventoryTemplate
+  id: ertborg
+  slots: 
+  - name: shoes
+    slotTexture: shoes
+    slotFlags: FEET
+    stripTime: 3
+    uiWindowPos: 1,0
+    strippingWindowPos: 1,3
+    displayName: Shoes
+
+- type: inventoryTemplate
+  id: ertmedicalborg
+  slots: 
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,3
+    strippingWindowPos: 1,0
+    displayName: Head
+  - name: shoes
+    slotTexture: shoes
+    slotFlags: FEET
+    stripTime: 3
+    uiWindowPos: 1,0
+    strippingWindowPos: 1,3
+    displayName: Shoes
+
+- type: inventoryTemplate
+  id: ertengineerborg
+  slots: 
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,3
+    strippingWindowPos: 1,0
+    displayName: Head
+  - name: shoes
+    slotTexture: shoes
+    slotFlags: FEET
+    stripTime: 3
+    uiWindowPos: 1,0
+    strippingWindowPos: 1,3
+    displayName: Shoes
