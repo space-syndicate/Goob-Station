@@ -37,9 +37,12 @@ public sealed partial class SmasherComponent : Component
     [DataField]
     public TimeSpan NextActivationTime;
 
-    /// <summary>
-    /// The sprite that will be applied when using this function. Usually, the alt. click
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi? Effect = new(new ResPath("/Textures/Objects/Weapons/Effects"), "shield2");
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public SpriteSpecifier.Rsi? EffectActived = new(new ResPath("/Textures/Imperial/Lavaland/Entities/Effects/smasher_shield.rsi"), "actived");
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public SpriteSpecifier.Rsi? EffectCharging = new(new ResPath("/Textures/Imperial/Lavaland/Entities/Effects/smasher_shield.rsi"), "charging");
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public SpriteSpecifier.Rsi? EffectDecay = new(new ResPath("/Textures/Imperial/Lavaland/Entities/Effects/smasher_shield.rsi"), "decay");
 }

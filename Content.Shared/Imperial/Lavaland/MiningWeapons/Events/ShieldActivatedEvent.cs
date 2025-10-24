@@ -8,12 +8,17 @@ public sealed class ShieldActivatedEvent : EntityEventArgs
 {
     public NetEntity Smasher { get; }
     public NetEntity User { get; }
-    public SpriteSpecifier? Effect { get; }
+    public SpriteSpecifier? EffectActived { get; }
+    public SpriteSpecifier? EffectCharging { get; }
+    public SpriteSpecifier? EffectDecay { get; }
 
-    public ShieldActivatedEvent(NetEntity smasher, NetEntity user, SpriteSpecifier? effect)
+    public ShieldActivatedEvent(NetEntity smasher, NetEntity user,
+        SpriteSpecifier? effectActived, SpriteSpecifier? effectCharging, SpriteSpecifier? effectDecay)
     {
         Smasher = smasher;
         User = user;
-        Effect = effect;
+        EffectActived = effectActived;
+        EffectCharging = effectCharging;
+        EffectDecay = effectDecay;
     }
 }

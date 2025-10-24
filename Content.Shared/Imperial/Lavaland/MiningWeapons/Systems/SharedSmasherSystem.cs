@@ -31,6 +31,9 @@ public abstract class SharedSmasherSystem : EntitySystem
         {
             if (_timing.CurTime >= shield.EndTime)
             {
+                if (shield.EffectDecay != null)
+                    RaiseNetworkEvent(new ShieldDecayEvent(GetNetEntity(uid), shield.EffectDecay));
+
                 Log.Debug($"Щит для {ToPrettyString(uid)} деактивирован по времени");
                 RemComp<ShieldActiveComponent>(uid);
             }
@@ -60,7 +63,7 @@ public abstract class SharedSmasherSystem : EntitySystem
     {
         var shieldActive = AddComp<ShieldActiveComponent>(user);
 
-        shieldActive.Effect = smasher.Effect;
+        shieldActive.EffectActived = smasher.EffectActived;
         shieldActive.SmasherUid = smasherUid;
         shieldActive.EndTime = _timing.CurTime + TimeSpan.FromSeconds(5);
         Dirty(user, shieldActive);
@@ -69,7 +72,8 @@ public abstract class SharedSmasherSystem : EntitySystem
 
         _audio.PlayPvs(smasher.ActivateSound, user);
 
-        RaiseNetworkEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid), GetNetEntity(user), smasher.Effect));
+        RaiseNetworkEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid), GetNetEntity(user),
+            smasher.EffectActived, smasher.EffectCharging, smasher.EffectDecay));
     }
 
     public bool CanActivateShield(SmasherComponent component)

@@ -8,7 +8,13 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 public sealed partial class ShieldActiveComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public SpriteSpecifier? Effect;
+    public SpriteSpecifier? EffectActived;
+
+    [DataField, AutoNetworkedField]
+    public SpriteSpecifier? EffectCharging;
+
+    [DataField, AutoNetworkedField]
+    public SpriteSpecifier? EffectDecay;
 
     [ViewVariables, AutoNetworkedField]
     public EntityUid SmasherUid;
@@ -16,9 +22,6 @@ public sealed partial class ShieldActiveComponent : Component
     [ViewVariables, AutoNetworkedField]
     public EntityUid? UserUid;
 
-    /// <summary>
-    /// When will the shield end
-    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public TimeSpan EndTime;
 }
