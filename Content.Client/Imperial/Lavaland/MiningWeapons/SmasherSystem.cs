@@ -3,6 +3,8 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Events;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Enums;
 using Content.Shared.CombatMode;
+using Content.Shared.FixedPoint;
+using Content.Shared.Damage;
 using Robust.Shared.Timing;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
@@ -18,6 +20,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
     private TimeSpan _holdStartTime;
     private TimeSpan _cooldownEnd;
     private TimeSpan _decayEndTime;
@@ -87,8 +90,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
                 if (smasher.EffectCharging != null)
                 {
-                    ShowShieldEffect(user.Value, smasher.EffectCharging, true);
                     _isChargingEffectActive = true;
+
+                    ShowShieldEffect(user.Value, smasher.EffectCharging, true);
                     RaiseNetworkEvent(new ShieldChargingEvent(GetNetEntity(user.Value), smasher.EffectCharging));
                 }
                 Log.Info("Начата зарядка щита");
@@ -96,6 +100,10 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
             var holdTime = (_timing.CurTime - _holdStartTime).TotalSeconds;
             Log.Debug($"Зарядка: {holdTime:F1} сек");
+
+            // To prevent the destruction of shield of smasher with minimal exposure to external factors (e.g. atmosphere)
+            if (_isHolding && _isChargingEffectActive)
+                CheckDamageInterruption(user.Value);
 
             if (holdTime >= 4.0f)
             {
@@ -126,6 +134,24 @@ public sealed class SmasherSystem : SharedSmasherSystem
             _isHolding = false;
             Log.Debug("Зарядка отменена");
         }
+    }
+
+    private void OnShieldShutdown(EntityUid uid, ShieldActiveComponent component, ComponentShutdown args)
+    {
+        if (component.EffectDecay != null)
+        {
+            ShowShieldEffect(uid, component.EffectDecay, true);
+            _isDecayEffectActive = true;
+            _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
+            Log.Info($"Щит деактивирован с распадом для {ToPrettyString(uid)}");
+        }
+        else
+        {
+            HideShieldEffect(uid);
+        }
+
+        _isHolding = false;
+        _isChargingEffectActive = false;
     }
 
     private void OnShieldCharging(ShieldChargingEvent ev)
@@ -170,24 +196,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
         }
     }
 
-    private void OnShieldShutdown(EntityUid uid, ShieldActiveComponent component, ComponentShutdown args)
-    {
-        if (component.EffectDecay != null)
-        {
-            ShowShieldEffect(uid, component.EffectDecay, true);
-            _isDecayEffectActive = true;
-            _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
-            Log.Info($"Щит деактивирован с распадом для {ToPrettyString(uid)}");
-        }
-        else
-        {
-            HideShieldEffect(uid);
-        }
-
-        _isHolding = false;
-        _isChargingEffectActive = false;
-    }
-
     /// <summary>
     /// Renders the shield effect on the entity sprite.
     /// </summary>
@@ -223,5 +231,50 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
         _isHolding = false;
         Log.Info($"щит убран OnShieldShutdown {ToPrettyString(uid)}");
+    }
+
+    /// <summary>
+    /// If the user takes damage while charging the shield, the shield will decay.
+    /// </summary>
+    private void CheckDamageInterruption(EntityUid user)
+    {
+        if (!TryComp<DamageableComponent>(user, out var damageComp))
+            return;
+
+        if (!_lastTotalDamage.TryGetValue(user, out var lastDamage))
+        {
+            _lastTotalDamage[user] = damageComp.TotalDamage;
+            return;
+        }
+
+        var damageReceived = damageComp.TotalDamage - lastDamage;
+
+        if (damageReceived > FixedPoint2.New(1.0))
+        {
+            Log.Info($"Обнаружен урон: {damageReceived}. Прерываем зарядку.");
+            HandleDamageInterruption(user);
+            _lastTotalDamage.Remove(user);
+            return;
+        }
+
+        _lastTotalDamage[user] = damageComp.TotalDamage;
+    }
+
+    private void HandleDamageInterruption(EntityUid user)
+    {
+        HideShieldEffect(user);
+        _isChargingEffectActive = false;
+
+        if (TryGetSmasherInHands(user, out var _, out var smasher) &&
+            smasher.EffectDecay != null)
+        {
+            ShowShieldEffect(user, smasher.EffectDecay, false);
+            _isDecayEffectActive = true;
+            _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
+        }
+
+        _isHolding = false;
+
+        Log.Debug("Зарядка прервана из-за урона");
     }
 }
