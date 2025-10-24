@@ -130,7 +130,3 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
         }
     }
 }
-public sealed class CoreDetonatedEvent : EntityEventArgs
-{
-    public EntityUid? OwningStation;
-}

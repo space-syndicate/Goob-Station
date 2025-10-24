@@ -42,7 +42,7 @@
     - GhostOnlyWarp
   - type: WarpPoint
     follow: true
-    location: energycore
+    location: EnergyCore
     blacklist:
       tags:
       - GhostOnlyWarp
