@@ -96,7 +96,7 @@
         - NuclearDeauthorizationCode
   - type: Anchorable ## Терминал специально неяузвим, чтобы экипаж не бежал его ломать раундстартом при ЯО
     flags:
-    - Unanchorable
+    - Anchorable
   - type: GenericVisualizer
     visuals:
       enum.CoreStatusScreenVisual.Core_Screen_Visual:
