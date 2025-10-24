@@ -543,5 +543,5 @@
         weight: 25
       - id: MobBasilisk
         weight: 10
-      - id: MobPhantomor
+      - id: MobPhantomor # Imperial Space: A new Phantomor mob has been added
         weight: 30
