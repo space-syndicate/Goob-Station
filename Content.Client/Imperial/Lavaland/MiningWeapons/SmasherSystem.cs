@@ -4,6 +4,7 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Enums;
 using Content.Shared.CombatMode;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
 using Robust.Shared.Input;
@@ -21,9 +22,11 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
+    private TimeSpan _timeDecay = TimeSpan.FromSeconds(1.8f); // There are 6 states in total, each lasting 0.3 seconds.
     private TimeSpan _holdStartTime;
     private TimeSpan _cooldownEnd;
     private TimeSpan _decayEndTime;
+    private float _timeChargingSmasher = 4.0f;
     private bool _isHolding;
     private bool _isChargingEffectActive;
     private bool _isDecayEffectActive;
@@ -105,7 +108,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
             if (_isHolding && _isChargingEffectActive)
                 CheckDamageInterruption(user.Value);
 
-            if (holdTime >= 4.0f)
+            if (holdTime >= _timeChargingSmasher)
             {
                 Log.Debug("Зарядка завершена - активируем щит");
                 RaisePredictiveEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid.Value), NetEntity.Invalid,
@@ -126,7 +129,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
                 {
                     ShowShieldEffect(user.Value, smasher.EffectDecay, true);
                     _isDecayEffectActive = true;
-                    _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
+                    _decayEndTime = _timing.CurTime + _timeDecay;
                     Log.Debug("Показан эффект распада");
                 }
             }
@@ -142,7 +145,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         {
             ShowShieldEffect(uid, component.EffectDecay, true);
             _isDecayEffectActive = true;
-            _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
+            _decayEndTime = _timing.CurTime + _timeDecay;
             Log.Info($"Щит деактивирован с распадом для {ToPrettyString(uid)}");
         }
         else
@@ -174,7 +177,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         {
             ShowShieldEffect(userUid.Value, ev.EffectDecay, true);
             _isDecayEffectActive = true;
-            _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
+            _decayEndTime = _timing.CurTime + _timeDecay;
             Log.Info($"Запущен распад щита для {ToPrettyString(userUid.Value)}");
         }
     }

@@ -17,6 +17,7 @@
     sprite: Objects/Weapons/Melee/crusher.rsi
     state: icon
   - type: MeleeWeapon
+    canHeavyAttack: false
     attackRate: 0.8
     wideAnimationRotation: -135
     damage:
