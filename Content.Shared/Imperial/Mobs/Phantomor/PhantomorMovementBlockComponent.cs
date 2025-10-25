@@ -9,24 +9,24 @@ namespace Content.Shared.Imperial.Mobs.Phantomor
         /// блокировка ходьбы
         /// </summary>
         [DataField]
-        public bool WalkBlocked = false;
+        public bool WalkBlocked;
 
         /// <summary>
         /// время окончания блокировки ходьбы
         /// </summary>
         [DataField]
-        public TimeSpan WalkBlockedUntil = TimeSpan.Zero;
+        public TimeSpan WalkBlockedUntil;
 
         /// <summary>
         /// блокировка атаки
         /// </summary>
         [DataField]
-        public bool AttackBlocked = false;
+        public bool AttackBlocked;
 
         /// <summary>
         /// время окончания блокировки атаки
         /// </summary>
         [DataField]
-        public TimeSpan AttackBlockedUntil = TimeSpan.Zero;
+        public TimeSpan AttackBlockedUntil;
     }
 }

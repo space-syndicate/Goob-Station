@@ -8,7 +8,6 @@ public sealed partial class PhantomorSummonTentacleAction : InstantActionEvent
     /// <summary>
     /// кд между телепортациями моба
     /// </summary>
-    [DataField("teleportCooldown")]
     public TimeSpan TeleportCooldown = TimeSpan.FromSeconds(30);
 
     /// <summary>
@@ -28,6 +27,9 @@ public sealed partial class PhantomorSummonTentacleAction : InstantActionEvent
     /// </summary>
     [DataField("freezeAttack")]
     public TimeSpan FreezeAttack = TimeSpan.FromSeconds(3);
+
+    [DataField("shakingTime")]
+    public TimeSpan ShakingTime = TimeSpan.FromSeconds(10);
 
     public readonly Dictionary<EntityUid, TimeSpan> LastTeleport = new();
 }
