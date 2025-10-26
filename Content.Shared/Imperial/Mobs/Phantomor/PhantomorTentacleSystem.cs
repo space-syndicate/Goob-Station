@@ -17,6 +17,7 @@ namespace Content.Shared.Imperial.Mobs.Phantomor
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+        [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
         public override void Initialize()
         {
@@ -86,13 +87,11 @@ namespace Content.Shared.Imperial.Mobs.Phantomor
             if (!Exists(entityTeleport))
                 return false;
 
-            if (!TryComp<TransformComponent>(entityTeleport, out var playerTransform))
-                return false;
-
-            var playerPosition = _transform.GetWorldPosition(entityTeleport);
+            var playerTransform = Transform(entityTeleport);
+            var playerPosition = playerTransform.WorldPosition;
             var mapId = playerTransform.MapID;
             var mapCoordinates = new MapCoordinates(playerPosition, mapId);
-            var nearbyEntities = EntitySystem.Get<EntityLookupSystem>().GetEntitiesInRange(mapCoordinates, 10f);
+            var nearbyEntities = _lookup.GetEntitiesInRange(mapCoordinates, 10f);
 
             EntityUid? targetEntity = null;
             var nearestDistance = float.MaxValue;
@@ -108,10 +107,8 @@ namespace Content.Shared.Imperial.Mobs.Phantomor
                 if (mobState.CurrentState != MobState.Alive)
                     continue;
 
-                if (!TryComp<TransformComponent>(uid, out var transform))
-                    continue;
-
-                var entityPos = _transform.GetWorldPosition(uid);
+                var transform = Transform(uid);
+                var entityPos = transform.WorldPosition;
                 var distance = (entityPos - playerPosition).Length();
                 if (distance < nearestDistance)
                 {
@@ -137,16 +134,40 @@ namespace Content.Shared.Imperial.Mobs.Phantomor
             blockComp.AttackBlocked = true;
             blockComp.AttackBlockedUntil = _gameTiming.CurTime + args.FreezeAttack;
 
-            RaiseLocalEvent(entityTeleport, new UpdateCanMoveEvent(entityTeleport));
+            _actionBlocker.UpdateCanMove(entityTeleport);
 
             _audio.PlayPvs(args.TeleportSound, entityTeleport);
             _jitterSystem.DoJitter(entityTeleport, args.ShakingTime, refresh: true, amplitude: 20f, frequency: 6f);
 
-            var directionToTarget = (targetTransform.WorldPosition - Transform(entityTeleport).WorldPosition).Normalized();
+            var directionToTarget = (_transform.GetWorldPosition(targetEntity.Value) - _transform.GetWorldPosition(entityTeleport)).Normalized();
             var angleToTarget = Math.Atan2(directionToTarget.Y, directionToTarget.X);
             _transform.SetWorldRotation(entityTeleport, angleToTarget);
 
             return true;
+        }
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            var query = EntityQueryEnumerator<PhantomorMovementBlockComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                var needsUpdate = false;
+
+                // проверка разблокировки движения
+                if (comp.WalkBlocked && _gameTiming.CurTime >= comp.WalkBlockedUntil)
+                {
+                    comp.WalkBlocked = false;
+                    needsUpdate = true;
+                    Dirty(uid, comp);
+                }
+
+                // обновляем статус
+                if (needsUpdate)
+                {
+                    _actionBlocker.UpdateCanMove(uid);
+                }
+            }
         }
     }
 }

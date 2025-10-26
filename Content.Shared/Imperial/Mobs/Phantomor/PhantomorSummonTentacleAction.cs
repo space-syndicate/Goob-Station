@@ -8,28 +8,30 @@ public sealed partial class PhantomorSummonTentacleAction : InstantActionEvent
     /// <summary>
     /// кд между телепортациями моба
     /// </summary>
+    [DataField]
     public TimeSpan TeleportCooldown = TimeSpan.FromSeconds(30);
 
     /// <summary>
     /// звуковое сопровождение после телепортации
     /// </summary>
-    [DataField("teleportSound")]
+    [DataField]
     public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Items/bikehorn.ogg");
 
     /// <summary>
     /// длительность блокировки движения после телепортации
     /// </summary>
-    [DataField("freezeWalking")]
+    [DataField]
     public TimeSpan FreezeWalking = TimeSpan.FromSeconds(3);
 
     /// <summary>
     /// длительность блокировки атаки после телепортации
     /// </summary>
-    [DataField("freezeAttack")]
+    [DataField]
     public TimeSpan FreezeAttack = TimeSpan.FromSeconds(3);
 
-    [DataField("shakingTime")]
+    [DataField]
     public TimeSpan ShakingTime = TimeSpan.FromSeconds(10);
 
+    [ViewVariables]
     public readonly Dictionary<EntityUid, TimeSpan> LastTeleport = new();
 }
