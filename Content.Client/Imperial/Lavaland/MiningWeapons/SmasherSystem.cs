@@ -4,7 +4,6 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Enums;
 using Content.Shared.CombatMode;
 using Content.Shared.FixedPoint;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
 using Robust.Shared.Input;
@@ -21,13 +20,14 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    // TODO: Transfer this stuff to the component:
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
     private TimeSpan _timeDecay = TimeSpan.FromSeconds(1.8f); // There are 6 states in total, each lasting 0.3 seconds.
     private TimeSpan _holdStartTime;
     private TimeSpan _cooldownEnd;
     private TimeSpan _decayEndTime;
     private float _timeChargingSmasher = 4.0f;
-    private bool _isHolding;
+    private bool _isHolding; // Tracking the right mouse button hold to charge the shield.
     private bool _isChargingEffectActive;
     private bool _isDecayEffectActive;
 
@@ -48,6 +48,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         var user = _player.LocalEntity;
         if (user == null) return;
 
+        // Check if decay effect time has expired
         if (_isDecayEffectActive && _timing.CurTime >= _decayEndTime)
         {
             if (user.HasValue)
@@ -62,8 +63,10 @@ public sealed class SmasherSystem : SharedSmasherSystem
             _cooldownEnd = TimeSpan.Zero;
         }
 
+        // Check if Smasher weapon is held in hands
         if (!TryGetSmasherInHands(user.Value, out var smasherUid, out var smasher))
         {
+            // If weapon is not held but charging was active - cancel it
             if (_isHolding)
             {
                 if (_isChargingEffectActive)
@@ -80,6 +83,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
         if (_inputSystem.CmdStates.GetState(useKey) == BoundKeyState.Down && !HasComp<ShieldActiveComponent>(user))
         {
+            // Start shield charging process
             if (!_isHolding)
             {
                 if (!_combatMode.IsInCombatMode(user))
@@ -118,6 +122,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
                 _cooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(10);
             }
         }
+        // Charging cancellation (button released)
         else if (_isHolding)
         {
             if (_isChargingEffectActive)
@@ -255,29 +260,26 @@ public sealed class SmasherSystem : SharedSmasherSystem
         if (damageReceived > FixedPoint2.New(1.0))
         {
             Log.Info($"Обнаружен урон: {damageReceived}. Прерываем зарядку.");
-            HandleDamageInterruption(user);
+            HideShieldEffect(user);
+
+            _isChargingEffectActive = false;
+
+            if (TryGetSmasherInHands(user, out var _, out var smasher) &&
+                smasher.EffectDecay != null)
+            {
+                ShowShieldEffect(user, smasher.EffectDecay, false);
+                _isDecayEffectActive = true;
+                _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
+            }
+
+            _isHolding = false;
+
+            Log.Debug("Зарядка прервана из-за урона");
+
             _lastTotalDamage.Remove(user);
             return;
         }
 
         _lastTotalDamage[user] = damageComp.TotalDamage;
-    }
-
-    private void HandleDamageInterruption(EntityUid user)
-    {
-        HideShieldEffect(user);
-        _isChargingEffectActive = false;
-
-        if (TryGetSmasherInHands(user, out var _, out var smasher) &&
-            smasher.EffectDecay != null)
-        {
-            ShowShieldEffect(user, smasher.EffectDecay, false);
-            _isDecayEffectActive = true;
-            _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
-        }
-
-        _isHolding = false;
-
-        Log.Debug("Зарядка прервана из-за урона");
     }
 }
