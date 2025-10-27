@@ -12,6 +12,7 @@
                        StyleClasses="LabelHeading" VAlign="Center" />
                 <Button Name="ExitButton" Text="{Loc 'connecting-exit'}"
                         HorizontalAlignment="Right" HorizontalExpand="True" />
+                <Button Visible="True" Name="Rules" Access="Public" Text="{Loc 'admin-player-actions-rules'}" StyleClasses="OpenRight" />
             </BoxContainer>
             <controls:HighDivider />
             <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="4 4 4 0">
@@ -33,6 +34,7 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     StyleClasses="OpenLeft"/>
+                            <Button Visible="True" Name="Rules" Access="Public" Text="{Loc 'admin-player-actions-rules'}" StyleClasses="OpenRight" />
                         </BoxContainer>
                     </BoxContainer>
                     <BoxContainer Orientation="Vertical" Name="Disconnected" Visible="False" SeparationOverride="10">
@@ -49,6 +51,7 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     StyleClasses="OpenLeft"/>
+                            <Button Visible="True" Name="Rules" Access="Public" Text="{Loc 'admin-player-actions-rules'}" StyleClasses="OpenRight" />
                         </BoxContainer>
                     </BoxContainer>
                 </Control>
