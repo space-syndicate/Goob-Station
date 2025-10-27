@@ -23,6 +23,8 @@ public sealed class SmasherSystem : SharedSmasherSystem
     // TODO: Transfer this stuff to the component:
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
     private TimeSpan _timeDecay = TimeSpan.FromSeconds(1.8f); // There are 6 states in total, each lasting 0.3 seconds.
+    private TimeSpan _timeCooldownDownedDecay = TimeSpan.FromSeconds(3.8f); // Includes shield decay time
+    private TimeSpan _timeCooldownCompleted = TimeSpan.FromSeconds(10f);
     private TimeSpan _holdStartTime;
     private TimeSpan _cooldownEnd;
     private TimeSpan _decayEndTime;
@@ -119,7 +121,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
                     smasher.EffectActived, smasher.EffectCharging, smasher.EffectDecay));
 
                 _isHolding = false;
-                _cooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(10);
+                _cooldownEnd = _timing.CurTime + _timeCooldownCompleted;
             }
         }
         // Charging cancellation (button released)
@@ -135,6 +137,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
                     ShowShieldEffect(user.Value, smasher.EffectDecay, true);
                     _isDecayEffectActive = true;
                     _decayEndTime = _timing.CurTime + _timeDecay;
+                    _cooldownEnd = _timing.CurTime + _timeCooldownDownedDecay;
                     Log.Debug("Показан эффект распада");
                 }
             }
