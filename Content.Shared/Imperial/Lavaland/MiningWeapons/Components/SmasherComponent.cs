@@ -1,4 +1,3 @@
-using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 using Robust.Shared.GameStates;
 
@@ -8,18 +7,6 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 [AutoGenerateComponentPause]
 public sealed partial class SmasherComponent : Component
 {
-    /// <summary>
-    /// When the shield is activated, a beep sounds.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? ActivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
-
-    /// <summary>
-    /// When the shield is deactivated, a beep sounds.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? DeactivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
-
     /// <summary>
     /// When will the shield end
     /// </summary>

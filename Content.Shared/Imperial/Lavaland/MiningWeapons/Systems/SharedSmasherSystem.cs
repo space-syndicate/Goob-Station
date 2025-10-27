@@ -3,7 +3,6 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Damage;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 
@@ -13,7 +12,6 @@ public abstract class SharedSmasherSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -69,8 +67,6 @@ public abstract class SharedSmasherSystem : EntitySystem
         Dirty(user, shieldActive);
 
         SetCooldown(smasherUid, smasher, TimeSpan.FromSeconds(10));
-
-        _audio.PlayPvs(smasher.ActivateSound, user);
 
         RaiseNetworkEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid), GetNetEntity(user),
             smasher.EffectActived, smasher.EffectCharging, smasher.EffectDecay));

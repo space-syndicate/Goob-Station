@@ -4,9 +4,11 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Enums;
 using Content.Shared.CombatMode;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
@@ -23,7 +25,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    // TODO: Transfer this stuff to the component:
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    private SoundSpecifier? _activateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
+    private SoundSpecifier? _deactivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
     private ProtoId<AlertPrototype> _counterCooldownAlert = "SmasherCounterCooldown";
     private TimeSpan _timeDecay = TimeSpan.FromSeconds(1.8f); // There are 6 states in total, each lasting 0.3 seconds.
@@ -167,6 +171,8 @@ public sealed class SmasherSystem : SharedSmasherSystem
             HideShieldEffect(uid);
         }
 
+        _audio.PlayPvs(_deactivateSound, uid);
+
         _isHolding = false;
         _isChargingEffectActive = false;
     }
@@ -205,6 +211,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
             return;
 
         HideShieldEffect(userUid.Value);
+        _audio.PlayPvs(_activateSound, userUid.Value);
 
         if (ev.EffectActived != null)
         {
