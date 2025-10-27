@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
 using Content.Client.Administration.UI.CustomControls;
-using Content.Client.Info;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -83,11 +82,6 @@ public sealed partial class BanPanel : DefaultWindow
         _banPanelSawmill = _logManager.GetSawmill("admin.banpanel");
         PlayerList.OnSelectionChanged += OnPlayerSelectionChanged;
         PlayerNameLine.OnFocusExit += _ => OnPlayerNameChanged();
-        Rules.OnPressed += _ =>
-        {
-            var window = new RulesAndInfoWindow();
-            window.OpenCentered();
-        };
         PlayerCheckbox.OnPressed += _ =>
         {
             PlayerNameLine.Editable = PlayerCheckbox.Pressed;
