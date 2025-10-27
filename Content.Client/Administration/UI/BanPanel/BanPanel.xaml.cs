@@ -83,7 +83,7 @@ public sealed partial class BanPanel : DefaultWindow
         _banPanelSawmill = _logManager.GetSawmill("admin.banpanel");
         PlayerList.OnSelectionChanged += OnPlayerSelectionChanged;
         PlayerNameLine.OnFocusExit += _ => OnPlayerNameChanged();
-        Rules1.OnPressed += _ =>
+        Rules.OnPressed += _ =>
         {
             var window = new RulesAndInfoWindow();
             window.OpenCentered();
