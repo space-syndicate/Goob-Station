@@ -4,6 +4,8 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Enums;
 using Content.Shared.CombatMode;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
+using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
 using Robust.Shared.Input;
@@ -20,10 +22,12 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
     // TODO: Transfer this stuff to the component:
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
+    private ProtoId<AlertPrototype> _counterCooldownAlert = "SmasherCounterCooldown";
     private TimeSpan _timeDecay = TimeSpan.FromSeconds(1.8f); // There are 6 states in total, each lasting 0.3 seconds.
-    private TimeSpan _timeCooldownDownedDecay = TimeSpan.FromSeconds(3.8f); // Includes shield decay time
+    private TimeSpan _timeCooldownDownedDecay = TimeSpan.FromSeconds(5.0f); // Includes shield decay time
     private TimeSpan _timeCooldownCompleted = TimeSpan.FromSeconds(10f);
     private TimeSpan _holdStartTime;
     private TimeSpan _cooldownEnd;
@@ -80,6 +84,8 @@ public sealed class SmasherSystem : SharedSmasherSystem
             }
             return;
         }
+
+        UpdateCooldownAlert(user.Value);
 
         var useKey = EngineKeyFunctions.UseSecondary;
 
@@ -205,6 +211,40 @@ public sealed class SmasherSystem : SharedSmasherSystem
             ShowShieldEffect(userUid.Value, ev.EffectActived, true);
             Log.Info($"Активирован щит для {ToPrettyString(userUid.Value)}");
         }
+    }
+
+    /// <summary>
+    /// Updates the cooldown alert display based on remaining cooldown time
+    /// </summary>
+    private void UpdateCooldownAlert(EntityUid user)
+    {
+        if (!user.Valid)
+        {
+            _alerts.ClearAlert(user, _counterCooldownAlert);
+            return;
+        }
+
+        var remainingCooldown = _cooldownEnd - _timing.CurTime;
+        var secondsRemaining = (int)Math.Ceiling(remainingCooldown.TotalSeconds);
+
+        // If the cooldown is negative (ended), show 0
+        if (secondsRemaining <= 0)
+            secondsRemaining = 0;
+
+        var alertSeverity = CalculateAlertSeverity(secondsRemaining);
+        _alerts.ShowAlert(user, _counterCooldownAlert, (short)alertSeverity);
+    }
+
+
+    /// <summary>
+    /// Calculates alert severity based on remaining cooldown seconds
+    /// Rounds up to nearest multiple of 5
+    /// </summary>
+    private int CalculateAlertSeverity(int secondsRemaining)
+    {
+        var roundedSeconds = (int)Math.Ceiling(secondsRemaining / 5.0) * 5;
+        roundedSeconds = Math.Min(roundedSeconds, 60);
+        return roundedSeconds / 5;
     }
 
     /// <summary>

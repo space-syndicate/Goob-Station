@@ -1,0 +1,33 @@
+- type: alert
+  id: SmasherCounterCooldown
+  icons:
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count0
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count5
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count10
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count15
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count20
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count25
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count30
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count35
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count40
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count45
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count50
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count55
+  - sprite: /Textures/Imperial/Lavaland/Alerts/smasher_alert.rsi
+    state: count60
+  name: cooldown
+  description: locale
+  minSeverity: 0
+  maxSeverity: 13
