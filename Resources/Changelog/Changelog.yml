@@ -3955,3 +3955,8 @@
   id: 9001
   time: '2025-09-24T23:13:14.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/35294
+  url: https://github.com/imperial-space/SS14-public/pull/502
+- author: Stellark
+  changes:
+    - type: Fix
+      message: Обновление админ-панели
