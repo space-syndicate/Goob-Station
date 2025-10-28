@@ -11,9 +11,6 @@
       size: Tiny
     - type: Stack
       count: 1
-    - type: Tag
-      tags:
-      - ConstructionMaterial
 
 - type: entity
   id: MicroManipulatorStockPart
@@ -26,3 +23,6 @@
       state: micro_mani
     - type: Stack
       stackType: Manipulator
+    - type: Tag # Imperial Space Добавлен тег для инженерного киборга
+      tags:
+      - Manipulator

@@ -1,0 +1,181 @@
+- type: entity
+  name: base flame thrower
+  parent: BaseItem
+  id: BaseFlameThrower
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,3
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 20000
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  id: FlameThrower
+  parent: BaseFlameThrower
+  name: flame thrower
+  suffix: РХБЗЗ
+  description: The hallmark of the CBURN detachment. A massive tank with thickened fuel, durable hoses, and a reliable burner. It is excellent at cleaning rooms from unwanted flora and fauna.
+  components:
+  - type: Sprite
+    sprite: Imperial/Flamethrower/flamethrower.rsi
+    layers:
+    - state: icon
+    - state: fire
+      shader: unshaded
+      visible: false
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    size: Large
+    sprite: Imperial/Flamethrower/inhands.rsi
+  - type: ToggleableVisuals
+    spriteLayer: flame
+    inhandVisuals:
+      left:
+      - state: inhand-left-flame
+        shader: unshaded
+      right:
+      - state: inhand-right-flame
+        shader: unshaded
+
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/Lighters/lighter3.ogg
+  - type: MultiHandedItem
+  - type: ComponentToggler
+    components:
+    - type: DisarmMalus
+      malus: 0.6
+    - type: Execution
+      doAfterDuration: 4.0
+    - type: Gun
+      cameraRecoilScalar: 0
+      projectileSpeed: 8
+      fireRate: 15
+      minAngle: 30
+      maxAngle: 30
+      angleIncrease: 0
+      angleDecay: 0
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Imperial/Flamethrower/flamethrower_fire.ogg
+    - type: ItemToggleHot
+    - type: ItemToggleSize
+      activatedSize: Huge
+  - type: MagazineAmmoProvider
+    whitelist:
+    prototypes:
+      - FuelTankFlamethrowerSmall
+      - FuelTankFlamethrowerMedium
+      - FuelTankFlamethrowerBig
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: FuelTankFlamethrowerMedium
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+  - type: Appearance
+
+- type: entity
+  id: BaseFueltankFlamethrower
+  name: "Base fuel tank flame thrower"
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    proto: FlamethrowerBullet
+    cycleable: false
+
+- type: entity
+  id: FuelTankFlamethrowerSmall
+  name: "Small Flamethrower Fuel Tank"
+  suffix: РХБЗЗ, Огнемёт
+  parent: BaseFueltankFlamethrower
+  components:
+  - type: BallisticAmmoProvider
+    proto: FlamethrowerBullet
+    capacity: 350
+    cycleable: false
+  - type: Sprite
+    sprite: Imperial/Flamethrower/fueltankl_small.rsi
+    layers:
+    - state: icon
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Appearance
+
+- type: entity
+  id: FuelTankFlamethrowerMedium
+  name: "Medium Flamethrower Fuel Tank"
+  suffix: РХБЗЗ, Огнемёт
+  parent: BaseFueltankFlamethrower
+  components:
+  - type: BallisticAmmoProvider
+    proto: FlamethrowerBullet
+    capacity: 500
+    cycleable: false
+  - type: Sprite
+    sprite: Imperial/Flamethrower/fueltank_medium.rsi
+    layers:
+    - state: icon
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Appearance
+
+- type: entity
+  id: FuelTankFlamethrowerBig
+  name: "Big Flamethrower Fuel Tank"
+  suffix: РХБЗЗ, Огнемёт
+  parent: BaseFueltankFlamethrower
+  components:
+  - type: BallisticAmmoProvider
+    proto: FlamethrowerBullet
+    capacity: 1000
+    cycleable: false
+  - type: Sprite
+    sprite: Imperial/Flamethrower/fueltank_big.rsi
+    layers:
+    - state: icon
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Appearance

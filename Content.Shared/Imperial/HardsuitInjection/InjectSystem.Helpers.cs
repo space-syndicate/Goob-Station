@@ -102,7 +102,7 @@ public sealed partial class InjectSystem
             _sharedAdminLogSystem.Add(LogType.ForceFeed, $"{_entManager.ToPrettyString(user):user} ES injected with a solution {SharedSolutionContainerSystem.ToPrettyString(removedSolution):removedSolution}");
 
         _reactiveSystem.DoEntityReaction(user, removedSolution, ReactionMethod.Injection);
-        _solutions.TryAddSolution((user, targetSolutionEntity.Value.Comp), removedSolution);
+        _solutions.TryAddSolution(targetSolutionEntity.Value, removedSolution);
 
         _audio.PlayPvs(component.InjectSound, user);
         _popupSystem.PopupEntity(Loc.GetString("hypospray-component-feel-prick-message"), user, user);

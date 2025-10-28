@@ -79,7 +79,7 @@
         mask:
         - MobMask
         layer:
-        - TableLayer
+        - MobLayer
   - type: Appearance
   - type: StaticPrice
     price: 750

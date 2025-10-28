@@ -1,0 +1,97 @@
+
+- type: entity
+  id: HolosignForcefieldSacerdos
+  suffix: Phantom4502, Sacerdos
+  parent: HolosignWetFloor
+  name: holographic force field
+  description: A powerful temporal containment field that doesn't let anything through, not even a tesla or singularity.
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: Structures/Holo/field.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: blue
+  - type: Clickable
+  - type: ContainmentField
+    throwForce: 0
+
+- type: entity
+  id: HolosignForcefieldSacerdos1
+  suffix: Phantom4502, 35, Sacerdos
+  parent: HolosignWetFloor
+  name: holographic force field
+  description: A powerful temporal containment field that doesn't let anything through, not even a tesla or singularity.
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: Structures/Holo/field.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: TimedDespawn
+    lifetime: 2100
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: blue
+  - type: Clickable
+  - type: ContainmentField
+    throwForce: 0
+
+- type: entity
+  id: HolosignForcefieldSacerdos2
+  suffix: Phantom4502, 25, Sacerdos
+  parent: HolosignWetFloor
+  name: holographic force field
+  description: A powerful temporal containment field that doesn't let anything through, not even a tesla or singularity.
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: Structures/Holo/field.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: TimedDespawn
+    lifetime: 1500
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: blue
+  - type: Clickable
+  - type: ContainmentField
+    throwForce: 0

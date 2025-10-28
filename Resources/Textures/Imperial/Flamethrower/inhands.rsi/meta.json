@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by fantom5946",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "inhand-left_notuse",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right_notuse",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-flame",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-flame",
+      "directions": 4
+    }
+  ]
+}

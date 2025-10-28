@@ -28,8 +28,8 @@ using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
-using Content.Server.Imperial.Sponsors; //Imperial sponsors
 using Content.Shared.Players.RateLimiting;
+using Content.Server.Imperial.Entry;
 
 namespace Content.Server.IoC
 {
@@ -73,7 +73,6 @@ namespace Content.Server.IoC
             IoCManager.Register<PlayerRateLimitManager>();
             IoCManager.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             IoCManager.Register<MappingManager>();
-            IoCManager.Register<SponsorsManager>(); //Imperial sponsors
             IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
             IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MultiServerKickManager>();
@@ -81,6 +80,8 @@ namespace Content.Server.IoC
 
             IoCManager.Register<DiscordLink>();
             IoCManager.Register<DiscordChatLink>();
+
+            ImperialEntry.IoCRegister(); // Imperial Space
         }
     }
 }

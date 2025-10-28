@@ -41,11 +41,13 @@ namespace Content.Server.Imperial.ExplosiveProjectile
             HasComp<PressureProtectionComponent>(clothingTarget))
             {
                 EnsureComp<ExplosiveProjectileResultOffComponent>(target);
+                Del(uid);
             }
             else
             {
                 if (HasComp<BodyComponent>(target))
                     EnsureComp<ExplosiveProjectileResultOnComponent>(target);
+                Del(uid);
             }
         }
         private void OnExplodeStart(EntityUid uid, ExplosiveProjectileComponent component, EntityUid target)

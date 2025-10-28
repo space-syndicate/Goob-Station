@@ -106,6 +106,7 @@
   name: Nedra stamp
   parent: RubberStampMime
   id: RubberStampNedra
+  suffix: seriozha, Недра
   components:
     - type: Stamp
       stampedName: stamp-nedra-name
@@ -117,7 +118,7 @@
 
 - type: entity
   name: Nedra command stamp
-  parent: RubberStampMime
+  parent: RubberStampNedra
   id: RubberStampNedraCommand
   components:
     - type: Stamp
@@ -130,7 +131,7 @@
 
 - type: entity
   name: Nedra comitet stamp
-  parent: RubberStampMime
+  parent: RubberStampNedra
   id: RubberStampNedraComitet
   components:
     - type: Stamp

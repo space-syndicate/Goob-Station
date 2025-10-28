@@ -26,6 +26,7 @@ using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Client.Imperial.Sponsors; //Imperial sponsors
 using Content.Shared.Players.RateLimiting;
+using Content.Client.Imperial.Entry;
 
 namespace Content.Client.IoC
 {
@@ -59,11 +60,12 @@ namespace Content.Client.IoC
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
             collection.Register<MappingManager>();
             collection.Register<DebugMonitorManager>();
-            IoCManager.Register<SponsorsManager>(); //Imperial sponsors
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
             collection.Register<ClientsidePlaytimeTrackingManager>();
+
+            ImperialEntry.IoCRegister();
         }
     }
 }

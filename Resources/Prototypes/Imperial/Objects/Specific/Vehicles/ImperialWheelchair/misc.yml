@@ -22,7 +22,6 @@
   components:
     - type: BuckleOnMapInit
       prototype: ImperialVehicleWheelchair
-    - type: LegsStartParalyzed
     - type: LegsParalyzed
 
 

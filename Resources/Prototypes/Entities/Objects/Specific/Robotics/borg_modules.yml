@@ -658,6 +658,7 @@
         whitelist:
           components:
           - Circuitboard
+          - MachineBoard # Imperial Space Добавлена возможность брать любые платы
         blacklist:
           components:
           - SiliconLawProvider
@@ -667,6 +668,7 @@
         whitelist:
           tags:
           - ConstructionMaterial
+          - Manipulator # Imperial Space Добавлена возможность брать микроманипуляторы
     - hand:
         emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty

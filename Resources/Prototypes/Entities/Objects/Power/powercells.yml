@@ -27,9 +27,6 @@
       reagents:
         - ReagentId: Zinc
           Quantity: 5
-  - type: Tag
-    tags:
-      - PowerCell
   - type: Appearance
   - type: PowerCellVisuals
   - type: Riggable

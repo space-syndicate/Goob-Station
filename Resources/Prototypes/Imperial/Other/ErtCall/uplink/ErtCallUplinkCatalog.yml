@@ -35,7 +35,7 @@
   description: ert-uplink-melee-energysword-desc
   productEntity: EnergySword
   cost:
-    BlueSpaceCube: 15
+    BlueSpaceCube: 10
   categories:
   - ERTUplinkMelee
 
@@ -89,6 +89,55 @@
 #     BlueSpaceCube: 2
 #   categories:
 #   - ERTUplinkAmmoCombat
+
+#Imperial Space Огнемёт "Санитар" start
+
+- type: listing
+  id: ErtCallUplinkFuelTankSmall
+  name: ert-uplink-ammononcombat-fueltanksmall-name
+  description: ert-uplink-ammononcombat-fueltanksmall-desc
+  productEntity: FuelTankFlamethrowerSmall
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ERTUplinkAmmoCombat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkCBURN
+
+- type: listing
+  id: ErtCallUplinkFuelTankMedium
+  name: ert-uplink-ammononcombat-fueltankmedium-name
+  description: ert-uplink-ammononcombat-fueltankmedium-desc
+  productEntity: FuelTankFlamethrowerMedium
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - ERTUplinkAmmoCombat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkCBURN
+
+- type: listing
+  id: ErtCallUplinkFuelTankBig
+  name: ert-uplink-ammononcombat-fueltankbig-name
+  description: ert-uplink-ammononcombat-fueltankbig-desc
+  productEntity: FuelTankFlamethrowerBig
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - ERTUplinkAmmoCombat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkCBURN
+
+#Imperial Space Огнемёт "Санитар" end
 
 - type: listing
   id: ErtCallUplinkMagazinePistol
@@ -792,6 +841,25 @@
         tags:
           - ErtUplinkCombat
 
+#Imperial Space Огнемёт "Санитар" start
+
+- type: listing
+  id: ErtCallUplinkWeaponFlamethrower
+  name: ert-uplink-weaponcombat-weaponflamethrower-name
+  description: ert-uplink-weaponcombat-weaponflamethrower-desc
+  productEntity: FlameThrower
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - ERTUplinkWeaponCombat
+  conditions:
+    - !type:StoreWhitelistCondition
+     whitelist:
+       tags:
+         - ErtUplinkCBURN
+
+#Imperial Space Огнемёт "Санитар" end
+
 - type: listing
   id: ErtCallUplinkWeaponPulseCarbine
   name: ert-uplink-weaponcombat-weaponpulsecarbine-name
@@ -1075,6 +1143,41 @@
   - ERTUplinkJunitor
 
 #ERTUplinkUtilities
+
+#Imperial Space Портативные зарядники спецотрядов start
+
+- type: listing
+  id: ErtCallUplinkRecharger
+  name: ert-uplink-utilities-recharger-ert-name
+  description: ert-uplink-utilities-recharger-ert-desc
+  productEntity: PortableRechargerErt
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - ERTUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkERT
+
+- type: listing
+  id: ErtCallUplinkRechargerCburn
+  name: ert-uplink-utilities-recharger-cburn-name
+  description: ert-uplink-utilities-recharger-cburn-desc
+  productEntity: PortableRechargerCburn
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - ERTUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkCBURN
+
+#Imperial Space Портативные зарядники спецотрядов end
+
 - type: listing
   id: ErtCallUplinkHandcuffs
   name: ert-uplink-utilities-handcuffs-name

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Sprite made by @crookielv for @waldfogel",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "def_e",
+      "directions": 4
+    },
+    {
+      "name": "def_e_r",
+      "directions": 4
+    },
+    {
+      "name": "def_l",
+      "directions": 4
+    },
+    {
+      "name": "eng_borg",
+      "directions": 4
+    },
+    {
+      "name": "eng_e",
+      "directions": 4
+    },
+    {
+      "name": "eng_e_r",
+      "directions": 4
+    },
+    {
+      "name": "eng_l",
+      "directions": 4
+    },
+    {
+      "name": "med_borg",
+      "directions": 4
+    },
+    {
+      "name": "med_e",
+      "directions": 4
+    },
+    {
+      "name": "med_e_r",
+      "directions": 4
+    },
+    {
+      "name": "med_l",
+      "directions": 4
+    },
+    {
+      "name": "cburn_borg",
+      "directions": 4
+    },
+    {
+      "name": "cburn_e",
+      "directions": 4
+    },
+    {
+      "name": "cburn_e_r",
+      "directions": 4
+    },
+    {
+      "name": "cburn_l",
+      "directions": 4
+    },
+    {
+      "name": "def_borg",
+      "directions": 4
+    }
+  ]
+}
