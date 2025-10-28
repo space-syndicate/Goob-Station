@@ -106,7 +106,7 @@ namespace Content.Server.Imperial.BloodTrail
 
         private void SpawnBloodDecals(EntityUid victim, FixedPoint2 effectiveDamage, BloodTrailComponent comp, EntityUid? damageSource)
         {
-            if (!TryComp(victim, out TransformComponent? _))
+            if (!TryComp(victim, out TransformComponent? victimXform))
                 return;
 
             var decalCount = GetDecalCount(effectiveDamage);
@@ -115,25 +115,25 @@ namespace Content.Server.Imperial.BloodTrail
             if (decalCount <= 0)
                 return;
 
+            var victimCoords = _transform.GetMapCoordinates(victim);
+            var victimWorldPos = victimCoords.Position;
+
             for (int i = 0; i < decalCount; i++)
             {
-                if (!TryComp(victim, out TransformComponent? victimXform))
-                    continue;
-
                 var decalId = _random.Pick(comp.Decals);
                 if (!_prototype.HasIndex(decalId))
                     continue;
 
                 var bloodColor = GetBloodColor(victim);
 
-                var victimWorldPos = _transform.GetWorldPosition(victimXform);
                 var (worldPos, rotation) = CalculateDecalPositionAndRotation(victimWorldPos, damageSource, comp.SpreadDistance);
 
                 if (IsTooCloseToRecentDecals(worldPos))
                     continue;
 
-                var mapCoords = new MapCoordinates(worldPos, victimXform.MapID);
-                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out _))
+                var mapCoords = new MapCoordinates(worldPos, victimCoords.MapId);
+
+                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid))
                     continue;
 
                 var entityCoords = _transform.ToCoordinates(gridUid, mapCoords);
@@ -170,19 +170,18 @@ namespace Content.Server.Imperial.BloodTrail
 
         private (Vector2 position, Angle rotation) CalculateDecalPositionAndRotation(Vector2 victimWorldPos, EntityUid? damageSource, float spread)
         {
-            Vector2 basePos;
-            Angle rotation;
+            Vector2 basePos = victimWorldPos;
+            Angle rotation = Angle.FromDegrees(_random.Next(0, 360));
 
             if (damageSource != null && TryComp(damageSource.Value, out TransformComponent? sourceXform))
             {
                 var sourcePos = _transform.GetWorldPosition(sourceXform);
-
                 var attackDirection = (victimWorldPos - sourcePos).Normalized();
 
                 rotation = attackDirection.ToWorldAngle() + MathF.PI;
 
                 var offset = _random.NextFloat(spread * 0.8f, spread * 1.0f);
-                basePos = victimWorldPos - attackDirection * offset;
+                basePos = victimWorldPos + attackDirection * offset;
             }
             else
             {
@@ -193,8 +192,8 @@ namespace Content.Server.Imperial.BloodTrail
             }
 
             var randomOffset = new Vector2(
-                _random.NextFloat(-spread * 0.8f, spread * 0.8f),
-                _random.NextFloat(-spread * 0.8f, spread * 0.8f)
+                _random.NextFloat(-spread * 0.2f, spread * 0.2f),
+                _random.NextFloat(-spread * 0.2f, spread * 0.2f)
             );
 
             return (basePos + randomOffset, rotation);
