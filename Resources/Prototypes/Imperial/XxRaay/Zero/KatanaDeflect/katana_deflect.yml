@@ -1,0 +1,20 @@
+- type: entity
+  parent: Katana
+  id: KatanaZero
+  name: Нулевая катана
+  description: Легендарная катана, выкованная в древних кузницах самураев. Её клинок, закалённый в тысячах сражений, обладает мистической способностью отражать любые снаряды, словно время замедляется в её присутствии. Говорят, что тот, кто владеет этим оружием, становится непобедимым в бою, как воин-призрак из старых легенд. Каждый удар этой катаны - это танец смерти, где пули и стрелы становятся лишь пылью на ветру.
+  components:
+  - type: KatanaDeflect
+    activeWindow: 0.3
+    radius: 3.0
+    deflectAngle: 120
+  - type: KatanaRecall
+    maxRecallDistance: 30.0
+    recallCooldown: 3.0
+  - type: Reflect
+    reflects: NonEnergy
+    reflectingInHands: true
+    reflectProb: 0.0
+    spread: 0
+    soundOnReflect:
+      path: /Audio/Weapons/bladeslice.ogg

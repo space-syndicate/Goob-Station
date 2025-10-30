@@ -1,0 +1,16 @@
+- type: entity
+  parent: MobHuman
+  id: MobHumanZero
+  name: Кенширо 'Нуль' Акума
+  suffix: XxRaay, Human, KatanaZero, Без целей
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+    hair: HumanHairLongBedhead
+    facialHair: HumanFacialHairJensen
+    skinColor: "#8B4513"
+    eyeColor: "#FF0000"
+  - type: Loadout
+    prototypes: [ZeroGear]
+  - type: Overthrow
+  - type: KatanaRecallUser
