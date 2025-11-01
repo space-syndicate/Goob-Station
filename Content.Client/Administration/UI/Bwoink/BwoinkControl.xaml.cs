@@ -199,6 +199,7 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 uiController.PopOut();
             };
+            // imperial space добавление кнопки "Правила"
             Rules.OnPressed += _ =>
             {
                 var window = new RulesAndInfoWindow();
