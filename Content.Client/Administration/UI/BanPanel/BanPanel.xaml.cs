@@ -83,13 +83,13 @@ public sealed partial class BanPanel : DefaultWindow
         _banPanelSawmill = _logManager.GetSawmill("admin.banpanel");
         PlayerList.OnSelectionChanged += OnPlayerSelectionChanged;
         PlayerNameLine.OnFocusExit += _ => OnPlayerNameChanged();
-        // imperial space добаление кнопки "Правила" Start
+        // imperial space: добаление кнопки "Правила" Start
         Rules.OnPressed += _ =>
         {
             var window = new RulesAndInfoWindow();
             window.OpenCentered();
         };
-        // imperial space End
+        // imperial space: добаление кнопки "Правила" End
         PlayerCheckbox.OnPressed += _ =>
         {
             PlayerNameLine.Editable = PlayerCheckbox.Pressed;
