@@ -2,6 +2,7 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
@@ -12,12 +13,17 @@ public abstract class SharedSmasherSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeNetworkEvent<ShieldActivatedEvent>(OnShieldActivated);
+        SubscribeNetworkEvent<ShieldChargingEvent>(OnShieldCharging);
+        SubscribeNetworkEvent<ShieldChargingEndEvent>(OnShieldChargingEnd);
         SubscribeLocalEvent<ShieldActiveComponent, DamageModifyEvent>(OnDamage);
+        SubscribeLocalEvent<SmasherChargingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
     }
 
     public override void Update(float frameTime)
@@ -38,6 +44,31 @@ public abstract class SharedSmasherSystem : EntitySystem
         }
     }
 
+    private void OnShieldCharging(ShieldChargingEvent ev, EntitySessionEventArgs args)
+    {
+        var user = args.SenderSession.AttachedEntity;
+        if (!user.HasValue)
+            return;
+
+        if (!HasComp<SmasherChargingComponent>(user.Value))
+        {
+            EnsureComp<SmasherChargingComponent>(user.Value);
+            _movementSpeed.RefreshMovementSpeedModifiers(user.Value);
+            Log.Debug($"Начало зарядки - замедление для {ToPrettyString(user.Value)}");
+        }
+    }
+
+    private void OnShieldChargingEnd(ShieldChargingEndEvent ev, EntitySessionEventArgs args)
+    {
+        var user = args.SenderSession.AttachedEntity;
+        if (user != null && HasComp<SmasherChargingComponent>(user.Value))
+        {
+            RemComp<SmasherChargingComponent>(user.Value);
+            _movementSpeed.RefreshMovementSpeedModifiers(user.Value);
+            Log.Debug($"Конец зарядки - снятие замедления для {ToPrettyString(user.Value)}");
+        }
+    }
+
     private void OnShieldActivated(ShieldActivatedEvent ev, EntitySessionEventArgs args)
     {
         var user = args.SenderSession.AttachedEntity;
@@ -51,6 +82,12 @@ public abstract class SharedSmasherSystem : EntitySystem
         ActivateShield(smasherUid.Value, smasher, user.Value);
     }
 
+    private void OnRefreshMovespeed(EntityUid uid, SmasherChargingComponent component, RefreshMovementSpeedModifiersEvent args)
+    {
+        args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
+        Log.Debug($"Применено замедление для {ToPrettyString(uid)}");
+    }
+
     private void OnDamage(EntityUid uid, ShieldActiveComponent component, DamageModifyEvent args)
     {
         args.Damage *= 0.2f;
@@ -59,6 +96,12 @@ public abstract class SharedSmasherSystem : EntitySystem
 
     public void ActivateShield(EntityUid smasherUid, SmasherComponent smasher, EntityUid user)
     {
+        if (HasComp<SmasherChargingComponent>(user))
+        {
+            RemComp<SmasherChargingComponent>(user);
+            _movementSpeed.RefreshMovementSpeedModifiers(user);
+        }
+
         var shieldActive = AddComp<ShieldActiveComponent>(user);
 
         shieldActive.EffectActived = smasher.EffectActived;

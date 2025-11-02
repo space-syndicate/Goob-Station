@@ -84,6 +84,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
                     HideShieldEffect(user.Value);
                     _isChargingEffectActive = false;
                 }
+
+                RaiseNetworkEvent(new ShieldChargingEndEvent(GetNetEntity(user.Value)));
+
                 _isHolding = false;
             }
             return;
@@ -114,6 +117,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
                     ShowShieldEffect(user.Value, smasher.EffectCharging, true);
                     RaiseNetworkEvent(new ShieldChargingEvent(GetNetEntity(user.Value), smasher.EffectCharging));
                 }
+
+                RaiseNetworkEvent(new ShieldChargingEvent(GetNetEntity(user.Value), smasher.EffectCharging));
+
                 Log.Info("Начата зарядка щита");
             }
 
@@ -127,8 +133,10 @@ public sealed class SmasherSystem : SharedSmasherSystem
             if (holdTime >= _timeChargingSmasher)
             {
                 Log.Debug("Зарядка завершена - активируем щит");
-                RaisePredictiveEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid.Value), NetEntity.Invalid,
+                RaiseNetworkEvent(new ShieldActivatedEvent(GetNetEntity(smasherUid.Value), NetEntity.Invalid,
                     smasher.EffectActived, smasher.EffectCharging, smasher.EffectDecay));
+
+                RaiseNetworkEvent(new ShieldChargingEndEvent(GetNetEntity(user.Value)));
 
                 _isHolding = false;
                 _cooldownEnd = _timing.CurTime + _timeCooldownCompleted;
@@ -151,6 +159,8 @@ public sealed class SmasherSystem : SharedSmasherSystem
                     Log.Debug("Показан эффект распада");
                 }
             }
+
+            RaiseNetworkEvent(new ShieldChargingEndEvent(GetNetEntity(user.Value)));
 
             _isHolding = false;
             Log.Debug("Зарядка отменена");
@@ -321,6 +331,8 @@ public sealed class SmasherSystem : SharedSmasherSystem
                 _isDecayEffectActive = true;
                 _decayEndTime = _timing.CurTime + TimeSpan.FromSeconds(1.8);
             }
+
+            RaiseNetworkEvent(new ShieldChargingEndEvent(GetNetEntity(user)));
 
             _isHolding = false;
 
