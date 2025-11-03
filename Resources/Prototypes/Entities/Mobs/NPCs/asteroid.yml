@@ -425,7 +425,7 @@
     - id: DiamondOre1
       amount: 1
       maxAmount: 3
-
+# Imperial Space: A new Phantomor mob has been added. Start
 - type: entity
   parent: [BaseMobAsteroid, MobBloodstream]
   id: MobPhantomor
@@ -501,3 +501,4 @@
       sprite: Mobs/Aliens/Asteroid/goliath.rsi
       state: goliath_tentacle_wiggle
     event: !type:PhantomorSummonTentacleAction
+# Imperial Space: A new Phantomor mob has been added. End
