@@ -761,5 +761,5 @@
     fillBaseName: hypo_fill
     solutionName: hypospray
   - type: CustomHypospray
-    injectionDelayTime: 2.5
+    injectionDelayTime: 1.0
 # imperial space: added hypospray for doctors. End

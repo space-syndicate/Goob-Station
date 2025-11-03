@@ -17,3 +17,5 @@ hypospray-cant-inject = Нельзя сделать инъекцию в { $targe
 hypospay-component-failure-hardsuit = Вы не сможете провести иглу через толстое покрытие!
 hypospray-component-inject-start-message = Ввод вещества…
 hypospray-component-inject-cancelled-message = Прервано!
+hypospray-component-inject-toxin-message = Вы не можете изпользовать стандартный гипоспрей для ввода ядов
+hypospray-component-inject-person-message = Вам пытаются что-то вколоть
