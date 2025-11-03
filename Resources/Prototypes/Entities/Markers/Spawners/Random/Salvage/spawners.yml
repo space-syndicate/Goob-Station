@@ -543,5 +543,7 @@
         weight: 25
       - id: MobBasilisk
         weight: 10
-      - id: MobPhantomor # Imperial Space: A new Phantomor mob has been added
+        // Imperial Space: A new Phantomor mob has been added. Start
+      - id: MobPhantomor
         weight: 30
+        // Imperial Space: A new Phantomor mob has been added. End
