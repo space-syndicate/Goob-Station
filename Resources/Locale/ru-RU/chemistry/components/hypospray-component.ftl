@@ -15,3 +15,5 @@ hypospray-verb-mode-inject-all = Вы больше не можете набир�
 hypospray-verb-mode-inject-mobs-only = Теперь вы можете набирать из контейнеров.
 hypospray-cant-inject = Нельзя сделать инъекцию в { $target }!
 hypospay-component-failure-hardsuit = Вы не сможете провести иглу через толстое покрытие!
+hypospray-component-inject-start-message = Ввод вещества…
+hypospray-component-inject-cancelled-message = Прервано!

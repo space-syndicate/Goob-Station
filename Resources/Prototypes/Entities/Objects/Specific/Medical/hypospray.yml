@@ -727,3 +727,39 @@
     transferAmount: 1
     onlyAffectsMobs: false
     injectOnly: true
+
+# imperial space: added hypospray for doctors. Start
+- type: entity
+  name: Standard hypospray
+  parent: BaseItem
+  description: A tool for doctors to quickly administer medications.
+  id: StandardHypospray
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/standarthypo.rsi
+    layers:
+    - state: hypo
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: hypo_fill1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: Imperial/Stellark/standarthypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+    exactVolume: true
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: hypo_fill
+    solutionName: hypospray
+  - type: CustomHypospray
+    injectionDelayTime: 2.5
+# imperial space: added hypospray for doctors. End
