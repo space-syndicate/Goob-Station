@@ -153,3 +153,15 @@
   cost: 750
   category: cargoproduct-category-name-medical
   group: market
+
+# imperial space: added hypospray for doctors. Start
+- type: cargoProduct
+  id: CrateChemistryStandartHypo
+  icon:
+    sprite: Imperial/Stellark/standarthypo.rsi
+    state: icon
+  product: CrateChemistryStandartHypo
+  cost: 750
+  category: cargoproduct-category-name-medical
+  group: market
+# imperial space: added hypospray for doctors. End
