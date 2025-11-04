@@ -1,0 +1,61 @@
+- type: entity
+  parent: BaseAction
+  id: ActionEnhancedShot
+  name: Enhanced shot
+  description: locale
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:EnhancedShotEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionEnhancedBayonetAttack
+  name: Enhanced bayonet attack
+  description: locale
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
+    event: !type:EnhancedBayonetAttackEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionPiercingLunge
+  name: Piercing lunge
+  description: locale
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:PiercingLungeEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionEarthshakerStrike
+  name: Earthshaker strike
+  description: locale
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
+  - type: InstantAction
+    event: !type:EarthshakerStrikeEvent
+
+# action for WeaponProtoKineticAccelerator
+# action for WeaponCrusherGlaive
+# action for WeaponCrusher
+# action for WeaponSmasher
