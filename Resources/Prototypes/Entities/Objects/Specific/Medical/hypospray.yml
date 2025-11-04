@@ -762,4 +762,6 @@
     solutionName: hypospray
   - type: CustomHypospray
     injectionDelayTime: 1.0
+  - type: StaticPrice
+    price: 1000
 # imperial space: added hypospray for doctors. End

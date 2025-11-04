@@ -161,7 +161,7 @@
     sprite: Imperial/Stellark/standarthypo.rsi
     state: icon
   product: CrateChemistryStandartHypo
-  cost: 750
+  cost: 3000
   category: cargoproduct-category-name-medical
   group: market
 # imperial space: added hypospray for doctors. End
