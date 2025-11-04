@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
 
-namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Events.EmpoweredAttacks;
+namespace Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Events;
 
 public sealed partial class EnhancedShotEvent : WorldTargetActionEvent
 {
