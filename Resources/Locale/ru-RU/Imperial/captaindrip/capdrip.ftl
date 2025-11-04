@@ -34,5 +34,5 @@ ent-Capwhitebackpack = белый рюкзак капитана
    .desc = Это ваше воображение, или на нем действительно есть пятно?
 ent-CapSheriffcloack = плащ шерифа
    .desc = Он излучает суровость!
-ent-CapSheriffbackpack = кюкзак шерифа
+ent-CapSheriffbackpack = рюкзак шерифа
    .desc = Здесь остались следы тех, кто ослушался!

@@ -1,0 +1,95 @@
+- type: localizedDataset
+  id: NamesDClass
+  values:
+    prefix: names-Dclass-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTF
+  values:
+    prefix: names-mtfscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTFNU
+  values:
+    prefix: names-mtfscpnu-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTFCom
+  values:
+    prefix: names-mtfscpcom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTFNUCom
+  values:
+    prefix: names-mtfscpnucom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesAlpha
+  values:
+    prefix: names-mtfAlpha-
+    count: 50
+
+- type: localizedDataset
+  id: Namesguardscp
+  values:
+    prefix: names-guardscp-
+    count: 50
+
+- type: localizedDataset
+  id: Namesscientistscp
+  values:
+    prefix: names-scientistscp-
+    count: 50
+
+- type: localizedDataset
+  id: Namesscientistcomscp
+  values:
+    prefix: names-scientistcomscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesAdmscp
+  values:
+    prefix: names-admscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesCISCP
+  values:
+    prefix: names-CISCP-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEngineerSCP
+  values:
+    prefix: names-engineerSCP-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMedicSCP
+  values:
+    prefix: names-medicSCP-
+    count: 50
+
+- type: localizedDataset
+  id: Namesguardscpcom
+  values:
+    prefix: names-guardscpcom-
+    count: 50
+
+- type: localizedDataset
+  id: judgeSCP
+  values:
+    prefix: names-judgeSCP-
+    count: 50
+
+- type: localizedDataset
+  id: DetectiveSCP
+  values:
+    prefix: names-DetectiveSCP-
+    count: 50

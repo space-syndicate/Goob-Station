@@ -31,6 +31,13 @@ ert-uplink-ammononcombat-magazinepistol-name = { ent-MagazinePistol }
 ert-uplink-ammononcombat-magazinepistol-desc = { ent-MagazinePistol.desc }
 ert-uplink-ammononcombat-magazinepistolrubber-name = { ent-MagazinePistolRubber }
 ert-uplink-ammononcombat-magazinepistolrubber-desc = { ent-MagazinePistolRubber.desc }
+ert-uplink-ammononcombat-fueltanksmall-name = { ent-FuelTankFlamethrowerSmall }
+ert-uplink-ammononcombat-fueltanksmall-desc = { ent-FuelTankFlamethrowerSmall.desc }
+ert-uplink-ammononcombat-fueltankmedium-name = { ent-FuelTankFlamethrowerMedium }
+ert-uplink-ammononcombat-fueltankmedium-desc = { ent-FuelTankFlamethrowerMedium.desc }
+ert-uplink-ammononcombat-fueltankbig-name = { ent-FuelTankFlamethrowerBig }
+ert-uplink-ammononcombat-fueltankbig-desc = { ent-FuelTankFlamethrowerBig.desc }
+
 
 ert-uplink-ammo-magazineriflerubber-name = { ent-MagazineRifleRubber }
 ert-uplink-ammo-magazineriflerubber-desc = { ent-MagazineRifleRubber.desc }
@@ -174,6 +181,9 @@ ert-uplink-weaponcombat-weaponpulsesniper-name = { ent-WeaponPulseSniper }
 ert-uplink-weaponcombat-weaponpulsesniper-desc = { ent-WeaponPulseSniper.desc }
 ert-uplink-weaponcombat-weaponshotgunbulldog-name = { ent-WeaponShotgunBulldog }
 ert-uplink-weaponcombat-weaponshotgunbulldog-desc = { ent-WeaponShotgunBulldog.desc }
+ert-uplink-weaponcombat-weaponflamethrower-name = { ent-FlameThrower }
+ert-uplink-weaponcombat-weaponflamethrower-desc = { ent-FlameThrower.desc }
+
 
 
 ert-uplink-junitor-advmopitem-name = { ent-AdvMopItem }
@@ -191,6 +201,10 @@ ert-uplink-junitor-bucket-desc = { ent-Bucket.desc }
 ert-uplink-junitor-boxbodybag-name = { ent-BoxBodyBag }
 ert-uplink-junitor-boxbodybag-desc = { ent-BoxBodyBag.desc }
 
+ert-uplink-utilities-recharger-ert-name = { ent-PortableRechargerErt }
+ert-uplink-utilities-recharger-ert-desc = { ent-PortableRechargerErt.desc }
+ert-uplink-utilities-recharger-cburn-name = { ent-PortableRechargerCburn }
+ert-uplink-utilities-recharger-cburn-desc = { ent-PortableRechargerCburn.desc }
 ert-uplink-utilities-handcuffs-name = { ent-Handcuffs }
 ert-uplink-utilities-handcuffs-desc = { ent-Handcuffs.desc }
 ert-uplink-utilities-jetpackbluefilled-name = { ent-JetpackBlueFilled }

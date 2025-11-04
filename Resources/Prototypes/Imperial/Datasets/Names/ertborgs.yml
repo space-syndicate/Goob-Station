@@ -1,0 +1,23 @@
+- type: localizedDataset
+  id: NamesErtAssaultBorg
+  values:
+    prefix: names-ert-assault-borg-dataset-
+    count: 16
+
+- type: localizedDataset
+  id: NamesErtEngineerBorg
+  values:
+    prefix: names-ert-engineer-borg-dataset-
+    count: 16
+
+- type: localizedDataset
+  id: NamesErtMedicalBorg
+  values:
+    prefix: names-ert-medical-borg-dataset-
+    count: 16
+
+- type: localizedDataset
+  id: NamesErtCburnBorg
+  values:
+    prefix: names-ert-cburn-borg-dataset-
+    count: 16

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ DrinkBaseMaterialGlass, DrinkBaseCup, DrinkVisualsFillOverlay ]
+  parent: [ DrinkBaseMaterialGlass, DrinkBaseCup, DrinkBase ]
   id: BizarreDrinkGlassBase
   abstract: true
   components:

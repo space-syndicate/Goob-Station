@@ -543,3 +543,5 @@
         weight: 35
       - id: MobBasilisk
         weight: 20
+      - id: MobUrs # Imperial New mob Urs
+        weight: 45 # Imperial New mob Urs

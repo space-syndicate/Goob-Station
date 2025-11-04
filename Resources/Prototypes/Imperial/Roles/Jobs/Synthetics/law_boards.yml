@@ -1,0 +1,25 @@
+- type: entity
+  id: EmergencyResponseTeamCircuitBoard
+  suffix: ОБР, ERTCALL
+  parent: BaseElectronics
+  name: law board (ERT)
+  description: An electronics board containing the Emergency Response Team lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: EmergencyResponseTeamAI
+
+- type: entity
+  id: EpsilonCircuitBoard
+  suffix: Эскадрон Смерти
+  parent: BaseElectronics
+  name: law board (Epsilon)
+  description: An electronics board containing the Epsilon lawset. Wait, what? Oh no.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: EpsilonAI

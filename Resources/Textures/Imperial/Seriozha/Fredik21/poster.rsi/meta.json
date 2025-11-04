@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "by Shakal_132, Fredik21, imperial space",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "scp"
+    },
+    {
+      "name": "CBT"
+    },
+    {
+      "name": "chaos"
+    },
+    {
+      "name": "nda"
+    },
+    {
+      "name": "n049"
+    },
+    {
+      "name": "n106"
+    },
+    {
+      "name": "n076"
+    },
+    {
+      "name": "n457"
+    },
+    {
+      "name": "n999"
+    },
+    {
+      "name": "n035"
+    },
+    {
+      "name": "n500"
+    },
+    {
+      "name": "n207"
+    },
+    {
+      "name": "n714"
+    },
+    {
+      "name": "n343"
+    },
+    {
+      "name": "n268"
+    },
+    {
+      "name": "n127"
+    },
+    {
+      "name": "PHYSICS"
+    },
+    {
+      "name": "Alpha1"
+    },
+    {
+      "name": "nu7"
+    },
+    {
+      "name": "Alpha9"
+    },
+    {
+      "name": "brokengod"
+    },
+    {
+      "name": "epsilon11"
+    },
+    {
+      "name": "scarletking"
+    },
+    {
+      "name": "tay5",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "beta7"
+    },
+    {
+      "name": "beta1"
+    },
+    {
+      "name": "delta1"
+    },
+    {
+      "name": "goc"
+    }
+  ]
+}

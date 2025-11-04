@@ -49,6 +49,12 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+      nameSegments:
+        - NamesDClass
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -61,6 +67,12 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTF
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -73,6 +85,12 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFNU
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -85,6 +103,12 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFCom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -97,6 +121,12 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFNUCom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -112,6 +142,12 @@
       - MindShieldImplant
       - DeathAcidifierImplant
       - ScramImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesAlpha
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -124,6 +160,19 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPOxrana-name
+      description: ghost-role-information-PresetSCPOxrana-desc
+      rules: rule
+      raffle:
+        settings: short
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -136,6 +185,19 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesscientistscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPDoc-name
+      description: ghost-role-information-PresetSCPDoc-desc
+      rules: rule
+      raffle:
+        settings: short
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -148,6 +210,12 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesscientistcomscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -162,6 +230,12 @@
       - MindShieldImplant
     - type: RandomHumanoidAppearance
       enabled: false
+    - type: RandomMetadata
+      nameSegments:
+        - NamesAdmscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -171,6 +245,12 @@
   components:
     - type: Loadout
       prototypes: [ CIGear ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesCISCP
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
 
 
 - type: startingGear
@@ -179,7 +259,7 @@
     jumpsuit: ClothingUniformJumpsuitMinuteMan
     back: ClothingBackpackSatchelDSO
     mask: ProtectiveBalaclava
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: ClothingHeadHelmetMTF
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -192,7 +272,6 @@
     pocket2: MagazineLightRifle
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
     - AdvancedFirstAidMedkitImperialFilled
@@ -203,7 +282,7 @@
     jumpsuit: ClothingUniformJumpsuitMinuteMan
     back: ClothingBackpackSatchelDSO
     mask: ProtectiveBalaclava
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: ClothingHeadHelmetMTF
     neck: USSPMajorPin
     eyes: ClothingEyesGlassesSecurity
@@ -217,7 +296,6 @@
     pocket2: MagazineLightRifle
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
     - MagazineLightRifle
@@ -229,9 +307,9 @@
   id: NuGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    back: ClothingBackpackFlametrowherTankFilled
+    back: ClothingBackpackSatchel
     mask: ClothingMaskSterile
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: ClothingHeadHardsuitSingularitySienceOrange
     eyes: ClothingEyesGlassesChemical
     gloves: ClothingHandsGlovesNitrile
@@ -242,15 +320,19 @@
     pocket1: EncryptionKeyNedraMTFconnection
     pocket2: EncryptionKeyNedraCMDconnection
   inhand:
-  - WeaponSCPFlametrowher
+  - FlameThrower
+  storage:
+    back:
+    - FuelTankFlamethrowerMedium
+    - FuelTankFlamethrowerMedium
 
 - type: startingGear
   id: NuCMDGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    back: ClothingBackpackFlametrowherTankFilled
+    back: ClothingBackpackSatchel
     mask: ClothingMaskSterile
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: ClothingHeadHardsuitSingularitySienceOrange
     neck: USSPMajorPin
     eyes: ClothingEyesGlassesChemical
@@ -262,14 +344,14 @@
     pocket1: EncryptionKeyNedraMTFconnection
     pocket2: EncryptionKeyNedraCMDconnection
   inhand:
-  - WeaponSCPFlametrowher
+  - FlameThrowerBorg
 
 - type: startingGear
   id: OxranaGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
     mask: ClothingMaskGasSecurity
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: ClothingHeadHelmetSCPSecurity
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -280,8 +362,6 @@
     suitstorage: CSWeaponP90
     pocket1: p90-Magazine
     pocket2: p90-Magazine
-  inhand:
-  - EncryptionKeyNedraconnection
 
 - type: startingGear
   id: DocGear
@@ -289,16 +369,13 @@
     jumpsuit: ClothingUniformJumpsuitScientist
     back: ClothingBackpackSatchelScience
     neck: ClothingNeckTieSci
-    shoes: ClothingShoesBootsLaceup
+    shoes: ClothingShoesSCP
     eyes: ClothingEyesGlasses
     gloves: ClothingHandsGlovesColorPurple
-    outerClothing: ClothingOuterCoatRnd
+    outerClothing: ClothingOuterCoatSCP
     id: SCPIDCardThree
     ears: ClothingHeadsetSCPMain
     belt: BoxFolderClipboard
-  storage:
-    back:
-    - EncryptionKeyNedraconnection
 
 - type: startingGear
   id: DocCMDGear
@@ -306,7 +383,7 @@
     jumpsuit: ClothingUniformJumpsuitScientist
     back: ClothingBackpackSatchelScience
     neck: ClothingNeckTieSci
-    shoes: ClothingShoesBootsLaceup
+    shoes: ClothingShoesSCP
     head: ClothingHeadHatBeretRND
     eyes: ClothingEyesGlasses
     gloves: ClothingHandsGlovesColorPurple
@@ -316,7 +393,6 @@
     belt: BoxFolderClipboard
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
 
 - type: startingGear
@@ -324,7 +400,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitCCAgent
     back: ClothingBackpackSatchelDSO
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: AdministrationBeret
     eyes: ClothingCentComGlassesEmerald
     gloves: ClothingHandsGlovesCombat
@@ -334,7 +410,6 @@
     belt: BlackShieldPistol
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
 
 - type: startingGear
@@ -343,7 +418,7 @@
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackSatchel
     mask: ClothingMaskGasMerc
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsWorkSCP
     head: ClothingHeadHelmetCI
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
@@ -356,6 +431,7 @@
   storage:
     back:
     - EncryptionKeyRadio1
+    - EncryptionKeyGanza
     - FirstAidMedkitImperialFilled
 
 - type: startingGear
@@ -368,6 +444,7 @@
     head: ClothingHeadHelmetSCPAlpha
     eyes: AlphaVisor
     gloves: ClothingHandsGlovesCombat
+    neck: ClothingSCPCloakRed
     outerClothing: ClothingOuterArmorSCPAlpha
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPAlt
@@ -377,7 +454,6 @@
     pocket2: MagazineLightRifle
   storage:
     back:
-    - EncryptionKeyNedraconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraAlphaconnection
     - MagazineLightRifle
@@ -397,5 +473,5 @@
 - type: startingGear
   id: DClassGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPrisoner
-    shoes: ClothingShoesColorBlack
+    jumpsuit: ClothingJumpsuitClassD
+    shoes: ClothingShoesSCP

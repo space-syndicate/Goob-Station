@@ -16,7 +16,6 @@
   - type: Tag
     tags:
     - Handcuffs
-    - SecurityBorgItem # Тег, позволяющий СБ боргу брать данный предмет Imperial Space
   - type: MeleeWeapon
     wideAnimationRotation: 90
     resetOnHandSelected: false
