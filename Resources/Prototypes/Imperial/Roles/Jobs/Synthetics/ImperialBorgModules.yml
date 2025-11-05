@@ -378,6 +378,11 @@
     tags:
     - BorgModuleSecurityImperial
 
+# Imperial Space Инженерный борг 
+
+- type: Tag
+  id: Manipulator
+
 # Imperial Space Модули киборгов ОБР и РХБЗЗ start
 
 - type: entity

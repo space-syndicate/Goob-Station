@@ -7,7 +7,6 @@ public sealed class StaminaModifyEvent : EntityEventArgs, IInventoryRelayEvent
     public readonly float OriginalDamage;
     public float Damage;
     public EntityUid? Origin;
-    public bool IgnoreResistances = false; // Imperial Stamina Resistance
 
     public StaminaModifyEvent(float damage, EntityUid? origin = null)
     {

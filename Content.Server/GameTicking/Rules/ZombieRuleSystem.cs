@@ -1,11 +1,13 @@
 using Content.Server.Antag;
 using Content.Server.Chat.Systems;
+using Content.Server.Cuffs;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -34,6 +36,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
+    [Dependency] private readonly CuffableSystem _cuffable = default!;
 
     public override void Initialize()
     {
@@ -153,6 +156,12 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         _zombie.ZombifyEntity(uid);
         if (component.Action != null)
             Del(component.Action.Value);
+        // imperial space: fix bug Start
+        if (TryComp<CuffableComponent>(uid, out var cuffable))
+        {
+            _cuffable.TryUncuff(uid, uid);
+        }
+        // imperial space: fix bug End
     }
 
     /// <summary>

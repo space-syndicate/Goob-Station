@@ -36,6 +36,9 @@ public sealed class SupermatterTouchSystem : EntitySystem
         _colorFlash.RaiseEffect(supermatterTouchComponent.FlashColor, [supermatterUid], Filter.Pvs(supermatterUid));
         EntityManager.QueueDeleteEntity(entityUid);
         EntityManager.SpawnEntity(supermatterTouchComponent.AshPrototype, transformComp.Coordinates);
+
+        if (TryComp<SupermatterIntegrityComponent>(supermatterUid, out var integrityComponent) && !integrityComponent.Activated)
+            integrityComponent.Activated = true;
     }
 }
 

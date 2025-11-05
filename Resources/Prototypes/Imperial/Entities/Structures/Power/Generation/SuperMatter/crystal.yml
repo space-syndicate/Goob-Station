@@ -55,8 +55,6 @@
       follow: true
       location: supermatter
     - type: SupermatterTouch
-    - type: Damageable
-      damageContainer: StructuralInorganic
     - type: SupermatterIntegrity
       tickDamage:
         types:

@@ -84,9 +84,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             radiation.Enabled = comp.Activated;
 
         if (TryComp(uid, out PointLightComponent? light))
-        {
             _lightSystem.SetEnabled(uid, comp.Activated, light);
-        }
 
         if (TryComp(uid, out AmbientSoundComponent? ambient))
         {

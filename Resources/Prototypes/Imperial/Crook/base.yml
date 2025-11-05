@@ -172,7 +172,7 @@
   - type: ZombieImmune
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepSecurityCyborg
+      path: /Audio/Imperial/Seriozha/SCP/doc.ogg
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -196,7 +196,7 @@
       collection: MetalThud
     damage:
       groups:
-        Brute: 8
+        Brute: 10
   - type: Prying
     speedModifier: 1.5
     useSound: /Audio/Effects/metal_scrape2.ogg
@@ -326,6 +326,13 @@
   name: Android
   suffix: Crook, Syndicate
   components:
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Effects/metal_scrape2.ogg
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 15
   - type: TypingIndicator
     proto: syndibot
   - type: Speech

@@ -96,6 +96,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// <summary>
     /// Активна ли катастрофа
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool CatastropheActive = false;
 
     /// <summary>

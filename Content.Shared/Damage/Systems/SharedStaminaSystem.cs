@@ -243,7 +243,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     /// <summary>
     /// Tries to take stamina damage without raising the entity over the crit threshold.
     /// </summary>
-    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null, bool visual = false, bool ignoreResistances = false) // Imperial Stamina Resistance
+    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null, bool visual = false)
     {
         // Something that has no Stamina component automatically passes stamina checks
         if (!Resolve(uid, ref component, false))
@@ -254,7 +254,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (oldStam + value >= component.CritThreshold || component.Critical)
             return false;
 
-        TakeStaminaDamage(uid, value, component, source, with, visual: visual, ignoreResist: ignoreResistances);
+        TakeStaminaDamage(uid, value, component, source, with, visual: visual);
         return true;
     }
 
@@ -282,20 +282,6 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             return;
 
         var oldDamage = component.StaminaDamage;
-        // stamina resistance begin
-        if (value > 0)
-        {
-            var damage = value;
-            var evd = new StaminaModifyEvent(damage, source);
-            evd.IgnoreResistances = ignoreResist; // Imperial Stamina Resistance
-            RaiseLocalEvent(uid, evd);
-            component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + evd.Damage);
-        }
-        if (value <= 0)
-        {
-            component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
-        }
-        // stamina resistance end
 
         // Reset the decay cooldown upon taking damage.
         if (oldDamage < component.StaminaDamage)

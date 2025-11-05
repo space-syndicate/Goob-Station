@@ -63,3 +63,33 @@
   values:
     prefix: names-CISCP-
     count: 50
+
+- type: localizedDataset
+  id: NamesEngineerSCP
+  values:
+    prefix: names-engineerSCP-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMedicSCP
+  values:
+    prefix: names-medicSCP-
+    count: 50
+
+- type: localizedDataset
+  id: Namesguardscpcom
+  values:
+    prefix: names-guardscpcom-
+    count: 50
+
+- type: localizedDataset
+  id: judgeSCP
+  values:
+    prefix: names-judgeSCP-
+    count: 50
+
+- type: localizedDataset
+  id: DetectiveSCP
+  values:
+    prefix: names-DetectiveSCP-
+    count: 50

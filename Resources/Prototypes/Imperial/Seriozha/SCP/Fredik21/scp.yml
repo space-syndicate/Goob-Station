@@ -17,9 +17,31 @@
 - type: soundCollection
   id: FootstepSCPMTF
   files:
-  - /Audio/Imperial/Seriozha/SCP/StepMTF1.OGG
-  - /Audio/Imperial/Seriozha/SCP/StepMTF2.OGG
-  - /Audio/Imperial/Seriozha/SCP/StepMTF3.OGG
+  - /Audio/Imperial/Seriozha/SCP/StepMTF1.ogg
+  - /Audio/Imperial/Seriozha/SCP/StepMTF2.ogg
+  - /Audio/Imperial/Seriozha/SCP/StepMTF3.ogg
+
+- type: entity
+  parent: PosterBase
+  id: Posterbrokengod
+  name: broken god Poster
+  suffix: Fredik21, Недра
+  description: The blacksmith is responsible only to God, because his hands repair His body.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: brokengod
+
+- type: entity
+  parent: PosterBase
+  id: Posterscarletking
+  name: scarlet king Poster
+  suffix: Fredik21, Недра
+  description: The blood calls! The flesh screams! Let there be a scarlet harvest!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: scarletking
 
 - type: entity
   parent: PosterBase
@@ -34,6 +56,50 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterTFC
+  name: Poster of the Task Force Control
+  suffix: Fredik21, Недра
+  description: CONTROL TASK FORCE. No chaos!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: delta1
+
+- type: entity
+  parent: PosterBase
+  id: PosterTay5
+  name: Poster of the Task Force Control
+  suffix: Fredik21, Недра
+  description: CONTROL TASK FORCE. No chaos!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: tay5
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA343
+  name: Poster NDA 343
+  suffix: Fredik21, Недра
+  description: NDA - Object 343. Class - Safe. He created everything. What can He create for you?
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n343
+
+- type: entity
+  parent: PosterBase
+  id: PosterIPG
+  name: Poster Incident Prevention Group
+  suffix: Fredik21, Недра
+  description: INCIDENT PREVENTION GROUP. WE SEE WHAT SHOULD NEVER HAPPEN!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: beta1
+
+- type: entity
+  parent: PosterBase
   id: PosterNDAFredik21
   name: NDA Poster
   suffix: Fredik21, Недра
@@ -42,6 +108,72 @@
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: scp
+
+- type: entity
+  parent: PosterBase
+  id: Posternu7
+  name: nu7 Poster
+  suffix: Fredik21, Недра
+  description: Where fear comes, we hold the line!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: nu7
+
+- type: entity
+  parent: PosterBase
+  id: PosternEpsilon11
+  name: Epsilon11 Poster
+  suffix: Fredik21, Недра
+  description: NINE-TAIL FOX - INSTANT RESPONSE TO THREAT! Foundation personnel are our priority. Anomalies are our mission.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: epsilon11
+
+- type: entity
+  parent: PosterBase
+  id: PosternBeta7
+  name: Beta7 Poster
+  suffix: Fredik21, Недра
+  description: BETA-7 - WE STUDY POISON TO SAVE LIVES. The danger is within. The answer is within us.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: beta7
+
+- type: entity
+  parent: PosterBase
+  id: PosterAlpha9
+  name: Alpha9 Poster
+  suffix: Fredik21, Недра
+  description: Alpha-9. A weapon that shouldn't exist
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: Alpha9
+
+- type: entity
+  parent: PosterBase
+  id: PosterAlpha1
+  name: Alpha1 Poster
+  suffix: Fredik21, Недра
+  description: THE CRIMSON HAND, THE COUNCIL'S PROTECTION. Loyalty to the end. Trust earned in blood.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: Alpha1
+
+- type: entity
+  parent: PosterBase
+  id: PosterCBT
+  name: CBT Poster
+  suffix: Fredik21, Недра
+  description: INTERNAL JUSTICE OF THE FUND. We weigh every action. Betrayal will not go unpunished. Follow protocols.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: CBT
 
 - type: entity
   parent: PosterBase
@@ -351,14 +483,17 @@
     - type: AutoImplant
       implants:
       - DeathAcidifierImplant
-      - ScramImplant
       - TrackingImplant
+    - type: GhostTakeoverAvailable
     - type: GhostRole
       name: ghost-role-information-PresetSCPDev-name
       description: ghost-role-information-PresetSCPDev-desc
       rules: 1. The Empire will not incur losses; strive to stay alive. 2. Serve the Empire - obey the commander's orders. 3. Do your best, help teammates in your task.
       raffle:
         settings: short
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
 
 - type: startingGear
   id: DevGear
@@ -537,7 +672,7 @@
 
 - type: radioChannel
   id: ImperialDevSCP
-  name: Empire of Deva
+  name: Империя Дэва
   keycode: 'щ'
   frequency: 8899
   color: "#4c0ba1"
@@ -573,7 +708,10 @@
           Heat: 0.35
           Radiation: 0.35
           Caustic: 0.35
-          Stamina: 0.35
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.35
+      # Imperial Space Stamina Resistance End
     - type: ClothingSpeedModifier
       walkModifier: 1
       sprintModifier: 1
@@ -622,7 +760,10 @@
           Heat: 0.6
           Radiation: 0.6
           Caustic: 0.6
-          Stamina: 0.5
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.85
+    # Imperial Space Stamina Resistance End
     - type: ClothingSpeedModifier
       walkModifier: 1.1
       sprintModifier: 1.1
@@ -638,14 +779,17 @@
     - type: AutoImplant
       implants:
       - DeathAcidifierImplant
-      - ScramImplant
       - TrackingImplant
+    - type: GhostTakeoverAvailable
     - type: GhostRole
       name: ghost-role-information-PresetSCPDevMedic-name
       description: ghost-role-information-PresetSCPDevMedic-desc
       rules: 1. The Empire will not incur losses; try to stay alive. 2. Serve the Empire - obey orders. 3. Do your best to help teammates in your task.
       raffle:
         settings: short
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -658,9 +802,11 @@
     - type: AutoImplant
       implants:
       - DeathAcidifierImplant
-      - ScramImplant
       - TrackingImplant
       - ImperialBlinkImplant
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
 
 - type: startingGear
   id: DevGearCommand
@@ -818,6 +964,7 @@
     modifiers:
       coefficients:
         Caustic: 0
+        Poison: 0
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -923,15 +1070,19 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
 
 - type: startingGear
   id: O5Gear
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
     back: ClothingBackpackSatchelDSO
-    shoes: ClothingShoesBootsLaceup
+    shoes: ClothingShoesSCP
     eyes: ClothingEyesGlassesSunglasses
     head: BlackShieldBeretGaqut
+    outerClothing: ClothingOuterCoatSCPo5
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetSCPAlt
     id: SCPIDCardO5
@@ -942,3 +1093,2655 @@
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeySCPconnection
     - EncryptionKeyNedraMTFconnection
+
+- type: entity
+  parent: BaseWall
+  id: WallWhiteSCP
+  name: white wall
+  suffix: Fredik21, Недра
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/wall.rsi
+    - type: Icon
+      sprite: Imperial/Seriozha/Fredik21/wall.rsi
+    - type: IconSmooth
+      key: walls
+      base: riveted
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleSCPMusic
+  name: Turn on chase music
+  description: Includes chase music
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  parent: BaseWall
+  id: WallBlackSCP
+  name: black wall
+  suffix: Fredik21, Недра
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/wallblack.rsi
+    - type: Icon
+      sprite: Imperial/Seriozha/Fredik21/wallblack.rsi
+    - type: IconSmooth
+      key: walls
+      base: riveted
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitClassD
+  name: Class D form
+  suffix: Fredik21, Недра
+  description: Expendable Robe - This uniform is designed not for comfort, but for control. The bright color, limited functionality, and identification number emphasize the Class D employee's status as a replaceable asset, subject to disposal if necessary.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/classd.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/classd.rsi
+  - type: SuitSensor
+    controlsLocked: true
+    randomMode: false
+    mode: SensorCords
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitClassDcleaner
+  name: Class D form for cleaning
+  suffix: Fredik21, Недра
+  description: Cleaning doesn't guarantee survival. Class D uniform for SCP work. Full protection against threats... known to us. If you see anything strange, run (if you can).
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/classdcleaner.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/classdcleaner.rsi
+  - type: SuitSensor
+    controlsLocked: true
+    randomMode: false
+    mode: SensorCords
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatSCP
+  name: Foundation scientist's lab coat
+  suffix: Fredik21, Недра
+  description: Foundation Scientist Lab Coat. A standard white coat made of acid-resistant fabric with an anti-static finish. It features a patch with the clearance code, identification number, and Foundation logo. It is designed to protect against accidental contamination and prevent static electricity, which is important when working with sensitive equipment.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/scploat.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/scploat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSCPo5
+  name: Armored jacket O5
+  suffix: Fredik21, Недра
+  description: Whisper of steel. On the outside, an ordinary jacket. On the inside, protection designed for those who cannot afford to die. Alpha-1, always close by.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/o5coat.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/o5coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.85
+  # Imperial Space Stamina Resistance End
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorGOCSCP
+  name: GOC vest
+  suffix: Fredik21, Недра
+  description: This body armor is a symbol of the GOC's determination to destroy anomalies at any cost. It will withstand enemy weapons so that the operator can complete his mission—eradicate the threat and return the world to normal.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorgoc.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorgoc.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.9
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitGOC
+  name: GOK overalls
+  suffix: Fredik21, Недра
+  description: A suit for any mission. This suit is the foundation of a GOK operator's equipment. It provides protection from fire, rain, and cuts, while its well-placed pockets ensure essential tools are always within reach. But most importantly, it serves as a reliable base for the body armor that protects the soldier's most valuable asset—his life.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/goc.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/goc.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingMaskGas
+  id: MaskGOCSCP
+  name: Gas mask GOK
+  suffix: Fredik21, Недра
+  description: Don't breathe, don't look, fight. GOK gas mask. Survival is secondary, eliminating the threat is primary.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/mackgoc.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/mackgoc.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPGOC
+  suffix: Fredik21, Недра
+  name: GOC Headset
+  description: Hear and obey. With this headset, you'll always be in touch with your team. Transmit target coordinates, request support, and receive orders. Victory in normalizing the world is achieved through coordinated work.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyImperialGOCSCP
+    - type: EncryptionKeyHolder
+      keySlots: 8
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/goc/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/goc/headset.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyImperialGOCSCP
+  name: GOC Encryption Key
+  suffix: Fredik21, Недра
+  description: Know what you are protecting. Losing this key is like death. Be vigilant.
+  components:
+  - type: EncryptionKey
+    channels:
+    - ImperialGOCSCP
+    defaultChannel: ImperialGOCSCP
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/goc/key.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/goc/key.rsi
+
+- type: radioChannel
+  id: ImperialGOCSCP
+  name: Глобальная оккультная коалиция
+  keycode: 'х'
+  frequency: 8899
+  color: "#3870c4"
+  longRange: true
+
+- type: entity
+  id: SCPIDCardFourGOC
+  parent: IDCardStandard
+  name: GOC ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: GOCIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - Security
+      - Brig
+      - Armory
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
+
+- type: entity
+  id: SCPIDCardFourGOCnoaccess
+  parent: IDCardStandard
+  name: GOC ID card
+  suffix: Fredik21, Недра, без доступов
+  components:
+    - type: IdCard
+      jobIcon: GOCIconSCP
+    - type: Access
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPGOC
+  name: GOC Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ GOCGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPGOC-name
+      description: ghost-role-information-PresetSCPGOC-desc
+      rules: Rule
+      raffle:
+        settings: short
+    - type: RandomMetadata
+      nameSegments:
+        - NamesGOCscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: GOCGear
+  equipment:
+    jumpsuit: ClothingJumpsuitGOC
+    back: ClothingBackpackDuffelCaptain
+    mask: MaskGOCSCP
+    head: ArmyBeretArmyS
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesSunglasses
+    id: SCPIDCardFourGOC
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorGOCSCP
+    ears: ClothingHeadsetSCPGOC
+    suitstorage: WeaponRifleM90GrenadeLauncher
+    belt: ClothingBeltSecurityFilled
+    pocket1: EncryptionKeyNedraconnection
+    pocket2: WeaponPistolMk58Nonlethal
+  storage:
+    back:
+    - WeaponDisabler
+    - MagazinePistolRubber
+    - CrowbarRed
+    - Screwdriver
+    - Wrench
+    - Flash
+    - SmokeGrenade
+    - GrenadeFlashBang
+    - CombatKnife
+    - TelescopicShield
+    - FirstAidMedkitImperialFilled
+    - MagazineRifle
+    - MagazineRifle
+
+- type: localizedDataset
+  id: NamesGOCscp
+  values:
+    prefix: names-gocscp-
+    count: 50
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitGOCpr
+  name: Representative's jumpsuit GOC
+  suffix: Fredik21, Недра
+  description: The blue suit of determination. The official look of the GOC. Respect and readiness for action.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/gocpr.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/gocpr.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSCPGOCpr
+  name: Armored jacket GOC
+  suffix: Fredik21, Недра
+  description: Respect and protection. Mining and Processing Plant representative jacket. Presentable on the outside. Safety on the inside.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/goccoat.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/goccoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Radiation: 0.7
+        Caustic: 0.7
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPGOCRepresentative
+  name: GOC Representative
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ GOCGearRepresentative ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: GOCGearRepresentative
+  equipment:
+    jumpsuit: ClothingJumpsuitGOCpr
+    back: ClothingBackpackSatchelCaptain
+    head: ArmyBeretArmyS
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesCommand
+    id: SCPIDCardFourGOC
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterCoatSCPGOCpr
+    ears: ClothingHeadsetSCPGOC
+    belt: BoxFolderPlasticClipboardEmpty
+    pocket1: EncryptionKeyNedraconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - PenCap
+    - WeaponDisabler
+    - Paper
+    - Paper
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitSCPGOCPHYSICS
+  name: GOC "Guardian PHYSICS" exoskeleton
+  suffix: Fredik21, Недра
+  description: Designed for operation in conditions of extreme physical anomalies. An integrated system for gravitational field stabilization, energy absorption, and space-time correction. Designed for the study and neutralization of objects that pose a threat to the stability of the continuum. Highest security clearance required.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/goc/hardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/goc/hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0
+  # Imperial Space Stamina Resistance End
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.3
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSCPGOCPHYSICS
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSCPGOCPHYSICS
+  description: Technological superiority
+  name: GOC Exoskeleton Helmet "Guardian Physics"
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/goc/headhardsuirgoc.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/goc/headhardsuirgoc.rsi
+    - type: PointLight
+      color: "#1859e4"
+    - type: PressureProtection
+      highPressureMultiplier: 0.08
+      lowPressureMultiplier: 1000
+    - type: FireProtection
+      reduction: 0.2
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPPHYSICS
+  name: PHYSICS Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ GOCPHYSICSGear ]
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+      - TrackingImplant
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPPHYSICS-name
+      description: ghost-role-information-PresetSCPPHYSICS-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: GOCPHYSICSGear
+  equipment:
+    jumpsuit: ClothingJumpsuitGOC
+    back: ClothingBackpackSatchelHolding
+    mask: MaskGOCSCP
+    shoes: ClothingShoesBootsMagAdv
+    eyes: GlassesDeathSquad
+    id: SCPIDCardFourGOC
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSCPGOCPHYSICS
+    ears: ClothingHeadsetSCPGOC
+    suitstorage: WeaponPulseRifle
+    pocket1: AccessBreaker
+    pocket2: AccessBreaker
+  storage:
+    back:
+    - JawsOfLife
+    - PowerDrill
+    - WelderExperimental
+    - Multitool
+    - MedkitCombatFilled
+    - EmpGrenade
+    - EmpGrenade
+    - ExGrenade
+    - GrenadeShrapnel
+    - CombatKnife
+    - Tourniquet
+    - Tourniquet
+    - TelescopicShield
+
+- type: gamePreset
+  id: nedra
+  alias:
+  - scp
+  name: nedra-title
+  showInVote: false
+  description: nedra-description
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitNu7
+  name: Nu-7 Operative Jumpsuit
+  suffix: Fredik21, Недра
+  description: Hammer Strike, survive to protect.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/nu7.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/nu7.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorNu7
+  name: Bulletproof vest NYU-7 Forpost
+  suffix: Fredik21, Недра
+  description: The standard body armor for MTF NU-7 operators provides basic protection against small arms fire and shrapnel. Designed for mobile operations and rapid response to threats. Compatible with load-bearing systems and additional equipment.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armornu7.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armornu7.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.9
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPNu7
+  name: Nu7 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Nu7Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPNu7-name
+      description: ghost-role-information-PresetSCPNu7-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: RandomMetadata
+      nameSegments:
+        - Namesnu7scp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+
+- type: startingGear
+  id: Nu7Gear
+  equipment:
+    jumpsuit: ClothingJumpsuitNu7
+    back: ClothingBackpackDuffelSyndicate
+    mask: ClothingMaskRebreatherBrigmedic
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFour
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNu7
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHelmetVisorDawn
+    suitstorage: WeaponSubMachineGunDrozd
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: MagazinePistolSubMachineGun
+  storage:
+    back:
+    - MagazinePistolSubMachineGun
+    - WeaponDisabler
+    - Handcuffs
+    - Handcuffs
+    - FirstAidMedkitImperialFilled
+    - CrowbarRed
+    - Wrench
+    - Screwdriver
+    - TelescopicShield
+    - SmokeGrenade
+    - SmokeGrenade
+    - CombatKnife
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPNu7Command
+  name: Nu7 Operator Command
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Nu7GearCommand ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesnu7Comscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: Nu7GearCommand
+  equipment:
+    jumpsuit: ClothingJumpsuitNu7
+    back: ClothingBackpackDuffelSyndicate
+    mask: ClothingMaskRebreatherBrigmedic
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFive
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNu7
+    ears: ClothingHeadsetSCPAlt
+    head: ArmyBeretArmyG
+    neck: USSPMajorPin
+    suitstorage: WeaponSubMachineGunDrozd
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGunIncendiary
+    - WeaponDisabler
+    - Handcuffs
+    - Handcuffs
+    - FirstAidMedkitImperialFilled
+    - CrowbarRed
+    - Wrench
+    - Screwdriver
+    - TelescopicShield
+    - SmokeGrenade
+    - SmokeGrenade
+    - CombatKnife
+
+- type: localizedDataset
+  id: Namesnu7scp
+  values:
+    prefix: names-nu7scp-
+    count: 50
+
+- type: localizedDataset
+  id: Namesnu7Comscp
+  values:
+    prefix: names-nu7comscp-
+    count: 50
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitAlpha9
+  name: jumpsuit Alpha9
+  suffix: Fredik21, Недра
+  description: Specialized suit for use with anomalous objects.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/alpha9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/alpha9.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorAlpha9
+  name: MTF Alpha-9 "Phantom" arm
+  suffix: Fredik21, Недра
+  description: This isn't just protection; it's the embodiment of the philosophy of Mobile Task Force Alpha-9, the Last Frontier. Created for those who dare to work on the edge with SCP objects, it combines unprecedented protection with hidden capabilities
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armoralpha9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armoralpha9.rsi
+  - type: FireProtection
+    reduction: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.3
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.4
+        Caustic: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingMaskGas
+  id: MaskAlpha9SCP
+  name: Alpha 9 gas mask
+  suffix: Fredik21, Недра
+  description: We breathe next to anomalies.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/mackalpha9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/mackalpha9.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPAlpha9
+  name: Alpha9 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Alpha9Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPAlpha9-name
+      description: ghost-role-information-PresetSCPAlpha9-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: Alpha9Gear
+  equipment:
+    jumpsuit: ClothingJumpsuitAlpha9
+    back: AlphaBackpack
+    mask: MaskAlpha9SCP
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesSecurity
+    id: SCPIDCardFive
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorAlpha9
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHatBeret
+    suitstorage: WeaponFelixHK416
+    pocket1: EncryptionKeyNedraLastHopeconnection
+    pocket2: MagazineHK416
+  storage:
+    back:
+    - MagazineHK416
+    - MagazineHK416
+    - MedkitCobmatImperialFilled
+    - SyndicateJawsOfLife
+    - Screwdriver
+    - Wrench
+    - TearGasGrenade
+    - EmpGrenade
+    - SmokeGrenade
+    - GrenadeIncendiary
+    - CombatKnife
+
+- type: entity
+  id: HandTeleporterSCP105
+  parent: BaseItem
+  name: NDA 105
+  suffix: Fredik21, Недра
+  description: The NDA-105-B is a Polaroid One Step 600 camera, manufactured in 1982. The NDA-105-B exhibits no anomalous physical properties; it is essentially a normal camera that functions normally in the hands of any user except the NDA-105
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/scp105.rsi
+    layers:
+    - state: icon
+  - type: HandTeleporter
+  - type: StealTarget
+    stealGroup: HandTeleporter
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPAlpha9105
+  name: NDA 105 Iris Thompson
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Alpha9Gear105 ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialBlinkImplant
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 0
+      damage:
+        types:
+          Poison: -3
+        groups:
+          Brute: -3
+          Burn: -3
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: Alpha9Gear105
+  equipment:
+    jumpsuit: ClothingJumpsuitAlpha9
+    back: AlphaBackpack
+    shoes: ClothingShoesAlpha
+    eyes: ClothingEyesGlassesSecurity
+    id: SCPIDCardFive
+    neck: USSPMajorPin
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetSCPAlt
+    head: USSPRedSecHelm
+    pocket1: EncryptionKeyNedraLastHopeconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - EnergySword
+    - MedkitCobmatImperialFilled
+    - MedkitCobmatImperialFilled
+    - RollerBedSpawnFolded
+    - RollerBedSpawnFolded
+    - HandTeleporterSCP105
+    - SCP500
+    - SCP500
+    - SCP207
+    - SCP207
+    - SCP207
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorbrokengod
+  name: broken god
+  suffix: Fredik21, Недра
+  description: Steam Blessing - the roar of a steam boiler is a song of war. May the power of steam bring purification and protection.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/armor.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/brokengod/armor.rsi
+  - type: FireProtection
+    reduction: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorbrokengodHammerman
+  name: broken god Hammerman
+  suffix: Fredik21, Недра
+  description: The Hammer Fortress is armor crafted for those who carry out the will of the God-Machine, unleashing it upon their enemies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/armorHammerman.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/brokengod/armorHammerman.rsi
+  - type: FireProtection
+    reduction: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.3
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesBootsbrokengod
+  name: broken god Boots
+  suffix: Fredik21, Недра
+  description: These boots not only help you walk on the ground, but also protect you from the forces hidden beneath it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/boot.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/brokengod/boot.rsi
+  - type: Matchbox
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPMTF
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.2
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ClothingHandsGlovesbrokengod
+  name: broken god gloves
+  suffix: Fredik21, Недра
+  description: Mechanical arms - reliable protection and precise control over tools for the glory of the Machine God.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/brokengod/gloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+  - type: Unremoveable
+
+- type: entity
+  name: Spear broken god
+  parent: Spear
+  id: Spearbrokengod
+  suffix: Fredik21, Недра
+  description: Piston Hand - faith and a piston engine combined into a weapon.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/spear.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 25
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 45
+
+- type: entity
+  id: brokengodHammer
+  parent: SingularityHammer
+  name: broken god Hammer
+  suffix: Fredik21, Недра
+  description: This hammer is not just a weapon, but an instrument of God's judgment, driven by the power of steam and faith.
+  components:
+  - type: Wieldable
+    useDelayOnWield: false
+  - type: MeleeRequiresWield
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/hammer.rsi
+    layers:
+    - state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 5
+        Structural: 5
+    soundHit:
+      path: /Audio/Effects/radpulse5.ogg
+      params:
+        variation: 0.10
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 25
+        Structural: 25
+  - type: Item
+    size: Ginormous
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetbrokengod
+  name: Helmet broken god
+  suffix: Fredik21, Недра
+  description: “Dome of Repentance” - silence outside, prayer inside.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/brokengod/head.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/brokengod/head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.95
+        Heat: 0.95
+        Piercing: 0.95
+  - type: Unremoveable
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPbrokengod
+  name: Rebel of the Church of the Broken God
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ brokengodGear ]
+    - type: AutoImplant
+      implants:
+      - ImperialSmokeImplant
+      - DeathAcidifierImplant
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 0
+      damage:
+        types:
+          Poison: -1
+        groups:
+          Brute: -2
+          Burn: -2
+    - type: RandomMetadata
+      nameSegments:
+        - brokengodscp
+    - type: AmbientSound
+      volume: -5
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/gear.ogg
+        params:
+          loop: true
+          stream: true
+    - type: SpaceNinja
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: brokengodGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    back: Spearbrokengod
+    shoes: ClothingShoesBootsbrokengod
+    gloves: ClothingHandsGlovesbrokengod
+    head: ClothingHeadHelmetbrokengod
+    outerClothing: ClothingOuterArmorbrokengod
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPbrokengodhammer
+  name: Rebel of the Church of the Broken God
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ brokengodhammerGear ]
+    - type: AutoImplant
+      implants:
+      - ImperialSmokeImplant
+      - DeathAcidifierImplant
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 0
+      damage:
+        types:
+          Poison: -1
+        groups:
+          Brute: -2
+          Burn: -2
+    - type: RandomMetadata
+      nameSegments:
+        - brokengodscp
+    - type: AmbientSound
+      volume: -5
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/gear.ogg
+        params:
+          loop: true
+          stream: true
+    - type: SpaceNinja
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: brokengodhammerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    shoes: ClothingShoesBootsbrokengod
+    gloves: ClothingHandsGlovesbrokengod
+    head: ClothingHeadHelmetbrokengod
+    outerClothing: ClothingOuterArmorbrokengodHammerman
+  inhand:
+  - brokengodHammer
+
+- type: localizedDataset
+  id: brokengodscp
+  values:
+    prefix: names-brokengod-
+    count: 50
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterScarletKing
+  name: Robe of the Children of the Scarlet King cult
+  suffix: Fredik21, Недра
+  description: The robe looks heavy and dense, as if it were made from skins, but not of animal origin.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/scarletking/robes.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/scarletking/robes.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
+  - type: Unremoveable
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantScarletKing
+  name: radio implant Scarlet King
+  description: This implant grants access to the Syndicate channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Cult
+
+- type: entity
+  name: ritual dagger of the children of the Scarlet King
+  parent: RitualDagger
+  id: RitualDaggerScarletKing
+  suffix: Fredik21, Недра
+  description: This dagger appears not forged, but cultivated. Its blade is not a uniform metallic structure; it is dark red, resembling hardened chitin or burnt bone, with a jagged, porous surface that appears wet even to the naked eye. The blade is absurdly sharp, capable of effortlessly slicing through flesh and metal.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 30
+
+- type: entity
+  parent: ClothingHeadHatHoodCulthood
+  id: ClothingHeadHatHoodCultScarletKing
+  name: hood of the cult of the children of the Scarlet King
+  suffix: Fredik21, Недра
+  description: The hood looks as if it was not sewn, but woven from living, but dead, organic fibers.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.95
+        Heat: 0.95
+        Piercing: 0.95
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingShoesCult
+  id: ClothingShoesCultScarletKing
+  name: boots of the children of the Scarlet King
+  suffix: Fredik21, Недра
+  description: These boots look like normal shoes, but their existence defies logic.
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.3
+    sprintModifier: 1.5
+  - type: Unremoveable
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPScarletKing
+  name: дитя Алого Короля
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ ScarletKingGear ]
+    - type: AutoImplant
+      implants:
+      - RadioImplantScarletKing
+      - DeathAcidifierImplant
+      - LightImplantScarletKing
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 0
+      damage:
+        types:
+          Poison: -1
+        groups:
+          Brute: -2
+          Burn: -2
+    - type: SpaceNinja
+    - type: MobStateActions
+      actions:
+        Alive:
+        - ScarletKingProjectileAbility
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: ScarletKingGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorRed
+    shoes: ClothingShoesCultScarletKing
+    head: ClothingHeadHatHoodCultScarletKing
+    outerClothing: ClothingOuterScarletKing
+    gloves: ClothingHandsGlovesColorRed
+  inhand:
+  - RitualDaggerScarletKing
+
+- type: entity
+  id: ScarletKingProjectile
+  name: magic arrow
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/scarletking/projectile.rsi
+      layers:
+      - state: icon
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 35
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 7
+          reagents:
+            - ReagentId: MuteToxin
+              Quantity: 0.5
+    - type: SolutionInjectOnProjectileHit
+      transferAmount: 7
+      solution: ammo
+    - type: RefillableSolution
+      solution: ammo
+    - type: DrainableSolution
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+
+- type: entity
+  id: ScarletKingProjectileAbility
+  parent: BaseAction
+  name: Магическая стрела
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/Fredik21/scarletking/projectile.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 40
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ScarletKingProjectile
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantScarletKing
+  name: set a bloody trap
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnportalScarletKing
+
+- type: entity
+  id: ActionSpawnportalScarletKing
+  name: set a bloody trap
+  description: Sets a trap that damages everyone except cultists. Disappears on its own.
+  components:
+  - type: Action
+    useDelay: 35
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/Fredik21/scarletking/portalicon.rsi
+      state: icon
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: portalScarletKing
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: portalScarletKing
+  name: bloody trap
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/scarletking/portal.rsi
+      state: icon
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - SpaceNinja
+    - type: DamageContacts
+      damage:
+        types:
+          Piercing: 10
+      ignoreWhitelist:
+        components:
+          - SpaceNinja
+    - type: TimedDespawn
+      lifetime: 30
+
+- type: entity
+  name: portable foundation turret
+  suffix: Fredik21, Недра
+  parent: ToolboxElectricalTurret
+  id: ToolboxElectricalTurretSCPFond
+  description: By striking, you place a turret that attacks Chaos Rebels, Deva Imperials, CHOTS Preachers, and DAK
+  components:
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              WeaponTurretFondation:
+                min: 1
+                max: 1
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/toolbox.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/toolbox.rsi
+
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretFondation
+  suffix: Fredik21, Недра
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Foundation
+
+- type: npcFaction
+  id: Foundation
+  hostile:
+  - rebelsscp
+
+- type: npcFaction
+  id: rebelsscp
+  hostile:
+  - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPEng
+  name: Engineer Foundation
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ EngGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesEngineerSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPEng-name
+      description: ghost-role-information-PresetSCPEng-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: EngGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorEngineer
+    back: ClothingBackpackDuffelEngineering
+    shoes: ClothingShoesBootsWork
+    eyes: ClothingEyesGlassesMeson
+    gloves: ClothingHandsGlovesColorYellow
+    outerClothing: ClothingOuterVestHazard
+    id: SCPIDCardTwo
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltUtilityEngineering
+    head: ClothingHeadHatHardhatYellow
+    pocket1: EncryptionKeyEngineering
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMedic
+  name: Medic Foundation
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ MedicGearSCP ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMedicSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPMedic-name
+      description: ghost-role-information-PresetSCPMedic-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: MedicGearSCP
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRegularForceMedicOfficer
+    back: ClothingBackpackSatchelMedical
+    shoes: ClothingShoesSCP
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesLatex
+    id: SCPIDCardTwo
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltMedicalFilled
+    head: ClothingHeadHatParamedicsoft
+    mask: ClothingMaskSterile
+    pocket1: EncryptionKeyMedical
+
+- type: emoteSounds
+  id: SCP049
+  params:
+    variation: 0.125
+  sounds:
+    hi1049:
+      collection: hi1049
+    healSCP:
+      collection: healSCP
+    cradleSCP:
+      collection: cradleSCP
+    SearchingSCP:
+      collection: SearchingSCP
+    kidnapSCP:
+      collection: kidnapSCP
+    DetectedSCP:
+      collection: DetectedSCP
+
+- type: emote
+  id: hi1049
+  name: Привет
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Приветствует"]
+  chatTriggers:
+    - Привет
+
+- type: soundCollection
+  id: hi1049
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/hi1.ogg
+    - /Audio/Imperial/Seriozha/SCP/049/hi2.ogg
+
+- type: emote
+  id: healSCP
+  name: я лечение
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Я лечение"]
+  chatTriggers:
+    - я лечение
+
+- type: soundCollection
+  id: healSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/heal.ogg
+
+- type: emote
+  id: cradleSCP
+  name: напивать колыбель
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["напивает колыбель"]
+  chatTriggers:
+    - напивать колыбель
+    - напивает колыбель
+
+- type: soundCollection
+  id: cradleSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/cradle.ogg
+
+- type: emote
+  id: SearchingSCP
+  name: не прячтесь
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["не прячтесь"]
+  chatTriggers:
+    - не прячтесь
+
+- type: soundCollection
+  id: SearchingSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/searching1.ogg
+
+- type: emote
+  id: kidnapSCP
+  name: уверяю вас
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["уверяю вас"]
+  chatTriggers:
+    - уверяю вас
+
+- type: soundCollection
+  id: kidnapSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/kidnap2.ogg
+
+- type: emote
+  id: DetectedSCP
+  name: меня не предупредили
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["меня не предупредили"]
+  chatTriggers:
+    - меня не предупредили
+
+- type: soundCollection
+  id: DetectedSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/Detected.ogg
+
+- type: emoteSounds
+  id: SCP106
+  params:
+    variation: 0.125
+  sounds:
+    BreathingSCP106:
+      collection: BreathingSCP106
+    DecaySCP106:
+      collection: DecaySCP106
+    LaughSCP106:
+      collection: LaughSCP106
+
+- type: emote
+  id: BreathingSCP106
+  name: Дышит
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/106.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Дышит"]
+  chatTriggers:
+    - Дышит
+    - Дышу
+
+- type: soundCollection
+  id: BreathingSCP106
+  files:
+    - /Audio/Imperial/Seriozha/SCP/106/Breathing.ogg
+
+- type: emote
+  id: DecaySCP106
+  name: Разлагается
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/106.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Разлагается"]
+  chatTriggers:
+    - Разлагается
+
+- type: soundCollection
+  id: DecaySCP106
+  files:
+    - /Audio/Imperial/Seriozha/SCP/106/Decay0.ogg
+
+- type: emote
+  id: LaughSCP106
+  name: Смеётся
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/106.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно смеётся"]
+  chatTriggers:
+    - лул
+
+- type: soundCollection
+  id: LaughSCP106
+  files:
+    - /Audio/Imperial/Seriozha/SCP/106/Laugh.ogg
+
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineNedra
+  suffix: Fredik21, Недра
+  name: fax Nedra
+  description: This is where shopping lists keep popping up. From him only costs
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/fax.rsi
+    drawdepth: SmallObjects
+    netsync: false
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: Icon
+    sprite: Imperial/Seriozha/Fredik21/fax.rsi
+    state: icon
+  - type: FaxMachine
+    name: "Недра"
+
+- type: entity
+  parent: FaxMachineNedra
+  id: FaxMachineNedraO5
+  suffix: Fredik21, Недра
+  name: fax of the management Nedra
+  description: This is where shopping lists keep popping up. From him only costs
+  components:
+  - type: FaxMachine
+    name: "Руководство Недр"
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxranaCom
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearCOM ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscpcom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: OxranaGearCOM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSCPCom
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ArmyBeretArmyS
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurity
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponRevolverAstra903
+    pocket1: SpeedLoaderAstra903
+    pocket2: SpeedLoaderAstra903
+    back: ClothingBackpackSatchelSacerdos_5
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitSCPCom
+  name: overalls of the head of the Operational Control Group
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/seccomj.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/seccomj.rsi
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxranaComAlt
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearCOMAlt ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscpcom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: OxranaGearCOMAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHatBeretQM
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurityAlt
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponDisablerSMG
+    pocket1: WeaponPistolMk58Nonlethal
+    pocket2: MagazinePistolRubber
+    back: ClothingBackpackSatchelCargo
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorSCPSecurityAlt
+  name: scp security suit
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorsec.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorsec.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+        Caustic: 0.7
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: GroupExamine
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxranaAlt
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearAlt ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPOxranaAlt-name
+      description: ghost-role-information-PresetSCPOxranaAlt-desc
+      rules: rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: OxranaGearAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetERTEngineer
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurityAlt
+    id: SCPIDCardThreeGray
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponPistolMk58Nonlethal
+    pocket1: MagazinePistolRubber
+    pocket2: WeaponDisabler
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCP343
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ SCP343Gear ]
+    - type: Pacified
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      - SCPAccesO5
+      - SCPAccesAdministration
+      - CentralCommand
+      - NuclearOperative
+      - SyndicateAgent
+      groups:
+      - AllAccess
+
+- type: startingGear
+  id: SCP343Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhiteSCP343
+    neck: ClothingNeckMantleCE
+    head: ClothingHeadHatHolyWatermelonSCP343
+    shoes: ClothingShoesSCP
+
+- type: entity
+  parent: ClothingUniformJumpsuitColorWhite
+  id: ClothingUniformJumpsuitColorWhiteSCP343
+  name: Divine Robe
+  suffix: Fredik21, Недра
+  components:
+    - type: Armor
+      modifiers:
+        coefficients:
+          Poison: 0
+          Blunt: 0
+          Slash: 0
+          Heat: 0
+          Piercing: 0
+          Cellular: 0
+          Radiation: 0
+          Caustic: 0
+          Stun: 0
+    - type: Unremoveable
+    - type: ClothingSpeedModifier
+      walkModifier: 1.1
+      sprintModifier: 1.1
+    - type: StaminaResistance
+      damageCoefficient: 0
+    - type: ExplosionResistance
+      damageCoefficient: 0
+    - type: FireProtection
+      reduction: 0
+
+- type: entity
+  parent: ClothingHeadHatHolyWatermelon
+  id: ClothingHeadHatHolyWatermelonSCP343
+  name: Divine Robe
+  suffix: Fredik21, Недра
+  components:
+    - type: Unremoveable
+
+- type: entity
+  parent: BaseItem
+  id: judicialpancake
+  name: judicial pancake
+  suffix: Fredik21, Недра
+  description: Silence in the hall!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/hammer.rsi
+    state: "normal"
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessSound:
+      collection: Hammersound
+      params:
+        variation: 0.03
+        volume: 3
+    onActivate: true
+  - type: EmitSoundOnUse
+    sound:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+  - type: EmitSoundOnLand
+    sound:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+  - type: UseDelay
+    delay: 0.5
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+    damage:
+      types:
+        Blunt: 4
+
+- type: soundCollection
+  id: Hammersound
+  files:
+  - /Audio/Imperial/Seriozha/SCP/hammer.ogg
+
+- type: entity
+  parent: BaseItem
+  id: judicialgavel
+  name: judicial gavel
+  suffix: Fredik21, Недра
+  description: Silence in the hall!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/hammern.rsi
+    state: icon
+  - type: WeaponRandom
+    damageBonus:
+      types:
+        Blunt: 1000
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Item
+    size: Small
+    sprite: Imperial/Seriozha/Fredik21/hammern.rsi
+  - type: Appearance
+  - type: DisarmMalus
+    malus: 0
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    soundHit:
+      collection: Hammersound
+      params:
+        variation: 0.03
+        volume: 3
+    soundNoDamage:
+      collection: Hammersound
+      params:
+        variation: 0.03
+        volume: 3
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPjudge
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ judgeSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - judgeSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: judgeSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesBootsCowboyBlack
+    head: ClothingHeadHatPwig
+    eyes: ClothingEyesGlassesCommand
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterRobesJudge
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    pocket1: judicialpancake
+    pocket2: EncryptionKeyNedraCMDconnection
+  inhand:
+  - judicialgavel
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDetective
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DetectiveSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - DetectiveSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: DetectiveSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+    shoes: ClothingShoesColorBrown
+    head: ClothingHeadHatFedoraBrown
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesForensic
+    outerClothing: ClothingOuterCoatDetective
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPAlt
+    neck: ClothingNeckTieDet
+    belt: ClothingBeltSecurityFilled
+    back: ClothingBackpackSatchelLeather
+  storage:
+    back:
+    - DrinkDetFlask
+    - ForensicScanner
+    - BoxForensicPad
+    - BoxEvidenceMarkers
+
+- type: jobIcon
+  parent: JobIcon
+  id: GOCIconSCP
+  icon:
+    sprite: /Textures/Imperial/Seriozha/Fredik21/goc/icon.rsi
+    state: icon
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraIrantu
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5IrantuSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - EmpImplant
+      - FreedomImplant
+      - MicroBombImplanter
+      - ImperialBlinkImplant
+      - ImperialSmokeImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+
+- type: startingGear
+  id: Tay5IrantuSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5Irantu
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: ItemODENMagazine
+    pocket2: ItemODENMagazine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - EnergySword
+    - HandheldCrewMonitor
+    - HandHeldAtmosAlertsMonitor
+    - HandHeldMassScanner
+    - SyndiHypo
+    - CombatMedipen
+    - CombatMedipen
+    - ChemistryBottleOmnizine
+    - SmokeGrenade
+    - SmokeGrenade
+    - EmpGrenade
+    - EmpGrenade
+    - GrenadeIncendiary
+    - GrenadeIncendiary
+    - ExGrenade
+    - ExGrenade
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+    - SyndicateJawsOfLife
+    - ItemODENMagazine
+    - ItemODENMagazine
+    - MachineGunODEN
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5Irantu
+  name: The TAU-5 Irantu Operative's Spacesuit
+  description: The spacesuit of Irantu, commander of the TAU-5 Samsara, is the epitome of offensive power, protection and resilience. Created to be at the forefront, withstand the heaviest collisions and ensure the team's breakthrough, he is a symbol of the relentless power of the NDA Foundation.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantu.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantu.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.2
+        Blunt: 0.2
+        Slash: 0.2
+        Heat: 0.2
+        Piercing: 0.2
+        Cellular: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+        Stun: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5Irantu
+  - type: Unremoveable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTay5Irantu
+  name: Samsara Irantu TAU-5 Spacesuit Helmet
+  suffix: Fredik21, Недра
+  description: Irantu's helmet, as the commander of the TAU-5 Samsara, is the pinnacle of tactical integration focused on rapid decision-making, group management and survival in the most aggressive combat conditions.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantuhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantuhelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+        Caustic: 0.95
+  - type: PointLight
+    color: "#570404"
+    radius: 10
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ClothingShoesBootsMagAdv
+  id: ClothingShoesBootsMagSCPTay5
+  name: Magnetic Boots TAU-5 “Samsara”
+  description: Magnetic boots are most likely specialized equipment used by TAU–5 Samsara operatives to ensure stability, movement in unusual conditions, and possibly to hold or manipulate objects.
+  suffix: Fredik21, Недра
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPADV
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5Munru
+  name: TAU-5 Munru Operative's Spacesuit
+  description: The TAU-5 Munru operative's spacesuit, known as the “Ghost in Sensors” or “Scanner,” is optimized for reconnaissance, anomaly detection, and rapid movement in the unknown. It combines advanced sensor technology with improved mobility and the ability to sneak in.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/munru.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/munru.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.3
+        Blunt: 0.3
+        Slash: 0.3
+        Heat: 0.3
+        Piercing: 0.3
+        Cellular: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+        Stun: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 1.3
+    sprintModifier: 1.6
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5
+  - type: Unremoveable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTay5
+  name: Helmet of the TAU-5 Samsara space suit
+  suffix: Fredik21, Недра
+  description: The helmet is a key component of the spacesuit of any TAU-5 operative, but for the members of this group it acquires special importance as a center of control, life support and integration with anomalous technologies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+        Caustic: 0.95
+  - type: PointLight
+    color: "#570404"
+    radius: 10
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraMunru
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5MunruSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - MicroBombImplanter
+      - ImperialBlinkImplant
+      - ImperialSmokeImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+
+- type: startingGear
+  id: Tay5MunruSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5Munru
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: SyndiHypo
+    pocket2: ChemistryBottleEphedrine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - EnergySwordDouble
+    - AmpulaDylo
+    - AmpulaDylo
+    - CombatMedipen
+    - CombatMedipen
+    - SyndicateJawsOfLife
+    - SmokeGrenade
+    - SmokeGrenade
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraOnru
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5OnruSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - MacroBombImplanter
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+
+- type: startingGear
+  id: Tay5OnruSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5Onru
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: SyndiHypo
+    pocket2: ChemistryBottleEphedrine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - CombatMedipen
+    - CombatMedipen
+    - SyndicateJawsOfLife
+    - EnergyShield
+    - EnergyShield
+    - EnergyShield
+    - TelescopicShield
+    - TelescopicShield
+    - TelescopicShield
+    - BlackShieldPistol
+    - WeaponAdvancedLaser
+    - WeaponLightMachineGunL6
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+  inhand:
+  - SquadShield
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5Onru
+  name: TAU-5 Onru operative's spacesuit
+  description: The TAU-5 operative Onru's spacesuit, nicknamed "Bastion," is the embodiment of armored power and physical resilience. Its primary purpose is to withstand colossal loads, protect against the most destructive anomalies, and serve as a shield for the rest of the team.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/onru.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/onru.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.1
+        Blunt: 0.1
+        Slash: 0.1
+        Heat: 0.1
+        Piercing: 0.1
+        Cellular: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+        Stun: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: FireProtection
+    reduction: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5
+  - type: Unremoveable
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraNanku
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5NankuSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - MacroBombImplanter
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+      - DeathSquad
+
+- type: startingGear
+  id: Tay5NankuSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5nanku
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: SyndiHypo
+    pocket2: ChemistryBottleEphedrine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - CombatMedipen
+    - CombatMedipen
+    - SyndicateJawsOfLife
+    - EnergySwordDouble
+    - Hypospray
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - WeaponTaser
+    - WeaponPulseSniper
+    - WeaponPulseShotgunDeathSquad
+    - SCP127
+    - SCP500
+    - SCP500
+    - SCP500
+    - SCP500
+    - SCP207
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5nanku
+  name: TAU-5 Nanku operative suit
+  description: The TAU-5 Nanku operative's suit, known as the "Anomaly Conductor," is designed with an emphasis on interacting with anomalous phenomena, analyzing them, and, if necessary, controlling their suppression or neutralization.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/nanku.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/nanku.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.3
+        Blunt: 0.2
+        Slash: 0.3
+        Heat: 0.2
+        Piercing: 0.3
+        Cellular: 0.2
+        Radiation: 0.3
+        Caustic: 0.2
+        Stun: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.2
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5
+  - type: Unremoveable
