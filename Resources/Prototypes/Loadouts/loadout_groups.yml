@@ -1322,7 +1322,7 @@
 - type: loadoutGroup
   id: ChemistBeaker
   name: loadout-group-chemist-beaker
-  minLimit: 1
+  minLimit: 0
   loadouts:
   - ExtendedBeaker
 # imperial space: add extended beaker. End
