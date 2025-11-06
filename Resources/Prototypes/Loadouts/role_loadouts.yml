@@ -468,6 +468,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - ChemistBeaker # imperial space: add extended beaker
 
 - type: roleLoadout
   id: JobParamedic

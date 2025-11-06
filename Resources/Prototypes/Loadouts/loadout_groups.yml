@@ -1318,6 +1318,15 @@
   - ChemistSatchel
   - ChemistDuffel
 
+# imperial space: add extended beaker. Start
+- type: loadoutGroup
+  id: ChemistBeaker
+  name: loadout-group-chemist-beaker
+  minLimit: 1
+  loadouts:
+  - ExtendedBeaker
+# imperial space: add extended beaker. End
+
 - type: loadoutGroup
   id: ParamedicHead
   name: loadout-group-paramedic-head

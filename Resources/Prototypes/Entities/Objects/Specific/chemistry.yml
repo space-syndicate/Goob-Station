@@ -271,6 +271,27 @@
       beaker:
         maxVol: 1000
 
+# imperial space: add extended beaker. Start
+- type: entity
+  name: extended beaker
+  parent: BaseBeakerMetallic
+  description: A beaker designed for experienced chemists. It has an increased volume.
+  id: ExtendedBeaker
+  components:
+  - type: Spillable
+    solution: beaker
+  - type: Sprite
+    sprite: Imperial/Stellark/extendedbeaker.rsi
+    layers:
+      - state: extendedbeaker
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 200
+# imperial space: add extended beaker. End
+
 - type: entity
   name: dropper
   parent: BaseItem
