@@ -31,6 +31,13 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: HandheldCrewMonitor
+  # imperial space: added a medium-capacity battery to the portable crew monitor CMO. Start
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # imperial space: added a medium-capacity battery to the portable crew monitor CMO. End
   #Imperial Space Pirates: New Horizon start
   - type: GPSTrackerPrice
     startprice: 0
@@ -45,3 +52,36 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        startingItem: null
+
+# imperial space: add portable paramedic crew monitor. Start
+- type: entity
+  name: portable paramedic crew monitor
+  parent: BaseHandheldComputer
+  id: HandheldParamedicCrewMonitor
+  description: A hand-held crew monitor displaying the status of suit sensors.
+  components:
+  - type: Item
+    heldPrefix: scanner
+  - type: Sprite
+    sprite: Imperial/Stellark/handheldparamediccrewmonitor.rsi
+    state: scanner
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+# imperial space: add portable paramedic crew monitor. End
