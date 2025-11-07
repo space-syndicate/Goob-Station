@@ -1,0 +1,78 @@
+- type: entity
+  id: MobUrs
+  parent: [ BaseMobAsteroid, MobBloodstream ]
+  name: Urs
+  description: A huge creature that can break you.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lavaland/Mobs/Urs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: urs
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: urs
+      Dead:
+        Base: Urs_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.00
+    baseSprintSpeed : 2.00
+  - type: Bloodstream
+    bloodMaxVolume: 400
+    chemicalMaxVolume: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MeleeWeapon
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+    angle: 0
+    attackRate: 0.75
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 20
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: UrsCompound
+    blackboard:
+      VisionRadius: !type:Single
+        8
+      AggroVisionRadius: !type:Single
+        10
+      NavSmash: !type:Bool
+        true
+  - type: NPCUseActionOnTarget
+    actionId: ActionUrsdash
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - Urs
+  - type: NoSlip
+  - type: Butcherable
+    spawned:
+    - id: Ash
+      amount: 3
+    - id: MaterialBones1
+      amount: 5
+    - id: IngotSilver1
+      amount: 2
+  - type: UrsDash #To configure the dash
+    damage:
+      groups:
+        Brute: 20
+    updateInterval: 0.55
+    updateIntervalToDash: 0.3
+    pushStrength: 20
+
+
+- type: Tag
+  id: Urs
+

@@ -86,9 +86,9 @@
       baseSprintSpeed: 1.8
     - type: Vocal
       sounds:
-        Male: DedVoice
-        Unsexed: DedVoice
-        Female: DedVoice
+        Male: SCP106
+        Unsexed: SCP106
+        Female: SCP106
     - type: Fixtures
       fixtures:
         fix1:
@@ -102,6 +102,22 @@
           layer:
           - GhostImpassable
           - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase4.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
+      sprite: /Textures/Interface/Misc/job_icons.rsi
+      state: Musician
 
 - type: entity
   name: Fireman
@@ -166,6 +182,20 @@
           - MobMask
           layer:
           - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase3.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
 
 - type: entity
   name: Avel
@@ -231,6 +261,20 @@
           - MobMask
           layer:
           - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase1.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
 
 - type: entity
   name: Katana
@@ -283,7 +327,10 @@
         Poison: 0.45
         Radiation: 0.45
         Caustic: 0.45
-        Stamina: 0.4
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.0
 
@@ -346,9 +393,9 @@
       templateId: docinv
     - type: Vocal
       sounds:
-        Male: DocVoice
-        Unsexed: DocVoice
-        Female: DocVoice
+        Male: SCP049
+        Unsexed: SCP049
+        Female: SCP049
     - type: Tag
       tags:
       - DoorBumpOpener
@@ -371,6 +418,20 @@
       - SCPAccesThree
       - NuclearOperative
       - SyndicateAgent
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase2.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
 
 - type: entity
   name: Jelly monster
@@ -527,37 +588,6 @@
         task: SimpleHostileCompound
     - type: ZombieImmune
     - type: NonSpreaderZombie
-
-
-- type: emoteSounds
-  id: DedVoice
-  sounds:
-    Scream:
-      path: /Audio/Imperial/Seriozha/SCP/dedscream.ogg
-    Laugh:
-      path: /Audio/Imperial/Seriozha/SCP/dedlaugh.ogg
-
-- type: emoteSounds
-  id: DocVoice
-  sounds:
-    Scream:
-      path: /Audio/Imperial/Seriozha/SCP/docscream.ogg
-    Laugh:
-      path: /Audio/Imperial/Seriozha/SCP/doclaugh.ogg
-    Sneeze:
-      path: /Audio/Imperial/Seriozha/SCP/docsneeze.ogg
-    Cough:
-      path: /Audio/Imperial/Seriozha/SCP/doccough.ogg
-    Crying:
-      path: /Audio/Imperial/Seriozha/SCP/doccry.ogg
-    Whistle:
-      path: /Audio/Imperial/Seriozha/SCP/docwhistle.ogg
-    Sigh:
-      path: /Audio/Imperial/Seriozha/SCP/docsigh.ogg
-    Yawn:
-      path: /Audio/Imperial/Seriozha/SCP/docyawn.ogg
-    Weh:
-      collection: Weh
 
 - type: inventoryTemplate
   id: docinv

@@ -24,6 +24,7 @@ public sealed partial class HydrogenProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Oxygen, -oxyConversion);
         mixture.AdjustMoles(Gas.WaterVapor, -vaporConversion);
         mixture.AdjustMoles(Gas.Hydrogen, total * efficiency);
+        mixture.AdjustMoles(Gas.Ozonium, total * efficiency);
 
         return ReactionResult.Reacting;
     }

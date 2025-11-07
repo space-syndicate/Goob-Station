@@ -132,7 +132,7 @@
   - type: Fiber
     fiberMaterial: fibers-insulative
   - type: FingerprintMask
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.85
@@ -174,7 +174,7 @@
   id: ClothingHeadHelmetArgonKing
   name: шлем короля аргона
   suffix: ArgonPrime
-  description: Шлем 
+  description: Шлем
   components:
   - type: Armor
     modifiers:
@@ -196,7 +196,7 @@
   id: ClothingHeadHelmetArgon
   name: шлем рыцаря аргона
   suffix: ArgonPrime
-  description: Шлем 
+  description: Шлем
   components:
   - type: Armor
     modifiers:
@@ -228,18 +228,21 @@
     sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
   - type: Clothing
     sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.3
         Slash: 0.3
-        Piercing: 0.3 
+        Piercing: 0.3
         Heat: 0.65
         Cold: 0.65
         Shock: 0.6
         Radiation: 0.65
         Caustic: 0.6
-        Stamina: 0.7 
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.7
 
@@ -254,18 +257,21 @@
     sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
   - type: Clothing
     sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.7 
+        Piercing: 0.7
         Heat: 0.8
         Cold: 0.8
         Shock: 0.9
         Radiation: 0.8
         Caustic: 0.8
-        Stamina: 0.7 
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
@@ -322,18 +328,21 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.1
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.7 
+        Piercing: 0.7
         Heat: 0.2
         Cold: 0.8
         Shock: 0.9
         Radiation: 0.1
         Caustic: 0.8
-        Stamina: 0.7 
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.6
     sprintModifier: 0.6

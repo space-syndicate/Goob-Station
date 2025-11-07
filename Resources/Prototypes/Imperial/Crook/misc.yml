@@ -599,7 +599,10 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Stamina: 0.2
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
   - type: Tag
     tags:
       - FootstepSound
@@ -735,7 +738,10 @@
           Blunt: 0.9
           Slash: 0.9
           Piercing: 0.7
-          Stamina: 0.2
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.2
+    # Imperial Space Stamina Resistance End
     - type: MeleeWeapon
       hidden: true
       angle: 0

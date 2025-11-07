@@ -1,0 +1,32 @@
+- type: loadoutEffectGroup
+  id: HoSMaster
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 180000 #50 hrs 
+
+- type: loadout # Лоадаут бронированной шиннели ГСБ
+  id: ClothingOuterCoatHoSGreatcoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: HoSMaster
+  equipment:
+    outerClothing: ClothingOuterCoatHoSGreatcoat
+
+- type: loadout # Лоадаут наплечной мантии ГСБ
+  id: ClothingNeckMantleHOSShoulder
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: HoSMaster
+  equipment:
+    neck: ClothingNeckMantleHOSShoulder
+
+- type: loadout # Лоадаут торжественного плаща ГСБ
+  id: ClothingNeckCloakHosFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: HoSMaster
+  equipment:
+    neck: ClothingNeckCloakHosFormal

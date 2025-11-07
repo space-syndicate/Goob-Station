@@ -21,7 +21,10 @@
         Shock: 0.8
         Radiation: 0.8
         Caustic: 0.8
-        Stamina: 0.8
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]

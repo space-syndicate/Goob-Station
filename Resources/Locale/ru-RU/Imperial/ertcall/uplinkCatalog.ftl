@@ -201,6 +201,10 @@ ert-uplink-junitor-bucket-desc = { ent-Bucket.desc }
 ert-uplink-junitor-boxbodybag-name = { ent-BoxBodyBag }
 ert-uplink-junitor-boxbodybag-desc = { ent-BoxBodyBag.desc }
 
+ert-uplink-utilities-recharger-ert-name = { ent-PortableRechargerErt }
+ert-uplink-utilities-recharger-ert-desc = { ent-PortableRechargerErt.desc }
+ert-uplink-utilities-recharger-cburn-name = { ent-PortableRechargerCburn }
+ert-uplink-utilities-recharger-cburn-desc = { ent-PortableRechargerCburn.desc }
 ert-uplink-utilities-handcuffs-name = { ent-Handcuffs }
 ert-uplink-utilities-handcuffs-desc = { ent-Handcuffs.desc }
 ert-uplink-utilities-jetpackbluefilled-name = { ent-JetpackBlueFilled }

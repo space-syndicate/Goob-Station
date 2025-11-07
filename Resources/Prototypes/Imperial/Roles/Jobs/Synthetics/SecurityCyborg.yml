@@ -30,15 +30,11 @@
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: FlashImmunity
-  - type: Body
-    prototype: ImperialBorg
   - type: MobThresholds
     thresholds:
      0: Alive
      200: Critical
      300: Dead
-  - type: BorgHandsImperial
-    whitelistHandTag: SecurityBorgItem
 
   radioChannels:
   - Security
@@ -82,6 +78,3 @@
       - hand
     hand:
       part: HandsAnimal
-
-- type: Tag
-  id: SecurityBorgItem # Тег, позволяющий СБ боргу брать предметы Imperial Space

@@ -15,8 +15,11 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.6
-        Stamina: 0.8
         Cold: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -37,8 +40,11 @@
         Slash: 0.65
         Piercing: 0.65
         Heat: 0.6
-        Stamina: 0.8
         Cold: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -59,8 +65,11 @@
         Slash: 0.7
         Piercing: 0.7
         Heat: 0.6
-        Stamina: 0.8
         Cold: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -81,8 +90,11 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.7
-        Stamina: 0.8
         Cold: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -103,8 +115,11 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.7
-        Stamina: 0.8
         Cold: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -126,8 +141,11 @@
         Slash: 0.75
         Piercing: 0.75
         Heat: 0.5
-        Stamina: 0.8
         Cold: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -148,8 +166,11 @@
         Slash: 0.5
         Piercing: 0.8
         Heat: 0.5
-        Stamina: 0.8
         Cold: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ClothingSpeedModifier
@@ -173,7 +194,10 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.5
-        Stamina: 0.8
         Cold: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.90
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End

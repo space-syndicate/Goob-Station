@@ -96,6 +96,7 @@ def main():
         "/Locale/en-US/defaultwindow.ftl",
         "/Locale/en-US/controls.ftl",
         "/Locale/en-US/client-state-commands.ftl",
+        "/Locale/en-US/color-naming.ftl",
         "/Locale/en-US/_engine_lib.ftl"
 
         # Добавьте сюда другие пути по необходимости

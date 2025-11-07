@@ -22,6 +22,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         {
             _explosion.QueueExplosion(uid, ExplosionSystem.DefaultExplosionPrototypeId, 1, 1, 1);
             _body.GibBody(uid, splatModifier: 5f);
+            RemComp<ExplosiveProjectileResultOnComponent>(uid);
         }
         private void GetDelayTime(EntityUid uid, ExplosiveProjectileResultOnComponent component, ComponentStartup args)
         {

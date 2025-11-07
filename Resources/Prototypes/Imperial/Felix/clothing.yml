@@ -370,7 +370,10 @@
         Cold: 0.95
         Radiation: 0.85
         Caustic: 0.85
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -426,7 +429,10 @@
         Cold: 0.85
         Radiation: 0.85
         Caustic: 0.85
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.1
@@ -482,7 +488,10 @@
         Heat: 0.65
         Cold: 0.85
         Shock: 0.6
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -536,7 +545,10 @@
         Piercing: 0.95
         Heat: 0.95
         Cold: 0.95
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -603,7 +615,10 @@
         Shock: 0.55
         Radiation: 0.55
         Caustic: 0.55
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.2

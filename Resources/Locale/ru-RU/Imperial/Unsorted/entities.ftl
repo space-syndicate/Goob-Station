@@ -1363,3 +1363,5 @@ ent-BoxFolderPlasticClipboardEmpty = пластиковый планшет
     .desc = Дешёвый планшет из синего пластика. Для тех, кто ещё не готов держать бюрократическую мощь настоящего деревянного планшета.
 ent-BoxFolderPlasticClipboard = { ent-BoxFolderPlasticClipboardEmpty }
     .desc = { ent-BoxFolderPlasticClipboardEmpty.desc }
+ent-BoxFolderCentComClipboardEmpty = планшет CentComm
+    .desc = Роскошный планшет, обитый зелёным бархатом. Часто носится сотрудники CentComm, но почти никогда не используется.
