@@ -14,6 +14,11 @@
   - Medical
   - Maintenance
   - External
+  # imperial space: access rights added. Start
+  - Cargo
+  - Engineering
+  - Research
+  # imperial space: access rights added. End
   extendedAccess:
   - Chemistry
   skills:
