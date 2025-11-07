@@ -104,7 +104,7 @@ namespace Content.Shared.Imperial.Medical
                     foreach (var (key, _) in proto.Metabolisms)
                     {
                         var metabolismId = key.ToString();
-                        if (metabolismId.Contains("Toxin") || metabolismId.Contains("Poison"))
+                        if (metabolismId.Contains("Toxin") || metabolismId.Contains("Poison") || metabolismId.Contains("Narcotic"))
                             return true;
                     }
                 }
