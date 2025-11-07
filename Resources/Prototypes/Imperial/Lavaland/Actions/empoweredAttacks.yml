@@ -6,9 +6,13 @@
   components:
   - type: Action
     useDelay: 3
-    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
-  - type: TargetAction
+    itemIconStyle: BigAction
     checkCanAccess: false
+    repeat: false
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+  - type: TargetAction
     range: 60
   - type: WorldTargetAction
     event: !type:EnhancedShotEvent
@@ -21,9 +25,13 @@
   components:
   - type: Action
     useDelay: 3
-    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
-  - type: TargetAction
+    itemIconStyle: BigAction
     checkCanAccess: false
+    repeat: false
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+  - type: TargetAction
     range: 5
   - type: WorldTargetAction
     event: !type:EnhancedBayonetAttackEvent
@@ -36,9 +44,13 @@
   components:
   - type: Action
     useDelay: 3
-    icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
-  - type: TargetAction
+    itemIconStyle: BigAction
     checkCanAccess: false
+    repeat: false
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+  - type: TargetAction
     range: 30
   - type: WorldTargetAction
     event: !type:PiercingLungeEvent
