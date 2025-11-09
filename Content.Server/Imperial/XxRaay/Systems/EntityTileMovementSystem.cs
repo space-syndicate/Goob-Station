@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.CombatMode;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
@@ -26,6 +27,7 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedDoorSystem _doorSystem = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatModeSystem = default!;
 
     public override void Initialize()
     {
@@ -183,13 +185,21 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
         if (currentTileDoorResult.HasValue && !currentTileDoorResult.Value.CanMove)
             return new MoveResult(false, false, currentTileDoorResult.Value.DoorOpening);
 
-        var canMoveResult = CanMoveToTile(uid, xform.GridUid.Value, grid, targetTile);
+        var canMoveResult = CanMoveToTile(uid, xform.GridUid.Value, grid, targetTile, direction, wishDir);
         if (!canMoveResult.CanMove)
+        {
+            if (canMoveResult.BlockedByHarmMode)
+                return new MoveResult(false, true, false);
+            
             return new MoveResult(false, canMoveResult.BlockedByWall, canMoveResult.DoorOpening);
+        }
 
-        var targetCoords = _mapSystem.ToCenterCoordinates(xform.GridUid.Value, targetTile, grid);
-        _transformSystem.SetLocalRotation(uid, wishDir.ToWorldAngle(), xform);
-        _transformSystem.SetCoordinates(uid, xform, targetCoords);
+        if (!canMoveResult.SwappedPositions)
+        {
+            var targetCoords = _mapSystem.ToCenterCoordinates(xform.GridUid.Value, targetTile, grid);
+            _transformSystem.SetLocalRotation(uid, wishDir.ToWorldAngle(), xform);
+            _transformSystem.SetCoordinates(uid, xform, targetCoords);
+        }
 
         return new MoveResult(true, false);
     }
@@ -235,7 +245,7 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
         };
     }
 
-    private CanMoveResult CanMoveToTile(EntityUid uid, EntityUid gridUid, MapGridComponent grid, Vector2i tilePos)
+    private CanMoveResult CanMoveToTile(EntityUid uid, EntityUid gridUid, MapGridComponent grid, Vector2i tilePos, Vector2i? moveDirection = null, Vector2? wishDir = null)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics) || 
             !_mapSystem.TryGetTileRef(gridUid, grid, tilePos, out var tileRef))
@@ -255,6 +265,49 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
             var otherEntityTile = _mapSystem.LocalToTile(gridUid, grid, otherXform.Coordinates);
             if (otherEntityTile != tilePos)
                 continue;
+
+            if (HasComp<EntityTileMovementComponent>(otherEntity))
+            {
+                var moverHarmMode = _combatModeSystem.IsInCombatMode(uid);
+                var otherHarmMode = _combatModeSystem.IsInCombatMode(otherEntity);
+
+                if (otherHarmMode)
+                    return new CanMoveResult(false, false, false, blockedByHarmMode: true);
+
+                if (moverHarmMode && moveDirection.HasValue && wishDir.HasValue)
+                {
+                    var nextTile = tilePos + moveDirection.Value;
+                    if (_mapSystem.TryGetTileRef(gridUid, grid, nextTile, out _))
+                    {
+                        var canPushResult = CanMoveToTile(otherEntity, gridUid, grid, nextTile);
+                        if (canPushResult.CanMove && !canPushResult.BlockedByHarmMode)
+                        {
+                            var targetCoords = _mapSystem.ToCenterCoordinates(gridUid, tilePos, grid);
+                            var nextTileCoords = _mapSystem.ToCenterCoordinates(gridUid, nextTile, grid);
+                            
+                            _transformSystem.SetLocalRotation(uid, wishDir.Value.ToWorldAngle(), Transform(uid));
+                            _transformSystem.SetCoordinates(uid, Transform(uid), targetCoords);
+                            
+                            _transformSystem.SetLocalRotation(otherEntity, wishDir.Value.ToWorldAngle(), otherXform);
+                            _transformSystem.SetCoordinates(otherEntity, otherXform, nextTileCoords);
+                            
+                            return new CanMoveResult(true, false, false, swappedPositions: true);
+                        }
+                    }
+                    return new CanMoveResult(false, true, false);
+                }
+
+                if (moveDirection.HasValue && wishDir.HasValue)
+                {
+                    var moverXform = Transform(uid);
+                    if (_transformSystem.SwapPositions((uid, moverXform), (otherEntity, otherXform)))
+                    {
+                        _transformSystem.SetLocalRotation(uid, wishDir.Value.ToWorldAngle(), moverXform);
+                        _transformSystem.SetLocalRotation(otherEntity, (-wishDir.Value).ToWorldAngle(), otherXform);
+                        return new CanMoveResult(true, false, false, swappedPositions: true);
+                    }
+                }
+            }
 
             var doorResult = CheckDoorCollision(uid, otherEntity);
             if (doorResult.HasValue)
@@ -331,12 +384,16 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
         public bool CanMove;
         public bool BlockedByWall;
         public bool DoorOpening;
+        public bool BlockedByHarmMode;
+        public bool SwappedPositions;
 
-        public CanMoveResult(bool canMove, bool blockedByWall, bool doorOpening = false)
+        public CanMoveResult(bool canMove, bool blockedByWall, bool doorOpening = false, bool blockedByHarmMode = false, bool swappedPositions = false)
         {
             CanMove = canMove;
             BlockedByWall = blockedByWall;
             DoorOpening = doorOpening;
+            BlockedByHarmMode = blockedByHarmMode;
+            SwappedPositions = swappedPositions;
         }
     }
 }
