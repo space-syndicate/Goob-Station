@@ -7,9 +7,6 @@ namespace Content.Shared.Imperial.Minigames;
 [DataDefinition, Serializable, NetSerializable, Virtual]
 public partial class MinigameData : IEquatable<MinigameData>, ICloneable
 {
-    [IdDataField, ViewVariables]
-    public string ID { get; private set; } = default!;
-
 
     [DataField, NonSerialized, ViewVariables(VVAccess.ReadOnly)]
     public ComponentRegistry Minigames = new();
@@ -41,7 +38,7 @@ public partial class MinigameData : IEquatable<MinigameData>, ICloneable
     {
         if (other == null) return false;
 
-        return ID == other.ID &&
+        return
             StartInstantly == other.StartInstantly &&
             Minigames.Keys.Equals(other.Minigames) &&
             ComponentBlackList.Keys.Equals(other.Minigames) &&
@@ -53,7 +50,6 @@ public partial class MinigameData : IEquatable<MinigameData>, ICloneable
     {
         return new MinigameData()
         {
-            ID = ID,
             Minigames = Minigames,
             ComponentBlackList = ComponentBlackList,
             MaxMinigamePlaytime = MaxMinigamePlaytime,
