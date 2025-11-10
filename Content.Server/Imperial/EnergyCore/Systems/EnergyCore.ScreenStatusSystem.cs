@@ -43,11 +43,13 @@ namespace Content.Server.Imperial.EnergyCore
                 args.PushMarkup(Loc.GetString("energycore-dont-any-near"));
                 return;
             }
-            var (coreTemp, coreStatus, isHeatUp, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
+            var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
 
-            if (isHeatUp)
+            if (tempRiseStatus == 3)
                 args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
-            else
+            if (tempRiseStatus == 2)
+                args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
+            if (tempRiseStatus == 1)
                 args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
 
             if (safeProtocol)
@@ -84,7 +86,7 @@ namespace Content.Server.Imperial.EnergyCore
             {
                 return;
             }
-            var (coreTemp, coreStatus, isHeatUp, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
+            var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
             component.ScreenStatus = (byte)coreStatus;
             if (TryComp<AppearanceComponent>(uid, out var appearance))
             {
@@ -129,20 +131,20 @@ namespace Content.Server.Imperial.EnergyCore
                     !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
                     continue;
 
-                var (coreTemp, coreStatus, isHeatUp, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
+                var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
                 UpdateScreenVisual(uid, comp);
             }
         }
 
-        private static (float coreTemp, CoreStatus coreStatus, bool isHeatUp, bool safeProtocol, float coreTempMult) GetCoreInfo(EnergyCoreComponent component)
+        private static (float coreTemp, CoreStatus coreStatus, byte tempRiseStatus, bool safeProtocol, float coreTempMult) GetCoreInfo(EnergyCoreComponent component)
         {                               //boolTempChangeMultiplier
             var coreTemp = component.CoreTemp;
             var coreStatus = component.Status;
-            var isHeatUp = component.CoreTempRise;
+            var tempRiseStatus = component.TempChangeStatus;
             var safeProtocol = component.IsSafeProtocolActive;
             var coreTempMult = component.TempChangeMultiplier;
 
-            return (coreTemp, coreStatus, isHeatUp, safeProtocol, coreTempMult);
+            return (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult);
         }
     }
 }

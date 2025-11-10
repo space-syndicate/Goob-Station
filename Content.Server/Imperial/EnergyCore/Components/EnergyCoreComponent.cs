@@ -22,9 +22,13 @@ public sealed partial class EnergyCoreComponent : Component
     [DataField]
     public float MinCoreTemp = -900f;
 
+    // Автосистема, определяется через терминал
+    [DataField]
+    public bool AutoSystemActive = false;
+
     // Изменение температуры (в сек.)
     [DataField]
-    public float TempChangeMultiplier = 200f;
+    public float TempChangeMultiplier = 150f;
 
     // Изменение температуры (в сек.) (ивент расплавления)
     [DataField]
@@ -37,10 +41,6 @@ public sealed partial class EnergyCoreComponent : Component
     // Изменение температуры, нужен для расчета <float TempChangeMultiplier> в положительную или отрицательную сторону
     [DataField]
     public float UpdateTemp = 0f;
-
-    // Изменение температуры, повышение или понижение
-    [DataField]
-    public bool CoreTempRise = false;
 
     // Изменение температуры, будет ли после порога 600000 активирован протокол защиты
     [DataField]
@@ -58,13 +58,13 @@ public sealed partial class EnergyCoreComponent : Component
     [DataField]
     public CoreStatus Status = CoreStatus.OFFLINE;
 
-    // Техническое определение статуса нагрева/охлаждения энерго ядра (в сек.)
+    // Статус изменения температуры. Нагревание, охлаждание, авто-режим
     [DataField]
-    public CoreTempChangeLevel ChangeLevel = CoreTempChangeLevel.STANDART;
+    public CoreTempChangeLevel TempRiseStatus = CoreTempChangeLevel.COOLING;
 
-    // Охлаждается ли ядро или наоборот
+    // Значение передаваемое от ближайшего терминала
     [DataField]
-    public CoreRisingChange ChangeTempState = CoreRisingChange.COOLING;
+    public byte TempChangeStatus = 1;
 
     // Свет источяемый ядром
     [DataField]
@@ -77,26 +77,6 @@ public sealed partial class EnergyCoreComponent : Component
     // Радиус света
     [DataField]
     public float CoreColorRadius = 10f;
-
-    // Этот тег отвечает за изменение <public bool CoreTempRise> (нагрев)
-    [DataField]
-    public ProtoId<TagPrototype> ChangeRisingTag = "TempRisingChanger";
-
-    // Этот тег отвечает за изменение <public bool CoreTempRise> (охлаждение)
-    [DataField]
-    public ProtoId<TagPrototype> ChangeDecreasingTag = "TempDecreasingChanger";
-
-    // Этот тег отвечает за увеличение скорости изменения температуры
-    [DataField]
-    public ProtoId<TagPrototype> TempHeaterTag = "TempHeater";
-
-    // Этот тег отвечает за уменьшение скорости изменения температуры
-    [DataField]
-    public ProtoId<TagPrototype> TempCoolerTag = "TempCooler";
-
-    // Во время тестов коллизии, некоторые параметры менялись крайне странным образом. Создано во избежании ошибок
-    [DataField]
-    public ProtoId<TagPrototype> TechnicalTag = "TechnicalCoreTag";
 
     // Базовый эмбиент ядра
     [DataField]

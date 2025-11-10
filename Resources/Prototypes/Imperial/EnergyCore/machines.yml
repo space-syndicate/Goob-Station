@@ -242,3 +242,52 @@
   - type: ProjectileBatteryAmmoProvider
     proto: BulletLaserCoreTempChangerDecreasing
     fireCost: 150
+
+- type: entity
+  id: CoreTerminalUserInterfaceTest
+  parent: BaseCoreTerminal #BaseComputer
+  name: debug computer core
+  description: description
+  suffix: EnergyCore, Debug
+  components:
+  - type: ActivatableUI
+    key: enum.CoreTerminalUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CoreTerminalUiKey.Key:
+        type: CoreTerminalBoundUserInterface
+  - type: CoreAccessComputer
+    deCodeSlot:
+      name: energycore-key-slot
+      insertSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      ejectSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      whitelist:
+        components:
+        - DeauthorizationCode
+        tags:
+        - NuclearDeauthorizationCode
+  - type: Anchorable ## Терминал специально неяузвим, чтобы экипаж не бежал его ломать раундстартом при ЯО
+    flags:
+    - Anchorable
+  - type: GenericVisualizer
+    visuals:
+      enum.CoreStatusScreenVisual.Core_Screen_Visual:
+       VisualState:
+          1: ## Active
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+            state: screen_active
+            scale: 1.0,1.0
+          2: ## Offline
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_not_active.rsi
+            state: screen_not_active
+            scale: 1.0,1.0
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["VisualState"]
+      shader: unshaded
+      state: screen_active

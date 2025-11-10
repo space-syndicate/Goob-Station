@@ -41,11 +41,13 @@ namespace Content.Server.Imperial.EnergyCore
                 args.PushMarkup(Loc.GetString("energycore-dont-any-near"));
                 return;
             }
-            var (coreTemp, isHeatUp) = GetCoreInfo(nearest);
+            var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
 
-            if (isHeatUp == true)
+            if (tempRiseStatus == 3)
                 args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
-            else
+            if (tempRiseStatus == 2)
+                args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
+            if (tempRiseStatus == 1)
                 args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
 
             var energyOutput = component.EnergyOutput;
@@ -83,7 +85,7 @@ namespace Content.Server.Imperial.EnergyCore
             {
                 return;
             }
-            var (coreTemp, isHeatUp) = GetCoreInfo(nearest);
+            var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
             if (HasComp<PowerSupplierComponent>(uid))
             {
                 if (coreTemp > 0f)
@@ -113,17 +115,17 @@ namespace Content.Server.Imperial.EnergyCore
                     !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
                     continue;
 
-                var (coreTemp, isHeatUp) = GetCoreInfo(nearest);
+                var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
                 SetEnergyOutput(uid, comp, powr);
             }
         }
 
-        private static (float coreTemp, bool isHeatUp) GetCoreInfo(EnergyCoreComponent component)
+        private static (float coreTemp, byte tempRiseStatus) GetCoreInfo(EnergyCoreComponent component)
         {
             var coreTemp = component.CoreTemp;
-            var isHeatUp = component.CoreTempRise;
+            var tempRiseStatus = component.TempChangeStatus;
 
-            return (coreTemp, isHeatUp);
+            return (coreTemp, tempRiseStatus);
         }
     }
 }

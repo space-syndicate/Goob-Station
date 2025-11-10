@@ -33,282 +33,272 @@ public sealed class EnergyCoreSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<EnergyCoreComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<EnergyCoreComponent, StartCollideEvent>(SetTempLevelChange);
     }
 
-    private void OnMapInit(EntityUid uid, EnergyCoreComponent component, MapInitEvent args)
+    private void OnMapInit(EntityUid uid, EnergyCoreComponent core, MapInitEvent args)
     {
-        StartCoreWork(uid, component);
+        StartCoreWork(uid, core);
     }
 
-    private void StartCoreWork(EntityUid uid, EnergyCoreComponent component)
+    private void StartCoreWork(EntityUid uid, EnergyCoreComponent core)
     {
         if (HasComp<AmbientSoundComponent>(uid))
-            _ambientSound.SetSound(uid, component.CoreAmbience1);
+            _ambientSound.SetSound(uid, core.CoreAmbience1);
     }
-    private void SetTempLevelChange(EntityUid uid, EnergyCoreComponent component, ref StartCollideEvent args)
+    private void OnMeltdown(EntityUid uid, EnergyCoreComponent core) // За ивент расплавления ядра отвечает отдельная система, чтобы не превращать эту в свалку
     {
-        var other = args.OtherEntity;
-
-        if (!_tag.HasTag(other, component.TechnicalTag))
-            return;
-
-        switch (component.ChangeTempState)
-        {
-            case CoreRisingChange.HEATING:
-                if (_tag.HasTag(other, component.ChangeRisingTag))
-                    component.ChangeTempState = CoreRisingChange.COOLING;
-                component.CoreTempRise = false;
-                break;
-            case CoreRisingChange.COOLING:
-                if (_tag.HasTag(other, component.ChangeDecreasingTag))
-                    component.ChangeTempState = CoreRisingChange.HEATING;
-                component.CoreTempRise = true;
-                break;
-        }
-
-        switch (component.ChangeLevel)
-        {
-            case CoreTempChangeLevel.STANDART:
-                component.TempChangeMultiplier = 300f;
-                if (_tag.HasTag(other, component.TempHeaterTag) && component.ChangeLevel == CoreTempChangeLevel.STANDART)
-                    component.ChangeLevel = CoreTempChangeLevel.HIGH;
-                break;
-            case CoreTempChangeLevel.HIGH:
-                component.TempChangeMultiplier = 600f;
-                if (_tag.HasTag(other, component.TempCoolerTag) && component.ChangeLevel == CoreTempChangeLevel.HIGH)
-                    component.ChangeLevel = CoreTempChangeLevel.STANDART;
-                break;
-        }
-    }
-    private void OnMeltdown(EntityUid uid, EnergyCoreComponent component) // За ивент расплавления ядра отвечает отдельная система, чтобы не превращать эту в свалку
-    {
-        if (!HasComp<EnergyCorePendingDetonationComponent>(uid) && component.Status == CoreStatus.CATASTROPHIC)
+        if (!HasComp<EnergyCorePendingDetonationComponent>(uid) && core.Status == CoreStatus.CATASTROPHIC)
             EnsureComp<EnergyCorePendingDetonationComponent>(uid);
         else
             return;
     }
-    private void RefreshCoreStatus(EntityUid uid, EnergyCoreComponent component)
+    private void RefreshCoreStatus(EntityUid uid, EnergyCoreComponent core)
     {
-        switch (component.Status)
+        switch (core.Status)
         {
             case CoreStatus.OFFLINE: // Статус ядра: Оффлайн
-                if (component.CoreTemp > 0f)
-                    component.Status = CoreStatus.IDLE;
+                if (core.CoreTemp > 0f)
+                    core.Status = CoreStatus.IDLE;
                 break;
 
             case CoreStatus.IDLE: // Статус ядра: Простаивание
-                if (component.CoreTemp > 30000f)
-                    component.Status = CoreStatus.STABLE;
-                if (component.CoreTemp < 0f)
-                    component.Status = CoreStatus.OFFLINE;
+                if (core.CoreTemp > 30000f)
+                    core.Status = CoreStatus.STABLE;
+                if (core.CoreTemp < 0f)
+                    core.Status = CoreStatus.OFFLINE;
                 break;
 
             case CoreStatus.STABLE: // Статус ядра: Стабильный
-                if (component.CoreTemp > 100000f)
-                    component.Status = CoreStatus.OPTIMAL;
-                if (component.CoreTemp < 30000f)
-                    component.Status = CoreStatus.IDLE;
+                if (core.CoreTemp > 100000f)
+                    core.Status = CoreStatus.OPTIMAL;
+                if (core.CoreTemp < 30000f)
+                    core.Status = CoreStatus.IDLE;
                 break;
 
             case CoreStatus.OPTIMAL: // Статус ядра: Оптимальный
-                if (component.CoreTemp > 300000f)
-                    component.Status = CoreStatus.MODERATE;
-                if (component.CoreTemp < 100000f)
-                    component.Status = CoreStatus.STABLE;
+                if (core.CoreTemp > 300000f)
+                    core.Status = CoreStatus.MODERATE;
+                if (core.CoreTemp < 100000f)
+                    core.Status = CoreStatus.STABLE;
                 break;
 
             case CoreStatus.MODERATE: // Статус ядра: Приемлимый (повышенный оптимальный)
-                if (component.CoreTemp > 600000f)
+                if (core.CoreTemp > 600000f)
                 {
-                    if (component.IsSafeProtocolActive)
-                        component.Status = CoreStatus.SAFE_PROTOCOL;
+                    if (core.IsSafeProtocolActive)
+                        core.Status = CoreStatus.SAFE_PROTOCOL;
                     else
-                        component.Status = CoreStatus.HIGH;
+                        core.Status = CoreStatus.HIGH;
                 }
-                if (component.CoreTemp < 300000f)
-                    component.Status = CoreStatus.OPTIMAL;
+                if (core.CoreTemp < 300000f)
+                    core.Status = CoreStatus.OPTIMAL;
                 break;
 
             case CoreStatus.HIGH: // Статус ядра: Высокая температура
-                if (component.CoreTemp > 800000f)
-                    component.Status = CoreStatus.CRITICAL_HIGH;
-                if (component.CoreTemp < 600000f)
-                    component.Status = CoreStatus.MODERATE;
+                if (core.CoreTemp > 800000f)
+                    core.Status = CoreStatus.CRITICAL_HIGH;
+                if (core.CoreTemp < 600000f)
+                    core.Status = CoreStatus.MODERATE;
                 break;
 
             case CoreStatus.CRITICAL_HIGH: // Статус ядра: Критически высокая температура
-                if (component.CoreTemp > 1000000f)
-                    component.Status = CoreStatus.CATASTROPHIC;
-                if (component.CoreTemp < 800000f)
-                    component.Status = CoreStatus.HIGH;
+                if (core.CoreTemp > 1000000f)
+                    core.Status = CoreStatus.CATASTROPHIC;
+                if (core.CoreTemp < 800000f)
+                    core.Status = CoreStatus.HIGH;
                 break;
 
             case CoreStatus.CATASTROPHIC: // Статус ядра: Катастрофически высокая температура (расплавление)
-                OnMeltdown(uid, component); // Ивент расплавления ядра.
+                OnMeltdown(uid, core); // Ивент расплавления ядра
                 break;
 
             case CoreStatus.SAFE_PROTOCOL: // Статус ядра: Протокол безопасности активен
-                if (component.CoreTemp < 500000f)
-                    component.Status = CoreStatus.MODERATE;
+                if (core.CoreTemp < 500000f)
+                    core.Status = CoreStatus.MODERATE;
                 break;
 
             default:
-                component.Status = CoreStatus.OFFLINE; // Базовый статус ядра: Оффлайн
+                core.Status = CoreStatus.OFFLINE; // Базовый статус ядра: Оффлайн
                 break;
         }
     }
-    private void UpdateCoreVisual(EntityUid uid, EnergyCoreComponent component)
+    private void UpdateCoreVisual(EntityUid uid, EnergyCoreComponent core)
     {
         if (TryComp<AppearanceComponent>(uid, out var appearance))
         {                                                              //Byte
-            _appearance.SetData(uid, CoreStatusVisual.Core_Visual, (byte)component.Status, appearance);
+            _appearance.SetData(uid, CoreStatusVisual.Core_Visual, (byte)core.Status, appearance);
         }
         if (TryComp<PointLightComponent>(uid, out var light)) ;
         {
             if (light != null)
             {
-                switch (component.CoreColorEnum) // Это все ради света. Блять какой пиз...
+                switch (core.CoreColorEnum) // Это все ради света. Блять какой пиз...
                 {
                     case CoreStatusColorVisual.OFFLINE: // Статус ядра: Оффлайн
-                        component.CoreColor = Color.FromHex("#74aeff");
-                        component.CoreColorRadius = 1f;
-                        component.CoreColorEnergy = 1f;
-                        if (component.Status == CoreStatus.IDLE)
-                            component.CoreColorEnum = CoreStatusColorVisual.IDLE;
+                        core.CoreColor = Color.FromHex("#74aeff");
+                        core.CoreColorRadius = 1f;
+                        core.CoreColorEnergy = 1f;
+                        if (core.Status == CoreStatus.IDLE)
+                            core.CoreColorEnum = CoreStatusColorVisual.IDLE;
                         break;
 
                     case CoreStatusColorVisual.IDLE: // Статус ядра: Простаивание
-                        component.CoreColor = Color.FromHex("#74aeff");
-                        component.CoreColorRadius = 10f;
-                        component.CoreColorEnergy = 2f;
-                        if (component.Status == CoreStatus.STABLE)
-                            component.CoreColorEnum = CoreStatusColorVisual.STABLE;
-                        if (component.Status == CoreStatus.OFFLINE)
-                            component.CoreColorEnum = CoreStatusColorVisual.OFFLINE;
+                        core.CoreColor = Color.FromHex("#74aeff");
+                        core.CoreColorRadius = 10f;
+                        core.CoreColorEnergy = 2f;
+                        if (core.Status == CoreStatus.STABLE)
+                            core.CoreColorEnum = CoreStatusColorVisual.STABLE;
+                        if (core.Status == CoreStatus.OFFLINE)
+                            core.CoreColorEnum = CoreStatusColorVisual.OFFLINE;
                         break;
 
                     case CoreStatusColorVisual.STABLE: // Статус ядра: Стабильный
-                        component.CoreColor = Color.FromHex("#d80000ff");
-                        component.CoreColorRadius = 11f;
-                        component.CoreColorEnergy = 3f;
-                        if (component.Status == CoreStatus.OPTIMAL)
-                            component.CoreColorEnum = CoreStatusColorVisual.OPTIMAL;
-                        if (component.Status == CoreStatus.IDLE)
-                            component.CoreColorEnum = CoreStatusColorVisual.IDLE;
+                        core.CoreColor = Color.FromHex("#d80000ff");
+                        core.CoreColorRadius = 11f;
+                        core.CoreColorEnergy = 3f;
+                        if (core.Status == CoreStatus.OPTIMAL)
+                            core.CoreColorEnum = CoreStatusColorVisual.OPTIMAL;
+                        if (core.Status == CoreStatus.IDLE)
+                            core.CoreColorEnum = CoreStatusColorVisual.IDLE;
                         break;
 
                     case CoreStatusColorVisual.OPTIMAL: // Статус ядра: Оптимальный
-                        component.CoreColor = Color.FromHex("#ff0000ff");
-                        component.CoreColorRadius = 11;
-                        component.CoreColorEnergy = 3f;
-                        if (component.Status == CoreStatus.MODERATE)
-                            component.CoreColorEnum = CoreStatusColorVisual.MODERATE;
-                        if (component.Status == CoreStatus.STABLE)
-                            component.CoreColorEnum = CoreStatusColorVisual.STABLE;
+                        core.CoreColor = Color.FromHex("#ff0000ff");
+                        core.CoreColorRadius = 11;
+                        core.CoreColorEnergy = 3f;
+                        if (core.Status == CoreStatus.MODERATE)
+                            core.CoreColorEnum = CoreStatusColorVisual.MODERATE;
+                        if (core.Status == CoreStatus.STABLE)
+                            core.CoreColorEnum = CoreStatusColorVisual.STABLE;
                         break;
 
                     case CoreStatusColorVisual.MODERATE: // Статус ядра: Приемлимый
-                        component.CoreColor = Color.FromHex("#fff700ff");
-                        component.CoreColorRadius = 12f;
-                        component.CoreColorEnergy = 4f;
-                        if (component.Status == CoreStatus.HIGH)
-                            component.CoreColorEnum = CoreStatusColorVisual.HIGH;
-                        if (component.Status == CoreStatus.OPTIMAL)
-                            component.CoreColorEnum = CoreStatusColorVisual.OPTIMAL;
+                        core.CoreColor = Color.FromHex("#fff700ff");
+                        core.CoreColorRadius = 12f;
+                        core.CoreColorEnergy = 4f;
+                        if (core.Status == CoreStatus.HIGH)
+                            core.CoreColorEnum = CoreStatusColorVisual.HIGH;
+                        if (core.Status == CoreStatus.OPTIMAL)
+                            core.CoreColorEnum = CoreStatusColorVisual.OPTIMAL;
                         break;
 
                     case CoreStatusColorVisual.HIGH: // Статус ядра: Высокая температура
-                        component.CoreColor = Color.FromHex("#fbff11ff");
-                        component.CoreColorRadius = 12f;
-                        component.CoreColorEnergy = 4f;
-                        if (component.Status == CoreStatus.CRITICAL_HIGH)
-                            component.CoreColorEnum = CoreStatusColorVisual.CRITICAL_HIGH;
-                        if (component.Status == CoreStatus.MODERATE)
-                            component.CoreColorEnum = CoreStatusColorVisual.MODERATE;
+                        core.CoreColor = Color.FromHex("#fbff11ff");
+                        core.CoreColorRadius = 12f;
+                        core.CoreColorEnergy = 4f;
+                        if (core.Status == CoreStatus.CRITICAL_HIGH)
+                            core.CoreColorEnum = CoreStatusColorVisual.CRITICAL_HIGH;
+                        if (core.Status == CoreStatus.MODERATE)
+                            core.CoreColorEnum = CoreStatusColorVisual.MODERATE;
                         break;
 
                     case CoreStatusColorVisual.CRITICAL_HIGH: // Статус ядра: Критически высокая температура
-                        component.CoreColor = Color.FromHex("#fdff8fff");
-                        component.CoreColorRadius = 15f;
-                        component.CoreColorEnergy = 7f;
-                        if (component.Status == CoreStatus.CATASTROPHIC)
-                            component.CoreColorEnum = CoreStatusColorVisual.CATASTROPHIC;
-                        if (component.Status == CoreStatus.HIGH)
-                            component.CoreColorEnum = CoreStatusColorVisual.HIGH;
+                        core.CoreColor = Color.FromHex("#fdff8fff");
+                        core.CoreColorRadius = 15f;
+                        core.CoreColorEnergy = 7f;
+                        if (core.Status == CoreStatus.CATASTROPHIC)
+                            core.CoreColorEnum = CoreStatusColorVisual.CATASTROPHIC;
+                        if (core.Status == CoreStatus.HIGH)
+                            core.CoreColorEnum = CoreStatusColorVisual.HIGH;
                         break;
 
                     case CoreStatusColorVisual.CATASTROPHIC: // Статус ядра: Катастрофически высокая температура
-                        component.CoreColor = Color.FromHex("#ffffffff");
-                        component.CoreColorRadius = 20f;
-                        component.CoreColorEnergy = 12f;
+                        core.CoreColor = Color.FromHex("#ffffffff");
+                        core.CoreColorRadius = 20f;
+                        core.CoreColorEnergy = 12f;
                         break;
 
                     case CoreStatusColorVisual.SAFE_PROTOCOL: // Статус ядра: Протокол безопасности активен
-                        component.CoreColor = Color.FromHex("#fff700ff");
-                        component.CoreColorRadius = 12f;
-                        component.CoreColorEnergy = 4f;
-                        if (component.Status == CoreStatus.SAFE_PROTOCOL)
-                            component.CoreColorEnum = CoreStatusColorVisual.SAFE_PROTOCOL;
-                        if (component.Status == CoreStatus.MODERATE)
-                            component.CoreColorEnum = CoreStatusColorVisual.MODERATE;
+                        core.CoreColor = Color.FromHex("#fff700ff");
+                        core.CoreColorRadius = 12f;
+                        core.CoreColorEnergy = 4f;
+                        if (core.Status == CoreStatus.SAFE_PROTOCOL)
+                            core.CoreColorEnum = CoreStatusColorVisual.SAFE_PROTOCOL;
+                        if (core.Status == CoreStatus.MODERATE)
+                            core.CoreColorEnum = CoreStatusColorVisual.MODERATE;
                         break;
 
                     default:
-                        component.CoreColorEnum = CoreStatusColorVisual.OFFLINE; // Базовый статус ядра: Оффлайн
+                        core.CoreColorEnum = CoreStatusColorVisual.OFFLINE; // Базовый статус ядра: Оффлайн
                         break;
                 }
-                _pointLight.SetColor(uid, component.CoreColor, light);
-                _pointLight.SetRadius(uid, component.CoreColorRadius);
-                _pointLight.SetEnergy(uid, component.CoreColorEnergy);
+                _pointLight.SetColor(uid, core.CoreColor, light);
+                _pointLight.SetRadius(uid, core.CoreColorRadius);
+                _pointLight.SetEnergy(uid, core.CoreColorEnergy);
             }
         }
     }
-    private void UpdateCoreTemp(EntityUid uid, EnergyCoreComponent component, float frameTime)
+    private void CheckTempChangeValue(EntityUid uid, EnergyCoreComponent core)
     {
-        component.UpdateTemp = frameTime * component.TempChangeMultiplier;
-        if (component.CoreTempRise) // Определяем, должна ли температура расти или уменьшаться.
+        var cooling = 1;
+        var auto = 2;
+        var heating = 3;
+
+        if (core.TempChangeStatus == (byte)cooling)
+            core.TempRiseStatus = CoreTempChangeLevel.COOLING;
+        if (core.TempChangeStatus == (byte)auto)
+            core.TempRiseStatus = CoreTempChangeLevel.AUTO;
+        if (core.TempChangeStatus == (byte)heating)
+            core.TempRiseStatus = CoreTempChangeLevel.HEATING;
+    }
+    private void UpdateCoreTemp(EntityUid uid, EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
+    {
+        core.UpdateTemp = frameTime * core.TempChangeMultiplier;
+
+        switch (core.TempRiseStatus)
         {
-            component.CoreTemp += component.UpdateTemp;
-        }
-        else
-        {
-            if (component.CoreTemp < component.MinCoreTemp)
-                component.CoreTemp = -899f;
-            else
-                component.CoreTemp -= component.UpdateTemp;
+            case CoreTempChangeLevel.COOLING: // Охлаждение
+                core.CoreTemp -= core.UpdateTemp;
+                if (core.CoreTemp < core.MinCoreTemp)
+                    core.CoreTemp = -899f;
+                break;
+
+            case CoreTempChangeLevel.AUTO: // Авто режим активен
+                if (core.CoreTemp < 250000)
+                    core.CoreTemp += core.UpdateTemp;
+                else
+                    core.CoreTemp -= core.UpdateTemp;
+                break;
+
+            case CoreTempChangeLevel.HEATING: // Нагревание
+                core.CoreTemp += core.UpdateTemp;
+                break;
+
+            default:
+                core.TempRiseStatus = CoreTempChangeLevel.COOLING;
+                break;
         }
 
-        if (component.IsSafeProtocolActive)
+        if (core.IsSafeProtocolActive)
         {
-            if (component.Status == CoreStatus.SAFE_PROTOCOL) // Если температура больше 600.000 и протокол безопасности не был отключен
+            if (core.Status == CoreStatus.SAFE_PROTOCOL) // Если температура больше 600.000 и протокол безопасности не был отключен
             {
-                component.UpdateTemp = frameTime * component.TempChangeMultiplierProtocol;
-                component.CoreTemp -= component.UpdateTemp;
+                core.UpdateTemp = frameTime * core.TempChangeMultiplierProtocol;
+                core.CoreTemp -= core.UpdateTemp;
             }
         }
-        if (component.Status == CoreStatus.CATASTROPHIC) // При катастрофическом статусе контроль над ядром полностью потерян и температура ядра НЕ может быть снижена
+        if (core.Status == CoreStatus.CATASTROPHIC) // При катастрофическом статусе контроль над ядром полностью потерян и температура ядра НЕ может быть снижена
         {
-            component.UpdateTemp = frameTime * component.TempChangeMultiplierMeltdown;
-            component.CoreTemp += component.UpdateTemp;
+            core.UpdateTemp = frameTime * core.TempChangeMultiplierMeltdown;
+            core.CoreTemp += core.UpdateTemp;
         }
     }
-    private void UpdateProtocolStatus(EntityUid uid, EnergyCoreComponent component)
+    private void UpdateProtocolStatus(EntityUid uid, EnergyCoreComponent core)
     {
         var nearestUid = FindNearestProtocolTerminal(uid);
         if (nearestUid == null || !TryComp(nearestUid, out CoreAccessComputerComponent? nearest))
         {
             return;
         }
-        var (safeProtocol, safeProtocolCompleted) = GetTerminalProtocolStatus(nearest);
+        var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
 
         if (safeProtocol)
-            component.IsSafeProtocolActive = false;
+            core.IsSafeProtocolActive = false;
         else
             return;
-        if (!component.AnnouncedProtocol)
+        if (!core.AnnouncedProtocol)
         {
-            component.AnnouncedProtocol = true;
+            core.AnnouncedProtocol = true;
 
             var station = _stationSystem.GetOwningStation(uid);
             if (station != null)
@@ -346,29 +336,46 @@ public sealed class EnergyCoreSystem : EntitySystem
         }
         return nearest;
     }
-    private static (bool safeProtocol, bool safeProtocolCompleted) GetTerminalProtocolStatus(CoreAccessComputerComponent component)
+    private void UpdateDataFromTerminal(EntityUid uid, EnergyCoreComponent core)
     {
-        var safeProtocol = component.SaveProtocolWasDeactivated;
-        var safeProtocolCompleted = component.DeactivationCompleted;
-        return (safeProtocol, safeProtocolCompleted);
+        var nearestUid = FindNearestProtocolTerminal(uid);
+        if (nearestUid == null || !TryComp(nearestUid, out CoreAccessComputerComponent? nearest))
+        {
+            return;
+        }
+        var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
+
+        core.TempChangeMultiplier = finalTempChangeCoef;
+        core.TempChangeStatus = tempChangeStatus;
+    }
+    private static (bool safeProtocol, bool safeProtocolCompleted, byte tempChangeStatus, float finalTempChangeCoef) GetTerminalProtocolStatus(CoreAccessComputerComponent core)
+    {
+        var safeProtocol = core.SaveProtocolWasDeactivated;
+        var safeProtocolCompleted = core.DeactivationCompleted;
+        var coreTempRising = core.TempRising;
+        var tempChangeStatus = core.ByteStatus;
+        var finalTempChangeCoef = core.FinalTempChangeCoef;
+        return (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef);
     }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
         var query = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var comp, out _))
+        while (query.MoveNext(out var uid, out var cormp, out _))
         {
-            UpdateCoreTemp(uid, comp, frameTime);
-            RefreshCoreStatus(uid, comp);
-            UpdateCoreVisual(uid, comp);
+            CheckTempChangeValue(uid, cormp);
+            UpdateCoreTemp(uid, cormp, frameTime);
+            RefreshCoreStatus(uid, cormp);
+            UpdateCoreVisual(uid, cormp);
 
             var nearestUid = FindNearestProtocolTerminal(uid);
             if (nearestUid == null ||
                 !EntityManager.TryGetComponent<CoreAccessComputerComponent>(nearestUid.Value, out var nearest))
                 continue;
 
-            var (safeProtocol, safeProtocolCompleted) = GetTerminalProtocolStatus(nearest);
-            UpdateProtocolStatus(uid, comp);
+            var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
+            UpdateProtocolStatus(uid, cormp);
+            UpdateDataFromTerminal(uid, cormp);
         }
     }
 }

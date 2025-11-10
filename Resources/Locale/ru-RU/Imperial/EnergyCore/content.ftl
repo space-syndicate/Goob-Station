@@ -24,6 +24,7 @@ energycore-less-2min-to-boom = Энергетический департамен
 energycore-current-protocol-on = Протокол безопасности: [color=blue][bold]Активен[/bold][/color]
 energycore-current-protocol-off = Протокол безопасности: [color=red][bold]Неактивен[/bold][/color]
 energycore-current-temp-change-up = Текущий статус температуры: [color=yellow][bold]Повышение[/bold][/color]
+energycore-current-temp-change-auto = Текущий статус температуры: [color=green][bold]Авто-режим[/bold][/color]
 energycore-current-temp-change-down = Текущий статус температуры: [color=blue][bold]Понижение[/bold][/color]
 energycore-current-coef = Текущие изменения температуы: {$coefficient} (кельвинов в сек.)
 energycore-current-temp = Текущая температура: {$coreTemp}

@@ -1,5 +1,3 @@
-using Color = Robust.Shared.Maths.Color;
-using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.EnergyCore;
@@ -9,52 +7,48 @@ public abstract partial class SharedEnergyCoreComponent : Component
     public const string DeCodeSlotId = "Code";
 }
 
-public enum CoreStatus : byte
-{
-    OFFLINE = 1,
-    IDLE = 2,
-    STABLE = 3,
-    OPTIMAL = 4,
-    MODERATE = 5,
-    HIGH = 6,
-    CRITICAL_HIGH = 7,
-    CATASTROPHIC = 8,
-    SAFE_PROTOCOL = 9
-}
-
-public enum CoreStatusColorVisual : byte
-{
-    OFFLINE = 1,
-    IDLE = 2,
-    STABLE = 3,
-    OPTIMAL = 4,
-    MODERATE = 5,
-    HIGH = 6,
-    CRITICAL_HIGH = 7,
-    CATASTROPHIC = 8,
-    SAFE_PROTOCOL = 9
-}
-
-public enum CoreRisingChange : byte
-{
-    HEATING,
-    COOLING
-}
-public enum CoreTempChangeLevel : byte
-{
-    STANDART,
-    HIGH
-}
-//TODO: можно добавить доп. уровень: VERY_HIGH
-
 [Serializable, NetSerializable]
-public enum CoreStatusVisual : byte
+public sealed class CoreTerminalBoundUserInterfaceState : BoundUserInterfaceState
 {
-    Core_Visual
+    public readonly string CoreStatus;
+    public readonly bool TempRising;
+    public readonly bool SafeProtocol;
+    public readonly byte AutoSystem;
+    public readonly float CoreTemp;
+    public readonly float TempChangeCoef;
+    public readonly float CurrentPowerSupply;
+
+    public CoreTerminalBoundUserInterfaceState(string coreStatus, bool tempRising, bool safeProtocol, byte autoSystem, float coreTemp, float tempChangeCoef, float currentPowerSupply)
+    {
+        CoreStatus = coreStatus;
+        TempRising = tempRising;
+        SafeProtocol = safeProtocol;
+        AutoSystem = autoSystem;
+        CoreTemp = coreTemp;
+        TempChangeCoef = tempChangeCoef;
+        CurrentPowerSupply = currentPowerSupply;
+    }
 }
 
 [Serializable, NetSerializable]
-public enum CoreStatusScreenVisual : byte
+public sealed class UiButtonPressedMessage : BoundUserInterfaceMessage
 {
-    Core_Screen_Visual
+    public readonly UiButton Button;
+
+    public UiButtonPressedMessage(UiButton button)
+    {
+        Button = button;
+    }
+}
+public sealed class CoreLineEditAdjustMessage : BoundUserInterfaceMessage
+{
+    /// <summary>
+    /// Реактивность ядра
+    /// </summary>
+    public float ReactivityMsg;
+
+    /// <summary>
+    /// Распад ядра
+    /// </summary>
+    public float HalflifeMsg;
 }

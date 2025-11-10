@@ -1,0 +1,149 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="{Loc 'core-terminal-window-title'}"
+               SetSize="700 450"
+               MinSize="400 400">
+    <TabContainer Name="CoreTabContainer">
+        <BoxContainer Name="Core"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True"
+                      MinSize="100 150">
+            <PanelContainer VerticalExpand="True" StyleClasses="Inset">
+                <GridContainer Columns="2">
+
+                    <BoxContainer Orientation="Horizontal">
+                        <Button Name="AutoButton"
+                                Text="{Loc 'core-terminal-auto-button'}"
+                                StyleClasses="OpenBoth"
+                                Disabled="False" />
+                        <Label Text="{Loc 'core-terminal-auto'}"/>
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Horizontal">
+                        <Button Name="RiseTempButton"
+                                Text="{Loc 'core-terminal-increase-button'}"
+                                StyleClasses="OpenRight" />
+                        <Button Name="CoolTempButton"
+                                Text="{Loc 'core-terminal-decrease-button'}"
+                                StyleClasses="OpenLeft" />
+                        <Label Text="{Loc 'core-terminal-incdes'}"/>
+                    </BoxContainer>
+
+                </GridContainer>
+            </PanelContainer>
+            <Control MinSize="50 5" />
+            <PanelContainer VerticalExpand="True" StyleClasses="Inset">
+                <GridContainer Columns="2">
+
+                    <BoxContainer Orientation="Horizontal">
+                        <Button Name="UpReactivityButton"
+                                Text="{Loc 'core-terminal-increase-button'}"
+                                StyleClasses="OpenRight" />
+                        <Button Name="DownReactivityButton"
+                                Text="{Loc 'core-terminal-decrease-button'}"
+                                StyleClasses="OpenLeft" />
+                        <Label Text="{Loc 'core-terminal-reactivity-label'}"/>
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Horizontal">
+                        <Button Name="UpHalflifeButton"
+                                Text="{Loc 'core-terminal-increase-button'}"
+                                StyleClasses="OpenRight" />
+                        <Button Name="DownHalflifeButton"
+                                Text="{Loc 'core-terminal-decrease-button'}"
+                                StyleClasses="OpenLeft" />
+                        <Label Text="{Loc 'core-terminal-halflife-label'}"/>
+                    </BoxContainer>
+<!--
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-terminal-reactivity-label'}"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <LineEdit Name="CoreReactivity" HorizontalExpand="True"/>
+                        <Label Text="{Loc 'core-terminal-rad'}"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-terminal-halflife-label'}"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <LineEdit Name="CoreHalflife" HorizontalExpand="True"/>
+                        <Label Text="{Loc 'core-terminal-halflife'}"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-terminal-window-press-enter-to-confirm'}"/>
+                    </BoxContainer>
+-->
+                </GridContainer>
+            </PanelContainer>
+            <Control MinSize="100 5" />
+            <PanelContainer VerticalExpand="True" StyleClasses="Inset">
+                <GridContainer Columns="2">
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-auto-status-label'}" />
+                        <Label Text=" " />
+                        <Label Name="AutoStatus" Text="{Loc 'core-auto-status'}" />
+                        <Label Text=" " />
+                    </BoxContainer>
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-rise-status-label'}" />
+                        <Label Text=" " />
+                        <Label Name="RiseStatus" Text="{Loc 'core-rise-status'}" />
+                        <Label Text=" " />
+                    </BoxContainer>
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-protocol-status-label'}" />
+                        <Label Text=" " />
+                        <Label Name="SafeProtocolStatus" Text="{Loc 'core-protocol-status'}" />
+                        <Label Text=" " />
+                    </BoxContainer>
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-status-label'}" />
+                        <Label Text=" " />
+                        <Label Name="CurrentCoreStatus" Text="{Loc 'core-status'}" />
+                        <Label Text=" " />
+                    </BoxContainer>
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-temp-label'}" />
+                        <Label Text=" " />
+                        <Label Name="CurrentTemp" Text="{Loc 'core-temp'}" />
+                        <Label Text=" " />
+                    </BoxContainer>
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-temp-coef-label'}" />
+                        <Label Text=" " />
+                        <Label Name="CoreTempCoef" Text="{Loc 'core-temp-coef'}" />
+                        <Label Text=" " />
+                    </BoxContainer>
+                    <BoxContainer></BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-currentsupply-label'}" />
+                        <Label Text=" " />
+                        <Label Name="CurrentPowerSupply" Text="0" />
+                        <Label Text=" kW" />
+                    </BoxContainer>
+                </GridContainer>
+            </PanelContainer>
+        </BoxContainer>
+        <BoxContainer Name="Manual"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True"
+                      MinSize="100 150">
+            <PanelContainer VerticalExpand="True" StyleClasses="Inset">
+                <GridContainer Columns="1">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'core-manual'}" />
+                    </BoxContainer>
+                </GridContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </TabContainer>
+</DefaultWindow>
