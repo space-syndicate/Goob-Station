@@ -1,13 +1,12 @@
 using Content.Shared.Actions;
 using Content.Shared.Hands;
-using Robust.Shared.Prototypes;
 using Content.Shared.Popups;
 using Content.Shared.DoAfter;
-using Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Events;
-using Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Components;
+using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Events;
+using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 using Content.Shared.Coordinates;
 
-namespace Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Systems;
+namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Systems;
 
 public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 {

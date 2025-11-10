@@ -1,4 +1,4 @@
-namespace Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Components;
+namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 
 [RegisterComponent]
 public sealed partial class UserPiercingLungeComponent : Component
