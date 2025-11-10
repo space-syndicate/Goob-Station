@@ -1,14 +1,20 @@
 using Content.Shared.Actions;
 using Content.Shared.Hands;
+using Robust.Shared.Prototypes;
+using Content.Shared.Popups;
+using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Events;
 using Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Components;
+using Content.Shared.Coordinates;
 
 namespace Content.Shared.Imperial.Lavaland.EmpoweredAttacks.Systems;
 
 public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _action = default!;
-
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    private string _earthshakerRiftSpawnPrototype = "EffectEarthshakerRiftSpawn";
     public override void Initialize()
     {
         base.Initialize();
@@ -18,6 +24,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotEquippedHandEvent>(OnEquippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotUnequippedHandEvent>(OnUnequippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, ComponentShutdown>(OnEarthshakerShutdown);
+        SubscribeLocalEvent<EarthshakerStrikeDoAfterEvent>(OnEarthshakerStrikeDoAfter);
 
         // Enhanced Bayonet
         SubscribeLocalEvent<UserEnhancedBayonetAttackComponent, EnhancedBayonetAttackEvent>(OnEnhancedBayonetAttack);
@@ -40,16 +47,43 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     #region Earthshaker Strike
 
-    private void OnEarthshakerStrike(EntityUid uid, UserEarthshakerStrikeComponent comp, ref EarthshakerStrikeEvent args)
+    private void OnEarthshakerStrike(EntityUid user, UserEarthshakerStrikeComponent comp, ref EarthshakerStrikeEvent args)
     {
         Log.Info($"EarthshakerStrike +");
+        if (!comp.Item.HasValue)
+            return;
+
+        var time = 5.0f;
+
+        if (!StartDoAfter(user, comp.Item.Value, time, new EarthshakerStrikeDoAfterEvent()))
+            return;
+
+        args.Handled = true;
+    }
+
+    private void OnEarthshakerStrikeDoAfter(EarthshakerStrikeDoAfterEvent args)
+    {
+        if (args.Cancelled)
+        {
+            DoAfterCancelled(args.User);
+            return;
+        }
+
+        if (args.Handled)
+            return;
+
+        Spawn(_earthshakerRiftSpawnPrototype, args.User.ToCoordinates());
+        Log.Info("выполнено доафтер действие");
+
         args.Handled = true;
     }
 
     private void OnEquippedEarthshakerStrike(EntityUid uid, EarthshakerStrikeComponent comp, EquippedHandEvent args)
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionEarthshakerStrike);
-        AddComp<UserEarthshakerStrikeComponent>(args.User);
+
+        var userComp = EnsureComp<UserEarthshakerStrikeComponent>(args.User);
+        userComp.Item = uid;
 
         comp.User = args.User;
     }
@@ -198,6 +232,28 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             if (comp.User.HasValue)
                 RemComp<UserPiercingLungeComponent>(comp.User.Value);
         }
+    }
+
+    #endregion
+
+    #region Helpers
+
+    private bool StartDoAfter(EntityUid user, EntityUid used, float time, DoAfterEvent doAfterEvent)
+    {
+        var args = new DoAfterArgs(EntityManager, user, time, doAfterEvent, used)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true
+        };
+
+        return _doAfter.TryStartDoAfter(args);
+    }
+
+    private void DoAfterCancelled(EntityUid user)
+    {
+        Log.Info("DoAfter сбит");
+
+        _popup.PopupEntity(Loc.GetString("doafter-sbit"), user, user); //change
     }
 
     #endregion
