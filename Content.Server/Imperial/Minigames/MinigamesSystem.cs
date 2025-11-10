@@ -93,7 +93,7 @@ public sealed class MinigamesSystem : SharedMinigamesSystem
         RaiseNetworkEvent(new StartMinigameEvent()
         {
             Player = GetNetEntity(player),
-            Minigame = minigamePrototype
+            MinigamePrototype = minigamePrototype.ID
         });
 
         return true;

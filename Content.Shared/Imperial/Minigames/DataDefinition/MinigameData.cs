@@ -3,8 +3,8 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Minigames;
 
-
-[DataDefinition, Serializable, NetSerializable, Virtual]
+[Virtual]
+[DataDefinition, Serializable, NetSerializable]
 public partial class MinigameData : IEquatable<MinigameData>, ICloneable
 {
 
@@ -33,6 +33,19 @@ public partial class MinigameData : IEquatable<MinigameData>, ICloneable
     [ViewVariables]
     public TimeSpan MinigameStartTime = TimeSpan.FromSeconds(0);
 
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not MinigameData)
+            return false;
+
+        return Equals(obj as MinigameData);
+    }
 
     public bool Equals(MinigameData? other)
     {
