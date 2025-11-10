@@ -76,25 +76,35 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
                 continue;
             }
 
-            if (mover.CanMove)
-            {
-                mover.CanMove = false;
-                Dirty(uid, mover);
-            }
-
             var moveButtons = tileMovement.LastMoveButtons != MoveButtons.None 
                 ? tileMovement.LastMoveButtons 
                 : mover.HeldMoveButtons;
             
             if ((moveButtons & MoveButtons.AnyDirection) == MoveButtons.None)
             {
+                if (!mover.CanMove)
+                {
+                    mover.CanMove = true;
+                    Dirty(uid, mover);
+                }
                 StopMovement(uid, mover);
                 continue;
+            }
+
+            if (mover.CanMove)
+            {
+                mover.CanMove = false;
+                Dirty(uid, mover);
             }
 
             var wishDir = GetDirectionFromButtons(moveButtons);
             if (wishDir == Vector2.Zero)
             {
+                if (!mover.CanMove)
+                {
+                    mover.CanMove = true;
+                    Dirty(uid, mover);
+                }
                 StopMovement(uid, mover);
                 continue;
             }
