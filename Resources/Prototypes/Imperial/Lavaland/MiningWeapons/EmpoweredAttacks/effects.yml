@@ -1,0 +1,74 @@
+- type: entity
+  id: BaseEffectEarthshakerRift
+  categories: [ HideSpawnMenu ]
+  name: tentacle
+  abstract: true
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 0.7
+
+- type: entity
+  id: EffectEarthshakerRiftSpawn
+  parent: BaseEffectEarthshakerRift
+  categories: [ HideSpawnMenu ]
+  name: tentacle
+  components:
+  - type: Sprite
+    state: goliath_tentacle_spawn
+  - type: SpawnOnDespawn
+    prototype: EarthshakerRiftAttack
+
+- type: entity
+  id: EarthshakerRiftAttack
+  name: EarthshakerRiftAttack
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    layers:
+    - state: goliath_tentacle_wiggle
+  - type: StunOnContact
+    blacklist:
+      components:
+      - UserEarthshakerStrike
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.65
+    sprintSpeedModifier: 0.65
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-1, 1, 1"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: SpawnOnDespawn
+    prototype: EffectEarthshakerRiftEnd
+
+- type: entity
+  id: EffectEarthshakerRiftEnd
+  parent: BaseEffectEarthshakerRift
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: goliath_tentacle_retract
+  - type: EffectVisuals
+  - type: AnimationPlayer

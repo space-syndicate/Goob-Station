@@ -20,10 +20,10 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
         // Earthshaker
         SubscribeLocalEvent<UserEarthshakerStrikeComponent, EarthshakerStrikeEvent>(OnEarthshakerStrike);
+        SubscribeLocalEvent<EarthshakerStrikeComponent, EarthshakerStrikeDoAfterEvent>(OnEarthshakerStrikeDoAfter);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotEquippedHandEvent>(OnEquippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotUnequippedHandEvent>(OnUnequippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, ComponentShutdown>(OnEarthshakerShutdown);
-        SubscribeLocalEvent<EarthshakerStrikeDoAfterEvent>(OnEarthshakerStrikeDoAfter);
 
         // Enhanced Bayonet
         SubscribeLocalEvent<UserEnhancedBayonetAttackComponent, EnhancedBayonetAttackEvent>(OnEnhancedBayonetAttack);
@@ -52,27 +52,25 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         if (!comp.Item.HasValue)
             return;
 
-        var time = 5.0f;
-
+        var time = 1.5f;
         if (!StartDoAfter(user, comp.Item.Value, time, new EarthshakerStrikeDoAfterEvent()))
             return;
-
-        args.Handled = true;
     }
 
-    private void OnEarthshakerStrikeDoAfter(EarthshakerStrikeDoAfterEvent args)
+    private void OnEarthshakerStrikeDoAfter(EntityUid user, EarthshakerStrikeComponent comp, EarthshakerStrikeDoAfterEvent args)
     {
+        Log.Info($"33");
         if (args.Cancelled)
         {
-            DoAfterCancelled(args.User);
+            DoAfterCancelled(user);
             return;
         }
 
         if (args.Handled)
             return;
 
-        Spawn(_earthshakerRiftSpawnPrototype, args.User.ToCoordinates());
-        Log.Info("выполнено доафтер действие");
+        Log.Info($"44");
+        Spawn(_earthshakerRiftSpawnPrototype, user.ToCoordinates());
 
         args.Handled = true;
     }
