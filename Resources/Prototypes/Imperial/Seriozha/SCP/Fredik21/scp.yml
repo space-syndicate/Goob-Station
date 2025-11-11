@@ -4855,9 +4855,6 @@
         Unsexed: SCP682
         Female: SCP682
     - type: Devourer
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Imperial/Seriozha/SCP/doc.ogg
 
 - type: emoteSounds
   id: SCP682
