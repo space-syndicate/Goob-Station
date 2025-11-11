@@ -251,7 +251,13 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
-
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPCI-name
+      description: ghost-role-information-PresetSCPCI-desc
+      rules: CI
+      raffle:
+        settings: short
 
 - type: startingGear
   id: MTFGear
@@ -362,6 +368,8 @@
     suitstorage: CSWeaponP90
     pocket1: p90-Magazine
     pocket2: p90-Magazine
+  inhand:
+  - PaperOGK
 
 - type: startingGear
   id: DocGear
@@ -376,6 +384,8 @@
     id: SCPIDCardThree
     ears: ClothingHeadsetSCPMain
     belt: BoxFolderClipboard
+  inhand:
+  - PaperScience
 
 - type: startingGear
   id: DocCMDGear
@@ -411,6 +421,8 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+  inhand:
+  - PaperAdmNDA
 
 - type: startingGear
   id: CIGear
