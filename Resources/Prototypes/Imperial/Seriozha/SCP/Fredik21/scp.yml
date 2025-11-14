@@ -132,6 +132,26 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterNDA1006
+  name: Poster NDA 1006
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n1006
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA002
+  name: Poster NDA 002
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n002
+
+- type: entity
+  parent: PosterBase
   id: PosterNDA005
   name: Poster NDA 005
   suffix: Fredik21, Недра
@@ -4942,3 +4962,102 @@
     sprite: Imperial/Seriozha/SCP/id/n005.rsi
     layers:
       - state: icon
+
+- type: entity
+  name: Spider
+  parent: [ SimpleMobBase, MobCombat ]
+  id: MobSpiderNDA1006
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: tarantula
+      sprite: Mobs/Animals/spider.rsi
+      scale: 0.4 , 0.4
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: tarantula-moving
+    noMovementLayers:
+      movement:
+        state: tarantula
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tarantula
+      Critical:
+        Base: tarantula_dead
+      Dead:
+        Base: tarantula_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 2
+  - type: NoSlip
+  - type: Spider
+  - type: IgnoreSpiderWeb
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
+  - type: Prying # Open door from xeno.yml.
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute from base.yml.
+    allowedStates:
+    - Alive
+    damageCap: 35
+    types:
+      Poison: -0.07
+    groups:
+      Brute: -0.07
+      Burn: -0.07
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-MobSpiderNDA1006-name
+    description: ghost-role-information-MobSpiderNDA1006-desc
+    rules: rule
+    raffle:
+      settings: short
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA002
+  name: title NDA002
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      state: icon-1
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Piercing: 25
