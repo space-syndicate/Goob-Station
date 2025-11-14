@@ -13,6 +13,7 @@
   - DismissalOrderRecipe
   - RequestForERTRecipe
   - RequestForCBURNRecipe
+  - RequestCleaningRecipe
   - RequestForCentComRecipe
   - RequestForBonusRecipe
   - AccessDeniedOrderRecipe
@@ -170,6 +171,15 @@
 - type: latheRecipe
   id: RequestForCBURNRecipe
   result: RequestForCBURN
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestCleaningRecipe
+  result: RequestCleaning
   categories: [DocumentPrinterCommand]
   completetime: 4
   applyMaterialDiscount: false
