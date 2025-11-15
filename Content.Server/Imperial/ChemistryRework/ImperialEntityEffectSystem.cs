@@ -95,7 +95,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
 
         _transformSystem.AttachToGridOrMap(uid);
 
-        if (TryComp<SharedPointLightComponent>(uid, out var pointLightComp))
+        if (TryComp<PointLightComponent>(uid, out var pointLightComp))
             _pointLightSystem.SetRadius(uid, MathF.Max(1.1f, range), pointLightComp);
 
         if (args.Args is not EntityEffectReagentArgs reagentArgs)
