@@ -17,3 +17,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Fasder"
   source: "https://github.com/imperial-space"
+
+- files: ["4975.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Fasder"
+  source: "from https://github.com/VOREStation/VOREStation/ edited by Floofers"

@@ -111,6 +111,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterNDA953
+  name: Poster NDA 953
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n953
+
+- type: entity
+  parent: PosterBase
   id: PosterNDA343
   name: Poster NDA 343
   suffix: Fredik21, Недра
@@ -5060,4 +5070,207 @@
     - type: DamageContacts
       damage:
         types:
-          Piercing: 25
+          Piercing: 10
+
+- type: entity
+  name: Triple Molecular Destroyer
+  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponLaserMicroHIDNDA
+  suffix: Fredik21, Недра
+  components:
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/micro.rsi
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/micro2.rsi
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/micro.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: MicroLaser
+    fireCost: 150
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Seriozha/SCP/micro.ogg
+
+- type: hitscan
+  id: MicroLaser
+  damage:
+    types:
+      Heat: 500
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_omni
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_omni
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_omni
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFoxNDA953
+  name: fox ears
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/nda/nda953.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/nda/nda953.rsi
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorNDA953
+  name: tail NDA 953
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/nda/2nda953.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/nda/2nda953.rsi
+  - type: FireProtection
+    reduction: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+          Poison: 0.5
+          Blunt: 0.5
+          Slash: 0.5
+          Heat: 0.5
+          Piercing: 0.5
+          Cellular: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Unremoveable
+
+
+- type: entity
+  parent: ClothingUniformJumpsuitKimono
+  id: ClothingUniformJumpsuitKimonoNDA953
+  name: Kimono NDA953
+  suffix: Fredik21, Недра
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDA953
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ SCP953Gear ]
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: NpcFactionMember
+      factions:
+      - NDA
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
+    - type: FlashImmunity
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+    - type: StaminaResistance
+      damageCoefficient: 0.3
+    - type: NoSlip
+    - type: MovementIgnoreGravity
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        3000: Dead
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 20
+    - type: SpaceNinja
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 4
+    - type: InteractionPopup
+      successChance: 0.5
+      interactSuccessString: petting-success-soft-floofy
+      interactFailureString: petting-failure-generic
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        collection: Fox
+    - type: SmokeOnTrigger
+      duration: 15
+      spreadAmount: 3
+    - type: Vocal
+      sounds:
+        Male: SCP953
+        Unsexed: SCP953
+        Female: SCP953
+
+- type: startingGear
+  id: SCP953Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitKimonoNDA953
+    outerClothing: ClothingOuterArmorNDA953
+    head: ClothingHeadHatFoxNDA953
+
+- type: emoteSounds
+  id: SCP953
+  params:
+    variation: 0.125
+  sounds:
+    cutescreams953:
+      collection: Fox
+    growl953:
+      collection: growl953
+
+- type: emote
+  id: growl953
+  name: Рычать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно рычит"]
+  chatTriggers:
+    - Рычит
+
+- type: soundCollection
+  id: growl953
+  files:
+    - /Audio/Imperial/Seriozha/SCP/953/growl.ogg
+
+- type: emote
+  id: cutescreams953
+  name: Мило кричать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Мило кричит"]
+  chatTriggers:
+    - Мило кричит
