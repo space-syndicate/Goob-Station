@@ -208,7 +208,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                             continue;
                         }
 
-                        nukeops.WinConditions.Add(WinCondition.CoreExploded); // Винтайп подрыва энерго ядра.
+                        nukeops.WinConditions.Add(WinCondition.CoreExploded); // Винтайп подрыва энерго ядра
                         SetWinType((uid, nukeops), WinType.OpsMajor);
                         correctStation = true;
                     }

@@ -51,11 +51,11 @@ namespace Content.Server.Imperial.EnergyCore.Components
 
         [DataField]
         [ViewVariables(VVAccess.ReadWrite)]
-        public float Reactivity = 0f;
+        public float Reactivity = 30f;
 
         [DataField]
         [ViewVariables(VVAccess.ReadWrite)]
-        public float Halflife = 0f;
+        public float Halflife = 5f;
 
         [DataField]
         [ViewVariables(VVAccess.ReadWrite)]
@@ -91,13 +91,13 @@ namespace Content.Server.Imperial.EnergyCore.Components
         #region Info from the Core
 
         [DataField]
-        public string CoreStatus = "N/I";
+        public CoreStatus Status = CoreStatus.OFFLINE;
 
         [DataField]
         public bool AutoSystem = false;
 
         [DataField]
-        public float CoreTemp = 0;
+        public float CurrCoreTemp = 0;
 
         [DataField]
         public float CurrentPowerSupply = 0;

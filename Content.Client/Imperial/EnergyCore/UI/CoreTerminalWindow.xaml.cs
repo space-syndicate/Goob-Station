@@ -59,12 +59,12 @@ namespace Content.Client.Imperial.EnergyCore.UI
         {
             var castState = (CoreTerminalBoundUserInterfaceState)state;
 
-            CurrentCoreStatus.Text = $"{castState.CoreStatus}";
+            CurrentCoreStatus.Text = Loc.GetString($"energycore-status-{castState.Status.ToString().ToLower()}");
 
-            if (castState.TempRising)
-                SafeProtocolStatus.Text = Loc.GetString("temp-rise-true");
-            else
-                SafeProtocolStatus.Text = Loc.GetString("temp-rise-false");
+            if (castState.AutoSystem == 1)
+                RiseStatus.Text = Loc.GetString("temp-rise-false");
+            if (castState.AutoSystem == 3)
+                RiseStatus.Text = Loc.GetString("temp-rise-true");
 
             if (castState.SafeProtocol)
                 SafeProtocolStatus.Text = Loc.GetString("status-active");
@@ -72,13 +72,16 @@ namespace Content.Client.Imperial.EnergyCore.UI
                 SafeProtocolStatus.Text = Loc.GetString("status-inactive");
 
             if (castState.AutoSystem == 2)
+            {
+                RiseStatus.Text = Loc.GetString("temp-rise-moderate");
                 AutoStatus.Text = Loc.GetString("status-active");
+            }
             else
                 AutoStatus.Text = Loc.GetString("status-inactive");
 
-            CurrentTemp.Text = $"{castState.CoreTemp}";
-            CoreTempCoef.Text = $"{castState.TempChangeCoef}";
-            CurrentPowerSupply.Text = $"{castState.CurrentPowerSupply:N1}";
+            CurrentTemp.Text = $"{castState.CoreTemp:N1}";
+            CoreTempCoef.Text = $"{castState.TempChangeCoef:N1}";
+            //CurrentPowerSupply.Text = $"{castState.CurrentPowerSupply:N1}";
         }
     }
 }

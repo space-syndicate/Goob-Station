@@ -57,24 +57,8 @@ namespace Content.Server.Imperial.EnergyCore
             else
                 args.PushMarkup(Loc.GetString("energycore-current-protocol-off"));
 
-            if ((byte)coreStatus == 1)
-                args.PushMarkup(Loc.GetString("energycore-status-offline"));
-            if ((byte)coreStatus == 2)
-                args.PushMarkup(Loc.GetString("energycore-status-idle"));
-            if ((byte)coreStatus == 3)
-                args.PushMarkup(Loc.GetString("energycore-status-stable"));
-            if ((byte)coreStatus == 4)
-                args.PushMarkup(Loc.GetString("energycore-status-optimal"));
-            if ((byte)coreStatus == 5)
-                args.PushMarkup(Loc.GetString("energycore-status-moderate"));
-            if ((byte)coreStatus == 6)
-                args.PushMarkup(Loc.GetString("energycore-status-high"));
-            if ((byte)coreStatus == 7)
-                args.PushMarkup(Loc.GetString("energycore-status-criticalhigh"));
-            if ((byte)coreStatus == 8)
-                args.PushMarkup(Loc.GetString("energycore-status-catastrophic"));
-            if ((byte)coreStatus == 9)
-                args.PushMarkup(Loc.GetString("energycore-status-safeprotocol-active"));
+            var status = Loc.GetString($"energycore-status-{coreStatus.ToString().ToLower()}");
+            args.PushMarkup(status);
 
             args.PushMarkup(Loc.GetString("energycore-current-coef", ("coefficient", coreTempMult)));
             args.PushMarkup(Loc.GetString("energycore-current-temp", ("coreTemp", coreTemp)));
@@ -87,10 +71,10 @@ namespace Content.Server.Imperial.EnergyCore
                 return;
             }
             var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
-            component.ScreenStatus = (byte)coreStatus;
+            component.SpriteStatus = (byte)coreStatus;
             if (TryComp<AppearanceComponent>(uid, out var appearance))
             {
-                _appearance.SetData(uid, CoreStatusScreenVisual.Core_Screen_Visual, component.ScreenStatus, appearance);
+                _appearance.SetData(uid, CoreStatusScreenVisual.Core_Screen_Visual, component.SpriteStatus, appearance);
             }
         }
         private EntityUid? FindNearestEnergyCore(EntityUid core)
@@ -137,7 +121,7 @@ namespace Content.Server.Imperial.EnergyCore
         }
 
         private static (float coreTemp, CoreStatus coreStatus, byte tempRiseStatus, bool safeProtocol, float coreTempMult) GetCoreInfo(EnergyCoreComponent component)
-        {                               //boolTempChangeMultiplier
+        {
             var coreTemp = component.CoreTemp;
             var coreStatus = component.Status;
             var tempRiseStatus = component.TempChangeStatus;

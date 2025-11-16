@@ -6,11 +6,9 @@ core-terminal-decrease-button = -
 core-terminal-incdes = Нагрев/Охлаждение
 core-currentsupply-label = Выход:
 
-core-terminal-reactivity-label = Реактивность
-core-terminal-rad = ρ
+core-terminal-reactivity-label = Реактивность: ρ
 
-core-terminal-halflife-label = Распад
-core-terminal-halflife = λ
+core-terminal-halflife-label = Распад: λ
 
 core-auto-status-label = Авто:
 core-auto-status = N/A
@@ -20,6 +18,7 @@ status-inactive = Неактивно
 core-rise-status-label = Изменение температуры:
 core-rise-status = N/A
 temp-rise-true = Повышение
+temp-rise-moderate = Авто
 temp-rise-false = Понижение
 
 core-protocol-status-label = Протокол безопасности:

@@ -6,9 +6,10 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Server.GameTicking;
+using Color = Robust.Shared.Maths.Color;
 using Content.Server.AlertLevel;
 using Content.Server.Station.Systems;
-using Content.Shared.Tag;
 using Content.Shared.Audio;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Chat.Systems;
@@ -27,8 +28,8 @@ public sealed class EnergyCoreSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -48,7 +49,10 @@ public sealed class EnergyCoreSystem : EntitySystem
     private void OnMeltdown(EntityUid uid, EnergyCoreComponent core) // За ивент расплавления ядра отвечает отдельная система, чтобы не превращать эту в свалку
     {
         if (!HasComp<EnergyCorePendingDetonationComponent>(uid) && core.Status == CoreStatus.CATASTROPHIC)
+        {
+            _gameTicker.AddGameRule("CoreTechnical");
             EnsureComp<EnergyCorePendingDetonationComponent>(uid);
+        }
         else
             return;
     }
@@ -57,11 +61,13 @@ public sealed class EnergyCoreSystem : EntitySystem
         switch (core.Status)
         {
             case CoreStatus.OFFLINE: // Статус ядра: Оффлайн
+                UpdateLightVisual(uid, "#74aeff", 1f, 1f);
                 if (core.CoreTemp > 0f)
                     core.Status = CoreStatus.IDLE;
                 break;
 
             case CoreStatus.IDLE: // Статус ядра: Простаивание
+                UpdateLightVisual(uid, "#74aeff", 10f, 2f);
                 if (core.CoreTemp > 30000f)
                     core.Status = CoreStatus.STABLE;
                 if (core.CoreTemp < 0f)
@@ -69,6 +75,7 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
 
             case CoreStatus.STABLE: // Статус ядра: Стабильный
+                UpdateLightVisual(uid, "#d80000ff", 11f, 3f);
                 if (core.CoreTemp > 100000f)
                     core.Status = CoreStatus.OPTIMAL;
                 if (core.CoreTemp < 30000f)
@@ -76,6 +83,7 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
 
             case CoreStatus.OPTIMAL: // Статус ядра: Оптимальный
+                UpdateLightVisual(uid, "#ff0000ff", 11f, 3f);
                 if (core.CoreTemp > 300000f)
                     core.Status = CoreStatus.MODERATE;
                 if (core.CoreTemp < 100000f)
@@ -83,10 +91,11 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
 
             case CoreStatus.MODERATE: // Статус ядра: Приемлимый (повышенный оптимальный)
+                UpdateLightVisual(uid, "#fff700ff", 12f, 4f);
                 if (core.CoreTemp > 600000f)
                 {
                     if (core.IsSafeProtocolActive)
-                        core.Status = CoreStatus.SAFE_PROTOCOL;
+                        core.Status = CoreStatus.SAFEPROTOCOL;
                     else
                         core.Status = CoreStatus.HIGH;
                 }
@@ -95,13 +104,15 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
 
             case CoreStatus.HIGH: // Статус ядра: Высокая температура
+                UpdateLightVisual(uid, "#fbff11ff", 12f, 4f);
                 if (core.CoreTemp > 800000f)
-                    core.Status = CoreStatus.CRITICAL_HIGH;
+                    core.Status = CoreStatus.CRITICALHIGH;
                 if (core.CoreTemp < 600000f)
                     core.Status = CoreStatus.MODERATE;
                 break;
 
-            case CoreStatus.CRITICAL_HIGH: // Статус ядра: Критически высокая температура
+            case CoreStatus.CRITICALHIGH: // Статус ядра: Критически высокая температура
+                UpdateLightVisual(uid, "#fdff8fff", 15f, 7f);
                 if (core.CoreTemp > 1000000f)
                     core.Status = CoreStatus.CATASTROPHIC;
                 if (core.CoreTemp < 800000f)
@@ -109,10 +120,12 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
 
             case CoreStatus.CATASTROPHIC: // Статус ядра: Катастрофически высокая температура (расплавление)
+                UpdateLightVisual(uid, "#ffffffff", 20f, 12f);
                 OnMeltdown(uid, core); // Ивент расплавления ядра
                 break;
 
-            case CoreStatus.SAFE_PROTOCOL: // Статус ядра: Протокол безопасности активен
+            case CoreStatus.SAFEPROTOCOL: // Статус ядра: Протокол безопасности активен
+                UpdateLightVisual(uid, "#fbff11ff", 12f, 4f);
                 if (core.CoreTemp < 500000f)
                     core.Status = CoreStatus.MODERATE;
                 break;
@@ -122,110 +135,21 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
         }
     }
+    private void UpdateLightVisual(EntityUid uid, string coreColor, float coreColorRadius, float coreColorEnergy)
+    {
+        var color = Color.FromHex(coreColor);
+        if (TryComp<PointLightComponent>(uid, out var light)) ;
+        {
+            _pointLight.SetColor(uid, color, light);
+            _pointLight.SetRadius(uid, coreColorRadius);
+            _pointLight.SetEnergy(uid, coreColorEnergy);
+        }
+    }
     private void UpdateCoreVisual(EntityUid uid, EnergyCoreComponent core)
     {
         if (TryComp<AppearanceComponent>(uid, out var appearance))
         {                                                              //Byte
             _appearance.SetData(uid, CoreStatusVisual.Core_Visual, (byte)core.Status, appearance);
-        }
-        if (TryComp<PointLightComponent>(uid, out var light)) ;
-        {
-            if (light != null)
-            {
-                switch (core.CoreColorEnum) // Это все ради света. Блять какой пиз...
-                {
-                    case CoreStatusColorVisual.OFFLINE: // Статус ядра: Оффлайн
-                        core.CoreColor = Color.FromHex("#74aeff");
-                        core.CoreColorRadius = 1f;
-                        core.CoreColorEnergy = 1f;
-                        if (core.Status == CoreStatus.IDLE)
-                            core.CoreColorEnum = CoreStatusColorVisual.IDLE;
-                        break;
-
-                    case CoreStatusColorVisual.IDLE: // Статус ядра: Простаивание
-                        core.CoreColor = Color.FromHex("#74aeff");
-                        core.CoreColorRadius = 10f;
-                        core.CoreColorEnergy = 2f;
-                        if (core.Status == CoreStatus.STABLE)
-                            core.CoreColorEnum = CoreStatusColorVisual.STABLE;
-                        if (core.Status == CoreStatus.OFFLINE)
-                            core.CoreColorEnum = CoreStatusColorVisual.OFFLINE;
-                        break;
-
-                    case CoreStatusColorVisual.STABLE: // Статус ядра: Стабильный
-                        core.CoreColor = Color.FromHex("#d80000ff");
-                        core.CoreColorRadius = 11f;
-                        core.CoreColorEnergy = 3f;
-                        if (core.Status == CoreStatus.OPTIMAL)
-                            core.CoreColorEnum = CoreStatusColorVisual.OPTIMAL;
-                        if (core.Status == CoreStatus.IDLE)
-                            core.CoreColorEnum = CoreStatusColorVisual.IDLE;
-                        break;
-
-                    case CoreStatusColorVisual.OPTIMAL: // Статус ядра: Оптимальный
-                        core.CoreColor = Color.FromHex("#ff0000ff");
-                        core.CoreColorRadius = 11;
-                        core.CoreColorEnergy = 3f;
-                        if (core.Status == CoreStatus.MODERATE)
-                            core.CoreColorEnum = CoreStatusColorVisual.MODERATE;
-                        if (core.Status == CoreStatus.STABLE)
-                            core.CoreColorEnum = CoreStatusColorVisual.STABLE;
-                        break;
-
-                    case CoreStatusColorVisual.MODERATE: // Статус ядра: Приемлимый
-                        core.CoreColor = Color.FromHex("#fff700ff");
-                        core.CoreColorRadius = 12f;
-                        core.CoreColorEnergy = 4f;
-                        if (core.Status == CoreStatus.HIGH)
-                            core.CoreColorEnum = CoreStatusColorVisual.HIGH;
-                        if (core.Status == CoreStatus.OPTIMAL)
-                            core.CoreColorEnum = CoreStatusColorVisual.OPTIMAL;
-                        break;
-
-                    case CoreStatusColorVisual.HIGH: // Статус ядра: Высокая температура
-                        core.CoreColor = Color.FromHex("#fbff11ff");
-                        core.CoreColorRadius = 12f;
-                        core.CoreColorEnergy = 4f;
-                        if (core.Status == CoreStatus.CRITICAL_HIGH)
-                            core.CoreColorEnum = CoreStatusColorVisual.CRITICAL_HIGH;
-                        if (core.Status == CoreStatus.MODERATE)
-                            core.CoreColorEnum = CoreStatusColorVisual.MODERATE;
-                        break;
-
-                    case CoreStatusColorVisual.CRITICAL_HIGH: // Статус ядра: Критически высокая температура
-                        core.CoreColor = Color.FromHex("#fdff8fff");
-                        core.CoreColorRadius = 15f;
-                        core.CoreColorEnergy = 7f;
-                        if (core.Status == CoreStatus.CATASTROPHIC)
-                            core.CoreColorEnum = CoreStatusColorVisual.CATASTROPHIC;
-                        if (core.Status == CoreStatus.HIGH)
-                            core.CoreColorEnum = CoreStatusColorVisual.HIGH;
-                        break;
-
-                    case CoreStatusColorVisual.CATASTROPHIC: // Статус ядра: Катастрофически высокая температура
-                        core.CoreColor = Color.FromHex("#ffffffff");
-                        core.CoreColorRadius = 20f;
-                        core.CoreColorEnergy = 12f;
-                        break;
-
-                    case CoreStatusColorVisual.SAFE_PROTOCOL: // Статус ядра: Протокол безопасности активен
-                        core.CoreColor = Color.FromHex("#fff700ff");
-                        core.CoreColorRadius = 12f;
-                        core.CoreColorEnergy = 4f;
-                        if (core.Status == CoreStatus.SAFE_PROTOCOL)
-                            core.CoreColorEnum = CoreStatusColorVisual.SAFE_PROTOCOL;
-                        if (core.Status == CoreStatus.MODERATE)
-                            core.CoreColorEnum = CoreStatusColorVisual.MODERATE;
-                        break;
-
-                    default:
-                        core.CoreColorEnum = CoreStatusColorVisual.OFFLINE; // Базовый статус ядра: Оффлайн
-                        break;
-                }
-                _pointLight.SetColor(uid, core.CoreColor, light);
-                _pointLight.SetRadius(uid, core.CoreColorRadius);
-                _pointLight.SetEnergy(uid, core.CoreColorEnergy);
-            }
         }
     }
     private void CheckTempChangeValue(EntityUid uid, EnergyCoreComponent core)
@@ -241,7 +165,7 @@ public sealed class EnergyCoreSystem : EntitySystem
         if (core.TempChangeStatus == (byte)heating)
             core.TempRiseStatus = CoreTempChangeLevel.HEATING;
     }
-    private void UpdateCoreTemp(EntityUid uid, EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
+    private void UpdateCoreTemp(EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
     {
         core.UpdateTemp = frameTime * core.TempChangeMultiplier;
 
@@ -271,7 +195,7 @@ public sealed class EnergyCoreSystem : EntitySystem
 
         if (core.IsSafeProtocolActive)
         {
-            if (core.Status == CoreStatus.SAFE_PROTOCOL) // Если температура больше 600.000 и протокол безопасности не был отключен
+            if (core.Status == CoreStatus.SAFEPROTOCOL) // Если температура больше 600.000 и протокол безопасности не был отключен
             {
                 core.UpdateTemp = frameTime * core.TempChangeMultiplierProtocol;
                 core.CoreTemp -= core.UpdateTemp;
@@ -364,7 +288,7 @@ public sealed class EnergyCoreSystem : EntitySystem
         while (query.MoveNext(out var uid, out var cormp, out _))
         {
             CheckTempChangeValue(uid, cormp);
-            UpdateCoreTemp(uid, cormp, frameTime);
+            UpdateCoreTemp(cormp, frameTime);
             RefreshCoreStatus(uid, cormp);
             UpdateCoreVisual(uid, cormp);
 

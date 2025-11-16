@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.EnergyCore;
+
 namespace Content.Server.Imperial.EnergyCore.Components
 {
     /// <summary>
@@ -7,6 +9,9 @@ namespace Content.Server.Imperial.EnergyCore.Components
     public sealed partial class CoreStatusScreenComponent : Component
     {
         [DataField]
-        public byte ScreenStatus = 1;
+        public CoreStatus ScreenStatus = CoreStatus.OFFLINE;
+
+        [DataField]
+        public byte SpriteStatus = 0;
     }
 }

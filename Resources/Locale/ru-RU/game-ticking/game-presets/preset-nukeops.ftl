@@ -23,7 +23,6 @@ nukeops-cond-nukiesabandoned = Ядерные оперативники были 
 nukeops-cond-allnukiesdead = Все ядерные оперативники погибли.
 nukeops-cond-somenukiesalive = Несколько ядерных оперативников погибли.
 nukeops-cond-allnukiesalive = Все ядерные оперативники выжили.
-nukeops-cond-coreexploded = Ядерным оперативникам удалось скомпрометировать энергетическое ядро.
 
 nukeops-list-start = Ядерными оперативниками были:
 nukeops-list-name = - [color=White]{$name}[/color] ([color=gray]{$user}[/color])

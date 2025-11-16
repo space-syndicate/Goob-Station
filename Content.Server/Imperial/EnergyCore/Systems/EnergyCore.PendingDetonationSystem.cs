@@ -42,7 +42,6 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<EnergyCorePendingDetonationComponent, ComponentStartup>(OnComponentStartup);
-        //  SubscribeLocalEvent<RoundEndMessageEvent>(EndRoundMessege);
     }
 
     private void OnComponentStartup(EntityUid uid, EnergyCorePendingDetonationComponent component, ComponentStartup args)
@@ -50,6 +49,9 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
         // Ставим новое имя и описание сущности
         _metaData.SetEntityName(uid, Loc.GetString("energycore-meltdown-name"));
         _metaData.SetEntityDescription(uid, Loc.GetString("energycore-meltdown-desc"));
+
+        var ev = new CoreCompromisedEvent();
+        RaiseLocalEvent(ev);
 
         GetDelayTime(uid, component);
         AnnounceCatastroph(uid, component);
@@ -109,12 +111,7 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
         {
             OwningStation = transform.GridUid,
         });
-        //OnEndRound(uid, component);
         Del(uid);
-    }
-    private void OnEndRound(EntityUid uid, EnergyCorePendingDetonationComponent component)
-    {
-        _roundEndSystem.EndRound();
     }
     public override void Update(float frameTime)
     {

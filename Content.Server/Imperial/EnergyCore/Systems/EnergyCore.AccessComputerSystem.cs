@@ -24,6 +24,7 @@ public sealed class CoreAccessComputerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -68,6 +69,52 @@ public sealed class CoreAccessComputerSystem : EntitySystem
     {
         value.FinalTempChangeCoef = value.Reactivity * value.Halflife; // Халфлайф 3 не будет
     }
+    private void GetCurrTemp(EntityUid uid, CoreAccessComputerComponent component)
+    {
+        var nearestUid = FindNearestEnergyCore(uid);
+        if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
+        {
+            return;
+        }
+        var (coreTemp, coreStatus) = GetCoreInfo(nearest);
+        component.CurrCoreTemp = coreTemp;
+        component.Status = coreStatus;
+    }
+
+    #region Get Nearest Core
+    private EntityUid? FindNearestEnergyCore(EntityUid core)
+    {
+        var transformCompConsole = Transform(core);
+        var mapId = transformCompConsole.MapID;
+        var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
+
+        EntityUid? nearest = null;
+        var minDist = float.MaxValue;
+
+        var enumerator = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
+        while (enumerator.MoveNext(out var uid, out _, out var transComp))
+        {
+            if (transComp.MapID != mapId)
+                continue;
+
+            var corepos = _transformSystem.GetMapCoordinates(uid).Position;
+            var dist = (corepos - pos).LengthSquared();
+            if (dist > minDist)
+                continue;
+
+            minDist = dist;
+            nearest = uid;
+        }
+        return nearest;
+    }
+    private static (float coreTemp, CoreStatus coreStatus) GetCoreInfo(EnergyCoreComponent component)
+    {
+        var coreTemp = component.CoreTemp;
+        var coreStatus = component.Status;
+
+        return (coreTemp, coreStatus);
+    }
+    #endregion
     #region UI
     private void OnUiButtonPressed(EntityUid uid, CoreAccessComputerComponent component, UiButtonPressedMessage msg)
     {
@@ -137,9 +184,9 @@ public sealed class CoreAccessComputerSystem : EntitySystem
 
         var safeProtocol = !component.SaveProtocolWasDeactivated;
         var tempRising = component.TempRising;
-        var coreStatus = component.CoreStatus;
+        var coreStatus = component.Status;
         var autoSystem = component.ByteStatus;
-        float coreTemp = component.CoreTemp;
+        float coreTemp = component.CurrCoreTemp;
         float tempChangeCoef = component.FinalTempChangeCoef;
         float currentPowerSupply = component.CurrentPowerSupply;
 
@@ -231,6 +278,13 @@ public sealed class CoreAccessComputerSystem : EntitySystem
                     CompleteProtocolDeactivation(uid, comp);
                 }
             }
+            var nearestUid = FindNearestEnergyCore(uid);
+            if (nearestUid == null ||
+                !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
+                continue;
+
+            var (coreTemp, coreStatus) = GetCoreInfo(nearest);
+            GetCurrTemp(uid, comp);
         }
     }
 }

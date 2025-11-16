@@ -10,7 +10,7 @@ public abstract partial class SharedEnergyCoreComponent : Component
 [Serializable, NetSerializable]
 public sealed class CoreTerminalBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public readonly string CoreStatus;
+    public readonly CoreStatus Status;
     public readonly bool TempRising;
     public readonly bool SafeProtocol;
     public readonly byte AutoSystem;
@@ -18,9 +18,9 @@ public sealed class CoreTerminalBoundUserInterfaceState : BoundUserInterfaceStat
     public readonly float TempChangeCoef;
     public readonly float CurrentPowerSupply;
 
-    public CoreTerminalBoundUserInterfaceState(string coreStatus, bool tempRising, bool safeProtocol, byte autoSystem, float coreTemp, float tempChangeCoef, float currentPowerSupply)
+    public CoreTerminalBoundUserInterfaceState(CoreStatus status, bool tempRising, bool safeProtocol, byte autoSystem, float coreTemp, float tempChangeCoef, float currentPowerSupply)
     {
-        CoreStatus = coreStatus;
+        Status = status;
         TempRising = tempRising;
         SafeProtocol = safeProtocol;
         AutoSystem = autoSystem;

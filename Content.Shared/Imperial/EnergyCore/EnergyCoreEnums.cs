@@ -33,9 +33,9 @@ public enum CoreStatus : byte
     OPTIMAL = 4,
     MODERATE = 5,
     HIGH = 6,
-    CRITICAL_HIGH = 7,
+    CRITICALHIGH = 7,
     CATASTROPHIC = 8,
-    SAFE_PROTOCOL = 9
+    SAFEPROTOCOL = 9
 }
 
 public enum CoreStatusColorVisual : byte
@@ -46,9 +46,9 @@ public enum CoreStatusColorVisual : byte
     OPTIMAL = 4,
     MODERATE = 5,
     HIGH = 6,
-    CRITICAL_HIGH = 7,
+    CRITICALHIGH = 7,
     CATASTROPHIC = 8,
-    SAFE_PROTOCOL = 9
+    SAFEPROTOCOL = 9
 }
 public enum CoreTempChangeLevel : byte
 {
