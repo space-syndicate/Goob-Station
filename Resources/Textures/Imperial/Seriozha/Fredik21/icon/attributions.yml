@@ -10,7 +10,7 @@
 
 - files: ["682.png"]
   license: "CC-BY-SA-3.0"
-  copyright: "https://github.com/Foundation-19, mod - Fredik21"
+  copyright: "Foundation-19, mod - Fredik21"
   source: "https://github.com/Foundation-19"
 
 - files: ["4975.png"]
@@ -21,4 +21,4 @@
 - files: ["4975.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Fasder"
-  source: "from https://github.com/VOREStation/VOREStation/ edited by Floofers"
+  source: "https://github.com/VOREStation/VOREStation/ (edited by Floofers)"
