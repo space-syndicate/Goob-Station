@@ -20,6 +20,11 @@
   displayName: store-currency-display-wizcoin
   canWithdraw: false
 
+- type: currency
+  id: VampireCoin
+  displayName: VampireCoin
+  canWithdraw: false
+
 #debug
 - type: currency
   id: DebugDollar

@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: VampireRecoveryAction
+  name: Recovery
+  description: Removes stun, restores all stamina, gradually heals
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Actions/smokeaction.rsi
+      state: smokeaction
+  - type: InstantAction
+    event: !type:VampireRecoveryEvent

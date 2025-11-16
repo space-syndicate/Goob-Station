@@ -42,6 +42,7 @@
     - SyndieBorgroundstart  # Imperial Syndie Borg
     - Pirates # Imperial Space Pirates: New Horizon
     - Wizard
+    - Vampire
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler

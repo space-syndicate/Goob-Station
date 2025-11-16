@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: VampireNosferaty
+  name: Гнев Носферату
+  description: Ну это гнев Носферату
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireNosferatyEvent

@@ -46,6 +46,12 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
+        - id: Vampire
+          weight: 10
+          conditions:
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
       # Roundstart Minor Rules
       - !type:GroupSelector
         conditions:

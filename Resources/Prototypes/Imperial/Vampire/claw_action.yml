@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: VampireClawAction
+  name: Коготь
+  description: Ну это коготь
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireClawEvent

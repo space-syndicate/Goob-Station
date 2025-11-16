@@ -1,0 +1,27 @@
+- type: entity
+  name: Vampire claw
+  parent: BaseItem
+  id: VampireClaw
+  description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi
+    layers:
+    - state: e_claws
+    - state: e_claws_blade
+      color: white
+      visible: true
+      shader: unshaded
+      map: ["blade"]
+  - type: Item
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws_inhands.rsi
+    size: Normal
+  - type: Unremoveable
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 15

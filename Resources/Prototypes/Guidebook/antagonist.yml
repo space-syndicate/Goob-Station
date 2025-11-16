@@ -51,3 +51,8 @@
   id: Wizard
   name: guide-entry-wizard
   text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"
+
+- type: guideEntry
+  id: Vampires
+  name: guide-entry-vampires
+  # text: "/ServerInfo/Guidebook/Antagonist/Vampires.xml"

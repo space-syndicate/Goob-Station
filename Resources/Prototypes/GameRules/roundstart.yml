@@ -385,6 +385,31 @@
   - type: DynamicRuleCost
     cost: 200
 
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  noSpawn: true
+  components:
+  - type: GameRule
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-round-end-agent-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 1
+      playerRatio: 1
+      lateJoinAdditional: true
+      allowNonHumans: false
+      multiAntagSetting: NotExclusive
+      briefing:
+        text: vampire-role-greeting-human
+        color: "#8B0000"
+        sound: /Audio/Ambience/Antag/traitor_start.ogg
+      components:
+      - type: Vampire
+      mindRoles:
+      - MindRoleVampire
+
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).
 - type: entity

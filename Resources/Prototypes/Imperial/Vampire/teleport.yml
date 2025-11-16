@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: VampireTeleport
+  name: Телепорт
+  description: Ну это телепорт
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireTeleportEvent

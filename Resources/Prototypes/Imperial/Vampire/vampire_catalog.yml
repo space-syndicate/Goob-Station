@@ -1,0 +1,79 @@
+- type: listing
+  id: VampireRecoveryListing
+  name: Recovery
+  description: Снимает стан, восстанавливает выносливость, постепенно лечит
+  productAction: VampireRecoveryAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 2
+  categories:
+  - ShadowsHealing
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireClawListing
+  name: Коготь
+  description: Ну это коготь
+  productAction: VampireClawAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 3
+  categories:
+  - FuryFangs
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireTeleportListing
+  name: Телепорт
+  description: Ну это телепорт
+  productAction: VampireTeleport
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 5
+  categories:
+  - FlightShadows
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireNosferatyListing
+  name: Гнев Носферату
+  description: Ну это гнев Носферату
+  productAction: VampireNosferaty
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: RushBloodListing
+  name: Прилив крови
+  description: Ну это прилив крови
+  productAction: RushBlood
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

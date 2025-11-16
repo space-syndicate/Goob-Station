@@ -316,6 +316,19 @@
     subtype: role-subtype-zombie
   - type: ZombieRole
 
+# Vampire
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    exclusiveAntag: false
+    roleType: TeamAntagonist
+    subtype: role-subtype-vampire
+  - type: VampireRole
+
 # Changeling
 - type: entity
   parent: BaseMindRoleAntag

@@ -1,0 +1,32 @@
+- type: entity
+  parent: BaseAction
+  id: VampireGrimoireAction
+  name: Гримуар вампира
+  description: Открывает магазин вампирских способностей
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: paper_blood
+  - type: InstantAction
+    event: !type:VampireGrimoireEvent
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+    verbText: Открыть гримуар
+    inHandsOnly: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: Store
+    name: store-preset-name-spellbook
+    categories:
+    - ShadowsHealing
+    - NightmaresControl
+    - FuryFangs
+    - FlightShadows
+    currencyWhitelist:
+    - VampireCoin
+    balance:
+      VampireCoin: 100

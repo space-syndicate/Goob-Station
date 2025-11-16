@@ -103,3 +103,25 @@
   id: DiscountedItems
   name: store-discounted-items
   priority: 200
+
+# Vampire
+
+- type: storeCategory
+  id: ShadowsHealing
+  name: Тени исцеления
+  priority: 0
+
+- type: storeCategory
+  id: NightmaresControl
+  name: Кошмары контроля
+  priority: 1
+
+- type: storeCategory
+  id: FuryFangs
+  name: Ярость клыков
+  priority: 2
+
+- type: storeCategory
+  id: FlightShadows
+  name: Полет теней
+  priority: 3
