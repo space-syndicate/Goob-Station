@@ -34,6 +34,26 @@
 
 - type: entity
   parent: PosterBase
+  id: Posterpgry
+  name: Poster p gry
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: pgry
+
+- type: entity
+  parent: PosterBase
+  id: PosterFBI
+  name: Poster ONP FBI
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: fbi
+
+- type: entity
+  parent: PosterBase
   id: Posterscarletking
   name: scarlet king Poster
   suffix: Fredik21, Недра
@@ -5274,3 +5294,556 @@
   chatMessages: ["Мило кричит"]
   chatTriggers:
     - Мило кричит
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPPGRY
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ PGRYGear ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: PGRYGear
+  equipment:
+    jumpsuit: USSPSoldierUniform
+    mask: USSPstormdivisionMask
+    shoes: ClothingShoesBootsWorkSCP
+    head: USSPstormdivisionUshanka
+    eyes: GlassesDeathSquad
+    gloves: USSPstormdivisionGloves
+    outerClothing: USSPguardsmenArmor
+    id: USSPBattleIDcard
+    ears: ClothingHeadsetSSSP
+    neck: USSPArmbandRed
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: USSPWeaponTT
+    pocket2: MagazinePistol
+    back: WeaponFelixMP5
+  storage:
+    belt:
+    - MagazineMP5
+    - MagazineMP5
+    - MagazineMP5
+    outerClothing:
+    - Ointment
+    - Brutepack
+    - Gauze
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPPGRYCom
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ PGRYGearCom ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: PGRYGearCom
+  equipment:
+    jumpsuit: USSPComissarUniformGreen
+    shoes: ClothingShoesBootsWorkSCP
+    head: USSPMarshalHelm
+    eyes: ClothingEyesGlassesSecurity
+    gloves: USSPRedGloves
+    outerClothing: USSPMarshalCoat
+    id: USSPofficerIDcard
+    ears: ClothingHeadsetUSSPMain
+    neck: ClothingNeckFelixSapphireMedal
+    belt: WeaponPistolAstra60
+    pocket1: BaseMagazineAstra60
+    pocket2: BaseMagazineAstra60
+  storage:
+    outerClothing:
+    - Ointment
+    - Brutepack
+    - Gauze
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPNPFBI
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ ONPFBIGear ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: ONPFBIGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    shoes: ClothingShoesSCP
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    id: ElysiumFederationPDA
+    ears: ClothingHeadsetTriviumMain
+    neck: ClothingNeckTieRed
+    pocket1: CSWeaponUSP-S
+    pocket2: MagazinePistolCaselessRifle
+    back: ClothingBackpackSatchelLeaderSacerdos_1
+  storage:
+    back:
+    - MagazinePistolCaselessRifle
+    - MagazinePistolCaselessRifle
+    - CombatMedipen
+    - CombatMedipen
+    - EmergencyMedipen
+    - EmergencyMedipen
+    - Zipties
+    - Zipties
+    - LauncherSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - ChemistryBottleMuteToxin
+    - ChemistryBottlePax
+    - ChemistryBottleToxin
+    - ChemistryBottleOmnizine
+    - FBIUplink
+
+- type: storeCategory
+  id: FBIUplinkUtilities
+  name: Обман ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkGun
+  name: Оружие ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkJums
+  name: Снаряжение ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkXim
+  name: Химикаты ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkImplant
+  name: Импланты ОНП ФБР
+
+- type: listing
+  id: FBIUplinkNukeDiskFake
+  name: Поддельный диск ЯУ
+  description: Иногда что бы получить объект надо просто показать что будет если его не отдать
+  productEntity: NukeDiskFake
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkSpaceCash10000
+  name: 10000 кредитов
+  description: Я думаю что мы сможем купить этот объект
+  productEntity: SpaceCash10000
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkEncryptionKeyBinarySyndicate
+  name: бинарный ключ шифрования
+  description: Где же ты... NDA -  079?
+  productEntity: EncryptionKeyBinarySyndicate
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingBackpackSatchelSmugglerUnanchored
+  name: сумка контрабандиста
+  description: Сумка в которой вы сможите спрятать 420-J от своего начальника
+  productEntity: ClothingBackpackSatchelSmugglerUnanchored
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkStealthBox
+  name: Коробка-невидимка
+  description: Мы точно не сотрудничаем с синдикатом?
+  productEntity: StealthBox
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChameleonProjector
+  name: Проектор
+  description: Время шоу! Господа!
+  productEntity: ChameleonProjector
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkEnergyDaggerBox
+  name: Лазерная ручка
+  description: Кто то ее вообще покупает?
+  productEntity: EnergyDaggerBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkCSWeaponUSP-S
+  name: USP
+  description: Агент действует скрытно, но иногда теряет свое оружие.
+  productEntity: CSWeaponUSP-S
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkMagazinePistolCaselessRifle
+  name: USP - патроны
+  description: Патроны
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkBriefcaseSyndieSniperBundleFilled
+  name: Христов
+  description: Агент действует скрытно, но иногда все же придется навести шуму.
+  productEntity: BriefcaseSyndieSniperBundleFilled
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkC4
+  name: C4
+  description: Бабах
+  productEntity: C4
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingShoesChameleonNoSlips
+  name: Нескользящие ботинки
+  description: Будет обидно если вы наступите на NDA 999
+  productEntity: ClothingShoesChameleonNoSlips
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkJums
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingBackpackChameleonFill
+  name: Набор хамелеона
+  description: Простите капитан, но этот объект мой!
+  productEntity: ClothingBackpackChameleonFill
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkJums
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingMaskGasVoiceChameleon
+  name: Голосовая маска
+  description: Что вы говорите? Видели странное существо? Позвольте нам им заняться.
+  productEntity: ClothingMaskGasVoiceChameleon
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkJums
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottleOmnizine
+  name: Омнизин
+  description: Я лечение
+  productEntity: ChemistryBottleOmnizine
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottleNocturine
+  name: Ноктюрин
+  description: Спите, а вот эту шляпу я пожалуй заберу
+  productEntity: ChemistryBottleNocturine
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottleToxin
+  name: Токсин
+  description: Я не лечение
+  productEntity: ChemistryBottleToxin
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkHypoDartBox
+  name: гиподротик
+  description: Капитан, сыграем в дартс?
+  productEntity: HypoDartBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottlePax
+  name: Пакс
+  description: Пацифизм
+  productEntity: ChemistryBottlePax
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkCChemistryBottleMuteToxin
+  name: Немота
+  description: Не говорите
+  productEntity: ChemistryBottleMuteToxin
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkDnaScramblerImplanter
+  name: Имплант смены ДНК
+  description: Что вы капитан, тот человек в черном точно уже сбежал
+  productEntity: DnaScramblerImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkEmpImplanter
+  name: Имплант ЭМИ
+  description: Уберите свои дубинки и налейте мне чаю
+  productEntity: EmpImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkImperialNutrimentPumpImplanter
+  name: Имплант помпы питательных веществ
+  description: Мне некогда с вами пить чай
+  productEntity: ImperialNutrimentPumpImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkStorageImplanter
+  name: Имплант хранилище
+  description: Почему я не могу ходить с USP в открытую?
+  productEntity: StorageImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkImperialSmokeImplanter
+  name: Имплант дымовой завесы
+  description: Я получил все что хотел! Теперь я вынужден покинуть это место.
+  productEntity: ImperialSmokeImplanter
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: Tag
+  id: FBIUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: FBIUplink
+  name: Терминал ОНП ФБР
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FBIUplink
+  - type: Store
+    categories:
+    - FBIUplinkUtilities
+    - FBIUplinkGun
+    - FBIUplinkJums
+    - FBIUplinkXim
+    - FBIUplinkImplant
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
