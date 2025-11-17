@@ -25,11 +25,11 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan NextActivationTime;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi? EffectActived = new(new ResPath("/Textures/Imperial/Lavaland/Entities/Effects/smasher_shield.rsi"), "actived");
+    public SpriteSpecifier.Rsi? EffectActived = new(new ResPath("/Textures/Imperial/Lavaland/MiningWeapons/smasher_shield.rsi"), "actived");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi? EffectCharging = new(new ResPath("/Textures/Imperial/Lavaland/Entities/Effects/smasher_shield.rsi"), "charging");
+    public SpriteSpecifier.Rsi? EffectCharging = new(new ResPath("/Textures/Imperial/Lavaland/MiningWeapons/smasher_shield.rsi"), "charging");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi? EffectDecay = new(new ResPath("/Textures/Imperial/Lavaland/Entities/Effects/smasher_shield.rsi"), "decay");
+    public SpriteSpecifier.Rsi? EffectDecay = new(new ResPath("/Textures/Imperial/Lavaland/MiningWeapons/smasher_shield.rsi"), "decay");
 }
