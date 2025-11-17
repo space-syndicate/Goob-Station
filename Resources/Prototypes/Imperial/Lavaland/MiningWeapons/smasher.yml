@@ -39,3 +39,5 @@
   - type: DisarmMalus
   - type: Prying
   - type: Smasher
+  - type: EarthshakerStrike
+    doAfterTime: 1

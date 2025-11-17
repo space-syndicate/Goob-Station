@@ -9,11 +9,12 @@
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Sprite
-    sprite: Mobs/Aliens/Asteroid/goliath.rsi
   - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
   - type: TimedDespawn
-    lifetime: 0.7
+  # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
+    lifetime: 0.8
 
 - type: entity
   id: EffectEarthshakerRiftSpawn
@@ -22,7 +23,7 @@
   name: tentacle
   components:
   - type: Sprite
-    state: goliath_tentacle_spawn
+    state: start
   - type: SpawnOnDespawn
     prototype: EarthshakerRiftAttack
 
@@ -36,10 +37,6 @@
     bodyType: Static
     canCollide: true
   - type: InteractionOutline
-  - type: Sprite
-    sprite: Mobs/Aliens/Asteroid/goliath.rsi
-    layers:
-    - state: goliath_tentacle_wiggle
   - type: StunOnContact
     blacklist:
       components:
@@ -58,8 +55,13 @@
         layer:
         - Impassable
         hard: false
+  - type: Sprite
+    sprite: Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
+    layers:
+    - state: attack
   - type: TimedDespawn
-    lifetime: 0.4
+  # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
+    lifetime: 3
   - type: SpawnOnDespawn
     prototype: EffectEarthshakerRiftEnd
 
@@ -68,7 +70,10 @@
   parent: BaseEffectEarthshakerRift
   categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    state: goliath_tentacle_retract
   - type: EffectVisuals
   - type: AnimationPlayer
+  - type: Sprite
+    state: end
+  - type: TimedDespawn
+  # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
+    lifetime: 0.3

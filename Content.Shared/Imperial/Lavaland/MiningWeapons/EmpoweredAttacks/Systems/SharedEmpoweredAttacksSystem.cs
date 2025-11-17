@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Hands;
 using Content.Shared.Popups;
 using Content.Shared.DoAfter;
+using Content.Shared.Wieldable.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Events;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 using Content.Shared.Coordinates;
@@ -13,7 +14,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    private string _earthshakerRiftSpawnPrototype = "EffectEarthshakerRiftSpawn";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -52,10 +53,23 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         if (!comp.Item.HasValue)
             return;
 
-        var time = 1.5f;
-        if (!StartDoAfter(user, comp.Item.Value, time, new EarthshakerStrikeDoAfterEvent()))
+        if (comp.HasWielded && !IsItemWielded(comp.Item.Value))
+        {
+            ItemWieldedCancelled(user);
             return;
+        }
+
+        if (comp.HasDoAfter)
+        {
+            if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new EarthshakerStrikeDoAfterEvent()))
+                return;
+        }
+        else
+        {
+            Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
+        }
     }
+
 
     private void OnEarthshakerStrikeDoAfter(EntityUid user, EarthshakerStrikeComponent comp, EarthshakerStrikeDoAfterEvent args)
     {
@@ -70,7 +84,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             return;
 
         Log.Info($"44");
-        Spawn(_earthshakerRiftSpawnPrototype, user.ToCoordinates());
+        Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
 
         args.Handled = true;
     }
@@ -80,6 +94,10 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         _action.AddAction(args.User, ref comp.Action, comp.ActionEarthshakerStrike);
 
         var userComp = EnsureComp<UserEarthshakerStrikeComponent>(args.User);
+        userComp.EarthshakerRiftSpawnPrototype = comp.EarthshakerRiftSpawnPrototype;
+        userComp.DoAfterTime = comp.DoAfterTime;
+        userComp.HasDoAfter = comp.HasDoAfter;
+        userComp.HasWielded = comp.HasWielded;
         userComp.Item = uid;
 
         comp.User = args.User;
@@ -253,5 +271,16 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("doafter-sbit"), user, user); //change
     }
 
+    private void ItemWieldedCancelled(EntityUid user)
+    {
+        Log.Info("Wielded false");
+
+        _popup.PopupEntity(Loc.GetString("item-wielded-false"), user, user); //change
+    }
+
+    private bool IsItemWielded(EntityUid item)
+    {
+        return TryComp<WieldableComponent>(item, out var wieldable) && wieldable.Wielded;
+    }
     #endregion
 }
