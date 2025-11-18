@@ -1511,18 +1511,7 @@
   storage:
     back:
     - WeaponDisabler
-    - MagazinePistolRubber
-    - CrowbarRed
-    - Screwdriver
-    - Wrench
-    - Flash
-    - SmokeGrenade
-    - GrenadeFlashBang
-    - CombatKnife
-    - TelescopicShield
-    - FirstAidMedkitImperialFilled
-    - MagazineRifle
-    - MagazineRifle
+    - GOCUplink
 
 - type: localizedDataset
   id: NamesGOCscp
@@ -1716,19 +1705,7 @@
     pocket2: AccessBreaker
   storage:
     back:
-    - JawsOfLife
-    - PowerDrill
-    - WelderExperimental
-    - Multitool
-    - MedkitCombatFilled
-    - EmpGrenade
-    - EmpGrenade
-    - ExGrenade
-    - GrenadeShrapnel
-    - CombatKnife
-    - Tourniquet
-    - Tourniquet
-    - TelescopicShield
+    - GOCUplinkCom
 
 - type: gamePreset
   id: nedra
@@ -1824,18 +1801,7 @@
     pocket2: MagazinePistolSubMachineGun
   storage:
     back:
-    - MagazinePistolSubMachineGun
-    - WeaponDisabler
-    - Handcuffs
-    - Handcuffs
-    - FirstAidMedkitImperialFilled
-    - CrowbarRed
-    - Wrench
-    - Screwdriver
-    - TelescopicShield
-    - SmokeGrenade
-    - SmokeGrenade
-    - CombatKnife
+    - FondUplinkNu7Zeta9
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -1875,20 +1841,7 @@
     pocket2: EncryptionKeyNedraCMDconnection
   storage:
     back:
-    - MagazinePistolSubMachineGun
-    - MagazinePistolSubMachineGun
-    - MagazinePistolSubMachineGunIncendiary
-    - WeaponDisabler
-    - Handcuffs
-    - Handcuffs
-    - FirstAidMedkitImperialFilled
-    - CrowbarRed
-    - Wrench
-    - Screwdriver
-    - TelescopicShield
-    - SmokeGrenade
-    - SmokeGrenade
-    - CombatKnife
+    - FondUplinkCommander
 
 - type: localizedDataset
   id: Namesnu7scp
@@ -2004,20 +1957,7 @@
     head: ClothingHeadHatBeret
     suitstorage: WeaponFelixHK416
     pocket1: EncryptionKeyNedraLastHopeconnection
-    pocket2: MagazineHK416
-  storage:
-    back:
-    - MagazineHK416
-    - MagazineHK416
-    - MedkitCobmatImperialFilled
-    - SyndicateJawsOfLife
-    - Screwdriver
-    - Wrench
-    - TearGasGrenade
-    - EmpGrenade
-    - SmokeGrenade
-    - GrenadeIncendiary
-    - CombatKnife
+    pocket2: FondUplinkAlpha9
 
 - type: entity
   id: HandTeleporterSCP105
@@ -2077,8 +2017,6 @@
   storage:
     back:
     - EnergySword
-    - MedkitCobmatImperialFilled
-    - MedkitCobmatImperialFilled
     - RollerBedSpawnFolded
     - RollerBedSpawnFolded
     - HandTeleporterSCP105
@@ -2087,6 +2025,7 @@
     - SCP207
     - SCP207
     - SCP207
+    - FondUplinkAlpha9
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -3010,6 +2949,7 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+    - FondUplinkBaseCom
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -3059,6 +2999,7 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+    - FondUplinkBaseCom
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -3126,6 +3067,7 @@
     pocket2: WeaponDisabler
   inhand:
   - PaperSRPGPI
+  - FondUplinkBase
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3414,20 +3356,7 @@
     - HandHeldAtmosAlertsMonitor
     - HandHeldMassScanner
     - SyndiHypo
-    - CombatMedipen
-    - CombatMedipen
-    - ChemistryBottleOmnizine
-    - SmokeGrenade
-    - SmokeGrenade
-    - EmpGrenade
-    - EmpGrenade
-    - GrenadeIncendiary
-    - GrenadeIncendiary
-    - ExGrenade
-    - ExGrenade
-    - GrenadeShrapnel
-    - GrenadeShrapnel
-    - SyndicateJawsOfLife
+    - FondUplinkTay5
     - ItemODENMagazine
     - ItemODENMagazine
     - MachineGunODEN
@@ -3641,11 +3570,7 @@
     - EnergySwordDouble
     - AmpulaDylo
     - AmpulaDylo
-    - CombatMedipen
-    - CombatMedipen
-    - SyndicateJawsOfLife
-    - SmokeGrenade
-    - SmokeGrenade
+    - FondUplinkTay5
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3685,9 +3610,6 @@
     - EncryptionKeyNedraMTFconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraLastHopeconnection
-    - CombatMedipen
-    - CombatMedipen
-    - SyndicateJawsOfLife
     - EnergyShield
     - EnergyShield
     - EnergyShield
@@ -3695,6 +3617,7 @@
     - TelescopicShield
     - TelescopicShield
     - BlackShieldPistol
+    - FondUplinkTay5
     - WeaponAdvancedLaser
     - WeaponLightMachineGunL6
     - MagazineLightRifleBox
@@ -3783,9 +3706,6 @@
     - EncryptionKeyNedraMTFconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraLastHopeconnection
-    - CombatMedipen
-    - CombatMedipen
-    - SyndicateJawsOfLife
     - EnergySwordDouble
     - Hypospray
     - ChemistryBottleOmnizine
@@ -3801,6 +3721,7 @@
     - SCP500
     - SCP500
     - SCP207
+    - FondUplinkTay5
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -4129,9 +4050,7 @@
     back:
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
-    - FirstAidMedkitImperialFilled
-    - SpeedLoaderMagnum
-    - SpeedLoaderMagnum
+    - CIUplinkBase
     - WeaponRevolverInspector
 
 - type: entity
@@ -4176,7 +4095,7 @@
     back:
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
-    - FirstAidMedkitImperialFilled
+    - CIUplinkBase
   inhand:
   - TelescopicShield
 
@@ -4231,13 +4150,11 @@
     id: SCPIDCardCI
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltMinuteManCamoForestWebbing
-    pocket1: SpeedLoaderMagnumIncendiary
-    pocket2: SpeedLoaderMagnumIncendiary
   storage:
     back:
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
-    - FirstAidMedkitImperialFilled
+    - CIUplinkCommander
   inhand:
   - WeaponRevolverMatebaAP
 
@@ -4381,21 +4298,7 @@
     pocket2: MagazineMP9
   storage:
     back:
-    - MagazineMP9
-    - WeaponPistolAstra60
-    - BaseMagazineAstra60
-    - BaseMagazineAstra60
-    - FirstAidMedkitImperialFilled
-    - BoxFlare
-    - FlareBlue
-    - FlareBlue
-    - FlareGreen
-    - FlareGreen
-    - CrowbarRed
-    - SmokeGrenade
-    - GrenadeFlashBang
-    - EmpGrenade
-    - FlashlightSeclite
+    - FondUplinkNu7Zeta9
   inhand:
   - Floodlight
 
@@ -4436,21 +4339,8 @@
     pocket2: EncryptionKeyNedraCMDconnection
   storage:
     back:
-    - mp5-Magazine
     - CSWeaponFiveSeven
-    - mp5-Magazine
-    - MagazinePistol
-    - FlashlightSeclite
-    - FirstAidMedkitImperialFilled
-    - BoxFlare
-    - FlareBlue
-    - FlareBlue
-    - FlareGreen
-    - FlareGreen
-    - CrowbarRed
-    - SmokeGrenade
-    - GrenadeFlashBang
-    - EmpGrenade
+    - CIUplinkCommander
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4564,8 +4454,6 @@
     back:
     - FuelTankFlamethrowerMedium
     - FuelTankFlamethrowerMedium
-    - FireExtinguisher
-    - FireExtinguisher
     - GrenadeIncendiary
     - GrenadeIncendiary
     - GrenadeIncendiary
@@ -4573,7 +4461,7 @@
     - MagazinePistolIncendiary
     - MagazinePistolIncendiary
     - MagazineBoxPistolIncendiary
-    - SelfRechargingFireExtinguisher
+    - FireExtinguisher
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -4613,11 +4501,7 @@
   storage:
     back:
     - SelfRechargingFireExtinguisher
-    - SelfRechargingFireExtinguisher
-    - GrenadeIncendiary
-    - GrenadeIncendiary
-    - GrenadeIncendiary
-    - MagazineBoxPistolIncendiary
+    - FondUplinkCommander
     - WeaponSubMachineGunDrozd
     - MagazinePistolSubMachineGunIncendiary
     - MagazinePistolSubMachineGunIncendiary
@@ -4731,16 +4615,8 @@
     pocket1: EncryptionKeyNedraMTFconnection
   storage:
     back:
-    - MedkitCobmatImperialFilled
-    - BoxFlare
     - LocatorEta10
-    - TearGasGrenade
-    - TearGasGrenade
-    - TearGasGrenade
-    - GrenadeFlashBang
-    - GrenadeFlashBang
-    - GrenadeFlashBang
-    - JawsOfLife
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
 
 - type: entity
   id: LocatorEta10
@@ -4801,16 +4677,8 @@
     pocket2: EncryptionKeyNedraCMDconnection
   storage:
     back:
-    - MedkitCobmatImperialFilled
-    - BoxFlare
     - LocatorEta10Commander
-    - TearGasGrenade
-    - TearGasGrenade
-    - TearGasGrenade
-    - GrenadeFlashBang
-    - GrenadeFlashBang
-    - GrenadeFlashBang
-    - JawsOfLife
+    - FondUplinkCommander
 
 - type: entity
   name: hard-to-kill reptile
@@ -5322,13 +5190,9 @@
     neck: USSPArmbandRed
     belt: ClothingBeltMinuteManCamoForestWebbing
     pocket1: USSPWeaponTT
-    pocket2: MagazinePistol
+    pocket2: CIUplinkBase
     back: WeaponFelixMP5
   storage:
-    belt:
-    - MagazineMP5
-    - MagazineMP5
-    - MagazineMP5
     outerClothing:
     - Ointment
     - Brutepack
@@ -5363,9 +5227,7 @@
     pocket2: BaseMagazineAstra60
   storage:
     outerClothing:
-    - Ointment
-    - Brutepack
-    - Gauze
+    - CIUplinkCommander
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -5820,6 +5682,7 @@
   parent: BaseERTUplink
   id: FBIUplink
   name: Терминал ОНП ФБР
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
   suffix: Fredik21, Недра
   components:
   - type: Tag
@@ -5847,3 +5710,1031 @@
   - type: Item
     sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
     heldPrefix: device
+
+- type: Tag
+  id: FondUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplink
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkAmmo
+  name: Патроны
+
+- type: storeCategory
+  id: FondUplinkGranade
+  name: Гранаты
+
+- type: storeCategory
+  id: FondUplinkMed
+  name: Медицина
+
+- type: storeCategory
+  id: FondUplinkConsumables
+  name: Расходники
+
+- type: listing
+  id: FBIUplinkNMagazineRifle
+  name: магазин (.20 винтовочные)
+  description: Для М-90gl
+  productEntity: MagazineRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazinePistolRubber
+  name: пистолетный магазин (.35 авто резиновые)
+  description: Для ММК 58
+  productEntity: MagazinePistolRubber
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineLightRifle
+  name: магазин (.30 винтовочные)
+  description: Для АКМ
+  productEntity: MagazineLightRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSpeedLoaderAstra903
+  name: спидлоадер Astra-903 (5x14)
+  description: Для Astra-903
+  productEntity: SpeedLoaderAstra903
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkmp5-Magazine
+  name: магазин ПП (.35 авто)
+  description: Для mp5
+  productEntity: mp5-Magazine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazinePistol
+  name: магазин ПП (.35 авто)
+  description: Для five-seven
+  productEntity: MagazinePistol
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazinePistolSubMachineGun
+  name: магазин ПП (.35 авто)
+  description: Для Дрозд
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineHK416
+  name: магазин HK416 (5x56)
+  description: Для HK416
+  productEntity: MagazineHK416
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineMP9
+  name: магазин ПП MP-9 (9x22)
+  description: Для ПП MP-9
+  productEntity: MagazineMP9
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkp90-Magazine
+  name: магазин для ПП P90 (.35 авто)
+  description: Для P90
+  productEntity: p90-Magazine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFuelTankFlamethrowerMedium
+  name: стандартный топливный бак
+  description: Для Огнемёт "Санитар"
+  productEntity: FuelTankFlamethrowerMedium
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGrenadeFlashBang
+  name: светошумовая граната
+  description: Пиииииииииииииииииииии
+  productEntity: GrenadeFlashBang
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEmpGrenade
+  name: ЭМИ граната
+  description: Выпускает электромагнитный импульс, который выводит из строя или повреждает различные электронные устройства и разряжает элементы питания.
+  productEntity: EmpGrenade
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkTearGasGrenade
+  name: граната со слезоточивым газом
+  description: Граната со слезоточивым газом для борьбы с массовыми беспорядками. Вызывает раздражение, боль и заставляет плакать.
+  productEntity: TearGasGrenade
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGrenadeShrapnel
+  name: шрапнельная граната
+  description: Выпускает смертоносную шрапнель, вызывающую сильное кровотечение.
+  productEntity: GrenadeShrapnel
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGrenadeIncendiary
+  name: зажигательная граната
+  description: Поднимет настроение гарантированно.
+  productEntity: GrenadeIncendiary
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkExGrenade
+  name: разрывная граната
+  description: Граната, создающая небольшой но разрушительный взрыв.
+  productEntity: ExGrenade
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBrutepack
+  name: набор для ушибов
+  description: Терапевтический набор гелей и пластырей, предназначенных для лечения ушибов.
+  productEntity: Brutepack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGauze
+  name: марлевый бинт
+  description: Несколько стерильных марлевых полосок для оборачивания кровоточащих культей.
+  productEntity: Gauze
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkOintment
+  name: мазь
+  description: Используется для лечения этих неприятных ожогов. Менее эффективна при кислотных ожогах.
+  productEntity: Ointment
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFirstAidMedkitImperialFilled
+  name: аптечка первой помощи
+  description: Это экстренная аптечка для серьезных бо-бо.
+  productEntity: FirstAidMedkitImperialFilled
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMedicatedSuture
+  name: лечебный шовный материал
+  description: Нить, пропитанная лекарством, эффективно лечит тупые травмы и закрывает раны.
+  productEntity: MedicatedSuture
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRegenerativeMesh
+  name: регенеративная сетка
+  description: Используется для лечения даже самых тяжелых ожогов. Также эффективен против едких ожогов.
+  productEntity: RegenerativeMesh
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBurnAutoInjector
+  name: медипен от термических повреждений
+  description: Быстрая доза дермалина и лепоразина, предназначенная для боевого применения.
+  productEntity: BurnAutoInjector
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBruteAutoInjector
+  name: медипен от физических повреждений
+  description: Быстрая доза бикаридина и транексамовой кислоты, предназначенная для боевого применения.
+  productEntity: BruteAutoInjector
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBloodpack
+  name: пакет с кровью
+  description: Содержит инновационный универсальный заменитель крови, созданный передовой медицинской наукой.
+  productEntity: Bloodpack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkTourniquet
+  name: турникет
+  description: Останавливает кровотечение! Надеюсь.
+  productEntity: Tourniquet
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMedkitCobmatImperialFilled
+  name: боевая аптечка
+  description: Для любителей больших пушек среди нас.
+  productEntity: MedkitCobmatImperialFilled
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkCombatMedipen
+  name: боевой медипен
+  description: Одноразовая аптечка, содержащая химические вещества, которые восстанавливают большинство типов повреждений.
+  productEntity: CombatMedipen
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkTelescopicShield
+  name: телескопический щит
+  description: Усовершенствованный защитный щит, изготовленный из легких материалов, который складывается для удобства хранения.
+  productEntity: TelescopicShield
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRiotShield
+  name: противоударный щит
+  description: Большой башенный щит на случай беспорядков. Хорошо подходит для контроля толпы.
+  productEntity: RiotShield
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRiotBulletShield
+  name: противопульный щит
+  description: Щит на случай беспорядков, созданный противостоять пулям, но не более того.
+  productEntity: RiotBulletShield
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRiotLaserShield
+  name: противолазерный щит
+  description: Щит на случай беспорядков, созданный противостоять лазерам, но не более того.
+  productEntity: RiotLaserShield
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBallisticShieldRCU
+  name: тяжелый баллистический щит
+  description: Тяжелый штурмовой щит с хорошей защитой. Он настолько тяжелый, что удар им должен быть чрезвычайно болезненным...
+  productEntity: BallisticShieldRCU
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFireExtinguisherMini
+  name: карманный огнетушитель
+  description: Легкая и компактная модель огнетушителя с каркасом из стекловолокна. Вмещает меньше воды, чем его старший брат.
+  productEntity: FireExtinguisherMini
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFireExtinguisher
+  name: огнетушитель
+  description: Он тушит пожары.
+  productEntity: FireExtinguisher
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkCrowbarRed
+  name: аварийный лом
+  description: Многофункциональный инструмент для открывания дверей и борьбы с межпространственными захватчиками.
+  productEntity: CrowbarRed
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkCombatKnife
+  name: боевой нож
+  description: Смертоносный нож, предназначенный для рукопашных схваток.
+  productEntity: CombatKnife
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkPowerCellHigh
+  name: батарея высокой ёмкости
+  description: Стандартизированный перезаряжаемый элемент питания. Этот премиальный накопитель большой емкости вмещает на 50% больше энергии, по сравнению с конкурентами.
+  productEntity: PowerCellHigh
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFlashlightSeclite
+  name: фонарик СБ
+  description: Надежный фонарь, используемый службой безопасности.
+  productEntity: FlashlightSeclite
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkJawsOfLife
+  name: челюсти жизни
+  description: Набор челюстей жизни, скомпонованных при помощи магии науки.
+  productEntity: JawsOfLife
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBoxFlare
+  name: коробка фальшфейеров
+  description: Коробка фальшфейеров. Время зажигать.
+  productEntity: BoxFlare
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBlueFlareBox
+  name: коробка голубых фальшфейеров
+  description: Выглядит как белая тема приложения ночью.
+  productEntity: BlueFlareBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGreenFlareBox
+  name: коробка зелёных фальшфейеров
+  description: Выглядит как белая тема приложения ночью.
+  productEntity: GreenFlareBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: CIUplink
+  name: Терминал Повстанцев
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - CIUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-px-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: CIUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: CIUplinkMagazinePistolSubMachineGun
+  name: магазин ПП (.35 авто)
+  description: Для C-20r
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazineLightRifleBox
+  name: короб патронов L6 SAW (.30 винтовочные)
+  description: Для L6 SAW
+  productEntity: MagazineLightRifleBox
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkSpeedLoaderMagnum
+  name: спидлоадер (.45 магнум)
+  description: Для Инспектор
+  productEntity: SpeedLoaderMagnum
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkSpeedLoaderMagnumIncendiary
+  name: спидлоадер (.45 магнум зажигательный)
+  description: Для Матеба
+  productEntity: SpeedLoaderMagnumIncendiary
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkBaseMagazineAstra60
+  name: спидлоадер (.45 магнум зажигательный)
+  description: Для Astra-60
+  productEntity: BaseMagazineAstra60
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazineMP5
+  name: магазин ПП MP-5 (9x21)
+  description: Для ПП MP-5
+  productEntity: MagazineMP5
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazinePistol
+  name: пистолетный магазин (.35 авто)
+  description: Для пистолет ТТ
+  productEntity: MagazinePistol
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkNu7Zeta9
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 8
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkEpsilon11Eta10Beta7epsilon9
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 10
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkAlpha9
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkAlpha1
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 18
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkBase
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 5
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkBaseCom
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 7
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkCommander
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkTay5
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 30
+
+- type: entity
+  parent: CIUplink
+  id: CIUplinkBase
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 10
+
+- type: entity
+  parent: CIUplink
+  id: CIUplinkCommander
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: BaseERTUplink
+  id: GOCUplink
+  name: Терминал ГОК
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - GOCUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-goc-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: GOCUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: GOCUplinkMagazineRifle
+  name: магазин (.20 винтовочные)
+  description: Для М-90gl
+  productEntity: MagazineRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - GOCUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: GOCUplinkMagazinePistolRubber
+  name: пистолетный магазин (.35 авто резиновые)
+  description: Для МК 58
+  productEntity: MagazinePistolRubber
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - GOCUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: GOCUplink
+  id: GOCUplinkCom
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
