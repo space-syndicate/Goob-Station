@@ -64,6 +64,7 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty);
         SubscribeLocalEvent<VampireGrimoireEvent>(OnGrimoireActivated);
         SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
+        SubscribeLocalEvent<VampireRushBloodEvent>(OnRushBlood);
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
@@ -234,7 +235,15 @@ public sealed class VampireSystem : EntitySystem
         if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
             return;
 
-        if (comp.BuffBlocked && _gameTiming.CurTime < comp.BuffBlockedUntil)
+        if (comp.BuffBlocked)
+        {
+            _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
+            args.Performer, args.Performer, PopupType.LargeCaution);
+
+            return;
+        }
+
+        if (_gameTiming.CurTime < comp.BuffBlockedUntil)
             return;
 
         if (comp.OriginalDamageModifier == null)
@@ -375,6 +384,41 @@ public sealed class VampireSystem : EntitySystem
                 Dirty(uid, comp);
             }
         }
+    }
+
+    private void OnRushBlood(VampireRushBloodEvent args)
+    {
+        if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
+            return;
+
+        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (comp.BuffBlocked)
+        {
+            _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
+            args.Performer, args.Performer, PopupType.LargeCaution);
+
+            return;
+        }
+
+        if (comp.OriginalWalkSpeed == null)
+        {
+            comp.OriginalWalkSpeed = speed.BaseWalkSpeed;
+            comp.OriginalSprintSpeed = speed.BaseSprintSpeed;
+        }
+
+        _speedSystem.ChangeBaseSpeed(
+            args.Performer,
+            (comp.OriginalWalkSpeed ?? speed.BaseWalkSpeed) * args.BoostSpeed,
+            (comp.OriginalSprintSpeed ?? speed.BaseSprintSpeed) * args.BoostSpeed,
+            speed.BaseAcceleration,
+            speed);
+
+        comp.BuffBlocked = true;
+        comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(6f);
+        Dirty(args.Performer, comp);
+        args.Handled = true;
     }
 
     private void OnVampireStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
