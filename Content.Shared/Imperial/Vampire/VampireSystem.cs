@@ -4,7 +4,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Imperial.Vampire;
 using Content.Shared.StatusEffect;
 using Content.Shared.Hands.Components;
 using Content.Shared.Popups;
@@ -27,8 +26,13 @@ using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Maps;
+using Content.Shared.Physics;
+using Robust.Shared.Physics.Events;
+using Content.Shared.Whitelist;
+using Content.Shared.Directions;
 
-namespace Content.Server.Imperial.Vampire;
+namespace Content.Shared.Imperial.Vampire;
 
 public sealed class VampireSystem : EntitySystem
 {
@@ -48,7 +52,9 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -57,6 +63,8 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireTeleportEvent>(OnTeleport);
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty);
         SubscribeLocalEvent<VampireGrimoireEvent>(OnGrimoireActivated);
+        SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
+        SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
@@ -188,7 +196,7 @@ public sealed class VampireSystem : EntitySystem
     }
 
     /// <summary>
-    /// сжатый код визов
+    /// сжатый метод SelectRandomTileInRange
     /// </summary>
     private EntityCoordinates? VampireRandomTileInRange(TransformComponent userXform, float radius)
     {
@@ -271,6 +279,53 @@ public sealed class VampireSystem : EntitySystem
 
         Dirty(args.Performer, comp);
         args.Handled = true;
+    }
+    private void OnTentacles(VampireTentaclesEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var coords = args.Target;
+        List<EntityCoordinates> spawnPos = new();
+        spawnPos.Add(coords);
+
+        var dirs = new List<Direction>();
+        dirs.AddRange(args.OffsetDirections);
+
+        for (var i = 0; i < 3; i++)
+        {
+            var dir = _random.PickAndTake(dirs);
+            spawnPos.Add(coords.Offset(dir));
+        }
+
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        foreach (var pos in spawnPos)
+        {
+            if (!_map.TryGetTileRef(grid, gridComp, pos, out var tileRef) ||
+                _turf.IsSpace(tileRef) ||
+                _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
+            {
+                continue;
+            }
+
+            if (_net.IsServer)
+                Spawn(args.EntityId, pos);
+        }
+    }
+
+    private void OnDamadeOnContactCollide(Entity<DamageOnContactComponent> ent, ref StartCollideEvent args)
+    {
+        if (args.OurFixtureId != ent.Comp.FixtureId)
+            return;
+
+        var dmg = new DamageSpecifier
+        {
+            DamageDict = { ["Slash"] = ent.Comp.Damage }
+        };
+
+        _damage.TryChangeDamage(args.OtherEntity, dmg);
     }
 
     public override void Update(float frameTime)

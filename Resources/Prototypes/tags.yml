@@ -655,6 +655,9 @@
   id: Goliath
 
 - type: Tag
+  id: Vampire
+
+- type: Tag
   id: GoliathPlate
 
 - type: Tag
