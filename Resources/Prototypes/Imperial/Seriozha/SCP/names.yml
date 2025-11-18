@@ -93,3 +93,45 @@
   values:
     prefix: names-DetectiveSCP-
     count: 50
+
+- type: localizedDataset
+  id: NamesCISCPcoordinator
+  values:
+    prefix: names-CISCPcoordinator-
+    count: 50
+
+- type: localizedDataset
+  id: NamesZeta9scp
+  values:
+    prefix: names-NamesZeta9scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesZeta9scpCom
+  values:
+    prefix: names-NamesZeta9scpCom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEpsilon9scp
+  values:
+    prefix: names-NamesEpsilon9scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEpsilon9scpCom
+  values:
+    prefix: names-NamesEpsilon9scpCom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEta10scp
+  values:
+    prefix: names-NamesEta10scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEta10scpCom
+  values:
+    prefix: names-NamesEta10scpCom-
+    count: 50
