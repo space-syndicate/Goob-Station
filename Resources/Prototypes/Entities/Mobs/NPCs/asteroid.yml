@@ -431,7 +431,7 @@
   parent: [BaseMobAsteroid, MobBloodstream]
   id: MobPhantomor
   name: Phantomor
-  description: A terrifying predator that flickers in and out of existence, striking from behind with deadly precision.
+  description: A dangerous predator that uses teleportation to attack from the back.
   components:
   - type: Sprite
     sprite: Imperial/Stellark/phantomor.rsi
