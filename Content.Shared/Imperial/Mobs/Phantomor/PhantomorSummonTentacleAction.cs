@@ -15,7 +15,10 @@ public sealed partial class PhantomorSummonTentacleAction : InstantActionEvent
     /// звуковое сопровождение после телепортации
     /// </summary>
     [DataField]
-    public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Items/bikehorn.ogg");
+    public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Magic/blink.ogg")
+    {
+        Params = AudioParams.Default.WithVolume(5f)
+    };
 
     /// <summary>
     /// длительность блокировки движения после телепортации

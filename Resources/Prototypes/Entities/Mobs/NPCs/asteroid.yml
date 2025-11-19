@@ -433,16 +433,16 @@
   description: A terrifying predator that flickers in and out of existence, striking from behind with deadly precision.
   components:
   - type: Sprite
-    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    sprite: Imperial/Stellark/phantomor.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: goliath
+      state: alive
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: goliath
+        Base: alive
       Dead:
-        Base: goliath_dead
+        Base: dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.00
     baseSprintSpeed: 2.00
