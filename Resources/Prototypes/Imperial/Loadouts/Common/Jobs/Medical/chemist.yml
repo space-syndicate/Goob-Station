@@ -1,0 +1,11 @@
+- type: loadout
+  id: ExtendedBeaker
+  storage:
+    back:
+      - ExtendedBeaker
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: Chemist
+        time: 12000 # 200 hrs

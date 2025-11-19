@@ -42,19 +42,6 @@
     contents:
       - id: BoxVial
 
-# imperial space: added hypospray for doctors. Start
-- type: entity
-  id: CrateChemistryStandartHypo
-  parent: CrateMedical
-  name: storage box for standard hyposprays
-  description: A box filled with two standard hyposprays
-  components:
-  - type: StorageFill
-    contents:
-      - id: StandardHypospray
-        amount: 2
-# imperial space: added hypospray for doctors. End
-
 - type: entity
   id: CrateMindShieldImplants
   parent: CrateMedical
