@@ -425,6 +425,7 @@
     - id: DiamondOre1
       amount: 1
       maxAmount: 3
+
 # Imperial Space: A new Phantomor mob has been added. Start
 - type: entity
   parent: [BaseMobAsteroid, MobBloodstream]
@@ -481,10 +482,22 @@
   - type: NoSlip
   - type: Butcherable
     spawned:
-    - id: FoodMeatGoliath
+    - id: FoodHivelordPhantomor
       amount: 1
-    - id: MaterialGoliathHide1
-      amount: 2
+
+- type: entity
+  id: FoodHivelordPhantomor
+  parent: FoodBase
+  name: bone phantomor
+  description: A bone left over from the collapse of the phantomore. Surprisingly light, as if soaked in the residual energy of teleportation
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/phantomor.rsi
+    state: phantomor_meat
+  - type: Item
+    size: Normal
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: BaseAction
