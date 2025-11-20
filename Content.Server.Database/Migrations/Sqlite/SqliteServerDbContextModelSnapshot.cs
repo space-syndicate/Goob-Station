@@ -661,31 +661,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("job", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.Language", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("language_id");
-
-                    b.Property<string>("LanguageName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("language_name");
-
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("profile_id");
-
-                    b.HasKey("Id")
-                        .HasName("PK_language");
-
-                    b.HasIndex("ProfileId", "LanguageName")
-                        .IsUnique();
-
-                    b.ToTable("language", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.NrpResolves", b =>
                 {
                     b.Property<int>("Id")
@@ -1351,35 +1326,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("server_unban", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("skill_id");
-
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("profile_id");
-
-                    b.Property<int>("SkillLevel")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("skill_level");
-
-                    b.Property<string>("SkillName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("skill_name");
-
-                    b.HasKey("Id")
-                        .HasName("PK_skill");
-
-                    b.HasIndex("ProfileId", "SkillName")
-                        .IsUnique();
-
-                    b.ToTable("skill", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.Trait", b =>
                 {
                     b.Property<int>("Id")
@@ -1739,18 +1685,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("Content.Server.Database.Language", b =>
-                {
-                    b.HasOne("Content.Server.Database.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_language_profile_profile_id");
-
-                    b.Navigation("Profile");
-                });
-
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
                     b.OwnsOne("Content.Server.Database.TypedHwid", "LastSeenHWId", b1 =>
@@ -2010,18 +1944,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasConstraintName("FK_server_unban_server_ban_ban_id");
 
                     b.Navigation("Ban");
-                });
-
-            modelBuilder.Entity("Content.Server.Database.Skill", b =>
-                {
-                    b.HasOne("Content.Server.Database.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_skill_profile_profile_id");
-
-                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Trait", b =>
