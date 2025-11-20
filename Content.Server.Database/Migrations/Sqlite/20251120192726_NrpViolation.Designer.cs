@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    [Migration("20251120190814_NrpViolation")]
+    [Migration("20251120192726_NrpViolation")]
     partial class NrpViolation
     {
         /// <inheritdoc />

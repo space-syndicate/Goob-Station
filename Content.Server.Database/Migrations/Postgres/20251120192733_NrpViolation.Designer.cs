@@ -16,7 +16,7 @@ using NpgsqlTypes;
 namespace Content.Server.Database.Migrations.Postgres
 {
     [DbContext(typeof(PostgresServerDbContext))]
-    [Migration("20251120190747_NrpViolation")]
+    [Migration("20251120192733_NrpViolation")]
     partial class NrpViolation
     {
         /// <inheritdoc />
