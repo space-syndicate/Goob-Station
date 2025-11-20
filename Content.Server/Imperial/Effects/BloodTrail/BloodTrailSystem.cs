@@ -133,10 +133,10 @@ namespace Content.Server.Imperial.BloodTrail
 
                 var mapCoords = new MapCoordinates(worldPos, victimCoords.MapId);
 
-                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+                if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var _))
                     continue;
 
-                var entityCoords = _transform.ToCoordinates(gridUid, mapCoords);
+                var entityCoords = _transform.ToCoordinates(gridUid, mapCoords).Offset(new(-0.5f));
 
                 var decal = new Decal(entityCoords.Position, decalId, bloodColor, rotation, 1, true);
                 var success = _decal.TryAddDecal(decal, entityCoords, out _);
@@ -177,8 +177,7 @@ namespace Content.Server.Imperial.BloodTrail
             {
                 var sourcePos = _transform.GetWorldPosition(sourceXform);
                 var attackDirection = (victimWorldPos - sourcePos).Normalized();
-
-                rotation = attackDirection.ToWorldAngle() + MathF.PI;
+                rotation = attackDirection.ToAngle() + Angle.FromDegrees(90);
 
                 var offset = _random.NextFloat(spread * 0.8f, spread * 1.0f);
                 basePos = victimWorldPos + attackDirection * offset;
