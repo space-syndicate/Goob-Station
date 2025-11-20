@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -46,6 +47,21 @@ namespace Content.Shared.Imperial.Vampire
         public TimeSpan BuffBlockedUntil;
 
         [DataField]
+        public TimeSpan UnBuffDuration = TimeSpan.FromSeconds(15);
+
+        [DataField]
+        public TimeSpan NextBloodDecay = TimeSpan.Zero;
+
+        [DataField]
+        public TimeSpan BloodDecayInterval = TimeSpan.FromSeconds(30);
+
+        [DataField]
+        public TimeSpan ShakingTime = TimeSpan.FromSeconds(5);
+
+        [DataField]
+        public float BloodDecayAmount = 5f;
+
+        [DataField]
         public TimeSpan BuffDuration = TimeSpan.FromSeconds(10);
 
         [DataField, AutoNetworkedField]
@@ -56,6 +72,15 @@ namespace Content.Shared.Imperial.Vampire
 
         [DataField]
         public int SmokeRadius = 8;
+
+        [DataField, AutoNetworkedField]
+        public float CritThreshold = 100f;
+
+        [DataField, AutoNetworkedField]
+        public float BloodDamage;
+
+        [DataField]
+        public ProtoId<AlertPrototype> BloodAlert = "Blood";
 
         [DataField, AutoNetworkedField]
         public EntProtoId SmokePrototype = "Smoke";

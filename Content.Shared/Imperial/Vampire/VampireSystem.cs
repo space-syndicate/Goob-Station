@@ -31,6 +31,11 @@ using Content.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Whitelist;
 using Content.Shared.Directions;
+using Content.Shared.Rounding;
+using Content.Shared.Alert;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Jittering;
+
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -55,6 +60,10 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -86,6 +95,7 @@ public sealed class VampireSystem : EntitySystem
 
         args.Handled = true;
     }
+
 
     private void OnRecovery(VampireRecoveryEvent args)
     {
@@ -177,6 +187,7 @@ public sealed class VampireSystem : EntitySystem
         SpawnSmokeEffect(ent, fromCoords);
         _transform.SetCoordinates(target, toCoords.Value);
 
+        DealBloodDamage(args.Performer, 50f);
         args.Handled = true;
     }
 
@@ -284,6 +295,7 @@ public sealed class VampireSystem : EntitySystem
             speed);
 
         comp.BuffBlocked = true;
+        DealBloodDamage(args.Performer, 50f);
         comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(25f);
 
         Dirty(args.Performer, comp);
@@ -384,6 +396,58 @@ public sealed class VampireSystem : EntitySystem
                 Dirty(uid, comp);
             }
         }
+
+        var bloodQuery = EntityQueryEnumerator<VampireComponent>();
+        while (bloodQuery.MoveNext(out var uid2, out var comp2))
+        {
+            if (comp2.NextBloodDecay == TimeSpan.Zero)
+            {
+                comp2.NextBloodDecay = _gameTiming.CurTime + comp2.BloodDecayInterval;
+                Dirty(uid2, comp2);
+            }
+
+            if (_gameTiming.CurTime >= comp2.NextBloodDecay)
+            {
+                DealBloodDamage(uid2, comp2.BloodDecayAmount);
+                comp2.NextBloodDecay = _gameTiming.CurTime + comp2.BloodDecayInterval;
+                Dirty(uid2, comp2);
+
+                if (comp2.BloodDamage >= comp2.CritThreshold)
+                {
+                    if (TryComp<StaminaComponent>(uid2, out var stamina))
+                    {
+                        var dmg = new DamageSpecifier();
+                        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(15);
+
+                        _damage.TryChangeDamage(uid2, dmg);
+                        SpawnBloodPuddle(uid2);
+                        _stamina.TakeStaminaDamage(uid2, 70f, stamina);
+                        _jitterSystem.DoJitter(uid2, comp2.ShakingTime, refresh: true, amplitude: 40f, frequency: 10f);
+                    }
+                }
+            }
+        }
+    }
+
+    private void SpawnBloodPuddle(EntityUid uid, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        var coords = Transform(uid).Coordinates;
+
+        if (_net.IsServer)
+        {
+            var puddle = Spawn("Puddle", coords);
+
+            if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
+            {
+                var bloodSolution = new Solution();
+                bloodSolution.AddReagent("Blood", 50f);
+
+                _solutionSystem.TryAddSolution(solution.Value, bloodSolution);
+            }
+        }
     }
 
     private void OnRushBlood(VampireRushBloodEvent args)
@@ -421,6 +485,25 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void SetBloodAlert(EntityUid uid, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false) || component.Deleted)
+            return;
+
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 7);
+        _alerts.ShowAlert(uid, component.BloodAlert, (short) severity);
+    }
+
+    public void DealBloodDamage(EntityUid uid, float damage, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        component.BloodDamage = MathF.Min(component.BloodDamage + damage, component.CritThreshold);
+        Dirty(uid, component);
+        SetBloodAlert(uid, component);
+    }
+
     private void OnVampireStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
     {
         if (_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
@@ -434,6 +517,7 @@ public sealed class VampireSystem : EntitySystem
             _actions.AddAction(ent.Owner, ref ent.Comp.GrimoreActionEntity, ent.Comp.GrimoreAction);
             Dirty(ent.Owner, ent.Comp);
         }
+        SetBloodAlert(ent.Owner, ent.Comp);
     }
 
     private void OnMindAdded(Entity<VampireComponent> ent, ref MindAddedMessage args)
@@ -446,6 +530,7 @@ public sealed class VampireSystem : EntitySystem
             _actions.AddAction(ent.Owner, ref ent.Comp.GrimoreActionEntity, ent.Comp.GrimoreAction);
             Dirty(ent.Owner, ent.Comp);
         }
+        SetBloodAlert(ent.Owner, ent.Comp);
     }
 
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)
