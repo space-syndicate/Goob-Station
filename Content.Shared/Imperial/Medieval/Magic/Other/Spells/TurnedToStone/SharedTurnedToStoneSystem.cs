@@ -52,12 +52,12 @@ public abstract partial class SharedTurnedToStoneSystem : EntitySystem
         if (!CanTurnToStone(uid)) return;
         if (!TryComp<DamageableComponent>(uid, out var damageableComponent)) return;
 
+        component.DisposeTime = _timing.CurTime + component.LifeTime;
+        component.CachedDamageModifierSetID = damageableComponent.DamageModifierSetId ?? "";
+
         _actionBlockerSystem.CanAttack(uid);
         _actionBlockerSystem.UpdateCanMove(uid);
         _damageableSystem.SetDamageModifierSetId(uid, component.DamageModifierSetID);
-
-        component.DisposeTime = _timing.CurTime + component.LifeTime;
-        component.CachedDamageModifierSetID = damageableComponent.DamageModifierSetId ?? "";
 
         RaiseLocalEvent(uid, new AfterTurnetToStone());
     }
@@ -68,7 +68,7 @@ public abstract partial class SharedTurnedToStoneSystem : EntitySystem
 
         _actionBlockerSystem.CanAttack(uid);
         _actionBlockerSystem.UpdateCanMove(uid);
-        _damageableSystem.SetDamageModifierSetId(uid, component.DamageModifierSetID);
+        _damageableSystem.SetDamageModifierSetId(uid, component.CachedDamageModifierSetID);
 
         RaiseLocalEvent(uid, new AfterBecomeFromStone());
     }
