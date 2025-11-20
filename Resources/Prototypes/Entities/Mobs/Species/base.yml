@@ -9,8 +9,6 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: Mana
-  - type: MedievalSpellCaster
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]

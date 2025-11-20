@@ -23,10 +23,6 @@ namespace Content.Server.Imperial.Medieval.Magic;
 /// </summary>
 public sealed partial class MedievalMagicSystem
 {
-    private readonly ProtoId<TagPrototype> _wallTag = "Wall";
-    private readonly ProtoId<TagPrototype> _blacklistTag = "LightningBlacklist";
-
-
     private void InitializeEntityAimingSpells()
     {
         SubscribeNetworkEvent<TargetOverlayShootEvent>(OnTargetCaptured);
