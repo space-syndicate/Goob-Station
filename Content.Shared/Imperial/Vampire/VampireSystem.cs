@@ -21,7 +21,6 @@ using System.Linq;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Store;
 using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -71,7 +70,6 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireClawEvent>(OnIssuingClaw);
         SubscribeLocalEvent<VampireTeleportEvent>(OnTeleport);
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty);
-        SubscribeLocalEvent<VampireGrimoireEvent>(OnGrimoireActivated);
         SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
         SubscribeLocalEvent<VampireRushBloodEvent>(OnRushBlood);
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
@@ -80,22 +78,6 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<VampireComponent, MindRemovedMessage>(OnMindRemoved);
     }
-
-    private void OnGrimoireActivated(VampireGrimoireEvent args)
-    {
-        var performer = args.Performer;
-
-        if (!TryComp<VampireComponent>(performer, out var vamp))
-            return;
-
-        if (vamp.GrimoreActionEntity == null)
-            return;
-
-        _uiSystem.TryToggleUi(vamp.GrimoreActionEntity.Value, StoreUiKey.Key, performer);
-
-        args.Handled = true;
-    }
-
 
     private void OnRecovery(VampireRecoveryEvent args)
     {
