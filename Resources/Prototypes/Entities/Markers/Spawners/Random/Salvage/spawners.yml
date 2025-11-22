@@ -547,3 +547,5 @@
       - id: MobPhantomor
         weight: 30
         # Imperial Space: A new Phantomor mob has been added. End
+      - id: MobUrs # Imperial New mob Urs
+        weight: 45 # Imperial New mob Urs

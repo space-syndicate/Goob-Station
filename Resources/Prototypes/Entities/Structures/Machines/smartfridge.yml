@@ -43,6 +43,7 @@
     - smart_fridge_inventory
   - type: LitOnPowered
   - type: ApcPowerReceiver
+    needsPower: false # Imperial Space Умный холодильник больше не требует питание
     powerLoad: 200
   - type: ExtensionCableReceiver
   - type: SmartFridge

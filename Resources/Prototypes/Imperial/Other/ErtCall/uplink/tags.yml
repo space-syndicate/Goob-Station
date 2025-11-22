@@ -6,3 +6,6 @@
 
 - type: Tag
   id: ErtUplinkCBURN
+
+- type: Tag
+  id: ErtUplinkERT

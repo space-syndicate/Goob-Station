@@ -234,7 +234,8 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
             Maximized = false,
             Title = "Admin Help",
             Monitor = monitor,
-            Width = 900,
+            // imperial space старое значение: 900
+            Width = 1000,
             Height = 500
         });
 

@@ -1,0 +1,18 @@
+- type: entity
+  parent: ClothingOuterCoatHoSTrench 
+  id: ClothingOuterCoatHoSGreatcoat # бронированная шиннель ГСБ, взято с Corvax
+  name: armored greatcoat
+  description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
+  components:
+    - type: Sprite
+      sprite: Corvax/Clothing/OuterClothing/Coats/hos_greatcoat.rsi
+    - type: Clothing
+      sprite: Corvax/Clothing/OuterClothing/Coats/hos_greatcoat.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.65
+          Slash: 0.65
+          Piercing: 0.55
+          Heat: 0.65
+          Caustic: 0.75

@@ -1,0 +1,58 @@
+- type: entity
+  parent: Clothing
+  id: BasePortableRechargerErt
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+  - type: Clothing
+    equippedPrefix: charging
+    quickEquip: false
+    slots:
+    - back
+  - type: Charger
+    chargeRate: 100
+    slotId: charger_slot
+    portable: true
+  - type: PowerChargerVisuals
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+  - type: StaticPrice
+    price: 5000
+  - type: Tag
+    tags: []
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - HitscanBatteryAmmoProvider
+          - ProjectileBatteryAmmoProvider
+        blacklist:
+          tags:
+          - OnlyMaterialEnergy
+
+- type: entity
+  parent: BasePortableRechargerErt
+  id: PortableRechargerErt
+  name: advanced portable recharger
+  description: High-tech recharger for Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: Imperial/ChargerERT/portable_recharger_ert.rsi
+    state: charging
+
+- type: entity
+  parent: BasePortableRechargerErt
+  id: PortableRechargerCburn
+  name: advanced portable recharger
+  description: High-tech recharger for CBURN.
+  components:
+  - type: Sprite
+    sprite: Imperial/ChargerERT/portable_recharger_cburn.rsi
+    state: charging

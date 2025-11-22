@@ -661,6 +661,56 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("job", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.NrpResolves", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("nrp_resolves_id");
+
+                    b.Property<int>("Nrp")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("nrp");
+
+                    b.Property<int>("Rp")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("rp");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_nrp_resolves");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("nrp_resolves", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.NrpViolation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("nrp_violation_id");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.Property<DateTime>("ViolationTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("violation_time");
+
+                    b.HasKey("Id")
+                        .HasName("PK_nrp_violation");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("nrp_violation", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
                     b.Property<int>("Id")

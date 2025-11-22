@@ -17,7 +17,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: StaticPrice
-    price: 500
+    price: 20000
   - type: UseDelay
     delay: 1
 
@@ -106,6 +106,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: FlamethrowerBullet
+    cycleable: false
 
 - type: entity
   id: FuelTankFlamethrowerSmall
@@ -116,6 +117,7 @@
   - type: BallisticAmmoProvider
     proto: FlamethrowerBullet
     capacity: 350
+    cycleable: false
   - type: Sprite
     sprite: Imperial/Flamethrower/fueltankl_small.rsi
     layers:
@@ -139,6 +141,7 @@
   - type: BallisticAmmoProvider
     proto: FlamethrowerBullet
     capacity: 500
+    cycleable: false
   - type: Sprite
     sprite: Imperial/Flamethrower/fueltank_medium.rsi
     layers:
@@ -162,6 +165,7 @@
   - type: BallisticAmmoProvider
     proto: FlamethrowerBullet
     capacity: 1000
+    cycleable: false
   - type: Sprite
     sprite: Imperial/Flamethrower/fueltank_big.rsi
     layers:

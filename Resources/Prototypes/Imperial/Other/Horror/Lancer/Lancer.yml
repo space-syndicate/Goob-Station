@@ -35,7 +35,6 @@
       damage:
         types:
           Piercing: 35
-          Stamina: 35
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg

@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +46,8 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
+        public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -64,6 +66,14 @@ namespace Content.Server.Database
             modelBuilder.Entity<Trait>()
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
+
+            // imperial medieval start
+            modelBuilder.Entity<NrpViolation>()
+                .HasIndex(p => p.UserId);
+
+            modelBuilder.Entity<NrpResolves>()
+                .HasIndex(p => p.UserId);
+            // imperial medieval end
 
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
@@ -462,6 +472,25 @@ namespace Content.Server.Database
 
         public string TraitName { get; set; } = null!;
     }
+
+    #region Imperial Medieval
+
+    [Table("nrp_violation")]
+    public class NrpViolation
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public DateTime ViolationTime { get; set; }
+    }
+    [Table("nrp_resolves")]
+    public class NrpResolves
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public int Rp { get; set; }
+        public int Nrp { get; set; }
+    }
+    #endregion
 
     #region Loadouts
 

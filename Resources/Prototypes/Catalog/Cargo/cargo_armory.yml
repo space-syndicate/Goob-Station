@@ -51,7 +51,7 @@
 - type: cargoProduct
   id: ArmoryLaser
   icon:
-    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-inhands.rsi # Imperial Space Изменение спрайта оружия
     state: icon
   product: CrateArmoryLaser
   cost: 9800 # Imperial Balance

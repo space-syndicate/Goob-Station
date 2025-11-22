@@ -347,6 +347,13 @@
     - item: StunbatonBorg
     - item: WeaponDisablerBorg
     - item: FlashBorg
+    - item: Handcuffs
+      hand: 
+        emptyLabel: borg-slot-security-cuffs-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-unlethal } # Надо заменить, пока заглушка
   - type: Tag
@@ -370,6 +377,11 @@
   - type: Tag
     tags:
     - BorgModuleSecurityImperial
+
+# Imperial Space Инженерный борг 
+
+- type: Tag
+  id: Manipulator
 
 # Imperial Space Модули киборгов ОБР и РХБЗЗ start
 
@@ -417,40 +429,12 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: Handcuffs
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Handcuffs
-        whitelist:
-          components:
-          - Handcuff
     - item: WeaponPulseCanonBorg
-    - item: PinpointerNuclear
-    - item: JetpackErtBorg
-  - type: BorgModuleIcon
-    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
-  - type: StaticPrice
-    price: 12000
-
-
-- type: entity
-  parent: BaseErtBorgModule
-  id: BorgModuleEswordErt
-  name: ert energy sword cyborg module
-  description: A weapons module that comes with an energy sword.
-  components:
-  - type: Sprite
-    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
-    layers:
-    - state: nanotrasen
-    - state: icon-nanotrasen
-  - type: ItemBorgModule
-    hands:
     - item: EnergySword
     - item: PinpointerNuclear
     - item: JetpackErtBorg
   - type: BorgModuleIcon
-    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-Energomech }
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
   - type: StaticPrice
     price: 12000
 
@@ -488,6 +472,13 @@
     hands:
     - item: AdvancedStunbatonBorg
     - item: ErtBorgWeaponTaser
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
     - item: FlashBorg
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -529,6 +520,7 @@
   - type: ItemBorgModule
     hands:
     - item: FlameThrowerBorg
+    - item: EnergySword
     - item: PinpointerNuclear
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -598,20 +590,6 @@
     magState: mag
     steps: 4
     zeroVisible: false
-  - type: ToggleableVisuals
-    spriteLayer: flame
-    inhandVisuals:
-      left:
-      - state: inhand-left-flame
-        shader: unshaded
-      right:
-      - state: inhand-right-flame
-        shader: unshaded
-  - type: ItemToggle
-    soundActivate:
-      path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
-    soundDeactivate:
-      path: /Audio/Items/Lighters/lighter3.ogg
   - type: Appearance
   - type: Clothing
     sprite: Imperial/Roles/Synthetics/ERT/pulse_cannon.rsi
@@ -773,11 +751,10 @@
   - type: ItemBorgModule
     hands:
     - item: RCDRechargingErtBorg
-    - item: JetpackErtBorg
-    - item: BorgHandheldGPSBasic
     - item: GasAnalyzer
     - item: HolofanProjectorBorg
     - item: GeigerCounter
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-RCS }
   - type: StaticPrice
@@ -795,27 +772,46 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - hand:
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+    - item: AmeJar
+      hand:
         emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: AmeJar
+        whitelist:
+          components:
+          - AmeFuelContainer
+          - GasTank
+    - item: SheetSteel
+      hand:
+        emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         whitelist:
           tags:
           - ConstructionMaterial
-    - hand:
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+    - item: SheetGlass
+      hand:
         emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         whitelist:
           tags:
           - ConstructionMaterial
-    - hand:
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+    - item: SheetRGlass
+      hand:
         emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         whitelist:
           tags:
           - ConstructionMaterial
+    - item: PartRodMetal
+      hand:
+        emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        whitelist:
+          tags:
+          - ConstructionMaterial
+
     - hand:
-        emptyRepresentative: DoorElectronics
         emptyLabel: borg-slot-circuitboards-empty
+        emptyRepresentative: ParticleAcceleratorComputerCircuitboard
         whitelist:
           components:
           - Circuitboard
@@ -823,32 +819,26 @@
           components:
           - SiliconLawProvider
     - hand:
-        emptyRepresentative: MicroManipulatorStockPart
-        emptyLabel: borg-slot-construction-empty
-        whitelist:
-          tags:
-          - ConstructionMaterial
-    - hand:
-        emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty
+        emptyRepresentative: SpaceHeaterFlatpack
         whitelist:
           components:
           - Flatpack
     - hand:
+        emptyLabel: borg-slot-tiles-empty
         emptyRepresentative: FloorTileItemSteel
-        emptyLabel: borg-slot-tiles-empty
         whitelist:
           components:
           - FloorTile
     - hand:
+        emptyLabel: borg-slot-tiles-empty
         emptyRepresentative: FloorTileItemWhite
-        emptyLabel: borg-slot-tiles-empty
         whitelist:
           components:
           - FloorTile
     - hand:
-        emptyRepresentative: FloorTileItemDark
         emptyLabel: borg-slot-tiles-empty
+        emptyRepresentative: FloorTileItemDark
         whitelist:
           components:
           - FloorTile
@@ -941,6 +931,33 @@
     layers:
     - state: nanotrasen
     - state: icon-nanotrasen
+  - type: ItemBorgModule
+    hands:
+    - item: ClothingBackpackDuffelSurgeryFilled
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: ClothingBackpackDuffelSurgeryFilled
+        whitelist:
+          tags:
+          - SurgeryTool
+          - Backpack
+          - SurgeryStaples
+          - MedicalBorgItem
+          - OxygenMask
+          - GasTank
+          - Trash
+    - item: SurgeryBoxOrgansFilled
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: SurgeryBoxOrgansFilled
+        whitelist:
+          tags:
+          - OriginalBodyPart
+          - MedicalBorgItem
+          - Organ
+          - BodyPart
+          - BoxCardboard
+          - Trash
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
   - type: StaticPrice
@@ -1035,31 +1052,31 @@
     solutions:
       - reagents:
         - reagentId: Retropine
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/firstaid.png
       - reagents:
         - reagentId: Dermaline
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/burnkit.png
       - reagents:
         - reagentId: DexalinPlus
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/o2kit.png
       - reagents:
         - reagentId: SalineGlucose
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/advkit.png
       - reagents:
         - reagentId: Puncturase
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/blackkit.png
       - reagents:
         - reagentId: Arithrazine
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/radkit.png
       - reagents:
         - reagentId: Diphenhydramine
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
@@ -1084,7 +1101,6 @@
     - item: DefibrillatorOneHandedUnpowered
     - item: JawsOfLife
     - item: JetpackErtBorg
-    - item: BorgHandheldGPSBasic
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
   - type: StaticPrice
@@ -1136,6 +1152,7 @@
   description: A hand-held body scanner capable of distinguishing vital signs of the subject.
   components:
   - type: Unremoveable
+
 
 - type: startingGear #gear
   id: ErtAssaultBorgLodout

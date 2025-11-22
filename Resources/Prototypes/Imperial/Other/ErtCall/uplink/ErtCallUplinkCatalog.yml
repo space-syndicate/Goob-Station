@@ -35,7 +35,7 @@
   description: ert-uplink-melee-energysword-desc
   productEntity: EnergySword
   cost:
-    BlueSpaceCube: 15
+    BlueSpaceCube: 10
   categories:
   - ERTUplinkMelee
 
@@ -1143,6 +1143,41 @@
   - ERTUplinkJunitor
 
 #ERTUplinkUtilities
+
+#Imperial Space Портативные зарядники спецотрядов start
+
+- type: listing
+  id: ErtCallUplinkRecharger
+  name: ert-uplink-utilities-recharger-ert-name
+  description: ert-uplink-utilities-recharger-ert-desc
+  productEntity: PortableRechargerErt
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - ERTUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkERT
+
+- type: listing
+  id: ErtCallUplinkRechargerCburn
+  name: ert-uplink-utilities-recharger-cburn-name
+  description: ert-uplink-utilities-recharger-cburn-desc
+  productEntity: PortableRechargerCburn
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - ERTUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - ErtUplinkCBURN
+
+#Imperial Space Портативные зарядники спецотрядов end
+
 - type: listing
   id: ErtCallUplinkHandcuffs
   name: ert-uplink-utilities-handcuffs-name

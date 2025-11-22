@@ -11,6 +11,9 @@
       "name": "scp"
     },
     {
+      "name": "CBT"
+    },
+    {
       "name": "chaos"
     },
     {
@@ -38,19 +41,104 @@
       "name": "n500"
     },
     {
+      "name": "n682"
+    },
+    {
+      "name": "n005"
+    },
+    {
       "name": "n207"
     },
     {
       "name": "n714"
     },
     {
+      "name": "n1006"
+    },
+    {
+      "name": "n002"
+    },
+    {
+      "name": "n953"
+    },
+    {
+      "name": "n343"
+    },
+    {
       "name": "n268"
+    },
+    {
+      "name": "n4975"
     },
     {
       "name": "n127"
     },
     {
       "name": "PHYSICS"
+    },
+    {
+      "name": "Alpha1"
+    },
+    {
+      "name": "zeta9"
+    },
+    {
+      "name": "epsilon9"
+    },
+    {
+      "name": "eta10"
+    },
+    {
+      "name": "pgry"
+    },
+    {
+      "name": "fbi"
+    },
+    {
+      "name": "nu7"
+    },
+    {
+      "name": "Alpha9"
+    },
+    {
+      "name": "brokengod"
+    },
+    {
+      "name": "epsilon11"
+    },
+    {
+      "name": "scarletking"
+    },
+    {
+      "name": "tay5",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "beta7"
+    },
+    {
+      "name": "beta1"
+    },
+    {
+      "name": "delta1"
     },
     {
       "name": "goc"
