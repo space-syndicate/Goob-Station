@@ -1,0 +1,26 @@
+- type: entity
+  id: EnhancedShotProjectile
+  name: enhanced shot projectile
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: locale
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 30
+        Structural: 60
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: GatheringProjectile

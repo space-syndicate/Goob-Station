@@ -6,6 +6,8 @@ using Content.Shared.Wieldable.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Events;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 using Content.Shared.Coordinates;
+using System.Numerics;
+using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Systems;
 
@@ -14,14 +16,15 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-
+    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         // Earthshaker
-        SubscribeLocalEvent<UserEarthshakerStrikeComponent, EarthshakerStrikeEvent>(OnEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, EarthshakerStrikeDoAfterEvent>(OnEarthshakerStrikeDoAfter);
+        SubscribeLocalEvent<UserEarthshakerStrikeComponent, EarthshakerStrikeEvent>(OnEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotEquippedHandEvent>(OnEquippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotUnequippedHandEvent>(OnUnequippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, ComponentShutdown>(OnEarthshakerShutdown);
@@ -34,6 +37,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
         // Enhanced Shot
         SubscribeLocalEvent<UserEnhancedShotComponent, EnhancedShotEvent>(OnEnhancedShot);
+        SubscribeLocalEvent<EnhancedShotComponent, EnhancedShotDoAfterEvent>(OnEnhancedShotDoAfter);
         SubscribeLocalEvent<EnhancedShotComponent, GotEquippedHandEvent>(OnEquippedEnhancedShot);
         SubscribeLocalEvent<EnhancedShotComponent, GotUnequippedHandEvent>(OnUnequippedEnhancedShot);
         SubscribeLocalEvent<EnhancedShotComponent, ComponentShutdown>(OnEnhancedShotShutdown);
@@ -49,7 +53,6 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     private void OnEarthshakerStrike(EntityUid user, UserEarthshakerStrikeComponent comp, ref EarthshakerStrikeEvent args)
     {
-        Log.Info($"EarthshakerStrike +");
         if (!comp.Item.HasValue)
             return;
 
@@ -71,20 +74,18 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     }
 
 
-    private void OnEarthshakerStrikeDoAfter(EntityUid user, EarthshakerStrikeComponent comp, EarthshakerStrikeDoAfterEvent args)
+    private void OnEarthshakerStrikeDoAfter(EntityUid uid, EarthshakerStrikeComponent comp, EarthshakerStrikeDoAfterEvent args)
     {
-        Log.Info($"33");
         if (args.Cancelled)
         {
-            DoAfterCancelled(user);
+            DoAfterCancelled(uid);
             return;
         }
 
         if (args.Handled)
             return;
 
-        Log.Info($"44");
-        Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
+        Spawn(comp.EarthshakerRiftSpawnPrototype, uid.ToCoordinates());
 
         args.Handled = true;
     }
@@ -171,16 +172,49 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     #region Enhanced Shot
 
-    private void OnEnhancedShot(EntityUid uid, UserEnhancedShotComponent comp, ref EnhancedShotEvent args)
+    private void OnEnhancedShot(EntityUid user, UserEnhancedShotComponent comp, ref EnhancedShotEvent args)
     {
         Log.Info($"EnhancedShot +");
+        if (!comp.Item.HasValue)
+            return;
+
+        var userXform = Transform(user);
+        var targetMap = _transform.ToMapCoordinates(args.Target);
+        if (targetMap.MapId != userXform.MapID)
+            return;
+
+        var userPos = _transform.GetWorldPosition(userXform);
+        comp.Direction = targetMap.Position - userPos;
+
+        if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new EnhancedShotDoAfterEvent()))
+            return;
+    }
+
+    private void OnEnhancedShotDoAfter(EntityUid uid, EnhancedShotComponent comp, EnhancedShotDoAfterEvent args)
+    {
+        if (args.Cancelled)
+        {
+            DoAfterCancelled(uid);
+            return;
+        }
+
+        if (args.Handled)
+            return;
+
+        Log.Info($"активация логики по завершению доафтера");
+        if (comp.User.HasValue)
+            ShootEnhancedProjectile(uid, comp.User.Value, comp);
+
         args.Handled = true;
     }
 
     private void OnEquippedEnhancedShot(EntityUid uid, EnhancedShotComponent comp, GotEquippedHandEvent args)
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionEnhancedShot);
-        AddComp<UserEnhancedShotComponent>(args.User);
+
+        var userComp = EnsureComp<UserEnhancedShotComponent>(args.User);
+        userComp.Item = uid;
+        userComp.DoAfterTime = comp.DoAfterTime;
 
         comp.User = args.User;
     }
@@ -206,6 +240,20 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             if (comp.User.HasValue)
                 RemComp<UserEnhancedShotComponent>(comp.User.Value);
         }
+    }
+
+    private void ShootEnhancedProjectile(EntityUid uid, EntityUid user, EnhancedShotComponent comp)
+    {
+        if (!TryComp<UserEnhancedShotComponent>(user, out var userComp))
+            return;
+
+        var xform = Transform(uid);
+        var fromCoords = xform.Coordinates;
+        var fromMap = _transform.ToMapCoordinates(fromCoords);
+        var projectile = Spawn(comp.ProjectilePrototype, fromMap);
+
+        var direction = userComp.Direction;
+        _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, uid, user, speed: comp.ProjectileSpeed);
     }
 
     #endregion
