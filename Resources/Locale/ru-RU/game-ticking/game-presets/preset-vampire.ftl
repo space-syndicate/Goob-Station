@@ -8,3 +8,12 @@ vampire-role-greeting-human =
 objective-issuer-vampire = Проклятие
 
 vampire-round-end-agent-name = Вампир
+
+vampire-verb-envelope-ghoul-text = Обратить в упыря
+vampire-verb-envelope-ghoul-message = Обращает сущность в упыря
+vampire-verb-envelope-vampire-transform = Начинаем обращать {$target}...
+vampire-verb-envelope-ghoul-transform = Вы ощущаете влияние вампирской крови...
+vampire-verb-envelope-vampire-complete = {$target} был успешно обращен.
+vampire-verb-envelope-ghoul-greeting =
+    Вы упырь — порождение вампирской крови.
+    Вы жаждете крови и обязаны служить своему хозяину.

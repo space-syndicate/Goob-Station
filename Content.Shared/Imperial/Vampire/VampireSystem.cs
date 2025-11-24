@@ -473,7 +473,7 @@ public sealed class VampireSystem : EntitySystem
             return;
 
         var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 7);
-        _alerts.ShowAlert(uid, component.BloodAlert, (short) severity);
+        _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }
 
     public void DealBloodDamage(EntityUid uid, float damage, VampireComponent? component = null)

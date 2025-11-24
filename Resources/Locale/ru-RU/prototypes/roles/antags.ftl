@@ -51,3 +51,6 @@ roles-antag-captainpirate-objective = Ахой! Укажи путь своему
 
 roles-antag-vampire-name = Вампир
 roles-antag-vampire-objective =  Тайно утоляйте свою жажду кровью экипажа и избегайте разоблачения.
+
+roles-antag-ghoul-name = Упырь
+roles-antag-ghoul-objective =  Тайно утоляйте свою жажду кровью экипажа и служите своему хозяину.

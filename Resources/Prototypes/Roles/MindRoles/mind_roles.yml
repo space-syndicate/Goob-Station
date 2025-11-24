@@ -329,6 +329,18 @@
     subtype: role-subtype-vampire
   - type: VampireRole
 
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleGhoul
+  name: Ghoul Role
+  components:
+  - type: MindRole
+    antagPrototype: Ghoul
+    exclusiveAntag: false
+    roleType: TeamAntagonist
+    subtype: role-subtype-ghoul
+  - type: GhoulRole
+
 # Changeling
 - type: entity
   parent: BaseMindRoleAntag
