@@ -659,6 +659,7 @@
           components:
           - Circuitboard
           - MachineBoard # Imperial Space Добавлена возможность брать любые платы
+          - BorgEngElectronicsBoard
         blacklist:
           components:
           - SiliconLawProvider
