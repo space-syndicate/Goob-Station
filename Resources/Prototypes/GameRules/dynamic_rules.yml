@@ -46,12 +46,14 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
+        # imperial space: Added a new vampire antagonist. Start
         - id: Vampire
           weight: 10
           conditions:
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 15
+        # imperial space: Added a new vampire antagonist. End
       # Roundstart Minor Rules
       - !type:GroupSelector
         conditions:

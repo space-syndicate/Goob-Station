@@ -5,28 +5,32 @@ namespace Content.Shared.Imperial.Vampire
     [RegisterComponent]
     public sealed partial class DamageOnContactComponent : Component
     {
+        /// <summary>
+        /// количество урона, которое будет нанесено при соприкосновении
+        /// </summary>
         [DataField]
         public int Damage = 15;
+
         /// <summary>
-        /// The fixture the entity must collide with to be stunned
+        /// приспособление, с которым объект должен столкнуться, чтобы быть оглушенным
         /// </summary>
         [DataField]
         public string FixtureId = "fix";
 
         /// <summary>
-        /// The duration of the stun.
+        /// продолжительность оглушения
         /// </summary>
         [DataField]
         public TimeSpan Duration = TimeSpan.FromSeconds(5);
 
         /// <summary>
-        /// Should the stun applied refresh?
+        /// следует ли обновить примененное оглушение?
         /// </summary>
         [DataField]
         public bool Refresh = true;
 
         /// <summary>
-        /// Should the stunned entity try to stand up when knockdown ends?
+        /// должен ли оглушенный субъект пытаться встать, когда нокдаун закончится?
         /// </summary>
         [DataField]
         public bool AutoStand = true;

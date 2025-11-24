@@ -316,6 +316,7 @@
     subtype: role-subtype-zombie
   - type: ZombieRole
 
+# imperial space: Added a new vampire antagonist. Start
 # Vampire
 - type: entity
   parent: BaseMindRoleAntag
@@ -340,6 +341,7 @@
     roleType: TeamAntagonist
     subtype: role-subtype-ghoul
   - type: GhoulRole
+# imperial space: Added a new vampire antagonist. End
 
 # Changeling
 - type: entity

@@ -20,10 +20,12 @@
   displayName: store-currency-display-wizcoin
   canWithdraw: false
 
+# imperial space: Added a new vampire antagonist. Start
 - type: currency
   id: VampireCoin
   displayName: VampireCoin
   canWithdraw: false
+# imperial space: Added a new vampire antagonist. End
 
 #debug
 - type: currency

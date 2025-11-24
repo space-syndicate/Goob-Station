@@ -3,19 +3,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire
 {
-    /// <summary>
-    /// World-targeted action for summoning vampire tentacles
-    /// </summary>
     public sealed partial class VampireTentaclesEvent : WorldTargetActionEvent
     {
         /// <summary>
-        /// The ID of the entity that is spawned.
+        /// ID создаваемого объекта
         /// </summary>
         [DataField]
         public EntProtoId EntityId = "EffectVampireSpawn";
 
         /// <summary>
-        /// Directions determining where the entities will spawn.
+        /// указания, определяющие, где будут появляться сущности
         /// </summary>
         [DataField]
         public List<Direction> OffsetDirections = new()
@@ -27,12 +24,9 @@ namespace Content.Shared.Imperial.Vampire
         };
 
         /// <summary>
-        /// How many entities will spawn beyond the original one at the target location?
+        /// сколько сущностей появится сверх первоначальной в целевом местоположении?
         /// </summary>
         [DataField]
         public int ExtraSpawns = 4;
-
-        [DataField]
-        public int Damage = 15;
     }
 }

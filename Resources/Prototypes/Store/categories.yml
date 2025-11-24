@@ -104,8 +104,8 @@
   name: store-discounted-items
   priority: 200
 
+# imperial space: Added a new vampire antagonist. Start
 # Vampire
-
 - type: storeCategory
   id: ShadowsHealing
   name: Тени исцеления
@@ -125,3 +125,4 @@
   id: FlightShadows
   name: Полет теней
   priority: 3
+# imperial space: Added a new vampire antagonist. End

@@ -85,6 +85,7 @@ public sealed class VampireSystem : EntitySystem
 
         if (_solutionSystem.TryGetInjectableSolution(performer, out var solution, out _))
         {
+            // лечим вампира, вводя ему Omnizine, TranexamicAcid
             var toInject = new Solution();
             toInject.AddReagent("Omnizine", 25f);
             toInject.AddReagent("TranexamicAcid", 5f);
@@ -108,6 +109,9 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// добавляет когти в руки
+    /// </summary>
     private void OnIssuingClaw(VampireClawEvent args)
     {
         var performer = args.Performer;
@@ -119,6 +123,7 @@ public sealed class VampireSystem : EntitySystem
         {
             var item = Spawn(comp.ClawId, Transform(performer).Coordinates);
 
+            // если руки не закованы в наручники, то выдаем коготь
             if (TryComp<HandsComponent>(performer, out var hands) &&
                 TryComp<CuffableComponent>(performer, out var cuff))
             {
@@ -126,6 +131,7 @@ public sealed class VampireSystem : EntitySystem
                 {
                     if (!_hands.CanPickupAnyHand(performer, item, handsComp: hands))
                     {
+                        // выбрасываем предмет, если руки заняты
                         _hands.TryDrop(performer);
                     }
 
@@ -139,6 +145,7 @@ public sealed class VampireSystem : EntitySystem
         {
             foreach (var hand in _hands.EnumerateHeld(performer))
             {
+                // удаляем когти по мете
                 if (MetaData(hand).EntityPrototype?.ID == comp.ClawId)
                 {
                     QueueDel(hand);
@@ -239,6 +246,7 @@ public sealed class VampireSystem : EntitySystem
         if (_gameTiming.CurTime < comp.BuffBlockedUntil)
             return;
 
+        // сохраняем оригинальные значения скорости, урона и тд
         if (comp.OriginalDamageModifier == null)
         {
             var currentDamage = melee.Damage.DamageDict.Values.FirstOrDefault().Float();
@@ -254,7 +262,7 @@ public sealed class VampireSystem : EntitySystem
             comp.OriginalSprintSpeed = speed.BaseSprintSpeed;
         }
 
-        _popup.PopupClient(Loc.GetString("GO"), args.Performer, args.Performer, PopupType.LargeCaution);
+        // выдаем бафы
         var boostedDamage = comp.OriginalDamageModifier.Value * comp.DamageBoost;
         melee.Damage = new DamageSpecifier
         {
@@ -283,6 +291,8 @@ public sealed class VampireSystem : EntitySystem
         Dirty(args.Performer, comp);
         args.Handled = true;
     }
+
+    // модифицированный OnSummonAction
     private void OnTentacles(VampireTentaclesEvent args)
     {
         if (args.Handled)
@@ -411,6 +421,9 @@ public sealed class VampireSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// спавн лужи крови
+    /// </summary>
     private void SpawnBloodPuddle(EntityUid uid, VampireComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -472,6 +485,7 @@ public sealed class VampireSystem : EntitySystem
         if (!Resolve(uid, ref component, false) || component.Deleted)
             return;
 
+        // // вычисляем, какой должен быть спрайт в зависимости от количества крови у вампира
         var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 7);
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }

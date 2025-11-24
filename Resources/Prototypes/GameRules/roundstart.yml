@@ -385,6 +385,7 @@
   - type: DynamicRuleCost
     cost: 200
 
+# imperial space: Added a new vampire antagonist. Start
 - type: entity
   parent: BaseGameRule
   id: Vampire
@@ -409,6 +410,7 @@
       - type: Vampire
       mindRoles:
       - MindRoleVampire
+# imperial space: Added a new vampire antagonist. End
 
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).

@@ -60,6 +60,7 @@ public sealed class VampireEnvelopeGhoul : EntitySystem
             return;
         }
 
+        // создаем верб для превращения цели в упыря
         var verb = new InnateVerb
         {
             Act = () =>
@@ -101,27 +102,26 @@ public sealed class VampireEnvelopeGhoul : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
+    /// <summary>
+    /// обработчик DoAfter
+    /// </summary>
     private void OnEnvelopeComplete(EntityUid uid, VampireComponent comp, VampireEnvelopeDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        var vampire = args.User;
         var target = args.Target ?? args.User;
 
         if (HasComp<GhoulComponent>(target))
-        {
             return;
-        }
 
-        ConvertToGhoul(vampire, target);
+        ConvertToGhoul(args.User, target);
         args.Handled = true;
     }
 
     private void ConvertToGhoul(EntityUid vampire, EntityUid target)
     {
         var ghoulComp = EnsureComp<GhoulComponent>(target);
-        ghoulComp.NextBloodDecay = TimeSpan.Zero;
         Dirty(target, ghoulComp);
 
         _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-vampire-complete",
@@ -130,6 +130,7 @@ public sealed class VampireEnvelopeGhoul : EntitySystem
 
         if (_mind.TryGetMind(target, out var mindId, out var mind))
         {
+            // добавление роли и базовых эффектов для игрока
             if (!_roleSystem.MindHasRole<GhoulRoleComponent>(mindId))
                 _roleSystem.MindAddRole(mindId, "MindRoleGhoul", mind: mind);
 
@@ -148,6 +149,7 @@ public sealed class VampireEnvelopeGhoul : EntitySystem
 
     private void SetGhoulBloodAlert(EntityUid uid, GhoulComponent component)
     {
+        // вычисляем, какой должен быть спрайт в зависимости от количества крови у упыря
         var severity = ContentHelpers.RoundToLevels(
             MathF.Max(0f, component.CritThreshold - component.BloodDamage),
             component.CritThreshold,
@@ -177,10 +179,12 @@ public sealed class VampireEnvelopeGhoul : EntitySystem
 
             if (_gameTiming.CurTime >= ghoulComp.NextBloodDecay)
             {
+                // наносим урон каждые BloodDecayInterval секунд
                 DealGhoulBloodDamage(ghoulUid, ghoulComp.BloodDecayAmount, ghoulComp);
                 ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
                 Dirty(ghoulUid, ghoulComp);
 
+                // если урон больше количества крови, то применяем дебафы
                 if (ghoulComp.BloodDamage >= ghoulComp.CritThreshold)
                 {
                     if (TryComp<StaminaComponent>(ghoulUid, out var stamina))
@@ -198,6 +202,9 @@ public sealed class VampireEnvelopeGhoul : EntitySystem
         }
     }
 
+    /// <summary>
+    /// спавн лужи крови
+    /// </summary>
     private void SpawnBloodPuddle(EntityUid uid)
     {
         var coords = Transform(uid).Coordinates;

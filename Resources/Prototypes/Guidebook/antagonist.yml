@@ -52,7 +52,9 @@
   name: guide-entry-wizard
   text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"
 
+# imperial space: Added a new vampire antagonist. Start
 - type: guideEntry
   id: Vampires
   name: guide-entry-vampires
   # text: "/ServerInfo/Guidebook/Antagonist/Vampires.xml"
+# imperial space: Added a new vampire antagonist. End
