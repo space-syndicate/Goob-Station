@@ -182,6 +182,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterNDA020
+  name: Poster NDA 002
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n020
+
+- type: entity
+  parent: PosterBase
   id: PosterNDA005
   name: Poster NDA 005
   suffix: Fredik21, Недра
@@ -6738,3 +6748,188 @@
   - type: Store
     balance:
       BlueSpaceCube: 15
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPrefugee
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ PrefugeeSCPGear ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPrefugee-name
+      description: ghost-role-information-PresetSCPrefugee-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: PrefugeeSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    shoes: ClothingShoesColorBlack
+    back: CamouflageBag
+
+- type: entity
+  name: infected
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPinfectedNDA020
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda020.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        200: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.7
+      baseSprintSpeed: 3.1
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 200
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ReplacementAccent
+      accent: zombie
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Poison: 2
+          Blunt: 18
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+    - type: Loadout
+      prototypes: [ 4975SCPGear ]
+    - type: Hands
+      showInHands: true
+    - type: MobStateActions
+      actions:
+        Alive:
+        - SCPinfectedNDA020MorphAction
+    - type: UseDelay
+      delay: 1.0
+    - type: Stealth
+
+- type: polymorph
+  id: SCPinfectedNDA020
+  configuration:
+    entity: ImperialSCPinfectedNDA020
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  parent: ProjectilePolyboltBase
+  id: ProjectilePolyboltinfectedNDA020
+  name: zombie polybolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: SCPinfectedNDA020
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: SCPinfectedNDA020MorphAction
+  parent: BaseAction
+  name: SCPinfectedNDA020MorphAction
+  components:
+  - type: Action
+    useDelay: 12
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/SCP/ability/scpzombieaction.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectilePolyboltinfectedNDA020
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA020
+  name: title NDA020
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/nda/2nda020.rsi
+      state: shoreline_water
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Piercing: 1
+      ignoreWhitelist:
+        components:
+          - Stealth

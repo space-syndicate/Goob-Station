@@ -77,8 +77,12 @@
 - files: ["fbi.ogg"]
   license: "CC-BY-SA 3.0"
   copyright: "-, Converted from mp3 to .ogg, rus version"
-  source: "https://youtu.be/1C49WomkvXg?si=_y5ITk015Z_7Stmp"
+  source: "https://youtu.be/7u9YkWijOGs?si=a8ghTegjHTghxzZu"
 - files: ["ssspgry.ogg"]
   license: "CC-BY-SA 3.0"
   copyright: "-, Converted from mp3 to .ogg, rus version"
   source: "https://youtu.be/dW_xruWsFn0?si=Y28WVuk3WoQgeIH6"
+- files: ["beta7.ogg"]
+  license: "CC-BY-SA 3.0"
+  copyright: "-, Converted from mp3 to .ogg"
+  source: "https://www.youtube.com/@golosfonda"
