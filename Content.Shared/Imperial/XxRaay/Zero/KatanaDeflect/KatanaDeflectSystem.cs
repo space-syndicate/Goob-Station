@@ -135,7 +135,13 @@ public class KatanaDeflectSystem : EntitySystem
         }
         
         component.HasDeflected = true;
-        component.LastAttackTime = null;
+
+        if (TryComp<ReflectComponent>(entity, out var reflect))
+        {
+            reflect.ReflectProb = 0f;
+            Dirty(entity, reflect);
+        }
+
         Dirty(entity, component);
     }
 
@@ -144,12 +150,16 @@ public class KatanaDeflectSystem : EntitySystem
         var projPos = TransformSystem.GetWorldPosition(projectile);
         var wielderPos = TransformSystem.GetWorldPosition(wielder);
         var toProjectile = projPos - wielderPos;
-        
+
+        if (toProjectile.LengthSquared() > comp.Radius * comp.Radius)
+            return false;
+
         var angle = Angle.FromWorldVec(toProjectile);
         var attackAngle = Angle.FromWorldVec(comp.LastAttackDirection ?? Vector2.Zero);
         var angleDiff = (angle - attackAngle).Reduced().FlipPositive();
-        
-        return !(angleDiff > comp.DeflectAngle / 2 && Math.Tau - angleDiff > comp.DeflectAngle / 2);
+
+        var maxDiff = Angle.FromDegrees(comp.DeflectAngle / 2f);
+        return angleDiff <= maxDiff;
     }
 
     private void OverrideReflectionDirection(EntityUid projectile, Vector2 attackDir)

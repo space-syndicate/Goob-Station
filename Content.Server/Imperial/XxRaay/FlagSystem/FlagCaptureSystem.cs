@@ -18,6 +18,7 @@ using Content.Shared.Roles;
 using Content.Shared.DoAfter;
 
 using Robust.Shared.GameStates;
+using System.Collections.Generic;
 using System.Linq;
 using Robust.Shared.Serialization;
 using Robust.Shared.Localization;
@@ -31,6 +32,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
     public override void Initialize()
     {
@@ -158,23 +160,40 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
         var playerName = MetaData(player).EntityName;
 
+        if (capture.ActiveCaptureDoAfter != null)
+        {
+            _doAfter.Cancel(capture.ActiveCaptureDoAfter);
+            capture.ActiveCaptureDoAfter = null;
+        }
+
         var doAfter = new DoAfterArgs(_entityManager, player, capture.CaptureTime, new FlagCaptureDoAfterEvent(), flagUid)
         {
             BreakOnMove = false, 
             BreakOnDamage = true,
             NeedHand = false,
-            DistanceThreshold = capture.CaptureRadius + 0.5f,
+            DistanceThreshold = capture.CaptureRadius + 0.5f, // даём небольшой запас, чтобы сгладить сетевые рывки
             Target = flagUid 
         };
 
-        if (!_entityManager.System<SharedDoAfterSystem>().TryStartDoAfter(doAfter, out var doAfterId))
+        if (!_doAfter.TryStartDoAfter(doAfter, out var doAfterId))
         {
             capture.IsBeingCaptured = false;
+            Dirty(flagUid, capture);
+            return;
         }
+
+        capture.ActiveCaptureDoAfter = doAfterId;
+        Dirty(flagUid, capture);
     }
 
     private void CancelCapture(EntityUid flagUid, FlagCaptureComponent capture)
     {
+        if (capture.ActiveCaptureDoAfter != null)
+        {
+            _doAfter.Cancel(capture.ActiveCaptureDoAfter);
+            capture.ActiveCaptureDoAfter = null;
+        }
+
         capture.IsBeingCaptured = false;
         capture.CaptureProgress = TimeSpan.Zero;
         capture.LastCheckTime = TimeSpan.Zero;
@@ -187,6 +206,12 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
     private void CompleteCapture(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
     {
+        if (!IsCaptureStillValid(flagUid, capture, player))
+        {
+            CancelCapture(flagUid, capture);
+            return;
+        }
+
         var playerFaction = GetPlayerFaction(player);
         var playerName = MetaData(player).EntityName;
 
@@ -235,6 +260,8 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
     private void OnDoAfter(EntityUid uid, FlagCaptureComponent component, DoAfterEvent args)
     {
+        component.ActiveCaptureDoAfter = null;
+
         if (args.Cancelled)
         {
             CancelCapture(uid, component);
@@ -247,6 +274,53 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         args.Handled = true;
 
         CompleteCapture(uid, component, args.Args.User);
+    }
+
+    private bool IsCaptureStillValid(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
+    {
+        if (!_entityManager.EntityExists(player))
+            return false;
+
+        if (!_entityManager.TryGetComponent<MobStateComponent>(player, out var playerMob))
+            return false;
+
+        if (playerMob.CurrentState == MobState.Dead || playerMob.CurrentState == MobState.Critical)
+            return false;
+
+        var playerFaction = GetPlayerFaction(player);
+        if (playerFaction == "NeutralFaction")
+            return false;
+
+        if (!_entityManager.TryGetComponent<TransformComponent>(flagUid, out var flagTransform))
+            return false;
+
+        var factions = new HashSet<string>();
+        var playerInRange = false;
+
+        foreach (var entity in _lookup.GetEntitiesInRange(flagTransform.Coordinates, capture.CaptureRadius))
+        {
+            if (!_entityManager.TryGetComponent<ActorComponent>(entity, out var _))
+                continue;
+
+            if (!_entityManager.TryGetComponent<MobStateComponent>(entity, out var mobState))
+                continue;
+
+            if (mobState.CurrentState == MobState.Dead || mobState.CurrentState == MobState.Critical)
+                continue;
+
+            var faction = GetPlayerFaction(entity);
+            if (faction == "NeutralFaction")
+                continue;
+
+            factions.Add(faction);
+
+            if (entity == player)
+                playerInRange = true;
+        }
+
+        return playerInRange &&
+               factions.Count == 1 &&
+               factions.Contains(playerFaction);
     }
 
     private string GetPlayerFaction(EntityUid player)

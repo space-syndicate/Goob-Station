@@ -39,7 +39,7 @@
   cost:
     NTFactionPoints: 100
   categories:
-  - FactionWeapons
+  - NTWeapons
 
 # Ammo
 - type: listing
@@ -70,7 +70,7 @@
   cost:
     NTFactionPoints: 40
   categories:
-  - FactionAmmo
+  - NTAmmo
 
 # Armor
 - type: listing
@@ -101,7 +101,7 @@
   cost:
     NTFactionPoints: 100
   categories:
-  - FactionTools
+  - NTTools
 
 # Medical
 - type: listing
@@ -142,5 +142,5 @@
   cost:
     NTFactionPoints: 10
   categories:
-  - FactionMedical
+  - NTMedical
 

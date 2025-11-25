@@ -29,7 +29,10 @@ public sealed class KatanaRecallSystem : EntitySystem
         var performer = ev.Performer;
 
         if (!TryComp<HandsComponent>(performer, out var hands))
+        {
+            ev.Handled = true;
             return;
+        }
 
         foreach (var handId in hands.SortedHands)
         {

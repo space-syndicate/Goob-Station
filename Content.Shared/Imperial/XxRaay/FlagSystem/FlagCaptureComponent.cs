@@ -1,3 +1,4 @@
+using Content.Shared.DoAfter;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -55,6 +56,12 @@ public sealed partial class FlagCaptureComponent : Component
     /// Последнее время сканирования окружения
     /// </summary>
     public TimeSpan LastScanTime = TimeSpan.Zero;
+
+    /// <summary>
+    /// Идентификатор активного DoAfter процесса захвата.
+    /// </summary>
+    [DataField]
+    public DoAfterId? ActiveCaptureDoAfter;
 }
 
 /// <summary>
