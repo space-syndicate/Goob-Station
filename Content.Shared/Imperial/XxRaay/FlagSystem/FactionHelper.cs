@@ -134,14 +134,14 @@ public static class FactionHelper
     {
         return factionComponentValue switch
         {
-            "NanoTrasen" => "NTFaction",
+            "Nanotrasen" => "NTFaction", 
             "Syndicate" => "SindiFaction",
             "GreenFaction" => "GreenFaction",
             "YellowFaction" => "YellowFaction",
             "RedFaction" => "RedFaction",
             "BlueFaction" => "BlueFaction",
             "USSPFaction" => "USSPFaction",
-            _ => factionComponentValue // Если не знаем, возвращаем как есть
+            _ => factionComponentValue 
         };
     }
 
@@ -149,7 +149,7 @@ public static class FactionHelper
     {
         return factionComponentValue switch
         {
-            "NanoTrasen" => FactionType.NTFaction,
+            "Nanotrasen" => FactionType.NTFaction, // Вариант с маленькой 't' для совместимости
             "Syndicate" => FactionType.Sindi,
             "GreenFaction" => FactionType.Green,
             "YellowFaction" => FactionType.Yellow,

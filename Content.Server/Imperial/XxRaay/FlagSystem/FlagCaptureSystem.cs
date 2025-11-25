@@ -158,12 +158,13 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
         var playerName = MetaData(player).EntityName;
 
-        // Запускаем DoAfter
         var doAfter = new DoAfterArgs(_entityManager, player, capture.CaptureTime, new FlagCaptureDoAfterEvent(), flagUid)
         {
-            BreakOnMove = false,
+            BreakOnMove = false, 
             BreakOnDamage = true,
-            NeedHand = false
+            NeedHand = false,
+            DistanceThreshold = capture.CaptureRadius + 0.5f,
+            Target = flagUid 
         };
 
         if (!_entityManager.System<SharedDoAfterSystem>().TryStartDoAfter(doAfter, out var doAfterId))
