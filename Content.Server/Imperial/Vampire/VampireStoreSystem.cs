@@ -3,7 +3,7 @@ using Content.Shared.Imperial.Vampire;
 using Content.Shared.Store;
 
 namespace Content.Server.Imperial.Vampire;
-public sealed class VampireSystem : EntitySystem
+public sealed class VampireStoreSystem : EntitySystem
 {
     [Dependency] private readonly StoreSystem _storeSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;

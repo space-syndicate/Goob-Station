@@ -102,7 +102,7 @@ namespace Content.Shared.Imperial.Vampire
         /// количество крови, теряемое за один тик
         /// </summary>
         [DataField]
-        public float BloodDecayAmount = 5f;
+        public float BloodDecayAmount = 1.5f;
 
         /// <summary>
         /// продолжительность действия бафа

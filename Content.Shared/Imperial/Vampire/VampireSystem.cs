@@ -480,7 +480,7 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void SetBloodAlert(EntityUid uid, VampireComponent? component = null)
+    public void SetBloodAlert(EntityUid uid, VampireComponent? component = null)
     {
         if (!Resolve(uid, ref component, false) || component.Deleted)
             return;
