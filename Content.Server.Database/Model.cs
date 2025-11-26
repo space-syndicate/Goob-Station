@@ -68,14 +68,6 @@ namespace Content.Server.Database
                 .IsUnique();
 
             // imperial medieval start
-            modelBuilder.Entity<Language>()
-                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
-                .IsUnique();
-
-            modelBuilder.Entity<Skill>()
-                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.SkillName })
-                .IsUnique();
-
             modelBuilder.Entity<NrpViolation>()
                 .HasIndex(p => p.UserId);
 
@@ -482,25 +474,6 @@ namespace Content.Server.Database
     }
 
     #region Imperial Medieval
-    public class Language
-    {
-        public int Id { get; set; }
-        public Profile Profile { get; set; } = null!;
-        public int ProfileId { get; set; }
-
-        public string LanguageName { get; set; } = null!;
-    }
-
-    public class Skill
-    {
-        public int Id { get; set; }
-        public Profile Profile { get; set; } = null!;
-        public int ProfileId { get; set; }
-
-        public string SkillName { get; set; } = null!;
-
-        public int SkillLevel { get; set; } = 10;
-    }
 
     [Table("nrp_violation")]
     public class NrpViolation
