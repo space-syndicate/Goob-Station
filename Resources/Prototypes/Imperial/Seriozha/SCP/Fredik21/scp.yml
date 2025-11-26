@@ -44,6 +44,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterDZ
+  name: Poster DZ
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: dz
+
+- type: entity
+  parent: PosterBase
   id: PosterFBI
   name: Poster ONP FBI
   suffix: Fredik21, Недра
@@ -62,6 +72,16 @@
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: scarletking
+
+- type: entity
+  parent: PosterBase
+  id: PosterGOCmap
+  name: Map Poster
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/map.rsi
+    state: icon
 
 - type: entity
   parent: PosterBase
@@ -2241,6 +2261,13 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPbrokengod-name
+      description: ghost-role-information-PresetSCPbrokengod-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
 
 - type: startingGear
   id: brokengodGear
@@ -2289,6 +2316,13 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPbrokengodhammer-name
+      description: ghost-role-information-PresetSCPbrokengodhammer-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
 
 - type: startingGear
   id: brokengodhammerGear
@@ -2414,6 +2448,14 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPScarletKing-name
+      description: ghost-role-information-PresetSCPScarletKing-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
+
 
 - type: startingGear
   id: ScarletKingGear
@@ -5184,6 +5226,14 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPPGRY-name
+      description: ghost-role-information-PresetSCPPGRY-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
+
 
 - type: startingGear
   id: PGRYGear
@@ -6933,3 +6983,357 @@
       ignoreWhitelist:
         components:
           - Stealth
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitDZ
+  name: DZ exosuit
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorDZ.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorDZ.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.3
+        Cold: 0.3
+        Shock: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetDZ
+
+- type: entity
+  parent: ClothingHeadHelmetCBURN
+  id: ClothingHeadHelmetDZ
+  name: DZ exosuit helmet
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorhelmetDZ.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#006400"
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDZ
+  name: DZ Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DZGear ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: DZGear
+  equipment:
+    jumpsuit: ArgonLeadMercJumpsuitUnsensored
+    back: ClothingBackpackDuffelCBURN
+    mask: ClothingMaskGasERT
+    shoes: ClothingShoesBootsWorkSCP
+    id: SCPIDCardDZ
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitDZ
+    ears: ClothingHeadsetSCPDZ
+    suitstorage: CSWeaponSCAR-L
+    belt: ClothingBeltMinuteManCamoForestWebbing
+  storage:
+    back:
+    - DZUplink
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPDZ
+  suffix: Fredik21, Недра
+  name: DZ Headset
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyImperialDZSCP
+    - type: EncryptionKeyHolder
+      keySlots: 8
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/dz/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/dz/headset.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyImperialDZSCP
+  name: DZ Encryption Key
+  suffix: Fredik21, Недра
+  components:
+  - type: EncryptionKey
+    channels:
+    - ImperialDZSCP
+    defaultChannel: ImperialDZSCP
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/dz/key.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/dz/key.rsi
+
+- type: radioChannel
+  id: ImperialDZSCP
+  name: Длань змея
+  keycode: 'ъ'
+  frequency: 8899
+  color: "#006400"
+  longRange: true
+
+- type: entity
+  id: SCPIDCardDZ
+  parent: IDCardStandard
+  name: DZ ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: DZIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - Security
+      - Brig
+      - Armory
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/dz/id.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/dz/id.rsi
+
+- type: jobIcon
+  parent: JobIcon
+  id: DZIconSCP
+  icon:
+    sprite: /Textures/Imperial/Seriozha/Fredik21/dz/icon.rsi
+    state: icon
+
+- type: entity
+  parent: BaseERTUplink
+  id: DZUplink
+  name: Терминал Повстанцев - Длань змея
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - DZUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - DZUplinkAnomaly
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-px-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: DZUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: DZUplinkSCAR-Magazine
+  name: магазин для SCAR
+  description: Для SCAR-L
+  productEntity: SCAR-Magazine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - DZUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkMagazineBoxSVD
+  name: коробка патронов СВД (7x62x39)
+  description: Коробка обычных снайперских пуль.
+  productEntity: MagazineBoxSVD
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - DZUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: storeCategory
+  id: DZUplinkAnomaly
+  name: Аномалии
+
+- type: listing
+  id: DZUplinkSCPIDCardn005
+  name: NDA 005
+  description: NDA-005 внешне напоминает витиеватый ключ, по характеристикам не отличающийся от серийно выпускаемых ключей 1920-х годов. Ключ был обнаружен, когда гражданское лицо использовало тот при проникновении на особо охраняемый объект. Судя по всему, NDA-005 обладает уникальной возможностью без особых затруднений открывать любые виды замков
+  productEntity: SCPIDCardn005
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP207
+  name: NDA 207
+  description: NDA-207 — это коробка, содержащая 24 бутылки Coca-Cola той же марки. Бутылки промаркированы от NDA-207-A до -X. В настоящее время только NDA-207-B предназначена для исследований; открытие других бутылок без разрешения сотрудника уровня 4 запрещено
+  productEntity: SCP207
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP714
+  name: NDA 714
+  description: NDA-714 выглядит как обычное кольцо из зеленого нефрита. Оно может адаптироваться к размеру пальца последнего человека, который его коснулся. Оно меняет размер только для "новых" субъектов, что является его наименее значительным свойством.
+  productEntity: SCP714
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP268
+  name: NDA 268
+  description: NDA-268 — это твидовая шерстяная шляпа, которую обычно носят продавцы газет. Форма и дизайн соответствуют шляпам, производимым в Ирландии.
+  productEntity: SCP268
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP500
+  name: NDA 500
+  description: NDA-500 — красные таблетки, хранящиеся в маленькой пластиковой бутылочке, 47 таблеток на момент написания. При приеме внутрь таблетка полностью исцеляет субъект от всех болезней в течение двух часов.
+  productEntity: SCP500
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDZCom
+  name: DZ Operator Com
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DZGearCom ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: DZGearCom
+  equipment:
+    jumpsuit: ArgonLeadMercJumpsuitUnsensored
+    back: ClothingBackpackDuffelCBURN
+    mask: ClothingMaskGasERT
+    shoes: ClothingShoesBootsWorkSCP
+    id: SCPIDCardDZ
+    head: ClothingHeadHatBeretMerc
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitDZ
+    ears: ClothingHeadsetSCPDZ
+    suitstorage: WeaponSniperSVD
+    belt: ClothingBeltMinuteManCamoForestWebbing
+  storage:
+    back:
+    - DZUplinkCom
+
+
+- type: entity
+  parent: DZUplink
+  id: DZUplinkCom
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
