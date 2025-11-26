@@ -82,6 +82,7 @@ public sealed class VampireSystem : EntitySystem
     private void OnRecovery(VampireRecoveryEvent args)
     {
         var performer = args.Performer;
+        TryComp<VampireComponent>(performer, out var vamp);
 
         if (_solutionSystem.TryGetInjectableSolution(performer, out var solution, out _))
         {
@@ -106,6 +107,7 @@ public sealed class VampireSystem : EntitySystem
             _statusEffects.TryRemoveStatusEffect(performer, "SlowedDown");
         }
 
+        DealBloodDamage(args.Performer, vamp!.CostBlood);
         args.Handled = true;
     }
 
@@ -161,22 +163,22 @@ public sealed class VampireSystem : EntitySystem
 
     private void OnTeleport(VampireTeleportEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var ent))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
-        var target = ent.TargetUser ? args.Performer : ent.Owner;
+        var target = vamp.TargetUser ? args.Performer : vamp.Owner;
         if (target == null || _net.IsClient || !TryComp<TransformComponent>(target, out var xform))
             return;
 
         var fromCoords = xform.Coordinates;
-        var toCoords = VampireRandomTileInRange(xform, ent.TeleportRadius);
+        var toCoords = VampireRandomTileInRange(xform, vamp.TeleportRadius);
         if (toCoords == null)
             return;
 
-        SpawnSmokeEffect(ent, fromCoords);
+        SpawnSmokeEffect(vamp, fromCoords);
         _transform.SetCoordinates(target, toCoords.Value);
 
-        DealBloodDamage(args.Performer, 50f);
+        DealBloodDamage(args.Performer, vamp.CostBlood);
         args.Handled = true;
     }
 
@@ -285,7 +287,7 @@ public sealed class VampireSystem : EntitySystem
             speed);
 
         comp.BuffBlocked = true;
-        DealBloodDamage(args.Performer, 50f);
+        DealBloodDamage(args.Performer, comp.CostBlood);
         comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(25f);
 
         Dirty(args.Performer, comp);
@@ -295,6 +297,8 @@ public sealed class VampireSystem : EntitySystem
     // модифицированный OnSummonAction
     private void OnTentacles(VampireTentaclesEvent args)
     {
+        TryComp<VampireComponent>(args.Performer, out var vamp);
+
         if (args.Handled)
             return;
 
@@ -326,6 +330,7 @@ public sealed class VampireSystem : EntitySystem
             if (_net.IsServer)
                 Spawn(args.EntityId, pos);
         }
+        DealBloodDamage(args.Performer, vamp!.CostBlood);
     }
 
     private void OnDamadeOnContactCollide(Entity<DamageOnContactComponent> ent, ref StartCollideEvent args)
@@ -476,6 +481,8 @@ public sealed class VampireSystem : EntitySystem
 
         comp.BuffBlocked = true;
         comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(6f);
+
+        DealBloodDamage(args.Performer, comp.CostBlood);
         Dirty(args.Performer, comp);
         args.Handled = true;
     }

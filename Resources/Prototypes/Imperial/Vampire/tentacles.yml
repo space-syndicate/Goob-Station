@@ -17,6 +17,8 @@
     useDelay: 1
   - type: TargetAction
     range: 10
+  - type: Vampire
+    costBlood: 25
   - type: WorldTargetAction
     event: !type:VampireTentaclesEvent
 

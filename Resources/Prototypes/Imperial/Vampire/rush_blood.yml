@@ -8,5 +8,7 @@
     useDelay: 1
     itemIconStyle: BigAction
     icon: Interface/Actions/scream.png
+  - type: Vampire
+    costBlood: 20
   - type: InstantAction
     event: !type:VampireRushBloodEvent
