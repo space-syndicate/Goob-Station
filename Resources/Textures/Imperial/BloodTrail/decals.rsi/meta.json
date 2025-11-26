@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "taken from TG https://github.com/tgstation/tgstation/blob/HEAD/icons/effects/blood.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "trail1"
+        },
+        {
+            "name": "trail2"
+        },
+        {
+            "name": "trail3"
+        },
+        {
+            "name": "trail4"
+        },
+        {
+            "name": "trail5"
+        },
+        {
+            "name": "trail6"
+        }
+    ]
+}
