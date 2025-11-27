@@ -41,26 +41,11 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
     private void OnMoveInput(Entity<EntityTileMovementComponent> entity, ref MoveInputEvent args)
     {
         entity.Comp.LastMoveButtons = args.Entity.Comp.HeldMoveButtons;
-        
-        if (entity.Comp.Enabled && TryComp<InputMoverComponent>(entity, out var mover))
-        {
-            if (mover.CanMove)
-            {
-                mover.CanMove = false;
-                Dirty(entity, mover);
-            }
-        }
     }
 
     private void OnComponentInit(EntityUid uid, EntityTileMovementComponent component, ComponentInit args)
     {
         component.LastMoveTime = _gameTiming.CurTime;
-        
-        if (TryComp<InputMoverComponent>(uid, out var mover) && component.Enabled)
-        {
-            mover.CanMove = false;
-            Dirty(uid, mover);
-        }
     }
 
     private void OnComponentShutdown(EntityUid uid, EntityTileMovementComponent component, ComponentShutdown args)
@@ -91,35 +76,25 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
                 continue;
             }
 
-            var moveButtons = tileMovement.LastMoveButtons != MoveButtons.None 
-                ? tileMovement.LastMoveButtons 
-                : mover.HeldMoveButtons;
-            
-            if ((moveButtons & MoveButtons.AnyDirection) == MoveButtons.None)
-            {
-                if (!mover.CanMove)
-                {
-                    mover.CanMove = true;
-                    Dirty(uid, mover);
-                }
-                StopMovement(uid, mover);
-                continue;
-            }
-
             if (mover.CanMove)
             {
                 mover.CanMove = false;
                 Dirty(uid, mover);
             }
 
+            var moveButtons = tileMovement.LastMoveButtons != MoveButtons.None 
+                ? tileMovement.LastMoveButtons 
+                : mover.HeldMoveButtons;
+            
+            if ((moveButtons & MoveButtons.AnyDirection) == MoveButtons.None)
+            {
+                StopMovement(uid, mover);
+                continue;
+            }
+
             var wishDir = GetDirectionFromButtons(moveButtons);
             if (wishDir == Vector2.Zero)
             {
-                if (!mover.CanMove)
-                {
-                    mover.CanMove = true;
-                    Dirty(uid, mover);
-                }
                 StopMovement(uid, mover);
                 continue;
             }
