@@ -6,8 +6,13 @@ using Content.Shared.Wieldable.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Events;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 using Content.Shared.Coordinates;
-using System.Numerics;
+using Content.Shared.Stunnable;
+using Robust.Shared.Physics.Components;
+using Content.Shared.Damage.Components;
+using Robust.Shared.Physics.Systems;
 using Content.Shared.Weapons.Ranged.Systems;
+using System.Numerics;
+
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Systems;
 
@@ -17,7 +22,10 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -44,12 +52,19 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
         // Piercing Lunge
         SubscribeLocalEvent<UserPiercingLungeComponent, PiercingLungeEvent>(OnPiercingLunge);
+        SubscribeLocalEvent<PiercingLungeComponent, PiercingLungeDoAfterEvent>(OnPiercingLungeDoAfter);
         SubscribeLocalEvent<PiercingLungeComponent, GotEquippedHandEvent>(OnEquippedPiercingLunge);
         SubscribeLocalEvent<PiercingLungeComponent, GotUnequippedHandEvent>(OnUnequippedPiercingLunge);
         SubscribeLocalEvent<PiercingLungeComponent, ComponentShutdown>(OnPiercingLungeShutdown);
     }
 
-    #region Earthshaker Strike
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdatePiercingLunge(frameTime);
+    }
+
+    #region Earthshaker Strike Logic
 
     private void OnEarthshakerStrike(EntityUid user, UserEarthshakerStrikeComponent comp, ref EarthshakerStrikeEvent args)
     {
@@ -76,9 +91,12 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     private void OnEarthshakerStrikeDoAfter(EntityUid uid, EarthshakerStrikeComponent comp, EarthshakerStrikeDoAfterEvent args)
     {
+        if (!comp.User.HasValue)
+            return;
+
         if (args.Cancelled)
         {
-            DoAfterCancelled(uid);
+            DoAfterCancelled(comp.User.Value);
             return;
         }
 
@@ -129,7 +147,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     #endregion
 
-    #region Enhanced Bayonet
+    #region Enhanced Bayonet Logic
 
     private void OnEnhancedBayonetAttack(EntityUid uid, UserEnhancedBayonetAttackComponent comp, ref EnhancedBayonetAttackEvent args)
     {
@@ -170,11 +188,10 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     #endregion
 
-    #region Enhanced Shot
+    #region Enhanced Shot Logic
 
     private void OnEnhancedShot(EntityUid user, UserEnhancedShotComponent comp, ref EnhancedShotEvent args)
     {
-        Log.Info($"EnhancedShot +");
         if (!comp.Item.HasValue)
             return;
 
@@ -184,7 +201,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             return;
 
         var userPos = _transform.GetWorldPosition(userXform);
-        comp.Direction = targetMap.Position - userPos;
+        comp.Direction = (targetMap.Position - userPos).Normalized();
 
         if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new EnhancedShotDoAfterEvent()))
             return;
@@ -192,18 +209,19 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     private void OnEnhancedShotDoAfter(EntityUid uid, EnhancedShotComponent comp, EnhancedShotDoAfterEvent args)
     {
+        if (!comp.User.HasValue)
+            return;
+
         if (args.Cancelled)
         {
-            DoAfterCancelled(uid);
+            DoAfterCancelled(comp.User.Value);
             return;
         }
 
         if (args.Handled)
             return;
 
-        Log.Info($"активация логики по завершению доафтера");
-        if (comp.User.HasValue)
-            ShootEnhancedProjectile(uid, comp.User.Value, comp);
+        ShootEnhancedProjectile(uid, comp.User.Value, comp);
 
         args.Handled = true;
     }
@@ -258,18 +276,55 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     #endregion
 
-    #region Piercing Lunge
+    #region Piercing Lunge Logic
 
-    private void OnPiercingLunge(EntityUid uid, UserPiercingLungeComponent comp, ref PiercingLungeEvent args)
+    private void OnPiercingLunge(EntityUid user, UserPiercingLungeComponent comp, ref PiercingLungeEvent args)
     {
-        Log.Info($"PiercingLunge +");
+        if (!comp.Item.HasValue)
+            return;
+
+        var userXform = Transform(user);
+        var targetMap = _transform.ToMapCoordinates(args.Target);
+        if (targetMap.MapId != userXform.MapID)
+            return;
+
+        var userPos = _transform.GetWorldPosition(userXform);
+        comp.Direction = (targetMap.Position - userPos).Normalized();
+
+        if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new PiercingLungeDoAfterEvent()))
+            return;
+    }
+
+    private void OnPiercingLungeDoAfter(EntityUid uid, PiercingLungeComponent comp, PiercingLungeDoAfterEvent args)
+    {
+        if (!comp.User.HasValue)
+            return;
+
+        if (args.Cancelled)
+        {
+            DoAfterCancelled(comp.User.Value);
+            return;
+        }
+
+        if (args.Handled)
+            return;
+
+        if (TryComp<UserPiercingLungeComponent>(comp.User.Value, out var userComp))
+        {
+            comp.Direction = userComp.Direction;
+            PiercingLunge(uid, comp.User.Value, comp);
+        }
+
         args.Handled = true;
     }
 
     private void OnEquippedPiercingLunge(EntityUid uid, PiercingLungeComponent comp, GotEquippedHandEvent args)
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionPiercingLunge);
-        AddComp<UserPiercingLungeComponent>(args.User);
+
+        var userComp = EnsureComp<UserPiercingLungeComponent>(args.User);
+        userComp.Item = uid;
+        userComp.DoAfterTime = comp.DoAfterTime;
 
         comp.User = args.User;
     }
@@ -287,6 +342,9 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
     private void OnPiercingLungeShutdown(EntityUid uid, PiercingLungeComponent comp, ComponentShutdown args)
     {
+        if (comp.User.HasValue && comp.IsInEffect)
+            RemoveContactComponents(comp.User.Value);
+
         if (comp.Action != null && TryComp(uid, out TransformComponent? transform) &&
             transform.ParentUid.IsValid())
         {
@@ -295,6 +353,73 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             if (comp.User.HasValue)
                 RemComp<UserPiercingLungeComponent>(comp.User.Value);
         }
+    }
+
+    private void PiercingLunge(EntityUid uid, EntityUid user, PiercingLungeComponent comp)
+    {
+        if (!TryComp<PhysicsComponent>(user, out var physics))
+            return;
+
+        comp.IsLunging = true;
+        comp.LungeAccumulator = 0f;
+
+        _physics.SetLinearVelocity(user, comp.Direction * comp.InitialLungeStrength, body: physics);
+        _stun.TryAddStunDuration(user, comp.StunTime);
+
+        EnsureComp<StunOnContactComponent>(user);
+        var damageContacts = EnsureComp<DamageContactsComponent>(user);
+        damageContacts.Damage = comp.Damage;
+
+    }
+
+    private void UpdatePiercingLunge(float frameTime)
+    {
+        var query = EntityQueryEnumerator<PiercingLungeComponent>();
+        while (query.MoveNext(out var _, out var comp))
+        {
+            if (!comp.User.HasValue)
+                continue;
+
+            if (!comp.IsLunging)
+                continue;
+
+            comp.LungeAccumulator += frameTime;
+
+            if (comp.LungeAccumulator <= comp.LungeDuration)
+            {
+                if (!TryComp<PhysicsComponent>(comp.User.Value, out var physics))
+                    continue;
+
+                var progress = comp.LungeAccumulator / comp.LungeDuration;
+                var easedProgress = (float)Math.Sin(progress * Math.PI * 0.5f);
+                var currentStrength = MathHelper.Lerp(comp.InitialLungeStrength, comp.FinalLungeStrength, easedProgress);
+
+                _physics.SetLinearVelocity(comp.User.Value, comp.Direction * currentStrength, body: physics);
+            }
+            else
+            {
+                comp.IsLunging = false;
+                comp.LungeAccumulator = 0f;
+
+                RemoveContactComponents(comp.User.Value);
+
+                if (TryComp<PhysicsComponent>(comp.User.Value, out var physics))
+                {
+                    var currentVelocity = physics.LinearVelocity;
+                    var stopVelocity = currentVelocity * 0.2f;
+                    _physics.SetLinearVelocity(comp.User.Value, stopVelocity, body: physics);
+                }
+            }
+        }
+    }
+
+    private void RemoveContactComponents(EntityUid entity)
+    {
+        if (HasComp<StunOnContactComponent>(entity))
+            RemComp<StunOnContactComponent>(entity);
+
+        if (HasComp<DamageContactsComponent>(entity))
+            RemComp<DamageContactsComponent>(entity);
     }
 
     #endregion
@@ -330,5 +455,6 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     {
         return TryComp<WieldableComponent>(item, out var wieldable) && wieldable.Wielded;
     }
+
     #endregion
 }

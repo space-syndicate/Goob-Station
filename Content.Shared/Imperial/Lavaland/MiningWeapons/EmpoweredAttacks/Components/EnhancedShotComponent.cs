@@ -16,11 +16,11 @@ public sealed partial class EnhancedShotComponent : Component
     public EntityUid? User;
 
     [DataField, ViewVariables]
-    public float DoAfterTime = 1.0f;
-
-    [DataField]
     public string ProjectilePrototype = "EnhancedShotProjectile";
 
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float DoAfterTime = 1.0f;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ProjectileSpeed = 40f;
 }

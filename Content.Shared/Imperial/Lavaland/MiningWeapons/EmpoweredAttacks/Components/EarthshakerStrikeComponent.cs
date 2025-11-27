@@ -9,10 +9,10 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Compon
 [RegisterComponent]
 public sealed partial class EarthshakerStrikeComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
     public string EarthshakerRiftSpawnPrototype = "EffectEarthshakerRiftSpawn";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
     public string ActionEarthshakerStrike = "ActionEarthshakerStrike";
 
     [ViewVariables]
@@ -21,12 +21,12 @@ public sealed partial class EarthshakerStrikeComponent : Component
     [ViewVariables]
     public EntityUid? User;
 
-    [DataField, ViewVariables]
-    public float DoAfterTime = 1.5f;
-
-    [DataField, ViewVariables]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool HasDoAfter = true;
 
-    [DataField, ViewVariables]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool HasWielded = true;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float DoAfterTime = 1.5f;
 }
