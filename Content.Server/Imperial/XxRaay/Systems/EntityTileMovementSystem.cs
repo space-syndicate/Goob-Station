@@ -41,11 +41,26 @@ public sealed class EntityTileMovementSystem : SharedEntityTileMovementSystem
     private void OnMoveInput(Entity<EntityTileMovementComponent> entity, ref MoveInputEvent args)
     {
         entity.Comp.LastMoveButtons = args.Entity.Comp.HeldMoveButtons;
+        
+        if (entity.Comp.Enabled && TryComp<InputMoverComponent>(entity, out var mover))
+        {
+            if (mover.CanMove)
+            {
+                mover.CanMove = false;
+                Dirty(entity, mover);
+            }
+        }
     }
 
     private void OnComponentInit(EntityUid uid, EntityTileMovementComponent component, ComponentInit args)
     {
         component.LastMoveTime = _gameTiming.CurTime;
+        
+        if (TryComp<InputMoverComponent>(uid, out var mover) && component.Enabled)
+        {
+            mover.CanMove = false;
+            Dirty(uid, mover);
+        }
     }
 
     private void OnComponentShutdown(EntityUid uid, EntityTileMovementComponent component, ComponentShutdown args)

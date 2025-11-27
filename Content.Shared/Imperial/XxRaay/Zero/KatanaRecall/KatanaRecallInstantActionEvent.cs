@@ -1,6 +1,8 @@
-using Content.Shared.Actions;
+// using Content.Shared.Actions;
+// using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.XxRaay.Zero.KatanaRecall;
+// namespace Content.Shared.Imperial.XxRaay.Zero.KatanaRecall;
 
-public sealed partial class KatanaRecallInstantActionEvent : InstantActionEvent {}
+// [Serializable, NetSerializable]
+// public sealed partial class KatanaRecallInstantActionEvent : InstantActionEvent {}
 
