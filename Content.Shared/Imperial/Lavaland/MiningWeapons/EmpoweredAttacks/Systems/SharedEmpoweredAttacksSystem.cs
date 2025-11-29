@@ -31,17 +31,11 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         base.Initialize();
 
         // Earthshaker
-        SubscribeLocalEvent<EarthshakerStrikeComponent, EarthshakerStrikeDoAfterEvent>(OnEarthshakerStrikeDoAfter);
         SubscribeLocalEvent<UserEarthshakerStrikeComponent, EarthshakerStrikeEvent>(OnEarthshakerStrike);
+        SubscribeLocalEvent<EarthshakerStrikeComponent, EarthshakerStrikeDoAfterEvent>(OnEarthshakerStrikeDoAfter);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotEquippedHandEvent>(OnEquippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, GotUnequippedHandEvent>(OnUnequippedEarthshakerStrike);
         SubscribeLocalEvent<EarthshakerStrikeComponent, ComponentShutdown>(OnEarthshakerShutdown);
-
-        // Enhanced Bayonet
-        SubscribeLocalEvent<UserEnhancedBayonetAttackComponent, EnhancedBayonetAttackEvent>(OnEnhancedBayonetAttack);
-        SubscribeLocalEvent<EnhancedBayonetAttackComponent, GotEquippedHandEvent>(OnEquippedEnhancedBayonet);
-        SubscribeLocalEvent<EnhancedBayonetAttackComponent, GotUnequippedHandEvent>(OnUnequippedEnhancedBayonet);
-        SubscribeLocalEvent<EnhancedBayonetAttackComponent, ComponentShutdown>(OnEnhancedBayonetShutdown);
 
         // Enhanced Shot
         SubscribeLocalEvent<UserEnhancedShotComponent, EnhancedShotEvent>(OnEnhancedShot);
@@ -142,47 +136,6 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
             if (comp.User.HasValue)
                 RemComp<UserEarthshakerStrikeComponent>(comp.User.Value);
-        }
-    }
-
-    #endregion
-
-    #region Enhanced Bayonet Logic
-
-    private void OnEnhancedBayonetAttack(EntityUid uid, UserEnhancedBayonetAttackComponent comp, ref EnhancedBayonetAttackEvent args)
-    {
-        Log.Info($"EnhancedBayonet +");
-        args.Handled = true;
-    }
-
-    private void OnEquippedEnhancedBayonet(EntityUid uid, EnhancedBayonetAttackComponent comp, GotEquippedHandEvent args)
-    {
-        _action.AddAction(args.User, ref comp.Action, comp.ActionEnhancedBayonetAttack);
-        AddComp<UserEnhancedBayonetAttackComponent>(args.User);
-
-        comp.User = args.User;
-    }
-
-    private void OnUnequippedEnhancedBayonet(EntityUid uid, EnhancedBayonetAttackComponent comp, GotUnequippedHandEvent args)
-    {
-        if (comp.Action != null)
-        {
-            _action.RemoveAction(args.User, comp.Action.Value);
-            comp.Action = null;
-
-            RemComp<UserEnhancedBayonetAttackComponent>(args.User);
-        }
-    }
-
-    private void OnEnhancedBayonetShutdown(EntityUid uid, EnhancedBayonetAttackComponent comp, ComponentShutdown args)
-    {
-        if (comp.Action != null && TryComp(uid, out TransformComponent? transform) &&
-            transform.ParentUid.IsValid())
-        {
-            _action.RemoveAction(transform.ParentUid, comp.Action.Value);
-
-            if (comp.User.HasValue)
-                RemComp<UserEnhancedBayonetAttackComponent>(comp.User.Value);
         }
     }
 

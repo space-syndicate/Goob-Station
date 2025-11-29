@@ -1,0 +1,7 @@
+- type: entity
+  id: WeaponArcEnhancedBayonet
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: WeaponArcVisuals
+      animation: Thrust
