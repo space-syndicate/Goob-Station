@@ -2,7 +2,7 @@
   id: OrbitalStrike
   name: орбитальный удар
   description: Предмет для вызова орбитального удара. При активации спавнит ракеты в радиусе 30 тайлов.
-  suffix: XxRaay, Admin
+  suffix: XxRaay, Felix, Admin
   parent: BaseItem
   components:
   - type: Sprite

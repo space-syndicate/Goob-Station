@@ -96,7 +96,6 @@ public sealed class OrbitalStrikeSystem : EntitySystem
                 podComp.ExplosionIntensity = mode.Intensity;
                 podComp.ExplosionSlope = mode.Slope;
                 podComp.ExplosionMaxTileIntensity = mode.MaxTileIntensity;
-                Dirty(podEntity, podComp);
             });
         }
 

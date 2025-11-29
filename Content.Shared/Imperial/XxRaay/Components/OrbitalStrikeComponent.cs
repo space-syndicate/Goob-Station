@@ -47,7 +47,27 @@ public sealed partial class OrbitalStrikeComponent : Component
     /// <summary>
     /// Explosion mode: (intensity, slope, maxTileIntensity)
     /// </summary>
-    public record ExplosionMode(float Intensity, float Slope, float MaxTileIntensity);
+    [DataDefinition]
+    public sealed partial class ExplosionMode
+    {
+        [DataField("intensity")]
+        public float Intensity { get; set; }
+
+        [DataField("slope")]
+        public float Slope { get; set; }
+
+        [DataField("maxTileIntensity")]
+        public float MaxTileIntensity { get; set; }
+
+        public ExplosionMode() { }
+
+        public ExplosionMode(float intensity, float slope, float maxTileIntensity)
+        {
+            Intensity = intensity;
+            Slope = slope;
+            MaxTileIntensity = maxTileIntensity;
+        }
+    }
 
     /// <summary>
     /// Available explosion modes.
