@@ -135,7 +135,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 var station = _stationSystem.GetOwningStation(uid, transComp);
                 if (station != null)
                 {
-                    _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
                     _chatSystem.DispatchStationAnnouncement(
                         station.Value,
                         Loc.GetString("supermatter-station-catastrophe"),
@@ -143,9 +142,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
                         colorOverride: Color.Red
                     );
                 }
-
-                // Отправляем сообщение в радио о начале катастрофы
-                SendSupermatterRadio(uid, Loc.GetString("supermatter-catastrophe-warning"), comp);
             }
 
             if (comp.CatastropheActive)
