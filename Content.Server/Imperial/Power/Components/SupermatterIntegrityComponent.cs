@@ -153,7 +153,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// Общая интенсивность взрыва при катастрофе.
     /// </summary>
     [DataField]
-    public float CatastropheTotalIntensity = 20000f;
+    public float CatastropheTotalIntensity = 2500f;
 
     /// <summary>
     /// Крутизна спадания интенсивности взрыва.
