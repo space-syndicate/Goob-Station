@@ -1,0 +1,15 @@
+- type: entity
+  id: OrbitalStrike
+  name: орбитальный удар
+  description: Предмет для вызова орбитального удара. При активации спавнит ракеты в радиусе 30 тайлов.
+  suffix: XxRaay, Admin
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/OrbitalCall/imperial.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Felix/Objects/OrbitalCall/imperial.rsi
+    size: Small
+  - type: OrbitalStrike
+
