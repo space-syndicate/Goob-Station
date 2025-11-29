@@ -9,3 +9,4 @@ public sealed partial class TTSProviderComponent : Component
     [DataField("voice")]
     public string Voice = default!;
 }
+
