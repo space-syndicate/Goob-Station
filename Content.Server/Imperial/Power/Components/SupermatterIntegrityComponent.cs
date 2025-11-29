@@ -165,7 +165,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// Максимальная интенсивность на тайле для взрыва.
     /// </summary>
     [DataField]
-    public float CatastropheMaxTileIntensity = 70f;
+    public float CatastropheMaxTileIntensity = 35f;
 
     /// <summary>
     /// Интервал между молниями во время катастрофы
