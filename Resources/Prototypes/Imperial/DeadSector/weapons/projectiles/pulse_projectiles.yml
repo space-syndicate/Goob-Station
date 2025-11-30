@@ -17,8 +17,7 @@
   id: plasma_rifle_RLT1
   damage:
     types:
-      Heat: 10
-      Radiation: 10
+      Heat: 18
   muzzleFlash:
     sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
     state: muzzle_plasma
