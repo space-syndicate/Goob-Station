@@ -196,7 +196,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     {
         return violationCount switch
         {
-            3 => 1,    // 1 минута
+            3 => 5,    // 5 минута
             4 => 10,   // 10 минут
             5 => 30,   // 30 минут
             >= 6 => 60, // 1 час (максимум)
