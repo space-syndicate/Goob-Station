@@ -97,9 +97,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 var integrityWarning = Loc.GetString(level.Warning);
                 SendSupermatterRadio(uid, integrityWarning, comp);
 
-                // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
-                // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
-                if (level.Threshold <= 10f)
+                if (level.Threshold <= 30f)
                 {
                     var station = _stationSystem.GetOwningStation(uid, transComp);
                     if (station != null)

@@ -24,7 +24,7 @@ public sealed partial class OrbitalStrikeComponent : Component
     /// Available pod counts that can be selected.
     /// </summary>
     [DataField]
-    public List<int> AvailablePodCounts = new() { 3, 6, 8, 15, 20, 25, 30, 40 };
+    public List<int> AvailablePodCounts = new() { 3, 6, 8, 15, 20, 25, 30, 40, 60, 100 };
 
     /// <summary>
     /// Current selected pod count.
@@ -36,7 +36,7 @@ public sealed partial class OrbitalStrikeComponent : Component
     /// Available radius values that can be selected.
     /// </summary>
     [DataField]
-    public List<float> AvailableRadii = new() { 15f, 20f, 30f, 40f, 50f };
+    public List<float> AvailableRadii = new() { 15f, 20f, 30f, 40f, 50f, 60f, 100f };
 
     /// <summary>
     /// Current selected radius.
