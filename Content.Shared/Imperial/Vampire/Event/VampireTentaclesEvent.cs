@@ -28,5 +28,8 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField]
         public int ExtraSpawns = 4;
+
+        [DataField("costBlood")]
+        public float CostBlood = 30;
     }
 }

@@ -93,3 +93,35 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireSleepListing
+  name: Взгляд
+  description: Ну это взгляд
+  productAction: VampireSleep
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireUnCuffListing
+  name: Свобода
+  description: Ну это свобода
+  productAction: VampireUnCuff
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - FuryFangs
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

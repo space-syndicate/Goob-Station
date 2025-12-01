@@ -146,9 +146,6 @@ namespace Content.Shared.Imperial.Vampire
         [DataField, AutoNetworkedField]
         public EntProtoId SmokePrototype = "Smoke";
 
-        [DataField("costBlood")]
-        public float CostBlood;
-
         public EntProtoId GrimoreAction = "VampireGrimoireAction";
         public EntityUid? GrimoreActionEntity;
 

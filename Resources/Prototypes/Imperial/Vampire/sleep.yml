@@ -1,13 +1,13 @@
 - type: entity
   parent: BaseAction
-  id: RushBlood
-  name: Прилив крови
-  description: Ну типо прилив крови
+  id: VampireSleep
+  name: Взгляд
+  description: Ну это взгляд
   components:
   - type: Action
     useDelay: 1
     itemIconStyle: BigAction
     icon: Interface/Actions/scream.png
   - type: InstantAction
-    event: !type:VampireRushBloodEvent
-      costBlood: 20
+    event: !type:VampireSleepEvent
+      costBlood: 30

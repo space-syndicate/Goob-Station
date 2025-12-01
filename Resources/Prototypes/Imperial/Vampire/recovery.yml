@@ -10,7 +10,6 @@
     icon:
       sprite: Actions/smokeaction.rsi
       state: smokeaction
-  - type: Vampire
-    costBlood: 20
   - type: InstantAction
     event: !type:VampireRecoveryEvent
+      costBlood: 20

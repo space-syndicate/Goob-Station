@@ -9,5 +9,8 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField]
         public float BoostSpeed = 2.0f;
+
+        [DataField("costBlood")]
+        public float CostBlood = 30;
     }
 }

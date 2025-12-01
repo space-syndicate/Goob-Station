@@ -34,6 +34,9 @@ using Content.Shared.Rounding;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Jittering;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Cuffs;
 
 
 namespace Content.Shared.Imperial.Vampire;
@@ -62,6 +65,8 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuff = default!;
 
     public override void Initialize()
     {
@@ -73,6 +78,8 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
         SubscribeLocalEvent<VampireRushBloodEvent>(OnRushBlood);
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
+        SubscribeLocalEvent<VampireSleepEvent>(OnSleep);
+        SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
@@ -83,6 +90,13 @@ public sealed class VampireSystem : EntitySystem
     {
         var performer = args.Performer;
         TryComp<VampireComponent>(performer, out var vamp);
+
+        if (vamp!.BloodDamage + args.CostBlood >= vamp!.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
 
         if (_solutionSystem.TryGetInjectableSolution(performer, out var solution, out _))
         {
@@ -107,7 +121,7 @@ public sealed class VampireSystem : EntitySystem
             _statusEffects.TryRemoveStatusEffect(performer, "SlowedDown");
         }
 
-        DealBloodDamage(args.Performer, vamp!.CostBlood);
+        DealBloodDamage(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 
@@ -166,6 +180,13 @@ public sealed class VampireSystem : EntitySystem
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
         var target = vamp.TargetUser ? args.Performer : vamp.Owner;
         if (target == null || _net.IsClient || !TryComp<TransformComponent>(target, out var xform))
             return;
@@ -178,7 +199,7 @@ public sealed class VampireSystem : EntitySystem
         SpawnSmokeEffect(vamp, fromCoords);
         _transform.SetCoordinates(target, toCoords.Value);
 
-        DealBloodDamage(args.Performer, vamp.CostBlood);
+        DealBloodDamage(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 
@@ -230,6 +251,13 @@ public sealed class VampireSystem : EntitySystem
     {
         if (!TryComp<VampireComponent>(args.Performer, out var comp))
             return;
+
+        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
 
         if (!TryComp<MeleeWeaponComponent>(args.Performer, out var melee))
             return;
@@ -287,7 +315,7 @@ public sealed class VampireSystem : EntitySystem
             speed);
 
         comp.BuffBlocked = true;
-        DealBloodDamage(args.Performer, comp.CostBlood);
+        DealBloodDamage(args.Performer, args.CostBlood);
         comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(25f);
 
         Dirty(args.Performer, comp);
@@ -298,6 +326,13 @@ public sealed class VampireSystem : EntitySystem
     private void OnTentacles(VampireTentaclesEvent args)
     {
         TryComp<VampireComponent>(args.Performer, out var vamp);
+
+        if (vamp!.BloodDamage + args.CostBlood >= vamp!.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
 
         if (args.Handled)
             return;
@@ -330,7 +365,8 @@ public sealed class VampireSystem : EntitySystem
             if (_net.IsServer)
                 Spawn(args.EntityId, pos);
         }
-        DealBloodDamage(args.Performer, vamp!.CostBlood);
+        DealBloodDamage(args.Performer, args.CostBlood);
+        Dirty(args.Performer, vamp!);
     }
 
     private void OnDamadeOnContactCollide(Entity<DamageOnContactComponent> ent, ref StartCollideEvent args)
@@ -344,6 +380,115 @@ public sealed class VampireSystem : EntitySystem
         };
 
         _damage.TryChangeDamage(args.OtherEntity, dmg);
+    }
+
+    private void OnSleep(VampireSleepEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        // получаем все сущности перед игроком
+        var transform = Transform(args.Performer);
+        var direction = transform.LocalRotation.GetCardinalDir();
+        var frontPos = transform.Coordinates.Offset(direction.ToVec());
+        var entities = _lookup.GetEntitiesInRange(frontPos, 0.5f);
+
+        if (!entities.Any(x => x != args.Performer))
+        {
+            _popup.PopupClient(Loc.GetString("Впереди никого нет!"),
+                args.Performer, args.Performer, PopupType.Medium);
+
+            return;
+        }
+
+        foreach (var entity in entities)
+        {
+            if (entity == args.Performer)
+                continue;
+
+            if (TryComp<SleepingComponent>(entity, out var sleep))
+            {
+                _popup.PopupClient(Loc.GetString("Уже спит!"),
+                    args.Performer, args.Performer, PopupType.Medium);
+                continue;
+            }
+
+            if (!_mobStateSystem.IsAlive(entity))
+                continue;
+
+            if (_solutionSystem.TryGetInjectableSolution(entity, out var solution, out _))
+            {
+                var toInject = new Solution();
+                toInject.AddReagent("Nocturine", 25f);
+
+                _solutionSystem.TryAddSolution(solution.Value, toInject);
+
+                continue;
+            }
+        }
+
+        DealBloodDamage(args.Performer, args.CostBlood);
+        args.Handled = true;
+    }
+
+    private void OnUnCuff(VampireUnCuffEvent args)
+    {
+        if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
+            return;
+
+        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        if (!TryComp<CuffableComponent>(args.Performer, out var cuffComp) || cuffComp.CuffedHandCount <= 0)
+        {
+            _popup.PopupClient(Loc.GetString("На вас не надеты наручники!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        _cuff.Uncuff(args.Performer, args.Performer, cuffComp.LastAddedCuffs);
+
+        if (comp.BuffBlocked)
+        {
+            _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
+            args.Performer, args.Performer, PopupType.LargeCaution);
+
+            return;
+        }
+
+        if (comp.OriginalWalkSpeed == null)
+        {
+            comp.OriginalWalkSpeed = speed.BaseWalkSpeed;
+            comp.OriginalSprintSpeed = speed.BaseSprintSpeed;
+        }
+
+        _speedSystem.ChangeBaseSpeed(
+            args.Performer,
+            (comp.OriginalWalkSpeed ?? speed.BaseWalkSpeed) * args.BoostSpeed,
+            (comp.OriginalSprintSpeed ?? speed.BaseSprintSpeed) * args.BoostSpeed,
+            speed.BaseAcceleration,
+            speed);
+
+        comp.BuffBlocked = true;
+        comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(6f);
+
+        DealBloodDamage(args.Performer, 90f);
+        Dirty(args.Performer, comp);
+        args.Handled = true;
     }
 
     public override void Update(float frameTime)
@@ -458,6 +603,13 @@ public sealed class VampireSystem : EntitySystem
         if (!TryComp<VampireComponent>(args.Performer, out var comp))
             return;
 
+        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
         if (comp.BuffBlocked)
         {
             _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
@@ -482,7 +634,7 @@ public sealed class VampireSystem : EntitySystem
         comp.BuffBlocked = true;
         comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(6f);
 
-        DealBloodDamage(args.Performer, comp.CostBlood);
+        DealBloodDamage(args.Performer, args.CostBlood);
         Dirty(args.Performer, comp);
         args.Handled = true;
     }
@@ -492,7 +644,7 @@ public sealed class VampireSystem : EntitySystem
         if (!Resolve(uid, ref component, false) || component.Deleted)
             return;
 
-        // // вычисляем, какой должен быть спрайт в зависимости от количества крови у вампира
+        // вычисляем, какой должен быть спрайт в зависимости от количества крови у вампира
         var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 7);
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }

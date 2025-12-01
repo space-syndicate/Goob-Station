@@ -1,13 +1,14 @@
 - type: entity
   parent: BaseAction
-  id: RushBlood
-  name: Прилив крови
-  description: Ну типо прилив крови
+  id: VampireUnCuff
+  name: Свобода
+  description: Ну это свобода
   components:
   - type: Action
     useDelay: 1
+    checkCanInteract: false
     itemIconStyle: BigAction
     icon: Interface/Actions/scream.png
   - type: InstantAction
-    event: !type:VampireRushBloodEvent
-      costBlood: 20
+    event: !type:VampireUnCuffEvent
+      costBlood: 35
