@@ -37,6 +37,8 @@ using Content.Shared.Jittering;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Cuffs;
+using Content.Shared.Item;
+using Content.Shared.Stunnable;
 
 
 namespace Content.Shared.Imperial.Vampire;
@@ -67,6 +69,7 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedCuffableSystem _cuff = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
 
     public override void Initialize()
     {
@@ -80,6 +83,7 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
         SubscribeLocalEvent<VampireSleepEvent>(OnSleep);
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
+        SubscribeLocalEvent<VampireReconciliationEvent>(OnReconciliation);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
@@ -488,6 +492,62 @@ public sealed class VampireSystem : EntitySystem
 
         DealBloodDamage(args.Performer, 90f);
         Dirty(args.Performer, comp);
+        args.Handled = true;
+    }
+
+    private void OnReconciliation(VampireReconciliationEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        // получаем все сущности перед игроком
+        var transform = Transform(args.Performer);
+        var direction = transform.LocalRotation.GetCardinalDir();
+        var frontPos = transform.Coordinates.Offset(direction.ToVec());
+        var entities = _lookup.GetEntitiesInRange(frontPos, 1.5f);
+
+        if (!entities.Any(x => x != args.Performer))
+        {
+            _popup.PopupClient(Loc.GetString("Рядом никого нет!"),
+                args.Performer, args.Performer, PopupType.Medium);
+
+            return;
+        }
+
+        foreach (var entity in entities)
+        {
+            if (entity == args.Performer)
+                continue;
+
+            // если это предмет, то наносим ему 20 урона
+            bool IsObject = EntityManager.HasComponent<ItemComponent>(entity);
+            if (IsObject)
+            {
+                var dmg = new DamageSpecifier();
+                dmg.DamageDict["Blunt"] = FixedPoint2.New(20);
+
+                _damage.TryChangeDamage(entity, dmg);
+            }
+
+            if (!_mobStateSystem.IsAlive(entity))
+                continue;
+
+            if (TryComp<StaminaComponent>(entity, out var stamina))
+            {
+                _stun.TryKnockdown(entity, TimeSpan.FromSeconds(3), force: true);
+                stamina.StaminaDamage = 100f;
+                Dirty(entity, stamina);
+            }
+        }
+
+        DealBloodDamage(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 

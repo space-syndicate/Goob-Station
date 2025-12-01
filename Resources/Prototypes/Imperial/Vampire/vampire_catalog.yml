@@ -125,3 +125,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireReconciliationListing
+  name: Сверк
+  description: Ну это сверк
+  productAction: VampireReconciliationAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - FuryFangs
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

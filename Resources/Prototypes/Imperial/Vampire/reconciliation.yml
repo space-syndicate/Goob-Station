@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: VampireReconciliationAction
+  name: Сверк
+  description: Ну это сверк
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Actions/smokeaction.rsi
+      state: smokeaction
+  - type: InstantAction
+    event: !type:VampireReconciliationEvent
+      costBlood: 35
