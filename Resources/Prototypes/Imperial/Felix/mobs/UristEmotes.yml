@@ -1,0 +1,286 @@
+- type: emote
+  id: SoundSignal1
+  name: chat-emote-name-SoundSignal1
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal1"]
+  chatTriggers:
+  - Anulir
+
+- type: emote
+  id: SoundSignal2
+  name: chat-emote-name-SoundSignal2
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal2"]
+  chatTriggers:
+  - StopMoving
+
+- type: emote
+  id: SoundSignal3
+  name: chat-emote-name-SoundSignal3
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal3"]
+  chatTriggers:
+  - StopTalking
+
+- type: emote
+  id: SoundSignal4
+  name: chat-emote-name-SoundSignal4
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal4"]
+  chatTriggers:
+  - DropWeapon
+
+- type: emote
+  id: SoundSignal5
+  name: chat-emote-name-SoundSignal5
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal5"]
+  chatTriggers:
+  - Follow
+
+- type: emote
+  id: SoundSignal6
+  name: chat-emote-name-SoundSignal6
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal6"]
+  chatTriggers:
+  - Distance
+
+- type: emote
+  id: SoundSignal7
+  name: chat-emote-name-SoundSignal7
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal7"]
+  chatTriggers:
+  - Heal
+
+- type: emote
+  id: SoundSignal8
+  name: chat-emote-name-SoundSignal8
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal8"]
+  chatTriggers:
+  - Help
+
+- type: emote
+  id: SoundSignal9
+  name: chat-emote-name-SoundSignal9
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal9"]
+  chatTriggers:
+  - Work
+
+- type: emote
+  id: SoundSignal10
+  name: chat-emote-name-SoundSignal10
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal10"]
+  chatTriggers:
+  - Time
+
+- type: emote
+  id: SoundSignal11
+  name: chat-emote-name-SoundSignal11
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal11"]
+  chatTriggers:
+  - Vermyn
+
+- type: emote
+  id: SoundSignal12
+  name: chat-emote-name-SoundSignal12
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal12"]
+  chatTriggers:
+  - Roger
+
+- type: emote
+  id: SoundSignal13
+  name: chat-emote-name-SoundSignal13
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal13"]
+  chatTriggers:
+  - Negative
+
+- type: emote
+  id: SoundSignal14
+  name: chat-emote-name-SoundSignal14
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal14"]
+  chatTriggers:
+  - Smesh
+
+- type: emote
+  id: SoundSignal15
+  name: chat-emote-name-SoundSignal15
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal15"]
+  chatTriggers:
+  - Radiosignal
+
+- type: emote
+  id: SoundSignal16
+  name: chat-emote-name-SoundSignal16
+  category: Vocal
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+    tags:
+    -  FelixEmotes
+  chatMessages: ["chat-emote-msg-SoundSignal16"]
+  chatTriggers:
+  - Radioscanning
+
+# Felix Tag
+
+- type: Tag
+  id: FelixEmotes
+
+
+# Emote group
+- type: emoteSounds
+  id: FelixUristEmotes
+  params:
+    variation: 0.05
+  sounds:
+    Scream:
+      collection: SiliconScreams
+    SoundSignal1:
+      path: /Audio/Imperial/Felix/Emotes/signal-1-anulir.ogg
+    SoundSignal2:
+      path: /Audio/Imperial/Felix/Emotes/signal-2-stopmoving.ogg
+    SoundSignal3:
+      path: /Audio/Imperial/Felix/Emotes/signal-3-stoptalking.ogg
+    SoundSignal4:
+      path: /Audio/Imperial/Felix/Emotes/signal-4-dropweapon.ogg
+    SoundSignal5:
+      path: /Audio/Imperial/Felix/Emotes/signal-5-follow.ogg
+    SoundSignal6:
+      path: /Audio/Imperial/Felix/Emotes/signal-6-distance.ogg
+    SoundSignal7:
+      path: /Audio/Imperial/Felix/Emotes/signal-7-heal.ogg
+    SoundSignal8:
+      path: /Audio/Imperial/Felix/Emotes/signal-8-help.ogg
+    SoundSignal9:
+      path: /Audio/Imperial/Felix/Emotes/signal-9-work.ogg
+    SoundSignal10:
+      path: /Audio/Imperial/Felix/Emotes/signal-10-time.ogg
+    SoundSignal11:
+      path: /Audio/Imperial/Felix/Emotes/signal-11-vermyn.ogg
+    SoundSignal12:
+      path: /Audio/Imperial/Felix/Emotes/signal-12-roger.ogg
+    SoundSignal13:
+      path: /Audio/Imperial/Felix/Emotes/signal-13-negative.ogg
+    SoundSignal14:
+      path: /Audio/Imperial/Felix/Emotes/signal-14-smesh.ogg
+    SoundSignal15:
+      path: /Audio/Imperial/Felix/Emotes/signal-15-radiosignal.ogg
+    SoundSignal16:
+      path: /Audio/Imperial/Felix/Emotes/signal-16-radioscanning.ogg
