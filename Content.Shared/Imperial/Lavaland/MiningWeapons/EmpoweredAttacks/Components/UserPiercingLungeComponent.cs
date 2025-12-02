@@ -1,10 +1,14 @@
 using System.Numerics;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 
 [RegisterComponent]
 public sealed partial class UserPiercingLungeComponent : Component
 {
+    [ViewVariables, DataField]
+    public SoundSpecifier? StartDoAfterSound;
+
     [ViewVariables]
     public EntityUid? Item;
 

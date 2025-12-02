@@ -2,12 +2,19 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Damage;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using System.Numerics;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 
 [RegisterComponent]
 public sealed partial class PiercingLungeComponent : Component
 {
+    [ViewVariables, DataField]
+    public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
+
+    [ViewVariables, DataField]
+    public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
+
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionPiercingLunge = "ActionPiercingLunge";
 

@@ -11,6 +11,7 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.Weapons.Ranged.Systems;
+using Robust.Shared.Audio.Systems;
 using System.Numerics;
 
 
@@ -25,7 +26,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -73,11 +74,13 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
         if (comp.HasDoAfter)
         {
+            _audio.PlayPvs(comp.StartDoAfterSound, user);
             if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new EarthshakerStrikeDoAfterEvent()))
                 return;
         }
         else
         {
+            _audio.PlayPvs(comp.CompletedSound, user);
             Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
         }
     }
@@ -98,6 +101,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             return;
 
         Spawn(comp.EarthshakerRiftSpawnPrototype, uid.ToCoordinates());
+        _audio.PlayPvs(comp.CompletedSound, uid);
 
         args.Handled = true;
     }
@@ -111,6 +115,8 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         userComp.DoAfterTime = comp.DoAfterTime;
         userComp.HasDoAfter = comp.HasDoAfter;
         userComp.HasWielded = comp.HasWielded;
+        userComp.CompletedSound = comp.CompletedSound;
+        userComp.StartDoAfterSound = comp.StartDoAfterSound;
         userComp.Item = uid;
 
         comp.User = args.User;
@@ -156,6 +162,8 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         var userPos = _transform.GetWorldPosition(userXform);
         comp.Direction = (targetMap.Position - userPos).Normalized();
 
+        _audio.PlayPvs(comp.StartDoAfterSound, user);
+
         if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new EnhancedShotDoAfterEvent()))
             return;
     }
@@ -184,8 +192,9 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         _action.AddAction(args.User, ref comp.Action, comp.ActionEnhancedShot);
 
         var userComp = EnsureComp<UserEnhancedShotComponent>(args.User);
-        userComp.Item = uid;
         userComp.DoAfterTime = comp.DoAfterTime;
+        userComp.StartDoAfterSound = comp.StartDoAfterSound;
+        userComp.Item = uid;
 
         comp.User = args.User;
     }
@@ -225,6 +234,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
         var direction = userComp.Direction;
         _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, uid, user, speed: comp.ProjectileSpeed);
+        _audio.PlayPvs(comp.CompletedSound, user);
     }
 
     #endregion
@@ -243,6 +253,8 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
 
         var userPos = _transform.GetWorldPosition(userXform);
         comp.Direction = (targetMap.Position - userPos).Normalized();
+
+        _audio.PlayPvs(comp.StartDoAfterSound, user);
 
         if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new PiercingLungeDoAfterEvent()))
             return;
@@ -276,8 +288,9 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         _action.AddAction(args.User, ref comp.Action, comp.ActionPiercingLunge);
 
         var userComp = EnsureComp<UserPiercingLungeComponent>(args.User);
-        userComp.Item = uid;
         userComp.DoAfterTime = comp.DoAfterTime;
+        userComp.StartDoAfterSound = comp.StartDoAfterSound;
+        userComp.Item = uid;
 
         comp.User = args.User;
     }
@@ -323,6 +336,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         var damageContacts = EnsureComp<DamageContactsComponent>(user);
         damageContacts.Damage = comp.Damage;
 
+        _audio.PlayPvs(comp.CompletedSound, user);
     }
 
     private void UpdatePiercingLunge(float frameTime)
