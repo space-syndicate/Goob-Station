@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: VampireBloodTheftAction
+  name: Похищение крови
+  description: Ну это похищение крови
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Actions/smokeaction.rsi
+      state: smokeaction
+  - type: InstantAction
+    event: !type:VampireBloodTheftEvent

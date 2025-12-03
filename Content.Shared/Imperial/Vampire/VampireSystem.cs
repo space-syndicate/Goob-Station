@@ -84,6 +84,7 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireSleepEvent>(OnSleep);
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireReconciliationEvent>(OnReconciliation);
+        SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
@@ -551,6 +552,48 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnBloodTheft(VampireBloodTheftEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (vamp.Ghouls.Count == 0)
+        {
+            _popup.PopupClient(Loc.GetString("У вас нет упырей!"), args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        var recover = 0;
+
+        foreach (var ghoulUid in vamp.Ghouls)
+        {
+            if (!TryComp<GhoulComponent>(ghoulUid, out var ghoul))
+                continue;
+
+            float ghoulCurrentBlood = ghoul.CritThreshold - ghoul.BloodDamage;
+
+            if (ghoulCurrentBlood < args.CostBlood)
+                continue;
+
+            DealGhoulBloodDamage(ghoulUid, args.CostBlood, ghoul);
+
+            // восстанавливаем кровь вампиру (по 2 за каждого упыря)
+            recover += 2;
+        }
+
+        if (recover > 0)
+        {
+            vamp.BloodDamage = Math.Max(vamp.BloodDamage - recover, 0f);
+            SetBloodAlert(args.Performer, vamp);
+            Dirty(args.Performer, vamp);
+
+            _popup.PopupClient(Loc.GetString($"Вы украли {recover} единиц крови у своих упырей!"), args.Performer,
+            args.Performer, PopupType.Medium);
+        }
+
+        args.Handled = true;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -629,6 +672,56 @@ public sealed class VampireSystem : EntitySystem
                 }
             }
         }
+
+        var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
+        while (ghoulQuery.MoveNext(out var ghoulUid, out var ghoulComp))
+        {
+            if (ghoulComp.NextBloodDecay == TimeSpan.Zero)
+            {
+                ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
+                Dirty(ghoulUid, ghoulComp);
+            }
+
+            if (_gameTiming.CurTime >= ghoulComp.NextBloodDecay)
+            {
+                // наносим урон каждые BloodDecayInterval секунд
+                DealGhoulBloodDamage(ghoulUid, ghoulComp.BloodDecayAmount, ghoulComp);
+                ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
+                Dirty(ghoulUid, ghoulComp);
+
+                // если урон больше количества крови, то применяем дебафы
+                if (ghoulComp.BloodDamage >= ghoulComp.CritThreshold)
+                {
+                    if (TryComp<StaminaComponent>(ghoulUid, out var stamina))
+                    {
+                        var dmg = new DamageSpecifier();
+                        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(30);
+
+                        _damage.TryChangeDamage(ghoulUid, dmg);
+                        SpawnBloodPuddle(ghoulUid);
+                        _stamina.TakeStaminaDamage(ghoulUid, 70f, stamina);
+                        _jitterSystem.DoJitter(ghoulUid, ghoulComp.ShakingTime, refresh: true, amplitude: 15f, frequency: 4f);
+                    }
+                }
+            }
+        }
+    }
+
+    public void DealGhoulBloodDamage(EntityUid uid, float damage, GhoulComponent component)
+    {
+        component.BloodDamage = MathF.Min(component.BloodDamage + damage, component.CritThreshold);
+        Dirty(uid, component);
+        SetGhoulBloodAlert(uid, component);
+    }
+
+    public void SetGhoulBloodAlert(EntityUid uid, GhoulComponent component)
+    {
+        // вычисляем, какой должен быть спрайт в зависимости от количества крови у упыря
+        var severity = ContentHelpers.RoundToLevels(
+            MathF.Max(0f, component.CritThreshold - component.BloodDamage),
+            component.CritThreshold,
+            7);
+        _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }
 
     /// <summary>

@@ -23,7 +23,7 @@ public sealed partial class GhoulComponent : Component
     /// количество урона за каждый тик
     /// </summary>
     [DataField]
-    public float BloodDecayAmount = 100f;
+    public float BloodDecayAmount = 2f;
 
     /// <summary>
     /// время следующего тика потери крови
@@ -45,4 +45,7 @@ public sealed partial class GhoulComponent : Component
 
     [AutoNetworkedField]
     public float BloodDamage = 0f;
+
+    [AutoNetworkedField]
+    public EntityUid? Vampire = null;
 }

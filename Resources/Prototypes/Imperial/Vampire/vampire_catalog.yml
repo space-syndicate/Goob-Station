@@ -141,3 +141,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireBloodTheftListing
+  name: Похищение крови
+  description: Ну это похищение крови
+  productAction: VampireBloodTheftAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - FuryFangs
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

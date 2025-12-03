@@ -229,7 +229,7 @@ public sealed class VampireServerSystem : EntitySystem
         else
         {
             ghoul!.BloodDamage = Math.Max(ghoul.BloodDamage - amount, 0f);
-            SetGhoulBloodAlert(drinker, ghoul);
+            _vampireSystem.SetGhoulBloodAlert(drinker, ghoul);
         }
 
         // забираем кровь у жертвы
@@ -244,6 +244,13 @@ public sealed class VampireServerSystem : EntitySystem
     private void ConvertToGhoul(EntityUid vampire, EntityUid target)
     {
         var ghoulComp = EnsureComp<GhoulComponent>(target);
+        ghoulComp.Vampire = vampire;
+
+        var masterThralls = EnsureComp<VampireComponent>(vampire);
+        masterThralls.Ghouls.Add(target);
+        masterThralls.GhoulQuantity++;
+
+        Dirty(vampire, masterThralls);
         Dirty(target, ghoulComp);
 
         _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-vampire-complete",
@@ -266,82 +273,6 @@ public sealed class VampireServerSystem : EntitySystem
             }
         }
 
-        SetGhoulBloodAlert(target, ghoulComp);
-    }
-
-    private void SetGhoulBloodAlert(EntityUid uid, GhoulComponent component)
-    {
-        // вычисляем, какой должен быть спрайт в зависимости от количества крови у упыря
-        var severity = ContentHelpers.RoundToLevels(
-            MathF.Max(0f, component.CritThreshold - component.BloodDamage),
-            component.CritThreshold,
-            7);
-        _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
-    }
-
-    public void DealGhoulBloodDamage(EntityUid uid, float damage, GhoulComponent component)
-    {
-        component.BloodDamage = MathF.Min(component.BloodDamage + damage, component.CritThreshold);
-        Dirty(uid, component);
-        SetGhoulBloodAlert(uid, component);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
-        while (ghoulQuery.MoveNext(out var ghoulUid, out var ghoulComp))
-        {
-            if (ghoulComp.NextBloodDecay == TimeSpan.Zero)
-            {
-                ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
-                Dirty(ghoulUid, ghoulComp);
-            }
-
-            if (_gameTiming.CurTime >= ghoulComp.NextBloodDecay)
-            {
-                // наносим урон каждые BloodDecayInterval секунд
-                DealGhoulBloodDamage(ghoulUid, ghoulComp.BloodDecayAmount, ghoulComp);
-                ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
-                Dirty(ghoulUid, ghoulComp);
-
-                // если урон больше количества крови, то применяем дебафы
-                if (ghoulComp.BloodDamage >= ghoulComp.CritThreshold)
-                {
-                    if (TryComp<StaminaComponent>(ghoulUid, out var stamina))
-                    {
-                        var dmg = new DamageSpecifier();
-                        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(30);
-
-                        _damage.TryChangeDamage(ghoulUid, dmg);
-                        SpawnBloodPuddle(ghoulUid);
-                        _stamina.TakeStaminaDamage(ghoulUid, 70f, stamina);
-                        _jitterSystem.DoJitter(ghoulUid, ghoulComp.ShakingTime, refresh: true, amplitude: 15f, frequency: 4f);
-                    }
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// спавн лужи крови
-    /// </summary>
-    private void SpawnBloodPuddle(EntityUid uid)
-    {
-        var coords = Transform(uid).Coordinates;
-
-        if (_net.IsServer)
-        {
-            var puddle = Spawn("Puddle", coords);
-
-            if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
-            {
-                var bloodSolution = new Solution();
-                bloodSolution.AddReagent("Blood", 50f);
-
-                _solutionSystem.TryAddSolution(solution.Value, bloodSolution);
-            }
-        }
+        _vampireSystem.SetGhoulBloodAlert(target, ghoulComp);
     }
 }

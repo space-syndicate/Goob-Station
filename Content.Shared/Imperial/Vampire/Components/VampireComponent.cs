@@ -151,5 +151,11 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public float BloodDamage;
+
+        [AutoNetworkedField]
+        public HashSet<EntityUid> Ghouls = new();
+
+        [AutoNetworkedField]
+        public int GhoulQuantity = 0;
     }
 }
