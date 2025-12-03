@@ -7,6 +7,9 @@ using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Events;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Stunnable;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
+using Content.Shared.Maps;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Physics.Systems;
@@ -27,6 +30,10 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly INetManager _net = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -100,7 +107,21 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         if (args.Handled)
             return;
 
-        Spawn(comp.EarthshakerRiftSpawnPrototype, uid.ToCoordinates());
+        var coords = uid.ToCoordinates();
+        var pos = _transform.ToMapCoordinates(coords);
+
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        if (!_mapSystem.TryGetTileRef(grid, gridComp, coords, out var tileRef) ||
+            _turf.IsSpace(tileRef))
+        {
+            return;
+        }
+
+        if (_net.IsServer)
+            Spawn(comp.EarthshakerRiftSpawnPrototype, pos);
+
         _audio.PlayPvs(comp.CompletedSound, uid);
 
         args.Handled = true;
@@ -180,6 +201,9 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         }
 
         if (args.Handled)
+            return;
+
+        if (!_net.IsServer)
             return;
 
         ShootEnhancedProjectile(uid, comp.User.Value, comp);
@@ -272,6 +296,19 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         }
 
         if (args.Handled)
+            return;
+
+        var coords = uid.ToCoordinates();
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        if (!_mapSystem.TryGetTileRef(grid, gridComp, coords, out var tileRef) ||
+            _turf.IsSpace(tileRef))
+        {
+            return;
+        }
+
+        if (!_net.IsServer)
             return;
 
         if (TryComp<UserPiercingLungeComponent>(comp.User.Value, out var userComp))
