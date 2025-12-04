@@ -11,6 +11,10 @@
     flags:
     - Unanchorable
   - type: Clickable
+  - type: IgnitionSource
+    ignited: true
+    temperature: 0
+  - type: SupermatterTouch ## Изначально хотел написать свой, потом подумал: зачем?
   - type: RequireProjectileTarget
     active: False
   - type: AmbientSound

@@ -19,6 +19,8 @@
   - type: InteractionOutline
   - type: Rotatable
   - type: Anchorable
+    flags:
+    - Unanchorable
   - type: Construction
     graph: Computer
     node: frameUnsecured
@@ -43,8 +45,8 @@
     node: computer
     containers:
       - board
-  - type: ApcPowerReceiver
-    powerLoad: 200
+  ## - type: ApcPowerReceiver
+  ##   powerLoad: 200
   - type: ExtensionCableReceiver
   - type: Appearance
   - type: LitOnPowered
@@ -62,11 +64,11 @@
         ents: []
   - type: LightningTarget
     priority: 1
-  - type: RequireProjectileTarget
-  - type: Electrified
-    enabled: false
-    usesApcPower: true
-  - type: ActivatableUIRequiresPower
+  ## - type: RequireProjectileTarget
+  ## - type: Electrified
+  ##   enabled: false
+  ##   usesApcPower: true
+  ## - type: ActivatableUIRequiresPower
   - type: EmitSoundOnUIOpen
     sound:
       collection: Keyboard
@@ -79,20 +81,18 @@
       - NoConsoleSound
 
 - type: entity
-  parent: BaseCoreTerminal
-  id: CoreProtocolComputer
-  name: safe protocol computer
-  description: Needs to disable safe protocol
+  id: CoreControlTerminal
+  parent: BaseCoreTerminal #BaseComputer
+  name: core control terminal
+  description: Needs to control core ya?
   suffix: EnergyCore
   components:
-  - type: Sprite
-    sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["VisualState"]
-      shader: unshaded
-      state: screen_active
+  - type: ActivatableUI
+    key: enum.CoreTerminalUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CoreTerminalUiKey.Key:
+        type: CoreTerminalBoundUserInterface
   - type: CoreAccessComputer
     deCodeSlot:
       name: energycore-key-slot
@@ -120,6 +120,14 @@
             sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_not_active.rsi
             state: screen_not_active
             scale: 1.0,1.0
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["VisualState"]
+      shader: unshaded
+      state: screen_active
 
 - type: entity
   parent: BaseWallmountMachine

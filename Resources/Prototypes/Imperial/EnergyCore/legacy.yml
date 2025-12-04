@@ -1,0 +1,427 @@
+## Этот файл нужен только для того, чтобы дебаг маппа не поломалась. Не обращайте внимание. Сдешний контент бесполезный мусор.
+
+- type: Tag
+  id: TempHeater
+
+- type: Tag
+  id: TempCooler
+
+- type: Tag
+  id: TempRisingChanger
+
+- type: Tag
+  id: TempDecreasingChanger
+
+- type: Tag
+  id: TechnicalCoreTag
+
+- type: Tag
+  id: NuclearDeauthorizationCode
+
+- type: entity
+  id: CoreEmitter
+  name: emitter
+  abstract: true
+  parent: SmallConstructibleMachine
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  suffix: EnergyCore
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 400
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/emitter.rsi
+    layers:
+    - state: emitter
+    - state: beam
+      shader: unshaded
+      visible: false
+      map: ["enum.EmitterVisualLayers.Lights"]
+    - state: locked
+      shader: unshaded
+      visible: false
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Gun
+    projectileSpeed: 10
+    showExamineText: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/EnergyCore/core_emitter_laser.ogg
+  - type: PowerConsumer
+    voltage: Medium
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 800
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 5
+              max: 5
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+  - type: Appearance
+  - type: Lock
+    locked: false
+  - type: LockVisuals
+  - type: LockedAnchorable
+  - type: LockedWiresPanel
+  - type: AccessReader
+    access: [[ "Engineering" ]]
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+    - Toggle
+    - On
+    - Off
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: StaticPrice
+    price: 1500
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+
+- type: entity
+  id: CoreUpEmitter
+  name: temp up emitter
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: CoreUpEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreHeater
+    fireCost: 150
+
+- type: entity
+  id: CoreDownEmitter
+  name: temp down emitter
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: CoreDownEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreCooler
+    fireCost: 150
+
+- type: entity
+  id: CoreChangeRisingEmitter
+  name: emitter heater
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: CoreChangeRisingEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreTempChangerRising
+    fireCost: 150
+
+- type: entity
+  id: CoreChangeDecreasingEmitter
+  name: emitter cooler
+  parent: CoreEmitter
+  description: A heavy duty industrial laser. Shoots non-stop when turned on.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: CoreChangeDecreasingEmitterCircuitboard
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreTempChangerDecreasing
+    fireCost: 150
+
+## Машинные платы
+- type: entity
+  id: CoreUpEmitterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: core up emitter machine board
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: CoreUpEmitter
+      stackRequirements:
+        Manipulator: 2
+        CableHV: 5
+        Glass: 2
+
+- type: entity
+  id: CoreDownEmitterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: emitter machine board
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: CoreDownEmitter
+      stackRequirements:
+        Manipulator: 2
+        CableHV: 5
+        Glass: 2
+
+- type: entity
+  id: CoreChangeRisingEmitterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: emitter machine board
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: CoreChangeRisingEmitter
+      stackRequirements:
+        Manipulator: 2
+        CableHV: 5
+        Glass: 2
+
+- type: entity
+  id: CoreChangeDecreasingEmitterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: emitter machine board
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: CoreChangeRisingEmitter
+      stackRequirements:
+        Manipulator: 2
+        CableHV: 5
+        Glass: 2
+
+## Debug
+- type: entity
+  name: debug core gun
+  parent: BaseWeaponBattery
+  id: WeaponDebugCoreGun
+  description: desc
+  suffix: EnergyCore, Debug
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+    state: icon
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+  - type: Item
+    storedOffset: 0,-3
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: Appearance
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserCoreHeater
+    fireCost: 150
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletLaserCoreHeater
+      fireCost: 100
+    - proto: BulletLaserCoreCooler
+      fireCost: 100
+    - proto: BulletLaserCoreTempChangerRising
+      fireCost: 100
+    - proto: BulletLaserCoreTempChangerDecreasing
+      fireCost: 100
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+
+- type: entity
+  name: laser bolt
+  id: BulletLaserCore
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.28,-0.28,0.28,0.28"
+        hard: false
+        layer: [None]
+        mask:
+        - Opaque
+        - FullTileMask
+  - type: Ammo
+  - type: Projectile
+    deleteOnCollide: false
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 0
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  name: core heater laser
+  id: BulletLaserCoreHeater
+  categories: [ HideSpawnMenu ]
+  parent: BulletLaserCore
+  components:
+  - type: Tag
+    tags:
+    - TempHeater
+    - TechnicalCoreTag
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  name: core cooler laser
+  id: BulletLaserCoreCooler
+  categories: [ HideSpawnMenu ]
+  parent: BulletLaserCore
+  components:
+  - type: Tag
+    tags:
+    - TempCooler
+    - TechnicalCoreTag
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  name: core temp rising changer laser
+  id: BulletLaserCoreTempChangerRising
+  categories: [ HideSpawnMenu ]
+  parent: BulletLaserCore
+  components:
+  - type: Tag
+    tags:
+    - TempRisingChanger
+    - TechnicalCoreTag
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  name: core temp decreasing changer laser
+  id: BulletLaserCoreTempChangerDecreasing
+  categories: [ HideSpawnMenu ]
+  parent: BulletLaserCore
+  components:
+  - type: Tag
+    tags:
+    - TempDecreasingChanger
+    - TechnicalCoreTag
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  parent: BaseCoreTerminal
+  id: CoreProtocolComputer
+  name: safe protocol computer
+  description: Needs to disable safe protocol
+  suffix: EnergyCore
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["VisualState"]
+      shader: unshaded
+      state: screen_active
+  - type: CoreAccessComputer
+    deCodeSlot:
+      name: energycore-key-slot
+      insertSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      ejectSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      whitelist:
+        components:
+        - DeauthorizationCode
+        tags:
+        - NuclearDeauthorizationCode
+  - type: Anchorable ## Терминал специально неяузвим, чтобы экипаж не бежал его ломать раундстартом при ЯО
+    flags:
+    - Anchorable
+  - type: GenericVisualizer
+    visuals:
+      enum.CoreStatusScreenVisual.Core_Screen_Visual:
+       VisualState:
+          1: ## Active
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+            state: screen_active
+            scale: 1.0,1.0
+          2: ## Offline
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_not_active.rsi
+            state: screen_not_active
+            scale: 1.0,1.0

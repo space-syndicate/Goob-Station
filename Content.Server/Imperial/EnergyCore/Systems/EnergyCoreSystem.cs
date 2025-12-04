@@ -6,6 +6,7 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+//using Content.Shared.IgnitionSource;
 using Content.Server.GameTicking;
 using Color = Robust.Shared.Maths.Color;
 using Content.Server.AlertLevel;
@@ -165,6 +166,15 @@ public sealed class EnergyCoreSystem : EntitySystem
         if (core.TempChangeStatus == (byte)heating)
             core.TempRiseStatus = CoreTempChangeLevel.HEATING;
     }
+/*
+    private void UpdateIgniteTemp(EntityUid uid, EnergyCoreComponent core, IgnitionSourceComponent ignite)
+    {
+        if (!HasComp<IgnitionSourceComponent>(uid))
+            return;
+        var temp = core.CoreTemp;
+        ignite.Temperature = temp;
+    }
+*/
     private void UpdateCoreTemp(EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
     {
         core.UpdateTemp = frameTime * core.TempChangeMultiplier;
@@ -174,7 +184,7 @@ public sealed class EnergyCoreSystem : EntitySystem
             case CoreTempChangeLevel.COOLING: // Охлаждение
                 core.CoreTemp -= core.UpdateTemp;
                 if (core.CoreTemp < core.MinCoreTemp)
-                    core.CoreTemp = -899f;
+                    core.CoreTemp = core.MinCoreTemp;
                 break;
 
             case CoreTempChangeLevel.AUTO: // Авто режим активен
@@ -284,9 +294,10 @@ public sealed class EnergyCoreSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var cormp, out _))
+        var query = EntityQueryEnumerator<EnergyCoreComponent, /*IgnitionSourceComponent,*/ TransformComponent>();
+        while (query.MoveNext(out var uid, out var cormp, /*out var ignite,*/ out _))
         {
+            //UpdateIgniteTemp(uid, cormp, ignite);
             CheckTempChangeValue(uid, cormp);
             UpdateCoreTemp(cormp, frameTime);
             RefreshCoreStatus(uid, cormp);
