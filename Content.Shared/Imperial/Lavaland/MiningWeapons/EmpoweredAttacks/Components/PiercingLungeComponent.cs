@@ -46,7 +46,7 @@ public sealed partial class PiercingLungeComponent : Component
     public float DoAfterTime = 0.35f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float LungeStrength = 8f;
+    public float LungeStrength = 7f;
 
     /// <summary>
     /// Stun of the user during the dash and shortly after.
@@ -58,17 +58,17 @@ public sealed partial class PiercingLungeComponent : Component
     /// Jerk momentum strength
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float InitialLungeStrength = 25f;
+    public float InitialLungeStrength = 30f;
 
     /// <summary>
     /// Slowing down at the end of the dash
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float FinalLungeStrength = 25f;
+    public float FinalLungeStrength = 5f;
 
     /// <summary>
     /// Snatch Distance
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float LungeDuration = 1.2f;
+    public float LungeDuration = 0.5f;
 }
