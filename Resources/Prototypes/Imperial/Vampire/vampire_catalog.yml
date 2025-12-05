@@ -157,3 +157,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireMessageForGhoulsListing
+  name: Сообщение для упырей
+  description: Ну это сообщение для упырей
+  productAction: VampireMessageForGhouls
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - FuryFangs
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

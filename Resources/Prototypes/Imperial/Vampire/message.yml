@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: VampireMessageForGhouls
+  name: Сообщение для упырей
+  description: Ну типо сообщение для упырей
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireMessageForGhouls

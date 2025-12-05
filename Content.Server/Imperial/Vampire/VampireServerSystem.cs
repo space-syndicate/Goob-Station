@@ -3,17 +3,14 @@ using Content.Shared.Imperial.Vampire;
 using Robust.Shared.Utility;
 using Content.Shared.Popups;
 using Content.Shared.Mobs.Systems;
-using Content.Server.Mind;
 using Robust.Shared.Player;
 using Content.Server.Chat.Managers;
 using Content.Shared.DoAfter;
 using Robust.Shared.Timing;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
-using Content.Shared.Rounding;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Network;
 using Content.Shared.Chemistry.EntitySystems;
@@ -23,27 +20,28 @@ using Content.Shared.Jittering;
 using Content.Shared.Mind;
 using Content.Shared.Stunnable;
 using Content.Shared.Body.Components;
+using Content.Server.Administration;
+using Content.Shared.Chat;
+using System.Linq;
 
 namespace Content.Server.Imperial.Vampire;
 
 public sealed class VampireServerSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IChatManager _chatMan = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly VampireSystem _vampireSystem = default!;
+    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+
 
     public override void Initialize()
     {
@@ -54,6 +52,8 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireEnvelopeDoAfterEvent>(OnEnvelopeCompleteVampire);
         SubscribeLocalEvent<GhoulComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteGhoul);
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
+
+        SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
     }
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent comp, GetVerbsEvent<InnateVerb> args)
@@ -240,6 +240,39 @@ public sealed class VampireServerSystem : EntitySystem
         StartDrinking(drinker, target);
     }
 
+    private void MessageForGhouls(VampireMessageForGhouls args)
+    {
+        if (!TryComp<ActorComponent>(args.Performer, out var actor))
+            return;
+
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (vamp.Ghouls == null || !vamp.Ghouls.Any())
+        {
+            _popup.PopupEntity(Loc.GetString("У вас нет упырей"), args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString("Сообщение упырям"), Loc.GetString("Приказ"), (string message) =>
+        {
+            foreach (var ghoulUid in vamp.Ghouls)
+            {
+                if (!TryComp<ActorComponent>(ghoulUid, out var ghoulActor))
+                    continue;
+
+                _chatMan.ChatMessageToOne(
+                    ChatChannel.Server,
+                    $"[bold]Сообщение от вампира:\n{message}[/bold]",
+                    $"[bold]Сообщение от вампира:\n{message}[/bold]",
+                    args.Performer,
+                    false,
+                    ghoulActor.PlayerSession.Channel,
+                    Color.DarkRed);
+            }
+        });
+        args.Handled = true;
+    }
 
     private void ConvertToGhoul(EntityUid vampire, EntityUid target)
     {

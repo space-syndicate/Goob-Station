@@ -28,7 +28,6 @@ using Content.Shared.Roles;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Robust.Shared.Physics.Events;
-using Content.Shared.Whitelist;
 using Content.Shared.Directions;
 using Content.Shared.Rounding;
 using Content.Shared.Alert;
@@ -63,7 +62,6 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
@@ -570,10 +568,11 @@ public sealed class VampireSystem : EntitySystem
             if (!TryComp<GhoulComponent>(ghoulUid, out var ghoul))
                 continue;
 
-            float ghoulCurrentBlood = ghoul.CritThreshold - ghoul.BloodDamage;
-
-            if (ghoulCurrentBlood < args.CostBlood)
+            if (ghoul.CritThreshold - ghoul.BloodDamage < args.CostBlood)
+            {
+                _popup.PopupClient(Loc.GetString("У ваших упырей недостаточно крови!"), args.Performer, args.Performer, PopupType.Medium);
                 continue;
+            }
 
             DealGhoulBloodDamage(ghoulUid, args.CostBlood, ghoul);
 
