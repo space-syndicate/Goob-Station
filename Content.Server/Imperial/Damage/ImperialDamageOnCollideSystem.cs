@@ -40,15 +40,16 @@ public sealed class ImperialDamageOnCollideSystem : EntitySystem
                 {
                     _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
                     damaged.DamageOnce = false;
-                    Log.Info($"Damage DamageOnce !!!!!!! {ent}");
                 }
+
+                DelCompDamagedByCollide(ent);
 
                 continue;
             }
 
             if (damaged.NextTimeDamage == null || damaged.EndTimeDamage == null)
             {
-                DelCompDamageOnCollide(ent);
+                DelCompDamagedByCollide(ent);
 
                 continue;
             }
@@ -59,13 +60,12 @@ public sealed class ImperialDamageOnCollideSystem : EntitySystem
                 damaged.AddTimeEndDamage = false;
                 damaged.NextSecond = _timing.CurTime;
 
-                Log.Info($"AddTimeEndDamage true {ent}");
-                DelCompDamageOnCollide(ent);
+                DelCompDamagedByCollide(ent);
             }
 
             if (_timing.CurTime >= damaged.EndSecond)
             {
-                DelCompDamageOnCollide(ent);
+                DelCompDamagedByCollide(ent);
 
                 continue;
             }
@@ -75,7 +75,6 @@ public sealed class ImperialDamageOnCollideSystem : EntitySystem
 
             damaged.NextSecond = _timing.CurTime + damaged.NextTimeDamage.Value;
 
-            Log.Info("Damage NextSecond &&&&&&&", ent.ToString());
             if (damaged.Damage != null)
                 _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
         }
@@ -95,7 +94,6 @@ public sealed class ImperialDamageOnCollideSystem : EntitySystem
         damagedByCollide.TimeDamage = component.TimeDamage;
         damagedByCollide.NextTimeDamage = component.NextTimeDamage;
         damagedByCollide.EndTimeDamage = component.EndTimeDamage;
-        Log.Info($"OnCollideStart {uid}");
     }
 
     private void OnCollideEnd(EntityUid uid, ImperialDamageOnCollideComponent component, ref EndCollideEvent args)
@@ -115,12 +113,17 @@ public sealed class ImperialDamageOnCollideSystem : EntitySystem
         }
 
         DelCompDamageOnCollide(otherUid);
-        Log.Info($"OnCollideEnd {uid}");
     }
 
     private void DelCompDamageOnCollide(EntityUid uid)
     {
         if (HasComp<ImperialDamageOnCollideComponent>(uid))
             RemComp<ImperialDamageOnCollideComponent>(uid);
+    }
+
+    private void DelCompDamagedByCollide(EntityUid uid)
+    {
+        if (HasComp<ImperialDamagedByCollideComponent>(uid))
+            RemComp<ImperialDamagedByCollideComponent>(uid);
     }
 }
