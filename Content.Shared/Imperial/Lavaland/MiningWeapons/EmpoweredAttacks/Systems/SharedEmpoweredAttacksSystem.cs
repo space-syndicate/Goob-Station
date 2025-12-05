@@ -15,6 +15,7 @@ using Content.Shared.Damage.Components;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Imperial.Damage;
 using System.Numerics;
 
 
@@ -370,7 +371,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         _stun.TryAddStunDuration(user, comp.StunTime);
 
         EnsureComp<StunOnContactComponent>(user);
-        var damageContacts = EnsureComp<DamageContactsComponent>(user);
+        var damageContacts = EnsureComp<ImperialDamageOnCollideComponent>(user);
         damageContacts.Damage = comp.Damage;
 
         _audio.PlayPvs(comp.CompletedSound, user);
@@ -422,8 +423,8 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         if (HasComp<StunOnContactComponent>(entity))
             RemComp<StunOnContactComponent>(entity);
 
-        if (HasComp<DamageContactsComponent>(entity))
-            RemComp<DamageContactsComponent>(entity);
+        if (HasComp<ImperialDamageOnCollideComponent>(entity))
+            RemComp<ImperialDamageOnCollideComponent>(entity);
     }
 
     #endregion
