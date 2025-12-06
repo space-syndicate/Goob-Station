@@ -20,17 +20,15 @@
 
 #Engineer Backpack
 - type: entity
-  parent: ClothingBackpackERTLeader
+  parent: ClothingBackpackERTEngineer
   id: ClothingBackpackERTEngineerTDM
   name: Field Engineer Deployment Pack
   suffix: space battle, DeimonFly
   description: A reinforced multi-purpose backpack designed for frontline engineers. Offers ample space for tools, emergency gear, and battlefield utilities during high-risk deployments.
   components:
-  - type: Sprite
-    sprite: Clothing/Back/Backpacks/erteng.rsi
   - type: Storage
     grid:
-      - 0,0,12,5   
+      - 0,0,12,5
   - type: StorageFill
     contents:
       - id: WeaponShotgunStormTrooperDFSB

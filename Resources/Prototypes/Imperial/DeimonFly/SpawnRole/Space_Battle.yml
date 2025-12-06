@@ -507,7 +507,7 @@
 - type: entity
   parent: MobHuman
   id: ERTPilotTDMPreset
-  name: ERT leader
+  name: ERT pilot
   suffix: EVA
   components:
     - type: RandomMetadata

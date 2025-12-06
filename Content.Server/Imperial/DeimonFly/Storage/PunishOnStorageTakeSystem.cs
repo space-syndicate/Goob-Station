@@ -10,6 +10,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.DeimonFly.Storage;
 
+/// <summary>
+/// Система, которая наказывает игрока при попытке забрать определённые предметы из стораджа.
+/// </summary>
 public sealed class PunishOnStorageTakeSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
@@ -24,7 +27,9 @@ public sealed class PunishOnStorageTakeSystem : EntitySystem
 
     private void OnStorageInteract(StorageInteractWithItemEvent msg, EntitySessionEventArgs args)
     {
-        // должен быть игрок, который кликнул по предмету
+        /// <summary>
+        /// Должен быть игрок, который кликнул по предмету, иначе не срабатываем.
+        /// </summary>
         if (args.SenderSession?.AttachedEntity is not { } userUid || Deleted(userUid))
             return;
 
