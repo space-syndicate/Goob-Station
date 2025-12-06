@@ -1,0 +1,200 @@
+#Security Backpack
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackERTSecurityTDM
+  name: ERT security backpack
+  description: A spacious backpack with lots of pockets, worn by Security Officers of an Emergency Response Team.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Storage
+  - type: StorageFill
+    contents:
+      - id: BoxMRE
+      - id: WeaponRifleBlackAKMS
+      - id: CSWeaponCZ
+      - id: DoubleEmergencyOxygenTankFilled
+        amount: 2
+      - id: MedicatedSuture
+      - id: TGMCombatMedipen 
+        amount: 2
+
+#Engineer Backpack
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTEngineerTDM
+  name: Field Engineer Deployment Pack
+  suffix: space battle, DeimonFly
+  description: A reinforced multi-purpose backpack designed for frontline engineers. Offers ample space for tools, emergency gear, and battlefield utilities during high-risk deployments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/erteng.rsi
+  - type: Storage
+    grid:
+      - 0,0,12,5   
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunStormTrooperDFSB
+      - id: DFMagazineShotgunStormTrooper
+      - id: SheetSteel
+        amount: 2
+      - id: SheetGlass
+        amount: 2
+      - id: PartRodMetal
+        amount: 2
+      - id: HandHeldMassScanner
+      - id: WeaponGrapplingGun
+      - id: SubstationMachineCircuitboard
+        amount: 2
+      - id: RadarConsoleCircuitboard
+        amount: 3
+      - id: ShuttleConsoleCircuitboard
+        amount: 3
+      - id: APCElectronics
+        amount: 3
+      - id: TGMCombatMedipen
+      - id: CableMVStack
+      - id: CableHVStack
+
+#Pilot Backpack
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTPilotTDM
+  name: ERT pilot flight pack
+  description: A tailored backpack for ERT pilots, packing flight-critical gear and essentials for rapid deployments.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Storage
+  - type: StorageFill
+    contents:
+      - id: BoxMRE
+      - id: WeaponRifleM90GrenadeLauncherImperial
+      - id: JetpackVoidFilled
+      - id: HandHeldMassScanner
+      - id: ShuttleConsoleCircuitboard
+        amount: 2
+      - id: EmergencyMedipen
+      - id: TGMCombatMedipen
+
+#Leader Backpack
+- type: entity
+  parent: ClothingBackpackERTJanitor
+  id: ClothingBackpackERTCapitanTDM
+  name: flotilla captain field pack
+  description: A hardened field pack for flotilla captains, loaded with combat-ops essentials, strike orders, and the means to keep a battle group alive under fire.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Storage
+  - type: StorageFill
+    contents:
+      - id: WeaponPulseSniperBlue
+      - id: PortableRecharger
+      - id: CSWeaponDualBeretta
+      - id: MedkitCobmatImperialFilled
+      - id: HandHeldMassScanner
+
+#Field medic Backpack
+- type: entity
+  parent: ClothingBackpackERTMedical
+  id: ClothingBackpackERTBrigmedicTDM
+  name: combat medic field pack
+  description: A rugged field pack for frontline medics, stuffed with trauma gear, emergency chems, and just enough spare space to drag back one more “not dead yet” crewmate.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Storage
+  - type: StorageFill
+    contents:
+      - id: BoxMRE
+      - id: DoubleEmergencyOxygenTankFilled
+        amount: 3
+      - id: BoxSurgicalInstrumentsTDM
+      - id: EmergencyRollerBedSpawnFolded
+      - id: ImperialVehicleSyndiWheelchairFolded
+      - id: EmergencyMedipen
+        amount: 3
+      - id: WeaponPistolN1984
+      - id: MedkitCobmatImperialFilled
+        amount: 2
+      - id: Hypospray
+
+
+#Дополнительно: набор хирургии для медика
+- type: entity
+  id: BoxSurgicalInstrumentsTDM
+  parent: PresentableBox
+  name: Surgeon's field kit
+  description: A combat-grade surgical pack for when "we'll do it in Medbay" is no longer an option. Contains everything needed to put people back together where the shooting hasn't even stopped yet.
+  components:
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Large
+    grid:
+      - 0,0,4,3
+  - type: StorageFill
+    contents:
+      - id: Hemostat
+      - id: SawAdvanced
+      - id: Drill
+      - id: Cautery
+      - id: Retractor
+      - id: ScalpelAdvanced
+      - id: ClothingHandsGlovesNitrile
+
+
+
+##Syndicate set:
+
+#Security Backpack
+- type: entity
+  parent: ClothingBackpackERTSecurityTDM
+  id: ClothingBackpackSyndicateSecurityTDM
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+
+#Engineer Backpack
+- type: entity
+  parent: ClothingBackpackERTEngineerTDM
+  id: ClothingBackpackSyndicateEngineerTDM
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+
+#Pilot Backpack
+- type: entity
+  parent: ClothingBackpackERTPilotTDM
+  id: ClothingBackpackSyndicatePilotTDM
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+
+
+#Leader Backpack
+- type: entity
+  parent: ClothingBackpackERTCapitanTDM
+  id: ClothingBackpackSyndicateCapitanTDM
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+  - type: Storage
+  - type: StorageFill
+    contents:
+      - id: WeaponPulseSniperRed
+      - id: PortableRecharger
+      - id: CSWeaponDualBeretta
+      - id: MedkitCobmatImperialFilled
+      - id: HandHeldMassScanner
+
+
+#Field medic Backpack
+- type: entity
+  parent: ClothingBackpackERTBrigmedicTDM
+  id: ClothingBackpackSyndicateBrigmedicTDM
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+
+
+
+
+
