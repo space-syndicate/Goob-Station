@@ -365,7 +365,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         }
     }
 
-    private void PiercingLunge(EntityUid uid, EntityUid user, PiercingLungeComponent comp)
+    private void PiercingLunge(EntityUid item, EntityUid user, PiercingLungeComponent comp)
     {
         if (!TryComp<PhysicsComponent>(user, out var physics))
             return;
@@ -373,8 +373,12 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         comp.IsLunging = true;
         comp.LungeAccumulator = 0f;
 
-        _physics.SetLinearVelocity(user, comp.Direction * comp.InitialLungeStrength, body: physics);
         _stun.TryAddStunDuration(user, comp.StunTime);
+
+        if (IsItemWielded(item))
+            _physics.SetLinearVelocity(user, comp.Direction * comp.InitialLungeStrength, body: physics);
+        else
+            _physics.SetLinearVelocity(user, comp.Direction * comp.InitialLungeStrength / 2, body: physics);
 
         EnsureComp<StunOnContactComponent>(user);
         var damageContacts = EnsureComp<ImperialDamageOnCollideComponent>(user);
