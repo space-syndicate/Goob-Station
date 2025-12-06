@@ -11,7 +11,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Content.Shared.Maps;
 using Robust.Shared.Physics.Components;
-using Content.Shared.Damage.Components;
+using Content.Shared.Camera;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
@@ -34,6 +34,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
 
     public override void Initialize()
     {
@@ -257,8 +258,10 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         var fromMap = _transform.ToMapCoordinates(fromCoords);
         var projectile = Spawn(comp.ProjectilePrototype, fromMap);
 
-        var direction = userComp.Direction;
+        var direction = userComp.Direction.Normalized();
         _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, uid, user, speed: comp.ProjectileSpeed);
+        _sharedCameraRecoil.KickCamera(user, -direction);
+
         _audio.PlayPvs(comp.CompletedSound, user);
     }
 
