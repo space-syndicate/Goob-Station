@@ -299,6 +299,9 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (!_net.IsServer)
+            return;
+
         var coords = uid.ToCoordinates();
         if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
             return;
@@ -309,7 +312,7 @@ public abstract class SharedEmpoweredAttacksSystem : EntitySystem
             return;
         }
 
-        if (!_net.IsServer)
+        if (HasComp<KnockedDownComponent>(comp.User.Value))
             return;
 
         if (TryComp<UserPiercingLungeComponent>(comp.User.Value, out var userComp))
