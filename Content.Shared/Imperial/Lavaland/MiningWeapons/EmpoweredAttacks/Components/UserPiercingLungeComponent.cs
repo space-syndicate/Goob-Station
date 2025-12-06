@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Compon
 [RegisterComponent]
 public sealed partial class UserPiercingLungeComponent : Component
 {
-    [ViewVariables, DataField]
+    [ViewVariables]
     public SoundSpecifier? StartDoAfterSound;
 
     [ViewVariables]

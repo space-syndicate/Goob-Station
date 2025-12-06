@@ -1,6 +1,6 @@
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
 
@@ -10,6 +10,16 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Compon
 [RegisterComponent]
 public sealed partial class EarthshakerStrikeComponent : Component
 {
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float DoAfterTime = 1.5f;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool HasDoAfter = true;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool HasWielded = true;
+
+
     [ViewVariables, DataField]
     public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
 
@@ -22,18 +32,11 @@ public sealed partial class EarthshakerStrikeComponent : Component
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
     public string ActionEarthshakerStrike = "ActionEarthshakerStrike";
 
+
     [ViewVariables]
     public EntityUid? Action;
 
     [ViewVariables]
     public EntityUid? User;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool HasDoAfter = true;
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool HasWielded = true;
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float DoAfterTime = 1.5f;
 }

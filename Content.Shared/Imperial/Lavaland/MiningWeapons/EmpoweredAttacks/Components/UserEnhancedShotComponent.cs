@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Compon
 [RegisterComponent]
 public sealed partial class UserEnhancedShotComponent : Component
 {
-    [ViewVariables, DataField]
+    [ViewVariables]
     public SoundSpecifier? StartDoAfterSound;
 
     [ViewVariables]

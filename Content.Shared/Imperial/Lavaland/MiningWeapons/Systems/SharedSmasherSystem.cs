@@ -1,9 +1,9 @@
-using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
-using Content.Shared.Imperial.Lavaland.MiningWeapons.Events;
+using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Lavaland.MiningWeapons.Components;
+using Content.Shared.Imperial.Lavaland.MiningWeapons.Events;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Damage;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 
@@ -38,7 +38,6 @@ public abstract class SharedSmasherSystem : EntitySystem
                 if (shield.EffectDecay != null)
                     RaiseNetworkEvent(new ShieldDecayEvent(GetNetEntity(uid), shield.EffectDecay));
 
-                Log.Debug($"Щит для {ToPrettyString(uid)} деактивирован по времени");
                 RemComp<ShieldActiveComponent>(uid);
             }
         }
@@ -54,7 +53,6 @@ public abstract class SharedSmasherSystem : EntitySystem
         {
             EnsureComp<SmasherChargingComponent>(user.Value);
             _movementSpeed.RefreshMovementSpeedModifiers(user.Value);
-            Log.Debug($"Начало зарядки - замедление для {ToPrettyString(user.Value)}");
         }
     }
 
@@ -65,7 +63,6 @@ public abstract class SharedSmasherSystem : EntitySystem
         {
             RemComp<SmasherChargingComponent>(user.Value);
             _movementSpeed.RefreshMovementSpeedModifiers(user.Value);
-            Log.Debug($"Конец зарядки - снятие замедления для {ToPrettyString(user.Value)}");
         }
     }
 
@@ -78,20 +75,17 @@ public abstract class SharedSmasherSystem : EntitySystem
         if (!CanActivateShield(smasher) || HasComp<ShieldActiveComponent>(user.Value))
             return;
 
-        Log.Debug($"Активируем щит для {ToPrettyString(user.Value)}");
         ActivateShield(smasherUid.Value, smasher, user.Value);
     }
 
     private void OnRefreshMovespeed(EntityUid uid, SmasherChargingComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
-        Log.Debug($"Применено замедление для {ToPrettyString(uid)}");
     }
 
     private void OnDamage(EntityUid uid, ShieldActiveComponent component, DamageModifyEvent args)
     {
         args.Damage *= 0.2f;
-        Log.Info($"Щит поглощает урон для {ToPrettyString(uid)}");
     }
 
     public void ActivateShield(EntityUid smasherUid, SmasherComponent smasher, EntityUid user)

@@ -1,5 +1,3 @@
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
@@ -7,10 +5,10 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Compon
 [RegisterComponent]
 public sealed partial class UserEarthshakerStrikeComponent : Component
 {
-    [ViewVariables, DataField]
+    [ViewVariables]
     public SoundSpecifier? CompletedSound;
 
-    [ViewVariables, DataField]
+    [ViewVariables]
     public SoundSpecifier? StartDoAfterSound;
 
     [ViewVariables]
@@ -19,12 +17,12 @@ public sealed partial class UserEarthshakerStrikeComponent : Component
     [ViewVariables]
     public float DoAfterTime;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [ViewVariables]
     public string EarthshakerRiftSpawnPrototype;
 
-    [DataField, ViewVariables]
+    [ViewVariables]
     public bool HasDoAfter;
 
-    [DataField, ViewVariables]
+    [ViewVariables]
     public bool HasWielded;
 }

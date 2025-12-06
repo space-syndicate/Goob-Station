@@ -1,21 +1,21 @@
 using Content.Shared.Actions;
-using Content.Shared.Hands;
-using Content.Shared.Popups;
+using Content.Shared.Camera;
+using Content.Shared.Coordinates;
 using Content.Shared.DoAfter;
-using Content.Shared.Wieldable.Components;
+using Content.Shared.Hands;
+using Content.Shared.Imperial.Damage;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Events;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Components;
-using Content.Shared.Coordinates;
-using Content.Shared.Stunnable;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Network;
 using Content.Shared.Maps;
-using Robust.Shared.Physics.Components;
-using Content.Shared.Camera;
-using Robust.Shared.Physics.Systems;
+using Content.Shared.Popups;
+using Content.Shared.Stunnable;
+using Content.Shared.Wieldable.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Imperial.Damage;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using System.Numerics;
 
 
