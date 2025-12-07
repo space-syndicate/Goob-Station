@@ -22,7 +22,6 @@ namespace Content.Server.Imperial.EnergyCore
     public sealed class CoreStatusScreenSystem : EntitySystem
     {
         // Поиск ближайшего ядра был основан на консоли СМ
-        // Спасибо тебе, xxRay, без тебя и твоей суперматерии я бы это никогда не написал
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
 

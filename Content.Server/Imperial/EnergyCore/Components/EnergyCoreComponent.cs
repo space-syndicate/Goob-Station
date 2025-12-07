@@ -20,7 +20,7 @@ public sealed partial class EnergyCoreComponent : Component
 
     // Минимальная температура, которая может быть у ядра
     [DataField]
-    public float MinCoreTemp = -900f;
+    public float MinCoreTemp = 0f;
 
     // Автосистема, определяется через терминал
     [DataField]

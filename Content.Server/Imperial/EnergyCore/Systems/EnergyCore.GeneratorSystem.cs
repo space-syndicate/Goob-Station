@@ -60,7 +60,7 @@ namespace Content.Server.Imperial.EnergyCore
             var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
 
             EntityUid? nearest = null;
-            var minDist = float.MaxValue;
+            var minDist = 10f;//float.MaxValue;
 
             var enumerator = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
             while (enumerator.MoveNext(out var uid, out _, out var transComp))
@@ -81,6 +81,8 @@ namespace Content.Server.Imperial.EnergyCore
         private void SetEnergyOutput(EntityUid uid, CoreGeneratorComponent generator, PowerSupplierComponent power)
         {
             var nearestUid = FindNearestEnergyCore(uid);
+            if (nearestUid == null)
+                power.MaxSupply = 0f;
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
                 return;

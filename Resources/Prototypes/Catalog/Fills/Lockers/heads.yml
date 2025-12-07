@@ -52,8 +52,12 @@
     - id: RubberStampCaptain
     - id: SpaceCash1000
     - id: WeaponDisabler
-    #- id: ClothingEyesGlassesCommand #Imperial Space убраны тк есть раундстартом на кепе 
+    #- id: ClothingEyesGlassesCommand #Imperial Space убраны тк есть раундстартом на кепе
     - id: ControlModsuitMagnate # Imperial Space РИГИ
+#Imperial Space Energy Core start
+    - id: DeauthorizationFragmentStation
+    - id: PinpointerNuclearStationFragment
+#Imperial Space Energy Core end
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
@@ -129,7 +133,7 @@
       prob: 0.25
       # Fuck the HoP they don't deserve fucking cigars.
       # Yes they do fuck you.
-    #- id: ClothingBackpackIan #Imperial Space Убран потому что есть в лодаутах за время. 
+    #- id: ClothingBackpackIan #Imperial Space Убран потому что есть в лодаутах за время.
     # prob: 0.5 #Imperial Space
     - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
