@@ -297,6 +297,11 @@
   values:
     prefix: fumo-eirin-
     count: 2
+- type: localizedDataset
+  id: FumoTeto
+  values:
+    prefix: fumo-teto-
+    count: 2
 # Datasets for Fumo
 
 - type: speechSounds
@@ -352,6 +357,21 @@
     speechSounds: Fumo
   - type: SpeakOnTrigger
     pack: FumoJunko
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieFumoTeto
+  name: Teto
+  suffix: Crook, COMMUNITY, TOY
+  description: The text on the tag reads: "Feed her a baguette and she'll sing."
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/fumoplush.rsi
+    state: teto
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoTeto
 
 - type: entity
   parent: PlushieFumoJunko
@@ -489,6 +509,15 @@
         prob: .1
       - id: PlushieFumoCirno
         orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoSakuya
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoEirin
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoTeto
+        onGroup: GiftPool
         prob: .1
     sound:
       path: /Audio/Effects/unwrap.ogg

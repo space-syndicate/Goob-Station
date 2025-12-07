@@ -31,5 +31,12 @@
             Brute: -4
             Burn: -6
             Toxin: -4
-           types:
-            Bloodloss: -2
+            Airloss: -2
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Thermonium
+          min: 0.5
+        effectProto: StatusEffectForcedSleeping
+        time: 5
+        type: Add

@@ -945,6 +945,7 @@
           - MedicalBorgItem
           - OxygenMask
           - GasTank
+          - Trash
     - item: SurgeryBoxOrgansFilled
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -952,9 +953,11 @@
         whitelist:
           tags:
           - OriginalBodyPart
+          - MedicalBorgItem
           - Organ
           - BodyPart
-          - Storage
+          - BoxCardboard
+          - Trash
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
   - type: StaticPrice

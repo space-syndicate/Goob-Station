@@ -221,6 +221,7 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: BloodTrail # Imperial Space BloodTrail
   - type: Barotrauma
     damage:
       types:

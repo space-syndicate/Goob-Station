@@ -31,7 +31,7 @@
       bloodMaxVolume: 0
     - type: NpcFactionMember
       factions:
-      - Xeno
+      - NDA
     - type: IntrinsicRadioReceiver
     - type: ActiveRadio
       channels:
@@ -43,6 +43,8 @@
     - type: Grammar
       attributes:
         gender: male
+    - type: StaminaResistance
+      damageCoefficient: 0.3
 
 - type: entity
   name: Ded
@@ -196,6 +198,28 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: Reactive
+      groups:
+        Flammable: [ Touch ]
+        Extinguish: [ Touch ]
+      reactions:
+      - reagents: [ Water, SpaceCleaner ]
+        methods: [ Touch ]
+        effects:
+        - !type:WashCreamPieReaction
+      - reagents: [ Water ]
+        methods: [ Touch ]
+        effects:
+        - !type:HealthChange
+          scaleByQuantity: true
+          damage:
+            types:
+              Heat: 1.3
+        - !type:PopupMessage
+          type: Local
+          visualType: Large
+          messages: [ "slime-hurt-by-water-popup" ]
+          probability: 0.25
 
 - type: entity
   name: Avel

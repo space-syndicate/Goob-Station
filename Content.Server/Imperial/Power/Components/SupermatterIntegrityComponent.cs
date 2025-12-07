@@ -153,7 +153,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// Общая интенсивность взрыва при катастрофе.
     /// </summary>
     [DataField]
-    public float CatastropheTotalIntensity = 20000f;
+    public float CatastropheTotalIntensity = 2500f;
 
     /// <summary>
     /// Крутизна спадания интенсивности взрыва.
@@ -165,7 +165,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// Максимальная интенсивность на тайле для взрыва.
     /// </summary>
     [DataField]
-    public float CatastropheMaxTileIntensity = 70f;
+    public float CatastropheMaxTileIntensity = 35f;
 
     /// <summary>
     /// Интервал между молниями во время катастрофы

@@ -172,7 +172,7 @@
   - type: ZombieImmune
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Imperial/Seriozha/SCP/doc.ogg
+      collection: FootstepSecurityCyborg
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -264,7 +264,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -339,6 +339,16 @@
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Seriozha/SCP/doc.ogg
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 12
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate

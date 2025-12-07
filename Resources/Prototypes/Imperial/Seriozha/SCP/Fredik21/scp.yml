@@ -34,6 +34,36 @@
 
 - type: entity
   parent: PosterBase
+  id: Posterpgry
+  name: Poster p gry
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: pgry
+
+- type: entity
+  parent: PosterBase
+  id: PosterDZ
+  name: Poster DZ
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: dz
+
+- type: entity
+  parent: PosterBase
+  id: PosterFBI
+  name: Poster ONP FBI
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: fbi
+
+- type: entity
+  parent: PosterBase
   id: Posterscarletking
   name: scarlet king Poster
   suffix: Fredik21, Недра
@@ -42,6 +72,16 @@
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: scarletking
+
+- type: entity
+  parent: PosterBase
+  id: PosterGOCmap
+  name: Map Poster
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/map.rsi
+    state: icon
 
 - type: entity
   parent: PosterBase
@@ -67,14 +107,57 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterEta10
+  name: Poster Eta10
+  suffix: Fredik21, Недра
+  description: Our eyes are closed to lies, but open to truth. We are the Phantoms of Perception, guardians of the invisible front. When darkness tries to blind the world, we see through the veil. Eta-10 We see no evil, but we fight it mercilessly!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: eta10
+
+- type: entity
+  parent: PosterBase
+  id: PosterZeta9
+  name: Poster Zeta9
+  suffix: Fredik21, Недра
+  description: Zeta-9, "Mole Rats", we go where light fears to tread!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: zeta9
+
+- type: entity
+  parent: PosterBase
+  id: PosterEpsilon9
+  name: Poster Epsilon9
+  suffix: Fredik21, Недра
+  description: Let the flames roar, let the hell blaze! Our duty is to go to the very heart! Where the elements have gone out of control, we are their masters!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: epsilon9
+
+- type: entity
+  parent: PosterBase
   id: PosterTay5
   name: Poster of the Task Force Control
   suffix: Fredik21, Недра
-  description: CONTROL TASK FORCE. No chaos!
+  description: CRUSHING THREATS. PROTECTING HUMANITY. RISING FROM THE ASHES. TAU-5 "Samsara" operatives
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: tay5
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA953
+  name: Poster NDA 953
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n953
 
 - type: entity
   parent: PosterBase
@@ -86,6 +169,67 @@
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: n343
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA682
+  name: Poster NDA 682
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n682
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA1006
+  name: Poster NDA 1006
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n1006
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA002
+  name: Poster NDA 002
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n002
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA020
+  name: Poster NDA 002
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n020
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA005
+  name: Poster NDA 005
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n005
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA4975
+  name: Poster NDA 4975
+  suffix: Fredik21, Недра
+  description: NDA-4975 is a vaguely humanoid creature with various avian features, the most prominent of which is its beak.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n4975
 
 - type: entity
   parent: PosterBase
@@ -708,10 +852,8 @@
           Heat: 0.35
           Radiation: 0.35
           Caustic: 0.35
-    # Imperial Space Stamina Resistance Start
     - type: StaminaResistance
       damageCoefficient: 0.35
-      # Imperial Space Stamina Resistance End
     - type: ClothingSpeedModifier
       walkModifier: 1
       sprintModifier: 1
@@ -760,10 +902,8 @@
           Heat: 0.6
           Radiation: 0.6
           Caustic: 0.6
-    # Imperial Space Stamina Resistance Start
     - type: StaminaResistance
       damageCoefficient: 0.85
-    # Imperial Space Stamina Resistance End
     - type: ClothingSpeedModifier
       walkModifier: 1.1
       sprintModifier: 1.1
@@ -993,6 +1133,7 @@
       minVisibility: -10
       lastVisibility: -1
       maxVisibility: 1
+  - type: Stealth
 
 - type: entity
   name: Living Weapon
@@ -1208,10 +1349,8 @@
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
-    damageCoefficient: 0.85
-  # Imperial Space Stamina Resistance End
+    damageCoefficient: 0.6
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -1231,10 +1370,8 @@
         Slash: 0.9
         Piercing: 0.4
         Heat: 0.9
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0.8
-  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
@@ -1404,18 +1541,7 @@
   storage:
     back:
     - WeaponDisabler
-    - MagazinePistolRubber
-    - CrowbarRed
-    - Screwdriver
-    - Wrench
-    - Flash
-    - SmokeGrenade
-    - GrenadeFlashBang
-    - CombatKnife
-    - TelescopicShield
-    - FirstAidMedkitImperialFilled
-    - MagazineRifle
-    - MagazineRifle
+    - GOCUplink
 
 - type: localizedDataset
   id: NamesGOCscp
@@ -1461,10 +1587,8 @@
         Heat: 0.7
         Radiation: 0.7
         Caustic: 0.7
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0.7
-  # Imperial Space Stamina Resistance End
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -1533,10 +1657,8 @@
         Heat: 0.3
         Radiation: 0.3
         Caustic: 0.3
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0
-  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1.1
     sprintModifier: 1.3
@@ -1613,19 +1735,7 @@
     pocket2: AccessBreaker
   storage:
     back:
-    - JawsOfLife
-    - PowerDrill
-    - WelderExperimental
-    - Multitool
-    - MedkitCombatFilled
-    - EmpGrenade
-    - EmpGrenade
-    - ExGrenade
-    - GrenadeShrapnel
-    - CombatKnife
-    - Tourniquet
-    - Tourniquet
-    - TelescopicShield
+    - GOCUplinkCom
 
 - type: gamePreset
   id: nedra
@@ -1671,10 +1781,8 @@
         Slash: 0.9
         Piercing: 0.4
         Heat: 0.9
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
-    damageCoefficient: 0.8
-  # Imperial Space Stamina Resistance End
+    damageCoefficient: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
@@ -1723,18 +1831,7 @@
     pocket2: MagazinePistolSubMachineGun
   storage:
     back:
-    - MagazinePistolSubMachineGun
-    - WeaponDisabler
-    - Handcuffs
-    - Handcuffs
-    - FirstAidMedkitImperialFilled
-    - CrowbarRed
-    - Wrench
-    - Screwdriver
-    - TelescopicShield
-    - SmokeGrenade
-    - SmokeGrenade
-    - CombatKnife
+    - FondUplinkNu7Zeta9
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -1774,20 +1871,7 @@
     pocket2: EncryptionKeyNedraCMDconnection
   storage:
     back:
-    - MagazinePistolSubMachineGun
-    - MagazinePistolSubMachineGun
-    - MagazinePistolSubMachineGunIncendiary
-    - WeaponDisabler
-    - Handcuffs
-    - Handcuffs
-    - FirstAidMedkitImperialFilled
-    - CrowbarRed
-    - Wrench
-    - Screwdriver
-    - TelescopicShield
-    - SmokeGrenade
-    - SmokeGrenade
-    - CombatKnife
+    - FondUplinkCommander
 
 - type: localizedDataset
   id: Namesnu7scp
@@ -1841,10 +1925,8 @@
         Heat: 0.4
         Radiation: 0.4
         Caustic: 0.5
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0.5
-  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
@@ -1905,20 +1987,7 @@
     head: ClothingHeadHatBeret
     suitstorage: WeaponFelixHK416
     pocket1: EncryptionKeyNedraLastHopeconnection
-    pocket2: MagazineHK416
-  storage:
-    back:
-    - MagazineHK416
-    - MagazineHK416
-    - MedkitCobmatImperialFilled
-    - SyndicateJawsOfLife
-    - Screwdriver
-    - Wrench
-    - TearGasGrenade
-    - EmpGrenade
-    - SmokeGrenade
-    - GrenadeIncendiary
-    - CombatKnife
+    pocket2: FondUplinkAlpha9
 
 - type: entity
   id: HandTeleporterSCP105
@@ -1978,8 +2047,6 @@
   storage:
     back:
     - EnergySword
-    - MedkitCobmatImperialFilled
-    - MedkitCobmatImperialFilled
     - RollerBedSpawnFolded
     - RollerBedSpawnFolded
     - HandTeleporterSCP105
@@ -1988,6 +2055,7 @@
     - SCP207
     - SCP207
     - SCP207
+    - FondUplinkAlpha9
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -2011,10 +2079,8 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0.5
-  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Unremoveable
@@ -2041,10 +2107,8 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0.2
-  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: ClothingSpeedModifier
@@ -2197,6 +2261,13 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPbrokengod-name
+      description: ghost-role-information-PresetSCPbrokengod-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
 
 - type: startingGear
   id: brokengodGear
@@ -2245,6 +2316,13 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPbrokengodhammer-name
+      description: ghost-role-information-PresetSCPbrokengodhammer-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
 
 - type: startingGear
   id: brokengodhammerGear
@@ -2281,10 +2359,8 @@
         Slash: 0.6
         Piercing: 0.5
         Heat: 0.6
-  # Imperial Space Stamina Resistance Start
   - type: StaminaResistance
     damageCoefficient: 0.2
-  # Imperial Space Stamina Resistance End
   - type: Unremoveable
 
 - type: entity
@@ -2372,6 +2448,14 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPScarletKing-name
+      description: ghost-role-information-PresetSCPScarletKing-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
+
 
 - type: startingGear
   id: ScarletKingGear
@@ -2542,11 +2626,19 @@
   id: Foundation
   hostile:
   - rebelsscp
+  - NDA
 
 - type: npcFaction
   id: rebelsscp
   hostile:
   - Foundation
+  - NDA
+
+- type: npcFaction
+  id: NDA
+  hostile:
+  - Foundation
+  - rebelsscp
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2909,6 +3001,7 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+    - FondUplinkBaseCom
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -2958,6 +3051,7 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+    - FondUplinkBaseCom
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -3023,6 +3117,9 @@
     suitstorage: WeaponPistolMk58Nonlethal
     pocket1: MagazinePistolRubber
     pocket2: WeaponDisabler
+  inhand:
+  - PaperSRPGPI
+  - FondUplinkBase
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3073,7 +3170,6 @@
           Cellular: 0
           Radiation: 0
           Caustic: 0
-          Stun: 0
     - type: Unremoveable
     - type: ClothingSpeedModifier
       walkModifier: 1.1
@@ -3312,20 +3408,7 @@
     - HandHeldAtmosAlertsMonitor
     - HandHeldMassScanner
     - SyndiHypo
-    - CombatMedipen
-    - CombatMedipen
-    - ChemistryBottleOmnizine
-    - SmokeGrenade
-    - SmokeGrenade
-    - EmpGrenade
-    - EmpGrenade
-    - GrenadeIncendiary
-    - GrenadeIncendiary
-    - ExGrenade
-    - ExGrenade
-    - GrenadeShrapnel
-    - GrenadeShrapnel
-    - SyndicateJawsOfLife
+    - FondUplinkTay5
     - ItemODENMagazine
     - ItemODENMagazine
     - MachineGunODEN
@@ -3358,7 +3441,6 @@
         Cellular: 0.2
         Radiation: 0.2
         Caustic: 0.2
-        Stun: 0.2
   - type: ClothingSpeedModifier
     walkModifier: 1.1
     sprintModifier: 1.1
@@ -3448,7 +3530,6 @@
         Cellular: 0.3
         Radiation: 0.3
         Caustic: 0.3
-        Stun: 0.3
   - type: ClothingSpeedModifier
     walkModifier: 1.3
     sprintModifier: 1.6
@@ -3541,11 +3622,7 @@
     - EnergySwordDouble
     - AmpulaDylo
     - AmpulaDylo
-    - CombatMedipen
-    - CombatMedipen
-    - SyndicateJawsOfLife
-    - SmokeGrenade
-    - SmokeGrenade
+    - FondUplinkTay5
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3585,9 +3662,6 @@
     - EncryptionKeyNedraMTFconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraLastHopeconnection
-    - CombatMedipen
-    - CombatMedipen
-    - SyndicateJawsOfLife
     - EnergyShield
     - EnergyShield
     - EnergyShield
@@ -3595,6 +3669,7 @@
     - TelescopicShield
     - TelescopicShield
     - BlackShieldPistol
+    - FondUplinkTay5
     - WeaponAdvancedLaser
     - WeaponLightMachineGunL6
     - MagazineLightRifleBox
@@ -3630,7 +3705,6 @@
         Cellular: 0.1
         Radiation: 0.1
         Caustic: 0.1
-        Stun: 0.1
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9
@@ -3684,9 +3758,6 @@
     - EncryptionKeyNedraMTFconnection
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraLastHopeconnection
-    - CombatMedipen
-    - CombatMedipen
-    - SyndicateJawsOfLife
     - EnergySwordDouble
     - Hypospray
     - ChemistryBottleOmnizine
@@ -3702,6 +3773,7 @@
     - SCP500
     - SCP500
     - SCP207
+    - FondUplinkTay5
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -3731,7 +3803,6 @@
         Cellular: 0.2
         Radiation: 0.3
         Caustic: 0.2
-        Stun: 0.3
   - type: ClothingSpeedModifier
     walkModifier: 1.1
     sprintModifier: 1.2
@@ -3745,3 +3816,3524 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitTay5
   - type: Unremoveable
+
+- type: entity
+  name: Time's up
+  suffix: Fredik21, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPTimeup
+  description: a vaguely humanoid creature with various avian features, the most noticeable of which is its beak.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda4975.rsi
+        scale: 1.5, 1.5
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: alive
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        5000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.8
+    - type: Hands
+      showInHands: true
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 5000
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase5.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      angle: 0
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Heat: 50
+    - type: Vocal
+      sounds:
+        Male: SCP4975
+        Unsexed: SCP4975
+        Female: SCP4975
+    - type: Devourer
+    - type: Loadout
+      prototypes: [ 4975SCPGear ]
+    - type: AutoImplant
+      implants:
+      - LightImplanttrapfakeSCP4975
+      - ImperialBlinkImplant
+    - type: Stealth
+
+- type: emoteSounds
+  id: SCP4975
+  params:
+    variation: 0.125
+  sounds:
+    laughter4975:
+      collection: laughter4975
+    fear4975:
+      collection: fear4975
+    tiktak4975:
+      collection: tiktak4975
+
+- type: emote
+  id: laughter4975
+  name: Смех
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/4975.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно смеётся"]
+  chatTriggers:
+    - Страшно смеётся
+
+- type: soundCollection
+  id: laughter4975
+  files:
+    - /Audio/Imperial/Seriozha/SCP/4975/laughter.ogg
+    - /Audio/Imperial/Seriozha/SCP/4975/laughter2.ogg
+
+- type: emote
+  id: fear4975
+  name: Привлекать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/4975.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Привлекает"]
+  chatTriggers:
+    - Привлекает
+
+- type: soundCollection
+  id: fear4975
+  files:
+    - /Audio/Imperial/Seriozha/SCP/4975/fear.ogg
+
+- type: emote
+  id: tiktak4975
+  name: Тик Так
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/4975.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Тик Так"]
+  chatTriggers:
+    - Тик
+    - Так
+
+- type: soundCollection
+  id: tiktak4975
+  files:
+    - /Audio/Imperial/Seriozha/SCP/4975/tictak.ogg
+
+- type: startingGear
+  id: 4975SCPGear
+  inhand:
+  - SCP4975Invisibility
+
+- type: entity
+  parent: [ ClothingHeadHeadHatBaseFlippable, BaseToggleClothing ]
+  id: SCP4975Invisibility
+  suffix: Fredik21, Недра
+  name: Invisibility in hand
+  description: DO NOT PUT HER ON THE FLOOR!! Press Z to activate invisibility.
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 0.02
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: -10
+      lastVisibility: -1
+      maxVisibility: 1
+  - type: Unremoveable
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplanttrapfakeSCP4975
+  name: set a bloody trap
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawntrapfakeSCP4975
+
+- type: entity
+  id: ActionSpawntrapfakeSCP4975
+  name: Activate the trap
+  description: creates a fake version of you. Use it to trick your victim.
+  components:
+  - type: Action
+    useDelay: 35
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/Fredik21/nda/nda4975icon.rsi
+      state: icon
+  - type: TargetAction
+    range: 1
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: trapfakeSCP4975
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: trapfakeSCP4975
+  name: Time's up
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/nda/nda4975icon.rsi
+      state: icon
+      scale: 1.5, 1.5
+    - type: TimedDespawn
+      lifetime: 120
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPCIMoroder
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ CIGearMoroder ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesCISCP
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPCIMoroder-name
+      description: ghost-role-information-PresetSCPCIMoroder-desc
+      rules: CI
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: CIGearMoroder
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackSatchel
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetCI
+    mask: ClothingMaskGasAtmos
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCI
+    id: SCPIDCardCI
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponShotgunEnforcer
+    pocket1: BoxLethalshot
+    pocket2: BoxLethalshot
+  storage:
+    back:
+    - EncryptionKeyRadio1
+    - EncryptionKeyGanza
+    - CIUplinkBase
+    - WeaponRevolverInspector
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPCIsuppressor
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ CIGearsuppressor ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesCISCP
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPCIsuppressor-name
+      description: ghost-role-information-PresetSCPCIsuppressor-desc
+      rules: CI
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: CIGearsuppressor
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackSatchel
+    mask: ClothingMaskGasAtmos
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetCIsuppressor
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCI
+    id: SCPIDCardCI
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponLightMachineGunL6
+    pocket1: MagazineLightRifleBox
+    pocket2: MagazineLightRifleBox
+  storage:
+    back:
+    - EncryptionKeyRadio1
+    - EncryptionKeyGanza
+    - CIUplinkBase
+  inhand:
+  - TelescopicShield
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetCIsuppressor
+  name: ci helmet suppressor
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/cihead.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/cihead.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPCIcoordinator
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ CIGearcoordinator ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesCISCPcoordinator
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: CIGearcoordinator
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackSatchelLeaderSacerdos_1
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHatBeretMerc
+    neck: SyndicateWhistle
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCI
+    id: SCPIDCardCI
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltMinuteManCamoForestWebbing
+  storage:
+    back:
+    - EncryptionKeyRadio1
+    - EncryptionKeyGanza
+    - CIUplinkCommander
+  inhand:
+  - WeaponRevolverMatebaAP
+
+- type: entity
+  id: PaperSRPGPI
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPGPI
+
+- type: entity
+  id: PaperOGK
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPOGK
+
+- type: entity
+  id: PaperScience
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPScience
+
+- type: entity
+  id: PaperAdmNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPAdm
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitZeta9
+  name: jumpsuit Zeta9
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/zeta9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/zeta9.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorzeta9
+  name: Set Ermine
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorzeta9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorzeta9.rsi
+  - type: FireProtection
+    reduction: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.7
+        Heat: 0.6
+        Radiation: 0.4
+        Caustic: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetzeta9
+  name: Mole-3 helmet
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/zeta9head.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/zeta9head.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPzeta9
+  name: zeta9 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ zeta9Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPzeta9-name
+      description: ghost-role-information-PresetSCPzeta9-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: RandomMetadata
+      nameSegments:
+        - NamesZeta9scp
+
+- type: startingGear
+  id: zeta9Gear
+  equipment:
+    jumpsuit: ClothingJumpsuitZeta9
+    back: ClothingBackpackDuffelSacerdos_6
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: AlphaVisor
+    id: SCPIDCardFour
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorzeta9
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHelmetzeta9
+    suitstorage: WeaponFelixMP9
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: MagazineMP9
+  storage:
+    back:
+    - FondUplinkNu7Zeta9
+  inhand:
+  - Floodlight
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPzeta9Com
+  name: zeta9 Operator Commander
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ zeta9GearCom ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: RandomMetadata
+      nameSegments:
+        - NamesZeta9scpCom
+
+- type: startingGear
+  id: zeta9GearCom
+  equipment:
+    jumpsuit: ClothingJumpsuitZeta9
+    back: ClothingBackpackDuffelSacerdos_6
+    mask: ClothingMaskGasExplorer
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: AlphaVisor
+    id: SCPIDCardFive
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorzeta9
+    ears: ClothingHeadsetSCPAlt
+    head: BlackShieldBeretGaqut
+    suitstorage: CSWeaponMP5
+    neck: USSPMajorPin
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - CSWeaponFiveSeven
+    - CIUplinkCommander
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitepsilon9
+  name: jumpsuit epsilon9
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/epsilon9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/epsilon9.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorepsilon9
+  name: Flame Arrestor Kit
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorepsilon9.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorepsilon9.rsi
+  - type: FireProtection
+    reduction: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+          Poison: 0.6
+          Blunt: 0.8
+          Slash: 0.7
+          Heat: 0.2
+          Piercing: 0.7
+          Cellular: 0.3
+          Radiation: 0.3
+          Caustic: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetepsilon9
+  name: epsilon9 helmet
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/epsilon9head.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/epsilon9head.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPepsilon9
+  name: epsilon9 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ epsilon9Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPepsilon9-name
+      description: ghost-role-information-PresetSCPepsilon9-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: RandomMetadata
+      nameSegments:
+        - NamesEpsilon9scp
+
+- type: startingGear
+  id: epsilon9Gear
+  equipment:
+    jumpsuit: ClothingJumpsuitepsilon9
+    back: ClothingBackpackSatchelSacerdos_5
+    mask: ClothingMaskGasAtmos
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesSecurity
+    id: SCPIDCardFour
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorepsilon9
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHelmetepsilon9
+    suitstorage: FlameThrower
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: FuelTankFlamethrowerMedium
+  storage:
+    back:
+    - FuelTankFlamethrowerMedium
+    - FuelTankFlamethrowerMedium
+    - GrenadeIncendiary
+    - GrenadeIncendiary
+    - GrenadeIncendiary
+    - WeaponPistolViper
+    - MagazinePistolIncendiary
+    - MagazinePistolIncendiary
+    - MagazineBoxPistolIncendiary
+    - FireExtinguisher
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPepsilon9Com
+  name: epsilon9 Operator Commander
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ epsilon9GearCom ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: RandomMetadata
+      nameSegments:
+        - NamesEpsilon9scpCom
+
+- type: startingGear
+  id: epsilon9GearCom
+  equipment:
+    jumpsuit: ClothingJumpsuitepsilon9
+    back: ClothingBackpackSatchelSacerdos_5
+    mask: ClothingMaskGasAtmos
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesSecurity
+    id: SCPIDCardFive
+    neck: USSPMajorPin
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorepsilon9
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHatBeretEngineering
+    suitstorage: FlameThrowerBorg
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - SelfRechargingFireExtinguisher
+    - FondUplinkCommander
+    - WeaponSubMachineGunDrozd
+    - MagazinePistolSubMachineGunIncendiary
+    - MagazinePistolSubMachineGunIncendiary
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuiteta10
+  name: jumpsuit eta10
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/eta10.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/eta10.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmoreta10
+  name: Flame Arrestor Kit
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armoreta10.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armoreta10.rsi
+  - type: FireProtection
+    reduction: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+          Poison: 0.4
+          Blunt: 0.6
+          Slash: 0.6
+          Heat: 0.4
+          Piercing: 0.6
+          Cellular: 0.5
+          Radiation: 0.5
+          Caustic: 0.6
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmeteta10
+  name: eta10 helmet
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/eta10head.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/eta10head.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPeta10
+  name: eta10 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ eta10Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPeta10-name
+      description: ghost-role-information-PresetSCPeta10-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: RandomMetadata
+      nameSegments:
+        - NamesEta10scp
+
+- type: startingGear
+  id: eta10Gear
+  equipment:
+    jumpsuit: ClothingJumpsuiteta10
+    back: ClothingBackpackSatchelSacerdos_5
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesSecurity
+    id: SCPIDCardFour
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmoreta10
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHelmeteta10
+    suitstorage: WeaponAdvancedLaser
+    pocket1: EncryptionKeyNedraMTFconnection
+  storage:
+    back:
+    - LocatorEta10
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
+
+- type: entity
+  id: LocatorEta10
+  parent: AnomalyLocatorUnpowered
+  name: Eta10 locator
+  suffix: Fredik21, Недра
+  components:
+  - type: ProximityDetector
+    range: 20
+    components:
+    - type: Stealth
+
+- type: entity
+  id: LocatorEta10Commander
+  parent: AnomalyLocatorUnpowered
+  name: Eta10 locator
+  suffix: Fredik21, Недра
+  components:
+  - type: ProximityDetector
+    range: 50
+    components:
+    - type: Stealth
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPeta10Com
+  name: eta10 Commander
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ eta10GearCom ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: RandomMetadata
+      nameSegments:
+        - NamesEta10scpCom
+
+- type: startingGear
+  id: eta10GearCom
+  equipment:
+    jumpsuit: ClothingJumpsuiteta10
+    back: ClothingBackpackSatchelSacerdos_5
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesGlassesSecurity
+    id: SCPIDCardFive
+    neck: USSPMajorPin
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmoreta10
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHatBeretHoS
+    suitstorage: WeaponAntiqueLaser
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - LocatorEta10Commander
+    - FondUplinkCommander
+
+- type: entity
+  name: hard-to-kill reptile
+  suffix: Fredik21, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCP682
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda682.rsi
+        scale: 2, 2
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        10000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.5
+      baseSprintSpeed: 2
+    - type: Hands
+      showInHands: true
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 5000
+      damage:
+        types:
+          Heat: -20
+          Blunt: -20
+        groups:
+          Brute: -20
+          Toxin: -20
+          Airloss: -20
+          Burn: -20
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase3.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      angle: 0
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Heat: 150
+          Structural: 500
+    - type: Vocal
+      sounds:
+        Male: SCP682
+        Unsexed: SCP682
+        Female: SCP682
+    - type: Devourer
+
+- type: emoteSounds
+  id: SCP682
+  params:
+    variation: 0.125
+  sounds:
+    crying682:
+      collection: crying682
+    growl682:
+      collection: growl682
+    battle682:
+      collection: battle682
+
+- type: emote
+  id: crying682
+  name: Плакать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/682.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно плачет"]
+  chatTriggers:
+    - Страшно плачет
+
+- type: soundCollection
+  id: crying682
+  files:
+    - /Audio/Imperial/Seriozha/SCP/682/crying.ogg
+
+- type: emote
+  id: growl682
+  name: Рычать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/682.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно рычит"]
+  chatTriggers:
+    - Страшно рычит
+
+- type: soundCollection
+  id: growl682
+  files:
+    - /Audio/Imperial/Seriozha/SCP/682/growl.ogg
+
+- type: emote
+  id: battle682
+  name: Кричать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/682.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно кричит"]
+  chatTriggers:
+    - Страшно кричит
+
+- type: soundCollection
+  id: battle682
+  files:
+    - /Audio/Imperial/Seriozha/SCP/682/battle.ogg
+
+- type: entity
+  id: SCPIDCardn005
+  parent: IDCardStandard
+  name: Master key
+  suffix: Fredik21, Недра
+  components:
+  - type: Prying
+    speedModifier: 6
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/id/n005.rsi
+    layers:
+      - state: icon
+
+- type: entity
+  name: Spider
+  parent: [ SimpleMobBase, MobCombat ]
+  id: MobSpiderNDA1006
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: tarantula
+      sprite: Mobs/Animals/spider.rsi
+      scale: 0.4 , 0.4
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: tarantula-moving
+    noMovementLayers:
+      movement:
+        state: tarantula
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tarantula
+      Critical:
+        Base: tarantula_dead
+      Dead:
+        Base: tarantula_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 2
+  - type: NoSlip
+  - type: Spider
+  - type: IgnoreSpiderWeb
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
+  - type: Prying # Open door from xeno.yml.
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute from base.yml.
+    allowedStates:
+    - Alive
+    damageCap: 35
+    types:
+      Poison: -0.07
+    groups:
+      Brute: -0.07
+      Burn: -0.07
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-MobSpiderNDA1006-name
+    description: ghost-role-information-MobSpiderNDA1006-desc
+    rules: rule
+    raffle:
+      settings: short
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA002
+  name: title NDA002
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      state: icon-1
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Piercing: 10
+
+- type: entity
+  name: Triple Molecular Destroyer
+  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponLaserMicroHIDNDA
+  suffix: Fredik21, Недра
+  components:
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/micro.rsi
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/micro2.rsi
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/micro.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: MicroLaser
+    fireCost: 150
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Seriozha/SCP/micro.ogg
+
+- type: hitscan
+  id: MicroLaser
+  damage:
+    types:
+      Heat: 500
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_omni
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_omni
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_omni
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFoxNDA953
+  name: fox ears
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/nda/nda953.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/nda/nda953.rsi
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorNDA953
+  name: tail NDA 953
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/nda/2nda953.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/nda/2nda953.rsi
+  - type: FireProtection
+    reduction: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+          Poison: 0.5
+          Blunt: 0.5
+          Slash: 0.5
+          Heat: 0.5
+          Piercing: 0.5
+          Cellular: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Unremoveable
+
+
+- type: entity
+  parent: ClothingUniformJumpsuitKimono
+  id: ClothingUniformJumpsuitKimonoNDA953
+  name: Kimono NDA953
+  suffix: Fredik21, Недра
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDA953
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ SCP953Gear ]
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: NpcFactionMember
+      factions:
+      - NDA
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
+    - type: FlashImmunity
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+    - type: StaminaResistance
+      damageCoefficient: 0.3
+    - type: NoSlip
+    - type: MovementIgnoreGravity
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        3000: Dead
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 20
+    - type: SpaceNinja
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 4
+    - type: InteractionPopup
+      successChance: 0.5
+      interactSuccessString: petting-success-soft-floofy
+      interactFailureString: petting-failure-generic
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        collection: Fox
+    - type: SmokeOnTrigger
+      duration: 15
+      spreadAmount: 3
+    - type: Vocal
+      sounds:
+        Male: SCP953
+        Unsexed: SCP953
+        Female: SCP953
+
+- type: startingGear
+  id: SCP953Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitKimonoNDA953
+    outerClothing: ClothingOuterArmorNDA953
+    head: ClothingHeadHatFoxNDA953
+
+- type: emoteSounds
+  id: SCP953
+  params:
+    variation: 0.125
+  sounds:
+    cutescreams953:
+      collection: Fox
+    growl953:
+      collection: growl953
+
+- type: emote
+  id: growl953
+  name: Рычать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Страшно рычит"]
+  chatTriggers:
+    - Рычит
+
+- type: soundCollection
+  id: growl953
+  files:
+    - /Audio/Imperial/Seriozha/SCP/953/growl.ogg
+
+- type: emote
+  id: cutescreams953
+  name: Мило кричать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Мило кричит"]
+  chatTriggers:
+    - Мило кричит
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPPGRY
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ PGRYGear ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPPGRY-name
+      description: ghost-role-information-PresetSCPPGRY-desc
+      rules: You remember nothing from previous life.
+      raffle:
+        settings: short
+
+
+- type: startingGear
+  id: PGRYGear
+  equipment:
+    jumpsuit: USSPSoldierUniform
+    mask: USSPstormdivisionMask
+    shoes: ClothingShoesBootsWorkSCP
+    head: USSPstormdivisionUshanka
+    eyes: GlassesDeathSquad
+    gloves: USSPstormdivisionGloves
+    outerClothing: USSPguardsmenArmor
+    id: USSPBattleIDcard
+    ears: ClothingHeadsetSSSP
+    neck: USSPArmbandRed
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: USSPWeaponTT
+    pocket2: CIUplinkBase
+    back: WeaponFelixMP5
+  storage:
+    outerClothing:
+    - Ointment
+    - Brutepack
+    - Gauze
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPPGRYCom
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ PGRYGearCom ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: PGRYGearCom
+  equipment:
+    jumpsuit: USSPComissarUniformGreen
+    shoes: ClothingShoesBootsWorkSCP
+    head: USSPMarshalHelm
+    eyes: ClothingEyesGlassesSecurity
+    gloves: USSPRedGloves
+    outerClothing: USSPMarshalCoat
+    id: USSPofficerIDcard
+    ears: ClothingHeadsetUSSPMain
+    neck: ClothingNeckFelixSapphireMedal
+    belt: WeaponPistolAstra60
+    pocket1: BaseMagazineAstra60
+    pocket2: BaseMagazineAstra60
+  storage:
+    outerClothing:
+    - CIUplinkCommander
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPNPFBI
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ ONPFBIGear ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: ONPFBIGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    shoes: ClothingShoesSCP
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    id: ElysiumFederationPDA
+    ears: ClothingHeadsetTriviumMain
+    neck: ClothingNeckTieRed
+    pocket1: CSWeaponUSP-S
+    pocket2: MagazinePistolCaselessRifle
+    back: ClothingBackpackSatchelLeaderSacerdos_1
+  storage:
+    back:
+    - MagazinePistolCaselessRifle
+    - MagazinePistolCaselessRifle
+    - CombatMedipen
+    - CombatMedipen
+    - EmergencyMedipen
+    - EmergencyMedipen
+    - Zipties
+    - Zipties
+    - LauncherSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - ChemistryBottleMuteToxin
+    - ChemistryBottlePax
+    - ChemistryBottleToxin
+    - ChemistryBottleOmnizine
+    - FBIUplink
+
+- type: storeCategory
+  id: FBIUplinkUtilities
+  name: Обман ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkGun
+  name: Оружие ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkJums
+  name: Снаряжение ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkXim
+  name: Химикаты ОНП ФБР
+
+- type: storeCategory
+  id: FBIUplinkImplant
+  name: Импланты ОНП ФБР
+
+- type: listing
+  id: FBIUplinkNukeDiskFake
+  name: Поддельный диск ЯУ
+  description: Иногда что бы получить объект надо просто показать что будет если его не отдать
+  productEntity: NukeDiskFake
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkSpaceCash10000
+  name: 10000 кредитов
+  description: Я думаю что мы сможем купить этот объект
+  productEntity: SpaceCash10000
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkEncryptionKeyBinarySyndicate
+  name: бинарный ключ шифрования
+  description: Где же ты... NDA -  079?
+  productEntity: EncryptionKeyBinarySyndicate
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingBackpackSatchelSmugglerUnanchored
+  name: сумка контрабандиста
+  description: Сумка в которой вы сможите спрятать 420-J от своего начальника
+  productEntity: ClothingBackpackSatchelSmugglerUnanchored
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkStealthBox
+  name: Коробка-невидимка
+  description: Мы точно не сотрудничаем с синдикатом?
+  productEntity: StealthBox
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChameleonProjector
+  name: Проектор
+  description: Время шоу! Господа!
+  productEntity: ChameleonProjector
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkUtilities
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkEnergyDaggerBox
+  name: Лазерная ручка
+  description: Кто то ее вообще покупает?
+  productEntity: EnergyDaggerBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkCSWeaponUSP-S
+  name: USP
+  description: Агент действует скрытно, но иногда теряет свое оружие.
+  productEntity: CSWeaponUSP-S
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkMagazinePistolCaselessRifle
+  name: USP - патроны
+  description: Патроны
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkBriefcaseSyndieSniperBundleFilled
+  name: Христов
+  description: Агент действует скрытно, но иногда все же придется навести шуму.
+  productEntity: BriefcaseSyndieSniperBundleFilled
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkC4
+  name: C4
+  description: Бабах
+  productEntity: C4
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingShoesChameleonNoSlips
+  name: Нескользящие ботинки
+  description: Будет обидно если вы наступите на NDA 999
+  productEntity: ClothingShoesChameleonNoSlips
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkJums
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingBackpackChameleonFill
+  name: Набор хамелеона
+  description: Простите капитан, но этот объект мой!
+  productEntity: ClothingBackpackChameleonFill
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkJums
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkClothingMaskGasVoiceChameleon
+  name: Голосовая маска
+  description: Что вы говорите? Видели странное существо? Позвольте нам им заняться.
+  productEntity: ClothingMaskGasVoiceChameleon
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkJums
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottleOmnizine
+  name: Омнизин
+  description: Я лечение
+  productEntity: ChemistryBottleOmnizine
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottleNocturine
+  name: Ноктюрин
+  description: Спите, а вот эту шляпу я пожалуй заберу
+  productEntity: ChemistryBottleNocturine
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottleToxin
+  name: Токсин
+  description: Я не лечение
+  productEntity: ChemistryBottleToxin
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkHypoDartBox
+  name: гиподротик
+  description: Капитан, сыграем в дартс?
+  productEntity: HypoDartBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkChemistryBottlePax
+  name: Пакс
+  description: Пацифизм
+  productEntity: ChemistryBottlePax
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkCChemistryBottleMuteToxin
+  name: Немота
+  description: Не говорите
+  productEntity: ChemistryBottleMuteToxin
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkXim
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkDnaScramblerImplanter
+  name: Имплант смены ДНК
+  description: Что вы капитан, тот человек в черном точно уже сбежал
+  productEntity: DnaScramblerImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkEmpImplanter
+  name: Имплант ЭМИ
+  description: Уберите свои дубинки и налейте мне чаю
+  productEntity: EmpImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkImperialNutrimentPumpImplanter
+  name: Имплант помпы питательных веществ
+  description: Мне некогда с вами пить чай
+  productEntity: ImperialNutrimentPumpImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkStorageImplanter
+  name: Имплант хранилище
+  description: Почему я не могу ходить с USP в открытую?
+  productEntity: StorageImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: listing
+  id: FBIUplinkImperialSmokeImplanter
+  name: Имплант дымовой завесы
+  description: Я получил все что хотел! Теперь я вынужден покинуть это место.
+  productEntity: ImperialSmokeImplanter
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FBIUplinkImplant
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FBIUplink
+
+- type: Tag
+  id: FBIUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: FBIUplink
+  name: Терминал ОНП ФБР
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FBIUplink
+  - type: Store
+    categories:
+    - FBIUplinkUtilities
+    - FBIUplinkGun
+    - FBIUplinkJums
+    - FBIUplinkXim
+    - FBIUplinkImplant
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: Tag
+  id: FondUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplink
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkAmmo
+  name: Патроны
+
+- type: storeCategory
+  id: FondUplinkGranade
+  name: Гранаты
+
+- type: storeCategory
+  id: FondUplinkMed
+  name: Медицина
+
+- type: storeCategory
+  id: FondUplinkConsumables
+  name: Расходники
+
+- type: listing
+  id: FBIUplinkNMagazineRifle
+  name: магазин (.20 винтовочные)
+  description: Для М-90gl
+  productEntity: MagazineRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazinePistolRubber
+  name: пистолетный магазин (.35 авто резиновые)
+  description: Для ММК 58
+  productEntity: MagazinePistolRubber
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineLightRifle
+  name: магазин (.30 винтовочные)
+  description: Для АКМ
+  productEntity: MagazineLightRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSpeedLoaderAstra903
+  name: спидлоадер Astra-903 (5x14)
+  description: Для Astra-903
+  productEntity: SpeedLoaderAstra903
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkmp5-Magazine
+  name: магазин ПП (.35 авто)
+  description: Для mp5
+  productEntity: mp5-Magazine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazinePistol
+  name: магазин ПП (.35 авто)
+  description: Для five-seven
+  productEntity: MagazinePistol
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazinePistolSubMachineGun
+  name: магазин ПП (.35 авто)
+  description: Для Дрозд
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineHK416
+  name: магазин HK416 (5x56)
+  description: Для HK416
+  productEntity: MagazineHK416
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineMP9
+  name: магазин ПП MP-9 (9x22)
+  description: Для ПП MP-9
+  productEntity: MagazineMP9
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkp90-Magazine
+  name: магазин для ПП P90 (.35 авто)
+  description: Для P90
+  productEntity: p90-Magazine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFuelTankFlamethrowerMedium
+  name: стандартный топливный бак
+  description: Для Огнемёт "Санитар"
+  productEntity: FuelTankFlamethrowerMedium
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGrenadeFlashBang
+  name: светошумовая граната
+  description: Пиииииииииииииииииииии
+  productEntity: GrenadeFlashBang
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEmpGrenade
+  name: ЭМИ граната
+  description: Выпускает электромагнитный импульс, который выводит из строя или повреждает различные электронные устройства и разряжает элементы питания.
+  productEntity: EmpGrenade
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkTearGasGrenade
+  name: граната со слезоточивым газом
+  description: Граната со слезоточивым газом для борьбы с массовыми беспорядками. Вызывает раздражение, боль и заставляет плакать.
+  productEntity: TearGasGrenade
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGrenadeShrapnel
+  name: шрапнельная граната
+  description: Выпускает смертоносную шрапнель, вызывающую сильное кровотечение.
+  productEntity: GrenadeShrapnel
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGrenadeIncendiary
+  name: зажигательная граната
+  description: Поднимет настроение гарантированно.
+  productEntity: GrenadeIncendiary
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkExGrenade
+  name: разрывная граната
+  description: Граната, создающая небольшой но разрушительный взрыв.
+  productEntity: ExGrenade
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkGranade
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBrutepack
+  name: набор для ушибов
+  description: Терапевтический набор гелей и пластырей, предназначенных для лечения ушибов.
+  productEntity: Brutepack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGauze
+  name: марлевый бинт
+  description: Несколько стерильных марлевых полосок для оборачивания кровоточащих культей.
+  productEntity: Gauze
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkOintment
+  name: мазь
+  description: Используется для лечения этих неприятных ожогов. Менее эффективна при кислотных ожогах.
+  productEntity: Ointment
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFirstAidMedkitImperialFilled
+  name: аптечка первой помощи
+  description: Это экстренная аптечка для серьезных бо-бо.
+  productEntity: FirstAidMedkitImperialFilled
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMedicatedSuture
+  name: лечебный шовный материал
+  description: Нить, пропитанная лекарством, эффективно лечит тупые травмы и закрывает раны.
+  productEntity: MedicatedSuture
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRegenerativeMesh
+  name: регенеративная сетка
+  description: Используется для лечения даже самых тяжелых ожогов. Также эффективен против едких ожогов.
+  productEntity: RegenerativeMesh
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBurnAutoInjector
+  name: медипен от термических повреждений
+  description: Быстрая доза дермалина и лепоразина, предназначенная для боевого применения.
+  productEntity: BurnAutoInjector
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBruteAutoInjector
+  name: медипен от физических повреждений
+  description: Быстрая доза бикаридина и транексамовой кислоты, предназначенная для боевого применения.
+  productEntity: BruteAutoInjector
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBloodpack
+  name: пакет с кровью
+  description: Содержит инновационный универсальный заменитель крови, созданный передовой медицинской наукой.
+  productEntity: Bloodpack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkTourniquet
+  name: турникет
+  description: Останавливает кровотечение! Надеюсь.
+  productEntity: Tourniquet
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMedkitCobmatImperialFilled
+  name: боевая аптечка
+  description: Для любителей больших пушек среди нас.
+  productEntity: MedkitCobmatImperialFilled
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkCombatMedipen
+  name: боевой медипен
+  description: Одноразовая аптечка, содержащая химические вещества, которые восстанавливают большинство типов повреждений.
+  productEntity: CombatMedipen
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkMed
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkTelescopicShield
+  name: телескопический щит
+  description: Усовершенствованный защитный щит, изготовленный из легких материалов, который складывается для удобства хранения.
+  productEntity: TelescopicShield
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRiotShield
+  name: противоударный щит
+  description: Большой башенный щит на случай беспорядков. Хорошо подходит для контроля толпы.
+  productEntity: RiotShield
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRiotBulletShield
+  name: противопульный щит
+  description: Щит на случай беспорядков, созданный противостоять пулям, но не более того.
+  productEntity: RiotBulletShield
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRiotLaserShield
+  name: противолазерный щит
+  description: Щит на случай беспорядков, созданный противостоять лазерам, но не более того.
+  productEntity: RiotLaserShield
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBallisticShieldRCU
+  name: тяжелый баллистический щит
+  description: Тяжелый штурмовой щит с хорошей защитой. Он настолько тяжелый, что удар им должен быть чрезвычайно болезненным...
+  productEntity: BallisticShieldRCU
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFireExtinguisherMini
+  name: карманный огнетушитель
+  description: Легкая и компактная модель огнетушителя с каркасом из стекловолокна. Вмещает меньше воды, чем его старший брат.
+  productEntity: FireExtinguisherMini
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFireExtinguisher
+  name: огнетушитель
+  description: Он тушит пожары.
+  productEntity: FireExtinguisher
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkCrowbarRed
+  name: аварийный лом
+  description: Многофункциональный инструмент для открывания дверей и борьбы с межпространственными захватчиками.
+  productEntity: CrowbarRed
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkCombatKnife
+  name: боевой нож
+  description: Смертоносный нож, предназначенный для рукопашных схваток.
+  productEntity: CombatKnife
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkPowerCellHigh
+  name: батарея высокой ёмкости
+  description: Стандартизированный перезаряжаемый элемент питания. Этот премиальный накопитель большой емкости вмещает на 50% больше энергии, по сравнению с конкурентами.
+  productEntity: PowerCellHigh
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkFlashlightSeclite
+  name: фонарик СБ
+  description: Надежный фонарь, используемый службой безопасности.
+  productEntity: FlashlightSeclite
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkJawsOfLife
+  name: челюсти жизни
+  description: Набор челюстей жизни, скомпонованных при помощи магии науки.
+  productEntity: JawsOfLife
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBoxFlare
+  name: коробка фальшфейеров
+  description: Коробка фальшфейеров. Время зажигать.
+  productEntity: BoxFlare
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBlueFlareBox
+  name: коробка голубых фальшфейеров
+  description: Выглядит как белая тема приложения ночью.
+  productEntity: BlueFlareBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkGreenFlareBox
+  name: коробка зелёных фальшфейеров
+  description: Выглядит как белая тема приложения ночью.
+  productEntity: GreenFlareBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: CIUplink
+  name: Терминал Повстанцев
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - CIUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-px-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: CIUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: CIUplinkMagazinePistolSubMachineGun
+  name: магазин ПП (.35 авто)
+  description: Для C-20r
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazineLightRifleBox
+  name: короб патронов L6 SAW (.30 винтовочные)
+  description: Для L6 SAW
+  productEntity: MagazineLightRifleBox
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkSpeedLoaderMagnum
+  name: спидлоадер (.45 магнум)
+  description: Для Инспектор
+  productEntity: SpeedLoaderMagnum
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkSpeedLoaderMagnumIncendiary
+  name: спидлоадер (.45 магнум зажигательный)
+  description: Для Матеба
+  productEntity: SpeedLoaderMagnumIncendiary
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkBaseMagazineAstra60
+  name: спидлоадер (.45 магнум зажигательный)
+  description: Для Astra-60
+  productEntity: BaseMagazineAstra60
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazineMP5
+  name: магазин ПП MP-5 (9x21)
+  description: Для ПП MP-5
+  productEntity: MagazineMP5
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazinePistol
+  name: пистолетный магазин (.35 авто)
+  description: Для пистолет ТТ
+  productEntity: MagazinePistol
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkNu7Zeta9
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 8
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkEpsilon11Eta10Beta7epsilon9
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 10
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkAlpha9
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkAlpha1
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 18
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkBase
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 5
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkBaseCom
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 7
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkCommander
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: FondUplink
+  id: FondUplinkTay5
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 30
+
+- type: entity
+  parent: CIUplink
+  id: CIUplinkBase
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 10
+
+- type: entity
+  parent: CIUplink
+  id: CIUplinkCommander
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: BaseERTUplink
+  id: GOCUplink
+  name: Терминал ГОК
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - GOCUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-goc-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: GOCUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: GOCUplinkMagazineRifle
+  name: магазин (.20 винтовочные)
+  description: Для М-90gl
+  productEntity: MagazineRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - GOCUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: GOCUplinkMagazinePistolRubber
+  name: пистолетный магазин (.35 авто резиновые)
+  description: Для МК 58
+  productEntity: MagazinePistolRubber
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - GOCUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: GOCUplink
+  id: GOCUplinkCom
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPrefugee
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ PrefugeeSCPGear ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPrefugee-name
+      description: ghost-role-information-PresetSCPrefugee-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: PrefugeeSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    shoes: ClothingShoesColorBlack
+    back: CamouflageBag
+
+- type: entity
+  name: infected
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPinfectedNDA020
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda020.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        200: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.7
+      baseSprintSpeed: 3.1
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 200
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ReplacementAccent
+      accent: zombie
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Poison: 2
+          Blunt: 18
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+    - type: Loadout
+      prototypes: [ 4975SCPGear ]
+    - type: Hands
+      showInHands: true
+    - type: MobStateActions
+      actions:
+        Alive:
+        - SCPinfectedNDA020MorphAction
+    - type: UseDelay
+      delay: 1.0
+    - type: Stealth
+
+- type: polymorph
+  id: SCPinfectedNDA020
+  configuration:
+    entity: ImperialSCPinfectedNDA020
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  parent: ProjectilePolyboltBase
+  id: ProjectilePolyboltinfectedNDA020
+  name: zombie polybolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: SCPinfectedNDA020
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: SCPinfectedNDA020MorphAction
+  parent: BaseAction
+  name: SCPinfectedNDA020MorphAction
+  components:
+  - type: Action
+    useDelay: 12
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/SCP/ability/scpzombieaction.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectilePolyboltinfectedNDA020
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA020
+  name: title NDA020
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/nda/2nda020.rsi
+      state: shoreline_water
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Piercing: 1
+      ignoreWhitelist:
+        components:
+          - Stealth
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitDZ
+  name: DZ exosuit
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorDZ.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorDZ.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.3
+        Cold: 0.3
+        Shock: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetDZ
+
+- type: entity
+  parent: ClothingHeadHelmetCBURN
+  id: ClothingHeadHelmetDZ
+  name: DZ exosuit helmet
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorhelmetDZ.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#006400"
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDZ
+  name: DZ Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DZGear ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: DZGear
+  equipment:
+    jumpsuit: ArgonLeadMercJumpsuitUnsensored
+    back: ClothingBackpackDuffelCBURN
+    mask: ClothingMaskGasERT
+    shoes: ClothingShoesBootsWorkSCP
+    id: SCPIDCardDZ
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitDZ
+    ears: ClothingHeadsetSCPDZ
+    suitstorage: CSWeaponSCAR-L
+    belt: ClothingBeltMinuteManCamoForestWebbing
+  storage:
+    back:
+    - DZUplink
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPDZ
+  suffix: Fredik21, Недра
+  name: DZ Headset
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyImperialDZSCP
+    - type: EncryptionKeyHolder
+      keySlots: 8
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/dz/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/dz/headset.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyImperialDZSCP
+  name: DZ Encryption Key
+  suffix: Fredik21, Недра
+  components:
+  - type: EncryptionKey
+    channels:
+    - ImperialDZSCP
+    defaultChannel: ImperialDZSCP
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/dz/key.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/dz/key.rsi
+
+- type: radioChannel
+  id: ImperialDZSCP
+  name: Длань змея
+  keycode: 'ъ'
+  frequency: 8899
+  color: "#006400"
+  longRange: true
+
+- type: entity
+  id: SCPIDCardDZ
+  parent: IDCardStandard
+  name: DZ ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: DZIconSCP
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - Security
+      - Brig
+      - Armory
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/dz/id.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/dz/id.rsi
+
+- type: jobIcon
+  parent: JobIcon
+  id: DZIconSCP
+  icon:
+    sprite: /Textures/Imperial/Seriozha/Fredik21/dz/icon.rsi
+    state: icon
+
+- type: entity
+  parent: BaseERTUplink
+  id: DZUplink
+  name: Терминал Повстанцев - Длань змея
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - DZUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - DZUplinkAnomaly
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-px-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: DZUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: DZUplinkSCAR-Magazine
+  name: магазин для SCAR
+  description: Для SCAR-L
+  productEntity: SCAR-Magazine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - DZUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkMagazineBoxSVD
+  name: коробка патронов СВД (7x62x39)
+  description: Коробка обычных снайперских пуль.
+  productEntity: MagazineBoxSVD
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - DZUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: storeCategory
+  id: DZUplinkAnomaly
+  name: Аномалии
+
+- type: listing
+  id: DZUplinkSCPIDCardn005
+  name: NDA 005
+  description: NDA-005 внешне напоминает витиеватый ключ, по характеристикам не отличающийся от серийно выпускаемых ключей 1920-х годов. Ключ был обнаружен, когда гражданское лицо использовало тот при проникновении на особо охраняемый объект. Судя по всему, NDA-005 обладает уникальной возможностью без особых затруднений открывать любые виды замков
+  productEntity: SCPIDCardn005
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP207
+  name: NDA 207
+  description: NDA-207 — это коробка, содержащая 24 бутылки Coca-Cola той же марки. Бутылки промаркированы от NDA-207-A до -X. В настоящее время только NDA-207-B предназначена для исследований; открытие других бутылок без разрешения сотрудника уровня 4 запрещено
+  productEntity: SCP207
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP714
+  name: NDA 714
+  description: NDA-714 выглядит как обычное кольцо из зеленого нефрита. Оно может адаптироваться к размеру пальца последнего человека, который его коснулся. Оно меняет размер только для "новых" субъектов, что является его наименее значительным свойством.
+  productEntity: SCP714
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP268
+  name: NDA 268
+  description: NDA-268 — это твидовая шерстяная шляпа, которую обычно носят продавцы газет. Форма и дизайн соответствуют шляпам, производимым в Ирландии.
+  productEntity: SCP268
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: DZUplinkSCP500
+  name: NDA 500
+  description: NDA-500 — красные таблетки, хранящиеся в маленькой пластиковой бутылочке, 47 таблеток на момент написания. При приеме внутрь таблетка полностью исцеляет субъект от всех болезней в течение двух часов.
+  productEntity: SCP500
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - DZUplinkAnomaly
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDZCom
+  name: DZ Operator Com
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DZGearCom ]
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+
+- type: startingGear
+  id: DZGearCom
+  equipment:
+    jumpsuit: ArgonLeadMercJumpsuitUnsensored
+    back: ClothingBackpackDuffelCBURN
+    mask: ClothingMaskGasERT
+    shoes: ClothingShoesBootsWorkSCP
+    id: SCPIDCardDZ
+    head: ClothingHeadHatBeretMerc
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitDZ
+    ears: ClothingHeadsetSCPDZ
+    suitstorage: WeaponSniperSVD
+    belt: ClothingBeltMinuteManCamoForestWebbing
+  storage:
+    back:
+    - DZUplinkCom
+
+
+- type: entity
+  parent: DZUplink
+  id: DZUplinkCom
+  noSpawn: true
+  suffix: Fredik21, Недра
+  components:
+  - type: Store
+    balance:
+      BlueSpaceCube: 15

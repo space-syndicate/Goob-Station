@@ -56,6 +56,7 @@ ban-panel-ip = IP
 ban-panel-hwid = HWID
 ban-panel-reason = Причина
 ban-panel-last-conn = Использовать IP и HWID из последнего подключения?
+ban-panel-rules = Правила
 ban-panel-submit = Бан
 ban-panel-confirm = Вы уверены?
 ban-panel-tabs-basic = Базовая информация

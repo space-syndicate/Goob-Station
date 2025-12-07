@@ -52,9 +52,16 @@
   - type: Clothing
     sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1-inhand.rsi
   - type: Gun
-    fireRate: 1.8
+    fireRate: 1.4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+      path: /Audio/Imperial/DeadSector/fire.ogg
+      params:
+        volume: -3
+  - type: AmbientSound
+    range: 2
+    volume: -3
+    sound:
+      path: /Audio/Imperial/DeadSector/charge.ogg
   - type: HitscanBatteryAmmoProvider
     proto: plasma_rifle_RLT1
     fireCost: 100
