@@ -74,5 +74,10 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public bool AnnounceSentBy = true;
+        // Imperial Space Start Возможность смены уровня угрозы через консоль
+        [ViewVariables]
+        [DataField]
+        public bool CanChangeAlertLevel = true;
+        // Imperial Space End
     }
 }
