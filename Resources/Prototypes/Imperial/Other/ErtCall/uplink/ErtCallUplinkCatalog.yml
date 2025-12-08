@@ -153,7 +153,7 @@
   id: ErtCallUplinkMagazinePistolRubber
   name: ert-uplink-ammononcombat-magazinepistolrubber-name
   description: ert-uplink-ammononcombat-magazinepistolrubber-desc
-  productEntity: MagazinePistolRubber
+  productEntity: MagazinePistolHighCapacityRubberImperial
   cost:
     BlueSpaceCube: 2
   categories:
@@ -948,7 +948,7 @@
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
-          - ErtUplinkDeadSquad
+          - ErtUplinkCombat #Imperial Space allow leader/security/deadsquad
 
 # - type: listing
 #   id: ErtCallUplinkWeaponLaserGun

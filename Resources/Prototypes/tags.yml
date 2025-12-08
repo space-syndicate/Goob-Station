@@ -267,6 +267,9 @@
 - type: Tag
   id: CartridgePistol
 
+- type: Tag #Imperial Space New tag system so that only pistols can accept rubber cartridges
+  id: CartridgePistolRubberOnly 
+
 - type: Tag
   id: CartridgeRifle
 
