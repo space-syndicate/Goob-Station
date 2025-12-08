@@ -62,8 +62,6 @@
   - BoxShellTranquilizer
   - BoxBeanbag
   - WeaponDisabler
-  - MagazinePistolHighCapacityRubberImperial #Imperial Space rubber hi-cap pistol magazine
-  - MagazinePistolHighCapacityRubberImperialEmpty #Imperial Space empty rubber hi-cap pistol magazine
 
 - type: technology
   id: UraniumMunitions

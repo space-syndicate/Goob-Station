@@ -56,7 +56,6 @@
         whitelist:
           tags:
             - CartridgePistol
-            - CartridgePistolRubberOnly #Imperial Space allow rubber-only pistol rounds
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

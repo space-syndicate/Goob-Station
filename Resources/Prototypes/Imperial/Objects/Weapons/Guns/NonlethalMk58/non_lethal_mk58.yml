@@ -24,14 +24,15 @@
 
 - type: entity
   id: CartridgePistolRubber
-  name: cartridge (.35R-S auto rubber)
+  name: cartridge (.35 auto rubber)
   parent: BaseCartridgePistol
   components:
-  - type: Tag 
-    tags:
-    - Cartridge
-    - CartridgePistolRubberOnly 
   - type: CartridgeAmmo
     proto: BulletPistolRubber
   - type: Sprite
-    sprite: Imperial/Objects/Weapons/Guns/Ammunition/Casings/AmmoRubber_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#43c4f7"

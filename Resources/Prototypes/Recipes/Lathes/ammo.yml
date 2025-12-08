@@ -183,40 +183,6 @@
     Steel: 25
     Plastic: 120
 
-#Imperial Space add empty rubber pistol magazine recipe
-- type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
-  id: MagazinePistolRubberEmpty
-  result: MagazinePistolRubberEmpty
-  materials:
-    Steel: 25
-
-#Imperial Space add rubber pistol magazine recipe
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolRubber
-  result: MagazinePistolRubber
-  materials:
-    Steel: 145
-    Plastic: 60
-
-#Imperial Space add empty rubber hi-cap pistol magazine
-- type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
-  id: MagazinePistolHighCapacityRubberImperialEmpty
-  result: MagazinePistolHighCapacityRubberImperialEmpty
-  materials:
-    Steel: 45
-
-#Imperial Space add rubber hi-cap pistol magazine
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolHighCapacityRubberImperial
-  result: MagazinePistolHighCapacityRubberImperial
-  materials:
-    Steel: 300
-    Plastic: 150
-
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistolPractice
@@ -291,15 +257,6 @@
   result: MagazineBoxPistol
   materials:
     Steel: 600
-
-#Imperial Space add rubber pistol ammo box
-- type: latheRecipe
-  parent: BaseAmmoBoxRecipe
-  id: MagazineBoxPistolRubber
-  result: MagazineBoxPistolRubber
-  materials:
-    Steel: 600
-    Plastic: 400
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe

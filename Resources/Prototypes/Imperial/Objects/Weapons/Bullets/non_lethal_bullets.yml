@@ -1,67 +1,11 @@
 - type: entity
   id: MagazinePistolRubber
-  name: pistol magazine (.35R-S auto rubber)
-  description: Specialized .35R-S rubber caliber for service pistols. A shortened case, thickened projectile, and non-standard propellant seating make it incompatible with automatic weapons, while still providing a strong stunning effect with controlled lethality.
+  name: pistol magazine (.35 auto rubber)
   parent: BaseMagazinePistol
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
   - type: Sprite
-    sprite: Imperial/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazinePistolRubberEmpty
-  name: pistol magazine (.35R-S auto any)
-  suffix: empty
-  parent: BaseMagazinePistol
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    sprite: Imperial/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity 
-  id: MagazinePistolHighCapacityRubberImperial
-  name: Expanded pistol magazine (.35R-S auto rubber)
-  description: An extended pistol magazine designed for the specialized .35R-S rubber caliber. A lengthened body and double-stack feed allow carrying more rounds with minimal loss of reliability.
-  parent: BaseMagazinePistolHighCapacity
-  components:
-  - type: Tag
-    tags:
-    - MagazinePistol #Imperial Space restrict to pistol slots
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolRubber
-  - type: Sprite
-    sprite: Imperial/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazinePistolHighCapacityRubberImperialEmpty
-  name: Expanded pistol magazine (.35R-S auto any)
-  suffix: empty
-  parent: BaseMagazinePistolHighCapacity
-  components:
-  - type: Tag
-    tags:
-    - MagazinePistol #Imperial Space restrict to pistol slots
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    sprite: Imperial/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
     layers:
     - state: rubber
       map: ["enum.GunVisualLayers.Base"]
@@ -95,4 +39,4 @@
     soundHit:
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
-    damage: 13
+    damage: 22 # 5 hits to stun sounds reasonable
