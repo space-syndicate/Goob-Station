@@ -1,6 +1,8 @@
-using System.Numerics;
+using System;
 using Robust.Shared.GameStates;
+using Robust.Shared.Maths;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.XxRaay.Zero.KatanaDeflect;
 
@@ -27,19 +29,19 @@ public sealed partial class KatanaDeflectComponent : Component
     /// Angle of the deflection cone in front of the attack direction.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DeflectAngle = 120f;
+    public Angle DeflectAngle = Angle.FromDegrees(120f);
 
     /// <summary>
     /// Time when the last attack occurred, used to track active deflection window.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public TimeSpan? LastAttackTime;
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan LastAttackTime = TimeSpan.Zero;
 
     /// <summary>
     /// Direction of the last attack swing, used for deflection cone calculation.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public Vector2? LastAttackDirection;
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public Angle? LastAttackDirection;
 
     /// <summary>
     /// Whether a projectile has already been deflected in this attack window.

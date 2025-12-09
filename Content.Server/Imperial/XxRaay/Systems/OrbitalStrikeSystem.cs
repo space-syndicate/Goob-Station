@@ -3,6 +3,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects;
@@ -10,6 +11,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
@@ -19,7 +21,6 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 public sealed class OrbitalStrikeSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
@@ -33,7 +34,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
 
         SubscribeLocalEvent<OrbitalStrikeComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<OrbitalStrikeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
-        SubscribeLocalEvent<OrbitalStrikePodComponent, TimedDespawnEvent>(OnPodDespawn);
+        SubscribeLocalEvent<OrbitalStrikePodComponent, DestructionEventArgs>(OnPodDestroyed);
     }
 
     private void OnUseInHand(Entity<OrbitalStrikeComponent> entity, ref UseInHandEvent args)
@@ -46,9 +47,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
         var component = entity.Comp;
         var user = args.User;
 
-        if (!TryComp<TransformComponent>(user, out var userXform))
-            return;
-
+        var userXform = Transform(user);
         var centerCoords = userXform.Coordinates;
         var centerPos = _transformSystem.GetWorldPosition(userXform);
 
@@ -56,9 +55,9 @@ public sealed class OrbitalStrikeSystem : EntitySystem
         var radius = component.CurrentRadius;
         var spawnInterval = component.SpawnInterval;
 
-        for (int i = 0; i < podCount; i++)
+        for (var i = 0; i < podCount; i++)
         {
-            var delay = TimeSpan.FromSeconds(i * spawnInterval);
+            var delay = spawnInterval * i;
 
             Timer.Spawn(delay, () =>
             {
@@ -76,7 +75,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
                 var mapCoords = new MapCoordinates(spawnPos, userXform.MapID);
                 
                 EntityCoordinates spawnCoords;
-                if (_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+                if (_mapSystem.TryFindGridAt(mapCoords, out var gridUid, out var grid))
                 {
                     var localPos = _mapSystem.WorldToLocal(gridUid, grid, mapCoords.Position);
                     spawnCoords = new EntityCoordinates(gridUid, localPos);
@@ -84,22 +83,22 @@ public sealed class OrbitalStrikeSystem : EntitySystem
                 }
                 else
                 {
-                    var mapUid = _mapManager.GetMapEntityId(userXform.MapID);
+                    var mapUid = _mapSystem.GetMapEntityId(userXform.MapID);
                     spawnCoords = new EntityCoordinates(mapUid, mapCoords.Position);
                 }
 
-                var podEntity = Spawn("orbital_strike_pod_spawn", spawnCoords);
+                var podEntity = Spawn(component.PodPrototype, spawnCoords);
                 var podComp = EnsureComp<OrbitalStrikePodComponent>(podEntity);
                 
                 var mode = component.AvailableExplosionModes.GetValueOrDefault(component.CurrentExplosionMode)
-                           ?? new OrbitalStrikeComponent.ExplosionMode(100f, 1f, 12f);
+                           ?? new OrbitalExplosionMode(100f, 1f, 12f);
                 podComp.ExplosionIntensity = mode.Intensity;
                 podComp.ExplosionSlope = mode.Slope;
                 podComp.ExplosionMaxTileIntensity = mode.MaxTileIntensity;
             });
         }
 
-        _popup.PopupEntity($"Запущено {podCount} ракет", entity, user);
+        _popup.PopupEntity(Loc.GetString(component.PopupLaunchLoc, ("count", podCount)), entity, user);
     }
 
     private void OnGetVerbs(Entity<OrbitalStrikeComponent> entity, ref GetVerbsEvent<AlternativeVerb> args)
@@ -110,97 +109,90 @@ public sealed class OrbitalStrikeSystem : EntitySystem
         var component = entity.Comp;
         var user = args.User;
 
-        var priority = 0;
-        foreach (var count in component.AvailablePodCounts)
+        AddCountVerbs(entity, user, ref args, ref priority);
+        AddRadiusVerbs(entity, user, ref args, ref priority);
+        AddModeVerbs(entity, user, ref args, ref priority);
+    }
+
+    private void AddCountVerbs(Entity<OrbitalStrikeComponent> entity, EntityUid user, ref GetVerbsEvent<AlternativeVerb> args, ref int priority)
+    {
+        foreach (var count in entity.Comp.AvailablePodCounts)
         {
-            var isSelected = component.CurrentPodCount == count;
+            var isSelected = entity.Comp.CurrentPodCount == count;
             var verb = new AlternativeVerb
             {
-                Text = isSelected 
-                    ? $"Изменить количество ракет: {count} (выбрано)"
-                    : $"Изменить количество ракет: {count}",
+                Text = Loc.GetString(entity.Comp.VerbCountLoc, ("count", count), ("selected", isSelected)),
                 Category = VerbCategory.SetTransferAmount,
                 Act = () =>
                 {
-                    component.CurrentPodCount = count;
+                    entity.Comp.CurrentPodCount = count;
                     Dirty(entity);
-                    _popup.PopupEntity($"Установлено количество ракет: {count}", entity, user);
+                    _popup.PopupEntity(Loc.GetString(entity.Comp.VerbCountLoc, ("count", count), ("selected", true)), entity, user);
                 },
                 Priority = priority
             };
-
-            priority -= 1;
-            args.Verbs.Add(verb);
-        }
-
-        foreach (var radiusValue in component.AvailableRadii)
-        {
-            var isSelected = Math.Abs(component.CurrentRadius - radiusValue) < 0.1f;
-            var verb = new AlternativeVerb
-            {
-                Text = isSelected 
-                    ? $"Изменить радиус: {radiusValue} тайлов (выбрано)"
-                    : $"Изменить радиус: {radiusValue} тайлов",
-                Category = VerbCategory.SetTransferAmount,
-                Act = () =>
-                {
-                    component.CurrentRadius = radiusValue;
-                    Dirty(entity);
-                    _popup.PopupEntity($"Установлен радиус: {radiusValue} тайлов", entity, user);
-                },
-                Priority = priority
-            };
-
-            priority -= 1;
-            args.Verbs.Add(verb);
-        }
-
-        foreach (var modeName in component.AvailableExplosionModes.Keys)
-        {
-            var isSelected = component.CurrentExplosionMode == modeName;
-            var verb = new AlternativeVerb
-            {
-                Text = isSelected 
-                    ? $"Изменить режим взрыва: {modeName} (выбрано)"
-                    : $"Изменить режим взрыва: {modeName}",
-                Category = VerbCategory.SetTransferAmount,
-                Act = () =>
-                {
-                    component.CurrentExplosionMode = modeName;
-                    Dirty(entity);
-                    _popup.PopupEntity($"Установлен режим взрыва: {modeName}", entity, user);
-                },
-                Priority = priority
-            };
-
             priority -= 1;
             args.Verbs.Add(verb);
         }
     }
 
-    private void OnPodDespawn(Entity<OrbitalStrikePodComponent> entity, ref TimedDespawnEvent args)
+    private void AddRadiusVerbs(Entity<OrbitalStrikeComponent> entity, EntityUid user, ref GetVerbsEvent<AlternativeVerb> args, ref int priority)
     {
-        if (!TryComp<MetaDataComponent>(entity, out var meta))
-            return;
-
-        var prototypeId = meta.EntityPrototype?.ID;
-        
-        if (prototypeId == "orbital_strike_pod_spawn")
+        foreach (var radiusValue in entity.Comp.AvailableRadii)
         {
-            if (!TryComp<TransformComponent>(entity, out var xform))
-                return;
-
-            var coords = _transformSystem.ToMapCoordinates(xform.Coordinates);
-            _explosionSystem.QueueExplosion(
-                coords,
-                ExplosionSystem.DefaultExplosionPrototypeId,
-                entity.Comp.ExplosionIntensity, 
-                entity.Comp.ExplosionSlope,  
-                entity.Comp.ExplosionMaxTileIntensity, 
-                entity,
-                maxTileBreak: 0
-            );
+            var isSelected = Math.Abs(entity.Comp.CurrentRadius - radiusValue) < 0.1f;
+            var verb = new AlternativeVerb
+            {
+                Text = Loc.GetString(entity.Comp.VerbRadiusLoc, ("radius", radiusValue), ("selected", isSelected)),
+                Category = VerbCategory.SetTransferAmount,
+                Act = () =>
+                {
+                    entity.Comp.CurrentRadius = radiusValue;
+                    Dirty(entity);
+                    _popup.PopupEntity(Loc.GetString(entity.Comp.VerbRadiusLoc, ("radius", radiusValue), ("selected", true)), entity, user);
+                },
+                Priority = priority
+            };
+            priority -= 1;
+            args.Verbs.Add(verb);
         }
+    }
+
+    private void AddModeVerbs(Entity<OrbitalStrikeComponent> entity, EntityUid user, ref GetVerbsEvent<AlternativeVerb> args, ref int priority)
+    {
+        foreach (var modeName in entity.Comp.AvailableExplosionModes.Keys)
+        {
+            var isSelected = entity.Comp.CurrentExplosionMode == modeName;
+            var verb = new AlternativeVerb
+            {
+                Text = Loc.GetString(entity.Comp.VerbModeLoc, ("mode", modeName), ("selected", isSelected)),
+                Category = VerbCategory.SetTransferAmount,
+                Act = () =>
+                {
+                    entity.Comp.CurrentExplosionMode = modeName;
+                    Dirty(entity);
+                    _popup.PopupEntity(Loc.GetString(entity.Comp.VerbModeLoc, ("mode", modeName), ("selected", true)), entity, user);
+                },
+                Priority = priority
+            };
+            priority -= 1;
+            args.Verbs.Add(verb);
+        }
+    }
+
+    private void OnPodDestroyed(Entity<OrbitalStrikePodComponent> entity, ref DestructionEventArgs args)
+    {
+        var xform = Transform(entity);
+        var coords = _transformSystem.ToMapCoordinates(xform.Coordinates);
+        _explosionSystem.QueueExplosion(
+            coords,
+            ExplosionSystem.DefaultExplosionPrototypeId,
+            entity.Comp.ExplosionIntensity, 
+            entity.Comp.ExplosionSlope,  
+            entity.Comp.ExplosionMaxTileIntensity, 
+            entity,
+            maxTileBreak: 0
+        );
     }
 
 }

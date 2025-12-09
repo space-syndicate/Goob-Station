@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
 using Robust.Shared.GameStates;
+using Robust.Shared.Localization;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -15,10 +19,10 @@ public sealed partial class OrbitalStrikeComponent : Component
     public float Radius = 30f;
 
     /// <summary>
-    /// Interval between pod spawns in seconds.
+    /// Interval between pod spawns.
     /// </summary>
     [DataField]
-    public float SpawnInterval = 1.25f;
+    public TimeSpan SpawnInterval = TimeSpan.FromSeconds(1.25f);
 
     /// <summary>
     /// Available pod counts that can be selected.
@@ -44,46 +48,36 @@ public sealed partial class OrbitalStrikeComponent : Component
     [DataField]
     public float CurrentRadius = 30f;
 
-    /// <summary>
-    /// Explosion mode: (intensity, slope, maxTileIntensity)
-    /// </summary>
-    [DataDefinition]
-    public sealed partial class ExplosionMode
-    {
-        [DataField("intensity")]
-        public float Intensity { get; set; }
+    [DataField]
+    public EntProtoId PodPrototype = "orbital_strike_pod_spawn";
 
-        [DataField("slope")]
-        public float Slope { get; set; }
+    [DataField]
+    public LocId PopupLaunchLoc = new("orbital-strike-popup-launch");
 
-        [DataField("maxTileIntensity")]
-        public float MaxTileIntensity { get; set; }
+    [DataField]
+    public LocId VerbCountLoc = new("orbital-strike-verb-count");
 
-        public ExplosionMode() { }
+    [DataField]
+    public LocId VerbRadiusLoc = new("orbital-strike-verb-radius");
 
-        public ExplosionMode(float intensity, float slope, float maxTileIntensity)
-        {
-            Intensity = intensity;
-            Slope = slope;
-            MaxTileIntensity = maxTileIntensity;
-        }
-    }
+    [DataField]
+    public LocId VerbModeLoc = new("orbital-strike-verb-mode");
 
     /// <summary>
     /// Available explosion modes.
     /// </summary>
     [DataField]
-    public Dictionary<string, ExplosionMode> AvailableExplosionModes = new()
+    public Dictionary<LocId, OrbitalExplosionMode> AvailableExplosionModes = new()
     {
-        { "Слабый", new ExplosionMode(70f, 1f, 7f) },
-        { "Средний", new ExplosionMode(120f, 1f, 12f) },
-        { "Сильный", new ExplosionMode(160f, 3f, 100f) }
+        { new LocId("orbital-strike-mode-weak"), new OrbitalExplosionMode(70f, 1f, 7f) },
+        { new LocId("orbital-strike-mode-medium"), new OrbitalExplosionMode(120f, 1f, 12f) },
+        { new LocId("orbital-strike-mode-strong"), new OrbitalExplosionMode(160f, 3f, 100f) }
     };
 
     /// <summary>
     /// Current selected explosion mode name.
     /// </summary>
     [DataField]
-    public string CurrentExplosionMode = "Средний";
+    public LocId CurrentExplosionMode = new("orbital-strike-mode-medium");
 }
 

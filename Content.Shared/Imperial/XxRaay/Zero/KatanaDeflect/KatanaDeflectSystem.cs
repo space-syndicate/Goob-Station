@@ -7,9 +7,11 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -21,7 +23,7 @@ namespace Content.Shared.Imperial.XxRaay.Zero.KatanaDeflect;
 /// When a katana with KatanaDeflectComponent attacks, it temporarily enables ReflectComponent
 /// to deflect projectiles in the attack direction.
 /// </summary>
-public class KatanaDeflectSystem : EntitySystem
+public sealed class KatanaDeflectSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming GameTiming = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
@@ -51,11 +53,15 @@ public class KatanaDeflectSystem : EntitySystem
         
         while (query.MoveNext(out var uid, out var comp, out var reflect))
         {
-            if (!comp.LastAttackTime.HasValue) continue;
-            if (currentTime > comp.LastAttackTime + TimeSpan.FromSeconds(comp.ActiveWindow))
+            if (comp.LastAttackTime == TimeSpan.Zero)
+                continue;
+
+            var window = TimeSpan.FromSeconds(comp.ActiveWindow);
+            if (currentTime > comp.LastAttackTime + window)
             {
-                comp.LastAttackTime = null;
-                comp.HasDeflected = false; 
+                comp.LastAttackTime = TimeSpan.Zero;
+                comp.LastAttackDirection = null;
+                comp.HasDeflected = false;
                 reflect.ReflectProb = 0f;
                 Dirty(uid, comp);
                 Dirty(uid, reflect);
@@ -81,7 +87,7 @@ public class KatanaDeflectSystem : EntitySystem
         var currentTime = GameTiming.CurTime;
         
         component.LastAttackTime = currentTime;
-        component.LastAttackDirection = GetFacingDirection(entity.Owner);
+        component.LastAttackDirection = GetFacingAngle(entity.Owner);
         component.HasDeflected = false;
         
         if (TryComp<ReflectComponent>(entity, out var reflect))
@@ -93,21 +99,18 @@ public class KatanaDeflectSystem : EntitySystem
         Dirty(entity, component);
     }
 
-    private bool TryGetKatanaWithDeflect(EntityUid user, out Entity<KatanaDeflectComponent> katana)
+    private bool TryGetKatanaWithDeflect(EntityUid user, [NotNullWhen(true)] out Entity<KatanaDeflectComponent> katana)
     {
         katana = default;
         
         if (TryComp<HandsComponent>(user, out var hands))
         {
-            foreach (var handId in hands.SortedHands)
+            foreach (var held in HandsSystem.EnumerateHeld((user, hands)))
             {
-                if (HandsSystem.TryGetHeldItem((user, hands), handId, out var held) && held.HasValue)
+                if (TryComp<KatanaDeflectComponent>(held, out var comp))
                 {
-                    if (TryComp<KatanaDeflectComponent>(held.Value, out _))
-                    {
-                        katana = (held.Value, Comp<KatanaDeflectComponent>(held.Value));
-                        return true;
-                    }
+                    katana = (held, comp);
+                    return true;
                 }
             }
         }
@@ -121,18 +124,18 @@ public class KatanaDeflectSystem : EntitySystem
         
         var component = entity.Comp;
         
-        if (!component.LastAttackTime.HasValue) return;
+        if (component.LastAttackTime == TimeSpan.Zero) return;
         if (component.HasDeflected) return;
-        if (GameTiming.CurTime > component.LastAttackTime + TimeSpan.FromSeconds(component.ActiveWindow))
+
+        var window = TimeSpan.FromSeconds(component.ActiveWindow);
+        if (GameTiming.CurTime > component.LastAttackTime + window)
             return;
         
         if (!IsProjectileInDeflectionCone(ev.ProjUid, entity.Owner, component))
             return;
         
         if (component.LastAttackDirection.HasValue)
-        {
             OverrideReflectionDirection(ev.ProjUid, component.LastAttackDirection.Value);
-        }
         
         component.HasDeflected = true;
 
@@ -155,32 +158,31 @@ public class KatanaDeflectSystem : EntitySystem
             return false;
 
         var angle = Angle.FromWorldVec(toProjectile);
-        var attackAngle = Angle.FromWorldVec(comp.LastAttackDirection ?? Vector2.Zero);
+        var attackAngle = comp.LastAttackDirection ?? Angle.Zero;
         var angleDiff = (angle - attackAngle).Reduced().FlipPositive();
 
-        var maxDiff = Angle.FromDegrees(comp.DeflectAngle / 2f);
+        var maxDiff = comp.DeflectAngle / 2f;
         return angleDiff <= maxDiff;
     }
 
-    private void OverrideReflectionDirection(EntityUid projectile, Vector2 attackDir)
+    private void OverrideReflectionDirection(EntityUid projectile, Angle attackAngle)
     {
         if (!TryComp<PhysicsComponent>(projectile, out var physics))
             return;
             
         var currentSpeed = physics.LinearVelocity.Length();
-        var newVelocity = attackDir.Normalized() * currentSpeed;
+        var newVelocity = attackAngle.ToWorldVec() * currentSpeed;
         PhysicsSystem.SetLinearVelocity(projectile, newVelocity, body: physics);
         
-        var newRotation = attackDir.ToAngle();
-        TransformSystem.SetWorldRotation(projectile, newRotation);
+        TransformSystem.SetWorldRotation(projectile, attackAngle);
     }
 
     /// <summary>
     /// Gets the facing direction of an entity.
     /// </summary>
-    private Vector2 GetFacingDirection(EntityUid entity)
+    private Angle GetFacingAngle(EntityUid entity)
     {
         var xform = Transform(entity);
-        return TransformSystem.GetWorldRotation(xform).ToWorldVec();
+        return TransformSystem.GetWorldRotation(xform);
     }
 }

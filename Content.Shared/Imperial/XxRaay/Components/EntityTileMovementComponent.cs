@@ -3,7 +3,6 @@ using Content.Shared.Imperial.XxRaay.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -45,21 +44,5 @@ public sealed partial class EntityTileMovementComponent : Component
     /// </summary>
     [DataField]
     public bool Enabled = true;
-}
-
-/// <summary>
-/// Состояние компонента для синхронизации между клиентом и сервером.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class EntityTileMovementComponentState : ComponentState
-{
-    public float MoveDelay;
-    public bool Enabled;
-
-    public EntityTileMovementComponentState(float moveDelay, bool enabled)
-    {
-        MoveDelay = moveDelay;
-        Enabled = enabled;
-    }
 }
 

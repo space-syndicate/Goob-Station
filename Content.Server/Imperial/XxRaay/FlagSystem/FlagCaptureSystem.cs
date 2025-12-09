@@ -1,6 +1,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
+using Content.Shared.Imperial.Helpers;
 using Content.Shared.Imperial.XxRaay.FlagSystem;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -84,8 +85,8 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                     continue;
 
                 // Игнорируем нейтральных игроков
-                var playerFaction = GetPlayerFaction(entity);
-                if (playerFaction == "NeutralFaction")
+                var playerFaction = GetPlayerFaction(entity, capture.NeutralFactionId);
+                if (playerFaction == capture.NeutralFactionId)
                     continue;
 
                 playersInRange.Add(entity);
@@ -93,7 +94,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
                         // Анализируем фракции игроков в радиусе
             var factionGroups = playersInRange
-                .GroupBy(player => GetPlayerFaction(player))
+                .GroupBy(player => GetPlayerFaction(player, capture.NeutralFactionId))
                 .ToList();
 
             // Никого нет — отменяем захват, выходим
@@ -146,7 +147,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     private void StartCapture(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
     {
         // Проверяем, не пытается ли игрок захватить свой же флаг
-        var playerFaction = GetPlayerFaction(player);
+        var playerFaction = GetPlayerFaction(player, capture.NeutralFactionId);
         var currentFlagFaction = GetFlagFaction(flagUid);
 
         if (playerFaction == currentFlagFaction)
@@ -212,7 +213,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             return;
         }
 
-        var playerFaction = GetPlayerFaction(player);
+        var playerFaction = GetPlayerFaction(player, capture.NeutralFactionId);
         var playerName = MetaData(player).EntityName;
 
         capture.CanBeCaptured = false;
@@ -221,7 +222,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.LastCheckTime = TimeSpan.Zero;
 
         // Получаем позицию и поворот старого флага
-        var transform = _entityManager.GetComponent<TransformComponent>(flagUid);
+        var transform = Transform(flagUid);
 
 
         var position = transform.Coordinates;
@@ -287,17 +288,16 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         if (playerMob.CurrentState == MobState.Dead || playerMob.CurrentState == MobState.Critical)
             return false;
 
-        var playerFaction = GetPlayerFaction(player);
-        if (playerFaction == "NeutralFaction")
+        var playerFaction = GetPlayerFaction(player, capture.NeutralFactionId);
+        if (playerFaction == capture.NeutralFactionId)
             return false;
 
-        if (!_entityManager.TryGetComponent<TransformComponent>(flagUid, out var flagTransform))
-            return false;
+        var flagTransform = Transform(flagUid);
 
         var factions = new HashSet<string>();
         var playerInRange = false;
 
-        foreach (var entity in _lookup.GetEntitiesInRange(flagTransform.Coordinates, capture.CaptureRadius))
+        foreach (var entity in _lookup.GetEntitiesInRange(flagTransform.Coordinates, capture.CaptureRadius, LookupFlags.Dynamic | LookupFlags.Approximate))
         {
             if (!_entityManager.TryGetComponent<ActorComponent>(entity, out var _))
                 continue;
@@ -308,8 +308,8 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             if (mobState.CurrentState == MobState.Dead || mobState.CurrentState == MobState.Critical)
                 continue;
 
-            var faction = GetPlayerFaction(entity);
-            if (faction == "NeutralFaction")
+            var faction = GetPlayerFaction(entity, capture.NeutralFactionId);
+            if (faction == capture.NeutralFactionId)
                 continue;
 
             factions.Add(faction);
@@ -323,7 +323,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                factions.Contains(playerFaction);
     }
 
-    private string GetPlayerFaction(EntityUid player)
+    private string GetPlayerFaction(EntityUid player, string neutralFaction)
     {
         // Проверяем, есть ли у игрока компонент NpcFactionMember
         if (_entityManager.TryGetComponent<NpcFactionMemberComponent>(player, out var factionMember))
@@ -336,7 +336,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         }
 
         // Если у игрока нет фракции, возвращаем нейтральную
-        return "NeutralFaction";
+        return neutralFaction;
     }
 
     private string GetFlagFaction(EntityUid flagUid)

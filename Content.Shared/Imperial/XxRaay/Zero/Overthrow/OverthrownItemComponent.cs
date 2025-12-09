@@ -1,4 +1,6 @@
+using Content.Shared.Damage;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Imperial.XxRaay.Zero.Overthrow;
 
@@ -6,10 +8,10 @@ namespace Content.Shared.Imperial.XxRaay.Zero.Overthrow;
 public sealed partial class OverthrownItemComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public int Damage = 20;
+    public DamageSpecifier Damage = new();
 
-    [DataField, AutoNetworkedField]
-    public float KnockdownTime = 2f;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
+    public TimeSpan KnockdownTime = TimeSpan.Zero;
     
     [DataField, AutoNetworkedField]
     public bool IsOverthrown = true;
