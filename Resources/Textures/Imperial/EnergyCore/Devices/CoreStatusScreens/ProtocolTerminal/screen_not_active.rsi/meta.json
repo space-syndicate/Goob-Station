@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "screen_panel",
+            "directions": 4
+        },
+        {
             "name": "screen_not_active",
             "directions": 4
         }

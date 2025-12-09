@@ -63,7 +63,7 @@ public sealed class EnergyCoreSystem : EntitySystem
         {
             case CoreStatus.OFFLINE: // Статус ядра: Оффлайн
                 UpdateLightVisual(uid, "#74aeff", 1f, 1f);
-                if (core.CoreTemp > 0f)
+                if (core.CoreTemp > 1f)
                     core.Status = CoreStatus.IDLE;
                 break;
 
@@ -71,7 +71,7 @@ public sealed class EnergyCoreSystem : EntitySystem
                 UpdateLightVisual(uid, "#74aeff", 10f, 2f);
                 if (core.CoreTemp > 30000f)
                     core.Status = CoreStatus.STABLE;
-                if (core.CoreTemp < 0f)
+                if (core.CoreTemp <= 0f)
                     core.Status = CoreStatus.OFFLINE;
                 break;
 

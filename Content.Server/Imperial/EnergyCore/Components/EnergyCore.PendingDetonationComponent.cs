@@ -24,7 +24,7 @@ public sealed partial class EnergyCorePendingDetonationComponent : Component
 
     // Не знаю почему, но время рассчитывается не совсем правильно. Надо вручную подгонять и добавлять доп. время
     [DataField]
-    public TimeSpan MusicTimeDelay = TimeSpan.FromSeconds(105f);
+    public TimeSpan MusicTimeDelay = TimeSpan.FromSeconds(125f);
 
     [DataField]
     public bool PlayedMusic = false;

@@ -27,34 +27,6 @@ namespace Content.Client.Imperial.EnergyCore.UI
             UpHalflifeButton.OnPressed += _ => OnCoreTerminalButton?.Invoke(UiButton.UpHalflife);
             DownHalflifeButton.OnPressed += _ => OnCoreTerminalButton?.Invoke(UiButton.DownHalflife);
         }
-        /*
-                public void SetupComputerWindow(ComputerBoundUserInterfaceBase cb)
-                {
-                    CoreReactivity.OnTextEntered += text =>
-                    {
-                        if (!float.TryParse((string?)text.Text, out var value))
-                            return;
-
-                        CoreLineEditAdjustMessage msg = new()
-                        {
-                            ReactivityMsg = (float)value,
-                        };
-                        cb.SendMessage(msg);
-                    };
-
-                    CoreHalflife.OnTextEntered += text =>
-                    {
-                        if (!float.TryParse((string?)text.Text, out var value))
-                            return;
-
-                        CoreLineEditAdjustMessage msg = new()
-                        {
-                            HalflifeMsg = (float)value,
-                        };
-                        cb.SendMessage(msg);
-                    };
-                }
-        */
         public void UpdateState(BoundUserInterfaceState state)
         {
             var castState = (CoreTerminalBoundUserInterfaceState)state;
@@ -81,7 +53,6 @@ namespace Content.Client.Imperial.EnergyCore.UI
 
             CurrentTemp.Text = $"{castState.CoreTemp:N1}";
             CoreTempCoef.Text = $"{castState.TempChangeCoef:N1}";
-            //CurrentPowerSupply.Text = $"{castState.CurrentPowerSupply:N1}";
         }
     }
 }

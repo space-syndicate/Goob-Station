@@ -14,71 +14,73 @@ namespace Content.Server.Imperial.EnergyCore.Components;
 [Access(typeof(EnergyCoreSystem))]
 public sealed partial class EnergyCoreComponent : Component
 {
-    // Температура энергетического ядра
-    [DataField]
+    /// <summary>
+    /// Температура ядра
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float CoreTemp = 0f;
 
     // Минимальная температура, которая может быть у ядра
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float MinCoreTemp = 0f;
 
     // Автосистема, определяется через терминал
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public bool AutoSystemActive = false;
 
     // Изменение температуры (в сек.)
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float TempChangeMultiplier = 150f;
 
     // Изменение температуры (в сек.) (ивент расплавления)
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float TempChangeMultiplierMeltdown = 4000f;
 
     // Изменение температуры (в сек.) (инициализация защитного протокола)
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float TempChangeMultiplierProtocol = 4500f;
 
     // Изменение температуры, нужен для расчета <float TempChangeMultiplier> в положительную или отрицательную сторону
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float UpdateTemp = 0f;
 
     // Изменение температуры, будет ли после порога 600000 активирован протокол защиты
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public bool IsSafeProtocolActive = true;
 
     // Было ли анансировано, что протокол был отключен
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public bool AnnouncedProtocol = false;
 
     // Определение enum для света
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public CoreStatusColorVisual CoreColorEnum = CoreStatusColorVisual.OFFLINE;
 
     // Техническое определение статуса энерго ядра
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public CoreStatus Status = CoreStatus.OFFLINE;
 
     // Статус изменения температуры. Нагревание, охлаждание, авто-режим
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public CoreTempChangeLevel TempRiseStatus = CoreTempChangeLevel.COOLING;
 
     // Значение передаваемое от ближайшего терминала
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public byte TempChangeStatus = 1;
 
     // Свет источяемый ядром
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public Color CoreColor = Color.FromHex("#74aeff");
 
     // Сила света
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float CoreColorEnergy = 10f;
 
     // Радиус света
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float CoreColorRadius = 10f;
 
     // Базовый эмбиент ядра
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier CoreAmbience1 = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/CoreAmbience/coreambience_1.ogg");
 }

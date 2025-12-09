@@ -125,6 +125,8 @@
     layers:
     - map: ["computerLayerBody"]
       state: computer
+    - map: ["panelLayer"]
+      state: screen_panel
     - map: ["VisualState"]
       shader: unshaded
       state: screen_active

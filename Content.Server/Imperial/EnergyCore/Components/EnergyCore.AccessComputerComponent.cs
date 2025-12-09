@@ -14,92 +14,81 @@ namespace Content.Server.Imperial.EnergyCore.Components
         /// <summary>
         /// Звук при нажатии кнопки
         /// </summary>
-        [DataField("clickSound")]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("clickSound"), ViewVariables(VVAccess.ReadOnly)]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
         /// <summary>
         /// Попытка изменить реактивность/распад при предельный значениях
         /// </summary>
-        [DataField("cancelSound")]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("cancelSound"), ViewVariables(VVAccess.ReadOnly)]
         public SoundSpecifier CantSound = new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg");
 
         /// <summary>
         /// Следующая попытка обновить UI
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan NextUIUpdate = default!;
 
         /// <summary>
         /// Апдейт UI
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
+
         public TimeSpan UpdateUIPeriod = TimeSpan.FromSeconds(1.0);
 
         /// <summary>
         /// Время требуемое для проверки кодов ядерной деавторизации
         /// </summary>
-        [DataField("requiredTime")]
+        [DataField("requiredTime"), ViewVariables(VVAccess.ReadWrite)]
         public TimeSpan TimeToCheck = TimeSpan.FromSeconds(10f);
 
         /// <summary>
         ///  Слот предмета
         /// </summary>
-        [DataField("deCodeSlot")]
+        [DataField("deCodeSlot"), ViewVariables(VVAccess.ReadWrite)]
         public ItemSlot DeCodeSlot = new();
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float Reactivity = 30f;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float Halflife = 5f;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float FinalTempChangeCoef;
 
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public AutoSystemStatus AutoStatus = AutoSystemStatus.NONACTIVE;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan Time = TimeSpan.Zero;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public byte TerminalStatus = 1;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public bool DeactivationCompleted = false;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public bool TempRising = false;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public bool SaveProtocolWasDeactivated = false;
 
-        [DataField]
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public byte ByteStatus = 1;
 
         #region Info from the Core
 
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public CoreStatus Status = CoreStatus.OFFLINE;
 
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public bool AutoSystem = false;
 
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float CurrCoreTemp = 0;
 
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float CurrentPowerSupply = 0;
 
         #endregion

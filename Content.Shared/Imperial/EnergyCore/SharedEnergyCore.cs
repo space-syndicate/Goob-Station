@@ -40,15 +40,3 @@ public sealed class UiButtonPressedMessage : BoundUserInterfaceMessage
         Button = button;
     }
 }
-public sealed class CoreLineEditAdjustMessage : BoundUserInterfaceMessage
-{
-    /// <summary>
-    /// Реактивность ядра
-    /// </summary>
-    public float ReactivityMsg;
-
-    /// <summary>
-    /// Распад ядра
-    /// </summary>
-    public float HalflifeMsg;
-}

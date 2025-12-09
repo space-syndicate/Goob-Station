@@ -56,7 +56,6 @@ public enum CoreTempChangeLevel : byte
     AUTO = 2,
     COOLING = 3
 }
-//TODO: можно добавить доп. уровень: VERY_HIGH
 
 [Serializable, NetSerializable]
 public enum CoreStatusVisual : byte
