@@ -132,6 +132,7 @@
     - id: ClothingMaskSterile
     - id: HandheldGPSBasic
     - id: MedkitFilled
+    - id: ControlModsuitRescue # Imperial Space в ящики парамедика добавлен РИГ
       prob: 0.3
 
 - type: entity

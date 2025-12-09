@@ -1,44 +1,44 @@
-- type: entity
-  name: energy-crossbow
-  parent: BaseWeaponBatterySmall
-  id: energy-crossbow
-  description: A weapon favored by syndicate specialists who prefer to work covertly.
-  components:
-  - type: Tag
-    tags:
-    - Taser
-    - Sidearm
-  - type: Sprite
-    sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-0
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: shaded
-  - type: Item
-    sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - Belt
-  - type: Gun
-    fireRate: 0.5
-    soundGunshot:
-      path: /Audio/Imperial/laser.ogg
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 4
-    rechargeSound:
-      path: /Audio/Weapons/drawbow2.ogg
-  - type: UseDelayOnShoot
-  - type: UseDelay
-    delay: 4
-  - type: BasicEntityAmmoProvider
-    proto: BulletCrossbow
-    capacity: 1
-    count: 1
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: true
-  - type: Appearance
+# - type: entity # Удалено в связи с тем, что официальные разработчики добавили свой энерго-арбалет
+#   name: energy-crossbow
+#   parent: BaseWeaponBatterySmall
+#   id: energy-crossbow
+#   description: A weapon favored by syndicate specialists who prefer to work covertly.
+#   components:
+#   - type: Tag
+#     tags:
+#     - Taser
+#     - Sidearm
+#   - type: Sprite
+#     sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
+#     layers:
+#     - state: base
+#       map: ["enum.GunVisualLayers.Base"]
+#     - state: mag-unshaded-0
+#       map: ["enum.GunVisualLayers.MagUnshaded"]
+#       shader: shaded
+#   - type: Item
+#     sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
+#   - type: Clothing
+#     quickEquip: false
+#     slots:
+#     - Belt
+#   - type: Gun
+#     fireRate: 0.5
+#     soundGunshot:
+#       path: /Audio/Imperial/laser.ogg
+#   - type: RechargeBasicEntityAmmo
+#     rechargeCooldown: 4
+#     rechargeSound:
+#       path: /Audio/Weapons/drawbow2.ogg
+#   - type: UseDelayOnShoot
+#   - type: UseDelay
+#     delay: 4
+#   - type: BasicEntityAmmoProvider
+#     proto: BulletCrossbow
+#     capacity: 1
+#     count: 1
+#   - type: MagazineVisuals
+#     magState: mag
+#     steps: 2
+#     zeroVisible: true
+#   - type: Appearance
