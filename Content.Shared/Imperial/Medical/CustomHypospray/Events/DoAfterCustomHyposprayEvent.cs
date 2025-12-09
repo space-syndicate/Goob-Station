@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.Medical
 {
     [Serializable, NetSerializable]
-    public sealed partial class DoAfterCustomHyposprayEvent : DoAfterEvent
+    public sealed partial class DoAfterCustomHyposprayEvent : SimpleDoAfterEvent
     {
         public override DoAfterEvent Clone() => this;
     }

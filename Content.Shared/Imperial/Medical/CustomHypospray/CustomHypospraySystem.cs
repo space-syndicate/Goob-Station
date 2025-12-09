@@ -7,6 +7,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Content.Shared.Interaction.Events;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Medical
 {
@@ -17,6 +18,7 @@ namespace Content.Shared.Imperial.Medical
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
 
         public override void Initialize()
         {
@@ -32,7 +34,7 @@ namespace Content.Shared.Imperial.Medical
             if (!args.CanReach || args.Target == null || args.Handled)
                 return;
 
-            if (!TryComp<MetaDataComponent>(uid, out var meta) || meta.EntityLifeStage >= EntityLifeStage.Terminating)
+            if (Terminating(uid))
                 return;
 
             if (!HasComp<BodyComponent>(args.Target.Value) || !TryComp<HyposprayComponent>(uid, out var hyposprayComp))
@@ -79,10 +81,9 @@ namespace Content.Shared.Imperial.Medical
 
             if (_solutionContainer.TryGetSolution(uid, hyposprayComp.SolutionName, out var soln, out var solution))
             {
-                if (ContainsPoison(solution))
+                if (IsHarmfulSolution(solution, hyposprayComp.TransferAmount))
                 {
                     _popup.PopupClient(Loc.GetString("hypospray-component-inject-toxin-message"), args.User, args.User, PopupType.LargeCaution);
-
                     args.Handled = true;
                     return;
                 }
@@ -92,25 +93,57 @@ namespace Content.Shared.Imperial.Medical
             _hypospray.TryDoInject((uid, hyposprayComp), args.Args.Target.Value, args.Args.User);
         }
 
-        private bool ContainsPoison(Solution solution)
+        /// <summary>
+        /// проверяет, является ли раствор вредным, сравнивая общий урон и лечение
+        /// </summary>
+        private bool IsHarmfulSolution(Solution solution, FixedPoint2 transferAmount)
         {
+            float totalHealing = 0f;
+            float totalDamage = 0f;
+
             foreach (var reagent in solution.Contents)
             {
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Reagent.Prototype, out var proto))
                     continue;
 
-                if (proto.Metabolisms != null)
+                if (proto.Metabolisms == null)
+                    continue;
+
+                // рассчитываем количество реагента в дозе
+                float reagentInDose = (float)(reagent.Quantity / solution.Volume * transferAmount);
+
+                foreach (var (metabolismId, effects) in proto.Metabolisms)
                 {
-                    foreach (var (key, _) in proto.Metabolisms)
+                    var metabolismIdStr = metabolismId.ToString();
+
+                    foreach (var effect in effects.Effects)
                     {
-                        var metabolismId = key.ToString();
-                        if (metabolismId.Contains("Toxin") || metabolismId.Contains("Poison") || metabolismId.Contains("Narcotic"))
-                            return true;
+                        var effectType = effect.GetType().Name;
+
+                        // подсчитываем урон
+                        if (metabolismIdStr.Contains("Toxin") ||
+                            metabolismIdStr.Contains("Poison") ||
+                            metabolismIdStr.Contains("Narcotic"))
+                        {
+                            totalDamage += reagentInDose;
+                            continue;
+                        }
+
+                        // подсчитываем лечение
+                        if (effectType.Contains("Health") ||
+                            effectType.Contains("Heal") ||
+                            metabolismIdStr.Contains("Medicine"))
+                        {
+                            totalHealing += reagentInDose;
+                        }
                     }
                 }
             }
-            return false;
+
+            // добавляем 1 ед к итоговому лечению, чтобы незначительный урон не блокировал лекарство
+            return totalDamage > totalHealing + 1;
         }
+
         private void OnUseInHand(EntityUid uid, CustomHyposprayComponent comp, UseInHandEvent args)
         {
             if (args.Handled)
