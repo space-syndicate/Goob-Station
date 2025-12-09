@@ -6,3 +6,6 @@
 
 - type: Tag
   id: DFMagazineShotgunStormTrooper
+
+  - type: Tag 
+  id: CartridgePistolRubberOnly 
