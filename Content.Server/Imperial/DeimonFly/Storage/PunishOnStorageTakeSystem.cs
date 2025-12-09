@@ -27,9 +27,7 @@ public sealed class PunishOnStorageTakeSystem : EntitySystem
 
     private void OnStorageInteract(StorageInteractWithItemEvent msg, EntitySessionEventArgs args)
     {
-        /// <summary>
-        /// Должен быть игрок, который кликнул по предмету, иначе не срабатываем.
-        /// </summary>
+ // Должен быть игрок, который кликнул по предмету, иначе не срабатываем.
         if (args.SenderSession?.AttachedEntity is not { } userUid || Deleted(userUid))
             return;
 
