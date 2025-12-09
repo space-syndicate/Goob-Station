@@ -1,7 +1,9 @@
 using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.DeimonFly.Storage;
 
@@ -29,7 +31,7 @@ public sealed partial class PunishOnStorageTakeComponent : Component
     /// <summary>
     /// Ключ локализации попапа, показанного жертве.
     /// </summary>
-    [DataField] public string? Popup;
+    [DataField] public LocId? Popup;
 
     /// <summary>
     /// Кулдаун между срабатываниями.
@@ -39,5 +41,6 @@ public sealed partial class PunishOnStorageTakeComponent : Component
     /// <summary>
     /// Время последнего срабатывания (для кулдауна).
     /// </summary>
-    [DataField] public TimeSpan LastPunish;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan LastPunish;
 }

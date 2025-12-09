@@ -63,8 +63,8 @@ public sealed class PunishOnStorageTakeSystem : EntitySystem
         if (comp.Sound != null)
             _audio.PlayPvs(comp.Sound, storageUid.Value);
 
-        if (comp.Popup != null)
-            _popup.PopupEntity(Loc.GetString(comp.Popup), storageUid.Value, userUid);
+        if (comp.Popup is { } popup)
+            _popup.PopupEntity(Loc.GetString(popup), storageUid.Value, userUid);
 
         comp.LastPunish = now;
         Dirty(storageUid.Value, comp);
