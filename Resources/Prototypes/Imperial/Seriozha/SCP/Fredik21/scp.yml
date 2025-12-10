@@ -5954,21 +5954,6 @@
          - FondUplink
 
 - type: listing
-  id: FondUplinkMagazineRifle
-  name: магазин (.20 винтовочные)
-  description: Для Лектер
-  productEntity: MagazineRifle
-  cost:
-    BlueSpaceCube: 1
-  categories:
-  - FondUplinkAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-       tags:
-         - FondUplink
-
-- type: listing
   id: FondUplinkBaseMagazineASP
   name: магазин ASP (9x19)
   description: Для ASP
@@ -8266,7 +8251,7 @@
   id: NDA013
   suffix: Fredik21, Недра
   parent: Cigarette
-  name: Сигареты «Blue Lady» 
+  name: Cigarette «Blue Lady» 
   components:
   - type: SolutionContainerManager
     solutions:
