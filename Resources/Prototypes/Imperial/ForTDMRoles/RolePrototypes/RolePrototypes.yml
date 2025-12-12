@@ -52,7 +52,7 @@
       prototypes: [ TDMForestGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
+# - type: AutoImplant
     - type: CrewSkills
       skills:
         - skillBotany

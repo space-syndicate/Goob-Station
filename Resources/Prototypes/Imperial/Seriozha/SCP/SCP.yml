@@ -70,6 +70,7 @@
         0: Alive
         4000: Dead
     - type: MeleeWeapon
+      attackRate: 0.33
       hidden: true
       altDisarm: false
       soundHit:
@@ -78,7 +79,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 80
+          Blunt: 5
       resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
@@ -98,9 +99,6 @@
             !type:PhysShapeCircle
             radius: 0.4
           density: 280
-          hard: false
-          mask:
-          - MobMask
           layer:
           - GhostImpassable
           - MobLayer
@@ -120,6 +118,13 @@
       mustEquip: false
       sprite: /Textures/Interface/Misc/job_icons.rsi
       state: Musician
+    - type: SCP106
+      firstHitDamage:
+        types:
+          Poison: 40
+      damagePerSecond:
+        types:
+          Blunt: 1
 
 - type: entity
   name: Fireman

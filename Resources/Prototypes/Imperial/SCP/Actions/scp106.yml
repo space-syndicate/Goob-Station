@@ -1,0 +1,38 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106SpawnPuddle
+  name: Spawn Puddle
+  description: I hope people won't fall in there.
+  components:
+  - type: Action
+    icon: Imperial/SCP/createhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106SpawnPuddleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106ExitDimension
+  name: Exit pocket dimension
+  description: Go back.
+  components:
+  - type: Action
+    icon: Imperial/SCP/createhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106DimensionExitActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106GoIntoDimension
+  name: Enter pocket dimension
+  description: FINISH HIM.
+  components:
+  - type: Action
+    icon: Imperial/SCP/createhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106DimensionEnterActionEvent
