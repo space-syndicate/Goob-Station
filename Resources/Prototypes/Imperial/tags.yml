@@ -3,9 +3,9 @@
 
 - type: Tag
   id: DoesNotRecycleThisShit
+ 
+- type: Tag
+  id: DFMagazineShotgunStormTrooper
 
-
-
-  
-  - type: Tag
+- type: Tag
   id: CartridgePistolRubberOnly 
