@@ -239,7 +239,6 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             _actions.AddAction(uid,
                 ref component.PuddleSpawnActionEntity,
                 component.PuddleSpawnAction);
-            Log.Error($"ez");
         }
         Dirty(uid, component);
     }
