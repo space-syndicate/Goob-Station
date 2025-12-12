@@ -35,7 +35,6 @@ public sealed class OrbitalStrikeSystem : EntitySystem
 
         SubscribeLocalEvent<OrbitalStrikeComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<OrbitalStrikeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
-        SubscribeLocalEvent<OrbitalStrikePodComponent, DestructionEventArgs>(OnPodDestroyed);
     }
 
     private void OnUseInHand(Entity<OrbitalStrikeComponent> entity, ref UseInHandEvent args)
@@ -96,6 +95,23 @@ public sealed class OrbitalStrikeSystem : EntitySystem
                 podComp.ExplosionIntensity = mode.Intensity;
                 podComp.ExplosionSlope = mode.Slope;
                 podComp.ExplosionMaxTileIntensity = mode.MaxTileIntensity;
+
+                var explosionCoords = _transformSystem.ToMapCoordinates(spawnCoords);
+                var explosionDelay = component.ExplosionDelay;
+                Timer.Spawn(explosionDelay, () =>
+                {
+                    _explosionSystem.QueueExplosion(
+                        explosionCoords,
+                        ExplosionSystem.DefaultExplosionPrototypeId,
+                        podComp.ExplosionIntensity,
+                        podComp.ExplosionSlope,
+                        podComp.ExplosionMaxTileIntensity,
+                        null,
+                        maxTileBreak: 0);
+
+                    if (Exists(podEntity))
+                        QueueDel(podEntity);
+                });
             });
         }
 
@@ -180,21 +196,6 @@ public sealed class OrbitalStrikeSystem : EntitySystem
             priority -= 1;
             args.Verbs.Add(verb);
         }
-    }
-
-    private void OnPodDestroyed(Entity<OrbitalStrikePodComponent> entity, ref DestructionEventArgs args)
-    {
-        var xform = Transform(entity);
-        var coords = _transformSystem.ToMapCoordinates(xform.Coordinates);
-        _explosionSystem.QueueExplosion(
-            coords,
-            ExplosionSystem.DefaultExplosionPrototypeId,
-            entity.Comp.ExplosionIntensity, 
-            entity.Comp.ExplosionSlope,  
-            entity.Comp.ExplosionMaxTileIntensity, 
-            entity,
-            maxTileBreak: 0
-        );
     }
 
 }

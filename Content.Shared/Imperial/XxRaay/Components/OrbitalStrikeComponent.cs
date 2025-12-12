@@ -48,6 +48,12 @@ public sealed partial class OrbitalStrikeComponent : Component
     [DataField]
     public float CurrentRadius = 30f;
 
+    /// <summary>
+    /// Delay before a spawned pod explodes (seconds).
+    /// </summary>
+    [DataField]
+    public TimeSpan ExplosionDelay = TimeSpan.FromSeconds(3.5);
+
     [DataField]
     public EntProtoId PodPrototype = "orbital_strike_pod_spawn";
 
