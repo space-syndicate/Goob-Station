@@ -14,6 +14,7 @@ using Content.Shared.Physics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
@@ -32,6 +33,7 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedDoorSystem _doorSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatModeSystem = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -43,7 +45,7 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
         SubscribeLocalEvent<EntityTileMovementComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<EntityTileMovementComponent, MoveInputEvent>(OnMoveInput);
     }
-    
+
     private void OnMoveInput(Entity<EntityTileMovementComponent> entity, ref MoveInputEvent args)
     {
         entity.Comp.LastMoveButtons = args.Entity.Comp.HeldMoveButtons;
@@ -83,6 +85,9 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     {
         base.Update(frameTime);
 
+        if (_net.IsClient)
+            return;
+
         var query = EntityQueryEnumerator<EntityTileMovementComponent, InputMoverComponent, TransformComponent>();
         var currentTime = _gameTiming.CurTime;
 
@@ -104,10 +109,10 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
                 Dirty(uid, mover);
             }
 
-            var moveButtons = tileMovement.LastMoveButtons != MoveButtons.None 
-                ? tileMovement.LastMoveButtons 
+            var moveButtons = tileMovement.LastMoveButtons != MoveButtons.None
+                ? tileMovement.LastMoveButtons
                 : mover.HeldMoveButtons;
-            
+
             if ((moveButtons & MoveButtons.AnyDirection) == MoveButtons.None)
             {
                 StopMovement(uid, mover);
@@ -137,11 +142,11 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
         }
     }
 
-    private void ProcessMovement(EntityUid uid, EntityTileMovementComponent tileMovement, InputMoverComponent mover, 
+    private void ProcessMovement(EntityUid uid, EntityTileMovementComponent tileMovement, InputMoverComponent mover,
         TransformComponent xform, Vector2i moveDirection, Vector2 wishDir, TimeSpan currentTime)
     {
         var moveResult = TryMoveToTile(uid, moveDirection, xform, wishDir);
-        
+
         if (moveResult.Moved)
         {
             tileMovement.LastMoveTime = currentTime;
@@ -174,19 +179,19 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
 
         var currentTile = _mapSystem.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
         var currentTileCheck = CanMoveToTile(uid, xform.GridUid.Value, grid, currentTile);
-        
+
         if (!currentTileCheck.CanMove)
             return;
 
         var currentTileCoords = _mapSystem.ToCenterCoordinates(xform.GridUid.Value, currentTile, grid);
         var distance = (xform.Coordinates.Position - currentTileCoords.Position).Length();
         var moveAngle = wishDir.ToWorldAngle();
-        
+
         _transformSystem.SetLocalRotation(uid, moveAngle, xform);
-        
+
         if (distance > 0.05f)
             _transformSystem.SetCoordinates(uid, xform, currentTileCoords);
-        
+
         tileMovement.LastMoveTime = currentTime;
         StopMovement(uid, mover);
     }
@@ -212,7 +217,7 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
         {
             if (canMoveResult.BlockedByHarmMode)
                 return new MoveResult(false, true, false);
-            
+
             return new MoveResult(false, canMoveResult.BlockedByWall, canMoveResult.DoorOpening);
         }
 
@@ -267,7 +272,7 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
 
     private CanMoveResult CanMoveToTile(EntityUid uid, EntityUid gridUid, MapGridComponent grid, Vector2i tilePos, Vector2i? moveDirection = null, Vector2? wishDir = null)
     {
-        if (!TryComp<PhysicsComponent>(uid, out var physics) || 
+        if (!TryComp<PhysicsComponent>(uid, out var physics) ||
             !_mapSystem.TryGetTileRef(gridUid, grid, tilePos, out var tileRef))
             return new CanMoveResult(true, false, false);
 
@@ -302,13 +307,13 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
                         {
                             var targetCoords = _mapSystem.ToCenterCoordinates(gridUid, tilePos, grid);
                             var nextTileCoords = _mapSystem.ToCenterCoordinates(gridUid, nextTile, grid);
-                            
+
                             _transformSystem.SetLocalRotation(uid, wishDir.Value.ToWorldAngle(), Transform(uid));
                             _transformSystem.SetCoordinates(uid, Transform(uid), targetCoords);
-                            
+
                             _transformSystem.SetLocalRotation(otherEntity, wishDir.Value.ToWorldAngle(), otherXform);
                             _transformSystem.SetCoordinates(otherEntity, otherXform, nextTileCoords);
-                            
+
                             return new CanMoveResult(true, false, false, false, true);
                         }
                     }
