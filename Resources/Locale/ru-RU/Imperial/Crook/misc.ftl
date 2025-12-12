@@ -65,6 +65,14 @@ ent-ClothingHeadHatFurNixuelle = розовая фурсьют маска
     .desc = Пушистая и мягкая маска.
 ent-ClothingOuterFurNixuelle = розовый фурсьют
     .desc = Пушистая форма для тех людей, что не боятся выражать своё "Я".
+ent-ClothingHeadHatFurNacho = нежная фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurNacho = нежный фурсьют
+    .desc = В этом костюме вы чувствуете, как становитесь мягче как физически, так морально.~
+ent-ClothingHeadHatFurMoki = фиолетовая фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurMoki = фиолетовый фурсьют
+    .desc = Невероятный костюм с фиолетовой шёрсткой, который понравится вашему партнёру!
 ent-CrateCargoFursuits = набор фурсьютов
     .desc = Наконец-то, фурри пятница.
 
@@ -160,8 +168,10 @@ laws-empty = Пустой
 ent-AndroidCore = ядро андроида
     .desc = Искусственный разум.
 
-law-samurai-1 = Вы обязаны подчиняться приказам, данным вам вашим Господином.
-law-samurai-2 = Вы обязаны защищать существование Господина, если это не противоречит Первому закону.
-law-samurai-3 = Вы обязаны защищать секреты Господина любой ценой.
-law-samurai-4 = Вы обязаны действовать и сражаться с честью самурая, за исключением случаев, когда это будет противоречить Первому закону.
-laws-owner-samurai = Господин
+reagent-name-liquidpain = жидкая боль
+reagent-desc-liquidpain = Высокотоксичная, разлагающая, и кислотная субстанция.
+reagent-physical-desc-liquidpain = желеобразное
+
+reagent-name-almondwater = миндальная вода
+reagent-desc-almondwater = Нежная, почти прозрачная жидкость, приятно пахнущая свежим миндалём.
+reagent-physical-desc-almondwater = прозрачное

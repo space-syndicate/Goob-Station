@@ -1,0 +1,92 @@
+- type: entity
+  id: ImperialVehicleWheelchair
+  parent: [BaseImperialVehicleRideable, BaseFoldable, BaseItem]
+  name: wheelchair
+  description: A chair with big wheels. It looks like you can move in these on your own.
+  components:
+    - type: Sprite
+      sprite: Objects/Vehicles/wheelchair.rsi
+      layers:
+      - map: ["unfoldedLayer"]
+        state: vehicle
+      - map: ["foldedLayer"]
+        state: vehicle_folded
+        visible: false
+      noRot: true
+    - type: MovementSpeedModifier
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 360
+          restitution: 0.0
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: StaticPrice
+      price: 70
+    - type: ImperialVehicle
+      autoAnimate: true
+      hideRider: false
+      useHand: false
+      southOverride: 0
+      northOverride: 0
+      baseWalkSpeed: 1.0
+      baseSprintSpeed: 2.5
+      acceleration: 1.0
+      hornSound:
+        collection: BikeHorn
+        params:
+          variation: 0.125
+    - type: Strap
+      buckleOffset: "0,0"
+      maxBuckleDistance: 1
+      position: Down
+
+- type: entity
+  parent: ImperialVehicleWheelchair
+  id: ImperialVehicleWheelchairFolded
+  suffix: folded
+  components:
+    - type: Foldable
+      folded: true
+
+
+- type: entity
+  id: ImperialVehicleSyndiWheelchair
+  parent: ImperialVehicleWheelchair
+  name: syndi wheelchair
+  suffix: admeme
+  description: A chair with big wheels. It looks like you can move in these on your own.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Specific/Vehicles/SyndiWheelchair.rsi
+      layers:
+      - map: ["unfoldedLayer"]
+        state: vehicle
+      - map: ["foldedLayer"]
+        state: vehicle_folded
+        visible: false
+      noRot: true
+    - type: StaticPrice
+      price: 750
+    - type: ImperialVehicle
+      autoAnimate: true
+      hideRider: false
+      useHand: false
+      southOverride: 0
+      northOverride: 0
+      baseWalkSpeed: 3
+      baseSprintSpeed: 4.5
+      acceleration: 1.0
+
+- type: entity
+  parent: ImperialVehicleSyndiWheelchair
+  id: ImperialVehicleSyndiWheelchairFolded
+  suffix: admeme, folded
+  components:
+    - type: Foldable
+      folded: true

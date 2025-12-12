@@ -17,4 +17,4 @@
       Glass: 200
     chemicalComposition:
       Silicon: 20
-  - type: Circuitboard
+  - type: BorgEngElectronicsBoard # Добавлен компонент пустышка, чтобы инженерные борги могли брать микросхемы

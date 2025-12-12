@@ -33,6 +33,7 @@
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
+    - HandheldParamedicCrewMonitor # imperial space: add portable paramedic crew monitor
 
 - type: chameleonOutfit
   id: ParamedicChameleonOutfit

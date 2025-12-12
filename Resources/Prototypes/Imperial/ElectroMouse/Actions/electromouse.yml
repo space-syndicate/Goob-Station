@@ -11,10 +11,10 @@
 - type: entity
   id: ActionElectroMouseOverloadLights
   name: Перегрузка света
-  description: Перезарядка 30 секунд.
+  description: Перезарядка 50 секунд.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 50
     itemIconStyle: BigAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shop}
   - type: InstantAction
@@ -39,7 +39,7 @@
   components:
   - type: Action
     icon: { sprite: Imperial/electromouse.rsi, state: sm_EMP}
-    useDelay: 30
+    useDelay: 75
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:ElectroMouseEmpEvent
@@ -50,7 +50,7 @@
   description: Вылечить себя.
   components:
   - type: Action
-    useDelay: 15
+    useDelay: 45
     itemIconStyle: BigAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_heal}
   - type: InstantAction

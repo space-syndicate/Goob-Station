@@ -1,0 +1,20 @@
+- type: entity
+  name: Urist McFelix
+  suffix: Felix
+  parent: BaseMobHuman
+  id: FelixUrist
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Vocal
+    sounds:
+      Male: FelixUristEmotes
+      Unsexed: FelixUristEmotes
+      Female: FelixUristEmotes
+  - type: BodyEmotes
+    soundsId: FelixUristEmotes
+  - type: Tag
+    tags:
+    - FelixEmotes
+

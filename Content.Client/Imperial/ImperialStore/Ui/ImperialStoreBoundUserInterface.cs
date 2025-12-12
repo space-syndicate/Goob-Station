@@ -68,8 +68,6 @@ public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        Logger.Info((state is ImperialStoreUpdateState)+  " ");
-
         switch (state)
         {
             case ImperialStoreUpdateState msg:

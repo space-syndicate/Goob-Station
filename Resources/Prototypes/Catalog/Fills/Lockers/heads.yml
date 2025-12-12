@@ -236,6 +236,9 @@
     - id: MedTekCartridge
     - id: CompactDefibrillator # Imperial Space Компактный дефибриллятор в шкафчике ГВ
     - id: ControlModsuitRescue # Imperial Space РИГИ
+    - id: CloningConsoleComputerCircuitboard # Imperial Space Консоль клонирования возвращена в игру
+    - id: CloningPodMachineCircuitboard # Imperial Space Консоль клонирования возвращена в игру
+    - id: BodyScannerComputerCircuitboard # Imperial Space Консоль клонирования возвращена в игру
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

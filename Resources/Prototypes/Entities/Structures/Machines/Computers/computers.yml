@@ -712,6 +712,7 @@
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false # The title already says who they are.
     sound: /Audio/Announcements/war.ogg
+    canChangeAlertLevel: false # Imperial Space Запрет на смену уровня угрозы
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
   - type: PointLight

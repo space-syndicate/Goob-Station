@@ -141,7 +141,7 @@ namespace Content.Server.Communications
                 if (TryComp(stationUid.Value, out AlertLevelComponent? alertComp) &&
                     alertComp.AlertLevels != null)
                 {
-                    if (alertComp.IsSelectable)
+                    if (alertComp.IsSelectable && comp.CanChangeAlertLevel) // Imperial Space Добавлен новый компонент, позволяющий регулировать, способна ли консоль менять уровень угрозы
                     {
                         levels = new();
                         foreach (var (id, detail) in alertComp.AlertLevels.Levels)
@@ -211,6 +211,12 @@ namespace Content.Server.Communications
         {
             if (message.Actor is not { Valid: true } mob)
                 return;
+
+            if (!comp.CanChangeAlertLevel) // Imperial Space Добавлен новый компонент, позволяющий регулировать, способна ли консоль менять уровень угрозы
+            {
+                _popupSystem.PopupCursor(Loc.GetString("comms-console-change-alert-level-denied"), message.Actor, PopupType.Medium);
+                return;
+            }
 
             if (!CanUse(mob, uid))
             {

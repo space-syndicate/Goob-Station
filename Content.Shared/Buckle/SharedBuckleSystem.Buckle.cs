@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.ImperialVehicle.Components; // Imperial "ImperialVehicle"
 
 namespace Content.Shared.Buckle;
 
@@ -123,6 +124,8 @@ public abstract partial class SharedBuckleSystem
         if (buckle.Comp.BuckledTo is not { } strapUid)
             return;
 
+        if (HasComp<ImperialVehicleComponent>(strapUid)) // Imperial "ImperialVehicle"
+            return; // Imperial "ImperialVehicle"
         if (!TryComp<StrapComponent>(strapUid, out var strapComp))
         {
             Log.Error($"Encountered buckle entity {ToPrettyString(buckle)} without a valid strap entity {ToPrettyString(strapUid)}");
@@ -163,7 +166,7 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleStandAttempt(EntityUid uid, BuckleComponent component, StandAttemptEvent args)
     {
-        if (component.Buckled)
+        if (component.Buckled && HasComp<ImperialVehicleComponent>(component.BuckledTo)) // Imperial "ImperialVehicle"
             args.Cancel();
     }
 
@@ -175,6 +178,8 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
+        if (component.Buckled && HasComp<ImperialVehicleComponent>(component.BuckledTo)) // Imperial "ImperialVehicle"
+            return; // Imperial "ImperialVehicle"
         if (component.Buckled)
             args.Cancel();
     }
@@ -391,6 +396,8 @@ public abstract partial class SharedBuckleSystem
         if (TryComp<PhysicsComponent>(buckle, out var physics))
             _physics.ResetDynamics(buckle, physics);
 
+        if (HasComp<ImperialVehicleComponent>(strap)) // Imperial "ImperialVehicle"
+            return;// Imperial "ImperialVehicle"
         DebugTools.AssertEqual(xform.ParentUid, strap.Owner);
     }
 

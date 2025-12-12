@@ -1907,3 +1907,18 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  id: PoweredStrobeLightRed
+  suffix: "Felix, Red"
+  parent: PoweredStrobeLightEmpty
+  components:
+  - type: Sprite
+    state: base
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalRed
+  - type: AmbientSound
+    volume: 0
+    range: 10
+    sound:
+      path: "/Audio/Imperial/ElysiumPrime/Misc/CycleSiren-v1.ogg"

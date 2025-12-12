@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Humanoid.Markings;
+using Content.Shared.Imperial.Entry;
 using Content.Shared.Localizations;
 
 namespace Content.Shared.IoC
@@ -9,6 +10,8 @@ namespace Content.Shared.IoC
         {
             IoCManager.Register<MarkingManager, MarkingManager>();
             IoCManager.Register<ContentLocalizationManager, ContentLocalizationManager>();
+
+            ImperialEntry.IoCRegister();
         }
     }
 }

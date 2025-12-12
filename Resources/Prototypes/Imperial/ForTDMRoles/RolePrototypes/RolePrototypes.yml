@@ -18,9 +18,6 @@
       prototypes: [ TDMUrbanGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -56,8 +53,6 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -92,9 +87,6 @@
       prototypes: [ TDMSnowGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -129,9 +121,6 @@
       prototypes: [ TDMDesertGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -166,9 +155,6 @@
       prototypes: [ TDMMedicalGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -204,9 +190,6 @@
       prototypes: [ TDMLeadGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany

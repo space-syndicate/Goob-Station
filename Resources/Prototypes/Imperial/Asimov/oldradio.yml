@@ -13,9 +13,15 @@
   - type: ApcPowerReceiver
     powerLoad: 100
     needsPower: true
-  - type: AmbientSound
+  - type: AmbientSound # За гул. Отвечает за основной тип звука, один и тот же (но можно поставить рандом)
     enabled: false
-    volume: -9
-    range: 5
+    volume: -5
+    range: 2
     sound:
-      path: /Audio/Imperial/Asimov/Oldradio/Ashes.ogg
+      path: /Audio/Imperial/Asimov/Oldradio/static.ogg # Пример звука - шум
+  - type: AmbientOnPowered
+    range: 7
+    volume: -1
+    enabled: true
+    sound:
+      collection: OldRadioAmbient

@@ -13,6 +13,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Client.Info;
 
 namespace Content.Client.Administration.UI.Bwoink
 {
@@ -198,6 +199,13 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 uiController.PopOut();
             };
+            // imperial space: добавление кнопки "Правила" Start
+            Rules.OnPressed += _ =>
+            {
+                var window = new RulesAndInfoWindow();
+                window.OpenCentered();
+            };
+            // imperial space: добавление кнопки "Правила" End
         }
 
         public void OnBwoink(NetUserId channel)
@@ -249,14 +257,14 @@ namespace Content.Client.Administration.UI.Bwoink
 
         private string FormatTabTitle(ItemList.Item li, PlayerInfo? pl = default)
         {
-            pl ??= (PlayerInfo) li.Metadata!;
+            pl ??= (PlayerInfo)li.Metadata!;
             var sb = new StringBuilder();
             sb.Append(pl.Connected ? '●' : '○');
             sb.Append(' ');
             if (AHelpHelper.TryGetChannel(pl.SessionId, out var panel) && panel.Unread > 0)
             {
                 if (panel.Unread < 11)
-                    sb.Append(new Rune('➀' + (panel.Unread-1)));
+                    sb.Append(new Rune('➀' + (panel.Unread - 1)));
                 else
                     sb.Append(new Rune(0x2639)); // ☹
                 sb.Append(' ');

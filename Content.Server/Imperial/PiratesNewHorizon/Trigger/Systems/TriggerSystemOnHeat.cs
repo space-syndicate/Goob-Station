@@ -68,12 +68,13 @@ public sealed class TriggerSystemOnHeat : EntitySystem
     }
     private void OnUsing(EntityUid uid, TriggerOnHeatComponent component, InteractUsingEvent args)
     {
-
         if (!component.ActivateHotItems || !CheckHot(args.Used))
             return;
+
         _triggerSystem.ActivateTimerTrigger(
             uid,
-            args.User);
+            args.User
+        );
     }
 
     private bool CheckHot(EntityUid usedUid)

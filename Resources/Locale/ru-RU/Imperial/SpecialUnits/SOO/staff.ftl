@@ -15,9 +15,9 @@ job-supervisors-board-of-directors = Совету Директоров
 job-supervisors-specialofficer = Офицеру Специальных Операций
 
 ent-ClothingControlModsuitSpecialOfficer = Р.И.Г. Офицера Специальных Операций
-    .desc = Произведение исскуства ученых и инженеров NanoTrasen. Уникальная система защиты, призванная сдерживать натиск армий.
+    .desc = Произведение искусства ученых и инженеров NanoTrasen. Уникальная система защиты, призванная сдерживать натиск армий.
 ent-ClothingControlModsuitSpecialOfficerFilled = Р.И.Г. Офицера Специальных Операций
-    .desc = Произведение исскуства ученых и инженеров NanoTrasen. Уникальная система защиты, призванная сдерживать натиск армий.
+    .desc = Произведение искусства ученых и инженеров NanoTrasen. Уникальная система защиты, призванная сдерживать натиск армий.
 ent-ClothingOuterChestplateModsuitSpecialOfficer = основа Р.И.Г.а Офицера Специальных Операций
     .desc = Иногда он защищает вас от пуль, а иногда от ядерной бомбы.
 ent-ClothingHeadHelmetModsuitSpecialOfficer = шлем Р.И.Г.а Офицера Специальных Операций
