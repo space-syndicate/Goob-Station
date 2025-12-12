@@ -1,7 +1,11 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
+<<<<<<<< HEAD:Resources/Textures/Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi/meta.json
   "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation",
+========
+  "copyright": "Made by brainfood1183 (github) for ss14. Edited by huaqas (github).",
+>>>>>>>> wiz/stable:Resources/Textures/Objects/Fun/lube.rsi/meta.json
   "size": {
     "x": 32,
     "y": 32
@@ -11,6 +15,7 @@
       "name": "icon"
     },
     {
+<<<<<<<< HEAD:Resources/Textures/Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi/meta.json
       "name": "base"
     },
     {
@@ -21,6 +26,9 @@
     },
     {
       "name": "mag-unshaded-1"
+========
+      "name": "icon_open"
+>>>>>>>> wiz/stable:Resources/Textures/Objects/Fun/lube.rsi/meta.json
     },
     {
       "name": "inhand-left",

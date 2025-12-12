@@ -1,0 +1,20 @@
+- type: stack
+  parent: BaseSheetStack
+  id: Steel
+  name: сталь
+  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: steel }
+  spawn: SheetSteel1
+
+- type: stack
+  parent: BaseSheetStack
+  id: Plasteel
+  name: пласталь
+  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: plasteel }
+  spawn: SheetPlasteel1
+
+- type: stack
+  parent: BaseSheetStack
+  id: Brass
+  name: латунь
+  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: brass }
+  spawn: SheetBrass1

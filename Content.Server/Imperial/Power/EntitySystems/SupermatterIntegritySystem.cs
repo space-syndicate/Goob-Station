@@ -13,6 +13,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Physics.Events;
 using System.Linq;
 using Robust.Server.GameObjects;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -61,7 +62,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         if (!component.Activated)
         {
             component.Activated = true;
-            SendSupermatterRadio(args.OurEntity,Loc.GetString("supermatter-activated"), component);
+            SendSupermatterRadio(args.OurEntity, Loc.GetString("supermatter-activated"), component);
         }
 
         component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);

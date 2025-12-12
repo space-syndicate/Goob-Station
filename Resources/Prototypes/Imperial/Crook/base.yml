@@ -11,15 +11,15 @@
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:TotalDamageCondition
           min: 5
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
       - !type:Electrocute
         probability: 0.1
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
       - !type:HealthChange
@@ -27,7 +27,7 @@
           groups:
             Airloss: 1
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
 

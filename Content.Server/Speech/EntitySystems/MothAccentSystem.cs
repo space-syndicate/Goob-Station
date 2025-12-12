@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
-using Robust.Shared.Random;
 using Content.Shared.Speech;
+using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 

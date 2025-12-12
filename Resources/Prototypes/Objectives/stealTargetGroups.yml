@@ -61,7 +61,7 @@
   name: ID карта капитана # Imperial objectives translate
   sprite:
     sprite: Objects/Misc/id_cards.rsi
-    state: ert_commander #no one will know the difference.
+    state: icon-captain
 
 - type: stealTargetGroup
   id: JetpackCaptainFilled
@@ -88,8 +88,8 @@
   id: Figurines
   name: фигурки (любые) # Imperial objectives translate
   sprite:
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
-    state: base
+    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
+    state: icon
 
 # Thief Collection
 

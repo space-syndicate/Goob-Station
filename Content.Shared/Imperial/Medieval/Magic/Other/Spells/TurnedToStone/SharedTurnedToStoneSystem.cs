@@ -1,6 +1,8 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Events;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
 using Content.Shared.Hands;

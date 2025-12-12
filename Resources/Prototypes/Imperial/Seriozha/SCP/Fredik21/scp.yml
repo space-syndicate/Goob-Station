@@ -713,7 +713,7 @@
     soundGunshot:
       path: /Audio/Imperial/Seriozha/SCP/laser.ogg
       volume: -4
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseViolet
     fireCost: 200
   - type: Battery
@@ -723,20 +723,24 @@
     autoRecharge: true
     autoRechargeRate: 40
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: PulseViolet
-  damage:
-    types:
-      Heat: 30
-  muzzleFlash:
-    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
-    state: muzzle_violet
-  travelFlash:
-    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
-    state: beam_violet
-  impactFlash:
-    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
-    state: impact_violet
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+      state: muzzle_violet
+    travelFlash:
+      sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+      state: beam_violet
+    impactFlash:
+      sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+      state: impact_violet
 
 - type: entity
   name: Laser Cutter “Srez” (Slice)
@@ -772,7 +776,7 @@
     soundGunshot:
       path: /Audio/Imperial/Seriozha/SCP/laser.ogg
       volume: -4
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseViolet
     fireCost: 200
   - type: Battery
@@ -1167,7 +1171,7 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol
     fireCost: 10
   - type: Battery
@@ -5024,7 +5028,7 @@
     sprite: Imperial/Seriozha/Fredik21/micro2.rsi
   - type: Item
     sprite: Imperial/Seriozha/Fredik21/micro.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MicroLaser
     fireCost: 150
   - type: Gun
@@ -5035,20 +5039,24 @@
     soundGunshot:
       path: /Audio/Imperial/Seriozha/SCP/micro.ogg
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: MicroLaser
-  damage:
-    types:
-      Heat: 500
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_omni
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_omni
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_omni
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 500
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_omni
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_omni
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_omni
 
 - type: entity
   parent: ClothingHeadBase
