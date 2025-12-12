@@ -23,6 +23,11 @@ using Content.Shared.Body.Components;
 using Content.Server.Administration;
 using Content.Shared.Chat;
 using System.Linq;
+using Content.Server.Polymorph.Systems;
+using Content.Shared.Polymorph;
+using Content.Server.Polymorph.Components;
+using System.Numerics;
+using Content.Shared.Actions.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -41,7 +46,8 @@ public sealed class VampireServerSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly VampireSystem _vampireSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -54,11 +60,13 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
 
         SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
+
+        SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
     }
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent comp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract)
+        if (!args.CanAccess || !args.CanInteract || comp.InvisibleIsActive)
             return;
 
         // если у цели нет крови (например, стул), кнопки не добавляем
@@ -274,6 +282,62 @@ public sealed class VampireServerSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnTransformToBat(VampireBatTransformEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupEntity(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        if (vamp.BuffBlocked)
+        {
+            _popup.PopupEntity(Loc.GetString("Вы не можете стать летучей мышью под действием бафф способностей"),
+            args.Performer, args.Performer, PopupType.LargeCaution);
+
+            return;
+        }
+
+        if (vamp.DisguiseIsActive)
+        {
+            _popup.PopupEntity(Loc.GetString("Вы уже используете способность-маскировку"),
+            args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        var playerCoords = Transform(args.Performer).Coordinates;
+        for (int i = 0; i < 3; i++)
+        {
+            EntityManager.SpawnEntity("MobVampireBat", playerCoords.Offset(new Vector2(i, 0)));
+        }
+
+        var config = new PolymorphConfiguration()
+        {
+            Entity = "MobVampireBat",
+            Duration = null,
+            TransferName = true,
+            TransferHumanoidAppearance = false,
+            TransferDamage = true,
+            Inventory = PolymorphInventoryChange.Transfer,
+        };
+
+        _polymorph.PolymorphEntity(args.Performer, config);
+        vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(10f);
+
+        vamp.VampireIsBat = true;
+        vamp.DisguiseIsActive = true;
+        vamp.BuffBlocked = true;
+
+        _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
+
+        Dirty(args.Performer, vamp);
+        args.Handled = true;
+    }
+
     private void ConvertToGhoul(EntityUid vampire, EntityUid target)
     {
         var ghoulComp = EnsureComp<GhoulComponent>(target);
@@ -308,4 +372,35 @@ public sealed class VampireServerSystem : EntitySystem
 
         _vampireSystem.SetGhoulBloodAlert(target, ghoulComp);
     }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var queryVamp = EntityQueryEnumerator<VampireComponent>();
+        while (queryVamp.MoveNext(out var uid, out var vamp))
+        {
+            if (!vamp.VampireIsBat)
+                continue;
+
+            // проверяем, активен ли полиморф
+            var isPolymorphed = HasComp<PolymorphedEntityComponent>(uid);
+
+            if (!isPolymorphed)
+            {
+                vamp.VampireIsBat = false;
+                vamp.DisguiseIsActive = false;
+                vamp.BuffBlocked = false;
+
+                Dirty(uid, vamp);
+                continue;
+            }
+
+            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil)
+            {
+                _polymorph.Revert(uid);
+            }
+        }
+    }
+
 }

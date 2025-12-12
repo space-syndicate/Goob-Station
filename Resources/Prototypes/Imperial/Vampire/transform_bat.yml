@@ -1,0 +1,108 @@
+- type: entity
+  parent: BaseAction
+  id: VampireTransformBat
+  name: Превращение в летучую мышь
+  description: Ну это превращение в летучую мышь
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireBatTransformEvent
+      costBlood: 40
+
+- type: entity
+  name: bat
+  parent: [ SimpleMobBase, FlyingMobBase, MobCombat ]
+  id: MobVampireBat
+  description: Some cultures find them terrifying, others crunchy on the teeth.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 6
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: bat
+      sprite: Mobs/Animals/bat.rsi
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bat
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-soft-floofy
+    interactFailureString: petting-failure-bat
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-organic
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: ReplacementAccent
+    accent: mouse
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Critical
+      60: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 120
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
+  - type: Tag
+    tags:
+    - VimPilot
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        10
+      AggroVisionRadius: !type:Single
+        15
+      NavSmash: !type:Bool
+        true

@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Alert;
+using Content.Shared.Polymorph;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -157,5 +158,32 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public int GhoulQuantity = 0;
+
+        [AutoNetworkedField]
+        public bool InvisibleIsActive = false;
+
+        /// <summary>
+        /// сколько очков крови теряется в секунду при активной способности
+        /// </summary>
+        [DataField("bloodLossDisguiseIsActive")]
+        public float BloodLossDisguiseIsActive = 1;
+
+        [AutoNetworkedField]
+        public TimeSpan NextBloodDecayDisguise = TimeSpan.Zero;
+
+        [AutoNetworkedField]
+        public bool VampireIsBat = false;
+
+        [AutoNetworkedField]
+        public bool VampireIsInvisibility = false;
+
+        [DataField]
+        public TimeSpan BloodDecayIntervalInvisible = TimeSpan.FromSeconds(1);
+
+        /// <summary>
+        /// активна ли маскировка (игрок не может одновременно находиться в инвизе, быть летучей мышью/призраком)
+        /// </summary>
+        [AutoNetworkedField]
+        public bool DisguiseIsActive = false;
     }
 }

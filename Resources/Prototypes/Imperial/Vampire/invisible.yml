@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: VampireInvisible
+  name: Переключить режим невидимости
+  description: Ну это переключить режим невидимости
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireInvisibleEvent
+      costBlood: 2 # в секунду

@@ -38,6 +38,10 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Cuffs;
 using Content.Shared.Item;
 using Content.Shared.Stunnable;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Stealth;
+using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Store.Components;
 
 
 namespace Content.Shared.Imperial.Vampire;
@@ -68,6 +72,7 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedCuffableSystem _cuff = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedStealthSystem _stealth = default!;
 
     public override void Initialize()
     {
@@ -83,6 +88,10 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireReconciliationEvent>(OnReconciliation);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
+
+        SubscribeLocalEvent<VampireInvisibleEvent>(OnInvisible);
+        SubscribeLocalEvent<VampireComponent, AttemptMeleeEvent>(OnAttemptMelee);
+        SubscribeLocalEvent<VampireComponent, DamageChangedEvent>(OnDamaged);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
@@ -593,6 +602,91 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnInvisible(VampireInvisibleEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        // если способность не активирована, применяем невидимость
+        if (!vamp.InvisibleIsActive)
+        {
+            if (vamp.DisguiseIsActive)
+            {
+                _popup.PopupClient(Loc.GetString("Вы уже используете способность-маскировку"), args.Performer, args.Performer,
+                PopupType.Medium);
+
+                return;
+            }
+
+            if (vamp.BloodDamage + vamp.BloodLossDisguiseIsActive >= vamp.CritThreshold)
+            {
+                _popup.PopupClient(Loc.GetString("Вам не хватает крови!"), args.Performer, args.Performer, PopupType.Medium);
+                return;
+            }
+
+            // Update не работает с ивентами, поэтому сохраняем значение в компоненте
+            vamp.BloodLossDisguiseIsActive = args.CostBlood;
+
+            var stealth = EnsureComp<StealthComponent>(args.Performer);
+            _stealth.SetVisibility(args.Performer, -1f, stealth);
+            _stealth.SetEnabled(args.Performer, true, stealth);
+
+            vamp.InvisibleIsActive = true;
+            vamp.DisguiseIsActive = true;
+            DealBloodDamage(args.Performer, vamp.BloodLossDisguiseIsActive);
+            Dirty(args.Performer, vamp);
+        }
+        else
+        {
+            var stealth = EnsureComp<StealthComponent>(args.Performer);
+            _stealth.SetVisibility(args.Performer, 1f, stealth);
+            _stealth.SetEnabled(args.Performer, false, stealth);
+
+            Dirty(args.Performer, vamp);
+            vamp.InvisibleIsActive = false;
+            vamp.DisguiseIsActive = false;
+            args.Handled = true;
+        }
+    }
+
+
+    /// <summary>
+    /// при попытке атаковать в инвизе - инвиз слетает
+    /// </summary>
+    private void OnAttemptMelee(EntityUid uid, VampireComponent comp, ref AttemptMeleeEvent args)
+    {
+        if (!TryComp<StealthComponent>(uid, out var stealth))
+            return;
+
+        if (comp.InvisibleIsActive)
+        {
+            _stealth.SetVisibility(uid, 1f, stealth);
+            _stealth.SetEnabled(uid, false, stealth);
+
+            Dirty(uid, comp);
+            comp.InvisibleIsActive = false;
+            comp.DisguiseIsActive = false;
+        }
+    }
+
+    /// <summary>
+    /// при получения урона в инвизе - инвиз слетает
+    /// </summary>
+    private void OnDamaged(EntityUid uid, VampireComponent comp, DamageChangedEvent args)
+    {
+        if (!TryComp<StealthComponent>(uid, out var stealth))
+            return;
+
+        if (comp.InvisibleIsActive && args.DamageDelta != null)
+        {
+            _stealth.SetVisibility(uid, 1f, stealth);
+            _stealth.SetEnabled(uid, false, stealth);
+
+            Dirty(uid, comp);
+            comp.InvisibleIsActive = false;
+            comp.DisguiseIsActive = false;
+        }
+    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -642,66 +736,97 @@ public sealed class VampireSystem : EntitySystem
         }
 
         var bloodQuery = EntityQueryEnumerator<VampireComponent>();
-        while (bloodQuery.MoveNext(out var uid2, out var comp2))
+        while (bloodQuery.MoveNext(out var uid, out var comp))
         {
-            if (comp2.NextBloodDecay == TimeSpan.Zero)
+            if (comp.NextBloodDecay == TimeSpan.Zero)
             {
-                comp2.NextBloodDecay = _gameTiming.CurTime + comp2.BloodDecayInterval;
-                Dirty(uid2, comp2);
+                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
+                Dirty(uid, comp);
             }
 
-            if (_gameTiming.CurTime >= comp2.NextBloodDecay)
+            if (_gameTiming.CurTime >= comp.NextBloodDecay)
             {
-                DealBloodDamage(uid2, comp2.BloodDecayAmount);
-                comp2.NextBloodDecay = _gameTiming.CurTime + comp2.BloodDecayInterval;
-                Dirty(uid2, comp2);
+                DealBloodDamage(uid, comp.BloodDecayAmount);
+                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
+                Dirty(uid, comp);
 
-                if (comp2.BloodDamage >= comp2.CritThreshold)
+                if (comp.BloodDamage >= comp.CritThreshold)
                 {
-                    if (TryComp<StaminaComponent>(uid2, out var stamina))
+                    if (TryComp<StaminaComponent>(uid, out var stamina))
                     {
                         var dmg = new DamageSpecifier();
                         dmg.DamageDict["Bloodloss"] = FixedPoint2.New(15);
 
-                        _damage.TryChangeDamage(uid2, dmg);
-                        SpawnBloodPuddle(uid2);
-                        _stamina.TakeStaminaDamage(uid2, 70f, stamina);
-                        _jitterSystem.DoJitter(uid2, comp2.ShakingTime, refresh: true, amplitude: 40f, frequency: 10f);
+                        _damage.TryChangeDamage(uid, dmg);
+                        SpawnBloodPuddle(uid);
+                        _stamina.TakeStaminaDamage(uid, 70f, stamina);
+                        _jitterSystem.DoJitter(uid, comp.ShakingTime, refresh: true, amplitude: 40f, frequency: 10f);
                     }
                 }
             }
         }
 
         var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
-        while (ghoulQuery.MoveNext(out var ghoulUid, out var ghoulComp))
+        while (ghoulQuery.MoveNext(out var uid, out var сomp))
         {
-            if (ghoulComp.NextBloodDecay == TimeSpan.Zero)
+            if (сomp.NextBloodDecay == TimeSpan.Zero)
             {
-                ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
-                Dirty(ghoulUid, ghoulComp);
+                сomp.NextBloodDecay = _gameTiming.CurTime + сomp.BloodDecayInterval;
+                Dirty(uid, сomp);
             }
 
-            if (_gameTiming.CurTime >= ghoulComp.NextBloodDecay)
+            if (_gameTiming.CurTime >= сomp.NextBloodDecay)
             {
                 // наносим урон каждые BloodDecayInterval секунд
-                DealGhoulBloodDamage(ghoulUid, ghoulComp.BloodDecayAmount, ghoulComp);
-                ghoulComp.NextBloodDecay = _gameTiming.CurTime + ghoulComp.BloodDecayInterval;
-                Dirty(ghoulUid, ghoulComp);
+                DealGhoulBloodDamage(uid, сomp.BloodDecayAmount, сomp);
+                сomp.NextBloodDecay = _gameTiming.CurTime + сomp.BloodDecayInterval;
+                Dirty(uid, сomp);
 
                 // если урон больше количества крови, то применяем дебафы
-                if (ghoulComp.BloodDamage >= ghoulComp.CritThreshold)
+                if (сomp.BloodDamage >= сomp.CritThreshold)
                 {
-                    if (TryComp<StaminaComponent>(ghoulUid, out var stamina))
+                    if (TryComp<StaminaComponent>(uid, out var stamina))
                     {
                         var dmg = new DamageSpecifier();
                         dmg.DamageDict["Bloodloss"] = FixedPoint2.New(30);
 
-                        _damage.TryChangeDamage(ghoulUid, dmg);
-                        SpawnBloodPuddle(ghoulUid);
-                        _stamina.TakeStaminaDamage(ghoulUid, 70f, stamina);
-                        _jitterSystem.DoJitter(ghoulUid, ghoulComp.ShakingTime, refresh: true, amplitude: 15f, frequency: 4f);
+                        _damage.TryChangeDamage(uid, dmg);
+                        SpawnBloodPuddle(uid);
+                        _stamina.TakeStaminaDamage(uid, 70f, stamina);
+                        _jitterSystem.DoJitter(uid, сomp.ShakingTime, refresh: true, amplitude: 15f, frequency: 4f);
                     }
                 }
+            }
+        }
+
+        var queryInvisible = EntityQueryEnumerator<VampireComponent, StealthComponent>();
+        while (queryInvisible.MoveNext(out var uid, out var vamp, out var stealth))
+        {
+            if (!vamp.InvisibleIsActive)
+                continue;
+
+            if (vamp.BloodDamage + vamp.BloodLossDisguiseIsActive >= vamp.CritThreshold)
+            {
+                _stealth.SetVisibility(uid, 1f, stealth);
+                _stealth.SetEnabled(uid, false, stealth);
+
+                Dirty(uid, vamp);
+                vamp.InvisibleIsActive = false;
+                vamp.DisguiseIsActive = false;
+                continue;
+            }
+
+            if (vamp.NextBloodDecayDisguise == TimeSpan.Zero)
+            {
+                vamp.NextBloodDecayDisguise = _gameTiming.CurTime + vamp.BloodDecayIntervalInvisible;
+                Dirty(uid, vamp);
+            }
+
+            if (_gameTiming.CurTime >= vamp.NextBloodDecayDisguise)
+            {
+                DealBloodDamage(uid, vamp.BloodLossDisguiseIsActive);
+                vamp.NextBloodDecayDisguise = _gameTiming.CurTime + vamp.BloodDecayIntervalInvisible;
+                Dirty(uid, vamp);
             }
         }
     }

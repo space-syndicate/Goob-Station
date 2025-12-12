@@ -173,3 +173,35 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireInvisibleListing
+  name: Переключить режим невидимости
+  description: Ну это переключить режим невидимости
+  productAction: VampireInvisible
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireTransformBatListing
+  name: Превращение в летучую мышь
+  description: Ну это превращение в летучую мышь
+  productAction: VampireTransformBat
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
