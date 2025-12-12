@@ -858,6 +858,7 @@
   minLimit: 0
   loadouts:
   - AtmosphericTechnicianWintercoat
+  - ElderAtmosianHardsuit # Imperial space
 
 - type: loadoutGroup
   id: AtmosphericTechnicianBackpack
@@ -866,7 +867,6 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
-  - ClothingControlModsuitAtmosphericsSealed # Imperial Modsuit for Atmos
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes

@@ -54,6 +54,66 @@
 
 - type: entity
   parent: PosterBase
+  id: Poster420j
+  name: Poster n420-j
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n420j
+
+- type: entity
+  parent: PosterBase
+  id: Postern131
+  name: Poster n131
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n131
+
+- type: entity
+  parent: PosterBase
+  id: Postern013
+  name: Poster n013
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n013
+
+- type: entity
+  parent: PosterBase
+  id: Poster522
+  name: Poster n522
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n522
+
+- type: entity
+  parent: PosterBase
+  id: Posterupsilon11
+  name: Poster upsilon11
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: upsilon11
+
+- type: entity
+  parent: PosterBase
+  id: Postersigma9
+  name: Poster sigma9
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: sigma9
+
+- type: entity
+  parent: PosterBase
   id: PosterFBI
   name: Poster ONP FBI
   suffix: Fredik21, Недра
@@ -669,6 +729,7 @@
     - Tourniquet
     - Tourniquet
     - TelescopicShield
+    - HandheldStationMap
 
 - type: entity
   id: BannerDevSCP
@@ -972,6 +1033,7 @@
     - MedkitCombatFilled
     - HandTeleporterSCPDeva
     - HandHeldMassScanner
+    - HandheldStationMap
 
 - type: startingGear
   id: DevGearMedic
@@ -1006,6 +1068,7 @@
     - AmpulaDylo
     - AmpulaDylo
     - HandTeleporterSCPDeva
+    - HandheldStationMap
 
 - type: entity
   parent: BaseItem
@@ -1234,6 +1297,7 @@
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeySCPconnection
     - EncryptionKeyNedraMTFconnection
+    - HandheldStationMap
 
 - type: entity
   parent: BaseWall
@@ -1542,6 +1606,7 @@
     back:
     - WeaponDisabler
     - GOCUplink
+    - HandheldStationMap
 
 - type: localizedDataset
   id: NamesGOCscp
@@ -1626,6 +1691,7 @@
     - WeaponDisabler
     - Paper
     - Paper
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -1736,6 +1802,7 @@
   storage:
     back:
     - GOCUplinkCom
+    - HandheldStationMap
 
 - type: gamePreset
   id: nedra
@@ -1832,6 +1899,7 @@
   storage:
     back:
     - FondUplinkNu7Zeta9
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -1872,6 +1940,7 @@
   storage:
     back:
     - FondUplinkCommander
+    - HandheldStationMap
 
 - type: localizedDataset
   id: Namesnu7scp
@@ -1988,6 +2057,9 @@
     suitstorage: WeaponFelixHK416
     pocket1: EncryptionKeyNedraLastHopeconnection
     pocket2: FondUplinkAlpha9
+  storage:
+    back:
+    - HandheldStationMap
 
 - type: entity
   id: HandTeleporterSCP105
@@ -2056,6 +2128,7 @@
     - SCP207
     - SCP207
     - FondUplinkAlpha9
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -2278,6 +2351,9 @@
     gloves: ClothingHandsGlovesbrokengod
     head: ClothingHeadHelmetbrokengod
     outerClothing: ClothingOuterArmorbrokengod
+  storage:
+    back:
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2334,6 +2410,7 @@
     outerClothing: ClothingOuterArmorbrokengodHammerman
   inhand:
   - brokengodHammer
+  - HandheldStationMap
 
 - type: localizedDataset
   id: brokengodscp
@@ -2467,6 +2544,7 @@
     gloves: ClothingHandsGlovesColorRed
   inhand:
   - RitualDaggerScarletKing
+  - HandheldStationMap
 
 - type: entity
   id: ScarletKingProjectile
@@ -2679,6 +2757,9 @@
     belt: ClothingBeltUtilityEngineering
     head: ClothingHeadHatHardhatYellow
     pocket1: EncryptionKeyEngineering
+  storage:
+    back:
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2719,6 +2800,9 @@
     head: ClothingHeadHatParamedicsoft
     mask: ClothingMaskSterile
     pocket1: EncryptionKeyMedical
+  storage:
+    back:
+    - HandheldStationMap
 
 - type: emoteSounds
   id: SCP049
@@ -3002,6 +3086,7 @@
     back:
     - EncryptionKeyNedraCMDconnection
     - FondUplinkBaseCom
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -3052,6 +3137,7 @@
     back:
     - EncryptionKeyNedraCMDconnection
     - FondUplinkBaseCom
+    - HandheldStationMap
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -3120,6 +3206,7 @@
   inhand:
   - PaperSRPGPI
   - FondUplinkBase
+  - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3152,6 +3239,7 @@
     neck: ClothingNeckMantleCE
     head: ClothingHeadHatHolyWatermelonSCP343
     shoes: ClothingShoesSCP
+    pocket1: HandheldStationMap
 
 - type: entity
   parent: ClothingUniformJumpsuitColorWhite
@@ -3314,6 +3402,7 @@
     pocket2: EncryptionKeyNedraCMDconnection
   inhand:
   - judicialgavel
+  - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3353,6 +3442,7 @@
     - ForensicScanner
     - BoxForensicPad
     - BoxEvidenceMarkers
+    - HandheldStationMap
 
 - type: jobIcon
   parent: JobIcon
@@ -3412,6 +3502,7 @@
     - ItemODENMagazine
     - ItemODENMagazine
     - MachineGunODEN
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -3623,6 +3714,7 @@
     - AmpulaDylo
     - AmpulaDylo
     - FondUplinkTay5
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3674,6 +3766,7 @@
     - WeaponLightMachineGunL6
     - MagazineLightRifleBox
     - MagazineLightRifleBox
+    - HandheldStationMap
   inhand:
   - SquadShield
 
@@ -3774,6 +3867,7 @@
     - SCP500
     - SCP207
     - FondUplinkTay5
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -4104,6 +4198,7 @@
     - EncryptionKeyGanza
     - CIUplinkBase
     - WeaponRevolverInspector
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -4148,6 +4243,7 @@
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
     - CIUplinkBase
+    - HandheldStationMap
   inhand:
   - TelescopicShield
 
@@ -4207,6 +4303,7 @@
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
     - CIUplinkCommander
+    - HandheldStationMap
   inhand:
   - WeaponRevolverMatebaAP
 
@@ -4351,6 +4448,7 @@
   storage:
     back:
     - FondUplinkNu7Zeta9
+    - HandheldStationMap
   inhand:
   - Floodlight
 
@@ -4393,6 +4491,7 @@
     back:
     - CSWeaponFiveSeven
     - CIUplinkCommander
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4504,16 +4603,8 @@
     pocket2: FuelTankFlamethrowerMedium
   storage:
     back:
-    - FuelTankFlamethrowerMedium
-    - FuelTankFlamethrowerMedium
-    - GrenadeIncendiary
-    - GrenadeIncendiary
-    - GrenadeIncendiary
-    - WeaponPistolViper
-    - MagazinePistolIncendiary
-    - MagazinePistolIncendiary
-    - MagazineBoxPistolIncendiary
-    - FireExtinguisher
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -4557,6 +4648,7 @@
     - WeaponSubMachineGunDrozd
     - MagazinePistolSubMachineGunIncendiary
     - MagazinePistolSubMachineGunIncendiary
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4669,6 +4761,7 @@
     back:
     - LocatorEta10
     - FondUplinkEpsilon11Eta10Beta7epsilon9
+    - HandheldStationMap
 
 - type: entity
   id: LocatorEta10
@@ -4731,6 +4824,7 @@
     back:
     - LocatorEta10Commander
     - FondUplinkCommander
+    - HandheldStationMap
 
 - type: entity
   name: hard-to-kill reptile
@@ -5169,6 +5263,7 @@
     jumpsuit: ClothingUniformJumpsuitKimonoNDA953
     outerClothing: ClothingOuterArmorNDA953
     head: ClothingHeadHatFoxNDA953
+    pocket1: HandheldStationMap
 
 - type: emoteSounds
   id: SCP953
@@ -5257,6 +5352,7 @@
     - Ointment
     - Brutepack
     - Gauze
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -5288,6 +5384,7 @@
   storage:
     outerClothing:
     - CIUplinkCommander
+    - HandheldStationMap
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -5300,6 +5397,9 @@
     - type: NpcFactionMember
       factions:
       - Foundation
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
 
 - type: startingGear
   id: ONPFBIGear
@@ -5339,6 +5439,7 @@
     - ChemistryBottleToxin
     - ChemistryBottleOmnizine
     - FBIUplink
+    - HandheldStationMap
 
 - type: storeCategory
   id: FBIUplinkUtilities
@@ -5842,6 +5943,21 @@
   name: пистолетный магазин (.35 авто резиновые)
   description: Для ММК 58
   productEntity: MagazinePistolRubber
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBaseMagazineASP
+  name: магазин ASP (9x19)
+  description: Для ASP
+  productEntity: BaseMagazineASP
   cost:
     BlueSpaceCube: 1
   categories:
@@ -7078,6 +7194,7 @@
   storage:
     back:
     - DZUplink
+    - HandheldStationMap
 
 - type: entity
   parent: ClothingHeadset
@@ -7326,7 +7443,7 @@
   storage:
     back:
     - DZUplinkCom
-
+    - HandheldStationMap
 
 - type: entity
   parent: DZUplink
@@ -7337,3 +7454,824 @@
   - type: Store
     balance:
       BlueSpaceCube: 15
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAGateA
+  suffix: Fredik21, Недра выход "А"
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: выход "А"
+    color: "#8B0000"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAGateB
+  suffix: Fredik21, Недра Выход "Б"
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Выход "Б"
+    color: "#8B0000"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAAdmin
+  suffix: Fredik21, Недра Административный блок
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Административный блок
+    color: "#FF4500"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDADBlock
+  suffix: Fredik21, Недра Д блок
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Д блок
+    color: "#FF4500"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDASecBlock
+  suffix: Fredik21, Недра Пункт охраны
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Пункт охраны
+    color: "#808080"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDASecBlockAlt
+  suffix: Fredik21, Недра Блок пост безопасности
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Блок пост безопасности
+    color: "#808080"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA002
+  suffix: Fredik21, Недра NDA002
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA-002
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA005
+  suffix: Fredik21, Недра NDA 005
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 005
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA020
+  suffix: Fredik21, Недра NDA 020
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 020
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA035
+  suffix: Fredik21, Недра NDA 035
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 035
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA049
+  suffix: Fredik21, Недра NDA 049
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 049
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA076
+  suffix: Fredik21, Недра NDA 076
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 076
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA1006
+  suffix: Fredik21, Недра NDA 1006
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 1006
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA106
+  suffix: Fredik21, Недра NDA 106
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 106
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA127
+  suffix: Fredik21, Недра NDA 127
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 127
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA207
+  suffix: Fredik21, Недра NDA 207
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 207
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA268
+  suffix: Fredik21, Недра NDA 268
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 268
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA343
+  suffix: Fredik21, Недра NDA 343
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 343
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA457
+  suffix: Fredik21, Недра NDA 457
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 457
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA4975
+  suffix: Fredik21, Недра NDA 4975
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 4975
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA500
+  suffix: Fredik21, Недра NDA 500
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 500
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA682
+  suffix: Fredik21, Недра NDA 682
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 682
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA714
+  suffix: Fredik21, Недра NDA 714
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 714
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA953
+  suffix: Fredik21, Недра NDA 953
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 953
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA999
+  suffix: Fredik21, Недра NDA 999
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 999
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAMed
+  suffix: Fredik21, Недра Мед отсек
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Мед отсек
+    color: "#1E90FF"
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitupsilon11
+  name: upsilon11 overalls
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/upsilon11.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/upsilon11.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorupsilon11SCP
+  name: upsilon11 vest
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorupsilon11.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorupsilon11.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetupsilon11
+  name: upsilon11 helmet
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/upsilon11head.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/upsilon11head.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPUpsilon11
+  name: Upsilon11 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Upsilon11Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPUpsilon11-name
+      description: ghost-role-information-PresetSCPUpsilon11-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: RandomMetadata
+      nameSegments:
+        - NamesUpsilon11scp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: Upsilon11Gear
+  equipment:
+    jumpsuit: ClothingJumpsuitupsilon11
+    back: ClothingBackpackDuffelSyndicate
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFour
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorupsilon11SCP
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHelmetupsilon11
+    suitstorage: WeaponRifleLecter
+    pocket1: EncryptionKeyNedraMTFconnection
+  storage:
+    back:
+    - FondUplink
+    - HandheldStationMap
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPUpsilon11Com
+  name: Upsilon11 Commander
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Upsilon11GearCom ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesUpsilon11scpCom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: Upsilon11GearCom
+  equipment:
+    jumpsuit: ClothingJumpsuitupsilon11
+    back: ClothingBackpackDuffelSyndicate
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFive
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorupsilon11SCP
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadHatBeretCaptainWhite
+    suitstorage: WeaponRifleLecter
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - FondUplinkCommander
+    - HandheldStationMap
+
+- type: reagent
+  id: SpaceDrugsNDA
+  name: the best ████ in the world
+  group: Narcotics
+  desc: The best ████ in the world
+  physicalDesc: кайф
+  flavor: bitter
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 240
+        refresh: false
+
+- type: entity
+  id: CigaretteNDA420-j
+  suffix: Fredik21, Недра
+  parent: Cigarette
+  name: The best ████ in the world
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 120
+        reagents:
+          - ReagentId: SpaceDrugsNDA
+            Quantity: 120
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA522
+  name: title NDA522
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Structures/Furniture/Carpets/red_carpet.rsi
+      state: full
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.1
+      sprintSpeedModifier: 0.1
+    - type: DamageContacts
+      damage:
+        types:
+          Piercing: 20
+    - type: Drain
+    - type: DumpableSolution
+      solution: drainBuffer
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 1
+      fillBaseName: fill-
+      solutionName: drainBuffer
+    - type: SolutionContainerManager
+      solutions:
+        drainBuffer:
+          maxVol: 1000
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSigma9
+  name: Sigma9 Operator
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Sigma9Gear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPSigma9-name
+      description: ghost-role-information-PresetSCPSigma9-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: RandomMetadata
+      nameSegments:
+        - NamesUpsilon11scp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: Sigma9Gear
+  equipment:
+    jumpsuit: Theunitsjumpsuit_sacerdos
+    back: ClothingBackpackSatchelSacerdos_5
+    mask: m4
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFour
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorElysium
+    ears: ClothingHeadsetSCPAlt
+    head: ClothingHeadUrbanHelmetMinuteman
+    suitstorage: WeaponPistolASP
+    pocket1: EncryptionKeyNedraMTFconnection
+  storage:
+    back:
+    - FondUplinkSigma9
+    - HandheldStationMap
+    - HandHeldMassScanner
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplinkSigma9
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - FondUplinkAmmoShuttle
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkAmmoShuttle
+  name: Кассеты
+
+- type: listing
+  id: FondUplinkMagazineGrenadeBlast
+  name: кассета фугасных гранат
+  description: Сигма 9 готовы дать бой в космосе!
+  productEntity: MagazineGrenadeBlast
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkAmmoShuttle
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineGrenadeBaton
+  name: кассета шоковых гранат
+  description: Сигма 9 готовы дать бой в космосе!
+  productEntity: MagazineGrenadeBaton
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmoShuttle
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineGrenadeEMP
+  name: кассета ЭМИ гранат
+  description: Сигма 9 готовы дать бой в космосе!
+  productEntity: MagazineGrenadeEMP
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkAmmoShuttle
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineGrenadeFlash
+  name: кассета светошумовых гранат
+  description: Сигма 9 готовы дать бой в космосе!
+  productEntity: MagazineGrenadeFlash
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmoShuttle
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineGrenadeFrag
+  name: кассета осколочных гранат
+  description: Сигма 9 готовы дать бой в космосе!
+  productEntity: MagazineGrenadeFrag
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkAmmoShuttle
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  name: NDA131A
+  suffix: Fredik21, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPNDA131
+  description: The kindest blob of slime in the galaxy.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda131.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 3
+    - type: ReplacementAccent
+      accent: slimes
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.6
+      baseSprintSpeed: 3.2
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 200
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: NDA131B
+  suffix: Fredik21, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPNDA131A
+  description: The kindest blob of slime in the galaxy.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda131A.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 3
+    - type: ReplacementAccent
+      accent: slimes
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.6
+      baseSprintSpeed: 3.2
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 200
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: reagent
+  id : NDA013
+  name: Blue lady
+  group: Medicine
+  desc: Blue lady
+  physicalDesc: Blue lady
+  flavor: sweet
+  color: "#4682B4"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 0.01
+        type: Local
+        visualType: Medium
+        messages: [ "Вы чувствуете себя женщиной 25-35 лет, ростом 1.6 местра." ]
+        probability: 1
+
+- type: entity
+  id: NDA013
+  suffix: Fredik21, Недра
+  parent: Cigarette
+  name: Cigarette «Blue Lady» 
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 15
+        reagents:
+          - ReagentId: NDA013
+            Quantity: 15
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/nda/nda013.rsi
+    state: unlit-icon
+  - type: Tag
+    tags:
+      - Cigarette
+      - Trash
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/nda/nda013.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+    sprite: Imperial/Seriozha/Fredik21/nda/nda013.rsi
+    heldPrefix: unlit

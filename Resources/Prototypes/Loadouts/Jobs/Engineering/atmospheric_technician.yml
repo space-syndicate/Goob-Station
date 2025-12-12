@@ -44,9 +44,9 @@
 
 # Imperial Modsuit
 - type: loadout
-  id: ClothingControlModsuitAtmosphericsSealed
+  id: ElderAtmosianHardsuit
   equipment:
-   back: ClothingControlModsuitAtmosphericsSealed
+   outerClothing: ElderAtmosianHardsuit
   effects:
   - !type:GroupLoadoutEffect
     proto: AtmosModsuitEffect
@@ -58,4 +58,4 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
-      time: 72000 # 20 h
+      time: 180000 # 50 h
