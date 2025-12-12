@@ -22,6 +22,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -75,7 +76,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
                 var mapCoords = new MapCoordinates(spawnPos, userXform.MapID);
                 
                 EntityCoordinates spawnCoords;
-                if (_mapSystem.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+                if (_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
                 {
                     var localPos = _mapSystem.WorldToLocal(gridUid, grid, mapCoords.Position);
                     spawnCoords = new EntityCoordinates(gridUid, localPos);
@@ -83,7 +84,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
                 }
                 else
                 {
-                    var mapUid = _mapSystem.GetMapEntityId(userXform.MapID);
+                    var mapUid = _mapSystem.GetMapOrInvalid(userXform.MapID);
                     spawnCoords = new EntityCoordinates(mapUid, mapCoords.Position);
                 }
 
@@ -109,6 +110,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
         var component = entity.Comp;
         var user = args.User;
 
+        var priority = 0;
         AddCountVerbs(entity, user, ref args, ref priority);
         AddRadiusVerbs(entity, user, ref args, ref priority);
         AddModeVerbs(entity, user, ref args, ref priority);
