@@ -18,7 +18,7 @@
   description: Go back.
   components:
   - type: Action
-    icon: Imperial/SCP/createhole.png
+    icon: Imperial/SCP/switchdimension.png
     state: icon
     useDelay: 1
   - type: InstantAction
@@ -31,8 +31,47 @@
   description: FINISH HIM.
   components:
   - type: Action
-    icon: Imperial/SCP/createhole.png
+    icon: Imperial/SCP/switchdimension.png
     state: icon
     useDelay: 1
   - type: InstantAction
     event: !type:SCP106DimensionEnterActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106ExitPuddle
+  name: Exit puddle
+  description: Suprise!
+  components:
+  - type: Action
+    icon: Imperial/SCP/exithole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106ExitPuddleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106EnterPuddle
+  name: Enter puddle
+  description: liar dancer
+  components:
+  - type: Action
+    icon: Imperial/SCP/enterhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106EnterPuddleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106DestroyPuddle
+  name: Destroy puddle
+  description: liar dancer
+  components:
+  - type: Action
+    icon: Imperial/SCP/destroyhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106DestroyPuddleActionEvent

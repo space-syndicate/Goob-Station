@@ -93,6 +93,9 @@ public sealed class SCP106System : EntitySystem
         SubscribeLocalEvent<SCP106PuddleComponent, GetVerbsEvent<AlternativeVerb>>(AddPuddleVerb);
         SubscribeLocalEvent<SCP106SkullComponent, StartCollideEvent>(OnSkullCollide);
         SubscribeLocalEvent<SCP106PuddleComponent, MapInitEvent>(OnPuddleInit);
+        SubscribeLocalEvent<SCP106ExitPuddleActionEvent>(OnExitPuddleAction);
+        SubscribeLocalEvent<SCP106EnterPuddleActionEvent>(OnEnterPuddleAction);
+        SubscribeLocalEvent<SCP106DestroyPuddleActionEvent>(OnDestroyPuddleAction);
     }
     public override void Update(float frameTime)
     {
@@ -127,9 +130,9 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
     }
     return false;
 }
-    private bool IsTooCloseToPuddles(SCP106Component scp, EntityCoordinates targetCoords)
+    private EntityUid IsTooCloseToPuddles(SCP106Component scp, EntityCoordinates targetCoords, float dis)
     {
-        var mindis = scp.MinDistance;
+        var mindis = dis;
         var mindisSquared = mindis * mindis;
         var targetMap = targetCoords.GetMapId(EntityManager);
         var targetPos = targetCoords.ToMap(EntityManager, _transform).Position;
@@ -147,11 +150,11 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             
             if (distanceSquared < mindisSquared)
             {
-                return true; 
+                return puddle; 
             }
         }
         
-        return false; 
+        return EntityUid.Invalid; 
     }
     private void UpdatePuddleStun()
     {
@@ -240,6 +243,18 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
                 ref component.PuddleSpawnActionEntity,
                 component.PuddleSpawnAction);
         }
+        if (component.InPocketDimension == false)
+        {
+            if (component.InDimension == false)
+            {
+                _actions.AddAction(uid,
+                    ref component.PuddleEnterPuddleEntity,
+                    component.PuddleEnterPuddleAction);
+            }
+        }
+        _actions.AddAction(uid,
+            ref component.PuddleDestroyPuddleEntity,
+            component.PuddleDestroyPuddleAction);
         Dirty(uid, component);
     }
     private void OnPuddleInit(EntityUid uid, SCP106PuddleComponent component, MapInitEvent args)
@@ -260,7 +275,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
         if (args.Handled || !TryComp<SCP106Component>(args.Performer, out var scp))
             return;
         var coords = Transform(args.Performer).Coordinates;
-        if (IsTooCloseToPuddles(scp, coords))
+        if (IsTooCloseToPuddles(scp, coords, scp.MinDistance) != EntityUid.Invalid)
         {
             _popupSystem.PopupEntity(
                 Loc.GetString("scp106-hammaggotson-tooclose"),
@@ -303,7 +318,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
         if (!TryComp<SCP106Component>(args.User, out var scp))
             return;
         var coords = Transform(args.User).Coordinates;
-        if (IsTooCloseToPuddles(scp, coords))
+        if (IsTooCloseToPuddles(scp, coords, scp.MinDistance) != EntityUid.Invalid)
         {
             _popupSystem.PopupEntity(
                 Loc.GetString("scp106-hammaggotson-tooclose"),
@@ -383,6 +398,18 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
                     _chatM.ChatMessageToOne(ChatChannel.Server, Loc.GetString("scp106-hammaggotson-urdamned"), Loc.GetString("chat-manager-server-wrap-message", ("message", Loc.GetString("scp106-hammaggotson-urdamned"))), default, false, session.Channel);
                 }
             }
+            var query = EntityQuery<SCP106Component>();
+            var compYe = query.FirstOrDefault();
+            if (compYe != null)
+            {
+                if (_mind.TryGetMind(compYe.Owner, out _, out var mindComponentscp))
+                {
+                    if (_playerManager.TryGetSessionById(mindComponentscp.UserId, out var sessionscp))
+                    {
+                        _chatM.ChatMessageToOne(ChatChannel.Server, Loc.GetString("scp106-hammaggotson-wildhunt", ("name", Comp<MetaDataComponent>(subject).EntityName)), Loc.GetString("chat-manager-server-wrap-message", ("message", Loc.GetString("scp106-hammaggotson-wildhunt", ("name", Comp<MetaDataComponent>(subject).EntityName)))), default, false, sessionscp.Channel);
+                    }
+                }
+            }
             _transform.SetWorldPosition((subject, transform), new Vector2(0, 0));
             _transform.SetParent(subject, transform, mapEnt.Value);
             var dimensiondebuff = EnsureComp<SCP106DimensionDebuffComponent>(subject);
@@ -425,7 +452,17 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             if (TryComp<BodyComponent>(args.HitEntities[0], out var body))
             {
                 _chat.TryEmoteWithChat(args.HitEntities[0], comp.PrototypeScream, ignoreActionBlocker: true);
-                _statusEffects.TryAddStatusEffectDuration(args.HitEntities[0], SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(90.0f));
+                if (comp.SleepOnAttack == true)
+                {
+                    _statusEffects.TryAddStatusEffectDuration(args.HitEntities[0], SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(90.0f));
+                }
+                else
+                {
+                    _statusEffects.TryAddStatusEffectDuration(args.HitEntities[0], SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(5.0f));
+                    var transform = _entityManager.GetComponent<TransformComponent>(args.HitEntities[0]);
+                    var randn = _random.Pick(new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7 });
+                    _transform.SetWorldPosition((args.HitEntities[0], transform), new Vector2(comp.RandomCoordinatesX[randn], comp.RandomCoordinatesY[randn]));
+                }
             }
         }
     }
@@ -485,8 +522,8 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             Text = text,
             Priority = -2
         };
-        ev.Verbs.Add(remverb);
-        ev.Verbs.Add(subverb);
+        //ev.Verbs.Add(remverb);
+        //ev.Verbs.Add(subverb);
     }
     private void OnGhostPuddleDoAfter(Entity<SCP106Component> entity, ref SCP106DoAfterGhostPuddleEvent args)
     {
@@ -516,11 +553,14 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             _actions.AddAction(newb,
                 ref newscp.PuddleEnterDimensionEntity,
                 newscp.PuddleEnterDimensionAction);
+            _actions.AddAction(newb,
+                ref newscp.PuddleExitPuddleEntity,
+                newscp.PuddleExitPuddleAction);
+            _actions.RemoveAction(newb, newscp.PuddleEnterPuddleEntity);
             Dirty(newb, newscp);
             _mind.WipeMind(mind.Owner);
             var newMind = _mind.CreateMind(id,
                 Comp<MetaDataComponent>(args.User).EntityName);
-
             _mind.SetUserId(newMind, id);
             _mind.TransferTo(newMind, newb);
             Del(args.User);
@@ -587,6 +627,8 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             _mind.SetUserId(newMind, id);
             _mind.TransferTo(newMind, newb);
             _actions.RemoveAction(newb, newscp.PuddleSpawnActionEntity);
+            _actions.RemoveAction(newb, newscp.PuddleEnterPuddleEntity);
+            _actions.RemoveAction(newb, newscp.PuddleDestroyPuddleEntity);
             Del(args.Performer);
             var transform = _entityManager.GetComponent<TransformComponent>(newb);
             newscp.PastMapId = transform.MapID;
@@ -627,6 +669,10 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             _actions.AddAction(newb,
                 ref newscp.PuddleEnterDimensionEntity,
                 newscp.PuddleEnterDimensionAction);
+            _actions.AddAction(newb,
+                ref newscp.PuddleExitPuddleEntity,
+                newscp.PuddleExitPuddleAction);
+            _actions.RemoveAction(newb, newscp.PuddleEnterPuddleEntity);
             Dirty(newb, newscp);
             _mind.WipeMind(mind.Owner);
             var newMind = _mind.CreateMind(id,
@@ -738,7 +784,100 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
                 _audio.PlayPvs(component.ExitSound, puddl);
             }
         }
-
+    }
+    private void OnExitPuddleAction(SCP106ExitPuddleActionEvent args)
+    {
+        if (args.Handled || !TryComp<SCP106Component>(args.Performer, out var scp))
+            return;
+        var coords = Transform(args.Performer).Coordinates;
+        var user = args.Performer;
+        var target = IsTooCloseToPuddles(scp, coords, scp.PuddleExitDistance);
+        if (target == EntityUid.Invalid)
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("scp106-hammaggotson-pefar"),
+                args.Performer,
+                args.Performer,
+                PopupType.MediumCaution);
+            args.Handled = true;
+            return;
+        }
+        var doAfterArgs = new DoAfterArgs(EntityManager,
+        user,
+        TimeSpan.FromSeconds(scp.Delay),
+        new SCP106DoAfterGhostPuddleEvent(),
+        eventTarget: user)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            MovementThreshold = 0.01f,
+            DistanceThreshold = 1.0f,
+            NeedHand = false,
+        };
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        if(scp.InDimension == true)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("scp106-hammaggotson-exit"), target, PopupType.SmallCaution);
+        }
     }
 
+    private void OnEnterPuddleAction(SCP106EnterPuddleActionEvent args)
+    {
+        if (args.Handled || !TryComp<SCP106Component>(args.Performer, out var scp))
+            return;
+        var coords = Transform(args.Performer).Coordinates;
+        var user = args.Performer;
+        var target = IsTooCloseToPuddles(scp, coords, scp.PuddleExitDistance);
+        if (target == EntityUid.Invalid)
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("scp106-hammaggotson-pefar"),
+                args.Performer,
+                args.Performer,
+                PopupType.MediumCaution);
+            args.Handled = true;
+            return;
+        }
+        var doAfterArgs = new DoAfterArgs(EntityManager,
+        user,
+        TimeSpan.FromSeconds(scp.Delay),
+        new SCP106DoAfterGhostPuddleEvent(),
+        eventTarget: user)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            MovementThreshold = 0.01f,
+            DistanceThreshold = 1.0f,
+            NeedHand = false,
+        };
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        if(scp.InDimension == true)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("scp106-hammaggotson-exit"), target, PopupType.SmallCaution);
+        }
+    }
+
+    private void OnDestroyPuddleAction(SCP106DestroyPuddleActionEvent args)
+    {
+        if (args.Handled || !TryComp<SCP106Component>(args.Performer, out var scp))
+            return;
+        var coords = Transform(args.Performer).Coordinates;
+        var user = args.Performer;
+        var target = IsTooCloseToPuddles(scp, coords, scp.PuddleExitDistance);
+        if (target == EntityUid.Invalid)
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("scp106-hammaggotson-pefar"),
+                args.Performer,
+                args.Performer,
+                PopupType.MediumCaution);
+            args.Handled = true;
+            return;
+        }
+        if (scp.Puddles.Contains(target))
+        {
+            scp.Puddles.Remove(target);
+            QueueDel(target);
+        }
+    }
 }

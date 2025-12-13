@@ -10,6 +10,7 @@ using Content.Shared.Polymorph;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Damage.Prototypes;
+using System.Numerics;
 namespace Content.Server.Imperial.SCP.SCP106.Components;
 
 [RegisterComponent]
@@ -55,7 +56,7 @@ public sealed partial class SCP106Component : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("maxPuddles")]
-    public int MaxPuddles = 5;
+    public int MaxPuddles = 7;
 
     [ViewVariables]
     public List<EntityUid> Puddles { get; set; } = new();
@@ -92,4 +93,23 @@ public sealed partial class SCP106Component : Component
 
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier DamagePerSecond = new();
+    [DataField("puddleExitDistance")]
+    public float PuddleExitDistance = 0.5f;
+
+    [DataField("puddleEnterPuddleAction")]
+    public EntProtoId PuddleEnterPuddleAction = "ActionSCP106EnterPuddle";
+    [AutoNetworkedField, DataField("puddleEnterPuddleEntity")]
+    public EntityUid? PuddleEnterPuddleEntity;
+    [DataField("puddleExitPuddleAction")]
+    public EntProtoId PuddleExitPuddleAction = "ActionSCP106ExitPuddle";
+    [AutoNetworkedField, DataField("puddleExitPuddleEntity")]
+    public EntityUid? PuddleExitPuddleEntity;
+    [DataField("puddleDestroyPuddleAction")]
+    public EntProtoId PuddleDestroyPuddleAction = "ActionSCP106DestroyPuddle";
+    [AutoNetworkedField, DataField("puddleDestroyPuddleEntity")]
+    public EntityUid? PuddleDestroyPuddleEntity;
+    public List<float> RandomCoordinatesX = new List<float>() {150.0f, 75.0f, 0.0f, -75.0f, -150.0f, -75.0f, 0.0f, 0.0f};
+    public List<float> RandomCoordinatesY = new List<float>() {0.0f, 75.0f, 150.0f, 75.0f, 0.0f, -75.0f, -150.0f, -75.0f};
+    [DataField]
+    public bool SleepOnAttack = false;
 }
