@@ -1,0 +1,23 @@
+- type: entity
+  name: Modified Pulse Sniper Rifle
+  parent: WeaponPulseSniper
+  id: WeaponPulseSniperBlue
+  description: A tactical rifle rebuilt to the standards of the OBR. Reduced recoil, reinforced barrel, and ergonomics tuned for combat in a spacesuit. Kindly solves any personnel issues at a distance to the horizon.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/DeimonFly/Weapon/ERT_SniperTwo-handed.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseSniper
+
+  # ДЕЛАЕМ ЕЁ ДВУРУЧНОЙ
+  - type: Wieldable
+
+  # 1) Как у Христова: нельзя стрелять, пока не взял в обе руки
+  - type: GunRequiresWield
+
+  # 2) «Бинокль» при переходе в боевой режим (wield)
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3

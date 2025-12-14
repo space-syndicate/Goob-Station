@@ -94,7 +94,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: true
-    sound: /Audio/Announcements/war.ogg
+    sound: /Audio/Imperial/Seriozha/SCP/intercom.ogg
   - type: PointLight
     radius: 3
     energy: 3.2
@@ -123,7 +123,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: true
-    sound: /Audio/Announcements/war.ogg
+    sound: /Audio/Imperial/Seriozha/SCP/intercom.ogg
   - type: PointLight
     radius: 3
     energy: 3.2
@@ -222,7 +222,3 @@
   - type: StorageFill
     contents:
       - id: CombatMedipen
-  
-      
-        
-

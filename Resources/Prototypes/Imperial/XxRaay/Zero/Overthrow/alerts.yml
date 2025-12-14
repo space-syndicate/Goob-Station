@@ -1,0 +1,7 @@
+- type: alert
+  id: OverthrowCooldown
+  icons:
+  - sprite: /Textures/Objects/Weapons/Melee/stunbaton.rsi
+    state: stunbaton_off
+  name: Overthrow Ready
+  description: Your enhanced throw ability is ready. Next throw will deal massive damage and knockdown.

@@ -462,6 +462,7 @@
   id: BorgModuleNonLethalSecurityErt # Нелетальный модуль ОБР борга
   parent: BaseErtBorgModule
   name: NonLethal Ert Module
+  suffix: cyborg
   components:
   - type: Sprite
     sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi

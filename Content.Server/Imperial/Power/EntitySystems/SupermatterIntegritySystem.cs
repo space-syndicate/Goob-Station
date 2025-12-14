@@ -137,7 +137,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 
             // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
             // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
-            if (level.Threshold <= 10f)
+            if (level.Threshold <= 30f)
             {
                 var station = _stationSystem.GetOwningStation(uid, transComp);
                 if (station != null)
@@ -173,7 +173,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             var station = _stationSystem.GetOwningStation(uid, transComp);
             if (station != null)
             {
-                _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
                 _chatSystem.DispatchStationAnnouncement(
                     station.Value,
                     Loc.GetString("supermatter-station-catastrophe"),
@@ -181,9 +180,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
                     colorOverride: Color.Red
                 );
             }
-
-            // Отправляем сообщение в радио о начале катастрофы
-            SendSupermatterRadio(uid, Loc.GetString("supermatter-catastrophe-warning"), comp);
         }
 
         if (comp.CatastropheActive)

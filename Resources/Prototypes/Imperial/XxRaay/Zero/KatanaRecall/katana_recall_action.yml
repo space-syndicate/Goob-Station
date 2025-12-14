@@ -1,0 +1,11 @@
+# - type: entity
+#   parent: BaseAction
+#   id: ActionKatanaRecall
+#   name: Призвать катану
+#   description: Призывает ближайшую катану KatanaZero к вам и берёт её в руки.
+#   components:
+#   - type: Action
+#     icon: { sprite: Imperial/XxRaay/Zero/KatanaDeflect/katana_zero.rsi, state: icon }
+#   - type: InstantAction
+#     event: !type:KatanaRecallInstantActionEvent
+
