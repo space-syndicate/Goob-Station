@@ -304,7 +304,7 @@ namespace Content.Client.Stylesheets
             // Imperial Pass Begin
             var passrect = new StyleBoxTexture
             {
-                Texture = resCache.GetTexture("/Textures/Interface/Nano/square.png"),
+                Texture = resCache.GetTexture("/Textures/Interface/Nano/square_black.png"),
             };
             passrect.SetPatchMargin(StyleBox.Margin.All, 10);
             // Imperial Pass End

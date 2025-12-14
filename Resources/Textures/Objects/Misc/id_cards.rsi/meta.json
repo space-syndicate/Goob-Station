@@ -101,6 +101,21 @@
         },
         {
             "name": "wizard"
+        },
+        {
+            "name": "idrfi"
+        },
+        {
+            "name": "rficard"
+        },
+        {
+            "name": "idatmospherictechnician"
+        },
+        {
+            "name": "idchiefengineer"
+        },
+        {
+            "name": "idseniorengineer"
         }
     ]
 }

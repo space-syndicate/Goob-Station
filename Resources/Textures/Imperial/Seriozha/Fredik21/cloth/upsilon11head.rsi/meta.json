@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation",
+  "copyright": "https://github.com/Foundation-19",
   "size": {
     "x": 32,
     "y": 32
@@ -11,16 +11,8 @@
       "name": "icon"
     },
     {
-      "name": "base"
-    },
-    {
-      "name": "cbbolt"
-    },
-    {
-      "name": "mag-unshaded-0"
-    },
-    {
-      "name": "mag-unshaded-1"
+      "name": "equipped-HELMET",
+      "directions": 4
     },
     {
       "name": "inhand-left",

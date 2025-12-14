@@ -1,31 +1,51 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-<<<<<<<< HEAD:Resources/Textures/Imperial/Seriozha/Fredik21/nda/2nda953.rsi/meta.json
   "copyright": "By kabacho4ek_ (discord) for Space Station 14 server Мёртвый Космос, mod - Fredik21",
-========
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bfc9c6ba8126ee8c41564d68c4bfb9ce37faa8f8 and modified by Swept, modified again my Smugman",
->>>>>>>> wiz/stable:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
   "size": {
     "x": 36,
     "y": 36
   },
   "states": [
     {
-<<<<<<<< HEAD:Resources/Textures/Imperial/Seriozha/Fredik21/nda/2nda953.rsi/meta.json
       "name": "icon"
     },
     {
       "name": "equipped-OUTERCLOTHING",
       "directions": 4,
-========
-      "name": "match_burnt"
-    },
-    {
-      "name": "match_lit",
->>>>>>>> wiz/stable:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
       "delays": [
         [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
           0.2,
           0.2,
           0.2
@@ -33,74 +53,12 @@
       ]
     },
     {
-<<<<<<<< HEAD:Resources/Textures/Imperial/Seriozha/Fredik21/nda/2nda953.rsi/meta.json
       "name": "inhand-left",
-========
-      "name": "match_unlit"
-    },
-    {
-      "name": "unlit-inhand-left",
->>>>>>>> wiz/stable:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
       "directions": 4
     },
     {
-      "name": "unlit-inhand-right",
+      "name": "inhand-right",
       "directions": 4
-<<<<<<<< HEAD:Resources/Textures/Imperial/Seriozha/Fredik21/nda/2nda953.rsi/meta.json
-========
-    },
-    {
-      "name": "lit-inhand-left",
-      "directions": 4,
-      "delays": [
-        [
-          0.2,
-          0.2,
-          0.2
-        ],
-        [
-          0.2,
-          0.2,
-          0.2
-        ],
-        [
-          0.2,
-          0.2,
-          0.2
-        ],
-        [
-          0.2,
-          0.2,
-          0.2
-        ]
-      ]
-    },
-    {
-      "name": "lit-inhand-right",
-      "directions": 4,
-      "delays": [
-        [
-          0.2,
-          0.2,
-          0.2
-        ],
-        [
-          0.2,
-          0.2,
-          0.2
-        ],
-        [
-          0.2,
-          0.2,
-          0.2
-        ],
-        [
-          0.2,
-          0.2,
-          0.2
-        ]
-      ]
->>>>>>>> wiz/stable:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
     }
   ]
 }
