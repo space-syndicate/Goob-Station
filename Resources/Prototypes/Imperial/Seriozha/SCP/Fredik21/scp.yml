@@ -8248,7 +8248,8 @@
       effects:
       - !type:PopupMessage
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: NDA013
           min: 0.01
         type: Local
         visualType: Medium
