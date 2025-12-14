@@ -230,7 +230,6 @@
         effectProto: StatusEffectDrowsiness
         time: 10
         type: Remove
-      - !type:ChemHealEyeDamage
       - !type:EvenHealthChange
         damage:
           Burn: -0.3
@@ -1330,7 +1329,7 @@
     ParadoxalJuice:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 1

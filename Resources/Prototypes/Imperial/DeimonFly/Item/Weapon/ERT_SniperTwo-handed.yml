@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     sprite: /Textures/Imperial/DeimonFly/Weapon/ERT_SniperTwo-handed.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseSniper
 
   # ДЕЛАЕМ ЕЁ ДВУРУЧНОЙ

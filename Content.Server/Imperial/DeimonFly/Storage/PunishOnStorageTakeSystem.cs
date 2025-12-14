@@ -1,11 +1,10 @@
 using System;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.DeimonFly.Storage;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Localization;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.DeimonFly.Storage;

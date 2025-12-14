@@ -59,8 +59,14 @@
   components:
   - type: Sprite
     layers:
-      - state: centcom
-      - state: ert_security
+    - state: centcom
+    - state: stripe_top
+      color: &color-security-top "#cb0000"
+    - state: stripe_bottom
+      color: &color-security-bottom "#830000"
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625
+      state: ERTSecurity
   - type: IdCard
     jobTitle: Штурмовик ОБР
 
@@ -72,8 +78,14 @@
   components:
   - type: Sprite
     layers:
-      - state: centcom
-      - state: ert_commander
+    - state: gold
+    - state: stripe_top
+      color: &color-centcomm-top "#134975"
+    - state: stripe_bottom
+      color: &color-centcomm-bottom "#0d304d"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTLeader
   - type: IdCard
     jobTitle: Капитан ОБР
 
@@ -107,7 +119,7 @@
   - type: Pda
     id: ERTCapitanIDCard
 
-#Для Medic, Engineer - взяты оригинальные визовские асеты. 
+#Для Medic, Engineer - взяты оригинальные визовские асеты.
 
 # Security Syndicate ID
 - type: entity
@@ -115,10 +127,15 @@
   id: SyndicateStormtrooperIDCard
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-      - state: black
-      - state: syndi_operative
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
   - type: IdCard
     jobTitle: Штурмовик Синдиката
     jobIcon: JobIconSyndicate
@@ -133,10 +150,15 @@
   id: SyndicateCapitanIDCard
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-      - state: black
-      - state: syndi_commander
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: SyndicateCommander
   - type: IdCard
     jobTitle: Капитан Синдиката
     jobIcon: JobIconSyndicate
@@ -151,10 +173,15 @@
   id: SyndicateCorpsmanIDCard
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-      - state: black
-      - state: syndi_corpsman
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
   - type: IdCard
     jobTitle: Медик Синдиката
     jobIcon: JobIconSyndicate
@@ -169,10 +196,15 @@
   id: SyndicateEngineerIDCard
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-      - state: black
-      - state: syndi
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
   - type: IdCard
     jobTitle: Инженер Синдиката
     jobIcon: JobIconSyndicate
@@ -187,10 +219,15 @@
   id: SyndicatePilotIDCard
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-      - state: black
-      - state: syndi
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
   - type: IdCard
     jobTitle: Пилот Синдиката
     jobIcon: JobIconSyndicate
@@ -445,7 +482,7 @@
       raffle:
         settings: short
 
-#Medic NT 
+#Medic NT
 - type: entity
   parent: MobHuman
   id: ERTMedicTDMPreset
@@ -572,7 +609,7 @@
     nameSegments:
       - NamesSyndicatePrefix
       - NamesSyndicateNormal
-    nameFormat: name-format-nukie-generic   
+    nameFormat: name-format-nukie-generic
   - type: Loadout
     prototypes: [ SyndicateStormtrooperGearTDM ]
   - type: RandomHumanoidAppearance
@@ -663,7 +700,7 @@
   - type: RandomMetadata
     nameSegments:
       - NamesSyndicateElite
-    nameFormat: name-format-nukie-commander  
+    nameFormat: name-format-nukie-commander
   - type: Loadout
     prototypes: [ SyndicateCapitanGearTDM ]
   - type: RandomHumanoidAppearance
@@ -916,7 +953,7 @@
 
 
 
-  
+
 
 
 

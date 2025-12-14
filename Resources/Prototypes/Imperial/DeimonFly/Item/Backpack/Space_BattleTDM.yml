@@ -82,13 +82,15 @@
   suffix: space battle, DeimonFly
   components:
   - type: Storage
-  - type: StorageFill
-    contents:
-      - id: WeaponPulseSniperBlue
-      - id: PortableRecharger
-      - id: CSWeaponDualBeretta
-      - id: MedkitCobmatImperialFilled
-      - id: HandHeldMassScanner
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPulseSniperBlue
+        - id: PortableRecharger
+        - id: CSWeaponDualBeretta
+        - id: MedkitCobmatImperialFilled
+        - id: HandHeldMassScanner
 
 #Field medic Backpack
 - type: entity

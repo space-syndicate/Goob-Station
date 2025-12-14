@@ -172,21 +172,25 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: ChefEngeneerLaser
-  damage:
-    types:
-      Heat: 1
-      Structural: 150
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 1
+        Structural: 150
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 
 - type: entity
   id: ChefEngeneerRevolverLaser
@@ -201,10 +205,10 @@
       - SemiAuto
       soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: ChefEngeneerLaser
       fireCost: 80
-    
+
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieZevs

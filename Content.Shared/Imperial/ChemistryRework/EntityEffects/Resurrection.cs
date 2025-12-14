@@ -8,13 +8,12 @@ namespace Content.Shared.Chemistry.ReactionEffects;
 /// <summary>
 ///     Resurrection of an entity with the instant return of the ghost to the body.
 /// </summary>
-public sealed partial class Resurrection : EventEntityEffect<Resurrection>
+public sealed partial class Resurrection : EntityEffectBase<Resurrection>
 {
-    [JsonPropertyName("penaltyDamage")]
-    [DataField("penaltyDamage")]
+    [DataField]
     public DamageSpecifier PenaltyDamage = new()!;
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
         Loc.GetString("reagent-effect-guidebook-resurrection",
             ("chance", Probability)
         );

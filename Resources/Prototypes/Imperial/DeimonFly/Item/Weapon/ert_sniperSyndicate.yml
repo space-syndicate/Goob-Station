@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     sprite: /Textures/Imperial/DeimonFly/Weapon/SyndicateSniper.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseSniperRed
 
   # ДЕЛАЕМ ЕЁ ДВУРУЧНОЙ

@@ -6,6 +6,7 @@ using Robust.Shared.Console;
 using Content.Shared.Imperial.ImperialStore;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Imperial.ImperialLightning;
 
