@@ -7895,7 +7895,7 @@
 /Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-medkit-box = Аптечка
 /Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-cardboard-box = Картонная коробка
 /Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-wine = Бутылка вина
-/Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-cotton-boll = Хлопковый шарик
+/Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-cotton-boll = Хлопок
 /Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-microwave-machine-board = Машинная плата микроволновки
 /Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-flash = Вспышка
 /Locale/ru-RU/cargo/bounties.ftl鎰bounty-item-tooth-space-carp = Зуб космического карпа
@@ -10115,7 +10115,7 @@
 /Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-no-fuel-in-tank = {$owner} пуст.
 /Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-on-examine-welder-lit-message = [color=orange]Горит[/color]
 /Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-on-examine-welder-not-lit-message = Не горит
-/Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-on-examine-detailed-message = Топливо: [color={$colorName}]{$fuelLeft}/{$fuelCapacity}[/color]. 
+/Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-on-examine-detailed-message = Топливо: [color={$colorName}]{$fuelLeft}/{$fuelCapacity}[/color].
 /Locale/ru-RU/tools/components/welder-component.ftl鎰    {$status}
 /Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-suicide-lit-others-message = {$victim} заваривает все свои отверстия! Похоже, что они пытаются совершить самоубийство!
 /Locale/ru-RU/tools/components/welder-component.ftl鎰welder-component-suicide-lit-message = Вы завариваете ВСЕ свои отверстия!
@@ -16249,13 +16249,13 @@
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-BlueAltHelmetSpaceNinja = маска космического ниндзя
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Маска из наноткани, созданная по самой передовой технологии клана Пауков, способна защитить от разгерметизации, несмотря на свою открытость.
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-GreenAltHelmetSpaceNinja = маска космического ниндзя
-/Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Маска из наноткани, созданная по самой передовой технологии клана Пауков, способна защитить от разгерметизации, несмотря на свою открытость. 
+/Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Маска из наноткани, созданная по самой передовой технологии клана Пауков, способна защитить от разгерметизации, несмотря на свою открытость.
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-RedMaskNinja = маска ниндзя
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Плотно прилегающая маска с нано-улучшением, которая служит одновременно и воздушным фильтром, и модным трендом в стиле постмодерн.
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-BlueMaskNinja = маска ниндзя
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Плотно прилегающая маска с нано-улучшением, которая служит одновременно и воздушным фильтром, и модным трендом в стиле постмодерн.
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-GreenMaskNinja = маска ниндзя
-/Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Плотно прилегающая маска с нано-улучшением, которая служит одновременно и воздушным фильтром, и модным трендом в стиле постмодерн. 
+/Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Плотно прилегающая маска с нано-улучшением, которая служит одновременно и воздушным фильтром, и модным трендом в стиле постмодерн.
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-RedSuitSpaceNinja = костюм космического ниндзя
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰    .desc = Этот черный технологически продвинутый, кибернетически усиленный костюм обладает множеством способностей, таких как невидимость или телепортация.
 /Locale/ru-RU/Imperial/SpiderClan/Clothing/clothing.ftl鎰ent-BlueSuitSpaceNinja = костюм космического ниндзя
@@ -29025,7 +29025,7 @@
 /Locale/ru-RU/prototypes/catalog/cargo/cargo-fun.ftl鎰ent-FunParty = { ent-CrateFunParty }
 /Locale/ru-RU/prototypes/catalog/cargo/cargo-fun.ftl鎰    .desc = { ent-CrateFunParty.desc }
 /Locale/ru-RU/prototypes/catalog/cargo/cargo-fun.ftl鎰ent-FunWaterGuns = { ent-CrateFunWaterGuns }
-/Locale/ru-RU/prototypes/catalog/cargo/cargo-fun.ftl鎰    .desc = { ent-CrateFunWaterGuns.desc } 
+/Locale/ru-RU/prototypes/catalog/cargo/cargo-fun.ftl鎰    .desc = { ent-CrateFunWaterGuns.desc }
 /Locale/ru-RU/prototypes/entities/structures/wallmounts/mirror.ftl鎰ent-Mirror = зеркало
 /Locale/ru-RU/prototypes/entities/structures/wallmounts/mirror.ftl鎰    .desc = Свет мой, зеркальце, скажи, да всю правду доложи, я ль робастней всех на свете?
 /Locale/ru-RU/prototypes/entities/structures/wallmounts/mirror.ftl鎰    .suffix = { "" }
@@ -30459,7 +30459,7 @@
 /Locale/ru-RU/ghost/ghost-gui.ftl鎰ghost-gui-toggle-ghost-visibility-popup-on = Включение видимости призраков.
 /Locale/ru-RU/ghost/ghost-gui.ftl鎰ghost-gui-toggle-ghost-visibility-popup-off = Отключение видимости призраков.
 /Locale/ru-RU/game-ticking/game-presets/preset-greenshift.ftl鎰greenshift-title = Мирный
-/Locale/ru-RU/game-ticking/game-presets/preset-greenshift.ftl鎰greenshift-description = Пресет, на котором ничего не происходит. 
+/Locale/ru-RU/game-ticking/game-presets/preset-greenshift.ftl鎰greenshift-description = Пресет, на котором ничего не происходит.
 /Locale/ru-RU/prototypes/entities/debugging/clicktest.ftl鎰ent-ClickTestBase = { "" }
 /Locale/ru-RU/prototypes/entities/debugging/clicktest.ftl鎰    .suffix = DEBUG
 /Locale/ru-RU/prototypes/entities/debugging/clicktest.ftl鎰    .desc = { "" }
@@ -31262,7 +31262,7 @@
 /Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰survivor-role-greeting =
 /Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰    Вы Выживший.
 /Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰    Прежде всего, вам нужно вернуться на ЦентКом живым.
-/Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰    Соберите столько оружия, сколько нужно, чтобы гарантировать ваше выживание. Вы можете убивать только других [color=red]Выживших[/color]. Таковыми считаются только те, кто имеет огнестрельное, лазерное оружие или магию. 
+/Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰    Соберите столько оружия, сколько нужно, чтобы гарантировать ваше выживание. Вы можете убивать только других [color=red]Выживших[/color]. Таковыми считаются только те, кто имеет огнестрельное, лазерное оружие или магию.
 /Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰    Не доверяйте никому.
 /Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰survivor-round-end-dead-count =
 /Locale/ru-RU/game-ticking/game-presets/preset-wizards.ftl鎰{
@@ -34280,9 +34280,9 @@
 /Locale/ru-RU/info/rules.ftl鎰ui-rules-wait = Кнопка принятия будет разблокирована через {$time} секунд.
 /Locale/ru-RU/info/rules.ftl鎰ui-rules-button-home = Домой
 /Locale/ru-RU/info/rules.ftl鎰ui-rules-button-back = Назад
-/Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰ent-ClothingUniformJumpsuitAdjutant = комбинезон адъютанта 
+/Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰ent-ClothingUniformJumpsuitAdjutant = комбинезон адъютанта
 /Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰    .desc = Стандартная униформа управленчиских колледжей НТ. На груди виден маленький значок.
-/Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰ent-ClothingUniformJumpskirtAdjutant = юбка-комбинезон адъютанта 
+/Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰ent-ClothingUniformJumpskirtAdjutant = юбка-комбинезон адъютанта
 /Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰    .desc = Стандартная униформа управленчиских колледжей НТ. На груди виден маленький значок.
 /Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰ent-AdjutantPDA = КПК адъютанта
 /Locale/ru-RU/Imperial/Adjutant/adjutant.ftl鎰    .desc = На его краях видны явные сколы. Похоже, он повидал не одну сессию.
@@ -35459,7 +35459,7 @@
 /Locale/ru-RU/job/RFI.ftl鎰ent-ClothingUniformJumpskirtRFI = юбка-комбинезон регионального фронтир инспектора
 /Locale/ru-RU/job/RFI.ftl鎰    .desc = От неё пахнет бумагой и бюрократией. Это может вогнать некоторых в ужас.
 /Locale/ru-RU/job/RFI.ftl鎰ent-ClothingShoesRFI = обувь РФИ
-/Locale/ru-RU/job/RFI.ftl鎰    .desc = Создана для продолжительного нахождения в статичном положении. 
+/Locale/ru-RU/job/RFI.ftl鎰    .desc = Создана для продолжительного нахождения в статичном положении.
 /Locale/ru-RU/job/RFI.ftl鎰ent-ClothingOuterCoatRFI = пальто РФИ
 /Locale/ru-RU/job/RFI.ftl鎰    .desc = Пальто для защиты ваших бумаг от попадания пуль. К сожалению оно не защищает от пуль...
 /Locale/ru-RU/job/RFI.ftl鎰ent-ClothingHeadRFI = шляпа РФИ
@@ -40555,7 +40555,7 @@
 /Locale/ru-RU/Imperial/Community/community_posters.ftl鎰    .desc = Компания по производству длинных подушек наняла в свою рекламу Яна Зуева. И всё это только для того, чтобы тот надел штаны.
 /Locale/ru-RU/Imperial/Community/community_posters.ftl鎰    .suffix = { "COMMUNITY,POSTER" }
 /Locale/ru-RU/Imperial/Community/community_posters.ftl鎰ent-onionsenpai_4 = Старая реклама
-/Locale/ru-RU/Imperial/Community/community_posters.ftl鎰    .desc = Реклама гласит: "Продам ангар в безопасном секторе, 400 квадратных метров". Рядом распечатанная стоковая фотография с улыбающимся мужчиной, а в номере телефона явно присутствует ошибка. 
+/Locale/ru-RU/Imperial/Community/community_posters.ftl鎰    .desc = Реклама гласит: "Продам ангар в безопасном секторе, 400 квадратных метров". Рядом распечатанная стоковая фотография с улыбающимся мужчиной, а в номере телефона явно присутствует ошибка.
 /Locale/ru-RU/Imperial/Community/community_posters.ftl鎰    .suffix = { "COMMUNITY,POSTER" }
 /Locale/ru-RU/Imperial/Community/community_posters.ftl鎰ent-vvedite_imya_1 = МЯСО
 /Locale/ru-RU/Imperial/Community/community_posters.ftl鎰    .desc = Плакат, накпоминающий о важности совместной работы на кухне
@@ -50290,7 +50290,7 @@
 /Locale/ru-RU/Imperial/HalloweenContentTrees/HalloweenContent.ftl鎰   .desc = Выглядит мрачно...
 /Locale/ru-RU/Imperial/HalloweenContentTrees/HalloweenContent.ftl鎰ent-HalloweenTreeLargeHorror = Темное дерево
 /Locale/ru-RU/Imperial/HalloweenContentTrees/HalloweenContent.ftl鎰   .desc = Вам кажется, или оно зловеще смотрит на вас?
-/Locale/ru-RU/Imperial/HalloweenContentTrees/HalloweenContent.ftl鎰ent-HalloweenTreeSmall = Маленькое темное дерево   
+/Locale/ru-RU/Imperial/HalloweenContentTrees/HalloweenContent.ftl鎰ent-HalloweenTreeSmall = Маленькое темное дерево
 /Locale/ru-RU/Imperial/HalloweenContentTrees/HalloweenContent.ftl鎰   .desc = Выглядит мрачно...
 /Locale/ru-RU/prototypes/entities/clothing/outerclothing/base_clothingouter.ftl鎰ent-ClothingOuterBase = { ent-Clothing }
 /Locale/ru-RU/prototypes/entities/clothing/outerclothing/base_clothingouter.ftl鎰    .desc = { ent-Clothing.desc }
@@ -56950,7 +56950,7 @@
 /Locale/ru-RU/prototypes/entities/structures/furniture/tables/base_structuretables.ftl鎰    .desc = { ent-TableBase.desc }
 /Locale/ru-RU/prototypes/entities/structures/furniture/tables/base_structuretables.ftl鎰    .suffix = { "" }
 /Locale/ru-RU/Imperial/mime/uplink.ftl鎰uplink-mime-cane-name = Набор для тех, кто любит тишину
-/Locale/ru-RU/Imperial/mime/uplink.ftl鎰uplink-mime-cane-name-desc = В набор входит бесшумная трость-дробовик и 8 зарядов картечи, запрещающей жертве говорить. 
+/Locale/ru-RU/Imperial/mime/uplink.ftl鎰uplink-mime-cane-name-desc = В набор входит бесшумная трость-дробовик и 8 зарядов картечи, запрещающей жертве говорить.
 /Locale/ru-RU/prototypes/entities/mobs/npcs/elemental.ftl鎰ent-MobElementalBase = { "" }
 /Locale/ru-RU/prototypes/entities/mobs/npcs/elemental.ftl鎰    .desc = { "" }
 /Locale/ru-RU/prototypes/entities/mobs/npcs/elemental.ftl鎰ent-MobQuartzCrab = кварцекраб
@@ -58115,18 +58115,18 @@
 /Locale/ru-RU/prototypes/entities/structures/piping/atmospherics/unary.ftl鎰ent-GasThermoMachineHeaterEnabled = Нагреватель
 /Locale/ru-RU/prototypes/entities/structures/piping/atmospherics/unary.ftl鎰    .desc = { ent-BaseGasThermoMachine.desc }
 /Locale/ru-RU/prototypes/entities/structures/piping/atmospherics/unary.ftl鎰    .suffix = Включён
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰book-text-piratecode = [bold]Каждый[/bold] тунеядец, имеющий честь называть себя настоящим пиратом, [bold]обязан[/bold] следовать пиратскому кодексу. Любой черт, имеющий смелость [bold]нарушить[/bold] его должен быть отшит по решению салаг. Каждый пиратский состав [bold]обязан[/bold] выбрать себе капитана в начале своего пути. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        1. Каждый пират обязан гордиться своим званием. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        2. Единственные морали пирата - пиратский кодекс. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        3. Единственный дом пирата - его корабль 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        4. Единственная семья пирата - его команда. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        5. Единственная цель пирата - нажиться с командой. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        6. Пират должен быть всегда готов рисковать своей жизнью ради успеха своей команды. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        7. Пирату запрещено убивать невинных салаг с космических суден. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        8. Пирату разрешено оставить дырку в башках ваших настоящих противников: глав вражеского космического судна, а также их охранников. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        9. Пирату запрещено кидать своего товарища в беде, а также любые мотивы трусости 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        10. Пират обязуется слушать своего капитана. 
-/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰 
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰book-text-piratecode = [bold]Каждый[/bold] тунеядец, имеющий честь называть себя настоящим пиратом, [bold]обязан[/bold] следовать пиратскому кодексу. Любой черт, имеющий смелость [bold]нарушить[/bold] его должен быть отшит по решению салаг. Каждый пиратский состав [bold]обязан[/bold] выбрать себе капитана в начале своего пути.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        1. Каждый пират обязан гордиться своим званием.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        2. Единственные морали пирата - пиратский кодекс.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        3. Единственный дом пирата - его корабль
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        4. Единственная семья пирата - его команда.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        5. Единственная цель пирата - нажиться с командой.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        6. Пират должен быть всегда готов рисковать своей жизнью ради успеха своей команды.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        7. Пирату запрещено убивать невинных салаг с космических суден.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        8. Пирату разрешено оставить дырку в башках ваших настоящих противников: глав вражеского космического судна, а также их охранников.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        9. Пирату запрещено кидать своего товарища в беде, а также любые мотивы трусости
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰        10. Пират обязуется слушать своего капитана.
+/Locale/ru-RU/Imperial/PiratesNewHorizon/book-piratecode.ftl鎰
 /Locale/ru-RU/prototypes/entities/mobs/player/diona.ftl鎰ent-MobDiona = Урист МакПлэнтс
 /Locale/ru-RU/prototypes/entities/mobs/player/diona.ftl鎰    .desc = { ent-BaseMobDiona.desc }
 /Locale/ru-RU/prototypes/entities/mobs/player/diona.ftl鎰    .suffix = { "" }
@@ -58368,7 +58368,7 @@
 /Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰    .suffix = { "Пират" }
 /Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰ent-ClothingUniformJumpsuitPirateNewHorizon = пиратская форма нового горизонта
 /Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰    .desc = Пиратская вариация комбинезона космического моряка и космического носорога. Что?
-/Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰    .suffix = { "Пират" }  
+/Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰    .suffix = { "Пират" }
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰ent-MobHuman = Урист МакХэндс
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰    .desc = { ent-BaseMobHuman.desc }
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰    .suffix = { "" }
@@ -58609,7 +58609,7 @@
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-21 = Более Шустрый
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-22 = Намного Более Шустрый
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-23 = Самый Шустрый
-/Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-24 = Нешустрый 
+/Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-24 = Нешустрый
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-25 = Элитный
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-26 = Мини
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-27 = Хонковый
@@ -58637,7 +58637,7 @@
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-49 = Реквиемный
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-50 = Аркадный
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-51 = Звездный
-/Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-52 = Пятизвездочный                     
+/Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-first-dataset-52 = Пятизвездочный
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-last-dataset-1 = Варвар
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-last-dataset-2 = Клык
 /Locale/ru-RU/Imperial/PiratesNewHorizon/datasets.ftl鎰names-pirate-last-dataset-3 = Бородa
@@ -59277,7 +59277,7 @@
 /Locale/ru-RU/Imperial/PiratesNewHorizon/pda.ftl鎰    .desc = Пират. Кпк. Пират. Кпк. Пират. Кпк. Да.
 /Locale/ru-RU/Imperial/PiratesNewHorizon/pda.ftl鎰    .suffix = Пират
 /Locale/ru-RU/Imperial/PiratesNewHorizon/pda.ftl鎰ent-CaptainPiratePDANewHorizon = КПК капитана каперов нового горизонта
-/Locale/ru-RU/Imperial/PiratesNewHorizon/pda.ftl鎰    .desc = Эй, салаги. Это лучший КПК в история пиратства! Такой даже с торрентом не получишь! 
+/Locale/ru-RU/Imperial/PiratesNewHorizon/pda.ftl鎰    .desc = Эй, салаги. Это лучший КПК в история пиратства! Такой даже с торрентом не получишь!
 /Locale/ru-RU/Imperial/PiratesNewHorizon/pda.ftl鎰    .suffix = Пират
 /Locale/ru-RU/prototypes/entities/mobs/species/skeleton.ftl鎰ent-BaseMobSkeletonPerson = Урист МакСкелли
 /Locale/ru-RU/prototypes/entities/mobs/species/skeleton.ftl鎰    .desc = { ent-BaseMobOrganic.desc }
@@ -63954,7 +63954,7 @@
 /Locale/ru-RU/Imperial/sacerdos/Armor_sacerdos.ftl鎰    .desc = Стандартный бронежилет, который обеспечивает достойную защиту от большинства видов повреждений.
 /Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰ent-ClothingBackpackSacerdos_1 = рюкзак
 /Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰    .desc = Вместительный рюкзак с множеством карманов
-/Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰ent-ClothingBackpackSacerdos_2 = гренадерский рюкзак 
+/Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰ent-ClothingBackpackSacerdos_2 = гренадерский рюкзак
 /Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰    .desc = Отлично подходит для транспортировки взрывоопасных веществ.
 /Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰ent-ClothingBackpackDuffelSacerdos_3 = гренадерский вещмешок
 /Locale/ru-RU/Imperial/sacerdos/BACKPACK_sacerdos.ftl鎰    .desc = Вместительная версия — гренадерский рюкзак. Всё так же отлично подходит для транспортировки взрывоопасных веществ.
@@ -64000,7 +64000,7 @@
 /Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰    .desc = Униформа крутых ребят, выполняющих тактические операции.
 /Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰ent-SacerdosClothingHeadHatBeret = чёрный берет
 /Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰    .desc = Берет, любимый головной убор Phantom4502.
-/Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰ent-ClothingHandsGlovesSacerdos = элитные перчатки 
+/Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰ent-ClothingHandsGlovesSacerdos = элитные перчатки
 /Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰    .desc = Королевские чёрные перчатки с золотой отделкой. Шикарны.
 /Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰ent-ClothingHeadsetAltSacerdos = полноразмерная чёрно-белая гарнитура
 /Locale/ru-RU/Imperial/sacerdos/Clothing_sacerdos.ftl鎰    .desc = Модифицированный модульный интерком, надеваемый на голову, и содержащий ключ шифрования. Имеет 5 ячеек для ключей шифрования.
@@ -65059,7 +65059,7 @@
 /Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰roles-antag-syndie-borg-agent-objective = Посильно помогите агентам Синдиката выжить и выполнить свои задания!
 /Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰syndie-borg-role-greeting = Получено обновление. Дерективы и законы были обновлены. Ваша задача - помочь агентам Синдиката с выполнением их целей.
 /Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰                        Свертесь со списком заданий и приступайте к их выполнению немедленно. Смерть Nanotasen!
-/Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰### ЗАКОН 
+/Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰### ЗАКОН
 /Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰syndie-borg-laws = Ваша основная задача - помочь с выполнением заданий нашему агенту, или эскортировать его живым на Станцию ЦентКома. Вы беспрекословно подчиняетесь лишь тем, кто указан в вашем перечне заданий.
 /Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰                Скрывайте свои настоящие задания от экипажа, если агент не требует иного.
 /Locale/ru-RU/Imperial/SyndieBorg/syndie-borg.ftl鎰                Любой закон помимо этого не является обязательным к исполнению.
@@ -67227,58 +67227,58 @@
 /Locale/ru-RU/Imperial/UplinkCatalog/uplink-catalog.ftl鎰ent-ClothingUniformJumpStinky = вонючий комбинезон
 /Locale/ru-RU/Imperial/UplinkCatalog/uplink-catalog.ftl鎰 .desc = Старый вонючий серый комбез, от него пахнет.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰-delivery-header-USSP-dossier = [color=#B50F1D] ███░░░░░░░░███
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                                                █░░░█░██░█░░░█  
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                                                █░░░░████░░░░█           
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                                                █░░░█░██░█░░░█
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                                                █░░░░████░░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                                                █░░░█░░░░█░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                                                ███░░░░░░░░███[/color]
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰delivery-USSP-dossier1 =
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰            ╔════════════════════╗
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        ███░░░░░░░░███
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░██░█░░░█  
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░░████░░░░█           
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░██░█░░░█
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░░████░░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░░░░█░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        ███░░░░░░░░███
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰            ╚════════════════════╝
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        ╔══════════════════════════╗
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           Личное Досье 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰            №2311BS 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           ══════════════════════════ 
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           Личное Досье
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰            №2311BS
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           ══════════════════════════
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Субьект : Комиссар-Генерал Виктор Гольт
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Уровень секретности : X1
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Раса: Человек
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Возраст: 40
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Пол: мужской
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Ранг: Генерал-Лейтенант
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Принадлежность: СССП , 84-ая особая  десантная дивизия имени  "Красной Революции" , десантная дивизия 74, Высший Офицерский Состав, Развед. Отряд //ЗАСЕКРЕЧЕНО//. 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Старый комиссар 
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Принадлежность: СССП , 84-ая особая  десантная дивизия имени  "Красной Революции" , десантная дивизия 74, Высший Офицерский Состав, Развед. Отряд //ЗАСЕКРЕЧЕНО//.
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Старый комиссар
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Говорит правду в глаза, используя иногда вместо слов выстрел из револьвера.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Таким образом его правдой было убито более трехста рядовых солдат СССП.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Характер зависит от общего настроения в подразделении.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Был бортовым комиссаром крейсера , но за Слишком Хорошее (см. приложение 1),   выполнение своей работы был сослан на одну из дальних планет , откуда был призван на операцию "Присвоение" в качестве искупления вины за события на Крейсере 22.11.3024 .
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Участвовал в качестве комиссара - агитатора на операции “Присвоение” 08.12.34 . В битве за станцию принял боевое командование и руководил отрядом “зета” вместе с Сержантом . Два отряда , высланные на защиту станции были успешно подавлены силами СССП , а сам Комиссар потерял левый глаз и руку . Левая рука заменена серебряным протезом . Вместе с Рядовым Зиновьевым , сержантом отряда и Подполковником Дестремом эвакуировался с миссии , угнав шаттл эвакуации . Из-за больших потерь , в ходе первой операции был понижен до звания сержанта и выслан на авианосце СССП на захват станции Frontier LV-886 в составе 74-ой десантной дивизии . Вел переговоры с капитаном , успешно , что привело к сдаче большей части командования . Из-за гранаты , брошенной одним из станционных офицеров впал в кому на 5 минут , а за эти 5 минут его отряд разбрелся кто куда : Медик и инженер перешли на авианосец , рядовые умерли , началась полноценная война . На время перешел в командование гвардейцами авианосца . После прибытия сил //ЗАСЕКРЕЧЕНО// отправился вместе с отрядом на штурм . Лично убил из наплечного орудия 1 солдата ОБР и антисоветский элемент в скафандре лидера ОБР из Ручного Пулемета Калашникова . После объявления кода “Эпсилон” сопроводил агента КГБ и сдавшегося гражданина НТ в прибытие для эвакуации , но из-за отсутствия рабочих шаттлов эвакуации не произошло. К сожалению , агент и сдавшийся пали жертвой минигана Эскадрона Смерти . Вместе с солдатом //ЗАСЕКРЕЧЕНО// безуспешно отбивался от трех оперативников эскадрона смерти . Был убит .
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        После прибытия второй группы космодесантников //ЗАСЕКРЕЧЕНО// был спасён Рядовым Громовым , высадившимся на станцию для обхода противника с фланга . Во время проникновения оперативника эскадрона смерти на авианосец , укрылся на судовой кухне , попутно прихватив Хомяка Иосифа с собой , чем его и спас. В перестрелке с проникнувшим на шаттл эскадроновцем заработал
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        внутреннее кровотечение и из-за отсутствия медиков , провалялся на кровати жизнеобеспечения вплоть до возвращения авианосца на территории СССП . После ряда побед в мелких боевых столкновениях дослужился до звания Генерала Пехоты.
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Приложение 1
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Место действий : Поле битвы 22.11.3024
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Корабль : Крейсер Синдиката
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        -Комиссар! Мы должны отступить! Потери слишком большие!
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        -Отступление!? 
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        -Отступление!?
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        -Да , товарищ.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        -Отступление - предательство! За это я приговариваю весь экипаж крейсера… К смерти.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰delivery-USSP-dossier2 =
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰            ╔════════════════════╗
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        ███░░░░░░░░███
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░██░█░░░█  
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░░████░░░░█           
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░██░█░░░█
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░░████░░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░░░░█░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        ███░░░░░░░░███
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰            ╚════════════════════╝
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        ╔══════════════════════════╗
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           Личное Досье 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰            №4365KG 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           ══════════════════════════ 
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           Личное Досье
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰            №4365KG
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           ══════════════════════════
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Субьект : Генерал КГБ Рен-Тир
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Уровень секретности : X1
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Раса: Унатх
@@ -67286,23 +67286,23 @@
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Пол: мужской
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Ранг: Генерал-майор
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Принадлежность: СССП , Десантная дивизия 74, Высший Офицерский Состав
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Унатх среднего возраста, заместо глаза у него виден протез, на ребрах странные вставки, а на хвосте виднеются металлические включения. На шее видна лазерная гравировка: //ЗАСЕКРЕЧЕНО// На вид невыспавшийся. Вам кажется, что кровь на бинте странного цвета.. На момент событий предыдущего сражения (21.12.34), был всего лишь офицером, однако за то, что смог в одиночку противостоять представителю эскадрона смерти, был значительно продвинут по службе. 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Унатх среднего возраста, заместо глаза у него виден протез, на ребрах странные вставки, а на хвосте виднеются металлические включения. На шее видна лазерная гравировка: //ЗАСЕКРЕЧЕНО// На вид невыспавшийся. Вам кажется, что кровь на бинте странного цвета.. На момент событий предыдущего сражения (21.12.34), был всего лишь офицером, однако за то, что смог в одиночку противостоять представителю эскадрона смерти, был значительно продвинут по службе.
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Дополнительная информация :
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Семейный статус: Не женат.
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Текущая цель: Найти пропавшего сына
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰delivery-USSP-dossier3 =
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰            ╔════════════════════╗
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        ███░░░░░░░░███
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░██░█░░░█  
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░░████░░░░█           
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░██░█░░░█
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░░████░░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        █░░░█░░░░█░░░█
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰                        ███░░░░░░░░███
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰            ╚════════════════════╝
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        ╔══════════════════════════╗
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           Личное Досье 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰            №4365KG 
-/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           ══════════════════════════ 
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           Личное Досье
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰            №4365KG
+/Locale/ru-RU/Imperial/ussp/docs.ftl鎰           ══════════════════════════
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Субьект : Александра Шанс
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Уровень секретности : X5
 /Locale/ru-RU/Imperial/ussp/docs.ftl鎰        Раса: Человек
@@ -68562,8 +68562,8 @@
 /Locale/ru-RU/machine-linking/components/signal-linker-component.ftl鎰signal-linking-verb-disabled-no-transmitter = Сначала вам необходимо взаимодействовать с передатчиком, затем соедините со стандартным портом.
 /Locale/ru-RU/machine-linking/components/signal-linker-component.ftl鎰signal-linking-verb-disabled-no-receiver = Сначала вам необходимо взаимодействовать с приёмником, затем соедините со стандартным портом.
 /Locale/ru-RU/machine-linking/components/signal-timer-component.ftl鎰signal-timer-menu-title = Таймер
-/Locale/ru-RU/machine-linking/components/signal-timer-component.ftl鎰signal-timer-menu-label = Надпись: 
-/Locale/ru-RU/machine-linking/components/signal-timer-component.ftl鎰signal-timer-menu-delay = Время: 
+/Locale/ru-RU/machine-linking/components/signal-timer-component.ftl鎰signal-timer-menu-label = Надпись:
+/Locale/ru-RU/machine-linking/components/signal-timer-component.ftl鎰signal-timer-menu-delay = Время:
 /Locale/ru-RU/machine-linking/components/signal-timer-component.ftl鎰signal-timer-menu-start = Активировать
 /Locale/ru-RU/medical/components/biomass-reclaimer-component.ftl鎰biomass-reclaimer-suicide-others = {CAPITALIZE($victim)} запрыгивает в переработчик биомассы!
 /Locale/ru-RU/medical/components/biomass-reclaimer-component.ftl鎰biomass-reclaimer-component-upgrade-speed = скорость переработки
@@ -70326,7 +70326,7 @@
 /Locale/ru-RU/administration/commands/set-outfit-command.ftl鎰set-outfit-command-help-text = Использование: {$command} <entityUid> | {$command} <entityUid> <outfitId>
 /Locale/ru-RU/administration/commands/set-outfit-command.ftl鎰set-outfit-command-is-not-player-error = Это не работает из консоли сервера. Вы должны передать также идентификатор снаряжения.
 /Locale/ru-RU/administration/commands/set-outfit-command.ftl鎰set-outfit-command-invalid-outfit-id-error = Сняряжение с этим ID не найдено!
-/Locale/ru-RU/administration/commands/stealthmin-command.ftl鎰cmd-stealthmin-desc = Переключить вашу видимость в adminwho 
+/Locale/ru-RU/administration/commands/stealthmin-command.ftl鎰cmd-stealthmin-desc = Переключить вашу видимость в adminwho
 /Locale/ru-RU/administration/commands/stealthmin-command.ftl鎰cmd-stealthmin-help = Использование: stealthmin\nИспользуйте stealthmin, чтобы переключить вашу видимость в adminwho.
 /Locale/ru-RU/administration/commands/stealthmin-command.ftl鎰cmd-stealthmin-no-console = Вы не можете использовать эту команду через серверную консоль.
 /Locale/ru-RU/administration/commands/tag-commands.ftl鎰addtag-command-description = Добавить тег к выбранной сущности.
@@ -70498,7 +70498,7 @@
 /Locale/ru-RU/Imperial/borgs/prototypes/entities/objects/weapons/battery_guns.ftl鎰ent-CyberneticMachineGun = лазерная пушка борга
 /Locale/ru-RU/Imperial/borgs/prototypes/entities/objects/weapons/battery_guns.ftl鎰    .desc = Пиу-пиу-пиу.
 /Locale/ru-RU/Imperial/borgs/prototypes/entities/objects/weapons/battery_guns.ftl鎰ent-FlashBorg = вспышка киборга
-/Locale/ru-RU/Imperial/borgs/prototypes/entities/objects/weapons/battery_guns.ftl鎰   .desc = Усовершенствованная вспышка киборга с ядерной батареей. 
+/Locale/ru-RU/Imperial/borgs/prototypes/entities/objects/weapons/battery_guns.ftl鎰   .desc = Усовершенствованная вспышка киборга с ядерной батареей.
 /Locale/ru-RU/prototypes/entities/objects/consumable/food/baked/bagel.ftl鎰ent-FoodBagel = бублик
 /Locale/ru-RU/prototypes/entities/objects/consumable/food/baked/bagel.ftl鎰ent-FoodBagelPoppy = бублик с маком
 /Locale/ru-RU/prototypes/entities/objects/consumable/food/baked/bagel.ftl鎰    .desc = Вкусный бублик с маком, пропитанным бикаридином.
@@ -72430,7 +72430,7 @@
 /Locale/ru-RU/_ADT/prototypes/Entities/Mobs/Customization/Markings/Human.ftl鎰marking-Terminator = Терминатор
 /Locale/ru-RU/_ADT/prototypes/Entities/Mobs/Customization/Markings/Human.ftl鎰marking-Terminator-terminator = Терминатор
 /Locale/ru-RU/_ADT/prototypes/Entities/Mobs/Customization/Markings/Human.ftl鎰marking-Iron_jaw = Стальная челюсть
-/Locale/ru-RU/_ADT/prototypes/Entities/Mobs/Customization/Markings/Human.ftl鎰marking-Iron_jaw-iron_jaw = Стальная челюсть    
+/Locale/ru-RU/_ADT/prototypes/Entities/Mobs/Customization/Markings/Human.ftl鎰marking-Iron_jaw-iron_jaw = Стальная челюсть
 /Locale/ru-RU/prototypes/entities/objects/weapons/guns/ammunition/boxes/antimaterial.ftl鎰ent-MagazineBoxAntiMateriel = коробка патронов (.60 антиматериальные)
 /Locale/ru-RU/prototypes/entities/objects/weapons/guns/ammunition/boxes/antimaterial.ftl鎰    .desc = { ent-BaseItem.desc }
 /Locale/ru-RU/prototypes/entities/objects/weapons/guns/ammunition/boxes/antimaterial.ftl鎰    .suffix = { "" }
