@@ -38,10 +38,13 @@
   - MagazineBoxLightRifle
   - MagazineBoxMagnum
   - MagazineBoxPistol
+  - MagazineBoxPistolRubber #Imperial Space rubber pistol ammo box
   - MagazineBoxRifle
   - MagazineLightRifle
   - MagazineLightRifleEmpty
   - MagazinePistol
+  - MagazinePistolRubber #Imperial Space rubber pistol magazine
+  - MagazinePistolRubberEmpty #Imperial Space empty rubber pistol magazine
   - MagazinePistolEmpty
   - MagazinePistolSubMachineGun
   - MagazinePistolSubMachineGunEmpty
@@ -109,12 +112,17 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxMagnumUranium
   - MagazineBoxPistolIncendiary
+  - MagazineBoxPistolRubber #Imperial Space rubber pistol ammo box
   - MagazineBoxPistolUranium
   - MagazineBoxRifleIncendiary
   - MagazineBoxRifleUranium
   - MagazineLightRifleIncendiary
   - MagazineLightRifleUranium
   - MagazinePistolIncendiary
+  - MagazinePistolRubber #Imperial Space rubber pistol magazine
+  - MagazinePistolRubberEmpty #Imperial Space empty rubber pistol magazine
+  - MagazinePistolHighCapacityRubberImperial #Imperial Space rubber hi-cap pistol magazine
+  - MagazinePistolHighCapacityRubberImperialEmpty #Imperial Space empty rubber hi-cap pistol magazine
   - MagazinePistolUranium
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium

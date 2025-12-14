@@ -9,6 +9,7 @@
     whitelist:
       tags:
         - CartridgePistol
+        - CartridgePistolRubberOnly #Imperial Space allow rubber-only pistol rounds
     proto: CartridgePistol
     capacity: 60
   - type: Item

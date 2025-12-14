@@ -1,6 +1,4 @@
-
-
-namespace Content.Shared.Imperial.XxRaay.FlagSystem;
+namespace Content.Shared.Imperial.Helpers;
 
 /// <summary>
 /// Вспомогательный класс для работы с фракциями
@@ -35,11 +33,6 @@ public static class FactionHelper
         };
     }
 
-    /// <summary>
-    /// Определяет фракцию флага по его прототипу
-    /// </summary>
-    /// <param name="prototypeId">ID прототипа флага</param>
-    /// <returns>Название фракции</returns>
     public static string GetFlagFaction(string prototypeId)
     {
         return GetFlagFactionEnum(prototypeId) switch
@@ -55,11 +48,6 @@ public static class FactionHelper
         };
     }
 
-    /// <summary>
-    /// Определяет прототип флага по фракции
-    /// </summary>
-    /// <param name="faction">Название фракции</param>
-    /// <returns>ID прототипа флага</returns>
     public static string GetFactionFlagPrototype(string faction)
     {
         return faction switch
@@ -90,11 +78,6 @@ public static class FactionHelper
         };
     }
 
-    /// <summary>
-    /// Определяет ID валюты по фракции
-    /// </summary>
-    /// <param name="faction">Название фракции</param>
-    /// <returns>ID валюты или null</returns>
     public static string? GetCurrencyIdForFaction(string faction)
     {
         return faction switch
@@ -125,23 +108,18 @@ public static class FactionHelper
         };
     }
 
-    /// <summary>
-    /// Маппинг фракций из компонента NpcFactionMember в внутренние названия
-    /// </summary>
-    /// <param name="factionComponentValue">Значение фракции из компонента</param>
-    /// <returns>Внутреннее название фракции</returns>
     public static string MapFactionFromComponent(string factionComponentValue)
     {
         return factionComponentValue switch
         {
-            "NanoTrasen" => "NTFaction",
+            "Nanotrasen" => "NTFaction",
             "Syndicate" => "SindiFaction",
             "GreenFaction" => "GreenFaction",
             "YellowFaction" => "YellowFaction",
             "RedFaction" => "RedFaction",
             "BlueFaction" => "BlueFaction",
             "USSPFaction" => "USSPFaction",
-            _ => factionComponentValue // Если не знаем, возвращаем как есть
+            _ => factionComponentValue
         };
     }
 
@@ -149,7 +127,7 @@ public static class FactionHelper
     {
         return factionComponentValue switch
         {
-            "NanoTrasen" => FactionType.NTFaction,
+            "Nanotrasen" => FactionType.NTFaction,
             "Syndicate" => FactionType.Sindi,
             "GreenFaction" => FactionType.Green,
             "YellowFaction" => FactionType.Yellow,
@@ -160,3 +138,4 @@ public static class FactionHelper
         };
     }
 }
+

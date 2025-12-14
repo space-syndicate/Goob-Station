@@ -1,0 +1,146 @@
+# Red Faction Shop Catalog
+
+# Weapons
+- type: listing
+  id: FactionLecterRed
+  name: lecter
+  description: lecter-desc
+  productEntity: WeaponRifleLecter
+  cost:
+    RedFactionPoints: 120
+  categories:
+  - RedWeapons
+
+- type: listing
+  id: FactionDrozdRed
+  name: drozd
+  description: drozd-desc
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    RedFactionPoints: 90
+  categories:
+  - RedWeapons
+
+- type: listing
+  id: FactionL6Red
+  name: l6-saw
+  description: l6-saw-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    RedFactionPoints: 200
+  categories:
+  - RedWeapons
+
+- type: listing
+  id: FactionAKMSRed
+  name: akms
+  description: akms-desc
+  productEntity: WeaponRifleAk
+  cost:
+    RedFactionPoints: 100
+  categories:
+  - RedWeapons
+
+# Ammo
+- type: listing
+  id: FactionAmmoLightRifleRed
+  name: ammo-light-rifle
+  description: ammo-light-rifle-desc
+  productEntity: MagazineLightRifle
+  cost:
+    RedFactionPoints: 15
+  categories:
+  - RedAmmo
+
+- type: listing
+  id: FactionAmmoSMGRed
+  name: ammo-smg
+  description: ammo-smg-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    RedFactionPoints: 12
+  categories:
+  - RedAmmo
+
+- type: listing
+  id: FactionAmmoL6BeltRed
+  name: ammo-l6-belt
+  description: ammo-l6-belt-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    RedFactionPoints: 40
+  categories:
+  - RedAmmo
+
+# Armor
+- type: listing
+  id: FactionArmorBulletproofRed
+  name: faction-armor-bulletproof
+  description: faction-armor-bulletproof-desc
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    RedFactionPoints: 120
+  categories:
+  - RedTools
+
+- type: listing
+  id: FactionArmorRiotRed
+  name: faction-armor-riot
+  description: faction-armor-riot-desc
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    RedFactionPoints: 140
+  categories:
+  - RedTools
+
+- type: listing
+  id: FactionArmorWebRed
+  name: faction-armor-web
+  description: faction-armor-web-desc
+  productEntity: ClothingOuterVestWeb
+  cost:
+    RedFactionPoints: 100
+  categories:
+  - RedTools
+
+# Medical
+- type: listing
+  id: FactionMedkitRed
+  name: faction-medkit
+  description: faction-medkit-desc
+  productEntity: Medkit
+  cost:
+    RedFactionPoints: 40
+  categories:
+  - RedMedical
+
+- type: listing
+  id: FactionGauzeRed
+  name: faction-gauze
+  description: faction-gauze-desc
+  productEntity: Gauze
+  cost:
+    RedFactionPoints: 8
+  categories:
+  - RedMedical
+
+- type: listing
+  id: FactionOintmentRed
+  name: faction-ointment
+  description: faction-ointment-desc
+  productEntity: Ointment
+  cost:
+    RedFactionPoints: 8
+  categories:
+  - RedMedical
+
+- type: listing
+  id: FactionBruisePackRed
+  name: faction-bruise-pack
+  description: faction-bruise-pack-desc
+  productEntity: Brutepack
+  cost:
+    RedFactionPoints: 10
+  categories:
+  - RedMedical
+

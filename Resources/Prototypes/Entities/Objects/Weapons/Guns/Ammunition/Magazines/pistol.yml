@@ -12,6 +12,7 @@
     whitelist:
       tags:
         - CartridgePistol
+        - CartridgePistolRubberOnly #Imperial Space allow rubber-only pistol rounds
     capacity: 10
   - type: Item
     size: Small
@@ -45,6 +46,7 @@
     whitelist:
       tags:
         - CartridgePistol
+        - CartridgePistolRubberOnly #Imperial Space allow rubber-only pistol rounds
     capacity: 16
   - type: Item
     size: Small
