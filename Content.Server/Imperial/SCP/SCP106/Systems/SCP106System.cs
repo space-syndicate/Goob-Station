@@ -49,6 +49,7 @@ using Content.Server.Chat.Managers;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+using Robust.Shared.GameObjects;
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed class SCP106System : EntitySystem
@@ -80,6 +81,7 @@ public sealed class SCP106System : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedGodmodeSystem _godmode = default!;
     [Dependency] private readonly SleepingSystem _sleep = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -110,8 +112,9 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
 {
     var mapCoords = coords.ToMap(EntityManager, _transform);
     var radius = 1f;
-    foreach (var mob in EntityQuery<MobStateComponent>())
+    foreach (var mobd in _lookup.GetEntitiesInRange<MobStateComponent>(coords, radius))
     {
+        var mob = mobd.Comp;
         var mobUid = mob.Owner;
         if (mobUid == scp)
             continue;
@@ -165,7 +168,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             if (curTime >= stun.StunEnd)
             {
                 if (!TryComp<SCP106PuddleComponent>(stun.Puddle, out var puddl))
-                    return;
+                    continue;
                 TeleportEntity(stun.Puddle, stun.Owner, puddl.TargetMap, puddl.GlobalTeleportSound, puddl.DamagePerSecond);
                 var duration = TimeSpan.FromSeconds(5);
                 _blindableSystem.UpdateIsBlind(stun.Owner);
@@ -545,7 +548,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             var newscp = EnsureComp<SCP106Component>(newb);
             if (!TryComp<DamageableComponent>(newb, out var newdmgable))
                 return;
-            _damageable.SetDamage(newb, newdmgable, dmgable.Damage);
+            _damageable.SetDamage(newb, dmgable.Damage);
             var id = mind.UserId;
             newscp.InDimension = true;
             _actions.AddAction(newb,
@@ -578,7 +581,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             var id = mind.UserId;
             if (!TryComp<DamageableComponent>(newb, out var newdmgable))
                 return;
-            _damageable.SetDamage(newb, newdmgable, dmgable.Damage);
+            _damageable.SetDamage(newb, dmgable.Damage);
             newscp.InDimension = false;
             _actions.AddAction(newb,
                 ref newscp.PuddleSpawnActionEntity,
@@ -614,7 +617,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             var id = mind.UserId;
             if (!TryComp<DamageableComponent>(newb, out var newdmgable))
                 return;
-            _damageable.SetDamage(newb, newdmgable, dmgable.Damage);
+            _damageable.SetDamage(newb, dmgable.Damage);
             newscp.InDimension = false;
             _actions.AddAction(newb,
                 ref newscp.PuddleExitDimensionEntity,
@@ -662,7 +665,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             var id = mind.UserId;
             if (!TryComp<DamageableComponent>(newb, out var newdmgable))
                 return;
-            _damageable.SetDamage(newb, newdmgable, dmgable.Damage);
+            _damageable.SetDamage(newb, dmgable.Damage);
             newscp.InDimension = true;
             _actions.AddAction(newb,
                 ref newscp.PuddleSpawnActionEntity,
@@ -702,7 +705,7 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             return false;
         }
         var grid = Comp<MapGridComponent>(gridUid);
-        var gridEnt = new Entity<MapGridComponent>(gridUid, Comp<MapGridComponent>(gridUid));
+        var gridEnt = new Entity<MapGridComponent>(gridUid, grid);
         var tile = _mapSystem.GetTileRef(gridEnt, coords);
         if (tile.Tile.IsEmpty)
         {
@@ -872,7 +875,6 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
                 args.Performer,
                 args.Performer,
                 PopupType.MediumCaution);
-            args.Handled = true;
             return;
         }
         if (scp.Puddles.Contains(target))
@@ -880,5 +882,6 @@ private bool IsTooCloseToWeakling(EntityCoordinates coords, EntityUid scp)
             scp.Puddles.Remove(target);
             QueueDel(target);
         }
+        args.Handled = true;
     }
 }
