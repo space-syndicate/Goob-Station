@@ -199,13 +199,6 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 uiController.PopOut();
             };
-            // imperial space: добавление кнопки "Правила" Start
-            Rules.OnPressed += _ =>
-            {
-                var window = new RulesAndInfoWindow();
-                window.OpenCentered();
-            };
-            // imperial space: добавление кнопки "Правила" End
         }
 
         public void OnBwoink(NetUserId channel)

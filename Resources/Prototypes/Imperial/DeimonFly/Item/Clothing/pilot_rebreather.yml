@@ -1,0 +1,6 @@
+- type: entity
+  parent: ClothingMaskRebreatherBrigmedic
+  id: ClothingMaskRebreatherPilotTDM
+  name: pilot respirator
+  description: A respirator adapted for pilot sorties, keeping you breathing and a bit safer during hazardous maneuvers.
+  suffix: space battle, DeimonFly

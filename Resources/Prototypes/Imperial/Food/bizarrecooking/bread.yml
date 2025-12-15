@@ -8,7 +8,7 @@
     flavors:
       - terrible
       - slimy
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: Imperial/Food/Bizarre/BizarreCookingFood/bread.rsi
     layers:
@@ -33,7 +33,7 @@
     flavors:
       - terrible
       - slimy
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: Imperial/Food/Bizarre/BizarreCookingFood/bread.rsi
     layers:
@@ -57,7 +57,7 @@
       - terrible
       - slimy
       - metallic
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: Imperial/Food/Bizarre/BizarreCookingFood/bread.rsi
     layers:
@@ -83,7 +83,7 @@
       - terrible
       - slimy
       - metallic
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: Imperial/Food/Bizarre/BizarreCookingFood/bread.rsi
     layers:

@@ -154,7 +154,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             return;
         }
 
-        var ev = new BeforeStaminaDamageOnTriggerEvent();
+        var ev = new StaminaDamageOnHitAttemptEvent();
         RaiseLocalEvent(uid, ref ev);
         if (ev.Cancelled)
             return;
@@ -214,7 +214,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (!HasComp<StaminaComponent>(target))
             return;
 
-        var ev = new BeforeStaminaDamageOnTriggerEvent();
+        var ev = new StaminaDamageOnHitAttemptEvent();
         RaiseLocalEvent(uid, ref ev);
         if (ev.Cancelled)
             return;
@@ -442,7 +442,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         {
             var key = thres.Key.Float();
 
-            if (ent.Comp.StaminaDamage >= key && key > closest && closest < ent.Comp.CritThreshold)
+            if ((ent.Comp.StaminaDamage / ent.Comp.CritThreshold) >= key && key > closest && closest < 1f)
                 closest = thres.Key;
         }
 

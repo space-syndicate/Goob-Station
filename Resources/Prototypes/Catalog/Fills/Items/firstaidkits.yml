@@ -4,14 +4,16 @@
   suffix: Filled
   parent: Medkit
   components:
-  - type: StorageFill
-    contents:
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
-      - id: PillCanisterTricordrazine
-      - id: AmpulaTric # imperial hardsuit injection
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Ointment
+        - id: Gauze
+        - id: PillCanisterTricordrazine
+        - id: AmpulaTric # imperial hardsuit injection
+          amount: 2
       # see https://github.com/tgstation/blob/master/code/game/objects/items/storage/firstaid.dm for example contents
 
 - type: entity
@@ -19,109 +21,124 @@
   suffix: Filled
   parent: MedkitBurn
   components:
-  - type: StorageFill
-    contents:
-      - id: Ointment
-        amount: 2
-      - id: PillCanisterKelotane
-      - id: PillCanisterDermaline
-      - id: AmpulaDerm # imperial hardsuit injection
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Ointment
+          amount: 2
+        - id: PillCanisterKelotane
+        - id: PillCanisterDermaline
+        - id: AmpulaDerm # imperial hardsuit injection
+          amount: 2
 
 - type: entity
   id: MedkitBruteFilled
   suffix: Filled
   parent: MedkitBrute
   components:
-  - type: StorageFill
-    contents:
-      - id: Brutepack
-      - id: Gauze
-      - id: PillCanisterIron
-      - id: PillCanisterCopper
-      - id: AmpulaBica # imperial hardsuit injection
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Gauze
+        - id: PillCanisterIron
+        - id: PillCanisterCopper
+        - id: AmpulaBica # imperial hardsuit injection
+          amount: 2
 
 - type: entity
   id: MedkitToxinFilled
   suffix: Filled
   parent: MedkitToxin
   components:
-  - type: StorageFill
-    contents:
-      - id: SyringeIpecac
-      - id: SyringeEthylredoxrazine
-      - id: AntiPoisonMedipen
-      - id: PillCanisterDylovene
-      - id: PillCanisterCharcoal
-      - id: AmpulaDylo # imperial hardsuit injection
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyringeIpecac
+        - id: SyringeEthylredoxrazine
+        - id: AntiPoisonMedipen
+        - id: PillCanisterDylovene
+        - id: PillCanisterCharcoal
+        - id: AmpulaDylo # imperial hardsuit injection
+          amount: 2
 
 - type: entity
   id: MedkitOxygenFilled
   suffix: Filled
   parent: MedkitO2
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingMaskBreathMedical
-      - id: EmergencyOxygenTankFilled
-      - id: EmergencyMedipen
-      - id: SyringeInaprovaline
-      - id: PillCanisterDexalin
-      - id: AmpulaDexa # imperial hardsuit injection
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SyringeInaprovaline
+        - id: PillCanisterDexalin
+        - id: AmpulaDexa # imperial hardsuit injection
+          amount: 2
 
 - type: entity
   id: MedkitRadiationFilled
   suffix: Filled
   parent: MedkitRadiation
   components:
-  - type: StorageFill
-    contents:
-      - id: SyringePhalanximine
-      - id: RadAutoInjector
-      - id: PillCanisterPotassiumIodide
-      - id: PillCanisterHyronalin
-      - id: AmpulaHyro # imperial hardsuit injection
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyringePhalanximine
+        - id: RadAutoInjector
+        - id: PillCanisterPotassiumIodide
+        - id: PillCanisterHyronalin
+        - id: AmpulaHyro # imperial hardsuit injection
+          amount: 2
 
 - type: entity
   id: MedkitAdvancedFilled
   suffix: Filled
   parent: MedkitAdvanced
   components:
-  - type: StorageFill
-    contents:
-      - id: MedicatedSuture
-      - id: RegenerativeMesh
-      - id: Bloodpack
-        amount: 2
-      - id: AmpulaBica # imperial hardsuit injection
-        amount: 1
-      - id: AmpulaDerm # imperial hardsuit injection
-        amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: Bloodpack
+          amount: 2
+        - id: AmpulaBica # imperial hardsuit injection
+          amount: 1
+        - id: AmpulaDerm # imperial hardsuit injection
+          amount: 1
 
 - type: entity
   id: MedkitCombatFilled
   suffix: Filled
   parent: MedkitCombat
   components:
-  - type: StorageFill
-    contents:
-      - id: MedicatedSuture
-      - id: RegenerativeMesh
-      - id: SyringeEphedrine
-      - id: SyringeSaline
-      - id: BruteAutoInjector
-      - id: BurnAutoInjector
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: SyringeEphedrine
+        - id: SyringeSaline
+        - id: BruteAutoInjector
+        - id: BurnAutoInjector
 
 - type: entity
   id: StimkitFilled
   suffix: Stimkit, Filled
   parent: Medkit
   components:
-  - type: StorageFill
-    contents:
-      - id: StimpackMini
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: StimpackMini
         amount: 6

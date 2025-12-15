@@ -67,3 +67,11 @@
   category: construction-category-utilities
   objectType: Item
   description: Космические грузчики повторяют судьбу уборщиков. # Imperial Recipes Locale
+
+- type: construction
+  id: hugbot
+  graph: HugBot
+  startNode: start
+  targetNode: bot
+  category: construction-category-utilities
+  objectType: Item

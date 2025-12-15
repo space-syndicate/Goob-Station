@@ -1,0 +1,2 @@
+license: This content is under ICLA. Copyright holder: pups2004 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+copyright: "pups2004 (discord)"

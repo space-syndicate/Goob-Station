@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Radiation.Components;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory.Events;
 
