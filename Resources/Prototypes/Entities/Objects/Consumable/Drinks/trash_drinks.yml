@@ -15,11 +15,6 @@
     tags:
     - DrinkBottle
     - Trash
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 100
-  - type: SpaceGarbage
-  - type: DnaSubstanceTrace
   - type: Trash # Imperial "OperationalErtCleaners"
     size: Medium # Imperial "OperationalErtCleaners"
 
@@ -36,10 +31,6 @@
     tags:
     - DrinkBottle
     - Trash
-  - type: PhysicalComposition
-    materialComposition:
-      Cardboard: 20
-  - type: SpaceGarbage
   - type: Trash # Imperial "OperationalErtCleaners"
     size: Medium # Imperial "OperationalErtCleaners"
 

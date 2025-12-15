@@ -1,0 +1,146 @@
+# Sindi Faction Shop Catalog
+
+# Weapons
+- type: listing
+  id: FactionLecterSindi
+  name: lecter
+  description: lecter-desc
+  productEntity: WeaponRifleLecter
+  cost:
+    SindiFactionPoints: 120
+  categories:
+  - SindiWeapons
+
+- type: listing
+  id: FactionDrozdSindi
+  name: drozd
+  description: drozd-desc
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    SindiFactionPoints: 90
+  categories:
+  - SindiWeapons
+
+- type: listing
+  id: FactionL6Sindi
+  name: l6-saw
+  description: l6-saw-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    SindiFactionPoints: 200
+  categories:
+  - SindiWeapons
+
+- type: listing
+  id: FactionAKMSSindi
+  name: akms
+  description: akms-desc
+  productEntity: WeaponRifleAk
+  cost:
+    SindiFactionPoints: 100
+  categories:
+  - SindiWeapons
+
+# Ammo
+- type: listing
+  id: FactionAmmoLightRifleSindi
+  name: ammo-light-rifle
+  description: ammo-light-rifle-desc
+  productEntity: MagazineLightRifle
+  cost:
+    SindiFactionPoints: 15
+  categories:
+  - SindiAmmo
+
+- type: listing
+  id: FactionAmmoSMGSindi
+  name: ammo-smg
+  description: ammo-smg-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    SindiFactionPoints: 12
+  categories:
+  - SindiAmmo
+
+- type: listing
+  id: FactionAmmoL6BeltSindi
+  name: ammo-l6-belt
+  description: ammo-l6-belt-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    SindiFactionPoints: 40
+  categories:
+  - SindiAmmo
+
+# Armor
+- type: listing
+  id: FactionArmorBulletproofSindi
+  name: faction-armor-bulletproof
+  description: faction-armor-bulletproof-desc
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    SindiFactionPoints: 120
+  categories:
+  - SindiTools
+
+- type: listing
+  id: FactionArmorRiotSindi
+  name: faction-armor-riot
+  description: faction-armor-riot-desc
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    SindiFactionPoints: 140
+  categories:
+  - SindiTools
+
+- type: listing
+  id: FactionArmorWebSindi
+  name: faction-armor-web
+  description: faction-armor-web-desc
+  productEntity: ClothingOuterVestWeb
+  cost:
+    SindiFactionPoints: 100
+  categories:
+  - SindiTools
+
+# Medical
+- type: listing
+  id: FactionMedkitSindi
+  name: faction-medkit
+  description: faction-medkit-desc
+  productEntity: Medkit
+  cost:
+    SindiFactionPoints: 40
+  categories:
+  - SindiMedical
+
+- type: listing
+  id: FactionGauzeSindi
+  name: faction-gauze
+  description: faction-gauze-desc
+  productEntity: Gauze
+  cost:
+    SindiFactionPoints: 8
+  categories:
+  - SindiMedical
+
+- type: listing
+  id: FactionOintmentSindi
+  name: faction-ointment
+  description: faction-ointment-desc
+  productEntity: Ointment
+  cost:
+    SindiFactionPoints: 8
+  categories:
+  - SindiMedical
+
+- type: listing
+  id: FactionBruisePackSindi
+  name: faction-bruise-pack
+  description: faction-bruise-pack-desc
+  productEntity: Brutepack
+  cost:
+    SindiFactionPoints: 10
+  categories:
+  - SindiMedical
+

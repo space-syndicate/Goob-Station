@@ -22,6 +22,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Content.Server.Mind;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Chat;
 
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;

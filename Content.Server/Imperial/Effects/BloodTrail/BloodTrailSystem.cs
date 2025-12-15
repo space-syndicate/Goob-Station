@@ -1,6 +1,7 @@
 using Content.Server.Decals;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Decals;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -8,6 +9,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq;
 using System.Numerics;
 
 namespace Content.Server.Imperial.BloodTrail
@@ -161,11 +163,9 @@ namespace Content.Server.Imperial.BloodTrail
 
         private Color GetBloodColor(EntityUid victim)
         {
-            if (TryComp<BloodstreamComponent>(victim, out var bloodstream) &&
-                _prototype.TryIndex(bloodstream.BloodReagent, out var reagent))
-                return reagent.SubstanceColor;
+            TryComp<BloodstreamComponent>(victim, out var bloodstream);
 
-            return Color.DarkRed;
+            return bloodstream?.BloodReagents?.GetColor(_prototype) ?? Color.DarkRed;
         }
 
         private (Vector2 position, Angle rotation) CalculateDecalPositionAndRotation(Vector2 victimWorldPos, EntityUid? damageSource, float spread)

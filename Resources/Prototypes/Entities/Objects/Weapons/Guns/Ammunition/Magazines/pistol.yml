@@ -12,6 +12,7 @@
     whitelist:
       tags:
         - CartridgePistol
+        - CartridgePistolRubberOnly #Imperial Space allow rubber-only pistol rounds
     capacity: 10
   - type: Item
     size: Small
@@ -45,6 +46,7 @@
     whitelist:
       tags:
         - CartridgePistol
+        - CartridgePistolRubberOnly #Imperial Space allow rubber-only pistol rounds
     capacity: 16
   - type: Item
     size: Small
@@ -103,6 +105,8 @@
   parent: [ BaseItem, BaseSecurityContraband ]
   description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition.
   components:
+  - type: Item
+    storedRotation: 90
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunTopMounted
@@ -351,9 +355,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
-    whitelist:
-      tags:
-        - CartridgePistol
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite

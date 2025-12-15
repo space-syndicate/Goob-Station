@@ -135,3 +135,15 @@
   values:
     prefix: names-NamesEta10scpCom-
     count: 50
+
+- type: localizedDataset
+  id: NamesUpsilon11scp
+  values:
+    prefix: names-NamesUpsilon11scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesUpsilon11scpCom
+  values:
+    prefix: names-NamesUpsilon11scpCom-
+    count: 50
