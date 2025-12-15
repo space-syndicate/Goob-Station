@@ -48,6 +48,7 @@ using Content.Shared.Chat;
 using Content.Server.Chat.Managers;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed class SCP106System : EntitySystem
