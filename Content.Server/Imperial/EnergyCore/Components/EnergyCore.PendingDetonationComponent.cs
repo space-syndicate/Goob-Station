@@ -16,25 +16,25 @@ namespace Content.Server.Imperial.EnergyCore.Components;
 public sealed partial class EnergyCorePendingDetonationComponent : Component
 {
     // Время до детонации ядра при расплавлении
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan DetonationTime = TimeSpan.FromSeconds(300f); // 5 минут
 
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan MusicTime = TimeSpan.Zero;
 
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public bool PlayedMusic = false;
 
     // Музыка детонации.
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier MeltdownMusic = new SoundPathSpecifier("/Audio/Imperial/level.ogg"); // Я хрен знает под какой лицензией распространяется Trumped Up Charges
 
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier BackgroundSiren = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/background_siren.ogg");
 
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier CoreAmbience2 = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/CoreAmbience/coreambience_2.ogg");
 
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier CoreAmbience3 = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/CoreAmbience/coreambience_3.ogg");
 }

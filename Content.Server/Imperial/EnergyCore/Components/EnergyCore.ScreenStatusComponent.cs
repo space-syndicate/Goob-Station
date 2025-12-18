@@ -8,10 +8,10 @@ namespace Content.Server.Imperial.EnergyCore.Components
     [RegisterComponent]
     public sealed partial class CoreStatusScreenComponent : Component
     {
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public CoreStatus ScreenStatus = CoreStatus.OFFLINE;
 
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public byte SpriteStatus = 0;
     }
 }

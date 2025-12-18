@@ -6,7 +6,7 @@ namespace Content.Server.Imperial.EnergyCore.Components
     [RegisterComponent]
     public sealed partial class CoreGeneratorComponent : Component
     {
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public float EnergyOutput = 0f;
 
         [DataField("energyCoefficient")]
