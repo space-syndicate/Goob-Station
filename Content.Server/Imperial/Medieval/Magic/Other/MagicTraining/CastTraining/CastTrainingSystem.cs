@@ -1,8 +1,6 @@
 using Content.Shared.Imperial.Medieval.Magic;
 using Robust.Shared.Random;
 using Content.Shared.EntityEffects;
-using System.Linq;
-
 
 namespace Content.Server.Imperial.Medieval.Magic.MagicTraining.CastTraining;
 
@@ -13,6 +11,8 @@ namespace Content.Server.Imperial.Medieval.Magic.MagicTraining.CastTraining;
 public sealed partial class CastTrainingSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
+
 
     public override void Initialize()
     {
@@ -25,14 +25,9 @@ public sealed partial class CastTrainingSystem : EntitySystem
     {
         foreach (var trainingResult in component.TrainingResults)
         {
-            var magicEntityEffectsArgs = new MagicEntityEffectsArgs(args.Performer, args.Performer, uid, EntityManager);
-            var canApplyTrainingResult = trainingResult.Conditions?.Aggregate(true, (acc, cond) => acc && cond.Condition(magicEntityEffectsArgs)) ?? true;
+            if (!_random.Prob(trainingResult.Probability)) continue;
 
-            if (
-                canApplyTrainingResult &&
-                _random.Prob(trainingResult.Probability)
-            )
-                trainingResult.Effect(magicEntityEffectsArgs);
+            _entityEffectsSystem.TryApplyEffect(args.Performer, trainingResult, user: args.Performer);
         }
     }
 }

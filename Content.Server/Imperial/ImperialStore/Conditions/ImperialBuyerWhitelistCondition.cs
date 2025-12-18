@@ -26,7 +26,7 @@ public sealed partial class ImperialBuyerWhitelistCondition : ImperialListingCon
         var whitelistSystem = ent.System<EntityWhitelistSystem>();
 
         if (whitelistSystem.IsWhitelistFail(Whitelist, args.Buyer) ||
-            whitelistSystem.IsBlacklistPass(Blacklist, args.Buyer))
+            whitelistSystem.IsWhitelistPass(Blacklist, args.Buyer))
             return false;
 
         return true;

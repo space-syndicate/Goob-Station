@@ -7,6 +7,7 @@
     - type: Tag
       tags:
       - SCP
+      - FootstepSound
     - type: TriggerOnMobstateChange
       mobState:
       - Dead
@@ -45,6 +46,9 @@
         gender: male
     - type: StaminaResistance
       damageCoefficient: 0.3
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepSCPMTF
 
 - type: entity
   name: Ded
@@ -165,9 +169,6 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3
-    - type: Tag
-      tags:
-      - DoorBumpOpener
     - type: Access
       tags:
       - SCPAccesOne
@@ -206,7 +207,7 @@
       - reagents: [ Water, SpaceCleaner ]
         methods: [ Touch ]
         effects:
-        - !type:WashCreamPieReaction
+        - !type:WashCreamPie
       - reagents: [ Water ]
         methods: [ Touch ]
         effects:
@@ -403,9 +404,6 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.5
       baseSprintSpeed: 3
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Imperial/Seriozha/SCP/doc.ogg
     - type: Loadout
       prototypes: [ ImperialDocGear ]
     - type: Hands

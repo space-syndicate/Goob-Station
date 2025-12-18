@@ -212,7 +212,7 @@ public sealed partial class MedievalMagicSystem
             args.Seed = args.Seed.HasValue ? args.Seed : args.Seed * i;
 
             if (target.HasValue)
-                args.LightningCollideEffects.ForEach(effect => effect.Effect(new EntityEffectBaseArgs(target.Value, EntityManager)));
+                _entityEffects.ApplyEffects(target.Value, args.LightningCollideEffects, user: target.Value);
 
             SpawnLightning(performerCoords, targetCoords.Position, args);
 

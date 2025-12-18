@@ -6,7 +6,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Imperial.Abilities.Urs.Components;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Fluids.Components;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Imperial.Abilities.Urs.Systems
 {

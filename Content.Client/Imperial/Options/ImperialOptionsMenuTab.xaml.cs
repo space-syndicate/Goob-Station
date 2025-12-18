@@ -350,9 +350,9 @@ public sealed partial class ImperialOptionsMenuTab : Control
                 HorizontalAlignment = HAlignment.Left
             };
 
-            BindButton1 = new BindButton(parent, this, StyleBase.ButtonOpenRight);
-            BindButton2 = new BindButton(parent, this, StyleBase.ButtonOpenLeft);
-            ResetButton = new Button { Text = Loc.GetString("ui-options-color-bind-save"), StyleClasses = { StyleBase.ButtonCaution } };
+            BindButton1 = new BindButton(parent, this, StyleNano.ButtonOpenRight);
+            BindButton2 = new BindButton(parent, this, StyleNano.ButtonOpenLeft);
+            ResetButton = new Button { Text = Loc.GetString("ui-options-color-bind-save"), StyleClasses = { StyleNano.ButtonCaution } };
 
             var hBox = new BoxContainer
             {
@@ -413,7 +413,7 @@ public sealed partial class ImperialOptionsMenuTab : Control
 
             SaveButton = new Button {
                 Text = Loc.GetString("ui-options-color-bind-save"),
-                StyleClasses = { StyleBase.ButtonCaution },
+                StyleClasses = { StyleNano.ButtonCaution },
                 Disabled = selectedColor == _lastValidColor
             };
 
@@ -502,11 +502,11 @@ public sealed partial class ImperialOptionsMenuTab : Control
             if (disabled)
             {
                 SaveButton.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
-                SaveButton.AddStyleClass(StyleBase.ButtonCaution);
+                SaveButton.AddStyleClass(StyleNano.ButtonCaution);
             }
             else
             {
-                SaveButton.RemoveStyleClass(StyleBase.ButtonCaution);
+                SaveButton.RemoveStyleClass(StyleNano.ButtonCaution);
                 SaveButton.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
             }
         }

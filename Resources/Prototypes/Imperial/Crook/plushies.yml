@@ -331,7 +331,7 @@
     tags:
       - Payload
       - ClothMade
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       collection: ToySqueak
@@ -363,7 +363,7 @@
   id: PlushieFumoTeto
   name: Teto
   suffix: Crook, COMMUNITY, TOY
-  description: The text on the tag reads: "Feed her a baguette and she'll sing."
+  description: "The text on the tag reads: 'Feed her a baguette and she'll sing.'"
   components:
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi

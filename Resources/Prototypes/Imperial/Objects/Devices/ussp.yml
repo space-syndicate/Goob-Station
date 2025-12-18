@@ -42,10 +42,11 @@
         enum.FaxMachineVisuals.VisualState:
           Printing: { state: printing }
           Normal: {state: idle}
-      enum.PowerCellSlotVisuals.Enabled:
+      enum.BatteryVisuals.State:
         enum.PowerDeviceVisualLayers.Powered:
-          True: { state: idle }
-          False: { state: icon }
+          Full: { visible: true }
+          Neither: { visible: true }
+          Empty: { visible: false }
   - type: PowerCellDraw
     drawRate: 1.5
   - type: ToggleCellDraw
