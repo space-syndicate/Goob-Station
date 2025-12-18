@@ -81,16 +81,18 @@ namespace Content.Server.Imperial.EnergyCore
         private void SetEnergyOutput(EntityUid uid, CoreGeneratorComponent generator, PowerSupplierComponent power)
         {
             var nearestUid = FindNearestEnergyCore(uid);
-            if (nearestUid == null)
-                power.MaxSupply = 0f;
+
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
+                generator.EnergyOutput = 0f;
+                power.MaxSupply = 0f;
                 return;
             }
+
             var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
             if (HasComp<PowerSupplierComponent>(uid))
             {
-                if (coreTemp > 0f)
+                if (coreTemp > 0f || nearestUid != null)
                 {
                     if (coreTemp > 500000f) // Ибо нехер забивать на ядро
                         generator.EnergyOutput = coreTemp / 10f;
@@ -99,10 +101,12 @@ namespace Content.Server.Imperial.EnergyCore
                     power.MaxSupply = generator.EnergyOutput;
                 }
                 else
-                    return;
+                {
+                    generator.EnergyOutput = 0f;
+                    power.MaxSupply = 0f;
+                }
             }
-            else
-                return;
+            else generator.EnergyOutput = 0f;
         }
 
         public override void Update(float frameTime)
@@ -112,13 +116,13 @@ namespace Content.Server.Imperial.EnergyCore
             var enumerator = EntityQueryEnumerator<CoreGeneratorComponent, PowerSupplierComponent, TransformComponent>();
             while (enumerator.MoveNext(out var uid, out var comp, out var powr, out _))
             {
+                SetEnergyOutput(uid, comp, powr);
                 var nearestUid = FindNearestEnergyCore(uid);
                 if (nearestUid == null ||
                     !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
                     continue;
 
                 var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
-                SetEnergyOutput(uid, comp, powr);
             }
         }
 

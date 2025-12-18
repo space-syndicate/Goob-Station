@@ -17,14 +17,10 @@ public sealed partial class EnergyCorePendingDetonationComponent : Component
 {
     // Время до детонации ядра при расплавлении
     [DataField]
-    public TimeSpan DetonationTime = TimeSpan.FromSeconds(300f); // 7 минут
+    public TimeSpan DetonationTime = TimeSpan.FromSeconds(300f); // 5 минут
 
     [DataField]
     public TimeSpan MusicTime = TimeSpan.Zero;
-
-    // Не знаю почему, но время рассчитывается не совсем правильно. Надо вручную подгонять и добавлять доп. время
-    [DataField]
-    public TimeSpan MusicTimeDelay = TimeSpan.FromSeconds(125f);
 
     [DataField]
     public bool PlayedMusic = false;

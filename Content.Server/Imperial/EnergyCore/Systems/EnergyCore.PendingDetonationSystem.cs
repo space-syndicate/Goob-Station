@@ -66,14 +66,14 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
     {
         var sound = _audio.ResolveSound(component.MeltdownMusic);
         var audioLength = _audio.GetAudioLength(sound).TotalSeconds;
-        component.MusicTime = _timing.CurTime + TimeSpan.FromSeconds(audioLength) + component.MusicTimeDelay; //TimeSpan.FromSeconds(210f); // Компенсация задержки
+        component.MusicTime = component.DetonationTime - TimeSpan.FromSeconds(audioLength);
     }
     private void AnnounceCatastroph(EntityUid uid, EnergyCorePendingDetonationComponent component)
     {
         var station = _stationSystem.GetOwningStation(uid);
         if (station != null)
         {
-            _alertLevel.SetLevel(station.Value, "lambda", true, true, true);
+            _alertLevel.SetLevel(station.Value, "lambda", true, true, true, false);
         }
         if (HasComp<AmbientSoundComponent>(uid))
             _ambientSound.SetSound(uid, component.CoreAmbience2);

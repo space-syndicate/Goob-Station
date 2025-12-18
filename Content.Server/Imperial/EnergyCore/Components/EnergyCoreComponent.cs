@@ -52,6 +52,10 @@ public sealed partial class EnergyCoreComponent : Component
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public bool AnnouncedProtocol = false;
 
+    // Объявление при критически высокой температуре
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public bool AnnounceReady = true;
+
     // Определение enum для света
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public CoreStatusColorVisual CoreColorEnum = CoreStatusColorVisual.OFFLINE;
@@ -79,6 +83,10 @@ public sealed partial class EnergyCoreComponent : Component
     // Радиус света
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float CoreColorRadius = 10f;
+
+    // Предупреждение о критическом перегреве
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public SoundSpecifier CriticalHighAnnounce = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/core-criticalhigh.ogg");
 
     // Базовый эмбиент ядра
     [DataField, ViewVariables(VVAccess.ReadOnly)]

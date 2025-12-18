@@ -149,10 +149,13 @@
   name: core window
   parent: PlastitaniumWindow
   suffix: EnergyCore
+  components:
+  - type: CoreShielding
 
 - type: entity
   id: CoreWindowDiagonal
   name: core window diagonal
   parent: PlastitaniumWindowDiagonal
   suffix: EnergyCore
-  ## Стены сделаны на будущее
+  components:
+  - type: CoreShielding

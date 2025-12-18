@@ -12,25 +12,28 @@ using Color = Robust.Shared.Maths.Color;
 using Content.Server.AlertLevel;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
+using Content.Server.Audio;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Chat.Systems;
-using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore.Components;
+using System.Xml;
 
 namespace Content.Server.Imperial.EnergyCore;
 
-public sealed class EnergyCoreSystem : EntitySystem
+public sealed partial class EnergyCoreSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ServerGlobalSoundSystem _sound = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -107,7 +110,10 @@ public sealed class EnergyCoreSystem : EntitySystem
             case CoreStatus.HIGH: // Статус ядра: Высокая температура
                 UpdateLightVisual(uid, "#fbff11ff", 12f, 4f);
                 if (core.CoreTemp > 800000f)
+                {
                     core.Status = CoreStatus.CRITICALHIGH;
+                    SendCriticalAnnounce(uid, core); // Сообщение
+                }
                 if (core.CoreTemp < 600000f)
                     core.Status = CoreStatus.MODERATE;
                 break;
@@ -136,10 +142,25 @@ public sealed class EnergyCoreSystem : EntitySystem
                 break;
         }
     }
+    private void SendCriticalAnnounce(EntityUid uid, EnergyCoreComponent core)
+    {
+        if(core.AnnounceReady)
+        {
+            var station = _stationSystem.GetOwningStation(uid);
+            if (station != null)
+            {
+                _chatSystem.DispatchStationAnnouncement(station.Value,
+                Loc.GetString("energycore-critical-high-announce"), Loc.GetString("energy-department"),
+                playDefaultSound: false, colorOverride: Color.DarkSalmon);
+                _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(core.CriticalHighAnnounce));
+                core.AnnounceReady = false;
+            }
+        }
+    }
     private void UpdateLightVisual(EntityUid uid, string coreColor, float coreColorRadius, float coreColorEnergy)
     {
         var color = Color.FromHex(coreColor);
-        if (TryComp<PointLightComponent>(uid, out var light)) ;
+        if (TryComp<PointLightComponent>(uid, out var light));
         {
             _pointLight.SetColor(uid, color, light);
             _pointLight.SetRadius(uid, coreColorRadius);
@@ -240,7 +261,7 @@ public sealed class EnergyCoreSystem : EntitySystem
                 _alertLevel.SetLevel(station.Value, "red", true, true, true);
                 _chatSystem.DispatchStationAnnouncement(station.Value,
                 Loc.GetString("energycore-protocol-deactivated"), Loc.GetString("energy-department"),
-                playDefaultSound: true, colorOverride: Color.Red);
+                playDefaultSound: false, colorOverride: Color.Red);
             }
         }
 
@@ -252,7 +273,7 @@ public sealed class EnergyCoreSystem : EntitySystem
         var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
 
         EntityUid? nearest = null;
-        var minDist = float.MaxValue;
+        var minDist = 30f;//float.MaxValue;
 
         var enumerator = EntityQueryEnumerator<CoreAccessComputerComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out _, out var transComp))
@@ -313,4 +334,48 @@ public sealed class EnergyCoreSystem : EntitySystem
             UpdateDataFromTerminal(uid, cormp);
         }
     }
+    #region public API
+
+    public void RestoreCore(EntityUid uid, bool announce, EnergyCoreComponent? core = null)
+    {
+        if (!Resolve(uid, ref core))
+            return;
+
+        _metaData.SetEntityName(uid, Loc.GetString("energycore-name"));
+        _metaData.SetEntityDescription(uid, Loc.GetString("energycore-desc"));
+        _ambientSound.SetSound(uid, core.CoreAmbience1);
+
+        core.CoreTemp = 0;
+        core.Status = CoreStatus.OFFLINE;
+
+        if (!core.IsSafeProtocolActive && core.AnnouncedProtocol)
+        {
+            core.IsSafeProtocolActive = true;
+            core.AnnouncedProtocol = false;
+        }
+
+        if (TryComp(uid, out EnergyCorePendingDetonationComponent? pending))
+            RemComp(uid, pending);
+
+        if (announce)
+        {
+            var station = _stationSystem.GetOwningStation(uid);
+            if (station != null)
+            {
+                _alertLevel.SetLevel(station.Value, "green", true, true, true);
+                _chatSystem.DispatchStationAnnouncement(station.Value,
+                Loc.GetString("energycore-have-a-good-day"), Loc.GetString("energy-department"),
+                playDefaultSound: false, colorOverride: Color.DarkSalmon);
+            }
+        }
+    }
+    public void Corearm(EntityUid uid, EnergyCoreComponent? core = null)
+    {
+        if (!Resolve(uid, ref core))
+            return;
+
+        core.IsSafeProtocolActive = false;
+        core.CoreTemp = 1010000f;
+    }
+    #endregion
 }

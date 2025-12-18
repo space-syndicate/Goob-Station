@@ -1,6 +1,7 @@
 using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.EnergyCore
+// События ядра
 {
     public sealed class CoreCompromisedEvent : EntityEventArgs
     {
@@ -8,5 +9,13 @@ namespace Content.Server.Imperial.EnergyCore
     public sealed class CoreDetonatedEvent : EntityEventArgs
     {
         public EntityUid? OwningStation;
+    }
+// Команды
+    public sealed class Corearm : EntityEventArgs
+    {
+    }
+    public sealed class CoreRecovery : EntityEventArgs
+    {
+        public bool Announce;
     }
 }

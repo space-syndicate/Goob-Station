@@ -93,6 +93,8 @@
     interfaces:
       enum.CoreTerminalUiKey.Key:
         type: CoreTerminalBoundUserInterface
+  - type: StationAiWhitelist
+    enabled: true
   - type: CoreAccessComputer
     deCodeSlot:
       name: energycore-key-slot

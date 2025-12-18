@@ -1,12 +1,13 @@
 - type: entity
   id: EnergyCore
-  name: core
-  description: cooooreee
+  name: energy core
+  description: Strong nuclear thing.
   suffix: EnergyCore
   placement:
     mode: SnapgridCenter
   components:
-  - type: EnergyCore
+  - type: EnergyCore ##Система ядра
+  - type: CoreCollision ##Коллизия ядра
   - type: Anchorable
     flags:
     - Unanchorable
@@ -14,7 +15,6 @@
   - type: IgnitionSource
     ignited: true
     temperature: 800
-  - type: SupermatterTouch ## Изначально хотел написать свой, потом подумал: зачем?
   - type: RequireProjectileTarget
     active: False
   - type: AmbientSound
@@ -44,6 +44,7 @@
   - type: Tag
     tags:
     - GhostOnlyWarp
+  - type: CargoSellBlacklist
   - type: WarpPoint
     follow: true
     location: EnergyCore

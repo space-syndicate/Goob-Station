@@ -17,14 +17,14 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,-0.5,0.4,0.3"
+          bounds: "-0.5,-0.5,0.5,0.5"
         density: 190
         mask:
         - MachineMask
         layer:
         - MachineLayer
   - type: Sprite
-    sprite: Structures/Power/power.rsi
+    sprite: Imperial/EnergyCore/Devices/generator.rsi
     state: generator
     snapCardinals: true
   - type: NodeContainer
@@ -36,7 +36,7 @@
   - type: PowerMonitoringDevice
     group: Generator
     loadNode: output
-    sprite: Structures/Power/power.rsi
+    sprite: Imperial/EnergyCore/Devices/generator.rsi
     state: generator
   - type: PowerSupplier
     supplyRampRate: 3000

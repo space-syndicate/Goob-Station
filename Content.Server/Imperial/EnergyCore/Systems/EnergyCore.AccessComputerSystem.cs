@@ -89,7 +89,7 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
 
         EntityUid? nearest = null;
-        var minDist = float.MaxValue;
+        var minDist = 30f;//float.MaxValue;
 
         var enumerator = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out _, out var transComp))
@@ -287,4 +287,17 @@ public sealed class CoreAccessComputerSystem : EntitySystem
             GetCurrTemp(uid, comp);
         }
     }
+    #region public API
+    public void ResetTerminal(EntityUid terminalUid, CoreAccessComputerComponent? terminal = null)
+    {
+        if (!Resolve(terminalUid, ref terminal))
+            return;
+
+        GetCheckTime(terminal);
+        terminal.DeactivationCompleted = false;
+        terminal.SaveProtocolWasDeactivated = false;
+        terminal.TerminalStatus = 1;
+        UpdateVisual(terminalUid, terminal);
+    }
+    #endregion
 }
