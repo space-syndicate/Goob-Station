@@ -1,5 +1,3 @@
-using Content.Shared.Whitelist;
-
 namespace Content.Shared.Imperial.Vampire
 {
     [RegisterComponent]
@@ -8,7 +6,7 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// количество урона, которое будет нанесено при соприкосновении
         /// </summary>
-        [DataField]
+        [DataField("damage")]
         public int Damage = 15;
 
         /// <summary>

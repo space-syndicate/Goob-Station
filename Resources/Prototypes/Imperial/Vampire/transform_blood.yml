@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: VampireTransformBlood
+  name: Превращение в лужу крови
+  description: Ну это превращение в лужу крови
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireBloodTransformEvent
+      costBlood: 40

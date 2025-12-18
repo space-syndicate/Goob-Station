@@ -42,6 +42,15 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Store.Components;
+using Content.Shared.DoAfter;
+using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
+using Content.Shared.Flash;
+using Content.Shared.Flash.Components;
+using Content.Shared.Camera;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Eye.Blinding.Systems;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 
 
 namespace Content.Shared.Imperial.Vampire;
@@ -73,6 +82,10 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly SharedCuffableSystem _cuff = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     public override void Initialize()
     {
@@ -88,6 +101,11 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireReconciliationEvent>(OnReconciliation);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
+        SubscribeLocalEvent<VampireBloodTransformEvent>(OnTransformToBlood);
+
+        SubscribeLocalEvent<VampireComponent, VampireShadowTrapEvent>(StartOnShadowTrap);
+        SubscribeLocalEvent<VampireComponent, VampireShadowTrapDoAfterEvent>(OnShadowTrap);
+        SubscribeLocalEvent<VampireTrapOnTriggerComponent, StartCollideEvent>(OnVampireTrap);
 
         SubscribeLocalEvent<VampireInvisibleEvent>(OnInvisible);
         SubscribeLocalEvent<VampireComponent, AttemptMeleeEvent>(OnAttemptMelee);
@@ -602,6 +620,129 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void StartOnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapEvent args)
+    {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
+        if (args.Handled)
+            return;
+
+        var (uid, vamp) = ent;
+        var user = args.Performer;
+
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                user, user, PopupType.Medium);
+            return;
+        }
+
+        var userPos = Transform(user).Coordinates;
+        var targetPos = args.Target;
+
+        if (!userPos.TryDistance(EntityManager, targetPos, out var distance) || distance > vamp.Radius)
+        {
+            _popup.PopupClient(Loc.GetString("Слишком далеко!"),
+                user, user, PopupType.Medium);
+            return;
+        }
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5f),
+            new VampireShadowTrapDoAfterEvent { TargetCoords = GetNetCoordinates(targetPos) },
+            user)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = false,
+            BlockDuplicate = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        args.Handled = true;
+    }
+
+    private void OnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        var targetPos = GetCoordinates(args.TargetCoords);
+
+        Spawn("VampireTrap", targetPos);
+
+        args.Handled = true;
+    }
+
+    private void OnVampireTrap(Entity<VampireTrapOnTriggerComponent> ent, ref StartCollideEvent args)
+    {
+        if (args.OurFixtureId != ent.Comp.FixtureId)
+            return;
+
+        _statusEffects.TryAddStatusEffect(args.OtherEntity, TemporaryBlindnessSystem.BlindingStatusEffect,
+        TimeSpan.FromSeconds(10), false, TemporaryBlindnessSystem.BlindingStatusEffect);
+
+        var dmg = new DamageSpecifier
+        {
+            DamageDict = { ["Slash"] = ent.Comp.Damage }
+        };
+        _damage.TryChangeDamage(args.OtherEntity, dmg);
+
+        _entityManager.DeleteEntity(ent.Owner);
+    }
+
+    private void OnTransformToBlood(VampireBloodTransformEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupEntity(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        if (vamp.BuffBlocked)
+        {
+            _popup.PopupEntity(Loc.GetString("Вы не можете стать лужью крови под действием бафф способностей"),
+            args.Performer, args.Performer, PopupType.LargeCaution);
+
+            return;
+        }
+
+        if (vamp.DisguiseIsActive)
+        {
+            _popup.PopupEntity(Loc.GetString("Вы уже используете способность-маскировку"),
+            args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        // устанавливаем коллизию такой, чтобы можно было проходить сквозь обьекты
+        if (TryComp<FixturesComponent>(args.Performer, out var fixtures))
+        {
+            foreach (var (id, fixture) in fixtures.Fixtures)
+            {
+                _physics.SetHard(args.Performer, fixture, false, fixtures);
+            }
+        }
+
+        var stealth = EnsureComp<StealthComponent>(args.Performer);
+        _stealth.SetVisibility(args.Performer, -2f, stealth);
+        _stealth.SetEnabled(args.Performer, true, stealth);
+
+        vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(4);
+
+        vamp.VampireIsBlood = true;
+        vamp.DisguiseIsActive = true;
+        vamp.BuffBlocked = true;
+
+        DealBloodDamage(args.Performer, args.CostBlood);
+
+        Dirty(args.Performer, vamp);
+        args.Handled = true;
+    }
+
     private void OnInvisible(VampireInvisibleEvent args)
     {
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
@@ -829,6 +970,44 @@ public sealed class VampireSystem : EntitySystem
                 Dirty(uid, vamp);
             }
         }
+
+        var bloodVamp = EntityQueryEnumerator<VampireComponent, FixturesComponent, StealthComponent>();
+        while (bloodVamp.MoveNext(out var uid, out var vamp, out var fixtures, out var stealth))
+        {
+            if (!vamp.VampireIsBlood)
+                continue;
+
+            if (vamp.NextBloodshed == TimeSpan.Zero && vamp.VampireIsBlood)
+            {
+                vamp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(1);
+                Dirty(uid, vamp);
+            }
+
+            if (_gameTiming.CurTime >= vamp.NextBloodshed && vamp.VampireIsBlood)
+            {
+                SpawnBloodPuddle(uid);
+                vamp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(0.1f);
+                Dirty(uid, vamp);
+            }
+
+            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil)
+            {
+                vamp.VampireIsBlood = false;
+                vamp.DisguiseIsActive = false;
+                vamp.BuffBlocked = false;
+
+                _stealth.SetVisibility(uid, 1f, stealth);
+                _stealth.SetEnabled(uid, false, stealth);
+
+                foreach (var (id, fixture) in fixtures.Fixtures)
+                {
+                    _physics.SetHard(uid, fixture, true, fixtures);
+                }
+
+                Dirty(uid, vamp);
+                continue;
+            }
+        }
     }
 
     public void DealGhoulBloodDamage(EntityUid uid, float damage, GhoulComponent component)
@@ -865,7 +1044,7 @@ public sealed class VampireSystem : EntitySystem
             if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
             {
                 var bloodSolution = new Solution();
-                bloodSolution.AddReagent("Blood", 50f);
+                bloodSolution.AddReagent("Blood", 10f);
 
                 _solutionSystem.TryAddSolution(solution.Value, bloodSolution);
             }

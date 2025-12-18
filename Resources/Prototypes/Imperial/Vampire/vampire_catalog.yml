@@ -205,3 +205,51 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireGOListing
+  name: Превращение в GOGOGOGOGO
+  description: Ну это превращение в летучую мышь
+  productAction: VampireGO
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireShadowTrapListing
+  name: Теневой капкан
+  description: Ну это Теневой капкан
+  productAction: VampireShadowTrapAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireTransformBloodListing
+  name: Превращение в лужу крови
+  description: Ну это превращение в лужу крови
+  productAction: VampireTransformBlood
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

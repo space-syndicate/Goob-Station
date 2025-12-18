@@ -60,7 +60,6 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
 
         SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
-
         SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
     }
 
@@ -318,7 +317,7 @@ public sealed class VampireServerSystem : EntitySystem
         var config = new PolymorphConfiguration()
         {
             Entity = "MobVampireBat",
-            Duration = null,
+            Duration = 10,
             TransferName = true,
             TransferHumanoidAppearance = false,
             TransferDamage = true,
@@ -326,11 +325,9 @@ public sealed class VampireServerSystem : EntitySystem
         };
 
         _polymorph.PolymorphEntity(args.Performer, config);
-        vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(10f);
 
         vamp.VampireIsBat = true;
         vamp.DisguiseIsActive = true;
-        vamp.BuffBlocked = true;
 
         _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
 
@@ -383,22 +380,11 @@ public sealed class VampireServerSystem : EntitySystem
             if (!vamp.VampireIsBat)
                 continue;
 
-            // проверяем, активен ли полиморф
-            var isPolymorphed = HasComp<PolymorphedEntityComponent>(uid);
-
-            if (!isPolymorphed)
+            if (!HasComp<PolymorphedEntityComponent>(uid))
             {
                 vamp.VampireIsBat = false;
                 vamp.DisguiseIsActive = false;
-                vamp.BuffBlocked = false;
-
                 Dirty(uid, vamp);
-                continue;
-            }
-
-            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil)
-            {
-                _polymorph.Revert(uid);
             }
         }
     }

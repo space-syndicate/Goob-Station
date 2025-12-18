@@ -175,6 +175,12 @@ namespace Content.Shared.Imperial.Vampire
         public bool VampireIsBat = false;
 
         [AutoNetworkedField]
+        public bool VampireIsBlood = false;
+
+        [AutoNetworkedField]
+        public TimeSpan NextBloodshed = TimeSpan.Zero;
+
+        [AutoNetworkedField]
         public bool VampireIsInvisibility = false;
 
         [DataField]
@@ -185,5 +191,10 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [AutoNetworkedField]
         public bool DisguiseIsActive = false;
+
+        [AutoNetworkedField]
+        public bool DoAfterShadowTrapIsActive = false;
+
+        public float Radius = 2f;
     }
 }

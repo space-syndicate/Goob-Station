@@ -1,0 +1,52 @@
+- type: entity
+  parent: BaseAction
+  id: VampireShadowTrapAction
+  name: Теневой капкан
+  description: Ну это Теневой капкан
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Actions/smokeaction.rsi
+      state: smokeaction
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:VampireShadowTrapEvent
+      costBlood: 20
+
+- type: entity
+  parent: BaseLandMine
+  id: VampireTrap
+  name: Теневой капкан
+  description: ну это теневой капкан
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Items
+    sprite: Objects/Misc/landmine.rsi
+    layers:
+    - state: landmine
+    - state: landmine-unshaded
+      shader: unshaded
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: VampireTrapOnTrigger
+    damage: 35
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
