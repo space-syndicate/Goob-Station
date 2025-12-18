@@ -6,7 +6,6 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-//using Content.Shared.IgnitionSource;
 using Content.Server.GameTicking;
 using Color = Robust.Shared.Maths.Color;
 using Content.Server.AlertLevel;
@@ -187,15 +186,6 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         if (core.TempChangeStatus == (byte)heating)
             core.TempRiseStatus = CoreTempChangeLevel.HEATING;
     }
-/*
-    private void UpdateIgniteTemp(EntityUid uid, EnergyCoreComponent core, IgnitionSourceComponent ignite)
-    {
-        if (!HasComp<IgnitionSourceComponent>(uid))
-            return;
-        var temp = core.CoreTemp;
-        ignite.Temperature = temp;
-    }
-*/
     private void UpdateCoreTemp(EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
     {
         core.UpdateTemp = frameTime * core.TempChangeMultiplier;

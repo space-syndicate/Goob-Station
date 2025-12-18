@@ -160,9 +160,6 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         if (!Exists(playerEntity))
             return false;
 
-        //if (needsPower && TryComp<ApcPowerReceiverComponent>(uid, out var powerSource) && !powerSource.Powered)
-        //    return false;
-
         return true;
     }
     public void UpdateUi(EntityUid uid, CoreAccessComputerComponent? component = null)
