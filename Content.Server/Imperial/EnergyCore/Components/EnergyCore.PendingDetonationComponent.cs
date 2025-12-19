@@ -15,9 +15,9 @@ namespace Content.Server.Imperial.EnergyCore.Components;
 [Access(typeof(EnergyCorePendingDetonationSystem))]
 public sealed partial class EnergyCorePendingDetonationComponent : Component
 {
-    // Время до детонации ядра при расплавлении
+    // Время до детонации ядра при расплавлении. Этот параметр перезаписывается цваркой
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan DetonationTime = TimeSpan.FromSeconds(300f); // 5 минут
+    public TimeSpan DetonationTime;
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan MusicTime = TimeSpan.Zero;

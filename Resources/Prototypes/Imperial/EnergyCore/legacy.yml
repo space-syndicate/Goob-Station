@@ -141,9 +141,9 @@
   components:
   - type: Machine
     board: CoreUpEmitterCircuitboard
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserCoreHeater
-    fireCost: 150
+#  - type: ProjectileBatteryAmmoProvider
+#    proto: BulletLaserCoreHeater
+#    fireCost: 150
 
 - type: entity
   id: CoreDownEmitter
@@ -154,9 +154,9 @@
   components:
   - type: Machine
     board: CoreDownEmitterCircuitboard
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserCoreCooler
-    fireCost: 150
+#  - type: ProjectileBatteryAmmoProvider
+#    proto: BulletLaserCoreCooler
+#    fireCost: 150
 
 - type: entity
   id: CoreChangeRisingEmitter
@@ -167,9 +167,9 @@
   components:
   - type: Machine
     board: CoreChangeRisingEmitterCircuitboard
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserCoreTempChangerRising
-    fireCost: 150
+#  - type: ProjectileBatteryAmmoProvider
+#    proto: BulletLaserCoreTempChangerRising
+#    fireCost: 150
 
 - type: entity
   id: CoreChangeDecreasingEmitter
@@ -180,9 +180,9 @@
   components:
   - type: Machine
     board: CoreChangeDecreasingEmitterCircuitboard
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserCoreTempChangerDecreasing
-    fireCost: 150
+#  - type: ProjectileBatteryAmmoProvider
+#    proto: BulletLaserCoreTempChangerDecreasing
+#    fireCost: 150
 
 ## Машинные платы
 - type: entity
@@ -266,9 +266,9 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserCoreHeater
-    fireCost: 150
+#  - type: ProjectileBatteryAmmoProvider
+#    proto: BulletLaserCoreHeater
+#    fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletLaserCoreHeater

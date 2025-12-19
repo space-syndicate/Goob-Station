@@ -2,8 +2,8 @@
                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
                Title="{Loc 'core-terminal-window-title'}"
-               SetSize="700 450"
-               MinSize="400 400">
+               SetSize="550 300"
+               MinSize="550 300">
     <TabContainer Name="CoreTabContainer">
         <BoxContainer Name="Core"
                       Orientation="Vertical"
@@ -31,12 +31,6 @@
                         <Label Text="{Loc 'core-terminal-incdes'}"/>
                     </BoxContainer>
 
-                </GridContainer>
-            </PanelContainer>
-            <Control MinSize="50 5" />
-            <PanelContainer VerticalExpand="True" StyleClasses="Inset">
-                <GridContainer Columns="2">
-
                     <BoxContainer Orientation="Horizontal">
                         <Button Name="UpReactivityButton"
                                 Text="{Loc 'core-terminal-increase-button'}"
@@ -58,7 +52,6 @@
                     </BoxContainer>
                 </GridContainer>
             </PanelContainer>
-            <Control MinSize="100 5" />
             <PanelContainer VerticalExpand="True" StyleClasses="Inset">
                 <GridContainer Columns="2">
                     <BoxContainer></BoxContainer>
@@ -103,7 +96,6 @@
                         <Label Name="CoreTempCoef" Text="{Loc 'core-temp-coef'}" />
                         <Label Text=" " />
                     </BoxContainer>
-
                 </GridContainer>
             </PanelContainer>
         </BoxContainer>

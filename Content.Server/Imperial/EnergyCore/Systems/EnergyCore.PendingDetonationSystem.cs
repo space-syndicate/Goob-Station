@@ -6,6 +6,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Configuration;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules.Components;
@@ -18,6 +19,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.AlertLevel;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
+using Content.Shared.Imperial.ICCVar;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore.Components;
 using System.ComponentModel;
@@ -37,6 +39,7 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
@@ -46,6 +49,10 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
 
     private void OnComponentStartup(EntityUid uid, EnergyCorePendingDetonationComponent component, ComponentStartup args)
     {
+        // Определение времени до детонации через цварку
+        var detonationTime = _cfg.GetCVar(ICCVars.CoreDetonationTime);
+        component.DetonationTime = TimeSpan.FromSeconds(detonationTime);
+
         // Ставим новое имя и описание сущности
         _metaData.SetEntityName(uid, Loc.GetString("energycore-meltdown-name"));
         _metaData.SetEntityDescription(uid, Loc.GetString("energycore-meltdown-desc"));
@@ -73,7 +80,8 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
         var station = _stationSystem.GetOwningStation(uid);
         if (station != null)
         {
-            _alertLevel.SetLevel(station.Value, "lambda", true, true, true, false);
+            var alertLevel = _cfg.GetCVar(ICCVars.AlertLevelOnMeltdown);
+            _alertLevel.SetLevel(station.Value, alertLevel, true, true, true, false);
         }
         if (HasComp<AmbientSoundComponent>(uid))
             _ambientSound.SetSound(uid, component.CoreAmbience2);
