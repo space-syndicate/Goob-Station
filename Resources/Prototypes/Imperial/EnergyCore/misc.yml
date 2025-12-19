@@ -34,8 +34,8 @@
     startprice: 0
     endprice: 63012
   - type: Construction
-    graph: ClownHardsuit
-    node: clownHardsuit
+    graph: NuclearDeauthorizationCodes
+    node: nuclearDeauthorizationCodes
 
 - type: entity
   name: deauthorization fragment (station)

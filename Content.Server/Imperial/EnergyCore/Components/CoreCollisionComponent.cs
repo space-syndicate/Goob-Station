@@ -1,5 +1,4 @@
 using Robust.Shared.Audio;
-using Content.Server.Imperial.EnergyCore;
 
 namespace Content.Server.Imperial.EnergyCore.Components
 {

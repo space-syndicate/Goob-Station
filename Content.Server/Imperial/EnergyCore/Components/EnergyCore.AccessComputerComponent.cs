@@ -1,7 +1,6 @@
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Imperial.EnergyCore;
 using Robust.Shared.Audio;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.EnergyCore.Components
 {
