@@ -27,7 +27,7 @@ core-status-label = Статус ядра:
 core-status = N/A
 core-temp-label = Температура ядра:
 core-temp = N/A
-core-temp-coef-label = Коэфициент изменения:
+core-temp-coef-label = Коэффициент изменения:
 core-temp-coef = N/A
 
 core-terminal-window-press-enter-to-confirm = Примечание: не забудьте нажать "Enter" для подтверждения изменения данных.

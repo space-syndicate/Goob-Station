@@ -50,19 +50,19 @@ energycore-current-protocol-off = Протокол безопасности: [co
 energycore-current-temp-change-up = Текущий статус температуры: [color=yellow][bold]Повышение[/bold][/color]
 energycore-current-temp-change-auto = Текущий статус температуры: [color=green][bold]Авто-режим[/bold][/color]
 energycore-current-temp-change-down = Текущий статус температуры: [color=blue][bold]Понижение[/bold][/color]
-energycore-current-coef = Текущие изменения температуы: {$coefficient} (кельвин в сек.)
+energycore-current-coef = Текущие изменения температуры: {$coefficient} (кельвин в сек.)
 energycore-current-temp = Текущая температура: {$coreTemp}
 
 energycore-generator-current-energy-output = Текущая выработка энергии: [color=lightblue][bold]{$energyOutput}[/bold][/color]
 
-energycore-dont-any-near = [color=violet][bold]Не удалось обнаружить энергетичское ядро.[/bold][/color]
+energycore-dont-any-near = [color=violet][bold]Не удалось обнаружить энергетическое ядро.[/bold][/color]
 
 energycore-status-offline = Оффлайн
 energycore-status-idle = Простаивание
 energycore-status-stable = Стабильно
 energycore-status-optimal = Оптимально
 energycore-status-moderate = Повыш. оптимально
-energycore-status-high = Высокая температуа
+energycore-status-high = Высокая температура
 energycore-status-criticalhigh = Крит. высокая температура
 energycore-status-catastrophic = Скомпрометировано
 energycore-status-safeprotocol = Протокол безопасности активен - охлаждение
