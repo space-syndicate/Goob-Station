@@ -28,6 +28,12 @@ using Content.Shared.Polymorph;
 using Content.Server.Polymorph.Components;
 using System.Numerics;
 using Content.Shared.Actions.Components;
+using Content.Server.Cloning;
+using Robust.Shared.Prototypes;
+using Content.Shared.NPC.Components;
+using Content.Server.NPC.HTN;
+using Content.Shared.NPC;
+using Content.Server.NPC;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -48,6 +54,8 @@ public sealed class VampireServerSystem : EntitySystem
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly CloningSystem _cloning = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -61,6 +69,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
         SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
+        SubscribeLocalEvent<VampireCloneEvent>(OnClone);
     }
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent comp, GetVerbsEvent<InnateVerb> args)
@@ -335,6 +344,43 @@ public sealed class VampireServerSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnClone(VampireCloneEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (!_prototypeManager.TryIndex(args.Settings, out var settings))
+            return;
+
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupEntity(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        var mapCoords = Transform(args.Performer).MapPosition;
+
+        if (_cloning.TryCloning(args.Performer, mapCoords, settings, out var cloneUid))
+        {
+            // добавляем ai клону
+            var htn = EnsureComp<HTNComponent>(cloneUid.Value);
+            htn.RootTask = new HTNCompoundTask() { Task = "IdleCompound" };
+            htn.Blackboard.SetValue(NPCBlackboard.Owner, cloneUid);
+
+            EnsureComp<ActiveNPCComponent>(cloneUid.Value);
+        }
+
+        _vampireSystem.VampireInvisible(args.Performer);
+        vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(5);
+
+        _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
+
+        Dirty(args.Performer, vamp);
+        args.Handled = true;
+    }
+
+
     private void ConvertToGhoul(EntityUid vampire, EntityUid target)
     {
         var ghoulComp = EnsureComp<GhoulComponent>(target);
@@ -384,6 +430,16 @@ public sealed class VampireServerSystem : EntitySystem
             {
                 vamp.VampireIsBat = false;
                 vamp.DisguiseIsActive = false;
+                Dirty(uid, vamp);
+            }
+        }
+
+        var queryClone = EntityQueryEnumerator<VampireComponent>();
+        while (queryClone.MoveNext(out var uid, out var vamp))
+        {
+            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.InvisibleIsActive)
+            {
+                _vampireSystem.VampireInvisible(uid);
                 Dirty(uid, vamp);
             }
         }

@@ -711,13 +711,6 @@ public sealed class VampireSystem : EntitySystem
             return;
         }
 
-        if (vamp.DisguiseIsActive)
-        {
-            _popup.PopupEntity(Loc.GetString("Вы уже используете способность-маскировку"),
-            args.Performer, args.Performer, PopupType.Medium);
-            return;
-        }
-
         // устанавливаем коллизию такой, чтобы можно было проходить сквозь обьекты
         if (TryComp<FixturesComponent>(args.Performer, out var fixtures))
         {
@@ -727,18 +720,12 @@ public sealed class VampireSystem : EntitySystem
             }
         }
 
-        var stealth = EnsureComp<StealthComponent>(args.Performer);
-        _stealth.SetVisibility(args.Performer, -2f, stealth);
-        _stealth.SetEnabled(args.Performer, true, stealth);
-
+        VampireInvisible(args.Performer);
         vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(4);
 
         vamp.VampireIsBlood = true;
-        vamp.DisguiseIsActive = true;
-        vamp.BuffBlocked = true;
 
         DealBloodDamage(args.Performer, args.CostBlood);
-
         Dirty(args.Performer, vamp);
         args.Handled = true;
     }
@@ -748,46 +735,11 @@ public sealed class VampireSystem : EntitySystem
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
-        // если способность не активирована, применяем невидимость
-        if (!vamp.InvisibleIsActive)
-        {
-            if (vamp.DisguiseIsActive)
-            {
-                _popup.PopupClient(Loc.GetString("Вы уже используете способность-маскировку"), args.Performer, args.Performer,
-                PopupType.Medium);
+        // Update не работает с ивентами, поэтому сохраняем значение в компоненте
+        vamp.BloodLossDisguiseIsActive = args.CostBlood;
 
-                return;
-            }
-
-            if (vamp.BloodDamage + vamp.BloodLossDisguiseIsActive >= vamp.CritThreshold)
-            {
-                _popup.PopupClient(Loc.GetString("Вам не хватает крови!"), args.Performer, args.Performer, PopupType.Medium);
-                return;
-            }
-
-            // Update не работает с ивентами, поэтому сохраняем значение в компоненте
-            vamp.BloodLossDisguiseIsActive = args.CostBlood;
-
-            var stealth = EnsureComp<StealthComponent>(args.Performer);
-            _stealth.SetVisibility(args.Performer, -1f, stealth);
-            _stealth.SetEnabled(args.Performer, true, stealth);
-
-            vamp.InvisibleIsActive = true;
-            vamp.DisguiseIsActive = true;
-            DealBloodDamage(args.Performer, vamp.BloodLossDisguiseIsActive);
-            Dirty(args.Performer, vamp);
-        }
-        else
-        {
-            var stealth = EnsureComp<StealthComponent>(args.Performer);
-            _stealth.SetVisibility(args.Performer, 1f, stealth);
-            _stealth.SetEnabled(args.Performer, false, stealth);
-
-            Dirty(args.Performer, vamp);
-            vamp.InvisibleIsActive = false;
-            vamp.DisguiseIsActive = false;
-            args.Handled = true;
-        }
+        VampireInvisible(args.Performer);
+        args.Handled = true;
     }
 
 
@@ -801,12 +753,7 @@ public sealed class VampireSystem : EntitySystem
 
         if (comp.InvisibleIsActive)
         {
-            _stealth.SetVisibility(uid, 1f, stealth);
-            _stealth.SetEnabled(uid, false, stealth);
-
-            Dirty(uid, comp);
-            comp.InvisibleIsActive = false;
-            comp.DisguiseIsActive = false;
+            VampireInvisible(uid);
         }
     }
 
@@ -820,12 +767,7 @@ public sealed class VampireSystem : EntitySystem
 
         if (comp.InvisibleIsActive && args.DamageDelta != null)
         {
-            _stealth.SetVisibility(uid, 1f, stealth);
-            _stealth.SetEnabled(uid, false, stealth);
-
-            Dirty(uid, comp);
-            comp.InvisibleIsActive = false;
-            comp.DisguiseIsActive = false;
+            VampireInvisible(uid);
         }
     }
     public override void Update(float frameTime)
@@ -948,12 +890,7 @@ public sealed class VampireSystem : EntitySystem
 
             if (vamp.BloodDamage + vamp.BloodLossDisguiseIsActive >= vamp.CritThreshold)
             {
-                _stealth.SetVisibility(uid, 1f, stealth);
-                _stealth.SetEnabled(uid, false, stealth);
-
-                Dirty(uid, vamp);
-                vamp.InvisibleIsActive = false;
-                vamp.DisguiseIsActive = false;
+                VampireInvisible(uid);
                 continue;
             }
 
@@ -992,12 +929,8 @@ public sealed class VampireSystem : EntitySystem
 
             if (_gameTiming.CurTime >= vamp.BuffBlockedUntil)
             {
+                VampireInvisible(uid);
                 vamp.VampireIsBlood = false;
-                vamp.DisguiseIsActive = false;
-                vamp.BuffBlocked = false;
-
-                _stealth.SetVisibility(uid, 1f, stealth);
-                _stealth.SetEnabled(uid, false, stealth);
 
                 foreach (var (id, fixture) in fixtures.Fixtures)
                 {
@@ -1007,6 +940,46 @@ public sealed class VampireSystem : EntitySystem
                 Dirty(uid, vamp);
                 continue;
             }
+        }
+    }
+
+    /// <summary>
+    /// выдает вампиру невидимость
+    /// </summary>
+    public void VampireInvisible(EntityUid uid)
+    {
+        if (!TryComp<VampireComponent>(uid, out var vamp))
+            return;
+
+        if (!vamp.InvisibleIsActive)
+        {
+            if (vamp.DisguiseIsActive)
+            {
+                _popup.PopupEntity(Loc.GetString("Вы уже используете способность-маскировку"),
+                uid, uid, PopupType.Medium);
+                return;
+            }
+
+            var stealth = EnsureComp<StealthComponent>(uid);
+            _stealth.SetVisibility(uid, -2f, stealth);
+            _stealth.SetEnabled(uid, true, stealth);
+
+            vamp.DisguiseIsActive = true;
+            vamp.BuffBlocked = true;
+            vamp.InvisibleIsActive = true;
+
+            Dirty(uid, vamp);
+        }
+        else
+        {
+            var stealth = EnsureComp<StealthComponent>(uid);
+            _stealth.SetVisibility(uid, 1f, stealth);
+            _stealth.SetEnabled(uid, false, stealth);
+
+            Dirty(uid, vamp);
+            vamp.InvisibleIsActive = false;
+            vamp.DisguiseIsActive = false;
+            vamp.BuffBlocked = false;
         }
     }
 

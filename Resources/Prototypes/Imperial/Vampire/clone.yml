@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: VampireClone
+  name: Клон
+  description: Ну это клон
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireCloneEvent
