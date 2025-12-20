@@ -307,10 +307,9 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<EnergyCoreComponent, /*IgnitionSourceComponent,*/ TransformComponent>();
-        while (query.MoveNext(out var uid, out var cormp, /*out var ignite,*/ out _))
+        var query = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var cormp, out _))
         {
-            //UpdateIgniteTemp(uid, cormp, ignite);
             CheckTempChangeValue(cormp);
             UpdateCoreTemp(cormp, frameTime);
             RefreshCoreStatus(uid, cormp);
