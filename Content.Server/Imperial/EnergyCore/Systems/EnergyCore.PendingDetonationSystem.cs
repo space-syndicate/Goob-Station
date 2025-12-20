@@ -22,8 +22,6 @@ using Content.Shared.Audio;
 using Content.Shared.Imperial.ICCVar;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore.Components;
-using System.ComponentModel;
-using System.Xml.Serialization;
 
 namespace Content.Server.Imperial.EnergyCore;
 
@@ -66,6 +64,7 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
     }
     private void GetDelayTime(EntityUid uid, EnergyCorePendingDetonationComponent component)
     {
+        // К полученному от цварки времени добавляем текущее время
         component.DetonationTime = _timing.CurTime + component.DetonationTime;
         GetMusicTime(uid, component);
     }

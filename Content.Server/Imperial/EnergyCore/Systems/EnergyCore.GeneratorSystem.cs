@@ -2,8 +2,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Power.Components;
@@ -13,9 +11,6 @@ using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Shared.Examine;
-using System.Linq;
-using Robust.Shared.Random;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Imperial.EnergyCore
 {
@@ -43,12 +38,18 @@ namespace Content.Server.Imperial.EnergyCore
             }
             var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
 
-            if (tempRiseStatus == 3)
-                args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
-            if (tempRiseStatus == 2)
-                args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
-            if (tempRiseStatus == 1)
-                args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
+            switch (tempRiseStatus)
+            {
+                case 3:
+                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
+                    break;
+                case 2:
+                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
+                    break;
+                case 1:
+                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
+                    break;
+            }
 
             var energyOutput = component.EnergyOutput;
             args.PushMarkup(Loc.GetString("energycore-generator-current-energy-output", ("energyOutput", energyOutput)));
@@ -90,25 +91,21 @@ namespace Content.Server.Imperial.EnergyCore
             }
 
             var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
-            if (HasComp<PowerSupplierComponent>(uid))
-            {
-                if (coreTemp > 0f || nearestUid != null)
-                {
-                    if (coreTemp > 500000f) // Ибо нехер забивать на ядро
-                        generator.EnergyOutput = coreTemp / 10f;
-                    else
-                        generator.EnergyOutput = coreTemp / generator.EnergyCoef;
-                    power.MaxSupply = generator.EnergyOutput;
-                }
-                else
-                {
-                    generator.EnergyOutput = 0f;
-                    power.MaxSupply = 0f;
-                }
-            }
-            else generator.EnergyOutput = 0f;
-        }
 
+            if (coreTemp > 0f)
+            {
+                if (coreTemp > 500000f) // Ибо нехер забивать на ядро
+                    generator.EnergyOutput = coreTemp / 10f;
+                else
+                    generator.EnergyOutput = coreTemp / generator.EnergyCoef;
+                power.MaxSupply = generator.EnergyOutput;
+            }
+            else
+            {
+                generator.EnergyOutput = 0f;
+                power.MaxSupply = 0f;
+            }
+        }
         public override void Update(float frameTime)
         {
             base.Update(frameTime);

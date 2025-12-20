@@ -67,6 +67,16 @@ energycore-status-criticalhigh = Крит. высокая температура
 energycore-status-catastrophic = Скомпрометировано
 energycore-status-safeprotocol = Протокол безопасности активен - охлаждение
 
+energycore-screen-status-offline = Статус: [color=violet][bold]Оффлайн[/bold][/color]
+energycore-screen-status-idle = Статус: [color=lightblue][bold]Простаивание[/bold][/color]
+energycore-screen-status-stable = Статус: [color=green][bold]Стабильно[/bold][/color]
+energycore-screen-status-optimal = Статус: [color=blue][bold]Оптимально[/bold][/color]
+energycore-screen-status-moderate = Статус: [color=yellow][bold]Повыш. оптимально[/bold][/color]
+energycore-screen-status-high = Статус: [color=orange][bold]Высокая температура[/bold][/color]
+energycore-screen-status-criticalhigh = Статус: [color=red][bold]Крит. высокая температура[/bold][/color]
+energycore-screen-status-catastrophic = Статус: [color=darkred][bold]Скомпрометировано[/bold][/color]
+energycore-screen-status-safeprotocol = Статус: [color=blue][bold]Протокол безопасности активен - охлаждение[/bold][/color]
+
 nukeops-cond-coreexploded = Ядерным оперативникам удалось скомпрометировать энергетическое ядро.
 
 core-technical-main = [color=DarkSalmon][bold]Энергетический Департамент[/bold][/color]

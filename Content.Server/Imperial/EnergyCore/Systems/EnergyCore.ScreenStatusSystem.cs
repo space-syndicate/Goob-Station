@@ -44,19 +44,25 @@ namespace Content.Server.Imperial.EnergyCore
             }
             var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
 
-            if (tempRiseStatus == 3)
-                args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
-            if (tempRiseStatus == 2)
-                args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
-            if (tempRiseStatus == 1)
-                args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
+            switch (tempRiseStatus)
+            {
+                case 3:
+                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
+                    break;
+                case 2:
+                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
+                    break;
+                case 1:
+                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
+                    break;
+            }
 
             if (safeProtocol)
                 args.PushMarkup(Loc.GetString("energycore-current-protocol-on"));
             else
                 args.PushMarkup(Loc.GetString("energycore-current-protocol-off"));
 
-            var status = Loc.GetString($"energycore-status-{coreStatus.ToString().ToLower()}");
+            var status = Loc.GetString($"energycore-screen-status-{coreStatus.ToString().ToLower()}");
             args.PushMarkup(status);
 
             args.PushMarkup(Loc.GetString("energycore-current-coef", ("coefficient", coreTempMult)));

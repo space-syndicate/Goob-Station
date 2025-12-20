@@ -134,7 +134,7 @@
       state: screen_active
 
 - type: entity
-  parent: BaseWallmountMachine
+  parent: BaseWallmountMetallic
   id: CoreStatusScreen
   name: core status screen
   description: Screen.
@@ -143,6 +143,8 @@
   - type: Rotatable
   - type: CoreStatusScreen
   - type: Clickable
+  - type: LightningTarget
+    priority: 1
   - type: PointLight
     enabled: true
     radius: 1

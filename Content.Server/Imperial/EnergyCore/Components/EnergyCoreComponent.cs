@@ -1,8 +1,4 @@
-using Robust.Shared.Serialization;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
-using Content.Shared.Tag;
-using Content.Shared.DoAfter;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore;
 /// <summary>

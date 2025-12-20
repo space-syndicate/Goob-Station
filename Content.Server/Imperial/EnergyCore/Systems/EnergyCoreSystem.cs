@@ -173,18 +173,20 @@ public sealed partial class EnergyCoreSystem : EntitySystem
             _appearance.SetData(uid, CoreStatusVisual.Core_Visual, (byte)core.Status, appearance);
         }
     }
-    private void CheckTempChangeValue(EntityUid uid, EnergyCoreComponent core)
+    private void CheckTempChangeValue(EnergyCoreComponent core)
     {
-        var cooling = 1;
-        var auto = 2;
-        var heating = 3;
-
-        if (core.TempChangeStatus == (byte)cooling)
-            core.TempRiseStatus = CoreTempChangeLevel.COOLING;
-        if (core.TempChangeStatus == (byte)auto)
-            core.TempRiseStatus = CoreTempChangeLevel.AUTO;
-        if (core.TempChangeStatus == (byte)heating)
-            core.TempRiseStatus = CoreTempChangeLevel.HEATING;
+        switch (core.TempChangeStatus)
+        {
+            case 1:
+                core.TempRiseStatus = CoreTempChangeLevel.COOLING;
+                break;
+            case 2:
+                core.TempRiseStatus = CoreTempChangeLevel.AUTO;;
+                break;
+            case 3:
+                core.TempRiseStatus = CoreTempChangeLevel.HEATING;
+                break;
+        }
     }
     private void UpdateCoreTemp(EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
     {
@@ -309,7 +311,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         while (query.MoveNext(out var uid, out var cormp, /*out var ignite,*/ out _))
         {
             //UpdateIgniteTemp(uid, cormp, ignite);
-            CheckTempChangeValue(uid, cormp);
+            CheckTempChangeValue(cormp);
             UpdateCoreTemp(cormp, frameTime);
             RefreshCoreStatus(uid, cormp);
             UpdateCoreVisual(uid, cormp);

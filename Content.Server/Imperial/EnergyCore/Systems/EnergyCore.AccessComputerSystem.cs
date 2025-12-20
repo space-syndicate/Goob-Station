@@ -177,8 +177,6 @@ public sealed class CoreAccessComputerSystem : EntitySystem
     }
     private CoreTerminalBoundUserInterfaceState GetUiState(EntityUid uid, CoreAccessComputerComponent component)
     {
-        var powered = !TryComp<ApcPowerReceiverComponent>(uid, out var powerSource) || powerSource.Powered;
-
         var safeProtocol = !component.SaveProtocolWasDeactivated;
         var tempRising = component.TempRising;
         var coreStatus = component.Status;
@@ -187,17 +185,7 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         float tempChangeCoef = component.FinalTempChangeCoef;
         float currentPowerSupply = component.CurrentPowerSupply;
 
-        if (!powered)
-            return new CoreTerminalBoundUserInterfaceState(
-                coreStatus,
-                tempRising,
-                safeProtocol,
-                autoSystem,
-                coreTemp,
-                tempChangeCoef,
-                currentPowerSupply);
-        else
-            return new CoreTerminalBoundUserInterfaceState(
+        return new CoreTerminalBoundUserInterfaceState(
                 coreStatus,
                 tempRising,
                 safeProtocol,

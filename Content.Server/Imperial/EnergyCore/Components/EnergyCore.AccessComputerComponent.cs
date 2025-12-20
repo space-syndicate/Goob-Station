@@ -31,7 +31,7 @@ namespace Content.Server.Imperial.EnergyCore.Components
         /// <summary>
         /// Апдейт UI
         /// </summary>
-
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan UpdateUIPeriod = TimeSpan.FromSeconds(1.0);
 
         /// <summary>
