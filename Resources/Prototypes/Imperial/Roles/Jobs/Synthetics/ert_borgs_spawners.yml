@@ -1,0 +1,87 @@
+#Боевой
+
+- type: entity
+  id: SpawnERTAssaultBorg
+  name: ghost role spawn point
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-assault-spawner-name
+      description: ghost-role-information-ert-cyborg-assault-spawner-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgErtAssaultGhostRole
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+          state: def_borg-spawn
+
+#ИИнженерный
+
+- type: entity
+  id: SpawnERTEngineerBorg
+  name: ghost role spawn point
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-engineer-spawner-name
+      description: ghost-role-information-ert-cyborg-engineer-spawner-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgErtEngineerGhostRole
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+          state: eng_borg-spawn
+
+#Медицинский
+
+- type: entity
+  id: SpawnERTMedicalBorg
+  name: ghost role spawn point
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-medic-spawner-name
+      description: ghost-role-information-ert-cyborg-medic-spawner-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgErtMedicGhostRole
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+          state: med_borg-spawn
+
+#РХБЗЗ
+
+- type: entity
+  id: SpawnCBURNBorg
+  name: ghost role spawn point
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: ghost-role-information-cburn-cyborg-spawner-name
+      description: ghost-role-information-cburn-cyborg-spawner-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgErtCburnGhostRole
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
+          state: cburn_borg-spawn

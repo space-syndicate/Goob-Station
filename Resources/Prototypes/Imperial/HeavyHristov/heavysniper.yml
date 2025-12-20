@@ -1,0 +1,99 @@
+- type: entity
+  name: heavy Hristov
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseSyndicateContraband]
+  id: WeaponSniperHeavyHristov
+  description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    projectileSpeed: 50 # Imperial Balance
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeExplosiveShell
+    capacity: 3
+    proto: CartridgeExplosiveShell
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -20
+    maxAngle: -10
+  - type: StaticPrice
+    price: 13500
+
+- type: Tag
+  id: CartridgeExplosiveShell
+
+## Патрон
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeExplosiveShell
+  name: cartridge (explosive shell)
+  components:
+  - type: Tag
+    tags:
+    - CartridgeExplosiveShell
+  - type: CartridgeAmmo
+    proto: BulletExplosiveShell
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+
+## Пуля
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletExplosiveShell
+  name: bullet (explosive shell)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 0
+  - type: ExplosiveProjectile
+    stunParam: 15
+    knockdownTime: 15
+
+## Коробка с патронами
+- type: entity
+  parent: BaseMagazineBoxAntiMateriel
+  id: MagazineBoxExplosiveShell
+  name: ammunition box (explosive shell)
+  description: Contain explosive shells.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeExplosiveShell
+    proto: CartridgeExplosiveShell
+    capacity: 6
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+

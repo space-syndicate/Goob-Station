@@ -15,6 +15,10 @@ supermatter-desc-cracked = На нём видны трещины.
 supermatter-desc-badly-cracked = Он покрыт множеством трещин.
 supermatter-desc-critical = Он светится и вибрирует!
 
+supermatter-activated = Внимание: Суперматерия была активирована!
+supermatter-status-active = Кристалл слегка переливается жёлтыми оттенками.
+supermatter-status-inactive = Цвет кристалла не меняется. Видимо, он неактивен.
+
 supermatter-warn-10 = Суперматерия на грани разрушения!
 supermatter-warn-25 = Внимание! Целостность суперматерии критически низкая! Немедленно стабилизируйте кристалл!
 supermatter-warn-50 = Внимание! Суперматерия сильно повреждена.
@@ -30,5 +34,6 @@ supermatter-monitor-next-event = Следующий импульс через: {
     [few] {$minutes} минуты
     *[other] {$minutes} минут
 }
+supermatter-monitor-inactive = Кристалл суперматерии неактивен.
 
 supermatter-station-catastrophe = Внимание! Датчики фиксируют критическое излучение энергии из кристалла суперматерии! Немедленно эвакуируйтесь с инженерного отдела и удалите персонал от кристалла!

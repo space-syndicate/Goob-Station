@@ -1,0 +1,39 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineBorgERTdrobe
+  name: ERTdrobe
+  components:
+  - type: VendingMachine
+    pack: VendomatInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: DatasetVocalizer
+    dataset: ErtBorgDrobeAds
+  - type: SpeakOnUIClosed
+    pack: ErtBorgDrobeGoodbyes
+  - type: Sprite
+    sprite: Imperial/BorgomatERT/borgdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories: 
+    - BorgDrobeErtBorg
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+     BlueSpaceCube: 0

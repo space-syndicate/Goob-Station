@@ -1,0 +1,149 @@
+- type: localizedDataset
+  id: NamesDClass
+  values:
+    prefix: names-Dclass-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTF
+  values:
+    prefix: names-mtfscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTFNU
+  values:
+    prefix: names-mtfscpnu-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTFCom
+  values:
+    prefix: names-mtfscpcom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMTFNUCom
+  values:
+    prefix: names-mtfscpnucom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesAlpha
+  values:
+    prefix: names-mtfAlpha-
+    count: 50
+
+- type: localizedDataset
+  id: Namesguardscp
+  values:
+    prefix: names-guardscp-
+    count: 50
+
+- type: localizedDataset
+  id: Namesscientistscp
+  values:
+    prefix: names-scientistscp-
+    count: 50
+
+- type: localizedDataset
+  id: Namesscientistcomscp
+  values:
+    prefix: names-scientistcomscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesAdmscp
+  values:
+    prefix: names-admscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesCISCP
+  values:
+    prefix: names-CISCP-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEngineerSCP
+  values:
+    prefix: names-engineerSCP-
+    count: 50
+
+- type: localizedDataset
+  id: NamesMedicSCP
+  values:
+    prefix: names-medicSCP-
+    count: 50
+
+- type: localizedDataset
+  id: Namesguardscpcom
+  values:
+    prefix: names-guardscpcom-
+    count: 50
+
+- type: localizedDataset
+  id: judgeSCP
+  values:
+    prefix: names-judgeSCP-
+    count: 50
+
+- type: localizedDataset
+  id: DetectiveSCP
+  values:
+    prefix: names-DetectiveSCP-
+    count: 50
+
+- type: localizedDataset
+  id: NamesCISCPcoordinator
+  values:
+    prefix: names-CISCPcoordinator-
+    count: 50
+
+- type: localizedDataset
+  id: NamesZeta9scp
+  values:
+    prefix: names-NamesZeta9scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesZeta9scpCom
+  values:
+    prefix: names-NamesZeta9scpCom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEpsilon9scp
+  values:
+    prefix: names-NamesEpsilon9scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEpsilon9scpCom
+  values:
+    prefix: names-NamesEpsilon9scpCom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEta10scp
+  values:
+    prefix: names-NamesEta10scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesEta10scpCom
+  values:
+    prefix: names-NamesEta10scpCom-
+    count: 50
+
+- type: localizedDataset
+  id: NamesUpsilon11scp
+  values:
+    prefix: names-NamesUpsilon11scp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesUpsilon11scpCom
+  values:
+    prefix: names-NamesUpsilon11scpCom-
+    count: 50

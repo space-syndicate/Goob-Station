@@ -14,6 +14,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Localization;
 using System.Linq;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.XxRaay.FactionShop;
 

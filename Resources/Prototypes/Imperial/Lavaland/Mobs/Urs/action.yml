@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseAction
+  id: ActionUrsdash
+  name: "[color=red] Dash [/color]"
+  description: Use to knock down an enemy!
+  components:
+  - type: TargetAction
+    range: 4
+  - type: EntityTargetAction
+    event: !type:UrsDashAction
+  - type: Action
+    useDelay: 9
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/Lavaland/Mobs/Urs.rsi
+      state: DashActionIcon

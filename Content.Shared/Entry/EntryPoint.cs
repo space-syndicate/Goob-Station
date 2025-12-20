@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Imperial.Entry;
 using Content.Shared.IoC;
 using Content.Shared.Maps;
 using Robust.Shared;
@@ -27,7 +28,6 @@ namespace Content.Shared.Entry
         public override void PreInit()
         {
             IoCManager.InjectDependencies(this);
-            SharedContentIoC.Register();
         }
 
         public override void Shutdown()
@@ -38,6 +38,7 @@ namespace Content.Shared.Entry
         public override void Init()
         {
             IgnorePrototypes();
+            ImperialEntry.Init(); // Imperial Space
         }
 
         public override void PostInit()
@@ -46,6 +47,7 @@ namespace Content.Shared.Entry
 
             InitTileDefinitions();
             IoCManager.Resolve<MarkingManager>().Initialize();
+            ImperialEntry.PostInit(); // Imperial Space
 
 #if DEBUG
             var configMan = IoCManager.Resolve<IConfigurationManager>();

@@ -538,8 +538,14 @@
     table: !type:GroupSelector
       children:
       - id: MobGoliath
-        weight: 45
-      - id: MobHivelord
         weight: 35
+      - id: MobHivelord
+        weight: 25
       - id: MobBasilisk
-        weight: 20
+        weight: 10
+        # Imperial Space: A new Phantomor mob has been added. Start
+      - id: MobPhantomor
+        weight: 30
+        # Imperial Space: A new Phantomor mob has been added. End
+      - id: MobUrs # Imperial New mob Urs
+        weight: 45 # Imperial New mob Urs

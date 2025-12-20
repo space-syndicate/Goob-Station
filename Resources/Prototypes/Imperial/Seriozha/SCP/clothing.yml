@@ -37,7 +37,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-        Stamina: 0.7
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
 
 - type: entity
   parent: ClothingUniformBase
@@ -57,8 +60,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-        Stamina: 0.8
-
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
 - type: entity
   parent: ClothingShoesMilitaryBase
   id: ClothingShoesSCPRGB
@@ -85,8 +90,11 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Stamina: 0.55
         Radiation: 0.0
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.55
+  # Imperial Space Stamina Resistance End
 
 - type: entity
   parent: ClothingShoesMilitaryBase
@@ -114,7 +122,10 @@
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.9
-        Stamina: 0.9
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.9
+  # Imperial Space Stamina Resistance End
 
 - type: entity
   parent: ClothingBackpack
@@ -245,4 +256,16 @@
           Piercing: 0.9
           Heat: 0.9
           Radiation: 0.9
-          Stamina: 0.9
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.9
+    # Imperial Space Stamina Resistance End
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingSCPCloakRed
+  name: definetly not vampire cloak
+  suffix: seriozha, Недра, Кастомизация
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Customization/red_cloak.rsi

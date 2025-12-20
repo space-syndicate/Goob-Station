@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CrateChemistryStandartHypo
+  icon:
+    sprite: Imperial/Stellark/standarthypo.rsi
+    state: icon
+  product: CrateChemistryStandartHypo
+  cost: 3000
+  category: cargoproduct-category-name-medical
+  group: market

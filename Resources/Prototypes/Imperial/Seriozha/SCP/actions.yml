@@ -1,0 +1,90 @@
+- type: entity
+  id: MiniSyringeProjectile
+  name: MiniSyringe
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/misc/minisyringeprojectil.rsi
+      layers:
+      - state: bullet
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 1
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 7
+          reagents:
+            - ReagentId: MuteToxin
+              Quantity: 0.5
+            - ReagentId: Toxin
+              Quantity: 2
+    - type: SolutionInjectOnProjectileHit
+      transferAmount: 7
+      solution: ammo
+    - type: RefillableSolution
+      solution: ammo
+    - type: DrainableSolution
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+
+- type: entity
+  id: MiniSyringeProjectileAbility
+  parent: BaseAction
+  name: AbilityMiniSyringe
+  components:
+  - type: Action
+    useDelay: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/SCP/ability/minisyringeprojectileability.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: MiniSyringeProjectile
+
+- type: polymorph
+  id: SCPZombieMorph
+  configuration:
+    entity: ImperialSCPZombie
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  parent: ProjectilePolyboltBase
+  id: ProjectilePolyboltZombie
+  name: zombie polybolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: SCPZombieMorph
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: SCPZombieMorphAction
+  parent: BaseAction
+  name: SCPZombieMorphAction
+  components:
+  - type: Action
+    useDelay: 12
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/SCP/ability/scpzombieaction.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectilePolyboltZombie

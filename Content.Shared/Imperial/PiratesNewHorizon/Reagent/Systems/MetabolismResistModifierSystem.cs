@@ -4,6 +4,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.PiratesNewHorizon.Reagent.Components;
+using Content.Shared.Damage.Systems;
 namespace Content.Shared.Imperial.PiratesNewHorizon.Reagent.Systems
 {
     public sealed class MetabolismResistModifierSystem : EntitySystem

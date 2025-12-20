@@ -24,8 +24,8 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
+    radius: 1.2
+    energy: 3.0
     color: "#9dc5c9"
   - type: Machine
     board: SmartFridgeCircuitboard
@@ -43,6 +43,7 @@
     - smart_fridge_inventory
   - type: LitOnPowered
   - type: ApcPowerReceiver
+    needsPower: false # Imperial Space Умный холодильник больше не требует питание
     powerLoad: 200
   - type: ExtensionCableReceiver
   - type: SmartFridge
@@ -114,6 +115,7 @@
       collection: MetalThud
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: Airtight
 
 - type: entity
   parent: SmartFridge

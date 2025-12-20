@@ -1,0 +1,46 @@
+- type: listing
+  id: UplinkgClothingThievingGloves # Возвращение перчаток вора
+  name: uplink-clothing-chameleon-thieving-gloves-name
+  description: uplink-clothing-chameleon-thieving-gloves-desc
+  productEntity: ClothingHandsChameleonThief
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+
+# M90GL Imperial 
+- type: listing
+  id: UplinkM90GLBundle
+  name: uplink-m90gl-bundle-name
+  description: uplink-m90gl-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledCarbineImperial
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMagazineBoxM90gl
+  name: uplink-m90gl-magazine-boxes-name
+  description: uplink-m90gl-magazine-boxes-desc
+  icon: { sprite: /Textures/Imperial/Catalog/ImperialSyndicateUplink/M90gl_Imperial/boxes.rsi, state: icon }
+  productEntity: MagazineBoxM90gl
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink

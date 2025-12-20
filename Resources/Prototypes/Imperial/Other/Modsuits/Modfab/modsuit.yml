@@ -135,7 +135,6 @@
     prototype: ModsuitFab
     stackRequirements:
       Glass: 2
-      MatterBin: 1
       Manipulator: 1
   - type: GuideHelp
     guides:

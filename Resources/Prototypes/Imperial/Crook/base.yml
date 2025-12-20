@@ -11,15 +11,15 @@
       effects:
       - !type:Jitter
         conditions:
-        - !type:ReagentThreshold
+        - !type:TotalDamageCondition
           min: 5
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
       - !type:Electrocute
         probability: 0.1
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
       - !type:HealthChange
@@ -27,7 +27,7 @@
           groups:
             Airloss: 1
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Android
           shouldHave: false
 
@@ -134,6 +134,19 @@
     - KnockedDown
     - SlowedDown
     - Flashed
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#4d7ee7"
   - type: Reactive
     groups:
       Acidic: [Touch]
@@ -177,6 +190,16 @@
       - Heat
       - Shock
     locPrefix: silicon
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 10
+  - type: Prying
+    speedModifier: 1.5
+    useSound: /Audio/Effects/metal_scrape2.ogg
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
@@ -215,6 +238,8 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+      Male: UnisexSilicon
+      Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
   - type: HumanoidAppearance
@@ -235,12 +260,11 @@
     - FootstepSound
     - CanPilot
     - SiliconEmotes
-    - Unimplantable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -302,15 +326,34 @@
   name: Android
   suffix: Crook, Syndicate
   components:
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Effects/metal_scrape2.ogg
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 15
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Seriozha/SCP/doc.ogg
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 12
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
+      Male: UnisexSiliconSyndicate
+      Female: UnisexSiliconSyndicate
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -351,8 +394,13 @@
   order: 3
   lawString: law-samurai-3
 
+- type: siliconLaw
+  id: Samurai4
+  order: 4
+  lawString: law-samurai-4
+
 - type: siliconLawset
-  id: Samurai
+  id: SamuraiLawset
   laws:
   - Samurai1
   - Samurai2

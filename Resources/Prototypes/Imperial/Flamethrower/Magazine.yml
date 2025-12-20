@@ -1,0 +1,38 @@
+- type: entity
+  id: BaseFlamethrowerBullet
+  parent: BaseBulletPractice
+  name: fire
+  description: If you can see this you're probably dead!
+  abstract: true
+  components:
+  - type: IgnitionSource
+    temperature: 400
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 0.35
+  - type: FlyBySound
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: PointLight
+    color: "#ff5e00"
+    radius: 2.0
+    energy: 7.0
+  - type: Projectile
+    soundHit: null
+    impactEffect: null
+    damage:
+      types:
+        Heat: 2
+  - type: TimedDespawn
+    lifetime: 0.8
+  - type: FireballDistortion
+
+- type: entity
+  id: FlamethrowerBullet
+  parent: BaseFlamethrowerBullet
+  name: fire
+  categories: [ HideSpawnMenu ]
+  description: If you can see this you're probably dead!
+

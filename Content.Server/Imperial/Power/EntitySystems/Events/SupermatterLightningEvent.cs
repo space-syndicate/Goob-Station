@@ -1,5 +1,6 @@
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Robust.Shared.Localization;
 using System;
 

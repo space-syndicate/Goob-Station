@@ -85,7 +85,7 @@ public sealed class MinigamesSystem : SharedMinigamesSystem
         RaiseLocalEvent(player, new AfterMinigameAddedEvent
         {
             NewPlayer = player,
-            Minigame = minigamePrototype
+            MinigamePrototype = minigamePrototype.ID
         });
 
         if (!minigamePrototype.StartInstantly) return true;
@@ -93,7 +93,7 @@ public sealed class MinigamesSystem : SharedMinigamesSystem
         RaiseNetworkEvent(new StartMinigameEvent()
         {
             Player = GetNetEntity(player),
-            Minigame = minigamePrototype
+            MinigamePrototype = minigamePrototype.ID
         });
 
         return true;
@@ -117,7 +117,7 @@ public sealed class MinigamesSystem : SharedMinigamesSystem
             RemoveMinigame(player);
 
             return false;
-        };
+        }
 
         EnsureComp<InMinigameComponent>(player).OtherPlayers.Add(player2);
         EnsureComp<InMinigameComponent>(player2).OtherPlayers.Add(player);
@@ -262,7 +262,7 @@ public sealed class MinigamesSystem : SharedMinigamesSystem
         var ev = new BeforeMinigameAddedEvent()
         {
             NewPlayer = player,
-            Minigame = minigame
+            MinigamePrototype = minigame.ID
         };
         RaiseLocalEvent(player, ev);
 

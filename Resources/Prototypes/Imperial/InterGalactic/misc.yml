@@ -21,7 +21,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyRadioENG
+      - EncryptionKeyRadio4
 
 # Заполненные вещи
 - type: entity
@@ -32,7 +32,7 @@
   - type: StorageFill
     contents:
     - id: BoxSurvivalEngineering
-    - id: EncryptionKeyRadioENG
+    - id: EncryptionKeyRadio4
       amount: 3
     - id: PinpointerUniversal
 

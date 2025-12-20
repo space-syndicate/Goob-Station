@@ -2,7 +2,7 @@
 - type: startingGear
   id: InterGalacticCEGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitChiefEngineerNT
+    jumpsuit: ClothingUniformJumpsuitChiefEngineer
     shoes: ClothingShoesBootsWork
     gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadHatHardhatWhite
