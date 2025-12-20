@@ -34,6 +34,10 @@ using Content.Shared.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.NPC;
 using Content.Server.NPC;
+using System.Runtime.CompilerServices;
+using Content.Server.Humanoid;
+using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -253,6 +257,13 @@ public sealed class VampireServerSystem : EntitySystem
         dmg.DamageDict["Bloodloss"] = FixedPoint2.New(20);
         _damage.TryChangeDamage(target, dmg);
 
+
+        if (!TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
+            return;
+
+        appear.EyeColor = Color.Red;
+
+        Dirty(drinker, appear);
         StartDrinking(drinker, target);
     }
 
