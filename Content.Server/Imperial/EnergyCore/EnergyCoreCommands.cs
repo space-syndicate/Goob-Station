@@ -13,20 +13,29 @@ namespace Content.Server.Imperial.EnergyCore.Commands
         [Dependency] private readonly IEntityManager _entManager = default!;
         public override string Command => "restorecore";
         public override string Description => Loc.GetString("restorecore-desc");
-        public string Help => Loc.GetString("restorecore-help");
+        public override string Help => Loc.GetString("restorecore-help");
 
         public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
-            if (args.Length == 1)
-                return CompletionResult.FromHintOptions(CompletionHelper.Components<EnergyCoreComponent>(args[0], _entManager), Loc.GetString("core-hint"));
-            if (args.Length == 2)
-                return CompletionResult.FromHintOptions(CompletionHelper.Components<CoreAccessComputerComponent>(args[1], _entManager), Loc.GetString("terminal-hint"));
-            if (args.Length == 3)
-                return CompletionResult.FromHintOptions(CompletionHelper.Booleans, Loc.GetString("restorecore-hint-bool"));
-            else return CompletionResult.Empty;
+            switch (args.Length)
+            {
+                case 1:
+                    return CompletionResult.FromHintOptions(CompletionHelper.Components<EnergyCoreComponent>(args[0], _entManager), Loc.GetString("core-hint"));
+                case 2:
+                    return CompletionResult.FromHintOptions(CompletionHelper.Components<CoreAccessComputerComponent>(args[1], _entManager), Loc.GetString("terminal-hint"));
+                case 3:
+                    return CompletionResult.FromHintOptions(CompletionHelper.Booleans, Loc.GetString("restorecore-hint-bool"));
+            }
+            return CompletionResult.Empty;
         }
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
+            if (args.Length < 3)
+            {
+                shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
+                return;
+            }
+
             if (!NetEntity.TryParse(args[0], out var entityIdNet))
             {
                 shell.WriteError(Loc.GetString("shell-entity-uid-must-be-number"));
@@ -60,7 +69,7 @@ namespace Content.Server.Imperial.EnergyCore.Commands
         [Dependency] private readonly IEntityManager _entManager = default!;
         public override string Command => "corearm";
         public override string Description => Loc.GetString("corearm-desc");
-        public string Help => Loc.GetString("corearm-help");
+        public override string Help => Loc.GetString("corearm-help");
 
         public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
@@ -70,6 +79,12 @@ namespace Content.Server.Imperial.EnergyCore.Commands
         }
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
+            if (args.Length < 1)
+            {
+                shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
+                return;
+            }
+
             if (!NetEntity.TryParse(args[0], out var entityIdNet))
             {
                 shell.WriteError(Loc.GetString("shell-entity-uid-must-be-number"));

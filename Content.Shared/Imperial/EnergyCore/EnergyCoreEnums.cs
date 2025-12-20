@@ -8,6 +8,7 @@ public enum CoreTerminalUiKey
     Key
 }
 
+[Serializable, NetSerializable]
 public enum UiButton
 {
     Auto,
@@ -19,12 +20,14 @@ public enum UiButton
     DownHalflife
 }
 
+[Serializable, NetSerializable]
 public enum AutoSystemStatus : byte
 {
     ACTIVE,
     NONACTIVE
 }
 
+[Serializable, NetSerializable]
 public enum CoreStatus : byte
 {
     OFFLINE = 1,

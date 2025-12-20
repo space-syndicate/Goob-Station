@@ -27,7 +27,7 @@ public sealed partial class EnergyCorePendingDetonationComponent : Component
 
     // Музыка детонации.
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public SoundSpecifier MeltdownMusic = new SoundPathSpecifier("/Audio/Imperial/level.ogg"); // Я хрен знает под какой лицензией распространяется Trumped Up Charges
+    public SoundSpecifier MeltdownMusic = new SoundPathSpecifier("/Audio/Imperial/level.ogg"); // Старый добрый level
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier BackgroundSiren = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/background_siren.ogg");

@@ -2,20 +2,12 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Content.Server.Radio.EntitySystems;
-using Content.Server.Chat.Systems;
-using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Examine;
-using System.Linq;
-using Robust.Shared.Random;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Imperial.EnergyCore
 {

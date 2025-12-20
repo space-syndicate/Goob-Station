@@ -1,7 +1,7 @@
 namespace Content.Server.Imperial.EnergyCore.Components
 {
     /// <summary>
-    /// Система статуса ядра, определение ключевых параметров через Examine ивент.
+    /// Генератор энергетического ядра.
     /// </summary>
     [RegisterComponent]
     public sealed partial class CoreGeneratorComponent : Component

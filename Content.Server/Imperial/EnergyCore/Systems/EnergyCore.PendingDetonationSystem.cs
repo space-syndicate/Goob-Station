@@ -13,7 +13,6 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Content.Server.RoundEnd;
 using Content.Server.Audio;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.AlertLevel;
@@ -34,7 +33,6 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly ServerGlobalSoundSystem _sound = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;

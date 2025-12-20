@@ -81,7 +81,7 @@
       - NoConsoleSound
 
 - type: entity
-  id: CoreControlTerminal
+  id: CoreControlTerminal #TODO: Добавить требование по навыками в привате
   parent: BaseCoreTerminal #BaseComputer
   name: core control terminal
   description: Needs to control core ya?

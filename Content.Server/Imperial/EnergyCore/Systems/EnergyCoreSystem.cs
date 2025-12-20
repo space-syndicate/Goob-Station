@@ -159,7 +159,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     private void UpdateLightVisual(EntityUid uid, string coreColor, float coreColorRadius, float coreColorEnergy)
     {
         var color = Color.FromHex(coreColor);
-        if (TryComp<PointLightComponent>(uid, out var light));
+        if (TryComp<PointLightComponent>(uid, out var light))
         {
             _pointLight.SetColor(uid, color, light);
             _pointLight.SetRadius(uid, coreColorRadius);
