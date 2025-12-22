@@ -81,3 +81,5 @@ nukeops-cond-coreexploded = Ядерным оперативникам удало
 
 core-technical-main = [color=DarkSalmon][bold]Энергетический Департамент[/bold][/color]
 endround-core-was-compromised = Энергетическое ядро было [color=darkred][bold]скомпрометировано[/bold][/color].
+
+guide-entry-imperial-energycore = Энергетическое ядро

@@ -132,6 +132,9 @@
     - map: ["VisualState"]
       shader: unshaded
       state: screen_active
+  - type: GuideHelp
+    guides:
+    - EnergyCore
 
 - type: entity
   parent: BaseWallmountMetallic
