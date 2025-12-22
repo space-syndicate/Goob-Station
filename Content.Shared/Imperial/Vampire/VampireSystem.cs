@@ -515,7 +515,8 @@ public class VampireSystem : EntitySystem
             return;
         }
 
-        _cuff.Uncuff(args.Performer, args.Performer, cuffComp.LastAddedCuffs);
+        var handcuffs = cuffComp.Container.ContainedEntities.FirstOrDefault();
+        _cuff.Uncuff(args.Performer, args.Performer, handcuffs);
 
         if (comp.BuffBlocked)
         {
