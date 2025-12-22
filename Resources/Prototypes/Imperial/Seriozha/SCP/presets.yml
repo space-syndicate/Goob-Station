@@ -251,7 +251,13 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
-
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPCI-name
+      description: ghost-role-information-PresetSCPCI-desc
+      rules: CI
+      raffle:
+        settings: short
 
 - type: startingGear
   id: MTFGear
@@ -274,7 +280,7 @@
     back:
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
-    - AdvancedFirstAidMedkitImperialFilled
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
 
 - type: startingGear
   id: MTFCMDGear
@@ -298,10 +304,8 @@
     back:
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
-    - MagazineLightRifle
-    - MagazineLightRifle
-    - MedkitCobmatImperialFilled
     - DoorRemoteSCP
+    - FondUplinkCommander
 
 - type: startingGear
   id: NuGear
@@ -318,13 +322,11 @@
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltParamedicFilled
     pocket1: EncryptionKeyNedraMTFconnection
-    pocket2: EncryptionKeyNedraCMDconnection
   inhand:
   - FlameThrower
   storage:
     back:
-    - FuelTankFlamethrowerMedium
-    - FuelTankFlamethrowerMedium
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
 
 - type: startingGear
   id: NuCMDGear
@@ -345,6 +347,9 @@
     pocket2: EncryptionKeyNedraCMDconnection
   inhand:
   - FlameThrowerBorg
+  storage:
+    back:
+    - FondUplinkCommander
 
 - type: startingGear
   id: OxranaGear
@@ -360,8 +365,9 @@
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltSecurityFilled
     suitstorage: CSWeaponP90
-    pocket1: p90-Magazine
-    pocket2: p90-Magazine
+    pocket1: FondUplinkBase
+  inhand:
+  - PaperOGK
 
 - type: startingGear
   id: DocGear
@@ -376,6 +382,8 @@
     id: SCPIDCardThree
     ears: ClothingHeadsetSCPMain
     belt: BoxFolderClipboard
+  inhand:
+  - PaperScience
 
 - type: startingGear
   id: DocCMDGear
@@ -411,6 +419,8 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+  inhand:
+  - PaperAdmNDA
 
 - type: startingGear
   id: CIGear
@@ -432,7 +442,7 @@
     back:
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
-    - FirstAidMedkitImperialFilled
+    - CIUplinkBase
 
 - type: startingGear
   id: AlphaGear
@@ -456,17 +466,7 @@
     back:
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraAlphaconnection
-    - MagazineLightRifle
-    - MagazineLightRifle
-    - MagazineLightRifle
-    - MagazineLightRifle
-    - MedkitCobmatImperialFilled
-    - MedkitCobmatImperialFilled
-    - ChemistryBottleOmnizine
-    - ChemistryBottleOmnizine
-    - ChemistryBottleOmnizine
-    - ChemistryBottleSaline
-    - Hypospray
+    - FondUplinkAlpha1
     - CompactDefibrillator
     - DoorRemoteSCPAll
 

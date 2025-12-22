@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by @crookielv",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "alive",
+            "directions": 4
+        },
+        {
+            "name": "dead"
+        },
+        {
+            "name": "phantomor_meat"
+        }
+    ]
+}

@@ -27,7 +27,7 @@ public sealed class VentClogRule : StationEventSystem<VentClogRuleComponent>
 
         // TODO: "safe random" for chems. Right now this includes admin chemicals.
         var allReagents = PrototypeManager.EnumeratePrototypes<ReagentPrototype>()
-            .Where(x => !x.Abstract && !component.BlacklistedReagents.Contains(x))
+            .Where(x => !x.Abstract)
             .Select(x => new ProtoId<ReagentPrototype>(x.ID)).ToList();
 
         foreach (var (_, transform) in EntityQuery<GasVentPumpComponent, TransformComponent>())

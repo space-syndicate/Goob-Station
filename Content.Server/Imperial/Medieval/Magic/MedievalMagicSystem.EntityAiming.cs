@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.Ghost;
@@ -24,10 +23,6 @@ namespace Content.Server.Imperial.Medieval.Magic;
 /// </summary>
 public sealed partial class MedievalMagicSystem
 {
-    private readonly ProtoId<TagPrototype> _wallTag = "Wall";
-    private readonly ProtoId<TagPrototype> _blacklistTag = "LightningBlacklist";
-
-
     private void InitializeEntityAimingSpells()
     {
         SubscribeNetworkEvent<TargetOverlayShootEvent>(OnTargetCaptured);
@@ -209,7 +204,7 @@ public sealed partial class MedievalMagicSystem
             var direction = cursorPosition.Position - performerCoords;
 
             var ray = new CollisionRay(performerCoords, direction.Normalized(), (int)CollisionGroup.AllMask);
-            var collidedItemEnts = LightningRaycast(cursorPosition.MapId, ray, performer, direction.Length());
+            var collidedItemEnts = _physicsSystem.IntersectRay(cursorPosition.MapId, ray, direction.Length(), performer);
 
             TryChangeTarget(collidedItemEnts, ref target);
 
@@ -217,7 +212,7 @@ public sealed partial class MedievalMagicSystem
             args.Seed = args.Seed.HasValue ? args.Seed : args.Seed * i;
 
             if (target.HasValue)
-                args.LightningCollideEffects.ForEach(effect => effect.Effect(new EntityEffectBaseArgs(target.Value, EntityManager)));
+                _entityEffects.ApplyEffects(target.Value, args.LightningCollideEffects, user: target.Value);
 
             SpawnLightning(performerCoords, targetCoords.Position, args);
 
@@ -370,66 +365,6 @@ public sealed partial class MedievalMagicSystem
             data.Amplitude,
             data.Frequency
         );
-    }
-
-    private List<RayCastResults> LightningRaycast(MapId mapId, CollisionRay ray, EntityUid ignoredEnt, float maxLength = 50F, bool returnOnFirstHit = true)
-    {
-        if (!_mapSystem.TryGetMap(mapId, out var mapUid)) return new();
-        if (!TryComp<BroadphaseComponent>(mapUid, out var broadphaseComponent)) return new();
-
-        var results = new List<RayCastResults>();
-        var endPoint = ray.Position + ray.Direction.Normalized() * maxLength;
-        var rayBox = new Box2(Vector2.Min(ray.Position, endPoint), Vector2.Max(ray.Position, endPoint));
-
-        var (_, rot, matrix, invMatrix) = _transformSystem.GetWorldPositionRotationMatrixWithInv(mapUid.Value);
-
-        var position = Vector2.Transform(ray.Position, invMatrix);
-        var gridRot = new Angle(-rot.Theta);
-        var direction = gridRot.RotateVec(ray.Direction);
-
-        var gridRay = new CollisionRay(position, direction, ray.CollisionMask);
-
-        broadphaseComponent.DynamicTree.QueryRay((in FixtureProxy proxy, in Vector2 point, float distFromOrigin) =>
-        {
-            if (distFromOrigin > maxLength)
-                return true;
-
-            if (proxy.Entity == ignoredEnt)
-                return true;
-
-            if (_tagSystem.HasTag(proxy.Entity, _blacklistTag))
-                return true;
-
-            var result = new RayCastResults(distFromOrigin, Vector2.Transform(point, matrix), proxy.Entity);
-            results.Add(result);
-
-            return true;
-        }, gridRay);
-
-        broadphaseComponent.StaticTree.QueryRay((in FixtureProxy proxy, in Vector2 point, float distFromOrigin) =>
-        {
-            if (distFromOrigin > maxLength)
-                return true;
-
-            if (proxy.Entity == ignoredEnt)
-                return true;
-
-            if (!_tagSystem.HasTag(proxy.Entity, _wallTag))
-                return true;
-
-            if (_tagSystem.HasTag(proxy.Entity, _blacklistTag))
-                return true;
-
-
-            var result = new RayCastResults(distFromOrigin, Vector2.Transform(point, matrix), proxy.Entity);
-            results.Add(result);
-
-            return true;
-        }, gridRay);
-
-        return returnOnFirstHit && results.Count > 1
-            ? new() { results[results.Count - 1] }
-            : results;
     }
 
     #endregion

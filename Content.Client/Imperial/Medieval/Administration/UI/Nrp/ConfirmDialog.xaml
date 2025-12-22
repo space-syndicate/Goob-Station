@@ -1,0 +1,11 @@
+﻿<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc nrp-panel-dialog-title}" MinSize="160 100">
+    <BoxContainer Orientation="Vertical">
+        <Label Name="Subtitle" Text="{Loc nrp-panel-dialog-subtitle}"></Label>
+        <BoxContainer Orientation="Horizontal">
+            <Button VerticalExpand="False" HorizontalAlignment="Center" Name="CancelButton" Text="{Loc nrp-panel-dialog-cancel}"></Button>
+            <Button VerticalExpand="False" HorizontalAlignment="Center" Name="ConfirmButton" StyleClasses="Caution" Text="{Loc nrp-panel-dialog-confirm}"></Button>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

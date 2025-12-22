@@ -1,0 +1,18 @@
+﻿<Control xmlns="https://spacestation14.io"
+         xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls">
+    <PanelContainer HorizontalAlignment="Stretch" StyleClasses="WindowHeadingBackground" Margin="5">
+        <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical">
+            <RichTextLabel Name="PlayerInformation" Margin="2" Text="[color=white]Урист МакЧеловек, Капитан, Placeholder[/color]"></RichTextLabel>
+            <RichTextLabel HorizontalAlignment="Stretch" Name="Message" Text="Lorem [color=red]dolor[/color] sit amet, [color=red]con[/color]sectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. [color=red]Duis[/color] aute irure [color=red]dolor[/color] in reprehenderit in voluptate velit esse cillum [color=red]dolor[/color]e eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></RichTextLabel>
+            <BoxContainer Name="Buttons" HorizontalExpand="True">
+                <BoxContainer Name="Left" HorizontalAlignment="Left" HorizontalExpand="True">
+                    <cc:CommandButton Margin="2" Name="AHelp" Text="{Loc nrp-panel-button-ahelp}"></cc:CommandButton>
+                </BoxContainer>
+                <BoxContainer Name="Right" HorizontalAlignment="Right">
+                    <Button Margin="2" Name="ResolveRP" Text="{Loc nrp-panel-button-action-no}"></Button>
+                    <Button Margin="2" StyleClasses="Caution" Name="ResolveNRP" Text="{Loc nrp-panel-button-action-yes}"></Button>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</Control>

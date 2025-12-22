@@ -13,6 +13,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Physics.Events;
 using System.Linq;
 using Robust.Server.GameObjects;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -61,7 +62,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         if (!component.Activated)
         {
             component.Activated = true;
-            SendSupermatterRadio(args.OurEntity,Loc.GetString("supermatter-activated"), component);
+            SendSupermatterRadio(args.OurEntity, Loc.GetString("supermatter-activated"), component);
         }
 
         component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
@@ -137,7 +138,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 
             // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
             // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
-            if (level.Threshold <= 10f)
+            if (level.Threshold <= 30f)
             {
                 var station = _stationSystem.GetOwningStation(uid, transComp);
                 if (station != null)
@@ -173,7 +174,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             var station = _stationSystem.GetOwningStation(uid, transComp);
             if (station != null)
             {
-                _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
                 _chatSystem.DispatchStationAnnouncement(
                     station.Value,
                     Loc.GetString("supermatter-station-catastrophe"),
@@ -181,9 +181,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
                     colorOverride: Color.Red
                 );
             }
-
-            // Отправляем сообщение в радио о начале катастрофы
-            SendSupermatterRadio(uid, Loc.GetString("supermatter-catastrophe-warning"), comp);
         }
 
         if (comp.CatastropheActive)

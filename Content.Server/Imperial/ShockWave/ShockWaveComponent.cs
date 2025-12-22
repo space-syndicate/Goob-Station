@@ -22,7 +22,7 @@ public sealed partial class ShockWaveComponent : Component
     /// List of effects that should be applied.
     /// </summary>
     [DataField]
-    public List<EntityEffect> Effects = new();
+    public EntityEffect[] Effects = [];
 
 
     [ViewVariables]

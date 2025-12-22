@@ -1,0 +1,68 @@
+- type: entity
+  name: StormTrooper
+  parent: BaseItem
+  id: WeaponShotgunStormTrooperDFSB
+  suffix: space battle, DeimonFly
+  description: A modified magazine-fed shotgun built to dominate close quarters. Fires incendiary .50 shot shells that burn targets up close, trading fire rate and magazine size for brutal damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/TGMC/Weapon/stormtrooper.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,3
+  - type: Clothing
+    sprite: Imperial/TGMC/Weapon/stormtrooper.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: ClothingVisuals
+    clothingVisuals:
+    - slot: Back
+      sprite: Imperial/TGMC/Weapon/stormtrooper.rsi
+      state: equipped-BACKPACK
+    - slot: suitStorage
+      sprite: Imperial/TGMC/Weapon/stormtrooper.rsi
+      state: equipped-BACKPACK
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.5
+    projectileSpeed: 8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: DFMagazineShotgunStormTrooper
+        priority: 2
+        whitelist:
+          tags:
+          - DFMagazineShotgunStormTrooper
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 500

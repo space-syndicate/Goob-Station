@@ -15,7 +15,7 @@ public sealed partial class ScramOnTriggerComponent : BaseXOnTriggerComponent
     /// Up to how far to teleport the entity.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float TeleportRadius = 115f; // Imperial Space Небольшой бафф радиуса импланта побега
+    public float TeleportRadius = 100f;
 
     /// <summary>
     /// the sound to play when teleporting.

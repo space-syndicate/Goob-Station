@@ -5,126 +5,90 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Chemistry.ReactionEffects;
 
+
+public sealed partial class LuminescenceEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Luminescence>
+{
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLightSystem = default!;
+
+
+    protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Luminescence> args)
+    {
+        // If the next time the reagent metabolization ends, we turn off the glow.
+
+        Logger.Error(args.Effect.Scaling + "");
+    }
+
+    private Color GenerateRandomColor()
+    {
+        var r = _random.NextByte(255);
+        var g = _random.NextByte(255);
+        var b = _random.NextByte(255);
+
+        return new Color(r, g, b);
+    }
+
+    private void SetLightColor(EntityUid entity, EntityEffectEvent<Luminescence> args)
+    {
+        var color = args.Effect.PaintingColor != null ? args.Effect.PaintingColor.Value : GenerateRandomColor();
+
+        _pointLightSystem.SetColor(entity, color);
+    }
+
+    private void ScaleLightPower(EntityUid uid, EntityEffectEvent<Luminescence> args)
+    {
+        var reagentCount = args.Scale;
+
+        var energy = MathF.Max(
+            MathF.Min((float)(reagentCount * args.Effect.EnergyPerUnit), args.Effect.MaxEnergy),
+            args.Effect.MinEnergy
+        );
+        var range = MathF.Max(
+            MathF.Min((float)(reagentCount * args.Effect.EnergyPerUnit), args.Effect.MaxEnergy),
+            args.Effect.MinRange
+        );
+
+        _pointLightSystem.SetEnergy(uid, energy);
+        _pointLightSystem.SetRadius(uid, range);
+    }
+}
+
+
 /// <summary>
 ///     Causes the entity to glow.
 /// </summary>
 /// <remarks>
 ///     Since I made a crutch again, it does not work when applying the essence to the skin.
 /// </remarks>
-public sealed partial class Luminescence : EntityEffect
+public sealed partial class Luminescence : EntityEffectBase<Luminescence>
 {
     /// <summary>
     ///     If the color was not transferred, then generates a random color every metabolization cycle
     /// </summary>
     [DataField("color")]
-    public string? PaintingColor;
+    public Color? PaintingColor;
 
-    [DataField("minEnergy")]
+    [DataField]
     public float MinEnergy = 2;
 
-    [DataField("maxEnergy")]
+    [DataField]
     public float MaxEnergy = float.PositiveInfinity;
 
-    [DataField("minRange")]
+    [DataField]
     public float MinRange = 2;
 
-    [DataField("maxRange")]
+    [DataField]
     public float MaxRange = float.PositiveInfinity;
 
-    [DataField("rangePerUnit")]
+    [DataField]
     public float RangePerUnit = 0.1f;
 
-    [DataField("energyPerUnit")]
+    [DataField]
     public float EnergyPerUnit = 0.1f;
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
         Loc.GetString("reagent-effect-guidebook-luminescence",
             ("chance", Probability)
         );
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        if (args is not EntityEffectReagentArgs reagentArgs) return;
-
-        var pointLightSystem = reagentArgs.EntityManager.System<SharedPointLightSystem>();
-
-        // If the next time the reagent metabolization ends, we turn off the glow.
-
-        var totalReagentCount = GetReagentCount(reagentArgs);
-
-        if (totalReagentCount - reagentArgs.Quantity <= FixedPoint2.Zero)
-        {
-            if (pointLightSystem.TryGetLight(reagentArgs.TargetEntity, out var lightConp))
-                pointLightSystem.SetEnabled(reagentArgs.TargetEntity, false, lightConp);
-
-            return;
-        }
-
-        // If the light source has already been applied to nature, then we simply change its parameters, rather than creating new ones.
-
-        if (pointLightSystem.TryGetLight(reagentArgs.TargetEntity, out var existLight))
-        {
-            if (!existLight.Enabled) pointLightSystem.SetEnabled(reagentArgs.TargetEntity, true, existLight);
-
-            SetLightColor(reagentArgs, existLight);
-            ScaleLightPower(reagentArgs, existLight);
-
-            return;
-        }
-
-        // Add point light to the entity
-
-        var light = pointLightSystem.EnsureLight(reagentArgs.TargetEntity);
-
-        SetLightColor(reagentArgs, light);
-        ScaleLightPower(reagentArgs, light);
-
-        pointLightSystem.SetEnabled(reagentArgs.TargetEntity, true, light);
-    }
-
-    private static Color GenerateRandomColor()
-    {
-        var random = IoCManager.Resolve<IRobustRandom>();
-
-        var r = random.NextByte(255);
-        var g = random.NextByte(255);
-        var b = random.NextByte(255);
-
-        return new Color(r, g, b);
-    }
-
-    private void SetLightColor(EntityEffectReagentArgs args, SharedPointLightComponent light)
-    {
-        var pointLightSystem = args.EntityManager.System<SharedPointLightSystem>();
-
-        if (PaintingColor == null)
-            pointLightSystem.SetColor(args.TargetEntity, GenerateRandomColor(), light);
-        else
-            pointLightSystem.SetColor(args.TargetEntity, Color.FromHex(PaintingColor), light);
-    }
-
-    private void ScaleLightPower(EntityEffectReagentArgs args, SharedPointLightComponent light)
-    {
-        var pointLightSystem = args.EntityManager.System<SharedPointLightSystem>();
-        var reagentCount = GetReagentCount(args);
-
-        var energy = MathF.Max(
-            MathF.Min((float)(reagentCount * EnergyPerUnit), MaxEnergy),
-            MinEnergy
-        );
-        var range = MathF.Max(
-            MathF.Min((float)(reagentCount * RangePerUnit), MaxEnergy),
-            MinRange
-        );
-
-        pointLightSystem.SetEnergy(args.TargetEntity, energy, light);
-        pointLightSystem.SetRadius(args.TargetEntity, range, light);
-    }
-
-    private static FixedPoint2 GetReagentCount(EntityEffectReagentArgs args)
-    {
-        if (args.Source != null && args.Reagent?.ID != null) return args.Source!.GetTotalPrototypeQuantity(args.Reagent!.ID);
-
-        return FixedPoint2.Zero;
-    }
 }

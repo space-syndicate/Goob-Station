@@ -40,6 +40,10 @@
   id: LockerFillMedicalDoctor
   table: !type:AllSelector
     children:
+    # imperial space: added hypospray for doctors. Start
+    - id: StandardHypospray
+      prob: 1.0
+   # imperial space: added hypospray for doctors. End
     - id: HandheldHealthAnalyzer
       prob: 0.6
     - id: ClothingHeadMirror
@@ -132,6 +136,7 @@
     - id: ClothingMaskSterile
     - id: HandheldGPSBasic
     - id: MedkitFilled
+    - id: ControlModsuitRescue # Imperial Space в ящики парамедика добавлен РИГ
       prob: 0.3
 
 - type: entity

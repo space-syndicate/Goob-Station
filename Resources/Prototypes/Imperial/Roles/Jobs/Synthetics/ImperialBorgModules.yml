@@ -348,7 +348,7 @@
     - item: WeaponDisablerBorg
     - item: FlashBorg
     - item: Handcuffs
-      hand: 
+      hand:
         emptyLabel: borg-slot-security-cuffs-empty
         emptyRepresentative: Handcuffs
         whitelist:
@@ -378,7 +378,7 @@
     tags:
     - BorgModuleSecurityImperial
 
-# Imperial Space Инженерный борг 
+# Imperial Space Инженерный борг
 
 - type: Tag
   id: Manipulator
@@ -462,6 +462,7 @@
   id: BorgModuleNonLethalSecurityErt # Нелетальный модуль ОБР борга
   parent: BaseErtBorgModule
   name: NonLethal Ert Module
+  suffix: cyborg
   components:
   - type: Sprite
     sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
@@ -597,7 +598,7 @@
     fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseDeathSquad
     fireCost: 200
   - type: BatterySelfRecharger
@@ -665,7 +666,7 @@
     - type: ItemToggleHot
     - type: ItemToggleSize
       activatedSize: Huge
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: FlamethrowerBullet
     fireCost: 100
   - type: Battery
@@ -945,6 +946,7 @@
           - MedicalBorgItem
           - OxygenMask
           - GasTank
+          - Trash
     - item: SurgeryBoxOrgansFilled
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -952,9 +954,11 @@
         whitelist:
           tags:
           - OriginalBodyPart
+          - MedicalBorgItem
           - Organ
           - BodyPart
-          - Storage
+          - BoxCardboard
+          - Trash
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
   - type: StaticPrice
@@ -1296,7 +1300,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 150
   - type: BatterySelfRecharger

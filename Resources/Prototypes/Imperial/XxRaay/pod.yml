@@ -1,0 +1,129 @@
+- type: entity
+  id: supplypod_base
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: supplypod_spawn
+  name: supplypod
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger
+    proto: supplypod_warning_marker
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+    drawdepth: FloorObjects
+  - type: Marker
+
+- type: entity
+  id: supplypod_warning_marker
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/pods/marker.rsi
+    state: marker_ping
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 1.75
+  - type: SpawnOnTrigger
+    proto: supplypod_warning_sound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: supplypod_marker_ready
+
+- type: entity
+  id: supplypod_marker_ready
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/pods/marker.rsi
+    state: marker
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger
+    proto: supplypod_landing_animation
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: supplypod_warning_sound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Imperial/XxRaay/pods/supplypodlandig.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: supplypod_landing_animation
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/pods/landingpod.rsi
+    state: landing
+    offset: -1.7, 4.3
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 1.8
+  - type: SpawnOnDespawn
+    prototype: supplypod_landed
+
+- type: entity
+  id: supplypod_landed
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: Imperial/XxRaay/pods/supplypod.rsi
+    state: landed
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 6
+  - type: SpawnOnDespawn
+    prototype: supplypod_landed_opened
+
+- type: entity
+  id: supplypod_landed_opened
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: Imperial/XxRaay/pods/supplypod.rsi
+    state: landed-opened
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 20
+  - type: SpawnOnDespawn
+    prototype: supplypod_depart_sound
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Imperial/XxRaay/pods/closet_open.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: supplypod_depart_sound
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Imperial/XxRaay/pods/podwoosh.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 3
