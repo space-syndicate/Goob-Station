@@ -30,6 +30,8 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultThiefRule = "Thief";
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
+    private static readonly EntProtoId DefaultWizardRule = "Wizard";
+    private static readonly EntProtoId VampireRule = "Vampire"; // imperial space: new antag - vampire
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -189,6 +191,39 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = string.Join(": ", paradoxCloneName, Loc.GetString("admin-verb-make-paradox-clone")),
         };
+
+        var wizardName = Loc.GetString("admin-verb-text-make-wizard");
+        Verb wizard = new()
+        {
+            Text = wizardName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Wizard"),
+            Act = () =>
+            {
+                // Wizard has no rule components as of writing, but I gotta put something here to satisfy the machine so just make it wizard mind rule :)
+                _antag.ForceMakeAntag<WizardRoleComponent>(targetPlayer, DefaultWizardRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", wizardName, Loc.GetString("admin-verb-make-wizard")),
+        };
+        args.Verbs.Add(wizard);
+
+        // imperial space: new antag - vampire. start
+        var vampiredName = Loc.GetString("admin-verb-text-make-vampire");
+        Verb vampire = new()
+        {
+            Text = vampiredName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "InitialInfected"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, VampireRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", vampiredName, Loc.GetString("admin-verb-make-vampire")),
+        };
+        args.Verbs.Add(vampire);
+        // imperial space: new antag - vampire. end
 
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
