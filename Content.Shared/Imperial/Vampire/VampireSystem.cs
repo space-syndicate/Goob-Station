@@ -55,7 +55,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Imperial.Vampire;
 
-public sealed class VampireSystem : EntitySystem
+public class VampireSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
@@ -97,15 +97,19 @@ public sealed class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
         SubscribeLocalEvent<VampireRushBloodEvent>(OnRushBlood);
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
-        SubscribeLocalEvent<VampireSleepEvent>(OnSleep);
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
-        SubscribeLocalEvent<VampireReconciliationEvent>(OnReconciliation);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
         SubscribeLocalEvent<VampireBloodTransformEvent>(OnTransformToBlood);
 
         SubscribeLocalEvent<VampireComponent, VampireShadowTrapEvent>(StartOnShadowTrap);
         SubscribeLocalEvent<VampireComponent, VampireShadowTrapDoAfterEvent>(OnShadowTrap);
         SubscribeLocalEvent<VampireTrapOnTriggerComponent, StartCollideEvent>(OnVampireTrap);
+
+        SubscribeLocalEvent<VampireSleepEvent>(OnStartSleep);
+        SubscribeLocalEvent<VampireComponent, VampireSleepDoAfterEvent>(OnSleep);
+
+        SubscribeLocalEvent<VampireReconciliationEvent>(OnStartReconciliation);
+        SubscribeLocalEvent<VampireComponent, VampireReconciliationDoAfterEvent>(OnReconciliation);
 
         SubscribeLocalEvent<VampireInvisibleEvent>(OnInvisible);
         SubscribeLocalEvent<VampireComponent, AttemptMeleeEvent>(OnAttemptMelee);
@@ -173,17 +177,23 @@ public sealed class VampireSystem : EntitySystem
             if (TryComp<HandsComponent>(performer, out var hands) &&
                 TryComp<CuffableComponent>(performer, out var cuff))
             {
-                if (_hands.CanPickupAnyHand(performer, item, handsComp: hands))
+                if (!_hands.CanPickupAnyHand(performer, item, handsComp: hands))
                 {
-                    if (!_hands.CanPickupAnyHand(performer, item, handsComp: hands))
-                    {
-                        // выбрасываем предмет, если руки заняты
-                        _hands.TryDrop(performer);
-                    }
-
-                    _hands.TryPickup(performer, item, checkActionBlocker: false, handsComp: hands);
+                    _hands.TryDrop(performer);
+                }
+                // подбираем коготь
+                if (_hands.TryPickup(performer, item, checkActionBlocker: false, handsComp: hands))
+                {
                     comp.ItemIssued = true;
+                    comp.ClawDurationActive = _gameTiming.CurTime + comp.ClawDuration;
                     Dirty(performer, comp);
+                }
+                else
+                {
+                    // если не удалось подобрать, удаляем
+                    QueueDel(item);
+                    _popup.PopupClient(Loc.GetString("У вас нет свободных рук!"),
+                    args.Performer, args.Performer, PopupType.Medium);
                 }
             }
         }
@@ -412,41 +422,57 @@ public sealed class VampireSystem : EntitySystem
         _damage.TryChangeDamage(args.OtherEntity, dmg);
     }
 
-    private void OnSleep(VampireSleepEvent args)
+    private void OnStartSleep(VampireSleepEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
-        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
             _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, TimeSpan.FromSeconds(4f),
+            new VampireSleepDoAfterEvent(), args.Performer)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = false,
+            BlockDuplicate = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        DealBloodDamage(args.Performer, args.CostBlood);
+        args.Handled = true;
+    }
+
+    private void OnSleep(Entity<VampireComponent> vamp, ref VampireSleepDoAfterEvent args)
+    {
         // получаем все сущности перед игроком
-        var transform = Transform(args.Performer);
+        var transform = Transform(vamp.Owner);
         var direction = transform.LocalRotation.GetCardinalDir();
         var frontPos = transform.Coordinates.Offset(direction.ToVec());
         var entities = _lookup.GetEntitiesInRange(frontPos, 0.5f);
 
-        if (!entities.Any(x => x != args.Performer))
+        if (!entities.Any(x => x != vamp.Owner))
         {
             _popup.PopupClient(Loc.GetString("Впереди никого нет!"),
-                args.Performer, args.Performer, PopupType.Medium);
+                vamp.Owner, vamp.Owner, PopupType.Medium);
 
             return;
         }
 
         foreach (var entity in entities)
         {
-            if (entity == args.Performer)
+            if (entity == vamp.Owner)
                 continue;
 
             if (TryComp<SleepingComponent>(entity, out var sleep))
             {
                 _popup.PopupClient(Loc.GetString("Уже спит!"),
-                    args.Performer, args.Performer, PopupType.Medium);
+                    vamp.Owner, vamp.Owner, PopupType.Medium);
                 continue;
             }
 
@@ -464,7 +490,6 @@ public sealed class VampireSystem : EntitySystem
             }
         }
 
-        DealBloodDamage(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 
@@ -521,43 +546,59 @@ public sealed class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnReconciliation(VampireReconciliationEvent args)
+    private void OnStartReconciliation(VampireReconciliationEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
-        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
             _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, TimeSpan.FromSeconds(1f),
+            new VampireReconciliationDoAfterEvent(), args.Performer)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = false,
+            BlockDuplicate = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        DealBloodDamage(args.Performer, args.CostBlood);
+        args.Handled = true;
+    }
+
+    private void OnReconciliation(Entity<VampireComponent> vamp, ref VampireReconciliationDoAfterEvent args)
+    {
         // получаем все сущности перед игроком
-        var transform = Transform(args.Performer);
+        var transform = Transform(vamp.Owner);
         var direction = transform.LocalRotation.GetCardinalDir();
         var frontPos = transform.Coordinates.Offset(direction.ToVec());
         var entities = _lookup.GetEntitiesInRange(frontPos, 1.5f);
 
-        if (!entities.Any(x => x != args.Performer))
+        if (!entities.Any(x => x != vamp.Owner))
         {
             _popup.PopupClient(Loc.GetString("Рядом никого нет!"),
-                args.Performer, args.Performer, PopupType.Medium);
+                vamp.Owner, vamp.Owner, PopupType.Medium);
 
             return;
         }
 
         foreach (var entity in entities)
         {
-            if (entity == args.Performer)
+            if (entity == vamp.Owner)
                 continue;
 
-            // если это предмет, то наносим ему 20 урона
+            // если это предмет, то наносим ему 40 урона
             bool IsObject = EntityManager.HasComponent<ItemComponent>(entity);
             if (IsObject)
             {
                 var dmg = new DamageSpecifier();
-                dmg.DamageDict["Blunt"] = FixedPoint2.New(20);
+                dmg.DamageDict["Blunt"] = FixedPoint2.New(40);
 
                 _damage.TryChangeDamage(entity, dmg);
             }
@@ -573,7 +614,6 @@ public sealed class VampireSystem : EntitySystem
             }
         }
 
-        DealBloodDamage(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 
@@ -735,12 +775,19 @@ public sealed class VampireSystem : EntitySystem
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
-        // Update не работает с ивентами, поэтому сохраняем значение в компоненте
-        vamp.BloodLossDisguiseIsActive = args.CostBlood;
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
 
+        vamp.BloodLossDisguiseIsActive = args.CostBlood;
         VampireInvisible(args.Performer);
+
         args.Handled = true;
     }
+
 
 
     /// <summary>
@@ -779,40 +826,45 @@ public sealed class VampireSystem : EntitySystem
         {
             if (comp.BuffBlocked && _gameTiming.CurTime >= comp.BuffBlockedUntil)
             {
-                if (comp.OriginalDamageModifier != null)
+                if (!comp.InvisibleIsActive && !comp.VampireIsBlood)
                 {
-                    melee.Damage = new DamageSpecifier
+                    if (comp.OriginalDamageModifier != null)
                     {
-                        DamageDict = new()
+                        melee.Damage = new DamageSpecifier
                         {
-                            { "Blunt", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
-                            { "Slash", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
-                        }
-                    };
-                    Dirty(uid, melee);
-                    comp.OriginalDamageModifier = null;
+                            DamageDict = new()
+                            {
+                                { "Blunt", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
+                                { "Slash", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
+                            }
+                        };
+                        Dirty(uid, melee);
+                        comp.OriginalDamageModifier = null;
+                    }
+
+                    if (comp.OriginalAttackRate != null)
+                    {
+                        melee.AttackRate = comp.OriginalAttackRate.Value;
+                        Dirty(uid, melee);
+                        comp.OriginalAttackRate = null;
+                    }
+
+                    if (comp.OriginalWalkSpeed != null && comp.OriginalSprintSpeed != null)
+                    {
+                        _speedSystem.ChangeBaseSpeed(
+                            uid,
+                            comp.OriginalWalkSpeed.Value,
+                            comp.OriginalSprintSpeed.Value,
+                            speed.BaseAcceleration,
+                            speed);
+
+                        comp.OriginalWalkSpeed = null;
+                        comp.OriginalSprintSpeed = null;
+                    }
+
+                    _popup.PopupClient(Loc.GetString("STOP"), uid, uid, PopupType.LargeCaution);
                 }
 
-                if (comp.OriginalAttackRate != null)
-                {
-                    melee.AttackRate = comp.OriginalAttackRate.Value;
-                    Dirty(uid, melee);
-                    comp.OriginalAttackRate = null;
-                }
-
-                if (comp.OriginalWalkSpeed != null && comp.OriginalSprintSpeed != null)
-                {
-                    _speedSystem.ChangeBaseSpeed(
-                        uid,
-                        comp.OriginalWalkSpeed.Value,
-                        comp.OriginalSprintSpeed.Value,
-                        speed.BaseAcceleration,
-                        speed);
-
-                    comp.OriginalWalkSpeed = null;
-                    comp.OriginalSprintSpeed = null;
-                }
-                _popup.PopupClient(Loc.GetString("STOP"), uid, uid, PopupType.LargeCaution);
                 comp.BuffBlocked = false;
                 Dirty(uid, comp);
             }
@@ -888,9 +940,10 @@ public sealed class VampireSystem : EntitySystem
             if (!vamp.InvisibleIsActive)
                 continue;
 
-            if (vamp.BloodDamage + vamp.BloodLossDisguiseIsActive >= vamp.CritThreshold)
+            if (vamp.BloodDamage >= vamp.CritThreshold && vamp.InvisibleIsActive)
             {
                 VampireInvisible(uid);
+                Dirty(uid, vamp);
                 continue;
             }
 
@@ -941,6 +994,29 @@ public sealed class VampireSystem : EntitySystem
                 continue;
             }
         }
+
+        var vampClaw = EntityQueryEnumerator<VampireComponent>();
+        while (vampClaw.MoveNext(out var uid, out var vamp))
+        {
+            if (!vamp.ItemIssued)
+                continue;
+
+            if (_gameTiming.CurTime >= vamp.ClawDurationActive)
+            {
+                foreach (var hand in _hands.EnumerateHeld(uid))
+                {
+                    // удаляем когти по мете
+                    if (MetaData(hand).EntityPrototype?.ID == vamp.ClawId)
+                    {
+                        QueueDel(hand);
+                        vamp.ItemIssued = false;
+                        Dirty(uid, vamp);
+                        break;
+                    }
+                }
+                Dirty(uid, vamp);
+            }
+        }
     }
 
     /// <summary>
@@ -965,7 +1041,6 @@ public sealed class VampireSystem : EntitySystem
             _stealth.SetEnabled(uid, true, stealth);
 
             vamp.DisguiseIsActive = true;
-            vamp.BuffBlocked = true;
             vamp.InvisibleIsActive = true;
 
             Dirty(uid, vamp);
@@ -976,10 +1051,9 @@ public sealed class VampireSystem : EntitySystem
             _stealth.SetVisibility(uid, 1f, stealth);
             _stealth.SetEnabled(uid, false, stealth);
 
-            Dirty(uid, vamp);
             vamp.InvisibleIsActive = false;
             vamp.DisguiseIsActive = false;
-            vamp.BuffBlocked = false;
+            Dirty(uid, vamp);
         }
     }
 
@@ -1098,7 +1172,9 @@ public sealed class VampireSystem : EntitySystem
 
         if (ent.Comp.GrimoreActionEntity == null)
         {
+            EntityUid? actionEnt = null;
             _actions.AddAction(ent.Owner, ref ent.Comp.GrimoreActionEntity, ent.Comp.GrimoreAction);
+            _actions.AddAction(ent.Owner, ref actionEnt, ent.Comp.SelectingSubgroupAction);
             Dirty(ent.Owner, ent.Comp);
         }
         SetBloodAlert(ent.Owner, ent.Comp);
@@ -1111,7 +1187,9 @@ public sealed class VampireSystem : EntitySystem
 
         if (ent.Comp.GrimoreActionEntity == null)
         {
+            EntityUid? actionEnt = null;
             _actions.AddAction(ent.Owner, ref ent.Comp.GrimoreActionEntity, ent.Comp.GrimoreAction);
+            _actions.AddAction(ent.Owner, ref actionEnt, ent.Comp.SelectingSubgroupAction);
             Dirty(ent.Owner, ent.Comp);
         }
         SetBloodAlert(ent.Owner, ent.Comp);
@@ -1120,5 +1198,6 @@ public sealed class VampireSystem : EntitySystem
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)
     {
         _roleSystem.MindRemoveRole<VampireRoleComponent>((args.Mind.Owner, args.Mind.Comp));
+        RemComp<VampireComponent>(ent);
     }
 }

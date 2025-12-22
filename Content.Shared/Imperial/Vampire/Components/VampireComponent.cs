@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Polymorph;
+using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -147,8 +148,9 @@ namespace Content.Shared.Imperial.Vampire
         [DataField, AutoNetworkedField]
         public EntProtoId SmokePrototype = "Smoke";
 
-        public EntProtoId GrimoreAction = "VampireGrimoireAction";
+        public EntProtoId GrimoreAction = "VampireTestAction";
         public EntityUid? GrimoreActionEntity;
+        public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroup";
 
         [AutoNetworkedField]
         public float BloodDamage;
@@ -194,6 +196,39 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public bool DoAfterShadowTrapIsActive = false;
+
+        [AutoNetworkedField]
+        public List<EntityUid> GrantedActions = new();
+
+        [AutoNetworkedField]
+        public int SelectedSubgroup = 0;
+
+        [AutoNetworkedField]
+        public TimeSpan ClawDurationActive;
+
+        [DataField]
+        public TimeSpan ClawDuration = TimeSpan.FromSeconds(4);
+
+        /// <summary>
+        /// сколько всего крови выпил вампир
+        /// </summary>
+        [AutoNetworkedField]
+        public float TotalDrunk = 0;
+
+        [AutoNetworkedField]
+        public HashSet<int> UnlockedAbilityIndices = new();
+
+        [AutoNetworkedField]
+        public bool InvisibleCloneIsActive = false;
+
+        /// <summary>
+        /// выбрана ли подгруппа?
+        /// </summary>
+        [AutoNetworkedField]
+        public bool DirectionSelected = false;
+
+        [DataField]
+        public ProtoId<FactionIconPrototype> StatusIcon = "VampireFaction";
 
         public float Radius = 2f;
     }

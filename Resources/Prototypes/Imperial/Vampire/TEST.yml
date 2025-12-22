@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireGrimoireAction
-  name: Гримуар вампира
-  description: Открывает магазин вампирских способностей
+  id: VampireTestAction
+  name: ТЕСТ СПОСОБНОСТЕЙ
+  description: ТЕСТ СПОСОБНОСТЕЙ
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -13,14 +13,14 @@
     event: !type:VampireGrimoireEvent
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
-    verbText: Открыть гримуар
+    verbText: ТЕСТ СПОСОБНОСТЕЙ
     inHandsOnly: false
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
   - type: Store
-    name: store-preset-name-spellbook
+    name: ТЕСТ СПОСОБНОСТЕЙ
     categories:
     - ShadowsHealing
     - NightmaresControl

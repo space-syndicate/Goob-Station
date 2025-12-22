@@ -38,6 +38,9 @@ using System.Runtime.CompilerServices;
 using Content.Server.Humanoid;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using Content.Shared.Humanoid;
+using Content.Shared.Eui;
+using Content.Server.EUI;
+using Content.Shared.Actions;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -60,6 +63,8 @@ public sealed class VampireServerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly CloningSystem _cloning = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EuiManager _eui = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {
@@ -74,11 +79,12 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
         SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
         SubscribeLocalEvent<VampireCloneEvent>(OnClone);
+        SubscribeLocalEvent<VampireSelectingSubgroupEvent>(OnSelectingSubgroup);
     }
 
-    private void OnGetVerbsCombined(EntityUid uid, VampireComponent comp, GetVerbsEvent<InnateVerb> args)
+    private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || comp.InvisibleIsActive)
+        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || !vamp.DirectionSelected)
             return;
 
         // если у цели нет крови (например, стул), кнопки не добавляем
@@ -245,6 +251,9 @@ public sealed class VampireServerSystem : EntitySystem
         {
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
             _vampireSystem.SetBloodAlert(drinker, vamp);
+            vamp.TotalDrunk += amount;
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions);
+            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
         }
         else
         {
@@ -427,6 +436,15 @@ public sealed class VampireServerSystem : EntitySystem
         _vampireSystem.SetGhoulBloodAlert(target, ghoulComp);
     }
 
+    private void OnSelectingSubgroup(VampireSelectingSubgroupEvent args)
+    {
+        if (!TryComp<ActorComponent>(args.Performer, out var actor))
+            return;
+
+        var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions);
+        _eui.OpenEui(eui, actor.PlayerSession);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -448,6 +466,9 @@ public sealed class VampireServerSystem : EntitySystem
         var queryClone = EntityQueryEnumerator<VampireComponent>();
         while (queryClone.MoveNext(out var uid, out var vamp))
         {
+            if (!vamp.InvisibleCloneIsActive)
+                continue;
+
             if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.InvisibleIsActive)
             {
                 _vampireSystem.VampireInvisible(uid);

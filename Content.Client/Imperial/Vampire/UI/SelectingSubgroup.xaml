@@ -1,0 +1,70 @@
+<controls:FancyWindow xmlns="https://spacestation14.io" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      x:Class="Content.Client.Vampire.UI.SelectingSubgroup"
+                      Title="{Loc 'vampire-selecting-window-subgroup-title'}"
+                      Resizable="False" MinSize="1200 750">
+
+    <BoxContainer Orientation="Horizontal" Margin="5" SeparationOverride="5" HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- HEMOMANCER -->
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+                <Label Text="Hemomancer" StyleClasses="LabelHeading" Align="Center" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <RichTextLabel Name="SubgroupLabel1" MaxWidth="350" Margin="5 5"/>
+                </ScrollContainer>
+
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabel14" MaxWidth="350" HorizontalExpand="True" Margin="5 5"/>
+
+                <Button Name="SubgroupButton1" Text="Выбрать Hemomancer" MinHeight="40"
+                    HorizontalExpand="True" StyleClasses="OpenBoth" Margin="5 5"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- UMBRAE -->
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+                <Label Text="Umbrae" StyleClasses="LabelHeading" Align="Center" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <RichTextLabel Name="SubgroupLabel2" MaxWidth="350" Margin="5 5"/>
+                </ScrollContainer>
+
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabel24" MaxWidth="350" HorizontalExpand="True" Margin="5 5"/>
+
+                <Button Name="SubgroupButton2" Text="Выбрать Umbrae" MinHeight="40" HorizontalExpand="True"
+                    StyleClasses="OpenBoth" Margin="5 5"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- GARGANTUA -->
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+                <Label Text="Gargantua" StyleClasses="LabelHeading" Align="Center" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <RichTextLabel Name="SubgroupLabel3" MaxWidth="350" Margin="5 5"/>
+                </ScrollContainer>
+
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabel34" MaxWidth="350" HorizontalExpand="True" Margin="5 5"/>
+
+                <Button Name="SubgroupButton3" Text="Выбрать Gargantua" MinHeight="40"
+                    HorizontalExpand="True" StyleClasses="OpenBoth" Margin="5 5"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+    </BoxContainer>
+</controls:FancyWindow>

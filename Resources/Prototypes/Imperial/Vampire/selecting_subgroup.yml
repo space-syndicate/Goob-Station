@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: VampireSelectingSubgroup
+  name: Выбрать подгруппу
+  description: Ну это выбрать подгруппу
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:VampireSelectingSubgroupEvent

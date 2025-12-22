@@ -1,6 +1,7 @@
 using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
+using Content.Shared.StatusIcon;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -48,4 +49,7 @@ public sealed partial class GhoulComponent : Component
 
     [AutoNetworkedField]
     public EntityUid? Vampire = null;
+
+    [DataField]
+    public ProtoId<FactionIconPrototype> StatusIcon = "GhoulFaction";
 }

@@ -8,6 +8,6 @@ namespace Content.Shared.Imperial.Vampire
         /// сколько очков крови теряется в секунду при активной способности
         /// </summary>
         [DataField("costBlood")]
-        public float CostBlood = 10;
+        public float CostBlood = 1;
     }
 }

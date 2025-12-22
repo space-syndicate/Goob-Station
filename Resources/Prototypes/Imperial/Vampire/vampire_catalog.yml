@@ -207,22 +207,6 @@
     stock: 1
 
 - type: listing
-  id: VampireUIListing
-  name: UI
-  description: Ну это превращение в летучую мышь
-  productAction: VampireUI
-  icon:
-    sprite: Interface/Actions/scream.png
-    state: icon
-  cost:
-    VampireCoin: 8
-  categories:
-  - NightmaresControl
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: VampireShadowTrapListing
   name: Теневой капкан
   description: Ну это Теневой капкан

@@ -1,6 +1,7 @@
 using Content.Server.Store.Systems;
 using Content.Shared.Imperial.Vampire;
 using Content.Shared.Store;
+using Content.Shared.Store.Components;
 
 namespace Content.Server.Imperial.Vampire;
 public sealed class VampireStoreSystem : EntitySystem
@@ -18,6 +19,8 @@ public sealed class VampireStoreSystem : EntitySystem
     private void OnGrimoireRequest(VampireGrimoireEvent args)
     {
         var performer = args.Performer;
+
+        EnsureComp<StoreComponent>(performer);
 
         if (!TryComp<VampireComponent>(performer, out var comp) || comp.GrimoreActionEntity == null)
             return;
