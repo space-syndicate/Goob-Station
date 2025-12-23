@@ -1149,7 +1149,7 @@ public class VampireSystem : EntitySystem
             return;
 
         // вычисляем, какой должен быть спрайт в зависимости от количества крови у вампира
-        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 7);
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 10);
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }
 

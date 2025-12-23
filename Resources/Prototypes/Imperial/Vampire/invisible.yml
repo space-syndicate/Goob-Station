@@ -7,7 +7,9 @@
   - type: Action
     useDelay: 1
     itemIconStyle: BigAction
-    icon: Interface/Actions/scream.png
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: invisible
   - type: InstantAction
     event: !type:VampireInvisibleEvent
       costBlood: 2 # в секунду

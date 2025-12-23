@@ -8,8 +8,8 @@
     useDelay: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Actions/smokeaction.rsi
-      state: smokeaction
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: recovery
   - type: InstantAction
     event: !type:VampireRecoveryEvent
       costBlood: 20

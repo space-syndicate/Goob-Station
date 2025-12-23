@@ -140,7 +140,7 @@ namespace Content.Shared.Imperial.Vampire
         /// ID алерта для отображения состояния крови
         /// </summary>
         [DataField]
-        public ProtoId<AlertPrototype> BloodAlert = "Blood";
+        public ProtoId<AlertPrototype> BloodAlert = "BloodAlert";
 
         /// <summary>
         /// ID дыма, которай спавнится при телепортации

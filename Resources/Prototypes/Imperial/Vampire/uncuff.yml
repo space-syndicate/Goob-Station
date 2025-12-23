@@ -8,7 +8,9 @@
     useDelay: 1
     checkCanInteract: false
     itemIconStyle: BigAction
-    icon: Interface/Actions/scream.png
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: uncuff
   - type: InstantAction
     event: !type:VampireUnCuffEvent
       costBlood: 35

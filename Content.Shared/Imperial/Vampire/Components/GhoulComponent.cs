@@ -36,7 +36,7 @@ public sealed partial class GhoulComponent : Component
     /// ID алерта для отображения уровня крови
     /// </summary>
     [DataField]
-    public ProtoId<AlertPrototype> BloodAlert = "BloodGhoul";
+    public ProtoId<AlertPrototype> BloodAlert = "BloodGhoulAlert";
 
     /// <summary>
     /// длительность тряски при критическом состоянии

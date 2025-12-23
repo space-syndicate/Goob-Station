@@ -7,7 +7,8 @@
   - type: Action
     useDelay: 1
     itemIconStyle: BigAction
-    icon: Interface/Actions/scream.png
-  - type: InstantAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: rush_blood
     event: !type:VampireRushBloodEvent
       costBlood: 20

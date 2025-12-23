@@ -7,6 +7,8 @@
   - type: Action
     useDelay: 1
     itemIconStyle: BigAction
-    icon: Interface/Actions/scream.png
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: selecting_subgroup
   - type: InstantAction
     event: !type:VampireSelectingSubgroupEvent

@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "for imperial space",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "invisible"
+      },
+      {
+        "name": "message"
+      },
+      {
+        "name": "recovery"
+      },
+      {
+        "name": "rush_blood"
+      },
+      {
+        "name": "selecting_subgroup"
+      },
+      {
+        "name": "uncuff"
+      }
+    ]
+  }
