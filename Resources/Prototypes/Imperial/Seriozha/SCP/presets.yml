@@ -30,6 +30,9 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
 
 - type: entity
   parent: ImperialSCPBasePreset

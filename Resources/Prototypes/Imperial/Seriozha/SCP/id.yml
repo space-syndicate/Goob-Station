@@ -73,6 +73,7 @@
       tags:
       - SCPAccesOne
       - SCPAccesTwo
+      - Medical
     - type: Sprite
       sprite: Imperial/Seriozha/SCP/id/two.rsi
       layers:
@@ -117,6 +118,7 @@
       - SCPAccesThree
       - Security
       - Brig
+      - Medical
     - type: Sprite
       sprite: Imperial/Seriozha/SCP/id/threegray.rsi
       layers:
@@ -141,6 +143,7 @@
       - Security
       - Brig
       - Armory
+      - Medical
     - type: Sprite
       sprite: Imperial/Seriozha/SCP/id/four.rsi
       layers:

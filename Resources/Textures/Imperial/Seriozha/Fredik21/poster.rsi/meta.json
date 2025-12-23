@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "ICLA",
+  "license": "CC-BY-SA-3.0",
   "copyright": "by Shakal_132, Fredik21, imperial space",
   "size": {
     "x": 32,
@@ -66,6 +66,9 @@
     },
     {
       "name": "n013"
+    },
+    {
+      "name": "swat"
     },
     {
       "name": "n020"

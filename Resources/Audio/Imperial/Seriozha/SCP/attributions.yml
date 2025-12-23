@@ -56,3 +56,7 @@
   license: "CC-BY-SA-3.0"
   copyright: "-, Converted from mp3 to .ogg"
   source: "https://scpslgame.com/"
+- files: ["ChristmasMusic.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "-, Converted from mp3 to .ogg"
+  source: "https://scp-secret-laboratory.fandom.com/ru/wiki/SCP-2536"

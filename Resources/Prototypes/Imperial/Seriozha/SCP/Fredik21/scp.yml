@@ -54,6 +54,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterSWAT
+  name: Poster SWAT
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: swat
+
+- type: entity
+  parent: PosterBase
   id: Poster420j
   name: Poster n420-j
   suffix: Fredik21, Недра
@@ -1085,6 +1095,7 @@
     - state: folder-base
     - state: folder-stamp-inverse
       color: "#000000"
+  - type: NukeDisk
 
 - type: entity
   parent: BaseHealingItem
@@ -2341,6 +2352,11 @@
       rules: You remember nothing from previous life.
       raffle:
         settings: short
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 10
+      color: "#FF8C00"
 
 - type: startingGear
   id: brokengodGear
@@ -2399,6 +2415,11 @@
       rules: You remember nothing from previous life.
       raffle:
         settings: short
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 10
+      color: "#FF8C00"
 
 - type: startingGear
   id: brokengodhammerGear
@@ -2532,6 +2553,11 @@
       rules: You remember nothing from previous life.
       raffle:
         settings: short
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 10
+      color: "#FF0000"
 
 
 - type: startingGear
@@ -2692,7 +2718,7 @@
     sprite: Imperial/Seriozha/Fredik21/toolbox.rsi
 
 - type: entity
-  parent: BaseWeaponBallisticTurret
+  parent: WeaponTurretSyndicateDisposable
   id: WeaponTurretFondation
   suffix: Fredik21, Недра
   components:
@@ -2803,6 +2829,7 @@
   storage:
     back:
     - HandheldStationMap
+    - FondUplinkMedical
 
 - type: emoteSounds
   id: SCP049
@@ -4436,7 +4463,7 @@
     back: ClothingBackpackDuffelSacerdos_6
     mask: ClothingMaskGasSecurity
     shoes: ClothingShoesBootsWorkSCP
-    eyes: AlphaVisor
+    eyes: ClothingEyesHudMem
     id: SCPIDCardFour
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorzeta9
@@ -4477,7 +4504,7 @@
     back: ClothingBackpackDuffelSacerdos_6
     mask: ClothingMaskGasExplorer
     shoes: ClothingShoesBootsWorkSCP
-    eyes: AlphaVisor
+    eyes: ClothingEyesHudMem
     id: SCPIDCardFive
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorzeta9
@@ -6439,7 +6466,7 @@
   description: Тяжелый штурмовой щит с хорошей защитой. Он настолько тяжелый, что удар им должен быть чрезвычайно болезненным...
   productEntity: BallisticShieldRCU
   cost:
-    BlueSpaceCube: 4
+    BlueSpaceCube: 10
   categories:
   - FondUplinkConsumables
   conditions:
@@ -6515,6 +6542,21 @@
   productEntity: PowerCellHigh
   cost:
     BlueSpaceCube: 1
+  categories:
+  - FondUplinkConsumables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkClothingEyesHudMem
+  name: анти мем визор
+  description: Полная защита от мемов
+  productEntity: ClothingEyesHudMem
+  cost:
+    BlueSpaceCube: 6
   categories:
   - FondUplinkConsumables
   conditions:
@@ -7021,53 +7063,7 @@
       prototypes: [ 4975SCPGear ]
     - type: Hands
       showInHands: true
-    - type: MobStateActions
-      actions:
-        Alive:
-        - SCPinfectedNDA020MorphAction
-    - type: UseDelay
-      delay: 1.0
     - type: Stealth
-
-- type: polymorph
-  id: SCPinfectedNDA020
-  configuration:
-    entity: ImperialSCPinfectedNDA020
-    forced: true
-    inventory: None
-    transferName: false
-    transferDamage: false
-    revertOnCrit: false
-    revertOnDeath: false
-
-- type: entity
-  parent: ProjectilePolyboltBase
-  id: ProjectilePolyboltinfectedNDA020
-  name: zombie polybolt
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: PolymorphOnTrigger
-    polymorph: SCPinfectedNDA020
-  - type: TimedDespawn
-    lifetime: 0.1
-
-- type: entity
-  id: SCPinfectedNDA020MorphAction
-  parent: BaseAction
-  name: SCPinfectedNDA020MorphAction
-  components:
-  - type: Action
-    useDelay: 12
-    itemIconStyle: BigAction
-    icon:
-      sprite: Imperial/Seriozha/SCP/ability/scpzombieaction.rsi
-      state: icon
-  - type: TargetAction
-    checkCanAccess: false
-    range: 30
-  - type: WorldTargetAction
-    event: !type:ProjectileSpellEvent
-      prototype: ProjectilePolyboltinfectedNDA020
 
 - type: entity
   parent: AtmosDeviceFanTiny
@@ -7497,6 +7493,166 @@
 
 - type: entity
   parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDADBlockSin
+  suffix: Fredik21, Недра научный пункт
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: научный пункт
+    color: "#7B68EE"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDADServ
+  suffix: Fredik21, Недра сервисное помещение
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: сервисное помещение
+    color: "#228B22"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAwarehouse
+  suffix: Fredik21, Недра склад
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: склад
+    color: "#FFD700"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAUnknown
+  suffix: Fredik21, Неизвестно
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Неизвестно
+    color: "#808080"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDASeniormanagement
+  suffix: Fredik21, Высшее управление
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Высшее управление
+    color: "#000000"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAConstruction
+  suffix: Fredik21, Строительство
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Строительство
+    color: "#B8860B"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAWarhead
+  suffix: Fredik21, Боеголовка
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Боеголовка
+    color: "#FF0000"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAcommandterritory
+  suffix: Fredik21, территория командного состава
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: территория командного состава
+    color: "#FF4500"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAWeaponszone
+  suffix: Fredik21, Оружейная зоны
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Оружейная зоны
+    color: "#DCDCDC"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAo5only
+  suffix: Fredik21, o5 only
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: o5 only
+    color: "#000000"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAengineeringpremises
+  suffix: Fredik21, инженерные помещения
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: инженерные помещения
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAmaingenerator
+  suffix: Fredik21, главный генератор
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: главный генератор
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAsubstationandswitch
+  suffix: Fredik21, подстанция и рубильник
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: подстанция и рубильник
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDADramas
+  suffix: Fredik21, Дормы
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Дормы
+    color: "#00FF00"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAToilet
+  suffix: Fredik21, Туалет
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Туалет
+    color: "#00FF00"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAelevators
+  suffix: Fredik21, лифты
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: лифты
+    color: "#FFFFFF"
+
+- type: entity
+  parent: DefaultStationBeacon
   id: DefaultStationBeaconNDASecBlock
   suffix: Fredik21, Недра Пункт охраны
   name: Точка зоны
@@ -7553,6 +7709,46 @@
   components:
   - type: NavMapBeacon
     defaultText: NDA 035
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA420j
+  suffix: Fredik21, Недра NDA 420j
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 420j
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA013
+  suffix: Fredik21, Недра NDA 013
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 013
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA131
+  suffix: Fredik21, Недра NDA 131
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 131
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA522
+  suffix: Fredik21, Недра NDA 522
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 522
     color: "#D2691E"
 
 - type: entity
@@ -8244,7 +8440,7 @@
           min: 0.01
         type: Local
         visualType: Medium
-        messages: [ "Вы чувствуете себя женщиной 25-35 лет, ростом 1.6 местра." ]
+        messages: [ "Вы чувствуете себя женщиной 25-35 лет, ростом 1.6 метра." ]
         probability: 1
 
 - type: entity
@@ -8275,3 +8471,1985 @@
     size: Tiny
     sprite: Imperial/Seriozha/Fredik21/nda/nda013.rsi
     heldPrefix: unlit
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPNPFBISWAT
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ ONPFBIGearSWAT ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: ONPFBIGearSWAT
+  equipment:
+    jumpsuit: ClothingJumpsuitZeta9
+    shoes: ClothingShoesBootsWorkSCP
+    mask: ClothingMaskGasERT
+    eyes: USSPGlassesWar
+    head: ClothingHeadHelmetSWAT
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorFBISWAT
+    id: ElysiumFederationPDA
+    belt: ClothingBeltMilitaryWebbingSeniorOfficer
+    ears: ClothingHeadsetTriviumMain
+    pocket1: CSWeaponUSP-S
+    pocket2: MagazinePistolCaselessRifle
+    suitstorage: WeaponRifleAR57
+    back: ClothingBackpackDuffelSacerdos_3
+  storage:
+    back:
+    - SWATUplink
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorFBISWAT
+  name: fbi SWAT suit
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/armor/scp_security_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/armor/scp_security_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Caustic: 0.5
+        Heat: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingHeadHelmetzeta9
+  id: ClothingHeadHelmetSWAT
+  name: SWAT helmet
+  suffix: Fredik21, Недра
+
+- type: entity
+  parent: BaseERTUplink
+  id: SWATUplink
+  name: Терминал SWAT
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - SWATUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: SWATUplinkAmmo
+  name: Патроны
+
+- type: listing
+  id: SWATUplinkBaseMagazineAR57
+  name: магазин AR-57 (7x62x51)
+  description: Для AR-57
+  productEntity: BaseMagazineAR57
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - SWATUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: SWATUplinkMagazinePistolCaselessRifle
+  name: пистолетный магазин (.25 безгильзовые)
+  description: Для USP
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - SWATUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA682acid
+  name: acid
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/acid.rsi
+      state: shoreline_water
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Heat: 15
+
+- type: entity
+  id: PresentRandomNDA
+  parent: [PresentBase, BaseItem]
+  suffix: Filled Safe
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: PresentTrash
+      - id: SCPIDCardDZ
+        orGroup: GiftPool
+      - id: SCPIDCardFourGOC
+        orGroup: GiftPool
+      - id: SCPIDCardFourGOCnoaccess
+        orGroup: GiftPool
+      - id: SCPIDCardO5
+        orGroup: GiftPool
+      - id: SCPIDCardAdm
+        orGroup: GiftPool
+      - id: SCPIDCardTwo
+        orGroup: GiftPool
+      - id: SCPIDCardOne
+        orGroup: GiftPool
+      - id: SCPIDCardFive
+        orGroup: GiftPool
+      - id: SCPIDCardThreeGray
+        orGroup: GiftPool
+      - id: SCPIDCardThree
+        orGroup: GiftPool
+      - id: SCPIDCardFour
+        orGroup: GiftPool
+      - id: ClothingOuterArmorSCPAlpha
+        orGroup: GiftPool
+      - id: ClothingShoesAlpha
+        orGroup: GiftPool
+      - id: WeaponAlphaPulsePistol
+        orGroup: GiftPool
+      - id: ClothingOuterArmorNu7
+        orGroup: GiftPool
+      - id: ClothingOuterCoatSCPo5
+        orGroup: GiftPool
+      - id: ClothingOuterArmorepsilon9
+        orGroup: GiftPool
+      - id: ClothingOuterCoatSCPGOCpr
+        orGroup: GiftPool
+      - id: ClothingOuterArmorAlpha9
+        orGroup: GiftPool
+      - id: ClothingOuterArmoreta10
+        orGroup: GiftPool
+      - id: FlameThrower
+        orGroup: GiftPool
+      - id: SCP207
+        orGroup: GiftPool
+      - id: ClothingHeadsetSCPDZ
+        orGroup: GiftPool
+      - id: ClothingHeadsetSCPDev
+        orGroup: GiftPool
+      - id: WeaponPulseCarbineSCPDeva
+        orGroup: GiftPool
+      - id: ClothingOuterArmorupsilon11SCP
+        orGroup: GiftPool
+      - id: EncryptionKeyNedraAlphaconnection
+        orGroup: GiftPool
+      - id: EncryptionKeyImperialGOCSCP
+        orGroup: GiftPool
+      - id: EncryptionKeyImperialDZSCP
+        orGroup: GiftPool
+      - id: EncryptionKeyNedraLastHopeconnection
+        orGroup: GiftPool
+      - id: EncryptionKeyNedraCMDconnection
+        orGroup: GiftPool
+      - id: EncryptionKeySCPconnection
+        orGroup: GiftPool
+      - id: EncryptionKeyNedraMTFconnection
+        orGroup: GiftPool
+      - id: WeaponPulsePistolSCPDeva
+        orGroup: GiftPool
+      - id: SCPAccessConfigurator
+        orGroup: GiftPool
+      - id: ClothingShoesBootsMagSCPTay5
+        orGroup: GiftPool
+      - id: LocatorEta10
+        orGroup: GiftPool
+      - id: SCP714
+        orGroup: GiftPool
+      - id: SCPIDCardn005
+        orGroup: GiftPool
+      - id: brokengodHammer
+        orGroup: GiftPool
+      - id: SCP500
+        orGroup: GiftPool
+      - id: RubberStampNedraCommand
+        orGroup: GiftPool
+      - id: RubberStampNedraComitet
+        orGroup: GiftPool
+      - id: RubberStampNedra
+        orGroup: GiftPool
+      - id: HandTeleporterSCPDeva
+        orGroup: GiftPool
+      - id: LocatorEta10Commander
+        orGroup: GiftPool
+      - id: Spearbrokengod
+        orGroup: GiftPool
+      - id: DoorRemoteSCPAll
+        orGroup: GiftPool
+      - id: MaskGOCSCP
+        orGroup: GiftPool
+      - id: ClothingShoesSCP
+        orGroup: GiftPool
+      - id: ClothingShoesBootsMagSCPDeva
+        orGroup: GiftPool
+      - id: MaskAlpha9SCP
+        orGroup: GiftPool
+      - id: CigaretteNDA420-j
+        orGroup: GiftPool
+      - id: NDA013
+        orGroup: GiftPool
+      - id: judicialgavel
+        orGroup: GiftPool
+      - id: judicialpancake
+        orGroup: GiftPool
+      - id: FondUplinkBase
+        orGroup: GiftPool
+      - id: CIUplinkBase
+        orGroup: GiftPool
+      - id: GOCUplinkCom
+        orGroup: GiftPool
+      - id: FBIUplink
+        orGroup: GiftPool
+      - id: WeaponLaserMicroHIDNDA
+        orGroup: GiftPool
+      - id: ClothingHeadHelmetCIsuppressor
+        orGroup: GiftPool
+      - id: ClothingHeadHelmetSWAT
+        orGroup: GiftPool
+      - id: ClothingOuterArmorSCPSecurity
+        orGroup: GiftPool
+      - id: ToolboxElectricalTurretSCPFond
+        orGroup: GiftPool
+      - id: WeaponLightMachineGunL6
+        orGroup: GiftPool
+      - id: AlphaBackpack
+        orGroup: GiftPool
+      - id: AlphaGasMask
+        orGroup: GiftPool
+      - id: AlphaVisor
+        orGroup: GiftPool
+      - id: ClothingShoesBootsWorkSCP
+        orGroup: GiftPool
+      - id: SCP127
+        orGroup: GiftPool
+      - id: ImperialSCPKatana
+        orGroup: GiftPool
+      - id: ClothingOuterHardsuitTay5Irantu
+        orGroup: GiftPool
+      - id: ClothingOuterHardsuitTay5Munru
+        orGroup: GiftPool
+      - id: ClothingOuterHardsuitTay5nanku
+        orGroup: GiftPool
+      - id: ClothingOuterHardsuitTay5Onru
+        orGroup: GiftPool
+      - id: SCP268
+        orGroup: GiftPool
+      - id: ImperialSCP682
+        orGroup: GiftPool
+      - id: Coal10
+        orGroup: GiftPool
+      - id: Coal15
+        orGroup: GiftPool
+      - id: Coal5
+        orGroup: GiftPool
+      - id: Coal
+        orGroup: GiftPool
+      - id: Coal1
+        orGroup: GiftPool
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: [ FloraTreeChristmas01, ClothingBackpackDuffel ]
+  id: FloraTreeChristmasNDA
+  name: Tree Christ
+  suffix: Fredik21, Недра
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,6
+  - type: StorageFill
+    contents:
+      - id: PresentRandomNDA
+      - id: PresentRandomNDA
+      - id: PresentRandomNDA
+      - id: PresentRandomNDA
+      - id: PresentRandomNDA
+      - id: PresentRandomNDA
+  - type: AmbientSound
+    volume: -5
+    range: 10
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ChristmasMusic.ogg
+      params:
+        loop: true
+        stream: true
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
+  name: portable foundation turret
+  suffix: Fredik21, Недра
+  parent: ToolboxElectricalTurret
+  id: ToolboxElectricalTurretSCPSHAOS
+  components:
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              WeaponTurretrebelsscp:
+                min: 1
+                max: 1
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/toolboxchaos.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/toolboxchaos.rsi
+
+- type: entity
+  parent: WeaponTurretSyndicateDisposable
+  id: WeaponTurretrebelsscp
+  suffix: Fredik21, Недра
+  components:
+  - type: NpcFactionMember
+    factions:
+    - rebelsscp
+
+- type: entity
+  name: Anchor Reality Scranton
+  parent: WhiteholeGrenade
+  id: WhiteholeNDA
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/screlton.rsi
+    state: icon
+  - type: Icon
+    sprite: Imperial/Seriozha/Fredik21/structure/screlton.rsi
+    state: icon
+  - type: TimerTrigger
+    delay: 3
+    beepInterval: 0.69
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Effects/Grenades/Supermatter/whitehole_start.ogg
+      params:
+        volume: 5
+  - type: AnchorOnTrigger
+    keysIn:
+    - timer
+    removeOnTrigger: true
+  - type: TwoStageTrigger
+    triggerDelay: 60
+    components:
+      - type: AmbientSound
+        enabled: true
+        volume: -5
+        range: 20
+        sound:
+          path: /Audio/Effects/Grenades/Supermatter/whitehole_loop.ogg
+      - type: GravityWell
+        maxRange: 30
+        baseRadialAcceleration: -500
+        baseTangentialAcceleration: -50
+        gravPulsePeriod: 0.03
+      - type: SingularityDistortion
+        intensity: -200
+        falloffPower: 4.5
+      - type: PointLight
+        enabled: true
+        color: "#9400D3"
+        energy: 8
+        radius: 20
+        softness: 1
+        offset: "0, 0"
+      - type: EmitSoundOnTrigger
+        keysIn:
+        - stageTwo
+        sound:
+          path: /Audio/Effects/Grenades/Supermatter/supermatter_end.ogg
+          params:
+            volume: 15
+        positional: true
+      - type: DeleteOnTrigger
+        keysIn:
+        - stageTwo
+  - type: StaticPrice
+    price: 100000
+
+- type: damageType
+  id: Memetic
+  name: Меметический урон
+  armorCoefficientPrice: 2.5
+  armorFlatPrice: 20
+
+- type: damageGroup
+  id: Memetical
+  name: Меметический урон
+  damageTypes:
+  - Memetic
+
+- type: damageContainer
+  id: BiologicalMemetical
+  supportedGroups:
+  - Brute
+  - Burn
+  - Toxin
+  - Airloss
+  - Genetic
+  - Metaphysical
+  - Memetical
+
+- type: entity
+  name: Мем
+  suffix: Fredik21, Недра
+  parent: ImperialSCPBase
+  id: ImperialMem
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: Imperial/Crook/Misc/backrooms/portal.rsi
+      layers:
+      - state: icon
+        shader: SmilerGlitch
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        1000000000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.5
+      baseSprintSpeed: 2
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      angle: 0
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Memetic: 10
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: TimedDespawn
+      lifetime: 180
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudMem
+  name: Анти мем визор
+  suffix: Fredik21, Недра
+  description: null
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/eyes/medcorps.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/eyes/medcorps.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Memetic: 0
+
+- type: entity
+  parent: WallBlackSCP
+  id: WallBlackSCPTimedDespawn
+  name: black wall
+  suffix: Fredik21, Недра, TimedDespawn
+  components:
+    - type: TimedDespawn
+      lifetime: 180
+
+- type: entity
+  parent: WallWhiteSCP
+  id: WallWhiteSCPTimedDespawn
+  name: black wall
+  suffix: Fredik21, Недра, TimedDespawn
+  components:
+    - type: TimedDespawn
+      lifetime: 180
+
+- type: entity
+  name: Периодический спавнер черной стены
+  id: TimedSpawnerWallWhiteSCPTimedDespawn
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - WallWhiteSCPTimedDespawn
+      chance: 0.75
+      intervalSeconds: 360
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер белой стены
+  id: TimedSpawnerWallBlackSCPTimedDespawn
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - WallBlackSCPTimedDespawn
+      chance: 0.75
+      intervalSeconds: 360
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Preset ai
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPGOC
+  id: PresetSCPGOCAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: Preset ai
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPOxranaAlt
+  id: PresetSCPOxranaAltAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: Preset ai
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPOxrana
+  id: PresetSCPOxranaAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: Preset ai
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPNPFBISWAT
+  id: PresetSCPNPFBISWATAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: Preset ai
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPCI
+  id: PresetSCPCIAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: Preset ai
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPbrokengod
+  id: PresetSCPbrokengodAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: дитя Алого Короля
+  suffix: Fredik21, Недра, NPC
+  parent: PresetSCPScarletKing
+  id: PresetSCPScarletKingAI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+
+- type: entity
+  id: SpawnEpsilon11Preset
+  name: спавнер оперативник Эпсилон 11
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник Эпсилон 11
+      description: Оперативник МОГ
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPMTF
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnEpsilon11PresetCom
+  name: спавнер командир Эпсилон 11
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: командир Эпсилон 11
+      description: Командует отрядом
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPMTFCMD
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnBeta7Preset
+  name: спавнер оперативник Бета 7
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Бета 7
+      description: с огоньком
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPMTFNU
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnBeta7ComPreset
+  name: спавнер командир Бета 7
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: командир Бета 7
+      description: с огоньком
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPMTFNUCMD
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnAlpha9Preset
+  name: спавнер оперативник Альфа 9
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Альфа 9
+      description: использует в отряде дружелюбного NDA
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPAlpha9
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnAlpha9ComPreset
+  name: спавнер NDA 105 - Айрис Томпсон
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: NDA 105 - Айрис Томпсон
+      description: Айрис Томпсон — ключевой элемент оперативного и разведывательного потенциала Альфа-9, предоставляющий группе абсолютное превосходство в огневой мощи за счет своей врожденной аномалии. В составе МОГ она выступает в роли живого арсенала и специалиста по аномальному вооружению.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPAlpha9105
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnAlpha1ComPreset
+  name: спавнер оперативник Альфа 1
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Альфа 1
+      description: на защите совета смотрителей!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPAlpha
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPGOC
+  name: спавнер бойца ГОК
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: боец ГОК
+      description: Боритесь с тьмой, прежде чем она поглотит вас.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPGOC
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPGOCRepresentative
+  name: спавнер Представитель Глобальной Оккультной Коалиции
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Представитель Глобальной Оккультной Коалиции
+      description: Представитель ГОК. между миром и хаосом. Он ведёт переговоры, но всегда помнит, что аномалии не признают дипломатию.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPGOCRepresentative
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPNPFBISWAT
+  name: спавнер Оперативник штурмовой группы ОНП ФБР
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник штурмовой группы ОНП ФБР
+      description: Ветеран обычного SWAT, который теперь использует те же тактики против врага, не подчиняющегося законам физики. Вооружен стандартным карабином и броней, но его главное оружие – это стальные нервы и минимальный комплект протоколов по работе с аномалиями. Знает, что его снаряжение уступает тому, что есть у "Фонда", поэтому всегда держит в голове план "Б" и молится, чтобы аномалия оказалась класса "Безопасный".
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPNPFBISWAT
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPNPFBI
+  name: Агент ОНП ФБР
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Агент ОНП ФБР
+      description: Агент ОНП ФБР — это сотрудник правоохранительных органов ОПЗ, специализирующийся на расследовании преступлений и инцидентов, связанных с аномальными явлениями, паранормальной активностью или объектами, нарушающими законы физики.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPNPFBI
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPzeta9
+  name: спавнер оперативник Дзета 9
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Дзета 9
+      description: Оперативник Дзета-9 “Кротокрысы” – это элитное мобильное подразделение Фонда NDA, специализирующееся на разведке, проникновении и сборе информации в подземных, туннельных и труднодоступных подземных локациях.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPzeta9
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPzeta9Com
+  name: спавнер Командир Дзета 9
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Дзета 9
+      description: Командир Дзета-9 “Кротокрысы” – это опытный и хладнокровный лидер, отвечающий за успешное выполнение миссий своего подразделения в самых опасных подземных и туннельных локациях.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPzeta9Com
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDZCom
+  name: спавнер Командир Длани змея
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Длани змея
+      description: Командир таинственной организации "Длань змея", использующий паранормальные объекты для своих целей.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDZCom
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDZ
+  name: спавнер Оперативник Длани змея
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник Длани змея
+      description: Агент таинственной организации "Длань змея", использующий паранормальные объекты для своих целей.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDZ
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDevCommand
+  name: спавнер Командир Империи
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Империи
+      description: Слава Империи!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDevCommand
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDevMedic
+  name: спавнер Медик Империи Дэвы
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Медик Империи Дэвы
+      description: Медик Империи!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDevMedic
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDev
+  name: спавнер Оперативник Империи Дэвы
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник Империи Дэвы
+      description: Боец Империи!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDev
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPUpsilon11
+  name: спавнер оперативник Ипсилон 11
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Ипсилон 11
+      description: Ипсилон-11 взаимодействует с NDA-4793 и участвует в боевых действиях против Повстанцев Хаоса.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPUpsilon11
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPUpsilon11Com
+  name: спавнер Командир Ипсилон 11
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Ипсилон 11
+      description: Ипсилон-11 взаимодействует с NDA-4793 и участвует в боевых действиях против Повстанцев Хаоса.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPUpsilon11Com
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPNu7
+  name: спавнер оперативник Ню-7
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Ню-7
+      description: Ню-7, Куём мир силой.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPNu7
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPNu7Command
+  name: спавнер Командир Ню-7
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Ню-7
+      description: Ню-7, Куём мир силой.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPNu7Command
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPepsilon9
+  name: спавнер оперативник Эпсилон 9
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Эпсилон 9
+      description: Оперативник Эпсилон-9 “Пожиратели огня” – это боец Фонда NDA, специализирующийся на противодействии и нейтрализации аномальных явлений, связанных с огнем, высокой температурой и пламенем.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPepsilon9
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPepsilon9Com
+  name: спавнер Командир Эпсилон 9
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Эпсилон 9
+      description: Командир Эпсилон-9 “Пожиратели огня” – это закаленный в экстремальных условиях лидер, возглавляющий команду специалистов по борьбе с огненными и тепловыми аномалиями.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPepsilon9Com
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPeta10
+  name: спавнер оперативник Эта 10
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник Эта 10
+      description: Мобильная оперативная группа Эта-10 специализируется на обнаружении, захвате и постановке на содержание объектов или субъектов, представляющих опасность визуального восприятия, меметических агентов визуального действия и прочих случаях, где для безопасного взаимодействия требуется косвенное или альтернативное наблюдение.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPeta10
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPeta10Com
+  name: спавнер Командир Эта 10
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Эта 10
+      description: Командир Эта-10 “Не вижу зла” – это опытный и хладнокровный лидер, умеющий планировать и проводить операции.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPeta10Com
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPOxranaAlt
+  name: спавнер оперативник ГПИ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник ГПИ
+      description: боец или специалист, входящий в состав специализированного подразделения, главной задачей которого является предотвращение, минимизация и оперативное реагирование на инциденты, связанные с  событиями или угрозами класса D.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPOxranaAlt
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPOxranaComAlt
+  name: спавнер Командир ГПИ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир ШПИ
+      description: Высокопоставленный сотрудник организации, ответственный за предотвращение, минимизацию и реагирование на инциденты, связанные с событиями или ситуациями класса D.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPOxranaComAlt
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPOxrana
+  name: спавнер оперативник ОГК
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник ОГК
+      description: рядовой член команды, напрямую участвующий в операциях по локализации, сдерживанию и контролю над аномальными объектами или явлениями.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPOxrana
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPOxranaCom
+  name: спавнер Командир ОГК
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир ОГК
+      description: высокопоставленный сотрудник Фонда, отвечающий за руководство и координацию действий группы, чья основная задача – оперативное реагирование на инциденты, связанные с аномалиями, а также их локализацию и сдерживание.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPOxranaCom
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPPHYSICS
+  name: спавнер Оперативник PHYSICS
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник PHYSICS
+      description: Там, где физика сходит с ума, появляется он. Боец PHYSICS.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPPHYSICS
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPSamsaraIrantu
+  name: спавнер Оперативник ТАУ-5 Самсара Иранту
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник PHYSICS
+      description: Иранту – мозг операции. Он/она отвечает за координацию действий всей группы, принятие тактических решений в условиях быстро меняющейся и крайне враждебной среды, например как в  NDA-1730.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPSamsaraIrantu
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPSamsaraMunru
+  name: спавнер Оперативник ТАУ-5 Самсара Мунру
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник ТАУ-5 Самсара Мунру
+      description: Мунру является “глазами” группы. Он/она оснащен/а продвинутыми аномальными или кибернетическими сенсорами, способными обнаруживать скрытые аномалии, пространственные искажения, энергетические сигнатуры и враждебные сущности в условиях хаоса, как в NDA-1730. Мунру прокладывает маршрут через постоянно меняющуюся Зону, предупреждает о ловушках и приближающихся угрозах.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPSamsaraMunru
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPSamsaraOnru
+  name: спавнер Оперативник ТАУ-5 Самсара Онру
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: спавнер Оперативник ТАУ-5 Самсара Онру
+      description: Онру – “броня” группы. Его/ее тело, вероятно, значительно усилено, возможно, с аномальной прочностью, регенеративными способностями или устойчивостью к физическому и аномальному урону.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPSamsaraOnru
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPPGRYCom
+  name: спавнер Представитель Отдела П ГРУ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Представитель Отдела П ГРУ
+      description: Официальное лицо несуществующего спецподразделения ГРУ, уполномоченное вести переговоры или осуществлять контакт от имени своей службы. Обладает высоким статусом, действует с мандатом высшего военного руководства и специализируется на вопросах, связанных с аномальными угрозами, паранормальными явлениями и оккультными артефактами. Он выступает связующим звеном между государственным аппаратом и миром сверхъестественного, часто отличаясь загадочностью, прагматизмом и готовностью применять нетрадиционные методы для обеспечения безопасности государства.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPPGRYCom
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPPGRY
+  name: спавнер Оперативник Отдела П ГРУ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник Отдела П ГРУ
+      description: Высококвалифицированный агент военной разведки, специализирующийся на поиске, захвате и нейтрализации паранормальных угроз и аномальных артефактов. Он обладает исключительной военной подготовкой, навыками работы с экстрасенсорными явлениями и использует экспериментальное снаряжение. Действует скрытно, подчиняется только высшему командованию и является ключевым элементом в противостоянии с другими оккультными и аномальными организациями в вымышленном мире.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPPGRY
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPCIMoroder
+  name: спавнер ПХ - мородер
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: ПХ - мородер
+      description: Бывший стрелок, закалённый в боях и познавший цену выживания. Сквозь зубы сжимает верный дробовик, а в кобуре поблёскивает хромированный револьвер – его надёжные спутники в хаосе. Своими навыками владения оружием он равен стрелку, но его методы зачастую более прямолинейны и безжалостны.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPCIMoroder
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPCIcoordinator
+  name: спавнер ПХ - Координатор
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: ПХ - Координатор
+      description: Глава отряда, чьи приказы – закон. Вооружен надежным револьвером, но его главное оружие – свисток, сигналы которого разносят по полю боя стратегию и волю к победе. Сочетает в себе решимость бойца и острый ум лидера, направляя своих подчиненных к цели, несмотря на хаос.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPCIcoordinator
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPCIsuppressor
+  name: спавнер ПХ - подавитель
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: ПХ - подавитель
+      description: Несокрушимая стена между повстанцами и противником. Вооружен тяжелым пулеметом, способным остановить любую атаку, и прочным щитом, принимающим на себя весь шквал огня. Тяжелый шлем Хаоса служит ему не только защитой, но и символом его несгибаемой воли. Равноправен по званию со стрелками и мородерами, но его роль – диктовать условия боя, подавляя противника своим натиском.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPCIsuppressor
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPScarletKing
+  name: спавнер дитя Алого Короля
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: дитя Алого Короля
+      description: Кровь зовёт! Плоть кричит! Да будет алый урожай!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPScarletKing
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDoc
+  name: спавнер Учёный фонда
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Учёный фонда
+      description: В структуре Фонда работают ученые и исследователи, которые изучают аномалии, чтобы понять их природу и разработать методы сдерживания или, в некоторых случаях, использования на благо человечества.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDoc
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDClass
+  name: спавнер класс D
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: класс D
+      description: Я гражданский, я гражданский! Ратататататат
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDClass
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPbrokengod
+  name: спавнер проповедника ЧОЦ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: проповедник ЧОЦ
+      description: Во славу того кто был Разбит!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPbrokengod
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPbrokengodhammer
+  name: спавнер молотобоец ЧОЦ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: молотобоец ЧОЦ
+      description: Во славу того кто был Разбит!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPbrokengodhammer
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPO5
+  name: спавнер Смотритель O5
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Смотритель O5
+      description: Власть вся в его руках
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPO5
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPjudge
+  name: спавнер Судья СВТ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Судья СВТ
+      description: Тишина в зале суда!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPjudge
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPEng
+  name: спавнер инженер Фонда
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: инженер Фонда
+      description: это высококвалифицированный специалист, ответственный за проектирование, строительство, обслуживание и ремонт оборудования, сооружений и технологических систем.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPEng
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPDetective
+  name: спавнер Детектив СВТ
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Детектив СВТ
+      description: ключевая фигура в системе Фонда NDA, ответственная за расследование инцидентов, связанных с аномалиями, и сбор улик для дальнейшего разбирательства в трибунале.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPDetective
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetSCPMedic
+  name: спавнер медик фонда
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: медик фонда
+      description: это высококвалифицированный специалист, ответственный за здоровье и жизни персонала фонда.
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetSCPMedic
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplinkMedical
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - FondUplinkMedPlus
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 7
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkMedPlus
+  name: Медик
+
+- type: listing
+  id: FondUplinkChemistryBottleEphedrine
+  name: бутылочка эфедрина (эфедрин)
+  description: Маленькая бутылочка.
+  productEntity: ChemistryBottleEphedrine
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkThriveninChemistryBottle
+  name: бутылочка трайвонина
+  description: Маленькая бутылочка.
+  productEntity: ThriveninChemistryBottle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalineGlucoseChemistryBottle
+  name: бутылочка солевоглюкозового раствора
+  description: Раствор, что помогает при заживлении ран от тупого урона, восстановления приемлимого кол-ва крови в организме. Вызывает незначительное алкогольное опьянение.Не имеет передоза.
+  productEntity: SalineGlucoseChemistryBottle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalbutamolChemistryBottle
+  name: бутылочка сальбутамола
+  description: Лекарство, лечащее гипоксию и кровопотерю. Используйте это как дополнительный реагент в начале смены. Не имеет передоза.
+  productEntity: SalbutamolChemistryBottle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSilverSulfadiazineChemistryBottle
+  name: бутылочка сульфадиазина серебра
+  description: Помогает при ожогах, наносит незначительный токсичный урон. Не имеет передоза.
+  productEntity: SilverSulfadiazineChemistryBottle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkChemistryBottleEpinephrine
+  name: бутылочка эпинефрина (эпинефрин)
+  description: Маленькая бутылочка.
+  productEntity: ChemistryBottleEpinephrine
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkChemistryBottleEpinephrine
+  name: бутылочка омнизина (омнизин)
+  description: Маленькая бутылочка.
+  productEntity: ChemistryBottleOmnizine
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkChemistryBottleSaline
+  name: бутылочка физраствора (физраствор)
+  description: Маленькая бутылочка.
+  productEntity: ChemistryBottleSaline
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkRollerBedSpawnFolded
+  name: каталка
+  description: Используется для транспортировки пациентов, не нанося вреда.
+  productEntity: RollerBedSpawnFolded
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBoxBodyBag
+  name: коробка мешков для тел
+  description: Содержит мешки для тел.
+  productEntity: BoxBodyBag
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEmergencyMedipen
+  name: экстренный медипен
+  description: Быстрый и безопасный способ стабилизации состояния пациентов в критическом состоянии для персонала без глубоких медицинских знаний. Будьте осторожны, так как легко получить передозировку эпинефрином и транексамовой кислотой.
+  productEntity: EmergencyMedipen
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkBoxSyringe
+  name: коробка шприцов
+  description: Полная коробка шприцов.
+  productEntity: BoxSyringe
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkMedPlus
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  name: Поисковой навигатор повстанцев
+  id: PinpointerNuclearNDA
+  parent: [ PinpointerBase, BaseCommandContraband ]
+  components:
+  - type: Pinpointer
+    component: NukeDisk
+    targetName: nuclear authentication disk
