@@ -75,7 +75,6 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireEnvelopeDoAfterEvent>(OnEnvelopeCompleteVampire);
         SubscribeLocalEvent<GhoulComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteGhoul);
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
-        SubscribeLocalEvent<VampireAbilityCheckEvent>(OnAbilityCheck);
 
         SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
         SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
@@ -253,8 +252,8 @@ public sealed class VampireServerSystem : EntitySystem
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
             _vampireSystem.SetBloodAlert(drinker, vamp);
             vamp.TotalDrunk += amount;
-            var ev = new VampireAbilityCheckEvent(drinker, vamp.SelectedSubgroup);
-            RaiseLocalEvent(drinker, ev);
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions);
+            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
         }
         else
         {
@@ -275,12 +274,6 @@ public sealed class VampireServerSystem : EntitySystem
 
         Dirty(drinker, appear);
         StartDrinking(drinker, target);
-    }
-
-    private void OnAbilityCheck(VampireAbilityCheckEvent ev)
-    {
-        var eui = new VampireRequestedEui(ev.Uid, EntityManager, _actions);
-        eui.GrantAbilities(ev.Uid, ev.SelectedSubgroup);
     }
 
     private void MessageForGhouls(VampireMessageForGhouls args)
