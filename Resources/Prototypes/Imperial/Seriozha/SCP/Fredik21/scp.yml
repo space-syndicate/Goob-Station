@@ -9055,7 +9055,7 @@
 - type: entity
   parent: WallWhiteSCP
   id: WallWhiteSCPTimedDespawn
-  name: black wall
+  name: white wall
   suffix: Fredik21, Недра, TimedDespawn
   components:
     - type: TimedDespawn
@@ -10356,7 +10356,7 @@
          - FondUplink
 
 - type: listing
-  id: FondUplinkChemistryBottleEpinephrine
+  id: FondUplinkChemistryBottleOmnizine
   name: бутылочка омнизина (омнизин)
   description: Маленькая бутылочка.
   productEntity: ChemistryBottleOmnizine

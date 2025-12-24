@@ -37,7 +37,7 @@
 - type: MTFCall
   id: Nu7
   path: /GM/seriozha/event/nedra/MTF/Nu-7.yml
-  announcementMessage: "Мобильная оперативная группа Ню-7 («Удар молота») высадилась на площадке выхода А. Из-за массовых сбоев в системе сдерживания и отключения электричества на объекте, вместо МОГ Эпсилон-11 («Девятихвостая лиса»), к вам была направлена группа «Удар молота». По нашим предварительным оценкам, ситуация стабилизируется в течение 2 часов. Мы будем сообщать дальнейшие сведения о развитии событий»"
+  announcementMessage: "Мобильная оперативная группа Ню-7 («Удар молота») высадилась на площадке выхода А. Из-за массовых сбоев в системе сдерживания и отключения электричества на объекте, вместо МОГ Эпсилон-11 («Девятихвостая лиса»), к вам была направлена группа «Удар молота». По нашим предварительным оценкам, ситуация стабилизируется в течение 2 часов. Мы будем сообщать дальнейшие сведения о развитии событий."
   announcementSender: "C.A.S.S.I.E"
   musicPath: /Audio/Imperial/Seriozha/SCP/event/nu7.ogg
   musicParams:
@@ -117,7 +117,7 @@
 
 - type: MTFCall
   id: chaosBig
-  path: /GM/seriozha/event/nedra/MTF/The-Big-Kill-Squad.ym
+  path: /GM/seriozha/event/nedra/MTF/The-Big-Kill-Squad.yml
   announcementMessage: "Обнаружено вторжение"
   announcementSender: "C.A.S.S.I.E"
   musicPath: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg

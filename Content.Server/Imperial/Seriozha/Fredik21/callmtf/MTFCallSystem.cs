@@ -6,6 +6,7 @@ using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.IoC;
+using Robust.Shared.Log;
 
 namespace Content.Server.Imperial.MTFCall;
 
@@ -24,6 +25,14 @@ public sealed class CallMTFSystem : EntitySystem
             InitializeMaps = true
         };
 
-        return _map.TryLoadGrid(mapId, new ResPath(preset.Path), out _, options);
+        if (_map.TryLoadGrid(mapId, new ResPath(preset.Path), out _, options))
+        {
+            return true;
+        }
+        
+        // Очистка карты при неудаче
+        Log.Error($"Не удалось загрузить сетку МОГ из пути: {preset.Path}");
+        _mapSystem.DeleteMap(mapId);
+        return false;
     }
 }
