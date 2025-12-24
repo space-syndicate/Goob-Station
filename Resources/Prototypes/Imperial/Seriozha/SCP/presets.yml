@@ -33,6 +33,8 @@
     - type: Damageable
       damageContainer: BiologicalMemetical
       damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
 
 - type: entity
   parent: ImperialSCPBasePreset
