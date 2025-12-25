@@ -4947,6 +4947,7 @@
         Female: SCP682
     - type: Devourer
     - type: SlowOnDamage
+      enabled: true
       speedModifierThresholds:
         7000: 0.3
 
@@ -5287,6 +5288,7 @@
         Unsexed: SCP953
         Female: SCP953
     - type: SlowOnDamage
+      enabled: true
       speedModifierThresholds:
         2700: 0.7
 
@@ -8360,6 +8362,7 @@
           layer:
           - MobLayer
     - type: SlowOnDamage
+      enabled: true
       speedModifierThresholds:
         420: 0.7
 
@@ -8432,6 +8435,7 @@
           layer:
           - MobLayer
     - type: SlowOnDamage
+      enabled: true
       speedModifierThresholds:
         420: 0.7
 
