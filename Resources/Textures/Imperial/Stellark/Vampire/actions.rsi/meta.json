@@ -24,6 +24,18 @@
       },
       {
         "name": "uncuff"
+      },
+      {
+        "name": "sleep"
+      },
+      {
+        "name": "transform_blood"
+      },
+      {
+        "name": "nosferaty"
+      },
+      {
+        "name": "reconciliation"
       }
     ]
   }

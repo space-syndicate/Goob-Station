@@ -9,7 +9,7 @@
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
-      state: total_drunk
+      state: nosferaty
   - type: InstantAction
     event: !type:VampireNosferatyEvent
       costBlood: 35

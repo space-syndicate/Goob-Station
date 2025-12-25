@@ -450,6 +450,9 @@ public class VampireSystem : EntitySystem
 
     private void OnSleep(Entity<VampireComponent> vamp, ref VampireSleepDoAfterEvent args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
+
         // получаем все сущности перед игроком
         var transform = Transform(vamp.Owner);
         var direction = transform.LocalRotation.GetCardinalDir();
@@ -575,6 +578,9 @@ public class VampireSystem : EntitySystem
 
     private void OnReconciliation(Entity<VampireComponent> vamp, ref VampireReconciliationDoAfterEvent args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
+
         // получаем все сущности перед игроком
         var transform = Transform(vamp.Owner);
         var direction = transform.LocalRotation.GetCardinalDir();
