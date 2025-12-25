@@ -221,6 +221,9 @@
           visualType: Large
           messages: [ "slime-hurt-by-water-popup" ]
           probability: 0.25
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        2200: 0.7
 
 - type: entity
   name: Avel
@@ -300,6 +303,9 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        1800: 0.7
 
 - type: entity
   name: Katana
@@ -454,6 +460,9 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        2700: 0.7
 
 - type: entity
   name: Jelly monster
@@ -531,6 +540,9 @@
           - MobMask
           layer:
           - MobLayer
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        420: 0.7
 
 - type: entity
   name: Zombie

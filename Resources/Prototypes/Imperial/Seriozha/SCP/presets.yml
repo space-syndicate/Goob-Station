@@ -286,6 +286,7 @@
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
     - FondUplinkEpsilon11Eta10Beta7epsilon9
+    - HandheldStationMap
 
 - type: startingGear
   id: MTFCMDGear
@@ -311,6 +312,7 @@
     - EncryptionKeyNedraMTFconnection
     - DoorRemoteSCP
     - FondUplinkCommander
+    - HandheldStationMap
 
 - type: startingGear
   id: NuGear
@@ -332,6 +334,7 @@
   storage:
     back:
     - FondUplinkEpsilon11Eta10Beta7epsilon9
+    - HandheldStationMap
 
 - type: startingGear
   id: NuCMDGear
@@ -355,6 +358,7 @@
   storage:
     back:
     - FondUplinkCommander
+    - HandheldStationMap
 
 - type: startingGear
   id: OxranaGear
@@ -373,6 +377,7 @@
     pocket1: FondUplinkBase
   inhand:
   - PaperOGK
+  - HandheldStationMap
 
 - type: startingGear
   id: DocGear
@@ -389,6 +394,7 @@
     belt: BoxFolderClipboard
   inhand:
   - PaperScience
+  - HandheldStationMap
 
 - type: startingGear
   id: DocCMDGear
@@ -407,6 +413,7 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+    - HandheldStationMap
 
 - type: startingGear
   id: ADMGear
@@ -424,6 +431,7 @@
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
+    - HandheldStationMap
   inhand:
   - PaperAdmNDA
 
@@ -448,6 +456,7 @@
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
     - CIUplinkBase
+    - HandheldStationMap
 
 - type: startingGear
   id: AlphaGear
@@ -474,6 +483,7 @@
     - FondUplinkAlpha1
     - CompactDefibrillator
     - DoorRemoteSCPAll
+    - HandheldStationMap
 
 - type: startingGear
   id: DClassGear

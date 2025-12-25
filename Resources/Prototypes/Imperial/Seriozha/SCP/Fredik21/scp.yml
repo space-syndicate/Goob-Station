@@ -4946,6 +4946,9 @@
         Unsexed: SCP682
         Female: SCP682
     - type: Devourer
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        7000: 0.3
 
 - type: emoteSounds
   id: SCP682
@@ -5283,6 +5286,9 @@
         Male: SCP953
         Unsexed: SCP953
         Female: SCP953
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        2700: 0.7
 
 - type: startingGear
   id: SCP953Gear
@@ -8353,6 +8359,9 @@
           - MobMask
           layer:
           - MobLayer
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        420: 0.7
 
 - type: entity
   name: NDA131B
@@ -8422,6 +8431,9 @@
           - MobMask
           layer:
           - MobLayer
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        420: 0.7
 
 - type: reagent
   id : NDA013
