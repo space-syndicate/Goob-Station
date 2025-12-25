@@ -37,6 +37,7 @@ public sealed partial class NDA079CableAbilityComponent : Component
     /// <summary>
     /// Прототип кабеля
     /// </summary>
+    [DataField]
     public EntProtoId CableProto = "Cable079";
 }
 

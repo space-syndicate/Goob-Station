@@ -40,4 +40,4 @@ ent-NDA079AIVisionEntity = Зрение старого ИИ
 
 ent-NDA079Object = старый компьютер
     .desc = Микрокомпьютер модели Exidy Sorcerer, подключён к чёрно-белому телевизору коаксиальным кабелем.
-    .suffix: Недра, WIP
+    .suffix = Недра, WIP

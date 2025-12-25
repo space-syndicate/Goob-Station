@@ -29,6 +29,7 @@ public sealed partial class NDA079CpuComponent : Component
     /// <summary>
     /// Максимальный уровень.
     /// </summary>
+    [DataField]
     public int LvlMax = 4;
 }
 

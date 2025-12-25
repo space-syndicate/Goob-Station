@@ -1,6 +1,5 @@
 - type: entity
   id: NDA079Object
-  suffix: Недра, WIP
   placement:
     mode: SnapgridCenter
   components:

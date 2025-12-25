@@ -3,7 +3,6 @@
   - Incorporeal
   - BaseMob
   id: NDA079AIVisionEntity
-  description:
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
   - type: NoFTL
