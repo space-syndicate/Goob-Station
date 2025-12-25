@@ -1,0 +1,64 @@
+- type: entity
+  id: NDA079Object
+  suffix: Недра, WIP
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Examiner
+  - type: Input
+    context: "human"
+  - type: Actions
+  - type: MindContainer
+  - type: Eye
+  - type: ContentEye
+  - type: DoAfter
+  - type: GravityAffected
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Sprite
+    sprite: Imperial/XxRaay/079/object.rsi
+    state: ai-on
+    noRot: true
+    drawdepth: SmallObjects
+  - type: ScaleVisuals
+    scale: 0.25, 0.25
+  - type: Appearance
+  - type: Speech
+    speechSounds: Borg
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Nedraconnection
+    - NedraCMDconnection
+    - SCPconnection
+  - type: ActiveRadio
+    channels:
+    - Nedraconnection
+    - NedraCMDconnection
+    - SCPconnection
+  - type: NDA079
+  - type: AlertEnergy
+  - type: Alerts
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      power:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: NDA079Cpu
