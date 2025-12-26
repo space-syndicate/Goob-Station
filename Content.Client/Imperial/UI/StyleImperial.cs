@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client.Imperial.Xsolla.ImperialPass.UI;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -145,12 +144,6 @@ public sealed class StyleImperial : StyleBase
                 new StyleProperty(Button.StylePropertyStyleBox, imperialRoundedButton),
             }),
 
-            // Menu
-
-            Element<MenuStoreButton>().Class(StyleclassButtonOpenLeftMenu)
-                .Prop(Button.StylePropertyStyleBox, topButtonOpenLeft)
-                .Prop(Button.StylePropertyModulateSelf, Color.FromHex("#433823")),
-
             // Stripe
 
             new StyleRule(new SelectorElement(typeof(StripeBack), new[] { StyleClassStripePass }, null, null), new[]
@@ -166,23 +159,10 @@ public sealed class StyleImperial : StyleBase
             // Some shit
 
             new StyleRule(
-                new SelectorElement(null, new[] {Content.Client.Imperial.Pass.PassWindow.StyleClassWindowPanel}, null, null),
-                new[]
-                {
-                    new StyleProperty(PanelContainer.StylePropertyPanel, pwindowBackground),
-                }),
-            new StyleRule(
                 new SelectorElement(null, new[] {"windowPanelPassReconnect"}, null, null),
                 new[]
                 {
                     new StyleProperty(PanelContainer.StylePropertyPanel, pwindowBackgroundr),
-                }),
-
-            new StyleRule(
-                new SelectorElement(typeof(PanelContainer), new[] {Content.Client.Imperial.Pass.PassWindow.StyleClassWindowHeader}, null, null),
-                new[]
-                {
-                    new StyleProperty(PanelContainer.StylePropertyPanel, pwindowHeader),
                 }),
 
             // Imperial Pass Begin
@@ -390,46 +370,6 @@ public sealed class StyleImperial : StyleBase
                 {
                     new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10))
                 }),
-            new StyleRule(new SelectorChild(
-                new SelectorElement(typeof(Content.Client.Imperial.Pass.LobbyPassButton), new[] {"PassButton"}, null, null),
-                new SelectorElement(typeof(Label), null, null, null)),
-                new[]
-                {
-                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 18))
-                }),
-             new StyleRule(new SelectorChild(
-                new SelectorElement(typeof(Content.Client.Imperial.Pass.LobbyPassButton), new[] {"PassButtonMedium"}, null, null),
-                new SelectorElement(typeof(Label), null, null, null)),
-                new[]
-                {
-                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 14))
-                }),
-            new StyleRule(new SelectorChild(
-                new SelectorElement(typeof(Content.Client.Imperial.Pass.TermsButton), new[] {"PassButtonMedium20"}, null, null),
-                new SelectorElement(typeof(Label), null, null, null)),
-                new[]
-                {
-                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10))
-                }),
-            new StyleRule(new SelectorChild(
-                new SelectorElement(typeof(Content.Client.Imperial.Pass.LobbyPassButton), new[] {"PassButtonReconnect"}, null, null),
-                new SelectorElement(typeof(Label), null, null, null)),
-                new[]
-                {
-                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 14))
-                }),
-            // Imperial Pass End
-
-            // Imperial Pass Begin
-            new StyleRule(
-                SelectorElement.Type(typeof(Content.Client.Imperial.Pass.PassStripe)),
-                new[]
-                {
-                    new StyleProperty(Content.Client.Imperial.Pass.PassStripe.StylePropertyBackground, stripeBackpass),
-                }),
-
-            // Imperial Pass End
-
             // Imperial Pass Begin
             Element<PanelContainer>().Class("WindowHeadingBackgroundPass")
                 .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#222222"))),
@@ -503,10 +443,6 @@ public sealed class StyleImperial : StyleBase
                 .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 9))
                 .Prop(Label.StylePropertyFontColor, Color.FromHex("#7E7E7E")),
 
-            Element().Class(Content.Client.Imperial.Pass.PassWindow.StyleClassWindowCloseButton)
-                .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Imperial/Pass/window/cross.png"))
-                .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#FFFFFF")),
-
             Element<Label>().Class("ImperialLabelH1")
                 .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 47))
                 .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
@@ -521,10 +457,6 @@ public sealed class StyleImperial : StyleBase
                 .Prop(PanelContainer.StylePropertyPanel, passrect)
                 .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#222222"))),
             // Imperial Pass End
-
-            Element<Content.Client.Imperial.Pass.ButtonWithImage>().Class("PassButton")
-                .Class("VoiceButton")
-                .Prop(ContainerButton.StylePropertyStyleBox, BaseButtonSquare),
 
             Element<BoxContainer>()
                 .Class("imperialExam")
