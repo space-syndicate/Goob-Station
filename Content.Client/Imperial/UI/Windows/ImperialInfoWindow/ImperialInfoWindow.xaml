@@ -4,20 +4,23 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:iui="clr-namespace:Content.Client.Imperial.UI.Windows.ImperialInfoWindow"
     HeaderText="Imperial"
-    MinSize="600 0"
-    SetSize="600 190"
+    MinWidth="600"
+    MaxWidth="600"
     Resizable="False">
-    <BoxContainer Name="Contents" Access="Public" Orientation="Vertical" VerticalAlignment="Center" Margin="20 20 20 10">
-        <Label Align="Center" Name="HeaderLabelText" Text="{Loc 'imperial-ui-info-text'}" StyleClasses="LabelSubTextPass1" Access="Public" HorizontalAlignment="Center" />
-        <controls:HSpacer Spacing="5"/>
+    <BoxContainer Name="Contents" Access="Public" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="20 35 20 20">
+        <RichTextLabel Name="HeaderLabelText" StyleClasses="LabelSubTextPass1" Access="Public" />
+        <controls:HSpacer Spacing="10"/>
 
-        <RichTextLabel Name="InfoText" StyleClasses="LabelSubTextPassMediumBuy" Access="Public" HorizontalAlignment="Center" />
+        <RichTextLabel Name="InfoText" StyleClasses="LabelSubTextPassMediumBuy" Access="Public" />
         <controls:HSpacer Spacing="20"/>
 
-        <BoxContainer VerticalAlignment="Center" HorizontalAlignment="Center">
-            <i:BaseImperialButton Name="SubmitButton" HorizontalAlignment="Stretch" HorizontalExpand="True" StyleClasses="PassButtonMedium">
-               <Label Name="SubmitButtonText" Text="{Loc 'imperial-ui-confirm-button-text' }" HorizontalAlignment="Center" Access="Public" />
-            </i:BaseImperialButton>
-        </BoxContainer>
+        <i:BaseImperialButton
+            Name="SubmitButton"
+            HorizontalAlignment="Stretch"
+            HorizontalExpand="True"
+            StyleClasses="ImperialRoundedButton"
+            Access="Public">
+           <Label Name="SubmitButtonText" Text="{Loc 'imperial-ui-confirm-button-text' }" HorizontalAlignment="Center" Access="Public" />
+        </i:BaseImperialButton>
     </BoxContainer>
 </iui:ImperialInfoWindow>

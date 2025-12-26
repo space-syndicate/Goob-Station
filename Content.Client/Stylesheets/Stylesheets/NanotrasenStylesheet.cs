@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Client.Imperial.UI;
 using Content.Client.Stylesheets.Fonts;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -55,6 +56,8 @@ public partial class NanotrasenStylesheet : CommonStylesheet
             // Finally, load all the other sheetlets.
             GetAllSheetletRules<PalettedStylesheet, CommonSheetletAttribute>(man),
             GetAllSheetletRules<NanotrasenStylesheet, CommonSheetletAttribute>(man),
+
+            new StyleImperial(ResCache).Stylesheet.Rules.ToArray()
         };
 
         Stylesheet = new Stylesheet(rules.SelectMany(x => x).ToArray());
