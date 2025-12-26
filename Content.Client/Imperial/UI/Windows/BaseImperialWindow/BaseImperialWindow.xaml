@@ -1,9 +1,8 @@
 <i:BaseImperialWindow
     xmlns="https://spacestation14.io"
     xmlns:i="clr-namespace:Content.Client.Imperial.UI.Windows.BaseImperialWindow"
-    MouseFilter="Stop"
-    MinSize="1383 900">
-    <PanelContainer StyleClasses="AngleRectPass" />
+    MouseFilter="Stop">
+    <PanelContainer StyleClasses="PanelBackgroundPass" />
 
     <BoxContainer Orientation="Vertical">
         <!-- Header -->
