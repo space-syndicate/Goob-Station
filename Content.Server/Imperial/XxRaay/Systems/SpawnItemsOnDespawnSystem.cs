@@ -1,5 +1,5 @@
 using Content.Shared.Imperial.XxRaay.Components;
-using Robust.Shared.GameObjects;
+using Content.Shared.Destructible;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
@@ -13,22 +13,16 @@ public sealed class SpawnItemsOnDespawnSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SpawnItemsOnDespawnComponent, EntityTerminatingEvent>(OnDespawn);
+        SubscribeLocalEvent<SpawnItemsOnDespawnComponent, DestructionEventArgs>(OnDespawn);
     }
 
-    private void OnDespawn(EntityUid uid, SpawnItemsOnDespawnComponent comp, ref EntityTerminatingEvent args)
+    private void OnDespawn(EntityUid uid, SpawnItemsOnDespawnComponent comp, ref DestructionEventArgs args)
     {
-        if (comp.Items.Count == 0)
-            return;
-
-        if (!TryComp<TransformComponent>(uid, out var xform))
-            return;
-
-        var coords = xform.Coordinates;
+        var xform = Transform(uid);
 
         foreach (var itemProto in comp.Items)
         {
-            Spawn(itemProto, coords);
+            Spawn(itemProto, xform.Coordinates);
         }
     }
 
