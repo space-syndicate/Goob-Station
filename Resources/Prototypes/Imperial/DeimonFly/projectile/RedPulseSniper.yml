@@ -3,10 +3,6 @@
   id: PulseSniperRed
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 90
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
