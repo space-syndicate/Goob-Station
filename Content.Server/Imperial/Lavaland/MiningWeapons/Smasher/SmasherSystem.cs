@@ -30,19 +30,12 @@ public sealed class SmasherSystem : SharedSmasherSystem
     private TimeSpan _decayEndTime;
     private bool _isDecayEffectActive;
     private Dictionary<EntityUid, ChargeData> _activeCharges = new();
-
-
     private List<EntityUid> _usersWithDecay = new();
-
-    private class ChargeData
-    {
-        public TimeSpan StartTime { get; set; }
-        public EntityUid User { get; set; }
-    }
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeNetworkEvent<UpdateSmasherStateEvent>(OnUpdateKeyState);
 
         SubscribeLocalEvent<ShieldActiveComponent, ComponentInit>(OnComponentInit);
