@@ -95,6 +95,9 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 
     private void OnDoAfter(Entity<SupermatterIntegrityComponent> entity, ref SupermatterShutdownDoAfterEvent args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
+
         if (!entity.Comp.Activated)
             return;
 
@@ -103,6 +106,8 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         QueueDel(args.Used);
         entity.Comp.Activated = false;
         SendSupermatterRadio(entity, Loc.GetString("supermatter-deactivated"));
+
+        args.Handled = true;
     }
 
     public override void Update(float frameTime)

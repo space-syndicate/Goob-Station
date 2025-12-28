@@ -82,42 +82,39 @@ public sealed class SupermatterEventSystem : EntitySystem
 
         while (enumerator.MoveNext(out var uid, out var eventComp, out var integrityComp))
         {
-            ProcessSingleSupermatter(uid, eventComp, integrityComp);
+            Entity<SupermatterEventComponent, SupermatterIntegrityComponent> entity = new(uid, eventComp, integrityComp);
+            ProcessSingleSupermatter(entity);
         }
     }
 
     private void ProcessSingleSupermatter(
-        EntityUid uid,
-        SupermatterEventComponent eventComp,
-        SupermatterIntegrityComponent integrityComp)
+        Entity<SupermatterEventComponent, SupermatterIntegrityComponent> entity)
     {
         var currentTime = GameTiming.CurTime;
 
-        UpdateConsoleCache(eventComp, currentTime);
-        UpdateEventEndTimer(eventComp, currentTime);
+        UpdateConsoleCache(entity, currentTime);
+        UpdateEventEndTimer(entity.Comp1, currentTime);
 
-        if (!integrityComp.Activated)
+        if (!entity.Comp2.Activated)
         {
-            ResetInactiveTimers(eventComp, currentTime);
+            ResetInactiveTimers(entity.Comp1, currentTime);
             return;
         }
 
-        UpdateNextEventTimer(eventComp, currentTime);
-
-        var entity = new Entity<SupermatterEventComponent>(uid, eventComp);
+        UpdateNextEventTimer(entity.Comp1, currentTime);
 
         TryStartNewEvent(entity);
         ProcessActiveEvent(entity, currentTime);
     }
 
 
-    private void UpdateConsoleCache(SupermatterEventComponent comp, TimeSpan currentTime)
+    private void UpdateConsoleCache(Entity<SupermatterEventComponent> entity, TimeSpan currentTime)
     {
-        if (currentTime - comp.LastConsoleCacheUpdate < comp.ConsoleCacheLifetime)
+        if (currentTime - entity.Comp.LastConsoleCacheUpdate < entity.Comp.ConsoleCacheLifetime)
             return;
 
-        _nearestConsoleCache.Clear();
-        comp.LastConsoleCacheUpdate = currentTime;
+        _nearestConsoleCache.Remove(entity);
+        entity.Comp.LastConsoleCacheUpdate = currentTime;
     }
 
     private static void UpdateEventEndTimer(SupermatterEventComponent comp, TimeSpan currentTime)
