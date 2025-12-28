@@ -17,19 +17,25 @@ public sealed partial class ShieldActiveComponent : Component
         ["Heat"] = 0.1f
     };
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? DeactivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? ActivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? TimeDecay;
+
+    [AutoNetworkedField]
     public SpriteSpecifier? EffectActived;
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public SpriteSpecifier? EffectCharging;
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public SpriteSpecifier? EffectDecay;
 
     [ViewVariables, AutoNetworkedField]
@@ -38,6 +44,6 @@ public sealed partial class ShieldActiveComponent : Component
     [ViewVariables, AutoNetworkedField]
     public EntityUid? UserUid;
 
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public TimeSpan EndTime;
 }

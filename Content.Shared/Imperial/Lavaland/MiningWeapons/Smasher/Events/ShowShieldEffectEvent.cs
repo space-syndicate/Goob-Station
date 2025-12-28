@@ -6,12 +6,17 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher.Events;
 [Serializable, NetSerializable]
 public sealed class ShowShieldEffectEvent : EntityEventArgs
 {
+    /// <summary>
+    /// Should the animation loop
+    /// </summary>
+    public bool Loop;
     public NetEntity Uid;
     public SpriteSpecifier EffectDecay;
 
-    public ShowShieldEffectEvent(NetEntity uid, SpriteSpecifier effectDecay)
+    public ShowShieldEffectEvent(NetEntity uid, SpriteSpecifier effectDecay, bool loop)
     {
         Uid = uid;
         EffectDecay = effectDecay;
+        Loop = loop;
     }
 }
