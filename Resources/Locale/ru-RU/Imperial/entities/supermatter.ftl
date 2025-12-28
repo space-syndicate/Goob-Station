@@ -4,6 +4,12 @@ ent-Supermatter = кристалл суперматерии
 ent-SupermatterMonitorConsole = консоль мониторинга суперматерии
     .desc = Консоль, отображающая информацию о ближайшем кристалле суперматерии.
 
+ent-SupermatterShutdownCrystal = кристалл деактивации суперматерии
+    .desc = Кристалл, способный деактивировать станционную суперматерию.
+
+ent-CrateSupermatterShutdownCrystal = ящик кристалла деактивации суперматерии
+    .desc = Ящик с кристаллом, способным деактивировать станционную суперматерию.
+
 supermatter-event-none = Суперматерия стабилизирована.
 supermatter-event-lightning = Внимание: Зафиксирован энергетический всплеск! Кристалл выпускает молнии!
 supermatter-event-radiation = Внимание: Зафиксирован рост радиационного излучения кристалла!
@@ -16,6 +22,7 @@ supermatter-desc-badly-cracked = Он покрыт множеством трещ
 supermatter-desc-critical = Он светится и вибрирует!
 
 supermatter-activated = Внимание: Суперматерия была активирована!
+supermatter-deactivated = Внимание: Суперматерия была деактивирована!
 supermatter-status-active = Кристалл слегка переливается жёлтыми оттенками.
 supermatter-status-inactive = Цвет кристалла не меняется. Видимо, он неактивен.
 
