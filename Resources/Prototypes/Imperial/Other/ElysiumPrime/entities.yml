@@ -1330,23 +1330,3 @@
     radius: 1.5
     energy: 1.6
     color: "#00FF00"
-
-- type: entity
-  parent: ComputerId
-  id: ComputerIdElysiumPrime
-  name: Federation ID card computer
-  description: Any ID card inserted into it becomes the property of Elysium Prime.
-  suffix: ElysiumPrime
-  components:
-  - type: IdCardConsoleFederation
-  - type: Sprite
-    sprite: Imperial/Other/ElysiumPrime/Objects/Computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: console
-    - map: ["computerLayerScreen"]
-      state: ID
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#00FF00"
