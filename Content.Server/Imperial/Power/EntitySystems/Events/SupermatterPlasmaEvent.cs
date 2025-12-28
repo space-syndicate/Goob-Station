@@ -2,7 +2,6 @@ using Content.Shared.Atmos;
 using Content.Server.Imperial.Power.Components;
 using Robust.Shared.Map.Components;
 using Content.Server.Atmos.EntitySystems;
-using Robust.Shared.Physics;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
 
