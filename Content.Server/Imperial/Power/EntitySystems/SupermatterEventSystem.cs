@@ -120,7 +120,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         comp.LastConsoleCacheUpdate = currentTime;
     }
 
-    private void UpdateEventEndTimer(SupermatterEventComponent comp, TimeSpan currentTime)
+    private static void UpdateEventEndTimer(SupermatterEventComponent comp, TimeSpan currentTime)
     {
         if (comp.EventEndTime <= TimeSpan.Zero)
             return;
@@ -133,7 +133,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         comp.LastEventEndTimeUpdate = currentTime;
     }
 
-    private void UpdateNextEventTimer(SupermatterEventComponent comp, TimeSpan currentTime)
+    private static void UpdateNextEventTimer(SupermatterEventComponent comp, TimeSpan currentTime)
     {
         if (comp.NextEventTimer <= TimeSpan.Zero)
             return;
@@ -146,7 +146,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         comp.LastNextEventTimerUpdate = currentTime;
     }
 
-    private void ResetInactiveTimers(SupermatterEventComponent comp, TimeSpan currentTime)
+    private static void ResetInactiveTimers(SupermatterEventComponent comp, TimeSpan currentTime)
     {
         comp.LastNextEventTimerUpdate = currentTime;
         comp.LastEventEndTimeUpdate = currentTime;
@@ -156,7 +156,9 @@ public sealed class SupermatterEventSystem : EntitySystem
     {
         var comp = entity.Comp;
 
-        if (comp.EventEndTime > TimeSpan.Zero || comp.NextEventTimer > TimeSpan.Zero || comp.IsWarOps)
+        if (comp.EventEndTime > TimeSpan.Zero
+            || comp.NextEventTimer > TimeSpan.Zero
+            || comp.IsWarOps)
             return;
 
         if (comp.CurrentEvent == SupermatterEventComponent.SupermatterEventType.Radiation

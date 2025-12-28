@@ -9,7 +9,6 @@ public sealed class SupermatterRadiationEvent
 {
     public static void Activate(Entity<SupermatterEventComponent> entity, SupermatterEventSystem supermatterSystem)
     {
-        // Валидация входных параметров
         if (entity.AsType() == EntityUid.Invalid)
         {
             supermatterSystem.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");

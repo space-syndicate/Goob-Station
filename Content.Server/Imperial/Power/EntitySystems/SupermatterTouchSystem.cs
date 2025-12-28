@@ -18,7 +18,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
         SubscribeLocalEvent<SupermatterTouchComponent, StartCollideEvent>(OnStartCollide);
     }
 
-    private void OnStartCollide(Entity<SupermatterTouchComponent> entity, ref StartCollideEvent args)
+    private void OnStartCollide(Entity<SupermatterTouchComponent> supermatter, ref StartCollideEvent args)
     {
         var other = args.OtherEntity;
         if (!EntityManager.HasComponent<MobStateComponent>(other))
@@ -26,18 +26,19 @@ public sealed class SupermatterTouchSystem : EntitySystem
 
         var transformComp = Transform(other);
 
-        GibCollidedEntity(entity.Comp, transformComp, other, entity);
-        RaiseLocalEvent(entity, new SupermatterTouchedEvent());
+        Entity<TransformComponent> entity = new(other, transformComp);
+        GibCollidedEntity(supermatter, entity);
+        RaiseLocalEvent(supermatter, new SupermatterTouchedEvent());
     }
 
-    private void GibCollidedEntity(SupermatterTouchComponent supermatterTouchComponent, TransformComponent transformComp, EntityUid entityUid, EntityUid supermatterUid)
+    private void GibCollidedEntity(Entity<SupermatterTouchComponent> supermatter, Entity<TransformComponent> entity)
     {
-        _audio.PlayPvs(supermatterTouchComponent.GibSound, transformComp.Coordinates);
-        _colorFlash.RaiseEffect(supermatterTouchComponent.FlashColor, [supermatterUid], Filter.Pvs(supermatterUid));
-        EntityManager.QueueDeleteEntity(entityUid);
-        EntityManager.SpawnEntity(supermatterTouchComponent.AshPrototype, transformComp.Coordinates);
+        _audio.PlayPvs(supermatter.Comp.GibSound, entity.Comp.Coordinates);
+        _colorFlash.RaiseEffect(supermatter.Comp.FlashColor, [supermatter], Filter.Pvs(supermatter));
+        EntityManager.QueueDeleteEntity(entity);
+        EntityManager.SpawnEntity(supermatter.Comp.AshPrototype, entity.Comp.Coordinates);
 
-        if (TryComp<SupermatterIntegrityComponent>(supermatterUid, out var integrityComponent) && !integrityComponent.Activated)
+        if (TryComp<SupermatterIntegrityComponent>(supermatter, out var integrityComponent) && !integrityComponent.Activated)
             integrityComponent.Activated = true;
     }
 }

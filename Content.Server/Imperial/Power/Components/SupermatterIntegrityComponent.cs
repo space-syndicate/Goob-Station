@@ -139,13 +139,16 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public ProtoId<TagPrototype> HealTag = "EmitterBolt";
 
     /// <summary>
-    /// Тег, прототипы с которым лечат Суперматерию
+    /// Тег, прототипы которые могут остановить Суперматерию
     /// </summary>
     [DataField]
     public ProtoId<TagPrototype> SupermatterStopTag = "SupermatterStop";
 
+    /// <summary>
+    /// Звук остановки Суперматерии
+    /// </summary>
     [DataField]
-    public SoundPathSpecifier ShutdownPath = new("/Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg");
+    public SoundPathSpecifier ShutdownSoundPath = new("/Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg");
 
     /// <summary>
     /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
