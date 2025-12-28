@@ -17,15 +17,15 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 
 public sealed class SupermatterEventSystem : EntitySystem
 {
-    [Dependency] public readonly AtmosphereSystem Atmos = default!;
-    [Dependency] public readonly DamageableSystem Damageable = default!;
-    [Dependency] public readonly IGameTiming GameTiming = default!;
-    [Dependency] public readonly LightningSystem LightningSystem = default!;
-    [Dependency] public readonly SharedMapSystem MapSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] public readonly AtmosphereSystem Atmos = null!;
+    [Dependency] public readonly DamageableSystem Damageable = null!;
+    [Dependency] public readonly IGameTiming GameTiming = null!;
+    [Dependency] public readonly LightningSystem LightningSystem = null!;
+    [Dependency] public readonly SharedMapSystem MapSystem = null!;
+    [Dependency] private readonly ChatSystem _chatSystem = null!;
+    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly RadioSystem _radio = null!;
+    [Dependency] private readonly TransformSystem _transformSystem = null!;
 
     // Кеш ближайших консолей для кристаллов
     private readonly Dictionary<EntityUid, (EntityUid console, float time)> _nearestConsoleCache = new();

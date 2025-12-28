@@ -9,8 +9,8 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 
 public sealed class SupermatterTouchSystem : EntitySystem
 {
-    [Dependency] private readonly ColorFlashEffectSystem _colorFlash = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ColorFlashEffectSystem _colorFlash = null!;
+    [Dependency] private readonly SharedAudioSystem _audio = null!;
 
     public override void Initialize()
     {

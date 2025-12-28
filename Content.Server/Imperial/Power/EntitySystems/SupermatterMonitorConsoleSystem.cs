@@ -8,9 +8,9 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 
 public sealed class SupermatterMonitorConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosSystem = null!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = null!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
 
     public override void Initialize()
     {

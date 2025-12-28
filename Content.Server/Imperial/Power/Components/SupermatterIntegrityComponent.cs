@@ -3,6 +3,7 @@ using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Content.Shared.Explosion;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Power.Components;
 
@@ -136,6 +137,15 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<TagPrototype> HealTag = "EmitterBolt";
+
+    /// <summary>
+    /// Тег, прототипы с которым лечат Суперматерию
+    /// </summary>
+    [DataField]
+    public ProtoId<TagPrototype> SupermatterStopTag = "SupermatterStop";
+
+    [DataField]
+    public SoundPathSpecifier ShutdownPath = new("/Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg");
 
     /// <summary>
     /// Количество здоровья, восстанавливаемое за один выстрел эмиттера

@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "copyright": "Made by Ser1-1y on github.",
+    "license": "ICLA https://wiki.imperialspace.net/ru/icla",
+    "size": {
+      "x": 16,
+      "y": 16
+    },
+    "states": [
+      {
+        "name": "shutdownCrystal"
+      }
+    ]
+  }
