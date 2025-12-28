@@ -1631,8 +1631,6 @@
   components:
   - type: Sprite
     state: base
-  - type: PointLight
-    enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalRed
   - type: AmbientSound
