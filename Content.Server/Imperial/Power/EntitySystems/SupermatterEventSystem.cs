@@ -38,14 +38,14 @@ public sealed class SupermatterEventSystem : EntitySystem
         SubscribeLocalEvent<WarDeclaredEvent>(OnWarOps);
     }
 
-    private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
+    private void OnInit(Entity<SupermatterEventComponent> entity, ref ComponentInit args)
     {
         var currentTime = GameTiming.CurTime;
-        comp.LastConsoleCacheUpdate = currentTime;
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
-        comp.LastLightningCooldownUpdate = currentTime;
-        comp.LastPlasmaTickUpdate = currentTime;
+        entity.Comp.LastConsoleCacheUpdate = currentTime;
+        entity.Comp.LastEventEndTimeUpdate = currentTime;
+        entity.Comp.LastNextEventTimerUpdate = currentTime;
+        entity.Comp.LastLightningCooldownUpdate = currentTime;
+        entity.Comp.LastPlasmaTickUpdate = currentTime;
     }
 
     private void OnWarOps(ref WarDeclaredEvent args)
@@ -61,9 +61,9 @@ public sealed class SupermatterEventSystem : EntitySystem
         }
     }
 
-    private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
+    private void OnTouched(Entity<SupermatterEventComponent> entity, ref SupermatterTouchedEvent args)
     {
-        TriggerEventNow(uid);
+        TriggerEventNow(entity);
     }
 
     private void TriggerEventNow(EntityUid uid)
@@ -118,6 +118,8 @@ public sealed class SupermatterEventSystem : EntitySystem
                 eventComponent.LastNextEventTimerUpdate = currentTime;
             }
 
+            Entity<SupermatterEventComponent> entity = new(uid, eventComponent);
+
             if (eventComponent.EventEndTime == TimeSpan.Zero
                 && eventComponent.NextEventTimer == TimeSpan.Zero && !eventComponent.IsWarOps)
             {
@@ -135,19 +137,19 @@ public sealed class SupermatterEventSystem : EntitySystem
                 switch (eventHandler)
                 {
                     case SupermatterNoneEvent:
-                        SupermatterNoneEvent.Activate(uid, eventComponent, this);
+                        SupermatterNoneEvent.Activate(entity, this);
                         AnnounceFromSupermatterConsole(uid, SupermatterNoneEvent.GetAnnouncement());
                         break;
                     case SupermatterLightningEvent:
-                        SupermatterLightningEvent.Activate(uid, eventComponent, this);
+                        SupermatterLightningEvent.Activate(entity, this);
                         AnnounceFromSupermatterConsole(uid, SupermatterLightningEvent.GetAnnouncement());
                         break;
                     case SupermatterRadiationEvent:
-                        SupermatterRadiationEvent.Activate(uid, eventComponent, this);
+                        SupermatterRadiationEvent.Activate(entity, this);
                         AnnounceFromSupermatterConsole(uid, SupermatterRadiationEvent.GetAnnouncement());
                         break;
                     case SupermatterPlasmaEvent:
-                        SupermatterPlasmaEvent.Activate(uid, eventComponent, this);
+                        SupermatterPlasmaEvent.Activate(entity, this);
                         AnnounceFromSupermatterConsole(uid, SupermatterPlasmaEvent.GetAnnouncement());
                         break;
                 }
@@ -161,16 +163,16 @@ public sealed class SupermatterEventSystem : EntitySystem
                 switch (newEventHandler)
                 {
                     case SupermatterNoneEvent:
-                        SupermatterNoneEvent.Process(uid, eventComponent, this, currentTime);
+                        SupermatterNoneEvent.Process(entity, this, currentTime);
                         break;
                     case SupermatterLightningEvent:
-                        SupermatterLightningEvent.Process(uid, eventComponent, this, currentTime);
+                        SupermatterLightningEvent.Process(entity, this, currentTime);
                         break;
                     case SupermatterRadiationEvent:
-                        SupermatterRadiationEvent.Process(uid, eventComponent, this, currentTime);
+                        SupermatterRadiationEvent.Process(entity, this, currentTime);
                         break;
                     case SupermatterPlasmaEvent:
-                        SupermatterPlasmaEvent.Process(uid, eventComponent, this, currentTime);
+                        SupermatterPlasmaEvent.Process(entity, this, currentTime);
                         break;
                 }
             }

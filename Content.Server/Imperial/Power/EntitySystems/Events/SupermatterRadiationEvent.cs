@@ -7,28 +7,28 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterRadiationEvent
 {
-    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
+    public static void Activate(Entity<SupermatterEventComponent> entity, SupermatterEventSystem supermatterSystem)
     {
         // Валидация входных параметров
-        if (uid == EntityUid.Invalid)
+        if (entity.AsType() == EntityUid.Invalid)
         {
             supermatterSystem.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");
             return;
         }
-      
-        var currentTime = supermatterSystem.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Radiation;
-        comp.EventEndTime = comp.RadiationEventDuration;
-        comp.NextEventTimer = comp.EventAfterRadiationTime;
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
 
-        supermatterSystem.SetRadiation(uid, comp.RadiationEventIntensity);
+        var currentTime = supermatterSystem.GameTiming.CurTime;
+        entity.Comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Radiation;
+        entity.Comp.EventEndTime = entity.Comp.RadiationEventDuration;
+        entity.Comp.NextEventTimer = entity.Comp.EventAfterRadiationTime;
+        entity.Comp.LastEventEndTimeUpdate = currentTime;
+        entity.Comp.LastNextEventTimerUpdate = currentTime;
+
+        supermatterSystem.SetRadiation(entity, entity.Comp.RadiationEventIntensity);
     }
 
-    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
+    public static void Process(Entity<SupermatterEventComponent> entity, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
-        supermatterSystem.SetRadiation(uid, comp.RadiationEventIntensity);
+        supermatterSystem.SetRadiation(entity, entity.Comp.RadiationEventIntensity);
     }
 
     public static string GetAnnouncement()

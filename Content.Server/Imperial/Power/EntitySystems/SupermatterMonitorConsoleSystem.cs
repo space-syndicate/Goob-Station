@@ -18,12 +18,12 @@ public sealed class SupermatterMonitorConsoleSystem : EntitySystem
         SubscribeLocalEvent<SupermatterMonitorConsoleComponent, ExaminedEvent>(OnExamined);
     }
 
-    private void OnExamined(EntityUid uid, SupermatterMonitorConsoleComponent component, ExaminedEvent args)
+    private void OnExamined(Entity<SupermatterMonitorConsoleComponent> entity, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
 
-        var nearestUid = FindNearestSupermatter(uid);
+        var nearestUid = FindNearestSupermatter(entity);
         if (nearestUid == null || !TryComp(nearestUid, out SupermatterIntegrityComponent? nearest))
         {
             args.PushMarkup(Loc.GetString("supermatter-monitor-none-nearby"));

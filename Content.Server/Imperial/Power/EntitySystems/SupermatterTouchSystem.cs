@@ -18,7 +18,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
         SubscribeLocalEvent<SupermatterTouchComponent, StartCollideEvent>(OnStartCollide);
     }
 
-    private void OnStartCollide(EntityUid uid, SupermatterTouchComponent component, ref StartCollideEvent args)
+    private void OnStartCollide(Entity<SupermatterTouchComponent> entity, ref StartCollideEvent args)
     {
         var other = args.OtherEntity;
         if (!EntityManager.HasComponent<MobStateComponent>(other))
@@ -26,8 +26,8 @@ public sealed class SupermatterTouchSystem : EntitySystem
 
         var transformComp = Transform(other);
 
-        GibCollidedEntity(component, transformComp, other, uid);
-        RaiseLocalEvent(uid, new SupermatterTouchedEvent());
+        GibCollidedEntity(entity.Comp, transformComp, other, entity);
+        RaiseLocalEvent(entity, new SupermatterTouchedEvent());
     }
 
     private void GibCollidedEntity(SupermatterTouchComponent supermatterTouchComponent, TransformComponent transformComp, EntityUid entityUid, EntityUid supermatterUid)
