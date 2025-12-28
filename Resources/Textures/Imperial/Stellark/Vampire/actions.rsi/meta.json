@@ -42,6 +42,9 @@
       },
       {
         "name": "clone"
+      },
+      {
+        "name": "transform_bat"
       }
     ]
   }

@@ -365,9 +365,10 @@ public class VampireSystem : EntitySystem
     // модифицированный OnSummonAction
     private void OnTentacles(VampireTentaclesEvent args)
     {
-        TryComp<VampireComponent>(args.Performer, out var vamp);
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
 
-        if (vamp!.BloodDamage + args.CostBlood >= vamp!.CritThreshold)
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
             _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -406,7 +407,7 @@ public class VampireSystem : EntitySystem
                 Spawn(args.EntityId, pos);
         }
         DealBloodDamage(args.Performer, args.CostBlood);
-        Dirty(args.Performer, vamp!);
+        Dirty(args.Performer, vamp);
     }
 
     private void OnDamadeOnContactCollide(Entity<DamageOnContactComponent> ent, ref StartCollideEvent args)
