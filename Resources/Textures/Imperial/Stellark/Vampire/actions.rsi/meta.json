@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "for imperial space",
+    "copyright": "Created by Stellark",
     "size": {
       "x": 32,
       "y": 32
@@ -36,6 +36,12 @@
       },
       {
         "name": "reconciliation"
+      },
+      {
+        "name": "blood_theft"
+      },
+      {
+        "name": "clone"
       }
     ]
   }

@@ -142,6 +142,9 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public ProtoId<AlertPrototype> BloodAlert = "BloodAlert";
 
+        [DataField]
+        public ProtoId<AlertPrototype> BloodCounterAlert = "VampireCounterAlert";
+
         /// <summary>
         /// ID дыма, которай спавнится при телепортации
         /// </summary>
@@ -229,6 +232,8 @@ namespace Content.Shared.Imperial.Vampire
 
         [DataField]
         public ProtoId<FactionIconPrototype> StatusIcon = "VampireFaction";
+
+        public float MaxTotalDrunk = 1000;
 
         public float Radius = 2f;
     }

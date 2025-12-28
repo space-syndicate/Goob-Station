@@ -252,7 +252,7 @@ public sealed class VampireServerSystem : EntitySystem
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
             _vampireSystem.SetBloodAlert(drinker, vamp);
             vamp.TotalDrunk += amount;
-            var eui = new VampireRequestedEui(drinker, EntityManager, _actions);
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem);
             eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
         }
         else
@@ -441,7 +441,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (!TryComp<ActorComponent>(args.Performer, out var actor))
             return;
 
-        var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions);
+        var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions, _vampireSystem);
         _eui.OpenEui(eui, actor.PlayerSession);
     }
 

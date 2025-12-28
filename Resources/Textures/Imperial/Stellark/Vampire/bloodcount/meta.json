@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Stellark",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bloodcount0"
+    },
+    {
+      "name": "bloodcount1"
+    },
+    {
+      "name": "bloodcount2"
+    },
+    {
+      "name": "bloodcount3"
+    },
+    {
+      "name": "bloodcount4"
+    },
+    {
+      "name": "bloodcount5"
+    },
+    {
+      "name": "bloodcount6"
+    },
+    {
+      "name": "bloodcount7"
+    },
+    {
+      "name": "bloodcount8"
+    },
+    {
+      "name": "bloodcount9"
+    },
+    {
+      "name": "bloodcount10"
+    },
+    {
+      "name": "bloodcount11"
+    },
+    {
+      "name": "bloodcount12"
+    },
+    {
+      "name": "bloodcount13"
+    },
+    {
+      "name": "bloodcount14"
+    },
+    {
+      "name": "bloodcount15"
+    },
+    {
+      "name": "bloodcount16"
+    },
+    {
+      "name": "bloodcount17"
+    },
+    {
+      "name": "bloodcount18"
+    },
+    {
+      "name": "bloodcount19"
+    },
+    {
+      "name": "bloodcount20"
+    }
+  ]
+}

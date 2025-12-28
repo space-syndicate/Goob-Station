@@ -8,7 +8,7 @@
     useDelay: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Actions/smokeaction.rsi
-      state: smokeaction
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: blood_theft
   - type: InstantAction
     event: !type:VampireBloodTheftEvent

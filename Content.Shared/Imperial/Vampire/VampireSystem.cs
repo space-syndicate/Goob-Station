@@ -1159,6 +1159,16 @@ public class VampireSystem : EntitySystem
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }
 
+    public void SetBloodCounterAlert(EntityUid uid, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false) || component.Deleted)
+            return;
+
+        // вычисляем, какой должен быть спрайт в зависимости от количества выпитой крови вампиром
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.TotalDrunk), component.CritThreshold, 21);
+        _alerts.ShowAlert(uid, component.BloodCounterAlert, (short)severity);
+    }
+
     public void DealBloodDamage(EntityUid uid, float damage, VampireComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -1185,6 +1195,7 @@ public class VampireSystem : EntitySystem
             Dirty(ent.Owner, ent.Comp);
         }
         SetBloodAlert(ent.Owner, ent.Comp);
+        SetBloodCounterAlert(ent.Owner, ent.Comp);
     }
 
     private void OnMindAdded(Entity<VampireComponent> ent, ref MindAddedMessage args)
@@ -1200,6 +1211,7 @@ public class VampireSystem : EntitySystem
             Dirty(ent.Owner, ent.Comp);
         }
         SetBloodAlert(ent.Owner, ent.Comp);
+        SetBloodCounterAlert(ent.Owner, ent.Comp);
     }
 
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)

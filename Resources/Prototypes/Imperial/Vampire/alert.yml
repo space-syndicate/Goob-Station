@@ -53,3 +53,54 @@
   description: Ну типо хранилище крови
   minSeverity: 0
   maxSeverity: 10
+
+- type: alert
+  id: VampireCounterAlert
+  icons:
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount0
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount1
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount2
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount3
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount4
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount5
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount6
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount7
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount8
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount9
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount10
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount11
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount12
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount13
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount14
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount15
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount16
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount17
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount18
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount19
+  - sprite: Imperial/Stellark/Vampire/bloodcount
+    state: bloodcount20
+  name: Счетчик выпитой крови
+  description: Ну типо счетчик выпитой крови
+  minSeverity: 0
+  maxSeverity: 21
+
