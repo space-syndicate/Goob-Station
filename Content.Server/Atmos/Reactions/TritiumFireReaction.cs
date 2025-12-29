@@ -11,6 +11,9 @@ namespace Content.Server.Atmos.Reactions
     {
         public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
         {
+            var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium); // Imperial Atmos Update start
+            if (initialAntiNoblium > 5f)
+                return ReactionResult.NoReaction; // Imperial Atmos Update end
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;

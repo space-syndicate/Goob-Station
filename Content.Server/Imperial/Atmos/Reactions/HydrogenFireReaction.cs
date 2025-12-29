@@ -23,7 +23,9 @@ namespace Content.Server.Atmos.Reactions
             mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
             var burnedFuel = 0f;
             var initialHydrogen = mixture.GetMoles(Gas.Hydrogen);
-
+            var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium);
+            if (initialAntiNoblium > 5f)
+                return ReactionResult.NoReaction;
             if (mixture.GetMoles(Gas.Oxygen) < initialHydrogen ||
                 Atmospherics.MinimumHydrogenOxyburnEnergy > (temperature * oldHeatCapacity * heatScale))
             {
@@ -36,7 +38,7 @@ namespace Content.Server.Atmos.Reactions
             else
             {
                 burnedFuel = initialHydrogen;
-                mixture.SetMoles(Gas.Hydrogen, mixture.GetMoles(Gas.Hydrogen ) * (1 - 1 / Atmospherics.HydrogenBurnHydrFactor));
+                mixture.SetMoles(Gas.Hydrogen, mixture.GetMoles(Gas.Hydrogen) * (1 - 1 / Atmospherics.HydrogenBurnHydrFactor));
                 mixture.AdjustMoles(Gas.Oxygen, -mixture.GetMoles(Gas.Hydrogen));
                 energyReleased += (Atmospherics.FireHydrogenEnergyReleased * burnedFuel * (Atmospherics.HydrogenBurnHydrFactor - 1));
             }
@@ -45,15 +47,12 @@ namespace Content.Server.Atmos.Reactions
             {
                 energyReleased += (Atmospherics.FireHydrogenEnergyReleased * burnedFuel);
 
-                // TODO ATMOS Radiation pulse here!
-
-                // Conservation of mass is important.
                 mixture.AdjustMoles(Gas.WaterVapor, burnedFuel);
 
                 mixture.ReactionResults[(byte)GasReaction.Fire] += burnedFuel;
             }
 
-            energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
+            energyReleased /= heatScale;
             if (energyReleased > 0)
             {
                 var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);

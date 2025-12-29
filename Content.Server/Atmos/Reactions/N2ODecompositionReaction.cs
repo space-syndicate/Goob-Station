@@ -13,6 +13,9 @@ public sealed partial class N2ODecompositionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium); // Imperial Atmos Update start
+        if (initialAntiNoblium > 5f)
+            return ReactionResult.NoReaction; // Imperial Atmos Update end
         var cacheN2O = mixture.GetMoles(Gas.NitrousOxide);
 
         var burnedFuel = cacheN2O / Atmospherics.N2ODecompositionRate;

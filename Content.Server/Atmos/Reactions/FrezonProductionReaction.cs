@@ -14,6 +14,9 @@ public sealed partial class FrezonProductionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium); // Imperial Atmos Update start
+        if (initialAntiNoblium > 5f)
+            return ReactionResult.NoReaction; // Imperial Atmos Update end
         var initialN2 = mixture.GetMoles(Gas.Nitrogen);
         var initialOxy = mixture.GetMoles(Gas.Oxygen);
         var initialTrit = mixture.GetMoles(Gas.Tritium);

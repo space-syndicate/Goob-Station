@@ -1,0 +1,25 @@
+- type: gasPhazeReaction
+  id: HyperNobliumPhaseProduction
+  energyScale: 200
+  useGasTwo: True
+  addedGasID: 14
+  missingGasID: 9
+  missingGasIDTwo: 13
+  OutputFactor: 1
+ # oxygen 0
+ # nitrogen 1
+ # carbon dioxide 2
+ # plasma 3
+ # tritium 4
+ # vapor 5
+ # ammonia 6
+ # n2o 7
+ # frezon 8
+ # thermonium 9
+ # phazonium 10
+ # ozonium 11
+ # hydrogen 12
+ # deuterium 13
+ # hyper noblium 14
+ # anti noblium 15
+ # BZ 16

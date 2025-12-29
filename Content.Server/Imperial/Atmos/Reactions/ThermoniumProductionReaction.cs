@@ -12,6 +12,9 @@ public sealed partial class ThermoniumProductionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium);
+        if (initialAntiNoblium > 5f)
+            return ReactionResult.NoReaction;
         var initialCarbonDioxide = mixture.GetMoles(Gas.CarbonDioxide);
         var initialNit = mixture.GetMoles(Gas.Nitrogen);
         var initialTrit = mixture.GetMoles(Gas.Tritium);

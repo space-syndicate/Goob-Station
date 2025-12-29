@@ -209,6 +209,9 @@ public sealed partial class AtmosphereSystem
         var plasma = tile.Air.GetMoles(Gas.Plasma);
         var tritium = tile.Air.GetMoles(Gas.Tritium);
         var hydrogen = tile.Air.GetMoles(Gas.Hydrogen); ///Imperial Added Hydrogen
+        var initialAntiNoblium = tile.Air.GetMoles(Gas.AntiNoblium); // Imperial Atmos Update start
+        if (initialAntiNoblium > 5f)
+            return; // Imperial Atmos Update end
 
         if (tile.Hotspot.Valid)
         {
