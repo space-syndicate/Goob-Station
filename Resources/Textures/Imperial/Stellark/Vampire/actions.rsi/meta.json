@@ -45,6 +45,12 @@
       },
       {
         "name": "transform_bat"
+      },
+      {
+        "name": "tentacles_off"
+      },
+      {
+        "name": "tentacles_on"
       }
     ]
   }

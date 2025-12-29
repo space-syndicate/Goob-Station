@@ -6,12 +6,13 @@
   components:
   - type: Action
     raiseOnUser: true
+    itemIconStyle: BigAction
     icon:
-      sprite: Mobs/Aliens/Asteroid/goliath.rsi
-      state: goliath_tentacle_spawn
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: tentacles_off
     iconOn:
-      sprite: Mobs/Aliens/Asteroid/goliath.rsi
-      state: goliath_tentacle_wiggle
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: tentacles_on
     sound:
       path: "/Audio/Weapons/slash.ogg"
     useDelay: 1
