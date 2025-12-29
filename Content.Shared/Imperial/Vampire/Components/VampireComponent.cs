@@ -242,5 +242,14 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("bloodPerTick")]
         public float BloodPerTick = 1;
+
+        public static readonly List<EntProtoId> BaseAbilities = new()
+        {
+            "VampireClawAction",
+            "VampireMessageForGhoulsAction",
+            "VampireBloodTheftAction",
+            "VampireRecoveryAction",
+            "VampireSleepAction"
+        };
     }
 }

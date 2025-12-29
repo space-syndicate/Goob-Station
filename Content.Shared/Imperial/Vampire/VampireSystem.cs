@@ -1195,6 +1195,20 @@ public class VampireSystem : EntitySystem
             _actions.AddAction(ent.Owner, ref actionEnt, ent.Comp.SelectingSubgroupAction);
             Dirty(ent.Owner, ent.Comp);
         }
+
+        // выдача базовых способностей
+        if (ent.Comp.GrantedActions.Count == 0)
+        {
+            foreach (var proto in VampireComponent.BaseAbilities)
+            {
+                EntityUid? actionEnt = null;
+                _actions.AddAction(ent.Owner, ref actionEnt, proto);
+
+                if (actionEnt != null)
+                    ent.Comp.GrantedActions.Add(actionEnt.Value);
+            }
+        }
+
         SetBloodAlert(ent.Owner, ent.Comp);
         SetBloodCounterAlert(ent.Owner, ent.Comp);
     }

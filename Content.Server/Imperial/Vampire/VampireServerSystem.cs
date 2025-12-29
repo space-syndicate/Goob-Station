@@ -84,7 +84,7 @@ public sealed class VampireServerSystem : EntitySystem
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || !vamp.DirectionSelected)
+        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive)
             return;
 
         // если у цели нет крови (например, стул), кнопки не добавляем

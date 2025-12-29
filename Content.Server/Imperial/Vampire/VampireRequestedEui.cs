@@ -41,19 +41,6 @@ public sealed class VampireRequestedEui : BaseEui
         vamp.SelectedSubgroup = selection;
         _vampireSystem.SetBloodCounterAlert(uid);
 
-        // выдача базовых способностей
-        if (vamp.GrantedActions.Count == 0 && vamp.DirectionSelected)
-        {
-            foreach (var proto in VampireAbilityLists.BaseAbilities)
-            {
-                EntityUid? actionEnt = null;
-                _actions.AddAction(uid, ref actionEnt, proto);
-
-                if (actionEnt != null)
-                    vamp.GrantedActions.Add(actionEnt.Value);
-            }
-        }
-
         // выдача уникальных способностей в зависимости от группы
         var uniqueActions = selection switch
         {

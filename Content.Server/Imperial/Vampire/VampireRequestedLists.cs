@@ -4,24 +4,14 @@ namespace Content.Server.Imperial.Vampire;
 
 public static class VampireAbilityLists
 {
-    public static readonly Dictionary<int, float> AbilityThresholds = new()
+    public static readonly Dictionary<int, int> AbilityThresholds = new()
     {
-        { 0, 100f }, // для получения первой способности нужно выпить 100 ед, для второй 200 и тд
-        { 1, 200f },
-        { 2, 300f },
-        { 3, 400f },
-        { 4, 500f }
-    };
-
-    // базовые способности
-    public static readonly List<EntProtoId> BaseAbilities = new()
-    {
-        "VampireClawAction",
-        // "обратиться",
-        "VampireMessageForGhoulsAction",
-        "VampireBloodTheftAction",
-        "VampireRecoveryAction",
-        "VampireSleepAction"
+        { 0, 100 }, // для получения первой способности нужно выпить 100 ед, для второй 200 и тд
+        { 1, 200 },
+        { 2, 300 },
+        { 3, 400 },
+        { 4, 500 },
+        { 5, 500 }
     };
 
     // способности Hemomancer
@@ -31,6 +21,7 @@ public static class VampireAbilityLists
         "VampireTransformBatAction",
         "VampireTransformBloodAction",
         "VampireNosferatyAction"
+        // "обратиться",
     };
 
     // способности Umbrae
@@ -50,5 +41,6 @@ public static class VampireAbilityLists
         "VampireUnCuffAction",
         "VampireReconciliationAction",
         "VampireNosferatyAction"
+        // "обратиться",
     };
 }
