@@ -2,7 +2,7 @@
   id: PlushieCadet
   values:
     prefix: plushie-cadet-
-    count: 55
+    count: 56
 
 - type: soundCollection
   id: PlushieHi
