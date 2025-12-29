@@ -1,68 +1,64 @@
-<div class="header" align="center">  
-<img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg">  
-</div>
+# Imperial Space
+English text below.
 
-Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
+Это репозиторий для приема добровольных вкладов в пользу Imperial Space. [Imperial Space](https://wiki.imperialspace.net) - это мод-глобальная конверсия на игру Space Station 14, созданную [Wizard Den](https://spacestation14.io/), и лицензированную под лицензией [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Обратите внимание, что эта сборка не имеет полного контента и намеренно сделана неиграбельной. Пожалуйста, не используйте эту сборку для хостинга серверов.
 
-This is the primary repo for Space Station 14. To prevent people forking RobustToolbox, a "content" pack is loaded by the client and server. This content pack contains everything needed to play the game on one specific server.
+This repository is for accepting voluntary contributions in support of [Imperial Space](https://wiki.imperialspace.net). Imperial Space is a global conversion mod for the game Space Station 14, created by [Wizard Den](https://spacestation14.io/) and licensed under the [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Please note that this build does not include the full content and is intentionally unplayable. Do not use this build to host servers.
 
-If you want to host or create content for SS14, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
+## Imperial Space License RUS
 
-## Links
+Этот репозиторий представляет собой глобальную конверсию на игру Space Station 14. Практически все изменения, внесенные в оригинальную игру, защищены лицензиями [ICLA](https://wiki.imperialspace.net/icla) и [IELA](https://wiki.imperialspace.net/iela). Поэтому использование сборки в целях хостинга серверов без письменного разрешения правообладателя запрещено и отслеживается.
+В этом репозитории содержится в том числе код оригинальной игры, который защищен лицензией [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Помимо этого, в этом репозитории содержится контент, защищенный лицензями [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+Все ассеты имеют собственную лицензию, указанную в файле metadata. [Пример](https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Imperial/Medieval/Clothing/Armor/brigantin.rsi/meta.json)
 
-<div class="header" align="center">  
+## Imperial Space License ENG
 
-[Website](https://spacestation14.com/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.com/) | [Mastodon](https://mastodon.gamedev.place/@spacestation14) | [Patreon](https://www.patreon.com/spacestation14) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.com/about/nightlies/)  
+This repository is a global conversion mod for the game Space Station 14. Nearly all modifications made to the original game are protected by the [ICLA](https://wiki.imperialspace.net/icla) and [IELA](https://wiki.imperialspace.net/iela) licenses. Therefore, using this build to host servers without the copyright holder’s written permission is prohibited and monitored.
+This repository also includes original game code, which is licensed under the [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT) License. In addition, it contains content licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+Assets have their license and the copyright in the metadata file. [Example](https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Imperial/Medieval/Clothing/Armor/brigantin.rsi/meta.json).
 
-</div>
+## Запуск локалки
+### Требуемые программы
+Если вы хотите запустить именно нашу сборку, то вам понадобится данное программное обеспечение: 
+1. [Git](https://git-scm.com/downloads) 
+1. [DotNet SDK 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+1. [Python](https://www.python.org/downloads/)
 
-## Documentation/Wiki
+### Пошаговая инструкция установки
 
-Our [docs site](https://docs.spacestation14.com/) has documentation on SS14's content, engine, game design, and more.  
-Additionally, see these resources for license and attribution information:  
-- [Robust Generic Attribution](https://docs.spacestation14.com/en/specifications/robust-generic-attribution.html)  
-- [Robust Station Image](https://docs.spacestation14.com/en/specifications/robust-station-image.html)
+#### 1. Открываем консоль
+Нажать <kbd>Win</kbd> или кликнуть <kbd>ЛКМ</kbd> по строке поиска рядом с кнопкой "Пуск", ввести `cmd` или `Командная строка` и открыть найденное приложение.
 
-We also have lots of resources for new contributors to the project.
-
-## Contributing
-
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/space-wizards/space-station-14-content/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!  
-Just make sure your changes and pull requests are in accordance with the [contribution guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
-
-We are not currently accepting translations of the game on our main repository. If you would like to translate the game into another language, consider creating a fork or contributing to a fork.
-
-## AI-generated contributions disclaimer
-This project does not accept low-effort or wholesale AI-generated contributions. Examples include, but are not limited to:
-
-- Any code (including yaml) generated by tools like GitHub Copilot, ChatGPT, or similar.
-- AI-created artwork, sound files, or other assets.
-- Auto-generated documentation, issue reports or pull request descriptions.
-
-Exceptions to this are simple tools like Rider's single-line completion feature.
-
-## Building
-
-1. Clone this repo:
-```shell
-git clone https://github.com/space-wizards/space-station-14.git
+#### 2. Устанавливаем сборку
+Вводим одну из следующих команд в консоль — в зависимости от нужной сборки:
 ```
-2. Go to the project folder and run `RUN_THIS.py` to initialize the submodules and load the engine:
-```shell
-cd space-station-14
-python RUN_THIS.py
+git clone https://github.com/imperial-space/SS14-public
 ```
-3. Compile the solution:  
+Ожидаем завершения загрузки. Репозиторий появится по пути `C:\Users\(имя вашего пользователя)\SS14-public` или в той папке, где вы выполнили команду.
+Путь для установки можно изменить, для этого перед установкой следует использовать `cd Диск/Путь`
+#### 3. Переходим в папку сборки
+Вводим следующию команду в консоль:
+```
+cd SS14-public
+```
+#### 4. Обновляем подмодули сборки
+Вводим в консоль:
+```
+git submodule update --init --recursive
+```
+#### 5. Собираем сборку
+Вводим в консоль:
 
-Build the server using `dotnet build`.
+```
+dotnet build -c release
+```
+
+Использование команды `dotnet build` без аргументов запускает сервер в DEV режиме. В нём при входе вы появляетесь в роли капитана на DEV-карте с некоторыми ограничениями, а также при любой ошибке сервер будет завершать работу с фатальным логом в консоли. **Этот режим не подходит для маппинга**.
 
 [More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
 
-## License
 
-All code for the content repository is licensed under the [MIT license](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT).  
+## About Space Station 14
 
-Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and copyright specified in the metadata file. For example, see the [metadata for a crowbar](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).  
-
-> [!NOTE]
-> Some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
+Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), Wizard's Den homegrown engine written in C#.
+[Website](https://spacestation14.io/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
