@@ -15,12 +15,12 @@ namespace Content.Server.Imperial.MTFCall;
 [AdminCommand(AdminFlags.Admin)]
 public sealed class CallMTF : LocalizedCommands
 {
-    public override string Description => Loc.GetString("callertcommand-desc");
-    public override string Help => Loc.GetString("callertcommand-help");
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override string Command => "callMTF";
+    public override string Description => Loc.GetString("callertcommand-desc");
+    public override string Help => Loc.GetString("callertcommand-help");
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
@@ -28,67 +28,72 @@ public sealed class CallMTF : LocalizedCommands
         {
             var options = _prototype
                 .EnumeratePrototypes<MTFCallPresetPrototype>()
-                .Select(p => new CompletionOption(p.ID, p.Desc));
+                .Select(p => new CompletionOption(p.ID, Loc.GetString(p.Desc)));
 
             return CompletionResult.FromHintOptions(options.OrderBy(x => x.Value, StringComparer.Ordinal).ToArray(), Loc.GetString("callertcommand-id-preset"));
         }
-
         return CompletionResult.Empty;
     }
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var audioSystem = _entity.System<SharedAudioSystem>();
+
+        // Ошибка: Аргументы отсутствуют
         if (args.Length == 0)
         {
             shell.WriteError(Loc.GetString("callertcommand-error-args0"));
-            _entity.System<SharedAudioSystem>().PlayGlobal("/Audio/Imperial/ErtCall/noert.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            var errorSound = new SoundPathSpecifier("/Audio/Imperial/ErtCall/noert.ogg", AudioParams.Default.WithVolume(-2f));
+            audioSystem.PlayGlobal(errorSound, Filter.Broadcast(), true);
             return;
         }
+
+        // Ошибка: Слишком много аргументов
         if (args.Length > 1)
         {
             shell.WriteError(Loc.GetString("callertcommand-error-args1"));
             return;
         }
-        
-        var protoId = args[0]; 
-        
-        var MTFSpawnSystem = _entity.System<CallMTFSystem>();
+
+        var protoId = args[0];
         if (!_prototype.TryIndex<MTFCallPresetPrototype>(protoId, out var proto))
         {
             shell.WriteError(Loc.GetString("callertcommand-error-prest-not-found", ("protoid", protoId)));
             return;
         }
 
-        // --- Логика музыки ---
-        var audioSystem = _entity.System<SharedAudioSystem>();
-        if (!string.IsNullOrEmpty(proto.MusicPath))
+        // 1. Воспроизведение звука через SoundSpecifier
+        if (proto.AnnouncementSound != null)
         {
-            audioSystem.PlayGlobal(proto.MusicPath, Filter.Broadcast(), true, proto.MusicParams);
+            audioSystem.PlayGlobal(proto.AnnouncementSound, Filter.Broadcast(), true);
         }
 
-        // --- Логика оповещения (ИЗМЕНЕНО) ---
+        // 2. Логика оповещения (Localization)
         if (!string.IsNullOrEmpty(proto.AnnouncementMessage))
         {
             var chatSystem = _entity.System<ChatSystem>();
             
-            // Если в прототипе не указан отправитель, используем ваш вариант по умолчанию
-            var sender = proto.AnnouncementSender ?? "Департамент безопасности Недр";
+            var message = Loc.GetString(proto.AnnouncementMessage);
+            var sender = proto.AnnouncementSender != null 
+                ? Loc.GetString(proto.AnnouncementSender) 
+                : "Департамент безопасности Недр"; // Дефолтный отправитель
             
             chatSystem.DispatchGlobalAnnouncement(
-                proto.AnnouncementMessage, 
+                message, 
                 sender: sender, 
                 playSound: false, 
                 colorOverride: Color.Gold);
         }
         
-        if (MTFSpawnSystem.SpawnMTF(proto))
+        // 3. Спавн
+        var mtfSpawnSystem = _entity.System<CallMTFSystem>();
+        if (mtfSpawnSystem.SpawnMTF(proto))
         {
-            return;
+            shell.WriteLine(Loc.GetString("callertcommand-success", ("protoid", protoId)));
         }
         else
         {
             shell.WriteError(Loc.GetString("callertcommand-error-when-load-grid"));
-            return;
         }
     }
 }

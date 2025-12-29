@@ -3,168 +3,188 @@
   path: /GM/seriozha/event/nedra/MTF/Nu-7.yml
   announcementMessage: "Мобильная оперативная группа Эпсилон-11, кодовое имя «Девятихвостая лиса», вошла в комплекс. Всем оставшимся в живых рекомендуется оставаться в убежищах для эвакуации или других безопасных зонах до тех пор, пока подразделение не возьмет объект под контроль. Эвакуация начнется после повторной постановки на содержание NDA-объектов."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/epsilon11.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/epsilon11.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: Epsilon9
   path: /GM/seriozha/event/nedra/MTF/Epsilon-9.yml
   announcementMessage: "Мобильная оперативная группа Эпсилон-9 («Пожиратели огня») прибыла в комплекс. В комплексе объявлен 4-й уровень пожарной опасности; системы пожаротушения, вероятно, саботированы. Объект NDA-457 нарушил условия содержания. После нейтрализации NDA-457 всему персоналу приказано взять огнетушители у Эпсилон-9 или в точках доступа для ликвидации очагов возгорания. Ожидайте дальнейших сводок."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/epsilon9.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/epsilon9.ogg
+    params:
+      volume: -5
+
 
 - type: MTFCall
   id: Eta10
   path: /GM/seriozha/event/nedra/MTF/Epsilon-9.yml
   announcementMessage: "Для персонала, который всё ещё жив в комплексе. Мобильная оперативная группа «Это 10, не вижу зла» вошла в комплекс через ворота «А» для проведения операции зачистки и поддержки спецподразделения №1 к сдерживанию когнитивно-опасных и генетических NDA. Персоналу рекомендуется оставаться в убежищах и соблюдать назначенные протоколы. Когда NDA-классы Евклид и Кетер будут сдержаны, персонал проведёт серию испытаний для определения условий для эвакуации."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/eta10.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/eta10.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: Goc
   path: /GM/seriozha/event/nedra/MTF/goc.yml
   announcementMessage: "На территорию объекта вошли агенты Глобальной Оккультной Коалиции."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/goc.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/goc.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: Nu7
   path: /GM/seriozha/event/nedra/MTF/Nu-7.yml
   announcementMessage: "Мобильная оперативная группа Ню-7 («Удар молота») высадилась на площадке выхода А. Из-за массовых сбоев в системе сдерживания и отключения электричества на объекте, вместо МОГ Эпсилон-11 («Девятихвостая лиса»), к вам была направлена группа «Удар молота». По нашим предварительным оценкам, ситуация стабилизируется в течение 2 часов. Мы будем сообщать дальнейшие сведения о развитии событий."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/nu7.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/nu7.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: PHYSICS
   path: /GM/seriozha/event/nedra/MTF/PHYSICS.yml
   announcementMessage: "Глобальная оккультная коалиция высадилась на вертолётной площадке выхода «А». «Последняя надежда» (Альфа-9) должна скоординироваться с оперативниками PHYSICS и оказать содействие в обороне Зоны 19. Ваш приоритет — удерживать Повстанцев Хаоса, пока они не добрались до объекта NDA-096."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/PHYSICS.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/PHYSICS.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: fbi
   path: /GM/seriozha/event/nedra/MTF/fbi.yml
   announcementMessage: "Агенты ОНП ФБР высадились на площадке выхода «А»"
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/fbi.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/fbi.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: scarletking
   path: /GM/seriozha/event/nedra/MTF/Small-Children.yml
   announcementMessage: "Кровь зовёт! Плоть кричит! Да будет алый урожай!"
   announcementSender: "Дети Алого короля"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/scarletking.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/scarletking.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: ssspgry
   path: /GM/seriozha/event/nedra/MTF/Small-Children.yml
   announcementMessage: "На территорию Зоны прибыла дипломатическая делегация Отдела «П» ГРУ в сопровождении бронегруппы. Всем сотрудникам службы безопасности Сектора перейти в состояние повышенной готовности."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/ssspgry.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/ssspgry.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: tay5
   path: /GM/seriozha/event/nedra/MTF/Death-Squad-RP.yml 
   announcementMessage: "Внимание всему персоналу! Инициирован код «Белый» в связи с вторжением подразделений фонда, совершившего акт предательства человечества на территорию охраняемого объекта. На внешнем секторе замечено подразделение мобильной оперативной группы ТАУ-5 «Самсара». Всему персоналу рекомендуется следовать всем особым указаниям согласно коду «Белый», включая незамедлительное нахождение ближайшего укрытия для обеспечения собственной безопасности. Сообщение окончено. Удачи!"
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/tay5.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/tay5.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: upsilon11
   path: /GM/seriozha/event/nedra/MTF/NotEpsilon-11.yml
   announcementMessage: "Внимание всем боевым единицам Повстанцев Хаоса! На северо-западе, в пяти километрах от учреждения, обнаружены силы МОГ Ипсилон-11 «Пробуждение Аполлона». Противник стремительно приближается. Всем подразделениям приказано немедленно занять боевые позиции и приготовиться к столкновению."
   announcementSender: "Повстанцы Хаоса"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/upsilon11.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/upsilon11.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: dz
   path: /GM/seriozha/event/nedra/MTF/dz.yml
   announcementMessage: "Внимание всему персоналу Зоны 19! Автоматическая система безопасности зафиксировала многочисленные несанкционированные проникновения в районе первого технического уровня. Нападавшие идентифицированы как сводные силы Повстанцев Хаоса и боевики «Длани Змея». Объявлен протокол полной блокировки Зоны. Всем сотрудникам незамедлительно проследовать в ближайшие герметичные укрытия и оставаться там до завершения операции по зачистке. Стационарная оперативная группа и Служба безопасности приведены в полную боевую готовность для отражения угрозы."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/dz.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/dz.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: chaos
   path: /GM/seriozha/event/nedra/MTF/A-Small-Cute-Squad.yml
   announcementMessage: "Обнаружено вторжение"
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: chaosBig
   path: /GM/seriozha/event/nedra/MTF/The-Big-Kill-Squad.yml
   announcementMessage: "Обнаружено вторжение"
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: brokengod
   path: /GM/seriozha/event/nedra/MTF/Church-Children.yml
   announcementMessage: "Во славу того кто был Разбит!"
   announcementSender: "Часовая Ортодоксальная Церквовь"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/brokengod.ogg
-  musicParams:
-    volume: 5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/brokengod.ogg
+    params:
+      volume: 5
 
 - type: MTFCall
   id: beta7
   path: /GM/seriozha/event/nedra/MTF/Beta-7.yml
   announcementMessage: "Мобильная оперативная группа Бета-7, обозначенная как шляпные болванчики, высадилась на вертолётной площадке сектора А. Всему персоналу рекомендуется следовать особым требованиям согласно коду серый и коду зелёный, пока опергруппа совместно с Ню-7, Удар Молота и Эта-10, не вижу зла, Не локализуют угрозу NDA-020. При обнаружении заражённого субъекта сообщите о его местоположении ближайшему оперативнику Бета-7. В случае отсутствия наличия рядом оперативника сообщите о местоположении по радиолинии участка."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/beta7.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/beta7.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: alpha9
   path: /GM/seriozha/event/nedra/MTF/Alpha-9.yml
   announcementMessage: "Внимание всему персоналу. В зону вошла Мобильная оперативная группа Альфа-9 Последняя надежда. Подтверждено присутствие спец-оперативника Айрис Томпсон (NDA-105)"
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/alpha9.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/alpha9.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: alpha1
   path: /GM/seriozha/event/nedra/MTF/Alpha-1.yml 
   announcementMessage: "Внимание всему персоналу. В Зону вошла Мобильная оперативная группа Альфа-1 (Багряная десница). Активирован протокол Рубикон. Всем сотрудникам с уровнем допуска 4 и ниже немедленно прекратить любую деятельность и освободить основные коридоры. Группа Альфа-1 приступает к экстренной эвакуации членов Совета О5."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/event/alpha1.ogg
-  musicParams:
-    volume: -5
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/alpha1.ogg
+    params:
+      volume: -5
 
 - type: MTFCall
   id: alpha1O5
   path: /GM/seriozha/event/nedra/MTF/Alpha-1-o5.yml
   announcementMessage: "Внимание всему персоналу Зоны. Зафиксировано прибытие Мобильной оперативной группы Альфа-1 Багряная десница. Группа сопровождает уполномоченного Советника Совета О5."
   announcementSender: "C.A.S.S.I.E"
-  musicPath: /Audio/Imperial/Seriozha/SCP/intercom.ogg
-  musicParams:
-    volume: -5
+  announcementSound: 
+    path: /Audio/Imperial/Seriozha/SCP/intercom.ogg
+    params:
+      volume: -5
