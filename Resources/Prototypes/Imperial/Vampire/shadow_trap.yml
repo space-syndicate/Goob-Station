@@ -2,7 +2,7 @@
   parent: BaseAction
   id: VampireShadowTrapAction
   name: Теневой капкан
-  description: Ну это Теневой капкан
+  description: Устанавливает полу-невидимую ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Исчезает через 10 секунд под светом.
   components:
   - type: Action
     useDelay: 1
@@ -21,7 +21,7 @@
   parent: BaseLandMine
   id: VampireTrap
   name: Теневой капкан
-  description: ну это теневой капкан
+  description: При срабатывании ослепляет жертву и наносит 20 урона. Исчезает через 10 секунд под светом.
   components:
   - type: Transform
     anchored: True

@@ -2,7 +2,7 @@
   parent: BaseAction
   id: VampireReconciliationAction
   name: Сверк
-  description: Ну это сверк
+  description: Ослепляющая вспышка в радиусе 3 тайлов, оглушающая всех жертв и полностью истощающая их выносливость.
   components:
   - type: Action
     useDelay: 1

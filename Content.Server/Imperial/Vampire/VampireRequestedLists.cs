@@ -18,37 +18,37 @@ public static class VampireAbilityLists
     {
         "VampireClawAction",
         // "обратиться",
-        "VampireMessageForGhouls",
+        "VampireMessageForGhoulsAction",
         "VampireBloodTheftAction",
         "VampireRecoveryAction",
-        "VampireSleep"
+        "VampireSleepAction"
     };
 
     // способности Hemomancer
     public static readonly List<EntProtoId> Hemomancer = new()
     {
-        "VampireTentacles",
-        "VampireTransformBat",
-        "VampireTransformBlood",
-        "VampireNosferaty"
+        "VampireTentaclesAction",
+        "VampireTransformBatAction",
+        "VampireTransformBloodAction",
+        "VampireNosferatyAction"
     };
 
     // способности Umbrae
     public static readonly List<EntProtoId> Umbrae = new()
     {
-        "VampireUnCuff",
-        "VampireInvisible",
+        "VampireUnCuffAction",
+        "VampireInvisibleAction",
         "VampireShadowTrapAction",
-        "VampireClone"
+        "VampireCloneAction"
     };
 
     // способности Gargantua
     public static readonly List<EntProtoId> Gargantua = new()
     {
-        "RushBlood",
-        "VampireTeleport",
-        "VampireUnCuff",
+        "RushBloodAction",
+        "VampireTeleportAction",
+        "VampireUnCuffAction",
         "VampireReconciliationAction",
-        "VampireNosferaty"
+        "VampireNosferatyAction"
     };
 }

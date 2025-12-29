@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireNosferaty
+  id: VampireNosferatyAction
   name: Гнев Носферату
-  description: Ну это гнев Носферату
+  description: На 25 секунд +40% урона, +15% скорости атаки, +20% скорости передвижения.
   components:
   - type: Action
     useDelay: 1

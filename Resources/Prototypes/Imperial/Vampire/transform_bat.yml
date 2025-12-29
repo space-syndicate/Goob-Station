@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireTransformBat
+  id: VampireTransformBatAction
   name: Превращение в летучую мышь
-  description: Ну это превращение в летучую мышь
+  description: Призывает рой атакующих летучих мышей и превращает вампира в летучую мышь на 10 секунд.
   components:
   - type: Action
     useDelay: 1

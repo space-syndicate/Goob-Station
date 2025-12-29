@@ -1,5 +1,5 @@
 - type: factionIcon
-  id: VampireFaction
+  id: VampireFactionAction
   isShaded: true
   priority: 11
   showTo:

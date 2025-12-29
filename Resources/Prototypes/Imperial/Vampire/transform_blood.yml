@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireTransformBlood
+  id: VampireTransformBloodAction
   name: Превращение в лужу крови
-  description: Ну это превращение в лужу крови
+  description: На 4 секунды превращает вас в кровь, позволяя проходить сквозь препятствия.
   components:
   - type: Action
     useDelay: 1

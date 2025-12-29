@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireSelectingSubgroup
+  id: VampireSelectingSubgroupAction
   name: Выбрать подгруппу
-  description: Ну это выбрать подгруппу
+  description: Выберите путь развития вампира. Каждая подгруппа обладает уникальными способностями.
   components:
   - type: Action
     useDelay: 1

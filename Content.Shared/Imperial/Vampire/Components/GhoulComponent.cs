@@ -36,7 +36,7 @@ public sealed partial class GhoulComponent : Component
     /// ID алерта для отображения уровня крови
     /// </summary>
     [DataField]
-    public ProtoId<AlertPrototype> BloodAlert = "BloodGhoulAlert";
+    public ProtoId<AlertPrototype> BloodAlert = "VampireBloodAlert";
 
     /// <summary>
     /// длительность тряски при критическом состоянии
@@ -52,4 +52,10 @@ public sealed partial class GhoulComponent : Component
 
     [DataField]
     public ProtoId<FactionIconPrototype> StatusIcon = "GhoulFaction";
+
+    /// <summary>
+    /// количество выпитой крови за 1 тик
+    /// </summary>
+    [DataField("bloodPerTick")]
+    public float BloodPerTick = 1;
 }

@@ -2,11 +2,17 @@
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       x:Class="Content.Client.Vampire.UI.SelectingSubgroup"
                       Title="{Loc 'vampire-selecting-window-subgroup-title'}"
-                      Resizable="False" MinSize="1200 750">
+                      Resizable="False" MinSize="1200 650">
 
-    <BoxContainer Orientation="Horizontal" Margin="5" SeparationOverride="5" HorizontalExpand="True" VerticalExpand="True">
+    <BoxContainer Orientation="Vertical" Margin="5" SeparationOverride="5">
+        <controls:StripeBack Margin="0 0 0 4">
+                <RichTextLabel Name="SubgroupLabelWarning" HorizontalAlignment="Center" StyleClasses="LabelSubText" Margin="4 4 0 4"/>
+        </controls:StripeBack>
+    </BoxContainer>
 
-        <!-- HEMOMANCER -->
+    <BoxContainer Orientation="Horizontal" Margin="5 45 5 5" SeparationOverride="5" HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- Hemomancer -->
         <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
 
@@ -14,19 +20,19 @@
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
 
                 <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                    <RichTextLabel Name="SubgroupLabel1" MaxWidth="350" Margin="5 5"/>
+                    <RichTextLabel Name="SubgroupLabelHemomancer" MaxWidth="350" Margin="5 5"/>
                 </ScrollContainer>
 
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
-                <RichTextLabel Name="SubgroupLabel14" MaxWidth="350" HorizontalExpand="True" Margin="5 5"/>
+                <RichTextLabel Name="SubgroupLabelTurnHemomancer" MaxWidth="350" MinHeight="90" HorizontalExpand="True" Margin="5 5"/>
 
-                <Button Name="SubgroupButton1" Text="Выбрать Hemomancer" MinHeight="40"
-                    HorizontalExpand="True" StyleClasses="OpenBoth" Margin="5 5"/>
+                <controls:ConfirmButton Name="SubgroupButtonHemomancer" Text="Выбрать Hemomancer" MinHeight="40"
+                    HorizontalExpand="True" StyleClasses="OpenRight" Margin="5 5"/>
 
             </BoxContainer>
         </PanelContainer>
 
-        <!-- UMBRAE -->
+        <!-- Umbrae -->
         <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
 
@@ -34,19 +40,19 @@
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
 
                 <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                    <RichTextLabel Name="SubgroupLabel2" MaxWidth="350" Margin="5 5"/>
+                    <RichTextLabel Name="SubgroupLabelUmbrae" MaxWidth="350" Margin="5 5"/>
                 </ScrollContainer>
 
-                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
-                <RichTextLabel Name="SubgroupLabel24" MaxWidth="350" HorizontalExpand="True" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" MaxHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabelTurnUmbrae" MaxWidth="350" MinHeight="90" HorizontalExpand="True" Margin="5 5"/>
 
-                <Button Name="SubgroupButton2" Text="Выбрать Umbrae" MinHeight="40" HorizontalExpand="True"
+                <controls:ConfirmButton Name="SubgroupButtonUmbrae" Text="Выбрать Umbrae" MinHeight="40" HorizontalExpand="True"
                     StyleClasses="OpenBoth" Margin="5 5"/>
 
             </BoxContainer>
         </PanelContainer>
 
-        <!-- GARGANTUA -->
+        <!-- Gargantua -->
         <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
 
@@ -54,14 +60,14 @@
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
 
                 <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                    <RichTextLabel Name="SubgroupLabel3" MaxWidth="350" Margin="5 5"/>
+                    <RichTextLabel Name="SubgroupLabelGargantua" MaxWidth="350" Margin="5 5"/>
                 </ScrollContainer>
 
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
-                <RichTextLabel Name="SubgroupLabel34" MaxWidth="350" HorizontalExpand="True" Margin="5 5"/>
+                <RichTextLabel Name="SubgroupLabelTurnGargantua" MaxWidth="350" MinHeight="90" HorizontalExpand="True" Margin="5 5"/>
 
-                <Button Name="SubgroupButton3" Text="Выбрать Gargantua" MinHeight="40"
-                    HorizontalExpand="True" StyleClasses="OpenBoth" Margin="5 5"/>
+                <controls:ConfirmButton Name="SubgroupButtonGargantua" Text="Выбрать Gargantua" MinHeight="40"
+                    HorizontalExpand="True" StyleClasses="OpenLeft" Margin="5 5"/>
 
             </BoxContainer>
         </PanelContainer>

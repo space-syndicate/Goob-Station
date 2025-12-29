@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireSleep
+  id: VampireSleepAction
   name: Взгляд
-  description: Ну это взгляд
+  description: Гипнотизирует жертву в пределах 1 тайла, погружая её в сон на 30 секунд.
   components:
   - type: Action
     useDelay: 1

@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireMessageForGhouls
+  id: VampireMessageForGhoulsAction
   name: Сообщение для упырей
-  description: Ну типо сообщение для упырей
+  description: Отправляет текстовое сообщение всем порабощённым упырям.
   components:
   - type: Action
     useDelay: 1

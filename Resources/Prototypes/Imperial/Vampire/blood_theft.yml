@@ -2,7 +2,7 @@
   parent: BaseAction
   id: VampireBloodTheftAction
   name: Похищение крови
-  description: Ну это похищение крови
+  description: Выкачивает у упырей по 10% крови, давая вампиру +2 ед. за каждого раба.
   components:
   - type: Action
     useDelay: 1

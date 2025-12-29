@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireInvisible
+  id: VampireInvisibleAction
   name: Переключить режим невидимости
-  description: Ну это переключить режим невидимости
+  description: Делает вампира невидимым за счёт 2 ед. крови в секунду. Любая атака/урон прерывает эффект.
   components:
   - type: Action
     useDelay: 1

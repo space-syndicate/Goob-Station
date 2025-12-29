@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireTeleport
+  id: VampireTeleportAction
   name: Телепорт
-  description: Ну это телепорт
+  description: Телепортирует на короткую дистанцию, оставляя облако дыма на месте отправления.
   components:
   - type: Action
     useDelay: 1

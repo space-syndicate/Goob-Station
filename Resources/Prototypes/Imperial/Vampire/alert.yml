@@ -1,5 +1,5 @@
 - type: alert
-  id: BloodAlert
+  id: VampireBloodAlert
   icons:
   - sprite: Imperial/Stellark/Vampire/bleed.rsi
     state: bleed1
@@ -21,38 +21,11 @@
     state: bleed9
   - sprite: Imperial/Stellark/Vampire/bleed.rsi
     state: bleed10
-  name: Хранилище крови
-  description: Ну типо хранилище крови
+  name: Запас крови
+  description: Показывает текущий запас крови. При истощении вампир получает урон, истощается, начинает дрожать и оставляет кровавые следы.
   minSeverity: 0
   maxSeverity: 10
 
-- type: alert
-  id: BloodGhoulAlert
-  icons:
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed1
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed2
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed3
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed4
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed5
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed6
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed7
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed8
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed9
-  - sprite: Imperial/Stellark/Vampire/bleed.rsi
-    state: bleed10
-  name: Хранилище крови
-  description: Ну типо хранилище крови
-  minSeverity: 0
-  maxSeverity: 10
 
 - type: alert
   id: VampireCounterAlert
@@ -100,7 +73,7 @@
   - sprite: Imperial/Stellark/Vampire/bloodcount
     state: bloodcount20
   name: Счетчик выпитой крови
-  description: Ну типо счетчик выпитой крови
+  description: Отображает количество выпитой крови. Новые способности открываются при достижении определённых порогов
   minSeverity: 0
   maxSeverity: 21
 

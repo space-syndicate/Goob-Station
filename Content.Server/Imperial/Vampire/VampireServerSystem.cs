@@ -197,7 +197,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
 
-        DrinkingComplete(args.User, target, 20);
+        DrinkingComplete(args.User, target, ent.Comp.BloodPerTick);
         args.Handled = true;
     }
 
@@ -209,7 +209,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
 
-        DrinkingComplete(args.User, target, 20);
+        DrinkingComplete(args.User, target, ent.Comp.BloodPerTick);
         args.Handled = true;
     }
 
@@ -263,7 +263,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         // забираем кровь у жертвы
         var dmg = new DamageSpecifier();
-        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(20);
+        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
         _damage.TryChangeDamage(target, dmg);
 
 

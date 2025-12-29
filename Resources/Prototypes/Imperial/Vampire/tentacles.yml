@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireTentacles
+  id: VampireTentaclesAction
   name: Щупальца
-  description: Ну это щупальца
+  description: Из указанной точки вырываются щупальца, наносящие 15 урона и сваливающие жертву на землю.
   components:
   - type: Action
     raiseOnUser: true

@@ -140,7 +140,7 @@ namespace Content.Shared.Imperial.Vampire
         /// ID алерта для отображения состояния крови
         /// </summary>
         [DataField]
-        public ProtoId<AlertPrototype> BloodAlert = "BloodAlert";
+        public ProtoId<AlertPrototype> BloodAlert = "VampireBloodAlert";
 
         [DataField]
         public ProtoId<AlertPrototype> BloodCounterAlert = "VampireCounterAlert";
@@ -153,7 +153,7 @@ namespace Content.Shared.Imperial.Vampire
 
         public EntProtoId GrimoreAction = "VampireTestAction";
         public EntityUid? GrimoreActionEntity;
-        public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroup";
+        public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroupAction";
 
         [AutoNetworkedField]
         public float BloodDamage;
@@ -231,10 +231,16 @@ namespace Content.Shared.Imperial.Vampire
         public bool DirectionSelected = false;
 
         [DataField]
-        public ProtoId<FactionIconPrototype> StatusIcon = "VampireFaction";
+        public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
 
         public float MaxTotalDrunk = 1000;
 
         public float Radius = 2f;
+
+        /// <summary>
+        /// количество выпитой крови за 1 тик
+        /// </summary>
+        [DataField("bloodPerTick")]
+        public float BloodPerTick = 1;
     }
 }

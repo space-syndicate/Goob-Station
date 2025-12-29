@@ -18,15 +18,16 @@ public sealed partial class SelectingSubgroup : FancyWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        SubgroupLabel1.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroup1-text")));
-        SubgroupLabel2.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroup2-text")));
-        SubgroupLabel3.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroup3-text")));
-        SubgroupLabel14.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroup4-text")));
-        SubgroupLabel24.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroup4-text")));
-        SubgroupLabel34.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroup4-text")));
+        SubgroupLabelHemomancer.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroupHemomancer-text")));
+        SubgroupLabelUmbrae.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroupUmbrae-text")));
+        SubgroupLabelGargantua.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroupGargantua-text")));
+        SubgroupLabelTurnHemomancer.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroupHemomancer-turn")));
+        SubgroupLabelTurnUmbrae.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroupUmbrae-turn")));
+        SubgroupLabelTurnGargantua.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-subgroupGargantua-turn")));
+        SubgroupLabelWarning.SetMessage(FormattedMessage.FromMarkup(Loc.GetString("vampire-selecting-window-warning")));
 
-        SubgroupButton1.OnPressed += _ => OnAcceptHemomancer?.Invoke();
-        SubgroupButton2.OnPressed += _ => OnAcceptUmbrae?.Invoke();
-        SubgroupButton3.OnPressed += _ => OnAcceptGargantua?.Invoke();
+        SubgroupButtonHemomancer.OnPressed += _ => OnAcceptHemomancer?.Invoke();
+        SubgroupButtonUmbrae.OnPressed += _ => OnAcceptUmbrae?.Invoke();
+        SubgroupButtonGargantua.OnPressed += _ => OnAcceptGargantua?.Invoke();
     }
 }

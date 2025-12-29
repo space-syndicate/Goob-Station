@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
-  id: VampireClone
+  id: VampireCloneAction
   name: Клон
-  description: Ну это клон
+  description: Создаёт вашу копию, отвлекающую экипаж, пока вы в невидимости покидаете место боя.
   components:
   - type: Action
     useDelay: 1

@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseAction
   id: VampireRecoveryAction
-  name: Recovery
-  description: Removes stun, restores all stamina, gradually heals
+  name: Восстановление
+  description: Мгновенно снимает оглушение, восстанавливает выносливость и запускает быструю регенерацию на 15 HP за 1.5 секунды.
   components:
   - type: Action
     useDelay: 1
