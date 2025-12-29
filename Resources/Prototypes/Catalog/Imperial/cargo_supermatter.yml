@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: SupermatterShutdownCrystal
+  icon:
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/crystalListing.rsi
+    state: listing
+  product: CrateSupermatterShutdownCrystal
+  cost: 27000
+  category: cargoproduct-category-name-engineering
+  group: market

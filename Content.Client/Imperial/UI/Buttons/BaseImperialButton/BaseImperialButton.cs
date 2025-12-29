@@ -82,6 +82,7 @@ public class BaseImperialButton : Button
 
         GradientShader.SetParameter("rotation", GradiendRotation * (float)(Math.PI / 180.0));
         GradientShader.SetParameter("gradientIntensity", GradiendIntensity);
+        GradientShader.SetParameter("progress", 1.0f);
 
         handle.UseShader(GradientShader);
 
