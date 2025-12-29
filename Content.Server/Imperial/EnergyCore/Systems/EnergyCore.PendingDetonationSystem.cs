@@ -20,7 +20,9 @@ using Content.Server.Station.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Imperial.ICCVar;
 using Content.Shared.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
+using Content.Server.Imperial.EnergyCore.Events;
 
 namespace Content.Server.Imperial.EnergyCore;
 

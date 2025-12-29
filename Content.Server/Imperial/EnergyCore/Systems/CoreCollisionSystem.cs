@@ -2,6 +2,7 @@ using System.Linq;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Content.Shared.Singularity.Components;
 using Content.Shared.Examine;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration;
@@ -9,6 +10,7 @@ using Content.Shared.Administration.Logs;
 using Content.Server.Administration.Logs;
 using Content.Shared.Database;
 using Content.Server.Imperial.EnergyCore.Components;
+using Content.Server.Imperial.EnergyCore.Events;
 
 namespace Content.Server.Imperial.EnergyCore;
 
@@ -40,6 +42,8 @@ public sealed class CoreCollisionSystem : EntitySystem
     {
         var target = args.OtherEntity;
         if (HasComp<CoreShieldingComponent>(target))
+            return;
+        if (HasComp<ContainmentFieldComponent>(target))
             return;
 
         DeleteEntity(target, col);

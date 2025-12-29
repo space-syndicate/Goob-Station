@@ -2,6 +2,7 @@ using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Content.Server.Administration;
 using Robust.Shared.GameObjects;
+using Content.Server.Imperial.EnergyCore.Events;
 using Content.Server.Imperial.EnergyCore;
 using Content.Server.Imperial.EnergyCore.Components;
 

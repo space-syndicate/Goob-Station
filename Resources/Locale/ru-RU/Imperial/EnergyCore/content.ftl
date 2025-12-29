@@ -45,11 +45,11 @@ energycore-have-a-good-day = Энергетическое ядро было по
 energycore-protocol-deactivated = Энергетический департамент NanoTrasen передает срочное сообщение: протокол безопасности энергетического ядра был отключен!
 energycore-less-2min-to-boom = Энергетический департамент NanoTrasen сообщает, что до детонации ядра осталось менее 2-х минут!
 
-energycore-current-protocol-on = Протокол безопасности: [color=blue][bold]Активен[/bold][/color]
-energycore-current-protocol-off = Протокол безопасности: [color=red][bold]Неактивен[/bold][/color]
-energycore-current-temp-change-up = Текущий статус температуры: [color=yellow][bold]Повышение[/bold][/color]
-energycore-current-temp-change-auto = Текущий статус температуры: [color=green][bold]Авто-режим[/bold][/color]
-energycore-current-temp-change-down = Текущий статус температуры: [color=blue][bold]Понижение[/bold][/color]
+energycore-current-protocol-true = Протокол безопасности: [color=blue][bold]Активен[/bold][/color]
+energycore-current-protocol-false = Протокол безопасности: [color=red][bold]Неактивен[/bold][/color]
+energycore-current-temp-change-1 = Текущий статус температуры: [color=yellow][bold]Повышение[/bold][/color]
+energycore-current-temp-change-2 = Текущий статус температуры: [color=green][bold]Авто-режим[/bold][/color]
+energycore-current-temp-change-3 = Текущий статус температуры: [color=blue][bold]Понижение[/bold][/color]
 energycore-current-coef = Текущие изменения температуры: {$coefficient} (кельвин в сек.)
 energycore-current-temp = Текущая температура: {$coreTemp}
 

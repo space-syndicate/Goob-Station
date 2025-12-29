@@ -8,13 +8,13 @@ namespace Content.Server.Imperial.EnergyCore.Components
     [RegisterComponent]
     public sealed partial class CoreCollisionComponent : Component
     {
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [ViewVariables(VVAccess.ReadOnly)]
         public int EntitiesDeleted = 0;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [ViewVariables(VVAccess.ReadOnly)]
         public bool Deletions = false;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [ViewVariables(VVAccess.ReadOnly)]
         public SoundSpecifier DelitionSound = new SoundPathSpecifier("/Audio/Effects/gib3.ogg");
     }
 }

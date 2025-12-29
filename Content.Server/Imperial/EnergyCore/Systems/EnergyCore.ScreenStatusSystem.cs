@@ -4,9 +4,12 @@ using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 using Content.Shared.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.Power.Components;
+using Content.Server.Imperial.EnergyCore.Events;
 using Content.Shared.Examine;
 
 namespace Content.Server.Imperial.EnergyCore
@@ -16,43 +19,36 @@ namespace Content.Server.Imperial.EnergyCore
         // Поиск ближайшего ядра был основан на консоли СМ
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<CoreStatusScreenComponent, ExaminedEvent>(OnExamined);
-        }
 
+            SubscribeLocalEvent<CoreStatusScreenComponent, ExaminedEvent>(OnExamined);
+            SubscribeLocalEvent<CoreStatusScreenComponent, ComponentStartup>(OnStartup);
+        }
+        private void OnStartup(EntityUid uid, CoreStatusScreenComponent component, ComponentStartup args)
+        {
+            component.SearchTime = component.SearchTime + _timing.CurTime;
+        }
         private void OnExamined(EntityUid uid, CoreStatusScreenComponent component, ExaminedEvent args)
         {
             if (!args.IsInDetailsRange)
                 return;
 
-            var nearestUid = FindNearestEnergyCore(uid);
+            var nearestUid = component.CheckedCore;
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
-                args.PushMarkup(Loc.GetString("energycore-dont-any-near"));
                 return;
             }
+
             var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
 
-            switch (tempRiseStatus)
-            {
-                case 3:
-                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
-                    break;
-                case 2:
-                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
-                    break;
-                case 1:
-                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
-                    break;
-            }
+            args.PushMarkup(Loc.GetString($"energycore-current-temp-change-{tempRiseStatus}"));
 
-            if (safeProtocol)
-                args.PushMarkup(Loc.GetString("energycore-current-protocol-on"));
-            else
-                args.PushMarkup(Loc.GetString("energycore-current-protocol-off"));
+            var protocol = Loc.GetString($"energycore-current-protocol-is-safe-{safeProtocol.ToString().ToLower()}");
+            args.PushMarkup(protocol);
 
             var status = Loc.GetString($"energycore-screen-status-{coreStatus.ToString().ToLower()}");
             args.PushMarkup(status);
@@ -62,7 +58,8 @@ namespace Content.Server.Imperial.EnergyCore
         }
         private void UpdateScreenVisual(EntityUid uid, CoreStatusScreenComponent component)
         {
-            var nearestUid = FindNearestEnergyCore(uid);
+            var nearestUid = component.CheckedCore;
+
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
                 return;
@@ -107,17 +104,22 @@ namespace Content.Server.Imperial.EnergyCore
             var enumerator = EntityQueryEnumerator<CoreStatusScreenComponent, TransformComponent>();
             while (enumerator.MoveNext(out var uid, out var comp, out _))
             {
-                var nearestUid = FindNearestEnergyCore(uid);
-                if (nearestUid == null ||
-                    !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                    continue;
-
-                var (coreTemp, coreStatus, tempRiseStatus, safeProtocol, coreTempMult) = GetCoreInfo(nearest);
                 UpdateScreenVisual(uid, comp);
+
+                if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
+                {
+                    var nearestUid = FindNearestEnergyCore(uid);
+                    if (nearestUid == null ||
+                        !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
+                        return;
+                    else
+                        comp.CheckedCore = nearestUid;
+                }
+                else return;
             }
         }
 
-        private static (float coreTemp, CoreStatus coreStatus, byte tempRiseStatus, bool safeProtocol, float coreTempMult) GetCoreInfo(EnergyCoreComponent component)
+        private (float coreTemp, CoreStatus coreStatus, byte tempRiseStatus, bool safeProtocol, float coreTempMult) GetCoreInfo(EnergyCoreComponent component)
         {
             var coreTemp = component.CoreTemp;
             var coreStatus = component.Status;

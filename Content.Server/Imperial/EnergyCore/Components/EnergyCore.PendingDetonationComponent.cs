@@ -17,7 +17,7 @@ public sealed partial class EnergyCorePendingDetonationComponent : Component
 {
     // Время до детонации ядра при расплавлении. Этот параметр перезаписывается цваркой
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan DetonationTime;
+    public TimeSpan DetonationTime = TimeSpan.Zero;
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan MusicTime = TimeSpan.Zero;

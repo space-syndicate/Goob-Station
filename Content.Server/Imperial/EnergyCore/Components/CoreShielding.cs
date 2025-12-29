@@ -6,5 +6,4 @@ namespace Content.Server.Imperial.EnergyCore.Components
     public sealed partial class CoreShieldingComponent : Component
     {
     }
-
 }

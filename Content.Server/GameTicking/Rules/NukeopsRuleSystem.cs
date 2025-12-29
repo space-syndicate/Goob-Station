@@ -28,7 +28,10 @@ using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
-using Content.Server.Imperial.EnergyCore; // Imperial Space EnergyCore
+// Imperial Space EnergyCore start
+using Content.Server.Imperial.EnergyCore.Events;
+using Content.Server.Imperial.EnergyCore;
+// Imperial Space EnergyCore end
 
 namespace Content.Server.GameTicking.Rules;
 

@@ -4,12 +4,15 @@ using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
+using Content.Server.Imperial.EnergyCore.Events;
 using Content.Shared.Examine;
 
 namespace Content.Server.Imperial.EnergyCore
@@ -18,19 +21,24 @@ namespace Content.Server.Imperial.EnergyCore
     {
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
-
+        [Dependency] private readonly IGameTiming _timing = default!;
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<CoreGeneratorComponent, ExaminedEvent>(OnExamined);
-        }
 
+            SubscribeLocalEvent<CoreGeneratorComponent, ExaminedEvent>(OnExamined);
+            SubscribeLocalEvent<CoreGeneratorComponent, ComponentStartup>(OnStartup);
+        }
+        private void OnStartup(EntityUid uid, CoreGeneratorComponent component, ComponentStartup args)
+        {
+            component.SearchTime = component.SearchTime + _timing.CurTime;
+        }
         private void OnExamined(EntityUid uid, CoreGeneratorComponent component, ExaminedEvent args)
         {
             if (!args.IsInDetailsRange)
                 return;
 
-            var nearestUid = FindNearestEnergyCore(uid);
+            var nearestUid = component.NearestCore;
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
                 args.PushMarkup(Loc.GetString("energycore-dont-any-near"));
@@ -38,18 +46,7 @@ namespace Content.Server.Imperial.EnergyCore
             }
             var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
 
-            switch (tempRiseStatus)
-            {
-                case 3:
-                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-up"));
-                    break;
-                case 2:
-                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-auto"));
-                    break;
-                case 1:
-                    args.PushMarkup(Loc.GetString("energycore-current-temp-change-down"));
-                    break;
-            }
+            args.PushMarkup(Loc.GetString($"energycore-current-temp-change-{tempRiseStatus}"));
 
             var energyOutput = component.EnergyOutput;
             args.PushMarkup(Loc.GetString("energycore-generator-current-energy-output", ("energyOutput", energyOutput)));
@@ -81,7 +78,7 @@ namespace Content.Server.Imperial.EnergyCore
         }
         private void SetEnergyOutput(EntityUid uid, CoreGeneratorComponent generator, PowerSupplierComponent power)
         {
-            var nearestUid = FindNearestEnergyCore(uid);
+            var nearestUid = generator.NearestCore;
 
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
@@ -114,12 +111,17 @@ namespace Content.Server.Imperial.EnergyCore
             while (enumerator.MoveNext(out var uid, out var comp, out var powr, out _))
             {
                 SetEnergyOutput(uid, comp, powr);
-                var nearestUid = FindNearestEnergyCore(uid);
-                if (nearestUid == null ||
-                    !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                    continue;
 
-                var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
+                if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
+                {
+                    var nearestUid = FindNearestEnergyCore(uid);
+                    if (nearestUid == null ||
+                        !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
+                        return;
+                    else
+                        comp.NearestCore = nearestUid;
+                }
+                else return;
             }
         }
 

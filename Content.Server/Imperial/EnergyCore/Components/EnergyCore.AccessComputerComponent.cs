@@ -1,5 +1,6 @@
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.EnergyCore.Components
@@ -11,83 +12,93 @@ namespace Content.Server.Imperial.EnergyCore.Components
     public sealed partial class CoreAccessComputerComponent : Component
     {
         /// <summary>
+        /// Ближайшее ядро
+        /// </summary>
+        [DataField]
+        public EntityUid? ControledCore;
+
+        // Ближайшее ядро: время данное на поиск
+        [DataField]
+        public TimeSpan SearchTime = TimeSpan.FromSeconds(5);
+
+        /// <summary>
         /// Звук при нажатии кнопки
         /// </summary>
-        [DataField("clickSound"), ViewVariables(VVAccess.ReadOnly)]
+        [DataField("clickSound")]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
         /// <summary>
         /// Попытка изменить реактивность/распад при предельный значениях
         /// </summary>
-        [DataField("cancelSound"), ViewVariables(VVAccess.ReadOnly)]
+        [DataField("cancelSound")]
         public SoundSpecifier CantSound = new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg");
 
         /// <summary>
-        /// Следующая попытка обновить UI
+        /// Следующая попытка обновить UI, с учетом UpdateUIPeriod и CurTime
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public TimeSpan NextUIUpdate = default!;
 
         /// <summary>
-        /// Апдейт UI
+        /// Задержка между обновами
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public TimeSpan UpdateUIPeriod = TimeSpan.FromSeconds(1.0);
 
         /// <summary>
         /// Время требуемое для проверки кодов ядерной деавторизации
         /// </summary>
-        [DataField("requiredTime"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("requiredTime")]
         public TimeSpan TimeToCheck = TimeSpan.FromSeconds(10f);
 
         /// <summary>
         ///  Слот предмета
         /// </summary>
-        [DataField("deCodeSlot"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("deCodeSlot")]
         public ItemSlot DeCodeSlot = new();
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public float Reactivity = 30f;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public float Halflife = 5f;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public float FinalTempChangeCoef;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public AutoSystemStatus AutoStatus = AutoSystemStatus.NONACTIVE;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public TimeSpan Time = TimeSpan.Zero;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public byte TerminalStatus = 1;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public bool DeactivationCompleted = false;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public bool TempRising = false;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public bool SaveProtocolWasDeactivated = false;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public byte ByteStatus = 1;
 
         #region Info from the Core
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public CoreStatus Status = CoreStatus.OFFLINE;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public bool AutoSystem = false;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public float CurrCoreTemp = 0;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [DataField]
         public float CurrentPowerSupply = 0;
 
         #endregion

@@ -6,6 +6,7 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 using Content.Server.GameTicking;
 using Color = Robust.Shared.Maths.Color;
 using Content.Server.AlertLevel;
@@ -15,8 +16,9 @@ using Content.Server.Audio;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Shared.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
-using System.Xml;
+using Content.Server.Imperial.EnergyCore.Events;
 
 namespace Content.Server.Imperial.EnergyCore;
 
@@ -33,128 +35,24 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    public static readonly EntProtoId CoreTechnicalRule = "CoreTechnical";
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<EnergyCoreComponent, MapInitEvent>(OnMapInit);
     }
-
-    private void OnMapInit(EntityUid uid, EnergyCoreComponent core, MapInitEvent args)
+    private void UpdateDataFromTerminal(EntityUid uid, EnergyCoreComponent core)
     {
-        StartCoreWork(uid, core);
-    }
-
-    private void StartCoreWork(EntityUid uid, EnergyCoreComponent core)
-    {
-        if (HasComp<AmbientSoundComponent>(uid))
-            _ambientSound.SetSound(uid, core.CoreAmbience1);
-    }
-    private void OnMeltdown(EntityUid uid, EnergyCoreComponent core) // За ивент расплавления ядра отвечает отдельная система, чтобы не превращать эту в свалку
-    {
-        if (!HasComp<EnergyCorePendingDetonationComponent>(uid) && core.Status == CoreStatus.CATASTROPHIC)
+        var nearestUid = core.Controller;
+        if (nearestUid == null || !TryComp(nearestUid, out CoreAccessComputerComponent? nearest))
         {
-            _gameTicker.AddGameRule("CoreTechnical");
-            EnsureComp<EnergyCorePendingDetonationComponent>(uid);
-        }
-        else
             return;
-    }
-    private void RefreshCoreStatus(EntityUid uid, EnergyCoreComponent core)
-    {
-        switch (core.Status)
-        {
-            case CoreStatus.OFFLINE: // Статус ядра: Оффлайн
-                UpdateLightVisual(uid, "#74aeff", 1f, 1f);
-                if (core.CoreTemp > 1f)
-                    core.Status = CoreStatus.IDLE;
-                break;
-
-            case CoreStatus.IDLE: // Статус ядра: Простаивание
-                UpdateLightVisual(uid, "#74aeff", 10f, 2f);
-                if (core.CoreTemp > 30000f)
-                    core.Status = CoreStatus.STABLE;
-                if (core.CoreTemp <= 0f)
-                    core.Status = CoreStatus.OFFLINE;
-                break;
-
-            case CoreStatus.STABLE: // Статус ядра: Стабильный
-                UpdateLightVisual(uid, "#d80000ff", 11f, 3f);
-                if (core.CoreTemp > 100000f)
-                    core.Status = CoreStatus.OPTIMAL;
-                if (core.CoreTemp < 30000f)
-                    core.Status = CoreStatus.IDLE;
-                break;
-
-            case CoreStatus.OPTIMAL: // Статус ядра: Оптимальный
-                UpdateLightVisual(uid, "#ff0000ff", 11f, 3f);
-                if (core.CoreTemp > 300000f)
-                    core.Status = CoreStatus.MODERATE;
-                if (core.CoreTemp < 100000f)
-                    core.Status = CoreStatus.STABLE;
-                break;
-
-            case CoreStatus.MODERATE: // Статус ядра: Приемлимый (повышенный оптимальный)
-                UpdateLightVisual(uid, "#fff700ff", 12f, 4f);
-                if (core.CoreTemp > 600000f)
-                {
-                    if (core.IsSafeProtocolActive)
-                        core.Status = CoreStatus.SAFEPROTOCOL;
-                    else
-                        core.Status = CoreStatus.HIGH;
-                }
-                if (core.CoreTemp < 300000f)
-                    core.Status = CoreStatus.OPTIMAL;
-                break;
-
-            case CoreStatus.HIGH: // Статус ядра: Высокая температура
-                UpdateLightVisual(uid, "#fbff11ff", 12f, 4f);
-                if (core.CoreTemp > 800000f)
-                {
-                    core.Status = CoreStatus.CRITICALHIGH;
-                    SendCriticalAnnounce(uid, core); // Сообщение
-                }
-                if (core.CoreTemp < 600000f)
-                    core.Status = CoreStatus.MODERATE;
-                break;
-
-            case CoreStatus.CRITICALHIGH: // Статус ядра: Критически высокая температура
-                UpdateLightVisual(uid, "#fdff8fff", 15f, 7f);
-                if (core.CoreTemp > 1000000f)
-                    core.Status = CoreStatus.CATASTROPHIC;
-                if (core.CoreTemp < 800000f)
-                    core.Status = CoreStatus.HIGH;
-                break;
-
-            case CoreStatus.CATASTROPHIC: // Статус ядра: Катастрофически высокая температура (расплавление)
-                UpdateLightVisual(uid, "#ffffffff", 20f, 12f);
-                OnMeltdown(uid, core); // Ивент расплавления ядра
-                break;
-
-            case CoreStatus.SAFEPROTOCOL: // Статус ядра: Протокол безопасности активен
-                UpdateLightVisual(uid, "#fbff11ff", 12f, 4f);
-                if (core.CoreTemp < 500000f)
-                    core.Status = CoreStatus.MODERATE;
-                break;
-
-            default:
-                core.Status = CoreStatus.OFFLINE; // Базовый статус ядра: Оффлайн
-                break;
         }
-    }
-    private void SendCriticalAnnounce(EntityUid uid, EnergyCoreComponent core)
-    {
-        if(core.AnnounceReady)
-        {
-            var station = _stationSystem.GetOwningStation(uid);
-            if (station != null)
-            {
-                _chatSystem.DispatchStationAnnouncement(station.Value,
-                Loc.GetString("energycore-critical-high-announce"), Loc.GetString("energy-department"),
-                playDefaultSound: false, colorOverride: Color.DarkSalmon);
-                _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(core.CriticalHighAnnounce));
-                core.AnnounceReady = false;
-            }
-        }
+        var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
+
+        core.TempChangeMultiplier = finalTempChangeCoef;
+        core.TempChangeStatus = tempChangeStatus;
     }
     private void UpdateLightVisual(EntityUid uid, string coreColor, float coreColorRadius, float coreColorEnergy)
     {
@@ -171,21 +69,6 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         if (TryComp<AppearanceComponent>(uid, out var appearance))
         {                                                              //Byte
             _appearance.SetData(uid, CoreStatusVisual.Core_Visual, (byte)core.Status, appearance);
-        }
-    }
-    private void CheckTempChangeValue(EnergyCoreComponent core)
-    {
-        switch (core.TempChangeStatus)
-        {
-            case 1:
-                core.TempRiseStatus = CoreTempChangeLevel.COOLING;
-                break;
-            case 2:
-                core.TempRiseStatus = CoreTempChangeLevel.AUTO;;
-                break;
-            case 3:
-                core.TempRiseStatus = CoreTempChangeLevel.HEATING;
-                break;
         }
     }
     private void UpdateCoreTemp(EnergyCoreComponent core, float frameTime) // YandereDev ahh moment
@@ -232,7 +115,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     }
     private void UpdateProtocolStatus(EntityUid uid, EnergyCoreComponent core)
     {
-        var nearestUid = FindNearestProtocolTerminal(uid);
+        var nearestUid = core.Controller;
         if (nearestUid == null || !TryComp(nearestUid, out CoreAccessComputerComponent? nearest))
         {
             return;
@@ -243,20 +126,187 @@ public sealed partial class EnergyCoreSystem : EntitySystem
             core.IsSafeProtocolActive = false;
         else
             return;
-        if (!core.AnnouncedProtocol)
+
+        if (core.AnnouncedProtocol) return;
+
+        core.AnnouncedProtocol = true;
+
+        var station = _stationSystem.GetOwningStation(uid);
+        if (station == null) return;
+
+        _alertLevel.SetLevel(station.Value, "red", true, true, true);
+        _chatSystem.DispatchStationAnnouncement(station.Value,
+        Loc.GetString("energycore-protocol-deactivated"), Loc.GetString("energy-department"),
+        playDefaultSound: false, colorOverride: Color.Red);
+    }
+    private void OnMapInit(EntityUid uid, EnergyCoreComponent core, MapInitEvent args)
+    {
+        StartCoreWork(uid, core);
+
+        core.SearchTime = core.SearchTime + _timing.CurTime;
+    }
+
+    private void StartCoreWork(EntityUid uid, EnergyCoreComponent core)
+    {
+        if (HasComp<AmbientSoundComponent>(uid))
+            _ambientSound.SetSound(uid, core.CoreAmbience1);
+    }
+    private void OnMeltdown(EntityUid uid, EnergyCoreComponent core) // За ивент расплавления ядра отвечает отдельная система, чтобы не превращать эту в свалку
+    {
+        if (!HasComp<EnergyCorePendingDetonationComponent>(uid) && core.Status == CoreStatus.CATASTROPHIC)
         {
-            core.AnnouncedProtocol = true;
-
-            var station = _stationSystem.GetOwningStation(uid);
-            if (station != null)
-            {
-                _alertLevel.SetLevel(station.Value, "red", true, true, true);
-                _chatSystem.DispatchStationAnnouncement(station.Value,
-                Loc.GetString("energycore-protocol-deactivated"), Loc.GetString("energy-department"),
-                playDefaultSound: false, colorOverride: Color.Red);
-            }
+            _gameTicker.AddGameRule(CoreTechnicalRule);
+            EnsureComp<EnergyCorePendingDetonationComponent>(uid);
         }
+        else
+            return;
+    }
+    private void RefreshCoreStatus(EntityUid uid, EnergyCoreComponent core)
+    {
+        switch (core.Status)
+        {
+            case CoreStatus.OFFLINE: // Статус ядра: Оффлайн
+                UpdateLightVisual(uid, core.OfflineColor, 1f, 1f);
+                if (core.CoreTemp > 1f)
+                {
+                    core.Status = CoreStatus.IDLE;
+                    UpdateCoreVisual(uid, core);
+                }
+                break;
 
+            case CoreStatus.IDLE: // Статус ядра: Простаивание
+                UpdateLightVisual(uid, core.IdleColor, 10f, 2f);
+                if (core.CoreTemp > 30000f)
+                {
+                    core.Status = CoreStatus.STABLE;
+                    UpdateCoreVisual(uid, core);
+                }
+                if (core.CoreTemp <= 0f)
+                    core.Status = CoreStatus.OFFLINE;
+                    UpdateCoreVisual(uid, core);
+                break;
+
+            case CoreStatus.STABLE: // Статус ядра: Стабильный
+                UpdateLightVisual(uid, core.StableColor, 11f, 3f);
+                if (core.CoreTemp > 100000f)
+                {
+                    core.Status = CoreStatus.OPTIMAL;
+                    UpdateCoreVisual(uid, core);
+                }
+                if (core.CoreTemp < 30000f)
+                {
+                    core.Status = CoreStatus.IDLE;
+                    UpdateCoreVisual(uid, core);
+                }
+                break;
+
+            case CoreStatus.OPTIMAL: // Статус ядра: Оптимальный
+                UpdateLightVisual(uid, core.OptimalColor, 11f, 3f);
+                if (core.CoreTemp > 300000f)
+                {
+                    core.Status = CoreStatus.MODERATE;
+                    UpdateCoreVisual(uid, core);
+                }
+                if (core.CoreTemp < 100000f)
+                {
+                    core.Status = CoreStatus.STABLE;
+                    UpdateCoreVisual(uid, core);
+                }
+                break;
+
+            case CoreStatus.MODERATE: // Статус ядра: Приемлимый (повышенный оптимальный)
+                UpdateLightVisual(uid, core.ModerateColor, 12f, 4f);
+                if (core.CoreTemp > 600000f)
+                {
+                    if (core.IsSafeProtocolActive)
+                    {
+                        core.Status = CoreStatus.SAFEPROTOCOL;
+                        UpdateCoreVisual(uid, core);
+                    }
+                    else
+                    {
+                        core.Status = CoreStatus.HIGH;
+                        UpdateCoreVisual(uid, core);
+                    }
+                }
+                if (core.CoreTemp < 300000f)
+                {
+                    core.Status = CoreStatus.OPTIMAL;
+                    UpdateCoreVisual(uid, core);
+                }
+                break;
+
+            case CoreStatus.HIGH: // Статус ядра: Высокая температура
+                UpdateLightVisual(uid, core.HighColor, 12f, 4f);
+                if (core.CoreTemp > 800000f)
+                {
+                    core.Status = CoreStatus.CRITICALHIGH;
+                    SendCriticalAnnounce(uid, core); // Сообщение
+                }
+                if (core.CoreTemp < 600000f)
+                {
+                    core.Status = CoreStatus.MODERATE;
+                    UpdateCoreVisual(uid, core);
+                }
+                break;
+
+            case CoreStatus.CRITICALHIGH: // Статус ядра: Критически высокая температура
+                UpdateLightVisual(uid, core.CriticalHighColor, 15f, 7f);
+                if (core.CoreTemp > 1000000f)
+                {
+                    core.Status = CoreStatus.CATASTROPHIC;
+                    UpdateCoreVisual(uid, core);
+                }
+                if (core.CoreTemp < 800000f)
+                {
+                    core.Status = CoreStatus.HIGH;
+                    UpdateCoreVisual(uid, core);
+                }
+                break;
+
+            case CoreStatus.CATASTROPHIC: // Статус ядра: Катастрофически высокая температура (расплавление)
+                UpdateLightVisual(uid, core.CompromisedColor, 20f, 12f);
+                OnMeltdown(uid, core); // Ивент расплавления ядра
+                break;
+
+            case CoreStatus.SAFEPROTOCOL: // Статус ядра: Протокол безопасности активен
+                UpdateLightVisual(uid, core.ProtocolColor, 12f, 4f);
+                if (core.CoreTemp < 500000f)
+                    core.Status = CoreStatus.MODERATE;
+                break;
+
+            default:
+                core.Status = CoreStatus.OFFLINE; // Базовый статус ядра: Оффлайн
+                break;
+        }
+    }
+    private void SendCriticalAnnounce(EntityUid uid, EnergyCoreComponent core)
+    {
+        if(!core.AnnounceReady) return;
+
+        var station = _stationSystem.GetOwningStation(uid);
+
+        if (station == null) return;
+        _chatSystem.DispatchStationAnnouncement(station.Value,
+        Loc.GetString("energycore-critical-high-announce"), Loc.GetString("energy-department"),
+        playDefaultSound: false, colorOverride: Color.DarkSalmon);
+        _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(core.CriticalHighAnnounce));
+        core.AnnounceReady = false;
+    }
+    private void CheckTempChangeValue(EnergyCoreComponent core)
+    {
+        switch (core.TempChangeStatus)
+        {
+            case 1:
+                core.TempRiseStatus = CoreTempChangeLevel.COOLING;
+                break;
+            case 2:
+                core.TempRiseStatus = CoreTempChangeLevel.AUTO;;
+                break;
+            case 3:
+                core.TempRiseStatus = CoreTempChangeLevel.HEATING;
+                break;
+        }
     }
     private EntityUid? FindNearestProtocolTerminal(EntityUid terminal)
     {
@@ -283,19 +333,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         }
         return nearest;
     }
-    private void UpdateDataFromTerminal(EntityUid uid, EnergyCoreComponent core)
-    {
-        var nearestUid = FindNearestProtocolTerminal(uid);
-        if (nearestUid == null || !TryComp(nearestUid, out CoreAccessComputerComponent? nearest))
-        {
-            return;
-        }
-        var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
-
-        core.TempChangeMultiplier = finalTempChangeCoef;
-        core.TempChangeStatus = tempChangeStatus;
-    }
-    private static (bool safeProtocol, bool safeProtocolCompleted, byte tempChangeStatus, float finalTempChangeCoef) GetTerminalProtocolStatus(CoreAccessComputerComponent core)
+    private (bool safeProtocol, bool safeProtocolCompleted, byte tempChangeStatus, float finalTempChangeCoef) GetTerminalProtocolStatus(CoreAccessComputerComponent core)
     {
         var safeProtocol = core.SaveProtocolWasDeactivated;
         var safeProtocolCompleted = core.DeactivationCompleted;
@@ -313,16 +351,19 @@ public sealed partial class EnergyCoreSystem : EntitySystem
             CheckTempChangeValue(cormp);
             UpdateCoreTemp(cormp, frameTime);
             RefreshCoreStatus(uid, cormp);
-            UpdateCoreVisual(uid, cormp);
-
-            var nearestUid = FindNearestProtocolTerminal(uid);
-            if (nearestUid == null ||
-                !EntityManager.TryGetComponent<CoreAccessComputerComponent>(nearestUid.Value, out var nearest))
-                continue;
-
-            var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
             UpdateProtocolStatus(uid, cormp);
             UpdateDataFromTerminal(uid, cormp);
+
+            if (_timing.CurTime < cormp.SearchTime) // Ищет только первые 5 секунд
+            {
+                var nearestUid = FindNearestProtocolTerminal(uid);
+                if (nearestUid == null ||
+                    !EntityManager.TryGetComponent<CoreAccessComputerComponent>(nearestUid.Value, out var nearest))
+                    return;
+                else
+                    cormp.Controller = nearestUid;
+            }
+            else return;
         }
     }
     #region public API

@@ -16,6 +16,14 @@ public sealed partial class EnergyCoreComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float CoreTemp = 0f;
 
+    // Ближайший терминал
+    [DataField]
+    public EntityUid? Controller;
+
+    // Ближайший терминал: время данное на поиск
+    [DataField]
+    public TimeSpan SearchTime = TimeSpan.FromSeconds(5);
+
     // Минимальная температура, которая может быть у ядра
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float MinCoreTemp = 0f;
@@ -87,4 +95,33 @@ public sealed partial class EnergyCoreComponent : Component
     // Базовый эмбиент ядра
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier CoreAmbience1 = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/CoreAmbience/coreambience_1.ogg");
+
+    // Датафилды цветов
+
+    [DataField]
+    public string OfflineColor = "#74aeff";
+
+    [DataField]
+    public string IdleColor = "#74aeff";
+
+    [DataField]
+    public string StableColor = "#d80000ff";
+
+    [DataField]
+    public string OptimalColor = "#ff0000ff";
+
+    [DataField]
+    public string ModerateColor = "#fff700ff";
+
+    [DataField]
+    public string HighColor = "#fbff11ff";
+
+    [DataField]
+    public string CriticalHighColor = "#fdff8fff";
+
+    [DataField]
+    public string CompromisedColor = "#ffffffff";
+
+    [DataField]
+    public string ProtocolColor = "#fff700ff";
 }

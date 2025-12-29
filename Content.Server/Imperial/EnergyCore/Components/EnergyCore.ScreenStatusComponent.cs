@@ -13,5 +13,13 @@ namespace Content.Server.Imperial.EnergyCore.Components
 
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public byte SpriteStatus = 0;
+
+        // Ближайшее ядро
+        [DataField]
+        public EntityUid? CheckedCore;
+
+        // Ближайшее ядро: время данное на поиск
+        [DataField]
+        public TimeSpan SearchTime = TimeSpan.FromSeconds(5);
     }
 }

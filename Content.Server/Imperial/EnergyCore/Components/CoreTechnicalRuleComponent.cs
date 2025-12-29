@@ -9,5 +9,5 @@ namespace Content.Server.Imperial.EnergyCore.Components;
 public sealed partial class CoreTechnicalRuleComponent : Component
 {
     [DataField]
-    public string EndRoundText = "endround-core-was-compromised";
+    public LocId EndRoundText = "endround-core-was-compromised";
 }

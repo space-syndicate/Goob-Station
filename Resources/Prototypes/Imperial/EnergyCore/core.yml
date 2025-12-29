@@ -57,6 +57,7 @@
     layers:
     - map: [ "VisualLevel" ]
       state: core_1
+      scale: 0.4,0.4
       shader: unshaded
   - type: GenericVisualizer
     visuals:

@@ -13,7 +13,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
+using Content.Server.Imperial.EnergyCore.Events;
 
 namespace Content.Server.Imperial.EnergyCore;
 
@@ -37,6 +39,9 @@ public sealed class CoreAccessComputerSystem : EntitySystem
     private void OnInit(EntityUid uid, CoreAccessComputerComponent component, ComponentInit args)
     {
         _itemSlots.AddItemSlot(uid, SharedEnergyCoreComponent.DeCodeSlotId, component.DeCodeSlot);
+
+        component.SearchTime = component.SearchTime + _timing.CurTime;
+
         UpdateUi(uid, component);
     }
     private void OnItemSlotChanged(EntityUid uid, CoreAccessComputerComponent component, ContainerModifiedMessage args)
@@ -71,7 +76,7 @@ public sealed class CoreAccessComputerSystem : EntitySystem
     }
     private void GetCurrTemp(EntityUid uid, CoreAccessComputerComponent component)
     {
-        var nearestUid = FindNearestEnergyCore(uid);
+        var nearestUid = component.ControledCore;
         if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
         {
             return;
@@ -107,7 +112,7 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         }
         return nearest;
     }
-    private static (float coreTemp, CoreStatus coreStatus) GetCoreInfo(EnergyCoreComponent component)
+    private (float coreTemp, CoreStatus coreStatus) GetCoreInfo(EnergyCoreComponent component)
     {
         var coreTemp = component.CoreTemp;
         var coreStatus = component.Status;
@@ -181,9 +186,9 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         var tempRising = component.TempRising;
         var coreStatus = component.Status;
         var autoSystem = component.ByteStatus;
-        float coreTemp = component.CurrCoreTemp;
-        float tempChangeCoef = component.FinalTempChangeCoef;
-        float currentPowerSupply = component.CurrentPowerSupply;
+        var coreTemp = component.CurrCoreTemp;
+        var tempChangeCoef = component.FinalTempChangeCoef;
+        var currentPowerSupply = component.CurrentPowerSupply;
 
         return new CoreTerminalBoundUserInterfaceState(
                 coreStatus,
@@ -252,7 +257,6 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         var query = EntityQueryEnumerator<CoreAccessComputerComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            UpdateUi(uid, comp);
             UpdateFinalCoef(uid, comp);
             if (_timing.CurTime >= comp.Time && comp.DeCodeSlot.HasItem)
             {
@@ -263,13 +267,20 @@ public sealed class CoreAccessComputerSystem : EntitySystem
                     CompleteProtocolDeactivation(uid, comp);
                 }
             }
-            var nearestUid = FindNearestEnergyCore(uid);
-            if (nearestUid == null ||
-                !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                continue;
-
-            var (coreTemp, coreStatus) = GetCoreInfo(nearest);
             GetCurrTemp(uid, comp);
+            if (comp.NextUIUpdate < _timing.CurTime)
+                UpdateUi(uid, comp);
+
+            if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
+            {
+                var nearestUid = FindNearestEnergyCore(uid);
+                if (nearestUid == null ||
+                    !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
+                    return;
+                else
+                    comp.ControledCore = nearestUid;
+            }
+            else return;
         }
     }
     #region public API
