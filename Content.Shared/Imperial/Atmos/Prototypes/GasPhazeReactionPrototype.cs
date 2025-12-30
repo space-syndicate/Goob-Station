@@ -9,16 +9,16 @@ public sealed partial class GasPhazeReactionPrototype : IPrototype
     [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;
-    [DataField("energyScale")]
+    [DataField]
     public float EnergyScale { get; private set; } = 1f;
-    [DataField("addedGasID")]
+    [DataField]
     public int AddedGasID { get; private set; }
-    [DataField("useGasTwo")]
+    [DataField]
     public bool UseGasTwo { get; private set; } = false;
-    [DataField("missingGasID")]
+    [DataField]
     public int MissingGasID { get; private set; }
-    [DataField("missingGasIDTwo")]
+    [DataField]
     public int MissingGasIDTwo { get; private set; }
-    [DataField("outputFactor")]
+    [DataField]
     public float OutputFactor { get; private set; } = 1f;
 }
