@@ -29,7 +29,6 @@ public sealed class PPGSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
     private EntityQuery<NodeContainerComponent> _nodeContainerQuery;
-    private GasPhazeReactionPrototype[] _gasReactions = Array.Empty<GasPhazeReactionPrototype>();
 
     public override void Initialize()
     {
@@ -74,7 +73,7 @@ public sealed class PPGSystem : EntitySystem
         if (ppgGroup is not { IsFullyBuilt: true })
             return;
 
-        _gasReactions = _protoMan.EnumeratePrototypes<GasPhazeReactionPrototype>().ToArray();
+        var gasReactions = _protoMan.EnumeratePrototypes<GasPhazeReactionPrototype>().ToArray();
         var circA = ppgGroup.CirculatorA!.Owner;
         var circB = ppgGroup.CirculatorB!.Owner;
         var (inletA, outletA) = GetPipes(circA);
@@ -84,7 +83,7 @@ public sealed class PPGSystem : EntitySystem
         var (airB, δpB) = GetCirculatorAirTransfer(inletB.Air, outletB.Air);
         var initACap = airA.Pressure;
         var initBCap = airB.Pressure;
-        foreach (var prototype in _gasReactions)
+        foreach (var prototype in gasReactions)
         {
             var initMissingGasIDA = airA.GetMoles(prototype.MissingGasID);
             var initMissingGasIDB = airB.GetMoles(prototype.MissingGasID);

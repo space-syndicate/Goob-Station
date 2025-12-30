@@ -1,6 +1,6 @@
 - type: gasPhazeReaction
   id: HyperNobliumPhaseProduction
-  energyScale: 200
+  energyScale: 100
   useGasTwo: True
   addedGasID: 14
   missingGasID: 9
