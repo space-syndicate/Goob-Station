@@ -13,3 +13,19 @@
   - type: InstantAction
     event: !type:VampireInvisibleEvent
       costBlood: 2 # в секунду
+
+- type: entity
+  parent: BaseAction
+  id: VampireInvisiblePlusAction
+  name: Переключить режим невидимости +
+  description: Делает вампира невидимым. Любая атака/урон прерывает эффект.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: invisible_plus
+  - type: InstantAction
+    event: !type:VampireInvisibleEvent
+      costBlood: 0

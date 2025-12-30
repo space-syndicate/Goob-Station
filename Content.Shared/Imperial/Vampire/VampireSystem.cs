@@ -95,7 +95,7 @@ public class VampireSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<VampireRecoveryEvent>(OnRecovery);
-        SubscribeLocalEvent<VampireClawEvent>(OnIssuingClaw);
+        SubscribeLocalEvent<VampireSwordEvent>(OnSword);
         SubscribeLocalEvent<VampireTeleportEvent>(OnTeleport);
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty);
         SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
@@ -104,6 +104,8 @@ public class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
         SubscribeLocalEvent<VampireBloodTransformEvent>(OnTransformToBlood);
+
+        SubscribeLocalEvent<VampireSwordPlusEvent>(OnSwordPlus);
 
         SubscribeLocalEvent<VampireComponent, VampireShadowTrapEvent>(StartOnShadowTrap);
         SubscribeLocalEvent<VampireComponent, VampireShadowTrapDoAfterEvent>(OnShadowTrap);
@@ -163,57 +165,90 @@ public class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    /// <summary>
-    /// добавляет когти в руки
-    /// </summary>
-    private void OnIssuingClaw(VampireClawEvent args)
+    private void OnSword(VampireSwordEvent args)
     {
-        var performer = args.Performer;
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
 
-        if (!TryComp<VampireComponent>(performer, out var comp))
+        if (vamp.ItemIssued)
+        {
+            OnIssuingSword(args.Performer);
+            vamp.ClawDurationActive = TimeSpan.Zero;
+
+            // ссылаемся на VampireSwordAction. см BaseAbilities
+            _actions.SetCooldown(vamp.GrantedActions[0], TimeSpan.FromSeconds(30));
+        }
+        else
+        {
+            OnIssuingSword(args.Performer);
+            vamp.ClawDurationActive = _gameTiming.CurTime + vamp.ClawDuration;
+        }
+    }
+
+    private void OnSwordPlus(VampireSwordPlusEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (vamp.ItemIssued)
+        {
+            OnIssuingSword(args.Performer);
+            args.Handled = true;
+        }
+        else
+        {
+            OnIssuingSword(args.Performer);
+        }
+    }
+
+    /// <summary>
+    /// добавляет катану в руки
+    /// </summary>
+    private void OnIssuingSword(EntityUid uid)
+    {
+        if (!TryComp<VampireComponent>(uid, out var vamp))
             return;
 
         if (!_net.IsServer)
             return;
 
-        if (!comp.ItemIssued)
+        if (!vamp.ItemIssued)
         {
-            var item = Spawn(comp.ClawId, Transform(performer).Coordinates);
+            var item = Spawn(vamp.ClawId, Transform(uid).Coordinates);
 
             // если руки не закованы в наручники, то выдаем коготь
-            if (TryComp<HandsComponent>(performer, out var hands) &&
-                TryComp<CuffableComponent>(performer, out var cuff))
+            if (TryComp<HandsComponent>(uid, out var hands) &&
+                TryComp<CuffableComponent>(uid, out var cuff))
             {
-                if (!_hands.CanPickupAnyHand(performer, item, handsComp: hands))
+                if (!_hands.CanPickupAnyHand(uid, item, handsComp: hands))
                 {
-                    _hands.TryDrop(performer);
+                    _hands.TryDrop(uid);
                 }
-                // подбираем коготь
-                if (_hands.TryPickup(performer, item, checkActionBlocker: false, handsComp: hands))
+                // подбираем катану
+                if (_hands.TryPickup(uid, item, checkActionBlocker: false, handsComp: hands))
                 {
-                    comp.ItemIssued = true;
-                    comp.ClawDurationActive = _gameTiming.CurTime + comp.ClawDuration;
-                    Dirty(performer, comp);
+                    vamp.ItemIssued = true;
+                    Dirty(uid, vamp);
                 }
                 else
                 {
                     // если не удалось подобрать, удаляем
                     QueueDel(item);
                     _popup.PopupEntity(Loc.GetString("У вас нет свободных рук!"),
-                        args.Performer, args.Performer, PopupType.Medium);
+                        uid, uid, PopupType.Medium);
                 }
             }
         }
         else
         {
-            foreach (var hand in _hands.EnumerateHeld(performer))
+            foreach (var hand in _hands.EnumerateHeld(uid))
             {
-                // удаляем когти по мете
-                if (MetaData(hand).EntityPrototype?.ID == comp.ClawId)
+                // удаляем катану по мете
+                if (MetaData(hand).EntityPrototype?.ID == vamp.ClawId)
                 {
                     QueueDel(hand);
-                    comp.ItemIssued = false;
-                    Dirty(performer, comp);
+                    vamp.ItemIssued = false;
+                    Dirty(uid, vamp);
                     break;
                 }
             }
@@ -900,37 +935,6 @@ public class VampireSystem : EntitySystem
             }
         }
 
-        var bloodQuery = EntityQueryEnumerator<VampireComponent>();
-        while (bloodQuery.MoveNext(out var uid, out var comp))
-        {
-            if (comp.NextBloodDecay == TimeSpan.Zero)
-            {
-                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
-                Dirty(uid, comp);
-            }
-
-            if (_gameTiming.CurTime >= comp.NextBloodDecay)
-            {
-                DealBloodDamage(uid, comp.BloodDecayAmount);
-                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
-                Dirty(uid, comp);
-
-                if (comp.BloodDamage >= comp.CritThreshold)
-                {
-                    if (TryComp<StaminaComponent>(uid, out var stamina))
-                    {
-                        var dmg = new DamageSpecifier();
-                        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(15);
-
-                        _damage.TryChangeDamage(uid, dmg);
-                        SpawnBloodPuddle(uid);
-                        _stamina.TakeStaminaDamage(uid, 70f, stamina);
-                        _jitterSystem.DoJitter(uid, comp.ShakingTime, refresh: true, amplitude: 40f, frequency: 10f);
-                    }
-                }
-            }
-        }
-
         var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
         while (ghoulQuery.MoveNext(out var uid, out var сomp))
         {
@@ -1031,22 +1035,13 @@ public class VampireSystem : EntitySystem
             if (!_net.IsServer)
                 return;
 
-            if (!vamp.ItemIssued)
-                continue;
-
-            if (_gameTiming.CurTime >= vamp.ClawDurationActive)
+            if (_gameTiming.CurTime >= vamp.ClawDurationActive && vamp.ItemIssued && vamp.ClawDurationActive != TimeSpan.Zero)
             {
-                foreach (var hand in _hands.EnumerateHeld(uid))
-                {
-                    // удаляем когти по мете
-                    if (MetaData(hand).EntityPrototype?.ID == vamp.ClawId)
-                    {
-                        QueueDel(hand);
-                        vamp.ItemIssued = false;
-                        Dirty(uid, vamp);
-                        break;
-                    }
-                }
+                OnIssuingSword(uid);
+
+                // ссылаемся на VampireSwordAction. см BaseAbilities
+                _actions.SetCooldown(vamp.GrantedActions[0], TimeSpan.FromSeconds(30));
+                vamp.ClawDurationActive = TimeSpan.Zero;
                 Dirty(uid, vamp);
             }
         }

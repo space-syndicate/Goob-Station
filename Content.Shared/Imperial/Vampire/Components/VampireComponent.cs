@@ -20,25 +20,25 @@ namespace Content.Shared.Imperial.Vampire
         /// множитель урона при активном бафе
         /// </summary>
         [DataField]
-        public float DamageBoost = 1.2f;
+        public float DamageBoost = 2;
 
         /// <summary>
         /// множитель базовой скорости движения при активации бафа
         /// </summary>
         [DataField]
-        public float BoostSpeed = 1.2f;
+        public float BoostSpeed = 1.5f;
 
         /// <summary>
         /// множитель скорости, применяемый только к ходьбе
         /// </summary>
         [DataField]
-        public float BoostOnlySpeed = 2.5f;
+        public float BoostOnlySpeed = 3;
 
         /// <summary>
         /// множитель скорости атаки при активном бафе
         /// </summary>
         [DataField]
-        public float AttackRateBoost = 1.15f;
+        public float AttackRateBoost = 1.5f;
 
         /// <summary>
         /// был ли уже выдан коготь игроку
@@ -83,12 +83,6 @@ namespace Content.Shared.Imperial.Vampire
         public TimeSpan BuffBlockedUntil;
 
         /// <summary>
-        /// время следующего тика потери крови
-        /// </summary>
-        [AutoNetworkedField]
-        public TimeSpan NextBloodDecay = TimeSpan.Zero;
-
-        /// <summary>
         /// интервал между тиками потери крови
         /// </summary>
         [DataField]
@@ -99,18 +93,6 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField]
         public TimeSpan ShakingTime = TimeSpan.FromSeconds(5);
-
-        /// <summary>
-        /// количество крови, теряемое за один тик
-        /// </summary>
-        [DataField]
-        public float BloodDecayAmount = 1.5f;
-
-        /// <summary>
-        /// продолжительность действия бафа
-        /// </summary>
-        [DataField]
-        public TimeSpan BuffDuration = TimeSpan.FromSeconds(10);
 
         /// <summary>
         /// определяет, телепортируется ли сам игрок
@@ -185,9 +167,6 @@ namespace Content.Shared.Imperial.Vampire
         [AutoNetworkedField]
         public TimeSpan NextBloodshed = TimeSpan.Zero;
 
-        [AutoNetworkedField]
-        public bool VampireIsInvisibility = false;
-
         [DataField]
         public TimeSpan BloodDecayIntervalInvisible = TimeSpan.FromSeconds(1);
 
@@ -196,9 +175,6 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [AutoNetworkedField]
         public bool DisguiseIsActive = false;
-
-        [AutoNetworkedField]
-        public bool DoAfterShadowTrapIsActive = false;
 
         [AutoNetworkedField]
         public List<EntityUid> GrantedActions = new();
@@ -233,15 +209,13 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
 
-        public float MaxTotalDrunk = 1000;
-
         public float Radius = 2f;
 
         /// <summary>
         /// количество выпитой крови за 1 тик
         /// </summary>
         [DataField("bloodPerTick")]
-        public float BloodPerTick = 1;
+        public float BloodPerTick = 100;
 
         public static readonly List<EntProtoId> BaseAbilities = new()
         {

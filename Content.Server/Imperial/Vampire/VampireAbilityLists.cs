@@ -20,8 +20,8 @@ public static class VampireAbilityLists
         "VampireTentaclesAction",
         "VampireTransformBatAction",
         "VampireTransformBloodAction",
-        "VampireNosferatyAction"
-        // "обратиться",
+        "VampireNosferatyAction",
+        "VampireTurnAction"
     };
 
     // способности Umbrae
@@ -30,7 +30,8 @@ public static class VampireAbilityLists
         "VampireUnCuffAction",
         "VampireInvisibleAction",
         "VampireShadowTrapAction",
-        "VampireCloneAction"
+        "VampireCloneAction",
+        "VampireTurnAction"
     };
 
     // способности Gargantua
@@ -40,7 +41,14 @@ public static class VampireAbilityLists
         "VampireTeleportAction",
         "VampireUnCuffAction",
         "VampireReconciliationAction",
-        "VampireNosferatyAction"
-        // "обратиться",
+        "VampireNosferatyAction",
+        "VampireTurnAction"
+    };
+
+    public static readonly List<EntProtoId> Plus = new()
+    {
+        "VampireSwordPlusAction",
+        "VampireInvisiblePlusAction",
+        "VampireNosferatyPlusAction"
     };
 }

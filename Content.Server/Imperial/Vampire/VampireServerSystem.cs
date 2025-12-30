@@ -80,6 +80,7 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
         SubscribeLocalEvent<VampireCloneEvent>(OnClone);
         SubscribeLocalEvent<VampireSelectingSubgroupEvent>(OnSelectingSubgroup);
+        SubscribeLocalEvent<VampireTurnEvent>(OnTurn);
     }
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
@@ -443,6 +444,36 @@ public sealed class VampireServerSystem : EntitySystem
 
         var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions, _vampireSystem);
         _eui.OpenEui(eui, actor.PlayerSession);
+    }
+
+    private void OnTurn(VampireTurnEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        switch (vamp.SelectedSubgroup)
+        {
+            case 1:
+                // см BaseAbilities, VampireAbilityLists.Hemomancer. Удаляется "Кровавая катана"
+                _actions.RemoveAction(args.Performer, vamp.GrantedActions[0]);
+
+                _actions.AddAction(args.Performer, VampireAbilityLists.Plus[0]);
+                break;
+
+            case 2:
+                // см BaseAbilities, VampireAbilityLists.Umbrae. Удаляется: "Переключить режим невидимости"
+                _actions.RemoveAction(args.Performer, vamp.GrantedActions[6]);
+
+                _actions.AddAction(args.Performer, VampireAbilityLists.Plus[1]);
+                break;
+
+            case 3:
+                // см BaseAbilities, VampireAbilityLists.Gargantua. Удаляется "Гнев Носферату"
+                _actions.RemoveAction(args.Performer, vamp.GrantedActions[9]);
+
+                _actions.AddAction(args.Performer, VampireAbilityLists.Plus[2]);
+                break;
+        }
     }
 
     public override void Update(float frameTime)

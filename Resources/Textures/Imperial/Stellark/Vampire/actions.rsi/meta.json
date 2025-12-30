@@ -60,6 +60,18 @@
       },
       {
         "name": "teleport"
+      },
+      {
+        "name": "turn"
+      },
+      {
+        "name": "sword_plus"
+      },
+      {
+        "name": "invisible_plus"
+      },
+      {
+        "name": "nosferaty_plus"
       }
     ]
   }
