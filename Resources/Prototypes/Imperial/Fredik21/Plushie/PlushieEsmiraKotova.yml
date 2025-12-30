@@ -14,7 +14,6 @@
   id: PlushieCadet
   name: Esmira Kotova
   suffix: COMMUNITY,TOY
-  description: Hi, how are you?
   components:
   - type: Sprite
     sprite: Imperial/Fredik21/plushie/EsmiraKotova.rsi
