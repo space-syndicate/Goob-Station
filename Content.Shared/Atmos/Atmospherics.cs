@@ -318,6 +318,7 @@ namespace Content.Shared.Atmos
         /// Imperial Imperial Atmos Update start
         public const float DeuteriumProductionConversionRate = 220f;
         public const float DeuteriumProductionMaxEfficiencyTemperature = 1400.15f;
+        public const float MinimumAntiNoblium = 5f;
         /// Imperial Imperial Atmos Update end
 
         /// <summary>

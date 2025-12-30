@@ -13,7 +13,7 @@ public sealed partial class HydrogenProductionReaction : IGasReactionEffect
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium);
-        if (initialAntiNoblium > 5f)
+        if (initialAntiNoblium > Atmospherics.MinimumAntiNoblium)
             return ReactionResult.NoReaction;
         var initialOxy = mixture.GetMoles(Gas.Oxygen);
         var initialVapor = mixture.GetMoles(Gas.WaterVapor);

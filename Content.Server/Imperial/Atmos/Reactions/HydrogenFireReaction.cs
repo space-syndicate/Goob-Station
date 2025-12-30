@@ -24,7 +24,7 @@ namespace Content.Server.Atmos.Reactions
             var burnedFuel = 0f;
             var initialHydrogen = mixture.GetMoles(Gas.Hydrogen);
             var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium);
-            if (initialAntiNoblium > 5f)
+            if (initialAntiNoblium > Atmospherics.MinimumAntiNoblium)
                 return ReactionResult.NoReaction;
             if (mixture.GetMoles(Gas.Oxygen) < initialHydrogen ||
                 Atmospherics.MinimumHydrogenOxyburnEnergy > (temperature * oldHeatCapacity * heatScale))

@@ -14,7 +14,7 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         var initialAntiNoblium = mixture.GetMoles(Gas.AntiNoblium); // Imperial Atmos Update start
-        if (initialAntiNoblium > 5f)
+        if (initialAntiNoblium > Atmospherics.MinimumAntiNoblium)
             return ReactionResult.NoReaction; // Imperial Atmos Update end
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
