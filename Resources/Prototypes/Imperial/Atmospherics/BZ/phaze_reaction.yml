@@ -5,7 +5,7 @@
   addedGasID: 16
   missingGasID: 3
   missingGasIDTwo: 11
-  OutputFactor: 1
+  outputFactor: 1
  # oxygen 0
  # nitrogen 1
  # carbon dioxide 2

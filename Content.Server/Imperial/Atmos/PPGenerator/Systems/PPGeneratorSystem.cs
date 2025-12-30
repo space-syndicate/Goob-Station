@@ -151,7 +151,7 @@ public sealed class PPGSystem : EntitySystem
         ApcPowerReceiverComponent powerReceiver,
         PPGNodeGroup nodeGroup)
     {
-        _ambientSound.SetAmbience(uid, component.Active == true);
+        _ambientSound.SetAmbience(uid, component.Active);
         if (component.Active && GetNodeGroup(uid) is { IsFullyBuilt: true })
             component.PowerLevel = 1;
         else
