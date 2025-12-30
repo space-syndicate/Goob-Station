@@ -42,7 +42,7 @@
       gasMixture:
         volume: 1500
         moles:
-          Deuterium: 2769.36 # Phazonium
+          Deuterium: 2769.36
         temperature: 293.15
 
 - type: entity

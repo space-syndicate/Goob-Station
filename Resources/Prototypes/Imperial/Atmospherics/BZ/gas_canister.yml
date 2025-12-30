@@ -42,7 +42,7 @@
       gasMixture:
         volume: 1500
         moles:
-          BZ: 2769.36 # Phazonium
+          BZ: 2769.36
         temperature: 293.15
 
 - type: entity

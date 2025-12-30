@@ -1,23 +1,16 @@
-﻿using Content.Server.Atmos;
-using Content.Server.Atmos.EntitySystems;
+﻿using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Shared.Atmos;
-using Content.Shared.DeviceNetwork;
-using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
-using Content.Shared.Rounding;
 using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
 using Content.Shared.Imperial.Power.Generation.PPG;
-using Content.Server.Atmos.Reactions;
 using Content.Server.Imperial.Atmos.Reactions.Prototypes;
 using System.Linq;
 using Robust.Shared.Prototypes;
@@ -32,14 +25,11 @@ public sealed class PPGSystem : EntitySystem
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _receiver = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
     private EntityQuery<NodeContainerComponent> _nodeContainerQuery;
     private GasPhazeReactionPrototype[] _gasReactions = Array.Empty<GasPhazeReactionPrototype>();
-    public IEnumerable<GasPhazeReactionPrototype> GasPhazeReaction => _gasReactions;
 
     public override void Initialize()
     {
@@ -94,19 +84,17 @@ public sealed class PPGSystem : EntitySystem
         var (airB, δpB) = GetCirculatorAirTransfer(inletB.Air, outletB.Air);
         var initACap = airA.Pressure;
         var initBCap = airB.Pressure;
-        var temperatureA = airA.Temperature;
-        var temperatureB = airB.Temperature;
         foreach (var prototype in _gasReactions)
         {
             var initMissingGasIDA = airA.GetMoles(prototype.MissingGasID);
             var initMissingGasIDB = airB.GetMoles(prototype.MissingGasID);
             var initMissingDeuteriumA = airA.GetMoles(Gas.Deuterium);
             var initMissingDeuteriumB = airB.GetMoles(Gas.Deuterium);
-            var missingDeuteriumA = 0.5f * initMissingDeuteriumA;
-            var missingDeuteriumB = 0.5f * initMissingDeuteriumB;
+            var missingDeuteriumA = component.MissingDeuteriumRate * initMissingDeuteriumA;
+            var missingDeuteriumB = component.MissingDeuteriumRate * initMissingDeuteriumB;
             if (initMissingDeuteriumA > 0.1 || initMissingDeuteriumB > 0.1)
             {
-                component.Active1 = true;
+                component.DeuteriumReactionActive = true;
                 airA.AdjustMoles(Gas.Deuterium, -missingDeuteriumA);
                 airB.AdjustMoles(Gas.Deuterium, -missingDeuteriumB);
             }
@@ -117,17 +105,17 @@ public sealed class PPGSystem : EntitySystem
                 var initMissingGasIDTwoB = airB.GetMoles(prototype.MissingGasIDTwo);
                 if (initMissingGasIDTwoA > 0.1 || initMissingGasIDTwoB > 0.1)
                 {
-                    component.Active2 = true;
+                    component.SecondaryGasActive = true;
                     airA.AdjustMoles(prototype.MissingGasIDTwo, -initMissingGasIDTwoA);
                     airB.AdjustMoles(prototype.MissingGasIDTwo, -initMissingGasIDTwoB);
                 }
                 component.InitMissingGasTwo = initMissingGasIDTwoA + initMissingGasIDTwoB;
             }
             if (!prototype.UseGasTwo)
-                component.Active2 = true;
+                component.SecondaryGasActive = true;
             if (initMissingGasIDA > 0.1 || initMissingGasIDB > 0.1)
-                component.Active3 = true;
-            if (component.Active1 && component.Active2 && component.Active3)
+                component.PrimaryGasActive = true;
+            if (component.DeuteriumReactionActive && component.SecondaryGasActive && component.PrimaryGasActive)
             {
                 airA.AdjustMoles(prototype.MissingGasID, -initMissingGasIDA);
                 airB.AdjustMoles(prototype.MissingGasID, -initMissingGasIDB);
@@ -139,11 +127,17 @@ public sealed class PPGSystem : EntitySystem
                 // power = EnergyScale in reaction prototype * (Capacity A circulator + Capacity B circulator)
                 var power = prototype.EnergyScale * (initACap + initBCap);
                 supplier.MaxSupply = power * component.RampFactor;
-                if (power > 500f)
+                if (power > component.MinimumEnergy)
                     component.Active = true;
-                if (power < 500f)
+                if (power < component.MinimumEnergy)
                     component.Active = false;
                 UpdateAppearance(uid, component, powerReceiver, ppgGroup);
+            }
+            if (initACap < component.MinimumPressure && initBCap < component.MinimumPressure)
+            {
+                component.DeuteriumReactionActive = false;
+                component.SecondaryGasActive = false;
+                component.PrimaryGasActive = false;
             }
             _atmosphere.Merge(outletA.Air, airA);
             _atmosphere.Merge(outletB.Air, airB);
@@ -161,9 +155,7 @@ public sealed class PPGSystem : EntitySystem
         if (component.Active && GetNodeGroup(uid) is { IsFullyBuilt: true })
             component.PowerLevel = 1;
         else
-        {
             component.PowerLevel = 0;
-        }
         _appearance.SetData(uid, PPGVisualsState.PowerOutput, component.PowerLevel);
     }
 
@@ -175,9 +167,7 @@ public sealed class PPGSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
-
         var powerReceiver = Comp<ApcPowerReceiverComponent>(uid);
-
         _receiver.SetPowerDisabled(uid, !group.IsFullyBuilt, powerReceiver);
         UpdateAppearance(uid, component, powerReceiver, group);
     }
@@ -197,11 +187,9 @@ public sealed class PPGSystem : EntitySystem
         // TODO: I wish power events didn't go out on shutdown.
         if (TerminatingOrDeleted(uid))
             return;
-
         var nodeGroup = GetNodeGroup(uid);
         if (nodeGroup == null)
             return;
-
         UpdateAppearance(uid, component, Comp<ApcPowerReceiverComponent>(uid), nodeGroup);
     }
 

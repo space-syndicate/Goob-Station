@@ -42,7 +42,7 @@
       gasMixture:
         volume: 1500
         moles:
-          AntiNoblium: 2769.36 # Phazonium
+          AntiNoblium: 2769.36
         temperature: 293.15
 
 - type: entity

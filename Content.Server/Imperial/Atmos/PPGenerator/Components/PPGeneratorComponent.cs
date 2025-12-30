@@ -4,33 +4,30 @@ namespace Content.Server.Imperial.Power.Generation.PPG;
 [Access(typeof(PPGSystem))]
 public sealed partial class PPGeneratorComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("rampFactor")]
+    [DataField]
     public float RampFactor = 1.05f;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("powerLevel")]
+    [DataField]
     public int PowerLevel;
-    [DataField("power")]
+    [DataField]
     public float Power = 0f;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("active")]
+    [DataField]
     public bool Active = false;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("initMissingGasTwo")]
+    [DataField]
     public float InitMissingGasTwo = 0f;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("initMissingGas")]
+    [DataField]
     public float InitMissingGas = 0f;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("active1")]
-    public bool Active1 = false;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("active2")]
-    public bool Active2 = false;
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("active3")]
-    public bool Active3 = false;
-    [DataField("Deuterium")]
+    [DataField]
+    public bool DeuteriumReactionActive = false;
+    [DataField]
+    public bool SecondaryGasActive = false;
+    [DataField]
+    public bool PrimaryGasActive = false;
+    [DataField]
     public float Deuterium = 0f;
-
+    [DataField]
+    public float MinimumEnergy = 500f;
+    [DataField]
+    public float MinimumPressure = 10f;
+    [DataField]
+    public float MissingDeuteriumRate = 0.5f;
 }

@@ -1,4 +1,3 @@
-// Возможно Подлежит удалению
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
