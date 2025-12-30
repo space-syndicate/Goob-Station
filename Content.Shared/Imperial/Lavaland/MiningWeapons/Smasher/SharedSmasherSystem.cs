@@ -82,4 +82,24 @@ public abstract partial class SharedSmasherSystem : EntitySystem
 
         return false;
     }
+
+    public bool TryGetHolder(EntityUid smasherUid, [NotNullWhen(true)] out EntityUid? user)
+    {
+        user = null;
+
+        var query = EntityQueryEnumerator<HandsComponent>();
+        while (query.MoveNext(out var uid, out var _))
+        {
+            foreach (var hand in _handsSystem.EnumerateHands(uid))
+            {
+                if (_handsSystem.TryGetHeldItem(uid, hand, out var heldEntity) && heldEntity == smasherUid)
+                {
+                    user = uid;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }

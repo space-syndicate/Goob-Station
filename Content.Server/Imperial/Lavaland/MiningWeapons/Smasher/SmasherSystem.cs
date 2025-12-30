@@ -23,9 +23,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
+    private Dictionary<EntityUid, EntityUid> _lastAlertedUser = new();
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
     private TimeSpan _decayEndTime;
     private bool _isDecayEffectActive;
@@ -74,11 +74,17 @@ public sealed class SmasherSystem : SharedSmasherSystem
             {
                 if (_activeCharges.TryGetValue(smasherUid, out var chargeData))
                 {
-                    if (user != null)
-                        CancelCharging(user.Value, smasherUid, smasher, chargeData);
+                    _alerts.ClearAlert(chargeData.User, smasher.CounterCooldownAlert);
+                }
+
+                if (_lastAlertedUser.TryGetValue(smasherUid, out var lastUser))
+                {
+                    _alerts.ClearAlert(lastUser, smasher.CounterCooldownAlert);
                 }
                 continue;
             }
+
+            _lastAlertedUser[smasherUid] = user.Value;
 
             UpdateCooldownAlert(user.Value, smasher);
 
@@ -91,7 +97,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
             }
             else if (_activeCharges.ContainsKey(smasherUid))
             {
-                CancelCharging(user.Value, smasherUid, smasher, _activeCharges[smasherUid]);
+                CancelCharging(user.Value, smasherUid, smasher);
             }
         }
 
@@ -103,26 +109,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
                 DeactivateShield(uid, shield);
             }
         }
-    }
-
-    private bool TryGetHolder(EntityUid smasherUid, [NotNullWhen(true)] out EntityUid? user)
-    {
-        user = null;
-
-        var query = EntityQueryEnumerator<HandsComponent>();
-        while (query.MoveNext(out var uid, out var hands))
-        {
-            foreach (var hand in _handsSystem.EnumerateHands(uid))
-            {
-                if (_handsSystem.TryGetHeldItem(uid, hand, out var heldEntity) && heldEntity == smasherUid)
-                {
-                    user = uid;
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     private void ProcessCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
@@ -148,17 +134,17 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
         if (CheckDamageInterruption(user))
         {
-            CancelCharging(user, smasherUid, smasher, chargeData);
+            CancelCharging(user, smasherUid, smasher);
             return;
         }
 
         if (holdTime >= smasher.TimeChargingSmasher)
         {
-            CompleteCharging(user, smasherUid, smasher, chargeData);
+            CompleteCharging(user, smasherUid, smasher);
         }
     }
 
-    private void CancelCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher, ChargeData chargeData)
+    private void CancelCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
     {
         _activeCharges.Remove(smasherUid);
 
@@ -183,7 +169,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         Log.Info("Зарядка отменена");
     }
 
-    private void CompleteCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher, ChargeData chargeData)
+    private void CompleteCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
     {
         _activeCharges.Remove(smasherUid);
 
