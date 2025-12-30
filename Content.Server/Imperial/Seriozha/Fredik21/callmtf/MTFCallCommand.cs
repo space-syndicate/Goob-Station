@@ -76,7 +76,7 @@ public sealed class CallMTF : LocalizedCommands
             var message = Loc.GetString(proto.AnnouncementMessage);
             var sender = proto.AnnouncementSender != null 
                 ? Loc.GetString(proto.AnnouncementSender) 
-                : "announcementSender-MTF-NDA"; // Дефолтный отправитель
+                : Loc.GetString("announcementSender-MTF-NDA"); // Дефолтный отправитель
             
             chatSystem.DispatchGlobalAnnouncement(
                 message, 
