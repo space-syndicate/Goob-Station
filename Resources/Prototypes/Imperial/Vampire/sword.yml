@@ -34,7 +34,7 @@
   description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
   components:
   - type: Sprite
-    sprite: Imperial/Stellark/Vampire/sword
+    sprite: Imperial/Stellark/Vampire/sword.rsi
     state: icon
   - type: Unremoveable
   - type: MeleeWeapon

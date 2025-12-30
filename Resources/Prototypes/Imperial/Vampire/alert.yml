@@ -30,47 +30,47 @@
 - type: alert
   id: VampireCounterAlert
   icons:
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount0
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount1
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount2
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount3
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount4
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount5
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount6
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount7
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount8
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount9
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount10
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount11
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount12
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount13
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount14
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount15
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount16
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount17
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount18
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount19
-  - sprite: Imperial/Stellark/Vampire/bloodcount
+  - sprite: Imperial/Stellark/Vampire/bloodcount.rsi
     state: bloodcount20
   name: Счетчик выпитой крови
   description: Отображает количество выпитой крови. Новые способности открываются при достижении определённых порогов

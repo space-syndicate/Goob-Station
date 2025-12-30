@@ -30,7 +30,7 @@
     canCollide: true
   - type: InteractionOutline
   - type: Sprite
-    sprite: Imperial/Stellark/Vampire/trap
+    sprite: Imperial/Stellark/Vampire/trap.rsi
     layers:
       - state: shadow_trap
   - type: VampireTrapOnTrigger
