@@ -2,14 +2,14 @@
   parent: BaseAction
   id: VampireShadowTrapAction
   name: Теневой капкан
-  description: Устанавливает полу-невидимую ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Исчезает через 10 секунд под светом.
+  description: Устанавливает ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Исчезает через 10 секунд под светом.
   components:
   - type: Action
     useDelay: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Actions/smokeaction.rsi
-      state: smokeaction
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: shadow_trap_icon
   - type: TargetAction
     checkCanAccess: false
     range: 0
@@ -30,13 +30,9 @@
     canCollide: true
   - type: InteractionOutline
   - type: Sprite
-    drawdepth: Items
-    sprite: Objects/Misc/landmine.rsi
+    sprite: Imperial/Stellark/Vampire/trap
     layers:
-    - state: landmine
-    - state: landmine-unshaded
-      shader: unshaded
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      - state: shadow_trap
   - type: VampireTrapOnTrigger
     damage: 35
   - type: Fixtures

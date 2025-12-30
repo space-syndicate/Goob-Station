@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.Vampire
         /// множитель базовой скорости движения при активации бафа
         /// </summary>
         [DataField]
-        public float BoostSpeed = 2.0f;
+        public float BoostSpeed = 2;
 
         [DataField("costBlood")]
         public float CostBlood = 30;

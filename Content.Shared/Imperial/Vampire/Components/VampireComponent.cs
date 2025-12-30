@@ -14,7 +14,7 @@ namespace Content.Shared.Imperial.Vampire
         /// ID сущности когтя вампира
         /// </summary>
         [DataField]
-        public string ClawId = "VampireClaw";
+        public string ClawId = "VampireSword";
 
         /// <summary>
         /// множитель урона при активном бафе
@@ -245,11 +245,14 @@ namespace Content.Shared.Imperial.Vampire
 
         public static readonly List<EntProtoId> BaseAbilities = new()
         {
-            "VampireClawAction",
+            "VampireSwordAction",
             "VampireMessageForGhoulsAction",
             "VampireBloodTheftAction",
             "VampireRecoveryAction",
             "VampireSleepAction"
         };
+
+        [AutoNetworkedField]
+        public EntityUid SleepUid;
     }
 }

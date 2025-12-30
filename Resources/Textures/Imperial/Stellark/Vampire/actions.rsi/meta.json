@@ -51,6 +51,15 @@
       },
       {
         "name": "tentacles_on"
+      },
+      {
+        "name": "sword"
+      },
+      {
+        "name": "shadow_trap_icon"
+      },
+      {
+        "name": "teleport"
       }
     ]
   }

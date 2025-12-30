@@ -51,6 +51,9 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Content.Shared.ActionBlocker;
+using System.Runtime.CompilerServices;
+using Content.Shared.Mobs.Components;
 
 
 namespace Content.Shared.Imperial.Vampire;
@@ -86,6 +89,7 @@ public class VampireSystem : EntitySystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SleepingSystem _sleeping = default!;
 
     public override void Initialize()
     {
@@ -122,17 +126,17 @@ public class VampireSystem : EntitySystem
 
     private void OnRecovery(VampireRecoveryEvent args)
     {
-        var performer = args.Performer;
-        TryComp<VampireComponent>(performer, out var vamp);
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
 
-        if (vamp!.BloodDamage + args.CostBlood >= vamp!.CritThreshold)
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
             _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        if (_solutionSystem.TryGetInjectableSolution(performer, out var solution, out _))
+        if (_solutionSystem.TryGetInjectableSolution(args.Performer, out var solution, out _))
         {
             // лечим вампира, вводя ему Omnizine, TranexamicAcid
             var toInject = new Solution();
@@ -142,17 +146,17 @@ public class VampireSystem : EntitySystem
             _solutionSystem.TryAddSolution(solution.Value, toInject);
         }
 
-        if (TryComp<StaminaComponent>(performer, out var stamina))
+        if (TryComp<StaminaComponent>(args.Performer, out var stamina))
         {
             stamina.StaminaDamage = 0f;
-            Dirty(performer, stamina);
+            Dirty(args.Performer, stamina);
         }
 
-        if (TryComp<StatusEffectsComponent>(performer, out var status))
+        if (TryComp<StatusEffectsComponent>(args.Performer, out var status))
         {
-            _statusEffects.TryRemoveStatusEffect(performer, "Stun");
-            _statusEffects.TryRemoveStatusEffect(performer, "KnockedDown");
-            _statusEffects.TryRemoveStatusEffect(performer, "SlowedDown");
+            _statusEffects.TryRemoveStatusEffect(args.Performer, "Stun");
+            _statusEffects.TryRemoveStatusEffect(args.Performer, "KnockedDown");
+            _statusEffects.TryRemoveStatusEffect(args.Performer, "SlowedDown");
         }
 
         DealBloodDamage(args.Performer, args.CostBlood);
@@ -167,6 +171,9 @@ public class VampireSystem : EntitySystem
         var performer = args.Performer;
 
         if (!TryComp<VampireComponent>(performer, out var comp))
+            return;
+
+        if (!_net.IsServer)
             return;
 
         if (!comp.ItemIssued)
@@ -192,8 +199,8 @@ public class VampireSystem : EntitySystem
                 {
                     // если не удалось подобрать, удаляем
                     QueueDel(item);
-                    _popup.PopupClient(Loc.GetString("У вас нет свободных рук!"),
-                    args.Performer, args.Performer, PopupType.Medium);
+                    _popup.PopupEntity(Loc.GetString("У вас нет свободных рук!"),
+                        args.Performer, args.Performer, PopupType.Medium);
                 }
             }
         }
@@ -211,8 +218,6 @@ public class VampireSystem : EntitySystem
                 }
             }
         }
-
-        args.Handled = true;
     }
 
     private void OnTeleport(VampireTeleportEvent args)
@@ -435,6 +440,36 @@ public class VampireSystem : EntitySystem
             return;
         }
 
+        // получаем все сущности перед игроком
+        var transform = Transform(vamp.Owner);
+        var direction = transform.LocalRotation.GetCardinalDir();
+        var frontPos = transform.Coordinates.Offset(direction.ToVec());
+        var entities = _lookup.GetEntitiesInRange(frontPos, 0.5f);
+
+        EntityUid? target = null;
+        foreach (var entity in entities)
+        {
+            if (entity == vamp.Owner)
+                continue;
+
+            if (!HasComp<MobStateComponent>(entity))
+                continue;
+
+            target = entity;
+            break;
+        }
+
+        if (target == null)
+        {
+            _popup.PopupClient(Loc.GetString("Впереди никого нет!"),
+                vamp.Owner, vamp.Owner, PopupType.Medium);
+            return;
+        }
+
+        // станим цель на время doAfterArgs
+        _stun.TryAddStunDuration(target.Value, TimeSpan.FromSeconds(5f));
+        vamp.SleepUid = target.Value;
+
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, TimeSpan.FromSeconds(4f),
             new VampireSleepDoAfterEvent(), args.Performer)
         {
@@ -446,54 +481,41 @@ public class VampireSystem : EntitySystem
 
         _doAfter.TryStartDoAfter(doAfterArgs);
         DealBloodDamage(args.Performer, args.CostBlood);
-        args.Handled = true;
     }
 
     private void OnSleep(Entity<VampireComponent> vamp, ref VampireSleepDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
-            return;
-
-        // получаем все сущности перед игроком
-        var transform = Transform(vamp.Owner);
-        var direction = transform.LocalRotation.GetCardinalDir();
-        var frontPos = transform.Coordinates.Offset(direction.ToVec());
-        var entities = _lookup.GetEntitiesInRange(frontPos, 0.5f);
-
-        if (!entities.Any(x => x != vamp.Owner))
         {
-            _popup.PopupClient(Loc.GetString("Впереди никого нет!"),
+            vamp.Comp.SleepUid = EntityUid.Invalid;
+            return;
+        }
+
+        if (vamp.Comp.SleepUid == EntityUid.Invalid || vamp.Comp.SleepUid == vamp.Owner)
+        {
+            vamp.Comp.SleepUid = EntityUid.Invalid;
+            return;
+        }
+
+        if (TryComp<SleepingComponent>(vamp.Comp.SleepUid, out var sleep))
+        {
+            _popup.PopupClient(Loc.GetString("Уже спит!"),
                 vamp.Owner, vamp.Owner, PopupType.Medium);
-
+            vamp.Comp.SleepUid = EntityUid.Invalid;
             return;
         }
 
-        foreach (var entity in entities)
+        // ноктюрин действует не сразу, так что сначала усыпляем, а уже затем вводим
+        _sleeping.TrySleeping(vamp.Comp.SleepUid);
+        if (_solutionSystem.TryGetInjectableSolution(vamp.Comp.SleepUid, out var solution, out _))
         {
-            if (entity == vamp.Owner)
-                continue;
+            var toInject = new Solution();
+            toInject.AddReagent("Nocturine", 25f);
 
-            if (TryComp<SleepingComponent>(entity, out var sleep))
-            {
-                _popup.PopupClient(Loc.GetString("Уже спит!"),
-                    vamp.Owner, vamp.Owner, PopupType.Medium);
-                continue;
-            }
-
-            if (!_mobStateSystem.IsAlive(entity))
-                continue;
-
-            if (_solutionSystem.TryGetInjectableSolution(entity, out var solution, out _))
-            {
-                var toInject = new Solution();
-                toInject.AddReagent("Nocturine", 25f);
-
-                _solutionSystem.TryAddSolution(solution.Value, toInject);
-
-                continue;
-            }
+            _solutionSystem.TryAddSolution(solution.Value, toInject);
         }
 
+        Dirty(vamp, vamp.Comp);
         args.Handled = true;
     }
 
@@ -712,7 +734,7 @@ public class VampireSystem : EntitySystem
 
     private void OnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled || args.Handled || !_net.IsServer)
             return;
 
         var targetPos = GetCoordinates(args.TargetCoords);
@@ -1006,6 +1028,9 @@ public class VampireSystem : EntitySystem
         var vampClaw = EntityQueryEnumerator<VampireComponent>();
         while (vampClaw.MoveNext(out var uid, out var vamp))
         {
+            if (!_net.IsServer)
+                return;
+
             if (!vamp.ItemIssued)
                 continue;
 

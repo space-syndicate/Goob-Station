@@ -10,5 +10,6 @@
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: rush_blood
+  - type: InstantAction
     event: !type:VampireRushBloodEvent
       costBlood: 20

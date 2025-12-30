@@ -18,7 +18,7 @@
   id: VampireClawListing
   name: Коготь
   description: Ну это коготь
-  productAction: VampireClawAction
+  productAction: VampireSwordAction
   icon:
     sprite: Interface/Actions/scream.png
     state: icon
