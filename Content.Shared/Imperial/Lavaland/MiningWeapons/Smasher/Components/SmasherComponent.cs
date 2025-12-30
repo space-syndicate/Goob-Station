@@ -18,6 +18,21 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan TimeDecay = TimeSpan.FromSeconds(1.8f);
 
     /// <summary>
+    /// After this interval, the alert will be deleted if its state is equal to the zero state (0 will be displayed)
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan TimeDeleteAlert = TimeSpan.FromSeconds(5f);
+
+    /// <summary>
+    /// When the counter first reached 0
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? AlertZeroStartTime { get; set; }
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan AlertTime;
+
+    /// <summary>
     /// Includes shield decay time.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]

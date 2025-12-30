@@ -12,6 +12,7 @@ public abstract partial class SharedSmasherSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    private Dictionary<(EntityUid User, EntityUid Smasher), (TimeSpan StartTime, bool Hidden)> _alertZeroData = new();
 
     public bool CanActivateShield(SmasherComponent component)
     {
@@ -27,11 +28,12 @@ public abstract partial class SharedSmasherSystem : EntitySystem
     /// <summary>
     /// Updates the cooldown alert display based on remaining cooldown time
     /// </summary>
-    public void UpdateCooldownAlert(EntityUid user, SmasherComponent component)
+    public void UpdateCooldownAlert(EntityUid smasherUid, EntityUid user, SmasherComponent component)
     {
         if (!user.Valid)
         {
             _alerts.ClearAlert(user, component.CounterCooldownAlert);
+            _alertZeroData.Remove((user, smasherUid));
             return;
         }
 
@@ -40,10 +42,34 @@ public abstract partial class SharedSmasherSystem : EntitySystem
             remainingCooldown = TimeSpan.Zero;
 
         var secondsRemaining = (int)Math.Ceiling(remainingCooldown.TotalSeconds);
+        var key = (user, smasherUid);
 
-        // If the cooldown is negative (ended), show 0
-        if (secondsRemaining <= 0)
-            secondsRemaining = 0;
+        if (secondsRemaining > 0)
+        {
+            _alertZeroData.Remove(key);
+            var alert = CalculateAlertSeverity(secondsRemaining);
+            _alerts.ShowAlert(user, component.CounterCooldownAlert, (short)alert);
+            return;
+        }
+
+        secondsRemaining = 0;
+
+        if (!_alertZeroData.TryGetValue(key, out var data))
+        {
+            data = (StartTime: _timing.CurTime, Hidden: false);
+            _alertZeroData[key] = data;
+        }
+
+        if (data.Hidden)
+            return;
+
+        if (_timing.CurTime >= data.StartTime + TimeSpan.FromSeconds(5))
+        {
+            _alerts.ClearAlert(user, component.CounterCooldownAlert);
+            data.Hidden = true;
+            _alertZeroData[key] = data;
+            return;
+        }
 
         var alertSeverity = CalculateAlertSeverity(secondsRemaining);
         _alerts.ShowAlert(user, component.CounterCooldownAlert, (short)alertSeverity);
@@ -55,6 +81,9 @@ public abstract partial class SharedSmasherSystem : EntitySystem
     /// </summary>
     public int CalculateAlertSeverity(int secondsRemaining)
     {
+        if (secondsRemaining <= 0)
+            return 0;
+
         var roundedSeconds = (int)Math.Ceiling(secondsRemaining / 5.0) * 5;
         roundedSeconds = Math.Min(roundedSeconds, 60);
         return roundedSeconds / 5;

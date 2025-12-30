@@ -86,7 +86,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
             _lastAlertedUser[smasherUid] = user.Value;
 
-            UpdateCooldownAlert(user.Value, smasher);
+            UpdateCooldownAlert(smasherUid, user.Value, smasher);
 
             if (smasher.StateUseKey == BoundKeyState.Down &&
                 !HasComp<ShieldActiveComponent>(user) &&
