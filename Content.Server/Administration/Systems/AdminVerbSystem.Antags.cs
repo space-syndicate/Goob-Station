@@ -217,7 +217,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "InitialInfected"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, VampireRule);
+                _antag.ForceMakeAntag<VampireRoleComponent>(targetPlayer, VampireRule);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", vampiredName, Loc.GetString("admin-verb-make-vampire")),

@@ -354,6 +354,8 @@
     roleType: TeamAntagonist
     subtype: role-subtype-vampire
   - type: VampireRole
+  - type: RoleBriefing
+    briefing: vampire-role-description-human
 
 - type: entity
   parent: BaseMindRoleAntag
@@ -366,6 +368,8 @@
     roleType: TeamAntagonist
     subtype: role-subtype-ghoul
   - type: GhoulRole
+  - type: RoleBriefing
+    briefing: vampire-verb-envelope-ghoul-greeting
 # imperial space: Added a new vampire antagonist. End
 
 # Changeling

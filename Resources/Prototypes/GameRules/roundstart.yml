@@ -435,7 +435,7 @@
     - VampireConvertedGhoulsObjective
     - VampireEscapeShuttleObjective
   - type: GameRule
-  - type: VampireRule
+  - type: VampireRole
   - type: AntagSelection
     agentName: vampire-round-end-agent-name
     definitions:

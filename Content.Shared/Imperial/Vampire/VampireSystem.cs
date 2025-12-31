@@ -1202,12 +1202,6 @@ public class VampireSystem : EntitySystem
 
     private void OnVampireStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
     {
-        if (_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
-        {
-            if (!_roleSystem.MindHasRole<VampireRoleComponent>(mindId))
-                _roleSystem.MindAddRole(mindId, "MindRoleVampire", mind: mind);
-        }
-
         if (ent.Comp.GrimoreActionEntity == null)
         {
             EntityUid? actionEnt = null;
@@ -1235,18 +1229,7 @@ public class VampireSystem : EntitySystem
 
     private void OnMindAdded(Entity<VampireComponent> ent, ref MindAddedMessage args)
     {
-        if (!_roleSystem.MindHasRole<VampireRoleComponent>(args.Mind))
-            _roleSystem.MindAddRole(args.Mind, "MindRoleVampire", mind: args.Mind.Comp);
-
-        if (ent.Comp.GrimoreActionEntity == null)
-        {
-            EntityUid? actionEnt = null;
-            _actions.AddAction(ent.Owner, ref ent.Comp.GrimoreActionEntity, ent.Comp.GrimoreAction);
-            _actions.AddAction(ent.Owner, ref actionEnt, ent.Comp.SelectingSubgroupAction);
-            Dirty(ent.Owner, ent.Comp);
-        }
-        SetBloodAlert(ent.Owner, ent.Comp);
-        SetBloodCounterAlert(ent.Owner, ent.Comp);
+        _roleSystem.MindAddRole(args.Mind, "MindRoleVampire", mind: args.Mind.Comp);
     }
 
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)
