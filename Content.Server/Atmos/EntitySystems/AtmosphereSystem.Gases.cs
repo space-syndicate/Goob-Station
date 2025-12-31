@@ -446,7 +446,7 @@ namespace Content.Server.Atmos.EntitySystems
             var reaction = ReactionResult.NoReaction;
             var temperature = mixture.Temperature;
             var energy = GetThermalEnergy(mixture);
-
+            var initAntiNoblium = mixture.GetMoles(Gas.AntiNoblium); // Imperial Atmos Update
             foreach (var prototype in GasReactions)
             {
                 if (energy < prototype.MinimumEnergyRequirement ||
@@ -454,6 +454,8 @@ namespace Content.Server.Atmos.EntitySystems
                     temperature > prototype.MaximumTemperatureRequirement)
                     continue;
 
+                if (initAntiNoblium > Atmospherics.MinimumAntiNoblium && prototype.StoppedAntiNoblium) // Imperial Atmos Update
+                    continue; // Imperial Atmos Update
                 var doReaction = true;
                 for (var i = 0; i < Atmospherics.TotalNumberOfGases; i++)
                 {

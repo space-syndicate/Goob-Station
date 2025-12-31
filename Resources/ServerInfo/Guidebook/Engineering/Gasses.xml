@@ -149,4 +149,52 @@
   Опасен и для дыхания, и в конденсированном виде.
 
   <GuideReagentEmbed Reagent="Phazonium"/>
+
+  ## Дейтерий
+  <Box>
+    <GuideEntityEmbed Entity="DeuteriumCanister" Caption=""/>
+  </Box>
+  Токсичный и радиоактивный изотоп Водорода, используемый в качестве топлива для Фазового генератора частиц.
+
+  Получается смешиванием Водорода и Азота при температуре [color=yellow]выше 320 К[/color].
+
+  Опасен и для дыхания, и в конденсированном виде.
+
+  <GuideReagentEmbed Reagent="Deuterium"/>
+
+  ## Гипер-Ноблий
+  <Box>
+    <GuideEntityEmbed Entity="HyperNobliumCanister" Caption=""/>
+  </Box>
+  Токсичный газ, увеличивающий физические возможности живых существ.
+
+  Получается смешиванием Термониума и Дейтерия в [color=yellow]Фазовом генераторе частиц[/color].
+
+  Опасен и для дыхания, и в конденсированном виде.
+
+  <GuideReagentEmbed Reagent="HyperNoblium"/>
+
+  ## Анти-Ноблий
+  <Box>
+    <GuideEntityEmbed Entity="AntiNobliumCanister" Caption=""/>
+  </Box>
+  Токсичный газ, предотвращающий любые реакции в атмосфере.
+
+  Получается смешиванием Гипер-Ноблия и BZ в [color=yellow]Фазовом генераторе частиц[/color].
+
+  Опасен и для дыхания, и в конденсированном виде.
+
+  <GuideReagentEmbed Reagent="AntiNoblium"/>
+
+  ## BZ
+  <Box>
+    <GuideEntityEmbed Entity="BZCanister" Caption=""/>
+  </Box>
+  Токсичный газ, способный усыплять слаймолюдов.
+
+  Получается смешиванием Плазмы и Озона в [color=yellow]Фазовом генераторе частиц[/color].
+
+  Опасен и для дыхания, и в конденсированном виде.
+
+  <GuideReagentEmbed Reagent="BZ"/>
 </Document>
