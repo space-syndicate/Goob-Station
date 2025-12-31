@@ -5,10 +5,11 @@
   description: Создаёт вашу копию, отвлекающую экипаж, пока вы в невидимости покидаете место боя.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 20
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: clone
   - type: InstantAction
     event: !type:VampireCloneEvent
+      costBlood: 30

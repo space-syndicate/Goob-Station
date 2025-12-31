@@ -44,6 +44,9 @@ using Content.Shared.Actions;
 using Content.Shared.Prayer;
 using Content.Server.Bible.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Radio.Components;
+using Content.Shared.Radio;
+using Content.Shared.Mind.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -56,18 +59,16 @@ public sealed class VampireServerSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly VampireSystem _vampireSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly CloningSystem _cloning = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -81,7 +82,6 @@ public sealed class VampireServerSystem : EntitySystem
         SubscribeLocalEvent<GhoulComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteGhoul);
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
 
-        SubscribeLocalEvent<VampireMessageForGhouls>(MessageForGhouls);
         SubscribeLocalEvent<VampireBatTransformEvent>(OnTransformToBat);
         SubscribeLocalEvent<VampireCloneEvent>(OnClone);
         SubscribeLocalEvent<VampireSelectingSubgroupEvent>(OnSelectingSubgroup);
@@ -90,7 +90,7 @@ public sealed class VampireServerSystem : EntitySystem
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive)
+        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || uid == args.Target)
             return;
 
         // если у цели нет крови (например, стул), кнопки не добавляем
@@ -98,7 +98,7 @@ public sealed class VampireServerSystem : EntitySystem
             return;
 
         // верб для превращения цели в упыря
-        if (!HasComp<GhoulComponent>(args.Target))
+        if (!HasComp<GhoulComponent>(args.Target) || !HasComp<MindContainerComponent>(uid) || _mobState.IsAlive(uid))
         {
             var verb1 = new InnateVerb
             {
@@ -111,16 +111,45 @@ public sealed class VampireServerSystem : EntitySystem
             args.Verbs.Add(verb1);
         }
 
-        // верб для питья крови
-        var verb2 = new InnateVerb
+        if (!HasComp<MindContainerComponent>(uid) || _mobState.IsAlive(uid))
         {
-            Act = () => StartDrinking(args.User, args.Target),
-            Text = Loc.GetString("vampire-drinking-envelope-text"),
-            Message = Loc.GetString("vampire-drinking-envelope-message"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
-            Priority = 1
-        };
-        args.Verbs.Add(verb2);
+            // верб для питья крови
+            var verb2 = new InnateVerb
+            {
+                Act = () => StartDrinking(args.User, args.Target),
+                Text = Loc.GetString("vampire-drinking-envelope-text"),
+                Message = Loc.GetString("vampire-drinking-envelope-message"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
+                Priority = 1
+            };
+            args.Verbs.Add(verb2);
+        }
+    }
+
+    private void OnGetDrinkingGhoul(EntityUid uid, GhoulComponent comp, GetVerbsEvent<InnateVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || uid == args.Target)
+            return;
+
+        // если у цели нет крови (например, стул), кнопки не добавляем
+        if (!HasComp<BloodstreamComponent>(args.Target))
+            return;
+
+        if (!HasComp<MindContainerComponent>(uid) || _mobState.IsAlive(uid))
+        {
+            var verb = new InnateVerb
+            {
+                Act = () =>
+                {
+                    StartDrinking(args.User, args.Target);
+                },
+                Text = Loc.GetString("vampire-drinking-envelope-text"),
+                Message = Loc.GetString("vampire-drinking-envelope-message"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/convertGhoul.png")),
+                Priority = 0
+            };
+            args.Verbs.Add(verb);
+        }
     }
 
     private void OnCureGhoulStart(EntityUid uid, GhoulComponent comp, InteractUsingEvent args)
@@ -134,10 +163,10 @@ public sealed class VampireServerSystem : EntitySystem
         if (prayable.BibleUserOnly && !TryComp<BibleUserComponent>(args.User, out _))
             return;
 
-        _popup.PopupClient(Loc.GetString("Вы начинаете обряд излечения упыря..."),
+        _popup.PopupClient(Loc.GetString("vampire-popup-ghoul-rite"),
             args.User, args.User, PopupType.Medium);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(15f),
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, comp.GhoulCure,
             new VampireCureGhoulDoAfterEvent(), args.User, target: uid)
         {
             BreakOnMove = true,
@@ -151,10 +180,7 @@ public sealed class VampireServerSystem : EntitySystem
 
     private void OnCureGhoul(Entity<GhoulComponent> ent, ref VampireCureGhoulDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled)
-            return;
-
-        if (args.Target == null)
+        if (args.Cancelled || args.Handled || args.Target == null)
             return;
 
         RemComp<GhoulComponent>(args.Target.Value);
@@ -168,37 +194,13 @@ public sealed class VampireServerSystem : EntitySystem
             Dirty(ent.Comp.Vampire, vamp);
         }
 
-        _popup.PopupClient(Loc.GetString("Упырь излечен от проклятия!"),
+        _popup.PopupClient(Loc.GetString("vampire-popup-successfully-cure-priest"),
             args.User, args.User, PopupType.Medium);
 
-        _popup.PopupClient(Loc.GetString("Вы излечены от проклятия!"),
+        _popup.PopupClient(Loc.GetString("vampire-popup-successfully-cure-ghoul"),
             args.Target.Value, args.Target.Value, PopupType.Medium);
 
         args.Handled = true;
-    }
-
-    private void OnGetDrinkingGhoul(EntityUid uid, GhoulComponent comp, GetVerbsEvent<InnateVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract)
-            return;
-
-        // если у цели нет крови (например, стул), кнопки не добавляем
-        if (!HasComp<BloodstreamComponent>(args.Target))
-            return;
-
-        var verb = new InnateVerb
-        {
-            Act = () =>
-            {
-                StartDrinking(args.User, args.Target);
-            },
-            Text = Loc.GetString("vampire-drinking-envelope-text"),
-            Message = Loc.GetString("vampire-drinking-envelope-message"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/convertGhoul.png")),
-            Priority = 0
-        };
-
-        args.Verbs.Add(verb);
     }
 
     private void StartDrinking(EntityUid vampire, EntityUid target)
@@ -217,14 +219,17 @@ public sealed class VampireServerSystem : EntitySystem
 
     private void StartConversion(EntityUid vampire, EntityUid target)
     {
+        if (!TryComp<VampireComponent>(vampire, out var vamp))
+            return;
+
         _popup.PopupClient(Loc.GetString("vampire-verb-envelope-vampire-transform",
             ("target", MetaData(target).EntityName)),
-            vampire, vampire, PopupType.MediumCaution);
+            vampire, vampire, PopupType.Medium);
 
         _popup.PopupClient(Loc.GetString("vampire-verb-envelope-ghoul-transform"),
-            target, target, PopupType.LargeCaution);
+            target, target, PopupType.Medium);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, vampire, TimeSpan.FromSeconds(5f),
+        var doAfterArgs = new DoAfterArgs(EntityManager, vampire, vamp.ConversionGhoulTime,
             new VampireEnvelopeDoAfterEvent(), vampire, target: target)
         {
             BreakOnMove = true,
@@ -279,7 +284,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(target, out var blood) || blood.BloodSolution == null ||
             !TryComp<SolutionComponent>(blood.BloodSolution.Value.Owner, out var solutionComp))
         {
-            _popup.PopupClient(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.Medium);
             return;
         }
 
@@ -287,7 +292,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (solution.Volume.Float() < 20)
         {
-            _popup.PopupClient(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.Medium);
             return;
         }
 
@@ -326,48 +331,13 @@ public sealed class VampireServerSystem : EntitySystem
         dmg.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
         _damage.TryChangeDamage(target, dmg);
 
-
+        // после того, как вампир выпивает кровь его глаза становятся красными
         if (!TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
             return;
-
         appear.EyeColor = Color.Red;
 
         Dirty(drinker, appear);
         StartDrinking(drinker, target);
-    }
-
-    private void MessageForGhouls(VampireMessageForGhouls args)
-    {
-        if (!TryComp<ActorComponent>(args.Performer, out var actor))
-            return;
-
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
-            return;
-
-        if (vamp.Ghouls == null || !vamp.Ghouls.Any())
-        {
-            _popup.PopupClient(Loc.GetString("У вас нет упырей"), args.Performer, args.Performer, PopupType.Medium);
-            return;
-        }
-
-        _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString("Сообщение упырям"), Loc.GetString("Приказ"), (string message) =>
-        {
-            foreach (var ghoulUid in vamp.Ghouls)
-            {
-                if (!TryComp<ActorComponent>(ghoulUid, out var ghoulActor))
-                    continue;
-
-                _chatMan.ChatMessageToOne(
-                    ChatChannel.Server,
-                    $"[bold]Сообщение от вампира:\n{message}[/bold]",
-                    $"[bold]Сообщение от вампира:\n{message}[/bold]",
-                    args.Performer,
-                    false,
-                    ghoulActor.PlayerSession.Channel,
-                    Color.DarkRed);
-            }
-        });
-        args.Handled = true;
     }
 
     private void OnTransformToBat(VampireBatTransformEvent args)
@@ -377,22 +347,22 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
         if (vamp.BuffBlocked)
         {
-            _popup.PopupClient(Loc.GetString("Вы не можете стать летучей мышью под действием бафф способностей"),
-            args.Performer, args.Performer, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("vampire-popup-warning-turning-bat"),
+            args.Performer, args.Performer, PopupType.Medium);
 
             return;
         }
 
         if (vamp.DisguiseIsActive)
         {
-            _popup.PopupClient(Loc.GetString("Вы уже используете способность-маскировку"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-disguise-on"),
             args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -406,7 +376,7 @@ public sealed class VampireServerSystem : EntitySystem
         var config = new PolymorphConfiguration()
         {
             Entity = "MobVampireBat",
-            Duration = 10,
+            Duration = args.PolymorphBatTime,
             TransferName = true,
             TransferHumanoidAppearance = false,
             TransferDamage = true,
@@ -434,11 +404,12 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
+        // получаем местоположение вампира, чтобы рядом с ним заспавнить клона
         var mapCoords = Transform(args.Performer).MapPosition;
 
         if (_cloning.TryCloning(args.Performer, mapCoords, settings, out var cloneUid))
@@ -452,7 +423,7 @@ public sealed class VampireServerSystem : EntitySystem
         }
 
         _vampireSystem.VampireInvisible(args.Performer);
-        vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(5);
+        vamp.BuffBlockedUntil = _gameTiming.CurTime + args.InvisibilityCloneTime;
 
         _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
 
@@ -472,6 +443,21 @@ public sealed class VampireServerSystem : EntitySystem
 
         Dirty(vampire, masterThralls);
         Dirty(target, ghoulComp);
+
+        // добавляем рацию
+        var transmitter = new IntrinsicRadioTransmitterComponent
+        {
+            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
+        };
+        EntityManager.AddComponent(target, transmitter);
+
+        var activeRadio = new ActiveRadioComponent
+        {
+            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
+        };
+        EntityManager.AddComponent(target, activeRadio);
+
+        EntityManager.AddComponent<IntrinsicRadioReceiverComponent>(target);
 
         _popup.PopupClient(Loc.GetString("vampire-verb-envelope-vampire-complete",
             ("target", MetaData(target).EntityName)),
@@ -510,13 +496,13 @@ public sealed class VampireServerSystem : EntitySystem
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
 
-        // if (vamp.GhoulQuantity < 25)
-        // {
-        //     _popup.PopupClient(Loc.GetString($"Вам необходимо обратить еще {25 - vamp.GhoulQuantity} упырей"),
-        //     args.Performer, args.Performer, PopupType.Medium);
+        if (vamp.GhoulQuantity < args.NecessaryGhoulQuantity)
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-ghoul-quantity", ("quantity", args.NecessaryGhoulQuantity - vamp.GhoulQuantity)),
+            args.Performer, args.Performer, PopupType.Medium);
 
-        //     return;
-        // }
+            return;
+        }
 
         switch (vamp.SelectedSubgroup)
         {
@@ -529,14 +515,14 @@ public sealed class VampireServerSystem : EntitySystem
 
             case 2:
                 // см BaseAbilities, VampireAbilityLists.Umbrae. Удаляется: "Переключить режим невидимости"
-                _actions.RemoveAction(args.Performer, vamp.GrantedActions[6]);
+                _actions.RemoveAction(args.Performer, vamp.GrantedActions[5]);
 
                 _actions.AddAction(args.Performer, VampireAbilityLists.Plus[1]);
                 break;
 
             case 3:
                 // см BaseAbilities, VampireAbilityLists.Gargantua. Удаляется "Гнев Носферату"
-                _actions.RemoveAction(args.Performer, vamp.GrantedActions[9]);
+                _actions.RemoveAction(args.Performer, vamp.GrantedActions[8]);
 
                 _actions.AddAction(args.Performer, VampireAbilityLists.Plus[2]);
                 break;
@@ -564,9 +550,6 @@ public sealed class VampireServerSystem : EntitySystem
         var queryClone = EntityQueryEnumerator<VampireComponent>();
         while (queryClone.MoveNext(out var uid, out var vamp))
         {
-            if (!vamp.InvisibleCloneIsActive)
-                continue;
-
             if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.InvisibleIsActive)
             {
                 _vampireSystem.VampireInvisible(uid);

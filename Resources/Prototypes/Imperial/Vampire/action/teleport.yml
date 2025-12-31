@@ -5,11 +5,11 @@
   description: Телепортирует на короткую дистанцию, оставляя облако дыма на месте отправления.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 15
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: teleport
   - type: InstantAction
     event: !type:VampireTeleportEvent
-      costBlood: 15
+      costBlood: 20

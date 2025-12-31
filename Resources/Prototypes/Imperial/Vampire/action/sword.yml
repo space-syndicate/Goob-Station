@@ -2,7 +2,7 @@
   parent: BaseAction
   id: VampireSwordAction
   name: Кровавая катана
-  description: Призывает катану из крови с уроном 15 единиц и ускорением атаки на 25%. Ломается через 1 минуту.
+  description: Призывает катану из крови с уроном 15 единиц и ускорением атаки на 25%. Ломается через 30 секунд.
   components:
   - type: Action
     itemIconStyle: BigAction

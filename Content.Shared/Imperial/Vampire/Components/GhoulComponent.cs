@@ -44,6 +44,18 @@ public sealed partial class GhoulComponent : Component
     [DataField]
     public TimeSpan ShakingTime = TimeSpan.FromSeconds(5);
 
+    /// <summary>
+    /// количество выпитой крови за 1 тик
+    /// </summary>
+    [DataField("bloodPerTick")]
+    public float BloodPerTick = 1;
+
+    /// <summary>
+    /// сколько занимает излечение упыря
+    /// </summary>
+    [DataField("ghoulCure")]
+    public TimeSpan GhoulCure = TimeSpan.FromSeconds(15);
+
     [AutoNetworkedField]
     public float BloodDamage = 0f;
 
@@ -52,10 +64,4 @@ public sealed partial class GhoulComponent : Component
 
     [DataField]
     public ProtoId<FactionIconPrototype> StatusIcon = "GhoulFaction";
-
-    /// <summary>
-    /// количество выпитой крови за 1 тик
-    /// </summary>
-    [DataField("bloodPerTick")]
-    public float BloodPerTick = 1;
 }

@@ -5,11 +5,11 @@
   description: Гипнотизирует жертву в пределах 1 тайла, погружая её в сон на 30 секунд.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 120
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: sleep
   - type: InstantAction
     event: !type:VampireSleepEvent
-      costBlood: 30
+      costBlood: 20

@@ -5,11 +5,11 @@
   description: Мгновенно снимает оглушение, восстанавливает выносливость и запускает быструю регенерацию на 15 HP за 1.5 секунды.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 20
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: recovery
   - type: InstantAction
     event: !type:VampireRecoveryEvent
-      costBlood: 20
+      costBlood: 0

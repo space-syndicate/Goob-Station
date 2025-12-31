@@ -83,28 +83,10 @@ namespace Content.Shared.Imperial.Vampire
         public TimeSpan BuffBlockedUntil;
 
         /// <summary>
-        /// интервал между тиками потери крови
-        /// </summary>
-        [DataField]
-        public TimeSpan BloodDecayInterval = TimeSpan.FromSeconds(30);
-
-        /// <summary>
-        /// длительность эффекта дрожания после того, как крови становится меньше нуля
-        /// </summary>
-        [DataField]
-        public TimeSpan ShakingTime = TimeSpan.FromSeconds(5);
-
-        /// <summary>
         /// определяет, телепортируется ли сам игрок
         /// </summary>
         [AutoNetworkedField]
         public bool TargetUser = false;
-
-        /// <summary>
-        /// радиус телепортации вампира
-        /// </summary>
-        [DataField]
-        public float TeleportRadius = 105f;
 
         /// <summary>
         /// радиус визуального эффекта дыма при телепортации
@@ -123,6 +105,42 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public ProtoId<AlertPrototype> BloodAlert = "VampireBloodAlert";
 
+        /// <summary>
+        /// на сколько секунд выдается меч
+        /// </summary>
+        [DataField]
+        public TimeSpan ClawDuration = TimeSpan.FromSeconds(30);
+
+        /// <summary>
+        /// количество выпитой крови за 1 тик
+        /// </summary>
+        [DataField("bloodPerTick")]
+        public float BloodPerTick = 1;
+
+        /// <summary>
+        /// сколько урона нанесет сверк предмету
+        /// </summary>
+        [DataField("reconciliationDamageItem")]
+        public float ReconciliationDamageItem = 40f;
+
+        /// <summary>
+        /// на сколько секунд сверк отправит человека в Knockdown
+        /// </summary>
+        [DataField("reconciliationKnockdownHuman")]
+        public TimeSpan ReconciliationKnockdownHuman = TimeSpan.FromSeconds(3);
+
+        /// <summary>
+        /// кд между призывами катаны
+        /// </summary>
+        [DataField("cooldownSword")]
+        public TimeSpan CooldownSword = TimeSpan.FromSeconds(30);
+
+        /// <summary>
+        /// сколько длится doAfter перед обращением игрока в упыря
+        /// </summary>
+        [DataField("conversionGhoulTime")]
+        public TimeSpan ConversionGhoulTime = TimeSpan.FromSeconds(5);
+
         [DataField]
         public ProtoId<AlertPrototype> BloodCounterAlert = "VampireCounterAlert";
 
@@ -138,15 +156,6 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public float BloodDamage;
-
-        [AutoNetworkedField]
-        public HashSet<EntityUid> Ghouls = new();
-
-        [AutoNetworkedField]
-        public float GhoulQuantity = 0;
-
-        [AutoNetworkedField]
-        public bool InvisibleIsActive = false;
 
         /// <summary>
         /// сколько очков крови теряется в секунду при активной способности
@@ -184,9 +193,6 @@ namespace Content.Shared.Imperial.Vampire
         [AutoNetworkedField]
         public TimeSpan ClawDurationActive;
 
-        [DataField]
-        public TimeSpan ClawDuration = TimeSpan.FromSeconds(4);
-
         /// <summary>
         /// сколько всего крови выпил вампир
         /// </summary>
@@ -212,15 +218,11 @@ namespace Content.Shared.Imperial.Vampire
         public float Radius = 2f;
 
         /// <summary>
-        /// количество выпитой крови за 1 тик
+        /// базовые способности, которые выдаются при получении роли
         /// </summary>
-        [DataField("bloodPerTick")]
-        public float BloodPerTick = 100;
-
         public static readonly List<EntProtoId> BaseAbilities = new()
         {
             "VampireSwordAction",
-            "VampireMessageForGhoulsAction",
             "VampireBloodTheftAction",
             "VampireRecoveryAction",
             "VampireSleepAction"
@@ -228,5 +230,14 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public EntityUid SleepUid;
+
+        [AutoNetworkedField]
+        public HashSet<EntityUid> Ghouls = new();
+
+        [AutoNetworkedField]
+        public float GhoulQuantity = 0;
+
+        [AutoNetworkedField]
+        public bool InvisibleIsActive = false;
     }
 }

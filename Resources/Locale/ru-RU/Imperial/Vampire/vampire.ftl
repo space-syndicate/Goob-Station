@@ -8,7 +8,7 @@ vampire-selecting-window-subgroupHemomancer-text =
 
     Кровавое перевоплощение: Разблокируется на 300 крови. На 4 секунды превращает вас в кровь, позволяя проходить сквозь препятствия.
 
-    Гнев Носферату: Разблокируется на 400 крови. На 25 секунд: +40% урона, +15% скорости атаки, +20% скорости передвижения.
+    Гнев Носферату: Разблокируется на 400 крови. На 25 секунд: в 2 раза больше урона, +50% скорости атаки, +50% скорости передвижения.
 
 vampire-selecting-window-subgroupUmbrae-text =
     Переключить режим невидимости: Разблокируется на 100 крови. Делает вампира невидимым за счёт 2 ед. крови в секунду. Любая атака/урон прерывает эффект.
@@ -20,16 +20,48 @@ vampire-selecting-window-subgroupUmbrae-text =
     Свобода: Разблокируется на 400 крови. Разрывает наручники и увеличивает скорость в 1.5 раза на 10 секунд.
 
 vampire-selecting-window-subgroupGargantua-text =
-    Прилив крови: Разблокируется на 100 крови. Увеличивает скорость передвижения в 2.5 раза на 10 секунд.
+    Прилив крови: Разблокируется на 100 крови. Увеличивает скорость передвижения в 3 раза на 10 секунд.
 
     Вампирский скачок: Разблокируется на 200 крови. Телепортирует на короткую дистанцию, оставляя облако дыма на месте отправления.
 
     Свобода: Разблокируется на 300 крови. Разрывает наручники и увеличивает скорость в 1.5 раза на 10 секунд.
 
-    Гнев Носферату: Разблокируется на 400 крови. На 25 секунд: +40% урона, +15% скорости атаки, +20% скорости передвижения.
+    Гнев Носферату: Разблокируется на 400 крови. На 25 секунд: в 2 раза больше урона, +50% скорости атаки, +50% скорости передвижения.
 
 vampire-selecting-window-subgroupHemomancer-turn = [bold]Обращение[/bold]: Разблокируется на 500 крови. Коготь становится вечным и не имеет ограничения по времени.
 
 vampire-selecting-window-subgroupUmbrae-turn = [bold]Обращение[/bold]: Разблокируется на 500 крови. Способность "Переключить режим невидимости" больше не расходует кровь при активации и поддержании.
 
 vampire-selecting-window-subgroupGargantua-turn = [bold]Обращение[/bold]: Разблокируется на 500 крови. Гнев Носферату активируется без затрат крови. Кулдаун между использованиями: 10 секунд.
+
+
+vampire-popup-not-enough-blood = Вам не хватает крови!
+vampire-popup-not-hands-free = У вас нет свободных рук!
+vampire-popup-warning-ability-buff = Вы не можете одновременно активировать несколько бафф способностей!
+vampire-popup-no-one-ahead = Впереди никого нет!
+vampire-popup-has-eye-protection = Вы не можете усыпить человека с солнцезащитными очками/сварочной маской!
+vampire-popup-asleep = Уже спит!
+vampire-popup-no-handcuffs = На вас не надеты наручники!
+vampire-popup-no-one-around = Рядом никого нет!
+vampire-popup-no-ghouls = У вас нет упырей!
+vampire-popup-ghouls-no-have-blood = У ваших упырей недостаточно крови!
+vampire-popup-stole-blood = Вы украли { $recover } единиц крови у своих упырей!
+vampire-popup-far-away = Слишком далеко!
+vampire-popup-warning-turning-blood = Вы не можете стать лужью крови под действием бафф способностей!
+vampire-popup-warning-turning-bat = Вы не можете стать летучей мышью под действием бафф способностей!
+vampire-popup-disguise-on = Вы уже используете способность-маскировку!
+vampire-popup-ghoul-rite = Вы начинаете обряд излечения упыря...
+vampire-popup-successfully-cure-ghoul = Вы излечены от проклятия!
+vampire-popup-successfully-cure-priest = Упырь излечен от проклятия!
+vampire-popup-ghoul-quantity = Вам необходимо обратить еще { $quantity } упырей
+
+vampire-drinking-envelope-text = Питье крови
+vampire-drinking-envelope-message = Пополняет ваши запасы крови
+vampire-drinking-no-blood = У сущности отсутствует кровь
+vampire-drinking-full-blood = Вы и так сыты!
+
+vampire-verb-envelope-ghoul-text = Обратить в упыря
+vampire-verb-envelope-ghoul-message = Обращает сущность в упыря
+vampire-verb-envelope-vampire-transform = Начинаем обращать {$target}...
+vampire-verb-envelope-ghoul-transform = Вы ощущаете влияние вампирской крови...
+vampire-verb-envelope-vampire-complete = {$target} был успешно обращен.

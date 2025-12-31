@@ -5,11 +5,11 @@
   description: Ослепляющая вспышка в радиусе 3 тайлов, оглушающая всех жертв и полностью истощающая их выносливость.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 30
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: reconciliation
   - type: InstantAction
     event: !type:VampireReconciliationEvent
-      costBlood: 35
+      costBlood: 0

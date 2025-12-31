@@ -2,17 +2,17 @@
   parent: BaseAction
   id: VampireNosferatyAction
   name: Гнев Носферату
-  description: На 25 секунд +40% урона, +15% скорости атаки, +20% скорости передвижения.
+  description: На 25 секунд в 2 раза больше урона, +50% скорости атаки, +50% скорости передвижения.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 40
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: nosferaty
   - type: InstantAction
     event: !type:VampireNosferatyEvent
-      costBlood: 35
+      costBlood: 15
 
 - type: entity
   parent: BaseAction
@@ -21,7 +21,7 @@
   description: На 25 секунд +40% урона, +15% скорости атаки, +20% скорости передвижения.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 10
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

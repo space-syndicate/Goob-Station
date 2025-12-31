@@ -5,7 +5,7 @@
   description: Устанавливает ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Исчезает через 10 секунд под светом.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 10
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
@@ -15,7 +15,7 @@
     range: 0
   - type: WorldTargetAction
     event: !type:VampireShadowTrapEvent
-      costBlood: 20
+      costBlood: 15
 
 - type: entity
   parent: BaseLandMine

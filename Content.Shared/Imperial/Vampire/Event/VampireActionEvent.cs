@@ -23,6 +23,12 @@ namespace Content.Shared.Imperial.Vampire
 
         [DataField]
         public ProtoId<CloningSettingsPrototype> Settings = "BaseClone";
+
+        /// <summary>
+        /// на сколько секунд вампир получит невидимость, пока клон отвлекает экипаж
+        /// </summary>
+        [DataField("invisibilityCloneTime")]
+        public TimeSpan InvisibilityCloneTime = TimeSpan.FromSeconds(5);
     }
 
     public sealed partial class VampireRushBloodEvent : InstantActionEvent
@@ -32,6 +38,12 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField]
         public float BoostSpeed = 2;
+
+        /// <summary>
+        /// сколько будет действовать RushBlood
+        /// </summary>
+        [DataField("rushBloodTime")]
+        public TimeSpan RushBloodTime = TimeSpan.FromSeconds(10);
 
         [DataField("costBlood")]
         public float CostBlood = 30;
@@ -55,9 +67,6 @@ namespace Content.Shared.Imperial.Vampire
     public sealed partial class VampireGrimoireEvent : InstantActionEvent
     { }
 
-    public sealed partial class VampireMessageForGhouls : InstantActionEvent
-    { }
-
     public sealed partial class VampireSelectingSubgroupEvent : InstantActionEvent
     { }
 
@@ -65,18 +74,30 @@ namespace Content.Shared.Imperial.Vampire
     {
         [DataField("costBlood")]
         public float CostBlood = 10;
+
+        /// <summary>
+        /// на сколько секунд вампир станет летучей мышью
+        /// </summary>
+        [DataField("polymorphBatTime")]
+        public int PolymorphBatTime = 10;
     }
 
     public sealed partial class VampireBloodTheftEvent : InstantActionEvent
     {
-        [DataField("costBlood")]
-        public float CostBlood = 10;
+        [DataField("damageGhoul")]
+        public float DamageGhoul = 10f;
     }
 
     public sealed partial class VampireBloodTransformEvent : InstantActionEvent
     {
         [DataField("costBlood")]
         public float CostBlood = 10;
+
+        /// <summary>
+        /// на сколько секунд вампир станет кровью
+        /// </summary>
+        [DataField("bloodTime")]
+        public TimeSpan BloodTime = TimeSpan.FromSeconds(4);
     }
 
     public sealed partial class VampireInvisibleEvent : InstantActionEvent
@@ -98,6 +119,12 @@ namespace Content.Shared.Imperial.Vampire
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        /// <summary>
+        /// длительность doAfter перед сверком
+        /// </summary>
+        [DataField("doAfterBeforeReconciliation")]
+        public TimeSpan DoAfterBeforeReconciliation = TimeSpan.FromSeconds(1);
     }
 
     public sealed partial class VampireRecoveryEvent : InstantActionEvent
@@ -110,23 +137,47 @@ namespace Content.Shared.Imperial.Vampire
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        /// <summary>
+        /// длительность doAfter перед установкой капкана
+        /// </summary>
+        [DataField("doAfterBeforeShadowTrap")]
+        public TimeSpan DoAfterBeforeShadowTrap = TimeSpan.FromSeconds(5);
     }
 
     public sealed partial class VampireSleepEvent : InstantActionEvent
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        /// <summary>
+        /// длительность doAfter перед усыплением
+        /// </summary>
+        [DataField("doAfterBeforeEuthanasia")]
+        public TimeSpan DoAfterBeforeEuthanasia = TimeSpan.FromSeconds(5);
     }
 
     public sealed partial class VampireTeleportEvent : InstantActionEvent
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        /// <summary>
+        /// радиус телепортации вампира
+        /// </summary>
+        [DataField]
+        public float TeleportRadius = 105f;
     }
 
     public sealed partial class VampireTurnEvent : InstantActionEvent
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        /// <summary>
+        /// необходимо иметь упырей для обращения
+        /// </summary>
+        [DataField("necessaryGhoulQuantity")]
+        public int NecessaryGhoulQuantity = 25;
     }
 }

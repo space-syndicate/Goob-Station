@@ -15,12 +15,12 @@
       state: tentacles_on
     sound:
       path: "/Audio/Weapons/slash.ogg"
-    useDelay: 1
+    useDelay: 10
   - type: TargetAction
     range: 10
   - type: WorldTargetAction
     event: !type:VampireTentaclesEvent
-      costBlood: 25
+      costBlood: 10
 
 - type: entity
   id: VampireTentacle

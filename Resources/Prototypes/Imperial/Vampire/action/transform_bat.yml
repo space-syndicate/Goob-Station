@@ -5,20 +5,20 @@
   description: Призывает рой атакующих летучих мышей и превращает вампира в летучую мышь на 10 секунд.
   components:
   - type: Action
-    useDelay: 1
+    useDelay: 30
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: transform_bat
   - type: InstantAction
     event: !type:VampireBatTransformEvent
-      costBlood: 40
+      costBlood: 45
 
 - type: entity
-  name: bat
+  name: Летучая мышь
   parent: [ SimpleMobBase, FlyingMobBase, MobCombat ]
   id: MobVampireBat
-  description: Some cultures find them terrifying, others crunchy on the teeth.
+  description: В некоторых культурах они вызывают ужас, в других - хрустят на зубах.
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 3

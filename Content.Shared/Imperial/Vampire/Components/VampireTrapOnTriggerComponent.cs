@@ -18,5 +18,10 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField]
         public string FixtureId = "fix";
+
+        /// <summary>
+        /// на сколько секунд жертва ослепнет при соприкосновении
+        /// </summary>
+        public TimeSpan BlindingTime = TimeSpan.FromSeconds(10);
     }
 }

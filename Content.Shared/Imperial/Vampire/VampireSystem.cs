@@ -54,7 +54,9 @@ using Robust.Shared.Physics.Systems;
 using Content.Shared.ActionBlocker;
 using System.Runtime.CompilerServices;
 using Content.Shared.Mobs.Components;
-
+using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -73,8 +75,6 @@ public class VampireSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speedSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -87,7 +87,6 @@ public class VampireSystem : EntitySystem
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
 
@@ -133,7 +132,7 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -234,7 +233,7 @@ public class VampireSystem : EntitySystem
                 {
                     // если не удалось подобрать, удаляем
                     QueueDel(item);
-                    _popup.PopupEntity(Loc.GetString("У вас нет свободных рук!"),
+                    _popup.PopupClient(Loc.GetString("vampire-popup-not-hands-free"),
                         uid, uid, PopupType.Medium);
                 }
             }
@@ -262,7 +261,7 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -272,7 +271,7 @@ public class VampireSystem : EntitySystem
             return;
 
         var fromCoords = xform.Coordinates;
-        var toCoords = VampireRandomTileInRange(xform, vamp.TeleportRadius);
+        var toCoords = VampireRandomTileInRange(xform, args.TeleportRadius);
         if (toCoords == null)
             return;
 
@@ -334,27 +333,22 @@ public class VampireSystem : EntitySystem
 
         if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        if (!TryComp<MeleeWeaponComponent>(args.Performer, out var melee))
-            return;
-
-        if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
+        if (!TryComp<MeleeWeaponComponent>(args.Performer, out var melee)
+        || !TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
             return;
 
         if (comp.BuffBlocked)
         {
-            _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
-            args.Performer, args.Performer, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("vampire-popup-warning-ability-buff"),
+            args.Performer, args.Performer, PopupType.Medium);
 
             return;
         }
-
-        if (_gameTiming.CurTime < comp.BuffBlockedUntil)
-            return;
 
         // сохраняем оригинальные значения скорости, урона и тд
         if (comp.OriginalDamageModifier == null)
@@ -382,7 +376,6 @@ public class VampireSystem : EntitySystem
                 { "Slash", FixedPoint2.New(boostedDamage) },
             }
         };
-        Dirty(args.Performer, melee);
 
         melee.AttackRate = comp.OriginalAttackRate.Value * comp.AttackRateBoost;
         Dirty(args.Performer, melee);
@@ -470,7 +463,7 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -496,16 +489,24 @@ public class VampireSystem : EntitySystem
 
         if (target == null)
         {
-            _popup.PopupClient(Loc.GetString("Впереди никого нет!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-no-one-ahead"),
+                vamp.Owner, vamp.Owner, PopupType.Medium);
+            return;
+        }
+
+        // вампир не может усыпить людей с маской/солнцезащитными очками
+        if (TryComp<EyeProtectionComponent>(target, out var flash))
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-has-eye-protection"),
                 vamp.Owner, vamp.Owner, PopupType.Medium);
             return;
         }
 
         // станим цель на время doAfterArgs
-        _stun.TryAddStunDuration(target.Value, TimeSpan.FromSeconds(5f));
+        _stun.TryAddStunDuration(target.Value, args.DoAfterBeforeEuthanasia);
         vamp.SleepUid = target.Value;
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, TimeSpan.FromSeconds(4f),
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.DoAfterBeforeEuthanasia,
             new VampireSleepDoAfterEvent(), args.Performer)
         {
             BreakOnMove = true,
@@ -534,7 +535,7 @@ public class VampireSystem : EntitySystem
 
         if (TryComp<SleepingComponent>(vamp.Comp.SleepUid, out var sleep))
         {
-            _popup.PopupClient(Loc.GetString("Уже спит!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-asleep"),
                 vamp.Owner, vamp.Owner, PopupType.Medium);
             vamp.Comp.SleepUid = EntityUid.Invalid;
             return;
@@ -564,24 +565,23 @@ public class VampireSystem : EntitySystem
 
         if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
         if (!TryComp<CuffableComponent>(args.Performer, out var cuffComp) || cuffComp.CuffedHandCount <= 0)
         {
-            _popup.PopupClient(Loc.GetString("На вас не надеты наручники!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-no-handcuffs"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        var handcuffs = cuffComp.Container.ContainedEntities.FirstOrDefault();
-        _cuff.Uncuff(args.Performer, args.Performer, handcuffs);
+        _cuff.Uncuff(args.Performer, args.Performer, cuffComp.Container.ContainedEntities.FirstOrDefault());
 
         if (comp.BuffBlocked)
         {
-            _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-warning-ability-buff"),
             args.Performer, args.Performer, PopupType.LargeCaution);
 
             return;
@@ -603,7 +603,7 @@ public class VampireSystem : EntitySystem
         comp.BuffBlocked = true;
         comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(6f);
 
-        DealBloodDamage(args.Performer, 90f);
+        DealBloodDamage(args.Performer, args.CostBlood);
         Dirty(args.Performer, comp);
         args.Handled = true;
     }
@@ -615,12 +615,12 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, TimeSpan.FromSeconds(1f),
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.DoAfterBeforeReconciliation,
             new VampireReconciliationDoAfterEvent(), args.Performer)
         {
             BreakOnMove = true,
@@ -647,7 +647,7 @@ public class VampireSystem : EntitySystem
 
         if (!entities.Any(x => x != vamp.Owner))
         {
-            _popup.PopupClient(Loc.GetString("Рядом никого нет!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-no-one-around"),
                 vamp.Owner, vamp.Owner, PopupType.Medium);
 
             return;
@@ -663,7 +663,7 @@ public class VampireSystem : EntitySystem
             if (IsObject)
             {
                 var dmg = new DamageSpecifier();
-                dmg.DamageDict["Blunt"] = FixedPoint2.New(40);
+                dmg.DamageDict["Blunt"] = FixedPoint2.New(vamp.Comp.ReconciliationDamageItem);
 
                 _damage.TryChangeDamage(entity, dmg);
             }
@@ -673,7 +673,7 @@ public class VampireSystem : EntitySystem
 
             if (TryComp<StaminaComponent>(entity, out var stamina))
             {
-                _stun.TryKnockdown(entity, TimeSpan.FromSeconds(3), force: true);
+                _stun.TryKnockdown(entity, vamp.Comp.ReconciliationKnockdownHuman, force: true);
                 stamina.StaminaDamage = 100f;
                 Dirty(entity, stamina);
             }
@@ -689,7 +689,7 @@ public class VampireSystem : EntitySystem
 
         if (vamp.Ghouls.Count == 0)
         {
-            _popup.PopupClient(Loc.GetString("У вас нет упырей!"), args.Performer, args.Performer, PopupType.Medium);
+            _popup.PopupClient(Loc.GetString("vampire-popup-no-ghouls"), args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
@@ -700,17 +700,17 @@ public class VampireSystem : EntitySystem
             if (!TryComp<GhoulComponent>(ghoulUid, out var ghoul))
                 continue;
 
-            if (ghoul.CritThreshold - ghoul.BloodDamage < args.CostBlood)
-            {
-                _popup.PopupClient(Loc.GetString("У ваших упырей недостаточно крови!"), args.Performer, args.Performer, PopupType.Medium);
+            if (ghoul.CritThreshold - ghoul.BloodDamage < args.DamageGhoul)
                 continue;
-            }
 
-            DealGhoulBloodDamage(ghoulUid, args.CostBlood, ghoul);
+            DealGhoulBloodDamage(ghoulUid, args.DamageGhoul, ghoul);
 
             // восстанавливаем кровь вампиру (по 2 за каждого упыря)
             recover += 2;
         }
+
+        if (recover <= 0)
+            _popup.PopupClient(Loc.GetString("vampire-popup-ghouls-no-have-blood"), args.Performer, args.Performer, PopupType.Medium);
 
         if (recover > 0)
         {
@@ -718,7 +718,7 @@ public class VampireSystem : EntitySystem
             SetBloodAlert(args.Performer, vamp);
             Dirty(args.Performer, vamp);
 
-            _popup.PopupClient(Loc.GetString($"Вы украли {recover} единиц крови у своих упырей!"), args.Performer,
+            _popup.PopupClient(Loc.GetString("vampire-popup-stole-blood", ("recover", recover)), args.Performer,
             args.Performer, PopupType.Medium);
         }
 
@@ -727,9 +727,6 @@ public class VampireSystem : EntitySystem
 
     private void StartOnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapEvent args)
     {
-        if (!_gameTiming.IsFirstTimePredicted)
-            return;
-
         if (args.Handled)
             return;
 
@@ -738,22 +735,23 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 user, user, PopupType.Medium);
             return;
         }
 
+        // получаем координаты места по которому кликнул игрок
         var userPos = Transform(user).Coordinates;
         var targetPos = args.Target;
 
         if (!userPos.TryDistance(EntityManager, targetPos, out var distance) || distance > vamp.Radius)
         {
-            _popup.PopupClient(Loc.GetString("Слишком далеко!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-far-away"),
                 user, user, PopupType.Medium);
             return;
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5f),
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, args.DoAfterBeforeShadowTrap,
             new VampireShadowTrapDoAfterEvent { TargetCoords = GetNetCoordinates(targetPos) },
             user)
         {
@@ -764,7 +762,6 @@ public class VampireSystem : EntitySystem
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
-        args.Handled = true;
     }
 
     private void OnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapDoAfterEvent args)
@@ -784,8 +781,9 @@ public class VampireSystem : EntitySystem
         if (args.OurFixtureId != ent.Comp.FixtureId)
             return;
 
+        // ослепляем жертву
         _statusEffects.TryAddStatusEffect(args.OtherEntity, TemporaryBlindnessSystem.BlindingStatusEffect,
-        TimeSpan.FromSeconds(10), false, TemporaryBlindnessSystem.BlindingStatusEffect);
+        ent.Comp.BlindingTime, false, TemporaryBlindnessSystem.BlindingStatusEffect);
 
         var dmg = new DamageSpecifier
         {
@@ -803,15 +801,15 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupEntity(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
         if (vamp.BuffBlocked)
         {
-            _popup.PopupEntity(Loc.GetString("Вы не можете стать лужью крови под действием бафф способностей"),
-            args.Performer, args.Performer, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("vampire-popup-warning-turning-blood"),
+            args.Performer, args.Performer, PopupType.Medium);
 
             return;
         }
@@ -826,7 +824,7 @@ public class VampireSystem : EntitySystem
         }
 
         VampireInvisible(args.Performer);
-        vamp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(4);
+        vamp.BuffBlockedUntil = _gameTiming.CurTime + args.BloodTime;
 
         vamp.VampireIsBlood = true;
 
@@ -842,7 +840,7 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -852,8 +850,6 @@ public class VampireSystem : EntitySystem
 
         args.Handled = true;
     }
-
-
 
     /// <summary>
     /// при попытке атаковать в инвизе - инвиз слетает
@@ -882,6 +878,113 @@ public class VampireSystem : EntitySystem
             VampireInvisible(uid);
         }
     }
+
+    /// <summary>
+    /// выдает вампиру невидимость
+    /// </summary>
+    public void VampireInvisible(EntityUid uid)
+    {
+        if (!TryComp<VampireComponent>(uid, out var vamp))
+            return;
+
+        if (!vamp.InvisibleIsActive)
+        {
+            if (vamp.DisguiseIsActive)
+            {
+                _popup.PopupClient(Loc.GetString("vampire-popup-disguise-on"),
+                uid, uid, PopupType.Medium);
+                return;
+            }
+
+            var stealth = EnsureComp<StealthComponent>(uid);
+            _stealth.SetVisibility(uid, -2f, stealth);
+            _stealth.SetEnabled(uid, true, stealth);
+
+            vamp.DisguiseIsActive = true;
+            vamp.InvisibleIsActive = true;
+
+            Dirty(uid, vamp);
+        }
+        else
+        {
+            var stealth = EnsureComp<StealthComponent>(uid);
+            _stealth.SetVisibility(uid, 1f, stealth);
+            _stealth.SetEnabled(uid, false, stealth);
+
+            vamp.InvisibleIsActive = false;
+            vamp.DisguiseIsActive = false;
+            Dirty(uid, vamp);
+        }
+    }
+
+    /// <summary>
+    /// спавн лужи крови
+    /// </summary>
+    private void SpawnBloodPuddle(EntityUid uid, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        var coords = Transform(uid).Coordinates;
+
+        if (_net.IsServer)
+        {
+            var puddle = Spawn("Puddle", coords);
+
+            if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
+            {
+                var bloodSolution = new Solution();
+                bloodSolution.AddReagent("Blood", 10f);
+
+                _solutionSystem.TryAddSolution(solution.Value, bloodSolution);
+            }
+        }
+    }
+
+    private void OnRushBlood(VampireRushBloodEvent args)
+    {
+        if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
+            return;
+
+        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        if (comp.BuffBlocked)
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-warning-ability-buff"),
+            args.Performer, args.Performer, PopupType.Medium);
+
+            return;
+        }
+
+        if (comp.OriginalWalkSpeed == null)
+        {
+            comp.OriginalWalkSpeed = speed.BaseWalkSpeed;
+            comp.OriginalSprintSpeed = speed.BaseSprintSpeed;
+        }
+
+        _speedSystem.ChangeBaseSpeed(
+            args.Performer,
+            (comp.OriginalWalkSpeed ?? speed.BaseWalkSpeed) * args.BoostSpeed,
+            (comp.OriginalSprintSpeed ?? speed.BaseSprintSpeed) * args.BoostSpeed,
+            speed.BaseAcceleration,
+            speed);
+
+        comp.BuffBlocked = true;
+        comp.BuffBlockedUntil = _gameTiming.CurTime + args.RushBloodTime;
+
+        DealBloodDamage(args.Performer, args.CostBlood);
+        Dirty(args.Performer, comp);
+        args.Handled = true;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -889,55 +992,49 @@ public class VampireSystem : EntitySystem
         var query = EntityQueryEnumerator<VampireComponent, MeleeWeaponComponent, MovementSpeedModifierComponent>();
         while (query.MoveNext(out var uid, out var comp, out var melee, out var speed))
         {
-            if (comp.BuffBlocked && _gameTiming.CurTime >= comp.BuffBlockedUntil)
+            if (comp.BuffBlocked && _gameTiming.CurTime >= comp.BuffBlockedUntil && !comp.InvisibleIsActive
+                && !comp.VampireIsBlood && comp.OriginalDamageModifier != null)
             {
-                if (!comp.InvisibleIsActive && !comp.VampireIsBlood)
+                melee.Damage = new DamageSpecifier
                 {
-                    if (comp.OriginalDamageModifier != null)
+                    DamageDict = new()
                     {
-                        melee.Damage = new DamageSpecifier
-                        {
-                            DamageDict = new()
-                            {
-                                { "Blunt", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
-                                { "Slash", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
-                            }
-                        };
-                        Dirty(uid, melee);
-                        comp.OriginalDamageModifier = null;
+                        { "Blunt", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
+                        { "Slash", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
                     }
+                };
+                Dirty(uid, melee);
+                comp.OriginalDamageModifier = null;
 
-                    if (comp.OriginalAttackRate != null)
-                    {
-                        melee.AttackRate = comp.OriginalAttackRate.Value;
-                        Dirty(uid, melee);
-                        comp.OriginalAttackRate = null;
-                    }
-
-                    if (comp.OriginalWalkSpeed != null && comp.OriginalSprintSpeed != null)
-                    {
-                        _speedSystem.ChangeBaseSpeed(
-                            uid,
-                            comp.OriginalWalkSpeed.Value,
-                            comp.OriginalSprintSpeed.Value,
-                            speed.BaseAcceleration,
-                            speed);
-
-                        comp.OriginalWalkSpeed = null;
-                        comp.OriginalSprintSpeed = null;
-                    }
-
-                    _popup.PopupClient(Loc.GetString("STOP"), uid, uid, PopupType.LargeCaution);
+                if (comp.OriginalAttackRate != null)
+                {
+                    melee.AttackRate = comp.OriginalAttackRate.Value;
+                    Dirty(uid, melee);
+                    comp.OriginalAttackRate = null;
                 }
 
-                comp.BuffBlocked = false;
-                Dirty(uid, comp);
+                if (comp.OriginalWalkSpeed != null && comp.OriginalSprintSpeed != null)
+                {
+                    _speedSystem.ChangeBaseSpeed(
+                        uid,
+                        comp.OriginalWalkSpeed.Value,
+                        comp.OriginalSprintSpeed.Value,
+                        speed.BaseAcceleration,
+                        speed);
+
+                    comp.OriginalWalkSpeed = null;
+                    comp.OriginalSprintSpeed = null;
+                }
             }
+
+            comp.BuffBlocked = false;
+            Dirty(uid, comp);
         }
 
         var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
         while (ghoulQuery.MoveNext(out var uid, out var сomp))
         {
+            // заставляем упырей пить кровь
             if (сomp.NextBloodDecay == TimeSpan.Zero)
             {
                 сomp.NextBloodDecay = _gameTiming.CurTime + сomp.BloodDecayInterval;
@@ -995,21 +1092,22 @@ public class VampireSystem : EntitySystem
             }
         }
 
-        var bloodVamp = EntityQueryEnumerator<VampireComponent, FixturesComponent, StealthComponent>();
-        while (bloodVamp.MoveNext(out var uid, out var vamp, out var fixtures, out var stealth))
+        var bloodVamp = EntityQueryEnumerator<VampireComponent, FixturesComponent>();
+        while (bloodVamp.MoveNext(out var uid, out var vamp, out var fixtures))
         {
             if (!vamp.VampireIsBlood)
                 continue;
 
             if (vamp.NextBloodshed == TimeSpan.Zero && vamp.VampireIsBlood)
             {
-                vamp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(1);
+                vamp.NextBloodshed = _gameTiming.CurTime + vamp.BloodDecayIntervalInvisible;
                 Dirty(uid, vamp);
             }
 
             if (_gameTiming.CurTime >= vamp.NextBloodshed && vamp.VampireIsBlood)
             {
                 SpawnBloodPuddle(uid);
+                // оставляем кровавый след за вампиром
                 vamp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(0.1f);
                 Dirty(uid, vamp);
             }
@@ -1040,51 +1138,12 @@ public class VampireSystem : EntitySystem
                 OnIssuingSword(uid);
 
                 // ссылаемся на VampireSwordAction. см BaseAbilities
-                _actions.SetCooldown(vamp.GrantedActions[0], TimeSpan.FromSeconds(30));
+                _actions.SetCooldown(vamp.GrantedActions[0], vamp.CooldownSword);
                 vamp.ClawDurationActive = TimeSpan.Zero;
                 Dirty(uid, vamp);
             }
         }
     }
-
-    /// <summary>
-    /// выдает вампиру невидимость
-    /// </summary>
-    public void VampireInvisible(EntityUid uid)
-    {
-        if (!TryComp<VampireComponent>(uid, out var vamp))
-            return;
-
-        if (!vamp.InvisibleIsActive)
-        {
-            if (vamp.DisguiseIsActive)
-            {
-                _popup.PopupEntity(Loc.GetString("Вы уже используете способность-маскировку"),
-                uid, uid, PopupType.Medium);
-                return;
-            }
-
-            var stealth = EnsureComp<StealthComponent>(uid);
-            _stealth.SetVisibility(uid, -2f, stealth);
-            _stealth.SetEnabled(uid, true, stealth);
-
-            vamp.DisguiseIsActive = true;
-            vamp.InvisibleIsActive = true;
-
-            Dirty(uid, vamp);
-        }
-        else
-        {
-            var stealth = EnsureComp<StealthComponent>(uid);
-            _stealth.SetVisibility(uid, 1f, stealth);
-            _stealth.SetEnabled(uid, false, stealth);
-
-            vamp.InvisibleIsActive = false;
-            vamp.DisguiseIsActive = false;
-            Dirty(uid, vamp);
-        }
-    }
-
     public void DealGhoulBloodDamage(EntityUid uid, float damage, GhoulComponent component)
     {
         component.BloodDamage = MathF.Min(component.BloodDamage + damage, component.CritThreshold);
@@ -1100,74 +1159,6 @@ public class VampireSystem : EntitySystem
             component.CritThreshold,
             7);
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
-    }
-
-    /// <summary>
-    /// спавн лужи крови
-    /// </summary>
-    private void SpawnBloodPuddle(EntityUid uid, VampireComponent? component = null)
-    {
-        if (!Resolve(uid, ref component, false))
-            return;
-
-        var coords = Transform(uid).Coordinates;
-
-        if (_net.IsServer)
-        {
-            var puddle = Spawn("Puddle", coords);
-
-            if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
-            {
-                var bloodSolution = new Solution();
-                bloodSolution.AddReagent("Blood", 10f);
-
-                _solutionSystem.TryAddSolution(solution.Value, bloodSolution);
-            }
-        }
-    }
-
-    private void OnRushBlood(VampireRushBloodEvent args)
-    {
-        if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
-            return;
-
-        if (!TryComp<VampireComponent>(args.Performer, out var comp))
-            return;
-
-        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
-        {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
-                args.Performer, args.Performer, PopupType.Medium);
-            return;
-        }
-
-        if (comp.BuffBlocked)
-        {
-            _popup.PopupClient(Loc.GetString("Вы не можете одновременно активировать несколько бафф способностей"),
-            args.Performer, args.Performer, PopupType.LargeCaution);
-
-            return;
-        }
-
-        if (comp.OriginalWalkSpeed == null)
-        {
-            comp.OriginalWalkSpeed = speed.BaseWalkSpeed;
-            comp.OriginalSprintSpeed = speed.BaseSprintSpeed;
-        }
-
-        _speedSystem.ChangeBaseSpeed(
-            args.Performer,
-            (comp.OriginalWalkSpeed ?? speed.BaseWalkSpeed) * args.BoostSpeed,
-            (comp.OriginalSprintSpeed ?? speed.BaseSprintSpeed) * args.BoostSpeed,
-            speed.BaseAcceleration,
-            speed);
-
-        comp.BuffBlocked = true;
-        comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(6f);
-
-        DealBloodDamage(args.Performer, args.CostBlood);
-        Dirty(args.Performer, comp);
-        args.Handled = true;
     }
 
     public void SetBloodAlert(EntityUid uid, VampireComponent? component = null)
@@ -1209,6 +1200,21 @@ public class VampireSystem : EntitySystem
             _actions.AddAction(ent.Owner, ref actionEnt, ent.Comp.SelectingSubgroupAction);
             Dirty(ent.Owner, ent.Comp);
         }
+
+        // добавляем рацию
+        var transmitter = new IntrinsicRadioTransmitterComponent
+        {
+            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
+        };
+        EntityManager.AddComponent(ent.Owner, transmitter);
+
+        var activeRadio = new ActiveRadioComponent
+        {
+            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
+        };
+        EntityManager.AddComponent(ent.Owner, activeRadio);
+
+        EntityManager.AddComponent<IntrinsicRadioReceiverComponent>(ent.Owner);
 
         // выдача базовых способностей
         if (ent.Comp.GrantedActions.Count == 0)

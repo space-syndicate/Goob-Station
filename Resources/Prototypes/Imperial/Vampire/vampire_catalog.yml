@@ -159,22 +159,6 @@
     stock: 1
 
 - type: listing
-  id: VampireMessageForGhoulsListing
-  name: Сообщение для упырей
-  description: Ну это сообщение для упырей
-  productAction: VampireMessageForGhoulsAction
-  icon:
-    sprite: Interface/Actions/scream.png
-    state: icon
-  cost:
-    VampireCoin: 8
-  categories:
-  - FuryFangs
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: VampireInvisibleListing
   name: Переключить режим невидимости
   description: Ну это переключить режим невидимости

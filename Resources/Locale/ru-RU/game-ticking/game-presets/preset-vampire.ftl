@@ -4,26 +4,17 @@ vampire-role-greeting-human =
 
 vampire-role-description-human =
     Вы — вампир.
-    Охотьтесь на экипаж станции, питайтесь их кровью и используйте тёмные силы для достижения своих целей.
+    Охотьтесь на экипаж станции, питайтесь их кровью и используйте темные силы для достижения своих целей.
+    Вы можете общаться со своими упырями и другими вампирами/упырями с помощью рации (:в)
 
 objective-issuer-vampire = Проклятие
 
 vampire-round-end-agent-name = Вампир
 
-vampire-verb-envelope-ghoul-text = Обратить в упыря
-vampire-verb-envelope-ghoul-message = Обращает сущность в упыря
-vampire-verb-envelope-vampire-transform = Начинаем обращать {$target}...
-vampire-verb-envelope-ghoul-transform = Вы ощущаете влияние вампирской крови...
-vampire-verb-envelope-vampire-complete = {$target} был успешно обращен.
-
 vampire-verb-envelope-ghoul-greeting =
     Вы упырь — порождение вампирской крови.
     Вы жаждете крови и обязаны служить своему хозяину.
-
-vampire-drinking-envelope-text = Питье крови
-vampire-drinking-envelope-message = Пополняет ваши запасы крови
-vampire-drinking-no-blood = У сущности отсутствует кровь
-vampire-drinking-full-blood = Вы и так сыты!
+    Вы можете общаться со своим хозяином и другими вампирами/упырями с помощью рации (:в)
 
 vampire-title = Вампиры
 vampire-description = Среди экипажа скрываются вампиры - существа, питающиеся человеческой кровью. Они обладают сверхъестественными способностями.
