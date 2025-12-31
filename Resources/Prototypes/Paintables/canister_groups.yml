@@ -18,4 +18,7 @@
     thermonium: ThermoniumCanister # Imperial Space Gases
     hydrogen: HydrogenCanister # Imperial Space Gases
     phazonium: PhazoniumCanister # Imperial Space Gases
-
+    deuterium: DeuteriumCanister # Imperial Space Gases
+    hyper-noblium: HyperNobliumCanister # Imperial Space Gases
+    anti-noblium: AntiNobliumCanister # Imperial Space Gases
+    bz: BZCanister # Imperial Space Gases
