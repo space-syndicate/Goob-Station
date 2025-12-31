@@ -41,6 +41,9 @@ using Content.Shared.Humanoid;
 using Content.Shared.Eui;
 using Content.Server.EUI;
 using Content.Shared.Actions;
+using Content.Shared.Prayer;
+using Content.Server.Bible.Components;
+using Content.Shared.Interaction;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -72,6 +75,8 @@ public sealed class VampireServerSystem : EntitySystem
 
         SubscribeLocalEvent<VampireComponent, GetVerbsEvent<InnateVerb>>(OnGetVerbsCombined);
         SubscribeLocalEvent<GhoulComponent, GetVerbsEvent<InnateVerb>>(OnGetDrinkingGhoul);
+        SubscribeLocalEvent<GhoulComponent, InteractUsingEvent>(OnCureGhoulStart);
+        SubscribeLocalEvent<GhoulComponent, VampireCureGhoulDoAfterEvent>(OnCureGhoul);
         SubscribeLocalEvent<VampireComponent, VampireEnvelopeDoAfterEvent>(OnEnvelopeCompleteVampire);
         SubscribeLocalEvent<GhoulComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteGhoul);
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
@@ -100,8 +105,8 @@ public sealed class VampireServerSystem : EntitySystem
                 Act = () => StartConversion(args.User, args.Target),
                 Text = Loc.GetString("vampire-verb-envelope-ghoul-text"),
                 Message = Loc.GetString("vampire-verb-envelope-ghoul-message"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Interface/Revolution/VerbIcons/revolution_convert.png")),
-                Priority = 1
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Mobs/Species/Human/organs.rsi/brain.png")),
+                Priority = 0
             };
             args.Verbs.Add(verb1);
         }
@@ -112,10 +117,64 @@ public sealed class VampireServerSystem : EntitySystem
             Act = () => StartDrinking(args.User, args.Target),
             Text = Loc.GetString("vampire-drinking-envelope-text"),
             Message = Loc.GetString("vampire-drinking-envelope-message"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Interface/Revolution/VerbIcons/revolution_convert.png")),
-            Priority = 0
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
+            Priority = 1
         };
         args.Verbs.Add(verb2);
+    }
+
+    private void OnCureGhoulStart(EntityUid uid, GhoulComponent comp, InteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<PrayableComponent>(args.Used, out var prayable))
+            return;
+
+        if (prayable.BibleUserOnly && !TryComp<BibleUserComponent>(args.User, out _))
+            return;
+
+        _popup.PopupEntity(Loc.GetString("Вы начинаете обряд излечения упыря..."),
+            args.User, args.User, PopupType.Medium);
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(15f),
+            new VampireCureGhoulDoAfterEvent(), args.User, target: uid)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            BlockDuplicate = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+
+    private void OnCureGhoul(Entity<GhoulComponent> ent, ref VampireCureGhoulDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        if (args.Target == null)
+            return;
+
+        RemComp<GhoulComponent>(args.Target.Value);
+
+        // обновляем данные у вампира
+        if (TryComp<VampireComponent>(ent.Comp.Vampire, out var vamp))
+        {
+            vamp.Ghouls.Remove(args.Target.Value);
+            vamp.GhoulQuantity--;
+
+            Dirty(ent.Comp.Vampire, vamp);
+        }
+
+        _popup.PopupEntity(Loc.GetString("Упырь излечен от проклятия!"),
+            args.User, args.User, PopupType.Medium);
+
+        _popup.PopupEntity(Loc.GetString("Вы излечены от проклятия!"),
+            args.Target.Value, args.Target.Value, PopupType.Medium);
+
+        args.Handled = true;
     }
 
     private void OnGetDrinkingGhoul(EntityUid uid, GhoulComponent comp, GetVerbsEvent<InnateVerb> args)
@@ -135,7 +194,7 @@ public sealed class VampireServerSystem : EntitySystem
             },
             Text = Loc.GetString("vampire-drinking-envelope-text"),
             Message = Loc.GetString("vampire-drinking-envelope-message"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Interface/Revolution/VerbIcons/revolution_convert.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/convertGhoul.png")),
             Priority = 0
         };
 
@@ -450,6 +509,14 @@ public sealed class VampireServerSystem : EntitySystem
     {
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
+
+        // if (vamp.GhoulQuantity < 25)
+        // {
+        //     _popup.PopupEntity(Loc.GetString($"Вам необходимо обратить еще {25 - vamp.GhoulQuantity} упырей"),
+        //     args.Performer, args.Performer, PopupType.Medium);
+
+        //     return;
+        // }
 
         switch (vamp.SelectedSubgroup)
         {

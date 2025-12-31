@@ -48,7 +48,7 @@ public sealed partial class GhoulComponent : Component
     public float BloodDamage = 0f;
 
     [AutoNetworkedField]
-    public EntityUid? Vampire = null;
+    public EntityUid Vampire;
 
     [DataField]
     public ProtoId<FactionIconPrototype> StatusIcon = "GhoulFaction";

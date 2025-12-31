@@ -3,23 +3,23 @@
   isShaded: true
   priority: 11
   showTo:
-  components:
-    - ShowAntagIcons
-    - Vampire
-    - Ghoul
+    components:
+      - ShowAntagIcons
+      - Vampire
+      - Ghoul
   icon:
-    sprite: /Textures/Imperial/PiratesNewHorizon/statusicons.rsi
-    state: pirate
+    sprite: /Textures/Imperial/Stellark/Vampire/statusicon.rsi
+    state: Vampire
 
 - type: factionIcon
   id: GhoulFaction
   isShaded: true
   priority: 11
   showTo:
-  components:
-    - ShowAntagIcons
-    - Vampire
-    - Ghoul
+    components:
+      - ShowAntagIcons
+      - Vampire
+      - Ghoul
   icon:
-    sprite: /Textures/Imperial/PiratesNewHorizon/statusicons.rsi
-    state: piratecaptain
+    sprite: /Textures/Imperial/Stellark/Vampire/statusicon.rsi
+    state: Ghoul

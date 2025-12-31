@@ -1,0 +1,54 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseVampireObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-changeling
+    difficulty: 1
+  - type: RoleRequirement
+    roles:
+    - VampireRole
+
+- type: entity
+  parent: BaseVampireObjective
+  id: VampireDrinkBloodObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: Imperial/Stellark/Vampire/purposes.rsi
+      state: drink_blood
+  - type: NumberObjective
+    min: 350
+    max: 400
+    title: objective-condition-blood-title
+    description: objective-condition-blood-description
+  - type: VampireDrinkBloodPurposes
+
+- type: entity
+  parent: BaseVampireObjective
+  id: VampireConvertedGhoulsObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: /Textures/Mobs/Species/Human/organs.rsi
+      state: brain
+  - type: NumberObjective
+    min: 15
+    max: 20
+    title: objective-condition-converted-ghouls-title
+    description: objective-condition-converted-ghouls-description
+  - type: VampireConvertedGhoulsPurposes
+
+- type: entity
+  parent: [BaseVampireObjective, BaseLivingObjective]
+  id: VampireEscapeShuttleObjective
+  name: Улететь на станцию ЦентКома живым и свободным
+  components:
+  - type: Objective
+    difficulty: 1.3
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+

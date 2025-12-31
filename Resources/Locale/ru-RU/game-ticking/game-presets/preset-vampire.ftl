@@ -21,4 +21,7 @@ vampire-verb-envelope-ghoul-greeting =
 vampire-drinking-envelope-text = Питье крови
 vampire-drinking-envelope-message = Пополняет ваши запасы крови
 vampire-drinking-no-blood = У сущности отсутствует кровь
-vampire-drinking-full-blood = Вы и так сыты! 
+vampire-drinking-full-blood = Вы и так сыты!
+
+vampire-title = Вампиры
+vampire-description = ampire-description = Среди экипажа скрываются вампиры - существа, питающиеся человеческой кровью. Они обладают сверхъестественными способностями.

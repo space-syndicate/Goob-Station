@@ -1252,6 +1252,5 @@ public class VampireSystem : EntitySystem
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)
     {
         _roleSystem.MindRemoveRole<VampireRoleComponent>((args.Mind.Owner, args.Mind.Comp));
-        RemComp<VampireComponent>(ent);
     }
 }

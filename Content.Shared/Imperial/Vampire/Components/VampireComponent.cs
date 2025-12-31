@@ -144,7 +144,7 @@ namespace Content.Shared.Imperial.Vampire
         public HashSet<EntityUid> Ghouls = new();
 
         [AutoNetworkedField]
-        public int GhoulQuantity = 0;
+        public float GhoulQuantity = 0;
 
         [AutoNetworkedField]
         public bool InvisibleIsActive = false;
