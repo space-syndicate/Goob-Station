@@ -3,7 +3,8 @@ using Content.Shared.Imperial.PiratesNewHorizon.StatusIcons;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Imperial.Vampire;
-namespace Content.Client.Imperial.PiratesNewHorizon.StatusIcons;
+
+namespace Content.Client.Imperial.Vampire.StatusIcons;
 
 public sealed class VampireStatusIconsSystem : EntitySystem
 {
@@ -19,16 +20,17 @@ public sealed class VampireStatusIconsSystem : EntitySystem
 
     private void GetVampireIcon(Entity<VampireComponent> ent, ref GetStatusIconsEvent args)
     {
-        var iconPrototype = _prototype.Index(ent.Comp.StatusIcon);
+        if (!_prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
+            return;
+
         args.StatusIcons.Add(iconPrototype);
     }
 
     private void GetGhoulIcon(Entity<GhoulComponent> ent, ref GetStatusIconsEvent args)
     {
-        if (HasComp<PirateComponent>(ent))
+        if (!_prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
             return;
 
-        var iconPrototype = _prototype.Index(ent.Comp.StatusIcon);
         args.StatusIcons.Add(iconPrototype);
     }
 }

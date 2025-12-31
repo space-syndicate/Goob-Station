@@ -28,9 +28,6 @@ public sealed class VampireRequestedEui : BaseEui
         if (msg is not VampireRequestedEuiMessage request)
             return;
 
-        var vamp = _entityManager.EnsureComponent<VampireComponent>(_uid);
-        vamp.DirectionSelected = true;
-
         GrantAbilities(_uid, request.SelectionNumber);
         Close();
     }
@@ -38,6 +35,7 @@ public sealed class VampireRequestedEui : BaseEui
     public void GrantAbilities(EntityUid uid, int selection)
     {
         var vamp = _entityManager.EnsureComponent<VampireComponent>(uid);
+        vamp.DirectionSelected = true;
         vamp.SelectedSubgroup = selection;
         _vampireSystem.SetBloodCounterAlert(uid);
 

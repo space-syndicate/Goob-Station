@@ -214,7 +214,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = vampiredName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "InitialInfected"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/statusicon.rsi/Vampire.png")),
             Act = () =>
             {
                 _antag.ForceMakeAntag<VampireRoleComponent>(targetPlayer, VampireRule);

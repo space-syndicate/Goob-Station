@@ -50,6 +50,7 @@
         - id: Vampire
           weight: 10
           conditions:
+          - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 15

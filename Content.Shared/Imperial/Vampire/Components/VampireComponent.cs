@@ -115,7 +115,6 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// стартовое количество крови у вампира
         /// </summary>
-        [AutoNetworkedField]
         public float CritThreshold = 100f;
 
         /// <summary>
@@ -209,6 +208,7 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
 
+        [DataField]
         public float Radius = 2f;
 
         /// <summary>

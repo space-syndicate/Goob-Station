@@ -14,7 +14,7 @@ namespace Content.Shared.Imperial.Vampire
         public int Damage = 20;
 
         /// <summary>
-        /// приспособление, с которым объект должен столкнуться, чтобы быть оглушенным
+        /// идентификатор приспособления, с которым объект должен столкнуться для получения урона
         /// </summary>
         [DataField]
         public string FixtureId = "fix";
