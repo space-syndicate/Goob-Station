@@ -34,9 +34,6 @@
             Airloss: -2
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentCondition
-          reagent: Thermonium
-          min: 0.5
         effectProto: StatusEffectForcedSleeping
-        time: 5
-        type: Add
+        time: 3
+        type: Set
