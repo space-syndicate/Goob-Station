@@ -33,7 +33,6 @@
             Toxin: -4
             Airloss: -2
       - !type:ModifyStatusEffect
-        conditions:
         effectProto: StatusEffectForcedSleeping
         time: 3
         type: Set
