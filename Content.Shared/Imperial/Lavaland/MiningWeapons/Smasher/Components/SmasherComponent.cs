@@ -3,6 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
 using Robust.Shared.Input;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher.Components;
 
@@ -82,4 +83,13 @@ public sealed partial class SmasherComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public SpriteSpecifier.Rsi EffectDecay = new(new ResPath("/Textures/Imperial/Lavaland/MiningWeapons/smasher_shield.rsi"), "decay");
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public SoundSpecifier? StartChargingSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public SoundSpecifier? DeactivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public SoundSpecifier? ActivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
 }

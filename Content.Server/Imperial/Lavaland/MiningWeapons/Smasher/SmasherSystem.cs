@@ -125,25 +125,26 @@ public sealed class SmasherSystem : SharedSmasherSystem
         blocking.HasBlockSound = true;
     }
 
-    private void OnShieldShutdown(EntityUid uid, ShieldActiveComponent component, ComponentShutdown args)
+    private void OnShieldShutdown(EntityUid user, ShieldActiveComponent component, ComponentShutdown args)
     {
-        if (HasComp<ImperialShieldComponent>(uid))
-            RemComp<ImperialShieldComponent>(uid);
+        if (HasComp<ImperialShieldComponent>(user))
+            RemComp<ImperialShieldComponent>(user);
         Log.Debug("ShieldActiveComponent OnShieldShutdown");
 
         if (component.EffectDecay != null && component.TimeDecay != null)
         {
-            ShowShieldEffect(uid, component.EffectDecay, false);
+            ShowShieldEffect(user, component.EffectDecay, false);
             _isDecayEffectActive = true;
             _decayEndTime = _timing.CurTime + component.TimeDecay.Value;
-            _usersWithDecay.Add(uid);
+            _usersWithDecay.Add(user);
         }
         else
         {
-            HideShieldEffect(uid);
+            HideShieldEffect(user);
         }
 
-        _audio.PlayPvs(component.DeactivateSound, uid);
+        if (TryGetSmasherInHands(user, out var _, out var smasher))
+            _audio.PlayPvs(smasher.DeactivateSound, user);
     }
 
     private void OnRefreshMovespeed(EntityUid uid, SmasherChargingComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -168,6 +169,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
             EnsureComp<SmasherChargingComponent>(user);
             _movementSpeed.RefreshMovementSpeedModifiers(user);
 
+            _audio.PlayPvs(smasher.StartChargingSound, user);
             Log.Info("Начата зарядка щита");
         }
 
@@ -251,11 +253,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
     private void ShieldActivated(EntityUid user, SmasherComponent smasher)
     {
         HideShieldEffect(user);
-
-        if (TryComp<ShieldActiveComponent>(user, out var shieldActive))
-            _audio.PlayPvs(shieldActive.ActivateSound, user);
-
         ShowShieldEffect(user, smasher.EffectActived, true);
+
+        _audio.PlayPvs(smasher.ActivateSound, user);
     }
 
     private void DeactivateShield(EntityUid user, ShieldActiveComponent shield)

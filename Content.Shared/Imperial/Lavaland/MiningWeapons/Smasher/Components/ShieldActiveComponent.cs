@@ -19,14 +19,6 @@ public sealed partial class ShieldActiveComponent : Component
 
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? DeactivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
-
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? ActivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
-
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan? TimeDecay;
 
     [AutoNetworkedField]
