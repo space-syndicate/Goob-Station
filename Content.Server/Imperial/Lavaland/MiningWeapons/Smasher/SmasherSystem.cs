@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher.Components;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher.Events;
@@ -9,10 +8,8 @@ using Content.Shared.Alert;
 using Content.Shared.CombatMode;
 using Content.Shared.FixedPoint;
 using Content.Shared.Damage;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Imperial.Damage;
-using Content.Shared.Hands.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Lavaland.MiningWeapons.Smasher;
@@ -25,12 +22,14 @@ public sealed class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
+    // Used dictionaries because system dictionaries store temporary server-side state;
+    // components store permanent networked data.
+    private Dictionary<EntityUid, ChargeData> _activeCharges = new();
     private Dictionary<EntityUid, EntityUid> _lastAlertedUser = new();
     private Dictionary<EntityUid, FixedPoint2> _lastTotalDamage = new();
+    private List<EntityUid> _usersWithDecay = new();
     private TimeSpan _decayEndTime;
     private bool _isDecayEffectActive;
-    private Dictionary<EntityUid, ChargeData> _activeCharges = new();
-    private List<EntityUid> _usersWithDecay = new();
 
     public override void Initialize()
     {
@@ -41,16 +40,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
         SubscribeLocalEvent<ShieldActiveComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<ShieldActiveComponent, ComponentShutdown>(OnShieldShutdown);
         SubscribeLocalEvent<SmasherChargingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
-    }
-
-    private void OnUpdateKeyState(UpdateSmasherStateEvent ev, EntitySessionEventArgs args)
-    {
-        var user = GetEntity(ev.User);
-        if (!TryGetSmasherInHands(user, out var smasherUid, out var smasher))
-            return;
-
-        smasher.StateUseKey = ev.KeyState;
-        Dirty(smasherUid.Value, smasher);
     }
 
     public override void Update(float frameTime)
@@ -70,6 +59,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         var smasherQuery = EntityQueryEnumerator<SmasherComponent>();
         while (smasherQuery.MoveNext(out var smasherUid, out var smasher))
         {
+            // Alert update
             if (!TryGetHolder(smasherUid, out var user))
             {
                 if (_activeCharges.TryGetValue(smasherUid, out var chargeData))
@@ -88,6 +78,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
             UpdateCooldownAlert(smasherUid, user.Value, smasher);
 
+            // Shield logic
             if (smasher.StateUseKey == BoundKeyState.Down &&
                 !HasComp<ShieldActiveComponent>(user) &&
                 _combatMode.IsInCombatMode(user.Value) &&
@@ -101,6 +92,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
             }
         }
 
+        // termination of active shield after some time
         var shieldQuery = EntityQueryEnumerator<ShieldActiveComponent>();
         while (shieldQuery.MoveNext(out var uid, out var shield))
         {
@@ -110,6 +102,55 @@ public sealed class SmasherSystem : SharedSmasherSystem
             }
         }
     }
+
+
+    private void OnUpdateKeyState(UpdateSmasherStateEvent ev, EntitySessionEventArgs args)
+    {
+        var user = GetEntity(ev.User);
+        if (!TryGetSmasherInHands(user, out var smasherUid, out var smasher))
+            return;
+
+        smasher.StateUseKey = ev.KeyState;
+        Dirty(smasherUid.Value, smasher);
+    }
+
+    private void OnComponentInit(EntityUid uid, ShieldActiveComponent component, ComponentInit args)
+    {
+        Log.Debug("ShieldActiveComponent OnComponentInit");
+        var blocking = EnsureComp<ImperialShieldComponent>(uid);
+        blocking.PassiveBlockDamageModifer ??= new DamageModifierSet();
+        blocking.PassiveBlockDamageModifer.Coefficients ??= new Dictionary<string, float>();
+
+        blocking.PassiveBlockDamageModifer.Coefficients = component.DamageBlockedCoefficients;
+        blocking.HasBlockSound = true;
+    }
+
+    private void OnShieldShutdown(EntityUid uid, ShieldActiveComponent component, ComponentShutdown args)
+    {
+        if (HasComp<ImperialShieldComponent>(uid))
+            RemComp<ImperialShieldComponent>(uid);
+        Log.Debug("ShieldActiveComponent OnShieldShutdown");
+
+        if (component.EffectDecay != null && component.TimeDecay != null)
+        {
+            ShowShieldEffect(uid, component.EffectDecay, false);
+            _isDecayEffectActive = true;
+            _decayEndTime = _timing.CurTime + component.TimeDecay.Value;
+            _usersWithDecay.Add(uid);
+        }
+        else
+        {
+            HideShieldEffect(uid);
+        }
+
+        _audio.PlayPvs(component.DeactivateSound, uid);
+    }
+
+    private void OnRefreshMovespeed(EntityUid uid, SmasherChargingComponent component, RefreshMovementSpeedModifiersEvent args)
+    {
+        args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
+    }
+
 
     private void ProcessCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
     {
@@ -147,8 +188,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
     private void CancelCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
     {
         _activeCharges.Remove(smasherUid);
-
-        HideShieldEffect(user);
 
         if (smasher.EffectDecay != null)
         {
@@ -204,12 +243,12 @@ public sealed class SmasherSystem : SharedSmasherSystem
         shieldActive.EndTime = _timing.CurTime + TimeSpan.FromSeconds(5);
         Dirty(user, shieldActive);
 
-        SetCooldown(smasherUid, smasher, TimeSpan.FromSeconds(10));
+        SetCooldown(smasherUid, smasher, smasher.ActiveShieldCooldown);
 
-        ShieldActivated(user, smasherUid, smasher);
+        ShieldActivated(user, smasher);
     }
 
-    private void ShieldActivated(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
+    private void ShieldActivated(EntityUid user, SmasherComponent smasher)
     {
         HideShieldEffect(user);
 
@@ -219,22 +258,17 @@ public sealed class SmasherSystem : SharedSmasherSystem
         ShowShieldEffect(user, smasher.EffectActived, true);
     }
 
-    private void DeactivateShield(EntityUid uid, ShieldActiveComponent shield)
+    private void DeactivateShield(EntityUid user, ShieldActiveComponent shield)
     {
         if (shield.EffectDecay != null && TryComp<SmasherComponent>(shield.SmasherUid, out var smasher))
         {
-            ShieldDecay(uid, smasher);
+            ShowShieldEffect(user, smasher.EffectDecay, false);
+            _isDecayEffectActive = true;
+            _decayEndTime = _timing.CurTime + smasher.TimeDecay;
+            _usersWithDecay.Add(user);
         }
 
-        RemComp<ShieldActiveComponent>(uid);
-    }
-
-    private void ShieldDecay(EntityUid user, SmasherComponent smasher)
-    {
-        ShowShieldEffect(user, smasher.EffectDecay, true);
-        _isDecayEffectActive = true;
-        _decayEndTime = _timing.CurTime + smasher.TimeDecay;
-        _usersWithDecay.Add(user);
+        RemComp<ShieldActiveComponent>(user);
     }
 
     private void ShowShieldEffect(EntityUid user, SpriteSpecifier? effect, bool loop)
@@ -288,42 +322,5 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
         _lastTotalDamage[user] = damageComp.TotalDamage;
         return false;
-    }
-
-    private void OnComponentInit(EntityUid uid, ShieldActiveComponent component, ComponentInit args)
-    {
-        Log.Debug("ShieldActiveComponent OnComponentInit");
-        var blocking = EnsureComp<ImperialShieldComponent>(uid);
-        blocking.PassiveBlockDamageModifer ??= new DamageModifierSet();
-        blocking.PassiveBlockDamageModifer.Coefficients ??= new Dictionary<string, float>();
-
-        blocking.PassiveBlockDamageModifer.Coefficients = component.DamageBlockedCoefficients;
-        blocking.HasBlockSound = true;
-    }
-
-    private void OnShieldShutdown(EntityUid uid, ShieldActiveComponent component, ComponentShutdown args)
-    {
-        if (HasComp<ImperialShieldComponent>(uid))
-            RemComp<ImperialShieldComponent>(uid);
-        Log.Debug("ShieldActiveComponent OnShieldShutdown");
-
-        if (component.EffectDecay != null && component.TimeDecay != null)
-        {
-            ShowShieldEffect(uid, component.EffectDecay, true);
-            _isDecayEffectActive = true;
-            _decayEndTime = _timing.CurTime + component.TimeDecay.Value;
-            _usersWithDecay.Add(uid);
-        }
-        else
-        {
-            HideShieldEffect(uid);
-        }
-
-        _audio.PlayPvs(component.DeactivateSound, uid);
-    }
-
-    private void OnRefreshMovespeed(EntityUid uid, SmasherChargingComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
     }
 }

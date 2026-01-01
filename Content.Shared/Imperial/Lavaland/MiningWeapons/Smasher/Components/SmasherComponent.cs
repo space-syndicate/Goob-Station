@@ -30,6 +30,9 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan? AlertZeroStartTime { get; set; }
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan ActiveShieldCooldown = TimeSpan.FromSeconds(10);
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan AlertTime;
 
     /// <summary>

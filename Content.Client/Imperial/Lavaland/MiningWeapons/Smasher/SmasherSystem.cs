@@ -76,10 +76,14 @@ public sealed class SmasherSystem : SharedSmasherSystem
         var layer = _sprite.LayerMapReserve((uid, sprite), DamageShieldKey.Key);
         _sprite.LayerSetSprite((uid, sprite), layer, effect);
         _sprite.LayerSetVisible((uid, sprite), layer, true);
-        _sprite.LayerSetAutoAnimated((uid, sprite), layer, loop);
 
-        if (!loop)
+        if (loop)
         {
+            _sprite.LayerSetAutoAnimated((uid, sprite), layer, true);
+        }
+        else
+        {
+            _sprite.LayerSetAutoAnimated((uid, sprite), layer, true);
             _sprite.LayerSetAnimationTime((uid, sprite), layer, 0);
         }
         Log.Debug("ShowShieldEffect");

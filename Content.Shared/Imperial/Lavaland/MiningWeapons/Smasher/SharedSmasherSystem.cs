@@ -12,6 +12,9 @@ public abstract partial class SharedSmasherSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+
+    // Used dictionary because system dictionaries store temporary server-side state;
+    // components store permanent networked data.
     private Dictionary<(EntityUid User, EntityUid Smasher), (TimeSpan StartTime, bool Hidden)> _alertZeroData = new();
 
     public bool CanActivateShield(SmasherComponent component)
