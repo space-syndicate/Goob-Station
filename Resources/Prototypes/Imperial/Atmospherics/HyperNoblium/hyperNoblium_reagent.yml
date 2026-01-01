@@ -48,6 +48,9 @@
         type: Add
       - !type:ModifyStatusEffect
         conditions:
+        - !type:ReagentCondition
+          reagent: HyperNoblium
+          min: 0.2
         effectProto: StatusEffectForcedSleeping
         time: 0
         type: Set
