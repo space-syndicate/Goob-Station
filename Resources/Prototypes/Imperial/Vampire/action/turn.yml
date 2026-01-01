@@ -12,4 +12,4 @@
       state: turn
   - type: InstantAction
     event: !type:VampireTurnEvent
-      costBlood: 30
+      costBlood: 0

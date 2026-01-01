@@ -2,7 +2,7 @@
   parent: BaseAction
   id: VampireTransformBloodAction
   name: Превращение в лужу крови
-  description: На 4 секунды превращает вас в кровь, позволяя проходить сквозь препятствия.
+  description: На 4 секунды превращает вас в кровь, позволяя проходить сквозь препятствия. Стоимость 20 ед. крови. Кулдаун 25 секунд.
   components:
   - type: Action
     useDelay: 25

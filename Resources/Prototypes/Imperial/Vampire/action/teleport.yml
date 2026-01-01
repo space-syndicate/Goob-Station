@@ -2,7 +2,7 @@
   parent: BaseAction
   id: VampireTeleportAction
   name: Телепорт
-  description: Телепортирует на короткую дистанцию, оставляя облако дыма на месте отправления.
+  description: Телепортирует на короткую дистанцию, оставляя облако дыма на месте отправления. Стоимость 20 ед. крови. Кулдаун 15 секунд.
   components:
   - type: Action
     useDelay: 15

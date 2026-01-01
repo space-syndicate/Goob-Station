@@ -16,7 +16,7 @@
   parent: BaseAction
   id: VampireSwordPlusAction
   name: Кровавая катана +
-  description: Призывает катану из крови с уроном 15 единиц и ускорением атаки на 25%
+  description: Призывает катану из крови с уроном 15 единиц и ускорением атаки на 25%.
   components:
   - type: Action
     useDelay: 1
@@ -31,15 +31,17 @@
   name: Кровавая катана
   parent: Katana
   id: VampireSword
-  description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
+  description: Катана из крови. Выглядит устрашающе...
   components:
   - type: Sprite
     sprite: Imperial/Stellark/Vampire/sword.rsi
     state: icon
   - type: Unremoveable
   - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
     wideAnimationRotation: -135
-    attackRate: 1.5
+    attackRate: 1.25
     damage:
       types:
-        Blunt: 20
+        Blunt: 15

@@ -2,7 +2,7 @@
   parent: BaseAction
   id: RushBloodAction
   name: Прилив крови
-  description: Увеличивает скорость передвижения в 3 раза на 10 секунд.
+  description: Увеличивает скорость передвижения в 3 раза на 10 секунд. Стоимость 10 ед. крови. Кулдаун 30 секунд.
   components:
   - type: Action
     useDelay: 30

@@ -47,6 +47,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio;
 using Content.Shared.Mind.Components;
+using System.Diagnostics.CodeAnalysis;
+using Robust.Server.Audio;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -69,6 +71,7 @@ public sealed class VampireServerSystem : EntitySystem
     [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -90,7 +93,7 @@ public sealed class VampireServerSystem : EntitySystem
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || uid == args.Target)
+        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || uid == args.Target || !_mobState.IsAlive(args.Target))
             return;
 
         // если у цели нет крови (например, стул), кнопки не добавляем
@@ -98,9 +101,9 @@ public sealed class VampireServerSystem : EntitySystem
             return;
 
         // верб для превращения цели в упыря
-        if (!HasComp<GhoulComponent>(args.Target) || !HasComp<MindContainerComponent>(uid) || _mobState.IsAlive(uid))
+        if (!HasComp<GhoulComponent>(args.Target) && HasComp<MindContainerComponent>(args.Target) && HasComp<ActorComponent>(args.Target))
         {
-            var verb1 = new InnateVerb
+            var verbConvert = new InnateVerb
             {
                 Act = () => StartConversion(args.User, args.Target),
                 Text = Loc.GetString("vampire-verb-envelope-ghoul-text"),
@@ -108,48 +111,43 @@ public sealed class VampireServerSystem : EntitySystem
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Mobs/Species/Human/organs.rsi/brain.png")),
                 Priority = 0
             };
-            args.Verbs.Add(verb1);
+            args.Verbs.Add(verbConvert);
         }
 
-        if (!HasComp<MindContainerComponent>(uid) || _mobState.IsAlive(uid))
+        // верб для питья крови
+        var verbDrinkBlood = new InnateVerb
         {
-            // верб для питья крови
-            var verb2 = new InnateVerb
-            {
-                Act = () => StartDrinking(args.User, args.Target),
-                Text = Loc.GetString("vampire-drinking-envelope-text"),
-                Message = Loc.GetString("vampire-drinking-envelope-message"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
-                Priority = 1
-            };
-            args.Verbs.Add(verb2);
-        }
+            Act = () => StartDrinking(args.User, args.Target),
+            Text = Loc.GetString("vampire-drinking-envelope-text"),
+            Message = Loc.GetString("vampire-drinking-envelope-message"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
+            Priority = 1
+        };
+        args.Verbs.Add(verbDrinkBlood);
     }
 
     private void OnGetDrinkingGhoul(EntityUid uid, GhoulComponent comp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || uid == args.Target)
+        if (!args.CanAccess || !args.CanInteract || uid == args.Target || !_mobState.IsAlive(args.Target))
             return;
 
         // если у цели нет крови (например, стул), кнопки не добавляем
         if (!HasComp<BloodstreamComponent>(args.Target))
             return;
 
-        if (!HasComp<MindContainerComponent>(uid) || _mobState.IsAlive(uid))
+        // верб для питья крови
+        var verbDrinkBloodGhoul = new InnateVerb
         {
-            var verb = new InnateVerb
+            Act = () =>
             {
-                Act = () =>
-                {
-                    StartDrinking(args.User, args.Target);
-                },
-                Text = Loc.GetString("vampire-drinking-envelope-text"),
-                Message = Loc.GetString("vampire-drinking-envelope-message"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/convertGhoul.png")),
-                Priority = 0
-            };
-            args.Verbs.Add(verb);
-        }
+                StartDrinking(args.User, args.Target);
+            },
+            Text = Loc.GetString("vampire-drinking-envelope-text"),
+            Message = Loc.GetString("vampire-drinking-envelope-message"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/convertGhoul.png")),
+            Priority = 0
+        };
+        args.Verbs.Add(verbDrinkBloodGhoul);
     }
 
     private void OnCureGhoulStart(EntityUid uid, GhoulComponent comp, InteractUsingEvent args)
@@ -163,7 +161,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (prayable.BibleUserOnly && !TryComp<BibleUserComponent>(args.User, out _))
             return;
 
-        _popup.PopupClient(Loc.GetString("vampire-popup-ghoul-rite"),
+        _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-rite"),
             args.User, args.User, PopupType.Medium);
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, comp.GhoulCure,
@@ -194,10 +192,10 @@ public sealed class VampireServerSystem : EntitySystem
             Dirty(ent.Comp.Vampire, vamp);
         }
 
-        _popup.PopupClient(Loc.GetString("vampire-popup-successfully-cure-priest"),
+        _popup.PopupEntity(Loc.GetString("vampire-popup-successfully-cure-priest"),
             args.User, args.User, PopupType.Medium);
 
-        _popup.PopupClient(Loc.GetString("vampire-popup-successfully-cure-ghoul"),
+        _popup.PopupEntity(Loc.GetString("vampire-popup-successfully-cure-ghoul"),
             args.Target.Value, args.Target.Value, PopupType.Medium);
 
         args.Handled = true;
@@ -211,7 +209,8 @@ public sealed class VampireServerSystem : EntitySystem
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = false,
-            BlockDuplicate = true
+            BlockDuplicate = true,
+            Hidden = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -222,11 +221,11 @@ public sealed class VampireServerSystem : EntitySystem
         if (!TryComp<VampireComponent>(vampire, out var vamp))
             return;
 
-        _popup.PopupClient(Loc.GetString("vampire-verb-envelope-vampire-transform",
+        _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-vampire-transform",
             ("target", MetaData(target).EntityName)),
             vampire, vampire, PopupType.Medium);
 
-        _popup.PopupClient(Loc.GetString("vampire-verb-envelope-ghoul-transform"),
+        _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-ghoul-transform"),
             target, target, PopupType.Medium);
 
         var doAfterArgs = new DoAfterArgs(EntityManager, vampire, vamp.ConversionGhoulTime,
@@ -284,7 +283,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(target, out var blood) || blood.BloodSolution == null ||
             !TryComp<SolutionComponent>(blood.BloodSolution.Value.Owner, out var solutionComp))
         {
-            _popup.PopupClient(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.Medium);
             return;
         }
 
@@ -292,7 +291,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (solution.Volume.Float() < 20)
         {
-            _popup.PopupClient(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("vampire-drinking-no-blood"), drinker, drinker, PopupType.Medium);
             return;
         }
 
@@ -302,12 +301,12 @@ public sealed class VampireServerSystem : EntitySystem
         if (vamp == null && ghoul == null)
             return;
 
-        // вычисляем текущее количество крови
+        // вычисляем текущее количество крови   
         float currentBlood = vamp != null ? vamp.CritThreshold - vamp.BloodDamage : ghoul!.CritThreshold - ghoul.BloodDamage;
 
         if (currentBlood >= 100)
         {
-            _popup.PopupClient(Loc.GetString("vampire-drinking-full-blood"), drinker, drinker, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("vampire-drinking-full-blood"), drinker, drinker, PopupType.Medium);
             return;
         }
 
@@ -331,6 +330,8 @@ public sealed class VampireServerSystem : EntitySystem
         dmg.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
         _damage.TryChangeDamage(target, dmg);
 
+        _audio.PlayPvs(vamp!.DrinkSound, drinker);
+
         // после того, как вампир выпивает кровь его глаза становятся красными
         if (!TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
             return;
@@ -347,14 +348,14 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
+            _popup.PopupEntity(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
         if (vamp.BuffBlocked)
         {
-            _popup.PopupClient(Loc.GetString("vampire-popup-warning-turning-bat"),
+            _popup.PopupEntity(Loc.GetString("vampire-popup-warning-turning-bat"),
             args.Performer, args.Performer, PopupType.Medium);
 
             return;
@@ -362,7 +363,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (vamp.DisguiseIsActive)
         {
-            _popup.PopupClient(Loc.GetString("vampire-popup-disguise-on"),
+            _popup.PopupEntity(Loc.GetString("vampire-popup-disguise-on"),
             args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -404,8 +405,16 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
+            _popup.PopupEntity(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        if (vamp.BuffBlocked)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-popup-warning-ability-buff"),
+            args.Performer, args.Performer, PopupType.Medium);
+
             return;
         }
 
@@ -459,7 +468,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         EntityManager.AddComponent<IntrinsicRadioReceiverComponent>(target);
 
-        _popup.PopupClient(Loc.GetString("vampire-verb-envelope-vampire-complete",
+        _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-vampire-complete",
             ("target", MetaData(target).EntityName)),
             vampire, vampire, PopupType.LargeCaution);
 
@@ -498,7 +507,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         if (vamp.GhoulQuantity < args.NecessaryGhoulQuantity)
         {
-            _popup.PopupClient(Loc.GetString("vampire-popup-ghoul-quantity", ("quantity", args.NecessaryGhoulQuantity - vamp.GhoulQuantity)),
+            _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-quantity", ("quantity", args.NecessaryGhoulQuantity - vamp.GhoulQuantity)),
             args.Performer, args.Performer, PopupType.Medium);
 
             return;

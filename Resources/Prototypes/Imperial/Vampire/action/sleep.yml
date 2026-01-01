@@ -2,10 +2,10 @@
   parent: BaseAction
   id: VampireSleepAction
   name: Взгляд
-  description: Гипнотизирует жертву в пределах 1 тайла, погружая её в сон на 30 секунд.
+  description: Гипнотизирует жертву в пределах 1 тайла, погружая её в сон на 30 секунд. Стоимость 20 ед. крови. Кулдаун 100 секунд.
   components:
   - type: Action
-    useDelay: 120
+    useDelay: 100
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

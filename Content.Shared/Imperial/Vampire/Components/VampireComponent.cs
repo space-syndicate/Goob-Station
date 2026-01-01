@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Polymorph;
 using Content.Shared.StatusIcon;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -141,6 +142,42 @@ namespace Content.Shared.Imperial.Vampire
         [DataField("conversionGhoulTime")]
         public TimeSpan ConversionGhoulTime = TimeSpan.FromSeconds(5);
 
+        /// <summary>
+        /// звук катаны (достать)
+        /// </summary>
+        [DataField("getSwordSound")]
+        public SoundSpecifier GetSwordSound = new SoundPathSpecifier("/Audio/Effects/gib1.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(5f)
+        };
+
+        /// <summary>
+        /// звук катаны (убрать)
+        /// </summary>
+        [DataField("removeSwordSound")]
+        public SoundSpecifier RemoveSwordSound = new SoundPathSpecifier("/Audio/Effects/gib2.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(5f)
+        };
+
+        /// <summary>
+        /// звук телепорта
+        /// </summary>
+        [DataField("teleportSound")]
+        public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Magic/blink.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(5)
+        };
+
+        /// <summary>
+        /// звук телепорта
+        /// </summary>
+        [DataField("drinkSound")]
+        public SoundSpecifier DrinkSound = new SoundPathSpecifier("/Audio/Items/drink.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(3)
+        };
+
         [DataField]
         public ProtoId<AlertPrototype> BloodCounterAlert = "VampireCounterAlert";
 
@@ -149,6 +186,18 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField, AutoNetworkedField]
         public EntProtoId SmokePrototype = "Smoke";
+
+        /// <summary>
+        /// максимальное число, которое находится в bloodcount.rsi
+        /// </summary>
+        [DataField("maxDrink")]
+        public float MaxDrink = 1000;
+
+        /// <summary>
+        /// количество спрайтов в bloodcount.rsi. необходимо для расчетов SetBloodCounterAlert
+        /// </summary>
+        [DataField("numberSections")]
+        public int NumberSections = 21;
 
         public EntProtoId GrimoreAction = "VampireTestAction";
         public EntityUid? GrimoreActionEntity;
@@ -239,5 +288,14 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public bool InvisibleIsActive = false;
+
+        /// <summary>
+        /// для OnInvisible
+        /// </summary>
+        [AutoNetworkedField]
+        public bool AbilityInvisibleIsActive = false;
+
+        [AutoNetworkedField]
+        public EntityUid VampireUid;
     }
 }

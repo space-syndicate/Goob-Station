@@ -2,10 +2,11 @@
   parent: BaseAction
   id: VampireTentaclesAction
   name: Щупальца
-  description: Из указанной точки вырываются щупальца, наносящие 15 урона и сваливающие жертву на землю.
+  description: Из указанной точки вырываются щупальца, наносящие 15 урона и сваливающие жертву на землю. Стоимость 20 ед. крови. Кулдаун 40 секунд.
   components:
   - type: Action
     raiseOnUser: true
+    useDelay: 10
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
@@ -15,12 +16,11 @@
       state: tentacles_on
     sound:
       path: "/Audio/Weapons/slash.ogg"
-    useDelay: 10
   - type: TargetAction
     range: 10
   - type: WorldTargetAction
     event: !type:VampireTentaclesEvent
-      costBlood: 10
+      costBlood: 20
 
 - type: entity
   id: VampireTentacle

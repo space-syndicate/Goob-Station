@@ -113,6 +113,9 @@ namespace Content.Shared.Imperial.Vampire
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        [DataField("nosferatyTime")]
+        public TimeSpan NosferatyTime = TimeSpan.FromSeconds(25);
     }
 
     public sealed partial class VampireReconciliationEvent : InstantActionEvent

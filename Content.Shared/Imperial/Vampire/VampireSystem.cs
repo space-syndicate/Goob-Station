@@ -57,6 +57,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -89,6 +90,7 @@ public class VampireSystem : EntitySystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -213,6 +215,7 @@ public class VampireSystem : EntitySystem
 
         if (!vamp.ItemIssued)
         {
+            _audio.PlayPvs(vamp.GetSwordSound, uid);
             var item = Spawn(vamp.ClawId, Transform(uid).Coordinates);
 
             // если руки не закованы в наручники, то выдаем коготь
@@ -246,6 +249,7 @@ public class VampireSystem : EntitySystem
                 if (MetaData(hand).EntityPrototype?.ID == vamp.ClawId)
                 {
                     QueueDel(hand);
+                    _audio.PlayPvs(vamp.RemoveSwordSound, uid);
                     vamp.ItemIssued = false;
                     Dirty(uid, vamp);
                     break;
@@ -276,6 +280,9 @@ public class VampireSystem : EntitySystem
             return;
 
         SpawnSmokeEffect(vamp, fromCoords);
+
+        _audio.PlayPvs(vamp.TeleportSound, args.Performer);
+
         _transform.SetCoordinates(target, toCoords.Value);
 
         DealBloodDamage(args.Performer, args.CostBlood);
@@ -389,7 +396,7 @@ public class VampireSystem : EntitySystem
 
         comp.BuffBlocked = true;
         DealBloodDamage(args.Performer, args.CostBlood);
-        comp.BuffBlockedUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(25f);
+        comp.BuffBlockedUntil = _gameTiming.CurTime + args.NosferatyTime;
 
         Dirty(args.Performer, comp);
         args.Handled = true;
@@ -770,6 +777,7 @@ public class VampireSystem : EntitySystem
             return;
 
         var targetPos = GetCoordinates(args.TargetCoords);
+        ent.Comp.VampireUid = ent.Owner;
 
         Spawn("VampireTrap", targetPos);
 
@@ -778,6 +786,9 @@ public class VampireSystem : EntitySystem
 
     private void OnVampireTrap(Entity<VampireTrapOnTriggerComponent> ent, ref StartCollideEvent args)
     {
+        if (TryComp<VampireComponent>(args.OtherEntity, out var vamp))
+            return;
+
         if (args.OurFixtureId != ent.Comp.FixtureId)
             return;
 
@@ -992,25 +1003,28 @@ public class VampireSystem : EntitySystem
         var query = EntityQueryEnumerator<VampireComponent, MeleeWeaponComponent, MovementSpeedModifierComponent>();
         while (query.MoveNext(out var uid, out var comp, out var melee, out var speed))
         {
-            if (comp.BuffBlocked && _gameTiming.CurTime >= comp.BuffBlockedUntil && !comp.InvisibleIsActive
-                && !comp.VampireIsBlood && comp.OriginalDamageModifier != null)
+            if (comp.BuffBlocked && _gameTiming.CurTime >= comp.BuffBlockedUntil)
             {
-                melee.Damage = new DamageSpecifier
+                // т.к query распространяется и на RushBlood
+                if (comp.OriginalDamageModifier != null)
                 {
-                    DamageDict = new()
+                    melee.Damage = new DamageSpecifier
                     {
-                        { "Blunt", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
-                        { "Slash", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
-                    }
-                };
-                Dirty(uid, melee);
-                comp.OriginalDamageModifier = null;
-
-                if (comp.OriginalAttackRate != null)
-                {
-                    melee.AttackRate = comp.OriginalAttackRate.Value;
+                        DamageDict = new()
+                        {
+                            { "Blunt", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
+                            { "Slash", FixedPoint2.New(comp.OriginalDamageModifier.Value) },
+                        }
+                    };
                     Dirty(uid, melee);
-                    comp.OriginalAttackRate = null;
+                    comp.OriginalDamageModifier = null;
+
+                    if (comp.OriginalAttackRate != null)
+                    {
+                        melee.AttackRate = comp.OriginalAttackRate.Value;
+                        Dirty(uid, melee);
+                        comp.OriginalAttackRate = null;
+                    }
                 }
 
                 if (comp.OriginalWalkSpeed != null && comp.OriginalSprintSpeed != null)
@@ -1025,10 +1039,10 @@ public class VampireSystem : EntitySystem
                     comp.OriginalWalkSpeed = null;
                     comp.OriginalSprintSpeed = null;
                 }
-            }
 
-            comp.BuffBlocked = false;
-            Dirty(uid, comp);
+                comp.BuffBlocked = false;
+                Dirty(uid, comp);
+            }
         }
 
         var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
@@ -1097,12 +1111,6 @@ public class VampireSystem : EntitySystem
         {
             if (!vamp.VampireIsBlood)
                 continue;
-
-            if (vamp.NextBloodshed == TimeSpan.Zero && vamp.VampireIsBlood)
-            {
-                vamp.NextBloodshed = _gameTiming.CurTime + vamp.BloodDecayIntervalInvisible;
-                Dirty(uid, vamp);
-            }
 
             if (_gameTiming.CurTime >= vamp.NextBloodshed && vamp.VampireIsBlood)
             {
@@ -1177,7 +1185,7 @@ public class VampireSystem : EntitySystem
             return;
 
         // вычисляем, какой должен быть спрайт в зависимости от количества выпитой крови вампиром
-        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.TotalDrunk), component.CritThreshold, 21);
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.TotalDrunk), component.MaxDrink, component.NumberSections);
         _alerts.ShowAlert(uid, component.BloodCounterAlert, (short)severity);
     }
 
