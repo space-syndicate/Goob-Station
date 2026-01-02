@@ -10,7 +10,7 @@ public sealed partial class MessageOnMindComponent : Component
     /// Текст сообщения
     /// </summary>
     [DataField("message")]
-    public string Message = Loc.GetString("base-message-onmind");
+    public string Message = string.Empty;
 
     [ViewVariables]
     public bool SentMessage = false;
