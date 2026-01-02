@@ -26,6 +26,23 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         SubscribeNetworkEvent<NDA079AirlockActionEvent>(OnAirlockAction);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<NDA079AirlockBoltTimerComponent, DoorBoltComponent>();
+        var curTime = _gameTiming.CurTime;
+
+        while (query.MoveNext(out var uid, out var timer, out var bolt))
+        {
+            if (curTime < timer.UnboltTime)
+                continue;
+
+            _doorSystem.TrySetBoltDown((uid, bolt), false, null, predicted: false);
+            RemComp<NDA079AirlockBoltTimerComponent>(uid);
+        }
+    }
+
     protected override void OnAirlockVerbAct(EntityUid user, EntityUid target)
     {
     }
@@ -62,10 +79,9 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         if (abilityComp.LastUsedTime.HasValue)
         {
             var timeSinceLastUse = curTime - abilityComp.LastUsedTime.Value;
-            var cooldown = TimeSpan.FromSeconds(abilityComp.CooldownSeconds);
-            if (timeSinceLastUse < cooldown)
+            if (timeSinceLastUse < abilityComp.Cooldown)
             {
-                var remaining = cooldown - timeSinceLastUse;
+                var remaining = abilityComp.Cooldown - timeSinceLastUse;
                 _popup.PopupEntity(Loc.GetString("nda079-ability-cooldown",
                     ("remaining", remaining.TotalSeconds.ToString("F1"))),
                     user.Value,
@@ -149,14 +165,10 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         if (!_doorSystem.TrySetBoltDown((door, boltComp), true, user, predicted: true))
             return false;
 
-        var duration = TimeSpan.FromSeconds(abilityComp.BoltDurationSeconds);
-        Timer.Spawn(duration, () =>
-        {
-            if (!Exists(door) || !TryComp<DoorBoltComponent>(door, out var bolt))
-                return;
-
-            _doorSystem.TrySetBoltDown((door, bolt), false, null, predicted: false);
-        });
+        var timer = EnsureComp<NDA079AirlockBoltTimerComponent>(door);
+        timer.UnboltTime = _gameTiming.CurTime + abilityComp.BoltDuration;
+        timer.WasBolted = true;
+        Dirty(door, timer);
 
         return true;
     }

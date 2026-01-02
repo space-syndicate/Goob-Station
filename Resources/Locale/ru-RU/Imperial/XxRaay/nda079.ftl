@@ -13,6 +13,9 @@ nda079-ability-light-notlamp = В радиусе нет источников с�
 nda079-ability-light-success = Мерцание света успешно! Свет отключён.
 
 nda079-ability-airlock-verb = Управлять шлюзом
+nda079-ability-airlock-open = Открыть
+nda079-ability-airlock-close = Закрыть
+nda079-ability-airlock-bolt = Заболтовать
 
 energy-alert-name = Энергия
 energy-alert-description = Количество энергии которая хранится в ваших запасах.

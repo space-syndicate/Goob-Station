@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.XxRaay.Nda079;
 
@@ -22,10 +23,10 @@ public sealed partial class NDA079AirlockAbilityComponent : Component
     public float EnergyCost = 15f;
 
     /// <summary>
-    /// Время перезарядки способности в секундах
+    /// Время перезарядки способности
     /// </summary>
     [DataField]
-    public float CooldownSeconds = 6f;
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(6);
 
     /// <summary>
     /// Шанс успешного выполнения действия (0.0 - 1.0)
@@ -34,8 +35,20 @@ public sealed partial class NDA079AirlockAbilityComponent : Component
     public float SuccessChance = 0.85f;
 
     /// <summary>
-    /// Длительность заболтования в секундах
+    /// Длительность заболтования
     /// </summary>
     [DataField]
-    public float BoltDurationSeconds = 7f;
+    public TimeSpan BoltDuration = TimeSpan.FromSeconds(7);
+
+    /// <summary>
+    /// Путь к RSI ресурсу с иконками для UI
+    /// </summary>
+    [DataField]
+    public ResPath DoorsRsiPath = new("/Textures/Imperial/XxRaay/079/doors.rsi");
+
+    /// <summary>
+    /// Задержка между открытиями UI для предотвращения спама
+    /// </summary>
+    [DataField]
+    public TimeSpan UiCooldown = TimeSpan.FromSeconds(0.5);
 }

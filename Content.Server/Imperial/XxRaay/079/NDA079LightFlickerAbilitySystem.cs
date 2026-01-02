@@ -39,6 +39,27 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
         SubscribeLocalEvent<NDA079LightFlickerAbilityComponent, MindAddedMessage>(OnMindAdded);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<NDA079LightRestoreTimerComponent>();
+        var curTime = _gameTiming.CurTime;
+
+        while (query.MoveNext(out var uid, out var timer))
+        {
+            if (curTime < timer.RestoreTime)
+                continue;
+
+            if (_lightSystem.TryGetLight(uid, out var lightComp))
+            {
+                _lightSystem.SetEnabled(uid, timer.WasEnabled, lightComp);
+            }
+
+            RemComp<NDA079LightRestoreTimerComponent>(uid);
+        }
+    }
+
     private void OnMindAdded(Entity<NDA079LightFlickerAbilityComponent> entity, ref MindAddedMessage args)
     {
         if (!_mind.TryGetMind(entity.Owner, out var mindId, out _))
@@ -95,10 +116,9 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
         if (abilityComp.LastUsedTime.HasValue)
         {
             var timeSinceLastUse = curTime - abilityComp.LastUsedTime.Value;
-            var cooldown = TimeSpan.FromSeconds(abilityComp.CooldownSeconds);
-            if (timeSinceLastUse < cooldown)
+            if (timeSinceLastUse < abilityComp.Cooldown)
             {
-                var remaining = cooldown - timeSinceLastUse;
+                var remaining = abilityComp.Cooldown - timeSinceLastUse;
                 _popup.PopupEntity(Loc.GetString("nda079-ability-cooldown",
                         ("remaining", remaining.TotalSeconds.ToString("F1"))),
                     user,
@@ -149,7 +169,6 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
         {
             _popup.PopupEntity(Loc.GetString("nda079-ability-light-success"), user, user);
 
-            var duration = TimeSpan.FromSeconds(abilityComp.LightOffDurationSeconds);
             foreach (var lightEntity in lightsFound)
             {
                 if (!_lightSystem.TryGetLight(lightEntity, out var lightComp))
@@ -158,21 +177,16 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
                 var wasEnabled = lightComp.Enabled;
                 _lightSystem.SetEnabled(lightEntity, false, lightComp);
 
-                Timer.Spawn(duration,
-                    () =>
-                    {
-                        if (!Exists(lightEntity) || !_lightSystem.TryGetLight(lightEntity, out var restoredLight))
-                            return;
-
-                        _lightSystem.SetEnabled(lightEntity, wasEnabled, restoredLight);
-                    });
+                var timer = EnsureComp<NDA079LightRestoreTimerComponent>(lightEntity);
+                timer.RestoreTime = curTime + abilityComp.LightOffDuration;
+                timer.WasEnabled = wasEnabled;
+                Dirty(lightEntity, timer);
             }
         }
         else
         {
             _popup.PopupEntity(Loc.GetString("nda079-ability-failed"), user, user);
 
-            var flickerDuration = TimeSpan.FromSeconds(abilityComp.FlickerDurationSeconds);
             foreach (var lightEntity in lightsFound)
             {
                 if (!_lightSystem.TryGetLight(lightEntity, out var lightComp))
@@ -181,14 +195,10 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
                 var wasEnabled = lightComp.Enabled;
                 _lightSystem.SetEnabled(lightEntity, false, lightComp);
 
-                Timer.Spawn(flickerDuration,
-                    () =>
-                    {
-                        if (!Exists(lightEntity) || !_lightSystem.TryGetLight(lightEntity, out var restoredLight))
-                            return;
-
-                        _lightSystem.SetEnabled(lightEntity, wasEnabled, restoredLight);
-                    });
+                var timer = EnsureComp<NDA079LightRestoreTimerComponent>(lightEntity);
+                timer.RestoreTime = curTime + abilityComp.FlickerDuration;
+                timer.WasEnabled = wasEnabled;
+                Dirty(lightEntity, timer);
             }
         }
     }

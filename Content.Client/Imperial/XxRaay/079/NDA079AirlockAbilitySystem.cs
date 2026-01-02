@@ -5,7 +5,6 @@ using Content.Shared.Imperial.XxRaay.Nda079.Events;
 using Robust.Client.Player;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
-using Robust.Shared.IoC;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.XxRaay.Nda079;
@@ -13,8 +12,8 @@ namespace Content.Client.Imperial.XxRaay.Nda079;
 public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     private RadialContainer? _activeRadial;
     private TimeSpan _lastUiOpenTime;
@@ -30,22 +29,24 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         if (localPlayer != user)
             return;
 
-        var now = _timing.CurTime;
-        if (now < _lastUiOpenTime + TimeSpan.FromSeconds(0.5))
+        if (!TryComp<NDA079AirlockAbilityComponent>(user, out var abilityComp))
             return;
 
-        _lastUiOpenTime = now;
+        var now = _timing.CurTime;
+        if (now < _lastUiOpenTime + abilityComp.UiCooldown)
+            return;
 
-        OpenRadialMenu(user, target);
+        _lastUiOpenTime = now + abilityComp.UiCooldown;
+
+        OpenRadialMenu(user, target, abilityComp);
     }
 
-    private void EnsureIconsLoaded()
+    private void EnsureIconsLoaded(ResPath doorsRsiPath)
     {
         if (_iconsLoaded)
             return;
 
-        var cache = IoCManager.Resolve<IResourceCache>();
-        var doorsRsi = cache.GetResource<RSIResource>("/Textures/Imperial/XxRaay/079/doors.rsi").RSI;
+        var doorsRsi = _resourceCache.GetResource<RSIResource>(doorsRsiPath).RSI;
 
         if (doorsRsi.TryGetState("oping", out var openState))
             _iconOpen = openState.Frame0;
@@ -59,7 +60,7 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         _iconsLoaded = true;
     }
 
-    private void OpenRadialMenu(EntityUid user, EntityUid target)
+    private void OpenRadialMenu(EntityUid user, EntityUid target, NDA079AirlockAbilityComponent abilityComp)
     {
         _activeRadial?.Close();
 
@@ -69,11 +70,13 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         if (!TryComp<DoorComponent>(target, out var door))
             return;
 
-        EnsureIconsLoaded();
+        EnsureIconsLoaded(abilityComp.DoorsRsiPath);
 
         var isOpen = door.State == DoorState.Open || door.State == DoorState.Opening;
 
-        var toggleText = isOpen ? "Закрыть" : "Открыть";
+        var toggleText = isOpen 
+            ? Loc.GetString("nda079-ability-airlock-close")
+            : Loc.GetString("nda079-ability-airlock-open");
         Texture? toggleIcon = isOpen ? _iconClose : _iconOpen;
 
         var toggleButton = toggleIcon != null
@@ -86,9 +89,10 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
             radial.Close();
         };
 
+        var boltText = Loc.GetString("nda079-ability-airlock-bolt");
         var boltButton = _iconBolt != null
-            ? radial.AddButton("Заболтовать", _iconBolt)
-            : radial.AddButton("Заболтовать");
+            ? radial.AddButton(boltText, _iconBolt)
+            : radial.AddButton(boltText);
         boltButton.Controller.OnPressed += (_) =>
         {
             SendActionToServer(user, target, NDA079AirlockActionType.Bolt);

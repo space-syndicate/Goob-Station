@@ -19,13 +19,13 @@ public sealed partial class NDA079Component : Component
     /// <summary>
     /// Ссылка на оригинальную сущность
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public EntityUid? OriginalEntity;
 
     /// <summary>
     /// Ссылка на летающую сущность в режиме ИИ
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public EntityUid? AIVisionEntity;
 
     /// <summary>

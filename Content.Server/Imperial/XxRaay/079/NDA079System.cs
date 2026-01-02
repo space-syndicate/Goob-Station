@@ -100,41 +100,14 @@ public sealed class NDA079System : EntitySystem
                 if (!TryComp<NDA079CpuComponent>(entity, out var cpu))
                     return;
 
-                // Длительность
-                lightFlickerComp.LightOffDurationSeconds = cpu.CurrentLevel switch
+                var lightConfig = NDA079LevelConfig.GetLightFlickerConfig(cpu.CurrentLevel);
+                if (lightConfig != null)
                 {
-                    2 => 15,
-                    3 => 30,
-                    4 => 60,
-                    _ => lightFlickerComp.LightOffDurationSeconds
-                };
-
-                // Радиус
-                lightFlickerComp.Radius = cpu.CurrentLevel switch
-                {
-                    2 => 20f,
-                    3 => 35f,
-                    4 => 45f,
-                    _ => lightFlickerComp.Radius
-                };
-
-                // Шанс
-                lightFlickerComp.SuccessChance = cpu.CurrentLevel switch
-                {
-                    2 => 0.95f,
-                    3 => 1.0f,
-                    4 => 1.0f,
-                    _ => lightFlickerComp.SuccessChance
-                };
-
-                // Кд
-                lightFlickerComp.CooldownSeconds = cpu.CurrentLevel switch
-                {
-                    2 => 40f,
-                    3 => 70f,
-                    4 => 90f,
-                    _ => lightFlickerComp.CooldownSeconds
-                };
+                    lightFlickerComp.LightOffDuration = lightConfig.LightOffDuration;
+                    lightFlickerComp.Radius = lightConfig.Radius;
+                    lightFlickerComp.SuccessChance = lightConfig.SuccessChance;
+                    lightFlickerComp.Cooldown = lightConfig.Cooldown;
+                }
             }
 
             if (TryComp<NDA079AirlockAbilityComponent>(newb, out var airlockComp))
@@ -145,23 +118,12 @@ public sealed class NDA079System : EntitySystem
                 if (!TryComp<NDA079CpuComponent>(entity, out var cpu))
                     return;
 
-                // Длительность болтирования
-                airlockComp.BoltDurationSeconds = cpu.CurrentLevel switch
+                var airlockConfig = NDA079LevelConfig.GetAirlockConfig(cpu.CurrentLevel);
+                if (airlockConfig != null)
                 {
-                    2 => 10f,
-                    3 => 30f,
-                    4 => 60f,
-                    _ => airlockComp.BoltDurationSeconds
-                };
-
-                // Шанс
-                airlockComp.SuccessChance = cpu.CurrentLevel switch
-                {
-                    2 => 0.95f,
-                    3 => 1.0f,
-                    4 => 1.0f,
-                    _ => airlockComp.SuccessChance
-                };
+                    airlockComp.BoltDuration = airlockConfig.BoltDuration;
+                    airlockComp.SuccessChance = airlockConfig.SuccessChance;
+                }
             }
 
             _actions.RemoveProvidedActions(entity.Owner, mindId);

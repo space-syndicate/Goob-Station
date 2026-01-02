@@ -23,10 +23,10 @@ public sealed partial class NDA079LightFlickerAbilityComponent : Component
     public float EnergyCost = 10f;
 
     /// <summary>
-    /// Время перезарядки способности в секундах
+    /// Время перезарядки способности
     /// </summary>
     [DataField]
-    public float CooldownSeconds = 10f;
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
 
     /// <summary>
     /// Шанс успешного выполнения действия (0.0 - 1.0)
@@ -41,16 +41,16 @@ public sealed partial class NDA079LightFlickerAbilityComponent : Component
     public float Radius = 10f;
 
     /// <summary>
-    /// Длительность отключения света при успехе в секундах
+    /// Длительность отключения света при успехе
     /// </summary>
     [DataField]
-    public float LightOffDurationSeconds = 5f;
+    public TimeSpan LightOffDuration = TimeSpan.FromSeconds(5);
 
     /// <summary>
-    /// Длительность короткого мигания при провале в секундах
+    /// Длительность короткого мигания при провале
     /// </summary>
     [DataField]
-    public float FlickerDurationSeconds = 1f;
+    public TimeSpan FlickerDuration = TimeSpan.FromSeconds(1);
 
     /// <summary>
     /// Прототип экшена для мерцания света
