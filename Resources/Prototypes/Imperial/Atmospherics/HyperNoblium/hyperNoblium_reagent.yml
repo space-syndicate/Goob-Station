@@ -52,8 +52,8 @@
           reagent: HyperNoblium
           min: 0.2
         effectProto: StatusEffectForcedSleeping
-        time: 0
-        type: Set
+        time: 15
+        type: Remove
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.6
         sprintSpeedModifier: 1.60
