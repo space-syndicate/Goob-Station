@@ -9,9 +9,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.FixedPoint;
 using Content.Shared.Damage;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Imperial.Damage;
 using Robust.Shared.Utility;
-using Content.Shared.Imperial.Damage.Events;
 
 namespace Content.Server.Imperial.Lavaland.MiningWeapons.Smasher;
 
@@ -79,6 +77,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
             _lastAlertedUser[smasherUid] = user.Value;
 
             UpdateCooldownAlert(smasherUid, user.Value, smasher);
+
+            if (!IsItemWielded(smasherUid))
+                continue;
 
             // Shield logic
             if (smasher.StateUseKey == BoundKeyState.Down &&

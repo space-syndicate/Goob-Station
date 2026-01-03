@@ -4,6 +4,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Alert;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Hands.Components;
+using Content.Shared.Wieldable.Components;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher;
 
@@ -133,5 +134,10 @@ public abstract partial class SharedSmasherSystem : EntitySystem
         }
 
         return false;
+    }
+
+    public bool IsItemWielded(EntityUid item)
+    {
+        return TryComp<WieldableComponent>(item, out var wieldable) && wieldable.Wielded;
     }
 }

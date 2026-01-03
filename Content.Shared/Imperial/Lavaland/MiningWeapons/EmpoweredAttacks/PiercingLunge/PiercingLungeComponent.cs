@@ -10,6 +10,9 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Pierci
 public sealed partial class PiercingLungeComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool HasDoAfter = true;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float DoAfterTime = 0.35f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]

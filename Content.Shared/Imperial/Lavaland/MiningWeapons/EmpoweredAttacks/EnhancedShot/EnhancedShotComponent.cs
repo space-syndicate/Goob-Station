@@ -13,7 +13,6 @@ public sealed partial class EnhancedShotComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ProjectileSpeed = 40f;
 
-
     [ViewVariables, DataField]
     public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
 
@@ -26,6 +25,8 @@ public sealed partial class EnhancedShotComponent : Component
     [DataField, ViewVariables]
     public string ProjectilePrototype = "EnhancedShotProjectile";
 
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool HasDoAfter = true;
 
     [ViewVariables]
     public EntityUid? Action;

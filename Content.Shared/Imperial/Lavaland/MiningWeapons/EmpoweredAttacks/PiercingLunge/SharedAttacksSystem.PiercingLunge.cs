@@ -21,10 +21,16 @@ public abstract partial class SharedAttacksSystem
     }
 
 
-    private void OnPiercingLunge(EntityUid user, UserPiercingLungeComponent comp, ref PiercingLungeEvent args)
+    private void OnPiercingLunge(EntityUid user, UserPiercingLungeComponent userComp, ref PiercingLungeEvent args)
     {
-        if (!comp.Item.HasValue)
+        if (!userComp.Item.HasValue)
             return;
+
+        if (!IsItemWielded(userComp.Item.Value))
+        {
+            ItemWieldedCancelled(user);
+            return;
+        }
 
         var userXform = Transform(user);
         var targetMap = _transform.ToMapCoordinates(args.Target);
@@ -32,12 +38,36 @@ public abstract partial class SharedAttacksSystem
             return;
 
         var userPos = _transform.GetWorldPosition(userXform);
-        comp.Direction = (targetMap.Position - userPos).Normalized();
+        userComp.Direction = (targetMap.Position - userPos).Normalized();
 
-        _audio.PlayPvs(comp.StartDoAfterSound, user);
-
-        if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new PiercingLungeDoAfterEvent()))
+        var coords = userComp.Item.Value.ToCoordinates();
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
             return;
+
+        if (!_mapSystem.TryGetTileRef(grid, gridComp, coords, out var tileRef) ||
+            _turf.IsSpace(tileRef))
+        {
+            return;
+        }
+
+        if (HasComp<KnockedDownComponent>(user))
+            return;
+
+        if (userComp.HasDoAfter)
+        {
+            _audio.PlayPvs(userComp.StartDoAfterSound, user);
+            if (!StartDoAfter(user, userComp.Item.Value, userComp.DoAfterTime, new PiercingLungeDoAfterEvent()))
+                return;
+        }
+        else
+        {
+            if (TryComp<PiercingLungeComponent>(userComp.Item.Value, out var comp))
+            {
+                comp.Direction = userComp.Direction;
+                PiercingLunge(userComp.Item.Value, user, comp);
+            }
+        }
+
     }
 
     private void OnPiercingLungeDoAfter(EntityUid uid, PiercingLungeComponent comp, PiercingLungeDoAfterEvent args)
@@ -57,19 +87,6 @@ public abstract partial class SharedAttacksSystem
         if (!_net.IsServer)
             return;
 
-        var coords = uid.ToCoordinates();
-        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
-            return;
-
-        if (!_mapSystem.TryGetTileRef(grid, gridComp, coords, out var tileRef) ||
-            _turf.IsSpace(tileRef))
-        {
-            return;
-        }
-
-        if (HasComp<KnockedDownComponent>(comp.User.Value))
-            return;
-
         if (TryComp<UserPiercingLungeComponent>(comp.User.Value, out var userComp))
         {
             comp.Direction = userComp.Direction;
@@ -85,6 +102,7 @@ public abstract partial class SharedAttacksSystem
 
         var userComp = EnsureComp<UserPiercingLungeComponent>(args.User);
         userComp.DoAfterTime = comp.DoAfterTime;
+        userComp.HasDoAfter = comp.HasDoAfter;
         userComp.StartDoAfterSound = comp.StartDoAfterSound;
         userComp.Item = uid;
 

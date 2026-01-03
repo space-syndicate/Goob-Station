@@ -23,7 +23,7 @@ public abstract partial class SharedAttacksSystem
         if (!comp.Item.HasValue)
             return;
 
-        if (comp.HasWielded && !IsItemWielded(comp.Item.Value))
+        if (!IsItemWielded(comp.Item.Value))
         {
             ItemWieldedCancelled(user);
             return;
@@ -84,7 +84,6 @@ public abstract partial class SharedAttacksSystem
         userComp.EarthshakerRiftSpawnPrototype = comp.EarthshakerRiftSpawnPrototype;
         userComp.DoAfterTime = comp.DoAfterTime;
         userComp.HasDoAfter = comp.HasDoAfter;
-        userComp.HasWielded = comp.HasWielded;
         userComp.CompletedSound = comp.CompletedSound;
         userComp.StartDoAfterSound = comp.StartDoAfterSound;
         userComp.Item = uid;

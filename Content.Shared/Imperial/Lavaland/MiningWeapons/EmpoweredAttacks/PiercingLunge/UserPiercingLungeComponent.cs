@@ -17,4 +17,7 @@ public sealed partial class UserPiercingLungeComponent : Component
 
     [ViewVariables]
     public Vector2 Direction = Vector2.Zero;
+
+    [ViewVariables]
+    public bool HasDoAfter;
 }

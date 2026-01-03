@@ -22,7 +22,4 @@ public sealed partial class UserEarthshakerStrikeComponent : Component
 
     [ViewVariables]
     public bool HasDoAfter;
-
-    [ViewVariables]
-    public bool HasWielded;
 }

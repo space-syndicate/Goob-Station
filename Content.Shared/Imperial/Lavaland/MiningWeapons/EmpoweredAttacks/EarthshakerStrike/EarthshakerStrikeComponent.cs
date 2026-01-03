@@ -16,10 +16,6 @@ public sealed partial class EarthshakerStrikeComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool HasDoAfter = true;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool HasWielded = true;
-
-
     [ViewVariables, DataField]
     public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
 

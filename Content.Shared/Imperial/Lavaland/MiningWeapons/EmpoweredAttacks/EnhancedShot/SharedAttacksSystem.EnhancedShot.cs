@@ -17,10 +17,16 @@ public abstract partial class SharedAttacksSystem
     }
 
 
-    private void OnEnhancedShot(EntityUid user, UserEnhancedShotComponent comp, ref EnhancedShotEvent args)
+    private void OnEnhancedShot(EntityUid user, UserEnhancedShotComponent userComp, ref EnhancedShotEvent args)
     {
-        if (!comp.Item.HasValue)
+        if (!userComp.Item.HasValue)
             return;
+
+        if (!IsItemWielded(userComp.Item.Value))
+        {
+            ItemWieldedCancelled(user);
+            return;
+        }
 
         var userXform = Transform(user);
         var targetMap = _transform.ToMapCoordinates(args.Target);
@@ -28,12 +34,20 @@ public abstract partial class SharedAttacksSystem
             return;
 
         var userPos = _transform.GetWorldPosition(userXform);
-        comp.Direction = (targetMap.Position - userPos).Normalized();
+        userComp.Direction = (targetMap.Position - userPos).Normalized();
 
-        _audio.PlayPvs(comp.StartDoAfterSound, user);
+        if (userComp.HasDoAfter)
+        {
+            _audio.PlayPvs(userComp.StartDoAfterSound, user);
 
-        if (!StartDoAfter(user, comp.Item.Value, comp.DoAfterTime, new EnhancedShotDoAfterEvent()))
-            return;
+            if (!StartDoAfter(user, userComp.Item.Value, userComp.DoAfterTime, new EnhancedShotDoAfterEvent()))
+                return;
+        }
+        else
+        {
+            if (TryComp<EnhancedShotComponent>(userComp.Item.Value, out var comp))
+                ShootEnhancedProjectile(userComp.Item.Value, user, comp);
+        }
     }
 
     private void OnEnhancedShotDoAfter(EntityUid uid, EnhancedShotComponent comp, EnhancedShotDoAfterEvent args)
@@ -64,6 +78,7 @@ public abstract partial class SharedAttacksSystem
 
         var userComp = EnsureComp<UserEnhancedShotComponent>(args.User);
         userComp.DoAfterTime = comp.DoAfterTime;
+        userComp.HasDoAfter = comp.HasDoAfter;
         userComp.StartDoAfterSound = comp.StartDoAfterSound;
         userComp.Item = uid;
 
@@ -93,18 +108,18 @@ public abstract partial class SharedAttacksSystem
         }
     }
 
-    private void ShootEnhancedProjectile(EntityUid uid, EntityUid user, EnhancedShotComponent comp)
+    private void ShootEnhancedProjectile(EntityUid item, EntityUid user, EnhancedShotComponent comp)
     {
         if (!TryComp<UserEnhancedShotComponent>(user, out var userComp))
             return;
 
-        var xform = Transform(uid);
+        var xform = Transform(item);
         var fromCoords = xform.Coordinates;
         var fromMap = _transform.ToMapCoordinates(fromCoords);
         var projectile = Spawn(comp.ProjectilePrototype, fromMap);
 
         var direction = userComp.Direction.Normalized();
-        _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, uid, user, speed: comp.ProjectileSpeed);
+        _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, item, user, speed: comp.ProjectileSpeed);
         _sharedCameraRecoil.KickCamera(user, -direction);
 
         _audio.PlayPvs(comp.CompletedSound, user);
