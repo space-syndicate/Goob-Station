@@ -54,7 +54,14 @@ public sealed partial class PiercingLungeComponent : Component
 
 
     [DataField, ViewVariables]
-    public DamageSpecifier Damage = new();
+    public DamageSpecifier Damage = new()
+    {
+        DamageDict = new()
+        {
+            { "Blunt", 5 },
+            { "Slash", 20 }
+        }
+    };
 
     /// <summary>
     /// Only tracks sprint time
