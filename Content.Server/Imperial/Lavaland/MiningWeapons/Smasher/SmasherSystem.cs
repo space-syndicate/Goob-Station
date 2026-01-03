@@ -11,6 +11,7 @@ using Content.Shared.Damage;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Imperial.Damage;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Damage.Events;
 
 namespace Content.Server.Imperial.Lavaland.MiningWeapons.Smasher;
 
@@ -40,6 +41,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         SubscribeLocalEvent<ShieldActiveComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<ShieldActiveComponent, ComponentShutdown>(OnShieldShutdown);
         SubscribeLocalEvent<SmasherChargingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
+        SubscribeLocalEvent<ShieldActiveComponent, DamageModifyEvent>(OnUserDamageModified);
     }
 
     public override void Update(float frameTime)
@@ -114,21 +116,29 @@ public sealed class SmasherSystem : SharedSmasherSystem
         Dirty(smasherUid.Value, smasher);
     }
 
+    private void OnUserDamageModified(EntityUid uid, ShieldActiveComponent component, ref DamageModifyEvent args)
+    {
+        var modifier = component.PassiveBlockDamageModifer;
+        Log.Debug($"if modifier == null start");
+        if (modifier == null)
+            return;
+        Log.Debug($"modifier != null");
+        args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modifier);
+
+        _audio.PlayPvs(component.BlockSound, uid);
+    }
+
     private void OnComponentInit(EntityUid uid, ShieldActiveComponent component, ComponentInit args)
     {
         Log.Debug("ShieldActiveComponent OnComponentInit");
-        var blocking = EnsureComp<ImperialShieldComponent>(uid);
-        blocking.PassiveBlockDamageModifer ??= new DamageModifierSet();
-        blocking.PassiveBlockDamageModifer.Coefficients ??= new Dictionary<string, float>();
+        component.PassiveBlockDamageModifer ??= new DamageModifierSet();
+        component.PassiveBlockDamageModifer.Coefficients ??= new Dictionary<string, float>();
 
-        blocking.PassiveBlockDamageModifer.Coefficients = component.DamageBlockedCoefficients;
-        blocking.HasBlockSound = true;
+        component.PassiveBlockDamageModifer.Coefficients = component.DamageBlockedCoefficients;
     }
 
     private void OnShieldShutdown(EntityUid user, ShieldActiveComponent component, ComponentShutdown args)
     {
-        if (HasComp<ImperialShieldComponent>(user))
-            RemComp<ImperialShieldComponent>(user);
         Log.Debug("ShieldActiveComponent OnShieldShutdown");
 
         if (component.EffectDecay != null && component.TimeDecay != null)
