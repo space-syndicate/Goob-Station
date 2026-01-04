@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by Certified Reptilian, aka @rikitheparrot",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "icon_straight"
+    },
+    {
+      "name": "icon_end"
+    },
+    {
+      "name": "straight",
+      "directions": 4
+    },
+    {
+      "name": "end",
+      "directions": 4
+    },
+    {
+      "name": "corner",
+      "directions": 4
+    },
+  ]
+}
