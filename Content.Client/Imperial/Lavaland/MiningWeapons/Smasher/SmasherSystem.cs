@@ -52,13 +52,11 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
     private void OnShowShieldEffect(ShowShieldEffectEvent ev)
     {
-        Log.Debug("Show");
         ShowShieldEffect(GetEntity(ev.Uid), ev.EffectDecay, ev.Loop);
     }
 
     private void OnHideShieldEffect(HideShieldEffectEvent ev)
     {
-        Log.Debug("Hide");
         HideShieldEffect(GetEntity(ev.Uid));
     }
 
@@ -86,7 +84,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
             _sprite.LayerSetAutoAnimated((uid, sprite), layer, true);
             _sprite.LayerSetAnimationTime((uid, sprite), layer, 0);
         }
-        Log.Debug("ShowShieldEffect");
     }
 
     private void HideShieldEffect(EntityUid uid)
@@ -98,7 +95,5 @@ public sealed class SmasherSystem : SharedSmasherSystem
         {
             _sprite.LayerSetVisible((uid, sprite), layer, false);
         }
-
-        Log.Debug("HideShieldEffect");
     }
 }

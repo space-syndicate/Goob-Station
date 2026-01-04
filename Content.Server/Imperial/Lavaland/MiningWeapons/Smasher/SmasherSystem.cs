@@ -120,10 +120,9 @@ public sealed class SmasherSystem : SharedSmasherSystem
     private void OnUserDamageModified(EntityUid uid, ShieldActiveComponent component, ref DamageModifyEvent args)
     {
         var modifier = component.PassiveBlockDamageModifer;
-        Log.Debug($"if modifier == null start");
         if (modifier == null)
             return;
-        Log.Debug($"modifier != null");
+
         args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modifier);
     }
 
@@ -140,8 +139,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
 
     private void OnShieldShutdown(EntityUid user, ShieldActiveComponent component, ComponentShutdown args)
     {
-        Log.Debug("ShieldActiveComponent OnShieldShutdown");
-
         if (component.EffectDecay != null && component.TimeDecay != null)
         {
             ShowShieldEffect(user, component.EffectDecay, false);
@@ -181,7 +178,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
             _movementSpeed.RefreshMovementSpeedModifiers(user);
 
             _audio.PlayPvs(smasher.StartChargingSound, user);
-            Log.Info("Начата зарядка щита");
         }
 
         var holdTime = (_timing.CurTime - chargeData.StartTime).TotalSeconds;
@@ -219,8 +215,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
         _audio.PlayPvs(smasher.DeactivateSound, user);
 
         SetCooldown(smasherUid, smasher, smasher.TimeCooldownDownedDecay);
-
-        Log.Info("Зарядка отменена");
     }
 
     private void CompleteCharging(EntityUid user, EntityUid smasherUid, SmasherComponent smasher)
@@ -239,8 +233,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
         }
 
         SetCooldown(smasherUid, smasher, smasher.TimeCooldownCompleted);
-
-        Log.Info("Щит активирован");
     }
 
     public void ActivateShield(EntityUid smasherUid, SmasherComponent smasher, EntityUid user)
@@ -326,8 +318,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
                 RemComp<SmasherChargingComponent>(user);
                 _movementSpeed.RefreshMovementSpeedModifiers(user);
             }
-
-            Log.Debug("Зарядка прервана из-за урона");
 
             _lastTotalDamage.Remove(user);
             return true;
