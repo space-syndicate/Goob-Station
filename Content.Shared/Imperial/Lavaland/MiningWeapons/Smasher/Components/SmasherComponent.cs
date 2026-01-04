@@ -15,11 +15,14 @@ public sealed partial class SmasherComponent : Component
     [ViewVariables, AutoNetworkedField]
     public Dictionary<string, float> DamageBlockedCoefficients = new()
     {
-        ["Blunt"] = 0.1f,
-        ["Slash"] = 0.1f,
-        ["Piercing"] = 0.10f,
-        ["Heat"] = 0.1f
+        ["Blunt"] = 0.4f,
+        ["Slash"] = 0.35f,
+        ["Piercing"] = 0.3f,
+        ["Heat"] = 0.35f
     };
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan ActiveShieldTime = TimeSpan.FromSeconds(20f);
 
     /// <summary>
     /// There are 6 states in total, each lasting 0.3 seconds.
@@ -31,7 +34,7 @@ public sealed partial class SmasherComponent : Component
     /// After this interval, the alert will be deleted if its state is equal to the zero state (0 will be displayed)
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan TimeDeleteAlert = TimeSpan.FromSeconds(5f);
+    public TimeSpan TimeDeleteAlert = TimeSpan.FromSeconds(3f);
 
     /// <summary>
     /// When the counter first reached 0
@@ -39,8 +42,11 @@ public sealed partial class SmasherComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan? AlertZeroStartTime { get; set; }
 
+    /// <summary>
+    /// Cooldown after shield activation
+    /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan ActiveShieldCooldown = TimeSpan.FromSeconds(10);
+    public TimeSpan ActiveShieldCooldown = TimeSpan.FromSeconds(60f);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan AlertTime;
@@ -49,10 +55,10 @@ public sealed partial class SmasherComponent : Component
     /// Includes shield decay time.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan TimeCooldownDownedDecay = TimeSpan.FromSeconds(5.0f);
+    public TimeSpan TimeCooldownDownedDecay = TimeSpan.FromSeconds(15f);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float TimeChargingSmasher = 4.0f;
+    public float TimeChargingSmasher = 5.0f;
 
     /// <summary>
     /// Default key on top (not pressed/pressured)
@@ -63,9 +69,6 @@ public sealed partial class SmasherComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<AlertPrototype> CounterCooldownAlert = "SmasherCounterCooldown";
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan TimeCooldownCompleted = TimeSpan.FromSeconds(10f);
 
     /// <summary>
     /// When will the shield end

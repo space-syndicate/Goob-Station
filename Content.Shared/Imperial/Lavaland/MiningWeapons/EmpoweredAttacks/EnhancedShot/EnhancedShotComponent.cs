@@ -8,10 +8,10 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Enhanc
 public sealed partial class EnhancedShotComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float DoAfterTime = 1.0f;
+    public float DoAfterTime = 1.5f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ProjectileSpeed = 40f;
+    public float ProjectileSpeed = 30f;
 
     [ViewVariables, DataField]
     public SoundSpecifier ShotSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/EnhancedShot/enhanced_shot.ogg");

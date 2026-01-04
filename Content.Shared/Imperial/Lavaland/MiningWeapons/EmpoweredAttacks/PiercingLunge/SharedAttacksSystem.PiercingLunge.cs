@@ -24,6 +24,9 @@ public abstract partial class SharedAttacksSystem
 
     private void OnPiercingLunge(EntityUid user, UserPiercingLungeComponent userComp, ref PiercingLungeEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!userComp.Item.HasValue)
             return;
 
@@ -68,6 +71,7 @@ public abstract partial class SharedAttacksSystem
             }
         }
 
+        args.Handled = true;
     }
 
     private void OnPiercingLungeDoAfter(EntityUid uid, PiercingLungeComponent comp, PiercingLungeDoAfterEvent args)

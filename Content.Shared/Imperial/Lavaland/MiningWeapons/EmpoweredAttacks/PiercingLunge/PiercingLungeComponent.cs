@@ -13,7 +13,7 @@ public sealed partial class PiercingLungeComponent : Component
     public bool HasDoAfter = true;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float DoAfterTime = 0.35f;
+    public float DoAfterTime = 1.5f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float LungeStrength = 7f;
@@ -56,7 +56,7 @@ public sealed partial class PiercingLungeComponent : Component
         DamageDict = new()
         {
             { "Blunt", 5 },
-            { "Slash", 20 }
+            { "Slash", 13 }
         }
     };
 

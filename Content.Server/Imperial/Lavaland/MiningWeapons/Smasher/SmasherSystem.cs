@@ -231,8 +231,6 @@ public sealed class SmasherSystem : SharedSmasherSystem
             RemComp<SmasherChargingComponent>(user);
             _movementSpeed.RefreshMovementSpeedModifiers(user);
         }
-
-        SetCooldown(smasherUid, smasher, smasher.TimeCooldownCompleted);
     }
 
     public void ActivateShield(EntityUid smasherUid, SmasherComponent smasher, EntityUid user)
@@ -247,7 +245,7 @@ public sealed class SmasherSystem : SharedSmasherSystem
         shieldActive.TimeDecay = smasher.TimeDecay;
         shieldActive.EffectActived = smasher.EffectActived;
         shieldActive.SmasherUid = smasherUid;
-        shieldActive.EndTime = _timing.CurTime + TimeSpan.FromSeconds(5);
+        shieldActive.EndTime = _timing.CurTime + smasher.ActiveShieldTime;
         Dirty(user, shieldActive);
 
         SetCooldown(smasherUid, smasher, smasher.ActiveShieldCooldown);

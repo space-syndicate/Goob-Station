@@ -25,6 +25,9 @@ public abstract partial class SharedAttacksSystem
 
     private void OnEnhancedShot(EntityUid user, UserEnhancedShotComponent userComp, ref EnhancedShotEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!userComp.Item.HasValue)
             return;
 
@@ -67,6 +70,8 @@ public abstract partial class SharedAttacksSystem
 
             ShootEnhancedProjectile(userComp.Item.Value, user, comp);
         }
+
+        args.Handled = true;
     }
 
     private void OnEnhancedShotDoAfter(EntityUid uid, EnhancedShotComponent comp, EnhancedShotDoAfterEvent args)

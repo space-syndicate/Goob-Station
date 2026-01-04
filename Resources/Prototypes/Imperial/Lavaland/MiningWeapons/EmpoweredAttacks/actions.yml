@@ -5,10 +5,8 @@
   description: locale
   components:
   - type: Action
-    useDelay: 3
+    useDelay: 60
     itemIconStyle: BigAction
-    checkCanAccess: false
-    repeat: false
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: blink
@@ -24,10 +22,8 @@
   description: locale
   components:
   - type: Action
-    useDelay: 3
+    useDelay: 60
     itemIconStyle: BigAction
-    checkCanAccess: false
-    repeat: false
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: blink
@@ -43,7 +39,7 @@
   description: locale
   components:
   - type: Action
-    useDelay: 3
+    useDelay: 60
     icon: { sprite: Structures/Specific/anomaly.rsi, state: anom1 }
   - type: InstantAction
     event: !type:EarthshakerStrikeEvent

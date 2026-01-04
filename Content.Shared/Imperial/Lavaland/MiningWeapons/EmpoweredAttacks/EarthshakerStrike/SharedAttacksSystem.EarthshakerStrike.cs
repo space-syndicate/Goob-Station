@@ -21,6 +21,9 @@ public abstract partial class SharedAttacksSystem
 
     private void OnEarthshakerStrike(EntityUid user, UserEarthshakerStrikeComponent comp, ref EarthshakerStrikeEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!comp.Item.HasValue)
             return;
 
@@ -41,6 +44,8 @@ public abstract partial class SharedAttacksSystem
             _audio.PlayPvs(comp.CompletedSound, user);
             Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
         }
+
+        args.Handled = true;
     }
 
     private void OnEarthshakerStrikeDoAfter(EntityUid uid, EarthshakerStrikeComponent comp, EarthshakerStrikeDoAfterEvent args)
