@@ -267,3 +267,10 @@ ent-GateDoor = Гермоворота
 
 ent-GateDoorOpen = Гермоворота
     .desc = Открывайте! Хм... Никогда не открывают.
+
+ent-ReinforcedConcreteStraight = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+ent-ReinforcedConcreteCorner = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+ent-ReinforcedConcreteEnd = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
