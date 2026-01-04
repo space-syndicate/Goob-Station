@@ -26,5 +26,9 @@ air-alarm-ui-thresholds-gas-name = { $gas ->
     [Phazonium] Фазон
     [Ozonium] Озон
     [Hydrogen] Водород
+    [Deuterium] Дейтерий
+    [HyperNoblium] Гипер-Ноблий
+    [AntiNoblium] Анти-Ноблий
+    [BZ] BZ
     *[else] Неизвестный газ
 }

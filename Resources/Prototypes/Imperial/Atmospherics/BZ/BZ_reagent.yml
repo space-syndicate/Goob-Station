@@ -1,0 +1,60 @@
+- type: reagent
+  id: BZ
+  name: reagent-name-BZ
+  desc: reagent-desc-BZ
+  physicalDesc: reagent-physical-desc-BZ
+  flavor: bitter
+  color: "#FF6347"
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 2.0
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
+        multiplier: 0.8
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 1
+          groups:
+            Toxin: 3
+    Gas:
+      effects:
+      - !type:Oxygenate
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Moth ]
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Human ]
+        ignoreResistances: true
+        damage:
+          types:
+            Radiation: 0.1
+          groups:
+            Toxin: 0.3
+      - !type:Oxygenate
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Moth ]
+        ignoreResistances: true
+        damage:
+          types:
+            Cellular: -0.2
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Add

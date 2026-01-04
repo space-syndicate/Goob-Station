@@ -15,8 +15,8 @@ public sealed partial class ImperialEntry
 
     }
 
-    public static void IoCRegister()
+    public static void IoCRegister(IDependencyCollection deps)
     {
-        IoCManager.Register<SponsorsManager>();
+        deps.Register<SponsorsManager>();
     }
 }

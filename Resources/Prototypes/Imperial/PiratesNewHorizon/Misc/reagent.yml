@@ -11,11 +11,12 @@
       metabolismRate : 0.25
       effects:
       - !type:Polymorph
-        prototype: AbominationMorph 
+        prototype: AbominationMorph
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: MuddyHarbour
           min: 5
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Animal
           shouldHave: false
       - !type:PopupMessage
@@ -73,18 +74,19 @@
   metabolisms:
     Drink:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 1.25
         sprintSpeedModifier: 1.25
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.04
       - !type:Drunk
         boozePower: 30
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: BeerEssence
           min: 15
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Dwarf
         damage:
           groups:
@@ -195,11 +197,10 @@
       - !type:ModifyBloodLevel
         amount: 30
       - !type:Oxygenate
-      - !type:ChemHealEyeDamage
       - !type:CureZombieInfection
     Poison:
       effects:
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.005
       - !type:HealthChange
         conditions:
@@ -215,6 +216,6 @@
       - !type:Jitter
       - !type:Drunk
         boozePower: 15
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 1.4
         sprintSpeedModifier: 1.4

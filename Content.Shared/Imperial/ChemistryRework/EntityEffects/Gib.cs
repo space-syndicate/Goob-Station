@@ -1,29 +1,36 @@
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Chemistry.ReactionEffects;
 
-/// <summary>
-///     Explodes the body
-/// </summary>
-public sealed partial class Gib : EntityEffect
+
+public sealed partial class GibEntityEffectSystem : EntityEffectSystem<DamageableComponent, Gib>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        Loc.GetString("reagent-effect-guidebook-gib",
-            ("chance", Probability)
-        );
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    public override void Effect(EntityEffectBaseArgs args)
+
+    protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<Gib> args)
     {
-        var damageSystem = args.EntityManager.System<DamageableSystem>();
-        var protoManager = IoCManager.Resolve<IPrototypeManager>();
-
-        damageSystem.TryChangeDamage( // I could use the BodySystem, but for some reason the brain and organs don't fall out when it gibs.
-            args.TargetEntity,
-            new DamageSpecifier(protoManager.Index<DamageTypePrototype>("Blunt"), 10000),
+        _damageableSystem.TryChangeDamage( // I could use the BodySystem, but for some reason the brain and organs don't fall out when it gibs.
+            entity.Owner,
+            new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 10000),
             true
         );
     }
+}
+
+/// <summary>
+///     Explodes the body
+/// </summary>
+public sealed partial class Gib : EntityEffectBase<Gib>
+{
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
+        Loc.GetString("reagent-effect-guidebook-gib",
+            ("chance", Probability)
+        );
 }

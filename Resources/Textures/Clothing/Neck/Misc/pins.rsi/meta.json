@@ -132,6 +132,13 @@
         {
             "name": "fluid-equipped-NECK",
             "directions": 4
+        },
+        {
+            "name": "flower"
+        },
+        {
+            "name": "flower-equipped-NECK",
+            "directions": 4
         }
     ]
 }

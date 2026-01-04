@@ -9,6 +9,17 @@ public sealed partial class ImperialInfoWindow : BaseImperialWindow.BaseImperial
 {
     public event Action? OnSubmitButtonPressed;
 
+
+    [ViewVariables]
+    public string? HeaderInfoText { get => HeaderLabelText.Text; set => HeaderLabelText.Text = value; }
+
+    [ViewVariables]
+    public string? InfoPanelText { get => InfoText.Text; set => InfoText.Text = value; }
+
+    [ViewVariables]
+    public string? SubmitButtonLabelText { get => SubmitButtonText.Text; set => SubmitButtonText.Text = value; }
+
+
     public ImperialInfoWindow()
     {
         RobustXamlLoader.Load(this);

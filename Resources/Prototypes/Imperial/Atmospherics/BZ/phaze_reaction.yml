@@ -1,0 +1,25 @@
+- type: gasPhazeReaction
+  id: BZPhaseProduction
+  energyScale: 60
+  useGasTwo: True
+  addedGasID: 16
+  missingGasID: 3
+  missingGasIDTwo: 11
+  outputFactor: 1
+ # oxygen 0
+ # nitrogen 1
+ # carbon dioxide 2
+ # plasma 3
+ # tritium 4
+ # vapor 5
+ # ammonia 6
+ # n2o 7
+ # frezon 8
+ # thermonium 9
+ # phazonium 10
+ # ozonium 11
+ # hydrogen 12
+ # deuterium 13
+ # hyper noblium 14
+ # anti noblium 15
+ # BZ 16

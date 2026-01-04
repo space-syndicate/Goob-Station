@@ -5,6 +5,7 @@ using Content.Shared.Stacks;
 using Content.Shared.Interaction;
 using Content.Shared.Materials;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Imperial.Lavaland.MaterialEnergy
 {
@@ -66,7 +67,7 @@ namespace Content.Server.Imperial.Lavaland.MaterialEnergy
                 return false;
 
             // Adding energy
-            _batterySystem.SetCharge(batteryUid, battery.CurrentCharge + materialToConsume, battery);
+            _batterySystem.SetCharge((batteryUid, battery), battery.CurrentCharge + materialToConsume);
 
             // Remove the used material
             var itemsToConsume = (int)Math.Ceiling((float)materialToConsume / materialPerItem);

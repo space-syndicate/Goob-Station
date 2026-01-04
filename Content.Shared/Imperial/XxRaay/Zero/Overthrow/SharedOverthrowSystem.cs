@@ -1,5 +1,5 @@
 using Content.Shared.Alert;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Timing;
@@ -16,7 +16,7 @@ public abstract class SharedOverthrowSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<OverthrowComponent, BeforeThrowEvent>(OnBeforeThrow);
         SubscribeLocalEvent<OverthrowComponent, ComponentStartup>(OnOverthrowStartup);
         SubscribeLocalEvent<OverthrownItemComponent, ThrowDoHitEvent>(OnThrowHit);
@@ -29,7 +29,7 @@ public abstract class SharedOverthrowSystem : EntitySystem
 
         var component = entity.Comp;
         var currentTime = _gameTiming.CurTime;
-        
+
         if (currentTime < component.LastThrowTime + component.Cooldown)
         {
             var cooldownComp = EnsureComp<OverthrownItemComponent>(ev.ItemUid);
@@ -41,19 +41,19 @@ public abstract class SharedOverthrowSystem : EntitySystem
         }
 
         ev.ThrowSpeed *= component.ThrowMultiplier;
-        
+
         var overthrownComp = EnsureComp<OverthrownItemComponent>(ev.ItemUid);
         overthrownComp.Damage = component.Damage;
         overthrownComp.KnockdownTime = component.KnockdownTime;
         overthrownComp.IsOverthrown = true;
         Dirty(ev.ItemUid, overthrownComp);
-        
+
         component.LastThrowTime = currentTime;
         Dirty(entity);
-        
+
         var cooldownEnd = currentTime + component.Cooldown;
         _alerts.ShowAlert(entity.Owner, component.CooldownAlertId, cooldown: (currentTime, cooldownEnd), autoRemove: true);
-        
+
         ScheduleUpdateAlert(entity, cooldownEnd);
     }
 
@@ -66,7 +66,7 @@ public abstract class SharedOverthrowSystem : EntitySystem
     {
         var component = entity.Comp;
         var currentTime = _gameTiming.CurTime;
-        
+
         if (currentTime < component.LastThrowTime + component.Cooldown)
         {
             var cooldownEnd = component.LastThrowTime + component.Cooldown;
@@ -96,16 +96,16 @@ public abstract class SharedOverthrowSystem : EntitySystem
     private void OnThrowHit(Entity<OverthrownItemComponent> entity, ref ThrowDoHitEvent ev)
     {
         var component = entity.Comp;
-        
+
         if (!component.IsOverthrown)
         {
             RemComp<OverthrownItemComponent>(entity);
             return;
         }
-        
+
         _damageable.TryChangeDamage(ev.Target, component.Damage);
         _stun.TryKnockdown(ev.Target, component.KnockdownTime);
-        
+
         RemComp<OverthrownItemComponent>(entity);
     }
 }

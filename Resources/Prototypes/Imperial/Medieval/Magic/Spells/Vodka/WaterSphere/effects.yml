@@ -26,7 +26,7 @@
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: MedievalShootAfterSpawn
     shootRate: 1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileWaterSphereBeginner
     fireCost: 1000
   - type: Battery
@@ -76,7 +76,7 @@
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: MedievalShootAfterSpawn
     shootRate: 1.1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileWaterSphereMiddle
     fireCost: 1000
   - type: Battery
@@ -127,7 +127,7 @@
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: MedievalShootAfterSpawn
     shootRate: 1.1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MedievalProjectileWaterSphereSenior
     fireCost: 1000
   - type: Battery

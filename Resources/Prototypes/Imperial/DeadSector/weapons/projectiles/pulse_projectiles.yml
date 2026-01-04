@@ -1,51 +1,63 @@
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: plasma_pistol
-  damage:
-    types:
-      Radiation: 5.4
-  muzzleFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: muzzle_plasma
-  travelFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: beam_plasma
-  impactFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: impact_plasma
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 5.4
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: muzzle_plasma
+    travelFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: beam_plasma
+    impactFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: impact_plasma
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: plasma_rifle_RLT1
-  damage:
-    types:
-      Heat: 18
-  muzzleFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: muzzle_plasma
-  travelFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: beam_plasma
-  impactFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: impact_plasma
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 28
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: muzzle_plasma
+    travelFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: beam_plasma
+    impactFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: impact_plasma
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: plasma_rifle_RLT2
-  damage:
-    types:
-      Blunt: 22
-      Slash: 5
-      Piercing: 5
-      Heat: 22
-      Cold: 22
-      Shock: 5
-      Radiation: 5
-      Caustic: 22
-  muzzleFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: muzzle_plasma
-  travelFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: beam_plasma
-  impactFlash:
-    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
-    state: impact_plasma
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 22
+        Slash: 5
+        Piercing: 5
+        Heat: 22
+        Cold: 22
+        Shock: 5
+        Radiation: 5
+        Caustic: 22
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: muzzle_plasma
+    travelFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: beam_plasma
+    impactFlash:
+      sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+      state: impact_plasma
