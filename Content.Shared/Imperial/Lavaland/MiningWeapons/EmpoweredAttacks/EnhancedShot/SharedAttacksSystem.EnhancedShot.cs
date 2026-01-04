@@ -2,14 +2,20 @@ using System.Numerics;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.EnhancedShot;
 using Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.EnhancedShot.Events;
+using Content.Shared.Timing;
+using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks;
 
 public abstract partial class SharedAttacksSystem
 {
+    [Dependency] private readonly UseDelaySystem _delay = default!;
+
     private void InitializeEnhancedShot()
     {
         SubscribeLocalEvent<UserEnhancedShotComponent, EnhancedShotEvent>(OnEnhancedShot);
+        SubscribeLocalEvent<UserEnhancedShotComponent, ShotAttemptedEvent>(OnAttack);
+
         SubscribeLocalEvent<EnhancedShotComponent, EnhancedShotDoAfterEvent>(OnEnhancedShotDoAfter);
         SubscribeLocalEvent<EnhancedShotComponent, GotEquippedHandEvent>(OnEquippedEnhancedShot);
         SubscribeLocalEvent<EnhancedShotComponent, GotUnequippedHandEvent>(OnUnequippedEnhancedShot);
@@ -28,6 +34,11 @@ public abstract partial class SharedAttacksSystem
             return;
         }
 
+        userComp.IsChargedAttackActive = true;
+
+        if (TryComp<UseDelayComponent>(userComp.Item.Value, out var useDelay))
+            _delay.TryResetDelay((userComp.Item.Value, useDelay));
+
         var userXform = Transform(user);
         var targetMap = _transform.ToMapCoordinates(args.Target);
         if (targetMap.MapId != userXform.MapID)
@@ -41,12 +52,20 @@ public abstract partial class SharedAttacksSystem
             _audio.PlayPvs(userComp.StartDoAfterSound, user);
 
             if (!StartDoAfter(user, userComp.Item.Value, userComp.DoAfterTime, new EnhancedShotDoAfterEvent()))
+            {
+                userComp.IsChargedAttackActive = false;
                 return;
+            }
         }
         else
         {
-            if (TryComp<EnhancedShotComponent>(userComp.Item.Value, out var comp))
-                ShootEnhancedProjectile(userComp.Item.Value, user, comp);
+            if (!TryComp<EnhancedShotComponent>(userComp.Item.Value, out var comp))
+            {
+                userComp.IsChargedAttackActive = false;
+                return;
+            }
+
+            ShootEnhancedProjectile(userComp.Item.Value, user, comp);
         }
     }
 
@@ -108,20 +127,44 @@ public abstract partial class SharedAttacksSystem
         }
     }
 
-    private void ShootEnhancedProjectile(EntityUid item, EntityUid user, EnhancedShotComponent comp)
+    private void OnAttack(EntityUid user, UserEnhancedShotComponent component, ShotAttemptedEvent args)
+    {
+        if (component.IsChargedAttackActive)
+        {
+            args.Cancel();
+            return;
+        }
+
+        if (!component.Item.HasValue)
+            return;
+
+        if (TryComp<UseDelayComponent>(component.Item.Value, out var useDelay) &&
+            _delay.IsDelayed((component.Item.Value, useDelay)))
+        {
+            args.Cancel();
+            return;
+        }
+    }
+
+    private void ShootEnhancedProjectile(EntityUid weaponUid, EntityUid user, EnhancedShotComponent comp)
     {
         if (!TryComp<UserEnhancedShotComponent>(user, out var userComp))
             return;
 
-        var xform = Transform(item);
+        var xform = Transform(weaponUid);
         var fromCoords = xform.Coordinates;
         var fromMap = _transform.ToMapCoordinates(fromCoords);
         var projectile = Spawn(comp.ProjectilePrototype, fromMap);
 
         var direction = userComp.Direction.Normalized();
-        _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, item, user, speed: comp.ProjectileSpeed);
+        _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, weaponUid, user, speed: comp.ProjectileSpeed);
         _sharedCameraRecoil.KickCamera(user, -direction);
 
         _audio.PlayPvs(comp.CompletedSound, user);
+
+        if (TryComp<UseDelayComponent>(weaponUid, out var useDelay))
+            _delay.TryResetDelay((weaponUid, useDelay));
+
+        userComp.IsChargedAttackActive = false;
     }
 }

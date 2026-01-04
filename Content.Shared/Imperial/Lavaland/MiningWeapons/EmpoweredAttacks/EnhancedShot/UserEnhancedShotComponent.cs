@@ -20,4 +20,7 @@ public sealed partial class UserEnhancedShotComponent : Component
 
     [ViewVariables]
     public bool HasDoAfter;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IsChargedAttackActive = false;
 }

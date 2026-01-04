@@ -14,6 +14,7 @@ public abstract partial class SharedAttacksSystem
     private void InitializePiercingLunge()
     {
         SubscribeLocalEvent<UserPiercingLungeComponent, PiercingLungeEvent>(OnPiercingLunge);
+
         SubscribeLocalEvent<PiercingLungeComponent, PiercingLungeDoAfterEvent>(OnPiercingLungeDoAfter);
         SubscribeLocalEvent<PiercingLungeComponent, GotEquippedHandEvent>(OnEquippedPiercingLunge);
         SubscribeLocalEvent<PiercingLungeComponent, GotUnequippedHandEvent>(OnUnequippedPiercingLunge);
