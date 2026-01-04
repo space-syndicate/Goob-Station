@@ -100,6 +100,9 @@ public abstract partial class SharedAttacksSystem
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionEnhancedShot);
 
+        if (comp.Action != null)
+            _action.StartUseDelay(comp.Action.Value);
+
         var userComp = EnsureComp<UserEnhancedShotComponent>(args.User);
         userComp.DoAfterTime = comp.DoAfterTime;
         userComp.HasDoAfter = comp.HasDoAfter;

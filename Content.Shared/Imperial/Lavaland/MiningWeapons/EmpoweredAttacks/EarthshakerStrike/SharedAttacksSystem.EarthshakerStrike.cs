@@ -86,6 +86,9 @@ public abstract partial class SharedAttacksSystem
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionEarthshakerStrike);
 
+        if (comp.Action != null)
+            _action.StartUseDelay(comp.Action.Value);
+
         var userComp = EnsureComp<UserEarthshakerStrikeComponent>(args.User);
         userComp.EarthshakerRiftSpawnPrototype = comp.EarthshakerRiftSpawnPrototype;
         userComp.DoAfterTime = comp.DoAfterTime;

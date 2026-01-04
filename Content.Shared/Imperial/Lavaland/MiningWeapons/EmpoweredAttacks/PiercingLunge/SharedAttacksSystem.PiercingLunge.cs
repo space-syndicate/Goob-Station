@@ -104,6 +104,9 @@ public abstract partial class SharedAttacksSystem
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionPiercingLunge);
 
+        if (comp.Action != null)
+            _action.StartUseDelay(comp.Action.Value);
+
         var userComp = EnsureComp<UserPiercingLungeComponent>(args.User);
         userComp.DoAfterTime = comp.DoAfterTime;
         userComp.HasDoAfter = comp.HasDoAfter;
