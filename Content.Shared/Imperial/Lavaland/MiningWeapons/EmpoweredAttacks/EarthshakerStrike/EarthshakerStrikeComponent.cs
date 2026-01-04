@@ -17,17 +17,16 @@ public sealed partial class EarthshakerStrikeComponent : Component
     public bool HasDoAfter = true;
 
     [ViewVariables, DataField]
-    public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
+    public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/EarthshakerStrike/earthshaker_strike.ogg");
 
     [ViewVariables, DataField]
-    public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
+    public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/EarthshakerStrike/swing.ogg");
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
     public string EarthshakerRiftSpawnPrototype = "EffectEarthshakerRiftSpawn";
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
     public string ActionEarthshakerStrike = "ActionEarthshakerStrike";
-
 
     [ViewVariables]
     public EntityUid? Action;

@@ -14,10 +14,10 @@ public sealed partial class EnhancedShotComponent : Component
     public float ProjectileSpeed = 40f;
 
     [ViewVariables, DataField]
-    public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
+    public SoundSpecifier ShotSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/EnhancedShot/enhanced_shot.ogg");
 
     [ViewVariables, DataField]
-    public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
+    public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/EnhancedShot/charging_shot.ogg");
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionEnhancedShot = "ActionEnhancedShot";

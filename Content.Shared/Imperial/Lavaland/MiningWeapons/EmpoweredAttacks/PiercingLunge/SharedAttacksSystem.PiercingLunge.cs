@@ -56,7 +56,6 @@ public abstract partial class SharedAttacksSystem
 
         if (userComp.HasDoAfter)
         {
-            _audio.PlayPvs(userComp.StartDoAfterSound, user);
             if (!StartDoAfter(user, userComp.Item.Value, userComp.DoAfterTime, new PiercingLungeDoAfterEvent()))
                 return;
         }
@@ -104,7 +103,6 @@ public abstract partial class SharedAttacksSystem
         var userComp = EnsureComp<UserPiercingLungeComponent>(args.User);
         userComp.DoAfterTime = comp.DoAfterTime;
         userComp.HasDoAfter = comp.HasDoAfter;
-        userComp.StartDoAfterSound = comp.StartDoAfterSound;
         userComp.Item = uid;
 
         comp.User = args.User;

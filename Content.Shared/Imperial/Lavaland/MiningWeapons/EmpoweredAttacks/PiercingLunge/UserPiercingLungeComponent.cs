@@ -7,9 +7,6 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.EmpoweredAttacks.Pierci
 public sealed partial class UserPiercingLungeComponent : Component
 {
     [ViewVariables]
-    public SoundSpecifier? StartDoAfterSound;
-
-    [ViewVariables]
     public EntityUid? Item;
 
     [ViewVariables]

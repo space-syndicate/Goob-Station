@@ -44,10 +44,7 @@ public sealed partial class PiercingLungeComponent : Component
 
 
     [ViewVariables, DataField]
-    public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Effects/break_stone.ogg");
-
-    [ViewVariables, DataField]
-    public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
+    public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/piercing_lunge.ogg");
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionPiercingLunge = "ActionPiercingLunge";

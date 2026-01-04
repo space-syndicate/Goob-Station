@@ -13,19 +13,6 @@ public sealed partial class ShieldActiveComponent : Component
     [ViewVariables, AutoNetworkedField]
     public DamageModifierSet PassiveBlockDamageModifer = default!;
 
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier BlockSound = new SoundPathSpecifier("/Audio/Weapons/block_metal1.ogg");
-
-    [ViewVariables, AutoNetworkedField]
-    public Dictionary<string, float> DamageBlockedCoefficients = new()
-    {
-        ["Blunt"] = 0.1f,
-        ["Slash"] = 0.1f,
-        ["Piercing"] = 0.10f,
-        ["Heat"] = 0.1f
-    };
-
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan? TimeDecay;

@@ -125,17 +125,17 @@ public sealed class SmasherSystem : SharedSmasherSystem
             return;
         Log.Debug($"modifier != null");
         args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modifier);
-
-        _audio.PlayPvs(component.BlockSound, uid);
     }
 
     private void OnComponentInit(EntityUid uid, ShieldActiveComponent component, ComponentInit args)
     {
-        Log.Debug("ShieldActiveComponent OnComponentInit");
+        if (!TryGetSmasherInHands(uid, out var _, out var smasher))
+            return;
+
         component.PassiveBlockDamageModifer ??= new DamageModifierSet();
         component.PassiveBlockDamageModifer.Coefficients ??= new Dictionary<string, float>();
 
-        component.PassiveBlockDamageModifer.Coefficients = component.DamageBlockedCoefficients;
+        component.PassiveBlockDamageModifer.Coefficients = smasher.DamageBlockedCoefficients;
     }
 
     private void OnShieldShutdown(EntityUid user, ShieldActiveComponent component, ComponentShutdown args)
@@ -215,6 +215,8 @@ public sealed class SmasherSystem : SharedSmasherSystem
             RemComp<SmasherChargingComponent>(user);
             _movementSpeed.RefreshMovementSpeedModifiers(user);
         }
+
+        _audio.PlayPvs(smasher.DeactivateSound, user);
 
         SetCooldown(smasherUid, smasher, smasher.TimeCooldownDownedDecay);
 

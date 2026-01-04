@@ -12,6 +12,15 @@ namespace Content.Shared.Imperial.Lavaland.MiningWeapons.Smasher.Components;
 [AutoGenerateComponentPause]
 public sealed partial class SmasherComponent : Component
 {
+    [ViewVariables, AutoNetworkedField]
+    public Dictionary<string, float> DamageBlockedCoefficients = new()
+    {
+        ["Blunt"] = 0.1f,
+        ["Slash"] = 0.1f,
+        ["Piercing"] = 0.10f,
+        ["Heat"] = 0.1f
+    };
+
     /// <summary>
     /// There are 6 states in total, each lasting 0.3 seconds.
     /// </summary>
@@ -85,11 +94,11 @@ public sealed partial class SmasherComponent : Component
     public SpriteSpecifier.Rsi EffectDecay = new(new ResPath("/Textures/Imperial/Lavaland/MiningWeapons/smasher_shield.rsi"), "decay");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? StartChargingSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
+    public SoundSpecifier? StartChargingSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/Smasher/start_charging_shield.ogg");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? DeactivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
+    public SoundSpecifier? DeactivateSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/Smasher/deactivate_shield.ogg");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? ActivateSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg");
+    public SoundSpecifier? ActivateSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/MiningWeapons/Smasher/activate_shield.ogg");
 }

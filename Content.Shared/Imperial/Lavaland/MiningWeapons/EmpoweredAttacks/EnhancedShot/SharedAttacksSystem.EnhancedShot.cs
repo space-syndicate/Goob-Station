@@ -160,7 +160,7 @@ public abstract partial class SharedAttacksSystem
         _gunSystem.ShootProjectile(projectile, direction, Vector2.Zero, weaponUid, user, speed: comp.ProjectileSpeed);
         _sharedCameraRecoil.KickCamera(user, -direction);
 
-        _audio.PlayPvs(comp.CompletedSound, user);
+        _audio.PlayPvs(comp.ShotSound, user);
 
         if (TryComp<UseDelayComponent>(weaponUid, out var useDelay))
             _delay.TryResetDelay((weaponUid, useDelay));
