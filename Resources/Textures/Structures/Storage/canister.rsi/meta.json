@@ -129,6 +129,18 @@
     },
     {
       "name": "phazonium"
+    },
+    {
+      "name": "deuterium"
+    },
+    {
+      "name": "hyperNoblium"
+    },
+    {
+      "name": "antiNoblium"
+    },
+    {
+      "name": "BZ"
     }
   ]
 }
