@@ -27,21 +27,24 @@ public sealed class SupermatterGasSystem : EntitySystem
             if (gas == null)
                 continue;
 
-            var antiNobMoles = gas[(int) gasComp.AntiNobliumGas];
+            var antiNobMoles = gas.GetMoles(gasComp.AntiNobliumGas);
             var antiNobActive = antiNobMoles > gasComp.GasActivationMoles;
 
             if (gasComp.AntiNobliumHardShutdownEnabled && antiNobActive)
             {
                 integrity.Activated = false;
+                gasComp.WasShutdownByAntiNoblium = true;
+            }
+            else if (gasComp.AntiNobliumHardShutdownEnabled && !antiNobActive && gasComp.WasShutdownByAntiNoblium)
+            {
+                integrity.Activated = true;
+                gasComp.WasShutdownByAntiNoblium = false;
             }
 
-            if (!integrity.Activated)
-                continue;
-
-            var thermMoles = gas[(int) gasComp.ThermoniumGas];
-            var ozoneMoles = gas[(int) gasComp.OzoneGas];
-            var plasmaMoles = gas[(int) gasComp.PlasmaGas];
-            var hyperNobMoles = gas[(int) gasComp.HyperNobliumGas];
+            var thermMoles = gas.GetMoles(gasComp.ThermoniumGas);
+            var ozoneMoles = gas.GetMoles(gasComp.OzoneGas);
+            var plasmaMoles = gas.GetMoles(gasComp.PlasmaGas);
+            var hyperNobMoles = gas.GetMoles(gasComp.HyperNobliumGas);
 
             var thermActive = thermMoles > gasComp.GasActivationMoles;
             var ozoneActive = ozoneMoles > gasComp.GasActivationMoles;
@@ -50,27 +53,36 @@ public sealed class SupermatterGasSystem : EntitySystem
 
             gasComp.GasTickAccumulator += TimeSpan.FromSeconds(frameTime);
             
-            if (gasComp.GasTickAccumulator >= TimeSpan.FromSeconds(1))
+            while (gasComp.GasTickAccumulator >= TimeSpan.FromSeconds(1))
             {
-                var consumption = gasComp.GasConsumptionPerSecond;
-                
-                var gasesToConsume = new List<(bool active, Gas gasType)>
+                var currentAntiNobMoles = gas.GetMoles(gasComp.AntiNobliumGas);
+                if (currentAntiNobMoles > gasComp.GasActivationMoles)
                 {
-                    (thermActive, gasComp.ThermoniumGas),
-                    (ozoneActive, gasComp.OzoneGas),
-                    (plasmaActive, gasComp.PlasmaGas),
-                    (hyperNobActive, gasComp.HyperNobliumGas),
-                    (antiNobActive, gasComp.AntiNobliumGas)
-                };
+                    gas.AdjustMoles(gasComp.AntiNobliumGas, -gasComp.GasConsumptionPerSecond);
+                }
 
-                foreach (var (active, gasType) in gasesToConsume)
+                if (integrity.Activated)
                 {
-                    if (active)
-                        gas.AdjustMoles((int) gasType, -consumption);
+                    var currentThermMoles = gas.GetMoles(gasComp.ThermoniumGas);
+                    var currentOzoneMoles = gas.GetMoles(gasComp.OzoneGas);
+                    var currentPlasmaMoles = gas.GetMoles(gasComp.PlasmaGas);
+                    var currentHyperNobMoles = gas.GetMoles(gasComp.HyperNobliumGas);
+
+                    if (currentThermMoles > gasComp.GasActivationMoles)
+                        gas.AdjustMoles(gasComp.ThermoniumGas, -gasComp.GasConsumptionPerSecond);
+                    if (currentOzoneMoles > gasComp.GasActivationMoles)
+                        gas.AdjustMoles(gasComp.OzoneGas, -gasComp.GasConsumptionPerSecond);
+                    if (currentPlasmaMoles > gasComp.GasActivationMoles)
+                        gas.AdjustMoles(gasComp.PlasmaGas, -gasComp.GasConsumptionPerSecond);
+                    if (currentHyperNobMoles > gasComp.GasActivationMoles)
+                        gas.AdjustMoles(gasComp.HyperNobliumGas, -gasComp.GasConsumptionPerSecond);
                 }
 
                 gasComp.GasTickAccumulator -= TimeSpan.FromSeconds(1);
             }
+
+            if (!integrity.Activated)
+                continue;
 
             if (thermActive)
             {

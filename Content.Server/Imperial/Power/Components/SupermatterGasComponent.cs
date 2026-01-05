@@ -87,6 +87,11 @@ public sealed partial class SupermatterGasComponent : Component
     /// Таймер для тиков расхода газов.
     /// </summary>
     public TimeSpan GasTickAccumulator = TimeSpan.Zero;
+
+    /// <summary>
+    /// Была ли суперматерия выключена антиноблием.
+        /// </summary>
+    public bool WasShutdownByAntiNoblium = false;
 }
 
 
