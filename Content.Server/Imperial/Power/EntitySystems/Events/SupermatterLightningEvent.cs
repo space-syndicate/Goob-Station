@@ -1,5 +1,7 @@
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Damage.Components;
+using Robust.Shared.Localization;
+using System;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
 
@@ -52,8 +54,23 @@ public sealed class SupermatterLightningEvent
 
     private static void ShootRandomLightnings(Entity<SupermatterEventComponent> entity, SupermatterEventSystem supermatterSystem)
     {
+        var boltCount = entity.Comp.LightningBoltCount;
+
+        if (supermatterSystem.TryGetComponent<SupermatterGasComponent>(entity, out var gasComp)
+            && gasComp != null
+            && supermatterSystem.TryGetComponent<TransformComponent>(entity, out var xform))
+        {
+            var gas = supermatterSystem.Atmos.GetContainingMixture((entity, xform), true, true);
+            if (gas != null)
+            {
+                var tritiumMoles = gas[(int) gasComp.TritiumGas];
+                if (tritiumMoles > gasComp.GasActivationMoles && gasComp.TritiumLightningMultiplier > 1f)
+                    boltCount = (int) MathF.Max(1, boltCount * gasComp.TritiumLightningMultiplier);
+            }
+        }
+
         // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе
-        supermatterSystem.LightningSystem.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, entity.Comp.LightningBoltCount);
+        supermatterSystem.LightningSystem?.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, boltCount, "Lightning", 0, true);
     }
 
     public static string GetAnnouncement()

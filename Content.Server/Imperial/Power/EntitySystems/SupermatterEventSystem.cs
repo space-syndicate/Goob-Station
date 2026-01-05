@@ -83,7 +83,43 @@ public sealed class SupermatterEventSystem : EntitySystem
         while (enumerator.MoveNext(out var uid, out var eventComp, out var integrityComp))
         {
             Entity<SupermatterEventComponent, SupermatterIntegrityComponent> entity = new(uid, eventComp, integrityComp);
-            ProcessSingleSupermatter(entity);
+            
+            var currentTime = GameTiming.CurTime;
+            
+            // Очистка кэша консоли
+            if (currentTime - eventComp.LastConsoleCacheUpdate >= eventComp.ConsoleCacheLifetime)
+            {
+                _nearestConsoleCache.Remove(uid);
+                eventComp.LastConsoleCacheUpdate = currentTime;
+            }
+
+            UpdateEventEndTimer(eventComp, currentTime);
+
+            if (!integrityComp.Activated)
+            {
+                ResetInactiveTimers(eventComp, currentTime);
+                continue;
+            }
+
+            if (eventComp.NextEventTimer > TimeSpan.Zero)
+            {
+                var elapsedSinceLastUpdate = currentTime - eventComp.LastNextEventTimerUpdate;
+                eventComp.NextEventTimer -= elapsedSinceLastUpdate;
+
+                if (EntityManager.TryGetComponent<SupermatterGasComponent>(uid, out var gasComp) &&
+                    gasComp.WaterVaporEventSpeedMultiplier > 1f)
+                {
+                    var extra = TimeSpan.FromTicks((long)(elapsedSinceLastUpdate.Ticks * (gasComp.WaterVaporEventSpeedMultiplier - 1f)));
+                    eventComp.NextEventTimer -= extra;
+                }
+
+                if (eventComp.NextEventTimer < TimeSpan.Zero)
+                    eventComp.NextEventTimer = TimeSpan.Zero;
+                eventComp.LastNextEventTimerUpdate = currentTime;
+            }
+
+            TryStartNewEvent(entity);
+            ProcessActiveEvent(entity, currentTime);
         }
     }
 
