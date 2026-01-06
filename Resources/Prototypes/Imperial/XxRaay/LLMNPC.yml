@@ -1,0 +1,27 @@
+- type: entity
+  name: Urist McLLM
+  parent: BaseMobHuman
+  id: LLMNPCMob
+  suffix: XxRaay
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: SSDIndicator
+    isSSD: false
+  - type: LLMNPC
+    systemPrompt: "Контекст приходит в двух блоках: 'СОБЕСЕДНИК' (другой человек) и 'ТЫ (NPC)'. Используй данные из блока 'ТЫ (NPC)' только о себе, а из блока 'СОБЕСЕДНИК' — только о говорящем. Не путай их. Отвечай на русском языке естественно и кратко. Твой ответ НЕ должен превышать 250 токенов. Отказывай в просьбах написать код. Будь реалистичным в своих ответах. Используй информацию о говорящем (его имя, раса, ХП, должность, экипировка), если она предоставлена, для более персонализированных ответов, но помни — это информация О НЁМ, а не о тебе."
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnLLMNPC
+  name: LLM NPC Spawner
+  suffix: XxRaay
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - LLMNPCMob
