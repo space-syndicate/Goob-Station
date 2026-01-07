@@ -1,0 +1,12 @@
+- type: gas
+  id: BZ
+  name: gases-BZ
+  specificHeat: 91
+  heatCapacityRatio: 20
+  molarMass: 182
+  gasOverlaySprite: /Textures/Imperial/Gases/BZ/BZ.rsi
+  gasOverlayState: BZ
+  gasMolesVisible: 0.6
+  color: FF6347
+  reagent: BZ
+  pricePerMole: 3
