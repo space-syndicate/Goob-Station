@@ -15,10 +15,7 @@ public sealed partial class ImperialLegsParalyzedComponent : Component
     public bool AddedKnockdown = false;
 
     [DataField, ViewVariables]
-    public float CrawlWalkSpeed = 0.9f;
-
-    [DataField, ViewVariables]
-    public float CrawlSprintSpeed = 0.9f;
+    public float CrawlSpeed = 0.9f;
 
     [DataField, ViewVariables]
     public float CrawlAcceleration = 25f;
