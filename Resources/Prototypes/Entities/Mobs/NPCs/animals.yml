@@ -1724,6 +1724,15 @@
   id: MobMouse
   description: Squeak!
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleMouse
+  ### Imperial genetics end
   - type: Body
     prototype: Mouse
   - type: GhostRole
