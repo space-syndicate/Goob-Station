@@ -4,6 +4,8 @@
   id: LLMNPCMob
   suffix: XxRaay
   components:
+  - type: TTSProvider
+    voice: sentrybot
   - type: InputMover
   - type: MobMover
   - type: SSDIndicator
