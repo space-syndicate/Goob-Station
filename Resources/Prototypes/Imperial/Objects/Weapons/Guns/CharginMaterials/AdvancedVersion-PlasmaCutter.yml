@@ -58,7 +58,7 @@
   - type: Tag
     tags:
     - OnlyMaterialEnergy
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2
 
