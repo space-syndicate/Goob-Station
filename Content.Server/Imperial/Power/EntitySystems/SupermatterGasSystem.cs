@@ -27,7 +27,7 @@ public sealed class SupermatterGasSystem : EntitySystem
             if (gas == null)
                 continue;
 
-            var antiNobMoles = gas.GetMoles(gasComp.AntiNobliumGas);
+            var antiNobMoles = gas.GetMoles(Gas.AntiNoblium);
             var antiNobActive = antiNobMoles > gasComp.GasActivationMoles;
 
             if (gasComp.AntiNobliumHardShutdownEnabled && antiNobActive)
@@ -41,10 +41,10 @@ public sealed class SupermatterGasSystem : EntitySystem
                 gasComp.WasShutdownByAntiNoblium = false;
             }
 
-            var thermMoles = gas.GetMoles(gasComp.ThermoniumGas);
-            var ozoneMoles = gas.GetMoles(gasComp.OzoneGas);
-            var plasmaMoles = gas.GetMoles(gasComp.PlasmaGas);
-            var hyperNobMoles = gas.GetMoles(gasComp.HyperNobliumGas);
+            var thermMoles = gas.GetMoles(Gas.Thermonium);
+            var ozoneMoles = gas.GetMoles(Gas.Ozonium);
+            var plasmaMoles = gas.GetMoles(Gas.Plasma);
+            var hyperNobMoles = gas.GetMoles(Gas.HyperNoblium);
 
             var thermActive = thermMoles > gasComp.GasActivationMoles;
             var ozoneActive = ozoneMoles > gasComp.GasActivationMoles;
@@ -52,33 +52,27 @@ public sealed class SupermatterGasSystem : EntitySystem
             var hyperNobActive = hyperNobMoles > gasComp.GasActivationMoles;
 
             gasComp.GasTickAccumulator += TimeSpan.FromSeconds(frameTime);
-            
-            while (gasComp.GasTickAccumulator >= TimeSpan.FromSeconds(1))
+
+            var wholeSeconds = (int) gasComp.GasTickAccumulator.TotalSeconds;
+            if (wholeSeconds > 0)
             {
-                var currentAntiNobMoles = gas.GetMoles(gasComp.AntiNobliumGas);
-                if (currentAntiNobMoles > gasComp.GasActivationMoles)
-                {
-                    gas.AdjustMoles(gasComp.AntiNobliumGas, -gasComp.GasConsumptionPerSecond);
-                }
+                gasComp.GasTickAccumulator -= TimeSpan.FromSeconds(wholeSeconds);
+                var consumption = gasComp.GasConsumptionPerSecond * wholeSeconds;
+
+                if (antiNobActive)
+                    gas.AdjustMoles(Gas.AntiNoblium, -consumption);
 
                 if (integrity.Activated)
                 {
-                    var currentThermMoles = gas.GetMoles(gasComp.ThermoniumGas);
-                    var currentOzoneMoles = gas.GetMoles(gasComp.OzoneGas);
-                    var currentPlasmaMoles = gas.GetMoles(gasComp.PlasmaGas);
-                    var currentHyperNobMoles = gas.GetMoles(gasComp.HyperNobliumGas);
-
-                    if (currentThermMoles > gasComp.GasActivationMoles)
-                        gas.AdjustMoles(gasComp.ThermoniumGas, -gasComp.GasConsumptionPerSecond);
-                    if (currentOzoneMoles > gasComp.GasActivationMoles)
-                        gas.AdjustMoles(gasComp.OzoneGas, -gasComp.GasConsumptionPerSecond);
-                    if (currentPlasmaMoles > gasComp.GasActivationMoles)
-                        gas.AdjustMoles(gasComp.PlasmaGas, -gasComp.GasConsumptionPerSecond);
-                    if (currentHyperNobMoles > gasComp.GasActivationMoles)
-                        gas.AdjustMoles(gasComp.HyperNobliumGas, -gasComp.GasConsumptionPerSecond);
+                    if (thermActive)
+                        gas.AdjustMoles(Gas.Thermonium, -consumption);
+                    if (ozoneActive)
+                        gas.AdjustMoles(Gas.Ozonium, -consumption);
+                    if (plasmaActive)
+                        gas.AdjustMoles(Gas.Plasma, -consumption);
+                    if (hyperNobActive)
+                        gas.AdjustMoles(Gas.HyperNoblium, -consumption);
                 }
-
-                gasComp.GasTickAccumulator -= TimeSpan.FromSeconds(1);
             }
 
             if (!integrity.Activated)

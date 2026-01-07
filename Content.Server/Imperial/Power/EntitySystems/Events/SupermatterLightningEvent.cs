@@ -1,4 +1,5 @@
 using Content.Server.Imperial.Power.Components;
+using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Localization;
 using System;
@@ -63,7 +64,7 @@ public sealed class SupermatterLightningEvent
             var gas = supermatterSystem.Atmos.GetContainingMixture((entity, xform), true, true);
             if (gas != null)
             {
-                var tritiumMoles = gas[(int) gasComp.TritiumGas];
+                var tritiumMoles = gas.GetMoles(Gas.Tritium);
                 if (tritiumMoles > gasComp.GasActivationMoles && gasComp.TritiumLightningMultiplier > 1f)
                     boltCount = (int) MathF.Max(1, boltCount * gasComp.TritiumLightningMultiplier);
             }
