@@ -29,6 +29,10 @@
       Phazonium: danger #Imperial Added Phazonium and Ozonium
       Ozonium: danger #Imperial Added Phazonium and Ozonium
       Hydrogen: danger #Imperial Added Hydrogen
+      Deuterium: danger #Imperial Atmos Update start
+      HyperNoblium: danger
+      AntiNoblium: danger
+      BZ: danger #Imperial Atmos Update end
   - type: Tag
     tags:
       - AirSensor

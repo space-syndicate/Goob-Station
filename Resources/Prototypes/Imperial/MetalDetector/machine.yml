@@ -211,6 +211,7 @@
         - ClothingGaloshesExplosive
         - ClothingShoesGaloshes
         - ClothingOuterDogi
+        - DualToySword
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection

@@ -17,15 +17,15 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 
 public sealed class SupermatterEventSystem : EntitySystem
 {
-    [Dependency] public readonly AtmosphereSystem Atmos = default!;
-    [Dependency] public readonly DamageableSystem Damageable = default!;
-    [Dependency] public readonly IGameTiming GameTiming = default!;
-    [Dependency] public readonly LightningSystem LightningSystem = default!;
-    [Dependency] public readonly SharedMapSystem MapSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] public readonly AtmosphereSystem Atmos = null!;
+    [Dependency] public readonly DamageableSystem Damageable = null!;
+    [Dependency] public readonly IGameTiming GameTiming = null!;
+    [Dependency] public readonly LightningSystem LightningSystem = null!;
+    [Dependency] public readonly SharedMapSystem MapSystem = null!;
+    [Dependency] private readonly ChatSystem _chatSystem = null!;
+    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly RadioSystem _radio = null!;
+    [Dependency] private readonly TransformSystem _transformSystem = null!;
 
     // Кеш ближайших консолей для кристаллов
     private readonly Dictionary<EntityUid, (EntityUid console, float time)> _nearestConsoleCache = new();
@@ -38,14 +38,14 @@ public sealed class SupermatterEventSystem : EntitySystem
         SubscribeLocalEvent<WarDeclaredEvent>(OnWarOps);
     }
 
-    private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
+    private void OnInit(Entity<SupermatterEventComponent> entity, ref ComponentInit args)
     {
         var currentTime = GameTiming.CurTime;
-        comp.LastConsoleCacheUpdate = currentTime;
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
-        comp.LastLightningCooldownUpdate = currentTime;
-        comp.LastPlasmaTickUpdate = currentTime;
+        entity.Comp.LastConsoleCacheUpdate = currentTime;
+        entity.Comp.LastEventEndTimeUpdate = currentTime;
+        entity.Comp.LastNextEventTimerUpdate = currentTime;
+        entity.Comp.LastLightningCooldownUpdate = currentTime;
+        entity.Comp.LastPlasmaTickUpdate = currentTime;
     }
 
     private void OnWarOps(ref WarDeclaredEvent args)
@@ -61,9 +61,9 @@ public sealed class SupermatterEventSystem : EntitySystem
         }
     }
 
-    private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
+    private void OnTouched(Entity<SupermatterEventComponent> entity, ref SupermatterTouchedEvent args)
     {
-        TriggerEventNow(uid);
+        TriggerEventNow(entity);
     }
 
     private void TriggerEventNow(EntityUid uid)
@@ -77,105 +77,148 @@ public sealed class SupermatterEventSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var currentTime = GameTiming.CurTime;
+
         var enumerator = EntityQueryEnumerator<SupermatterEventComponent, SupermatterIntegrityComponent>();
 
-        while (enumerator.MoveNext(out var uid, out var eventComponent, out var integrityComponent))
+        while (enumerator.MoveNext(out var uid, out var eventComp, out var integrityComp))
         {
-            // Очистка кэша консоли
-            if (currentTime - eventComponent.LastConsoleCacheUpdate >= eventComponent.ConsoleCacheLifetime)
-            {
-                _nearestConsoleCache.Clear();
-                eventComponent.LastConsoleCacheUpdate = currentTime;
-            }
-
-            var lastEvent = eventComponent.CurrentEvent;
-
-            // Обновление времени окончания события
-            if (eventComponent.EventEndTime > TimeSpan.Zero)
-            {
-                var elapsedSinceLastUpdate = currentTime - eventComponent.LastEventEndTimeUpdate;
-                eventComponent.EventEndTime -= elapsedSinceLastUpdate;
-                if (eventComponent.EventEndTime < TimeSpan.Zero)
-                    eventComponent.EventEndTime = TimeSpan.Zero;
-                eventComponent.LastEventEndTimeUpdate = currentTime;
-            }
-
-            if (!integrityComponent.Activated)
-            {
-                eventComponent.LastNextEventTimerUpdate = currentTime;
-                eventComponent.LastEventEndTimeUpdate = currentTime;
-                continue;
-            }
-
-            // Обновление таймера до следующего события
-            if (eventComponent.NextEventTimer > TimeSpan.Zero)
-            {
-                var elapsedSinceLastUpdate = currentTime - eventComponent.LastNextEventTimerUpdate;
-                eventComponent.NextEventTimer -= elapsedSinceLastUpdate;
-                if (eventComponent.NextEventTimer < TimeSpan.Zero)
-                    eventComponent.NextEventTimer = TimeSpan.Zero;
-                eventComponent.LastNextEventTimerUpdate = currentTime;
-            }
-
-            if (eventComponent.EventEndTime == TimeSpan.Zero
-                && eventComponent.NextEventTimer == TimeSpan.Zero && !eventComponent.IsWarOps)
-            {
-                if (lastEvent == SupermatterEventComponent.SupermatterEventType.Radiation)
-                {
-                    var rad = Comp<RadiationSourceComponent>(uid);
-                    rad.Intensity = eventComponent.DefaultRadiationIntensity;
-                }
-
-                var randomEvtIndex = _random.Next(0, eventComponent.AllowedEventTypes.Count);
-                var randomEvtType = eventComponent.AllowedEventTypes[randomEvtIndex];
-
-                eventComponent.SupermatterEventTypesToEvents.TryGetValue(randomEvtType, out var eventHandler);
-
-                switch (eventHandler)
-                {
-                    case SupermatterNoneEvent:
-                        SupermatterNoneEvent.Activate(uid, eventComponent, this);
-                        AnnounceFromSupermatterConsole(uid, SupermatterNoneEvent.GetAnnouncement());
-                        break;
-                    case SupermatterLightningEvent:
-                        SupermatterLightningEvent.Activate(uid, eventComponent, this);
-                        AnnounceFromSupermatterConsole(uid, SupermatterLightningEvent.GetAnnouncement());
-                        break;
-                    case SupermatterRadiationEvent:
-                        SupermatterRadiationEvent.Activate(uid, eventComponent, this);
-                        AnnounceFromSupermatterConsole(uid, SupermatterRadiationEvent.GetAnnouncement());
-                        break;
-                    case SupermatterPlasmaEvent:
-                        SupermatterPlasmaEvent.Activate(uid, eventComponent, this);
-                        AnnounceFromSupermatterConsole(uid, SupermatterPlasmaEvent.GetAnnouncement());
-                        break;
-                }
-            }
-
-            if (eventComponent.EventEndTime == TimeSpan.Zero)
-                continue;
-
-            if (eventComponent.SupermatterEventTypesToEvents.TryGetValue(eventComponent.CurrentEvent, out var newEventHandler))
-            {
-                switch (newEventHandler)
-                {
-                    case SupermatterNoneEvent:
-                        SupermatterNoneEvent.Process(uid, eventComponent, this, currentTime);
-                        break;
-                    case SupermatterLightningEvent:
-                        SupermatterLightningEvent.Process(uid, eventComponent, this, currentTime);
-                        break;
-                    case SupermatterRadiationEvent:
-                        SupermatterRadiationEvent.Process(uid, eventComponent, this, currentTime);
-                        break;
-                    case SupermatterPlasmaEvent:
-                        SupermatterPlasmaEvent.Process(uid, eventComponent, this, currentTime);
-                        break;
-                }
-            }
+            Entity<SupermatterEventComponent, SupermatterIntegrityComponent> entity = new(uid, eventComp, integrityComp);
+            ProcessSingleSupermatter(entity);
         }
     }
+
+    private void ProcessSingleSupermatter(
+        Entity<SupermatterEventComponent, SupermatterIntegrityComponent> entity)
+    {
+        var currentTime = GameTiming.CurTime;
+
+        UpdateConsoleCache(entity, currentTime);
+        UpdateEventEndTimer(entity.Comp1, currentTime);
+
+        if (!entity.Comp2.Activated)
+        {
+            ResetInactiveTimers(entity.Comp1, currentTime);
+            return;
+        }
+
+        UpdateNextEventTimer(entity.Comp1, currentTime);
+
+        TryStartNewEvent(entity);
+        ProcessActiveEvent(entity, currentTime);
+    }
+
+
+    private void UpdateConsoleCache(Entity<SupermatterEventComponent> entity, TimeSpan currentTime)
+    {
+        if (currentTime - entity.Comp.LastConsoleCacheUpdate < entity.Comp.ConsoleCacheLifetime)
+            return;
+
+        _nearestConsoleCache.Remove(entity);
+        entity.Comp.LastConsoleCacheUpdate = currentTime;
+    }
+
+    private static void UpdateEventEndTimer(SupermatterEventComponent comp, TimeSpan currentTime)
+    {
+        if (comp.EventEndTime <= TimeSpan.Zero)
+            return;
+
+        var elapsed = currentTime - comp.LastEventEndTimeUpdate;
+        comp.EventEndTime -= elapsed;
+        if (comp.EventEndTime < TimeSpan.Zero)
+            comp.EventEndTime = TimeSpan.Zero;
+
+        comp.LastEventEndTimeUpdate = currentTime;
+    }
+
+    private static void UpdateNextEventTimer(SupermatterEventComponent comp, TimeSpan currentTime)
+    {
+        if (comp.NextEventTimer <= TimeSpan.Zero)
+            return;
+
+        var elapsed = currentTime - comp.LastNextEventTimerUpdate;
+        comp.NextEventTimer -= elapsed;
+        if (comp.NextEventTimer < TimeSpan.Zero)
+            comp.NextEventTimer = TimeSpan.Zero;
+
+        comp.LastNextEventTimerUpdate = currentTime;
+    }
+
+    private static void ResetInactiveTimers(SupermatterEventComponent comp, TimeSpan currentTime)
+    {
+        comp.LastNextEventTimerUpdate = currentTime;
+        comp.LastEventEndTimeUpdate = currentTime;
+    }
+
+    private void TryStartNewEvent(Entity<SupermatterEventComponent> entity)
+    {
+        var comp = entity.Comp;
+
+        if (comp.EventEndTime > TimeSpan.Zero
+            || comp.NextEventTimer > TimeSpan.Zero
+            || comp.IsWarOps)
+            return;
+
+        if (comp.CurrentEvent == SupermatterEventComponent.SupermatterEventType.Radiation
+            && TryComp<RadiationSourceComponent>(entity.Owner, out var rad))
+        {
+            rad.Intensity = comp.DefaultRadiationIntensity;
+        }
+
+        var randomEvtIndex = _random.Next(0, comp.AllowedEventTypes.Count);
+        var randomEvtType = comp.AllowedEventTypes[randomEvtIndex];
+
+        if (!comp.SupermatterEventTypesToEvents.TryGetValue(randomEvtType, out var eventHandler))
+            return;
+
+        switch (eventHandler)
+        {
+            case SupermatterNoneEvent:
+                SupermatterNoneEvent.Activate(entity, this);
+                AnnounceFromSupermatterConsole(entity.Owner, SupermatterNoneEvent.GetAnnouncement());
+                break;
+            case SupermatterLightningEvent:
+                SupermatterLightningEvent.Activate(entity, this);
+                AnnounceFromSupermatterConsole(entity.Owner, SupermatterLightningEvent.GetAnnouncement());
+                break;
+            case SupermatterRadiationEvent:
+                SupermatterRadiationEvent.Activate(entity, this);
+                AnnounceFromSupermatterConsole(entity.Owner, SupermatterRadiationEvent.GetAnnouncement());
+                break;
+            case SupermatterPlasmaEvent:
+                SupermatterPlasmaEvent.Activate(entity, this);
+                AnnounceFromSupermatterConsole(entity.Owner, SupermatterPlasmaEvent.GetAnnouncement());
+                break;
+        }
+    }
+
+    private void ProcessActiveEvent(Entity<SupermatterEventComponent> entity, TimeSpan currentTime)
+    {
+        var comp = entity.Comp;
+
+        if (comp.EventEndTime == TimeSpan.Zero)
+            return;
+
+        if (!comp.SupermatterEventTypesToEvents.TryGetValue(comp.CurrentEvent, out var eventHandler))
+            return;
+
+        switch (eventHandler)
+        {
+            case SupermatterNoneEvent:
+                SupermatterNoneEvent.Process(entity, this, currentTime);
+                break;
+            case SupermatterLightningEvent:
+                SupermatterLightningEvent.Process(entity, this, currentTime);
+                break;
+            case SupermatterRadiationEvent:
+                SupermatterRadiationEvent.Process(entity, this, currentTime);
+                break;
+            case SupermatterPlasmaEvent:
+                SupermatterPlasmaEvent.Process(entity, this, currentTime);
+                break;
+        }
+    }
+
+
 
     private void AnnounceFromSupermatterConsole(EntityUid crystal, string message)
     {

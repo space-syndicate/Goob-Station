@@ -24,7 +24,7 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 18
+        Heat: 28
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi

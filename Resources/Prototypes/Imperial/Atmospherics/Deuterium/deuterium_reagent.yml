@@ -1,0 +1,37 @@
+- type: reagent
+  id: Deuterium
+  name: reagent-name-deuterium
+  desc: reagent-desc-deuterium
+  physicalDesc: reagent-physical-desc-deuterium
+  flavor: bitter
+  color: "#696969"
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 2.0
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
+        multiplier: 0.8
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 0.3
+            Heat: 0.9
+    Gas:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Radiation: 0.01
+            Heat: 0.02
+      - !type:AdjustTemperature
+        amount: 6000
+      - !type:Ignite
+      - !type:Flammable
+        multiplier: 0.8

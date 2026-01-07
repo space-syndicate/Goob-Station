@@ -58,7 +58,7 @@
   - type: BatteryAmmoProvider
     proto: LaserRedAutoPistol
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: MagazineVisuals
