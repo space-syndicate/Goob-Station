@@ -1,0 +1,27 @@
+- type: entity
+  name: gene splicer
+  parent: BaseItem
+  id: ImperialGeneSplicerBase
+  description: Jesse, insert that catgirl gene into yourself Jesse
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/gps.rsi
+    layers:
+    - state: icon
+    - state: active
+  - type: UseDelay
+    delay: 0.9
+  - type: Item
+    sprite: Objects/Devices/gps.rsi
+  - type: ContainerContainer
+    containers:
+      gene_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      gene_slot:
+        name: gene-slot-name
+        whitelist:
+          components:
+            - XenoGene
+        priority: 3
+  - type: GeneSplicer

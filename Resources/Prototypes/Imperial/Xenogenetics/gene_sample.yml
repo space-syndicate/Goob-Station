@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseItem
+  id: BaseGeneSample
+  abstract: true
+  components:
+  - type: XenoGene
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: cheesiehonkers
+  - type: Item
+    sprite: Objects/Consumable/Food/snacks.rsi
+    heldPrefix: cheesiehonkers
+    size: Tiny
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleMouse
+  name: генетический материал (мелкий грызун)
+  components:
+  - type: SpeedModifierGene
+  - type: XenoGene
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: cheesiehonkers
+  - type: Item
+    sprite: Objects/Consumable/Food/snacks.rsi
+    heldPrefix: cheesiehonkers
+    size: Tiny
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleSpacemob
+  name: генетический материал (космическая фауна)
+  components:
+  - type: RespiratoryAdaptationGene
+  - type: XenoGene
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: cheesiehonkers
+  - type: Item
+    sprite: Objects/Consumable/Food/snacks.rsi
+    heldPrefix: cheesiehonkers
+    size: Tiny
