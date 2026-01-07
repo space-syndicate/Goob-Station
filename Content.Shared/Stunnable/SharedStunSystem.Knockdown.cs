@@ -7,6 +7,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Traits; // Imperial "CrawlingForLegsParalyzed"
 using Content.Shared.Input;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -275,6 +276,9 @@ public abstract partial class SharedStunSystem
             _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(entity):user} has stood up from knockdown.");
             return true;
         }
+
+        if (HasComp<ImperialLegsParalyzedComponent>(entity)) // Imperial "CrawlingForLegsParalyzed"
+            return false; // Imperial "CrawlingForLegsParalyzed"
 
         if (!TryStand((entity, entity.Comp)))
             return false;

@@ -22,7 +22,7 @@
   components:
     - type: BuckleOnMapInit
       prototype: ImperialVehicleWheelchair
-    - type: LegsParalyzed
+    - type: ImperialLegsParalyzed
 
 
 - type: entity
