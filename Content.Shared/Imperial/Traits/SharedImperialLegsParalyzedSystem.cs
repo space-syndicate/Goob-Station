@@ -23,15 +23,13 @@ public abstract partial class SharedImperialLegsParalyzedSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ImperialLegsParalyzedComponent component, ComponentStartup args)
     {
+        component.AddedKnockdown = _stun.TryCrawling(uid, autoStand: false);
         _movementSpeedModifierSystem.ChangeBaseSpeed(
             uid,
             component.CrawlSpeed,
             component.CrawlSpeed,
             component.CrawlAcceleration
         );
-
-        if (_stun.TryCrawling(uid, autoStand: false))
-            component.AddedKnockdown = true;
     }
 
     private void OnShutdown(EntityUid uid, ImperialLegsParalyzedComponent component, ComponentShutdown args)
