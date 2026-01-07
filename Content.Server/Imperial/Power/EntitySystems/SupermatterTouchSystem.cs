@@ -1,6 +1,7 @@
 using Content.Server.Effects;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Atmos;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
@@ -16,6 +17,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SupermatterTouchComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<SupermatterGasComponent, SupermatterTouchedEvent>(OnTouched);
     }
 
     private void OnStartCollide(Entity<SupermatterTouchComponent> supermatter, ref StartCollideEvent args)
@@ -24,11 +26,31 @@ public sealed class SupermatterTouchSystem : EntitySystem
         if (!EntityManager.HasComponent<MobStateComponent>(other))
             return;
 
+        var touchEvent = new SupermatterTouchedEvent();
+        RaiseLocalEvent(supermatter, ref touchEvent);
+        if (touchEvent.Cancelled)
+            return;
+
         var transformComp = Transform(other);
 
         Entity<TransformComponent> entity = new(other, transformComp);
         GibCollidedEntity(supermatter, entity);
-        RaiseLocalEvent(supermatter, new SupermatterTouchedEvent());
+
+    }
+
+    private void OnTouched(Entity<SupermatterGasComponent> supermatter, ref SupermatterTouchedEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        var xform = Transform(supermatter);
+        var gas = _atmosphereSystem.GetContainingMixture((supermatter.Owner, xform), true, true);
+        if (gas == null)
+            return;
+
+        var hyperNobMoles = gas.GetMoles(Gas.HyperNoblium);
+        if (hyperNobMoles > supermatter.Comp.GasActivationMoles)
+            args.Cancelled = true;
     }
 
     private void GibCollidedEntity(Entity<SupermatterTouchComponent> supermatter, Entity<TransformComponent> entity)
@@ -43,4 +65,5 @@ public sealed class SupermatterTouchSystem : EntitySystem
     }
 }
 
-public sealed class SupermatterTouchedEvent : EntityEventArgs;
+[ByRefEvent]
+public record struct SupermatterTouchedEvent(bool Cancelled = false);

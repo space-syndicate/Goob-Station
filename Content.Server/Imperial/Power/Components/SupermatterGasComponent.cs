@@ -9,30 +9,6 @@ namespace Content.Server.Imperial.Power.Components;
 public sealed partial class SupermatterGasComponent : Component
 {
     /// <summary>
-    /// Идентификаторы газов, влияющих на суперматерию.
-    /// </summary>
-    [DataField]
-    public Gas ThermoniumGas = Gas.Thermonium;
-
-    [DataField]
-    public Gas TritiumGas = Gas.Tritium;
-
-    [DataField]
-    public Gas OzoneGas = Gas.Ozonium;
-
-    [DataField]
-    public Gas HyperNobliumGas = Gas.HyperNoblium;
-
-    [DataField]
-    public Gas AntiNobliumGas = Gas.AntiNoblium;
-
-    [DataField]
-    public Gas PlasmaGas = Gas.Plasma;
-
-    [DataField]
-    public Gas WaterVaporGas = Gas.WaterVapor;
-
-    /// <summary>
     /// Порог молей газа в камере, при котором эффект считается активным.
     /// </summary>
     [DataField]
@@ -90,7 +66,7 @@ public sealed partial class SupermatterGasComponent : Component
 
     /// <summary>
     /// Была ли суперматерия выключена антиноблием.
-        /// </summary>
+    /// </summary>
     public bool WasShutdownByAntiNoblium = false;
 }
 
