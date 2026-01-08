@@ -21,9 +21,10 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Robust.Shared.Localization;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
@@ -31,7 +32,6 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 public sealed class LLMNPCSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -45,13 +45,16 @@ public sealed class LLMNPCSystem : EntitySystem
     {
         base.Initialize();
         _sawmill = Logger.GetSawmill("llmnpc");
-        SubscribeLocalEvent<EntitySpokeEvent>(OnEntitySpoke);
+        SubscribeLocalEvent<LLMNPCComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<LLMNPCComponent, ComponentInit>(OnComponentInit);
     }
 
     private void OnComponentInit(EntityUid uid, LLMNPCComponent component, ComponentInit args)
     {
         component.IsGenerating = false;
+
+        var listener = EnsureComp<ActiveListenerComponent>(uid);
+        listener.Range = component.MaxDistanceTiles;
         
         if (string.IsNullOrWhiteSpace(component.NPCName))
         {
@@ -65,53 +68,43 @@ public sealed class LLMNPCSystem : EntitySystem
         return Loc.GetString("llmnpc-default-system-prompt", ("name", name));
     }
 
-    private void OnEntitySpoke(EntitySpokeEvent ev)
+    private void OnListen(Entity<LLMNPCComponent> ent, ref ListenEvent args)
     {
-        if (string.IsNullOrWhiteSpace(ev.Message))
+        var npcUid = ent.Owner;
+        var npcComp = ent.Comp;
+
+        if (npcUid == args.Source)
             return;
 
-        var sourceTransform = Transform(ev.Source);
-        var sourcePos = _transform.GetWorldPosition(sourceTransform);
+        if (string.IsNullOrWhiteSpace(args.Message))
+            return;
 
-        var query = EntityQueryEnumerator<LLMNPCComponent, TransformComponent>();
-        while (query.MoveNext(out var npcUid, out var npcComp, out var npcTransform))
+        if (npcComp.IsGenerating)
+            return;
+
+        if (string.IsNullOrEmpty(npcComp.ApiKey))
+            return;
+
+        var userMessage = args.Message;
+        if (npcComp.IncludeContextInfo)
         {
-            if (npcUid == ev.Source)
-                continue;
-
-            if (npcComp.IsGenerating)
-                continue;
-
-            if (string.IsNullOrEmpty(npcComp.ApiKey))
-                continue;
-
-            var npcPos = _transform.GetWorldPosition(npcTransform);
-            var distance = (sourcePos - npcPos).Length();
-
-            if (!IsInRange(npcTransform, sourceTransform, distance, npcComp.MaxDistanceTiles))
-                continue;
-
-            var userMessage = ev.Message;
-            if (npcComp.IncludeContextInfo)
+            var contextInfo = GetContextInfo(args.Source, npcUid, npcComp);
+            if (!string.IsNullOrWhiteSpace(contextInfo))
             {
-                var contextInfo = GetContextInfo(ev.Source, npcUid, npcComp);
-                if (!string.IsNullOrWhiteSpace(contextInfo))
-                {
-                    userMessage = Loc.GetString("llmnpc-context-message",
-                        ("context", contextInfo),
-                        ("message", ev.Message));
-                }
+                userMessage = Loc.GetString("llmnpc-context-message",
+                    ("context", contextInfo),
+                    ("message", args.Message));
             }
-
-            npcComp.MessageHistory.Add(new LLMMessageHistoryItem { Role = "user", Content = userMessage });
-            
-            while (npcComp.MessageHistory.Count > npcComp.MaxHistoryMessages)
-            {
-                npcComp.MessageHistory.RemoveAt(0);
-            }
-
-            _ = GenerateResponseAsync(npcUid, npcComp, userMessage);
         }
+
+        npcComp.MessageHistory.Add(new LLMMessageHistoryItem { Role = "user", Content = userMessage });
+        
+        while (npcComp.MessageHistory.Count > npcComp.MaxHistoryMessages)
+        {
+            npcComp.MessageHistory.RemoveAt(0);
+        }
+
+        _ = GenerateResponseAsync(npcUid, npcComp, userMessage);
     }
 
     private string GetContextInfo(EntityUid entity, EntityUid npcUid, LLMNPCComponent npcComp)
@@ -224,24 +217,6 @@ public sealed class LLMNPCSystem : EntitySystem
         }
 
         return 100f;
-    }
-
-    private bool IsInRange(TransformComponent npcTransform, TransformComponent sourceTransform, float worldDistance, float maxDistanceTiles)
-    {
-        if (npcTransform.MapID != sourceTransform.MapID)
-            return false;
-
-        if (npcTransform.GridUid == null || sourceTransform.GridUid == null)
-            return false;
-
-        if (npcTransform.GridUid != sourceTransform.GridUid)
-            return false;
-
-        if (!TryComp<MapGridComponent>(npcTransform.GridUid, out var grid))
-            return false;
-
-        var distanceInTiles = worldDistance / grid.TileSize;
-        return distanceInTiles <= maxDistanceTiles;
     }
 
     private async Task GenerateResponseAsync(EntityUid npcUid, LLMNPCComponent component, string message)
