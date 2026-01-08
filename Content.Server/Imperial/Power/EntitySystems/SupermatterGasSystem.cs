@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Atmos;
@@ -16,14 +17,32 @@ public sealed class SupermatterGasSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<SupermatterGasComponent, ComponentInit>(OnSupermatterGasInit);
+        SubscribeLocalEvent<SupermatterGasComponent, AtmosExposedUpdateEvent>(OnAtmosExposedUpdate);
+    }
+
+    private void OnSupermatterGasInit(EntityUid uid, SupermatterGasComponent component, ComponentInit args)
+    {
+        EnsureComp<AtmosExposedComponent>(uid);
+    }
+
+    private void OnAtmosExposedUpdate(EntityUid uid, SupermatterGasComponent component, ref AtmosExposedUpdateEvent args)
+    {
+        component.CachedGasMixture = args.GasMixture;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, SupermatterGasComponent, TransformComponent>();
-        while (enumerator.MoveNext(out var uid, out var integrity, out var gasComp, out var xform))
+        var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, SupermatterGasComponent>();
+        while (enumerator.MoveNext(out var uid, out var integrity, out var gasComp))
         {
-            var gas = _atmosphereSystem.GetContainingMixture((uid, xform), true, true);
+            var gas = gasComp.CachedGasMixture;
             if (gas == null)
                 continue;
 
@@ -78,32 +97,44 @@ public sealed class SupermatterGasSystem : EntitySystem
             if (!integrity.Activated)
                 continue;
 
-            if (thermActive)
-            {
-                var regen = gasComp.ThermoniumIntegrityRegenPerSecond * frameTime;
-                integrity.Integrity = MathF.Min(integrity.MaxIntegrity, integrity.Integrity + regen);
-            }
+            ApplyGasEffects((uid, integrity), (uid, gasComp), gas, thermActive, ozoneActive, plasmaActive, frameTime);
+        }
+    }
 
-            if (TryComp(uid, out RadiationSourceComponent? radiation))
+    private void ApplyGasEffects(
+        Entity<SupermatterIntegrityComponent> integrity,
+        Entity<SupermatterGasComponent> gasComp,
+        GasMixture gas,
+        bool thermActive,
+        bool ozoneActive,
+        bool plasmaActive,
+        float frameTime)
+    {
+        if (thermActive)
+        {
+            var regen = gasComp.Comp.ThermoniumIntegrityRegenPerSecond * frameTime;
+            integrity.Comp.Integrity = MathF.Min(integrity.Comp.MaxIntegrity, integrity.Comp.Integrity + regen);
+        }
+
+        if (TryComp(integrity, out RadiationSourceComponent? radiation))
+        {
+            float baseIntensity = radiation.Intensity;
+            
+            if (TryComp<SupermatterEventComponent>(integrity, out var eventComp))
             {
-                float baseIntensity = radiation.Intensity;
-                
-                if (TryComp<SupermatterEventComponent>(uid, out var eventComp))
+                if (eventComp.CurrentEvent != SupermatterEventComponent.SupermatterEventType.Radiation
+                    || eventComp.EventEndTime == TimeSpan.Zero)
                 {
-                    if (eventComp.CurrentEvent != SupermatterEventComponent.SupermatterEventType.Radiation
-                        || eventComp.EventEndTime == TimeSpan.Zero)
-                    {
-                        baseIntensity = eventComp.DefaultRadiationIntensity;
-                    }
+                    baseIntensity = eventComp.DefaultRadiationIntensity;
                 }
-                var multiplier = 1f;
-                if (ozoneActive)
-                    multiplier *= gasComp.OzoneRadiationMultiplier;
-                if (plasmaActive)
-                    multiplier *= gasComp.PlasmaRadiationMultiplier;
-
-                radiation.Intensity = baseIntensity * multiplier;
             }
+            var multiplier = 1f;
+            if (ozoneActive)
+                multiplier *= gasComp.Comp.OzoneRadiationMultiplier;
+            if (plasmaActive)
+                multiplier *= gasComp.Comp.PlasmaRadiationMultiplier;
+
+            radiation.Intensity = baseIntensity * multiplier;
         }
     }
 }
