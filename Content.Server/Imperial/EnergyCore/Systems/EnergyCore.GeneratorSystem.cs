@@ -101,7 +101,7 @@ namespace Content.Server.Imperial.EnergyCore
             }
         }
 
-        private static (float coreTemp, byte tempRiseStatus) GetCoreInfo(EnergyCoreComponent component)
+        private (float coreTemp, byte tempRiseStatus) GetCoreInfo(EnergyCoreComponent component)
         {
             var coreTemp = component.CoreTemp;
             var tempRiseStatus = component.TempChangeStatus;
