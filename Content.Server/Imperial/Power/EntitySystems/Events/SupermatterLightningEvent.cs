@@ -56,10 +56,9 @@ public sealed class SupermatterLightningEvent
         var boltCount = entity.Comp.LightningBoltCount;
 
         if (supermatterSystem.TryGetComponent<SupermatterGasComponent>(entity, out var gasComp)
-            && gasComp != null
-            && supermatterSystem.TryGetComponent<TransformComponent>(entity, out var xform))
+            && gasComp != null)
         {
-            var gas = supermatterSystem.Atmos.GetContainingMixture((entity, xform), true, true);
+            var gas = gasComp.CachedGasMixture;
             if (gas != null)
             {
                 var tritiumMoles = gas.GetMoles(Gas.Tritium);
@@ -69,7 +68,11 @@ public sealed class SupermatterLightningEvent
         }
 
         // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе
+<<<<<<< HEAD
         supermatterSystem.LightningSystem.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, entity.Comp.LightningBoltCount);
+=======
+        supermatterSystem.LightningSystem?.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, boltCount);
+>>>>>>> ecd9cef67f (Enhance SupermatterGasComponent and SupermatterGasSystem to include caching of gas mixtures and improve event handling. Added CachedGasMixture property for efficient gas data retrieval and updated event subscriptions for better integration with atmosphere updates.)
     }
 
     public static string GetAnnouncement()

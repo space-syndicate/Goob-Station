@@ -68,6 +68,11 @@ public sealed partial class SupermatterGasComponent : Component
     /// Была ли суперматерия выключена антиноблием.
     /// </summary>
     public bool WasShutdownByAntiNoblium = false;
+
+    /// <summary>
+    /// Кэши газовых смесей из последнего обновления атмосферы.
+    /// </summary>
+    public GasMixture? CachedGasMixture;
 }
 
 
