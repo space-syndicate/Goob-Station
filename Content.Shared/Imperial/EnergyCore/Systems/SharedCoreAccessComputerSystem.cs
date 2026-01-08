@@ -59,7 +59,7 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
         }
         UpdateUi(uid, component);
     }
-    private bool PlayerCanUseController(EntityUid uid, EntityUid playerEntity, CoreAccessComputerComponent? component = null)//, bool needsPower = true)
+    private bool PlayerCanUseController(EntityUid uid, EntityUid playerEntity, CoreAccessComputerComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;

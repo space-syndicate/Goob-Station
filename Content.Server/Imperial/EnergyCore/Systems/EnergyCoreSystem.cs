@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -306,7 +305,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                 core.TempRiseStatus = CoreTempChangeLevel.COOLING;
                 break;
             case 2:
-                core.TempRiseStatus = CoreTempChangeLevel.AUTO;;
+                core.TempRiseStatus = CoreTempChangeLevel.AUTO;
                 break;
             case 3:
                 core.TempRiseStatus = CoreTempChangeLevel.HEATING;
@@ -338,9 +337,9 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                 var nearestUid = _coreHelper.FindNearestProtocolTerminal(uid, 30f);
                 if (nearestUid == null ||
                     !EntityManager.TryGetComponent<CoreAccessComputerComponent>(nearestUid.Value, out var nearest))
-                    return;
-                else
-                    cormp.Controller = nearestUid;
+                    continue;
+
+                cormp.Controller = nearestUid;
             }
         }
     }

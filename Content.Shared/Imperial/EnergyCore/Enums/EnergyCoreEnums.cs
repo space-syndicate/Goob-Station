@@ -41,6 +41,7 @@ public enum CoreStatus : byte
     SAFEPROTOCOL = 9
 }
 
+[Serializable, NetSerializable]
 public enum CoreStatusColorVisual : byte
 {
     OFFLINE = 1,
@@ -53,6 +54,7 @@ public enum CoreStatusColorVisual : byte
     CATASTROPHIC = 8,
     SAFEPROTOCOL = 9
 }
+[Serializable, NetSerializable]
 public enum CoreTempChangeLevel : byte
 {
     HEATING = 1,

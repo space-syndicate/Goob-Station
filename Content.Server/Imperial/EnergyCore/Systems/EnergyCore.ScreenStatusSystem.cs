@@ -86,9 +86,9 @@ namespace Content.Server.Imperial.EnergyCore
                     var nearestUid = _coreHelper.FindNearestEnergyCore(uid, float.MaxValue);
                     if (nearestUid == null ||
                         !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                        return;
-                    else
-                        comp.CheckedCore = nearestUid;
+                        continue;
+
+                    comp.CheckedCore = nearestUid;
                 }
             }
         }

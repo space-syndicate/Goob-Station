@@ -117,9 +117,9 @@ public sealed class CoreAccessComputerSystem : SharedCoreAccessComputerSystem //
                 var nearestUid = _coreHelper.FindNearestEnergyCore(uid, 30f);
                 if (nearestUid == null ||
                     !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                    return;
-                else
-                    comp.ControledCore = nearestUid;
+                    continue;
+
+                comp.ControledCore = nearestUid;
             }
         }
     }

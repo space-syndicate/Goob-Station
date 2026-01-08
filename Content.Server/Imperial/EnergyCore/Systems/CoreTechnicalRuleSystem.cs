@@ -2,7 +2,6 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.GameTicking.Components;
-using System.Linq;
 using Robust.Shared.Prototypes;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Events;
