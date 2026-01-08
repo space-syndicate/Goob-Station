@@ -34,8 +34,7 @@ using Content.Server.Imperial.EnergyCore;
 // Imperial Space EnergyCore end
 
 namespace Content.Server.GameTicking.Rules;
-
-public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
+public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent> // Добавлен модификатор partial Imperial
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
@@ -184,74 +183,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             }
         }
     }
-
-    // Imperial Space EnergyCore detonation event start
-    private void OnCoreDetonated(CoreDetonatedEvent ev)
-    {
-        var query = QueryActiveRules();
-        while (query.MoveNext(out var uid, out _, out var nukeops, out _))
-        {
-            if (ev.OwningStation != null)
-            {
-                if (ev.OwningStation == GetOutpost(uid))
-                {
-                    nukeops.WinConditions.Add(WinCondition.NukeExplodedOnNukieOutpost);
-                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive("Nukeops"));
-                    if (!GameTicker.IsGameRuleActive("Nukeops"))
-                        GameTicker.EndGameRule(uid);
-                    continue;
-                }
-
-                if (TryComp(nukeops.TargetStation, out StationDataComponent? data))
-                {
-                    var correctStation = false;
-                    foreach (var grid in data.Grids)
-                    {
-                        if (grid != ev.OwningStation)
-                        {
-                            continue;
-                        }
-
-                        nukeops.WinConditions.Add(WinCondition.CoreExploded); // Винтайп подрыва энерго ядра
-                        SetWinType((uid, nukeops), WinType.OpsMajor);
-                        correctStation = true;
-                    }
-
-                    if (correctStation)
-                        continue;
-                }
-
-                nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
-            }
-            else
-            {
-                nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
-            }
-
-            if (GameTicker.IsGameRuleActive("Nukeops"))
-            {
-                _roundEndSystem.EndRound();
-            }
-            else
-            {
-                var handled = false;
-                foreach (var cond in nukeops.WinConditions)
-                {
-                    if (cond.ToString().ToLower() == "CoreExploded")
-                    {
-                        _roundEndSystem.EndRound(); // end the round!
-                        handled = true;
-                        break;
-                    }
-                }
-                if (!handled)
-                {
-                    GameTicker.EndGameRule(uid);
-                }
-            }
-        }
-    }
-    // Imperial Space EnergyCore detonation event end
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
     {
         if (ev.New is not GameRunLevel.PostRound)
@@ -619,5 +550,75 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         }
 
         return null;
+    }
+}
+
+// Imperial EnergyCore ивено подрыва ядра
+public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
+{
+    private void OnCoreDetonated(CoreDetonatedEvent ev)
+    {
+        var query = QueryActiveRules();
+        while (query.MoveNext(out var uid, out _, out var nukeops, out _))
+        {
+            if (ev.OwningStation != null)
+            {
+                if (ev.OwningStation == GetOutpost(uid))
+                {
+                    nukeops.WinConditions.Add(WinCondition.NukeExplodedOnNukieOutpost);
+                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive("Nukeops"));
+                    if (!GameTicker.IsGameRuleActive("Nukeops"))
+                        GameTicker.EndGameRule(uid);
+                    continue;
+                }
+
+                if (TryComp(nukeops.TargetStation, out StationDataComponent? data))
+                {
+                    var correctStation = false;
+                    foreach (var grid in data.Grids)
+                    {
+                        if (grid != ev.OwningStation)
+                        {
+                            continue;
+                        }
+
+                        nukeops.WinConditions.Add(WinCondition.CoreExploded); // Винтайп подрыва энерго ядра
+                        SetWinType((uid, nukeops), WinType.OpsMajor);
+                        correctStation = true;
+                    }
+
+                    if (correctStation)
+                        continue;
+                }
+
+                nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
+            }
+            else
+            {
+                nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
+            }
+
+            if (GameTicker.IsGameRuleActive("Nukeops"))
+            {
+                _roundEndSystem.EndRound();
+            }
+            else
+            {
+                var handled = false;
+                foreach (var cond in nukeops.WinConditions)
+                {
+                    if (cond.ToString().ToLower() == "CoreExploded")
+                    {
+                        _roundEndSystem.EndRound();
+                        handled = true;
+                        break;
+                    }
+                }
+                if (!handled)
+                {
+                    GameTicker.EndGameRule(uid);
+                }
+            }
+        }
     }
 }

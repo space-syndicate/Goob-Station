@@ -4,6 +4,7 @@ using Content.Server.Administration;
 using Robust.Shared.GameObjects;
 using Content.Server.Imperial.EnergyCore.Events;
 using Content.Server.Imperial.EnergyCore;
+using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
 
 namespace Content.Server.Imperial.EnergyCore.Commands

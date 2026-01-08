@@ -10,16 +10,17 @@ using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.Power.Components;
 using Content.Server.Imperial.EnergyCore.Events;
+using Content.Server.Imperial.EnergyCore.Helpers;
 using Content.Shared.Examine;
 
 namespace Content.Server.Imperial.EnergyCore
 {
     public sealed class CoreStatusScreenSystem : EntitySystem
     {
-        // Поиск ближайшего ядра был основан на консоли СМ
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
 
         public override void Initialize()
         {
@@ -71,32 +72,6 @@ namespace Content.Server.Imperial.EnergyCore
                 _appearance.SetData(uid, CoreStatusScreenVisual.Core_Screen_Visual, component.SpriteStatus, appearance);
             }
         }
-        private EntityUid? FindNearestEnergyCore(EntityUid core)
-        {
-            var transformCompConsole = Transform(core);
-            var mapId = transformCompConsole.MapID;
-            var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
-
-            EntityUid? nearest = null;
-            var minDist = float.MaxValue;
-
-            var enumerator = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
-            while (enumerator.MoveNext(out var uid, out _, out var transComp))
-            {
-                if (transComp.MapID != mapId)
-                    continue;
-
-                var corepos = _transformSystem.GetMapCoordinates(uid).Position;
-                var dist = (corepos - pos).LengthSquared();
-                if (dist > minDist)
-                    continue;
-
-                minDist = dist;
-                nearest = uid;
-            }
-            return nearest;
-        }
-
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
@@ -108,14 +83,13 @@ namespace Content.Server.Imperial.EnergyCore
 
                 if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
                 {
-                    var nearestUid = FindNearestEnergyCore(uid);
+                    var nearestUid = _coreHelper.FindNearestEnergyCore(uid, float.MaxValue);
                     if (nearestUid == null ||
                         !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
                         return;
                     else
                         comp.CheckedCore = nearestUid;
                 }
-                else return;
             }
         }
 

@@ -13,6 +13,7 @@ using Content.Shared.Imperial.EnergyCore;
 using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Events;
+using Content.Server.Imperial.EnergyCore.Helpers;
 using Content.Shared.Examine;
 
 namespace Content.Server.Imperial.EnergyCore
@@ -22,6 +23,7 @@ namespace Content.Server.Imperial.EnergyCore
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -50,31 +52,6 @@ namespace Content.Server.Imperial.EnergyCore
 
             var energyOutput = component.EnergyOutput;
             args.PushMarkup(Loc.GetString("energycore-generator-current-energy-output", ("energyOutput", energyOutput)));
-        }
-        private EntityUid? FindNearestEnergyCore(EntityUid core)
-        {
-            var transformCompConsole = Transform(core);
-            var mapId = transformCompConsole.MapID;
-            var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
-
-            EntityUid? nearest = null;
-            var minDist = 10f;//float.MaxValue;
-
-            var enumerator = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
-            while (enumerator.MoveNext(out var uid, out _, out var transComp))
-            {
-                if (transComp.MapID != mapId)
-                    continue;
-
-                var corepos = _transformSystem.GetMapCoordinates(uid).Position;
-                var dist = (corepos - pos).LengthSquared();
-                if (dist > minDist)
-                    continue;
-
-                minDist = dist;
-                nearest = uid;
-            }
-            return nearest;
         }
         private void SetEnergyOutput(EntityUid uid, CoreGeneratorComponent generator, PowerSupplierComponent power)
         {
@@ -114,14 +91,13 @@ namespace Content.Server.Imperial.EnergyCore
 
                 if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
                 {
-                    var nearestUid = FindNearestEnergyCore(uid);
+                    var nearestUid = _coreHelper.FindNearestEnergyCore(uid, 10f);
                     if (nearestUid == null ||
                         !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
                         return;
                     else
                         comp.NearestCore = nearestUid;
                 }
-                else return;
             }
         }
 

@@ -18,6 +18,7 @@ using Content.Server.Chat.Systems;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
+using Content.Server.Imperial.EnergyCore.Helpers;
 using Content.Server.Imperial.EnergyCore.Events;
 
 namespace Content.Server.Imperial.EnergyCore;
@@ -36,6 +37,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
     public static readonly EntProtoId CoreTechnicalRule = "CoreTechnical";
     public override void Initialize()
     {
@@ -182,8 +184,10 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                     UpdateCoreVisual(uid, core);
                 }
                 if (core.CoreTemp <= 0f)
+                {
                     core.Status = CoreStatus.OFFLINE;
                     UpdateCoreVisual(uid, core);
+                }
                 break;
 
             case CoreStatus.STABLE: // Статус ядра: Стабильный
@@ -241,6 +245,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                 if (core.CoreTemp > 800000f)
                 {
                     core.Status = CoreStatus.CRITICALHIGH;
+                    UpdateCoreVisual(uid, core);
                     SendCriticalAnnounce(uid, core); // Сообщение
                 }
                 if (core.CoreTemp < 600000f)
@@ -308,36 +313,10 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                 break;
         }
     }
-    private EntityUid? FindNearestProtocolTerminal(EntityUid terminal)
-    {
-        var transformCompConsole = Transform(terminal);
-        var mapId = transformCompConsole.MapID;
-        var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
-
-        EntityUid? nearest = null;
-        var minDist = 30f;//float.MaxValue;
-
-        var enumerator = EntityQueryEnumerator<CoreAccessComputerComponent, TransformComponent>();
-        while (enumerator.MoveNext(out var uid, out _, out var transComp))
-        {
-            if (transComp.MapID != mapId)
-                continue;
-
-            var corepos = _transformSystem.GetMapCoordinates(uid).Position;
-            var dist = (corepos - pos).LengthSquared();
-            if (dist > minDist)
-                continue;
-
-            minDist = dist;
-            nearest = uid;
-        }
-        return nearest;
-    }
     private (bool safeProtocol, bool safeProtocolCompleted, byte tempChangeStatus, float finalTempChangeCoef) GetTerminalProtocolStatus(CoreAccessComputerComponent core)
     {
         var safeProtocol = core.SaveProtocolWasDeactivated;
         var safeProtocolCompleted = core.DeactivationCompleted;
-        var coreTempRising = core.TempRising;
         var tempChangeStatus = core.ByteStatus;
         var finalTempChangeCoef = core.FinalTempChangeCoef;
         return (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef);
@@ -356,14 +335,13 @@ public sealed partial class EnergyCoreSystem : EntitySystem
 
             if (_timing.CurTime < cormp.SearchTime) // Ищет только первые 5 секунд
             {
-                var nearestUid = FindNearestProtocolTerminal(uid);
+                var nearestUid = _coreHelper.FindNearestProtocolTerminal(uid, 30f);
                 if (nearestUid == null ||
                     !EntityManager.TryGetComponent<CoreAccessComputerComponent>(nearestUid.Value, out var nearest))
                     return;
                 else
                     cormp.Controller = nearestUid;
             }
-            else return;
         }
     }
     #region public API
@@ -400,6 +378,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                 playDefaultSound: false, colorOverride: Color.DarkSalmon);
             }
         }
+        UpdateCoreVisual(uid, core);
     }
     public void Corearm(EntityUid uid, EnergyCoreComponent? core = null)
     {

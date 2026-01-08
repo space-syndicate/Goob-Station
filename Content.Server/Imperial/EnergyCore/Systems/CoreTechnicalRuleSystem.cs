@@ -33,7 +33,7 @@ public sealed class CoreTechnicalRuleSystem : GameRuleSystem<CoreTechnicalRuleCo
         var coremain = Loc.GetString("core-technical-main");
         args.AddLine(coremain);
 
-        var text = component.EndRoundText;
+        var text = Loc.GetString(component.EndRoundText);
         args.AddLine(text);
     }
     private void OnCoreDetonated(CoreDetonatedEvent ev)

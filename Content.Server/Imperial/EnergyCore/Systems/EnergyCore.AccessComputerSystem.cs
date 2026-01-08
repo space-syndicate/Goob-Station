@@ -16,10 +16,11 @@ using Content.Shared.Imperial.EnergyCore;
 using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Events;
+using Content.Server.Imperial.EnergyCore.Helpers;
 
 namespace Content.Server.Imperial.EnergyCore;
 
-public sealed class CoreAccessComputerSystem : EntitySystem
+public sealed class CoreAccessComputerSystem : SharedCoreAccessComputerSystem // : EntitySystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -27,18 +28,18 @@ public sealed class CoreAccessComputerSystem : EntitySystem
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CoreAccessComputerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<CoreAccessComputerComponent, UiButtonPressedMessage>(OnUiButtonPressed);
         SubscribeLocalEvent<CoreAccessComputerComponent, EntInsertedIntoContainerMessage>(OnItemSlotChanged);
         SubscribeLocalEvent<CoreAccessComputerComponent, EntRemovedFromContainerMessage>(OnItemSlotChanged);
     }
     private void OnInit(EntityUid uid, CoreAccessComputerComponent component, ComponentInit args)
     {
-        _itemSlots.AddItemSlot(uid, SharedEnergyCoreComponent.DeCodeSlotId, component.DeCodeSlot);
+        _itemSlots.AddItemSlot(uid, SharedCoreAccessComponent.DeCodeSlotId, component.DeCodeSlot);
 
         component.SearchTime = component.SearchTime + _timing.CurTime;
 
@@ -85,33 +86,6 @@ public sealed class CoreAccessComputerSystem : EntitySystem
         component.CurrCoreTemp = coreTemp;
         component.Status = coreStatus;
     }
-
-    #region Get Nearest Core
-    private EntityUid? FindNearestEnergyCore(EntityUid core)
-    {
-        var transformCompConsole = Transform(core);
-        var mapId = transformCompConsole.MapID;
-        var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
-
-        EntityUid? nearest = null;
-        var minDist = 30f;//float.MaxValue;
-
-        var enumerator = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
-        while (enumerator.MoveNext(out var uid, out _, out var transComp))
-        {
-            if (transComp.MapID != mapId)
-                continue;
-
-            var corepos = _transformSystem.GetMapCoordinates(uid).Position;
-            var dist = (corepos - pos).LengthSquared();
-            if (dist > minDist)
-                continue;
-
-            minDist = dist;
-            nearest = uid;
-        }
-        return nearest;
-    }
     private (float coreTemp, CoreStatus coreStatus) GetCoreInfo(EnergyCoreComponent component)
     {
         var coreTemp = component.CoreTemp;
@@ -119,137 +93,6 @@ public sealed class CoreAccessComputerSystem : EntitySystem
 
         return (coreTemp, coreStatus);
     }
-    #endregion
-    #region UI
-    private void OnUiButtonPressed(EntityUid uid, CoreAccessComputerComponent component, UiButtonPressedMessage msg)
-    {
-        var user = msg.Actor;
-        if (!Exists(user))
-            return;
-
-        if (!PlayerCanUseController(uid, user, component))
-            return;
-
-        _audio.PlayPvs(component.ClickSound, uid, AudioParams.Default.WithVolume(-2f));
-        switch (msg.Button)
-        {
-            case UiButton.Auto:
-                TurnAutoSystem(component);
-                break;
-            case UiButton.RiseTemp:
-                MakeCoreTempRise(component);
-                break;
-            case UiButton.CoolTemp:
-                MakeCoreTempCool(component);
-                break;
-            case UiButton.UpReactivity:
-                MakeReactivityUp(uid, component);
-                break;
-            case UiButton.DownReactivity:
-                MakeReactivityDown(uid, component);
-                break;
-            case UiButton.UpHalflife:
-                MakeHalflifeUp(uid, component);
-                break;
-            case UiButton.DownHalflife:
-                MakeHalflifeDown(uid, component);
-                break;
-        }
-        UpdateUi(uid, component);
-    }
-    private bool PlayerCanUseController(EntityUid uid, EntityUid playerEntity, CoreAccessComputerComponent? component = null)//, bool needsPower = true)
-    {
-        if (!Resolve(uid, ref component))
-            return false;
-
-        if (!Exists(playerEntity))
-            return false;
-
-        return true;
-    }
-    public void UpdateUi(EntityUid uid, CoreAccessComputerComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-
-        if (!_userInterfaceSystem.HasUi(uid, CoreTerminalUiKey.Key))
-            return;
-
-        var state = GetUiState(uid, component);
-        _userInterfaceSystem.SetUiState(uid, CoreTerminalUiKey.Key, state);
-
-        component.NextUIUpdate = _timing.CurTime + component.UpdateUIPeriod;
-    }
-    private CoreTerminalBoundUserInterfaceState GetUiState(EntityUid uid, CoreAccessComputerComponent component)
-    {
-        var safeProtocol = !component.SaveProtocolWasDeactivated;
-        var tempRising = component.TempRising;
-        var coreStatus = component.Status;
-        var autoSystem = component.ByteStatus;
-        var coreTemp = component.CurrCoreTemp;
-        var tempChangeCoef = component.FinalTempChangeCoef;
-        var currentPowerSupply = component.CurrentPowerSupply;
-
-        return new CoreTerminalBoundUserInterfaceState(
-                coreStatus,
-                tempRising,
-                safeProtocol,
-                autoSystem,
-                coreTemp,
-                tempChangeCoef,
-                currentPowerSupply);
-    }
-    public void TurnAutoSystem(CoreAccessComputerComponent component)
-    {
-        component.ByteStatus = 2;
-    }
-    public void MakeCoreTempRise(CoreAccessComputerComponent component)
-    {
-        component.ByteStatus = 3;
-    }
-    public void MakeCoreTempCool(CoreAccessComputerComponent component)
-    {
-        component.ByteStatus = 1;
-    }
-    private void MakeReactivityUp(EntityUid uid, CoreAccessComputerComponent component)
-    {
-        if (component.Reactivity >= 100)
-        {
-            _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
-            return;
-        }
-        component.Reactivity = component.Reactivity + 10;
-    }
-    private void MakeHalflifeUp(EntityUid uid, CoreAccessComputerComponent component)
-    {
-        if (component.Halflife >= 10)
-        {
-            _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
-            return;
-        }
-        component.Halflife = component.Halflife + 1;
-    }
-    private void MakeReactivityDown(EntityUid uid, CoreAccessComputerComponent component)
-    {
-        if (component.Reactivity <= 30)
-        {
-            _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
-            return;
-        }
-        component.Reactivity = component.Reactivity - 10;
-    }
-    private void MakeHalflifeDown(EntityUid uid, CoreAccessComputerComponent component)
-    {
-        if (component.Halflife <= 5)
-        {
-            _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
-            return;
-        }
-        component.Halflife = component.Halflife - 1;
-    }
-    #endregion
-    #region EndUI
-    #endregion
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -268,19 +111,16 @@ public sealed class CoreAccessComputerSystem : EntitySystem
                 }
             }
             GetCurrTemp(uid, comp);
-            if (comp.NextUIUpdate < _timing.CurTime)
-                UpdateUi(uid, comp);
 
             if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
             {
-                var nearestUid = FindNearestEnergyCore(uid);
+                var nearestUid = _coreHelper.FindNearestEnergyCore(uid, 30f);
                 if (nearestUid == null ||
                     !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
                     return;
                 else
                     comp.ControledCore = nearestUid;
             }
-            else return;
         }
     }
     #region public API

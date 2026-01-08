@@ -1,12 +1,12 @@
+using Robust.Shared.Audio;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Shared.Imperial.EnergyCore.Components;
-using Robust.Shared.Audio;
 
-namespace Content.Server.Imperial.EnergyCore.Components
+namespace Content.Shared.Imperial.EnergyCore.Components
 {
     /// <summary>
-    /// Система терминала для отключения протоколов безопасности
+    /// Система терминала для управления и отключения протоколов безопасности энергетического ядра
     /// </summary>
     [RegisterComponent]
     public sealed partial class CoreAccessComputerComponent : Component
@@ -43,7 +43,7 @@ namespace Content.Server.Imperial.EnergyCore.Components
         /// Задержка между обновами
         /// </summary>
         [DataField]
-        public TimeSpan UpdateUIPeriod = TimeSpan.FromSeconds(1.0);
+        public TimeSpan UpdateUIPeriod = TimeSpan.FromSeconds(0.2);
 
         /// <summary>
         /// Время требуемое для проверки кодов ядерной деавторизации
