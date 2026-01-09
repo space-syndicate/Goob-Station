@@ -1,0 +1,210 @@
+- type: entity
+  id: XxRaaySmasherHuman
+  name: Адам Смешер
+  description: Это точно человек?
+  components:
+    - type: Sprite
+      noRot: true
+      drawdepth: Mobs
+      layers:
+      - state: adam_smasherovich
+        sprite: Imperial/XxRaay/smasher.rsi
+      - map: ["belt"]
+      - map: ["back"]
+      - map: ["enum.HumanoidVisualLayers.RArm"]
+      - map: ["enum.HumanoidVisualLayers.LArm"]
+    - type: GravityAffected
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 50
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Input
+      context: "human"
+    - type: Actions
+    - type: Alerts
+    - type: Appearance
+    - type: RotationVisuals
+      defaultRotation: 0
+      horizontalRotation: 0
+    - type: DoAfter
+    - type: Examiner
+    - type: Eye
+    - type: ContentEye
+    - type: CameraRecoil
+    - type: MindContainer
+    - type: RequireProjectileTarget
+      active: False
+    - type: MobCollision
+    - type: Physics
+      bodyType: KinematicController
+    - type: InputMover
+    - type: MobMover
+    - type: MovementSpeedModifier
+    - type: LagCompensation
+    - type: Icon
+      sprite: Imperial/XxRaay/smasher.rsi
+      state: adam_smasherovich
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Blunt
+          damage: 1500
+        behaviors:
+        - !type:GibBehavior { }
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Heat
+          damage: 1500
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: true
+          spawn:
+            Ash:
+              min: 1
+              max: 1
+        - !type:BurnBodyBehavior { }
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MeatLaserImpact
+    - type: Repairable
+      damage:
+        types:
+          Blunt: -25
+          Structural: -25
+          Slash: -25
+          Piercing: -25
+          Heat: -25
+          Shock: -25
+          Caustic: -25
+          Asphyxiation: -25
+    - type: RadiationReceiver
+    - type: Stamina
+    - type: StunVisuals
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        900: Critical
+        1000: Dead
+    - type: MobStateActions
+      actions:
+        Critical:
+        - ActionCritSuccumb
+        - ActionCritFakeDeath
+        - ActionCritLastWords
+    - type: Deathgasp
+    - type: HealthExaminable
+      examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+      - Caustic
+      - Asphyxiation
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 15
+      soundHit:
+        path: /Audio/Effects/hit_kick.ogg
+    - type: Pullable
+    - type: LightningTarget
+      priority: 2
+      lightningExplode: true
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 25
+          Structural: 15
+    - type: CombatMode
+    - type: Inventory
+    - type: Hands
+      hands:
+        hand_right1:
+          location: Right
+        hand_right2:
+          location: Right
+        hand_left1:
+          location: Left
+        hand_left2:
+          location: Left
+      sortedHands:
+      - hand_right1
+      - hand_right2
+      - hand_left1
+      - hand_left2
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+      - id: FoodMeatHuman
+        amount: 5
+    - type: Body
+      prototype: Human
+      parts:
+        head: BodyPartHumanHead
+        torso: BodyPartHumanTorso
+        left_arm: BodyPartHumanLeftArm
+        right_arm: BodyPartHumanRightArm
+        left_leg: BodyPartHumanLeftLeg
+        right_leg: BodyPartHumanRightLeg
+        extra_arm1: BodyPartHumanLeftArm
+        extra_arm2: BodyPartHumanRightArm
+        extra_arm3: BodyPartHumanLeftArm
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 20
+      damage:
+        types:
+          Heat: -0.07
+        groups:
+          Brute: -0.07
+    - type: Fingerprint
+    - type: Temperature
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
+      currentTemperature: 310.15
+      specificHeat: 42
+      coldDamage:
+        types:
+          Cold: 0.1
+      heatDamage:
+        types:
+          Heat: 1.5
+    - type: TemperatureSpeed
+      thresholds:
+        293: 0.9
+        280: 0.8
+        260: 0.7
+    - type: ThermalRegulator
+      metabolismHeat: 800
+      radiatedHeat: 100
+      implicitHeatRegulation: 500
+      sweatHeatRegulation: 2000
+      shiveringHeatRegulation: 2000
+      normalBodyTemperature: 310.15
+      thermalRegulationTemperatureThreshold: 2
+    - type: Perishable
+    - type: FireVisuals
+      alternateState: Standing
+    - type: Bloodstream
+      bloodlossDamage:
+        types:
+          Bloodloss: 0.5
+      bloodlossHealDamage:
+        types:
+          Bloodloss: -1
+    - type: Polymorphable
