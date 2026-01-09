@@ -20,6 +20,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Imperial.Traits;  //Imperial "CrawlingForLegsParalyzed"
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
@@ -139,6 +140,7 @@ public sealed partial class ZombieSystem
         RemComp<ReproductiveComponent>(target);
         RemComp<ReproductivePartnerComponent>(target);
         RemComp<LegsParalyzedComponent>(target);
+        RemComp<ImperialLegsParalyzedComponent>(target); //Imperial "CrawlingForLegsParalyzed"
         RemComp<ComplexInteractionComponent>(target);
         RemComp<SentienceTargetComponent>(target);
 

@@ -20,7 +20,7 @@ public sealed class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
-        SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandTry); // Imperial "ImperialVehicle"
+        SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
@@ -38,11 +38,6 @@ public sealed class LegsParalyzedSystem : EntitySystem
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
         _standingSystem.Stand(uid);
-        _movementSpeedModifierSystem.ChangeBaseSpeed( // Imperial "ImperialVehicle" Start
-            uid,
-            component.CrawlMoveSpeed,
-            component.CrawlMoveSpeed,
-            component.CrawlMoveAcceleration); // Imperial "ImperialVehicle" End
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
@@ -50,10 +45,9 @@ public sealed class LegsParalyzedSystem : EntitySystem
         _standingSystem.Down(uid);
     }
 
-    private void OnStandTry(EntityUid uid, LegsParalyzedComponent component, StandAttemptEvent args) // Imperial "ImperialVehicle"
+    private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
     {
         args.Cancel();
-        _standingSystem.Down(uid); // Imperial "ImperialVehicle"
     }
 
     private void OnThrowPushbackAttempt(EntityUid uid, LegsParalyzedComponent component, ThrowPushbackAttemptEvent args)
