@@ -40,7 +40,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDClass
   name: Preset
-  suffix: seriozha, Недра, GhostRole
+  suffix: seriozha, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ DClassGear ]
@@ -65,7 +65,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPMTF
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ MTFGear ]
@@ -83,7 +83,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPMTFNU
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ NuGear ]
@@ -101,7 +101,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPMTFCMD
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ MTFCMDGear ]
@@ -119,7 +119,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPMTFNUCMD
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ NuCMDGear]
@@ -137,7 +137,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPAlpha
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, МОГ
   components:
     - type: NoSlip
     - type: Loadout
@@ -246,7 +246,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPCI
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ CIGear ]

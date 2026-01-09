@@ -699,7 +699,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDev
   name: Imperial Deva Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ DevGear ]
@@ -997,7 +997,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDevMedic
   name: Medic of the Deva Empire
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ DevGearMedic ]
@@ -1020,7 +1020,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDevCommand
   name: Imperial Deva Commander
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ DevGearCommand ]
@@ -1114,7 +1114,7 @@
 - type: entity
   parent: BaseHealingItem
   id: SCP500
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   name: Panacea
   description: NDA-500 — red tablets stored in a small plastic bottle, 47 tablets at the time of writing. The tablet taken orally heals the subject from all diseases within two hours.
   components:
@@ -1148,7 +1148,7 @@
 - type: entity
   name: Bottles of “Coca-Cola”
   parent: BaseItem
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   description: NDA-207 is a box containing 24 bottles of Coca-Cola by the same brand. Bottles are labeled from SCP-207-A to -X. Currently only SCP-207-B is intended for research; opening other bottles without a Level 4 research staff approval is forbidden.
   id: SCP207
   components:
@@ -1180,7 +1180,7 @@
 - type: entity
   parent: [ RingBase, GoldRingBase ]
   id: SCP714
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   name: Non-precious Ring
   description: NDA-714 looks like a regular green nephrite ring. It can adapt to the finger size of the last person who touched it. It changes size only for “new” subjects, which is its least significant property.
   components:
@@ -1200,7 +1200,7 @@
 - type: entity
   parent: [ ClothingHeadHeadHatBaseFlippable, BaseToggleClothing ]
   id: SCP268
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   name: Cap of Invisibility
   description: NDA-268 is a hat made of tweed wool, commonly worn by boy newspaper sellers. The shape and design match hats produced in Ireland.
   components:
@@ -1226,7 +1226,7 @@
 - type: entity
   name: Living Weapon
   id: SCP127
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: BaseItem
   description: NDA-127 externally looks like an MP5K submachine gun. Experiments show the device is organic inside the metal shell; ammo consists of teeth resembling human teeth.
   components:
@@ -1589,7 +1589,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPGOC
   name: GOC Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, ГОК
   components:
     - type: Loadout
       prototypes: [ GOCGear ]
@@ -1684,7 +1684,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPGOCRepresentative
   name: GOC Representative
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, ГОК
   components:
     - type: Loadout
       prototypes: [ GOCGearRepresentative ]
@@ -1789,7 +1789,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPPHYSICS
   name: PHYSICS Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, ГОК
   components:
     - type: Loadout
       prototypes: [ GOCPHYSICSGear ]
@@ -1882,7 +1882,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPNu7
   name: Nu7 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Nu7Gear ]
@@ -1930,7 +1930,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPNu7Command
   name: Nu7 Operator Command
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Nu7GearCommand ]
@@ -2048,7 +2048,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPAlpha9
   name: Alpha9 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Alpha9Gear ]
@@ -2105,7 +2105,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPAlpha9105
   name: NDA 105 Iris Thompson
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Alpha9Gear105 ]
@@ -2326,7 +2326,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPbrokengod
   name: Rebel of the Church of the Broken God
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ brokengodGear ]
@@ -2389,7 +2389,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPbrokengodhammer
   name: Rebel of the Church of the Broken God
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ brokengodhammerGear ]
@@ -2533,7 +2533,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPScarletKing
   name: дитя Алого Короля
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ ScarletKingGear ]
@@ -3227,7 +3227,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCP343
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
     - type: Loadout
       prototypes: [ SCP343Gear ]
@@ -3470,7 +3470,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPSamsaraIrantu
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Tay5IrantuSCPGear ]
@@ -3689,7 +3689,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPSamsaraMunru
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Tay5MunruSCPGear ]
@@ -3735,7 +3735,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPSamsaraOnru
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Tay5OnruSCPGear ]
@@ -3831,7 +3831,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPSamsaraNanku
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Tay5NankuSCPGear ]
@@ -3928,7 +3928,7 @@
 
 - type: entity
   name: Time's up
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPTimeup
   description: a vaguely humanoid creature with various avian features, the most noticeable of which is its beak.
@@ -4173,7 +4173,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPCIMoroder
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ CIGearMoroder ]
@@ -4219,7 +4219,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPCIsuppressor
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ CIGearsuppressor ]
@@ -4288,7 +4288,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPCIcoordinator
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ CIGearcoordinator ]
@@ -4423,7 +4423,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPzeta9
   name: zeta9 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ zeta9Gear ]
@@ -4471,7 +4471,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPzeta9Com
   name: zeta9 Operator Commander
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ zeta9GearCom ]
@@ -4579,7 +4579,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPepsilon9
   name: epsilon9 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ epsilon9Gear ]
@@ -4625,7 +4625,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPepsilon9Com
   name: epsilon9 Operator Commander
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ epsilon9GearCom ]
@@ -4736,7 +4736,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPeta10
   name: eta10 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ eta10Gear ]
@@ -4804,7 +4804,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPeta10Com
   name: eta10 Commander
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ eta10GearCom ]
@@ -4843,7 +4843,7 @@
 
 - type: entity
   name: hard-to-kill reptile
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCP682
   components:
@@ -5015,7 +5015,7 @@
   id: SCPIDCardn005
   parent: IDCardStandard
   name: Master key
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
   - type: Prying
     speedModifier: 6
@@ -5030,7 +5030,7 @@
   name: Spider
   parent: [ SimpleMobBase, MobCombat ]
   id: MobSpiderNDA1006
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -5101,7 +5101,7 @@
   parent: AtmosDeviceFanTiny
   id: titleNDA002
   name: title NDA002
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
     - type: Sprite
       sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
@@ -5222,7 +5222,7 @@
   parent: ImperialSCPBasePreset
   id: PresetNDA953
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
     - type: Loadout
       prototypes: [ SCP953Gear ]
@@ -5342,7 +5342,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPPGRY
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ PGRYGear ]
@@ -5386,7 +5386,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPPGRYCom
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ PGRYGearCom ]
@@ -5418,7 +5418,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPNPFBI
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ ONPFBIGear ]
@@ -6956,7 +6956,7 @@
 
 - type: entity
   name: infected
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPinfectedNDA020
   components:
@@ -7047,7 +7047,7 @@
   parent: AtmosDeviceFanTiny
   id: titleNDA020
   name: title NDA020
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
     - type: Sprite
       sprite: Imperial/Seriozha/Fredik21/nda/2nda020.rsi
@@ -7143,7 +7143,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDZ
   name: DZ Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ DZGear ]
@@ -7391,7 +7391,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDZCom
   name: DZ Operator Com
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Повстанцы
   components:
     - type: Loadout
       prototypes: [ DZGearCom ]
@@ -7954,7 +7954,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPUpsilon11
   name: Upsilon11 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Upsilon11Gear ]
@@ -7999,7 +7999,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPUpsilon11Com
   name: Upsilon11 Commander
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Upsilon11GearCom ]
@@ -8053,7 +8053,7 @@
 
 - type: entity
   id: CigaretteNDA420-j
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: Cigarette
   name: The best ████ in the world
   components:
@@ -8069,7 +8069,7 @@
   parent: AtmosDeviceFanTiny
   id: titleNDA522
   name: title NDA522
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
     - type: Sprite
       sprite: Structures/Furniture/Carpets/red_carpet.rsi
@@ -8109,7 +8109,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPSigma9
   name: Sigma9 Operator
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ Sigma9Gear ]
@@ -8123,9 +8123,6 @@
       rules: rule
       raffle:
         settings: short
-    - type: RandomMetadata
-      nameSegments:
-        - NamesUpsilon11scp
     - type: NpcFactionMember
       factions:
       - Foundation
@@ -8265,7 +8262,7 @@
 
 - type: entity
   name: NDA131A
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPNDA131
   description: The kindest blob of slime in the galaxy.
@@ -8338,7 +8335,7 @@
 
 - type: entity
   name: NDA131B
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPNDA131A
   description: The kindest blob of slime in the galaxy.
@@ -8428,7 +8425,7 @@
 
 - type: entity
   id: NDA013
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: Cigarette
   name: Cigarette «Blue Lady» 
   components:
@@ -8459,7 +8456,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPNPFBISWAT
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, МОГ
   components:
     - type: Loadout
       prototypes: [ ONPFBIGearSWAT ]
@@ -8797,7 +8794,7 @@
   parent: [ FloraTreeChristmas01, ClothingBackpackDuffel ]
   id: FloraTreeChristmasNDA
   name: Tree Christ
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
   - type: Storage
     maxItemSize: Huge
@@ -8950,7 +8947,7 @@
 
 - type: entity
   name: Мем
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialMem
   components:
@@ -11431,7 +11428,7 @@
   parent: AtmosDeviceFanTiny
   id: titleNDA354
   name: red lake
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, Объект
   components:
     - type: Sprite
       sprite: Imperial/Seriozha/Fredik21/lake.rsi
@@ -11561,3 +11558,4 @@
       intervalSeconds: 360
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
+
