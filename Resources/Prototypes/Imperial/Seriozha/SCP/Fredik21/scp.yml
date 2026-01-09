@@ -9,7 +9,6 @@
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
-  - type: Matchbox
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSCPMTF
@@ -91,6 +90,16 @@
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: n013
+
+- type: entity
+  parent: PosterBase
+  id: Postern354
+  name: Poster n354
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n354
 
 - type: entity
   parent: PosterBase
@@ -739,7 +748,7 @@
     - Tourniquet
     - Tourniquet
     - TelescopicShield
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   id: BannerDevSCP
@@ -784,7 +793,7 @@
     soundGunshot:
       path: /Audio/Imperial/Seriozha/SCP/laser.ogg
       volume: -4
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseViolet
     fireCost: 200
   - type: Battery
@@ -794,20 +803,25 @@
     autoRecharge: true
     autoRechargeRate: 40
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: PulseViolet
-  damage:
-    types:
-      Heat: 30
-  muzzleFlash:
-    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
-    state: muzzle_violet
-  travelFlash:
-    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
-    state: beam_violet
-  impactFlash:
-    sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
-    state: impact_violet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+      state: muzzle_violet
+    travelFlash:
+      sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+      state: beam_violet
+    impactFlash:
+      sprite: Imperial/Seriozha/Fredik21/gun/laser.rsi
+      state: impact_violet
 
 - type: entity
   name: Laser Cutter “Srez” (Slice)
@@ -843,7 +857,7 @@
     soundGunshot:
       path: /Audio/Imperial/Seriozha/SCP/laser.ogg
       volume: -4
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseViolet
     fireCost: 200
   - type: Battery
@@ -1043,7 +1057,7 @@
     - MedkitCombatFilled
     - HandTeleporterSCPDeva
     - HandHeldMassScanner
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: DevGearMedic
@@ -1078,7 +1092,7 @@
     - AmpulaDylo
     - AmpulaDylo
     - HandTeleporterSCPDeva
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: BaseItem
@@ -1241,7 +1255,7 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CartridgePistol
     fireCost: 10
   - type: Battery
@@ -1308,7 +1322,7 @@
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeySCPconnection
     - EncryptionKeyNedraMTFconnection
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: BaseWall
@@ -1617,7 +1631,7 @@
     back:
     - WeaponDisabler
     - GOCUplink
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: localizedDataset
   id: NamesGOCscp
@@ -1702,7 +1716,7 @@
     - WeaponDisabler
     - Paper
     - Paper
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -1813,7 +1827,7 @@
   storage:
     back:
     - GOCUplinkCom
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: gamePreset
   id: nedra
@@ -1910,7 +1924,7 @@
   storage:
     back:
     - FondUplinkNu7Zeta9
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -1951,7 +1965,7 @@
   storage:
     back:
     - FondUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: localizedDataset
   id: Namesnu7scp
@@ -2070,7 +2084,7 @@
     pocket2: FondUplinkAlpha9
   storage:
     back:
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   id: HandTeleporterSCP105
@@ -2139,7 +2153,7 @@
     - SCP207
     - SCP207
     - FondUplinkAlpha9
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -2369,7 +2383,7 @@
     outerClothing: ClothingOuterArmorbrokengod
   storage:
     back:
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2431,7 +2445,7 @@
     outerClothing: ClothingOuterArmorbrokengodHammerman
   inhand:
   - brokengodHammer
-  - HandheldStationMap
+  - BoxSurvivalNDA
 
 - type: localizedDataset
   id: brokengodscp
@@ -2570,7 +2584,7 @@
     gloves: ClothingHandsGlovesColorRed
   inhand:
   - RitualDaggerScarletKing
-  - HandheldStationMap
+  - BoxSurvivalNDA
 
 - type: entity
   id: ScarletKingProjectile
@@ -2775,17 +2789,13 @@
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
     back: ClothingBackpackDuffelEngineering
     shoes: ClothingShoesBootsWork
-    eyes: ClothingEyesGlassesMeson
-    gloves: ClothingHandsGlovesColorYellow
-    outerClothing: ClothingOuterVestHazard
     id: SCPIDCardTwo
     ears: ClothingHeadsetSCPMain
-    belt: ClothingBeltUtilityEngineering
-    head: ClothingHeadHatHardhatYellow
     pocket1: EncryptionKeyEngineering
   storage:
     back:
-    - HandheldStationMap
+    - BoxSurvivalNDA
+    - FondUplinkEngineering
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2818,17 +2828,14 @@
     jumpsuit: ClothingUniformJumpsuitRegularForceMedicOfficer
     back: ClothingBackpackSatchelMedical
     shoes: ClothingShoesSCP
-    eyes: ClothingEyesHudMedical
-    gloves: ClothingHandsGlovesLatex
     id: SCPIDCardTwo
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltMedicalFilled
     head: ClothingHeadHatParamedicsoft
-    mask: ClothingMaskSterile
     pocket1: EncryptionKeyMedical
   storage:
     back:
-    - HandheldStationMap
+    - BoxSurvivalNDA
     - FondUplinkMedical
 
 - type: emoteSounds
@@ -3078,7 +3085,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPOxranaCom
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ OxranaGearCOM ]
@@ -3096,24 +3103,16 @@
   id: OxranaGearCOM
   equipment:
     jumpsuit: ClothingUniformJumpsuitSCPCom
-    mask: ClothingMaskGasSecurity
     shoes: ClothingShoesBootsWorkSCP
-    head: ArmyBeretArmyS
-    eyes: ClothingEyesGlassesSecurity
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorSCPSecurity
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPMain
-    belt: ClothingBeltSecurityFilled
-    suitstorage: WeaponRevolverAstra903
-    pocket1: SpeedLoaderAstra903
-    pocket2: SpeedLoaderAstra903
     back: ClothingBackpackSatchelSacerdos_5
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
     - FondUplinkBaseCom
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -3129,7 +3128,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPOxranaComAlt
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ OxranaGearCOMAlt ]
@@ -3147,16 +3146,10 @@
   id: OxranaGearCOMAlt
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorOrange
-    mask: ClothingMaskGasSecurity
     shoes: ClothingShoesBootsWorkSCP
-    head: ClothingHeadHatBeretQM
-    eyes: ClothingEyesGlassesSecurity
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorSCPSecurityAlt
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPMain
-    belt: ClothingBeltSecurityFilled
-    suitstorage: WeaponDisablerSMG
     pocket1: WeaponPistolMk58Nonlethal
     pocket2: MagazinePistolRubber
     back: ClothingBackpackSatchelCargo
@@ -3164,7 +3157,7 @@
     back:
     - EncryptionKeyNedraCMDconnection
     - FondUplinkBaseCom
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -3193,7 +3186,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPOxranaAlt
   name: Preset
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ OxranaGearAlt ]
@@ -3218,22 +3211,17 @@
   id: OxranaGearAlt
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorOrange
-    mask: ClothingMaskGasSecurity
     shoes: ClothingShoesBootsWorkSCP
-    head: ClothingHeadHelmetERTEngineer
-    eyes: ClothingEyesGlassesSecurity
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorSCPSecurityAlt
     id: SCPIDCardThreeGray
     ears: ClothingHeadsetSCPMain
-    belt: ClothingBeltSecurityFilled
     suitstorage: WeaponPistolMk58Nonlethal
     pocket1: MagazinePistolRubber
     pocket2: WeaponDisabler
   inhand:
   - PaperSRPGPI
   - FondUplinkBase
-  - HandheldStationMap
+  - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3266,7 +3254,7 @@
     neck: ClothingNeckMantleCE
     head: ClothingHeadHatHolyWatermelonSCP343
     shoes: ClothingShoesSCP
-    pocket1: HandheldStationMap
+    pocket1: BoxSurvivalNDA
 
 - type: entity
   parent: ClothingUniformJumpsuitColorWhite
@@ -3429,7 +3417,7 @@
     pocket2: EncryptionKeyNedraCMDconnection
   inhand:
   - judicialgavel
-  - HandheldStationMap
+  - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3469,7 +3457,7 @@
     - ForensicScanner
     - BoxForensicPad
     - BoxEvidenceMarkers
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: jobIcon
   parent: JobIcon
@@ -3529,7 +3517,7 @@
     - ItemODENMagazine
     - ItemODENMagazine
     - MachineGunODEN
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -3741,7 +3729,7 @@
     - AmpulaDylo
     - AmpulaDylo
     - FondUplinkTay5
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -3793,7 +3781,7 @@
     - WeaponLightMachineGunL6
     - MagazineLightRifleBox
     - MagazineLightRifleBox
-    - HandheldStationMap
+    - BoxSurvivalNDA
   inhand:
   - SquadShield
 
@@ -3894,7 +3882,7 @@
     - SCP500
     - SCP207
     - FondUplinkTay5
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -4225,7 +4213,7 @@
     - EncryptionKeyGanza
     - CIUplinkBase
     - WeaponRevolverInspector
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -4270,7 +4258,7 @@
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
     - CIUplinkBase
-    - HandheldStationMap
+    - BoxSurvivalNDA
   inhand:
   - TelescopicShield
 
@@ -4330,7 +4318,7 @@
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
     - CIUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
   inhand:
   - WeaponRevolverMatebaAP
 
@@ -4475,7 +4463,7 @@
   storage:
     back:
     - FondUplinkNu7Zeta9
-    - HandheldStationMap
+    - BoxSurvivalNDA
   inhand:
   - Floodlight
 
@@ -4518,7 +4506,7 @@
     back:
     - CSWeaponFiveSeven
     - CIUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4631,7 +4619,7 @@
   storage:
     back:
     - FondUplinkEpsilon11Eta10Beta7epsilon9
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -4675,7 +4663,7 @@
     - WeaponSubMachineGunDrozd
     - MagazinePistolSubMachineGunIncendiary
     - MagazinePistolSubMachineGunIncendiary
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4788,7 +4776,7 @@
     back:
     - LocatorEta10
     - FondUplinkEpsilon11Eta10Beta7epsilon9
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   id: LocatorEta10
@@ -4851,7 +4839,7 @@
     back:
     - LocatorEta10Commander
     - FondUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   name: hard-to-kill reptile
@@ -5149,7 +5137,7 @@
     sprite: Imperial/Seriozha/Fredik21/micro2.rsi
   - type: Item
     sprite: Imperial/Seriozha/Fredik21/micro.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MicroLaser
     fireCost: 150
   - type: Gun
@@ -5160,20 +5148,25 @@
     soundGunshot:
       path: /Audio/Imperial/Seriozha/SCP/micro.ogg
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: MicroLaser
-  damage:
-    types:
-      Heat: 500
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_omni
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_omni
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_omni
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 500
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_omni
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_omni
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_omni
 
 - type: entity
   parent: ClothingHeadBase
@@ -5298,7 +5291,7 @@
     jumpsuit: ClothingUniformJumpsuitKimonoNDA953
     outerClothing: ClothingOuterArmorNDA953
     head: ClothingHeadHatFoxNDA953
-    pocket1: HandheldStationMap
+    pocket1: BoxSurvivalNDA
 
 - type: emoteSounds
   id: SCP953
@@ -5387,7 +5380,7 @@
     - Ointment
     - Brutepack
     - Gauze
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -5419,7 +5412,7 @@
   storage:
     outerClothing:
     - CIUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -5474,7 +5467,7 @@
     - ChemistryBottleToxin
     - ChemistryBottleOmnizine
     - FBIUplink
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: storeCategory
   id: FBIUplinkUtilities
@@ -6469,21 +6462,6 @@
          - FondUplink
 
 - type: listing
-  id: FondUplinkBallisticShieldRCU
-  name: тяжелый баллистический щит
-  description: Тяжелый штурмовой щит с хорошей защитой. Он настолько тяжелый, что удар им должен быть чрезвычайно болезненным...
-  productEntity: BallisticShieldRCU
-  cost:
-    BlueSpaceCube: 10
-  categories:
-  - FondUplinkConsumables
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-       tags:
-         - FondUplink
-
-- type: listing
   id: FondUplinkFireExtinguisherMini
   name: карманный огнетушитель
   description: Легкая и компактная модель огнетушителя с каркасом из стекловолокна. Вмещает меньше воды, чем его старший брат.
@@ -6505,21 +6483,6 @@
   productEntity: FireExtinguisher
   cost:
     BlueSpaceCube: 2
-  categories:
-  - FondUplinkConsumables
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-       tags:
-         - FondUplink
-
-- type: listing
-  id: FondUplinkCrowbarRed
-  name: аварийный лом
-  description: Многофункциональный инструмент для открывания дверей и борьбы с межпространственными захватчиками.
-  productEntity: CrowbarRed
-  cost:
-    BlueSpaceCube: 1
   categories:
   - FondUplinkConsumables
   conditions:
@@ -6993,7 +6956,7 @@
 
 - type: entity
   name: infected
-  suffix: seriozha, Недра
+  suffix: Fredik21, Недра
   parent: ImperialSCPBase
   id: ImperialSCPinfectedNDA020
   components:
@@ -7072,6 +7035,13 @@
     - type: Hands
       showInHands: true
     - type: Stealth
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-ImperialSCPinfectedNDA020-name
+      description: ghost-role-information-ImperialSCPinfectedNDA020-desc
+      rules: Rule
+      raffle:
+        settings: short
 
 - type: entity
   parent: AtmosDeviceFanTiny
@@ -7198,7 +7168,7 @@
   storage:
     back:
     - DZUplink
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ClothingHeadset
@@ -7447,7 +7417,7 @@
   storage:
     back:
     - DZUplinkCom
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: DZUplink
@@ -8023,7 +7993,7 @@
   storage:
     back:
     - FondUplink
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -8062,7 +8032,7 @@
   storage:
     back:
     - FondUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: reagent
   id: SpaceDrugsNDA
@@ -8178,7 +8148,7 @@
   storage:
     back:
     - FondUplinkSigma9
-    - HandheldStationMap
+    - BoxSurvivalNDA
     - HandHeldMassScanner
 
 - type: entity
@@ -8451,9 +8421,6 @@
     Medicine:
       effects:
       - !type:PopupMessage
-        conditions:
-        - !type:ReagentThreshold
-          min: 0.01
         type: Local
         visualType: Medium
         messages: [ "Вы чувствуете себя женщиной 25-35 лет, ростом 1.6 метра." ]
@@ -9042,6 +9009,10 @@
         task: SimpleHostileCompound
     - type: TimedDespawn
       lifetime: 180
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        1000000: 0.7
 
 - type: entity
   parent: ClothingEyesBase
@@ -9430,7 +9401,7 @@
 
 - type: entity
   id: SpawnPresetSCPNPFBI
-  name: Агент ОНП ФБР
+  name: спавнер Агент ОНП ФБР
   parent: MarkerBase
   suffix: Fredik21, Недра
   components:
@@ -10469,3 +10440,1124 @@
   - type: Pinpointer
     component: NukeDisk
     targetName: nuclear authentication disk
+
+- type: entityTable
+  id: GenericCardNDAItems
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: SCPIDCardDZ
+      - id: SCPIDCardFourGOC
+      - id: SCPIDCardFourGOCnoaccess
+      - id: SCPIDCardFour
+      - id: SCPIDCardThree
+      - id: SCPIDCardThreeGray
+      - id: SCPIDCardTwo
+      - id: SCPIDCardOne
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - id: SCPIDCardAdm
+      - id: SCPIDCardO5
+      - id: SCPIDCardFive
+
+- type: entity
+  name: CardNDA Spawner
+  id: RandomSpawnerCardNDA
+  parent: MarkerBase
+  suffix: Fredik21, Недра, полный рандом, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/SCP/id/o5.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericCardNDAItems
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: GenericCardNDAItemsLVL12
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: SCPIDCardTwo
+      - id: SCPIDCardOne
+
+- type: entity
+  name: CardNDA Spawner
+  id: RandomSpawnerCardNDALVL12
+  parent: MarkerBase
+  suffix: Fredik21, Недра, 1-2 лвл, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/SCP/id/one.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericCardNDAItemsLVL12
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: GenericCardNDAItemsLVL3
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: SCPIDCardThree
+      - id: SCPIDCardThreeGray
+
+- type: entity
+  name: CardNDA Spawner
+  id: RandomSpawnerCardNDALVL3
+  parent: MarkerBase
+  suffix: Fredik21, Недра, 3 лвл, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/SCP/id/threegray.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericCardNDAItemsLVL3
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: GenericCardNDAItemsLVL4
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: SCPIDCardFour
+
+- type: entity
+  name: CardNDA Spawner
+  id: RandomSpawnerCardNDALVL4
+  parent: MarkerBase
+  suffix: Fredik21, Недра, 4 лвл, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/SCP/id/four.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericCardNDAItemsLVL4
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: GenericCardNDAItemsLVL5
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: SCPIDCardFive
+      - id: SCPIDCardAdm
+
+- type: entity
+  name: CardNDA Spawner
+  id: RandomSpawnerCardNDALVL5
+  parent: MarkerBase
+  suffix: Fredik21, Недра, 5 лвл, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/SCP/id/five.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericCardNDAItemsLVL5
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: GenericCardNDAItemsLVLO5
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: SCPIDCardO5
+
+- type: entity
+  name: CardNDA Spawner
+  id: RandomSpawnerCardNDALVLO5
+  parent: MarkerBase
+  suffix: Fredik21, Недра, O5 лвл, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/SCP/id/five.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericCardNDAItemsLVLO5
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalNDA
+  name: survival box
+  description: It's a box with basic internals inside.
+  suffix: Fredik21, Недра
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
+        - id: NDACrowbar
+        - id: HandheldStationMap
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/box.rsi
+    layers:
+    - state: internals
+    - state: nda
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+
+- type: entity
+  id: LockerNDADclass
+  parent: ClosetBase
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/classd.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+
+- type: entity
+  id: LockerNDADclassFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDADclass
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingJumpsuitClassD
+      - id: ClothingJumpsuitClassDcleaner
+      - id: MopItem
+      - id: Bucket
+      - id: ClothingUniformJumpsuitPrisoner
+      - id: ClothingUniformJumpskirtPrisoner
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+      - id: ScalpelShiv
+        prob: 0.1
+
+- type: entity
+  id: LockerNDABase
+  parent: ClosetBase
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/base.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+
+- type: entity
+  id: LockerNDABaseFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDABase
+  components:
+  - type: StorageFill
+    contents:
+      - id: SCPIDCardOne
+        prob: 0.7
+      - id: SCPIDCardTwo
+        prob: 0.6
+      - id: PillCanisterTricordrazine
+        prob: 0.7
+      - id: FirstAidMedkitImperialFilled
+        prob: 0.3
+      - id: Ointment
+        prob: 0.7
+      - id: Gauze
+        prob: 0.7
+      - id: Brutepack
+        prob: 0.7
+      - id: WeaponPistolMk58
+        prob: 0.2
+      - id: FlashlightSeclite
+        prob: 0.8
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+      - id: TreasureCoinIron
+        prob: 0.8
+
+- type: entity
+  id: LockerNDAMedical
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/medic.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "Medical" ] ]
+
+- type: entity
+  id: LockerNDAMedicalFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDAMedical
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitParamedic
+      - id: ClothingUniformJumpskirtParamedic
+      - id: ClothingMaskSterile
+      - id: ClothingHandsGlovesLatex
+      - id: ClothingEyesHudMedical
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: NDACrowbarBase
+  name: crowbar
+  description: A multipurpose tool used for many tasks, such as prying doors or bludgeoning interdimensional invaders.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+  - type: Tag
+    tags:
+    - Crowbar
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: Tool
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: ToolTileCompatible
+  - type: StaticPrice
+    price: 22
+  - type: Prying
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/crowbar.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/crowbar.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/crowbar.rsi
+    size: Small
+    shape:
+    - 0,0,0,1
+
+- type: entity
+  parent: NDACrowbarBase
+  id: NDACrowbar
+  components:
+  - type: Sprite
+    state: icon
+  - type: Item
+    storedSprite:
+      sprite: Imperial/Seriozha/Fredik21/crowbar.rsi
+      state: storage
+
+- type: entity
+  id: LockerNDAScience
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/science.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesTwo" ] ]
+
+- type: entity
+  id: LockerNDAScienceFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDAScience
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterCoatSCP
+      - id: ClothingOuterCoatRnd
+      - id: ClothingOuterCoatLabChem
+      - id: ClothingOuterCoatRobo
+      - id: ClothingOuterCoatLab
+      - id: ClothingNeckTieSci
+      - id: ClothingEyesGlasses
+      - id: PaperScience
+      - id: BoxFolderClipboard
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplinkEngineering
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - FondUplinkEngineering
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 7
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkEngineering
+  name: Инженер
+
+- type: listing
+  id: FondUplinkEngineeringSheetPlasteel
+  name: пласталь
+  description: Металлический лист, широко применяемый на станции в различных целях.
+  productEntity: SheetPlasteel
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringSheetSteel
+  name: сталь
+  description: Металлический лист, широко применяемый на станции в различных целях.
+  productEntity: SheetSteel
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringSheetGlass
+  name: стекло
+  description: Лист стекла, широко применяемого на станции в различных целях.
+  productEntity: SheetGlass
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringSheetRGlass
+  name: бронестекло
+  description: Лист армированного стекла.
+  productEntity: SheetRGlass
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringPowerCellHyper
+  name: батарея гипер ёмкости
+  description: Стандартизированный перезаряжаемый элемент питания. Выглядит как редкий и мощный прототип.
+  productEntity: PowerCellHyper
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringCableHVStack
+  name: моток ВВ проводов
+  description: Моток высоковольтных проводов для подключения генераторов энергии к СМЭС, подстанциям, и специальному оборудованию.
+  productEntity: CableHVStack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringCableMVStack
+  name: моток СВ проводов
+  description: Моток средневольтных проводов для подключения подстанций к ЛКП, а также для питания некоторого оборудования, например эмиттеров.
+  productEntity: CableMVStack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringCableApcStack
+  name: моток НВ проводов
+  description: Моток низковольтных проводов для соединения ЛКП с устройствами, а так же для других задач.
+  productEntity: CableApcStack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkEngineeringToolboxElectricalTurretSCPFond
+  name: переносная турель фонда
+  description: Ударив, вы ставите турель, которая атакует повстанцев Хаоса, имперцев Дэвы, проповедников ЧОЦ и ДАК.
+  productEntity: ToolboxElectricalTurretSCPFond
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FondUplinkEngineering
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  id: LockerNDASecAlt
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/secalt.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesThree" ] ]
+
+- type: entity
+  id: LockerNDASecAltFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDASecAlt
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesSecurity
+      - id: ClothingBeltSecurityFilled
+      - id: ClothingHeadHelmetERTEngineer
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingMaskGasSecurity
+      - id: MagazinePistol
+      - id: PaperSRPGPI
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDAEngineer
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/engineer.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesTwo" ] ]
+
+- type: entity
+  id: LockerNDAEngineerFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDAEngineer
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHandsGlovesColorYellow
+      - id: ClothingEyesGlassesMeson
+      - id: ClothingHeadHatHardhatYellow
+      - id: ClothingBeltUtilityEngineering
+      - id: ClothingOuterVestHazard
+      - id: ClothingUniformJumpskirtSeniorEngineer
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDAAdm
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/adm.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesAdministration" ] ]
+
+- type: entity
+  id: LockerNDAAdmFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDAAdm
+  components:
+  - type: StorageFill
+    contents:
+      - id: PaperAdmNDA
+      - id: ClothingUniformJumpsuitLawyerBlue
+      - id: ClothingUniformJumpsuitLawyerLazy
+      - id: ClothingUniformJumpsuitLawyerRed
+      - id: ClothingUniformJumpskirtLawyerRed
+      - id: AdministrationBeret
+      - id: ClothingCentComGlassesEmerald
+      - id: ClothingNeckDSOMedal
+      - id: ClothingUniformJumpsuitLawyerBlack
+      - id: ClothingUniformJumpskirtLawyerBlue
+      - id: ClothingUniformJumpsuitLawyerBrutal
+      - id: BlackShieldPistol
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingOuterHardsuitERTPilotSpaceBattle
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDASecAltCom
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/secaltcom.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesFive" ] ]
+
+- type: entity
+  id: LockerNDASecAltComFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDASecAltCom
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesSecurity
+      - id: ClothingHeadHatBeretQM
+      - id: WeaponDisablerSMG
+      - id: ClothingMaskGasSecurity
+      - id: ClothingHandsGlovesCombat
+      - id: WeaponPistolMk58Nonlethal
+      - id: ClothingBeltSecurityFilled
+      - id: MagazinePistol
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDASecCom
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/seccom.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesFive" ] ]
+
+- type: entity
+  id: LockerNDASecComFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDASecAltCom
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRevolverAstra903
+      - id: SpeedLoaderAstra903
+      - id: SpeedLoaderAstra903
+      - id: ClothingMaskGasSecurity
+      - id: ArmyBeretArmyS
+      - id: ClothingBeltSecurityFilled
+      - id: ClothingEyesGlassesSecurity
+      - id: ClothingHandsGlovesCombat
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDAsciencecom
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/sciencecom.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesFive" ] ]
+
+- type: entity
+  id: LockerNDAsciencecomFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDAsciencecom
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingNeckTieSci
+      - id: ClothingHandsGlovesColorPurple
+      - id: ClothingOuterCoatRD
+      - id: ClothingEyesGlasses
+      - id: ClothingHeadHatBeretRND
+      - id: BoxFolderClipboard
+      - id: RubberStampNedra
+      - id: ClothingUniformJumpsuitResearchDirector
+      - id: ClothingUniformJumpskirtSeniorResearcher
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDASec
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/sec.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesThree" ] ]
+
+- type: entity
+  id: LockerNDASecFilled
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDASec
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesSecurity
+      - id: ClothingBeltSecurityFilled
+      - id: ClothingHeadHelmetSCPSecurity
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingMaskGasSecurity
+      - id: PaperOGK
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+
+- type: entity
+  id: LockerNDAMTF
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/MTF.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesFour" ] ]
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: titleNDA354
+  name: red lake
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/lake.rsi
+      state: shoreline_water
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Heat: 1
+
+- type: entity
+  name: Периодический спавнер зараженного
+  id: TimedSpawnerImperialSCPinfectedNDA020NDA354
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPinfectedNDA020
+      chance: 0.75
+      intervalSeconds: 600
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер зомби недр
+  id: TimedSpawnerImperialSCPZombieNDA354
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPZombie
+      chance: 0.75
+      intervalSeconds: 300
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Avel
+  suffix: Fredik21, Недра, гост роль
+  parent: ImperialSCPAvel
+  id: ImperialSCPAvelGhost
+  description: Pray.
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-ImperialSCPAvelGhost-name
+      description: ghost-role-information-ImperialSCPAvelGhost-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        1000: Dead
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        800: 0.7
+
+- type: entity
+  name: Периодический спавнер Авеля
+  id: TimedSpawnerImperialSCPAvelGhostNDA354
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPAvelGhost
+      chance: 0.75
+      intervalSeconds: 1800
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер Мема
+  id: TimedSpawnerImperialMem
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialMem
+      chance: 0.75
+      intervalSeconds: 360
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1

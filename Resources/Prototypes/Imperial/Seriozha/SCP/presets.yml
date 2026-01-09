@@ -158,7 +158,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPOxrana
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ OxranaGear ]
@@ -183,7 +183,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDoc
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ DocGear ]
@@ -208,7 +208,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPDocCMD
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ DocCMDGear ]
@@ -226,7 +226,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPAdm
   name: Preset
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ ADMGear ]
@@ -286,7 +286,7 @@
     - EncryptionKeyNedraCMDconnection
     - EncryptionKeyNedraMTFconnection
     - FondUplinkEpsilon11Eta10Beta7epsilon9
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: MTFCMDGear
@@ -312,7 +312,7 @@
     - EncryptionKeyNedraMTFconnection
     - DoorRemoteSCP
     - FondUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: NuGear
@@ -334,7 +334,7 @@
   storage:
     back:
     - FondUplinkEpsilon11Eta10Beta7epsilon9
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: NuCMDGear
@@ -358,62 +358,47 @@
   storage:
     back:
     - FondUplinkCommander
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: OxranaGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
-    mask: ClothingMaskGasSecurity
     shoes: ClothingShoesBootsWorkSCP
-    head: ClothingHeadHelmetSCPSecurity
-    eyes: ClothingEyesGlassesSecurity
-    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorSCPSecurity
     id: SCPIDCardThreeGray
     ears: ClothingHeadsetSCPMain
-    belt: ClothingBeltSecurityFilled
     suitstorage: CSWeaponP90
     pocket1: FondUplinkBase
   inhand:
   - PaperOGK
-  - HandheldStationMap
+  - BoxSurvivalNDA
 
 - type: startingGear
   id: DocGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitScientist
     back: ClothingBackpackSatchelScience
-    neck: ClothingNeckTieSci
     shoes: ClothingShoesSCP
-    eyes: ClothingEyesGlasses
     gloves: ClothingHandsGlovesColorPurple
-    outerClothing: ClothingOuterCoatSCP
     id: SCPIDCardThree
     ears: ClothingHeadsetSCPMain
-    belt: BoxFolderClipboard
   inhand:
   - PaperScience
-  - HandheldStationMap
+  - BoxSurvivalNDA
 
 - type: startingGear
   id: DocCMDGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitScientist
     back: ClothingBackpackSatchelScience
-    neck: ClothingNeckTieSci
     shoes: ClothingShoesSCP
-    head: ClothingHeadHatBeretRND
-    eyes: ClothingEyesGlasses
-    gloves: ClothingHandsGlovesColorPurple
-    outerClothing: ClothingOuterCoatRD
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPAlt
-    belt: BoxFolderClipboard
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: ADMGear
@@ -421,17 +406,13 @@
     jumpsuit: ClothingUniformJumpsuitCCAgent
     back: ClothingBackpackSatchelDSO
     shoes: ClothingShoesBootsWorkSCP
-    head: AdministrationBeret
-    eyes: ClothingCentComGlassesEmerald
-    gloves: ClothingHandsGlovesCombat
     neck: ClothingNeckDSOMedal
     id: SCPIDCardAdm
     ears: ClothingHeadsetSCPAlt
-    belt: BlackShieldPistol
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
-    - HandheldStationMap
+    - BoxSurvivalNDA
   inhand:
   - PaperAdmNDA
 
@@ -456,7 +437,7 @@
     - EncryptionKeyRadio1
     - EncryptionKeyGanza
     - CIUplinkBase
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: AlphaGear
@@ -483,7 +464,7 @@
     - FondUplinkAlpha1
     - CompactDefibrillator
     - DoorRemoteSCPAll
-    - HandheldStationMap
+    - BoxSurvivalNDA
 
 - type: startingGear
   id: DClassGear

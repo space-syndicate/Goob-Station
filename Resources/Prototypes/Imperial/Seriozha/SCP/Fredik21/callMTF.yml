@@ -107,7 +107,7 @@
   announcementSound:
     path: /Audio/Imperial/Seriozha/SCP/event/upsilon11.ogg
     params:
-      volume: -5
+      volume: 8
 
 - type: MTFCall
   id: dz
@@ -147,7 +147,7 @@
   announcementSound:
     path: /Audio/Imperial/Seriozha/SCP/event/brokengod.ogg
     params:
-      volume: 5
+      volume: 8
 
 - type: MTFCall
   id: beta7
@@ -185,6 +185,16 @@
   announcementMessage: announcementMessage-MTF-alpha1O5
   announcementSender: announcementSender-MTF-base
   announcementSound:
-    path: /Audio/Imperial/Seriozha/SCP/intercom.ogg
+    path: /Audio/Imperial/Seriozha/SCP/event/alpha1O5.ogg
     params:
-      volume: -5
+      volume: 5
+
+- type: MTFCall
+  id: zeta9
+  path: /GM/seriozha/event/nedra/MTF/Dzeta-9.yml
+  announcementMessage: announcementMessage-MTF-Zeta9
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/zeta9.ogg
+    params:
+      volume: 8

@@ -337,6 +337,7 @@
     reflectProb: 0.15
     spread: 60
   - type: DisarmMalus
+  - type: Unremoveable
 
 - type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
