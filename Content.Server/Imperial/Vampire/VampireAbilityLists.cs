@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Vampire;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Vampire;
@@ -45,10 +46,8 @@ public static class VampireAbilityLists
         "VampireTurnAction"
     };
 
-    public static readonly List<EntProtoId> Plus = new()
-    {
-        "VampireSwordPlusAction",
-        "VampireInvisiblePlusAction",
-        "VampireNosferatyPlusAction"
-    };
+    public static EntProtoId VampireSwordPlus = "VampireSwordPlusAction";
+    public static EntProtoId VampireInvisiblePlus = "VampireInvisiblePlusAction";
+    public static EntProtoId VampireNosferatyPlus = "VampireNosferatyPlusAction";
+
 }

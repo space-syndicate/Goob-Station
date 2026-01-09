@@ -293,7 +293,7 @@ namespace Content.Shared.Imperial.Vampire
         /// для OnInvisible
         /// </summary>
         [AutoNetworkedField]
-        public bool AbilityInvisibleIsActive = false;
+        public bool VampireCloneIsActive = false;
 
         [AutoNetworkedField]
         public EntityUid VampireUid;

@@ -301,7 +301,7 @@ public sealed class VampireServerSystem : EntitySystem
         if (vamp == null && ghoul == null)
             return;
 
-        // вычисляем текущее количество крови   
+        // вычисляем текущее количество крови
         float currentBlood = vamp != null ? vamp.CritThreshold - vamp.BloodDamage : ghoul!.CritThreshold - ghoul.BloodDamage;
 
         if (currentBlood >= 100)
@@ -433,6 +433,7 @@ public sealed class VampireServerSystem : EntitySystem
 
         _vampireSystem.VampireInvisible(args.Performer);
         vamp.BuffBlockedUntil = _gameTiming.CurTime + args.InvisibilityCloneTime;
+        vamp.VampireCloneIsActive = true;
 
         _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
 
@@ -519,21 +520,21 @@ public sealed class VampireServerSystem : EntitySystem
                 // см BaseAbilities, VampireAbilityLists.Hemomancer. Удаляется "Кровавая катана"
                 _actions.RemoveAction(args.Performer, vamp.GrantedActions[0]);
 
-                _actions.AddAction(args.Performer, VampireAbilityLists.Plus[0]);
+                _actions.AddAction(args.Performer, VampireAbilityLists.VampireSwordPlus);
                 break;
 
             case 2:
                 // см BaseAbilities, VampireAbilityLists.Umbrae. Удаляется: "Переключить режим невидимости"
                 _actions.RemoveAction(args.Performer, vamp.GrantedActions[5]);
 
-                _actions.AddAction(args.Performer, VampireAbilityLists.Plus[1]);
+                _actions.AddAction(args.Performer, VampireAbilityLists.VampireInvisiblePlus);
                 break;
 
             case 3:
                 // см BaseAbilities, VampireAbilityLists.Gargantua. Удаляется "Гнев Носферату"
                 _actions.RemoveAction(args.Performer, vamp.GrantedActions[8]);
 
-                _actions.AddAction(args.Performer, VampireAbilityLists.Plus[2]);
+                _actions.AddAction(args.Performer, VampireAbilityLists.VampireNosferatyPlus);
                 break;
         }
     }
@@ -559,7 +560,7 @@ public sealed class VampireServerSystem : EntitySystem
         var queryClone = EntityQueryEnumerator<VampireComponent>();
         while (queryClone.MoveNext(out var uid, out var vamp))
         {
-            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.InvisibleIsActive)
+            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.VampireCloneIsActive)
             {
                 _vampireSystem.VampireInvisible(uid);
                 Dirty(uid, vamp);
