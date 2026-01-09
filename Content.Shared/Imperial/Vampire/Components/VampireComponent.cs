@@ -4,6 +4,7 @@ using Content.Shared.Polymorph;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire
@@ -116,7 +117,7 @@ namespace Content.Shared.Imperial.Vampire
         /// количество выпитой крови за 1 тик
         /// </summary>
         [DataField("bloodPerTick")]
-        public float BloodPerTick = 1;
+        public float BloodPerTick = 200;
 
         /// <summary>
         /// сколько урона нанесет сверк предмету
@@ -135,6 +136,12 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("cooldownSword")]
         public TimeSpan CooldownSword = TimeSpan.FromSeconds(30);
+
+        /// <summary>
+        /// кд между созданиями кровавого якоря
+        /// </summary>
+        [DataField("cooldownBloodAnchor")]
+        public TimeSpan CooldownBloodAnchor = TimeSpan.FromSeconds(130);
 
         /// <summary>
         /// сколько длится doAfter перед обращением игрока в упыря
@@ -297,5 +304,17 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public EntityUid VampireUid;
+
+        [AutoNetworkedField]
+        public bool AnchorCreate = false;
+
+        [AutoNetworkedField]
+        public EntityCoordinates SpawnLocation;
+
+        [AutoNetworkedField]
+        public TimeSpan AnchorDurationActive;
+
+        [AutoNetworkedField]
+        public EntityUid VampireAnchorUid;
     }
 }

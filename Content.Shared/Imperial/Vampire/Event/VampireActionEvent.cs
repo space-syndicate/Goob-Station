@@ -136,6 +136,21 @@ namespace Content.Shared.Imperial.Vampire
         public float CostBlood = 30;
     }
 
+    public sealed partial class VampireBloodAnchorEvent : InstantActionEvent
+    {
+        [DataField("costBlood")]
+        public float CostBlood = 30;
+
+        [DataField("anchorCreateTime")]
+        public TimeSpan AnchorCreateTime = TimeSpan.FromSeconds(5);
+
+        [DataField("durationExistenceAnchor")]
+        public TimeSpan DurationExistenceAnchor = TimeSpan.FromSeconds(10);
+
+        [DataField("vampireAnchorId")]
+        public string VampireAnchorId = "VampireTrap";
+    }
+
     public sealed partial class VampireJerkEvent : InstantActionEvent
     {
         [DataField("costBlood")]

@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.Vampire
     {
         public override DoAfterEvent Clone() => this;
 
-        [DataField("targetCoords")]
+        [DataField]
         public NetCoordinates TargetCoords;
     }
 
@@ -41,5 +41,17 @@ namespace Content.Shared.Imperial.Vampire
     public sealed partial class VampireSleepDoAfterEvent : DoAfterEvent
     {
         public override DoAfterEvent Clone() => this;
+    }
+
+    [Serializable, NetSerializable]
+    public sealed partial class VampireAnchorCreateDoAfterEvent : DoAfterEvent
+    {
+        public override DoAfterEvent Clone() => this;
+
+        [DataField]
+        public TimeSpan Duration;
+
+        [DataField]
+        public string AnchorIdId;
     }
 }

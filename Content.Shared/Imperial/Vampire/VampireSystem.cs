@@ -61,6 +61,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.Throwing;
 using Content.Shared.Standing;
 using Content.Shared.Gravity;
+using Content.Shared.Chemistry.ReactionEffects;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -111,6 +112,9 @@ public class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
         SubscribeLocalEvent<VampireBloodTransformEvent>(OnTransformToBlood);
+
+        SubscribeLocalEvent<VampireBloodAnchorEvent>(OnBloodAnchorCreateStart);
+        SubscribeLocalEvent<VampireComponent, VampireAnchorCreateDoAfterEvent>(OnBloodAnchorCreate);
 
         SubscribeLocalEvent<VampireJerkComponent, VampireJerkEvent>(OnJerk);
         SubscribeLocalEvent<VampireJerkOnContactComponent, StartCollideEvent>(OnLeaperCollide);
@@ -910,6 +914,74 @@ public class VampireSystem : EntitySystem
         });
     }
 
+    private void OnBloodAnchorCreateStart(VampireBloodAnchorEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (!vamp.AnchorCreate)
+        {
+            if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+            {
+                _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
+                    args.Performer, args.Performer, PopupType.Medium);
+                return;
+            }
+
+            vamp.SpawnLocation = Transform(args.Performer).Coordinates;
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.AnchorCreateTime,
+                new VampireAnchorCreateDoAfterEvent { Duration = args.DurationExistenceAnchor },
+                args.Performer)
+            {
+                BreakOnMove = false,
+                BreakOnDamage = true,
+                NeedHand = true,
+                BlockDuplicate = true
+            };
+
+            _doAfter.TryStartDoAfter(doAfterArgs);
+            DealBloodDamage(args.Performer, args.CostBlood);
+        }
+        else
+        {
+            // проверка существования якоря
+            if (vamp.VampireAnchorUid == EntityUid.Invalid || !Exists(vamp.VampireAnchorUid))
+            {
+                _popup.PopupClient(Loc.GetString("vampire-popup-anchor-destroyed"),
+                    args.Performer, args.Performer, PopupType.LargeCaution);
+                vamp.AnchorCreate = false;
+            }
+            else
+            {
+                _transform.SetCoordinates(args.Performer, Transform(vamp.VampireAnchorUid).Coordinates);
+                _audio.PlayPvs(vamp.TeleportSound, args.Performer);
+
+                if (_net.IsServer)
+                    QueueDel(vamp.VampireAnchorUid);
+
+                vamp.VampireAnchorUid = EntityUid.Invalid;
+                vamp.AnchorCreate = false;
+            }
+
+            Dirty(args.Performer, vamp);
+            args.Handled = true;
+        }
+    }
+
+    private void OnBloodAnchorCreate(Entity<VampireComponent> ent, ref VampireAnchorCreateDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled || !_net.IsServer)
+            return;
+
+        ent.Comp.VampireAnchorUid = Spawn("VampireTrap", ent.Comp.SpawnLocation);
+        ent.Comp.AnchorCreate = true;
+        ent.Comp.AnchorDurationActive = _gameTiming.CurTime + args.Duration;
+
+        Dirty(ent.Owner, ent.Comp);
+        args.Handled = true;
+    }
+
     private void OnInvisible(VampireInvisibleEvent args)
     {
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
@@ -1214,6 +1286,24 @@ public class VampireSystem : EntitySystem
                 // ссылаемся на VampireSwordAction. см BaseAbilities
                 _actions.SetCooldown(vamp.GrantedActions[0], vamp.CooldownSword);
                 vamp.ClawDurationActive = TimeSpan.Zero;
+                Dirty(uid, vamp);
+            }
+        }
+
+        var vampAnchor = EntityQueryEnumerator<VampireComponent>();
+        while (vampAnchor.MoveNext(out var uid, out var vamp))
+        {
+            if (_gameTiming.CurTime >= vamp.AnchorDurationActive && vamp.AnchorCreate)
+            {
+                if (_net.IsServer)
+                    QueueDel(vamp.VampireAnchorUid);
+
+                // ссылаемся на VampireJerkAction. см BaseAbilities, VampireAbilityLists.Umbrae
+                _actions.SetCooldown(vamp.GrantedActions[6], vamp.CooldownBloodAnchor);
+                _popup.PopupEntity(Loc.GetString("vampire-popup-anchor-destroyed"),
+                uid, uid, PopupType.LargeCaution);
+                vamp.AnchorCreate = false;
+
                 Dirty(uid, vamp);
             }
         }

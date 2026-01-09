@@ -11,7 +11,7 @@ public static class VampireAbilityLists
         { 1, 200 },
         { 2, 300 },
         { 3, 400 },
-        { 4, 500 },
+        { 4, 450 },
         { 5, 500 }
     };
 
@@ -30,6 +30,7 @@ public static class VampireAbilityLists
     {
         "VampireUnCuffAction",
         "VampireInvisibleAction",
+        "VampireBloodAnchorAction",
         "VampireShadowTrapAction",
         "VampireCloneAction",
         "VampireTurnAction"
@@ -40,9 +41,9 @@ public static class VampireAbilityLists
     {
         "RushBloodAction",
         "VampireTeleportAction",
-        "VampireUnCuffAction",
         "VampireReconciliationAction",
         "VampireNosferatyAction",
+        "VampireJerkAction",
         "VampireTurnAction"
     };
 

@@ -532,7 +532,7 @@ public sealed class VampireServerSystem : EntitySystem
 
             case 3:
                 // см BaseAbilities, VampireAbilityLists.Gargantua. Удаляется "Гнев Носферату"
-                _actions.RemoveAction(args.Performer, vamp.GrantedActions[8]);
+                _actions.RemoveAction(args.Performer, vamp.GrantedActions[7]);
 
                 _actions.AddAction(args.Performer, VampireAbilityLists.VampireNosferatyPlus);
                 break;

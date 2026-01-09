@@ -269,3 +269,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireBloodAnchorListing
+  name: Кровавый якорь
+  description: Ну это Кровавый якорь
+  productAction: VampireBloodAnchorAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
