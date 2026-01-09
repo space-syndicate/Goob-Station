@@ -11,8 +11,6 @@
         sprite: Imperial/XxRaay/smasher.rsi
       - map: ["belt"]
       - map: ["back"]
-      - map: ["enum.HumanoidVisualLayers.RArm"]
-      - map: ["enum.HumanoidVisualLayers.LArm"]
     - type: GravityAffected
     - type: Fixtures
       fixtures:
@@ -27,6 +25,7 @@
           - MobLayer
     - type: Clickable
     - type: InteractionOutline
+    - type: ComplexInteraction
     - type: Input
       context: "human"
     - type: Actions
@@ -58,26 +57,16 @@
     - type: Destructible
       thresholds:
       - trigger:
-          !type:DamageTypeTrigger
-          damageType: Blunt
-          damage: 1500
-        behaviors:
-        - !type:GibBehavior { }
-      - trigger:
-          !type:DamageTypeTrigger
-          damageType: Heat
-          damage: 1500
+          !type:DamageTrigger
+          damage: 500
         behaviors:
         - !type:SpawnEntitiesBehavior
-          spawnInContainer: true
           spawn:
-            Ash:
-              min: 1
-              max: 1
-        - !type:BurnBodyBehavior { }
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MeatLaserImpact
+            ResearchDisk10000:
+              min: 6
+              max: 6
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
     - type: Repairable
       damage:
         types:
@@ -96,8 +85,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        900: Critical
-        1000: Dead
+        500: Dead
     - type: MobStateActions
       actions:
         Critical:
@@ -132,6 +120,7 @@
     - type: CombatMode
     - type: Inventory
     - type: Hands
+      showInHands: false
       hands:
         hand_right1:
           location: Right
@@ -139,13 +128,10 @@
           location: Right
         hand_left1:
           location: Left
-        hand_left2:
-          location: Left
       sortedHands:
       - hand_right1
       - hand_right2
       - hand_left1
-      - hand_left2
     - type: Butcherable
       butcheringType: Spike
       spawned:
@@ -162,7 +148,6 @@
         right_leg: BodyPartHumanRightLeg
         extra_arm1: BodyPartHumanLeftArm
         extra_arm2: BodyPartHumanRightArm
-        extra_arm3: BodyPartHumanLeftArm
     - type: PassiveDamage
       allowedStates:
       - Alive
@@ -200,11 +185,161 @@
     - type: Perishable
     - type: FireVisuals
       alternateState: Standing
-    - type: Bloodstream
-      bloodlossDamage:
-        types:
-          Bloodloss: 0.5
-      bloodlossHealDamage:
-        types:
-          Bloodloss: -1
     - type: Polymorphable
+    - type: SmasherInnateTools
+    - type: Sandevistan
+
+- type: entity
+  id: XxRaayAutoShotgun
+  name: встроенный автодробовик
+  description: Встроенный во внутренности корпуса автодробовик с магазином на 16 снарядов. Ориентирован на ближний бой и добивание целей мощными слагами. Патроны автоперезаряжаются.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunSpreadModifier
+    spread: 0.8
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgun
+    capacity: 16
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+- type: entity
+  id: BulletChainGun
+  name: bullet (chain gun)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6
+
+- type: entity
+  id: CartridgeChainGun
+  name: cartridge (chain gun)
+  parent: BaseCartridgeRifle
+  description: Специальный патрон для тяжёлого пулемёта с уменьшенным уроном для плотного огня.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletChainGun
+
+- type: entity
+  id: XxRaayChainGun
+  name: встроенный тяжёлый пулемёт
+  description: Тяжёлый пулемёт (chain gun), закреплённый на корпусе, обеспечивает устойчивый плотный огонь по противнику. В некоторых материалах описывается как многствольный гатлинг‑дробовик Tsunami Arms Helix Gatling с ленточным питанием на сотни патронов.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/minigun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunSpreadModifier
+    spread: 0.5
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeChainGun
+    capacity: 100
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
+
+- type: entity
+  id: BulletShoulderRocket
+  name: ракета плечевой установки
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 40
+    intensitySlope: 6
+    totalIntensity: 100
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: XxRaayShoulderRocketLauncher
+  name: встроенная плечевая ракетная установка
+  description: Плечевая ракетная установка, закреплённая на корпусе. Позволяет выбрать до 6 целей и запустить по ним самонаводящиеся ракеты. Имеет 6 зарядов. Заряды автоперезаряжаются.
+  parent: BaseItem
+  components:
+  - type: ShoulderRocketLauncher
+    charges: 6
+    maxCharges: 6
+  - type: RechargeShoulderRocketLauncher
+    rechargeCooldown: 15
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
+  - type: AmmoCounter
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+  - type: Icon
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    state: base

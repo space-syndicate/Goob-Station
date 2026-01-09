@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSandevistan
+  name: Включить сандевистан
+  description: Активирует сандевистан, ускоряя перемещение и создавая теневые копии на 8 секунд. Перезарядка 60 секунд.
+  components:
+  - type: Action
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SandevistanActionEvent
+
