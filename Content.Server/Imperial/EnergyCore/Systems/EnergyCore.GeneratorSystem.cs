@@ -20,7 +20,6 @@ namespace Content.Server.Imperial.EnergyCore
 {
     public sealed class CoreGeneratorSystem : EntitySystem
     {
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly CoreSearchSystem _coreHelper = default!;

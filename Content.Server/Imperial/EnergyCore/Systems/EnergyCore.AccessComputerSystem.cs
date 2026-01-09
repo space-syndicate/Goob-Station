@@ -1,9 +1,7 @@
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
+using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Shared.Power.Components;
@@ -11,7 +9,6 @@ using Content.Server.Power.Components;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
 using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
@@ -23,11 +20,8 @@ namespace Content.Server.Imperial.EnergyCore;
 public sealed class CoreAccessComputerSystem : SharedCoreAccessComputerSystem // : EntitySystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
     public override void Initialize()
     {

@@ -24,7 +24,6 @@ namespace Content.Server.Imperial.EnergyCore;
 
 public sealed partial class EnergyCoreSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
