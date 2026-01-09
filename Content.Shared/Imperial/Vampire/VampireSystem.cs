@@ -58,6 +58,9 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Throwing;
+using Content.Shared.Standing;
+using Content.Shared.Gravity;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -91,6 +94,9 @@ public class VampireSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
 
     public override void Initialize()
     {
@@ -105,6 +111,9 @@ public class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
         SubscribeLocalEvent<VampireBloodTransformEvent>(OnTransformToBlood);
+
+        SubscribeLocalEvent<VampireJerkComponent, VampireJerkEvent>(OnJerk);
+        SubscribeLocalEvent<VampireJerkOnContactComponent, StartCollideEvent>(OnLeaperCollide);
 
         SubscribeLocalEvent<VampireSwordPlusEvent>(OnSwordPlus);
 
@@ -844,6 +853,63 @@ public class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnJerk(Entity<VampireJerkComponent> ent, ref VampireJerkEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        if (_gravity.IsWeightless(args.Performer) || _standing.IsDown(args.Performer))
+        {
+            if (ent.Comp.JumpFailedPopup != null)
+                _popup.PopupClient(Loc.GetString(ent.Comp.JumpFailedPopup.Value), args.Performer, args.Performer);
+            return;
+        }
+
+        var jerkOnContact = EnsureComp<VampireJerkOnContactComponent>(ent.Owner);
+        jerkOnContact.Damage = args.DamageItemOnContact;
+        jerkOnContact.Knockdown = args.KnockdownDuration;
+
+        var xform = Transform(args.Performer);
+        var throwing = xform.LocalRotation.ToWorldVec() * ent.Comp.JumpDistance;
+        var direction = xform.Coordinates.Offset(throwing);
+
+        _throwing.TryThrow(args.Performer, direction, ent.Comp.JumpThrowSpeed);
+        _audio.PlayPredicted(ent.Comp.JumpSound, args.Performer, args.Performer);
+
+        DealBloodDamage(args.Performer, args.CostBlood);
+        args.Handled = true;
+    }
+
+    private void OnLeaperCollide(Entity<VampireJerkOnContactComponent> ent, ref StartCollideEvent args)
+    {
+        if (!HasComp<MindContainerComponent>(args.OtherEntity))
+        {
+            var dmg = new DamageSpecifier
+            {
+                DamageDict = { ["Blunt"] = ent.Comp.Damage }
+            };
+
+            _damage.TryChangeDamage(args.OtherEntity, dmg);
+        }
+        else
+        {
+            _stun.TryKnockdown(args.OtherEntity, ent.Comp.Knockdown, force: true);
+        }
+
+        // задержка перед удалением компонента, чтобы обработать все столкновения
+        Timer.Spawn(TimeSpan.FromSeconds(0.2), () =>
+        {
+            RemComp<VampireJerkOnContactComponent>(ent.Owner);
+        });
+    }
+
     private void OnInvisible(VampireInvisibleEvent args)
     {
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
@@ -1214,15 +1280,18 @@ public class VampireSystem : EntitySystem
         {
             Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
         };
-        EntityManager.AddComponent(ent.Owner, transmitter);
+        AddComp(ent.Owner, transmitter);
 
         var activeRadio = new ActiveRadioComponent
         {
             Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
         };
-        EntityManager.AddComponent(ent.Owner, activeRadio);
+        AddComp(ent.Owner, activeRadio);
 
-        EntityManager.AddComponent<IntrinsicRadioReceiverComponent>(ent.Owner);
+        AddComp<IntrinsicRadioReceiverComponent>(ent.Owner);
+
+        // для OnJerk
+        AddComp<VampireJerkComponent>(ent.Owner);
 
         // выдача базовых способностей
         if (ent.Comp.GrantedActions.Count == 0)

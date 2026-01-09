@@ -136,6 +136,24 @@ namespace Content.Shared.Imperial.Vampire
         public float CostBlood = 30;
     }
 
+    public sealed partial class VampireJerkEvent : InstantActionEvent
+    {
+        [DataField("costBlood")]
+        public float CostBlood = 30;
+
+        /// <summary>
+        /// сколько урона получит обьект при контакте с вампиром
+        /// </summary>
+        [DataField("damageItemOnContact")]
+        public int DamageItemOnContact = 200;
+
+        /// <summary>
+        /// на сколько секунд будет оглушен игрок при контакте с вампиром
+        /// </summary>
+        [DataField("knockdownDuration")]
+        public TimeSpan KnockdownDuration = TimeSpan.FromSeconds(3);
+    }
+
     public sealed partial class VampireShadowTrapEvent : WorldTargetActionEvent
     {
         [DataField("costBlood")]

@@ -253,3 +253,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: VampireJerkListing
+  name: Рывок
+  description: Ну это Рывок
+  productAction: VampireJerkAction
+  icon:
+    sprite: Interface/Actions/scream.png
+    state: icon
+  cost:
+    VampireCoin: 8
+  categories:
+  - NightmaresControl
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
