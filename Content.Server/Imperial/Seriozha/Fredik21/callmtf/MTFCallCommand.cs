@@ -38,17 +38,11 @@ public sealed class CallMTF : LocalizedCommands
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         var audioSystem = _entity.System<SharedAudioSystem>();
-
-        // Ошибка: Аргументы отсутствуют
         if (args.Length == 0)
         {
             shell.WriteError(Loc.GetString("callertcommand-error-args0"));
-            var errorSound = new SoundPathSpecifier("/Audio/Imperial/ErtCall/noert.ogg", AudioParams.Default.WithVolume(-2f));
-            audioSystem.PlayGlobal(errorSound, Filter.Broadcast(), true);
             return;
         }
-
-        // Ошибка: Слишком много аргументов
         if (args.Length > 1)
         {
             shell.WriteError(Loc.GetString("callertcommand-error-args1"));
@@ -61,14 +55,10 @@ public sealed class CallMTF : LocalizedCommands
             shell.WriteError(Loc.GetString("callertcommand-error-prest-not-found", ("protoid", protoId)));
             return;
         }
-
-        // 1. Воспроизведение звука через SoundSpecifier
         if (proto.AnnouncementSound != null)
         {
             audioSystem.PlayGlobal(proto.AnnouncementSound, Filter.Broadcast(), true);
         }
-
-        // 2. Логика оповещения (Localization)
         if (!string.IsNullOrEmpty(proto.AnnouncementMessage))
         {
             var chatSystem = _entity.System<ChatSystem>();
@@ -76,7 +66,7 @@ public sealed class CallMTF : LocalizedCommands
             var message = Loc.GetString(proto.AnnouncementMessage);
             var sender = proto.AnnouncementSender != null 
                 ? Loc.GetString(proto.AnnouncementSender) 
-                : Loc.GetString("announcementSender-MTF-NDA"); // Дефолтный отправитель
+                : Loc.GetString("announcementSender-MTF-NDA");
             
             chatSystem.DispatchGlobalAnnouncement(
                 message, 
@@ -84,8 +74,6 @@ public sealed class CallMTF : LocalizedCommands
                 playSound: false, 
                 colorOverride: Color.Gold);
         }
-        
-        // 3. Спавн
         var mtfSpawnSystem = _entity.System<CallMTFSystem>();
         if (mtfSpawnSystem.SpawnMTF(proto))
         {

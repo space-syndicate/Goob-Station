@@ -23,16 +23,10 @@ public sealed class CallMTFSystem : EntitySystem
         {
             InitializeMaps = true
         };
-
-        // ИСПРАВЛЕНО: preset.Path уже является ResPath, созданная в прототипе.
-        // Передаем её напрямую без new ResPath(...)
         if (_map.TryLoadGrid(mapId, preset.Path, out _, options))
         {
             return true;
         }
-        
-        // Очистка карты при неудаче
-        // ИСПРАВЛЕНО: добавление .ToString() для корректного вывода пути в лог
         Log.Error($"Не удалось загрузить сетку МОГ из пути: {preset.Path.ToString()}");
         _mapSystem.DeleteMap(mapId);
         return false;
