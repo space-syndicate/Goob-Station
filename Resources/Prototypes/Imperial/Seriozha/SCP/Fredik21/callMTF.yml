@@ -143,7 +143,7 @@
   id: brokengod
   path: /GM/seriozha/event/nedra/MTF/Church-Children.yml
   announcementMessage: announcementMessage-MTF-brokengod
-  announcementSender: announcementSender-MTF-rokengod
+  announcementSender: announcementSender-MTF-brokengod
   announcementSound:
     path: /Audio/Imperial/Seriozha/SCP/event/brokengod.ogg
     params:
