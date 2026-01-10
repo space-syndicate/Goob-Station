@@ -1,6 +1,6 @@
 - type: MTFCall
   id: Epsilon11
-  path: /GM/seriozha/event/nedra/MTF/Nu-7.yml
+  path: /GM/seriozha/event/nedra/MTF/Epsilon-11.yml
   announcementMessage: announcementMessage-MTF-Epsilon11
   announcementSender: announcementSender-MTF-base
   announcementSound:
@@ -52,7 +52,7 @@
 - type: MTFCall
   id: PHYSICS
   path: /GM/seriozha/event/nedra/MTF/PHYSICS.yml
-  announcementMessage: "announcementMessage-MTF-PHYSICS"
+  announcementMessage: announcementMessage-MTF-PHYSICS
   announcementSender: announcementSender-MTF-base
   announcementSound:
     path: /Audio/Imperial/Seriozha/SCP/event/PHYSICS.ogg
