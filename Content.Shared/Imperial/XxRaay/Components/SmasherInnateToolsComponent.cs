@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.XxRaay.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class SmasherInnateToolsComponent : Component
 {
-    [DataField("tools")]
+    [DataField]
     public List<EntProtoId> Tools = new()
     {
         "XxRaayAutoShotgun",
@@ -17,7 +17,7 @@ public sealed partial class SmasherInnateToolsComponent : Component
         "XxRaayShoulderRocketLauncher"
     };
 
-    [DataField("hands")]
+    [DataField]
     public List<string> Hands = new()
     {
         "hand_right1",

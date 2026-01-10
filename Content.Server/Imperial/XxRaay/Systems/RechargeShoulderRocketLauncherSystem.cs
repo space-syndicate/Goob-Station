@@ -37,8 +37,7 @@ public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
             launcher.Charges++;
             Dirty(uid, launcher);
 
-            if (_netManager.IsServer)
-                _audio.PlayPvs(recharge.RechargeSound, uid);
+            _audio.PlayPvs(recharge.RechargeSound, uid);
 
             if (launcher.Charges >= launcher.MaxCharges)
             {

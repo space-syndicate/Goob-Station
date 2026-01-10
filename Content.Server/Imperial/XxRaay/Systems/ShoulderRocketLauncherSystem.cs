@@ -25,6 +25,7 @@ public sealed class ShoulderRocketLauncherSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly PhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly RechargeShoulderRocketLauncherSystem _rechargeSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     public override void Initialize()
     {
@@ -73,6 +74,9 @@ public sealed class ShoulderRocketLauncherSystem : EntitySystem
         if (!TryComp<ShoulderRocketLauncherComponent>(sender, out var component))
             return;
 
+        if (!_handsSystem.IsHolding(performer, sender, out _))
+            return;
+
         if (component.Charges <= 0)
             return;
 
@@ -95,8 +99,8 @@ public sealed class ShoulderRocketLauncherSystem : EntitySystem
                 ? _transformSystem.GetMapCoordinates(targetEntity.Value) 
                 : cursorPosition;
 
-            var rocket = Spawn("BulletShoulderRocket", xform.Coordinates);
-
+            var rocket = Spawn(component.ProjectilePrototype, xform.Coordinates);
+            
             if (targetEntity != null)
             {
                 _homingProjectileSystem.SetTarget(rocket, targetEntity.Value, linearVelocityIntensy: 1.0f, Angle.Zero, rotateToTarget: true);

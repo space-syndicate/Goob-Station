@@ -22,5 +22,11 @@ public sealed partial class ShoulderRocketLauncherComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool IsTargeting = false;
+
+    /// <summary>
+    /// Прототип ракеты.
+    /// </summary>
+    [DataField]
+    public EntProtoId ProjectilePrototype = "BulletShoulderRocket";
 }
 

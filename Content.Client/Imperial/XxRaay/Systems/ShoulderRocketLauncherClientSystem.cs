@@ -146,14 +146,11 @@ public sealed class ShoulderRocketLauncherClientSystem : EntitySystem
 
         if (activeItem != sender)
             return false;
-
-        if (!HasComp<ShoulderRocketLauncherComponent>(sender))
-            return false;
         
         if (!TryComp<ShoulderRocketLauncherComponent>(sender, out var launcherComponent))
             return false;
         
-        var maxTargetCount = Math.Min(launcherComponent.Charges, 6);
+        var maxTargetCount = Math.Min(launcherComponent.Charges, launcherComponent.MaxCharges);
         var whiteList = new HashSet<string>();
         var blackList = new HashSet<string>();
         
