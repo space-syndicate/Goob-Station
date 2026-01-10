@@ -17,6 +17,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio.Systems;
 using System.Numerics;
+using Content.Shared.Movement.Pulling.Systems;
 
 namespace Content.Shared.Imperial.ImperialVehicle;
 
@@ -32,7 +33,7 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-
+    [Dependency] private readonly PullingSystem _pullingSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -229,6 +230,11 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
     public void SetupRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent component)
     {
         EnsureComp<InputMoverComponent>(vehicleUid);
+
+        if (TryComp<PullableComponent>(riderUid, out var pullable))
+        {
+            _pullingSystem.TryStopPull(riderUid, pullable);
+        }
 
         RemComp<PullableComponent>(riderUid);
 
