@@ -192,7 +192,7 @@
 - type: MTFCall
   id: zeta9
   path: /GM/seriozha/event/nedra/MTF/Dzeta-9.yml
-  announcementMessage: announcementMessage-MTF-Zeta9
+  announcementMessage: announcementMessage-MTF-zeta9
   announcementSender: announcementSender-MTF-base
   announcementSound:
     path: /Audio/Imperial/Seriozha/SCP/event/zeta9.ogg

@@ -2762,7 +2762,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPEng
   name: Engineer Foundation
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ EngGear ]
@@ -2801,7 +2801,7 @@
   parent: ImperialSCPBasePreset
   id: PresetSCPMedic
   name: Medic Foundation
-  suffix: Fredik21, Недра
+  suffix: Fredik21, Недра, нужен шкаф
   components:
     - type: Loadout
       prototypes: [ MedicGearSCP ]
@@ -11559,3 +11559,509 @@
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
 
+- type: entity
+  parent: BaseERTUplink
+  id: CIUplinkAgent
+  name: Терминал Повстанцев
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - CIUplinkAmmo
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - CIUplinkAgent
+    - CIUplinkAgentImplanter
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 10
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-px-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: CIUplinkAgent
+  name: Агент
+
+- type: storeCategory
+  id: CIUplinkAgentImplanter
+  name: Импланты агента
+
+- type: listing
+  id: CIUplinkWeaponRevolverPythonAP
+  name: питон
+  description: Надежный револьвер, излюбленный агентами Хаоса. Использует патроны "Магнум" 45-го калибра.
+  productEntity: WeaponRevolverPythonAP
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkEmag
+  name: криптографический секвенсор
+  description: Универсальное решение для взлома. Отмычка для мыслящего человека. Знаковый EMAG.
+  productEntity: Emag
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkAccessBreaker
+  name: Дисруптор аутентификации
+  description: Взломанный конфигуратор доступа, предназначенный для разблокировки и удаления данных с цифровых замков
+  productEntity: AccessBreaker
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkC4
+  name: взрывчатка C-4
+  description: Используется для проделывания аккуратных, не слишком больших, брешей в местах закладки. Любимое средство диверсантов.
+  productEntity: C4
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkWeaponEnergyCrossbow
+  name: Энергетический арбалет
+  description: Запускает возобновляемые токсичные стрелы, способные мгновенно поражать цели.
+  productEntity: WeaponEnergyCrossbow
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkWeaponPistolCobra
+  name: Кобра
+  description: Пистолет суровых робастных агентов пх, с интегрированным глушителем. Использует патроны калибра .25 безгильзовый.
+  productEntity: WeaponPistolCobra
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkMagazinePistolCaselessRifle
+  name: пистолетный магазин (.25 безгильзовые)
+  description: для кобры.
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkClothingBackpackDuffelSyndicateC4tBundle
+  name: набор C-4
+  description: Содержит много зарядов взрывчатки С-4.
+  productEntity: ClothingBackpackDuffelSyndicateC4tBundle
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkRadioJammer
+  name: глушитель связи
+  description: При активации это устройство блокирует любую исходящую поблизости радиосвязь.
+  productEntity: RadioJammer
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkEnergyDaggerBox
+  name: футляр энергокинжала
+  description: Небольшая коробочка, содержащая энергокинжал. После вскрытия упаковка дезинтегрируется, не оставив улик.
+  productEntity: EnergyDaggerBox
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkEnergySword
+  name: энергетический меч
+  description: Очень громкий, и столь же опасный. Выключенным может храниться в кармане. А если вам повезет, сможете объединить два меча!
+  productEntity: EnergySword
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkChemistryBottleNocturine
+  name: бутылочка (ноктюрин)
+  description: Маленькая бутылочка.
+  productEntity: ChemistryBottleNocturine
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkHypopenBox
+  name: футляр гипоручки
+  description: Небольшая коробочка, содержащая гипоручку. После вскрытия упаковка дезинтегрируется, не оставив улик.
+  productEntity: HypopenBox
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkAgentIDCard
+  name: ID карта Агента
+  description: Карта, необходимая для доступа в различные области станции. Может копировать доступы.
+  productEntity: AgentIDCard
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkStimpack
+  name: стимпак
+  description: Инъектор, содержащий 5-минутную дозу стимулятора. Используйте когда уверены, что успеете закончить до наступления побочных эффектов прекращения действия.
+  productEntity: Stimpack
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkChameleonProjector
+  name: маскировочный проектор
+  description: Схожая с голопаразитной технология, позволяющая создать из твёрдого света копию любого объекта, находящегося около вас. Маскировка спадает при поднятии или отключении.
+  productEntity: ChameleonProjector
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkSyndicateJawsOfLifeAgent
+  name: красные челюсти жизни
+  description: Используется для проникновения на станцию или в её отделы. Удешевили для агента.
+  productEntity: SyndicateJawsOfLife
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAgent
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkImperialBlinkImplanter
+  name: имплантер близкой телепортации
+  description: Специальный шприц, используемый только для имплантов.
+  productEntity: ImperialBlinkImplanter
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkStorageImplanter
+  name: имплантер Хранилища
+  description: Одноразовый имплантер, содержащий имплант, создающий хранилище в теле владельца.
+  productEntity: StorageImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkFreedomImplanter
+  name: имплантер Свободы
+  description: Одноразовый имплантер, содержащий имплант, позволяющий владельцу три раза освободиться от наручников и других ограничителей.
+  productEntity: FreedomImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkDnaScramblerImplanter
+  name: имплантер смены ДНК
+  description: Специальный шприц, используемый только для имплантов.
+  productEntity: DnaScramblerImplanter
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkFakeMindShieldImplanter
+  name: имплантер ложной защиты разума
+  description: Специальный шприц, используемый только для имплантов.
+  productEntity: FakeMindShieldImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkImperialSmokeImplanter
+  name: имплантер дымовой завесы
+  description: Специальный шприц, используемый только для имплантов.
+  productEntity: ImperialSmokeImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkEmpImplanter
+  name: имплантер ЭМИ
+  description: Специальный шприц, используемый только для имплантов.
+  productEntity: EmpImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: CIUplinkImperialNutrimentPumpImplanter
+  name: имплантер помпы питательных веществ
+  description: Специальный шприц, используемый только для имплантов.
+  productEntity: ImperialNutrimentPumpImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - CIUplinkAgentImplanter
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: PresetSCPDClass
+  id: PresetSCPDClassCI
+  name: Preset
+  suffix: seriozha, Недра, нужен шкаф, Агент ПХ
+  components:
+    - type: Loadout
+      prototypes: [ DClassGearCI ]
+
+- type: startingGear
+  id: DClassGearCI
+  equipment:
+    jumpsuit: ClothingJumpsuitClassD
+    shoes: ClothingShoesSCP
+    pocket1: CIUplinkAgent
+    pocket2: EncryptionKeyGanza
+
+- type: entity
+  parent: PresetSCPDoc
+  id: PresetSCPDocCI
+  name: Preset
+  suffix: seriozha, Недра, нужен шкаф, Агент ПХ
+  components:
+    - type: Loadout
+      prototypes: [ DocGearCI ]
+
+- type: startingGear
+  id: DocGearCI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    back: ClothingBackpackSatchelScience
+    shoes: ClothingShoesSCP
+    gloves: ClothingHandsGlovesColorPurple
+    id: SCPIDCardThree
+    ears: ClothingHeadsetSCPMain
+    pocket1: CIUplinkAgent
+    pocket2: EncryptionKeyGanza
+  inhand:
+  - PaperScience
+  - BoxSurvivalNDA
+
+- type: entity
+  parent: PresetSCPOxranaAlt
+  id: PresetSCPOxranaAltCI
+  name: Preset
+  suffix: Fredik21, Недра, нужен шкаф, Агент ПХ
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearAltCI ]
+
+- type: startingGear
+  id: OxranaGearAltCI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    shoes: ClothingShoesBootsWorkSCP
+    outerClothing: ClothingOuterArmorSCPSecurityAlt
+    id: SCPIDCardThreeGray
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponPistolMk58Nonlethal
+    pocket1: CIUplinkAgent
+    pocket2: EncryptionKeyGanza
+  inhand:
+  - PaperSRPGPI
+  - FondUplinkBase
+  - BoxSurvivalNDA
+
+- type: entity
+  parent: PresetSCPOxrana
+  id: PresetSCPOxranaCI
+  name: Preset
+  suffix: seriozha, Недра, нужен шкаф, Агент ПХ
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearCI ]
+
+- type: startingGear
+  id: OxranaGearCI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    shoes: ClothingShoesBootsWorkSCP
+    outerClothing: ClothingOuterArmorSCPSecurity
+    id: SCPIDCardThreeGray
+    ears: ClothingHeadsetSCPMain
+    suitstorage: CSWeaponP90
+    pocket1: CIUplinkAgent
+    pocket2: EncryptionKeyGanza
+  inhand:
+  - PaperOGK
+  - BoxSurvivalNDA
