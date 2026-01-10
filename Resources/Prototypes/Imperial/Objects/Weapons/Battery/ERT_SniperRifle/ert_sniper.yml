@@ -24,6 +24,6 @@
   - type: BatteryAmmoProvider
     proto: PulseSniper
     fireCost: 1500
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 7500
     startingCharge: 7500

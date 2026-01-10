@@ -18,7 +18,7 @@
   - type: BatteryAmmoProvider
     proto: starRedMediumLaser
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: MagazineVisuals
