@@ -59,8 +59,6 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         SubscribeLocalEvent<ImperialVehiclePilotComponent, MoveEvent>(OnPilotMove);
         SubscribeLocalEvent<ImperialVehiclePilotComponent, ContainerGettingInsertedAttemptEvent>(OnPilotInsertAttempt);
         SubscribeLocalEvent<ImperialVehiclePilotComponent, ContainerIsInsertingAttemptEvent>(OnPilotInsertingAttempt);
-
-        SubscribeLocalEvent<LegsParalyzedComponent, DownedEvent>(OnLegsParalyzedDowned);
     }
 
     public override void Update(float frameTime)
@@ -381,18 +379,6 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
                 : (int)DrawDepth.DrawDepth.WallMountedItems,
             _ => (int)DrawDepth.DrawDepth.WallMountedItems
         };
-    }
-
-    /// <summary>
-    /// Sets crawl movement speed for paralyzed entities when they are downed.
-    /// </summary>
-    private void OnLegsParalyzedDowned(EntityUid uid, LegsParalyzedComponent component, DownedEvent args)
-    {
-        _modifier.ChangeBaseSpeed(
-            uid,
-            component.CrawlMoveSpeed,
-            component.CrawlMoveSpeed,
-            component.CrawlMoveAcceleration);
     }
 
     /// <summary>

@@ -799,7 +799,7 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
 
@@ -838,7 +838,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: Item
@@ -1261,7 +1261,7 @@
   - type: Battery
     maxCharge: 300
     startingCharge: 300
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 15
   - type: AmmoCounter
