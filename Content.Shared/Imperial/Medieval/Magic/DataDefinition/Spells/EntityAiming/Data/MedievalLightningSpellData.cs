@@ -13,7 +13,7 @@ public sealed partial class MedievalLightningSpellData : MedievalEntityAimingSpe
     public EntProtoId? SpawnedEffectPrototype;
 
     [DataField(serverOnly: true), NonSerialized]
-    public List<EntityEffect> LightningCollideEffects = new();
+    public EntityEffect[] LightningCollideEffects;
 
     [DataField]
     public float Speed = 0.0f;

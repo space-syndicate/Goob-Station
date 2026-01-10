@@ -10,16 +10,23 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Imperial.FactionChange
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class FactionChangeCommand : IConsoleCommand
+    public sealed class FactionChangeCommand : LocalizedCommands
     {
         [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
 
-        public string Command => "changefaction";
-        public string Description => "changefaction-desc";
-        public string Help => "changefaction-help";
+        public override string Command => "changefaction";
+        public override string Description => Loc.GetString("changefaction-desc");
+        public string Help => Loc.GetString("changefaction-help");
 
-        public void Execute(IConsoleShell shell, string argStr, string[] args)
+        public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+        {
+            if (args.Length != 2)
+                return CompletionResult.Empty;
+            return CompletionResult.FromHintOptions(CompletionHelper.PrototypeIDs<NpcFactionPrototype>(proto: _proto), Loc.GetString("cf-shell-factions"));
+        }
+
+        public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (args.Length != 2)
             {

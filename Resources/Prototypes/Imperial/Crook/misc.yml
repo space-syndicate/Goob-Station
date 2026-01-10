@@ -230,7 +230,6 @@
         effectProto: StatusEffectDrowsiness
         time: 10
         type: Remove
-      - !type:ChemHealEyeDamage
       - !type:EvenHealthChange
         damage:
           Burn: -0.3
@@ -599,7 +598,10 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Stamina: 0.2
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
   - type: Tag
     tags:
       - FootstepSound
@@ -735,7 +737,10 @@
           Blunt: 0.9
           Slash: 0.9
           Piercing: 0.7
-          Stamina: 0.2
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.2
+    # Imperial Space Stamina Resistance End
     - type: MeleeWeapon
       hidden: true
       angle: 0
@@ -1324,7 +1329,7 @@
     ParadoxalJuice:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 1

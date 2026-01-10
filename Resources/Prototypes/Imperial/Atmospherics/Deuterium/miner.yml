@@ -1,0 +1,7 @@
+- type: entity
+  name: deuterium gas miner
+  parent: GasMinerBase
+  id: GasMinerDeuterium
+  components:
+    - type: GasMiner
+      spawnGas: Deuterium

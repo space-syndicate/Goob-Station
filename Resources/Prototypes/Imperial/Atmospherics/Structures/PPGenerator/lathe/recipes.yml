@@ -1,0 +1,9 @@
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: PPGCenterMachineCircuitboard
+  result: PPGCenterMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: PPGCirculatorMachineCircuitboard
+  result: PPGCirculatorMachineCircuitboard

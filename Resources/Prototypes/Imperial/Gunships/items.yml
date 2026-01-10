@@ -1,0 +1,116 @@
+- type: entity
+  name: StormTrooper
+  # Don't parent to BaseWeaponShotgun because it differs significantly
+  parent: BaseItem
+  id: WeaponShotgunStormTrooperTGMCSB
+  description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
+  components:
+  - type: Sprite
+    sprite: Imperial/TGMC/Weapon/stormtrooper.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1.6
+    projectileSpeed: 8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineShotgunStormTrooperTGMC
+        priority: 2
+        whitelist:
+          tags:
+          - BaseMagazineShotgunStormTrooperTGMC
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: BaseMagazineShotgunStormTrooperTGMC
+  name: ammo drum (.50 shells)
+  parent: BaseMagazineRifle
+  components:
+  - type: Tag
+    tags:
+    - BaseMagazineShotgunStormTrooperTGMC
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+    proto: ShellShotgun
+    capacity: 12
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity #автоинъекторы
+  name: combat medipen
+  parent: ChemicalMedipen
+  id: TGMCombatMedipen
+  description: A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Beware, as it's easy to overdose on epinephrine and tranexamic acid.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 12
+        - ReagentId: TranexamicAcid
+          Quantity: 3
+        - ReagentId: Saline
+          Quantity: 5
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+  - type: Sprite
+    sprite: Imperial/TGMC/item/marineautoinjectors.rsi
+    layers:
+    - state: combat
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: combat_empty
+  - type: Tag
+    tags: []

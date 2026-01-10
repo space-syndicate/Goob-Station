@@ -6,6 +6,8 @@
   name: UrbanRiflemanPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -42,6 +44,8 @@
   name: UrbanMachineGunnerPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -78,6 +82,8 @@
   name: UrbanGrenadierPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -114,6 +120,8 @@
   name: UrbanMedicalPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -151,6 +159,8 @@
   name: UrbanCommanderPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -187,6 +197,8 @@
   name: UrbanSniperPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -225,6 +237,8 @@
   name: UrbanRiflemanPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -261,6 +275,8 @@
   name: UrbanMachineGunnerPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -297,6 +313,8 @@
   name: UrbanGrenadierPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -333,6 +351,8 @@
   name: UrbanMedicalPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -370,6 +390,8 @@
   name: UrbanCommanderPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -406,6 +428,8 @@
   name: UrbanSniperPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - NanoTrasen

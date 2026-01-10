@@ -13,7 +13,7 @@
   - !type:GroupLoadoutEffect
     proto: HoSMaster
   equipment:
-    outerclothing: ClothingOuterCoatHoSGreatcoat
+    outerClothing: ClothingOuterCoatHoSGreatcoat
 
 - type: loadout # Лоадаут наплечной мантии ГСБ
   id: ClothingNeckMantleHOSShoulder

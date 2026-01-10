@@ -25,6 +25,9 @@ using Content.Shared.Item;
 using Robust.Shared.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Imperial.Crook.Systems
 {
@@ -369,7 +372,7 @@ namespace Content.Server.Imperial.Crook.Systems
         private void DischargeSingleItem(EntityUid item)
         {
             if (TryComp<BatteryComponent>(item, out var battery))
-                _battery.SetCharge(item, 0, battery);
+                _battery.SetCharge((item, battery), 0);
 
             if (TryComp<ContainerManagerComponent>(item, out var containerManager))
             {

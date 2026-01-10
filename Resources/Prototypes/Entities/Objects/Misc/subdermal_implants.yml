@@ -206,6 +206,7 @@
     implantAction: ActionActivateScramImplant
   - type: TriggerOnActivateImplant
   - type: ScramOnTrigger
+    teleportRadius: 115 # Imperial Space Небольшой бафф радиуса импланта побега
     targetUser: true
 
 - type: entity
@@ -316,7 +317,6 @@
       tags:
       - SubdermalImplant
       - HideContextMenu
-      - MacroBomb
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -342,7 +342,6 @@
     tags:
     - SubdermalImplant
     - HideContextMenu
-    - DeathAcidifier
 
 - type: entity
   parent: BaseSubdermalImplant

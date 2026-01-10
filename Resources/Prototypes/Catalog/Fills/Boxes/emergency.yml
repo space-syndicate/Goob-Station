@@ -5,15 +5,17 @@
   description: It's a box with basic internals inside.
   suffix: Standard
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -29,15 +31,17 @@
   id: BoxSurvivalNitrogen
   suffix: Standard N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -57,15 +61,17 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Extended
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -81,15 +87,17 @@
   id: BoxSurvivalEngineeringNitrogen
   suffix: Extended N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: ExtendedEmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -110,15 +118,17 @@
   description: It's a box with basic internals inside.
   suffix: Security
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -134,15 +144,17 @@
   id: BoxSurvivalSecurityNitrogen
   suffix: Security N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSecurity
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -163,15 +175,17 @@
   description: It's a box with basic internals inside.
   suffix: Medical
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -187,15 +201,17 @@
   id: BoxSurvivalMedicalNitrogen
   suffix: Medical N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreathMedical
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -221,17 +237,20 @@
     - state: heart
   - type: Item
     heldPrefix: hug
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyFunnyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Tag
     tags:
+    - BoxCardboard
     - BoxHug
   #Imperial emergency box size
   - type: Storage
@@ -244,15 +263,17 @@
   id: BoxHugNitrogen
   suffix: Emergency N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
+        - id: DrinkWaterBottleFull
   - type: Label
     currentLabel: reagent-name-nitrogen
   #Imperial emergency box size
@@ -266,29 +287,34 @@
   id: BoxMime
   suffix: Mime, Emergency
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial "FixMimeEmergencyKit"
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodBreadNutriBatard
+        - id: DrinkWaterBottleFull
 
 - type: entity
   parent: BoxSurvivalNitrogen
   id: BoxMimeNitrogen
   suffix: Mime, Emergency N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodBreadNutriBatard
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -301,14 +327,17 @@
   id: BoxMimeMoth
   suffix: Mime, Emergency moth
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskBreath
-    - id: EmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: Flare
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodBreadCottonNutriBatard
+        - id: DrinkWaterBottleFull
 
 - type: entity
   parent: BoxCardboard
@@ -317,14 +346,17 @@
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Syndicate
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: ExtendedEmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
   - type: Sprite
     layers:
     - state: internals
@@ -340,14 +372,17 @@
   id: BoxSurvivalSyndicateNitrogen
   suffix: Syndicate N2
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingMaskGasSyndicate
-    - id: ExtendedEmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-    - id: Flare
-    - id: FoodSnackNutribrick
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: FoodSnackNutribrick
   - type: Sprite
     layers:
     - state: internals

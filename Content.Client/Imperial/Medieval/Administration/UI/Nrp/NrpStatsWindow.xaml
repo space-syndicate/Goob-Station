@@ -1,0 +1,9 @@
+﻿<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc nrp-panel-stats-title}" MinSize="240 300"
+    xmlns:nrp="clr-namespace:Content.Client.Imperial.Medieval.Administration.UI.Nrp">
+    <TabContainer Name="Tabs" Access="Public">
+        <nrp:NrpStatsTab Name="RoundStatsTab"/>
+        <nrp:NrpStatsTab Name="GlobalStatsTab"/>
+    </TabContainer>
+</DefaultWindow>

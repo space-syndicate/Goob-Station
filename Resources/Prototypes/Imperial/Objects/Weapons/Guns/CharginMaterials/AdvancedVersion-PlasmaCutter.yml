@@ -42,7 +42,7 @@
       fireCost: 100
     - proto: Advanced-AttackerBulletPlasmaCutter
       fireCost: 150
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Advanced-BulletPlasmaCutter
     fireCost: 100
   - type: UseDelay
@@ -58,7 +58,7 @@
   - type: Tag
     tags:
     - OnlyMaterialEnergy
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2
 

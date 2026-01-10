@@ -6,10 +6,20 @@
     Steel: 500
     Plastic: 300
 
+- type: latheRecipe
+  id: StandardHypospray
+  result: StandardHypospray
+  completetime: 1
+  materials:
+    Steel: 15
+    Plastic: 8
+    Glass: 2
+
 - type: latheRecipePack
   id: MedicalImperialVehicleStatic
   recipes:
   - ImperialVehicleWheelchairFolded
+  - StandardHypospray
 
 - type: trait
   id: ImperialWheelchairBound
@@ -22,7 +32,7 @@
   components:
     - type: BuckleOnMapInit
       prototype: ImperialVehicleWheelchair
-    - type: LegsParalyzed
+    - type: ImperialLegsParalyzed
 
 
 - type: entity
