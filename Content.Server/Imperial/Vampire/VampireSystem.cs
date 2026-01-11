@@ -161,6 +161,17 @@ public sealed class VampireServerSystem : EntitySystem
         if (prayable.BibleUserOnly && !TryComp<BibleUserComponent>(args.User, out _))
             return;
 
+        if (TryComp<VampireComponent>(comp.Vampire, out var vamp))
+        {
+            if (vamp.VampireTurned)
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-popup-vampire-turned"),
+                args.User, args.User, PopupType.Medium);
+            }
+
+            return;
+        }
+
         _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-rite"),
             args.User, args.User, PopupType.Medium);
 
@@ -203,7 +214,7 @@ public sealed class VampireServerSystem : EntitySystem
 
     private void StartDrinking(EntityUid vampire, EntityUid target)
     {
-        var doAfterArgs = new DoAfterArgs(EntityManager, vampire, TimeSpan.FromSeconds(3f),
+        var doAfterArgs = new DoAfterArgs(EntityManager, vampire, TimeSpan.FromSeconds(1f),
         new VampireDrinkingDoAfterEvent(), vampire, target: target)
         {
             BreakOnMove = true,
@@ -304,9 +315,20 @@ public sealed class VampireServerSystem : EntitySystem
         // вычисляем текущее количество крови
         float currentBlood = vamp != null ? vamp.CritThreshold - vamp.BloodDamage : ghoul!.CritThreshold - ghoul.BloodDamage;
 
-        if (currentBlood >= 100)
+        if (currentBlood >= 100 && vamp != null)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-drinking-full-blood"), drinker, drinker, PopupType.Medium);
+            // мы просто засчитываем эту кровь в TotalDrunk, но BloodDamage не понижаем
+            vamp.TotalDrunk += amount;
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, vamp);
+            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+
+            var damage = new DamageSpecifier();
+            damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
+            _damage.TryChangeDamage(target, damage);
+
+            _audio.PlayPvs(vamp.DrinkSound, drinker);
+
+            StartDrinking(drinker, target);
             return;
         }
 
@@ -316,18 +338,18 @@ public sealed class VampireServerSystem : EntitySystem
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
             _vampireSystem.SetBloodAlert(drinker, vamp);
             vamp.TotalDrunk += amount;
-            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem);
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, vamp);
             eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
         }
-        else
+        else if (ghoul != null)
         {
-            ghoul!.BloodDamage = Math.Max(ghoul.BloodDamage - amount, 0f);
+            ghoul.BloodDamage = Math.Max(ghoul.BloodDamage - amount, 0f);
             _vampireSystem.SetGhoulBloodAlert(drinker, ghoul);
         }
 
         // забираем кровь у жертвы
         var dmg = new DamageSpecifier();
-        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
+        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
         _damage.TryChangeDamage(target, dmg);
 
         _audio.PlayPvs(vamp!.DrinkSound, drinker);
@@ -480,13 +502,7 @@ public sealed class VampireServerSystem : EntitySystem
                 _roleSystem.MindAddRole(mindId, "MindRoleGhoul", mind: mind);
 
             if (_player.TryGetSessionById(mind.UserId, out var session))
-            {
                 _chatMan.DispatchServerMessage(session, Loc.GetString("vampire-verb-envelope-ghoul-greeting"));
-
-                _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(5));
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(5), force: true);
-                _jitterSystem.DoJitter(target, ghoulComp.ShakingTime, refresh: true, amplitude: 25f, frequency: 8f);
-            }
         }
 
         _vampireSystem.SetGhoulBloodAlert(target, ghoulComp);
@@ -497,7 +513,10 @@ public sealed class VampireServerSystem : EntitySystem
         if (!TryComp<ActorComponent>(args.Performer, out var actor))
             return;
 
-        var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions, _vampireSystem);
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+            return;
+
+        var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions, _vampireSystem, vamp);
         _eui.OpenEui(eui, actor.PlayerSession);
     }
 
@@ -505,6 +524,14 @@ public sealed class VampireServerSystem : EntitySystem
     {
         if (!TryComp<VampireComponent>(args.Performer, out var vamp))
             return;
+
+        if (vamp.VampireTurned)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-popup-warning-vampire-turned"),
+            args.Performer, args.Performer, PopupType.Medium);
+
+            return;
+        }
 
         if (vamp.GhoulQuantity < args.NecessaryGhoulQuantity)
         {
@@ -537,6 +564,9 @@ public sealed class VampireServerSystem : EntitySystem
                 _actions.AddAction(args.Performer, VampireAbilityLists.VampireNosferatyPlus);
                 break;
         }
+
+        vamp.VampireTurned = true;
+        args.Handled = true;
     }
 
     public override void Update(float frameTime)
@@ -563,6 +593,7 @@ public sealed class VampireServerSystem : EntitySystem
             if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.VampireCloneIsActive)
             {
                 _vampireSystem.VampireInvisible(uid);
+                vamp.VampireCloneIsActive = false;
                 Dirty(uid, vamp);
             }
         }

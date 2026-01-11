@@ -14,13 +14,16 @@ public sealed class VampireRequestedEui : BaseEui
     private readonly IEntityManager _entityManager;
     private readonly SharedActionsSystem _actions;
     private readonly VampireSystem _vampireSystem;
+    private readonly VampireComponent _vampireComponent;
 
-    public VampireRequestedEui(EntityUid uid, IEntityManager entityManager, SharedActionsSystem actions, VampireSystem vampireSystem)
+    public VampireRequestedEui(EntityUid uid, IEntityManager entityManager, SharedActionsSystem actions, VampireSystem vampireSystem,
+    VampireComponent vampireComponent)
     {
         _uid = uid;
         _entityManager = entityManager ?? throw new ArgumentNullException(nameof(entityManager));
         _actions = actions ?? throw new ArgumentNullException(nameof(actions));
         _vampireSystem = vampireSystem ?? throw new ArgumentNullException(nameof(vampireSystem));
+        _vampireComponent = vampireComponent ?? throw new ArgumentNullException(nameof(vampireComponent));
     }
 
     public override void HandleMessage(EuiMessageBase msg)
@@ -30,6 +33,7 @@ public sealed class VampireRequestedEui : BaseEui
 
         GrantAbilities(_uid, request.SelectionNumber);
         Close();
+        _actions.RemoveAction(_uid, _vampireComponent.SelectingSubgroupActionEntity);
     }
 
     public void GrantAbilities(EntityUid uid, int selection)

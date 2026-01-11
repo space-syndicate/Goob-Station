@@ -5,7 +5,7 @@
   description: Разрывает наручники и увеличивает скорость в 1.5 раза на 10 секунд. Стоимость 20 ед. крови. Кулдаун 45 секунд.
   components:
   - type: Action
-    useDelay: 45
+    useDelay: 51 # т.к сама способность длится 6 секунд
     checkCanInteract: false
     itemIconStyle: BigAction
     icon:

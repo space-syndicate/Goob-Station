@@ -5,7 +5,7 @@
   description: На 25 секунд в 2 раза больше урона, +50% скорости атаки, +50% скорости передвижения. Стоимость 15 ед. крови. Кулдаун 40 секунд.
   components:
   - type: Action
-    useDelay: 40
+    useDelay: 65 # т.к сама способность длится 25 секунд
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
@@ -21,7 +21,7 @@
   description: На 25 секунд +40% урона, +15% скорости атаки, +20% скорости передвижения.  Стоимость 0 ед. крови. Кулдаун 10 секунд.
   components:
   - type: Action
-    useDelay: 10
+    useDelay: 35
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

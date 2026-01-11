@@ -30,7 +30,7 @@ vampire-selecting-window-subgroupGargantua-text =
 
     {"["}bold]Гнев Носферату[/bold]: Разблокируется на 400 крови. На 25 секунд: в 2 раза больше урона, +50% скорости атаки, +50% скорости передвижения.
 
-    {"["}bold]Кровавый якорь[/bold]: Разблокируется на 450 крови. Создает якорь в точке активации. При повторном нажатии телепортирует к себе. Якорь исчезает через 2 минуты или после использования.
+    {"["}bold]Рывок[/bold]: Вы кидаетесь в сторону, куда нажали. Если вы попадёте в человека, вы оглушите его. Если попадёте в предмет, то он получит 200 ед урона.
 
 vampire-selecting-window-subgroupHemomancer-turn = [bold]Обращение[/bold]: Разблокируется на 450 крови. Коготь становится вечным: он больше не имеет ограничения по времени и не исчезает после использования.
 
@@ -57,7 +57,9 @@ vampire-popup-disguise-on = Вы уже используете способно�
 vampire-popup-ghoul-rite = Вы начинаете обряд излечения упыря...
 vampire-popup-successfully-cure-ghoul = Вы излечены от проклятия!
 vampire-popup-successfully-cure-priest = Упырь излечен от проклятия!
+vampire-popup-vampire-turned = Вы не можете излечить упыря, чей хозяин был обращен!
 vampire-popup-ghoul-quantity = Вам необходимо обратить еще { $quantity } упырей
+vampire-popup-warning-vampire-turned = Вы уже обращены!
 vampire-popup-anchor-destroyed = Кровавый якорь был разрушен!
 
 vampire-drinking-envelope-text = Питье крови

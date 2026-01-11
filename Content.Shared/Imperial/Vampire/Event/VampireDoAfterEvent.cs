@@ -35,6 +35,15 @@ namespace Content.Shared.Imperial.Vampire
     public sealed partial class VampireReconciliationDoAfterEvent : DoAfterEvent
     {
         public override DoAfterEvent Clone() => this;
+
+        [DataField]
+        public float StaminaDamage;
+
+        [DataField]
+        public float DamageItem;
+
+        [DataField]
+        public TimeSpan KnockdownTime;
     }
 
     [Serializable, NetSerializable]

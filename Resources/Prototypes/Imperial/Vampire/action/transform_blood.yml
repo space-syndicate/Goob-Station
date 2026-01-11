@@ -5,7 +5,7 @@
   description: На 4 секунды превращает вас в кровь, позволяя проходить сквозь препятствия. Стоимость 20 ед. крови. Кулдаун 25 секунд.
   components:
   - type: Action
-    useDelay: 25
+    useDelay: 29 # т.к сама способность длится 4 секунды
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

@@ -447,7 +447,7 @@
       briefing:
         text: vampire-role-greeting-human
         color: "#8B0000"
-        sound: /Audio/Imperial/Horror/Shadow/activated1.ogg
+        sound: /Audio/Ambience/Antag/vampire_start.ogg
       components:
       - type: Vampire
       mindRoles:

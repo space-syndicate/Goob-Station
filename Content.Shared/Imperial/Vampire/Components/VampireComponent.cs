@@ -15,32 +15,8 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// ID сущности когтя вампира
         /// </summary>
-        [DataField]
-        public string ClawId = "VampireSword";
-
-        /// <summary>
-        /// множитель урона при активном бафе
-        /// </summary>
-        [DataField]
-        public float DamageBoost = 2;
-
-        /// <summary>
-        /// множитель базовой скорости движения при активации бафа
-        /// </summary>
-        [DataField]
-        public float BoostSpeed = 1.5f;
-
-        /// <summary>
-        /// множитель скорости, применяемый только к ходьбе
-        /// </summary>
-        [DataField]
-        public float BoostOnlySpeed = 3;
-
-        /// <summary>
-        /// множитель скорости атаки при активном бафе
-        /// </summary>
-        [DataField]
-        public float AttackRateBoost = 1.5f;
+        [DataField("clawId")]
+        public string SwordId = "VampireSword";
 
         /// <summary>
         /// был ли уже выдан коготь игроку
@@ -117,19 +93,7 @@ namespace Content.Shared.Imperial.Vampire
         /// количество выпитой крови за 1 тик
         /// </summary>
         [DataField("bloodPerTick")]
-        public float BloodPerTick = 200;
-
-        /// <summary>
-        /// сколько урона нанесет сверк предмету
-        /// </summary>
-        [DataField("reconciliationDamageItem")]
-        public float ReconciliationDamageItem = 40f;
-
-        /// <summary>
-        /// на сколько секунд сверк отправит человека в Knockdown
-        /// </summary>
-        [DataField("reconciliationKnockdownHuman")]
-        public TimeSpan ReconciliationKnockdownHuman = TimeSpan.FromSeconds(3);
+        public float BloodPerTick = 1;
 
         /// <summary>
         /// кд между призывами катаны
@@ -177,7 +141,7 @@ namespace Content.Shared.Imperial.Vampire
         };
 
         /// <summary>
-        /// звук телепорта
+        /// звук питья крови
         /// </summary>
         [DataField("drinkSound")]
         public SoundSpecifier DrinkSound = new SoundPathSpecifier("/Audio/Items/drink.ogg")
@@ -206,18 +170,37 @@ namespace Content.Shared.Imperial.Vampire
         [DataField("numberSections")]
         public int NumberSections = 21;
 
-        public EntProtoId GrimoreAction = "VampireTestAction";
-        public EntityUid? GrimoreActionEntity;
-        public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroupAction";
-
-        [AutoNetworkedField]
-        public float BloodDamage;
+        /// <summary>
+        /// раз во сколько секунд будет увеличиваться BloodDamage
+        /// </summary>
+        [DataField("bloodDecayIntervalInvisible")]
+        public TimeSpan BloodDecayIntervalInvisible = TimeSpan.FromSeconds(1);
 
         /// <summary>
         /// сколько очков крови теряется в секунду при активной способности
         /// </summary>
         [DataField("bloodLossDisguiseIsActive")]
         public float BloodLossDisguiseIsActive = 1;
+
+        [DataField]
+        public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
+
+        /// <summary>
+        /// базовые способности, которые выдаются при получении роли
+        /// </summary>
+        public static readonly List<EntProtoId> BaseAbilities = new()
+        {
+            "VampireSwordAction",
+            "VampireBloodTheftAction",
+            "VampireRecoveryAction",
+            "VampireSleepAction"
+        };
+
+        public EntityUid? SelectingSubgroupActionEntity;
+        public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroupAction";
+
+        [AutoNetworkedField]
+        public float BloodDamage;
 
         [AutoNetworkedField]
         public TimeSpan NextBloodDecayDisguise = TimeSpan.Zero;
@@ -230,9 +213,6 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public TimeSpan NextBloodshed = TimeSpan.Zero;
-
-        [DataField]
-        public TimeSpan BloodDecayIntervalInvisible = TimeSpan.FromSeconds(1);
 
         /// <summary>
         /// активна ли маскировка (игрок не может одновременно находиться в инвизе, быть летучей мышью/призраком)
@@ -267,23 +247,6 @@ namespace Content.Shared.Imperial.Vampire
         [AutoNetworkedField]
         public bool DirectionSelected = false;
 
-        [DataField]
-        public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
-
-        [DataField]
-        public float Radius = 2f;
-
-        /// <summary>
-        /// базовые способности, которые выдаются при получении роли
-        /// </summary>
-        public static readonly List<EntProtoId> BaseAbilities = new()
-        {
-            "VampireSwordAction",
-            "VampireBloodTheftAction",
-            "VampireRecoveryAction",
-            "VampireSleepAction"
-        };
-
         [AutoNetworkedField]
         public EntityUid SleepUid;
 
@@ -316,5 +279,14 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public EntityUid VampireAnchorUid;
+
+        [AutoNetworkedField]
+        public bool InvisibilityAbilityActive = false;
+
+        /// <summary>
+        /// был ли обращен вампир?
+        /// </summary>
+        [AutoNetworkedField]
+        public bool VampireTurned = false;
     }
 }
