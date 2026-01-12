@@ -7,7 +7,7 @@ vampire-role-description-human =
     Охотьтесь на экипаж станции, питайтесь их кровью и используйте темные силы для достижения своих целей.
     Вы можете общаться с упырями и вампирами через рацию (:в)
 
-objective-issuer-vampire = Проклятие
+objective-issuer-vampire = [color=#8B0000]Вампир[/color]
 
 vampire-verb-envelope-ghoul-greeting =
     Вы упырь — порождение вампирской крови.
