@@ -1,0 +1,20 @@
+using System.Numerics;
+using Robust.Shared.Audio;
+
+namespace Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks.PiercingLunge;
+
+[RegisterComponent]
+public sealed partial class UserPiercingLungeComponent : Component
+{
+    [ViewVariables]
+    public EntityUid? Item;
+
+    [ViewVariables]
+    public float DoAfterTime;
+
+    [ViewVariables]
+    public Vector2 Direction = Vector2.Zero;
+
+    [ViewVariables]
+    public bool HasDoAfter;
+}
