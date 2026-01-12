@@ -47,8 +47,8 @@ public static class VampireAbilityLists
         "VampireTurnAction"
     };
 
-    public static EntProtoId VampireSwordPlus = "VampireSwordPlusAction";
-    public static EntProtoId VampireInvisiblePlus = "VampireInvisiblePlusAction";
-    public static EntProtoId VampireNosferatyPlus = "VampireNosferatyPlusAction";
+    public static readonly EntProtoId VampireSwordPlus = "VampireSwordPlusAction";
+    public static readonly EntProtoId VampireInvisiblePlus = "VampireInvisiblePlusAction";
+    public static readonly EntProtoId VampireNosferatyPlus = "VampireNosferatyPlusAction";
 
 }

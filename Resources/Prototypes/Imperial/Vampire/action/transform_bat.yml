@@ -2,10 +2,10 @@
   parent: BaseAction
   id: VampireTransformBatAction
   name: Превращение в летучую мышь
-  description: Призывает рой атакующих летучих мышей и превращает вампира в летучую мышь на 10 секунд. Стоимость 45 ед. крови. Кулдаун 30 секунд.
+  description: Призывает рой атакующих летучих мышей и превращает вампира в летучую мышь на 10 секунд. Стоимость 45 ед. крови. Кулдаун 40 секунд.
   components:
   - type: Action
-    useDelay: 40 # т.к сама способность длится 10 секунд
+    useDelay: 40
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

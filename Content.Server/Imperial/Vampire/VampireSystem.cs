@@ -167,9 +167,9 @@ public sealed class VampireServerSystem : EntitySystem
             {
                 _popup.PopupEntity(Loc.GetString("vampire-popup-vampire-turned"),
                 args.User, args.User, PopupType.Medium);
-            }
 
-            return;
+                return;
+            }
         }
 
         _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-rite"),
@@ -212,10 +212,10 @@ public sealed class VampireServerSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void StartDrinking(EntityUid vampire, EntityUid target)
+    private void StartDrinking(EntityUid drinker, EntityUid target)
     {
-        var doAfterArgs = new DoAfterArgs(EntityManager, vampire, TimeSpan.FromSeconds(1f),
-        new VampireDrinkingDoAfterEvent(), vampire, target: target)
+        var doAfterArgs = new DoAfterArgs(EntityManager, drinker, TimeSpan.FromSeconds(2f),
+        new VampireDrinkingDoAfterEvent(), drinker, target: target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -254,7 +254,7 @@ public sealed class VampireServerSystem : EntitySystem
     /// <summary>
     /// обработчик DoAfter
     /// </summary>
-    private void OnEnvelopeCompleteVampire(EntityUid uid, VampireComponent comp, VampireEnvelopeDoAfterEvent args)
+    private void OnEnvelopeCompleteVampire(EntityUid uid, VampireComponent comp, ref VampireEnvelopeDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Target is not { } target
         || TryComp<GhoulComponent>(target, out var ghoulComp))
@@ -315,17 +315,10 @@ public sealed class VampireServerSystem : EntitySystem
         // вычисляем текущее количество крови
         float currentBlood = vamp != null ? vamp.CritThreshold - vamp.BloodDamage : ghoul!.CritThreshold - ghoul.BloodDamage;
 
-        if (currentBlood >= 100 && vamp != null)
+        if (HasComp<VampireComponent>(drinker) && currentBlood >= 100 && vamp != null)
         {
             // мы просто засчитываем эту кровь в TotalDrunk, но BloodDamage не понижаем
             vamp.TotalDrunk += amount;
-            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, vamp);
-            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
-
-            var damage = new DamageSpecifier();
-            damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
-            _damage.TryChangeDamage(target, damage);
-
             _audio.PlayPvs(vamp.DrinkSound, drinker);
 
             StartDrinking(drinker, target);
@@ -338,28 +331,33 @@ public sealed class VampireServerSystem : EntitySystem
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
             _vampireSystem.SetBloodAlert(drinker, vamp);
             vamp.TotalDrunk += amount;
-            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, vamp);
-            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+            _audio.PlayPvs(vamp.DrinkSound, drinker);
         }
         else if (ghoul != null)
         {
             ghoul.BloodDamage = Math.Max(ghoul.BloodDamage - amount, 0f);
             _vampireSystem.SetGhoulBloodAlert(drinker, ghoul);
+            _audio.PlayPvs(ghoul.DrinkSound, drinker);
+        }
+
+        // после того, как вампир выпивает кровь его глаза становятся красными
+        if (TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
+        {
+            appear.EyeColor = Color.Red;
+            Dirty(drinker, appear);
         }
 
         // забираем кровь у жертвы
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
-        _damage.TryChangeDamage(target, dmg);
+        var damage = new DamageSpecifier();
+        damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
+        _damage.TryChangeDamage(target, damage);
 
-        _audio.PlayPvs(vamp!.DrinkSound, drinker);
+        if (vamp != null)
+        {
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, vamp);
+            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+        }
 
-        // после того, как вампир выпивает кровь его глаза становятся красными
-        if (!TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
-            return;
-        appear.EyeColor = Color.Red;
-
-        Dirty(drinker, appear);
         StartDrinking(drinker, target);
     }
 
@@ -448,7 +446,7 @@ public sealed class VampireServerSystem : EntitySystem
             // добавляем ai клону
             var htn = EnsureComp<HTNComponent>(cloneUid.Value);
             htn.RootTask = new HTNCompoundTask() { Task = "IdleCompound" };
-            htn.Blackboard.SetValue(NPCBlackboard.Owner, cloneUid);
+            htn.Blackboard.SetValue(NPCBlackboard.Owner, cloneUid.Value);
 
             EnsureComp<ActiveNPCComponent>(cloneUid.Value);
         }
@@ -477,19 +475,15 @@ public sealed class VampireServerSystem : EntitySystem
         Dirty(target, ghoulComp);
 
         // добавляем рацию
-        var transmitter = new IntrinsicRadioTransmitterComponent
-        {
-            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
-        };
-        EntityManager.AddComponent(target, transmitter);
+        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(target);
+        transmitter.Channels ??= new HashSet<ProtoId<RadioChannelPrototype>>();
+        transmitter.Channels.Add(new ProtoId<RadioChannelPrototype>("VampireRadio"));
 
-        var activeRadio = new ActiveRadioComponent
-        {
-            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
-        };
-        EntityManager.AddComponent(target, activeRadio);
+        var activeRadio = EnsureComp<ActiveRadioComponent>(target);
+        activeRadio.Channels ??= new HashSet<ProtoId<RadioChannelPrototype>>();
+        activeRadio.Channels.Add(new ProtoId<RadioChannelPrototype>("VampireRadio"));
 
-        EntityManager.AddComponent<IntrinsicRadioReceiverComponent>(target);
+        EnsureComp<IntrinsicRadioReceiverComponent>(target);
 
         _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-vampire-complete",
             ("target", MetaData(target).EntityName)),
@@ -576,10 +570,7 @@ public sealed class VampireServerSystem : EntitySystem
         var queryVamp = EntityQueryEnumerator<VampireComponent>();
         while (queryVamp.MoveNext(out var uid, out var vamp))
         {
-            if (!vamp.VampireIsBat)
-                continue;
-
-            if (!HasComp<PolymorphedEntityComponent>(uid))
+            if (!HasComp<PolymorphedEntityComponent>(uid) && vamp.VampireIsBat)
             {
                 vamp.VampireIsBat = false;
                 vamp.DisguiseIsActive = false;

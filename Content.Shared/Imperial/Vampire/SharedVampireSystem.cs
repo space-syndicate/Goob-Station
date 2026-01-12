@@ -330,7 +330,7 @@ public class VampireSystem : EntitySystem
         if (_targetGrids.Count == 0)
             return null;
 
-        var targetGrid = _random.GetRandom().Pick(_targetGrids);
+        var targetGrid = _random.Pick(_targetGrids);
 
         var range = (float)Math.Sqrt(radius);
         var box = Box2.CenteredAround(userCoords.Position, new Vector2(range, range));
@@ -513,7 +513,7 @@ public class VampireSystem : EntitySystem
             break;
         }
 
-        if (target == null || _mobStateSystem.IsAlive(target.Value))
+        if (target == null || !_mobStateSystem.IsAlive(target.Value))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-no-one-ahead"),
                 vamp.Owner, vamp.Owner, PopupType.Medium);
@@ -1204,24 +1204,24 @@ public class VampireSystem : EntitySystem
         }
 
         var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
-        while (ghoulQuery.MoveNext(out var uid, out var сomp))
+        while (ghoulQuery.MoveNext(out var uid, out var comp))
         {
             // заставляем упырей пить кровь
-            if (сomp.NextBloodDecay == TimeSpan.Zero)
+            if (comp.NextBloodDecay == TimeSpan.Zero)
             {
-                сomp.NextBloodDecay = _gameTiming.CurTime + сomp.BloodDecayInterval;
-                Dirty(uid, сomp);
+                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
+                Dirty(uid, comp);
             }
 
-            if (_gameTiming.CurTime >= сomp.NextBloodDecay)
+            if (_gameTiming.CurTime >= comp.NextBloodDecay)
             {
                 // наносим урон каждые BloodDecayInterval секунд
-                DealGhoulBloodDamage(uid, сomp.BloodDecayAmount, сomp);
-                сomp.NextBloodDecay = _gameTiming.CurTime + сomp.BloodDecayInterval;
-                Dirty(uid, сomp);
+                DealGhoulBloodDamage(uid, comp.BloodDecayAmount, comp);
+                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
+                Dirty(uid, comp);
 
                 // если урон больше количества крови, то применяем дебафы
-                if (сomp.BloodDamage >= сomp.CritThreshold)
+                if (comp.BloodDamage >= comp.CritThreshold)
                 {
                     if (TryComp<StaminaComponent>(uid, out var stamina))
                     {
@@ -1233,7 +1233,7 @@ public class VampireSystem : EntitySystem
                         _stamina.TakeStaminaDamage(uid, 70f, stamina);
 
                         if (_net.IsServer)
-                            _jitterSystem.DoJitter(uid, сomp.ShakingTime, refresh: false, amplitude: 15f, frequency: 4f);
+                            _jitterSystem.DoJitter(uid, comp.ShakingTime, refresh: false, amplitude: 15f, frequency: 4f);
                     }
                 }
             }
@@ -1300,7 +1300,7 @@ public class VampireSystem : EntitySystem
         while (vampClaw.MoveNext(out var uid, out var vamp))
         {
             if (!_net.IsServer)
-                return;
+                continue;
 
             if (_gameTiming.CurTime >= vamp.ClawDurationActive && vamp.ItemIssued && vamp.ClawDurationActive != TimeSpan.Zero)
             {
@@ -1342,9 +1342,7 @@ public class VampireSystem : EntitySystem
     {
         // вычисляем, какой должен быть спрайт в зависимости от количества крови у упыря
         var severity = ContentHelpers.RoundToLevels(
-            MathF.Max(0f, component.CritThreshold - component.BloodDamage),
-            component.CritThreshold,
-            7);
+            MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, component.NumberBloodSections);
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }
 
@@ -1354,7 +1352,8 @@ public class VampireSystem : EntitySystem
             return;
 
         // вычисляем, какой должен быть спрайт в зависимости от количества крови у вампира
-        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, 10);
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage),
+        component.CritThreshold, component.NumberBloodSections);
         _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
     }
 
@@ -1387,19 +1386,15 @@ public class VampireSystem : EntitySystem
         }
 
         // добавляем рацию
-        var transmitter = new IntrinsicRadioTransmitterComponent
-        {
-            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
-        };
-        AddComp(ent.Owner, transmitter);
+        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(ent.Owner);
+        transmitter.Channels ??= new HashSet<ProtoId<RadioChannelPrototype>>();
+        transmitter.Channels.Add(new ProtoId<RadioChannelPrototype>("VampireRadio"));
 
-        var activeRadio = new ActiveRadioComponent
-        {
-            Channels = new HashSet<ProtoId<RadioChannelPrototype>> { new ProtoId<RadioChannelPrototype>("VampireRadio") }
-        };
-        AddComp(ent.Owner, activeRadio);
+        var activeRadio = EnsureComp<ActiveRadioComponent>(ent.Owner);
+        activeRadio.Channels ??= new HashSet<ProtoId<RadioChannelPrototype>>();
+        activeRadio.Channels.Add(new ProtoId<RadioChannelPrototype>("VampireRadio"));
 
-        AddComp<IntrinsicRadioReceiverComponent>(ent.Owner);
+        EnsureComp<IntrinsicRadioReceiverComponent>(ent.Owner);
 
         // для OnJerk
         AddComp<VampireJerkComponent>(ent.Owner);

@@ -4,6 +4,8 @@ using Content.Shared.Imperial.Vampire;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 
+namespace Content.Server.Imperial.Vampire;
+
 public sealed class VampirePurposesSystem : EntitySystem
 {
     [Dependency] private readonly NumberObjectiveSystem _number = default!;

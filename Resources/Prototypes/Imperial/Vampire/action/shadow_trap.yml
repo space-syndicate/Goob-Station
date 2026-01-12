@@ -34,7 +34,7 @@
     layers:
       - state: shadow_trap
   - type: VampireTrapOnTrigger
-    damage: 35
+    damage: 20
   - type: Fixtures
     fixtures:
       fix:

@@ -2,10 +2,10 @@
   parent: BaseAction
   id: VampireUnCuffAction
   name: Свобода
-  description: Разрывает наручники и увеличивает скорость в 1.5 раза на 10 секунд. Стоимость 20 ед. крови. Кулдаун 45 секунд.
+  description: Разрывает наручники и увеличивает скорость в 1.5 раза на 10 секунд. Стоимость 20 ед. крови. Кулдаун 50 секунд.
   components:
   - type: Action
-    useDelay: 51 # т.к сама способность длится 6 секунд
+    useDelay: 50
     checkCanInteract: false
     itemIconStyle: BigAction
     icon:

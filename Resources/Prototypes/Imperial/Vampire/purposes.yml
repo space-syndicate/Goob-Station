@@ -4,11 +4,30 @@
   id: BaseVampireObjective
   components:
   - type: Objective
-    issuer: objective-issuer-changeling
+    issuer: objective-issuer-vampire
     difficulty: 1
   - type: RoleRequirement
     roles:
     - VampireRole
+
+- type: entity
+  parent: [BaseVampireObjective, BaseKillObjective]
+  id: VampireKillRandomPersonObjective
+  description: Сделайте это как считаете нужным, главное чтобы он не попал на станцию ЦентКома
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickRandomPerson
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireMaroon: true
 
 - type: entity
   parent: BaseVampireObjective

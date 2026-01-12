@@ -5,7 +5,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 
-namespace Content.Client.Vampire.UI;
+namespace Content.Client.Imperial.Vampire.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class SelectingSubgroup : FancyWindow

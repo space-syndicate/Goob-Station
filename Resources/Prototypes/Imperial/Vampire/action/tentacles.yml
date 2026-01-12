@@ -6,7 +6,7 @@
   components:
   - type: Action
     raiseOnUser: true
-    useDelay: 10
+    useDelay: 40
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Vampire
 {
-    [RegisterComponent]
+    [RegisterComponent, NetworkedComponent]
     public sealed partial class VampireTrapOnTriggerComponent : Component
     {
         /// <summary>
@@ -22,6 +22,7 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// на сколько секунд жертва ослепнет при соприкосновении
         /// </summary>
+        [DataField("blindingTime")]
         public TimeSpan BlindingTime = TimeSpan.FromSeconds(10);
     }
 }

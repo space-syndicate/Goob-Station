@@ -1,4 +1,4 @@
-using Content.Client.Vampire.UI;
+using Content.Client.Imperial.Vampire.UI;
 using Content.Client.Eui;
 using JetBrains.Annotations;
 using System.Numerics;

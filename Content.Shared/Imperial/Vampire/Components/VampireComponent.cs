@@ -171,6 +171,12 @@ namespace Content.Shared.Imperial.Vampire
         public int NumberSections = 21;
 
         /// <summary>
+        /// количество спрайтов в bleed.rsi. необходимо для расчетов VampireBloodAlert
+        /// </summary>
+        [DataField]
+        public int NumberBloodSections = 10;
+
+        /// <summary>
         /// раз во сколько секунд будет увеличиваться BloodDamage
         /// </summary>
         [DataField("bloodDecayIntervalInvisible")]

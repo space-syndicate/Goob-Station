@@ -646,11 +646,6 @@
 - type: Tag
   id: Goliath # Blacklist on GoliathTentacle to prevent tagged entity from getting stunned (by itself)
 
-# imperial space: Added a new vampire antagonist. Start
-- type: Tag
-  id: Vampire
-# imperial space: Added a new vampire antagonist. End
-
 - type: Tag
   id: GoliathPlate # CargoBounty: BountyGoliathPlates
 
@@ -1482,6 +1477,11 @@
 
 - type: Tag
   id: VoiceTrigger # ConstructionGraph: Vim
+
+# imperial space: Added a new vampire antagonist. Start
+- type: Tag
+  id: Vampire
+# imperial space: Added a new vampire antagonist. End
 
 ## W ##
 

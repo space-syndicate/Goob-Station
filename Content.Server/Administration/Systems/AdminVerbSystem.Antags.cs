@@ -209,10 +209,10 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(wizard);
 
         // imperial space: new antag - vampire. start
-        var vampiredName = Loc.GetString("admin-verb-text-make-vampire");
+        var vampireName = Loc.GetString("admin-verb-text-make-vampire");
         Verb vampire = new()
         {
-            Text = vampiredName,
+            Text = vampireName,
             Category = VerbCategory.Antag,
             Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/statusicon.rsi/Vampire.png")),
             Act = () =>
@@ -220,7 +220,7 @@ public sealed partial class AdminVerbSystem
                 _antag.ForceMakeAntag<VampireRoleComponent>(targetPlayer, VampireRule);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", vampiredName, Loc.GetString("admin-verb-make-vampire")),
+            Message = string.Join(": ", vampireName, Loc.GetString("admin-verb-make-vampire")),
         };
         args.Verbs.Add(vampire);
         // imperial space: new antag - vampire. end

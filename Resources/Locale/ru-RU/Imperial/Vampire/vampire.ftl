@@ -1,5 +1,8 @@
 vampire-selecting-window-subgroup-title = Выбор подгруппы
 vampire-selecting-window-warning = Внимание! После того как вы сделаете выбор, изменить класс уже не получится!
+vampire-subgroup-hemomancer-title = Hemomancer
+vampire-subgroup-umbrae-title = Umbrae
+vampire-subgroup-gargantua-title = Gargantua
 
 vampire-selecting-window-subgroupHemomancer-text =
     {"["}bold]Кровавые щупальца[/bold]: Разблокируется на 100 крови. Из указанной точки вырываются щупальца, наносящие 15 урона и сваливающие жертву на землю.
@@ -30,7 +33,7 @@ vampire-selecting-window-subgroupGargantua-text =
 
     {"["}bold]Гнев Носферату[/bold]: Разблокируется на 400 крови. На 25 секунд: в 2 раза больше урона, +50% скорости атаки, +50% скорости передвижения.
 
-    {"["}bold]Рывок[/bold]: Вы кидаетесь в сторону, куда нажали. Если вы попадёте в человека, вы оглушите его. Если попадёте в предмет, то он получит 200 ед урона.
+    {"["}bold]Рывок[/bold]: Разблокируется на 450 крови. Вы кидаетесь в сторону, куда нажали. Если вы попадёте в человека, вы оглушите его. Если попадёте в предмет, то он получит 200 ед урона.
 
 vampire-selecting-window-subgroupHemomancer-turn = [bold]Обращение[/bold]: Разблокируется на 450 крови. Коготь становится вечным: он больше не имеет ограничения по времени и не исчезает после использования.
 

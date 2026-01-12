@@ -59,8 +59,5 @@ namespace Content.Shared.Imperial.Vampire
 
         [DataField]
         public TimeSpan Duration;
-
-        [DataField]
-        public string AnchorIdId;
     }
 }

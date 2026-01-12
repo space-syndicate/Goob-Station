@@ -2,6 +2,7 @@ using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 using Content.Shared.StatusIcon;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -56,11 +57,26 @@ public sealed partial class GhoulComponent : Component
     [DataField("ghoulCure")]
     public TimeSpan GhoulCure = TimeSpan.FromSeconds(15);
 
+    /// <summary>
+    /// звук питья крови
+    /// </summary>
+    [DataField("drinkSound")]
+    public SoundSpecifier DrinkSound = new SoundPathSpecifier("/Audio/Items/drink.ogg")
+    {
+        Params = AudioParams.Default.WithVolume(3)
+    };
+
+    /// <summary>
+    /// количество спрайтов в bleed.rsi. необходимо для расчетов VampireBloodAlert
+    /// </summary>
+    [DataField]
+    public int NumberBloodSections = 10;
+
     [AutoNetworkedField]
     public float BloodDamage = 0f;
 
     [AutoNetworkedField]
-    public EntityUid Vampire;
+    public EntityUid Vampire = EntityUid.Invalid;
 
     [DataField]
     public ProtoId<FactionIconPrototype> StatusIcon = "GhoulFaction";

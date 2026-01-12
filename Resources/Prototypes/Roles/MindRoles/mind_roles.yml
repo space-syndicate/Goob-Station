@@ -341,37 +341,6 @@
     subtype: role-subtype-zombie
   - type: ZombieRole
 
-# imperial space: Added a new vampire antagonist. Start
-# Vampire
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleVampire
-  name: Vampire Role
-  components:
-  - type: MindRole
-    antagPrototype: Vampire
-    exclusiveAntag: false
-    roleType: TeamAntagonist
-    subtype: role-subtype-vampire
-  - type: VampireRole
-  - type: RoleBriefing
-    briefing: vampire-role-description-human
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleGhoul
-  name: Ghoul Role
-  components:
-  - type: MindRole
-    antagPrototype: Ghoul
-    exclusiveAntag: false
-    roleType: TeamAntagonist
-    subtype: role-subtype-ghoul
-  - type: GhoulRole
-  - type: RoleBriefing
-    briefing: vampire-verb-envelope-ghoul-greeting
-# imperial space: Added a new vampire antagonist. End
-
 # Changeling
 - type: entity
   parent: BaseMindRoleAntag
