@@ -11,7 +11,7 @@
     canCollide: false
   - type: InteractionOutline
   - type: Sprite
-    sprite: Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
+    sprite: Imperial/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
   - type: TimedDespawn
   # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
     lifetime: 0.8
@@ -56,7 +56,7 @@
         - Impassable
         hard: false
   - type: Sprite
-    sprite: Imperial/Lavaland/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
+    sprite: Imperial/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
     layers:
     - state: attack
   - type: TimedDespawn

@@ -1,0 +1,33 @@
+- type: alert
+  id: SmasherCounterCooldown
+  icons:
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_0
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_5
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_10
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_15
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_20
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_25
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_30
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_35
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_40
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_45
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_50
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_55
+  - sprite: /Textures/Imperial/MiningWeapons/Smasher/smasher_alert.rsi
+    state: count_60
+  name: cooldown
+  description: locale
+  minSeverity: 0
+  maxSeverity: 13

@@ -10,9 +10,9 @@
       - NonEnergy
   - type: Sprite
     noRot: false
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: Imperial/MiningWeapons/EmpoweredAttacks/charged_shot.rsi
     layers:
-    - state: chronobolt
+    - state: charged_bullet
       shader: unshaded
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic

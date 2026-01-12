@@ -8,43 +8,43 @@
     },
     "states": [
         {
-        "name": "count0"
+        "name": "count_0"
         },
         {
-        "name": "count5"
+        "name": "count_5"
         },
         {
-        "name": "count10"
+        "name": "count_10"
         },
         {
-        "name": "count15"
+        "name": "count_15"
         },
         {
-        "name": "count20"
+        "name": "count_20"
         },
         {
-        "name": "count25"
+        "name": "count_25"
         },
         {
-        "name": "count30"
+        "name": "count_30"
         },
         {
-        "name": "count35"
+        "name": "count_35"
         },
         {
-        "name": "count40"
+        "name": "count_40"
         },
         {
-        "name": "count45"
+        "name": "count_45"
         },
         {
-        "name": "count50"
+        "name": "count_50"
         },
         {
-        "name": "count55"
+        "name": "count_55"
         },
         {
-        "name": "count60"
+        "name": "count_60"
         }
     ]
 }

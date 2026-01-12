@@ -22,7 +22,7 @@ public sealed partial class SmasherComponent : Component
     };
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan ActiveShieldTime = TimeSpan.FromSeconds(20f);
+    public TimeSpan ActiveShieldTime = TimeSpan.FromSeconds(15f);
 
     /// <summary>
     /// There are 6 states in total, each lasting 0.3 seconds.
@@ -88,13 +88,13 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan NextActivationTime;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi EffectActived = new(new ResPath("/Textures/Imperial/MiningWeapons/smasher_shield.rsi"), "actived");
+    public SpriteSpecifier.Rsi EffectActived = new(new ResPath("/Textures/Imperial/MiningWeapons/Smasher/smasher_shield.rsi"), "actived");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi EffectCharging = new(new ResPath("/Textures/Imperial/MiningWeapons/smasher_shield.rsi"), "charging");
+    public SpriteSpecifier.Rsi EffectCharging = new(new ResPath("/Textures/Imperial/MiningWeapons/Smasher/smasher_shield.rsi"), "charging");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpriteSpecifier.Rsi EffectDecay = new(new ResPath("/Textures/Imperial/MiningWeapons/smasher_shield.rsi"), "decay");
+    public SpriteSpecifier.Rsi EffectDecay = new(new ResPath("/Textures/Imperial/MiningWeapons/Smasher/smasher_shield.rsi"), "decay");
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? StartChargingSound = new SoundPathSpecifier("/Audio/Imperial/MiningWeapons/Smasher/start_charging_shield.ogg");
