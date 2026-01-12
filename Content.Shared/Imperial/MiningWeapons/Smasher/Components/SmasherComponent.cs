@@ -24,9 +24,6 @@ public sealed partial class SmasherComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ActiveShieldTime = TimeSpan.FromSeconds(15f);
 
-    /// <summary>
-    /// There are 6 states in total, each lasting 0.3 seconds.
-    /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan TimeDecay = TimeSpan.FromSeconds(1.8f);
 
