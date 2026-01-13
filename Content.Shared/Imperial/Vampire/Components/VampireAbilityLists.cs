@@ -1,7 +1,7 @@
 using Content.Shared.Imperial.Vampire;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Imperial.Vampire;
+namespace Content.Shared.Imperial.Vampire;
 
 public static class VampireAbilityLists
 {
@@ -45,6 +45,17 @@ public static class VampireAbilityLists
         "VampireNosferatyAction",
         "VampireJerkAction",
         "VampireTurnAction"
+    };
+
+    /// <summary>
+    /// базовые способности, которые выдаются при получении роли
+    /// </summary>
+    public static readonly List<EntProtoId> BaseAbilities = new()
+    {
+        "VampireSwordAction",
+        "VampireBloodTheftAction",
+        "VampireRecoveryAction",
+        "VampireSleepAction"
     };
 
     public static readonly EntProtoId VampireSwordPlus = "VampireSwordPlusAction";

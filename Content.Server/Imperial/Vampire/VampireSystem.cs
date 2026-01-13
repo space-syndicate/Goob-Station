@@ -52,7 +52,7 @@ using Robust.Server.Audio;
 
 namespace Content.Server.Imperial.Vampire;
 
-public sealed class VampireServerSystem : EntitySystem
+public sealed class VampireSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -63,7 +63,7 @@ public sealed class VampireServerSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SharedJitteringSystem _jitterSystem = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly VampireSystem _vampireSystem = default!;
+    [Dependency] private readonly SharedVampireSystem _vampireSystem = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly CloningSystem _cloning = default!;

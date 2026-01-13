@@ -1,6 +1,7 @@
 using Content.Shared.DoAfter;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
+using YamlDotNet.Core.Tokens;
 
 namespace Content.Shared.Imperial.Vampire
 {
@@ -59,5 +60,8 @@ namespace Content.Shared.Imperial.Vampire
 
         [DataField]
         public TimeSpan Duration;
+
+        [DataField]
+        public string AnchorId;
     }
 }

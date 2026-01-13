@@ -26,7 +26,7 @@
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
                 <RichTextLabel Name="SubgroupLabelTurnHemomancer" MaxWidth="350" MinHeight="50" HorizontalExpand="True" Margin="5 5"/>
 
-                <controls:ConfirmButton Name="SubgroupButtonHemomancer" Text="Выбрать Hemomancer" MinHeight="40"
+                <controls:ConfirmButton Name="SubgroupButtonHemomancer" Text="{Loc 'vampire-subgroup-hemomancer-button'}" MinHeight="40"
                     HorizontalExpand="True" StyleClasses="OpenRight" Margin="5 5"/>
 
             </BoxContainer>
@@ -46,7 +46,7 @@
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
                 <RichTextLabel Name="SubgroupLabelTurnUmbrae" MaxWidth="350" MinHeight="50" HorizontalExpand="True" Margin="5 5"/>
 
-                <controls:ConfirmButton Name="SubgroupButtonUmbrae" Text="Выбрать Umbrae" MinHeight="40" HorizontalExpand="True"
+                <controls:ConfirmButton Name="SubgroupButtonUmbrae" Text="{Loc 'vampire-subgroup-umbrae-button'}" MinHeight="40" HorizontalExpand="True"
                     StyleClasses="OpenBoth" Margin="5 5"/>
 
             </BoxContainer>
@@ -66,7 +66,7 @@
                 <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
                 <RichTextLabel Name="SubgroupLabelTurnGargantua" MaxWidth="350" MinHeight="50" HorizontalExpand="True" Margin="5 5"/>
 
-                <controls:ConfirmButton Name="SubgroupButtonGargantua" Text="Выбрать Gargantua" MinHeight="40"
+                <controls:ConfirmButton Name="SubgroupButtonGargantua" Text="{Loc 'vampire-subgroup-gargantua-button'}" MinHeight="40"
                     HorizontalExpand="True" StyleClasses="OpenLeft" Margin="5 5"/>
 
             </BoxContainer>

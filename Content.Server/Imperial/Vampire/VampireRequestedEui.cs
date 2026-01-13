@@ -13,10 +13,10 @@ public sealed class VampireRequestedEui : BaseEui
     private readonly EntityUid _uid;
     private readonly IEntityManager _entityManager;
     private readonly SharedActionsSystem _actions;
-    private readonly VampireSystem _vampireSystem;
+    private readonly SharedVampireSystem _vampireSystem;
     private readonly VampireComponent _vampireComponent;
 
-    public VampireRequestedEui(EntityUid uid, IEntityManager entityManager, SharedActionsSystem actions, VampireSystem vampireSystem,
+    public VampireRequestedEui(EntityUid uid, IEntityManager entityManager, SharedActionsSystem actions, SharedVampireSystem vampireSystem,
     VampireComponent vampireComponent)
     {
         _uid = uid;
@@ -38,10 +38,8 @@ public sealed class VampireRequestedEui : BaseEui
 
     public void GrantAbilities(EntityUid uid, int selection)
     {
-        var vamp = _entityManager.EnsureComponent<VampireComponent>(uid);
-        vamp.DirectionSelected = true;
-        vamp.SelectedSubgroup = selection;
-        _vampireSystem.SetBloodCounterAlert(uid);
+        if (uid != _uid)
+            return;
 
         // выдача уникальных способностей в зависимости от группы
         var uniqueActions = selection switch
@@ -49,27 +47,34 @@ public sealed class VampireRequestedEui : BaseEui
             1 => VampireAbilityLists.Hemomancer,
             2 => VampireAbilityLists.Umbrae,
             3 => VampireAbilityLists.Gargantua,
-            _ => new List<EntProtoId>()
+            _ => null
         };
+
+        if (uniqueActions == null)
+            return;
+
+        _vampireComponent.DirectionSelected = true;
+        _vampireComponent.SelectedSubgroup = selection;
+        _vampireSystem.SetBloodCounterAlert(uid);
 
         for (int i = 0; i < uniqueActions.Count; i++)
         {
             if (VampireAbilityLists.AbilityThresholds.TryGetValue(i, out var threshold))
             {
-                if (vamp.TotalDrunk >= threshold && !vamp.UnlockedAbilityIndices.Contains(i))
+                if (_vampireComponent.TotalDrunk >= threshold && !_vampireComponent.UnlockedAbilityIndices.Contains(i))
                 {
                     EntityUid? actionEnt = null;
                     _actions.AddAction(uid, ref actionEnt, uniqueActions[i]);
 
                     if (actionEnt != null)
                     {
-                        vamp.GrantedActions.Add(actionEnt.Value);
-                        vamp.UnlockedAbilityIndices.Add(i);
+                        _vampireComponent.GrantedActions.Add(actionEnt.Value);
+                        _vampireComponent.UnlockedAbilityIndices.Add(i);
                     }
                 }
             }
         }
 
-        _entityManager.Dirty(uid, vamp);
+        _entityManager.Dirty(uid, _vampireComponent);
     }
 }

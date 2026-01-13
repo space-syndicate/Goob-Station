@@ -31,7 +31,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
-    private static readonly EntProtoId VampireRule = "Vampire"; // imperial space: new antag - vampire
+    private static readonly EntProtoId DefaultVampireRule = "Vampire"; // imperial space: new antag - vampire
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -217,7 +217,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/statusicon.rsi/Vampire.png")),
             Act = () =>
             {
-                _antag.ForceMakeAntag<VampireRoleComponent>(targetPlayer, VampireRule);
+                _antag.ForceMakeAntag<VampireRoleComponent>(targetPlayer, DefaultVampireRule);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", vampireName, Loc.GetString("admin-verb-make-vampire")),

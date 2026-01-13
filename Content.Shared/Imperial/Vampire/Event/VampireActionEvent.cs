@@ -217,7 +217,7 @@ namespace Content.Shared.Imperial.Vampire
         public TimeSpan DurationExistenceAnchor = TimeSpan.FromSeconds(10);
 
         [DataField("vampireAnchorId")]
-        public string VampireAnchorId = "VampireTrap";
+        public string VampireAnchorId = "VampireBloodAnchor";
     }
 
     public sealed partial class VampireJerkEvent : InstantActionEvent

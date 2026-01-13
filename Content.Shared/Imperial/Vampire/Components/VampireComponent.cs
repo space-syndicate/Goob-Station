@@ -15,7 +15,7 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// ID сущности когтя вампира
         /// </summary>
-        [DataField("clawId")]
+        [DataField("swordId")]
         public string SwordId = "VampireSword";
 
         /// <summary>
@@ -191,17 +191,6 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
 
-        /// <summary>
-        /// базовые способности, которые выдаются при получении роли
-        /// </summary>
-        public static readonly List<EntProtoId> BaseAbilities = new()
-        {
-            "VampireSwordAction",
-            "VampireBloodTheftAction",
-            "VampireRecoveryAction",
-            "VampireSleepAction"
-        };
-
         public EntityUid? SelectingSubgroupActionEntity;
         public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroupAction";
 
@@ -254,13 +243,13 @@ namespace Content.Shared.Imperial.Vampire
         public bool DirectionSelected = false;
 
         [AutoNetworkedField]
-        public EntityUid SleepUid;
+        public EntityUid SleepUid = EntityUid.Invalid;
 
         [AutoNetworkedField]
         public HashSet<EntityUid> Ghouls = new();
 
         [AutoNetworkedField]
-        public float GhoulQuantity = 0;
+        public int GhoulQuantity = 0;
 
         [AutoNetworkedField]
         public bool InvisibleIsActive = false;

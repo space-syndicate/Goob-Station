@@ -1465,6 +1465,11 @@
 
 ## V ##
 
+# imperial space: Added a new vampire antagonist. Start
+- type: Tag
+  id: Vampire
+# imperial space: Added a new vampire antagonist. End
+
 - type: Tag
   id: Vegetable # CargoBounty: BountyVegetable
 
@@ -1477,11 +1482,6 @@
 
 - type: Tag
   id: VoiceTrigger # ConstructionGraph: Vim
-
-# imperial space: Added a new vampire antagonist. Start
-- type: Tag
-  id: Vampire
-# imperial space: Added a new vampire antagonist. End
 
 ## W ##
 

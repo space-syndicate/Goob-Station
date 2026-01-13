@@ -6,7 +6,7 @@
   objective: roles-antag-vampire-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3600 # 1h
+    time: 1h
 
 - type: antag
   id: Ghoul

@@ -3,6 +3,9 @@ vampire-selecting-window-warning = Внимание! После того как 
 vampire-subgroup-hemomancer-title = Hemomancer
 vampire-subgroup-umbrae-title = Umbrae
 vampire-subgroup-gargantua-title = Gargantua
+vampire-subgroup-hemomancer-button = Выбрать Hemomancer
+vampire-subgroup-umbrae-button = Выбрать Umbrae
+vampire-subgroup-gargantua-button = Выбрать Gargantua
 
 vampire-selecting-window-subgroupHemomancer-text =
     {"["}bold]Кровавые щупальца[/bold]: Разблокируется на 100 крови. Из указанной точки вырываются щупальца, наносящие 15 урона и сваливающие жертву на землю.

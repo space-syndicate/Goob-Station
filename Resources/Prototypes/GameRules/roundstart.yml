@@ -436,6 +436,8 @@
     - VampireEscapeShuttleObjective
   - type: GameRule
   - type: VampireRole
+  - type: DynamicRuleCost
+    cost: 150
   - type: AntagSelection
     agentName: vampire-round-end-agent-name
     definitions:
@@ -444,6 +446,9 @@
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: NotExclusive
+      blacklist:
+        components:
+        - AntagImmune
       briefing:
         text: vampire-role-greeting-human
         color: "#8B0000"

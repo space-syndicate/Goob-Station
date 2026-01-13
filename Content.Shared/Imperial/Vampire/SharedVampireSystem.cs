@@ -65,7 +65,7 @@ using Content.Shared.Chemistry.ReactionEffects;
 
 namespace Content.Shared.Imperial.Vampire;
 
-public class VampireSystem : EntitySystem
+public class SharedVampireSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
@@ -108,7 +108,7 @@ public class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty);
         SubscribeLocalEvent<VampireTentaclesEvent>(OnTentacles);
         SubscribeLocalEvent<VampireRushBloodEvent>(OnRushBlood);
-        SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamadeOnContactCollide);
+        SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
         SubscribeLocalEvent<VampireBloodTheftEvent>(OnBloodTheft);
         SubscribeLocalEvent<VampireBloodTransformEvent>(OnTransformToBlood);
@@ -426,7 +426,7 @@ public class VampireSystem : EntitySystem
 
         if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
         {
-            _popup.PopupClient(Loc.GetString("Вам не хватает крови!"),
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
@@ -469,7 +469,7 @@ public class VampireSystem : EntitySystem
         Dirty(args.Performer, vamp);
     }
 
-    private void OnDamadeOnContactCollide(Entity<DamageOnContactComponent> ent, ref StartCollideEvent args)
+    private void OnDamageOnContactCollide(Entity<DamageOnContactComponent> ent, ref StartCollideEvent args)
     {
         if (args.OurFixtureId != ent.Comp.FixtureId)
             return;
@@ -689,7 +689,7 @@ public class VampireSystem : EntitySystem
                 continue;
 
             // если это предмет, то наносим ему ReconciliationDamageItem урона
-            bool IsObject = EntityManager.HasComponent<ItemComponent>(entity);
+            var IsObject = EntityManager.HasComponent<ItemComponent>(entity);
             if (IsObject)
             {
                 var dmg = new DamageSpecifier();
@@ -792,6 +792,8 @@ public class VampireSystem : EntitySystem
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
+
+        DealBloodDamage(args.Performer, args.CostBlood);
     }
 
     private void OnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapDoAfterEvent args)
@@ -920,7 +922,8 @@ public class VampireSystem : EntitySystem
         // задержка перед удалением компонента, чтобы обработать все столкновения
         Timer.Spawn(TimeSpan.FromSeconds(0.2), () =>
         {
-            RemComp<VampireJerkOnContactComponent>(ent.Owner);
+            if (Exists(ent.Owner))
+                RemComp<VampireJerkOnContactComponent>(ent.Owner);
         });
     }
 
@@ -986,7 +989,7 @@ public class VampireSystem : EntitySystem
         if (args.Handled || args.Cancelled || !_net.IsServer)
             return;
 
-        ent.Comp.VampireAnchorUid = Spawn("VampireBloodAnchor", ent.Comp.SpawnLocation);
+        ent.Comp.VampireAnchorUid = Spawn(args.AnchorId, ent.Comp.SpawnLocation);
         ent.Comp.AnchorCreate = true;
         ent.Comp.AnchorDurationActive = _gameTiming.CurTime + args.Duration;
 
@@ -1402,7 +1405,7 @@ public class VampireSystem : EntitySystem
         // выдача базовых способностей
         if (ent.Comp.GrantedActions.Count == 0)
         {
-            foreach (var proto in VampireComponent.BaseAbilities)
+            foreach (var proto in VampireAbilityLists.BaseAbilities)
             {
                 EntityUid? actionEnt = null;
                 _actions.AddAction(ent.Owner, ref actionEnt, proto);

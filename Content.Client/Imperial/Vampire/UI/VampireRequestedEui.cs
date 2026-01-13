@@ -5,7 +5,7 @@ using System.Numerics;
 using Robust.Client.Graphics;
 using Content.Shared.Imperial.Vampire;
 
-namespace Content.Client.Vampire;
+namespace Content.Client.Imperial.Vampire;
 
 [UsedImplicitly]
 public sealed class VampireRequestedEui : BaseEui
