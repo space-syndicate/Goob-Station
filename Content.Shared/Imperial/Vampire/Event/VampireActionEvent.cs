@@ -39,8 +39,8 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// сколько сущностей появится сверх первоначальной в целевом местоположении?
         /// </summary>
-        [DataField]
-        public int ExtraSpawns = 4;
+        [DataField("extraSpawns")]
+        public int ExtraSpawns = 3;
 
         [DataField("costBlood")]
         public float CostBlood = 30;

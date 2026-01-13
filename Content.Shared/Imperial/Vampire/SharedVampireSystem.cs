@@ -441,7 +441,7 @@ public class SharedVampireSystem : EntitySystem
         var dirs = new List<Direction>();
         dirs.AddRange(args.OffsetDirections);
 
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < args.ExtraSpawns; i++)
         {
             var dir = _random.PickAndTake(dirs);
             spawnPos.Add(coords.Offset(dir));
@@ -827,7 +827,7 @@ public class SharedVampireSystem : EntitySystem
         };
         _damage.TryChangeDamage(args.OtherEntity, dmg);
 
-        _entityManager.DeleteEntity(ent.Owner);
+        QueueDel(ent.Owner);
     }
 
     private void OnTransformToBlood(VampireBloodTransformEvent args)

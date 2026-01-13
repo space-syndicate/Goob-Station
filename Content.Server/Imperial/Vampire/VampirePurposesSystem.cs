@@ -59,6 +59,6 @@ public sealed class VampirePurposesSystem : EntitySystem
         if (target == 0)
             return 1f;
 
-        return MathF.Min(vamp.GhoulQuantity / target, 1f);
+        return MathF.Min((float)vamp.GhoulQuantity / target, 1f);
     }
 }
