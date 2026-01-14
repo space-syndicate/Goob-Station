@@ -39,33 +39,3 @@
     polymorphPopup: ""
     exitPolymorphPopup: ""
     allowRepeatedMorphs: true
-
-- type: polymorph
-  id: NothingThereEggMorph
-  configuration:
-    entity: ImperialSCPNothingThereEgg
-    forced: true
-    transferName: false
-    transferHumanoidAppearance: true
-    inventory: None
-    revertOnDeath: false
-    revertOnCrit: false
-    polymorphPopup: ""
-    exitPolymorphPopup: ""
-    allowRepeatedMorphs: true
-    transferDamage: false
-
-- type: polymorph
-  id: NothingThereTrueMorph
-  configuration:
-    entity: ImperialSCPNothingThereTrue
-    forced: true
-    transferName: false
-    transferHumanoidAppearance: true
-    inventory: None
-    revertOnDeath: false
-    revertOnCrit: false
-    polymorphPopup: ""
-    exitPolymorphPopup: ""
-    allowRepeatedMorphs: true
-    transferDamage: false
