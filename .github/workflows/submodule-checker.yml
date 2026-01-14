@@ -1,4 +1,4 @@
-name: No submodule update checker
+name: Submodule Update Checker
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   this_aint_right:
-    name: Submodule update in pr found
+    name: Please do not try to change the submodule in your PR
     runs-on: ubuntu-latest
     steps:
       - name: Fail
