@@ -1,4 +1,3 @@
-using Robust.Shared.Map;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Server.Imperial.SCP.SCP106.Components;

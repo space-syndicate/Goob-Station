@@ -22,7 +22,7 @@
     state: icon
     useDelay: 1
   - type: InstantAction
-    event: !type:SCP106DimensionExitActionEvent
+    event: !type:SCP106DimensionSwitchActionEvent
 
 - type: entity
   parent: BaseAction
@@ -35,7 +35,7 @@
     state: icon
     useDelay: 1
   - type: InstantAction
-    event: !type:SCP106DimensionEnterActionEvent
+    event: !type:SCP106DimensionSwitchActionEvent
 
 - type: entity
   parent: BaseAction
@@ -48,7 +48,7 @@
     state: icon
     useDelay: 1
   - type: InstantAction
-    event: !type:SCP106ExitPuddleActionEvent
+    event: !type:SCP106TransmissionPuddleActionEvent
 
 - type: entity
   parent: BaseAction
@@ -61,7 +61,7 @@
     state: icon
     useDelay: 1
   - type: InstantAction
-    event: !type:SCP106EnterPuddleActionEvent
+    event: !type:SCP106TransmissionPuddleActionEvent
 
 - type: entity
   parent: BaseAction

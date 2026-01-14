@@ -2,4 +2,4 @@ using Content.Shared.Actions;
 
 namespace Content.Shared.Imperial.SCP.SCP106.Events;
 
-public sealed partial class SCP106DimensionEnterActionEvent : InstantActionEvent { }
+public sealed partial class SCP106DimensionSwitchActionEvent : InstantActionEvent { }

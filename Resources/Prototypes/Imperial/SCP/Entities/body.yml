@@ -1,0 +1,23 @@
+- type: body
+  id: truenothingtherebody
+  name: "nothing there"
+  root: torso
+  slots:
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_arm
+      - legs
+      organs:
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    right_hand:
+      part: RightHandHuman
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

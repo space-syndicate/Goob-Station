@@ -4,6 +4,10 @@
   id: ImperialSCPBase
   suffix: AI
   components:
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        60: 1
+        80: 1
     - type: Tag
       tags:
       - SCP
@@ -19,8 +23,6 @@
         path: /Audio/Effects/Smoke-grenade.ogg
     - type: NoSlip
     - type: MovementIgnoreGravity
-    - type: SlowOnDamage
-      enabled: false
     - type: ZombieImmune
     - type: NonSpreaderZombie
     - type: Clumsy
@@ -109,19 +111,8 @@
     - type: ItemToggle
       predictable: false
       onUse: false
-    - type: ItemToggleActiveSound
-      activeSound:
-        path: /Audio/Imperial/Seriozha/SCP/chase/chase4.ogg
-        params:
-          volume: -2
-          range: 10
     - type: UseDelay
       delay: 1.0
-    - type: ToggleClothing
-      action: ActionToggleSCPMusic
-      mustEquip: false
-      sprite: /Textures/Interface/Misc/job_icons.rsi
-      state: Musician
     - type: SCP106
       firstHitDamage:
         types:
@@ -129,6 +120,14 @@
       damagePerSecond:
         types:
           Blunt: 1
+    - type: ImperialSCPChaseMusic
+      chaseSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase4.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: StaminaDamageOnHit
+      damage: 70
 
 - type: entity
   name: Fireman

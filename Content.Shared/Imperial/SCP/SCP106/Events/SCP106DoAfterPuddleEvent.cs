@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.SCP.SCP106.Events;
 
 [Serializable, NetSerializable]
-public sealed partial class SCP106DoAfterPuddleEvent : DoAfterEvent
+public sealed partial class SCP106DoAfterPuddleEvent : SimpleDoAfterEvent
 {
     public SCP106DoAfterPuddleEvent()
     {

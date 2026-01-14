@@ -33,6 +33,7 @@
       shader: unshaded
       map: ["base"]
   - type: SCP106
+    inDimension: true
     firstHitDamage:
       types:
         Poison: 40
@@ -43,3 +44,19 @@
   - type: ContentEye
   - type: Damageable
     damageModifierSet: SCPStandart
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 280
+        layer:
+        - GhostImpassable
+- type: entity
+  parent: ImperialSCPDed
+  categories: [HideSpawnMenu, DoNotMap]
+  id: ImperialSCPDedD
+  components:
+  - type: SCP106
+    inPocketDimension: true
