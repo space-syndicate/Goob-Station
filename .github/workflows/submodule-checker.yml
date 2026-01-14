@@ -1,0 +1,14 @@
+name: Submodule Update Checker
+
+on:
+  pull_request:
+    paths:
+      - 'RobustToolbox'
+
+jobs:
+  this_aint_right:
+    name: Please do not try to change the submodule in your PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail
+        run: exit 1
