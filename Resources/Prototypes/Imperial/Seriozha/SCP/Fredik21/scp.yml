@@ -12092,3 +12092,100 @@
     - FondUplinkMedical
     - EncryptionKeyGanza
     - CIUplinkAgent
+
+- type: entity
+  id: BulletPistolNDA
+  name: bullet (.35 auto)
+  suffix: Fredik21, Недра
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+
+- type: Tag
+  id: CartridgePistolNDA
+
+- type: entity
+  id: CartridgePistolNDA
+  name: cartridge (.35 auto)
+  suffix: Fredik21, Недра
+  description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Standard kinetic ammunition is common and useful in most situations.
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistolNDA
+
+- type: entity
+  id: p90-MagazineNDA
+  name: p90 SMG magazine (.35 auto)
+  parent: BaseMagazinePistolSubMachineGun
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolSubMachineGunP90
+  - type: BallisticAmmoProvider
+    capacity: 40
+    proto: CartridgePistolNDA
+    whitelist:
+      tags:
+        - CartridgePistolNDA
+  - type: Sprite
+    sprite: Imperial/Other/CS/Ammunition/p90_mag.rsi
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  name: P90
+  parent: BaseWeaponSubMachineGun
+  id: CSWeaponP90NDA
+  suffix: Fredik21, Недра
+  description: Expensive, high quality, a lot of bullets... a lot of inconvenience.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/CS/Weapon/p90.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    fireRate: 10
+    angleIncrease: 5
+    angleDecay: 19
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: p90-MagazineNDA
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGunP90
+      gun_chamber:
+        name: Chamber
+        startingItem:
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance

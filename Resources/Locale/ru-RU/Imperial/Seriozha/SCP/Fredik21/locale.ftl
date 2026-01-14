@@ -934,3 +934,12 @@ ent-PresetSCPMedicCI = Агент ПХ - Медик
 
 ent-titleNDA354 = алое озеро
     .desc = Выглядит кровавым
+
+ent-ulletPistolNDA = патрон (.35 пистолетный)
+
+ent-CartridgePistolNDA = патрон (.35 пистолетный)
+
+ent-p90-MagazineNDA = магазин для ПП P90 (.35 авто)
+
+ent-CSWeaponP90NDA = P90
+    .desc = Дорого, качественно, много пуль... много неудобств.

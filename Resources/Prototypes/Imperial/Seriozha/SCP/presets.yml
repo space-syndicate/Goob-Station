@@ -679,7 +679,7 @@
     outerClothing: ClothingOuterArmorSCPSecurity
     id: SCPIDCardThreeGray
     ears: ClothingHeadsetSCPMain
-    suitstorage: CSWeaponP90
+    suitstorage: CSWeaponP90NDA
     pocket1: FondUplinkBase
   inhand:
   - PaperOGK
