@@ -12065,3 +12065,30 @@
   inhand:
   - PaperOGK
   - BoxSurvivalNDA
+
+- type: entity
+  parent: PresetSCPMedic
+  id: PresetSCPMedicCI
+  name: Medic Foundation
+  suffix: Fredik21, Недра, нужен шкаф, агент
+  components:
+    - type: Loadout
+      prototypes: [ MedicGearSCPCI ]
+
+- type: startingGear
+  id: MedicGearSCPCI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRegularForceMedicOfficer
+    back: ClothingBackpackSatchelMedical
+    shoes: ClothingShoesSCP
+    id: SCPIDCardTwo
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltMedicalFilled
+    head: ClothingHeadHatParamedicsoft
+    pocket1: EncryptionKeyMedical
+  storage:
+    back:
+    - BoxSurvivalNDA
+    - FondUplinkMedical
+    - EncryptionKeyGanza
+    - CIUplinkAgent

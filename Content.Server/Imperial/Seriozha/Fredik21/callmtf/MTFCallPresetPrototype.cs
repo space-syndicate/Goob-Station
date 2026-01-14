@@ -1,27 +1,43 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.Manager.Attributes;
-using Robust.Shared.Utility; // Нужно для ResPath
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.MTFCall;
 
 [Prototype("MTFCall")]
 public sealed class MTFCallPresetPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] 
+    public string ID { get; } = default!;
 
-    // Путь к гриду (карте) через ResPath
-    [DataField("path")] public ResPath Path { get; set; } = default!;
+    /// <summary>
+    /// Путь к файлу грида (карты) ОБР.
+    /// </summary>
+    [DataField("path", required: true)] 
+    public ResPath Path { get; set; } = default!;
 
-    // Описание через ID локализации
-    [DataField("desc")] public string Desc { get; set; } = string.Empty;
+    /// <summary>
+    /// Описание пресета в меню (Локализация).
+    /// </summary>
+    [DataField("desc")] 
+    public LocId Desc { get; set; } = string.Empty;
 
-    // Звук через SoundSpecifier (поддерживает и пути, и коллекции)
-    [DataField("announcementSound")] public SoundSpecifier? AnnouncementSound { get; set; }
+    /// <summary>
+    /// Звук анонса при прибытии.
+    /// </summary>
+    [DataField("announcementSound")] 
+    public SoundSpecifier? AnnouncementSound { get; set; }
 
-    // Сообщение через ID локализации
-    [DataField("announcementMessage")] public string? AnnouncementMessage { get; set; }
+    /// <summary>
+    /// Текст сообщения анонса (Локализация).
+    /// </summary>
+    [DataField("announcementMessage")] 
+    public LocId? AnnouncementMessage { get; set; }
 
-    // Отправитель через ID локализации
-    [DataField("announcementSender")] public string? AnnouncementSender { get; set; }
+    /// <summary>
+    /// Имя отправителя анонса (Локализация).
+    /// </summary>
+    [DataField("announcementSender")] 
+    public LocId? AnnouncementSender { get; set; }
 }

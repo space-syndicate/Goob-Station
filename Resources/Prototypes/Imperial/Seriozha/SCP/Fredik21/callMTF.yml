@@ -18,7 +18,6 @@
     params:
       volume: -5
 
-
 - type: MTFCall
   id: Eta10
   path: /GM/seriozha/event/nedra/MTF/Eta-10.yml
