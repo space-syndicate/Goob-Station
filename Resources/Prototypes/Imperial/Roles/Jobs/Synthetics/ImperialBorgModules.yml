@@ -322,16 +322,6 @@
   components:
   - type: AutoRecharge
     rechargeDuration: 20
-  - type: GenericVisualizer
-    visuals:
-      enum.FlashVisuals.Burnt:
-        enum.FlashVisuals.BaseLayer:
-          False: {state: burnt}
-      enum.FlashVisuals.Flashing:
-        enum.FlashVisuals.LightLayer:
-          True: {visible: true}
-          False: {visible: false}
-
 
 - type: entity
   id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга
