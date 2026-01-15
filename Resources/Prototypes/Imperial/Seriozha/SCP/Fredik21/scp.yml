@@ -717,6 +717,8 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: DevGear
@@ -1015,6 +1017,8 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -1032,6 +1036,8 @@
     - type: NpcFactionMember
       factions:
       - rebelsscp
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: DevGearCommand
@@ -1808,6 +1814,8 @@
     - type: NpcFactionMember
       factions:
       - Foundation
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: GOCPHYSICSGear
@@ -2065,6 +2073,8 @@
     - type: NpcFactionMember
       factions:
       - Foundation
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: Alpha9Gear
@@ -2796,6 +2806,7 @@
     back:
     - BoxSurvivalNDA
     - FondUplinkEngineering
+    - PaperEngNDA
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2837,6 +2848,7 @@
     back:
     - BoxSurvivalNDA
     - FondUplinkMedical
+    - PaperMedNDA
 
 - type: emoteSounds
   id: SCP049
@@ -3487,6 +3499,8 @@
       factions:
       - Foundation
       - RiotControlUnit
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: Tay5IrantuSCPGear
@@ -3704,6 +3718,8 @@
       factions:
       - Foundation
       - RiotControlUnit
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: Tay5MunruSCPGear
@@ -3748,6 +3764,8 @@
       factions:
       - Foundation
       - RiotControlUnit
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: Tay5OnruSCPGear
@@ -3845,6 +3863,8 @@
       - Foundation
       - RiotControlUnit
       - DeathSquad
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: startingGear
   id: Tay5NankuSCPGear
@@ -4203,14 +4223,13 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCI
     id: SCPIDCardCI
-    ears: ClothingHeadsetSCPMain
+    ears: ClothingHeadsetSCPCI
     suitstorage: WeaponShotgunEnforcer
     pocket1: BoxLethalshot
     pocket2: BoxLethalshot
   storage:
     back:
     - EncryptionKeyRadio1
-    - EncryptionKeyGanza
     - CIUplinkBase
     - WeaponRevolverInspector
     - BoxSurvivalNDA
@@ -4249,14 +4268,13 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCI
     id: SCPIDCardCI
-    ears: ClothingHeadsetSCPMain
+    ears: ClothingHeadsetSCPCI
     suitstorage: WeaponLightMachineGunL6
     pocket1: MagazineLightRifleBox
     pocket2: MagazineLightRifleBox
   storage:
     back:
     - EncryptionKeyRadio1
-    - EncryptionKeyGanza
     - CIUplinkBase
     - BoxSurvivalNDA
   inhand:
@@ -4299,6 +4317,23 @@
       factions:
       - rebelsscp
 
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPCI
+  suffix: Fredik21, Недра
+  name: CI Headset
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyGanza
+    - type: EncryptionKeyHolder
+      keySlots: 8
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/dz/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/dz/headset.rsi
+
 - type: startingGear
   id: CIGearcoordinator
   equipment:
@@ -4311,12 +4346,11 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCI
     id: SCPIDCardCI
-    ears: ClothingHeadsetSCPMain
+    ears: ClothingHeadsetSCPCI
     belt: ClothingBeltMinuteManCamoForestWebbing
   storage:
     back:
     - EncryptionKeyRadio1
-    - EncryptionKeyGanza
     - CIUplinkCommander
     - BoxSurvivalNDA
   inhand:
@@ -4339,12 +4373,36 @@
     content: delivery-DNA-SRPOGK
 
 - type: entity
+  id: PaperMedNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPMed
+
+- type: entity
+  id: PaperEngNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPEng
+
+- type: entity
   id: PaperScience
   parent: Paper
   suffix: Fredik21, Недра
   components:
   - type: Paper
     content: delivery-DNA-SRPScience
+
+- type: entity
+  id: PaperClassDNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-SRPClassD
 
 - type: entity
   id: PaperAdmNDA
@@ -10432,6 +10490,7 @@
 - type: entity
   name: Поисковой навигатор повстанцев
   id: PinpointerNuclearNDA
+  suffix: Fredik21, Недра
   parent: [ PinpointerBase, BaseCommandContraband ]
   components:
   - type: Pinpointer
@@ -10687,6 +10746,7 @@
       - id: Bucket
       - id: ClothingUniformJumpsuitPrisoner
       - id: ClothingUniformJumpskirtPrisoner
+      - id: PaperClassDNDA
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -10790,6 +10850,7 @@
       - id: ClothingMaskSterile
       - id: ClothingHandsGlovesLatex
       - id: ClothingEyesHudMedical
+      - id: PaperMedNDA
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11152,6 +11213,7 @@
       - id: ClothingBeltUtilityEngineering
       - id: ClothingOuterVestHazard
       - id: ClothingUniformJumpskirtSeniorEngineer
+      - id: PaperEngNDA
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11992,6 +12054,8 @@
     shoes: ClothingShoesSCP
     pocket1: CIUplinkAgent
     pocket2: EncryptionKeyGanza
+  inhand:
+  - PaperClassDNDA
 
 - type: entity
   parent: PresetSCPDoc
@@ -12410,3 +12474,113 @@
     radius: 1.5
     energy: 3.0
     color: "#b89e2a"
+
+- type: entity
+  parent: Paper
+  id: ReportGoalAchievementNDA
+  name: "Отчёт о цели зоны"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-ReportGoalAchievement
+
+- type: entity
+  parent: Paper
+  id: ReportOnTheSiteSituationNDA
+  name: "Отчёт о состоянии зоны"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-ReportOnTheSiteSituation
+
+- type: entity
+  parent: Paper
+  id: ChangingtheSitegoalNDA
+  name: "Запрос о смене цели зоны"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-ChangingtheSitegoal
+
+- type: entity
+  parent: Paper
+  id: CallO5NDA
+  name: "Запрос о вызове советника О5"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-CallO5
+
+- type: entity
+  parent: Paper
+  id: MTFcallNDA
+  name: "Запрос на отряд МОГ"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-MTFcall
+
+- type: entity
+  parent: Paper
+  id: callSVTNDA
+  name: "Запрос на представителя СВТ"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-callSVT
+
+- type: entity
+  parent: Paper
+  id: complaintNDA
+  name: "Жалоба Недр"
+  suffix: Fredik21, Недра
+  description: Важный документ
+  components:
+    - type: Paper
+      content: delivery-DNA-complaint
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachinePaperNDA
+  name: Vending Machine
+  suffix: Fredik21, Недра
+  components:
+  - type: VendingMachine
+    pack: PaperInventoryNDA
+    offState: icon
+    brokenState: building
+    normalState: icon
+    ejectState: icon
+    denyState: icon
+    ejectDelay: 0.6
+  - type: Sprite
+    sprite: Imperial/DocumentPrinter/document_printer.rsi
+    layers:
+    - state: "icon"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "icon"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#c35522"
+
+- type: vendingMachineInventory
+  id: PaperInventoryNDA
+  startingInventory:
+    complaintNDA: 20
+    callSVTNDA: 20
+    MTFcallNDA: 20
+    CallO5NDA: 20
+    ChangingtheSitegoalNDA: 20
+    ReportGoalAchievementNDA: 20
+    ReportOnTheSiteSituationNDA: 20

@@ -464,6 +464,8 @@
     - type: NpcFactionMember
       factions:
       - Foundation
+    - type: TTSProvider
+      voice: sentrybot
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -739,14 +741,13 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCI
     id: SCPIDCardCI
-    ears: ClothingHeadsetSCPMain
+    ears: ClothingHeadsetSCPCI
     suitstorage: WeaponSubMachineGunC20r
     pocket1: MagazinePistolSubMachineGun
     pocket2: MagazinePistolSubMachineGun
   storage:
     back:
     - EncryptionKeyRadio1
-    - EncryptionKeyGanza
     - CIUplinkBase
     - BoxSurvivalNDA
 
@@ -782,3 +783,5 @@
   equipment:
     jumpsuit: ClothingJumpsuitClassD
     shoes: ClothingShoesSCP
+  inhand:
+  - PaperClassDNDA

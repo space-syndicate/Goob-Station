@@ -958,3 +958,18 @@ ent-VendingMachineSecNDAAlt = ОГК Тех Недр
 
 ent-WhistleNDA = Свисток Недр
     .desc = Быстрее остановите 953!
+
+ent-PaperClassDNDA = Руководство класса D
+    .desc = Быстрое описание того что вы мусор.
+
+ent-PaperEngNDA = СРП инженера зоны
+    .desc = Список того что вам требутся исполнять.
+
+ent-PaperMedNDA = СРП медика зоны
+    .desc = Список того что вам требутся исполнять.
+
+ent-VendingMachinePaperNDA = Принтер зоны
+    .desc = Почему он светится?
+
+ent-ClothingHeadsetSCPCI = Гарнитура ПХ
+    .desc = Да да?
