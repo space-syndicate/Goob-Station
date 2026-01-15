@@ -159,7 +159,7 @@
   suffix: seriozha, Недра
   components:
     - type: IdCard
-      jobIcon: JobIconSCP
+      jobIcon: JobIconCI
     - type: Access
       tags:
       - SCPAccesOne
@@ -283,4 +283,11 @@
   id: JobIconO5
   icon:
     sprite: /Textures/Imperial/Seriozha/SCP/id/icono5.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCI
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconCI.rsi
     state: icon
