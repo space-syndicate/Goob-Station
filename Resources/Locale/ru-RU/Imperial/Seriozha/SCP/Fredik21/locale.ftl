@@ -935,7 +935,7 @@ ent-PresetSCPMedicCI = Агент ПХ - Медик
 ent-titleNDA354 = алое озеро
     .desc = Выглядит кровавым
 
-ent-ulletPistolNDA = патрон (.35 пистолетный)
+ent-BulletPistolNDA = патрон (.35 пистолетный)
 
 ent-CartridgePistolNDA = патрон (.35 пистолетный)
 
@@ -948,13 +948,13 @@ ent-VendingMachineEngivendNDA = Инженерный Тех Недр
     .desc = Инженеры зоны берут тут изольки
 
 ent-VendingMachineMedicalNDA = Медицинский Тех Недр
-    .desc = Медики зоны берут тут медикоменты
+    .desc = Медики зоны берут тут медикаменты
 
 ent-VendingMachineSecNDA = ГПИ Тех Недр
     .desc = Оперативники ГПИ берут тут снаряжение
 
-ent-VendingMachineSecNDAAlt = ОКГ Тех Недр
-    .desc = Оперативники ОКГ берут тут снаряжение
+ent-VendingMachineSecNDAAlt = ОГК Тех Недр
+    .desc = Оперативники ОГК берут тут снаряжение
 
 ent-WhistleNDA = Свисток Недр
     .desc = Быстрее остановите 953!
