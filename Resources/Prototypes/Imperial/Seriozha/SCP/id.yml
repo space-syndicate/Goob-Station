@@ -74,6 +74,7 @@
       - SCPAccesOne
       - SCPAccesTwo
       - Medical
+      - Engineering
     - type: Sprite
       sprite: Imperial/Seriozha/SCP/id/two.rsi
       layers:

@@ -12158,7 +12158,7 @@
   - type: Gun
     minAngle: 2
     maxAngle: 16
-    fireRate: 10
+    fireRate: 7
     angleIncrease: 5
     angleDecay: 19
     selectedMode: FullAuto
@@ -12189,3 +12189,224 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSecNDA
+  name: SecTech
+  suffix: Fredik21, Недра
+  components:
+  - type: VendingMachine
+    pack: GPITechInventoryNDA
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/vending/nda.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["SCPAccesThree"]]
+  - type: PointLight
+    radius: 1
+    energy: 2.0
+    color: "#c35522"
+
+- type: vendingMachineInventory
+  id: GPITechInventoryNDA
+  startingInventory:
+    WhistleNDA: 5
+    GrenadeFlashBang: 4
+    TearGasGrenade: 4
+    ClusterBangFull: 2
+    GrenadeStinger: 4
+    Tourniquet: 5
+    Handcuffs: 6
+    WeaponTaser: 2
+    FlashlightSeclite: 5
+    ClothingBeltSecurityWebbing: 5
+    CombatKnife: 3
+    Zipties: 12
+    MagazinePistolRubber: 6
+    EncryptionKeyNedraconnection: 2
+    PaperSRPGPI: 5
+    HandheldStationMap: 5
+    NDACrowbar: 5
+  contrabandInventory:
+    WeaponMeleeNeedle: 2
+    FoodDonutHomer: 12
+    FoodBoxDonut: 2
+
+- type: soundCollection
+  id: BaseWhistleNDA
+  files:
+    - /Audio/Imperial/Seriozha/SCP/whistle_1.ogg
+    - /Audio/Imperial/Seriozha/SCP/whistle_2.ogg
+    - /Audio/Imperial/Seriozha/SCP/whistle_3.ogg
+
+- type: entity
+  parent: BaseWhistle
+  id: WhistleNDA
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/fun/whistle.rsi
+    state: sec
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/fun/whistle.rsi
+    equippedPrefix: sec
+  - type: EmitSoundOnUse
+    sound:
+      collection: BaseWhistleNDA
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSecNDAAlt
+  name: SecTech
+  suffix: Fredik21, Недра
+  components:
+  - type: VendingMachine
+    pack: GPITechInventoryNDAAlt
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/vending/ndaalt.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["SCPAccesThree"]]
+  - type: PointLight
+    radius: 1
+    energy: 2.0
+    color: "#c35522"
+
+- type: vendingMachineInventory
+  id: GPITechInventoryNDAAlt
+  startingInventory:
+    WhistleNDA: 5
+    GrenadeFlashBang: 4
+    TearGasGrenade: 4
+    ClusterBangFull: 2
+    GrenadeStinger: 4
+    Tourniquet: 10
+    SmokeGrenade: 3
+    CombatKnife: 8
+    p90-MagazineNDA: 6
+    EncryptionKeyNedraconnection: 2
+    PaperOGK: 5
+    HandheldStationMap: 5
+    NDACrowbar: 5
+  contrabandInventory:
+    WeaponMeleeNeedle: 2
+    FoodDonutHomer: 12
+    FoodBoxDonut: 2
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMedicalNDA
+  name: NanoMed Civilian
+  suffix: Fredik21, Недра
+  components:
+  - type: VendingMachine
+    pack: NanoMedPlusInventoryNDA
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+  - type: DatasetVocalizer
+    dataset: NanoMedAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/vending/med.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#c35522"
+
+- type: vendingMachineInventory
+  id: NanoMedPlusInventoryNDA
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    Gauze: 5
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    StandardHypospray: 5
+    Tourniquet: 2
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    Syringe: 5
+    BoxBottle: 3
+    PillCanisterTricordrazine: 3
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    SyringeIpecac: 1
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEngivendNDA
+  name: Engi-Vend
+  suffix: Fredik21, Недра
+  components:
+  - type: VendingMachine
+    pack: EngiVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/vending/eng.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Engineering"]]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#b89e2a"

@@ -943,3 +943,18 @@ ent-p90-MagazineNDA = магазин для ПП P90 (.35 авто)
 
 ent-CSWeaponP90NDA = P90
     .desc = Дорого, качественно, много пуль... много неудобств.
+
+ent-VendingMachineEngivendNDA = Инженерный Тех Недр
+    .desc = Инженеры зоны берут тут изольки
+
+ent-VendingMachineMedicalNDA = Медицинский Тех Недр
+    .desc = Медики зоны берут тут медикоменты
+
+ent-VendingMachineSecNDA = ГПИ Тех Недр
+    .desc = Оперативники ГПИ берут тут снаряжение
+
+ent-VendingMachineSecNDAAlt = ОКГ Тех Недр
+    .desc = Оперативники ОКГ берут тут снаряжение
+
+ent-WhistleNDA = Свисток Недр
+    .desc = Быстрее остановите 953!
