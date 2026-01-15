@@ -1,28 +1,23 @@
+using Content.Shared.Actions;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Tag;
+using Content.Shared.Projectiles;
+using Content.Shared.Popups;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Imperial.ImperialVehicle.Events;
 using Content.Shared.Imperial.ImperialVehicle.Enums;
 using Content.Shared.Imperial.ImperialVehicle.Components;
-using Content.Shared.Buckle.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Item;
-using Content.Shared.Movement.Pulling.Events;
-using Content.Shared.Tag;
-using Content.Shared.Standing;
-using Content.Shared.Traits.Assorted;
-using Content.Shared.Buckle;
 using Content.Shared.Inventory.VirtualItem;
-using Content.Shared.Popups;
 using Content.Shared.Hands;
-using Content.Shared.Projectiles;
-using Content.Shared.Actions;
-using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Foldable;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Map;
 using System.Numerics;
+using Content.Shared.Movement.Pulling.Systems;
 
 namespace Content.Shared.Imperial.ImperialVehicle;
 
@@ -38,27 +33,23 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    private static readonly ProtoId<TagPrototype> DoorBumpOpenerTag = "DoorBumpOpener";
-    public static readonly EntProtoId HornActionId = "ImperialActionHorn";
-
+    [Dependency] private readonly PullingSystem _pullingSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ImperialVehicleComponent, ComponentStartup>(OnVehicleStartup);
         SubscribeLocalEvent<ImperialVehicleComponent, MoveEvent>(OnMoveEvent);
-        SubscribeLocalEvent<ImperialVehicleComponent, StrapAttemptEvent>(OnStrapAttempt);
-        SubscribeLocalEvent<ImperialVehicleComponent, StrappedEvent>(OnStrapped);
-        SubscribeLocalEvent<ImperialVehicleComponent, UnstrappedEvent>(OnUnstrapped);
-        SubscribeLocalEvent<ImperialVehicleComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<ImperialVehicleComponent, PreventCollideEvent>(OnVehiclePreventCollide);
+        SubscribeLocalEvent<ImperialVehicleComponent, StrapAttemptEvent>(OnStrapAttempt);
+        SubscribeLocalEvent<ImperialVehicleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
+        SubscribeLocalEvent<ImperialVehicleComponent, UnstrappedEvent>(OnUnstrapped);
+        SubscribeLocalEvent<ImperialVehicleComponent, StrappedEvent>(OnStrapped);
+        SubscribeLocalEvent<ImperialVehicleComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<ImperialVehicleComponent, HornActionEvent>(OnHorn);
 
-        SubscribeLocalEvent<ImperialVehiclePilotComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
-        SubscribeLocalEvent<ImperialVehiclePilotComponent, MoveEvent>(OnPilotMove);
         SubscribeLocalEvent<ImperialVehiclePilotComponent, ContainerGettingInsertedAttemptEvent>(OnPilotInsertAttempt);
-        SubscribeLocalEvent<ImperialVehiclePilotComponent, ContainerIsInsertingAttemptEvent>(OnPilotInsertingAttempt);
+        SubscribeLocalEvent<ImperialVehiclePilotComponent, PreventCollideEvent>(OnPilotPreventCollide);
     }
 
     public override void Update(float frameTime)
@@ -69,13 +60,10 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
             if (vehicle.Rider == null)
                 continue;
 
-            CheckRiderDistance(uid, vehicle);
-
             if (!vehicle.AutoAnimate)
                 continue;
 
             var velocity = _mover.GetVelocityInput(mover);
-
             if (velocity.Sprinting == Vector2.Zero)
             {
                 UpdateAutoAnimate(uid, false);
@@ -84,6 +72,36 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
 
             UpdateAutoAnimate(uid, true);
         }
+    }
+
+    private void OnVehicleStartup(EntityUid uid, ImperialVehicleComponent component, ComponentStartup args)
+    {
+        UpdateDrawDepth(uid, 2);
+
+        if (TryComp<StrapComponent>(uid, out var strap))
+        {
+            component.BaseBuckleOffset = strap.BuckleOffset;
+        }
+
+        _modifier.RefreshMovementSpeedModifiers(uid);
+    }
+
+    private void OnMoveEvent(EntityUid uid, ImperialVehicleComponent component, ref MoveEvent args)
+    {
+        if (args.NewRotation == args.OldRotation)
+            return;
+
+        if (component.Rider != null)
+            _transform.SetLocalRotation(component.Rider.Value, Angle.Zero);
+
+        if (component.AutoAnimate && !HasComp<InputMoverComponent>(uid))
+        {
+            UpdateAutoAnimate(uid, false);
+            return;
+        }
+
+        if (TryComp<InputMoverComponent>(uid, out var _))
+            UpdateDrawDepth(uid, GetDrawDepth(args.Component, component));
     }
 
     private void OnVehiclePreventCollide(EntityUid uid, ImperialVehicleComponent component, ref PreventCollideEvent args)
@@ -113,23 +131,11 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
             return;
         }
 
-        if (TryComp<FoldableComponent>(uid, out var foldableComp))
+        if (TryComp<FoldableComponent>(uid, out var foldableComp) && foldableComp.IsFolded)
         {
-            if (foldableComp.IsFolded)
-                return;
+            args.Cancelled = true;
+            return;
         }
-
-        if (component.UseHand)
-        {
-            if (!_virtualItemSystem.TrySpawnVirtualItemInHand(uid, args.Buckle.Owner))
-            {
-                args.Cancelled = true;
-                _virtualItemSystem.DeleteInHandsMatching(args.Buckle.Owner, uid);
-                return;
-            }
-        }
-
-        AddHorns(args.Buckle.Owner, uid);
 
         args.Cancelled = false;
     }
@@ -143,54 +149,37 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         component.LastRider = component.Rider;
         Dirty(uid, component);
 
+        if (component.UseHand)
+        {
+            if (!_virtualItemSystem.TrySpawnVirtualItemInHand(uid, args.Buckle.Owner))
+            {
+                _virtualItemSystem.DeleteInHandsMatching(args.Buckle.Owner, uid);
+                return;
+            }
+        }
+
+        AddHorns(args.Buckle.Owner, uid);
+
         SetupRider(uid, args.Buckle.Owner, component);
+    }
+
+    private void OnUnstrapAttempt(EntityUid uid, ImperialVehicleComponent component, ref UnstrapAttemptEvent args)
+    {
+        _virtualItemSystem.DeleteInHandsMatching(args.Buckle.Owner, uid);
+
+        RemoveRider(uid, args.Buckle.Owner, component);
     }
 
     private void OnUnstrapped(EntityUid uid, ImperialVehicleComponent component, ref UnstrappedEvent args)
     {
-        if (component.Rider != args.Buckle.Owner)
-            return;
+        _virtualItemSystem.DeleteInHandsMatching(args.Buckle.Owner, uid);
 
         RemoveRider(uid, args.Buckle.Owner, component);
     }
 
     private void OnVirtualItemDeleted(EntityUid uid, ImperialVehicleComponent component, VirtualItemDeletedEvent args)
     {
-        if (component.Rider != args.User)
-            return;
-
-        _buckleSystem.TryUnbuckle(args.User, args.User);
         RemoveRider(uid, args.User, component);
-    }
-
-    private void OnVehicleStartup(EntityUid uid, ImperialVehicleComponent component, ComponentStartup args)
-    {
-        UpdateDrawDepth(uid, 2);
-
-        if (TryComp<StrapComponent>(uid, out var strap))
-        {
-            component.BaseBuckleOffset = strap.BuckleOffset;
-        }
-
-        _modifier.RefreshMovementSpeedModifiers(uid);
-    }
-
-    private void OnPilotInsertAttempt(EntityUid uid, ImperialVehiclePilotComponent pilotComponent, ContainerGettingInsertedAttemptEvent args)
-    {
-        if (pilotComponent.Vehicle != null && args.Container.Owner != pilotComponent.Vehicle)
-        {
-            args.Cancel();
-            _popup.PopupEntity(Loc.GetString("imperial-vehicle-cannot-insert-pilot"), uid, uid);
-        }
-    }
-
-    private void OnPilotInsertingAttempt(EntityUid uid, ImperialVehiclePilotComponent pilotComponent, ContainerIsInsertingAttemptEvent args)
-    {
-        // Additional check at the insertion stage
-        if (pilotComponent.Vehicle != null && args.Container.Owner != pilotComponent.Vehicle)
-        {
-            args.Cancel();
-        }
     }
 
     private void OnHorn(EntityUid uid, ImperialVehicleComponent component, HornActionEvent args)
@@ -208,45 +197,46 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnGettingPickedUpAttempt(EntityUid uid, ImperialVehiclePilotComponent component, GettingPickedUpAttemptEvent args)
+
+    /// <summary>
+    /// To avoid the problem where the user can operate the vehicle from
+    /// a cabinet/trash can and other similar containers.
+    /// </summary>
+    private void OnPilotInsertAttempt(EntityUid uid, ImperialVehiclePilotComponent pilotComponent, ContainerGettingInsertedAttemptEvent args)
     {
-        if (component.Vehicle == null || component.Vehicle == args.User)
-            return;
-
-        args.Cancel();
-    }
-
-    private void OnMoveEvent(EntityUid uid, ImperialVehicleComponent component, ref MoveEvent args)
-    {
-        if (args.NewRotation == args.OldRotation)
-            return;
-
-        if (component.Rider != null)
-            _transform.SetLocalRotation(component.Rider.Value, Angle.Zero);
-
-        if (component.AutoAnimate && !HasComp<InputMoverComponent>(uid))
+        if (pilotComponent.Vehicle != null && args.Container.Owner != pilotComponent.Vehicle)
         {
-            UpdateAutoAnimate(uid, false);
-            return;
-        }
-
-        if (TryComp<InputMoverComponent>(uid, out var mover))
-            UpdateDrawDepth(uid, GetDrawDepth(args.Component, component));
-    }
-
-    private void OnPilotMove(EntityUid uid, ImperialVehiclePilotComponent pilotComponent, ref MoveEvent args)
-    {
-        if (pilotComponent.Vehicle != null &&
-            TryComp<TransformComponent>(pilotComponent.Vehicle, out var vehicleXform))
-        {
-            _transform.SetWorldPosition(uid, vehicleXform.WorldPosition);
-            _transform.SetWorldRotation(uid, vehicleXform.WorldRotation);
+            args.Cancel();
+            _popup.PopupEntity(Loc.GetString("imperial-vehicle-cannot-insert-pilot"), uid, uid);
         }
     }
 
-    private void SetupRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent component)
+    /// <summary>
+    /// Blocking attempts by external systems to move the pilot
+    /// independently from the transport using Collide
+    /// </summary>
+    private void OnPilotPreventCollide(EntityUid uid, ImperialVehiclePilotComponent component, ref PreventCollideEvent args)
+    {
+        if (HasComp<ProjectileComponent>(args.OtherEntity))
+        {
+            args.Cancelled = false;
+            return;
+        }
+
+        args.Cancelled = true;
+    }
+
+
+    public void SetupRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent component)
     {
         EnsureComp<InputMoverComponent>(vehicleUid);
+
+        if (TryComp<PullableComponent>(riderUid, out var pullable))
+        {
+            _pullingSystem.TryStopPull(riderUid, pullable);
+        }
+
+        RemComp<PullableComponent>(riderUid);
 
         if (TryComp<MovementSpeedModifierComponent>(vehicleUid, out var vehicleSpeedMod))
         {
@@ -272,42 +262,36 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         component.LastRider = component.Rider;
         Dirty(vehicleUid, component);
 
+        _transform.SetParent(riderUid, vehicleUid);
         _mover.SetRelay(riderUid, vehicleUid);
 
-        var riderXform = Transform(riderUid);
-        riderXform.AttachParent(vehicleUid);
-        riderXform.LocalPosition = Vector2.Zero;
-        _transform.SetCoordinates(riderUid, new EntityCoordinates(vehicleUid, Vector2.Zero));
-
-        Appearance.SetData(vehicleUid, VehicleVisuals.HideRider, component.HideRider);
+        _transform.SetLocalPosition(riderUid, Vector2.Zero);
+        _transform.SetLocalRotation(riderUid, Angle.Zero);
 
         if (TryComp<InputMoverComponent>(vehicleUid, out var mover))
         {
             UpdateDrawDepth(vehicleUid, GetDrawDepth(Transform(vehicleUid), component));
         }
 
-        _tagSystem.AddTag(vehicleUid, DoorBumpOpenerTag);
+        _tagSystem.AddTag(vehicleUid, component.DoorBumpOpenerTag);
 
         _modifier.RefreshMovementSpeedModifiers(vehicleUid);
         _modifier.RefreshMovementSpeedModifiers(riderUid);
     }
 
-    private void RemoveRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent component)
+    public void RemoveRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent component)
     {
-        var riderXform = Transform(riderUid);
-        var vehicleXform = Transform(vehicleUid);
+        if (component.Rider != riderUid)
+            return;
 
         RemComp<RelayInputMoverComponent>(riderUid);
 
-        riderXform.AttachToGridOrMap();
-        _transform.SetWorldPosition(riderUid, vehicleXform.WorldPosition);
-        _transform.SetWorldRotation(riderUid, vehicleXform.WorldRotation);
+        EnsureComp<PullableComponent>(riderUid);
 
-        RemComp<ImperialVehiclePilotComponent>(riderUid);
-        _tagSystem.RemoveTag(vehicleUid, DoorBumpOpenerTag);
+        _transform.AttachToGridOrMap(riderUid);
 
-        if (component.HornAction != null)
-            _actions.RemoveAction(riderUid, component.HornAction);
+        _transform.SetWorldPosition(riderUid, _transform.GetWorldPosition(vehicleUid));
+        _transform.SetWorldRotation(riderUid, _transform.GetWorldRotation(vehicleUid));
 
         if (TryComp<InputMoverComponent>(riderUid, out var inputMover))
         {
@@ -315,9 +299,18 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
             Dirty(riderUid, inputMover);
         }
 
+        RemComp<ImperialVehiclePilotComponent>(riderUid);
+
         Appearance.SetData(vehicleUid, VehicleVisuals.HideRider, false);
         component.Rider = null;
         Dirty(vehicleUid, component);
+
+        _tagSystem.RemoveTag(vehicleUid, component.DoorBumpOpenerTag);
+
+        if (component.HornAction != null)
+            _actions.RemoveAction(riderUid, component.HornAction);
+
+        _buckleSystem.TryUnbuckle(riderUid, riderUid);
     }
 
     private void AddHorns(EntityUid driver, EntityUid vehicle)
@@ -326,132 +319,7 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
             return;
 
         if (vehicleComp.HornSound != null)
-            _actions.AddAction(driver, ref vehicleComp.HornAction, HornActionId, vehicle);
+            _actions.AddAction(driver, ref vehicleComp.HornAction, vehicleComp.HornActionId, vehicle);
     }
-
-    private EntityUid? GetProjectileAttacker(EntityUid entity)
-    {
-        if (TryComp<ProjectileComponent>(entity, out var projectile))
-        {
-            return projectile.Shooter;
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// Set the draw depth for the sprite.
-    /// </summary>
-    private void UpdateDrawDepth(EntityUid uid, int drawDepth)
-    {
-        Appearance.SetData(uid, VehicleVisuals.DrawDepth, drawDepth);
-    }
-
-    /// <summary>
-    /// Set whether the vehicle's base layer is animating or not.
-    /// </summary>
-    private void UpdateAutoAnimate(EntityUid uid, bool autoAnimate)
-    {
-        Appearance.SetData(uid, VehicleVisuals.AutoAnimate, autoAnimate);
-    }
-
-    /// <summary>
-    /// Depending on which direction the vehicle is facing,
-    /// change its draw depth.
-    /// </summary>
-    private int GetDrawDepth(TransformComponent xform, ImperialVehicleComponent component)
-    {
-        var vehicleDirection = xform.LocalRotation.GetDir();
-
-        return vehicleDirection switch
-        {
-            Direction.North => component.NorthOver
-                ? (int)DrawDepth.DrawDepth.Doors
-                : (int)DrawDepth.DrawDepth.WallMountedItems,
-            Direction.South => component.SouthOver
-                ? (int)DrawDepth.DrawDepth.Doors
-                : (int)DrawDepth.DrawDepth.WallMountedItems,
-            Direction.West => component.WestOver
-                ? (int)DrawDepth.DrawDepth.Doors
-                : (int)DrawDepth.DrawDepth.WallMountedItems,
-            Direction.East => component.EastOver
-                ? (int)DrawDepth.DrawDepth.Doors
-                : (int)DrawDepth.DrawDepth.WallMountedItems,
-            _ => (int)DrawDepth.DrawDepth.WallMountedItems
-        };
-    }
-
-    /// <summary>
-    /// Avoids the driver being at a large distance from the stroller and being able to control it.
-    /// </summary>
-    private void CheckRiderDistance(EntityUid vehicleUid, ImperialVehicleComponent vehicleComponent)
-    {
-        {
-            if (vehicleComponent.Rider == null)
-                return;
-
-            var riderUid = vehicleComponent.Rider.Value;
-            var vehicleXform = Transform(vehicleUid);
-            var riderXform = Transform(riderUid);
-
-            var distance = (riderXform.WorldPosition - vehicleXform.WorldPosition).Length();
-            var distanceValid = distance <= vehicleComponent.MaxRiderDistance;
-
-            var parentValid = riderXform.ParentUid == vehicleUid;
-
-            var containerValid = !IsInForeignContainer(riderUid, vehicleUid);
-
-            if (!distanceValid || !parentValid || !containerValid)
-            {
-                ForceUnbuckleRider(vehicleUid, riderUid, vehicleComponent);
-            }
-        }
-    }
-
-    private bool IsInForeignContainer(EntityUid entity, EntityUid vehicle)
-    {
-        var containerManager = Comp<ContainerManagerComponent>(entity);
-        foreach (var container in containerManager.Containers.Values)
-        {
-            if (container.Contains(entity) && container.Owner != vehicle)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void ForceUnbuckleRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent vehicleComponent)
-    {
-        if (TryComp<InputMoverComponent>(riderUid, out var inputMover))
-        {
-            inputMover.CanMove = true;
-            Dirty(riderUid, inputMover);
-        }
-
-        _buckleSystem.TryUnbuckle(riderUid, riderUid);
-
-        var riderXform = Transform(riderUid);
-        var vehicleXform = Transform(vehicleUid);
-
-        riderXform.AttachToGridOrMap();
-
-        _transform.SetWorldPosition(riderUid, vehicleXform.WorldPosition);
-        _transform.SetWorldRotation(riderUid, vehicleXform.WorldRotation);
-
-        RemComp<RelayInputMoverComponent>(riderUid);
-        RemComp<ImperialVehiclePilotComponent>(riderUid);
-        _tagSystem.RemoveTag(vehicleUid, DoorBumpOpenerTag);
-
-        if (vehicleComponent.HornAction != null)
-            _actions.RemoveAction(riderUid, vehicleComponent.HornAction);
-
-        Appearance.SetData(vehicleUid, VehicleVisuals.HideRider, false);
-        vehicleComponent.Rider = null;
-        Dirty(vehicleUid, vehicleComponent);
-
-        _popup.PopupEntity(Loc.GetString("imperial-vehicle-distance-unbuckle"), riderUid, riderUid);
-    }
-
 }
 
