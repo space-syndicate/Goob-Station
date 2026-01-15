@@ -600,6 +600,15 @@
         params:
           loop: true
           stream: true
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.4
+          Slash: 0.4
+          Piercing: 0.4
+          Heat: 0.4
+          Radiation: 0.4
+          Caustic: 0.4
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitSyndie
@@ -751,6 +760,7 @@
     - Tourniquet
     - TelescopicShield
     - BoxSurvivalNDA
+    - ImperialUplinkNDA
 
 - type: entity
   id: BannerDevSCP
@@ -985,7 +995,7 @@
         coefficients:
           Blunt: 0.6
           Slash: 0.6
-          Piercing: 0.7
+          Piercing: 0.5
           Heat: 0.6
           Radiation: 0.6
           Caustic: 0.6
@@ -1064,6 +1074,7 @@
     - HandTeleporterSCPDeva
     - HandHeldMassScanner
     - BoxSurvivalNDA
+    - ImperialUplinkNDA
 
 - type: startingGear
   id: DevGearMedic
@@ -1099,6 +1110,7 @@
     - AmpulaDylo
     - HandTeleporterSCPDeva
     - BoxSurvivalNDA
+    - ImperialUplinkNDA
 
 - type: entity
   parent: BaseItem
@@ -12584,3 +12596,34 @@
     ChangingtheSitegoalNDA: 20
     ReportGoalAchievementNDA: 20
     ReportOnTheSiteSituationNDA: 20
+
+- type: entity
+  parent: BaseERTUplink
+  id: ImperialUplinkNDA
+  name: Терминал Империи
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 17
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-deva-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
