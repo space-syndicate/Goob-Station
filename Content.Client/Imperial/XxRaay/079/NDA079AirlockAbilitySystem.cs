@@ -6,6 +6,7 @@ using Robust.Client.Player;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.XxRaay.Nda079;
 
