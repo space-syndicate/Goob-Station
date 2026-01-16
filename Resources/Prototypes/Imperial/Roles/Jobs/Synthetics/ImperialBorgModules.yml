@@ -300,7 +300,7 @@
   id: WeaponDisablerBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
 
@@ -310,7 +310,7 @@
   id: StunbatonBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
 
@@ -322,16 +322,6 @@
   components:
   - type: AutoRecharge
     rechargeDuration: 20
-  - type: GenericVisualizer
-    visuals:
-      enum.FlashVisuals.Burnt:
-        enum.FlashVisuals.BaseLayer:
-          False: {state: burnt}
-      enum.FlashVisuals.Flashing:
-        enum.FlashVisuals.LightLayer:
-          True: {visible: true}
-          False: {visible: false}
-
 
 - type: entity
   id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга
@@ -534,7 +524,7 @@
   parent: WeaponTaser
   id: ErtBorgWeaponTaser
   components:
-    - type: BatterySelfRecharger
+    - type: PredictedBatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 15
 
@@ -559,7 +549,7 @@
   - type: Battery
     maxCharge: 200
     startingCharge: 200
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
 
@@ -569,7 +559,7 @@
   id: ErtBorgWeaponDisablerSMG
   description: Advanced borg weapon that exhausts organic targets, weakening them until they collapse.
   components:
-    - type: BatterySelfRecharger
+    - type: PredictedBatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 10
 
@@ -601,7 +591,7 @@
   - type: BatteryAmmoProvider
     proto: PulseDeathSquad
     fireCost: 200
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 45
   - type: Battery
@@ -672,7 +662,7 @@
   - type: Battery
     maxCharge: 35000
     startingCharge: 35000
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 200
   - type: AmmoCounter
@@ -1303,7 +1293,7 @@
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 150
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
   - type: MagazineVisuals
