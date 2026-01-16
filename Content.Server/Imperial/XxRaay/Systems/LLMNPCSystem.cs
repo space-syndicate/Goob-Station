@@ -19,6 +19,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.XxRaay.Components;
+using Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Speech;
@@ -306,24 +307,6 @@ public sealed class LLMNPCSystem : EntitySystem
         {
             component.IsGenerating = false;
         }
-    }
-
-    private sealed class GroqApiResponse
-    {
-        [JsonPropertyName("choices")]
-        public GroqApiChoice[]? Choices { get; set; }
-    }
-
-    private sealed class GroqApiChoice
-    {
-        [JsonPropertyName("message")]
-        public GroqApiMessage? Message { get; set; }
-    }
-
-    private sealed class GroqApiMessage
-    {
-        [JsonPropertyName("content")]
-        public string? Content { get; set; }
     }
 }
 

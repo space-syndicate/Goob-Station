@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.XxRaay.DataDefinitions;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
@@ -37,11 +38,5 @@ public sealed partial class LLMNPCComponent : Component
 
     [NonSerialized]
     public List<LLMMessageHistoryItem> MessageHistory = new();
-}
-
-public sealed class LLMMessageHistoryItem
-{
-    public string Role { get; set; } = "";
-    public string Content { get; set; } = "";
 }
 
