@@ -22,9 +22,9 @@ public sealed partial class RechargeShoulderRocketLauncherComponent : Component
         Params = AudioParams.Default.WithVolume(-5f)
     };
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField(customTypeSerializer:typeof(TimeOffsetSerializer)),
-    AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan? NextCharge;
 }

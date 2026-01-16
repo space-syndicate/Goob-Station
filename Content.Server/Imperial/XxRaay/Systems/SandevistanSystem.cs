@@ -62,7 +62,6 @@ public sealed class SandevistanSystem : EntitySystem
                 {
                     if (currentTime < component.CooldownEndTime.Value)
                     {
-                        var remaining = component.CooldownEndTime.Value - currentTime;
                         _actions.SetCooldown(component.ActionEntity, currentTime, component.CooldownEndTime.Value);
                     }
                     else if (action.Cooldown != null)
@@ -109,8 +108,7 @@ public sealed class SandevistanSystem : EntitySystem
         component.CooldownEndTime = cooldownEndTime;
         Dirty(uid, component);
 
-        var shadowComp = EnsureComp<PhaseSpaceShadowComponent>(uid);
-        Dirty(uid, shadowComp);
+        EnsureComp<PhaseSpaceShadowComponent>(uid);
 
         EnsureComp<MovementSpeedModifierComponent>(uid);
 
@@ -127,10 +125,7 @@ public sealed class SandevistanSystem : EntitySystem
         component.EffectEndTime = null;
         Dirty(uid, component);
 
-        if (HasComp<PhaseSpaceShadowComponent>(uid))
-        {
-            RemComp<PhaseSpaceShadowComponent>(uid);
-        }
+        RemComp<PhaseSpaceShadowComponent>(uid);
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }

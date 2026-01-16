@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Hands;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.TargetOverlay;
 using Content.Shared.Imperial.TargetOverlay.Events;
 using Content.Shared.Imperial.XxRaay.Components;

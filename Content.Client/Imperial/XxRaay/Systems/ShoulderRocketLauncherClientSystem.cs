@@ -1,9 +1,10 @@
 using Content.Client.Imperial.TargetOverlay;
+using Content.Client.Imperial.XxRaay.UI;
 using Content.Shared.Imperial.TargetOverlay;
 using Content.Shared.Imperial.TargetOverlay.Events;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Client.Weapons.Ranged.Systems;
-using Content.Client.Weapons.Ranged.ItemStatus;
+using Content.Client.Weapons.Ranged.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Client.Graphics;
@@ -39,13 +40,12 @@ public sealed class ShoulderRocketLauncherClientSystem : EntitySystem
         
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.UseSecondary, new PointerInputCmdHandler(OnMouseRightPressed))
-            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(OnMouseLeftPressed, outsidePrediction: true), typeof(Content.Client.Imperial.TargetOverlay.TargetOverlaySystem))
             .Register<ShoulderRocketLauncherClientSystem>();
     }
 
     private void OnAfterAutoHandleState(EntityUid uid, ShoulderRocketLauncherComponent component, ref AfterAutoHandleStateEvent args)
     {
-        if (TryComp<Content.Client.Weapons.Ranged.Components.AmmoCounterComponent>(uid, out var ammoCounter) && ammoCounter.Control != null)
+        if (TryComp<AmmoCounterComponent>(uid, out var ammoCounter) && ammoCounter.Control != null)
         {
             var ev = new GunSystem.UpdateAmmoCounterEvent()
             {
@@ -66,63 +66,6 @@ public sealed class ShoulderRocketLauncherClientSystem : EntitySystem
         {
             control.Update(component.Charges, component.MaxCharges);
         }
-    }
-
-    private sealed class RocketLauncherStatusControl : Control
-    {
-        private readonly BulletRender _bulletRender;
-
-        public RocketLauncherStatusControl()
-        {
-            MinHeight = 15;
-            HorizontalExpand = true;
-            VerticalAlignment = VAlignment.Center;
-            AddChild(_bulletRender = new BulletRender
-            {
-                HorizontalAlignment = HAlignment.Right,
-                VerticalAlignment = VAlignment.Bottom
-            });
-        }
-
-        public void Update(int count, int capacity)
-        {
-            _bulletRender.Count = count;
-            _bulletRender.Capacity = capacity;
-
-            _bulletRender.Type = capacity switch
-            {
-                > 50 => BulletRender.BulletType.Tiny,
-                > 15 => BulletRender.BulletType.Normal,
-                _ => BulletRender.BulletType.Large
-            };
-        }
-    }
-
-    private bool OnMouseLeftPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)
-    {
-        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player))
-            return false;
-
-        if (!TryComp<TargetOverlayComponent>(player, out var targetOverlayComponent))
-            return false;
-
-        if (targetOverlayComponent.Sender == null)
-            return false;
-
-        if (!HasComp<ShoulderRocketLauncherComponent>(targetOverlayComponent.Sender.Value))
-            return false;
-
-        if (!_overlayManager.TryGetOverlay<Content.Client.Imperial.TargetOverlay.TargetOverlay>(out var overlay))
-            return true;
-
-        RaiseNetworkEvent(new TargetOverlayShootEvent()
-        {
-            Performer = GetNetEntity(player),
-            Sender = targetOverlayComponent.Sender.HasValue ? GetNetEntity(targetOverlayComponent.Sender) : null,
-            Targets = overlay.Targets.Select(el => (el.CursorPosition, GetNetEntity(el.Target))).ToList()
-        });
-
-        return true;
     }
 
     private bool OnMouseRightPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)
