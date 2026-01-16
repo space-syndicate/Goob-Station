@@ -32,9 +32,6 @@
   - type: Item
     size: Normal
     sprite: Imperial/Gases/Phazonium/tank.rsi
-  - type: Tag
-    tags:
-    - GasTank
   - type: Clothing
     quickEquip: false
     sprite: Imperial/Gases/Phazonium/tank.rsi

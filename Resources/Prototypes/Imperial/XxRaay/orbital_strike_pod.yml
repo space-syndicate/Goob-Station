@@ -1,0 +1,76 @@
+- type: entity
+  id: orbital_strike_pod_base
+  abstract: true
+  parent: supplypod_base
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: orbital_strike_pod_spawn
+  name: orbital strike pod
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 3.75
+  - type: SpawnOnTrigger
+    proto: orbital_strike_pod_warning_marker
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+    drawdepth: FloorObjects
+  - type: Marker
+
+- type: entity
+  id: orbital_strike_pod_warning_marker
+  parent: orbital_strike_pod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/pods/marker.rsi
+    state: marker_ping
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 1.75
+  - type: SpawnOnTrigger
+    proto: orbital_strike_pod_warning_sound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: orbital_strike_pod_marker_ready
+
+- type: entity
+  id: orbital_strike_pod_marker_ready
+  parent: orbital_strike_pod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/pods/marker.rsi
+    state: marker
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger
+    proto: orbital_strike_pod_landing_animation
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: orbital_strike_pod_warning_sound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Imperial/XxRaay/pods/supplypodlandig.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: orbital_strike_pod_landing_animation
+  parent: orbital_strike_pod_base
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/pods/landingpod.rsi
+    state: landing
+    offset: -1.7, 4.3
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 1.8

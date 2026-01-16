@@ -1,0 +1,6 @@
+- type: nrpIcon
+  id: NRPIcon
+  icon:
+    sprite: /Textures/Imperial/Medieval/Effects/curse.rsi
+    state: curse
+  locationPreference: Left

@@ -55,10 +55,10 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Imperial/StarWars/blaster.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LaserRedAutoPistol
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: MagazineVisuals
@@ -75,20 +75,24 @@
     maxCharge: 1000
     startingCharge: 1000
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: LaserRedAutoPistol
-  damage:
-    types:
-      Heat: 7
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_laser
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 7
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_laser
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_laser
 
 - type: entity
   id: MagazineGrenadeStation

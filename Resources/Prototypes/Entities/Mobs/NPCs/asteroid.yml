@@ -331,6 +331,8 @@
   - type: Tag
     tags:
     - HivelordRemains
+    - Meat
+    - Raw
 
 - type: entity
   id: FoodHivelordRemainsInert
@@ -350,7 +352,8 @@
   - type: Tag
     tags:
     - HivelordRemains
-
+    - Meat
+    - Raw
 
 - type: entity
   id: MobBasilisk
@@ -425,3 +428,93 @@
     - id: DiamondOre1
       amount: 1
       maxAmount: 3
+
+# Imperial Space: A new Phantomor mob has been added. Start
+- type: entity
+  parent: [BaseMobAsteroid, MobBloodstream]
+  id: MobPhantomor
+  name: Phantomor
+  description: A dangerous predator that uses teleportation to attack from the back.
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/phantomor.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.00
+    baseSprintSpeed: 2.00
+  - type: Bloodstream
+    bloodMaxVolume: 350
+    chemicalMaxVolume: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    attackRate: 0.5
+    damage:
+      types:
+        Piercing: 12
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        10
+      AggroVisionRadius: !type:Single
+        15
+      NavSmash: !type:Bool
+        true
+  - type: NPCUseActionOnTarget
+    actionId: ActionPhantomorTentacle
+  - type: NoSlip
+  - type: Butcherable
+    spawned:
+    - id: FoodHivelordPhantomor
+      amount: 1
+
+- type: entity
+  id: FoodHivelordPhantomor
+  parent: FoodBase
+  name: bone phantomor
+  description: A bone left over from the collapse of the phantomore. Surprisingly light, as if soaked in the residual energy of teleportation
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/phantomor.rsi
+    state: phantomor_meat
+  - type: Item
+    size: Normal
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseAction
+  id: ActionPhantomorTentacle
+  name: "[color=red]Teleportation to the target[/color]"
+  description: Teleport to your target.
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    event: !type:PhantomorSummonTentacleAction
+# Imperial Space: A new Phantomor mob has been added. End

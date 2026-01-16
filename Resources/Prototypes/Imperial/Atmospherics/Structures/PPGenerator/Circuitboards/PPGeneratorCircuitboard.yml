@@ -1,0 +1,13 @@
+- type: entity
+  id: PPGCenterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: phase particle generator board
+  description: A printed circuit board for a phase particle generator.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: PPGCenter
+    stackRequirements:
+      Manipulator: 2
+      Steel: 10

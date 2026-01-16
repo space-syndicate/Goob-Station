@@ -7,6 +7,7 @@ using Content.Shared.Climbing.Events;
 using Content.Shared.Contraband;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Electrocution;
 using Content.Shared.Emoting;
 using Content.Shared.Explosion;
@@ -28,9 +29,6 @@ using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
-// stamina resistance begin
-using Content.Shared.Damage.Events;
-// stamina resistance end
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Zombies;

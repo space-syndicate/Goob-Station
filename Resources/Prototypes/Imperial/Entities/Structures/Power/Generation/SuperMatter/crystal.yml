@@ -55,8 +55,6 @@
       follow: true
       location: supermatter
     - type: SupermatterTouch
-    - type: Damageable
-      damageContainer: StructuralInorganic
     - type: SupermatterIntegrity
       tickDamage:
         types:
@@ -67,3 +65,30 @@
       - SupermatterEngine
       - Power
 
+- type: entity
+  id: SupermatterShutdownCrystal
+  parent: BaseItem
+  name: supermatter shutdown crystal
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/shutdownCrystal.rsi
+    state: shutdownCrystal
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - SupermatterStop
+  - type: RadiationSource
+    intensity: 0.5
+  - type: StaticPrice
+    price: 17000
+
+- type: entity
+  id: CrateSupermatterShutdownCrystal
+  parent: CrateEngineeringSecure
+  name: supermatter shutdown crystal crate
+  description: Crystal, powerful enough to shutdown the supermatter.
+  components:
+  - type: StorageFill
+    contents:
+    - id: SupermatterShutdownCrystal

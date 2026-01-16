@@ -31,8 +31,8 @@
         ejectOnInteract: true
         whitelist:
           components:
-          - HitscanBatteryAmmoProvider
-          - ProjectileBatteryAmmoProvider
+          - BatteryAmmoProvider
+          - BatteryAmmoProvider
         blacklist:
           tags:
           - OnlyMaterialEnergy

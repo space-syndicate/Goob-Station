@@ -2,7 +2,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Botany.Components;
 using Content.Server.Imperial.PlantsAnalyzer.Components;
-using Content.Server.PowerCell;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -14,6 +13,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared.PowerCell;
 
 namespace Content.Server.Imperial.PlantsAnalyzer;
 
@@ -69,7 +69,7 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
 
     private void OnAfterInteract(Entity<PlantsAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !HasComp<PlantHolderComponent>(args.Target) || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Target == null || !args.CanReach || !HasComp<PlantHolderComponent>(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
@@ -86,7 +86,7 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
 
     private void OnDoAfter(Entity<PlantsAnalyzerComponent> uid, ref PlantsAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)

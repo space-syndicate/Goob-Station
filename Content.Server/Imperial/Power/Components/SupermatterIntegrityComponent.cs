@@ -3,6 +3,7 @@ using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Content.Shared.Explosion;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Power.Components;
 
@@ -96,6 +97,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// <summary>
     /// Активна ли катастрофа
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool CatastropheActive = false;
 
     /// <summary>
@@ -137,6 +139,18 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public ProtoId<TagPrototype> HealTag = "EmitterBolt";
 
     /// <summary>
+    /// Тег, прототипы которые могут остановить Суперматерию
+    /// </summary>
+    [DataField]
+    public ProtoId<TagPrototype> SupermatterStopTag = "SupermatterStop";
+
+    /// <summary>
+    /// Звук остановки Суперматерии
+    /// </summary>
+    [DataField]
+    public SoundPathSpecifier ShutdownSoundPath = new("/Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg");
+
+    /// <summary>
     /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
     /// </summary>
     [DataField]
@@ -152,7 +166,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// Общая интенсивность взрыва при катастрофе.
     /// </summary>
     [DataField]
-    public float CatastropheTotalIntensity = 20000f;
+    public float CatastropheTotalIntensity = 2500f;
 
     /// <summary>
     /// Крутизна спадания интенсивности взрыва.
@@ -164,7 +178,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     /// Максимальная интенсивность на тайле для взрыва.
     /// </summary>
     [DataField]
-    public float CatastropheMaxTileIntensity = 70f;
+    public float CatastropheMaxTileIntensity = 35f;
 
     /// <summary>
     /// Интервал между молниями во время катастрофы
