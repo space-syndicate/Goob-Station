@@ -26,7 +26,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
   - type: BatteryAmmoProvider
