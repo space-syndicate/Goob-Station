@@ -201,7 +201,7 @@ ent-FelixXenoPylonDecor = пилон
 ent-FelixXenoRecoDecor = восстановитель
     .desc = Мерзкая структура ксеноморфов.
 
-ent-FelixWeaponQuroMachineGun = пулемёт "Куро"
+ent-FelixWeaponQuroMachineGun = Тяжелый Пулемет "Магистр"
     .desc = Пулемёт с боезапасом 125 патронов. Использует патроны 7x62x51.
 
 ent-PoweredStrobeLightRedHigh = стробоскоп
