@@ -11,9 +11,9 @@ public sealed class ShowShieldEffectEvent : EntityEventArgs
     /// </summary>
     public bool Loop;
     public NetEntity Uid;
-    public SpriteSpecifier EffectDecay;
+    public SpriteSpecifier? EffectDecay;
 
-    public ShowShieldEffectEvent(NetEntity uid, SpriteSpecifier effectDecay, bool loop)
+    public ShowShieldEffectEvent(NetEntity uid, SpriteSpecifier? effectDecay, bool loop)
     {
         Uid = uid;
         EffectDecay = effectDecay;

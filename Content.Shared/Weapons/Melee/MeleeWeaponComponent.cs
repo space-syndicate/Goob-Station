@@ -119,7 +119,7 @@ public sealed partial class MeleeWeaponComponent : Component
     /// <summary>
     /// If true, the user will be able to attack with a heavy attack.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool CanHeavyAttack = true;
     // Imperial "UpdateMiningWeapons" End
 

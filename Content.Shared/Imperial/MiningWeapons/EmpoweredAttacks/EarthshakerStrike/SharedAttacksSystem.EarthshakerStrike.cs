@@ -27,7 +27,7 @@ public abstract partial class SharedAttacksSystem
         if (!comp.Item.HasValue)
             return;
 
-        if (!IsItemWielded(comp.Item.Value))
+        if (!_miningWeaponsHelpers.IsItemWielded(comp.Item.Value))
         {
             ItemWieldedCancelled(user);
             return;
@@ -41,8 +41,11 @@ public abstract partial class SharedAttacksSystem
         }
         else
         {
-            _audio.PlayPvs(comp.CompletedSound, user);
-            Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
+            if (_net.IsServer)
+            {
+                _audio.PlayPvs(comp.CompletedSound, user);
+                Spawn(comp.EarthshakerRiftSpawnPrototype, user.ToCoordinates());
+            }
         }
 
         args.Handled = true;
@@ -82,7 +85,7 @@ public abstract partial class SharedAttacksSystem
         args.Handled = true;
     }
 
-    private void OnEquippedEarthshakerStrike(EntityUid uid, EarthshakerStrikeComponent comp, EquippedHandEvent args)
+    private void OnEquippedEarthshakerStrike(EntityUid uid, EarthshakerStrikeComponent comp, GotEquippedHandEvent args)
     {
         _action.AddAction(args.User, ref comp.Action, comp.ActionEarthshakerStrike);
 
@@ -100,7 +103,7 @@ public abstract partial class SharedAttacksSystem
         comp.User = args.User;
     }
 
-    private void OnUnequippedEarthshakerStrike(EntityUid uid, EarthshakerStrikeComponent comp, UnequippedHandEvent args)
+    private void OnUnequippedEarthshakerStrike(EntityUid uid, EarthshakerStrikeComponent comp, GotUnequippedHandEvent args)
     {
         if (comp.Action != null)
         {

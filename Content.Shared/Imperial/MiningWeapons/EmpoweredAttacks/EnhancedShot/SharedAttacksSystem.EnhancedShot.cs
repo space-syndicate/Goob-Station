@@ -31,7 +31,7 @@ public abstract partial class SharedAttacksSystem
         if (!userComp.Item.HasValue)
             return;
 
-        if (!IsItemWielded(userComp.Item.Value))
+        if (!_miningWeaponsHelpers.IsItemWielded(userComp.Item.Value))
         {
             ItemWieldedCancelled(user);
             return;

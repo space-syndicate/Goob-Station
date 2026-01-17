@@ -19,11 +19,11 @@ public sealed partial class EnhancedShotComponent : Component
     [ViewVariables, DataField]
     public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Imperial/MiningWeapons/EmpoweredAttacks/EnhancedShot/charging_shot.ogg");
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ActionEnhancedShot = "ActionEnhancedShot";
+    [DataField, ViewVariables]
+    public EntProtoId ActionEnhancedShot = "ActionEnhancedShot";
 
     [DataField, ViewVariables]
-    public string ProjectilePrototype = "EnhancedShotProjectile";
+    public EntProtoId ProjectilePrototype = "EnhancedShotProjectile";
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool HasDoAfter = true;

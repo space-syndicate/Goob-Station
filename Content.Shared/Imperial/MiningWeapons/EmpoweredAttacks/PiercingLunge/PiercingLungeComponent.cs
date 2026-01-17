@@ -13,7 +13,7 @@ public sealed partial class PiercingLungeComponent : Component
     public bool HasDoAfter = true;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float DoAfterTime = 1.5f;
+    public TimeSpan DoAfterTime = TimeSpan.FromSeconds(1.5f);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float LungeStrength = 7f;
@@ -46,8 +46,8 @@ public sealed partial class PiercingLungeComponent : Component
     [ViewVariables, DataField]
     public SoundSpecifier CompletedSound = new SoundPathSpecifier("/Audio/Imperial/MiningWeapons/EmpoweredAttacks/piercing_lunge.ogg");
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ActionPiercingLunge = "ActionPiercingLunge";
+    [DataField, ViewVariables]
+    public EntProtoId ActionPiercingLunge = "ActionPiercingLunge";
 
 
     [DataField, ViewVariables]
@@ -64,7 +64,7 @@ public sealed partial class PiercingLungeComponent : Component
     /// Only tracks sprint time
     /// </summary>
     [ViewVariables]
-    public float LungeAccumulator = 0f;
+    public TimeSpan LungeAccumulator = TimeSpan.Zero;
 
     [ViewVariables]
     public bool IsLunging = false;

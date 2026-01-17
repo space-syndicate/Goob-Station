@@ -1,4 +1,5 @@
 using Content.Shared.Coordinates;
+using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.Damage;
 using Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks.PiercingLunge;
@@ -6,14 +7,20 @@ using Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks.PiercingLunge.Event
 using Content.Shared.Stunnable;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks;
 
 public abstract partial class SharedAttacksSystem
 {
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+
     private void InitializePiercingLunge()
     {
         SubscribeLocalEvent<UserPiercingLungeComponent, PiercingLungeEvent>(OnPiercingLunge);
+        SubscribeLocalEvent<UserPiercingLungeComponent, StartCollideEvent>(OnStartCollide);
 
         SubscribeLocalEvent<PiercingLungeComponent, PiercingLungeDoAfterEvent>(OnPiercingLungeDoAfter);
         SubscribeLocalEvent<PiercingLungeComponent, GotEquippedHandEvent>(OnEquippedPiercingLunge);
@@ -21,6 +28,14 @@ public abstract partial class SharedAttacksSystem
         SubscribeLocalEvent<PiercingLungeComponent, ComponentShutdown>(OnPiercingLungeShutdown);
     }
 
+    private void OnStartCollide(EntityUid user, UserPiercingLungeComponent userComp, StartCollideEvent args)
+    {
+        if (!userComp.CanDamage)
+            return;
+
+        if (userComp.Damage != null)
+            _damageable.TryChangeDamage(args.OtherEntity, userComp.Damage, interruptsDoAfters: false);
+    }
 
     private void OnPiercingLunge(EntityUid user, UserPiercingLungeComponent userComp, ref PiercingLungeEvent args)
     {
@@ -30,7 +45,7 @@ public abstract partial class SharedAttacksSystem
         if (!userComp.Item.HasValue)
             return;
 
-        if (!IsItemWielded(userComp.Item.Value))
+        if (!_miningWeaponsHelpers.IsItemWielded(userComp.Item.Value))
         {
             ItemWieldedCancelled(user);
             return;
@@ -42,7 +57,7 @@ public abstract partial class SharedAttacksSystem
             return;
 
         var userPos = _transform.GetWorldPosition(userXform);
-        userComp.Direction = (targetMap.Position - userPos).Normalized();
+        userComp.Direction = ((targetMap.Position - userPos).Normalized()).ToAngle();
 
         var coords = userComp.Item.Value.ToCoordinates();
         if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
@@ -59,14 +74,14 @@ public abstract partial class SharedAttacksSystem
 
         if (userComp.HasDoAfter)
         {
-            if (!StartDoAfter(user, userComp.Item.Value, userComp.DoAfterTime, new PiercingLungeDoAfterEvent()))
+            if (!StartDoAfter(user, userComp.Item.Value, (float)userComp.DoAfterTime.TotalSeconds, new PiercingLungeDoAfterEvent()))
                 return;
         }
         else
         {
             if (TryComp<PiercingLungeComponent>(userComp.Item.Value, out var comp))
             {
-                comp.Direction = userComp.Direction;
+                comp.Direction = userComp.Direction.ToVec();
                 PiercingLunge(userComp.Item.Value, user, comp);
             }
         }
@@ -93,7 +108,7 @@ public abstract partial class SharedAttacksSystem
 
         if (TryComp<UserPiercingLungeComponent>(comp.User.Value, out var userComp))
         {
-            comp.Direction = userComp.Direction;
+            comp.Direction = userComp.Direction.ToVec();
             PiercingLunge(uid, comp.User.Value, comp);
         }
 
@@ -108,6 +123,7 @@ public abstract partial class SharedAttacksSystem
             _action.StartUseDelay(comp.Action.Value);
 
         var userComp = EnsureComp<UserPiercingLungeComponent>(args.User);
+        userComp.Damage = comp.Damage;
         userComp.DoAfterTime = comp.DoAfterTime;
         userComp.HasDoAfter = comp.HasDoAfter;
         userComp.Item = uid;
@@ -128,16 +144,15 @@ public abstract partial class SharedAttacksSystem
 
     private void OnPiercingLungeShutdown(EntityUid uid, PiercingLungeComponent comp, ComponentShutdown args)
     {
-        if (comp.User.HasValue && comp.IsInEffect)
-            RemoveContactComponents(comp.User.Value);
+        if (!comp.User.HasValue)
+            return;
 
         if (comp.Action != null && TryComp(uid, out TransformComponent? transform) &&
             transform.ParentUid.IsValid())
         {
             _action.RemoveAction(transform.ParentUid, comp.Action.Value);
 
-            if (comp.User.HasValue)
-                RemComp<UserPiercingLungeComponent>(comp.User.Value);
+            RemComp<UserPiercingLungeComponent>(comp.User.Value);
         }
     }
 
@@ -146,19 +161,19 @@ public abstract partial class SharedAttacksSystem
         if (!TryComp<PhysicsComponent>(user, out var physics))
             return;
 
+        comp.IsInEffect = true;
         comp.IsLunging = true;
-        comp.LungeAccumulator = 0f;
+        comp.LungeAccumulator = TimeSpan.Zero;
 
         _stun.TryAddStunDuration(user, comp.StunTime);
 
-        if (IsItemWielded(item))
+        if (_miningWeaponsHelpers.IsItemWielded(item))
             _physics.SetLinearVelocity(user, comp.Direction * comp.InitialLungeStrength, body: physics);
         else
             _physics.SetLinearVelocity(user, comp.Direction * comp.InitialLungeStrength / 2, body: physics);
 
-        EnsureComp<StunOnContactComponent>(user);
-        var damageContacts = EnsureComp<ImperialDamageOnCollideComponent>(user);
-        damageContacts.Damage = comp.Damage;
+        if (TryComp<UserPiercingLungeComponent>(user, out var userComp))
+            userComp.CanDamage = true;
 
         _audio.PlayPvs(comp.CompletedSound, user);
     }
@@ -174,42 +189,35 @@ public abstract partial class SharedAttacksSystem
             if (!comp.IsLunging)
                 continue;
 
-            comp.LungeAccumulator += frameTime;
+            var user = comp.User.Value;
+            comp.LungeAccumulator += _gameTiming.FrameTime;
 
-            if (comp.LungeAccumulator <= comp.LungeDuration)
+            if (comp.LungeAccumulator <= TimeSpan.FromSeconds(comp.LungeDuration))
             {
-                if (!TryComp<PhysicsComponent>(comp.User.Value, out var physics))
+                if (!TryComp<PhysicsComponent>(user, out var physics))
                     continue;
 
-                var progress = comp.LungeAccumulator / comp.LungeDuration;
+                double progress = comp.LungeAccumulator.TotalSeconds / comp.LungeDuration;
                 var easedProgress = (float)Math.Sin(progress * Math.PI * 0.5f);
                 var currentStrength = MathHelper.Lerp(comp.InitialLungeStrength, comp.FinalLungeStrength, easedProgress);
 
-                _physics.SetLinearVelocity(comp.User.Value, comp.Direction * currentStrength, body: physics);
+                _physics.SetLinearVelocity(user, comp.Direction * currentStrength, body: physics);
             }
             else
             {
                 comp.IsLunging = false;
-                comp.LungeAccumulator = 0f;
+                comp.LungeAccumulator = TimeSpan.Zero;
 
-                RemoveContactComponents(comp.User.Value);
+                if (TryComp<UserPiercingLungeComponent>(user, out var userComp))
+                    userComp.CanDamage = false;
 
-                if (TryComp<PhysicsComponent>(comp.User.Value, out var physics))
+                if (TryComp<PhysicsComponent>(user, out var physics))
                 {
                     var currentVelocity = physics.LinearVelocity;
                     var stopVelocity = currentVelocity * 0.2f;
-                    _physics.SetLinearVelocity(comp.User.Value, stopVelocity, body: physics);
+                    _physics.SetLinearVelocity(user, stopVelocity, body: physics);
                 }
             }
         }
-    }
-
-    private void RemoveContactComponents(EntityUid entity)
-    {
-        if (HasComp<StunOnContactComponent>(entity))
-            RemComp<StunOnContactComponent>(entity);
-
-        if (HasComp<ImperialDamageOnCollideComponent>(entity))
-            RemComp<ImperialDamageOnCollideComponent>(entity);
     }
 }

@@ -25,6 +25,7 @@ public abstract partial class SharedAttacksSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly MiningWeaponsHelpers _miningWeaponsHelpers = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
 
     public override void Initialize()

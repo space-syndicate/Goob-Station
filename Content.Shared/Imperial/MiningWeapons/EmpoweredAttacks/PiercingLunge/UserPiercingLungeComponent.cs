@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Damage;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks.PiercingLunge;
@@ -10,11 +11,17 @@ public sealed partial class UserPiercingLungeComponent : Component
     public EntityUid? Item;
 
     [ViewVariables]
-    public float DoAfterTime;
+    public TimeSpan DoAfterTime;
 
     [ViewVariables]
-    public Vector2 Direction = Vector2.Zero;
+    public Angle Direction = Angle.Zero;
 
     [ViewVariables]
     public bool HasDoAfter;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool CanDamage = false;
+
+    [ViewVariables]
+    public DamageSpecifier? Damage = new();
 }

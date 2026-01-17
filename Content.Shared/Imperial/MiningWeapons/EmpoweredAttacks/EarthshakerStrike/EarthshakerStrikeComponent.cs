@@ -22,11 +22,11 @@ public sealed partial class EarthshakerStrikeComponent : Component
     [ViewVariables, DataField]
     public SoundSpecifier StartDoAfterSound = new SoundPathSpecifier("/Audio/Imperial/MiningWeapons/EmpoweredAttacks/EarthshakerStrike/swing.ogg");
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
-    public string EarthshakerRiftSpawnPrototype = "EffectEarthshakerRiftSpawn";
+    [DataField, ViewVariables]
+    public EntProtoId EarthshakerRiftSpawnPrototype = "EffectEarthshakerRiftSpawn";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables]
-    public string ActionEarthshakerStrike = "ActionEarthshakerStrike";
+    [DataField, ViewVariables]
+    public EntProtoId ActionEarthshakerStrike = "ActionEarthshakerStrike";
 
     [ViewVariables]
     public EntityUid? Action;

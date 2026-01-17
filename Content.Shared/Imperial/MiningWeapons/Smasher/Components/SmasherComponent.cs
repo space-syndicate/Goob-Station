@@ -4,6 +4,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
 using Robust.Shared.Input;
 using Robust.Shared.Audio;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.MiningWeapons.Smasher.Components;
 
@@ -12,7 +13,25 @@ namespace Content.Shared.Imperial.MiningWeapons.Smasher.Components;
 [AutoGenerateComponentPause]
 public sealed partial class SmasherComponent : Component
 {
-    [ViewVariables, AutoNetworkedField]
+    // Used dictionaries because system dictionaries store temporary server-side state;
+    // components store permanent networked data.
+
+    [DataField(serverOnly: true)]
+    public Dictionary<EntityUid, ChargeData> ActiveCharges = new();
+
+    [DataField(serverOnly: true)]
+    public Dictionary<EntityUid, EntityUid> LastAlertedUser = new();
+
+    [DataField(serverOnly: true)]
+    public Dictionary<EntityUid, FixedPoint2> LastTotalDamage = new();
+
+    /// <summary>
+    /// Used dictionary because system dictionaries store temporary server-side state;
+    /// components store permanent networked data.
+    /// </summary>
+    public Dictionary<(EntityUid User, EntityUid Smasher), (TimeSpan StartTime, bool Hidden)> AlertZeroData = new();
+
+    [DataField, ViewVariables, AutoNetworkedField]
     public Dictionary<string, float> DamageBlockedCoefficients = new()
     {
         ["Blunt"] = 0.4f,
@@ -25,7 +44,7 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan ActiveShieldTime = TimeSpan.FromSeconds(15f);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan TimeDecay = TimeSpan.FromSeconds(1.8f);
+    public TimeSpan TimeDeleteAlertTimeSpan = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// After this interval, the alert will be deleted if its state is equal to the zero state (0 will be displayed)
@@ -55,13 +74,17 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan TimeCooldownDownedDecay = TimeSpan.FromSeconds(15f);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float TimeChargingSmasher = 5.0f;
+    public TimeSpan TimeChargingSmasher = TimeSpan.FromSeconds(5.0f);
+
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public BoundKeyState LastProcessedState = BoundKeyState.Up;
 
     /// <summary>
     /// Default key on top (not pressed/pressured)
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public BoundKeyState StateUseKey = BoundKeyState.Up;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
@@ -76,7 +99,7 @@ public sealed partial class SmasherComponent : Component
     public TimeSpan EndTime;
 
     /// <summary>
-    /// Whether this gun is shot via the use key or the alt-use key.
+    /// Whether this weapon uses the primary use key or the alt-use key.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool UseKey = true;

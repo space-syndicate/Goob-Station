@@ -1,5 +1,4 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Wieldable.Components;
 
 namespace Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks;
 
@@ -24,10 +23,5 @@ public abstract partial class SharedAttacksSystem
     public void ItemWieldedCancelled(EntityUid user)
     {
         _popup.PopupEntity(Loc.GetString("empowered-attacks-item-wielded-false"), user, user);
-    }
-
-    public bool IsItemWielded(EntityUid item)
-    {
-        return TryComp<WieldableComponent>(item, out var wieldable) && wieldable.Wielded;
     }
 }

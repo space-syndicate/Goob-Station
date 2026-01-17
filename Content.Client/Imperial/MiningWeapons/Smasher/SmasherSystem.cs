@@ -4,60 +4,53 @@ using Content.Shared.Imperial.MiningWeapons.Smasher.Enums;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
 using Robust.Client.GameObjects;
+using Robust.Shared.Input.Binding;
+using static Robust.Shared.Input.Binding.PointerInputCmdHandler;
 using Robust.Client.Player;
 
 namespace Content.Client.Imperial.MiningWeapons.Smasher;
 
 public sealed class SmasherSystem : SharedSmasherSystem
 {
-    [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-
-    private BoundKeyState _lastKeyState = BoundKeyState.Up; // To track changes in the state of a key
 
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeNetworkEvent<ShowShieldEffectEvent>(OnShowShieldEffect);
-        SubscribeNetworkEvent<HideShieldEffectEvent>(OnHideShieldEffect);
+
+        CommandBinds.Builder
+            .Bind(EngineKeyFunctions.UseSecondary,
+                new PointerInputCmdHandler(OnUseSecondary, ignoreUp: false))
+            .Register<SmasherSystem>();
     }
 
-    public override void Update(float frameTime)
+    private bool OnUseSecondary(in PointerInputCmdArgs args)
     {
-        base.Update(frameTime);
-
         var user = _player.LocalEntity;
         if (user == null)
-            return;
+            return false;
 
-        var useKey = EngineKeyFunctions.UseSecondary;
-        var keyState = _inputSystem.CmdStates.GetState(useKey);
+        if (!TryGetSmasherInHands(user.Value, out var _, out var smasher))
+            return false;
 
-        if (keyState != _lastKeyState)
+        if (args.State != smasher.LastProcessedState)
         {
-            _lastKeyState = keyState;
+            smasher.LastProcessedState = args.State;
 
-            if (TryGetSmasherInHands(user.Value, out var smasherUid, out var smasherComp))
-            {
-                RaiseNetworkEvent(new UpdateSmasherStateEvent(
-                    GetNetEntity(user.Value),
-                    GetNetEntity(smasherUid.Value),
-                    keyState
-                ));
-            }
+            RaiseNetworkEvent(new UpdateSmasherStateEvent(
+                GetNetEntity(user.Value),
+                args.State
+            ));
         }
+
+        return false;
     }
 
     private void OnShowShieldEffect(ShowShieldEffectEvent ev)
     {
-        ShowShieldEffect(GetEntity(ev.Uid), ev.EffectDecay, ev.Loop);
-    }
-
-    private void OnHideShieldEffect(HideShieldEffectEvent ev)
-    {
-        HideShieldEffect(GetEntity(ev.Uid));
+        ShowShieldEffectClient(GetEntity(ev.Uid), ev.EffectDecay, ev.Loop);
     }
 
     /// <summary>
@@ -66,9 +59,14 @@ public sealed class SmasherSystem : SharedSmasherSystem
     /// <param name="uid">ID of the entity on which to show the effect</param>
     /// <param name="effect">Sprite specifier</param>
     /// <param name="loop">Should the animation loop</param>
-    private void ShowShieldEffect(EntityUid uid, SpriteSpecifier effect, bool loop)
+    private void ShowShieldEffectClient(EntityUid uid, SpriteSpecifier? effect, bool loop)
     {
+        HideShieldEffect(uid);
+
         if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        if (effect == null)
             return;
 
         var layer = _sprite.LayerMapReserve((uid, sprite), DamageShieldKey.Key);
