@@ -19,7 +19,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.XxRaay.Components;
-using Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Speech;
@@ -267,7 +266,7 @@ public sealed class LLMNPCSystem : EntitySystem
                 return;
             }
 
-            var responseContent = await response.Content.ReadFromJsonAsync<GroqApiResponse>();
+            var responseContent = await response.Content.ReadFromJsonAsync<Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem.GroqApiResponse>();
 
             if (responseContent?.Choices == null || responseContent.Choices.Length == 0)
             {
