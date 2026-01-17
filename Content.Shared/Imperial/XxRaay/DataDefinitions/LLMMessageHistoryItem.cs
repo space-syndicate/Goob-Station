@@ -3,7 +3,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.XxRaay.DataDefinitions;
 
 [DataDefinition]
-public sealed class LLMMessageHistoryItem
+public sealed partial class LLMMessageHistoryItem
 {
     [DataField]
     public string Role { get; set; } = "";
