@@ -143,7 +143,7 @@
         Alive:
           Base: alive
         Dead:
-          Base: alive
+          Base: dead
     - type: MobThresholds
       thresholds:
         0: Alive

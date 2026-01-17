@@ -591,9 +591,9 @@
     id: SCPIDCardFour
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltSecurityFilled
-    suitstorage: WeaponRifleAk
-    pocket1: MagazineLightRifle
-    pocket2: MagazineLightRifle
+    suitstorage: WeaponSubMachineGunEpsilon11
+    pocket1: MagazinePistolSubMachineGunEpsilon11
+    pocket2: MagazinePistolSubMachineGunEpsilon11
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
@@ -615,10 +615,10 @@
     outerClothing: ClothingOuterArmorMTF
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPAlt
-    suitstorage: WeaponRifleAk
+    suitstorage: WeaponSubMachineGunEpsilon11
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazineLightRifle
-    pocket2: MagazineLightRifle
+    pocket1: MagazinePistolSubMachineGunEpsilon11
+    pocket2: MagazinePistolSubMachineGunEpsilon11
   storage:
     back:
     - EncryptionKeyNedraCMDconnection

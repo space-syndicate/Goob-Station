@@ -1281,7 +1281,7 @@
     startingCharge: 300
   - type: PredictedBatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 15
+    autoRechargeRate: 25
   - type: AmmoCounter
   - type: GhostTakeoverAvailable
   - type: GhostRole
@@ -1290,6 +1290,9 @@
     rules: You remember nothing from previous life.
     raffle:
       settings: short
+  - type: PredictedBattery
+    maxCharge: 30
+    startingCharge: 30
 
 - type: entity
   id: HandTeleporterSCPDeva
@@ -1406,6 +1409,22 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
+  id: ClothingJumpskirtClassD
+  name: Class D form
+  suffix: Fredik21, Недра
+  description: Expendable Robe - This uniform is designed not for comfort, but for control. The bright color, limited functionality, and identification number emphasize the Class D employee's status as a replaceable asset, subject to disposal if necessary.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/classdskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/classdskirt.rsi
+  - type: SuitSensor
+    controlsLocked: true
+    randomMode: false
+    mode: SensorCords
+
+- type: entity
+  parent: ClothingUniformSkirtBase
   id: ClothingJumpsuitClassDcleaner
   name: Class D form for cleaning
   suffix: Fredik21, Недра
@@ -1415,6 +1434,22 @@
     sprite: Imperial/Seriozha/Fredik21/cloth/classdcleaner.rsi
   - type: Clothing
     sprite: Imperial/Seriozha/Fredik21/cloth/classdcleaner.rsi
+  - type: SuitSensor
+    controlsLocked: true
+    randomMode: false
+    mode: SensorCords
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitClassDSkirtcleaner
+  name: Class D form for cleaning
+  suffix: Fredik21, Недра
+  description: Cleaning doesn't guarantee survival. Class D uniform for SCP work. Full protection against threats... known to us. If you see anything strange, run (if you can).
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/classdcleanerskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/classdcleanerskirt.rsi
   - type: SuitSensor
     controlsLocked: true
     randomMode: false
@@ -3147,6 +3182,28 @@
     sprite: Imperial/Seriozha/Fredik21/cloth/seccomj.rsi
   - type: Clothing
     sprite: Imperial/Seriozha/Fredik21/cloth/seccomj.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpskirtSCPCom
+  name: overalls of the head of the Operational Control Group
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/seccomskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/seccomskirt.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -5278,6 +5335,18 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Unremoveable
+  - type: Inject
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
+        startingItem: AmpulaNDA953reagent
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      beakerSlot: !type:ContainerSlot
 
 
 - type: entity
@@ -5333,8 +5402,8 @@
           Blunt: 20
     - type: SpaceNinja
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2
-      baseSprintSpeed: 4
+      baseWalkSpeed: 1
+      baseSprintSpeed: 1
     - type: InteractionPopup
       successChance: 0.5
       interactSuccessString: petting-success-soft-floofy
@@ -5354,6 +5423,10 @@
       enabled: true
       speedModifierThresholds:
         2700: 0.7
+    - type: MobStateActions
+      actions:
+        Alive:
+        - ActionPolymorphMobFoxRenaultNDA
 
 - type: startingGear
   id: SCP953Gear
@@ -6026,6 +6099,21 @@
   name: магазин (.20 винтовочные)
   description: Для М-90gl
   productEntity: MagazineRifle
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkNMagazinePistolSubMachineGunEpsilon11
+  name: магазин .35 авто
+  description: магазин для пушки эпсилон 11
+  productEntity: MagazinePistolSubMachineGunEpsilon11
   cost:
     BlueSpaceCube: 1
   categories:
@@ -7757,6 +7845,16 @@
   components:
   - type: NavMapBeacon
     defaultText: NDA 035
+    color: "#D2691E"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDA354
+  suffix: Fredik21, Недра NDA 354
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: NDA 354
     color: "#D2691E"
 
 - type: entity
@@ -10759,6 +10857,8 @@
       - id: ClothingUniformJumpsuitPrisoner
       - id: ClothingUniformJumpskirtPrisoner
       - id: PaperClassDNDA
+      - id: ClothingJumpsuitClassDSkirtcleaner
+      - id: ClothingJumpskirtClassD
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -10964,6 +11064,7 @@
       - id: ClothingEyesGlasses
       - id: PaperScience
       - id: BoxFolderClipboard
+      - id: ClothingUniformJumpskirtScientist
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11180,6 +11281,7 @@
       - id: ClothingMaskGasSecurity
       - id: MagazinePistol
       - id: PaperSRPGPI
+      - id: ClothingUniformJumpskirtColorOrange
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11326,6 +11428,7 @@
       - id: WeaponPistolMk58Nonlethal
       - id: ClothingBeltSecurityFilled
       - id: MagazinePistol
+      - id: ClothingUniformJumpskirtColorOrange
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11361,7 +11464,7 @@
 - type: entity
   id: LockerNDASecComFilled
   suffix: Fredik21, Недра, Filled
-  parent: LockerNDASecAltCom
+  parent: LockerNDASecCom
   components:
   - type: StorageFill
     contents:
@@ -11373,6 +11476,7 @@
       - id: ClothingBeltSecurityFilled
       - id: ClothingEyesGlassesSecurity
       - id: ClothingHandsGlovesCombat
+      - id: ClothingUniformJumpskirtSCPCom
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11466,6 +11570,7 @@
       - id: ClothingHandsGlovesCombat
       - id: ClothingMaskGasSecurity
       - id: PaperOGK
+      - id: ClothingUniformJumpskirtMinuteManCamoUrbanNDA
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -12627,3 +12732,156 @@
   - type: Item
     sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
     heldPrefix: device
+
+- type: entity
+  name: Drozd
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunEpsilon11
+  suffix: Fredik21, Недра
+  description: A modern SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines.
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/weapon/epsilon11.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/weapon/epsilon11dop.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -19
+      maxAngle: -16
+    - type: Gun
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 6
+      burstFireRate: 18
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      selectedMode: Burst
+      availableModes:
+      - Burst
+      - FullAuto
+      - SemiAuto
+      shotsPerBurst: 3
+      burstCooldown: 0.375
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolSubMachineGunEpsilon11
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistolSubMachineGunEpsilon11Tag
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgePistol
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgePistol
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: true
+    - type: Appearance
+    - type: ScaleVisuals
+      scale: 0.7, 0.7
+
+- type: entity
+  id: MagazinePistolSubMachineGunEpsilon11
+  name: magazine (.35 auto)
+  suffix: Fredik21, Недра
+  parent: BaseMagazinePistolSubMachineGun
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolSubMachineGunEpsilon11Tag
+  - type: BallisticAmmoProvider
+    capacity: 40
+    proto: CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/weapon/epsilon11mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: ScaleVisuals
+    scale: 0.7, 0.7
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtMinuteManCamoUrbanNDA
+  name: OGC overalls
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/ogkskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/ogkskirt.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: Ampula
+  name: Ampula
+  id: AmpulaNDA953reagent
+  suffix: Fredik21, Недра
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 20
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Desoxyephedrine
+        Quantity: 0.1
+  - type: Unremoveable
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: ActionPolymorphMobFoxRenaultNDA
+  name: Превращение в лису
+  description: Я лисичка!
+  components:
+  - type: Action
+    icon:
+      sprite: Mobs/Animals/fox.rsi
+      state: fox
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MobFoxpolymorphNDA
+
+- type: polymorph
+  id: MobFoxpolymorphNDA
+  configuration:
+    entity: MobFox
+    transferName: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
