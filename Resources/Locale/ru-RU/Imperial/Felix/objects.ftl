@@ -274,3 +274,4 @@ ent-ReinforcedConcreteCorner = забор
     .desc = Передовые разработки перед вами, или вас где-то обманывают?..
 ent-ReinforcedConcreteEnd = забор
     .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+# Some temp sting?
