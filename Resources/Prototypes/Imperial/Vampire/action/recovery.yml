@@ -2,10 +2,10 @@
   parent: BaseAction
   id: VampireRecoveryAction
   name: Восстановление
-  description: Мгновенно снимает оглушение, восстанавливает выносливость и запускает быструю регенерацию на 15 HP за 1.5 секунды. Стоимость 0 ед. крови. Кулдаун 30 секунд.
+  description: Мгновенно снимает оглушение, восстанавливает выносливость и запускает быструю регенерацию на 15 HP за 1.5 секунды. Стоимость 0 ед. крови. Кулдаун 60 секунд.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 60
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi

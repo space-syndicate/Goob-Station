@@ -1,6 +1,4 @@
 using Content.Shared.StatusIcon.Components;
-using Content.Shared.Imperial.PiratesNewHorizon.StatusIcons;
-using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Imperial.Vampire;
 

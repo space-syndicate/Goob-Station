@@ -28,12 +28,6 @@ public sealed partial class GhoulComponent : Component
     public float BloodDecayAmount = 2f;
 
     /// <summary>
-    /// время следующего тика потери крови
-    /// </summary>
-    [DataField]
-    public TimeSpan NextBloodDecay = TimeSpan.Zero;
-
-    /// <summary>
     /// ID алерта для отображения уровня крови
     /// </summary>
     [DataField]
@@ -65,6 +59,14 @@ public sealed partial class GhoulComponent : Component
     {
         Params = AudioParams.Default.WithVolume(3)
     };
+
+    [DataField]
+    public string MindRoleGhoulID = "MindRoleGhoul";
+
+    /// <summary>
+    /// время следующего тика потери крови
+    /// </summary>
+    public TimeSpan NextBloodDecay = TimeSpan.Zero;
 
     /// <summary>
     /// количество спрайтов в bleed.rsi. необходимо для расчетов VampireBloodAlert

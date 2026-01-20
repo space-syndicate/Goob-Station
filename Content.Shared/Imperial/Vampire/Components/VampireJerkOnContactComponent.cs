@@ -5,9 +5,21 @@ namespace Content.Shared.Imperial.Vampire;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VampireJerkOnContactComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan Knockdown;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public int Damage;
+
+    [DataField]
+    public string DamageType = "Blunt";
+
+    /// <summary>
+    /// задержка перед удалением компонента, чтобы обработать все столкновения
+    /// </summary>
+    [DataField("delayDeletion")]
+    public TimeSpan DelayDeletion = TimeSpan.FromSeconds(0.2f);
+
+    [AutoNetworkedField]
+    public TimeSpan DeletionTime;
 }

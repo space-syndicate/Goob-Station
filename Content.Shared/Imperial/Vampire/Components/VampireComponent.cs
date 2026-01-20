@@ -1,6 +1,4 @@
-using Content.Shared.Actions;
 using Content.Shared.Alert;
-using Content.Shared.Polymorph;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -98,8 +96,8 @@ namespace Content.Shared.Imperial.Vampire
         /// <summary>
         /// кд между призывами катаны
         /// </summary>
-        [DataField("cooldownSword")]
-        public TimeSpan CooldownSword = TimeSpan.FromSeconds(30);
+        [AutoNetworkedField]
+        public TimeSpan CooldownSword;
 
         /// <summary>
         /// кд между созданиями кровавого якоря
@@ -189,7 +187,13 @@ namespace Content.Shared.Imperial.Vampire
         public float BloodLossDisguiseIsActive = 1;
 
         [DataField]
+        public string VampirePuddleID = "VampirePuddle";
+
+        [DataField]
         public ProtoId<FactionIconPrototype> StatusIcon = "VampireFactionAction";
+
+        [DataField]
+        public string VampireRadioID = "VampireRadio";
 
         public EntityUid? SelectingSubgroupActionEntity;
         public EntProtoId SelectingSubgroupAction = "VampireSelectingSubgroupAction";
@@ -219,7 +223,7 @@ namespace Content.Shared.Imperial.Vampire
         public List<EntityUid> GrantedActions = new();
 
         [AutoNetworkedField]
-        public int SelectedSubgroup = 0;
+        public VampireAbilityType SelectedSubgroup;
 
         [AutoNetworkedField]
         public TimeSpan ClawDurationActive;
@@ -277,6 +281,17 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public bool InvisibilityAbilityActive = false;
+
+        public Dictionary<VampireAbilityType, string> VampireAbilitiesID = new()
+        {
+            { VampireAbilityType.Base, "VampireBaseAbilities" },
+            { VampireAbilityType.Hemomancer, "VampireHemomancer" },
+            { VampireAbilityType.Umbrae, "VampireUmbrae" },
+            { VampireAbilityType.Gargantua, "VampireGargantua" }
+        };
+
+        [DataField]
+        public string MindRoleVampireID = "MindRoleVampire";
 
         /// <summary>
         /// был ли обращен вампир?

@@ -1,4 +1,3 @@
-using Content.Server.Imperial.Vampire;
 using Content.Server.Objectives.Systems;
 using Content.Shared.Imperial.Vampire;
 using Content.Shared.Mind;

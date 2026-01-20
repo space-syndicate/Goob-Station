@@ -10,6 +10,12 @@ namespace Content.Shared.Imperial.Vampire
         public int Damage = 15;
 
         /// <summary>
+        /// тип урона, который будет нанесен при соприкосновении
+        /// </summary>
+        [DataField("damageType")]
+        public string DamageType = "Slash";
+
+        /// <summary>
         /// приспособление, с которым объект должен столкнуться, чтобы быть оглушенным
         /// </summary>
         [DataField]

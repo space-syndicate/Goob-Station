@@ -1,0 +1,66 @@
+- type: vampireAbilityList
+  id: VampireBaseAbilities
+  abilities:
+  - VampireSwordAction
+  - VampireBloodTheftAction
+  - VampireRecoveryAction
+  - VampireSleepAction
+
+# способности Hemomancer
+- type: vampireAbilityList
+  id: VampireHemomancer
+  abilities:
+  - VampireTentaclesAction
+  - VampireTransformBatAction
+  - VampireTransformBloodAction
+  - VampireNosferatyAction
+  - VampireTurnAction
+  thresholds:
+    0: 100
+    1: 200
+    2: 300
+    3: 400
+    4: 450
+    5: 500
+  upgrades:
+  - VampireSwordPlusAction
+
+# способности Umbrae
+- type: vampireAbilityList
+  id: VampireUmbrae
+  abilities:
+  - VampireUnCuffAction
+  - VampireInvisibleAction
+  - VampireBloodAnchorAction
+  - VampireShadowTrapAction
+  - VampireCloneAction
+  - VampireTurnAction
+  thresholds:
+    0: 100
+    1: 200
+    2: 300
+    3: 400
+    4: 450
+    5: 500
+  upgrades:
+  - VampireInvisiblePlusAction
+
+# способности Gargantua
+- type: vampireAbilityList
+  id: VampireGargantua
+  abilities:
+  - RushBloodAction
+  - VampireTeleportAction
+  - VampireReconciliationAction
+  - VampireNosferatyAction
+  - VampireJerkAction
+  - VampireTurnAction
+  thresholds:
+    0: 100
+    1: 200
+    2: 300
+    3: 400
+    4: 450
+    5: 500
+  upgrades:
+  - VampireNosferatyPlusAction

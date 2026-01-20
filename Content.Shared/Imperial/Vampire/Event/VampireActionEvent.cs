@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Cloning;
+using Content.Shared.Polymorph;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire
@@ -112,7 +113,24 @@ namespace Content.Shared.Imperial.Vampire
         /// на сколько секунд вампир станет летучей мышью
         /// </summary>
         [DataField("polymorphBatTime")]
-        public int PolymorphBatTime = 10;
+        public static int PolymorphBatTime = 10;
+
+        [DataField("batCount")]
+        public int BatCount = 3;
+
+        [DataField]
+        public string BatID = "MobVampireBat";
+
+        [DataField]
+        public PolymorphConfiguration BatConfig = new PolymorphConfiguration()
+        {
+            Entity = "MobVampireBat",
+            Duration = PolymorphBatTime,
+            TransferName = true,
+            TransferHumanoidAppearance = false,
+            TransferDamage = true,
+            Inventory = PolymorphInventoryChange.Transfer,
+        };
     }
 
     public sealed partial class VampireBloodTheftEvent : InstantActionEvent
@@ -197,12 +215,31 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("reconciliationKnockdownHuman")]
         public TimeSpan ReconciliationKnockdownHuman = TimeSpan.FromSeconds(3);
+
+        /// <summary>
+        /// тип урона, который нанесет сверк предмету
+        /// </summary>
+        [DataField("damageType")]
+        public string DamageType = "Blunt";
     }
 
     public sealed partial class VampireRecoveryEvent : InstantActionEvent
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
+
+        /// <summary>
+        /// реагент для лечения
+        /// </summary>
+        [DataField("reagent")]
+        public string ReagentID = "Omnizine";
+
+
+        /// <summary>
+        /// количество реагента
+        /// </summary>
+        [DataField("dose")]
+        public float Dose = 25;
     }
 
     public sealed partial class VampireBloodAnchorEvent : InstantActionEvent
@@ -236,6 +273,12 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("knockdownDuration")]
         public TimeSpan KnockdownDuration = TimeSpan.FromSeconds(3);
+
+        /// <summary>
+        /// какой тип урона получит игрок при контакте с вампиром
+        /// </summary>
+        [DataField("damageType")]
+        public string DamageType = "Blunt";
     }
 
     public sealed partial class VampireShadowTrapEvent : WorldTargetActionEvent
@@ -254,6 +297,9 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("radius")]
         public float Radius = 2;
+
+        [DataField]
+        public string VampireTrapID = "VampireTrap";
     }
 
     public sealed partial class VampireSleepEvent : InstantActionEvent
@@ -266,6 +312,12 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("doAfterBeforeEuthanasia")]
         public TimeSpan DoAfterBeforeEuthanasia = TimeSpan.FromSeconds(5);
+
+        /// <summary>
+        /// длительность сна
+        /// </summary>
+        [DataField("sleepingTime")]
+        public TimeSpan SleepingTime = TimeSpan.FromSeconds(30);
     }
 
     public sealed partial class VampireTeleportEvent : InstantActionEvent
@@ -293,10 +345,10 @@ namespace Content.Shared.Imperial.Vampire
     }
 
     public sealed partial class VampireSwordEvent : InstantActionEvent
-    { }
-
-    public sealed partial class VampireSwordPlusEvent : InstantActionEvent
-    { }
+    {
+        [DataField("cooldownSword")]
+        public TimeSpan CooldownSword = TimeSpan.FromSeconds(0);
+    }
 
     public sealed partial class VampireGrimoireEvent : InstantActionEvent
     { }

@@ -423,42 +423,6 @@
   - type: DynamicRuleCost
     cost: 200
 
-# imperial space: Added a new vampire antagonist. Start
-- type: entity
-  parent: BaseGameRule
-  id: Vampire
-  noSpawn: true
-  components:
-  - type: AntagObjectives
-    objectives:
-    - VampireDrinkBloodObjective
-    - VampireConvertedGhoulsObjective
-    - VampireEscapeShuttleObjective
-  - type: GameRule
-  - type: VampireRole
-  - type: DynamicRuleCost
-    cost: 150
-  - type: AntagSelection
-    agentName: vampire-round-end-agent-name
-    definitions:
-    - prefRoles: [ Vampire ]
-      max: 3
-      lateJoinAdditional: true
-      allowNonHumans: false
-      multiAntagSetting: NotExclusive
-      blacklist:
-        components:
-        - AntagImmune
-      briefing:
-        text: vampire-role-greeting-human
-        color: "#8B0000"
-        sound: /Audio/Ambience/Antag/vampire_start.ogg
-      components:
-      - type: Vampire
-      mindRoles:
-      - MindRoleVampire
-# imperial space: Added a new vampire antagonist. End
-
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).
 - type: entity

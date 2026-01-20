@@ -1,0 +1,69 @@
+- type: entity
+  name: puddle
+  id: VampirePuddle
+  description: A puddle of liquid.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: Slippery
+    staminaDamage: 0
+    frictionStatusTime: 0 # Don't apply friction twice
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Sprite
+    layers:
+    - sprite: Fluids/puddle.rsi
+      state: splat0
+    drawdepth: Puddles
+    color: "#FFFFFF80"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      slipFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+  - type: IconSmooth
+    key: puddles
+    additionalKeys:
+    - walls
+    base: splat
+    mode: CardinalFlags
+  - type: SolutionContainerManager
+    solutions:
+      puddle:
+        maxVol: 1000
+  - type: Puddle
+  - type: MixableSolution
+    solution: puddle
+  - type: Appearance
+  - type: ActiveEdgeSpreader
+  - type: EdgeSpreader
+    id: Puddle
+  - type: StepTrigger
+  - type: Edible
+    edible: Drink
+    delay: 3
+    transferAmount: 1
+    solution: puddle
+    utensil: Spoon
+  - type: ExaminableSolution
+    solution: puddle
+    locVolume: "examinable-solution-on-examine-volume-puddle"
+  - type: DrawableSolution
+    solution: puddle
+  - type: BadDrink
+  - type: IgnoresFingerprints
+  - type: Tag
+    tags:
+    - DNASolutionScannable
+  - type: Trash # Imperial "OperationalErtCleaners"
+    size: Large # Imperial "OperationalErtCleaners"

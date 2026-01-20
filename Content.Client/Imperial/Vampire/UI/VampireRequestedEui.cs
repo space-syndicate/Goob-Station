@@ -18,19 +18,19 @@ public sealed class VampireRequestedEui : BaseEui
 
         _window.OnAcceptHemomancer += () =>
         {
-            SendMessage(new VampireRequestedEuiMessage(1));
+            SendMessage(new VampireRequestedEuiMessage(VampireAbilityType.Hemomancer));
             _window?.Close();
         };
 
         _window.OnAcceptUmbrae += () =>
         {
-            SendMessage(new VampireRequestedEuiMessage(2));
+            SendMessage(new VampireRequestedEuiMessage(VampireAbilityType.Umbrae));
             _window?.Close();
         };
 
         _window.OnAcceptGargantua += () =>
         {
-            SendMessage(new VampireRequestedEuiMessage(3));
+            SendMessage(new VampireRequestedEuiMessage(VampireAbilityType.Gargantua));
             _window?.Close();
         };
 

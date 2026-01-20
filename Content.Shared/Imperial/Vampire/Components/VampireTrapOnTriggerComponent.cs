@@ -1,6 +1,4 @@
-using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Vampire
 {
@@ -12,6 +10,12 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("damage")]
         public int Damage = 20;
+
+        /// <summary>
+        /// тип урона, который будет нанесен при соприкосновении
+        /// </summary>
+        [DataField("damageType")]
+        public string DamageType = "Slash";
 
         /// <summary>
         /// идентификатор приспособления, с которым объект должен столкнуться для получения урона
