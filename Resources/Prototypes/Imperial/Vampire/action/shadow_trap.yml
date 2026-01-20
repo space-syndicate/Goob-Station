@@ -46,3 +46,16 @@
         layer:
         - Impassable
         hard: false
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 80
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: GlassBreak
+              params:
+                volume: 5
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
