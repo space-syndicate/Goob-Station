@@ -188,6 +188,8 @@ public partial class SharedVampireSystem : EntitySystem
             if (!vamp.VampireTurned)
                 vamp.ClawDurationActive = _gameTiming.CurTime + vamp.ClawDuration;
         }
+
+        args.Handled = true;
     }
 
     /// <summary>

@@ -87,10 +87,11 @@ public partial class VampireSystem : EntitySystem
         // обновляем данные у вампира
         if (TryComp<VampireComponent>(ent.Comp.Vampire, out var vamp))
         {
-            vamp.Ghouls.Remove(args.Target.Value);
-            vamp.GhoulQuantity--;
-
-            Dirty(ent.Comp.Vampire, vamp);
+            if (vamp.Ghouls.Remove(args.Target.Value))
+            {
+                vamp.GhoulQuantity = Math.Max(0, vamp.GhoulQuantity - 1);
+                Dirty(ent.Comp.Vampire, vamp);
+            }
         }
 
         _popup.PopupEntity(Loc.GetString("vampire-popup-successfully-cure-priest"),

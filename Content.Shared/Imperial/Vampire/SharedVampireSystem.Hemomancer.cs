@@ -42,7 +42,8 @@ public partial class SharedVampireSystem : EntitySystem
         var dirs = new List<Direction>();
         dirs.AddRange(args.OffsetDirections);
 
-        for (var i = 0; i < args.ExtraSpawns; i++)
+        var extra = Math.Min(args.ExtraSpawns, dirs.Count);
+        for (var i = 0; i < extra; i++)
         {
             var dir = _random.PickAndTake(dirs);
             spawnPos.Add(coords.Offset(dir));

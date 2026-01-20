@@ -235,7 +235,7 @@ namespace Content.Shared.Imperial.Vampire
         public float TotalDrunk = 0;
 
         [AutoNetworkedField]
-        public HashSet<int> UnlockedAbilityIndices = new();
+        public List<int> UnlockedAbilityIndices = new();
 
         [AutoNetworkedField]
         public bool InvisibleCloneIsActive = false;

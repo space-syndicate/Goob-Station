@@ -99,8 +99,7 @@ public partial class SharedVampireSystem : EntitySystem
         if (gridUid == null || !TryComp<MapGridComponent>(gridUid, out var grid))
             return null;
 
-        var range = (float)Math.Sqrt(radius);
-        var box = Box2.CenteredAround(userCoords.Position, new Vector2(range, range));
+        var box = Box2.CenteredAround(userCoords.Position, new Vector2(radius, radius));
 
         var gridEntity = new Entity<MapGridComponent>(gridUid.Value, grid);
         var tilesInRange = _map.GetTilesEnumerator(gridUid.Value, gridEntity, box, false);
@@ -185,6 +184,9 @@ public partial class SharedVampireSystem : EntitySystem
             // вампир не может усыпить людей с маской/солнцезащитными очками
             var flashAttempt = new FlashAttemptEvent(entity, vamp.Owner, null);
             RaiseLocalEvent(entity, ref flashAttempt, true);
+
+            if (flashAttempt.Cancelled)
+                continue;
 
             // если это предмет, то наносим ему ReconciliationDamageItem урона
             var isObject = EntityManager.HasComponent<ItemComponent>(entity);
