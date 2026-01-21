@@ -88,7 +88,7 @@ public partial class SharedVampireSystem : EntitySystem
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty); // общий
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
 
-        SubscribeLocalEvent<VampireComponent, AttemptMeleeEvent>(OnAttemptMelee);
+        SubscribeLocalEvent<VampireComponent, MeleeHitEvent>(OnAttemptMelee);
         SubscribeLocalEvent<VampireComponent, DamageChangedEvent>(OnDamaged);
 
         SubscribeLocalEvent<VampireBuffComponent, GetMeleeAttackRateEvent>(OnGetMeleeAttackRate);
@@ -177,9 +177,11 @@ public partial class SharedVampireSystem : EntitySystem
             OnIssuingSword(args.Performer);
             vamp.ClawDurationActive = TimeSpan.Zero;
 
-            // ссылаемся на VampireSwordAction. см BaseAbilities
             vamp.CooldownSword = args.CooldownSword;
+
+            // ссылаемся на VampireSwordAction. см VampireBaseAbilities
             _actions.SetCooldown(vamp.GrantedActions[0], vamp.CooldownSword);
+            Dirty(args.Performer, vamp);
         }
         else
         {
@@ -188,8 +190,6 @@ public partial class SharedVampireSystem : EntitySystem
             if (!vamp.VampireTurned)
                 vamp.ClawDurationActive = _gameTiming.CurTime + vamp.ClawDuration;
         }
-
-        args.Handled = true;
     }
 
     /// <summary>
@@ -308,15 +308,15 @@ public partial class SharedVampireSystem : EntitySystem
     /// <summary>
     /// при попытке атаковать в инвизе - инвиз слетает
     /// </summary>
-    private void OnAttemptMelee(EntityUid uid, VampireComponent comp, ref AttemptMeleeEvent args)
+    private void OnAttemptMelee(EntityUid uid, VampireComponent comp, ref MeleeHitEvent args)
     {
-        if (!TryComp<StealthComponent>(uid, out var stealth))
+        if (!comp.InvisibleIsActive)
             return;
 
-        if (comp.InvisibleIsActive)
-        {
-            VampireInvisible(uid);
-        }
+        VampireInvisible(uid);
+
+        // для VampireInvisibleAction
+        comp.InvisibilityAbilityActive = false;
     }
 
     /// <summary>
@@ -324,13 +324,13 @@ public partial class SharedVampireSystem : EntitySystem
     /// </summary>
     private void OnDamaged(EntityUid uid, VampireComponent comp, DamageChangedEvent args)
     {
-        if (!TryComp<StealthComponent>(uid, out var stealth))
+        if (!comp.InvisibleIsActive)
             return;
 
-        if (comp.InvisibleIsActive && args.DamageDelta != null)
-        {
-            VampireInvisible(uid);
-        }
+        VampireInvisible(uid);
+
+        // для VampireInvisibleAction
+        comp.InvisibilityAbilityActive = false;
     }
 
     /// <summary>
@@ -468,7 +468,7 @@ public partial class SharedVampireSystem : EntitySystem
             {
                 OnIssuingSword(uid);
 
-                // ссылаемся на VampireSwordAction. см BaseAbilities
+                // ссылаемся на VampireSwordAction. см VampireBaseAbilities
                 _actions.SetCooldown(vamp.GrantedActions[0], vamp.CooldownSword);
                 vamp.ClawDurationActive = TimeSpan.Zero;
                 Dirty(uid, vamp);

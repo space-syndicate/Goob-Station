@@ -97,7 +97,7 @@ namespace Content.Shared.Imperial.Vampire
         /// кд между призывами катаны
         /// </summary>
         [AutoNetworkedField]
-        public TimeSpan CooldownSword;
+        public TimeSpan CooldownSword = TimeSpan.FromSeconds(30);
 
         /// <summary>
         /// кд между созданиями кровавого якоря

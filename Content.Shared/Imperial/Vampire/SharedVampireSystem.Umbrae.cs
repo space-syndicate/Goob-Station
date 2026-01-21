@@ -49,6 +49,7 @@ public partial class SharedVampireSystem : EntitySystem
         }
 
         _cuff.Uncuff(args.Performer, args.Performer, cuffComp.Container.ContainedEntities.FirstOrDefault());
+        DealBloodDamage(args.Performer, args.CostBlood);
 
         if (comp.BuffBlocked)
         {
@@ -70,7 +71,6 @@ public partial class SharedVampireSystem : EntitySystem
         if (_net.IsServer)
             _jitterSystem.DoJitter(args.Performer, args.UnCuffBuffTime, refresh: false, amplitude: 2, frequency: 2);
 
-        DealBloodDamage(args.Performer, args.CostBlood);
         Dirty(args.Performer, comp);
         args.Handled = true;
     }
@@ -280,7 +280,7 @@ public partial class SharedVampireSystem : EntitySystem
                 if (_net.IsServer)
                     QueueDel(vamp.VampireAnchorUid);
 
-                // ссылаемся на VampireJerkAction. см BaseAbilities, VampireAbilityLists.Umbrae
+                // ссылаемся на VampireJerkAction. см VampireBaseAbilities, VampireUmbrae
                 _actions.SetCooldown(vamp.GrantedActions[6], vamp.CooldownBloodAnchor);
                 _popup.PopupClient(Loc.GetString("vampire-popup-anchor-destroyed"),
                 uid, uid, PopupType.LargeCaution);

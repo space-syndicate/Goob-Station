@@ -234,6 +234,9 @@ public partial class VampireSystem : EntitySystem
 
         _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
 
+        // ссылаемся на VampireInvisibleAction. см VampireBaseAbilities, VampireUmbrae
+        _actions.SetCooldown(vamp.GrantedActions[5], args.InvisibilityCloneTime * 2);
+
         Dirty(args.Performer, vamp);
         args.Handled = true;
     }

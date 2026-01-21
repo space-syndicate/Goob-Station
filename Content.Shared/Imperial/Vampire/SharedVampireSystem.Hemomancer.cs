@@ -65,7 +65,7 @@ public partial class SharedVampireSystem : EntitySystem
                 Spawn(args.EntityId, pos);
         }
 
-        // ссылаемся на VampireTentaclesAction. см BaseAbilities, VampireAbilityLists.Hemomancer
+        // ссылаемся на VampireTentaclesAction. см VampireBaseAbilities, VampireHemomancer
         _actions.SetCooldown(vamp.GrantedActions[4], args.CooldownTentacles);
         DealBloodDamage(args.Performer, args.CostBlood);
         Dirty(args.Performer, vamp);
@@ -161,7 +161,7 @@ public partial class SharedVampireSystem : EntitySystem
             if (!vamp.VampireIsBlood)
                 continue;
 
-            if (_gameTiming.CurTime >= vamp.NextBloodshed && vamp.VampireIsBlood)
+            if (_gameTiming.CurTime >= vamp.NextBloodshed)
             {
                 SpawnBloodPuddle(uid);
                 // оставляем кровавый след за вампиром
@@ -169,7 +169,7 @@ public partial class SharedVampireSystem : EntitySystem
                 Dirty(uid, vamp);
             }
 
-            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil)
+            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.VampireIsBlood)
             {
                 VampireInvisible(uid);
                 vamp.VampireIsBlood = false;

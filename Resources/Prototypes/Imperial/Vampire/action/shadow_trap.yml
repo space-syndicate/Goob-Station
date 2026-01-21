@@ -2,10 +2,10 @@
   parent: BaseAction
   id: VampireShadowTrapAction
   name: Теневой капкан
-  description: Устанавливает ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Стоимость 15 ед. крови. Кулдаун 10 секунд.
+  description: Устанавливает ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Стоимость 15 ед. крови. Кулдаун 15 секунд.
   components:
   - type: Action
-    useDelay: 10
+    useDelay: 15
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Stellark/Vampire/actions.rsi
