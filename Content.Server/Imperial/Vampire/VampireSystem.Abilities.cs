@@ -218,15 +218,15 @@ public partial class VampireSystem : EntitySystem
         // получаем местоположение вампира, чтобы рядом с ним заспавнить клона
         var mapCoords = TransformSystem.GetMapCoordinates(args.Performer);
 
-        if (!_cloning.TryCloning(args.Performer, mapCoords, settings, out var cloneUid))
+        if (!_cloning.TryCloning(args.Performer, mapCoords, settings, out vamp.CloneUid))
             return;
 
         // добавляем ai клону
-        var htn = EnsureComp<HTNComponent>(cloneUid.Value);
+        var htn = EnsureComp<HTNComponent>(vamp.CloneUid.Value);
         htn.RootTask = new HTNCompoundTask() { Task = "IdleCompound" };
-        htn.Blackboard.SetValue(NPCBlackboard.Owner, cloneUid.Value);
+        htn.Blackboard.SetValue(NPCBlackboard.Owner, vamp.CloneUid.Value);
 
-        EnsureComp<ActiveNPCComponent>(cloneUid.Value);
+        EnsureComp<ActiveNPCComponent>(vamp.CloneUid.Value);
 
         _vampireSystem.VampireInvisible(args.Performer);
         vamp.BuffBlockedUntil = _gameTiming.CurTime + args.InvisibilityCloneTime;
@@ -317,6 +317,7 @@ public partial class VampireSystem : EntitySystem
             if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.VampireCloneIsActive)
             {
                 _vampireSystem.VampireInvisible(uid);
+                QueueDel(vamp.CloneUid);
                 vamp.VampireCloneIsActive = false;
                 Dirty(uid, vamp);
             }

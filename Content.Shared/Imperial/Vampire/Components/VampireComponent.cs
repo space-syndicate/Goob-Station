@@ -293,6 +293,9 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public string MindRoleVampireID = "MindRoleVampire";
 
+        [AutoNetworkedField]
+        public EntityUid? CloneUid;
+
         /// <summary>
         /// был ли обращен вампир?
         /// </summary>

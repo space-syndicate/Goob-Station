@@ -115,7 +115,7 @@ public partial class SharedVampireSystem : EntitySystem
             vamp.SpawnLocation = Transform(args.Performer).Coordinates;
 
             var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.AnchorCreateTime,
-                new VampireAnchorCreateDoAfterEvent { Duration = args.DurationExistenceAnchor },
+                new VampireAnchorCreateDoAfterEvent { Duration = args.DurationExistenceAnchor, AnchorId = args.VampireAnchorId},
                 args.Performer)
             {
                 BreakOnMove = false,
@@ -281,7 +281,7 @@ public partial class SharedVampireSystem : EntitySystem
 
                 // ссылаемся на VampireJerkAction. см BaseAbilities, VampireAbilityLists.Umbrae
                 _actions.SetCooldown(vamp.GrantedActions[6], vamp.CooldownBloodAnchor);
-                _popup.PopupEntity(Loc.GetString("vampire-popup-anchor-destroyed"),
+                _popup.PopupClient(Loc.GetString("vampire-popup-anchor-destroyed"),
                 uid, uid, PopupType.LargeCaution);
                 vamp.AnchorCreate = false;
 
