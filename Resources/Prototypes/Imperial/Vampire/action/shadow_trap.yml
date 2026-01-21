@@ -21,7 +21,7 @@
   parent: BaseLandMine
   id: VampireTrap
   name: Теневой капкан
-  description: При срабатывании ослепляет жертву и наносит 20 урона.
+  description: Капкан из крови. Выглядит устрашающе.
   components:
   - type: Transform
     anchored: True
