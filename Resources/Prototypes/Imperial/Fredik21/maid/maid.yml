@@ -808,6 +808,7 @@
   name: GoloBell box
   parent: BoxCardboard
   id: BoxGoloBell
+  suffix: Fredik21, горничные
   description: A box filled with GoloBell.
   components:
   - type: Sprite
@@ -856,7 +857,6 @@
   parent: MarkerBase
   name: свет для танцпола
   suffix: Fredik21, горничные
-  categories: [ "Light" ]
   components:
   - type: PointLight
     radius: 4.0
@@ -871,7 +871,6 @@
   parent: MarkerBase
   name: зелёный свет
   suffix: Fredik21, горничные
-  categories: [ "Light" ]
   components:
   - type: PointLight
     radius: 4.0
@@ -884,7 +883,6 @@
   parent: MarkerBase
   name: жёлтый свет
   suffix: Fredik21, горничные
-  categories: [ "Light" ]
   components:
   - type: PointLight
     radius: 4.0
@@ -897,7 +895,6 @@
   parent: MarkerBase
   name: фиолетовый свет
   suffix: Fredik21, горничные
-  categories: [ "Light" ]
   components:
   - type: PointLight
     radius: 4.0
@@ -910,7 +907,6 @@
   parent: MarkerBase
   name: синий свет
   suffix: Fredik21, горничные
-  categories: [ "Light" ]
   components:
   - type: PointLight
     radius: 4.0
@@ -923,7 +919,6 @@
   parent: MarkerBase
   name: красный свет
   suffix: Fredik21, горничные
-  categories: [ "Light" ]
   components:
   - type: PointLight
     radius: 4.0
