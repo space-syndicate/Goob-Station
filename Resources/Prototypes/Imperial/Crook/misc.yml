@@ -908,6 +908,10 @@
     exemptAccessLevels:
     - NuclearOperative
     - SyndicateAgent
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretSyndicateMachineCircuitboard
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase
