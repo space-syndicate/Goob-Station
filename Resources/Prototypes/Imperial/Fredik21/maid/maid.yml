@@ -1,0 +1,932 @@
+- type: species
+  id: cat
+  name: кошка
+  roundStart: false
+  prototype: MobCatFelinid
+  sprites: MobCatSprites
+  markingLimits: MobHumanCatMarkingLimits
+  dollPrototype: MobSpeciesCat
+  skinColoration: HumanToned
+  femaleLastNames: NamesLastFemale
+
+- type: speciesBaseSprites
+  id: MobCatSprites
+  sprites:
+    Special: MobHumanoidAnyMarking
+    Head: MobHumanHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobHumanTorso
+    Eyes: MobHumanoidEyes
+    HeadTop: MobHumanoidAnyMarking
+    LArm: MobHumanLArm
+    RArm: MobHumanRArm
+    LHand: MobHumanLHand
+    RHand: MobHumanRHand
+    LLeg: MobHumanLLeg
+    RLeg: MobHumanRLeg
+    LFoot: MobHumanLFoot
+    RFoot: MobHumanRFoot
+    Tail: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobHumanCatMarkingLimits
+  points:
+    Special:
+      points: 0
+      required: false
+    Tail:
+      points: 1
+      required: false
+      defaultMarkings: [ CatTailStripes ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ CatEars ]
+    UndergarmentBottom:
+      points: 1
+      required: true
+      defaultMarkings: [ UndergarmentBottomSatin ]
+    UndergarmentTop:
+      points: 1
+      required: true
+      defaultMarkings: [ UndergarmentTopSportsbra]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false
+
+- type: entity
+  name: Cat
+  parent: [ BaseMobCat, ImperialSCPBasePreset ]
+  id: MobCatFelinidBase
+  suffix: Fredik21, горничные
+  components:
+  - type: ScaleVisuals
+    scale: 0.7, 0.7
+  - type: HumanoidAppearance
+    species: cat
+    gender: Female
+  - type: Vocal
+    sounds:
+      Male: CatMaid
+      Unsexed: CatMaid
+      Female: CatMaid
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobCat
+  name: Urist
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: HumanoidAppearance
+    species: cat
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Vocal
+    sounds:
+      Male: SCP049
+      Unsexed: SCP049
+      Female: SCP049
+  - type: OwOAccent
+  - type: Puller
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageForceSay
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+
+- type: emoteSounds
+  id: CatMaid
+  params:
+    variation: 0.125
+  sounds:
+    catMeow:
+      collection: catMeow
+    catpurr:
+      collection: catpurr
+    catscream:
+      collection: catscream
+    cathissing:
+      collection: cathissing
+
+- type: soundCollection
+  id: catMeow
+  files:
+    - /Audio/Imperial/Fredik21/maid/cat/meow/meow1.ogg
+    - /Audio/Imperial/Fredik21/maid/cat/meow/meow2.ogg
+    - /Audio/Imperial/Fredik21/maid/cat/meow/meow3.ogg
+    - /Audio/Imperial/Fredik21/maid/cat/meow/meow4.ogg
+
+- type: emote
+  id: catMeow
+  name: Мяукать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - ScaleVisuals
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Мяукает"]
+  chatTriggers:
+    - Мяу
+    - мяв
+
+- type: soundCollection
+  id: catpurr
+  files:
+    - /Audio/Imperial/Fredik21/maid/cat/purr/purr1.ogg
+    - /Audio/Imperial/Fredik21/maid/cat/purr/purr2.ogg
+    - /Audio/Imperial/Fredik21/maid/cat/purr/purr3.ogg
+
+- type: emote
+  id: catpurr
+  name: мурчать
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - ScaleVisuals
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Мурчит"]
+  chatTriggers:
+    - мур
+
+- type: soundCollection
+  id: catscream
+  files:
+    - /Audio/Imperial/Fredik21/maid/cat/scream.ogg
+
+- type: emote
+  id: catscream
+  name: кричать как кот
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - ScaleVisuals
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Кричит"]
+  chatTriggers:
+    - кричать
+
+- type: soundCollection
+  id: cathissing
+  files:
+    - /Audio/Imperial/Fredik21/maid/cat/hissing.ogg
+
+- type: emote
+  id: cathissing
+  name: шипеть
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/953.png
+  whitelist:
+    components:
+    - ScaleVisuals
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Шипит"]
+  chatTriggers:
+    - шипеть
+
+- type: entity
+  parent: BaseSpeciesCats
+  id: MobSpeciesCat
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+
+- type: entity
+  save: false
+  id: BaseSpeciesCats
+  parent: InventoryBase
+  abstract: true
+  components:
+  - type: Hands
+  - type: ComplexInteraction
+  - type: ContainerContainer
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+  - type: Appearance
+  - type: HumanoidAppearance
+    species: cat
+  - type: Body
+    prototype: Human
+    requiredLegs: 2
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtJanimaidBlue
+  name: blue maid uniform
+  suffix: Fredik21, горничные
+  description: Calm, almost emotionless, speaks in short, clear sentences. Follows protocol perfectly.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/Jumpskirt/blue.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/Jumpskirt/blue.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtJanimaidGreen
+  name: green maid uniform
+  suffix: Fredik21, горничные
+  description: Gentle, understanding, and a little sleepy, she'll listen to all your assistant's complaints about low pay and pat you on the head.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/Jumpskirt/green.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/Jumpskirt/green.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtJanimaidRed
+  name: red maid uniform
+  suffix: Fredik21, горничные
+  description: Hot-tempered and loud. She pretends not to care about her customers, but in reality, she's secretly checking to make sure the tea isn't too hot.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/Jumpskirt/red.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/Jumpskirt/red.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtJanimaidViolet
+  name: purple maid uniform
+  suffix: Fredik21, горничные
+  description: Dominant and commanding, she doesn't ask, but commands, customers to enjoy their food.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/Jumpskirt/violet.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/Jumpskirt/violet.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtJanimaidYellow
+  name: yellow maid uniform
+  suffix: Fredik21, горничные
+  description: A bundle of energy. Constantly jumping, waving his arms, and trying to cheer up even the most gloomy Security Officer.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/Jumpskirt/yellow.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/Jumpskirt/yellow.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsLaceupStockingsBlue
+  name: boots with short blue stockings
+  suffix: Fredik21, горничные
+  description: An elegant combination of formality and style. The cool blue of the fabric seems to suggest that approaching the owner will be difficult.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/shoes/blue.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/shoes/blue.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsLaceupStockingsGreen
+  name: boots with short green stockings
+  suffix: Fredik21, горничные
+  description: A pair of soft slippers with cozy, mint-colored stockings exudes a sense of calm and homey warmth, something sorely lacking in the cold of outer space.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/shoes/green.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/shoes/green.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsLaceupStockingsRed
+  name: boots with short red stockings
+  suffix: Fredik21, горничные
+  description: Bright red stockings that scream "Don't get too close!" are the perfect complement to someone who hides a kind heart behind a prickly personality.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/shoes/red.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/shoes/red.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsLaceupStockingsViolet
+  name: boots with short purple stockings
+  suffix: Fredik21, горничные
+  description: A deep purple hue shrouded in mystery, these stockings add a touch of enigma to any look and draw attention, leaving room for speculation about the wearer's character.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/shoes/violet.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/shoes/violet.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsLaceupStockingsYellow
+  name: boots with short yellow stockings
+  suffix: Fredik21, горничные
+  description: A pair of shoes with incredibly bright yellow stockings. They seem to glow with optimism and pure energy, making everyone around them smile despite the endless darkness of space.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/shoes/yellow.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/shoes/yellow.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesLatex
+  id: ClothingHandsYellow
+  name: yellow hand decoration
+  suffix: Fredik21, горничные
+  description: Maid decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/handdecoration/yellow.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/handdecoration/yellow.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesLatex
+  id: ClothingHandsViolet
+  name: purple hand decoration
+  suffix: Fredik21, горничные
+  description: Maid decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/handdecoration/violet.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/handdecoration/violet.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesLatex
+  id: ClothingHandsRed
+  name: red hand decoration
+  suffix: Fredik21, горничные
+  description: Maid decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/handdecoration/red.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/handdecoration/red.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesLatex
+  id: ClothingHandsGreen
+  name: green hand decoration
+  suffix: Fredik21, горничные
+  description: Maid decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/handdecoration/green.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/handdecoration/green.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesLatex
+  id: ClothingHandsBlue
+  name: blue hand jewelry
+  suffix: Fredik21, горничные
+  description: Maid decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/handdecoration/blue.rsi
+  - type: Clothing
+    sprite: Imperial/Fredik21/maid/handdecoration/blue.rsi
+
+- type: entity
+  parent: MobCatFelinidBase
+  id: PresetMaidYellow
+  name: Preset
+  suffix: Fredik21, горничные
+  components:
+    - type: Loadout
+      prototypes: [ MaidYellowGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: MaidYellowGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidYellow
+    back: ClothingBackpackMaidBackbow
+    shoes: ClothingShoesBootsLaceupStockingsYellow
+    head: ClothingHeadFlowerCentComGold
+    gloves: ClothingHandsYellow
+    neck: ClothingNeckMaidChoker
+    id: JanimaidPDA
+    ears: ClothingHeadsetJanimaid
+    belt: ClothingBeltJanimaidFilled
+  storage:
+    belt:
+    - CrowbarRed
+
+- type: entity
+  parent: MobCatFelinidBase
+  id: PresetMaidViolet
+  name: Preset
+  suffix: Fredik21, горничные
+  components:
+    - type: Loadout
+      prototypes: [ MaidVioletGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: MaidVioletGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidViolet
+    back: ClothingBackpackMaidBackbow
+    shoes: ClothingShoesBootsLaceupStockingsViolet
+    head: VlPCFlowerOne
+    gloves: ClothingHandsViolet
+    neck: ClothingNeckMaidChoker
+    id: JanimaidPDA
+    ears: ClothingHeadsetJanimaid
+    belt: ClothingBeltJanimaidFilled
+  storage:
+    belt:
+    - CrowbarRed
+
+- type: entity
+  parent: MobCatFelinidBase
+  id: PresetMaidRed
+  name: Preset
+  suffix: Fredik21, горничные
+  components:
+    - type: Loadout
+      prototypes: [ MaidRedGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: MaidRedGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidRed
+    back: ClothingBackpackMaidBackbow
+    shoes: ClothingShoesBootsLaceupStockingsRed
+    head: ClothingHeadHatHairflower
+    gloves: ClothingHandsRed
+    neck: ClothingNeckMaidChoker
+    id: JanimaidPDA
+    ears: ClothingHeadsetJanimaid
+    belt: ClothingBeltJanimaidFilled
+  storage:
+    belt:
+    - CrowbarRed
+
+- type: entity
+  parent: MobCatFelinidBase
+  id: PresetMaidGreen
+  name: Preset
+  suffix: Fredik21, горничные
+  components:
+    - type: Loadout
+      prototypes: [ MaidGreenGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: MaidGreenGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidGreen
+    back: ClothingBackpackMaidBackbow
+    shoes: ClothingShoesBootsLaceupStockingsGreen
+    head: ClothingHeadFlowerCentComEmerald
+    gloves: ClothingHandsGreen
+    neck: ClothingNeckMaidChoker
+    id: JanimaidPDA
+    ears: ClothingHeadsetJanimaid
+    belt: ClothingBeltJanimaidFilled
+  storage:
+    belt:
+    - CrowbarRed
+
+- type: entity
+  parent: MobCatFelinidBase
+  id: PresetMaidBlue
+  name: Preset
+  suffix: Fredik21, горничные
+  components:
+    - type: Loadout
+      prototypes: [ MaidBlueGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+
+- type: startingGear
+  id: MaidBlueGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidBlue
+    back: ClothingBackpackMaidBackbow
+    shoes: ClothingShoesBootsLaceupStockingsBlue
+    head: ClothingHeadFlowerSona
+    gloves: ClothingHandsBlue
+    neck: ClothingNeckMaidChoker
+    id: JanimaidPDA
+    ears: ClothingHeadsetJanimaid
+    belt: ClothingBeltJanimaidFilled
+  storage:
+    belt:
+    - CrowbarRed
+
+- type: entity
+  parent: BaseItem
+  id: GoloBell
+  name: голо звонок
+  suffix: Fredik21, горничные
+  description: после того как один из клиентов постоянно нажимал на кнопку беся весь персонал, было принято решение сделать ее одноразовой.
+  components:
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/bell.rsi
+    layers:
+    - state: EmergencyButton
+  - type: EmergencyButton
+    maxCharges: 1
+    currentCharges: 1
+    alertMessage: "alert-emergency-GoloBell-message"
+    useMessage: "alert-emergency-GoloBell-used"
+    noChargesMessage: "alert-emergency-GoloBell-no-charges"
+    radioChannel: Service
+    confirmationMessage: "alert-emergency-GoloBell-confirmation"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableRed1
+  suffix: Fredik21, горничные, столик 1, красный
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: красный столик 1
+    color: "#DC143C"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableRed2
+  suffix: Fredik21, горничные, столик 2, красный
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: красный столик 2
+    color: "#DC143C"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableRed3
+  suffix: Fredik21, горничные, столик 3, красный
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: красный столик 3
+    color: "#DC143C"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableViolet1
+  suffix: Fredik21, горничные, столик 1, фиолетовый
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: фиолетовый столик 1
+    color: "#C71585"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableViolet2
+  suffix: Fredik21, горничные, столик 2, фиолетовый
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: фиолетовый столик 2
+    color: "#C71585"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableViolet3
+  suffix: Fredik21, горничные, столик 3, фиолетовый
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: фиолетовый столик 3
+    color: "#C71585"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableBlue1
+  suffix: Fredik21, горничные, столик 1, синий
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: синий столик 1
+    color: "#00BFFF"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableBlue2
+  suffix: Fredik21, горничные, столик 2, синий 
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: синий столик 2
+    color: "#00BFFF"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableBlue3
+  suffix: Fredik21, горничные, столик 3, синий
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: синий столик 3
+    color: "#00BFFF"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableYellow1
+  suffix: Fredik21, горничные, столик 1, жёлтый
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: жёлтый столик 1
+    color: "#FFFF00"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableYellow2
+  suffix: Fredik21, горничные, столик 2, жёлтый
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: жёлтый столик 2
+    color: "#FFFF00"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableYellow3
+  suffix: Fredik21, горничные, столик 3, жёлтый
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: жёлтый столик 3
+    color: "#FFFF00"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableGreen1
+  suffix: Fredik21, горничные, столик 1, зелёный
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: зелёный столик 1
+    color: "#228B22"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableGreen2
+  suffix: Fredik21, горничные, столик 2, зелёный
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: зелёный столик 2
+    color: "#228B22"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultMaidCafeBeaconTableGreen3
+  suffix: Fredik21, горничные, столик 3, зелёный
+  name: Кнопка под столом
+  components:
+  - type: NavMapBeacon
+    defaultText: зелёный столик 3
+    color: "#228B22"
+
+- type: entity
+  name: GoloBell box
+  parent: BoxCardboard
+  id: BoxGoloBell
+  description: A box filled with GoloBell.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/box.rsi
+    layers:
+      - state: box
+      - state: EmergencyButton
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: GoloBell
+        amount: 4
+
+- type: entity
+  id: DanceFloor
+  parent: BaseStructure
+  name: танцпол
+  description: На нём танцуют.
+  suffix: Fredik21, горничные
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/maid/dancefloor.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+    damageModifierSet: Empty
+  - type: Destructible
+    thresholds: []
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: RainbowLightMaid
+  parent: MarkerBase
+  name: свет для танцпола
+  suffix: Fredik21, горничные
+  categories: [ "Light" ]
+  components:
+  - type: PointLight
+    radius: 4.0
+    energy: 2.0
+    softness: 1.5
+    color: "#FF0000"
+  - type: RgbLightController
+    cycleRate: 1.0
+
+- type: entity
+  id: RainbowLightGreenMaid
+  parent: MarkerBase
+  name: зелёный свет
+  suffix: Fredik21, горничные
+  categories: [ "Light" ]
+  components:
+  - type: PointLight
+    radius: 4.0
+    energy: 2.0
+    softness: 1.5
+    color: "#13b135"
+
+- type: entity
+  id: RainbowLightYellowMaid
+  parent: MarkerBase
+  name: жёлтый свет
+  suffix: Fredik21, горничные
+  categories: [ "Light" ]
+  components:
+  - type: PointLight
+    radius: 4.0
+    energy: 2.0
+    softness: 1.5
+    color: "#FFFF00"
+
+- type: entity
+  id: RainbowLightVioletMaid
+  parent: MarkerBase
+  name: фиолетовый свет
+  suffix: Fredik21, горничные
+  categories: [ "Light" ]
+  components:
+  - type: PointLight
+    radius: 4.0
+    energy: 2.0
+    softness: 1.5
+    color: "#8F00FF"
+
+- type: entity
+  id: RainbowLightBlueMaid
+  parent: MarkerBase
+  name: синий свет
+  suffix: Fredik21, горничные
+  categories: [ "Light" ]
+  components:
+  - type: PointLight
+    radius: 4.0
+    energy: 2.0
+    softness: 1.5
+    color: "#0000FF"
+
+- type: entity
+  id: RainbowLightRedMaid
+  parent: MarkerBase
+  name: красный свет
+  suffix: Fredik21, горничные
+  categories: [ "Light" ]
+  components:
+  - type: PointLight
+    radius: 4.0
+    energy: 2.0
+    softness: 1.5
+    color: "#FF0000"

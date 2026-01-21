@@ -12885,3 +12885,178 @@
     inventory: None
     revertOnDeath: true
     revertOnCrit: true
+
+- type: entity
+  id: NdaTeslaGate
+  parent: BaseStructure
+  name: Тесла
+  description: Бьет током
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/tesla/tesla.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+    damageModifierSet: Empty
+  - type: Destructible
+    thresholds: []
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: NdaAnimationCI
+  parent: BaseStructure
+  name: Анимация прибытия ПХ
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/animation/car.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+    damageModifierSet: Empty
+  - type: Destructible
+    thresholds: []
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  parent: AtmosDeviceFanTiny
+  id: tesla1
+  name: Тесла
+  suffix: Fredik21, Недра
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/structure/tesla/teslabat.rsi
+      state: icon
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Shock: 300
+    - type: TimedDespawn
+      lifetime: 1
+    - type: AmbientSound
+      volume: -5
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/Tesla.ogg
+        params:
+          loop: true
+          tream: true
+
+- type: entity
+  id: tesla2
+  name: Тесла
+  suffix: Fredik21, Недра
+  components:
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+    - type: DamageContacts
+      damage:
+        types:
+          Shock: 300
+    - type: TimedDespawn
+      lifetime: 1
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+              bounds: "-0.5,-0.5,0.5,0.5"
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+
+- type: entity
+  name: Периодический спавнер теслы
+  id: TimedSpawnertesla1
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - tesla1
+      chance: 1
+      intervalSeconds: 2
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер теслы 2
+  id: TimedSpawnertesla2
+  suffix: Fredik21, Недра
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - tesla2
+      chance: 1
+      intervalSeconds: 2
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
