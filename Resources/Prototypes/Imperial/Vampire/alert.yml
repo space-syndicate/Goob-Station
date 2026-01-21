@@ -22,7 +22,7 @@
   - sprite: Imperial/Stellark/Vampire/bleed.rsi
     state: bleed10
   name: Запас крови
-  description: Показывает текущий запас крови. При истощении вампир получает урон, истощается, начинает дрожать и оставляет кровавые следы.
+  description: Показывает текущий запас крови.
   minSeverity: 0
   maxSeverity: 9
 

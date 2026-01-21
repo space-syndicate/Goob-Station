@@ -205,6 +205,7 @@ public partial class SharedVampireSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
 
         DealBloodDamage(args.Performer, args.CostBlood);
+        args.Handled = true;
     }
 
     private void OnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapDoAfterEvent args)

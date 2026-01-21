@@ -31,7 +31,6 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
-    private static readonly EntProtoId DefaultVampireRule = "Vampire"; // imperial space: new antag - vampire
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -207,23 +206,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", wizardName, Loc.GetString("admin-verb-make-wizard")),
         };
         args.Verbs.Add(wizard);
-
-        // imperial space: new antag - vampire. start
-        var vampireName = Loc.GetString("admin-verb-text-make-vampire");
-        Verb vampire = new()
-        {
-            Text = vampireName,
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/statusicon.rsi/Vampire.png")),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<VampireRoleComponent>(targetPlayer, DefaultVampireRule);
-            },
-            Impact = LogImpact.High,
-            Message = string.Join(": ", vampireName, Loc.GetString("admin-verb-make-vampire")),
-        };
-        args.Verbs.Add(vampire);
-        // imperial space: new antag - vampire. end
 
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
