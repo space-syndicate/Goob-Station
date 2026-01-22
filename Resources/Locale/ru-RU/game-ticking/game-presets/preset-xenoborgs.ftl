@@ -21,5 +21,5 @@ xenoborg-number-crew-alive-end = Количество выживших член�
 
 xenoborg-max-number = Наибольшее количество ксеноборгов: {$count}
 
-xenoborgs-list-start = В стартовый состав команды ксеноборгов входили::
+xenoborgs-list-start = В стартовый состав команды ксеноборгов входили:
 xenoborgs-list = - [color=White]{$name}[/color] ([color=gray]{$user}[/color])
