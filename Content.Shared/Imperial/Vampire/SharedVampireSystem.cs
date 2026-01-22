@@ -82,7 +82,6 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void BaseInitialize()
     {
-        base.Initialize();
         SubscribeLocalEvent<VampireRecoveryEvent>(OnRecovery);
         SubscribeLocalEvent<VampireSwordEvent>(OnSword);
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty); // общий
@@ -317,6 +316,7 @@ public partial class SharedVampireSystem : EntitySystem
 
         // для VampireInvisibleAction
         vamp.Comp.InvisibilityAbilityActive = false;
+        Dirty(vamp, vamp.Comp);
     }
 
     /// <summary>
@@ -331,6 +331,7 @@ public partial class SharedVampireSystem : EntitySystem
 
         // для VampireInvisibleAction
         vamp.Comp.InvisibilityAbilityActive = false;
+        Dirty(vamp, vamp.Comp);
     }
 
     /// <summary>
