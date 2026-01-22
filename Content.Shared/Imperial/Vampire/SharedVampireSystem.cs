@@ -88,8 +88,8 @@ public partial class SharedVampireSystem : EntitySystem
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty); // общий
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
 
-        SubscribeLocalEvent<VampireComponent, MeleeHitEvent>(OnAttemptMelee);
-        SubscribeLocalEvent<VampireComponent, DamageChangedEvent>(OnDamaged);
+        SubscribeLocalEvent<VampireComponent, MeleeAttackEvent>(OnAttemptMelee);
+        SubscribeLocalEvent<VampireComponent, AttackedEvent>(OnDamaged);
 
         SubscribeLocalEvent<VampireBuffComponent, GetMeleeAttackRateEvent>(OnGetMeleeAttackRate);
         SubscribeLocalEvent<VampireBuffComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
@@ -308,29 +308,29 @@ public partial class SharedVampireSystem : EntitySystem
     /// <summary>
     /// при попытке атаковать в инвизе - инвиз слетает
     /// </summary>
-    private void OnAttemptMelee(EntityUid uid, VampireComponent comp, ref MeleeHitEvent args)
+    private void OnAttemptMelee(Entity<VampireComponent> vamp, ref MeleeAttackEvent args)
     {
-        if (!comp.InvisibleIsActive)
+        if (!vamp.Comp.InvisibleIsActive)
             return;
 
-        VampireInvisible(uid);
+        VampireInvisible(vamp);
 
         // для VampireInvisibleAction
-        comp.InvisibilityAbilityActive = false;
+        vamp.Comp.InvisibilityAbilityActive = false;
     }
 
     /// <summary>
     /// при получения урона в инвизе - инвиз слетает
     /// </summary>
-    private void OnDamaged(EntityUid uid, VampireComponent comp, DamageChangedEvent args)
+    private void OnDamaged(Entity<VampireComponent> vamp, ref AttackedEvent args)
     {
-        if (!comp.InvisibleIsActive)
+        if (!vamp.Comp.InvisibleIsActive)
             return;
 
-        VampireInvisible(uid);
+        VampireInvisible(vamp);
 
         // для VampireInvisibleAction
-        comp.InvisibilityAbilityActive = false;
+        vamp.Comp.InvisibilityAbilityActive = false;
     }
 
     /// <summary>
