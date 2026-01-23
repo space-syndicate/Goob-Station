@@ -1,7 +1,5 @@
 - type: entity
-  id: XxRaaySmasherHuman
-  name: Адам Смешер
-  description: Это точно человек?
+  id: SmasherHuman
   components:
     - type: Sprite
       noRot: true

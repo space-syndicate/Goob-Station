@@ -20,6 +20,15 @@ public sealed partial class SandevistanComponent : Component
     public TimeSpan? EffectEndTime;
 
     /// <summary>
+    /// Время начала перезарядки.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField]
+    [AutoPausedField]
+    public TimeSpan? CooldownStartTime;
+
+    /// <summary>
     /// Время окончания перезарядки.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]

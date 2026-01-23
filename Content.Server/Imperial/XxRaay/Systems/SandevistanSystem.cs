@@ -58,15 +58,26 @@ public sealed class SandevistanSystem : EntitySystem
 
             if (component.ActionEntity != null && TryComp<ActionComponent>(component.ActionEntity, out var action))
             {
-                if (component.CooldownEndTime.HasValue)
+                if (component.CooldownEndTime.HasValue && component.CooldownStartTime.HasValue)
                 {
                     if (currentTime < component.CooldownEndTime.Value)
                     {
-                        _actions.SetCooldown(component.ActionEntity, currentTime, component.CooldownEndTime.Value);
+                        if (action.Cooldown == null || 
+                            action.Cooldown.Value.Start != component.CooldownStartTime.Value ||
+                            action.Cooldown.Value.End != component.CooldownEndTime.Value)
+                        {
+                            _actions.SetCooldown(component.ActionEntity, component.CooldownStartTime.Value, component.CooldownEndTime.Value);
+                        }
                     }
-                    else if (action.Cooldown != null)
+                    else
                     {
-                        _actions.RemoveCooldown(component.ActionEntity);
+                        if (action.Cooldown != null)
+                        {
+                            _actions.RemoveCooldown(component.ActionEntity);
+                        }
+                        component.CooldownStartTime = null;
+                        component.CooldownEndTime = null;
+                        Dirty(uid, component);
                     }
                 }
             }
@@ -81,8 +92,12 @@ public sealed class SandevistanSystem : EntitySystem
         var component = entity.Comp;
         var currentTime = _timing.CurTime;
 
-        if (component.CooldownEndTime.HasValue && currentTime < component.CooldownEndTime.Value)
-            return;
+        if (component.CooldownEndTime.HasValue && component.CooldownStartTime.HasValue)
+        {
+            var effectEnded = !component.EffectEndTime.HasValue || currentTime >= component.EffectEndTime.Value;
+            if (effectEnded && currentTime < component.CooldownEndTime.Value)
+                return;
+        }
 
         args.Handled = true;
         ActivateEffect(entity.Owner, component, currentTime);
@@ -102,9 +117,11 @@ public sealed class SandevistanSystem : EntitySystem
     private void ActivateEffect(EntityUid uid, SandevistanComponent component, TimeSpan currentTime)
     {
         var effectEndTime = currentTime + TimeSpan.FromSeconds(component.EffectDuration);
+        var cooldownStartTime = currentTime;
         var cooldownEndTime = effectEndTime + TimeSpan.FromSeconds(component.CooldownDuration);
 
         component.EffectEndTime = effectEndTime;
+        component.CooldownStartTime = cooldownStartTime;
         component.CooldownEndTime = cooldownEndTime;
         Dirty(uid, component);
 
@@ -114,7 +131,7 @@ public sealed class SandevistanSystem : EntitySystem
 
         if (component.ActionEntity != null)
         {
-            _actions.SetCooldown(component.ActionEntity, currentTime, cooldownEndTime);
+            _actions.SetCooldown(component.ActionEntity, cooldownStartTime, cooldownEndTime);
         }
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
