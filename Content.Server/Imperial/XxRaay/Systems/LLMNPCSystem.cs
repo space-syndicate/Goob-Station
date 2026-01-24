@@ -26,6 +26,7 @@ using Content.Shared.Speech.Components;
 using Robust.Shared.Localization;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
@@ -266,7 +267,7 @@ public sealed class LLMNPCSystem : EntitySystem
                 return;
             }
 
-            var responseContent = await response.Content.ReadFromJsonAsync<Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem.GroqApiResponse>();
+            var responseContent = await response.Content.ReadFromJsonAsync<GroqApiResponse>();
 
             if (responseContent?.Choices == null || responseContent.Choices.Length == 0)
             {
