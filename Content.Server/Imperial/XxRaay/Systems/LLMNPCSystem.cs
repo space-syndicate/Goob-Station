@@ -26,7 +26,7 @@ using Content.Shared.Speech.Components;
 using Robust.Shared.Localization;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem;
+using Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem.Api;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
