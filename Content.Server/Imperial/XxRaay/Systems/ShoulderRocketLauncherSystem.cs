@@ -47,7 +47,7 @@ public sealed class ShoulderRocketLauncherSystem : EntitySystem
             component.IsTargeting = true;
             Dirty(entity);
             _targetOverlaySystem.StartTargeting(user, entity, maxTargetCount: component.MaxTargetCount, 
-                whiteListComponents: new HashSet<string> { "Transform" });
+                whiteListComponents: component.WhiteListComponents);
         }
     }
 

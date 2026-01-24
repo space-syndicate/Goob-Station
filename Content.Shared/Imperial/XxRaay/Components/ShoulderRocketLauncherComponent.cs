@@ -35,5 +35,11 @@ public sealed partial class ShoulderRocketLauncherComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public int MaxTargetCount = 6;
+
+    /// <summary>
+    /// Список компонентов, которые должны быть у цели для захвата.
+    /// </summary>
+    [DataField]
+    public HashSet<string> WhiteListComponents = new() { "Transform" };
 }
 
