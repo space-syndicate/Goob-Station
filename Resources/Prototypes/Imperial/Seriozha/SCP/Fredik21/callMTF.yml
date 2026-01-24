@@ -1,5 +1,6 @@
 - type: MTFCall
   id: Epsilon11
+  desc: mtf-call-Epsilon11-desc
   path: /GM/seriozha/event/nedra/MTF/Epsilon-11.yml
   announcementMessage: announcementMessage-MTF-Epsilon11
   announcementSender: announcementSender-MTF-base
@@ -10,6 +11,7 @@
 
 - type: MTFCall
   id: Epsilon9
+  desc: mtf-call-Epsilon9-desc
   path: /GM/seriozha/event/nedra/MTF/Epsilon-9.yml
   announcementMessage: announcementMessage-MTF-Epsilon9
   announcementSender: announcementSender-MTF-base
@@ -20,6 +22,7 @@
 
 - type: MTFCall
   id: Eta10
+  desc: mtf-call-Eta10-desc
   path: /GM/seriozha/event/nedra/MTF/Eta-10.yml
   announcementMessage: announcementMessage-MTF-Eta10
   announcementSender: announcementSender-MTF-base
@@ -30,6 +33,7 @@
 
 - type: MTFCall
   id: Goc
+  desc: mtf-call-Goc-desc
   path: /GM/seriozha/event/nedra/MTF/goc.yml
   announcementMessage: announcementMessage-MTF-Goc
   announcementSender: announcementSender-MTF-base
@@ -40,6 +44,7 @@
 
 - type: MTFCall
   id: Nu7
+  desc: mtf-call-Nu7-desc
   path: /GM/seriozha/event/nedra/MTF/Nu-7.yml
   announcementMessage: announcementMessage-MTF-Nu7
   announcementSender: announcementSender-MTF-base
@@ -50,6 +55,7 @@
 
 - type: MTFCall
   id: PHYSICS
+  desc: mtf-call-PHYSICS-desc
   path: /GM/seriozha/event/nedra/MTF/PHYSICS.yml
   announcementMessage: announcementMessage-MTF-PHYSICS
   announcementSender: announcementSender-MTF-base
@@ -60,6 +66,7 @@
 
 - type: MTFCall
   id: fbi
+  desc: mtf-call-fbi-desc
   path: /GM/seriozha/event/nedra/MTF/fbi.yml
   announcementMessage: announcementMessage-MTF-fbi
   announcementSender: announcementSender-MTF-base
@@ -70,6 +77,7 @@
 
 - type: MTFCall
   id: scarletking
+  desc: mtf-call-scarletking-desc
   path: /GM/seriozha/event/nedra/MTF/Small-Children.yml
   announcementMessage: announcementMessage-MTF-scarletking
   announcementSender: announcementSender-MTF-scarletking
@@ -80,6 +88,7 @@
 
 - type: MTFCall
   id: ssspgry
+  desc: mtf-call-ssspgry-desc
   path: /GM/seriozha/event/nedra/MTF/ssspgry.yml
   announcementMessage: announcementMessage-MTF-ssspgry
   announcementSender: announcementSender-MTF-base
@@ -90,6 +99,7 @@
 
 - type: MTFCall
   id: tay5
+  desc: mtf-call-tay5-desc
   path: /GM/seriozha/event/nedra/MTF/Death-Squad-RP.yml
   announcementMessage: announcementMessage-MTF-tay5
   announcementSender: announcementSender-MTF-base
@@ -100,6 +110,7 @@
 
 - type: MTFCall
   id: upsilon11
+  desc: mtf-call-upsilon11-desc
   path: /GM/seriozha/event/nedra/MTF/NotEpsilon-11.yml
   announcementMessage: announcementMessage-MTF-upsilon11
   announcementSender: announcementSender-MTF-upsilon11
@@ -110,6 +121,7 @@
 
 - type: MTFCall
   id: dz
+  desc: mtf-call-dz-desc
   path: /GM/seriozha/event/nedra/MTF/dz.yml
   announcementMessage: announcementMessage-MTF-dz
   announcementSender: announcementSender-MTF-base
@@ -120,6 +132,7 @@
 
 - type: MTFCall
   id: chaos
+  desc: mtf-call-chaos-desc
   path: /GM/seriozha/event/nedra/MTF/A-Small-Cute-Squad.yml
   announcementMessage: announcementMessage-MTF-chaos
   announcementSender: announcementSender-MTF-base
@@ -130,6 +143,7 @@
 
 - type: MTFCall
   id: chaosBig
+  desc: mtf-call-chaosBig-desc
   path: /GM/seriozha/event/nedra/MTF/The-Big-Kill-Squad.yml
   announcementMessage: announcementMessage-MTF-chaos
   announcementSender: announcementSender-MTF-base
@@ -140,6 +154,7 @@
 
 - type: MTFCall
   id: brokengod
+  desc: mtf-call-brokengod-desc
   path: /GM/seriozha/event/nedra/MTF/Church-Children.yml
   announcementMessage: announcementMessage-MTF-brokengod
   announcementSender: announcementSender-MTF-brokengod
@@ -150,6 +165,7 @@
 
 - type: MTFCall
   id: beta7
+  desc: mtf-call-beta7-desc
   path: /GM/seriozha/event/nedra/MTF/Beta-7.yml
   announcementMessage: announcementMessage-MTF-beta7
   announcementSender: announcementSender-MTF-base
@@ -160,6 +176,7 @@
 
 - type: MTFCall
   id: alpha9
+  desc: mtf-call-alpha9-desc
   path: /GM/seriozha/event/nedra/MTF/Alpha-9.yml
   announcementMessage: announcementMessage-MTF-alpha9
   announcementSender: announcementSender-MTF-base
@@ -170,6 +187,7 @@
 
 - type: MTFCall
   id: alpha1
+  desc: mtf-call-alpha1-desc
   path: /GM/seriozha/event/nedra/MTF/Alpha-1.yml
   announcementMessage: announcementMessage-MTF-alpha1
   announcementSender: announcementSender-MTF-base
@@ -180,6 +198,7 @@
 
 - type: MTFCall
   id: alpha1O5
+  desc: mtf-call-alpha1O5-desc
   path: /GM/seriozha/event/nedra/MTF/Alpha-1-o5.yml
   announcementMessage: announcementMessage-MTF-alpha1O5
   announcementSender: announcementSender-MTF-base
@@ -190,6 +209,7 @@
 
 - type: MTFCall
   id: zeta9
+  desc: mtf-call-zeta9-desc
   path: /GM/seriozha/event/nedra/MTF/Dzeta-9.yml
   announcementMessage: announcementMessage-MTF-zeta9
   announcementSender: announcementSender-MTF-base

@@ -1060,3 +1060,43 @@ ent-PaperZoneGoalNDA = Цель зоны
 
 ent-ClothingOuterArmorCIJuggernaut = Панцирь «Погибель»
     .desc =  Индивидуальная защита джаггернаута ПХ. Грубые сварочные швы скрывают сложнейшие системы жизнеобеспечения. Этот костюм не предназначен для побега — только для прорыва.
+
+mtf-call-Epsilon11-desc = основной отряд, использовать в большинстве случаев
+
+mtf-call-Epsilon9-desc =  использует огнеметы и пиротехнику. Против побега NDA 457 огненный человек
+
+mtf-call-Eta10-desc = против аномалий что не увидить человеческим взглядом или же человека с 268
+
+mtf-call-Goc-desc = Цель/Ивент с ГОК
+
+mtf-call-Nu7-desc =  слабый отряд, посылать первым в случае чс или как слабое подкрепление
+
+mtf-call-PHYSICS-desc = сильный отряд ГОК
+
+mtf-call-fbi-desc = цель с ОНП ФБР
+
+mtf-call-scarletking-desc = дети Алого Короля
+
+mtf-call-ssspgry-desc = ивент с отдел П ГРУ
+
+mtf-call-tay5-desc = Эскадрон смерти недр
+
+mtf-call-upsilon11-desc = для штурма зон хаоса или же обороны
+
+mtf-call-dz-desc = Длань змея
+
+mtf-call-chaos-desc = отряд повстанцев хаоса
+
+mtf-call-chaosBig-desc = большой отряд повстанцев хаоса
+
+mtf-call-brokengod-desc = культисты Часовой Ортодоксальной Церкви
+
+mtf-call-beta7-desc = против биоугроз
+
+mtf-call-alpha9-desc = отряд с использованием союзника ввиде NDA 105/076
+
+mtf-call-alpha1-desc = телохранители совета о5
+
+mtf-call-alpha1O5-desc = Цель с советом О5
+
+mtf-call-zeta9-desc = Против аномалий что находятся под землей/Сценарий зоны 13
