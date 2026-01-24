@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Content.Server.Imperial.XxRaay.Systems.LLMNPCSystem.Api;
+namespace Content.Server.Imperial.XxRaay.Systems;
 
 internal sealed class GroqApiResponse
 {
