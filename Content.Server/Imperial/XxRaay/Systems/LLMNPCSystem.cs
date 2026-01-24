@@ -19,6 +19,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.XxRaay.Components;
+using Content.Shared.Imperial.XxRaay.DataDefinitions;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Speech;
