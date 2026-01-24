@@ -21,8 +21,8 @@ public sealed class MTFCallPresetPrototype : IPrototype
     /// <summary>
     /// Описание пресета в меню (Локализация).
     /// </summary>
-    [DataField]
-    public LocId Desc { get; private set; } = string.Empty;
+    [DataField(required: true)]
+    public LocId Desc { get; private set; } = default!;
 
     /// <summary>
     /// Звук анонса при прибытии.

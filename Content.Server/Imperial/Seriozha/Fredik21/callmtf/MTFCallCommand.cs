@@ -8,7 +8,7 @@ using Content.Server.Chat.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.EntitySerialization.Systems; // <--- ПРАВИЛЬНЫЙ ПУТЬ ДЛЯ MapLoaderSystem
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.EntitySerialization;
 
 namespace Content.Server.Imperial.MTFCall;
@@ -78,6 +78,7 @@ public sealed class CallMTF : LocalizedCommands
         if (!_entManager.TryGetComponent<MapComponent>(shuttleMapUid, out var mapComp))
         {
             shell.WriteError("Failed to get MapComponent from created map.");
+            _entManager.DeleteEntity(shuttleMapUid);
             return;
         }
 
