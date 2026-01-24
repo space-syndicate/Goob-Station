@@ -220,7 +220,7 @@ ent-ClothingOuterHardsuitSCPDevaMedic = Резонаторный скафанд�
 ent-PresetSCPDevMedic = Медик Империи Дэвы
     .desc = Медик Империи!
 
-ent-PresetSCPDevCommand = Командир Империи
+ent-PresetSCPDevCommand = Командир Империи Дэва
     .desc = Слава Империи!
 
 ent-PresetSCPAdmin = Администратор командного штаба
@@ -1008,7 +1008,7 @@ ent-LockerNDASalvageStorage = шкаф оперативника теневого
     .desc = шкаф с снаряжением для оперативника теневого осадка
 
 ent-ComputerPalletConsoleNDA = консоль продажи недр
-    .desc = консоль для продажи криссталов
+    .desc = консоль для продажи кристаллов
 
 ent-NDAStationaryUplink = консоль заказов недр
     .desc = консоль для покупки снаряжения

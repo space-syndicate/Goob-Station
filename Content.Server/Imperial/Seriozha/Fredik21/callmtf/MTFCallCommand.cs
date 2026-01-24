@@ -13,7 +13,7 @@ using Robust.Shared.EntitySerialization;
 
 namespace Content.Server.Imperial.MTFCall;
 
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Fun)]
 public sealed class CallMTF : LocalizedCommands
 {
     [Dependency] private readonly IEntityManager _entManager = default!;

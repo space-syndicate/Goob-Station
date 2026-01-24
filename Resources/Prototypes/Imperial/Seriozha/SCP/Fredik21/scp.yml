@@ -7870,6 +7870,16 @@
 
 - type: entity
   parent: DefaultStationBeacon
+  id: DefaultStationBeaconNDAsupply
+  suffix: Fredik21, Снабжение зоны
+  name: Точка зоны
+  components:
+  - type: NavMapBeacon
+    defaultText: Снабжение зоны
+    color: "#808080"
+
+- type: entity
+  parent: DefaultStationBeacon
   id: DefaultStationBeaconNDA002
   suffix: Fredik21, Недра NDA002
   name: Точка зоны
