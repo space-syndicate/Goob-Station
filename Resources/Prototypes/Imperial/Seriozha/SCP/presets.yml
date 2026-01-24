@@ -626,6 +626,15 @@
     - DoorRemoteSCP
     - FondUplinkCommander
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: startingGear
   id: NuGear
@@ -672,6 +681,15 @@
     back:
     - FondUplinkCommander
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: startingGear
   id: OxranaGear

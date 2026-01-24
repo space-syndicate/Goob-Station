@@ -2,7 +2,7 @@
   id: cat
   name: кошка
   roundStart: false
-  prototype: MobCatFelinid
+  prototype: MobCatFelinidBase
   sprites: MobCatSprites
   markingLimits: MobHumanCatMarkingLimits
   dollPrototype: MobSpeciesCat
@@ -636,7 +636,7 @@
   id: GoloBell
   name: голо звонок
   suffix: Fredik21, горничные
-  description: после того как один из клиентов постоянно нажимал на кнопку беся весь персонал, было принято решение сделать ее одноразовой.
+  description: после того, как один из клиентов постоянно нажимал на кнопку беся весь персонал, было принято решение сделать ее одноразовой.
   components:
   - type: Item
     size: Small

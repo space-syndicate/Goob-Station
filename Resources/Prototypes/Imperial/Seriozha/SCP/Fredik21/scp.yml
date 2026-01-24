@@ -1075,6 +1075,15 @@
     - HandHeldMassScanner
     - BoxSurvivalNDA
     - ImperialUplinkNDA
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio6
+    - EncryptionKeyRadio6
+    - EncryptionKeyRadio6
 
 - type: startingGear
   id: DevGearMedic
@@ -2021,6 +2030,15 @@
     back:
     - FondUplinkCommander
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: localizedDataset
   id: Namesnu7scp
@@ -3229,7 +3247,7 @@
     jumpsuit: ClothingUniformJumpsuitColorOrange
     shoes: ClothingShoesBootsWorkSCP
     outerClothing: ClothingOuterArmorSCPSecurityAlt
-    id: SCPIDCardFive
+    id: SCPIDCardFour
     ears: ClothingHeadsetSCPMain
     pocket1: WeaponPistolMk58Nonlethal
     pocket2: MagazinePistolRubber
@@ -4335,7 +4353,7 @@
     head: ClothingHeadHelmetCIsuppressor
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorCI
+    outerClothing: ClothingOuterArmorCIJuggernaut
     id: SCPIDCardCI
     ears: ClothingHeadsetSCPCI
     suitstorage: WeaponLightMachineGunL6
@@ -4448,6 +4466,14 @@
   components:
   - type: Paper
     content: delivery-DNA-SRPMed
+
+- type: entity
+  id: PaperSalvageNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-NDA-SRP
 
 - type: entity
   id: PaperEngNDA
@@ -4634,6 +4660,15 @@
     - CSWeaponFiveSeven
     - CIUplinkCommander
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4791,6 +4826,14 @@
     - MagazinePistolSubMachineGunIncendiary
     - MagazinePistolSubMachineGunIncendiary
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -4967,6 +5010,15 @@
     - LocatorEta10Commander
     - FondUplinkCommander
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: entity
   name: hard-to-kill reptile
@@ -7576,6 +7628,15 @@
     back:
     - DZUplinkCom
     - BoxSurvivalNDA
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio6
+    - EncryptionKeyRadio6
+    - EncryptionKeyRadio6
 
 - type: entity
   parent: DZUplink
@@ -8201,6 +8262,15 @@
     back:
     - FondUplinkCommander
     - BoxSurvivalNDA
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
 
 - type: reagent
   id: SpaceDrugsNDA
@@ -12734,7 +12804,7 @@
     heldPrefix: device
 
 - type: entity
-  name: Drozd
+  name: SMG NDA
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunEpsilon11
   suffix: Fredik21, Недра
@@ -12908,7 +12978,6 @@
         mask:
         - None
   - type: Damageable
-    damageModifierSet: Empty
   - type: Destructible
     thresholds: []
   - type: Anchorable
@@ -13060,3 +13129,2190 @@
       intervalSeconds: 2
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
+#Продажа
+- type: entity
+  parent: BaseComputer
+  id: ComputerPalletConsoleNDA
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: nda
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: ActivatableUI
+    key: enum.CargoPalletConsoleUiKey.Sale
+  - type: UserInterface
+    interfaces:
+      enum.CargoPalletConsoleUiKey.Sale:
+        type: CargoPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: CargoPalletConsole
+    cashType: "CreditNDA"
+    spawnStack: true
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+
+- type: entity
+  name: Кредиты Недр
+  parent: BaseItem
+  id: CreditNDA
+  suffix: 100 DB
+  description: The real treasure of every pirate.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/credit.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/cargo/credit.rsi
+    size: Tiny
+  - type: Stack
+    count: 100
+    stackType: CreditNDA
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 1
+  - type: Currency
+    price:
+      CreditNDA: 1
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+
+- type: entity
+  parent: CreditNDA
+  id: CreditNDA1
+  suffix: Fredik21, Недра 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: CreditNDA
+  id: CreditNDA1000
+  suffix: Fredik21, Недра 1000
+  components:
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: CreditNDA
+  id: CreditNDA100K
+  suffix: Fredik21, Недра 100K
+  components:
+  - type: Stack
+    count: 100000
+
+- type: stack
+  id: CreditNDA
+  name: Кредиты Недр
+  spawn: CreditNDA1
+  maxCount: 10000000
+
+- type: currency
+  id: CreditNDA
+  displayName: Кредиты Недр
+  cash: 
+    1: CreditNDA1
+  canWithdraw: true
+
+- type: entity
+  parent: [StorePresetNDA, BaseStructure]
+  id: NDAStationaryUplink
+  suffix: Fredik21, Недра
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Seriozha/Fredik21/cargo/consolealt.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerScreen"]
+      state: screen
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4"
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+      params:
+        volume: -1
+        variation: 0.10
+        pitch: 1.10
+    blacklist:
+      tags:
+      - NoConsoleSound
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.StoreUiKey.Key:
+            type: StoreBoundUserInterface
+  - type: Store
+    balance:
+      CreditNDA: 3000
+  - type: Computer
+
+- type: entity
+  id: StorePresetNDA
+  storeName: Ol' Mate Freebooter
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - NDAResources
+    - NDAArmory
+    - NDAGrenade
+    - NDAMedkit
+    - NDACleaning
+    - NDAEntertainment
+    - NDAShield
+    - NDAConsumables
+    - NDAFood
+    currencyWhitelist:
+    - CreditNDA
+    balance:
+      CreditNDA: 0
+
+- type: storeCategory
+  id: NDAResources
+  name: Ресурсы
+  priority: 0
+
+- type: storeCategory
+  id: NDAArmory
+  name: Оружейная
+  priority: 0
+
+- type: listing
+  id: StorePresetNDASheetSteel
+  name: сталь
+  description: Металлический лист, широко применяемый на станции в различных целях.
+  productEntity: SheetSteel
+  cost:
+    CreditNDA: 500
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDASheetPlasteel
+  name: пласталь
+  description: Металлический лист, широко применяемый на станции в различных целях.
+  productEntity: SheetPlasteel
+  cost:
+    CreditNDA: 800
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDACoreModsuitConstructing
+  name: ядро Р.И.Г-а
+  description: Ядро, необходимое для создания Р.И.Г-а. Применяется ко всем ригам кроме тех, что прямо относятся к ригам командного состава. Не подойдёт к спасательному Р.И.Г-у -- Для его создания нужно всего лишь добавить обшивку.
+  productEntity: CoreModsuitConstructing
+  cost:
+    CreditNDA: 800
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDACableMVStack
+  name: моток СВ проводов
+  description: Моток средневольтных проводов для подключения подстанций к ЛКП, а также для питания некоторого оборудования, например эмиттеров.
+  productEntity: CableMVStack
+  cost:
+    CreditNDA: 200
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDACableHVStack
+  name: моток ВВ проводов
+  description: Моток высоковольтных проводов для подключения генераторов энергии к СМЭС, подстанциям, и специальному оборудованию.
+  productEntity: CableHVStack
+  cost:
+    CreditNDA: 200
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDACableApcStack
+  name: моток НВ проводов
+  description: Моток низковольтных проводов для соединения ЛКП с устройствами, а так же для других задач.
+  productEntity: CableApcStack
+  cost:
+    CreditNDA: 200
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDASheetSheetGlass
+  name: стекло
+  description: Лист стекла, широко применяемого на станции в различных целях.
+  productEntity: SheetGlass
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDASheetPlasma
+  name: стекло
+  description: Лист стекла, широко применяемого на станции в различных целях.
+  productEntity: SheetPlasma
+  cost:
+    CreditNDA: 2000
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDASheetUranium
+  name: уран
+  description: Лист материала, широко применяемого на станции в различных целях.
+  productEntity: SheetUranium
+  cost:
+    CreditNDA: 4000
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDASheetPlastic
+  name: пластик
+  description: Лист материала, широко применяемого на станции в различных целях.
+  productEntity: SheetPlastic
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDAMaterialCloth
+  name: ткань
+  description: Сырьё.
+  productEntity: MaterialCloth
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDAMaterialDurathread
+  name: дюраткань
+  description: Сырьё.
+  productEntity: MaterialDurathread
+  cost:
+    CreditNDA: 800
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDAIngotGold
+  name: золотой слиток
+  description: Тяжелый металлический слиток с выдавленным логотипом Nanotrasen?
+  productEntity: IngotGold
+  cost:
+    CreditNDA: 1500
+  categories:
+  - NDAResources
+
+- type: listing
+  id: StorePresetNDAIngotSilver
+  name: серебряный слиток
+  description: Тяжелый металлический слиток с выдавленным логотипом Nanotrasen?
+  productEntity: IngotSilver
+  cost:
+    CreditNDA: 1200
+  categories:
+  - NDAResources
+#Оружейная
+- type: listing
+  id: StorePresetNDACrateWeaponNDAP90
+  name: Ящик с P90
+  description: Ящик с 2 P90
+  productEntity: CrateWeaponNDAP90
+  cost:
+    CreditNDA: 4800
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDAAdvancedStunbaton
+  name: продвинутая шоковая дубинка
+  description: Продвинутая шоковая дубинка, обладающая значительно большим зарядом в сравнении со своим станционным аналогом. Доступна лишь элитным спецподразделениям Nanotrasen из-за избытка дорогих красивых металлов внутри шоковой дубинки.
+  productEntity: AdvancedStunbaton
+  cost:
+    CreditNDA: 4000
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDACrateWeaponNDANonlethal
+  name: Ящик с МК 58 на резине
+  description: Ящик с 2 МК 58 на резине
+  productEntity: CrateWeaponNDANonlethal
+  cost:
+    CreditNDA: 4800
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDACrateWeaponNDAKammerer
+  name: Ящик недр с Каммерером
+  description: Ящик с 2 каммерерами
+  productEntity: CrateWeaponNDAKammerer
+  cost:
+    CreditNDA: 8000
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDAClothingEyesHudMem
+  name: Анти мем визор
+  description: против мемов
+  productEntity: ClothingEyesHudMem
+  cost:
+    CreditNDA: 3000
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDACrateWeaponNDAWeaponDisablerSMG
+  name: Ящик недр с ПП станнером
+  description: Ящик с 2 ПП станнерами
+  productEntity: CrateWeaponNDAWeaponDisablerSMG
+  cost:
+    CreditNDA: 4000
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDAMetalDetectorCircuitboard
+  name: микросхема металлоискателя
+  description: Микросхема.
+  productEntity: MetalDetectorCircuitboard
+  cost:
+    CreditNDA: 1000
+  categories:
+  - NDAArmory
+
+- type: listing
+  id: StorePresetNDACrateWeaponNDAMicroHIDNDA
+  name: ящик с Трёхкратным Молекулярным Разрушителем
+  description: Ящик с Трёхкратным Молекулярным Разрушителем
+  productEntity: CrateWeaponNDAMicroHIDNDA
+  cost:
+    CreditNDA: 100000
+  categories:
+  - NDAArmory
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateWeaponNDA
+  name: secure weapon crate
+  components:
+  - type: Icon
+    sprite: Imperial/Seriozha/Fredik21/cargo/crates.rsi
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/crates.rsi
+  - type: AccessReader
+    access: [["SCPAccesThree"]]
+
+- type: entity
+  parent: CrateWeaponNDA
+  id: CrateWeaponNDAKammerer
+  name: ящик недр с Каммерером
+  description: Contains three standard-issue laser rifles. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunKammerer
+          amount: 2
+        - id: MagazineShotgun
+          amount: 4
+
+- type: entity
+  parent: CrateWeaponNDA
+  id: CrateWeaponNDAP90
+  name: ящик недр с P90
+  description: Contains three standard-issue laser rifles. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: CSWeaponP90NDA
+          amount: 2
+        - id: p90-MagazineNDA
+          amount: 4
+
+- type: entity
+  parent: CrateWeaponNDA
+  id: CrateWeaponNDANonlethal
+  name: ящик недр с нелетальным снаряжением
+  description: Contains three standard-issue laser rifles. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolMk58Nonlethal
+          amount: 2
+        - id: MagazinePistolRubber
+          amount: 4
+
+- type: entity
+  parent: CrateWeaponNDA
+  id: CrateWeaponNDAWeaponDisablerSMG
+  name: ящик недр c ПП станнером
+  description: Contains three standard-issue laser rifles. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponDisablerSMG
+          amount: 2
+
+- type: entity
+  parent: CrateWeaponNDA
+  id: CrateWeaponNDAMicroHIDNDA
+  name: ящик с Трёхкратным Молекулярным Разрушителем
+  components:
+  - type: AccessReader
+    access: [["SCPAccesAdministration"]]
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLaserMicroHIDNDA
+          amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+#Гранаты
+- type: storeCategory
+  id: NDAGrenade
+  name: Гранаты
+  priority: 0
+
+- type: listing
+  id: StorePresetNDAGrenadeFlashBang
+  name: светошумовая граната
+  description: Пиииииииииииииииииииии
+  productEntity: GrenadeFlashBang
+  cost:
+    CreditNDA: 300
+  categories:
+  - NDAGrenade
+
+- type: listing
+  id: StorePresetNDAEmpGrenade
+  name: ЭМИ граната
+  description: Выпускает электромагнитный импульс, который выводит из строя или повреждает различные электронные устройства и разряжает элементы питания.
+  productEntity: EmpGrenade
+  cost:
+    CreditNDA: 550
+  categories:
+  - NDAGrenade
+
+- type: listing
+  id: StorePresetNDATearGasGrenade
+  name: граната со слезоточивым газом
+  description: Граната со слезоточивым газом для борьбы с массовыми беспорядками. Вызывает раздражение, боль и заставляет плакать.
+  productEntity: TearGasGrenade
+  cost:
+    CreditNDA: 450
+  categories:
+  - NDAGrenade
+
+- type: listing
+  id: StorePresetNDASmokeGrenade
+  name: дымовая граната
+  description: Тактическая граната, при использовании выпускающая большое и продолжительное облако дыма.
+  productEntity: SmokeGrenade
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAGrenade
+
+- type: listing
+  id: StorePresetGrenadeFoamDart
+  name: пенная граната-дротик
+  description: выпускает надоедливый поток пенных дротиков, которые вызывают сильное содрогание.
+  productEntity: GrenadeFoamDart
+  cost:
+    CreditNDA: 200
+  categories:
+  - NDAGrenade
+#Аптечки
+- type: storeCategory
+  id: NDAMedkit
+  name: Медикоменты
+  priority: 0
+
+- type: listing
+  id: StorePresetNDAMedkitBurnImperialFilled
+  name: набор для лечения физических травм
+  description: Специализированная аптечка на случай, если лаборатория с токсинами *внезапно* сгорит.
+  productEntity: MedkitBurnImperialFilled
+  cost:
+    CreditNDA: 600
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDAToxinMedkitImperialFilled
+  name: набор для лечения токсинов
+  description: Используется для лечения токсинов в крови.
+  productEntity: ToxinMedkitImperialFilled
+  cost:
+    CreditNDA: 600
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDABruteMedkitImperialFilled
+  name: набор для лечения механических травм
+  description: Аптечка для оказания первой помощи избитым ящиком с инструментами.
+  productEntity: BruteMedkitImperialFilled
+  cost:
+    CreditNDA: 600
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDAMedkitOxygenImperialFilled
+  name: набор для лечения кислородного голодания
+  description: Коробка, полная кислородных лакомств.
+  productEntity: MedkitOxygenImperialFilled
+  cost:
+    CreditNDA: 600
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDAMedkitRadiationImperialFilled
+  name: набор для выведения радиации
+  description: Если бы вы приняли свой Рад-X, вам бы это не понадобилось.
+  productEntity: MedkitRadiationImperialFilled
+  cost:
+    CreditNDA: 600
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDAFirstAidMedkitImperialFilled
+  name: аптечка первой помощи
+  description: Это экстренная аптечка для серьезных бо-бо.
+  productEntity: FirstAidMedkitImperialFilled
+  cost:
+    CreditNDA: 650
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDAAdvancedFirstAidMedkitImperialFilled
+  name: продвинутая аптечка первой помощи
+  description: Продвинутый набор для оказания помощи при продвинутых ранах.
+  productEntity: AdvancedFirstAidMedkitImperialFilled
+  cost:
+    CreditNDA: 2000
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDAMedkitCobmatImperialFilled
+  name: боевая аптечка
+  description: Для любителей больших пушек среди нас.
+  productEntity: MedkitCobmatImperialFilled
+  cost:
+    CreditNDA: 5000
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDACrateChemistryStandartHypo
+  name: ящик стандартных гипоспреев
+  description: Ящик, наполненный двумя стандартными гипоспреями
+  productEntity: CrateChemistryStandartHypo
+  cost:
+    CreditNDA: 2000
+  categories:
+  - NDAMedkit
+
+- type: listing
+  id: StorePresetNDATrackingImplanter
+  name: имплантер Трекер
+  description: Одноразовый имплантер, содержащий имплант, постоянно передающий координаты владельца.
+  productEntity: TrackingImplanter
+  cost:
+    CreditNDA: 1000
+  categories:
+  - NDAMedkit
+#Уборка
+- type: storeCategory
+  id: NDACleaning
+  name: Уборочный инвентарь
+  priority: 0
+
+- type: listing
+  id: StorePresetNDACrateServiceCleanerGrenades
+  name: ящик чистящих гранат
+  description: Содержит 2 коробки с чистящими гранатами.
+  productEntity: CrateServiceCleanerGrenades
+  cost:
+    CreditNDA: 2000
+  categories:
+  - NDACleaning
+
+- type: listing
+  id: StorePresetNDACrateMousetrapBoxes
+  name: ящик мышеловок
+  description: Мышеловки - на случай, когда орда мышей заполонила отделы станции. Используйте экономно... или нет.
+  productEntity: CrateMousetrapBoxes
+  cost:
+    CreditNDA: 600
+  categories:
+  - NDACleaning
+
+- type: listing
+  id: StorePresetNDACrateServiceJanitorialSupplies
+  name: ящик с уборочным инвентарем
+  description: Победите копоть и грязь с Незаменимыми Припасами для Уборки от Nanotrasen? Содержит три ведра, таблички мокрого пола, и очищающие гранаты. Также содержит одну швабру, тряпку, щётку, чистящий спрей, и мусорный пакет.
+  productEntity: CrateServiceJanitorialSupplies
+  cost:
+    CreditNDA: 700
+  categories:
+  - NDACleaning
+#Развлечения
+- type: storeCategory
+  id: NDAEntertainment
+  name: Развлечения
+  priority: 0
+
+- type: listing
+  id: StorePresetNDAAcousticGuitarInstrument
+  name: акустическая гитара
+  description: Это инструмент.
+  productEntity: AcousticGuitarInstrument
+  cost:
+    CreditNDA: 300
+  categories:
+  - NDAEntertainment
+
+- type: listing
+  id: StorePresetNDABassGuitarInstrument
+  name: бас-гитара
+  description: Вы чувствуете себя очень круто, держа это в руках. Жаль, что ты единственный, кто так думает.
+  productEntity: BassGuitarInstrument
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAEntertainment
+
+- type: listing
+  id: StorePresetNDARockGuitarInstrument
+  name: рок-гитара
+  description: Какой топор!
+  productEntity: RockGuitarInstrument
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAEntertainment
+
+- type: listing
+  id: StorePresetNDAElectricGuitarInstrument
+  name: электрогитара
+  description: Это инструмент.
+  productEntity: ElectricGuitarInstrument
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAEntertainment
+
+- type: listing
+  id: StorePresetNDASynthesizerInstrument
+  name: синтезатор
+  description: Это инструмент.
+  productEntity: SynthesizerInstrument
+  cost:
+    CreditNDA: 500
+  categories:
+  - NDAEntertainment
+
+- type: listing
+  id: StorePresetNDASuperSynthesizerInstrument
+  name: суперсинтезатор
+  description: Разрываем гетто с помощью Touhou MIDIs с 2020 года.
+  productEntity: SuperSynthesizerInstrument
+  cost:
+    CreditNDA: 3000
+  categories:
+  - NDAEntertainment
+#Щиты
+- type: storeCategory
+  id: NDAShield
+  name: Щиты
+  priority: 0
+
+- type: listing
+  id: StorePresetNDATelescopicShield
+  name: телескопический щит
+  description: Усовершенствованный защитный щит, изготовленный из легких материалов, который складывается для удобства хранения.
+  productEntity: TelescopicShield
+  cost:
+    CreditNDA: 700
+  categories:
+  - NDAShield
+
+- type: listing
+  id: StorePresetNDARiotShield
+  name: противоударный щит
+  description: Большой башенный щит на случай беспорядков. Хорошо подходит для контроля толпы.
+  productEntity: RiotShield
+  cost:
+    CreditNDA: 800
+  categories:
+  - NDAShield
+
+- type: listing
+  id: StorePresetNDARiotLaserShield
+  name: противолазерный щит
+  description: Щит на случай беспорядков, созданный противостоять лазерам, но не более того.
+  productEntity: RiotLaserShield
+  cost:
+    CreditNDA: 1000
+  categories:
+  - NDAShield
+
+- type: listing
+  id: StorePresetNDARiotBulletShield
+  name: противопульный щит
+  description: Щит на случай беспорядков, созданный противостоять пулям, но не более того.
+  productEntity: RiotBulletShield
+  cost:
+    CreditNDA: 1200
+  categories:
+  - NDAShield
+#Расходиники
+- type: storeCategory
+  id: NDAConsumables
+  name: Расходиники
+  priority: 0
+
+- type: listing
+  id: StorePresetNDAFlashlightSeclite
+  name: фонарик СБ
+  description: Надежный фонарь, используемый службой безопасности.
+  productEntity: FlashlightSeclite
+  cost:
+    CreditNDA: 300
+  categories:
+  - NDAConsumables
+
+- type: listing
+  id: StorePresetNDAPowerCellHigh
+  name: батарея высокой ёмкости
+  description: Стандартизированный перезаряжаемый элемент питания. Этот премиальный накопитель большой емкости вмещает на 50% больше энергии, по сравнению с конкурентами.
+  productEntity: PowerCellHigh
+  cost:
+    CreditNDA: 700
+  categories:
+  - NDAConsumables
+
+- type: listing
+  id: StorePresetNDAFireExtinguisher
+  name: огнетушитель
+  description: Он тушит пожары.
+  productEntity: FireExtinguisher
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAConsumables
+
+- type: listing
+  id: StorePresetNDABlueFlareBox
+  name: коробка голубых фальшфейеров
+  description: Выглядит как белая тема приложения ночью.
+  productEntity: BlueFlareBox
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAConsumables
+
+- type: listing
+  id: StorePresetNDABoxFlare
+  name: коробка фальшфейеров
+  description: Коробка фальшфейеров. Время зажигать.
+  productEntity: BoxFlare
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAConsumables
+
+- type: listing
+  id: StorePresetNDAGreenFlareBox
+  name: коробка зелёных фальшфейеров
+  description: Выглядит как белая тема приложения ночью.
+  productEntity: GreenFlareBox
+  cost:
+    CreditNDA: 400
+  categories:
+  - NDAConsumables
+
+- type: listing
+  id: StorePresetNDAFireExtinguisherMini
+  name: карманный огнетушитель
+  description: Легкая и компактная модель огнетушителя с каркасом из стекловолокна. Вмещает меньше воды, чем его старший брат.
+  productEntity: FireExtinguisherMini
+  cost:
+    CreditNDA: 200
+  categories:
+  - NDAConsumables
+#Еда
+- type: storeCategory
+  id: NDAFood
+  name: Продукты питания
+  priority: 0
+
+- type: listing
+  id: StorePresetNDAFoodPresentablePizzaBoxFilled
+  name: Premium пицца "Высший свет"
+  description: Популярное в высшем обществе блюдо, которое принято есть, пристально смотря в глаза подчинённым.
+  productEntity: FoodPresentablePizzaBoxFilled
+  cost:
+    CreditNDA: 5000
+  categories:
+  - NDAFood
+
+- type: listing
+  id: StorePresetNDAFoodBoxPizzaFilled
+  name: коробка пиццы
+  description: коробка с пиццей
+  productEntity: FoodBoxPizzaFilled
+  cost:
+    CreditNDA: 500
+  categories:
+  - NDAFood
+
+- type: listing
+  id: StorePresetNDACrateFoodBarSupply
+  name: ящик барных принадлежностей
+  description: Дополнительные барные припасы на случай, если клоуна оставили за барной стойкой без надзора.
+  productEntity: CrateFoodBarSupply
+  cost:
+    CreditNDA: 800
+  categories:
+  - NDAFood
+#Теневые копии
+#Слабые
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, слабая тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPZombieShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/SCP/objects/Zombie.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        60: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.7
+      baseSprintSpeed: 3.1
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 60
+      damage:
+        types:
+          Heat: -1
+          Blunt: -1
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 4
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDADark
+        amount: 1
+
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, слабая тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPJellyShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/SCP/objects/Jelly.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        130: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 3.5
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 130
+      damage:
+        types:
+          Heat: -1
+          Blunt: -1
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 4
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDADark
+        amount: 2
+    - type: Tag
+      tags:
+      - FootstepSound
+
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, слабая тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPnda131AShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/Fredik21/nda/nda131A.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        90: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 90
+      damage:
+        types:
+          Heat: -1
+          Blunt: -1
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 4
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDADark
+        amount: 2
+    - type: Tag
+      tags:
+      - FootstepSound
+#Обычные
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, обычная тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPDOCShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/SCP/objects/Doc.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        200: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 3
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 200
+      damage:
+        types:
+          Heat: -1
+          Blunt: -1
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 12
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDARed
+        amount: 1
+    - type: Tag
+      tags:
+      - FootstepSound
+
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, обычная тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPFiremanShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/SCP/objects/Fireman.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        300: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.7
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 300
+      damage:
+        types:
+          Heat: -1
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 10
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDARed
+        amount: 1
+    - type: Tag
+      tags:
+      - FootstepSound
+#Сильные
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, сильная тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPAvelShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/SCP/objects/Avel.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        400: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 3
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 400
+      damage:
+        types:
+          Heat: -1
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 15
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDARedAlt
+        amount: 1
+    - type: Tag
+      tags:
+      - FootstepSound
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: Тень
+      description: Тень что ходит в жажде плоти...
+      rules: rule
+      raffle:
+        settings: short
+    - type: PointLight
+      radius: 2
+      energy: 2
+      color: "#800000"
+
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, сильная тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPDedShadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/SCP/objects/Ded.rsi
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        600: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.7
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 400
+      damage:
+        types:
+          Heat: -1
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -1
+          Airloss: -1
+          Burn: -1
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 12
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDARedAlt
+        amount: 2
+    - type: Tag
+      tags:
+      - FootstepSound
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: Тень
+      description: Тень что ходит в жажде плоти...
+      rules: rule
+      raffle:
+        settings: short
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 280
+          hard: false
+          mask:
+          - MobMask
+          layer:
+          - GhostImpassable
+          - MobLayer
+    - type: PointLight
+      radius: 2
+      energy: 2
+      color: "#800000"
+
+- type: entity
+  parent: BaseItem
+  id: CrystalShadowNDADark
+  name: Аномальный кристал
+  description: Люди из разных организаций готовы платить за эти штуки... интересно, зачем они им нужны?
+  suffix: Fredik21, недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/crystal.rsi
+    state: icon
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#FFFFFF"
+  - type: StaticPrice
+    price: 100
+#Очень сильная
+- type: entity
+  name: Теневая копия
+  suffix: Fredik21, Недра, хардкор тень
+  parent: ImperialSCPZombie
+  id: ImperialSCPnda682Shadow
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        color: "#000000"
+        sprite: Imperial/Seriozha/Fredik21/nda/nda682.rsi
+        scale: 1.5, 1.5
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        4000: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 3.5
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 5000
+      damage:
+        types:
+          Heat: -5
+          Blunt: -5
+        groups:
+          Brute: -5
+          Toxin: -5
+          Airloss: -5
+          Burn: -5
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Blunt: 20
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Butcherable
+      spawned:
+      - id: CrystalShadowNDARedAlt
+        amount: 10
+    - type: Tag
+      tags:
+      - FootstepSound
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: Тень
+      description: Тень что ходит в жажде плоти...
+      rules: rule
+      raffle:
+        settings: short
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 280
+          hard: false
+          mask:
+          - MobMask
+          layer:
+          - GhostImpassable
+          - MobLayer
+    - type: PointLight
+      radius: 2
+      energy: 2
+      color: "#800000"
+
+- type: entity
+  parent: BaseItem
+  id: CrystalShadowNDARed
+  name: Аномальный кристал
+  description: Люди из разных организаций готовы платить за эти штуки... интересно, зачем они им нужны?
+  suffix: Fredik21, недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/crystal.rsi
+    state: icon2
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#FFFFFF"
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: BaseItem
+  id: CrystalShadowNDARedAlt
+  name: Аномальный кристал
+  description: Люди из разных организаций готовы платить за эти штуки... интересно, зачем они им нужны?
+  suffix: Fredik21, недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/crystal.rsi
+    state: icon3
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#FFFFFF"
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  name: Периодический спавнер тени зомби
+  id: TimedSpawnerImperialSCPZombieShadow
+  suffix: Fredik21, Недра, слабая тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPZombieShadow
+      chance: 0.75
+      intervalSeconds: 180
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер тени желе
+  id: TimedSpawnerImperialSCPJellyShadow
+  suffix: Fredik21, Недра, слабая тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPJellyShadow
+      chance: 0.75
+      intervalSeconds: 180
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер тени капиглазик
+  id: TimedSpawnerImperialSCPnda131AShadow
+  suffix: Fredik21, Недра, слабая тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPnda131AShadow
+      chance: 0.75
+      intervalSeconds: 180
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер тени доктор
+  id: TimedSpawnerImperialSCPDOCShadow
+  suffix: Fredik21, Недра, обычная тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPDOCShadow
+      chance: 0.75
+      intervalSeconds: 600
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер тени огненный человек
+  id: TimedSpawnerImperialSCPFiremanShadow
+  suffix: Fredik21, Недра, обычная тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPFiremanShadow
+      chance: 0.75
+      intervalSeconds: 600
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер тени авель
+  id: TimedSpawnerImperialSCPAvelShadow
+  suffix: Fredik21, Недра, сильная тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPAvelShadow
+      chance: 0.75
+      intervalSeconds: 1500
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Периодический спавнер тени авель
+  id: TimedSpawnerImperialSCPDedShadow
+  suffix: Fredik21, Недра, сильная тень
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - ImperialSCPDedShadow
+      chance: 0.75
+      intervalSeconds: 1500
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSalvage
+  suffix: Fredik21, Недра, нужен шкаф
+  components:
+    - type: Loadout
+      prototypes: [ SCPSalvageGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesSalvageNDA
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPMedic-name
+      description: ghost-role-information-PresetSCPMedic-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: SCPSalvageGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    back: ClothingBackpackSatchelSalvage
+    shoes: ClothingShoesSCP
+    id: SCPIDCardTwo
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSalvageWebbing
+  storage:
+    back:
+    - BoxSurvivalNDA
+    - FondUplinkSalvage
+    - PaperSalvageNDA
+
+- type: entity
+  parent: PresetSCPSalvage
+  id: PresetSCPSalvageCI
+  suffix: Fredik21, Недра, нужен шкаф, агент
+  components:
+    - type: Loadout
+      prototypes: [ SCPSalvageGearCI ]
+
+- type: startingGear
+  id: SCPSalvageGearCI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    back: ClothingBackpackSatchelSalvage
+    shoes: ClothingShoesSCP
+    id: SCPIDCardTwo
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSalvageWebbing
+  storage:
+    back:
+    - BoxSurvivalNDA
+    - FondUplinkSalvage
+    - PaperSalvageNDA
+    - EncryptionKeyGanza
+    - CIUplinkAgent
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplinkSalvage
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkMed
+    - FondUplinkConsumables
+    - FondUplinkSalvage
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 7
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkSalvage
+  name: Оперативник теневого осадка
+
+- type: listing
+  id: FondUplinkSalvageWeaponProtoKineticAccelerator
+  name: протокинетический ускоритель
+  description: Стреляет кинетическими зарядами с низким уроном на короткое расстояние.
+  productEntity: WeaponProtoKineticAccelerator
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvagePKAUpgradeRange
+  name: улучшение протокинетического ускорителя (Дальность)
+  description: модификация
+  productEntity: PKAUpgradeRange
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvagePKAUpgradeDamage
+  name: улучшение протокинетического ускорителя (Урон)
+  description: модификация
+  productEntity: PKAUpgradeDamage
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvagePKAUpgradeFireRate
+  name: улучшение протокинетического ускорителя (Частота выстрелов)
+  description: модификация
+  productEntity: PKAUpgradeFireRate
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageWeaponGrapplingGun
+  name: крюк-пушка
+  description: цепляетесь за объектами?
+  productEntity: WeaponGrapplingGun
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageCombatKnife
+  name: боевой нож
+  description: Смертоносный нож, предназначенный для рукопашных схваток.
+  productEntity: CombatKnife
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageWeaponCrusherGlaive
+  name: уничтожительная глефа
+  description: Ранний вариант протокинетического ускорителя в форме глефы.
+  productEntity: WeaponCrusherGlaive
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageKatana
+  name: катана
+  description: Древняя работа, выполненная из не столь древней пластали.
+  productEntity: Katana
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageWeaponCrusher
+  name: уничтожитель
+  description: Ранняя конструкция протокинетического ускорителя.
+  productEntity: WeaponCrusher
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageWeaponCrusherDagger
+  name: кинжал-уничтожитель
+  description: Уменьшенная версия протокинетического уничтожителя, обычно используемая на крайний случай.
+  productEntity: WeaponCrusherDagger
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageThrowingKnivesKit
+  name: комплект метательных ножей
+  description: Набор из 4-х фирменных метательных ножей синдиката, идеально подходящих для вживления в тела ваших жертв.
+  productEntity: ThrowingKnivesKit
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageClothingOuterHardsuitSalvage
+  name: скафандр утилизатора
+  description: Специальный костюм, защищающий от опасной среды с низким давлением. Имеет усиленное покрытие на случай встречи с дикой фауной.
+  productEntity: ClothingOuterHardsuitSalvage
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageClothingOuterHardsuitGoliath
+  name: скафандр голиафа
+  description: Легкий комбинезон, украшенный лоскутами толстой, хитиновой шкуры голиафа.
+  productEntity: ClothingOuterHardsuitGoliath
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkSalvageClothingControlModsuitMinerSealed
+  name: шахтёрский Р.И.Г
+  description: Р.И.Г, использующийся шахтёрами Nanotrasen? на планете Лаваленд. Произведено Колониальной Федерацией "Гильгамеш"
+  productEntity: ClothingControlModsuitMinerSealed
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - FondUplinkSalvage
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  id: LockerNDASalvage
+  parent: LockerCoroner
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Seriozha/Fredik21/structure/Locker/salvage.rsi
+    layers:
+    - state: nda
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: nda
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: AccessReader
+    access: [ [ "SCPAccesTwo" ] ]
+
+- type: entity
+  id: LockerNDASalvageStorage
+  suffix: Fredik21, Недра, Filled
+  parent: LockerNDASalvage
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingBeltUtilityFilled
+      - id: HandheldGPSBasic
+      - id: AppraisalTool
+      - id: PaperSalvageNDA
+      - id: PlushieCadet
+        prob: 0.1
+      - id: PlushieMoth
+        prob: 0.1
+#Тесты с аномалиях
+- type: entity
+  id: PaperGenericTestNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-GenericTest
+
+- type: entity
+  id: PaperObsReportNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-ObsReport
+
+- type: entity
+  id: PaperInterrogationNDA
+  parent: Paper
+  suffix: Fredik21, Недра
+  components:
+  - type: Paper
+    content: delivery-DNA-Interrogation
+#Цели
+- type: entity
+  id: PaperCollabNDA
+  parent: Paper
+  suffix: Fredik21, Недра, ОНП ФБР
+  components:
+  - type: Paper
+    content: delivery-DNA-UIU-Collab
+
+- type: entity
+  id: PaperArchiveRecoveryNDA
+  parent: Paper
+  suffix: Fredik21, Недра, Архив Д класса
+  components:
+  - type: Paper
+    content: delivery-DNA-ArchiveRecovery
+
+- type: entity
+  id: PaperCounterIntelNDA
+  parent: Paper
+  suffix: Fredik21, Недра, Агенты
+  components:
+  - type: Paper
+    content: delivery-DNA-CounterIntel
+
+- type: entity
+  id: PaperProtocolPTENDA
+  parent: Paper
+  suffix: Fredik21, Недра, NDA 5000
+  components:
+  - type: Paper
+    content: delivery-DNA-ProtocolPTE
+
+- type: entity
+  id: PaperMissionNDA
+  parent: Paper
+  suffix: Fredik21, Недра, ГОК
+  components:
+  - type: Paper
+    content: delivery-DNA-GOC-Mission
+
+- type: entity
+  id: PaperO5PreparationNDA
+  parent: Paper
+  suffix: Fredik21, Недра, О5
+  components:
+  - type: Paper
+    content: delivery-DNA-O5Preparation
+
+- type: entity
+  id: Paper682ProtocolNDA
+  parent: Paper
+  suffix: Fredik21, Недра, 682
+  components:
+  - type: Paper
+    content: delivery-DNA-682Protocol
+
+- type: entity
+  id: PaperCheckpointFortifyNDA
+  parent: Paper
+  suffix: Fredik21, Недра, КПП
+  components:
+  - type: Paper
+    content: delivery-DNA-CheckpointFortify
+
+- type: entity
+  id: PaperCaptureOrderNDA
+  parent: Paper
+  suffix: Fredik21, Недра, захват NDA
+  components:
+  - type: Paper
+    content: delivery-DNA-CaptureOrder
+
+- type: entity
+  id: PaperContainmentBuildNDA
+  parent: Paper
+  suffix: Fredik21, Недра, строительство
+  components:
+  - type: Paper
+    content: delivery-DNA-ContainmentBuild
+
+- type: entity
+  id: PaperZoneGoalNDA
+  parent: Paper
+  suffix: Fredik21, Недра, изучение
+  components:
+  - type: Paper
+    content: delivery-DNA-ZoneGoal
+
+- type: entity
+  id: NdaAirdefense
+  parent: BaseStructure
+  name: ПВО
+  description: ПВО против шаттлов
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/pvo.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: true
+        mask:
+        - None
+  - type: Damageable
+  - type: Destructible
+    thresholds: []
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: Ndaspeaker
+  parent: BaseStructure
+  name: динамик
+  description: самая лучшая музыка для лифта во всей галактике
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/speaker.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: true
+        mask:
+        - None
+  - type: Damageable
+  - type: Destructible
+    thresholds: []
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+  - type: AmbientSound
+    volume: -2
+    range: 3
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/elevator.ogg
+      params:
+        loop: true
+        stream: true
+#ПХ
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorCIJuggernaut
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorci.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorci.rsi
+  - type: FireProtection
+    reduction: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.65

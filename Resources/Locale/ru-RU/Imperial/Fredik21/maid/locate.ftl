@@ -42,7 +42,7 @@ ent-ClothingHandsRed = красное украшение на руки
 ent-ClothingHandsGreen = зелёное украшение на руки
     .desc = Украшение для горничной
 
-ent-ClothingHandsBlue = синие украшение на руки
+ent-ClothingHandsBlue = синее украшение на руки
     .desc = Украшение для горничной
 
 ent-PresetMaidYellow = жёлтая горничная

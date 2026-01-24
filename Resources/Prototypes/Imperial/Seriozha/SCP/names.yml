@@ -147,3 +147,9 @@
   values:
     prefix: names-NamesUpsilon11scpCom-
     count: 50
+
+- type: localizedDataset
+  id: NamesSalvageNDA
+  values:
+    prefix: names-SalvageNDA-
+    count: 50
