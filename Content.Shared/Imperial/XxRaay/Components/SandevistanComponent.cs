@@ -49,19 +49,19 @@ public sealed partial class SandevistanComponent : Component
     /// <summary>
     /// Длительность
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public TimeSpan EffectDuration = TimeSpan.FromSeconds(8);
 
     /// <summary>
     /// Кулдаун
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public TimeSpan CooldownDuration = TimeSpan.FromSeconds(60);
 
     /// <summary>
     /// Бонус к скорости
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float SpeedModifierBonus = 2f;
 }
 
