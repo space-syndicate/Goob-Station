@@ -14,25 +14,22 @@ public sealed partial class SandevistanComponent : Component
     /// Время окончания эффекта сандевистана.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
-    public TimeSpan? EffectEndTime;
+    public TimeSpan EffectEndTime;
 
     /// <summary>
     /// Время начала перезарядки.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
-    public TimeSpan? CooldownStartTime;
+    public TimeSpan CooldownStartTime;
 
     /// <summary>
     /// Время окончания перезарядки.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
-    public TimeSpan? CooldownEndTime;
+    public TimeSpan CooldownEndTime;
 
     /// <summary>
     /// Прототип экшена сандевистана.

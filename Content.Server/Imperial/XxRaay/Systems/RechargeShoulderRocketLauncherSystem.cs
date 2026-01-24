@@ -28,7 +28,7 @@ public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var recharge, out var launcher))
         {
-            if (launcher.Charges >= launcher.MaxCharges || recharge.NextCharge == null)
+            if (launcher.Charges >= launcher.MaxCharges || recharge.NextCharge == TimeSpan.Zero)
                 continue;
 
             if (recharge.NextCharge > _timing.CurTime)
@@ -41,12 +41,12 @@ public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
 
             if (launcher.Charges >= launcher.MaxCharges)
             {
-                recharge.NextCharge = null;
+                recharge.NextCharge = TimeSpan.Zero;
                 Dirty(uid, recharge);
                 continue;
             }
 
-            recharge.NextCharge = recharge.NextCharge.Value + recharge.RechargeCooldown;
+            recharge.NextCharge = recharge.NextCharge + recharge.RechargeCooldown;
             Dirty(uid, recharge);
         }
     }
@@ -62,7 +62,7 @@ public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
         if (!Resolve(uid, ref recharge, false))
             return;
 
-        if (recharge.NextCharge == null || recharge.NextCharge < _timing.CurTime)
+        if (recharge.NextCharge == TimeSpan.Zero || recharge.NextCharge < _timing.CurTime)
         {
             recharge.NextCharge = _timing.CurTime + recharge.RechargeCooldown;
             Dirty(uid, recharge);

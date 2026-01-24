@@ -23,8 +23,7 @@ public sealed partial class RechargeShoulderRocketLauncherComponent : Component
     };
 
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
-    public TimeSpan? NextCharge;
+    public TimeSpan NextCharge;
 }
 

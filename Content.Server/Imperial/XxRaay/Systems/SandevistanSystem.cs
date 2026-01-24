@@ -51,34 +51,25 @@ public sealed class SandevistanSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var component))
         {
-            if (component.EffectEndTime.HasValue && currentTime >= component.EffectEndTime.Value)
+            if (component.EffectEndTime != TimeSpan.Zero && currentTime >= component.EffectEndTime)
             {
                 DeactivateEffect(uid, component);
             }
 
             if (component.ActionEntity != null && TryComp<ActionComponent>(component.ActionEntity, out var action))
             {
-                if (component.CooldownEndTime != null && component.CooldownStartTime != null)
+                if (currentTime < component.CooldownEndTime)
                 {
-                    if (currentTime < component.CooldownEndTime.Value)
+                    if (action.Cooldown == null || 
+                        action.Cooldown.Value.Start != component.CooldownStartTime ||
+                        action.Cooldown.Value.End != component.CooldownEndTime)
                     {
-                        if (action.Cooldown == null || 
-                            action.Cooldown.Value.Start != component.CooldownStartTime.Value ||
-                            action.Cooldown.Value.End != component.CooldownEndTime.Value)
-                        {
-                            _actions.SetCooldown(component.ActionEntity, component.CooldownStartTime.Value, component.CooldownEndTime.Value);
-                        }
+                        _actions.SetCooldown(component.ActionEntity, component.CooldownStartTime, component.CooldownEndTime);
                     }
-                    else
-                    {
-                        if (action.Cooldown != null)
-                        {
-                            _actions.RemoveCooldown(component.ActionEntity);
-                        }
-                        component.CooldownStartTime = null;
-                        component.CooldownEndTime = null;
-                        Dirty(uid, component);
-                    }
+                }
+                else if (action.Cooldown != null)
+                {
+                    _actions.RemoveCooldown(component.ActionEntity);
                 }
             }
         }
@@ -92,12 +83,9 @@ public sealed class SandevistanSystem : EntitySystem
         var component = entity.Comp;
         var currentTime = _timing.CurTime;
 
-        if (component.CooldownEndTime != null && component.CooldownStartTime != null)
-        {
-            var effectEnded = component.EffectEndTime == null || currentTime >= component.EffectEndTime.Value;
-            if (effectEnded && currentTime < component.CooldownEndTime.Value)
-                return;
-        }
+        var effectEnded = component.EffectEndTime == TimeSpan.Zero || currentTime >= component.EffectEndTime;
+        if (effectEnded && currentTime < component.CooldownEndTime)
+            return;
 
         args.Handled = true;
         ActivateEffect(entity.Owner, component);
@@ -108,7 +96,7 @@ public sealed class SandevistanSystem : EntitySystem
         var component = entity.Comp;
         var currentTime = _timing.CurTime;
 
-        if (component.EffectEndTime.HasValue && currentTime < component.EffectEndTime.Value)
+        if (component.EffectEndTime != TimeSpan.Zero && currentTime < component.EffectEndTime)
         {
             args.ModifySpeed(1f + component.SpeedModifierBonus, 1f + component.SpeedModifierBonus);
         }
@@ -140,7 +128,7 @@ public sealed class SandevistanSystem : EntitySystem
 
     private void DeactivateEffect(EntityUid uid, SandevistanComponent component)
     {
-        component.EffectEndTime = null;
+        component.EffectEndTime = TimeSpan.Zero;
         Dirty(uid, component);
 
         RemComp<PhaseSpaceShadowComponent>(uid);
