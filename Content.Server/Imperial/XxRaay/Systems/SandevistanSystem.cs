@@ -58,7 +58,7 @@ public sealed class SandevistanSystem : EntitySystem
 
             if (component.ActionEntity != null && TryComp<ActionComponent>(component.ActionEntity, out var action))
             {
-                if (component.CooldownEndTime.HasValue && component.CooldownStartTime.HasValue)
+                if (component.CooldownEndTime != null && component.CooldownStartTime != null)
                 {
                     if (currentTime < component.CooldownEndTime.Value)
                     {
@@ -92,15 +92,15 @@ public sealed class SandevistanSystem : EntitySystem
         var component = entity.Comp;
         var currentTime = _timing.CurTime;
 
-        if (component.CooldownEndTime.HasValue && component.CooldownStartTime.HasValue)
+        if (component.CooldownEndTime != null && component.CooldownStartTime != null)
         {
-            var effectEnded = !component.EffectEndTime.HasValue || currentTime >= component.EffectEndTime.Value;
+            var effectEnded = component.EffectEndTime == null || currentTime >= component.EffectEndTime.Value;
             if (effectEnded && currentTime < component.CooldownEndTime.Value)
                 return;
         }
 
         args.Handled = true;
-        ActivateEffect(entity.Owner, component, currentTime);
+        ActivateEffect(entity.Owner, component);
     }
 
     private void OnRefreshMovementSpeed(Entity<SandevistanComponent> entity, ref RefreshMovementSpeedModifiersEvent args)
@@ -114,11 +114,12 @@ public sealed class SandevistanSystem : EntitySystem
         }
     }
 
-    private void ActivateEffect(EntityUid uid, SandevistanComponent component, TimeSpan currentTime)
+    private void ActivateEffect(EntityUid uid, SandevistanComponent component)
     {
-        var effectEndTime = currentTime + TimeSpan.FromSeconds(component.EffectDuration);
+        var currentTime = _timing.CurTime;
+        var effectEndTime = currentTime + component.EffectDuration;
         var cooldownStartTime = currentTime;
-        var cooldownEndTime = effectEndTime + TimeSpan.FromSeconds(component.CooldownDuration);
+        var cooldownEndTime = effectEndTime + component.CooldownDuration;
 
         component.EffectEndTime = effectEndTime;
         component.CooldownStartTime = cooldownStartTime;

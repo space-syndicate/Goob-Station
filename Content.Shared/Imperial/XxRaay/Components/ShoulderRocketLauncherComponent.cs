@@ -29,5 +29,11 @@ public sealed partial class ShoulderRocketLauncherComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId ProjectilePrototype = "BulletShoulderRocket";
+
+    /// <summary>
+    /// Максимальное количество целей для захвата.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int MaxTargetCount = 6;
 }
 

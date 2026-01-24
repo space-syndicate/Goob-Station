@@ -46,7 +46,7 @@ public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
                 continue;
             }
 
-            recharge.NextCharge = recharge.NextCharge.Value + TimeSpan.FromSeconds(recharge.RechargeCooldown);
+            recharge.NextCharge = recharge.NextCharge.Value + recharge.RechargeCooldown;
             Dirty(uid, recharge);
         }
     }
@@ -64,7 +64,7 @@ public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
 
         if (recharge.NextCharge == null || recharge.NextCharge < _timing.CurTime)
         {
-            recharge.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(recharge.RechargeCooldown);
+            recharge.NextCharge = _timing.CurTime + recharge.RechargeCooldown;
             Dirty(uid, recharge);
         }
     }

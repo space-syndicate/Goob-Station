@@ -13,7 +13,7 @@ public sealed partial class RechargeShoulderRocketLauncherComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     [AutoNetworkedField]
-    public float RechargeCooldown = 5f;
+    public TimeSpan RechargeCooldown = TimeSpan.FromSeconds(5);
 
     [DataField]
     [AutoNetworkedField]
@@ -24,7 +24,6 @@ public sealed partial class RechargeShoulderRocketLauncherComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan? NextCharge;
 }

@@ -15,7 +15,6 @@ public sealed partial class SandevistanComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan? EffectEndTime;
 
@@ -24,7 +23,6 @@ public sealed partial class SandevistanComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan? CooldownStartTime;
 
@@ -33,7 +31,6 @@ public sealed partial class SandevistanComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan? CooldownEndTime;
 
@@ -53,13 +50,13 @@ public sealed partial class SandevistanComponent : Component
     /// Длительность
     /// </summary>
     [DataField]
-    public float EffectDuration = 8f;
+    public TimeSpan EffectDuration = TimeSpan.FromSeconds(8);
 
     /// <summary>
     /// Кулдаун
     /// </summary>
     [DataField]
-    public float CooldownDuration = 60f;
+    public TimeSpan CooldownDuration = TimeSpan.FromSeconds(60);
 
     /// <summary>
     /// Бонус к скорости
