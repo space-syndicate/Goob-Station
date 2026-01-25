@@ -72,8 +72,8 @@ public partial class VampireSystem : EntitySystem
             return;
 
         // если у цели нет крови/разума, кнопки не добавляем
-        if (!HasComp<BloodstreamComponent>(args.Target) || HasComp<MindContainerComponent>(args.Target)
-            || HasComp<ActorComponent>(args.Target))
+        if (!HasComp<BloodstreamComponent>(args.Target) || !HasComp<MindContainerComponent>(args.Target)
+            || !HasComp<ActorComponent>(args.Target))
             return;
 
         // верб для превращения цели в упыря
