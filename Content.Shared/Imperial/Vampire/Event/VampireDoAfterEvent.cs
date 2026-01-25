@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -50,6 +51,9 @@ namespace Content.Shared.Imperial.Vampire
 
         [DataField]
         public string DamageType;
+
+        [DataField]
+        public string VampireFlashEffectID;
     }
 
     [Serializable, NetSerializable]

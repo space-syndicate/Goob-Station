@@ -67,8 +67,6 @@
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
     bloodMaxVolume: 50
-  - type: TimedDespawn
-    lifetime: 10
   - type: ReplacementAccent
     accent: mouse
   - type: MeleeWeapon

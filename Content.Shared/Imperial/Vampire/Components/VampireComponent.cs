@@ -282,6 +282,9 @@ namespace Content.Shared.Imperial.Vampire
         [AutoNetworkedField]
         public bool InvisibilityAbilityActive = false;
 
+        [AutoNetworkedField]
+        public List<EntityUid> BatsUid = new();
+
         public Dictionary<VampireAbilityType, string> VampireAbilitiesID = new()
         {
             { VampireAbilityType.Base, "VampireBaseAbilities" },
@@ -295,6 +298,9 @@ namespace Content.Shared.Imperial.Vampire
 
         [AutoNetworkedField]
         public EntityUid? CloneUid;
+
+        [AutoNetworkedField]
+        public TimeSpan FlashEffectDuration;
 
         /// <summary>
         /// был ли обращен вампир?

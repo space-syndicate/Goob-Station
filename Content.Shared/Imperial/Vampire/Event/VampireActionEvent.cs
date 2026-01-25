@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Cloning;
 using Content.Shared.Polymorph;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire
@@ -202,7 +203,7 @@ namespace Content.Shared.Imperial.Vampire
         /// сколько урона нанесет сверк предмету
         /// </summary>
         [DataField("reconciliationDamageItem")]
-        public float ReconciliationDamageItem = 40f;
+        public float ReconciliationDamageItem = 80;
 
         /// <summary>
         /// сколько урона стаминой получит игрок, если будет в зоне действия сверка
@@ -220,7 +221,13 @@ namespace Content.Shared.Imperial.Vampire
         /// тип урона, который нанесет сверк предмету
         /// </summary>
         [DataField("damageType")]
-        public string DamageType = "Blunt";
+        public string DamageType = "Slash";
+
+        /// <summary>
+        /// ID прототипа вампирской вспышки
+        /// </summary>
+        [DataField]
+        public string VampireFlashEffectID = "VampireFlashEffect";
     }
 
     public sealed partial class VampireRecoveryEvent : InstantActionEvent
@@ -278,7 +285,7 @@ namespace Content.Shared.Imperial.Vampire
         /// какой тип урона получит игрок при контакте с вампиром
         /// </summary>
         [DataField("damageType")]
-        public string DamageType = "Blunt";
+        public string DamageType = "Slash";
     }
 
     public sealed partial class VampireShadowTrapEvent : WorldTargetActionEvent

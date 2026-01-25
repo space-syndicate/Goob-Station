@@ -71,12 +71,13 @@ public partial class VampireSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || uid == args.Target || !_mobState.IsAlive(args.Target))
             return;
 
-        // если у цели нет крови (например, стул), кнопки не добавляем
-        if (!HasComp<BloodstreamComponent>(args.Target))
+        // если у цели нет крови/разума, кнопки не добавляем
+        if (!HasComp<BloodstreamComponent>(args.Target) || HasComp<MindContainerComponent>(args.Target)
+            || HasComp<ActorComponent>(args.Target))
             return;
 
         // верб для превращения цели в упыря
-        if (!HasComp<GhoulComponent>(args.Target) && HasComp<MindContainerComponent>(args.Target) && HasComp<ActorComponent>(args.Target))
+        if (!HasComp<GhoulComponent>(args.Target))
         {
             var verbConvert = new InnateVerb
             {
@@ -205,6 +206,13 @@ public partial class VampireSystem : EntitySystem
 
             var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
             eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+
+            // после того, как вампир выпивает кровь его глаза становятся красными
+            if (TryComp<HumanoidAppearanceComponent>(drinker, out var humanoidAppearance))
+            {
+                humanoidAppearance.EyeColor = Color.Red;
+                Dirty(drinker, humanoidAppearance);
+            }
 
             if (_mobState.IsAlive(target))
                 StartDrinking(drinker, target);

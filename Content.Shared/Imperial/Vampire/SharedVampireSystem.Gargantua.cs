@@ -144,7 +144,7 @@ public partial class SharedVampireSystem : EntitySystem
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.DoAfterBeforeReconciliation,
             new VampireReconciliationDoAfterEvent { StaminaDamage = args.ReconciliationStaminaDamage,
             DamageItem = args.ReconciliationDamageItem, KnockdownTime = args.ReconciliationKnockdownHuman,
-            DamageType = args.DamageType }, args.Performer)
+            DamageType = args.DamageType, VampireFlashEffectID = args.VampireFlashEffectID }, args.Performer)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -166,7 +166,7 @@ public partial class SharedVampireSystem : EntitySystem
         var transform = Transform(vamp.Owner);
         var direction = transform.LocalRotation.GetCardinalDir();
         var frontPos = transform.Coordinates.Offset(direction.ToVec());
-        var entities = _lookup.GetEntitiesInRange(frontPos, 2, LookupFlags.Uncontained);
+        var entities = _lookup.GetEntitiesInRange(frontPos, 2);
 
         if (!entities.Any(x => x != vamp.Owner))
         {
@@ -176,36 +176,38 @@ public partial class SharedVampireSystem : EntitySystem
             return;
         }
 
+        Spawn(args.VampireFlashEffectID, Transform(vamp).Coordinates);
+
         foreach (var entity in entities)
         {
             if (entity == vamp.Owner)
                 continue;
 
-            // вампир не может усыпить людей с маской/солнцезащитными очками
-            var flashAttempt = new FlashAttemptEvent(entity, vamp.Owner, null);
-            RaiseLocalEvent(entity, ref flashAttempt, true);
-
-            if (flashAttempt.Cancelled)
-                continue;
-
-            // если это предмет, то наносим ему ReconciliationDamageItem урона
-            var isObject = EntityManager.HasComponent<ItemComponent>(entity);
-            if (isObject)
-            {
-                var dmg = new DamageSpecifier();
-                dmg.DamageDict[args.DamageType] = FixedPoint2.New(args.DamageItem);
-
-                _damage.TryChangeDamage(entity, dmg);
-            }
-
-            if (!_mobStateSystem.IsAlive(entity))
-                continue;
-
             if (TryComp<StaminaComponent>(entity, out var stamina))
             {
+                if (!_mobStateSystem.IsAlive(entity))
+                    continue;
+
+                // вампир не может оглушить людей с маской/солнцезащитными очками
+                var flashAttempt = new FlashAttemptEvent(entity, vamp.Owner, null);
+                RaiseLocalEvent(entity, ref flashAttempt, true);
+
+                if (flashAttempt.Cancelled)
+                    continue;
+
                 _stun.TryKnockdown(entity, args.KnockdownTime, force: true);
                 stamina.StaminaDamage = args.StaminaDamage;
                 Dirty(entity, stamina);
+            }
+            else
+            {
+                // если это предмет, то наносим ему ReconciliationDamageItem урона
+                var dmg = new DamageSpecifier
+                {
+                    DamageDict = { [args.DamageType] = args.DamageItem }
+                };
+
+                _damage.TryChangeDamage(entity, dmg);
             }
         }
 
@@ -254,7 +256,7 @@ public partial class SharedVampireSystem : EntitySystem
         if (args.OtherEntity == ent.Owner)
             return;
 
-        if (!HasComp<MindContainerComponent>(args.OtherEntity))
+        if (!HasComp<MindContainerComponent>(args.OtherEntity) && _net.IsServer)
         {
             var dmg = new DamageSpecifier
             {

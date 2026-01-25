@@ -63,9 +63,11 @@ public partial class VampireSystem : EntitySystem
         }
 
         var playerCoords = Transform(args.Performer).Coordinates;
+
         for (int i = 0; i < args.BatCount; i++)
         {
-            EntityManager.SpawnEntity(args.BatID, playerCoords.Offset(new Vector2(i, 0)));
+            var bat = EntityManager.SpawnEntity(args.BatID, playerCoords.Offset(new Vector2(i, 0)));
+            vamp.BatsUid.Add(bat);
         }
 
         _polymorph.PolymorphEntity(args.Performer, args.BatConfig);
@@ -308,6 +310,12 @@ public partial class VampireSystem : EntitySystem
         {
             if (!HasComp<PolymorphedEntityComponent>(uid) && vamp.VampireIsBat)
             {
+                foreach (var bats in vamp.BatsUid.ToList())
+                {
+                    QueueDel(bats);
+                    vamp.BatsUid.Remove(bats);
+                }
+
                 vamp.VampireIsBat = false;
                 vamp.DisguiseIsActive = false;
                 Dirty(uid, vamp);

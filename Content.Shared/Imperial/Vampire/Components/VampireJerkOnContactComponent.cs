@@ -18,7 +18,7 @@ public sealed partial class VampireJerkOnContactComponent : Component
     /// задержка перед удалением компонента, чтобы обработать все столкновения
     /// </summary>
     [DataField("delayDeletion")]
-    public TimeSpan DelayDeletion = TimeSpan.FromSeconds(0.2f);
+    public TimeSpan DelayDeletion = TimeSpan.FromSeconds(0.5f);
 
     [AutoNetworkedField]
     public TimeSpan DeletionTime;

@@ -542,7 +542,8 @@ public partial class SharedVampireSystem : EntitySystem
         EnsureComp<IntrinsicRadioReceiverComponent>(ent.Owner);
 
         // для OnJerk
-        AddComp<VampireJerkComponent>(ent);
+        if (!HasComp<VampireJerkComponent>(ent))
+            AddComp<VampireJerkComponent>(ent);
 
         if (!_prototypeManager.TryIndex<VampireAbilityListPrototype>(ent.Comp.VampireAbilitiesID[VampireAbilityType.Base], out var baseAbilities))
             return;

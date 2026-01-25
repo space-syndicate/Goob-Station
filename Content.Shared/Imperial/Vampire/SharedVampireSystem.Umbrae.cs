@@ -229,9 +229,12 @@ public partial class SharedVampireSystem : EntitySystem
         if (args.OurFixtureId != ent.Comp.FixtureId)
             return;
 
+        _audio.PlayPredicted(ent.Comp.ShadowTrapSound, ent, ent);
+
         // ослепляем жертву
-        _statusEffects.TryAddStatusEffect(args.OtherEntity, TemporaryBlindnessSystem.BlindingStatusEffect,
-        ent.Comp.BlindingTime, false, TemporaryBlindnessSystem.BlindingStatusEffect);
+        if (_net.IsServer)
+            _statusEffects.TryAddStatusEffect(args.OtherEntity, TemporaryBlindnessSystem.BlindingStatusEffect,
+            ent.Comp.BlindingTime, false, TemporaryBlindnessSystem.BlindingStatusEffect);
 
         var dmg = new DamageSpecifier
         {
@@ -239,7 +242,8 @@ public partial class SharedVampireSystem : EntitySystem
         };
         _damage.TryChangeDamage(args.OtherEntity, dmg);
 
-        QueueDel(ent.Owner);
+        if (_net.IsServer)
+            QueueDel(ent.Owner);
     }
 
     private void UmbraeUpdate()

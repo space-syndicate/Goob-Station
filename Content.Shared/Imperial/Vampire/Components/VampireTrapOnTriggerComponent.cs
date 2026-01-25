@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Vampire
@@ -28,5 +29,14 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("blindingTime")]
         public TimeSpan BlindingTime = TimeSpan.FromSeconds(10);
+
+        /// <summary>
+        /// звук при соприкосновении
+        /// </summary>
+        [DataField("shadowTrapSound")]
+        public SoundSpecifier ShadowTrapSound = new SoundPathSpecifier("/Audio/Effects/chopstickbreak.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(5)
+        };
     }
 }
