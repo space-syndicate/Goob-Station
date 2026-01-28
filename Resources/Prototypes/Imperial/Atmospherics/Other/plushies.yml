@@ -51,6 +51,3 @@
   values:
     prefix: atmos-john-speek-
     count: 3
-
-- type: Tag
-  id: VoxFood
