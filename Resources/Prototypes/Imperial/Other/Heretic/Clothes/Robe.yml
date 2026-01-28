@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterSuitHeretic
-  name: carp suit
-  description: A special suit that makes you look just like a heretic, if your eyesight is bad.
+  name: heretic robe
+  description: Heretic's robe
   components:
   - type: AllowSuitStorage
   - type: Sprite
