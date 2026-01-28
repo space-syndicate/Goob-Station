@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitHeretic
+  name: carp suit
+  description: A special suit that makes you look just like a heretic, if your eyesight is bad.
+  components:
+  - type: AllowSuitStorage
+  - type: Sprite
+    sprite: Imperial/Other/Heretic/Clothes/HereticRobe.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Other/Heretic/Clothes/HereticRobe.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHereticRobe
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: HideLayerClothing
+    slots:
+    - Tail
