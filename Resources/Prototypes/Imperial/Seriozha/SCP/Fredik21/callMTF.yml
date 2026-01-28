@@ -217,3 +217,14 @@
     path: /Audio/Imperial/Seriozha/SCP/event/zeta9.ogg
     params:
       volume: 8
+
+- type: MTFCall
+  id: GBR
+  desc: mtf-call-GBR-desc
+  path: /GM/seriozha/event/nedra/MTF/GBR.yml
+  announcementMessage: announcementMessage-MTF-GBR
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/cipersonal.ogg
+    params:
+      volume: -5

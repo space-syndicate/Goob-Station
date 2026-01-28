@@ -33,6 +33,16 @@
 
 - type: entity
   parent: PosterBase
+  id: Postergbr
+  name: Poster gbr
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: gbr
+
+- type: entity
+  parent: PosterBase
   id: Posterpgry
   name: Poster p gry
   suffix: Fredik21, Недра
@@ -2039,18 +2049,6 @@
     - EncryptionKeyRadio3
     - EncryptionKeyRadio3
     - EncryptionKeyRadio3
-
-- type: localizedDataset
-  id: Namesnu7scp
-  values:
-    prefix: names-nu7scp-
-    count: 50
-
-- type: localizedDataset
-  id: Namesnu7Comscp
-  values:
-    prefix: names-nu7comscp-
-    count: 50
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -6331,6 +6329,21 @@
   name: стандартный топливный бак
   description: Для Огнемёт "Санитар"
   productEntity: FuelTankFlamethrowerMedium
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineShotgun
+  name: барабан (.50 дробь)
+  description: Для Силовик
+  productEntity: MagazineShotgun
   cost:
     BlueSpaceCube: 1
   categories:
@@ -15326,3 +15339,1151 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.5
     sprintModifier: 0.65
+#Декор
+- type: entity
+  id: WallLineNDABase
+  parent: BaseStructure
+  name: декоративная линия NDA
+  suffix: Fredik21, Недра, декор
+  description: "Цветная полоса, обозначающая уровень допуска или зону содержания."
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    layers:
+    - sprite: Imperial/Seriozha/Fredik21/structure/decor/line.rsi
+      state: icon
+  - type: Damageable
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  id: WallLineNDARed
+  parent: WallLineNDABase
+  name: "красная линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#8B0000"
+
+- type: entity
+  id: WallLineNDABlue
+  parent: WallLineNDABase
+  name: "синяя линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#00008B"
+
+- type: entity
+  id: WallLineNDAOrange
+  parent: WallLineNDABase
+  name: "оранжения линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#FF8C00"
+
+- type: entity
+  id: WallLineNDAGreen
+  parent: WallLineNDABase
+  name: "зелёная линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#006400"
+
+- type: entity
+  id: WallLineNDABasecircumcised
+  parent: BaseStructure
+  name: обрезанная декоративная линия NDA
+  suffix: Fredik21, Недра, декор
+  description: "Цветная полоса, обозначающая уровень допуска или зону содержания."
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    layers:
+    - sprite: Imperial/Seriozha/Fredik21/structure/decor/linecircumcised.rsi
+      state: icon
+  - type: Damageable
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  id: WallLineNDARedcircumcised
+  parent: WallLineNDABasecircumcised
+  name: "обрезанная красная линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#8B0000"
+
+- type: entity
+  id: WallLineNDABluecircumcised
+  parent: WallLineNDABasecircumcised
+  name: "обрезанная синяя линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#00008B"
+
+- type: entity
+  id: WallLineNDAOrangecircumcised
+  parent: WallLineNDABasecircumcised
+  name: "обрезанная оранжения линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#FF8C00"
+
+- type: entity
+  id: WallLineNDAGreencircumcised
+  parent: WallLineNDABasecircumcised
+  name: "обрезанная зелёная линия"
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    color: "#006400"
+
+- type: entity
+  id: WallLineNDABasecircumcisedALT
+  parent: BaseStructure
+  name: обрезанная декоративная линия NDA
+  suffix: Fredik21, Недра, декор, ALT
+  description: "Цветная полоса, обозначающая уровень допуска или зону содержания."
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    layers:
+    - sprite: Imperial/Seriozha/Fredik21/structure/decor/linecircumcisedalt.rsi
+      state: icon
+  - type: Damageable
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  id: WallLineNDARedcircumcisedALT
+  parent: WallLineNDABasecircumcisedALT
+  suffix: Fredik21, Недра, декор, ALT
+  name: "обрезанная красная линия"
+  components:
+  - type: Sprite
+    color: "#8B0000"
+
+- type: entity
+  id: WallLineNDABluecircumcisedALT
+  parent: WallLineNDABasecircumcisedALT
+  suffix: Fredik21, Недра, декор, ALT
+  name: "обрезанная синяя линия"
+  components:
+  - type: Sprite
+    color: "#00008B"
+
+- type: entity
+  id: WallLineNDAOrangecircumcisedALT
+  parent: WallLineNDABasecircumcisedALT
+  suffix: Fredik21, Недра, декор, ALT
+  name: "обрезанная оранжения линия"
+  components:
+  - type: Sprite
+    color: "#FF8C00"
+
+- type: entity
+  id: WallLineNDAGreencircumcisedALT
+  parent: WallLineNDABasecircumcised
+  suffix: Fredik21, Недра, декор, ALT
+  name: "обрезанная зелёная линия"
+  components:
+  - type: Sprite
+    color: "#006400"
+
+- type: entity
+  id: NDAAmbientSoundCredits
+  parent: MarkerBase
+  name: Credits
+  suffix: Fredik21, Недра, Эмбиет
+  description: "Издает постоянный звук. Невидим для игроков."
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-2
+    visible: false
+  - type: AmbientSound
+    enabled: true
+    range: 50
+    cutoff: 45
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/Credits.ogg
+
+- type: entity
+  id: NDAAmbientSoundHaveMercyOnMe
+  parent: MarkerBase
+  name: HaveMercyOnMe
+  suffix: Fredik21, Недра, Эмбиет
+  description: "Издает постоянный звук. Невидим для игроков."
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-2
+    visible: false
+  - type: AmbientSound
+    enabled: true
+    range: 50
+    cutoff: 45
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/HaveMercyOnMe.ogg
+
+- type: entity
+  id: NDAAmbientSoundHeavyContainment
+  parent: MarkerBase
+  name: HeavyContainment
+  suffix: Fredik21, Недра, Эмбиет
+  description: "Издает постоянный звук. Невидим для игроков."
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-2
+    visible: false
+  - type: AmbientSound
+    enabled: true
+    range: 50
+    cutoff: 45
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/HeavyContainment.ogg
+
+- type: entity
+  id: NDAAmbientSoundIntro
+  parent: MarkerBase
+  name: Intro
+  suffix: Fredik21, Недра, Эмбиет
+  description: "Издает постоянный звук. Невидим для игроков."
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-2
+    visible: false
+  - type: AmbientSound
+    enabled: true
+    range: 50
+    cutoff: 45
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/Intro.ogg
+
+- type: entity
+  id: NDAAmbientSoundMenu
+  parent: MarkerBase
+  name: Menu
+  suffix: Fredik21, Недра, Эмбиет
+  description: "Издает постоянный звук. Невидим для игроков."
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-2
+    visible: false
+  - type: AmbientSound
+    enabled: true
+    range: 50
+    cutoff: 45
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/Menu.ogg
+
+- type: entity
+  id: NDAAmbientSoundTheDread
+  parent: MarkerBase
+  name: TheDread
+  suffix: Fredik21, Недра, Эмбиет
+  description: "Издает постоянный звук. Невидим для игроков."
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-2
+    visible: false
+  - type: AmbientSound
+    enabled: true
+    range: 50
+    cutoff: 45
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/TheDread.ogg
+
+- type: entity
+  id: TrashDecorativeFoodWaste
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/news.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativePaper1
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/paper.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativePaper2
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/paper.rsi
+    state: icon2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativePaper3
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/paper.rsi
+    state: icon3
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativePaper4
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/paper.rsi
+    state: icon4
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativejar
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/jar.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativejar2
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/jar.rsi
+    state: icon2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativejar3
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/jar.rsi
+    state: icon3
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativejar4
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/jar.rsi
+    state: icon4
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeRust
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/rust.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeRust2
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/rust.rsi
+    state: icon2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeRust3
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/rust.rsi
+    state: icon3
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeBag
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/bag.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativewire
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/wire.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeglasses
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/glasses.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativerag
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/rag.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeampula
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/ampula.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeampula2
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/ampula.rsi
+    state: icon2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeampula3
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/ampula.rsi
+    state: icon3
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativeampula4
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/ampula.rsi
+    state: icon4
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: TrashDecorativegauze
+  parent: BaseItem
+  name: Куча мусора
+  suffix: Fredik21, Недра, мусор
+  description: Фуу... мусор...
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/gauze.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: NdaSign
+  parent: BaseStructure
+  name: NDA
+  description: добавте описание
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/Sign/nda.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: NDAGateB
+  parent: BaseStructure
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/Sign/nda.rsi
+    state: icon2
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: NDAGateA
+  parent: BaseStructure
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/Sign/nda.rsi
+    state: icon2
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entityTable
+  id: GenericTrashDecorativeNDA
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: TrashDecorativeampula4
+      - id: TrashDecorativeampula3
+      - id: TrashDecorativeampula2
+      - id: TrashDecorativeampula
+      - id: TrashDecorativePaper4
+      - id: TrashDecorativePaper3
+      - id: TrashDecorativePaper2
+      - id: TrashDecorativePaper1
+      - id: TrashDecorativeRust3
+      - id: TrashDecorativeRust2
+      - id: TrashDecorativeRust
+      - id: TrashDecorativejar4
+      - id: TrashDecorativejar3
+      - id: TrashDecorativejar2
+      - id: TrashDecorativejar
+      - id: TrashDecorativerag
+      - id: TrashDecorativeBag
+      - id: TrashDecorativeFoodWaste
+      - id: TrashDecorativegauze
+      - id: TrashDecorativeglasses
+      - id: TrashDecorativewire
+  
+- type: entity
+  name: Trash Spawner
+  id: RandomSpawnerTrashDecorative
+  parent: MarkerBase
+  suffix: Fredik21, Недра, декор, 50
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Seriozha/Fredik21/structure/decor/tras/news.rsi
+          state: icon
+    - type: EntityTableSpawner
+      offset: 0.2
+      table: !type:NestedSelector
+        tableId: GenericTrashDecorativeNDA
+        prob: 0.5
+  placement:
+    mode: AlignTileAny
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDAGBR
+  name: preset
+  suffix: Fredik21, Недра, МОГ
+  components:
+    - type: Loadout
+      prototypes: [ NDAGBRGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesNDAGBR
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetNDAGBR-name
+      description: ghost-role-information-PresetNDAGBR-desc
+      rules: rule
+      raffle:
+        settings: short
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: NDAGBRGear
+  equipment:
+    jumpsuit: ClothingUniformSparta
+    back: ClothingBackpackSatchelCruenta_5
+    mask: gp7
+    head: ClothingHeadHelmetRiot
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFour
+    belt: ClothingBeltMilitaryWebbingSeniorOfficer
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponShotgunEnforcer
+    pocket1: EncryptionKeyNedraMTFconnection
+  storage:
+    back:
+    - FondUplinkBaseCom
+    - BoxSurvivalNDA
+    - WeaponTaser
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDAGBRCom
+  name: preset
+  suffix: Fredik21, Недра, МОГ
+  components:
+    - type: Loadout
+      prototypes: [ NDAGBRGearCom ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesNDAGBRCom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: NDAGBRGearCom
+  equipment:
+    jumpsuit: ClothingUniformSparta
+    back: ClothingBackpackSatchelCruenta_5
+    mask: gp7
+    head: ClothingHeadHatBeretHoS
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: USSPGlassesWar
+    id: SCPIDCardFive
+    belt: ClothingBeltMilitaryWebbingSeniorOfficer
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponShotgunStormTrooperDFSB
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  storage:
+    back:
+    - FondUplinkBaseCom
+    - BoxSurvivalNDA
+    - WeaponTaser
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+
+- type: entity
+  id: SpawnPresetNDAGBR
+  name: спавнер оперативника ГБР
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: оперативник ГБР
+      description: Они не задают вопросов — они устраняют проблему. Группа Быстрого Реагирования стальной заслон между нормой и хаосом. Когда содержание нарушено, мы входим первыми.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDAGBR
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetNDAGBRCom
+  name: спавнер командира ГБР
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир ГБР
+      description: Они не задают вопросов — они устраняют проблему. Группа Быстрого Реагирования стальной заслон между нормой и хаосом. Когда содержание нарушено, мы входим первыми.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDAGBRCom
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
