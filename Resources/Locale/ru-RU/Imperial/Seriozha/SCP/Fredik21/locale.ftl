@@ -1157,8 +1157,8 @@ ent-SCPIDCardFourSecAltCom = ID карта главы ГПИ
 ent-SCPIDCardFiveSinCom = ID карта научного руководителя
     .desc = Главный по исследованию
 
-ent-DecorativesballoonNDA = Балоны
-    .desc = Зачем тут балоны?
+ent-DecorativesballoonNDA = Баллоны
+    .desc = Зачем тут Баллоны?
 
 ent-DecorativeshieldNDA = Щиток
     .desc = Может его ударить?
@@ -1167,7 +1167,7 @@ ent-DecorativeBoxNDA = Коробка
     .desc = Это действительно коробка
 
 ent-DecorativepalletNDA = Палет
-    .desc = За вами бежит маньяк? Палета в помощ!
+    .desc = За вами бежит маньяк? Палета в помощь!
 
 ent-DecorativenoticeboardNDA = доска объявлений
     .desc = Хм...
