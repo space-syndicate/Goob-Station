@@ -12,7 +12,7 @@
   keycode: '!'
   frequency: 8899
   color: "#ff7e2e"
-  longRange: true
+  longRange: false
 
 - type: radioChannel
   id: NedraCMDconnection
@@ -20,7 +20,7 @@
   keycode: 'ю'
   frequency: 8899
   color: "#CC0000"
-  longRange: true
+  longRange: false
 
 - type: radioChannel
   id: NedraCIconnection

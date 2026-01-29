@@ -2862,7 +2862,7 @@
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
     back: ClothingBackpackDuffelEngineering
     shoes: ClothingShoesBootsWork
-    id: SCPIDCardTwo
+    id: SCPIDCardTwoEngineering
     ears: ClothingHeadsetSCPMain
     pocket1: EncryptionKeyEngineering
   storage:
@@ -2870,6 +2870,7 @@
     - BoxSurvivalNDA
     - FondUplinkEngineering
     - PaperEngNDA
+    - EncryptionKeyEngineering
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -2902,7 +2903,7 @@
     jumpsuit: ClothingUniformJumpsuitRegularForceMedicOfficer
     back: ClothingBackpackSatchelMedical
     shoes: ClothingShoesSCP
-    id: SCPIDCardTwo
+    id: SCPIDCardTwomedical
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltMedicalFilled
     head: ClothingHeadHatParamedicsoft
@@ -2912,6 +2913,7 @@
     - BoxSurvivalNDA
     - FondUplinkMedical
     - PaperMedNDA
+    - EncryptionKeyMedical
 
 - type: emoteSounds
   id: SCP049
@@ -3180,7 +3182,7 @@
     jumpsuit: ClothingUniformJumpsuitSCPCom
     shoes: ClothingShoesBootsWorkSCP
     outerClothing: ClothingOuterArmorSCPSecurity
-    id: SCPIDCardFive
+    id: SCPIDCardFivesecCom
     ears: ClothingHeadsetSCPMain
     back: ClothingBackpackSatchelSacerdos_5
   storage:
@@ -3188,6 +3190,7 @@
     - EncryptionKeyNedraCMDconnection
     - FondUplinkBaseCom
     - BoxSurvivalNDA
+    - EncryptionKeySecurity
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -3245,7 +3248,7 @@
     jumpsuit: ClothingUniformJumpsuitColorOrange
     shoes: ClothingShoesBootsWorkSCP
     outerClothing: ClothingOuterArmorSCPSecurityAlt
-    id: SCPIDCardFour
+    id: SCPIDCardFourSecAltCom
     ears: ClothingHeadsetSCPMain
     pocket1: WeaponPistolMk58Nonlethal
     pocket2: MagazinePistolRubber
@@ -3255,6 +3258,7 @@
     - EncryptionKeyNedraCMDconnection
     - FondUplinkBaseCom
     - BoxSurvivalNDA
+    - EncryptionKeySecurity
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -3310,7 +3314,7 @@
     jumpsuit: ClothingUniformJumpsuitColorOrange
     shoes: ClothingShoesBootsWorkSCP
     outerClothing: ClothingOuterArmorSCPSecurityAlt
-    id: SCPIDCardThreeGray
+    id: SCPIDCardThreeSecAlt
     ears: ClothingHeadsetSCPMain
     suitstorage: WeaponPistolMk58Nonlethal
     pocket1: MagazinePistolRubber
@@ -11375,6 +11379,7 @@
       - id: MagazinePistol
       - id: PaperSRPGPI
       - id: ClothingUniformJumpskirtColorOrange
+      - id: EncryptionKeySecurity
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11474,6 +11479,11 @@
       - id: BlackShieldPistol
       - id: ClothingHandsGlovesCombat
       - id: ClothingOuterHardsuitERTPilotSpaceBattle
+      - id: EncryptionKeyEngineering
+      - id: EncryptionKeyCargo
+      - id: EncryptionKeyMedical
+      - id: EncryptionKeySecurity
+      - id: EncryptionKeyScience
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -11664,6 +11674,7 @@
       - id: ClothingMaskGasSecurity
       - id: PaperOGK
       - id: ClothingUniformJumpskirtMinuteManCamoUrbanNDA
+      - id: EncryptionKeySecurity
       - id: PlushieCadet
         prob: 0.1
       - id: PlushieMoth
@@ -12262,6 +12273,7 @@
   equipment:
     jumpsuit: ClothingJumpsuitClassD
     shoes: ClothingShoesSCP
+    id: SCPIDCardClassD
     pocket1: CIUplinkAgent
     pocket2: EncryptionKeyGanza
   inhand:
@@ -12283,13 +12295,15 @@
     back: ClothingBackpackSatchelScience
     shoes: ClothingShoesSCP
     gloves: ClothingHandsGlovesColorPurple
-    id: SCPIDCardThree
+    id: SCPIDCardThreeScientist
     ears: ClothingHeadsetSCPMain
     pocket1: CIUplinkAgent
     pocket2: EncryptionKeyGanza
-  inhand:
-  - PaperScience
-  - BoxSurvivalNDA
+  storage:
+    back:
+    - PaperScience
+    - BoxSurvivalNDA
+    - EncryptionKeyScience
 
 - type: entity
   parent: PresetSCPOxranaAlt
@@ -12306,7 +12320,7 @@
     jumpsuit: ClothingUniformJumpsuitColorOrange
     shoes: ClothingShoesBootsWorkSCP
     outerClothing: ClothingOuterArmorSCPSecurityAlt
-    id: SCPIDCardThreeGray
+    id: SCPIDCardThreeSecAlt
     ears: ClothingHeadsetSCPMain
     suitstorage: WeaponPistolMk58Nonlethal
     pocket1: CIUplinkAgent
@@ -12355,7 +12369,7 @@
     jumpsuit: ClothingUniformJumpsuitRegularForceMedicOfficer
     back: ClothingBackpackSatchelMedical
     shoes: ClothingShoesSCP
-    id: SCPIDCardTwo
+    id: SCPIDCardTwomedical
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltMedicalFilled
     head: ClothingHeadHatParamedicsoft
@@ -12366,6 +12380,7 @@
     - FondUplinkMedical
     - EncryptionKeyGanza
     - CIUplinkAgent
+    - EncryptionKeyMedical
 
 - type: entity
   id: BulletPistolNDA
@@ -14812,14 +14827,15 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     back: ClothingBackpackSatchelSalvage
     shoes: ClothingShoesSCP
-    id: SCPIDCardTwo
+    id: SCPIDCardTwoOTO
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltSalvageWebbing
   storage:
     back:
     - BoxSurvivalNDA
     - FondUplinkSalvage
-    - PaperSalvageNDA
+    - PaperSalvageNDA/
+    - EncryptionKeyCargo
 
 - type: entity
   parent: PresetSCPSalvage
@@ -14835,7 +14851,7 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     back: ClothingBackpackSatchelSalvage
     shoes: ClothingShoesSCP
-    id: SCPIDCardTwo
+    id: SCPIDCardTwoOTO
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltSalvageWebbing
   storage:
@@ -14845,6 +14861,7 @@
     - PaperSalvageNDA
     - EncryptionKeyGanza
     - CIUplinkAgent
+    - EncryptionKeyCargo
 
 - type: entity
   parent: BaseERTUplink
@@ -16487,3 +16504,418 @@
         - state: green
         - sprite: Markers/jobs.rsi
           state: ertleadereva
+
+- type: entity
+  id: DecorativeBoxNDA
+  parent: BaseItem
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/box.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: DecorativeshieldNDA
+  parent: BaseStructure
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/shield.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - None
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: DecorativepalletNDA
+  parent: BaseItem
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/pallet.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: DecorativesparksNDA
+  parent: BaseItem
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/sparks.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: DecorativesballoonNDA
+  parent: BaseStructure
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/balloon.rsi
+    state: icon
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: true
+        mask:
+        - Impassable
+        layer:
+        - MidImpassable
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Anchorable
+    fixed: true
+  - type: Pullable
+    canPull: false
+
+- type: entity
+  id: DecorativenoticeboardNDA
+  parent: BaseItem
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/noticeboard.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: DecorativenoticeboardNDAAlt
+  parent: BaseItem
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/noticeboard.rsi
+    state: icon2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: TelecomServerNDA
+  name: Сервер
+  suffix: Fredik21, недра, связь
+  description: Отвечает за связь в зоне.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/server.rsi
+    snapCardinals: true
+    layers:
+    - state: telecom-nopower
+    - state: telecom-stripe
+    - state: telecom-on
+      shader: unshaded
+      visible: false
+      map: ["telecom-on"]
+    - state: variant-default
+      map: ["variant-default"]
+    - state: variant-cargo
+      map: ["variant-cargo"]
+    - state: variant-engineering
+      map: ["variant-engineering"]
+    - state: variant-medical
+      map: ["variant-medical"]
+    - state: variant-science
+      map: ["variant-science"]
+    - state: variant-sec
+      map: ["variant-sec"]
+    - state: variant-command
+      map: ["variant-command"]
+    - state: telecom-open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: ItemMapper
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/server.rsi
+    mapLayers:
+      variant-default:
+        whitelist:
+          tags:
+          - EncryptionNedraconnection
+      variant-cargo:
+        whitelist:
+          tags:
+          - EncryptionCargo
+      variant-engineering:
+        whitelist:
+          tags:
+          - EncryptionEngineering
+      variant-medical:
+        whitelist:
+          tags:
+          - EncryptionMedical
+      variant-science:
+        whitelist:
+          tags:
+          - EncryptionScience
+      variant-sec:
+        whitelist:
+          tags:
+          - EncryptionSecurity
+      variant-command:
+        whitelist:
+          tags:
+          - EncryptionNedraCMDconnection
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    energy: 3.0
+    color: "#39b8ee"
+  - type: LitOnPowered
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        telecom-on:
+          True: { visible: true }
+          False: { visible: false }
+        variant-cargo:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-engineering:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-medical:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-science:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-sec:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-command:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-default:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+  - type: Appearance
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: WiresVisuals
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: WiresPanel
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 10
+  - type: TelecomServer
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TelecomServerNDAFilledNedra
+  suffix: Fredik21, недра, обычный
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNedraconnection
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TelecomServerNDAFilledCargo
+  suffix: Fredik21, недра, Cargo
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCargo
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TelecomServerNDAFilledEngineering
+  suffix: Fredik21, недра, Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEngineering
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TelecomServerNDAFilledMedical
+  suffix: Fredik21, недра, Medical
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyMedical
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TelecomServerNDAFilledScience
+  suffix: Fredik21, недра, Science
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyScience
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TelecomServerNDAFilledSecurity
+  suffix: Fredik21, недра, Security
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+
+- type: entity
+  parent: TelecomServerNDA
+  id: TTelecomServerNDAFilledCommand
+  suffix: Fredik21, недра, Command
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNedraCMDconnection

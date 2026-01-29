@@ -1003,7 +1003,7 @@ ent-AmpulaNDA953reagent = Ампула 953
 ent-LockerNDASalvage = шкаф оперативника теневого осадка
     .desc = шкаф с снаряжением для оперативника теневого осадка
 
-ent-PresetSCPSalvageCI = Оперативник теневого осадка
+ent-PresetSCPSalvageCI = Агент ПХ - Оперативник теневого осадка
     .desc = Оперативник «Теневого Осадка» — специалист по глубокому проникновению в зоны метафизического искажения. Его задача: ювелирное извлечение аномальных кристаллов, прорастающих на «теневых копиях» объектов NDA.
 
 ent-PresetSCPSalvage = Оперативник теневого осадка
@@ -1129,3 +1129,51 @@ ent-PresetNDAGBR = Оперативник ГБР
 
 ent-PresetNDAGBRCom = Командир ГБР
     .desc = Они не задают вопросов — они устраняют проблему. Группа Быстрого Реагирования: стальной заслон между нормой и хаосом. Когда содержание нарушено, мы входим первыми.
+
+ent-SCPIDCardClassD = Карточка класса Д
+    .desc = Расходник
+
+ent-SCPIDCardTwoEngineering = ID карта инженера
+    .desc = Труба сломалась, а прохода нету?
+
+ent-SCPIDCardTwomedical = ID карта медика
+    .desc = Вы серьезно лечите класс D?
+
+ent-SCPIDCardTwoOTO = ID карта оперативника теневого осадка
+    .desc = Вам точно нравится ваша работа.
+
+ent-SCPIDCardThreeScientist = ID карта учёного
+    .desc = Вы тоже устроились сюда ради 420-j и 953?
+
+ent-SCPIDCardThreeSecAlt = ID карта оперативника ГПИ
+    .desc = Карточка человека который любит класс D всей своей душой (у него ее нету)
+
+ent-SCPIDCardFivesecCom = ID карта главы ОГК
+    .desc = Вы глава ОГК! Удачи.
+
+ent-SCPIDCardFourSecAltCom = ID карта главы ГПИ
+    .desc = Вы глава отдела ГПИ! Удачи.
+
+ent-SCPIDCardFiveSinCom = ID карта научного руководителя
+    .desc = Главный по исследованию
+
+ent-DecorativesballoonNDA = Балоны
+    .desc = Зачем тут балоны?
+
+ent-DecorativeshieldNDA = Щиток
+    .desc = Может его ударить?
+
+ent-DecorativeBoxNDA = Коробка
+    .desc = Это действительно коробка
+
+ent-DecorativepalletNDA = Палет
+    .desc = За вами бежит маньяк? Палета в помощ!
+
+ent-DecorativenoticeboardNDA = доска объявлений
+    .desc = Хм...
+
+ent-DecorativenoticeboardNDAAlt = кровавая доска объявлений
+    .desc = ХМММММММММММММММММ...
+
+ent-DecorativesparksNDA = провод
+    .desc = искрит

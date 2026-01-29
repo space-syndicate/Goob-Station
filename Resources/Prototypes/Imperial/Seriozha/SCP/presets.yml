@@ -712,11 +712,13 @@
     back: ClothingBackpackSatchelScience
     shoes: ClothingShoesSCP
     gloves: ClothingHandsGlovesColorPurple
-    id: SCPIDCardThree
+    id: SCPIDCardThreeScientist
     ears: ClothingHeadsetSCPMain
-  inhand:
-  - PaperScience
-  - BoxSurvivalNDA
+  storage:
+    back:
+    - PaperScience
+    - BoxSurvivalNDA
+    - EncryptionKeyScience
 
 - type: startingGear
   id: DocCMDGear
@@ -724,12 +726,13 @@
     jumpsuit: ClothingUniformJumpsuitScientist
     back: ClothingBackpackSatchelScience
     shoes: ClothingShoesSCP
-    id: SCPIDCardFive
+    id: SCPIDCardFiveSinCom
     ears: ClothingHeadsetSCPAlt
   storage:
     back:
     - EncryptionKeyNedraCMDconnection
     - BoxSurvivalNDA
+    - EncryptionKeyScience
 
 - type: startingGear
   id: ADMGear
@@ -801,5 +804,6 @@
   equipment:
     jumpsuit: ClothingJumpsuitClassD
     shoes: ClothingShoesSCP
+    id: SCPIDCardClassD
   inhand:
   - PaperClassDNDA

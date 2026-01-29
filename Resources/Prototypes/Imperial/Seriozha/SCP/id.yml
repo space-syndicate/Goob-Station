@@ -62,6 +62,21 @@
       sprite: Imperial/Seriozha/SCP/id/one.rsi
 
 - type: entity
+  id: SCPIDCardClassD
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconClassDNDA
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/classD.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/classD.rsi
+
+- type: entity
   id: SCPIDCardTwo
   parent: IDCardStandard
   name: SCP ID card
@@ -81,6 +96,68 @@
         - state: icon
     - type: Clothing
       sprite: Imperial/Seriozha/SCP/id/two.rsi
+
+- type: entity
+  id: SCPIDCardTwoEngineering
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconEngNDA
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - Engineering
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/eng.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/eng.rsi
+
+- type: entity
+  id: SCPIDCardTwomedical
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconMedicNDA
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - Medical
+      - Chemistry
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/medical.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/medical.rsi
+
+- type: entity
+  id: SCPIDCardTwoOTO
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconOTO
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - Salvage
+      - Cargo
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/oto.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/oto.rsi
 
 - type: entity
   id: SCPIDCardThree
@@ -111,7 +188,7 @@
   suffix: seriozha, Недра
   components:
     - type: IdCard
-      jobIcon: JobIconSCP
+      jobIcon: JobIconSec
     - type: Access
       tags:
       - SCPAccesOne
@@ -128,10 +205,79 @@
       sprite: Imperial/Seriozha/SCP/id/threegray.rsi
 
 - type: entity
+  id: SCPIDCardThreeScientist
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconDoc
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - Research
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/scientist.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/scientist.rsi
+
+- type: entity
+  id: SCPIDCardThreeSecAlt
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSecalt
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - Security
+      - Brig
+      - Medical
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/secalt.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/secalt.rsi
+
+- type: entity
+  id: SCPIDCardFourSecAltCom
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconsecAltCom
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - Security
+      - Brig
+      - Armory
+      - Medical
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/secaltcom.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/secaltcom.rsi
+
+- type: entity
   id: SCPIDCardFour
   parent: IDCardStandard
   name: SCP ID card
-  suffix: seriozha, Недра
+  suffix: Fredik21, Недра
   components:
     - type: IdCard
       jobIcon: JobIconSCP
@@ -198,6 +344,55 @@
         - state: icon
     - type: Clothing
       sprite: Imperial/Seriozha/SCP/id/five.rsi
+
+- type: entity
+  id: SCPIDCardFiveSinCom
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconSinCom
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      groups:
+      - AllAccess
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/scientistcom.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/scientistcom.rsi
+
+- type: entity
+  id: SCPIDCardFivesecCom
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: seriozha, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconsecCom
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - Security
+      - Brig
+      - Armory
+      - Medical
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/threegrayCom.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/threegrayCom.rsi
 
 - type: entity
   id: SCPIDCardAdm
@@ -290,4 +485,74 @@
   id: JobIconCI
   icon:
     sprite: /Textures/Imperial/Seriozha/SCP/id/iconCI.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSec
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconsec.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSecalt
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconsecalt.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDoc
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconsin.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconOTO
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconoto.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconsecCom
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconsecCom.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconsecAltCom
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconsecaltCom.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedicNDA
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconmedic.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEngNDA
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconeng.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconClassDNDA
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconclassD.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSinCom
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconsincom.rsi
     state: icon

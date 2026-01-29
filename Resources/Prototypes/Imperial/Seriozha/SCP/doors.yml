@@ -173,6 +173,24 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSCPThree ]
+
+- type: entity
+  parent: AirlockWindowedSCPLocked
+  id: AirlockWindowedSCPFour
+  suffix: Fredik21, Недра, 4
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPFour ]
+
+- type: entity
+  parent: AirlockWindowedSCPLocked
+  id: AirlockWindowedSCPFive
+  suffix: Fredik21, Недра, 5
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPFive ]
 #Electronics
 - type: entity
   parent: DoorElectronics
