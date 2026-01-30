@@ -1724,14 +1724,8 @@
     actions:
     - ActionGravityJump
     activeIfWorn: true
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepSCPADV
-      params:
-        volume: -2
-        variation: 0.02
   - type: AmbientSound
-    volume: -4
+    volume: -2
     range: 5
     sound:
       path: /Audio/Imperial/Seriozha/SCP/ambient/HeavyContainment.ogg
