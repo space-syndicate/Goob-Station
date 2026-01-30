@@ -1653,7 +1653,7 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.6
+        Piercing: 0.45
         Heat: 0.2
         Caustic: 0.5
   - type: Item
@@ -1671,7 +1671,7 @@
     price: 750
   - type: GPSTrackerPrice
     startprice: 0
-    endprice: 20000
+    endprice: 500000
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -1686,6 +1686,8 @@
     sprite: Imperial/Crook/Misc/headcoat.rsi
   - type: PointLight
     color: cyan
+    radius: 5
+    energy: 2
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -1722,3 +1724,14 @@
     actions:
     - ActionGravityJump
     activeIfWorn: true
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPADV
+      params:
+        volume: -2
+        variation: 0.02
+  - type: AmbientSound
+    volume: -4
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/HeavyContainment.ogg
