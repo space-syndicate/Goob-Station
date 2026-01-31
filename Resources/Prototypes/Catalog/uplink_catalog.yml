@@ -587,6 +587,40 @@
   categories:
   - UplinkAmmo
 
+# For the MG-90GL
+- type: listing
+  id: MagazineM90gl
+  name: ent-MagazineM90gl
+  description: ent-MagazineM90gl.desc
+  icon: { sprite: Imperial/Catalog/ImperialSyndicateUplink/M90gl_Imperial/magazines.rsi, state: base }
+  productEntity: MagazineM90gl
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# For the AKM
+- type: listing
+  id: MagazineLightRifle
+  name: ent-MagazineLightRifle
+  description: ent-BaseMagazineLightRifle
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: MagazineLightRifle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
 # For the Estoc
 - type: listing
   id: UplinkEstocAmmo
