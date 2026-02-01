@@ -15,26 +15,15 @@ namespace Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks;
 public abstract partial class SharedAttacksSystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     private void InitializePiercingLunge()
     {
         SubscribeLocalEvent<UserPiercingLungeComponent, PiercingLungeEvent>(OnPiercingLunge);
-        SubscribeLocalEvent<UserPiercingLungeComponent, StartCollideEvent>(OnStartCollide);
 
         SubscribeLocalEvent<PiercingLungeComponent, PiercingLungeDoAfterEvent>(OnPiercingLungeDoAfter);
         SubscribeLocalEvent<PiercingLungeComponent, GotEquippedHandEvent>(OnEquippedPiercingLunge);
         SubscribeLocalEvent<PiercingLungeComponent, GotUnequippedHandEvent>(OnUnequippedPiercingLunge);
         SubscribeLocalEvent<PiercingLungeComponent, ComponentShutdown>(OnPiercingLungeShutdown);
-    }
-
-    private void OnStartCollide(EntityUid user, UserPiercingLungeComponent userComp, StartCollideEvent args)
-    {
-        if (!userComp.CanDamage)
-            return;
-
-        if (userComp.Damage != null)
-            _damageable.TryChangeDamage(args.OtherEntity, userComp.Damage, interruptsDoAfters: false);
     }
 
     private void OnPiercingLunge(EntityUid user, UserPiercingLungeComponent userComp, ref PiercingLungeEvent args)

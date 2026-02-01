@@ -9,6 +9,7 @@ using Content.Shared.Alert;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.MiningWeapons.Smasher;
 
