@@ -161,8 +161,8 @@
         - id: MagazineShotgunSlug
         - id: MagazineLightRifleBox
           amount: 2
-        - id: MagazineLightRifle
-          amount: 2
+        - id: MagazineLightRifle # Imperial 2 stores added to AKM
+          amount: 2              # Imperial 2 stores added to AKM
 
 - type: entity
   parent: ClothingBackpackDuffelClown

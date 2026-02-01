@@ -587,7 +587,7 @@
   categories:
   - UplinkAmmo
 
-# For the MG-90GL
+# Imperial 2 stores added to uplink start 
 - type: listing
   id: MagazineM90gl
   name: ent-MagazineM90gl
@@ -603,8 +603,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-
-# For the AKM
+ 
 - type: listing
   id: MagazineLightRifle
   name: ent-MagazineLightRifle
@@ -620,6 +619,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+#Imperial 2 stores added to uplink end
 
 # For the Estoc
 - type: listing
