@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "size": {
+        "x": 96,
+        "y": 96
+    },
+    "copyright": "Fredik21",
+    "license": "CC-BY-SA-3.0",
+    "states": [
+        {
+            "name": "icon"
+        }
+    ]
+}

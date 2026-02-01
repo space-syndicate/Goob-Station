@@ -52,7 +52,7 @@
 
 - type: entity
   name: Ded
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPDed
   description: Pray.
@@ -127,7 +127,7 @@
 
 - type: entity
   name: Fireman
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: ImperialSCPBase
   id: ImperialSCPFireMan
   description: Pray.
@@ -143,7 +143,7 @@
         Alive:
           Base: alive
         Dead:
-          Base: alive
+          Base: dead
     - type: MobThresholds
       thresholds:
         0: Alive
@@ -221,10 +221,14 @@
           visualType: Large
           messages: [ "slime-hurt-by-water-popup" ]
           probability: 0.25
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        2200: 0.7
 
 - type: entity
   name: Avel
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPAvel
   description: Pray.
@@ -300,6 +304,10 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        1800: 0.7
 
 - type: entity
   name: Katana
@@ -329,12 +337,13 @@
     reflectProb: 0.15
     spread: 60
   - type: DisarmMalus
+  - type: Unremoveable
 
 - type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
   id: ImperialSCPMask
   name: Mask
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   description: idc
   components:
   - type: Sprite
@@ -361,7 +370,7 @@
 
 - type: entity
   name: Doctor
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPDoc
   description: Pray.
@@ -454,10 +463,14 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        2700: 0.7
 
 - type: entity
   name: Jelly monster
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: BaseMobAdultSlimes
   id: ImperialSCPJelly
   description: The kindest blob of slime in the galaxy.
@@ -531,10 +544,14 @@
           - MobMask
           layer:
           - MobLayer
+    - type: SlowOnDamage
+      enabled: true
+      speedModifierThresholds:
+        420: 0.7
 
 - type: entity
   name: Zombie
-  suffix: seriozha, Недра
+  suffix: seriozha, Недра, Объект
   parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPZombie
   description: Ugh...
