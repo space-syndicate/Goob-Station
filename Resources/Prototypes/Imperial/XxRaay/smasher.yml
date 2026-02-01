@@ -1,0 +1,343 @@
+- type: entity
+  id: SmasherHuman
+  components:
+    - type: Sprite
+      noRot: true
+      drawdepth: Mobs
+      layers:
+      - state: adam_smasherovich
+        sprite: Imperial/XxRaay/smasher.rsi
+      - map: ["belt"]
+      - map: ["back"]
+    - type: GravityAffected
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 50
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: Clickable
+    - type: InteractionOutline
+    - type: ComplexInteraction
+    - type: Input
+      context: "human"
+    - type: Actions
+    - type: Alerts
+    - type: Appearance
+    - type: RotationVisuals
+      defaultRotation: 0
+      horizontalRotation: 0
+    - type: DoAfter
+    - type: Examiner
+    - type: Eye
+    - type: ContentEye
+    - type: CameraRecoil
+    - type: MindContainer
+    - type: RequireProjectileTarget
+      active: False
+    - type: MobCollision
+    - type: Physics
+      bodyType: KinematicController
+    - type: InputMover
+    - type: MobMover
+    - type: MovementSpeedModifier
+    - type: LagCompensation
+    - type: Icon
+      sprite: Imperial/XxRaay/smasher.rsi
+      state: adam_smasherovich
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 500
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ResearchDisk10000:
+              min: 6
+              max: 6
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Repairable
+      damage:
+        types:
+          Blunt: -25
+          Structural: -25
+          Slash: -25
+          Piercing: -25
+          Heat: -25
+          Shock: -25
+          Caustic: -25
+          Asphyxiation: -25
+    - type: RadiationReceiver
+    - type: Stamina
+    - type: StunVisuals
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: MobStateActions
+      actions:
+        Critical:
+        - ActionCritSuccumb
+        - ActionCritFakeDeath
+        - ActionCritLastWords
+    - type: Deathgasp
+    - type: HealthExaminable
+      examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+      - Caustic
+      - Asphyxiation
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 15
+      soundHit:
+        path: /Audio/Effects/hit_kick.ogg
+    - type: Pullable
+    - type: LightningTarget
+      priority: 2
+      lightningExplode: true
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 25
+          Structural: 15
+    - type: CombatMode
+    - type: Inventory
+    - type: Hands
+      showInHands: false
+      hands:
+        hand_right1:
+          location: Right
+        hand_right2:
+          location: Right
+        hand_left1:
+          location: Left
+      sortedHands:
+      - hand_right1
+      - hand_right2
+      - hand_left1
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+      - id: FoodMeatHuman
+        amount: 5
+    - type: Body
+      prototype: Human
+      parts:
+        head: BodyPartHumanHead
+        torso: BodyPartHumanTorso
+        left_arm: BodyPartHumanLeftArm
+        right_arm: BodyPartHumanRightArm
+        left_leg: BodyPartHumanLeftLeg
+        right_leg: BodyPartHumanRightLeg
+        extra_arm1: BodyPartHumanLeftArm
+        extra_arm2: BodyPartHumanRightArm
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 20
+      damage:
+        types:
+          Heat: -0.07
+        groups:
+          Brute: -0.07
+    - type: Fingerprint
+    - type: Temperature
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
+      currentTemperature: 310.15
+      specificHeat: 42
+      coldDamage:
+        types:
+          Cold: 0.1
+      heatDamage:
+        types:
+          Heat: 1.5
+    - type: TemperatureSpeed
+      thresholds:
+        293: 0.9
+        280: 0.8
+        260: 0.7
+    - type: ThermalRegulator
+      metabolismHeat: 800
+      radiatedHeat: 100
+      implicitHeatRegulation: 500
+      sweatHeatRegulation: 2000
+      shiveringHeatRegulation: 2000
+      normalBodyTemperature: 310.15
+      thermalRegulationTemperatureThreshold: 2
+    - type: Perishable
+    - type: FireVisuals
+      alternateState: Standing
+    - type: Polymorphable
+    - type: SmasherInnateTools
+    - type: Sandevistan
+
+- type: entity
+  id: XxRaayAutoShotgun
+  name: встроенный автодробовик
+  description: Встроенный во внутренности корпуса автодробовик с магазином на 16 снарядов. Ориентирован на ближний бой и добивание целей мощными слагами. Патроны автоперезаряжаются.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunSpreadModifier
+    spread: 0.8
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgun
+    capacity: 16
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+- type: entity
+  id: BulletChainGun
+  name: bullet (chain gun)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6
+
+- type: entity
+  id: CartridgeChainGun
+  name: cartridge (chain gun)
+  parent: BaseCartridgeRifle
+  description: Специальный патрон для тяжёлого пулемёта с уменьшенным уроном для плотного огня.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletChainGun
+
+- type: entity
+  id: XxRaayChainGun
+  name: встроенный тяжёлый пулемёт
+  description: Тяжёлый пулемёт (chain gun), закреплённый на корпусе, обеспечивает устойчивый плотный огонь по противнику. В некоторых материалах описывается как многствольный гатлинг‑дробовик Tsunami Arms Helix Gatling с ленточным питанием на сотни патронов.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/minigun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: GunSpreadModifier
+    spread: 0.5
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeChainGun
+    capacity: 100
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
+
+- type: entity
+  id: BulletShoulderRocket
+  name: ракета плечевой установки
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 40
+    intensitySlope: 6
+    totalIntensity: 100
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: XxRaayShoulderRocketLauncher
+  name: встроенная плечевая ракетная установка
+  description: Плечевая ракетная установка, закреплённая на корпусе. Позволяет выбрать до 6 целей и запустить по ним самонаводящиеся ракеты. Имеет 6 зарядов. Заряды автоперезаряжаются.
+  parent: BaseItem
+  components:
+  - type: ShoulderRocketLauncher
+    charges: 6
+    maxCharges: 6
+  - type: RechargeShoulderRocketLauncher
+    rechargeCooldown: 15
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
+  - type: AmmoCounter
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+  - type: Icon
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    state: base
