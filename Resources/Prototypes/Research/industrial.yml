@@ -98,6 +98,8 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
+  - PPGCenterMachineCircuitboard # Imperial Atmos Update
+  - PPGCirculatorMachineCircuitboard # Imperial Atmos Update
 
 - type: technology
   id: RipleyAPLU

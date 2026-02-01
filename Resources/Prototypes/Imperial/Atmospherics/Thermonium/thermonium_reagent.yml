@@ -12,7 +12,7 @@
     Flammable:
       methods: [ Touch ]
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 0.8
   metabolisms:
     Poison:
@@ -31,5 +31,8 @@
             Brute: -4
             Burn: -6
             Toxin: -4
-           types:
-            Bloodloss: -2
+            Airloss: -2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Set

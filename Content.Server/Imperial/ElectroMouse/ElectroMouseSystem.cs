@@ -39,6 +39,9 @@ using Content.Shared.Body.Components;
 using CollisionGroup = Content.Shared.Physics.CollisionGroup;
 using Content.Server.Chat.Systems;
 using Content.Shared.Light.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.Power.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.ElectroMouse.EntitySystems;
 
@@ -317,7 +320,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             _popup.PopupEntity("Недостаточно энергии", uid, uid);
             return;
         }
-        _empSystem.EmpPulse(coords, component.EmpRadius, 10000, 120);
+        _empSystem.EmpPulse(coords, component.EmpRadius, 10000, TimeSpan.FromSeconds(120));
 
         AddEnergy(uid, component, -20);
 
@@ -405,7 +408,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         if (HasComp<DoorComponent>(target))
             return;
 
-        if (HasComp<ApcPowerReceiverComponent>(target) || HasComp<HitscanBatteryAmmoProviderComponent>(target) || HasComp<ProjectileBatteryAmmoProviderComponent>(target) || HasComp<PowerNetworkBatteryComponent>(target))
+        if (HasComp<ApcPowerReceiverComponent>(target) || HasComp<BatteryAmmoProviderComponent>(target) || HasComp<PowerNetworkBatteryComponent>(target))
         {
             args.Handled = true;
 
@@ -500,13 +503,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
     private void BeginHarvestDoAfter(EntityUid uid, EntityUid target, ElectroMouseComponent comp)
     {
-        if (TryComp<HitscanBatteryAmmoProviderComponent>(target, out var hitprov) && hitprov.Shots == 0)
-            return;
-        if (TryComp<ProjectileBatteryAmmoProviderComponent>(target, out var projprov) && projprov.Shots == 0)
-            return;
-        if (HasComp<HitscanBatteryAmmoProviderComponent>(target) && !comp.CanBattery)
-            return;
-        if (HasComp<ProjectileBatteryAmmoProviderComponent>(target) && !comp.CanBattery)
+        if (TryComp<BatteryAmmoProviderComponent>(target, out var hitprov) && hitprov.Shots == 0)
             return;
 
         if (HasComp<PowerNetworkBatteryComponent>(target))
@@ -581,7 +578,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         else
             required = 5000;
 
-        _battery.UseCharge(target, required * 200, targetBattery);
+        _battery.TryUseCharge((target, targetBattery), required * 200);
 
         Dirty(target, targetBattery);
 
@@ -618,13 +615,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             component.Harvested.Add(target);
             AddEnergy(uid, component, 5);
         }
-        else if (TryComp<HitscanBatteryAmmoProviderComponent>(target, out var hitprov))
-        {
-            AddEnergy(uid, component, hitprov.Shots);
-            hitprov.Shots = 0;
-            Dirty(target, hitprov);
-        }
-        else if (TryComp<ProjectileBatteryAmmoProviderComponent>(target, out var projprov))
+        else if (TryComp<BatteryAmmoProviderComponent>(target, out var projprov))
         {
             AddEnergy(uid, component, projprov.Shots);
             projprov.Shots = 0;
@@ -713,7 +704,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
                             { result, component.HealingStrength * -1 }
                         }
                     };
-                    _damageable.TryChangeDamage(uid, damage, false, true, damagecomp, origin: uid);
+                    _damageable.TryChangeDamage(uid, damage, false, true, origin: uid);
                     Dirty(uid, damagecomp);
                 }
                 else
@@ -734,7 +725,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
                             { result, component.HealingStrength * -1 }
                         }
                     };
-                    _damageable.TryChangeDamage(uid, damage, false, true, damagecomp, origin: uid);
+                    _damageable.TryChangeDamage(uid, damage, false, true, origin: uid);
                     Dirty(uid, damagecomp);
                 }
                 else

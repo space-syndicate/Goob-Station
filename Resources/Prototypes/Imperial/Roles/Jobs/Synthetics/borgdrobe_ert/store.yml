@@ -333,7 +333,7 @@
   productEntity: MechEquipmentTeslaEnergyRelay
   priority: 28
   cost:
-    BlueSpaceCube: 8
+    BlueSpaceCube: 6
   categories:
   - ErtBorgDrobeMech
 

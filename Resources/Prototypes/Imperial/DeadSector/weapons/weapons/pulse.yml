@@ -23,7 +23,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: plasma_pistol
     fireCost: 200
   - type: Battery
@@ -52,10 +52,17 @@
   - type: Clothing
     sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1-inhand.rsi
   - type: Gun
-    fireRate: 1.8
+    fireRate: 1.4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+      path: /Audio/Imperial/DeadSector/fire.ogg
+      params:
+        volume: -3
+  - type: AmbientSound
+    range: 2
+    volume: -3
+    sound:
+      path: /Audio/Imperial/DeadSector/charge.ogg
+  - type: BatteryAmmoProvider
     proto: plasma_rifle_RLT1
     fireCost: 100
   - type: Battery
@@ -86,7 +93,7 @@
     fireRate: 0.5
     soundGunshot:
       path: /Audio/Imperial/ert_sniper/laser_sniper.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: plasma_rifle_RLT2
     fireCost: 100
   - type: Battery

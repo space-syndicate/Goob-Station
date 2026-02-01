@@ -1907,3 +1907,533 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  id: PoweredStrobeLightRedHigh
+  suffix: "ElysiumPrime, Structure, Red, High"
+  parent: PoweredStrobeLightEmpty
+  components:
+  - type: Sprite
+    state: base
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalRed
+  - type: AmbientSound
+    volume: 0
+    range: 10
+    sound:
+      path: "/Audio/Imperial/ElysiumPrime/Misc/Strobe/CycleSiren-v1.ogg"
+
+- type: entity
+  id: PoweredStrobeLightRedLow
+  suffix: "ElysiumPrime, Structure, Red, Low"
+  parent: PoweredStrobeLightRedHigh
+  components:
+  - type: AmbientSound
+    volume: -5
+    sound:
+      path: "/Audio/Imperial/ElysiumPrime/Misc/Strobe/CycleSiren-v2.ogg"
+
+- type: entity
+  parent: BaseStructure
+  id: BaseFenceMetalFelix
+  name: chain link fence
+  description: A metal piece of fencing cordoning off something likely very important.\
+  suffix: "DeadSector, Structure"
+  abstract: true
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/grille_hit.ogg"
+  - type: Sprite
+    sprite: Imperial/Felix/Structures/fence_with_wire.rsi
+    drawdepth: WallTops
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PowerConsumer
+    showInMonitor: false
+  - type: Electrified
+    requirePower: true
+    noWindowInTile: true
+    highVoltageNode: high
+    mediumVoltageNode: medium
+    lowVoltageNode: low
+  - type: NodeContainer
+    nodes:
+      high:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+      medium:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+      low:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectrifiedVisuals.ShowSparks:
+        enum.ElectrifiedLayers.Sparks:
+          True: { visible: True }
+          False: { visible: False }
+  - type: AnimationPlayer
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+
+- type: entity
+  parent: BaseFenceMetalFelix
+  id: FenceMetalBrokenFelix
+  name: broken chain link fence
+  description: Someone got real mad at an inanimate object.
+  suffix: "DeadSector, Structure"
+  components:
+  - type: Sprite
+    layers:
+    - state: straight_broken
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: ["enum.ElectrifiedLayers.Sparks"]
+      shader: unshaded
+      visible: false
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.5,0.10,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - TableLayer
+  - type: InteractionPopup
+    interactSuccessString: fence-rattle-success
+    messagePerceivedByOthers: fence-rattle-success
+    interactSuccessSound:
+      collection: FenceRattle
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: FenceMetal
+    node: broken
+
+- type: entity
+  parent: BaseFenceMetalFelix
+  id: FenceMetalStraightFelix
+  suffix: "Straight, DeadSector, Structure"
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Structures/fence_with_wire.rsi
+    state: icon_straight
+  - type: Sprite
+    layers:
+    - state: straight
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: ["enum.ElectrifiedLayers.Sparks"]
+      shader: unshaded
+      visible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.5,0.10,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Items/wirecutter.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 2
+            max: 4
+      - !type:ChangeConstructionNodeBehavior
+        node: broken
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: FenceMetal
+    node: straight
+
+- type: entity
+  parent: BaseFenceMetalFelix
+  id: FenceMetalCornerFelix
+  suffix: "Corner, DeadSector, Structure"
+  components:
+  - type: Sprite
+    layers:
+    - state: corner
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: ["enum.ElectrifiedLayers.Sparks"]
+      shader: unshaded
+      visible: false
+  - type: Fixtures
+    fixtures:
+      # needs two shapes to properly handle a triangle corner without weirdness
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.5"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.1,-0.1,0.1"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Construction
+    graph: FenceMetal
+    node: corner
+
+- type: entity
+  parent: BaseFenceMetalFelix
+  id: FenceMetalEndFelix
+  suffix: "End, DeadSector, Structure"
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Structures/fence_with_wire.rsi
+    state: icon_end
+  - type: Sprite
+    layers:
+    - state: end
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: ["enum.ElectrifiedLayers.Sparks"]
+      shader: unshaded
+      visible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.5,0.1,0.0"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Construction
+    graph: FenceMetal
+    node: end
+
+- type: entity
+  parent: BaseFenceMetalFelix
+  id: FenceMetalGateFelix
+  name: chain link fence gate
+  description: You could use the door instead of vaulting over--if you're a COWARD, that is.
+  suffix: "DeadSector, Structure"
+  components:
+  - type: Sprite
+    layers:
+    - state: end
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: [ "enum.ElectrifiedLayers.Sparks" ]
+      shader: unshaded
+      visible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.1,0.5,0.1"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: InteractionOutline
+  - type: Door
+    openSpriteState: door_opened
+    closedSpriteState: door_closed
+    canPry: false
+    occludes: false
+    changeAirtight: false
+    bumpOpen: false
+    clickOpen: true
+    canCrush: false
+    closeTimeOne: 0
+    closeTimeTwo: 0
+    openTimeOne: 0
+    openTimeTwo: 0
+    openingAnimationTime: 0
+    closingAnimationTime: 0
+    openSound:
+      path: /Audio/Effects/door_open.ogg
+    closeSound:
+      path: /Audio/Effects/door_close.ogg
+  - type: Construction
+    graph: FenceMetal
+    node: gate
+
+- type: entity
+  id: GateDoor
+  parent: BaseShutter
+  name: Gate
+  suffix: "DeadSector, Structure"
+  description: Open it! Hmm... They never open it.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,2.5,0.5"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - AirlockLayer
+  - type: AccessReader
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Gatebiohazard.rsi
+    offset: 0.5,-0.5
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+    closeTimeOne: 4
+    closeTimeTwo: 1
+    openTimeOne: 4
+    openTimeTwo: 1
+    openingAnimationTime: 5
+    closingAnimationTime: 5
+    canPry: false
+    crushDamage:
+      types:
+        Blunt: 25 # yowch
+    openSound:
+      path: /Audio/Imperial/Felix/Misc/GateSound/Gate.ogg
+    closeSound:
+      path: /Audio/Imperial/Felix/Misc/GateSound/Gate.ogg
+  - type: Occluder
+    enabled: false
+  - type: Appearance
+  - type: RadiationBlocker
+    resistance: 16
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+  - type: Construction
+    graph: BlastDoor
+    node: blastdoor
+    containers:
+    - board
+
+- type: entity
+  id: GateDoorOpen
+  parent: GateDoor
+  suffix: "Открыто, DeadSector, Structure"
+  components:
+  - type: Door
+    state: open
+  - type: Occluder
+    enabled: false
+  - type: Physics
+    canCollide: false
+  - type: Airtight
+    airBlocked: false
+  - type: RadiationBlocker
+    enabled: false
+
+- type: entity
+  parent: BaseStructure
+  id: BaseReinforcedFence
+  abstract: true
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/grille_hit.ogg"
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    drawdepth: WallTops
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: Appearance
+  - type: AnimationPlayer
+
+- type: entity
+  parent: BaseReinforcedFence
+  id: ReinforcedConcreteStraight
+  name: reinforced concrete fence
+  description: Are advanced space developments in front of you, or are you being deceived somewhere?..
+  suffix: DeadSector, Structure
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    state: icon_straight
+  - type: Sprite
+    layers:
+    - state: straight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.9,0.5,0.9"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  parent: BaseReinforcedFence
+  id: ReinforcedConcreteCorner
+  name: reinforced concrete fence
+  description: Are advanced space developments in front of you, or are you being deceived somewhere?..
+  suffix: DeadSector, Structure
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    state: corner
+  - type: Sprite
+    layers:
+    - state: corner
+  - type: Fixtures
+    fixtures:
+      # needs two shapes to properly handle a triangle corner without weirdness
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.6,0.5,0.9"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-0.6,-0.1,0.01"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  parent: BaseReinforcedFence
+  id: ReinforcedConcreteEnd
+  name: reinforced concrete fence
+  description: Are advanced space developments in front of you, or are you being deceived somewhere?..
+  suffix: DeadSector, Structure
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    state: icon_end
+  - type: Sprite
+    layers:
+    - state: end
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.9,0.5,0.01"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable

@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingShoesBootsMagSyndie
+  id: ClothingShoesMagBootsNT
+  name: NanoTrasen Advanced Magnetic Boots
+  suffix: space battle, DeimonFly
+  description: Experimental magnetic boots with an integrated low-power jetpack. Let you stand firm on the floor even in vacuum and make precise maneuvers in zero-g without turning into a spinning corpse in space. The manual says “do not use for ramming hostile personnel” — which strongly implies someone already did.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Clothing/MagBootsNT.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/DeimonFly/Clothing/MagBootsNT.rsi

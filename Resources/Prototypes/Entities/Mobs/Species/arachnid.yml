@@ -33,16 +33,19 @@
     - reagents: [Water]
       methods: [Touch]
       effects:
-      - !type:WearableReaction
+      - !type:SpawnEntityInInventory
         slot: head
-        prototypeID: WaterDropletHat
+        entity: WaterDropletHat
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   # Damage (Self)
   - type: Bloodstream
-    bloodReagent: CopperBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 1
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -91,7 +94,7 @@
       - map: [ "shoes" ]
       # - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "outerClothing" ]  
+      - map: [ "outerClothing" ]
       - map: [ "belt" ] # Imperial Space для корректного отображения слоев одежды и РПС
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]

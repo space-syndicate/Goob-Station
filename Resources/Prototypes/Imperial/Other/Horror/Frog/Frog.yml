@@ -42,7 +42,6 @@
       damage:
         types:
           Structural: 5
-          Stamina: 40
           Piercing: 15
     - type: Speech
       speechVerb: LargeMob

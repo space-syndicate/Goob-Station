@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 267.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 09/29/2025 02:22:45
-  entityCount: 18698
+  time: 11/04/2025 19:47:26
+  entityCount: 18697
 maps:
 - 1
 grids:
@@ -55488,6 +55488,13 @@ entities:
     - type: Transform
       pos: -19.5,25.5
       parent: 2
+- proto: DefaultStationBeaconReporter
+  entities:
+  - uid: 18696
+    components:
+    - type: Transform
+      pos: -25.5,-32.5
+      parent: 2
 - proto: DefaultStationBeaconRND
   entities:
   - uid: 16585
@@ -91645,18 +91652,6 @@ entities:
     - type: Transform
       pos: -18.5,15.5
       parent: 2
-- proto: MagazinePistolSubMachineGunTopMounted
-  entities:
-  - uid: 17542
-    components:
-    - type: Transform
-      pos: -2.0215707,-37.446384
-      parent: 2
-  - uid: 17543
-    components:
-    - type: Transform
-      pos: -1.9121957,-37.30576
-      parent: 2
 - proto: MailingUnit
   entities:
   - uid: 11816
@@ -98427,23 +98422,17 @@ entities:
     - type: Transform
       pos: 1.5,-31.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 1708
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,-30.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 1870
     components:
     - type: Transform
       pos: 1.5,-29.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 2321
     components:
     - type: Transform
@@ -98473,8 +98462,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 22.5,-35.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 9754
     components:
     - type: Transform
@@ -98487,40 +98474,30 @@ entities:
     - type: Transform
       pos: 21.5,-28.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 14235
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,-30.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 18678
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 31.5,-44.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 18679
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 30.5,-44.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 18680
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 32.5,-44.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
 - proto: ReinforcedWindow
   entities:
   - uid: 79
@@ -98677,16 +98654,12 @@ entities:
     - type: Transform
       pos: -2.5,-29.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 1762
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 19.5,-26.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 1839
     components:
     - type: Transform
@@ -99730,24 +99703,18 @@ entities:
     - type: Transform
       pos: -35.5,32.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 9751
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 32.5,-42.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 9752
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 21.5,-26.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 10527
     components:
     - type: Transform
@@ -99833,32 +99800,24 @@ entities:
     - type: Transform
       pos: -11.5,-6.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 12551
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 30.5,-42.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 12652
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 20.5,-26.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 12655
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 24.5,-30.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 12713
     components:
     - type: Transform
@@ -100132,16 +100091,12 @@ entities:
     - type: Transform
       pos: 49.5,-5.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 18681
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 31.5,-42.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
 - proto: RemoteSignaller
   entities:
   - uid: 16085
@@ -105011,6 +104966,13 @@ entities:
     - type: Transform
       pos: -32.5,-11.5
       parent: 2
+- proto: SpawnPointHeadOfSecurityWeapon
+  entities:
+  - uid: 17541
+    components:
+    - type: Transform
+      pos: -2.5,-37.5
+      parent: 2
 - proto: SpawnPointJanitor
   entities:
   - uid: 987
@@ -105323,6 +105285,13 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-29.5
+      parent: 2
+- proto: SpawnPointWardenWeapon
+  entities:
+  - uid: 15170
+    components:
+    - type: Transform
+      pos: -5.5,-32.5
       parent: 2
 - proto: SpawnVendingMachineRestockFoodDrink
   entities:
@@ -124956,20 +124925,6 @@ entities:
     components:
     - type: Transform
       pos: 15.412306,-25.452839
-      parent: 2
-- proto: WeaponShotgunEnforcerRubber
-  entities:
-  - uid: 15170
-    components:
-    - type: Transform
-      pos: -5.520319,-32.186012
-      parent: 2
-- proto: WeaponSubMachineGunWt550
-  entities:
-  - uid: 17541
-    components:
-    - type: Transform
-      pos: -2.6153207,-37.27451
       parent: 2
 - proto: Welder
   entities:

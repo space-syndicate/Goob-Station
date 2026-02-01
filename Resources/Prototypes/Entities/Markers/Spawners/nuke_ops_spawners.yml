@@ -49,7 +49,7 @@
     - id: SlipocalypseClusterSoap
       amount: !type:RangeNumberSelector
         range: 1, 2
-    - id: ReinforcementRadioSyndicateAncestor
+    - id: ReinforcementRadioSyndicateAncestorNukeops # Imperial Space Замена синдикатовской обезьянки на ЯО обезьянку
     - id: ClothingEyesHudSyndicate
       amount: !type:RangeNumberSelector
         range: 1, 2

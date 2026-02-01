@@ -105,7 +105,10 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
-        Stamina: 0.5 # Stamina resistance Imperial
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: ToggleableClothing

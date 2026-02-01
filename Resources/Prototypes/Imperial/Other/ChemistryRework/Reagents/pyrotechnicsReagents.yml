@@ -85,13 +85,13 @@
         damage:
           types:
             Poison: 5
-      - !type:AdjustReagent
+      - !type:AdjustReagentsByGroup
         group: Poison
         amount: -3
-      - !type:AdjustReagent
+      - !type:AdjustReagentsByGroup
         group: Medicine
         amount: -3
-      - !type:AdjustReagent
+      - !type:AdjustReagentsByGroup
         group: Narcotic
         amount: -3
 
@@ -114,7 +114,7 @@
       - !type:ChangeMarkingColor
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 5
             reagent: QuantumHairDye
 
@@ -139,7 +139,7 @@
         markingCategory: "Tail"
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 5
             reagent: QuantumTailDye
 
@@ -156,7 +156,8 @@
       effects:
       - !type:RemoveMark
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: ValproicAcid
             min: 10
 
 - type: reagent
@@ -204,8 +205,9 @@
         markingCategory: "Skin"
         invertColor: true
         conditions:
-        - !type:ReagentThreshold
-            min: 10
+        - !type:ReagentCondition
+          reagent: Mutadone
+          min: 10
 
 - type: reagent
   id: StrangeReagent
@@ -232,21 +234,23 @@
         conditions:
         - !type:MobStateCondition
           mobstate: Dead
-        - !type:ReagentThreshold
-            min: 20
+        - !type:ReagentCondition
+          reagent: StrangeReagent
+          min: 20
         - !type:TotalDamageByGroups
-            min: 150
-            damageGroups:
-            - Brute
-            - Burn
-            - Genetic
+          min: 150
+          damageGroups:
+          - Brute
+          - Burn
+          - Genetic
       - !type:Gib
         probability: 0.35
         conditions:
         - !type:MobStateCondition
           mobstate: Dead
-        - !type:ReagentThreshold
-            min: 20
+        - !type:ReagentCondition
+          reagent: StrangeReagent
+          min: 20
       - !type:Resurrection
         penaltyDamage:
           types:
@@ -255,7 +259,7 @@
         conditions:
           - !type:MobStateCondition
             mobstate: Dead
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 20
             reagent: StrangeReagent
 

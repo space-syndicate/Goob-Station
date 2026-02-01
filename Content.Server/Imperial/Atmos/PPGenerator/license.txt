@@ -1,0 +1,2 @@
+license: This content is under ICLA. Copyright holder: kaktyc900 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+copyright: "kaktyc900 (discord)"

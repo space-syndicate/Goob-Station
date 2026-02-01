@@ -37,6 +37,7 @@
     Brutepack: 5
     Ointment: 5
     Bloodpack: 5
+    StandardHypospray: 5 # imperial space: added hypospray for doctors
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
@@ -66,6 +67,7 @@
     Bloodpack: 5
     Tourniquet: 1
     ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
     Syringe: 5
     BoxBottle: 3
     PillCanisterTricordrazine: 2

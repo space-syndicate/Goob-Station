@@ -1,0 +1,85 @@
+- type: entity
+  id: PPGCenter
+  name: PhaseCenterPPG
+  description: Highly efficient gas recycling generator.
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      noRot: false
+    - type: Sprite
+      sprite: Imperial/Gases/Structures/PPGenerator/PPGenerator.rsi
+      layers:
+        - state: assembly-0
+        - state: turnoff
+          shader: unshaded
+          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        - state: turnon
+          shader: unshaded
+          visible: false
+          map: [ "enum.PPGVisualLayers.PowerOutput" ]
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
+            False: { visible: false }
+        enum.PPGVisualsState.PowerOutput:
+          enum.PPGVisualLayers.PowerOutput:
+            0: { visible: false }
+            1: { visible: true, state: turnon }
+
+    - type: Anchorable
+    - type: Pullable
+    - type: NodeContainer
+      examinable: true
+      nodes:
+        output:
+          !type:CableDeviceNode
+          nodeGroupID: HVPower
+        ppg:
+          !type:PPGNodeGenerator
+          nodeGroupID: PPG
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNode: output
+      sprite: Imperial/Gases/Structures/PPGenerator/PPGenerator.rsi
+      state: assembly
+    - type: AtmosDevice
+    - type: PPGenerator
+    - type: WiredNetworkConnection
+    - type: PowerSupplier
+      supplyRampRate: 100000000
+      supplyRampTolerance: 10000000000
+    - type: Appearance
+    - type: ApcPowerReceiver
+      powerLoad: 1000
+    - type: LitOnPowered
+    - type: PointLight
+      enabled: false
+      castShadows: false
+      radius: 1.5
+      color: "#FFAA00"
+    - type: AmbientSound
+      volume: -4
+      range: 6
+      enabled: false
+      sound:
+        path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalGlassBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Machine
+      board: PPGCenterMachineCircuitboard
+    - type: Rotatable

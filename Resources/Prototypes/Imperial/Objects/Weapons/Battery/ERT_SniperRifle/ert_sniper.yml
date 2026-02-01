@@ -21,9 +21,9 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/ert_sniper/laser_sniper.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PulseSniper
     fireCost: 1500
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 7500
     startingCharge: 7500

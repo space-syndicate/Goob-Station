@@ -1,8 +1,8 @@
 using Content.Server.Imperial.Minigames;
 using Content.Shared.Imperial.Medieval.Magic.Minigames;
 using Content.Shared.Imperial.Medieval.Magic.Minigames.Events;
-using Content.Shared.Imperial.Minigames;
 using Content.Shared.Imperial.Minigames.Events;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Medieval.Magic.Minigames;
@@ -12,7 +12,7 @@ public sealed partial class MedievalArrowsMinigameSystem : SharedMedievalArrowsM
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MinigamesSystem _minigamesSystem = default!;
-
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -43,7 +43,9 @@ public sealed partial class MedievalArrowsMinigameSystem : SharedMedievalArrowsM
 
     private void OnAdded(EntityUid uid, MedievalArrowsMinigameComponent component, AfterMinigameAddedEvent args)
     {
-        component.CurrentMinigame = args.Minigame;
+        if (!_prototypeManager.TryIndex(args.MinigamePrototype, out var minigame)) return;
+
+        component.CurrentMinigame = minigame;
 
         if (component.Combination.Count != 0) return;
 

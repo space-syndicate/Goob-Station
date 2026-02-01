@@ -240,5 +240,38 @@ ent-FelixXenoPylonDecor = пилон
 ent-FelixXenoRecoDecor = восстановитель
     .desc = Мерзкая структура ксеноморфов.
 
-ent-FelixWeaponQuroMachineGun = пулемёт "Куро"
+ent-FelixWeaponQuroMachineGun = Тяжелый Пулемет "Магистр"
     .desc = Пулемёт с боезапасом 125 патронов. Использует патроны 7x62x51.
+
+ent-PoweredStrobeLightRedHigh = стробоскоп
+    .desc = ЧТООООО ТЫЫЫЫЫ ГООООВОРИШЬ?!! ВСЕ ЧТО Я СЛЫШУ - ЭТО УИИИИ УИИИИ УИИИИИ!!!!
+
+ent-PoweredStrobeLightRedLow = стробоскоп
+    .desc = ЧТООООО ТЫЫЫЫЫ ГООООВОРИШЬ?!! ВСЕ ЧТО Я СЛЫШУ - ЭТО УИИИИ УИИИИ УИИИИИ!!!!
+
+ent-BaseFenceMetalFelix = сетка-рабица
+    .desc = Металлическое ограждение, отгораживающее что-то, вероятно, очень важное.
+ent-FenceMetalBrokenFelix = сломанная сетка-рабица
+    .desc = Кто-то очень разозлился на неодушевленный предмет.
+ent-FenceMetalStraightFelix = { ent-BaseFenceMetal }
+    .desc = { ent-BaseFenceMetal.desc }
+ent-FenceMetalCornerFelix = { ent-BaseFenceMetal }
+    .desc = { ent-BaseFenceMetal.desc }
+ent-FenceMetalEndFelix = { ent-BaseFenceMetal }
+    .desc = { ent-BaseFenceMetal.desc }
+ent-FenceMetalGateFelix = ворота сетки-рабицы
+    .desc = Вы можете использовать дверь вместо того, чтобы перелезать через неё - если вы ТРУС.
+
+ent-GateDoor = Гермоворота
+    .desc = Открывайте! Хм... Никогда не открывают.
+
+ent-GateDoorOpen = Гермоворота
+    .desc = Открывайте! Хм... Никогда не открывают.
+
+ent-ReinforcedConcreteStraight = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+ent-ReinforcedConcreteCorner = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+ent-ReinforcedConcreteEnd = забор
+    .desc = Передовые разработки перед вами, или вас где-то обманывают?..
+# Some temp sting?

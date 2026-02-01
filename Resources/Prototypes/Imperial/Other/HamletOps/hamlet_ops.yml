@@ -56,9 +56,11 @@
         volume: 12
   - type: Tag
     tags:
-    - CannotSuicide
-    - Hamster
     - VimPilot
+    - ChefPilot
+    - Trash
+    - Hamster
+    - Meat
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate

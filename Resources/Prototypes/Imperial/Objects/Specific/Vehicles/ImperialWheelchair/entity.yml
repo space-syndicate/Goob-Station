@@ -19,19 +19,16 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.2
-          density: 360
+            radius: 0.35
+          density: 185
           restitution: 0.0
-          mask:
-            - MobMask
           layer:
-            - MobLayer
+            - MidImpassable
     - type: StaticPrice
       price: 70
     - type: ImperialVehicle
       autoAnimate: true
       hideRider: false
-      useHand: false
       southOverride: 0
       northOverride: 0
       baseWalkSpeed: 1.0
@@ -45,6 +42,24 @@
       buckleOffset: "0,0"
       maxBuckleDistance: 1
       position: Down
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 250
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalGlassBreak
+        - !type:ExplodeBehavior
 
 - type: entity
   parent: ImperialVehicleWheelchair

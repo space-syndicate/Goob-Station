@@ -53,7 +53,7 @@
     TelEthanol:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 30

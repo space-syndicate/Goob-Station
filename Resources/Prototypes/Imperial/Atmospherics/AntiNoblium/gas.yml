@@ -1,0 +1,12 @@
+- type: gas
+  id: AntiNoblium
+  name: gases-anti-noblium
+  specificHeat: 1000
+  heatCapacityRatio: 341
+  molarMass: 340
+  gasOverlaySprite: /Textures/Imperial/Gases/AntiNoblium/AntiNoblium.rsi
+  gasOverlayState: AntiNoblium
+  gasMolesVisible: 0.6
+  color: FFD700
+  reagent: AntiNoblium
+  pricePerMole: 42

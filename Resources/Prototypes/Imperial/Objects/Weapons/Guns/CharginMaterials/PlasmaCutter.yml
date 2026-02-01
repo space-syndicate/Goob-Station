@@ -42,7 +42,7 @@
       fireCost: 50
     - proto: AttackerBulletPlasmaCutter
       fireCost: 100
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPlasmaCutter
     fireCost: 50
   - type: UseDelay
