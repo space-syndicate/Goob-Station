@@ -2260,7 +2260,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.99,-0.99,1.99,0.99"
+          bounds: "-1.5,-1.5,2.5,0.5"
         density: 100
         mask:
         - TableMask
@@ -2269,6 +2269,7 @@
   - type: AccessReader
   - type: Sprite
     sprite: Imperial/Felix/Objects/Gatebiohazard.rsi
+    offset: 0.5,-0.5
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
