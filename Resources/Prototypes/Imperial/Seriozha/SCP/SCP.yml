@@ -225,6 +225,14 @@
       enabled: true
       speedModifierThresholds:
         2200: 0.7
+    - type: AmbientSound
+      volume: -10
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/fire.ogg
+        params:
+          loop: true
+          stream: true
 
 - type: entity
   name: Avel
