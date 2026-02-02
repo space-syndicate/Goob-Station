@@ -11,3 +11,26 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+
+
+- type: listing
+  id: GrenadeFrag
+  name: ent-GrenadeFrag
+  description: ent-GrenadeFrag.desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
+  productEntity: GrenadeFrag
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: GrenadeBlast
+  name: ent-GrenadeBlast
+  description: ent-GrenadeBlast.desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
+  productEntity: GrenadeBlast
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
