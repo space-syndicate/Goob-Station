@@ -1,0 +1,4 @@
+- type: statusEffect
+  id: AppealGhoulsCooldownAlert
+  alert: AppealGhoulsCooldownAlert
+  alwaysAllowed: true

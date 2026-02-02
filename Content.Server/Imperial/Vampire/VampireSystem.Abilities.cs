@@ -138,6 +138,17 @@ public partial class VampireSystem : EntitySystem
             return;
         }
 
+        // вампир не может усыпить нося маску/солнцезащитные очки
+        var flashVampireAttempt = new FlashAttemptEvent(args.Performer, args.Performer, null);
+        RaiseLocalEvent(args.Performer, ref flashVampireAttempt, true);
+
+        if (flashVampireAttempt.Cancelled)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-popup-vampire-has-eye-protection"),
+                vamp.Owner, vamp.Owner, PopupType.Medium);
+            return;
+        }
+
         // вампир не может усыпить людей с маской/солнцезащитными очками
         var flashAttempt = new FlashAttemptEvent(target, args.Performer, null);
         RaiseLocalEvent(target, ref flashAttempt, true);

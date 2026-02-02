@@ -42,6 +42,9 @@ using Content.Shared.Throwing;
 using Content.Shared.Standing;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction;
+using Content.Shared.Examine;
+using Content.Shared.Inventory;
+using Content.Shared.IdentityManagement;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -72,13 +75,14 @@ public partial class SharedVampireSystem : EntitySystem
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+
 
     private void BaseInitialize()
     {
@@ -93,6 +97,8 @@ public partial class SharedVampireSystem : EntitySystem
         SubscribeLocalEvent<VampireBuffComponent, GetMeleeAttackRateEvent>(OnGetMeleeAttackRate);
         SubscribeLocalEvent<VampireBuffComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<VampireBuffComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
+
+        SubscribeLocalEvent<VampireComponent, ExaminedEvent>(MaskExamined);
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnVampireStartup);
         SubscribeLocalEvent<VampireComponent, MindAddedMessage>(OnMindAdded);
@@ -126,6 +132,18 @@ public partial class SharedVampireSystem : EntitySystem
 
         if (args.Damage.DamageDict.ContainsKey(comp.BuffDamageSlashID))
             args.Damage.DamageDict[comp.BuffDamageSlashID] *= comp.BoostedDamage;
+    }
+
+    private void MaskExamined(Entity<VampireComponent> ent, ref ExaminedEvent args)
+    {
+        if (ent.Comp.TotalDrunk <= 0)
+            return;
+
+        if (!_inventory.TryGetSlotEntity(ent, "eyes", out _) && !_inventory.TryGetSlotEntity(ent, "mask", out _))
+        {
+            var locUser = ("user", Identity.Entity(ent, EntityManager));
+            args.PushMarkup(Loc.GetString("vampire-push-markup-eyes", locUser));
+        }
     }
 
     private void OnRecovery(VampireRecoveryEvent args)

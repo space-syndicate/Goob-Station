@@ -35,6 +35,8 @@
       - state: shadow_trap
   - type: VampireTrapOnTrigger
     damage: 20
+  - type: Stealth
+    lastVisibility: 0.5
   - type: Fixtures
     fixtures:
       fix:

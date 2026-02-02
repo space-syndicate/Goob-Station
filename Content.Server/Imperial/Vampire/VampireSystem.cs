@@ -22,8 +22,10 @@ using Content.Shared.Humanoid;
 using Content.Server.EUI;
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
-using Content.Shared.Mind.Components;
 using Robust.Server.Audio;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.StatusEffect;
+using Content.Shared.Mind.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -46,6 +48,9 @@ public partial class VampireSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+
+    public const string CooldowAlertAppealGhouls = "AppealGhoulsCooldownAlert";
 
     private void VampireInitialize()
     {
@@ -68,7 +73,7 @@ public partial class VampireSystem : EntitySystem
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || uid == args.Target || !_mobState.IsAlive(args.Target))
+        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || !_mobState.IsAlive(args.Target))
             return;
 
         // если у цели нет крови/разума, кнопки не добавляем
@@ -77,7 +82,8 @@ public partial class VampireSystem : EntitySystem
             return;
 
         // верб для превращения цели в упыря
-        if (!HasComp<GhoulComponent>(args.Target))
+        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target)
+            && !HasComp<MindShieldComponent>(args.Target) && !HasComp<AppealGhoulsCooldownComponent>(uid))
         {
             var verbConvert = new InnateVerb
             {
@@ -254,6 +260,18 @@ public partial class VampireSystem : EntitySystem
 
         if (_mobState.IsAlive(target))
             StartDrinking(drinker, target);
+    }
+
+    // выдаем вампиру cooldown на обращение
+    public void AppealGhoulsCooldown(EntityUid uid)
+    {
+        if (!TryComp<VampireComponent>(uid, out var comp))
+            return;
+
+        _statusEffectsSystem.TryAddStatusEffect<AppealGhoulsCooldownComponent>(uid,
+            CooldowAlertAppealGhouls,
+            comp.CooldownTimeAppealGhouls,
+            true);
     }
 
     private void OnSelectingSubgroup(VampireSelectingSubgroupEvent args)

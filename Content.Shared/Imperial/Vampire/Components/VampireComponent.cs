@@ -307,5 +307,11 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [AutoNetworkedField]
         public bool VampireTurned = false;
+
+        /// <summary>
+        /// длительность cooldown на обращение в упырей
+        /// </summary>
+        [DataField("cooldownTimeAppealGhouls")]
+        public TimeSpan CooldownTimeAppealGhouls = TimeSpan.FromMinutes(2.5f);
     }
 }

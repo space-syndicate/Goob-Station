@@ -49,7 +49,8 @@ vampire-popup-not-enough-blood = Вам не хватает крови!
 vampire-popup-not-hands-free = У вас нет свободных рук!
 vampire-popup-warning-ability-buff = Вы не можете одновременно активировать несколько бафф способностей!
 vampire-popup-no-one-ahead = Впереди никого нет!
-vampire-popup-has-eye-protection = Вы не можете усыпить человека с солнцезащитными очками/сварочной маской!
+vampire-popup-has-eye-protection = Вы не можете усыпить человека с солнцезащитными очками или сварочной маской!
+vampire-popup-vampire-has-eye-protection = Вы не можете усыпить нося солнцезащитные очки или сварочную маску!
 vampire-popup-asleep = Уже спит!
 vampire-popup-no-handcuffs = На вас не надеты наручники!
 vampire-popup-no-one-around = Рядом никого нет!
@@ -67,6 +68,8 @@ vampire-popup-vampire-turned = Вы не можете излечить упыр�
 vampire-popup-ghoul-quantity = Вам необходимо обратить еще { $quantity } упырей
 vampire-popup-warning-vampire-turned = Вы уже обращены!
 vampire-popup-anchor-destroyed = Кровавый якорь был разрушен!
+
+vampire-push-markup-eyes = [color=red]{CAPITALIZE(POSS-PRONOUN($user))} глаза наполнены кровью.[/color]
 
 vampire-drinking-envelope-text = Питье крови
 vampire-drinking-envelope-message = Пополняет ваши запасы крови

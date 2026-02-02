@@ -11,6 +11,8 @@ using Content.Server.Bible.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio;
+using Robust.Shared.Player;
+using Content.Shared.Mind.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -21,8 +23,9 @@ public partial class VampireSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract || uid == args.Target || !_mobState.IsAlive(args.Target))
             return;
 
-        // если у цели нет крови (например, стул), кнопки не добавляем
-        if (!HasComp<BloodstreamComponent>(args.Target))
+        // если у цели нет крови/разума, кнопки не добавляем
+        if (!HasComp<BloodstreamComponent>(args.Target) || !HasComp<MindContainerComponent>(args.Target)
+            || !HasComp<ActorComponent>(args.Target))
             return;
 
         // верб для питья крови
@@ -123,6 +126,7 @@ public partial class VampireSystem : EntitySystem
         var masterThralls = EnsureComp<VampireComponent>(vampire);
         masterThralls.Ghouls.Add(target);
         masterThralls.GhoulQuantity++;
+        AppealGhoulsCooldown(vampire);
 
         Dirty(vampire, masterThralls);
         Dirty(target, ghoulComp);

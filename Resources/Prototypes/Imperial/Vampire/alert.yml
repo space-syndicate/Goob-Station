@@ -76,3 +76,11 @@
   description: Отображает количество выпитой крови. Новые способности открываются при достижении определённых порогов
   minSeverity: 0
   maxSeverity: 20
+
+- type: alert
+  id: AppealGhoulsCooldownAlert
+  icons:
+  - sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: brain
+  name: Задержка обращения
+  description: Вы недавно пытались обратить человека в упыря. Функция обращения временно недоступна.
