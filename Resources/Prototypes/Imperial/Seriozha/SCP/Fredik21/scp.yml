@@ -17174,14 +17174,3 @@
         reagents:
           - ReagentId: mnestic
             Quantity: 15
-
-- type: entity
-  parent: BoxFolderBaseEmpty
-  id: BoxFolderRedEmpty
-  suffix: Red
-  components:
-  - type: Sprite
-    layers:
-    - state: folder-colormap
-      color: "#cc2323"
-    - state: folder-base
