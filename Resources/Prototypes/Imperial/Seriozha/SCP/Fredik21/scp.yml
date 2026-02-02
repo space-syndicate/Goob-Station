@@ -14834,7 +14834,7 @@
     back:
     - BoxSurvivalNDA
     - FondUplinkSalvage
-    - PaperSalvageNDA/
+    - PaperSalvageNDA
     - EncryptionKeyCargo
 
 - type: entity
@@ -16021,6 +16021,14 @@
   - type: Tag
     tags:
     - Trash
+  - type: AmbientSound
+    volume: -2
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/Sparks.ogg
+      params:
+        loop: true
+        stream: true
 
 - type: entity
   id: TrashDecorativeglasses
@@ -16615,6 +16623,14 @@
   - type: Tag
     tags:
     - Trash
+  - type: AmbientSound
+    volume: -2
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/Sparks.ogg
+      params:
+        loop: true
+        stream: true
 
 - type: entity
   id: DecorativesballoonNDA
@@ -16919,3 +16935,253 @@
     containers:
       key_slots:
       - EncryptionKeyNedraCMDconnection
+
+- type: entity
+  id: CatwalkNDADark
+  suffix: Fredik21, недра, декор
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/catwalk.rsi
+    drawdepth: FloorTiles
+  - type: Icon
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/catwalk.rsi
+    state: catwalk_preview
+  - type: Transform
+    anchored: true
+  - type: IconSmooth
+    key: catwalk
+    base: catwalk_
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCatwalk
+      params:
+        volume: 8
+  - type: Tag
+    tags:
+      - Catwalk
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TrayScanReveal
+
+- type: entity
+  id: DecorativesmokeNDA
+  parent: BaseItem
+  suffix: Fredik21, Недра, декор
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/structure/decor/smoke.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Tag
+    tags:
+    - Trash
+  - type: AmbientSound
+    volume: -2
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/hiss.ogg
+      params:
+        loop: true
+        stream: true
+
+- type: entity
+  id: GateDoorNDA
+  parent: BaseShutter
+  suffix: Fredik21, недра
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,2.5,0.5"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - AirlockLayer
+  - type: AccessReader
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/gate.rsi
+    offset: 0.5,-0.5
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    occludes: false
+    closeTimeOne: 4
+    closeTimeTwo: 1
+    openTimeOne: 4
+    openTimeTwo: 1
+    openingAnimationTime: 5
+    closingAnimationTime: 5
+    canPry: false
+    crushDamage:
+      types:
+        Blunt: 25
+    openSound:
+      path: /Audio/Imperial/Seriozha/SCP/gateopen.ogg
+    closeSound:
+      path: /Audio/Imperial/Seriozha/SCP/gate.ogg
+  - type: Occluder
+    enabled: false
+  - type: Appearance
+  - type: RadiationBlocker
+    resistance: 16
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+  - type: Construction
+    graph: BlastDoor
+    node: blastdoor
+    containers:
+    - board
+#Амнезиаки
+- type: reagent
+  id : amnesiacA
+  name: Амнезиак класса А
+  group: Medicine
+  desc: Амнезиак программируемого типа, используется для удаления недавних воспоминаний, период удаляемых воспоминаний можно настроить в пределах от 30 (тридцати) минут до 2 (двух) суток. Вводится в организм путем внутримышечных инъекций.
+  physicalDesc: Имеется подпись - "А"
+  color: "#00FFFF"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "Вы забываете все что происходило за последний день" ]
+        probability: 1
+
+- type: reagent
+  id : amnesiacOmega
+  name: Амнезиак класса Омега
+  group: Medicine
+  desc: Специальная версия амнезиака класса B, вводится сотрудникам Фонда NDA в случае нарушения ими надлежащего режима секретности тем или иным путем. Амнезиак полностью уничтожает все воспоминания о существовании Фонда NDA в целом, равно как и о существовании отдельных его аспектов в частности. Также амнезиаком этого типа обрабатываются все кандидаты на трудоустройство, если они не принимают условия трудового договора с Организацией или же не сдают экзамен после прохождения испытательного срока. Форма выпуска идентична таковой у амнезиака класса В.
+  physicalDesc: Имеется подпись - Омега
+  flavor: sweet
+  color: "#87CEEB"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "Вы забываете о фонде NDA и все что с ним связано" ]
+        probability: 1
+
+- type: reagent
+  id : mnestic
+  name: Амнестик
+  group: Medicine
+  desc: Защита от антимеметических и прочих аномалий, воздействующих на память
+  physicalDesc: Имеется подпись - Амнестик
+  flavor: sweet
+  color: "#60008F"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "Вы чувствуете что ничего не можите забыть." ]
+        probability: 1
+
+- type: entity
+  suffix: Fredik21, недра, амнезиак
+  parent: PrefilledSyringe
+  id: SyringeamnesiacA
+  components:
+  - type: Label
+    currentLabel: Амнезиак А
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+          - ReagentId: amnesiacA
+            Quantity: 15
+
+- type: entity
+  suffix: Fredik21, недра, амнезиак
+  parent: PrefilledSyringe
+  id: SyringamnesiacOmega
+  components:
+  - type: Label
+    currentLabel: Амнезиак Омега
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+          - ReagentId: amnesiacOmega
+            Quantity: 15
+
+- type: entity
+  suffix: Fredik21, недра, амнестик
+  parent: PrefilledSyringe
+  id: Syringmnestic
+  components:
+  - type: Label
+    currentLabel: Амнестик
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+          - ReagentId: mnestic
+            Quantity: 15
+
+- type: entity
+  parent: BoxFolderBaseEmpty
+  id: BoxFolderRedEmpty
+  suffix: Red
+  components:
+  - type: Sprite
+    layers:
+    - state: folder-colormap
+      color: "#cc2323"
+    - state: folder-base
