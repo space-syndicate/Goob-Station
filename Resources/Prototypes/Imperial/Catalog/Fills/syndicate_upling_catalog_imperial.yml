@@ -27,7 +27,7 @@
       whitelist:
         tags:
           - NukeOpsUplink
-          
+
 # Imperial MagazineM90gl
 - type: listing
   id: UplinkMagazineBoxM90gl
