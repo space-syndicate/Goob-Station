@@ -73,7 +73,8 @@ public partial class VampireSystem : EntitySystem
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || !_mobState.IsAlive(args.Target))
+        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || args.Target == uid
+            || !_mobState.IsAlive(args.Target))
             return;
 
         // если у цели нет крови/разума, кнопки не добавляем
