@@ -173,6 +173,24 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSCPThree ]
+
+- type: entity
+  parent: AirlockWindowedSCPLocked
+  id: AirlockWindowedSCPFour
+  suffix: Fredik21, Недра, 4
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPFour ]
+
+- type: entity
+  parent: AirlockWindowedSCPLocked
+  id: AirlockWindowedSCPFive
+  suffix: Fredik21, Недра, 5
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPFive ]
 #Electronics
 - type: entity
   parent: DoorElectronics
@@ -278,3 +296,58 @@
     - SCPAccesOne
     - SCPAccesTwo
     - SCPAccesThree
+#ЧЕКИ
+- type: entity
+  parent: AirlockRCDResistant
+  id: AirlockNDALockerCheckpoint
+  suffix: seriozha, Недра, Locked, чеки
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/airlocks/two.rsi
+  - type: Door
+    openSound:
+      path: /Audio/Imperial/Seriozha/SCP/DoorCheckpoint.ogg
+    closeSound:
+      path: /Audio/Imperial/Seriozha/SCP/twoclose.ogg
+    denySound:
+      path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: AirlockNDALockerCheckpoint
+  id: AirlockCheckpointLockedNDA
+  suffix: Fredik21, Недра, 3, чеки
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPThree ]
+#ЛИФТ
+- type: entity
+  parent: AirlockRCDResistant
+  id: AirlockNDALockerelevator
+  suffix: seriozha, Недра, Locked, лифт
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/airlocks/two.rsi
+  - type: Door
+    openSound:
+      path: /Audio/Imperial/Seriozha/SCP/ElevatorOpen.ogg
+    closeSound:
+      path: /Audio/Imperial/Seriozha/SCP/ElevatorClose.ogg
+    denySound:
+      path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

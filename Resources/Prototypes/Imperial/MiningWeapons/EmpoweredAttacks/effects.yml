@@ -1,0 +1,79 @@
+- type: entity
+  id: BaseEffectEarthshakerRift
+  categories: [ HideSpawnMenu ]
+  name: tentacle
+  abstract: true
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
+  - type: TimedDespawn
+  # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
+    lifetime: 0.8
+
+- type: entity
+  id: EffectEarthshakerRiftSpawn
+  parent: BaseEffectEarthshakerRift
+  categories: [ HideSpawnMenu ]
+  name: tentacle
+  components:
+  - type: Sprite
+    state: start
+  - type: SpawnOnDespawn
+    prototype: EarthshakerRiftAttack
+
+- type: entity
+  id: EarthshakerRiftAttack
+  name: EarthshakerRiftAttack
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: StunOnContact
+    blacklist:
+      components:
+      - UserEarthshakerStrike
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.65
+    sprintSpeedModifier: 0.65
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-1, 1, 1"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: Sprite
+    sprite: Imperial/MiningWeapons/EmpoweredAttacks/earthshaker_strike.rsi
+    layers:
+    - state: attack
+  - type: TimedDespawn
+  # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
+    lifetime: 3
+  - type: SpawnOnDespawn
+    prototype: EffectEarthshakerRiftEnd
+
+- type: entity
+  id: EffectEarthshakerRiftEnd
+  parent: BaseEffectEarthshakerRift
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EffectVisuals
+  - type: AnimationPlayer
+  - type: Sprite
+    state: end
+  - type: TimedDespawn
+  # If this sprite is an animation, then it depends on the end time of the animation to avoid visual problems
+    lifetime: 0.3
