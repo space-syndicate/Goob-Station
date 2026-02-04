@@ -1686,7 +1686,7 @@
     sprite: Imperial/Crook/Misc/headcoat.rsi
   - type: PointLight
     color: cyan
-    radius: 5
+    radius: 6
     energy: 2
   - type: PressureProtection
     highPressureMultiplier: 0.08
