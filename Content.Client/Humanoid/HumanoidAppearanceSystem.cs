@@ -9,6 +9,8 @@ using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+/// Imperial xeno gengetics
+using Content.Shared.Imperial.XenoGenetics.Genes.Components;
 
 namespace Content.Client.Humanoid;
 
@@ -70,6 +72,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var baseSprites = _prototypeManager.Index(speciesProto.SpriteSet);
         foreach (var (key, id) in baseSprites.Sprites)
         {
+            /// Imperial Xenogenetics start
+            if(TryComp<ChangePartGeneComponent>(entity, out var gene))
+            {
+                if(gene.layer == key)
+                    continue;
+            }
+            /// Imperial Xenogenetics end
             oldLayers.Remove(key);
             if (!component.CustomBaseLayers.ContainsKey(key))
                 SetLayerData(entity, key, id, sexMorph: true);
@@ -86,6 +95,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // TODO maybe just remove them altogether?
         foreach (var key in oldLayers)
         {
+            /// Imperial Xenogenetics start
+            if(TryComp<ChangePartGeneComponent>(entity, out var gene))
+            {
+                if(gene.layer == key)
+                    continue;
+            }
+            /// Imperial Xenogenetics end
             if (_sprite.LayerMapTryGet((entity.Owner, sprite), key, out var index, false))
                 sprite[index].Visible = false;
         }

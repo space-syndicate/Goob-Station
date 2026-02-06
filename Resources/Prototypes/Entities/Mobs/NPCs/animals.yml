@@ -1712,7 +1712,7 @@
 - type: entity
   name: guidebook monkey
   parent: MobMonkey
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ] 
   id: MobGuidebookMonkey
   description: A hopefully helpful monkey whose only purpose in life is for you to click on. Does this count as having a monkey give you a tutorial?
   components:
@@ -3093,6 +3093,15 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleCat
+  ### Imperial genetics end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi

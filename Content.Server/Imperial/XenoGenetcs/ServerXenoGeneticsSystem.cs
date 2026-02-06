@@ -1,5 +1,4 @@
 using Content.Shared.Imperial.XenoGenetics;
-using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Imperial.XenoGenetics.Components;
@@ -17,49 +16,16 @@ namespace Content.Server.Imperial.XenoGenetics;
 public class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
 {
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<XenoGeneComponent, ComponentStartup>(OnXenoGeneStartup);
         
         SubscribeLocalEvent<GeneSplicerComponent, GeneInsertingDoAfterEvent>(OnGeneInsert);
         SubscribeLocalEvent<GeneSplicerComponent, GeneWithdrawDoAfterEvent>(OnGeneWithdraw);
         SubscribeLocalEvent<GeneSplicerComponent, UseInHandEvent>(OnSplicerUse);
     }
-
-    private void OnXenoGeneStartup(EntityUid uid, XenoGeneComponent component, ComponentStartup args)
-    {
-        if(component.randomizeGeneQuality)
-        {
-            float multiplier;
-            int quality = _rand.Next(0, 10);
-            switch(quality)
-            {
-                case <= 2:
-                    multiplier = _rand.Next(1, 200) / 1000f;
-                    break;
-                case > 2 and <= 7:
-                    multiplier = _rand.Next(200, 600) / 1000f;
-                    break;
-                case > 7 and <= 9:
-                    multiplier = _rand.Next(600, 900) / 1000f;
-                    break;
-                case > 9 and <= 10:
-                    multiplier = _rand.Next(900, 1200) / 1000f;
-                    break;
-                default:
-                    multiplier = 0.1f;
-                    break;
-            }   
-
-            component.geneMultiplier = multiplier;
-        }
-        
-    }
-
     private void OnSplicerUse(EntityUid uid, GeneSplicerComponent component, UseInHandEvent args)
     {
         switch (component.InsertMode)

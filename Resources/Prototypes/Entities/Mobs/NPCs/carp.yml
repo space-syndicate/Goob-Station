@@ -5,6 +5,15 @@
   description: It's a space carp.
   abstract: true
   components:
+  ### Imperial genetics
+    - type: ContainerContainer
+      containers:
+        gene_entity_slot: !type:Container
+    - type: ContainerFill
+      containers:
+        gene_entity_slot:
+        - GeneSampleCarp
+  ### Imperial genetics end
     - type: InputMover
     - type: MobMover
     - type: HTN
@@ -209,6 +218,15 @@
   id: MobShark
   description: A dangerous shark from the blackness of endless space, who loves to drink blood.
   components:
+  ### Imperial genetics
+    - type: ContainerContainer
+      containers:
+        gene_entity_slot: !type:Container
+    - type: ContainerFill
+      containers:
+        gene_entity_slot:
+        - GeneSampleCarpShark
+  ### Imperial genetics end
     - type: Sprite
       sprite: Mobs/Aliens/Carps/sharkminnow.rsi
       layers:

@@ -43,6 +43,15 @@
   id: SimpleSpaceMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
   suffix: AI
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleSpacemob
+  ### Imperial genetics end
   - type: NpcFactionMember
     factions:
     - SimpleNeutral

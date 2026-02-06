@@ -5,11 +5,9 @@
   components:
   - type: XenoGene
   - type: Sprite
-    sprite: Objects/Consumable/Food/snacks.rsi
-    state: cheesiehonkers
+    sprite: Imperial/Xenogenetics/gene_sample:?
+    ">.rsi
   - type: Item
-    sprite: Objects/Consumable/Food/snacks.rsi
-    heldPrefix: cheesiehonkers
     size: Tiny
 
 - type: entity
@@ -20,24 +18,107 @@
   - type: SpeedModifierGene
   - type: XenoGene
   - type: Sprite
-    sprite: Objects/Consumable/Food/snacks.rsi
-    state: cheesiehonkers
-  - type: Item
-    sprite: Objects/Consumable/Food/snacks.rsi
-    heldPrefix: cheesiehonkers
-    size: Tiny
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleRabbit
+  name: генетический материал (кролик)
+  components:
+  - type: AddComponentsGene
+    threshold: 65.0
+    components:
+    - type: JumpAbility
+      action: ActionVulpkaninGravityJump
+      canCollide: true
+      jumpDistance: 3
+      jumpSound:
+        path: /Audio/Weapons/punchmiss.ogg
+        params:
+          pitch: 1.33
+          volume: -5
+          variation: 0.05
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleCat
+  name: генетический материал (кошка)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Clothing/Head/Hats/catears.rsi"
+        state: "equipped-HELMET"
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
 
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleSpacemob
   name: генетический материал (космическая фауна)
   components:
-  - type: RespiratoryAdaptationGene
+  - type: RespiratorGene
+    components:
+    - type: Respirator
+      geneNeeded: 85.0
+      damage:
+        types:
+          Asphyxiation: 1.0
+      damageRecovery:
+        types:
+          Asphyxiation: -1.0
   - type: XenoGene
   - type: Sprite
-    sprite: Objects/Consumable/Food/snacks.rsi
-    state: cheesiehonkers
-  - type: Item
-    sprite: Objects/Consumable/Food/snacks.rsi
-    heldPrefix: cheesiehonkers
-    size: Tiny
+    state: blue
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleCarp
+  name: генетический материал (карп)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: ChangePartGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "carp"
+  - type: AddComponentsGene
+    threshold: 80.0
+    components:
+    - type: MovementAlwaysTouching
+  - type: XenoGene
+  - type: Sprite
+    state: blue
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleCarpShark
+  name: генетический материал (карпоакула)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: ChangePartGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "carp"
+  - type: AddComponentsGene
+    threshold: 55.0
+    components:
+    - type: MovementAlwaysTouching
+  - type: RespiratorGene
+    components:
+    - type: Respirator
+      damage:
+        types:
+          Asphyxiation: 1.0
+      damageRecovery:
+        types:
+          Asphyxiation: -1.0
+  - type: XenoGene
+  - type: Sprite
+    state: blue
