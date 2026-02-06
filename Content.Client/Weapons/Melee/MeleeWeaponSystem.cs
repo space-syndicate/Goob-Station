@@ -134,7 +134,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         }
 
         // Heavy attack.
-        if (altDown == BoundKeyState.Down)
+        if (altDown == BoundKeyState.Down && weapon.CanHeavyAttack) // Imperial "UpdateMiningWeapons"
         {
             // If it's an unarmed attack then do a disarm
             if (weapon.AltDisarm && weaponUid == entity)

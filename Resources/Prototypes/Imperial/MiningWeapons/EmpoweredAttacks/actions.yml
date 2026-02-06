@@ -1,0 +1,47 @@
+- type: entity
+  parent: BaseAction
+  id: ActionEnhancedShot
+  name: Enhanced shot
+  description: locale
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/MiningWeapons/EmpoweredAttacks/charged_shot.rsi
+      state: icon
+  - type: TargetAction
+    range: 60
+  - type: WorldTargetAction
+    event: !type:EnhancedShotEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionPiercingLunge
+  name: Piercing lunge
+  description: locale
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/MiningWeapons/EmpoweredAttacks/piercing_lunge.rsi
+      state: icon
+  - type: TargetAction
+    range: 30
+  - type: WorldTargetAction
+    event: !type:PiercingLungeEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionEarthshakerStrike
+  name: Earthshaker strike
+  description: locale
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Imperial/MiningWeapons/EmpoweredAttacks/icon_earthshaker_strike.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:EarthshakerStrikeEvent

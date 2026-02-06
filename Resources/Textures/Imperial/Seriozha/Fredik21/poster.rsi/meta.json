@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "ICLA",
+  "license": "CC-BY-SA-3.0",
   "copyright": "by Shakal_132, Fredik21, imperial space",
   "size": {
     "x": 32,
@@ -24,6 +24,9 @@
     },
     {
       "name": "n106"
+    },
+    {
+      "name": "n354"
     },
     {
       "name": "n076"
@@ -66,6 +69,9 @@
     },
     {
       "name": "n013"
+    },
+    {
+      "name": "swat"
     },
     {
       "name": "n020"
@@ -111,6 +117,9 @@
     },
     {
       "name": "pgry"
+    },
+    {
+      "name": "gbr"
     },
     {
       "name": "fbi"

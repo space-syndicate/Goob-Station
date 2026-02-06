@@ -7,6 +7,12 @@ ghost-role-component-default-rules = К вам применяются все о�
 ghost-role-information-mouse-name = Мышь
 ghost-role-information-mouse-description = Голодная и озорная мышь.
 
+ghost-role-information-cancer-mouse-name = Раковая мышь
+ghost-role-information-cancer-mouse-description = Облученная мышь, распространяй свою болезнь и ищи пищу.
+
+ghost-role-information-moproach-name = Швабромоль
+ghost-role-information-moproach-description = Милая таракамоль с ещё более милыми туфельками, похожими на швабры, на лапках.
+
 ghost-role-information-giant-spider-name = Гигантский паук
 ghost-role-information-giant-spider-description = Устройте хаос обитателям станции!
 

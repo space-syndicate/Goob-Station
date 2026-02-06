@@ -1,0 +1,42 @@
+- type: entity
+  parent: [BaseItem, BaseSecurityCargoContraband]
+  id: WeaponSmasher
+  name: smasher
+  description: locale
+  components:
+  - type: Sharp
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    color: "#ffeead"
+    enabled: false
+    radius: 4
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: Sprite
+    sprite: Imperial/MiningWeapons/Smasher/smasher_item.rsi
+    state: icon_crusher
+  - type: MeleeWeapon
+    canHeavyAttack: false
+    attackRate: 0.8
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+        Slash: 4
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 3
+        Slash: 3
+        Structural: 20
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/MiningWeapons/Smasher/smasher_item.rsi
+  - type: DisarmMalus
+  - type: Prying
+  - type: Smasher
+  - type: EarthshakerStrike
