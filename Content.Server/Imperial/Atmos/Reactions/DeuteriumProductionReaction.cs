@@ -12,6 +12,9 @@ public sealed partial class DeuteriumProductionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        var capacity = mixture.Pressure;
+        if (capacity > Atmospherics.DeuteriumProductionMaxCapacity)
+            return ReactionResult.NoReaction;
         var initialHydrogen = mixture.GetMoles(Gas.Hydrogen);
         var initialNitr = mixture.GetMoles(Gas.Nitrogen);
 
