@@ -217,6 +217,62 @@
     - type: PresetIdCard
       job: null
 
+- type: accessLevel
+  id: FelixGorlexBaseID
+  name: id-card-access-level-gorlex-base
+
+- type: accessLevel
+  id: FelixGorlexModernID
+  name: id-card-access-level-gorlex-modern
+
+- type: entity
+  parent: IDCardStandard
+  id: FelixGorlexBaseIDCard
+  name: ID card
+  description: Identification Card.
+  suffix: Felix
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625
+      state: Syndicate
+  - type: IdCard
+    #jobTitle: job-name-felix-gorlex-base
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - FelixGorlexBaseID
+
+- type: entity
+  parent: IDCardStandard
+  id: FelixGorlexModernIDCard
+  name: ID card
+  description: Identification Card.
+  suffix: Felix
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    #jobTitle: job-name-felix-gorlex-modern
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - FelixGorlexModernID
+
 # Шлюзы
 
 - type: entity
@@ -2437,3 +2493,5 @@
         layer:
         - MidImpassable
         - LowImpassable
+
+
