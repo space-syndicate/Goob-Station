@@ -1,0 +1,43 @@
+- type: localizedDataset
+  id: PlushieCadet
+  values:
+    prefix: plushie-cadet-
+    count: 56
+
+- type: soundCollection
+  id: PlushieHi
+  files:
+    - /Audio/Imperial/Fredik21/plushie/hi.ogg
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieCadet
+  name: Esmira Kotova
+  suffix: COMMUNITY,TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Fredik21/plushie/EsmiraKotova.rsi
+    state: icon
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+  - type: StorageFill
+    contents:
+      - id: DrinkColaCan
+  - type: ContainerFill
+    containers:
+      stash:
+      - VoiceTrigger
+  - type: UseDelay
+    delay: 5
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition
+  - type: TriggerOnUse
+  - type: SpeakOnTrigger
+    pack: PlushieCadet
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieHi
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieHi

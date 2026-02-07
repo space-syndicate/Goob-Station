@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by .askal02",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+        "name": "count_0"
+        },
+        {
+        "name": "count_5"
+        },
+        {
+        "name": "count_10"
+        },
+        {
+        "name": "count_15"
+        },
+        {
+        "name": "count_20"
+        },
+        {
+        "name": "count_25"
+        },
+        {
+        "name": "count_30"
+        },
+        {
+        "name": "count_35"
+        },
+        {
+        "name": "count_40"
+        },
+        {
+        "name": "count_45"
+        },
+        {
+        "name": "count_50"
+        },
+        {
+        "name": "count_55"
+        },
+        {
+        "name": "count_60"
+        }
+    ]
+}

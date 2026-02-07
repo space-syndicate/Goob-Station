@@ -1,0 +1,2 @@
+license: This content is under ICLA. Copyright holder: kotinggg (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+copyright: "kotinggg (discord)"
