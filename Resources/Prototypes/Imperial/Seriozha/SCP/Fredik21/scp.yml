@@ -17992,7 +17992,7 @@
     - EncryptionKeyRadio3
 
 - type: entity
-  id: SpawnNDALamda5GearCom
+  id: SpawnPresetNDALamda5Com
   name: спавнер Командир Лямбда-5 Белые кролики
   parent: MarkerBase
   suffix: Fredik21, Недра
@@ -18004,7 +18004,7 @@
       raffle:
         settings: short
     - type: GhostRoleMobSpawner
-      prototype: NDALamda5GearCom
+      prototype: PresetNDALamda5Com
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:
