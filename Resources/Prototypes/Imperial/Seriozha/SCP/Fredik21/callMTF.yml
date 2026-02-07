@@ -228,3 +228,25 @@
     path: /Audio/Imperial/Seriozha/SCP/event/cipersonal.ogg
     params:
       volume: -5
+
+- type: MTFCall
+  id: lamda5
+  desc: mtf-call-lamda5-desc
+  path: /GM/seriozha/event/nedra/MTF/lamda5.yml
+  announcementMessage: announcementMessage-MTF-lamda5
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/lamda5.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: MCandD
+  desc: mtf-call-MCandD-desc
+  path: /GM/seriozha/event/nedra/MTF/mcandd.yml
+  announcementMessage: announcementMessage-MTF-MCandD
+  announcementSender: announcementSender-MCandD-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/mcandd.ogg
+    params:
+      volume: 20

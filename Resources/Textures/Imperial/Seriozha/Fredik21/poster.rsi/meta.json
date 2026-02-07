@@ -98,7 +98,13 @@
       "name": "PHYSICS"
     },
     {
+      "name": "mcandd"
+    },
+    {
       "name": "Alpha1"
+    },
+    {
+      "name": "lamda5"
     },
     {
       "name": "zeta9"
@@ -114,6 +120,9 @@
     },
     {
       "name": "eta10"
+    },
+    {
+      "name": "iota10"
     },
     {
       "name": "pgry"

@@ -346,6 +346,29 @@
       sprite: Imperial/Seriozha/SCP/id/five.rsi
 
 - type: entity
+  id: SCPIDCardMcAndD
+  parent: IDCardStandard
+  name: SCP ID card
+  suffix: Fredik21, Недра
+  components:
+    - type: IdCard
+      jobIcon: JobIconMCandD
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      groups:
+      - AllAccess
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/id/mcAndD.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/id/mcAndD.rsi
+
+- type: entity
   id: SCPIDCardFiveSinCom
   parent: IDCardStandard
   name: SCP ID card
@@ -555,4 +578,11 @@
   id: JobIconSinCom
   icon:
     sprite: /Textures/Imperial/Seriozha/SCP/id/iconsincom.rsi
+    state: icon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMCandD
+  icon:
+    sprite: /Textures/Imperial/Seriozha/SCP/id/iconMCandD.rsi
     state: icon
