@@ -173,6 +173,12 @@
     count: 50
 
 - type: localizedDataset
+  id: Namesnu7Comscp
+  values:
+    prefix: names-nu7scpcom-
+    count: 50
+
+- type: localizedDataset
   id: NamesLamda5NDA
   values:
     prefix: names-NamesLamda5NDA-
