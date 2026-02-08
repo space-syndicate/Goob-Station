@@ -175,7 +175,7 @@
 - type: localizedDataset
   id: Namesnu7Comscp
   values:
-    prefix: names-nu7scpcom-
+    prefix: names-nu7comscp-
     count: 50
 
 - type: localizedDataset

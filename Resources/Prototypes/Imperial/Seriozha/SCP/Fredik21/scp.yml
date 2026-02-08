@@ -2843,6 +2843,12 @@
     factions:
     - Foundation
 
+
+- type: npcFaction
+  id: neutralNDA
+  hostile:
+  - NDA
+
 - type: npcFaction
   id: Foundation
   hostile:
@@ -17802,8 +17808,7 @@
       prototypes: [ PresetNDAMCandDGear ]
     - type: NpcFactionMember
       factions:
-      - Foundation
-      - rebelsscp
+      - neutralNDA
     - type: AutoImplant
       implants:
       - ImperialSmokeImplant
