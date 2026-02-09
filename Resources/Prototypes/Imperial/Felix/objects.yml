@@ -217,6 +217,62 @@
     - type: PresetIdCard
       job: null
 
+- type: accessLevel
+  id: FelixGorlexBaseID
+  name: id-card-access-level-gorlex-base
+
+- type: accessLevel
+  id: FelixGorlexModernID
+  name: id-card-access-level-gorlex-modern
+
+- type: entity
+  parent: IDCardStandard
+  id: FelixGorlexBaseIDCard
+  name: ID card
+  description: Identification Card.
+  suffix: Felix
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625
+      state: Syndicate
+  - type: IdCard
+    #jobTitle: job-name-felix-gorlex-base
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - FelixGorlexBaseID
+
+- type: entity
+  parent: IDCardStandard
+  id: FelixGorlexModernIDCard
+  name: ID card
+  description: Identification Card.
+  suffix: Felix
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    #jobTitle: job-name-felix-gorlex-modern
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - FelixGorlexModernID
+
 # Шлюзы
 
 - type: entity
@@ -2260,7 +2316,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.99,-0.99,1.99,0.99"
+          bounds: "-1.5,-1.5,2.5,0.5"
         density: 100
         mask:
         - TableMask
@@ -2269,6 +2325,7 @@
   - type: AccessReader
   - type: Sprite
     sprite: Imperial/Felix/Objects/Gatebiohazard.rsi
+    offset: 0.5,-0.5
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -2328,3 +2385,113 @@
     airBlocked: false
   - type: RadiationBlocker
     enabled: false
+
+- type: entity
+  parent: BaseStructure
+  id: BaseReinforcedFence
+  abstract: true
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/grille_hit.ogg"
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    drawdepth: WallTops
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: Appearance
+  - type: AnimationPlayer
+
+- type: entity
+  parent: BaseReinforcedFence
+  id: ReinforcedConcreteStraight
+  name: reinforced concrete fence
+  description: Are advanced space developments in front of you, or are you being deceived somewhere?..
+  suffix: DeadSector, Structure
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    state: icon_straight
+  - type: Sprite
+    layers:
+    - state: straight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.9,0.5,0.9"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  parent: BaseReinforcedFence
+  id: ReinforcedConcreteCorner
+  name: reinforced concrete fence
+  description: Are advanced space developments in front of you, or are you being deceived somewhere?..
+  suffix: DeadSector, Structure
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    state: corner
+  - type: Sprite
+    layers:
+    - state: corner
+  - type: Fixtures
+    fixtures:
+      # needs two shapes to properly handle a triangle corner without weirdness
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.6,0.5,0.9"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-0.6,-0.1,0.01"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  parent: BaseReinforcedFence
+  id: ReinforcedConcreteEnd
+  name: reinforced concrete fence
+  description: Are advanced space developments in front of you, or are you being deceived somewhere?..
+  suffix: DeadSector, Structure
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Structures/reinforced_concrete_fence.rsi
+    state: icon_end
+  - type: Sprite
+    layers:
+    - state: end
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.9,0.5,0.01"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+

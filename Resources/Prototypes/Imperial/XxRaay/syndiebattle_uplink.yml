@@ -1998,9 +1998,9 @@
   productEntity: UWUMSSetSyndieBattle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 999999
   cost:
-    Telecrystal: 12
+    Telecrystal: 999998
   categories:
   - SyndiebattleUplinkCustom
 

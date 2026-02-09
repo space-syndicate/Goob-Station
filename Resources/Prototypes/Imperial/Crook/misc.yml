@@ -908,6 +908,10 @@
     exemptAccessLevels:
     - NuclearOperative
     - SyndicateAgent
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretSyndicateMachineCircuitboard
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase
@@ -1620,3 +1624,108 @@
   cost: 25000
   category: cargoproduct-category-name-fun
   group: market
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterArmoredCommanderCoat
+  name: coat
+  suffix: Crook
+  description: A suit that protects against major damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/o5coat.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/o5coat.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.45
+        Heat: 0.2
+        Caustic: 0.5
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetArmoredCoat
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 750
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 500000
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetArmoredCoat
+  name: elite exo
+  suffix: Crook
+  description: An elite coat's exo, with improved radiation resistance and fireproofing. Property of SDO.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/headcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/headcoat.rsi
+  - type: PointLight
+    color: cyan
+    radius: 6
+    energy: 2
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots: []
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: NoSlip
+  - type: Magboots
+  - type: JumpAbility
+    jumpDistance: 4
+    jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump
+  - type: ItemActionGrant
+    actions:
+    - ActionGravityJump
+    activeIfWorn: true
+  - type: AmbientSound
+    volume: -2
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/HeavyContainment.ogg
