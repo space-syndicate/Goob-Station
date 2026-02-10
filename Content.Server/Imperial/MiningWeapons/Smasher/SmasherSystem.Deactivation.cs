@@ -1,6 +1,7 @@
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.MiningWeapons.Smasher.Components;
+using Robust.Shared.Input;
 
 namespace Content.Server.Imperial.MiningWeapons.Smasher;
 
@@ -22,6 +23,10 @@ public sealed partial class SmasherSystem
             _movementSpeed.RefreshMovementSpeedModifiers(user);
         }
 
+        var decay = EnsureComp<ShieldDecayComponent>(user);
+        decay.DecayEndTime = _timing.CurTime + smasher.TimeDecay;
+
+        smasher.StateUseKey = BoundKeyState.Up;
         _audio.PlayPvs(smasher.DeactivateSound, user);
         SetCooldown(smasherUid, smasher, smasher.TimeCooldownDownedDecay);
     }
@@ -31,11 +36,9 @@ public sealed partial class SmasherSystem
         if (!TryComp<SmasherComponent>(shield.SmasherUid, out var smasher))
             return;
 
-        if (shield.EffectDecay != null)
-        {
-            ShowShieldEffect(user, smasher.EffectDecay, false);
-        }
+        HideShieldEffect(user);
 
+        smasher.StateUseKey = BoundKeyState.Up;
         _audio.PlayPvs(smasher.DeactivateSound, user);
         RemComp<ShieldActiveComponent>(user);
     }

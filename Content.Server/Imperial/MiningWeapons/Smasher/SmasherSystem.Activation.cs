@@ -32,7 +32,7 @@ public sealed partial class SmasherSystem
         var shieldActive = EnsureComp<ShieldActiveComponent>(user);
         shieldActive.EffectActived = smasher.EffectActived;
         shieldActive.SmasherUid = smasherUid;
-        shieldActive.EndTime = _timing.CurTime + smasher.ActiveShieldTime;
+        shieldActive.EndTime = _timing.CurTime + smasher.NextActiveShieldTime;
         Dirty(user, shieldActive);
 
         SetCooldown(smasherUid, smasher, smasher.ActiveShieldCooldown);
