@@ -53,6 +53,16 @@
 
 - type: entity
   parent: PosterBase
+  id: Posterpmcandd
+  name: Poster mcandd
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: mcandd
+
+- type: entity
+  parent: PosterBase
   id: PosterDZ
   name: Poster DZ
   suffix: Fredik21, Недра
@@ -70,6 +80,26 @@
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
     state: swat
+
+- type: entity
+  parent: PosterBase
+  id: Posterlamda5
+  name: Poster lamda5
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: lamda5
+
+- type: entity
+  parent: PosterBase
+  id: Posteriota10
+  name: Poster iota10
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: iota10
 
 - type: entity
   parent: PosterBase
@@ -2813,6 +2843,12 @@
     factions:
     - Foundation
 
+
+- type: npcFaction
+  id: neutralNDA
+  hostile:
+  - NDA
+
 - type: npcFaction
   id: Foundation
   hostile:
@@ -4318,7 +4354,6 @@
     pocket2: BoxLethalshot
   storage:
     back:
-    - EncryptionKeyRadio1
     - CIUplinkBase
     - WeaponRevolverInspector
     - BoxSurvivalNDA
@@ -4363,7 +4398,6 @@
     pocket2: MagazineLightRifleBox
   storage:
     back:
-    - EncryptionKeyRadio1
     - CIUplinkBase
     - BoxSurvivalNDA
   inhand:
@@ -4439,7 +4473,15 @@
     belt: ClothingBeltMinuteManCamoForestWebbing
   storage:
     back:
-    - EncryptionKeyRadio1
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio4
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio5
+    - EncryptionKeyRadio6
+    - EncryptionKeyRadio6
+    - EncryptionKeyRadio6
     - CIUplinkCommander
     - BoxSurvivalNDA
   inhand:
@@ -6183,6 +6225,21 @@
   name: пистолетный магазин (.35 авто резиновые)
   description: Для ММК 58
   productEntity: MagazinePistolRubber
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FondUplinkMagazineAR15
+  name: магазин AR-15 (5x56)
+  description: Для AR-15
+  productEntity: MagazineAR15
   cost:
     BlueSpaceCube: 1
   categories:
@@ -9128,6 +9185,7 @@
   name: Anchor Reality Scranton
   parent: WhiteholeGrenade
   id: WhiteholeNDA
+  suffix: Fredik21, Недра
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/structure/screlton.rsi
@@ -9159,12 +9217,12 @@
         sound:
           path: /Audio/Effects/Grenades/Supermatter/whitehole_loop.ogg
       - type: GravityWell
-        maxRange: 30
-        baseRadialAcceleration: -500
-        baseTangentialAcceleration: -50
+        maxRange: 10
+        baseRadialAcceleration: -50
+        baseTangentialAcceleration: -5
         gravPulsePeriod: 0.03
       - type: SingularityDistortion
-        intensity: -200
+        intensity: -20
         falloffPower: 4.5
       - type: PointLight
         enabled: true
@@ -16022,7 +16080,7 @@
     tags:
     - Trash
   - type: AmbientSound
-    volume: -2
+    volume: -8
     range: 5
     sound:
       path: /Audio/Imperial/Seriozha/SCP/Sparks.ogg
@@ -16624,7 +16682,7 @@
     tags:
     - Trash
   - type: AmbientSound
-    volume: -2
+    volume: -8
     range: 5
     sound:
       path: /Audio/Imperial/Seriozha/SCP/Sparks.ogg
@@ -16938,83 +16996,17 @@
 
 - type: entity
   id: CatwalkNDADark
+  parent: Catwalk
   suffix: Fredik21, недра, декор
   placement:
     mode: SnapgridCenter
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
-  - type: Clickable
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/structure/decor/catwalk.rsi
     drawdepth: FloorTiles
   - type: Icon
     sprite: Imperial/Seriozha/Fredik21/structure/decor/catwalk.rsi
     state: catwalk_preview
-  - type: Transform
-    anchored: true
-  - type: IconSmooth
-    key: catwalk
-    base: catwalk_
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCatwalk
-      params:
-        volume: 8
-  - type: Tag
-    tags:
-      - Catwalk
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PartRodMetal:
-            min: 0
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: TrayScanReveal
-
-- type: entity
-  id: DecorativesmokeNDA
-  parent: BaseItem
-  suffix: Fredik21, Недра, декор
-  components:
-  - type: Sprite
-    sprite: Imperial/Seriozha/Fredik21/structure/decor/smoke.rsi
-    state: icon
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Tag
-    tags:
-    - Trash
-  - type: AmbientSound
-    volume: -2
-    range: 5
-    sound:
-      path: /Audio/Imperial/Seriozha/SCP/hiss.ogg
-      params:
-        loop: true
-        stream: true
 
 - type: entity
   id: GateDoorNDA
@@ -17174,3 +17166,1148 @@
         reagents:
           - ReagentId: mnestic
             Quantity: 15
+#Проклятые федералы
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDADamnfeds
+  name: Preset
+  suffix: Fredik21, Недра, МОГ
+  components:
+    - type: Loadout
+      prototypes: [ DamnfedsGear ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+      - DeathSquad
+    - type: AutoImplant
+      implants:
+      - FakeMindShieldImplant
+
+- type: startingGear
+  id: DamnfedsGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    shoes: ClothingShoesChameleon
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    id: ChameleonPDA
+    ears: ClothingHeadsetChameleon
+    neck: ClothingNeckTieRed
+    pocket1: EncryptionKeyNedraconnection
+    pocket2: EncryptionKeyNedraMTFconnection
+    back: ClothingBackpackSatchelLeaderSacerdos_1
+  storage:
+    back:
+    - BoxSurvival
+    - FondUplinkDamnfeds
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplinkDamnfeds
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    - ERTUplinkExplosives
+    - ERTUplinkMedial
+    - ERTUplinkEngineering
+    - ERTUplinkUtilities
+    - ERTUplinkJunitor
+    - ERTUplinkPointless
+    - RCUMelee
+    - RCUWeaponCombat
+    - RCUAmmoCombat
+    - RCUExplosives
+    - RCUMedical
+    - RCUEngineering
+    - RCUUtilities
+    - RCUEquipment
+    - RCUImplants
+    - FondUplinkDamnfeds
+    - FondUplinkDamnfedsERT
+    - FondUplinkDamnfedsRCU
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 20
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkDamnfeds
+  name: Проклятые федералы общее
+
+- type: storeCategory
+  id: FondUplinkDamnfedsERT
+  name: Проклятые федералы ОБР
+
+- type: storeCategory
+  id: FondUplinkDamnfedsRCU
+  name: Проклятые федералы RCU
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBackpackChameleonFill
+  name: набор хамелеона
+  description: Без него вы даже не похожи на федерала
+  productEntity: ClothingBackpackChameleonFill
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfeds
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsAgentIDCard
+  name: карта агента
+  description: Без него вы даже не похожи на федерала
+  productEntity: AgentIDCard
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfeds
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingMaskGasVoiceChameleon
+  name: голосовая маска
+  description: Без него вы даже не похожи на федерала
+  productEntity: ClothingMaskGasVoiceChameleon
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfeds
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitERTEngineer
+  name: скафандр инженера ОБР
+  description: Защитный скафандр, используемый оперативниками отряда быстрого реагирования.
+  productEntity: ClothingOuterHardsuitERTEngineer
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitERTChaplain
+  name: скафандр священника ОБР
+  description: Защитный скафандр, используемый оперативниками отряда быстрого реагирования.
+  productEntity: ClothingOuterHardsuitERTChaplain
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitERTJanitor
+  name: скафандр уборщика ОБР
+  description: Защитный скафандр, используемый оперативниками отряда быстрого реагирования.
+  productEntity: ClothingOuterHardsuitERTJanitor
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitERTSecurity
+  name: скафандр офицера безопасности ОБР
+  description: Защитный скафандр, используемый оперативниками отряда быстрого реагирования.
+  productEntity: ClothingOuterHardsuitERTSecurity
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitERTMedical
+  name: скафандр медика ОБР
+  description: Защитный скафандр, используемый оперативниками отряда быстрого реагирования.
+  productEntity: ClothingOuterHardsuitERTMedical
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBeltSecurityWebbing
+  name: РПС сб
+  description: Уникальный, универсальный разгрузочный жилет с ремнями и поясом, может вмещать снаряжение службы безопасности.
+  productEntity: ClothingBeltSecurityWebbing
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBeltChiefEngineerFilled
+  name: пояс старшего инженера
+  description: Держит инструменты, выглядит стильно.
+  productEntity: ClothingBeltChiefEngineerFilled
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBeltMedicalFilled
+  name: пояс медика
+  description: Может вмещать различное медицинское снаряжение.
+  productEntity: ClothingBeltMedicalFilled
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBeltJanitorFilled
+  name: пояс уборщика
+  description: Пояс, используемый для хранения основных уборочных принадлежностей.
+  productEntity: ClothingBeltJanitorFilled
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBeltSecurityERTCallFilled
+  name: пояс сб
+  description: Может вмещать различное снаряжение службы безопасности, такое как наручники и вспышки.
+  productEntity: ClothingBeltSecurityERTCallFilled
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - FondUplinkDamnfedsERT
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitRCUOperator
+  name: элитный скафандр оператора
+  description: Скафандр элиты ОБР НТ.
+  productEntity: ClothingOuterHardsuitRCUOperator
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - FondUplinkDamnfedsRCU
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsBootsMagRCU
+  name: элитный скафандр оператора
+  description: Скафандр элиты ОБР НТ.
+  productEntity: BootsMagRCU
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkDamnfedsRCU
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingBeltRCU
+  name: тактический пояс RCU
+  description: Штурмовой пояс элитного ОБР НТ.
+  productEntity: ClothingBeltRCU
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - FondUplinkDamnfedsRCU
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: BaseERTUplink
+  id: FondUplinkDamnfedsCom
+  name: Терминал Фонда
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    - ERTUplinkExplosives
+    - ERTUplinkMedial
+    - ERTUplinkEngineering
+    - ERTUplinkUtilities
+    - ERTUplinkJunitor
+    - ERTUplinkPointless
+    - RCUMelee
+    - RCUWeaponCombat
+    - RCUAmmoCombat
+    - RCUExplosives
+    - RCUMedical
+    - RCUEngineering
+    - RCUUtilities
+    - RCUEquipment
+    - RCUImplants
+    - FondUplinkDamnfeds
+    - FondUplinkDamnfedsERT
+    - FondUplinkDamnfedsRCU
+    - FondUplinkDamnfedsCom
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 30
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-fond-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: storeCategory
+  id: FondUplinkDamnfedsCom
+  name: Проклятые федералы командир
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitERTLeader
+  name: скафандр лидера ОБР
+  description: Защитный скафандр, используемый оперативниками отряда быстрого реагирования.
+  productEntity: ClothingOuterHardsuitERTLeader
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - FondUplinkDamnfedsCom
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterHardsuitRCUOfficer
+  name: элитный скафандр офицера
+  description: Скафандр элиты ОБР НТ.
+  productEntity: ClothingOuterHardsuitRCUOfficer
+  cost:
+    BlueSpaceCube: 9
+  categories:
+  - FondUplinkDamnfedsCom
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingControlModsuitSpecialOfficerFilled
+  name: Р.И.Г. Офицера Специальных Операций
+  description: Произведение искусства ученых и инженеров NanoTrasen. Уникальная система защиты, призванная сдерживать натиск армий.
+  productEntity: ClothingControlModsuitSpecialOfficerFilled
+  cost:
+    BlueSpaceCube: 9
+  categories:
+  - FondUplinkDamnfedsCom
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: listing
+  id: FBIUplinkDamnfedsClothingOuterArmorCentCom
+  name: бронежилет ЦентКом
+  description: Это защитит даже самого страшного бюрократа от внезапного нападения
+  productEntity: ClothingOuterArmorCentCom
+  cost:
+    BlueSpaceCube: 9
+  categories:
+  - FondUplinkDamnfedsCom
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+       tags:
+         - FondUplink
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDADamnfedsCom
+  name: Preset
+  suffix: Fredik21, Недра, МОГ
+  components:
+    - type: Loadout
+      prototypes: [ DamnfedsGearCom ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+      - DeathSquad
+    - type: AutoImplant
+      implants:
+      - FakeMindShieldImplant
+
+- type: startingGear
+  id: DamnfedsGearCom
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    shoes: ClothingShoesChameleon
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    id: ChameleonPDA
+    ears: ClothingHeadsetChameleon
+    neck: ClothingNeckTieRed
+    pocket1: EncryptionKeyNedraconnection
+    pocket2: EncryptionKeyNedraMTFconnection
+    back: ClothingBackpackSatchelLeaderSacerdos_1
+    head: BlackShieldBeretGaqut
+  storage:
+    back:
+    - BoxSurvival
+    - FondUplinkDamnfedsCom
+
+- type: entity
+  id: SpawnPresetPresetNDADamnfedsCom
+  name: спавнер Командир МОГ Йота-10 Проклятые федералы
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир МОГ Йота-10 Проклятые федералы
+      description: Закон суров, но это мы! Ордер на колено, тварь — работает Йота-10!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDADamnfedsCom
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetPresetNDADamnfeds
+  name: спавнер Командир МОГ Йота-10 Проклятые федералы
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник МОГ Йота-10 Проклятые федералы
+      description: Закон суров, но это мы! Ордер на колено, тварь — работает Йота-10!
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDADamnfeds
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+#MCandDlit
+- type: entity
+  parent: ClothingOuterHardsuitSyndieCommander
+  id: ClothingOuterHardsuitMCandDlit
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/mcandd/suint.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/mcandd/suint.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMCandDlit
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.3
+        Blunt: 0.3
+        Slash: 0.3
+        Heat: 0.3
+        Piercing: 0.2
+        Cellular: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.7
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitMCandDlit
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/mcandd/helmet.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+      visible: true
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/mcandd/helmet.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+
+- type: entity
+  parent: BaseERTUplink
+  id: McAndDUplinkNDA
+  name: Терминал Маршалл, Картер и Дарк Ltd
+  description: Warp To Hand терминал. Эксперементальное устройство для телепортации предметов прямо в руки пользователя.
+  suffix: Fredik21, Недра
+  components:
+  - type: Tag
+    tags:
+      - FondUplink
+  - type: Store
+    categories:
+    - FondUplinkGranade
+    - FondUplinkMed
+    - FondUplinkConsumables
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 17
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    layers:
+    - state: device-on
+    - state: device-mcd-anim
+      shader: unshaded
+      visible: true
+    netsync: false
+  - type: Item
+    sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
+    heldPrefix: device
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDAMCandD
+  name: Preset
+  suffix: Fredik21, Недра, Неитрал
+  components:
+    - type: Loadout
+      prototypes: [ PresetNDAMCandDGear ]
+    - type: NpcFactionMember
+      factions:
+      - neutralNDA
+    - type: AutoImplant
+      implants:
+      - ImperialSmokeImplant
+      - ImperialBlinkImplant
+    - type: TTSProvider
+      voice: sentrybot
+
+- type: startingGear
+  id: PresetNDAMCandDGear
+  equipment:
+    jumpsuit: ArgonMercJumpsuitUnsensored
+    shoes: ClothingShoesBootsMagNDAMCandD
+    eyes: GlassesVisorRCU
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitMCandDlit
+    id: SCPIDCardMcAndD
+    ears: ClothingHeadsetAltFreelancer
+    pocket1: McAndDUplinkNDA
+    back: ClothingBackpackSatchelHolding
+    suitstorage: WeaponPulseCarbineSCPDeva
+  storage:
+    back:
+    - BoxSurvival
+
+- type: entity
+  parent: ClothingShoesBootsMagSCPTay5
+  id: ClothingShoesBootsMagNDAMCandD
+  suffix: Fredik21, Недра
+#Лямба 5 "Белые кролики"
+- type: entity
+  parent: ClothingOuterHardsuitSyndieCommander
+  id: ClothingOuterHardsuitLamda5
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/lamda5/suint.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/lamda5/suint.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLamda5
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.2
+        Blunt: 0.5
+        Slash: 0.4
+        Heat: 0.5
+        Piercing: 0.6
+        Cellular: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.6
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitLamda5
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/lamda5/helmet.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+      visible: true
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/lamda5/helmet.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDALamda5
+  name: Preset
+  suffix: Fredik21, Недра, МОГ
+  components:
+    - type: Loadout
+      prototypes: [ NDALamda5Gear ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesLamda5NDA
+    - type: TTSProvider
+      voice: sentrybot
+
+- type: startingGear
+  id: NDALamda5Gear
+  equipment:
+    jumpsuit: ClothingJumpsuitZeta9
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesHudRegularForce
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitLamda5
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPAlt
+    pocket1: FondUplinkAlpha9
+    pocket2: EncryptionKeyNedraMTFconnection
+    back: ClothingBackpackSatchelSacerdos_5
+    belt: ClothingBeltTDM
+    suitstorage: WeaponFelixAR15
+  storage:
+    back:
+    - BoxSurvival
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetNDALamda5Com
+  name: Preset
+  suffix: Fredik21, Недра, МОГ
+  components:
+    - type: Loadout
+      prototypes: [ NDALamda5GearCom ]
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesLamda5NDACom
+    - type: TTSProvider
+      voice: sentrybot
+
+- type: startingGear
+  id: NDALamda5GearCom
+  equipment:
+    jumpsuit: ClothingJumpsuitZeta9
+    shoes: ClothingShoesBootsWorkSCP
+    eyes: ClothingEyesHudRegularForce
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitLamda5
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    pocket1: FondUplinkAlpha1
+    pocket2: EncryptionKeyNedraMTFconnection
+    back: ClothingBackpackSatchelSacerdos_5
+    belt: ClothingBeltTDM
+    suitstorage: WeaponFelixAR15
+    head: BlackShieldBeretGaqut
+  storage:
+    back:
+    - BoxSurvival
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio1
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio2
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+    - EncryptionKeyRadio3
+
+- type: entity
+  id: SpawnPresetNDALamda5Com
+  name: спавнер Командир Лямбда-5 Белые кролики
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Командир Лямбда-5 Белые кролики
+      description:  Мобильная опергруппа Лямбда-5 «Белые кролики» специализируется на пересечении нестабильных реальностей и манипуляциях с пространством-временем. Их девиз «Вниз по кроличьей норе», а главная задача — фиксация изменчивых локаций и сдерживание объектов, нарушающих законы физики.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDALamda5Com
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetNDALamda5
+  name: спавнер Оперативник Лямбда-5 Белые кролики
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник Лямбда-5 Белые кролики
+      description:  Мобильная опергруппа Лямбда-5 «Белые кролики» специализируется на пересечении нестабильных реальностей и манипуляциях с пространством-временем. Их девиз «Вниз по кроличьей норе», а главная задача — фиксация изменчивых локаций и сдерживание объектов, нарушающих законы физики.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDALamda5
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: SpawnPresetNDAMCandD
+  name: спавнер Оперативник Лямбда-5 Белые кролики
+  parent: MarkerBase
+  suffix: Fredik21, Недра
+  components:
+    - type: GhostRole
+      name: Оперативник MCandD
+      description: «Маршалл, Картер и Дарк» не пачкают руки сами — они нанимают тех, кто делает это элегантно. Этот оперативник — не просто солдат, а высокооплачиваемый «аудитор» аномалий, чей костюм стоит дороже вашей жизни, а манеры безупречны даже во время зачистки. Его задача — не сдерживать объект, а обеспечить его сохранность для последующей продажи в частную коллекцию.
+      rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: PresetNDAMCandD
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: MTFCall
+  id: Epsilon11
+  desc: mtf-call-Epsilon11-desc
+  path: /GM/seriozha/event/nedra/MTF/Epsilon-11.yml
+  announcementMessage: announcementMessage-MTF-Epsilon11
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/epsilon11.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: Epsilon9
+  desc: mtf-call-Epsilon9-desc
+  path: /GM/seriozha/event/nedra/MTF/Epsilon-9.yml
+  announcementMessage: announcementMessage-MTF-Epsilon9
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/epsilon9.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: Eta10
+  desc: mtf-call-Eta10-desc
+  path: /GM/seriozha/event/nedra/MTF/Eta-10.yml
+  announcementMessage: announcementMessage-MTF-Eta10
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/eta10.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: Goc
+  desc: mtf-call-Goc-desc
+  path: /GM/seriozha/event/nedra/MTF/goc.yml
+  announcementMessage: announcementMessage-MTF-Goc
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/goc.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: Nu7
+  desc: mtf-call-Nu7-desc
+  path: /GM/seriozha/event/nedra/MTF/Nu-7.yml
+  announcementMessage: announcementMessage-MTF-Nu7
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/nu7.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: PHYSICS
+  desc: mtf-call-PHYSICS-desc
+  path: /GM/seriozha/event/nedra/MTF/PHYSICS.yml
+  announcementMessage: announcementMessage-MTF-PHYSICS
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/PHYSICS.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: fbi
+  desc: mtf-call-fbi-desc
+  path: /GM/seriozha/event/nedra/MTF/fbi.yml
+  announcementMessage: announcementMessage-MTF-fbi
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/fbi.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: scarletking
+  desc: mtf-call-scarletking-desc
+  path: /GM/seriozha/event/nedra/MTF/Small-Children.yml
+  announcementMessage: announcementMessage-MTF-scarletking
+  announcementSender: announcementSender-MTF-scarletking
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/scarletking.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: ssspgry
+  desc: mtf-call-ssspgry-desc
+  path: /GM/seriozha/event/nedra/MTF/ssspgry.yml
+  announcementMessage: announcementMessage-MTF-ssspgry
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/ssspgry.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: tay5
+  desc: mtf-call-tay5-desc
+  path: /GM/seriozha/event/nedra/MTF/Death-Squad-RP.yml
+  announcementMessage: announcementMessage-MTF-tay5
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/tay5.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: upsilon11
+  desc: mtf-call-upsilon11-desc
+  path: /GM/seriozha/event/nedra/MTF/NotEpsilon-11.yml
+  announcementMessage: announcementMessage-MTF-upsilon11
+  announcementSender: announcementSender-MTF-upsilon11
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/upsilon11.ogg
+    params:
+      volume: 8
+
+- type: MTFCall
+  id: dz
+  desc: mtf-call-dz-desc
+  path: /GM/seriozha/event/nedra/MTF/dz.yml
+  announcementMessage: announcementMessage-MTF-dz
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/dz.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: chaos
+  desc: mtf-call-chaos-desc
+  path: /GM/seriozha/event/nedra/MTF/A-Small-Cute-Squad.yml
+  announcementMessage: announcementMessage-MTF-chaos
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: chaosBig
+  desc: mtf-call-chaosBig-desc
+  path: /GM/seriozha/event/nedra/MTF/The-Big-Kill-Squad.yml
+  announcementMessage: announcementMessage-MTF-chaos
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/chaos.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: brokengod
+  desc: mtf-call-brokengod-desc
+  path: /GM/seriozha/event/nedra/MTF/Church-Children.yml
+  announcementMessage: announcementMessage-MTF-brokengod
+  announcementSender: announcementSender-MTF-brokengod
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/brokengod.ogg
+    params:
+      volume: 8
+
+- type: MTFCall
+  id: beta7
+  desc: mtf-call-beta7-desc
+  path: /GM/seriozha/event/nedra/MTF/Beta-7.yml
+  announcementMessage: announcementMessage-MTF-beta7
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/beta7.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: alpha9
+  desc: mtf-call-alpha9-desc
+  path: /GM/seriozha/event/nedra/MTF/Alpha-9.yml
+  announcementMessage: announcementMessage-MTF-alpha9
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/alpha9.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: alpha1
+  desc: mtf-call-alpha1-desc
+  path: /GM/seriozha/event/nedra/MTF/Alpha-1.yml
+  announcementMessage: announcementMessage-MTF-alpha1
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/alpha1.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: alpha1O5
+  desc: mtf-call-alpha1O5-desc
+  path: /GM/seriozha/event/nedra/MTF/Alpha-1-o5.yml
+  announcementMessage: announcementMessage-MTF-alpha1O5
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/alpha1O5.ogg
+    params:
+      volume: 5
+
+- type: MTFCall
+  id: zeta9
+  desc: mtf-call-zeta9-desc
+  path: /GM/seriozha/event/nedra/MTF/Dzeta-9.yml
+  announcementMessage: announcementMessage-MTF-zeta9
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/zeta9.ogg
+    params:
+      volume: 8
+
+- type: MTFCall
+  id: GBR
+  desc: mtf-call-GBR-desc
+  path: /GM/seriozha/event/nedra/MTF/GBR.yml
+  announcementMessage: announcementMessage-MTF-GBR
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/cipersonal.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: lamda5
+  desc: mtf-call-lamda5-desc
+  path: /GM/seriozha/event/nedra/MTF/lamda5.yml
+  announcementMessage: announcementMessage-MTF-lamda5
+  announcementSender: announcementSender-MTF-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/lamda5.ogg
+    params:
+      volume: -5
+
+- type: MTFCall
+  id: MCandD
+  desc: mtf-call-MCandD-desc
+  path: /GM/seriozha/event/nedra/MTF/mcandd.yml
+  announcementMessage: announcementMessage-MTF-MCandD
+  announcementSender: announcementSender-MCandD-base
+  announcementSound:
+    path: /Audio/Imperial/Seriozha/SCP/event/mcandd.ogg
+    params:
+      volume: 20

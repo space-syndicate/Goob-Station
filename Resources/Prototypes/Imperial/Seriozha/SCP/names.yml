@@ -177,3 +177,15 @@
   values:
     prefix: names-nu7comscp-
     count: 50
+
+- type: localizedDataset
+  id: NamesLamda5NDA
+  values:
+    prefix: names-NamesLamda5NDA-
+    count: 50
+
+- type: localizedDataset
+  id: NamesLamda5NDACom
+  values:
+    prefix: names-NamesLamda5NDACom-
+    count: 50

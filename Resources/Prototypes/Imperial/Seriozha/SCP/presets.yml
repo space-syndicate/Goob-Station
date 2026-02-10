@@ -768,7 +768,6 @@
     pocket2: MagazinePistolSubMachineGun
   storage:
     back:
-    - EncryptionKeyRadio1
     - CIUplinkBase
     - BoxSurvivalNDA
 
