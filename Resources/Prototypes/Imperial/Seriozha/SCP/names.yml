@@ -147,3 +147,45 @@
   values:
     prefix: names-NamesUpsilon11scpCom-
     count: 50
+
+- type: localizedDataset
+  id: NamesSalvageNDA
+  values:
+    prefix: names-SalvageNDA-
+    count: 50
+
+- type: localizedDataset
+  id: NamesNDAGBR
+  values:
+    prefix: names-NDAGBR-
+    count: 50
+
+- type: localizedDataset
+  id: NamesNDAGBRCom
+  values:
+    prefix: names-NDAGBRCom-
+    count: 50
+
+- type: localizedDataset
+  id: Namesnu7scp
+  values:
+    prefix: names-nu7scp-
+    count: 50
+
+- type: localizedDataset
+  id: Namesnu7Comscp
+  values:
+    prefix: names-nu7comscp-
+    count: 50
+
+- type: localizedDataset
+  id: NamesLamda5NDA
+  values:
+    prefix: names-NamesLamda5NDA-
+    count: 50
+
+- type: localizedDataset
+  id: NamesLamda5NDACom
+  values:
+    prefix: names-NamesLamda5NDACom-
+    count: 50

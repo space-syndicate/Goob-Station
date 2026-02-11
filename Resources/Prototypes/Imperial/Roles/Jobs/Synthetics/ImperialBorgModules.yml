@@ -212,27 +212,27 @@
       - reagents:
         - reagentId: Bicaridine
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/brutekit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/brutekit.png
       - reagents:
         - reagentId: Dermaline
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/burnkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/burnkit.png
       - reagents:
         - reagentId: Dexalin
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/o2kit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/o2kit.png
       - reagents:
         - reagentId: Inaprovaline
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/firstaid.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/firstaid.png
       - reagents:
         - reagentId: Hyronalin
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/radkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/radkit.png
       - reagents:
         - reagentId: Dylovene
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/toxinkit.png
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:
@@ -322,16 +322,6 @@
   components:
   - type: AutoRecharge
     rechargeDuration: 20
-  - type: GenericVisualizer
-    visuals:
-      enum.FlashVisuals.Burnt:
-        enum.FlashVisuals.BaseLayer:
-          False: {state: burnt}
-      enum.FlashVisuals.Flashing:
-        enum.FlashVisuals.LightLayer:
-          True: {visible: true}
-          False: {visible: false}
-
 
 - type: entity
   id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга

@@ -161,6 +161,8 @@
         - id: MagazineShotgunSlug
         - id: MagazineLightRifleBox
           amount: 2
+        - id: MagazineLightRifle # Imperial 2 stores added to AKM
+          amount: 2              # Imperial 2 stores added to AKM
 
 - type: entity
   parent: ClothingBackpackDuffelClown
@@ -265,7 +267,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ClothingOuterHardsuitSyndieFactionExplosion #Imperial
         - id: ClothingHeadHelmetSyndicate
         - id: ClothingOuterEVASuitSyndicate
         - id: ClothingMaskGasSyndicate
@@ -316,7 +317,6 @@
   id: SyndicateHardsuitExtrasEntityTable
   table: !type:AllSelector
     children:
-    - id: ClothingOuterHardsuitSyndieEliteFactionExplosion #Imperial
     - id: ClothingMaskGasSyndicate
     - id: ClothingHandsGlovesCombat
     - id: DoubleEmergencyOxygenTankFilled

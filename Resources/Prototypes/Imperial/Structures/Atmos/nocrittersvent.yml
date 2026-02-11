@@ -32,6 +32,14 @@
         NitrousOxide: stationNO
         Frezon: danger
         Ammonia: stationAmmonia
+        Thermonium: danger
+        Phazonium: danger
+        Ozonium: danger
+        Hydrogen: danger
+        Deuterium: danger
+        HyperNoblium: danger
+        AntiNoblium: danger
+        BZ: danger
     - type: Tag
       tags:
         - GasVent
