@@ -73,24 +73,15 @@ public sealed partial class SCP106System : EntitySystem
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     #endregion
     #region Init and Stuff
+    private readonly List<string> BlacklistedTags = ["Wall", "Window"];
     public override void Initialize()
     {
         base.Initialize();
-        //SCP 106 Component Event Subscribing
-        SubscribeLocalEvent<SCP106Component, MeleeHitEvent>(OnAttack);
-        SubscribeLocalEvent<SCP106Component, ComponentStartup>(OnInit);
-        SubscribeLocalEvent<SCP106SpawnPuddleActionEvent>(OnPuddleAction);
-        SubscribeLocalEvent<SCP106Component, SCP106DoAfterPuddleEvent>(OnPuddleDoAfter);
-        SubscribeLocalEvent<SCP106Component, SCP106DoAfterGhostPuddleEvent>(OnGhostPuddleDoAfter);
-        //SCP 106 Puddle Component Event Subscribing
-        SubscribeLocalEvent<SCP106PuddleComponent, StartCollideEvent>(OnPuddleCollide);
-        SubscribeLocalEvent<SCP106PuddleComponent, ComponentStartup>(OnPuddleInit);
-        //SCP 106 Skull Component Event Subscribing
-        SubscribeLocalEvent<SCP106SkullComponent, StartCollideEvent>(OnSkullCollide);
-        //SCP 106 Bed Component Event Subscribing
-        SubscribeLocalEvent<SCP106BedComponent, ComponentStartup>(OnBedInit);
-        SubscribeLocalEvent<SCP106BedComponent, SignalReceivedEvent>(OnSignalReceived);
-        //Action Event Subscribing
+        InitializeSCP106();
+        InitializePuddle();
+        InitializeSkull();
+        InitializeBed();
+
         SubscribeLocalEvent<SCP106TransmissionPuddleActionEvent>(OnTransmissionPuddleAction);
         SubscribeLocalEvent<SCP106DestroyPuddleActionEvent>(OnDestroyPuddleAction);
         SubscribeLocalEvent<SCP106DimensionSwitchActionEvent>(OnSwitchDimensionAction);
@@ -196,16 +187,17 @@ public sealed partial class SCP106System : EntitySystem
         }
         var grid = Comp<MapGridComponent>(gridUid);
         var gridEnt = new Entity<MapGridComponent>(gridUid, Comp<MapGridComponent>(gridUid));
-        var tile = _mapSystem.GetTileRef(gridEnt, mapCoords);
         var anchovies = _mapSystem.GetAnchoredEntities(gridUid, grid, mapCoords);
         bool hasSolidWall = false;
 
         foreach (var anchovy in anchovies)
         {
-            if (_tag.HasTag(anchovy, "Wall") ||
-                _tag.HasTag(anchovy, "Window"))
+            foreach (string tag in BlacklistedTags)
             {
-                hasSolidWall = true;
+                if (_tag.HasTag(anchovy, tag))
+                {
+                    hasSolidWall = true;
+                }
             }
         }
         return !hasSolidWall;

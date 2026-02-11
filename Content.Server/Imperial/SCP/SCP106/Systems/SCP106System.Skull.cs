@@ -10,6 +10,10 @@ namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed partial class SCP106System
 {
+    private void InitializeSkull()
+    {
+        SubscribeLocalEvent<SCP106SkullComponent, StartCollideEvent>(OnSkullCollide);
+    }
     #region Collision handling
     private void OnSkullCollide(EntityUid uid, SCP106SkullComponent component, ref StartCollideEvent args)
     {

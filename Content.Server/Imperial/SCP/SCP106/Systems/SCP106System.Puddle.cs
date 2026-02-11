@@ -15,22 +15,20 @@ namespace Content.Server.Imperial.SCP.SCP106.Systems;
 public sealed partial class SCP106System
 {
     #region Puddle Startup
+
+    private void InitializePuddle()
+    {
+        SubscribeLocalEvent<SCP106PuddleComponent, StartCollideEvent>(OnPuddleCollide);
+        SubscribeLocalEvent<SCP106PuddleComponent, ComponentStartup>(OnPuddleInit);
+    }
     private void OnPuddleInit(EntityUid uid, SCP106PuddleComponent component, ComponentStartup args)
     {
         //Whener a puddle is spawned (e.g. via admin panel of some sort), it automatically is configured to teleport to the dimension, if one exists. Otherwise, it does nothing
         var query = EntityQueryEnumerator<SCP106PocketDimensionMarkerComponent>();
-        var markerEntity = EntityUid.Invalid;
-        SCP106PocketDimensionMarkerComponent? dimensionMarker = null;
         while (query.MoveNext(out var entity, out var comp))
         {
-            markerEntity = entity;
-            dimensionMarker = comp;
+            component.TargetMap = Transform(entity).MapID;
             break; // we only need one of them so yeah, i am extremely sorry for this
-        }
-        if (dimensionMarker != null && component.TargetMap == null)
-        {
-            var trs = Transform(markerEntity);
-            component.TargetMap = trs.MapID;
         }
         foreach (var scp in EntityQuery<SCP106Component>())
         {
@@ -200,17 +198,17 @@ public sealed partial class SCP106System
     private void OnDestroyPuddleAction(SCP106DestroyPuddleActionEvent args)
     {
         //We destroy the puddle right beneath us!
-        if (args.Handled || !TryComp<SCP106Component>(args.Performer, out var scp))
-            return;
-        var coords = Transform(args.Performer).Coordinates;
         var user = args.Performer;
+        if (args.Handled || !TryComp<SCP106Component>(user, out var scp))
+            return;
+        var coords = Transform(user).Coordinates;
         var target = IsTooCloseToPuddles(scp, coords, scp.PuddleExitDistance); //1 tile away by default
         if (target == EntityUid.Invalid)
         {
             _popupSystem.PopupEntity(
                 Loc.GetString("scp106-hammaggotson-pefar"),
-                args.Performer,
-                args.Performer,
+                user,
+                user,
                 PopupType.MediumCaution);
             return;
         }

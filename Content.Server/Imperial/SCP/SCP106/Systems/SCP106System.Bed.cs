@@ -11,10 +11,21 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Pulling.Components;
 using System.Numerics;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
+using System.Threading.Tasks.Dataflow;
+using Content.Shared.Popups;
+using Robust.Shared.Network;
+using Robust.Shared.Random;
+using Robust.Shared.Serialization;
+
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed partial class SCP106System : EntitySystem
 {
+    private void InitializeBed()
+    {
+        SubscribeLocalEvent<SCP106BedComponent, ComponentStartup>(OnBedInit);
+        SubscribeLocalEvent<SCP106BedComponent, SignalReceivedEvent>(OnSignalReceived);
+    }
     private void OnBedInit(EntityUid uid, SCP106BedComponent component, ComponentStartup args)
     {
 
@@ -41,13 +52,12 @@ public sealed partial class SCP106System : EntitySystem
 
     private void ActivateBed(EntityUid uid)
     {
-        if (!TryComp<TransformComponent>(uid, out var transformTable))
-            return;
+        var transformTable = Transform(uid);
         if (!TryComp<SCP106BedComponent>(uid, out var comp))
             return;
         if (!TryComp<StrapComponent>(uid, out var strapComponent))
             return;
-        if (comp.Started == true)
+        if (!comp.Started)
             return;
         var victims = strapComponent.BuckledEntities;
         if (victims.Count == 0)
@@ -82,10 +92,10 @@ public sealed partial class SCP106System : EntitySystem
                 continue;
             if (comp.DamageEnd <= curTime && comp.DamageEnd != TimeSpan.Zero)
             {
-                if (!TryComp<StrapComponent>(uid, out var strapComponent))
+                if (!HasComp<StrapComponent>(uid))
                     continue;
                 _damageable.TryChangeDamage(comp.Victim, comp.Damage);
-                _chat.TryEmoteWithChat(comp.Victim, comp.PrototypeScream, ignoreActionBlocker: true);
+                _chat.TryEmoteWithChat(comp.Victim, comp.PrototypeScream);
                 comp.DamageEnd = TimeSpan.Zero;
             }
             if (comp.ContainmentEnd <= curTime && comp.ContainmentEnd != TimeSpan.Zero)
@@ -94,15 +104,14 @@ public sealed partial class SCP106System : EntitySystem
                 comp.Started = false;
                 comp.CooldownEnd = curTime + comp.Cooldown;
                 var puddle = EntityUid.Invalid;
-                var xquery = EntityQueryEnumerator<SCP106Component>();
-                if (!TryComp<TransformComponent>(uid, out var transformTable))
-                    continue;
-                while (xquery.MoveNext(out var entity, out var scp))
+                var xquery = EntityQueryEnumerator<SCP106Component, TransformComponent, MetaDataComponent>();
+                var transformTable = Transform(uid);
+                if (transformTable == null)
                 {
-                    if (!TryComp<TransformComponent>(entity, out var transform))
-                        continue;
-                    if (!TryComp<MetaDataComponent>(entity, out var metadata))
-                        continue;
+                    continue;
+                }
+                while (xquery.MoveNext(out var entity, out var scp, out var transform, out var metadata))
+                {
                     var map = transformTable.MapID;
                     if (!_mapSystem.TryGetMap(map, out var mapEnt))
                     {

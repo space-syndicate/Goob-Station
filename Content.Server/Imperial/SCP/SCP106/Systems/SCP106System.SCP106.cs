@@ -16,6 +16,15 @@ namespace Content.Server.Imperial.SCP.SCP106.Systems;
 public sealed partial class SCP106System
 {
     #region Component Startup
+
+    private void InitializeSCP106()
+    {
+        SubscribeLocalEvent<SCP106Component, MeleeHitEvent>(OnAttack);
+        SubscribeLocalEvent<SCP106Component, ComponentStartup>(OnInit);
+        SubscribeLocalEvent<SCP106SpawnPuddleActionEvent>(OnPuddleAction);
+        SubscribeLocalEvent<SCP106Component, SCP106DoAfterPuddleEvent>(OnPuddleDoAfter);
+        SubscribeLocalEvent<SCP106Component, SCP106DoAfterGhostPuddleEvent>(OnGhostPuddleDoAfter);
+    }
     private void OnInit(EntityUid uid, SCP106Component component, ComponentStartup args)
     {
         //Adding all already existing puddles, in case of SCP 106 being respawned if he dissapears for some reason, so he would keep all his puddles! How convenient!

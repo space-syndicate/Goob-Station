@@ -9,15 +9,15 @@ namespace Content.Server.Imperial.SCP.ChaseMusic.Components;
 [RegisterComponent]
 public sealed partial class ImperialSCPChaseMusicComponent : Component
 {
-    [DataField("chaseSound")]
+    [ViewVariables, DataField]
     public SoundSpecifier ChaseSound = new SoundPathSpecifier("/Audio/Imperial/Seriozha/SCP/chase/chase1.ogg");
-    [DataField("chaseMusicToggleAction")]
+    [ViewVariables, DataField]
     public EntProtoId ChaseMusicToggleAction = "ActionSCPChaseMusic";
     public EntityUid? ChaseMusicToggleActionEntity;
-    
+
     [ViewVariables]
     public EntityUid? PlayingStream;
-    
+
     [ViewVariables]
     public bool IsPlaying = false;
 }

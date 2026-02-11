@@ -8,15 +8,16 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Server.Imperial.SCP.SCP106.Components;
 
 [RegisterComponent]
+
 public sealed partial class SCP106BedComponent : Component
 {
-    [DataField("teleportSound")]
+    [DataField, ViewVariables]
     public SoundSpecifier ContainmentSound = new SoundPathSpecifier("/Audio/Imperial/Seriozha/SCP/event/recontaime106.ogg");
-    [DataField("globalTeleportSound")]
+    [DataField, ViewVariables]
     public SoundSpecifier GlobalTeleportSound = new SoundPathSpecifier("/Audio/Imperial/SCP/scp106_teleported_global.ogg");
-    [DataField]
+    [DataField, ViewVariables]
     public ProtoId<EmotePrototype> PrototypeScream = "Scream";
-    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true), ViewVariables]
     public DamageSpecifier Damage = new();
     [DataField("triggerPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string TriggerPort = "Trigger";
