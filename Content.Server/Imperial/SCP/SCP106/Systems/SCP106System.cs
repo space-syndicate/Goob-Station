@@ -207,8 +207,7 @@ public sealed partial class SCP106System : EntitySystem
     private void TeleportEntity(EntityUid hole, EntityUid subject, MapId map, SoundSpecifier globaltpsound, DamageSpecifier damage)
     {
         //We banish a person to the realm, put him to sleep (ig?) and apply a debuff (thats just like bleeding)
-        if (!TryComp<TransformComponent>(subject, out var transform))
-            return;
+        var transform = Transform(subject);
         if (_mapSystem.TryGetMap(map, out var mapEnt))
         {
             if (_mind.TryGetMind(subject, out _, out var mindComponent))
