@@ -1,0 +1,62 @@
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: ImperialSCP106Ghost
+  name: SCP 106 subdimensional transportation
+  description: He is moving closer and closer.
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Input
+    context: "ghost"
+  - type: NoFTL
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: WarpPoint
+    follow: true
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Eye
+    pvsScale: 1.5
+    drawFov: false
+    visMask:
+      - Normal
+      - Ghost
+  - type: Visibility
+    layer: 2
+  - type: Sprite
+    sprite: Imperial/SCP/dimensionscp.rsi
+    layers:
+    - state: dedscp
+      shader: unshaded
+      map: ["base"]
+  - type: SCP106
+    inDimension: true
+    firstHitDamage:
+      types:
+        Poison: 40
+    damagePerSecond:
+      types:
+        Blunt: 1
+  - type: Actions
+  - type: ContentEye
+  - type: Damageable
+    damageModifierSet: SCPStandart
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 280
+        layer:
+        - GhostImpassable
+- type: entity
+  parent: ImperialSCPDed
+  categories: [HideSpawnMenu, DoNotMap]
+  id: ImperialSCPDedD
+  components:
+  - type: SCP106
+    inPocketDimension: true

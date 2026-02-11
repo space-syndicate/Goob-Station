@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSCPChaseMusic
+  name: Toggle chase music
+  description: Chicken stars.
+  components:
+  - type: Action
+    icon: Imperial/SCP/chasemusic.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ImperialSCPChaseMusicActionEvent
