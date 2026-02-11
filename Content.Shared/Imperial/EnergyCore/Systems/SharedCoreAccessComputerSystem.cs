@@ -36,13 +36,13 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
         switch (msg.Button)
         {
             case UiButton.Auto:
-                component.ByteStatus = 2;
+                component.TempRiseTerminal = CoreTempChangeLevel.AUTO;
                 break;
             case UiButton.RiseTemp:
-                component.ByteStatus = 3;
+                component.TempRiseTerminal = CoreTempChangeLevel.HEATING;
                 break;
             case UiButton.CoolTemp:
-                component.ByteStatus = 1;
+                component.TempRiseTerminal = CoreTempChangeLevel.COOLING;
                 break;
             case UiButton.UpReactivity:
                 MakeReactivityUp(uid, component);
@@ -87,7 +87,7 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
         var safeProtocol = !component.SaveProtocolWasDeactivated;
         var tempRising = component.TempRising;
         var coreStatus = component.Status;
-        var autoSystem = component.ByteStatus;
+        var autoSystem = component.TempRiseTerminal;
         var coreTemp = component.CurrCoreTemp;
         var tempChangeCoef = component.FinalTempChangeCoef;
         var currentPowerSupply = component.CurrentPowerSupply;

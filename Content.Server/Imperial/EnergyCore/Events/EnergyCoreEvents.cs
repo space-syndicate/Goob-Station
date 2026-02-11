@@ -18,4 +18,9 @@ namespace Content.Server.Imperial.EnergyCore.Events
     {
         public bool Announce;
     }
+// Инициализация новых ядер или терминалов
+    public sealed class CoreInitEvent : EntityEventArgs
+    {}
+    public sealed class CoreTerminalInitEvent : EntityEventArgs
+    {}
 }

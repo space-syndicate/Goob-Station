@@ -7,14 +7,14 @@ namespace Content.Server.Imperial.EnergyCore.Components
     public sealed partial class CoreGeneratorComponent : Component
     {
         // Ближайшее ядро
-        [DataField]
+        [ViewVariables(VVAccess.ReadWrite)]
         public EntityUid? NearestCore;
 
         // Ближайшее ядро: время данное на поиск
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan SearchTime = TimeSpan.FromSeconds(5);
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [ViewVariables(VVAccess.ReadOnly)]
         public float EnergyOutput = 0f;
 
         [DataField("energyCoefficient")]

@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -23,23 +22,26 @@ namespace Content.Server.Imperial.EnergyCore
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
+        [Dependency] private readonly EnergyCoreSystem _core = default!;
         public override void Initialize()
         {
             base.Initialize();
 
             SubscribeLocalEvent<CoreGeneratorComponent, ExaminedEvent>(OnExamined);
-            SubscribeLocalEvent<CoreGeneratorComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<CoreGeneratorComponent, ComponentInit>(OnInit);
+            SubscribeLocalEvent<CoreInitEvent>(OnNewCoreInit);
         }
-        private void OnStartup(EntityUid uid, CoreGeneratorComponent component, ComponentStartup args)
+        private void OnInit(EntityUid uid, CoreGeneratorComponent generator, ComponentInit args)
         {
-            component.SearchTime = component.SearchTime + _timing.CurTime;
+            RejoinCore(uid, generator);
+            generator.SearchTime = generator.SearchTime + _timing.CurTime;
         }
-        private void OnExamined(EntityUid uid, CoreGeneratorComponent component, ExaminedEvent args)
+        private void OnExamined(EntityUid uid, CoreGeneratorComponent generator, ExaminedEvent args)
         {
             if (!args.IsInDetailsRange)
                 return;
 
-            var nearestUid = component.NearestCore;
+            var nearestUid = generator.NearestCore;
             if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
             {
                 args.PushMarkup(Loc.GetString("energycore-dont-any-near"));
@@ -47,10 +49,20 @@ namespace Content.Server.Imperial.EnergyCore
             }
             var (coreTemp, tempRiseStatus) = GetCoreInfo(nearest);
 
-            args.PushMarkup(Loc.GetString($"energycore-current-temp-change-{tempRiseStatus}"));
+            args.PushMarkup(Loc.GetString($"energycore-current-temp-change-{tempRiseStatus.ToString().ToLower()}"));
 
-            var energyOutput = component.EnergyOutput;
+            var energyOutput = generator.EnergyOutput;
             args.PushMarkup(Loc.GetString("energycore-generator-current-energy-output", ("energyOutput", energyOutput)));
+        }
+        private void RejoinCore(EntityUid uid, CoreGeneratorComponent generator)
+            => generator.NearestCore = _coreHelper.FindNearestEnergyCore(uid, _core.CoreHash, 10f);
+        private void OnNewCoreInit(CoreInitEvent ev)
+        {
+            var query = EntityQueryEnumerator<CoreGeneratorComponent>();
+            while (query.MoveNext(out var uid, out var generator))
+            {
+                RejoinCore(uid, generator);
+            }
         }
         private void SetEnergyOutput(EntityUid uid, CoreGeneratorComponent generator, PowerSupplierComponent power)
         {
@@ -87,23 +99,13 @@ namespace Content.Server.Imperial.EnergyCore
             while (enumerator.MoveNext(out var uid, out var comp, out var powr, out _))
             {
                 SetEnergyOutput(uid, comp, powr);
-
-                if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
-                {
-                    var nearestUid = _coreHelper.FindNearestEnergyCore(uid, 10f);
-                    if (nearestUid == null ||
-                        !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                        continue;
-
-                    comp.NearestCore = nearestUid;
-                }
             }
         }
 
-        private (float coreTemp, byte tempRiseStatus) GetCoreInfo(EnergyCoreComponent component)
+        private (float coreTemp, CoreTempChangeLevel tempRiseStatus) GetCoreInfo(EnergyCoreComponent generator)
         {
-            var coreTemp = component.CoreTemp;
-            var tempRiseStatus = component.TempChangeStatus;
+            var coreTemp = generator.CoreTemp;
+            var tempRiseStatus = generator.TempRiseStatus;
 
             return (coreTemp, tempRiseStatus);
         }

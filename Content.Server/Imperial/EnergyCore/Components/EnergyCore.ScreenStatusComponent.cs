@@ -8,18 +8,18 @@ namespace Content.Server.Imperial.EnergyCore.Components
     [RegisterComponent]
     public sealed partial class CoreStatusScreenComponent : Component
     {
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [ViewVariables(VVAccess.ReadOnly)]
         public CoreStatus ScreenStatus = CoreStatus.OFFLINE;
 
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        [ViewVariables(VVAccess.ReadOnly)]
         public byte SpriteStatus = 0;
 
         // Ближайшее ядро
-        [DataField]
+        [ViewVariables(VVAccess.ReadWrite)]
         public EntityUid? CheckedCore;
 
         // Ближайшее ядро: время данное на поиск
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan SearchTime = TimeSpan.FromSeconds(5);
     }
 }

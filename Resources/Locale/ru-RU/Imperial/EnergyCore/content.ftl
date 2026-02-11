@@ -16,14 +16,14 @@ ent-EnergyCoreGenerator = генератор энергетического яд
 ent-CoreControlTerminal = терминал управления энергетическим ядром
     .desc = Консоль управляющая системами энерго ядра. Что значит "фигня с годмодом"?
 ent-CoreStatusScreen = монитор состояния энерго ядра
-    .desc = Это общая консоль для возможности наблюдать за состояние ядра из разных точек станции.
+    .desc = Это общая консоль для наблюдения за состоянием ядра из разных точек станции.
 ent-CoreProtocolComputer = терминал безопасности
     .desc = Консоль для управления протоколом безопасности энергетического ядра. Имеет разъем для ввода кодов ядерной деавторизации.
 
 ent-CoreWindow = экранирование ядра
-    .desc = Приблизившись вы понимаете, что это обычное пластитановое окно. Но с тонкими пластинами из нейтрония с внутренней стороны.
+    .desc = Приблизившись вы понимаете, что это обычное пластитановое окно, но с тонкими пластинами из нейтрония с внутренней стороны.
 ent-CoreWindowDiagonal = угловое экранирование ядра
-    .desc = Приблизившись вы понимаете, что это обычное пластитановое окно. Но с тонкими пластинами из нейтрония с внутренней стороны.
+    .desc = Приблизившись вы понимаете, что это обычное пластитановое окно, но с тонкими пластинами из нейтрония с внутренней стороны.
 
 ent-NuclearDeauthorizationCodes = коды ядерной деавторизации
     .desc = Секретные шифры, необходимые для деавторизации протоколов безопасности энергетического ядра. Идет с заметкой "НЕ ИСПОЛЬЗОВАТЬ НА ТЕРМИНАЛЕ ЭНЕРГЕТИЧЕСКОГО ЯДРА!".
@@ -47,9 +47,9 @@ energycore-less-2min-to-boom = Энергетический департамен
 
 energycore-current-protocol-is-safe-true = Протокол безопасности: [color=blue][bold]Активен[/bold][/color]
 energycore-current-protocol-is-safe-false = Протокол безопасности: [color=red][bold]Неактивен[/bold][/color]
-energycore-current-temp-change-3 = Текущий статус температуры: [color=yellow][bold]Повышение[/bold][/color]
-energycore-current-temp-change-2 = Текущий статус температуры: [color=green][bold]Авто-режим[/bold][/color]
-energycore-current-temp-change-1 = Текущий статус температуры: [color=blue][bold]Понижение[/bold][/color]
+energycore-current-temp-change-heating = Текущий статус температуры: [color=yellow][bold]Повышение[/bold][/color]
+energycore-current-temp-change-auto = Текущий статус температуры: [color=green][bold]Авто-режим[/bold][/color]
+energycore-current-temp-change-cooling = Текущий статус температуры: [color=blue][bold]Понижение[/bold][/color]
 energycore-current-coef = Текущие изменения температуры: {$coefficient} (кельвин в сек.)
 energycore-current-temp = Текущая температура: {$coreTemp}
 

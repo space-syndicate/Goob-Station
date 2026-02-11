@@ -57,9 +57,9 @@ public enum CoreStatusColorVisual : byte
 [Serializable, NetSerializable]
 public enum CoreTempChangeLevel : byte
 {
-    HEATING = 1,
-    AUTO = 2,
-    COOLING = 3
+    HEATING,// = 1,
+    AUTO,// = 2,
+    COOLING,// = 3
 }
 
 [Serializable, NetSerializable]

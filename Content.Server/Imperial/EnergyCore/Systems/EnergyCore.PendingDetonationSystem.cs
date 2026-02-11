@@ -42,10 +42,10 @@ public sealed class EnergyCorePendingDetonationSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EnergyCorePendingDetonationComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<EnergyCorePendingDetonationComponent, ComponentStartup>(OnStartup);
     }
 
-    private void OnComponentStartup(EntityUid uid, EnergyCorePendingDetonationComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, EnergyCorePendingDetonationComponent component, ComponentStartup args)
     {
         // Определение времени до детонации через цварку
         var detonationTime = _cfg.GetCVar(ICCVars.CoreDetonationTime);

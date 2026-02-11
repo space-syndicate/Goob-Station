@@ -36,11 +36,15 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
+    [Dependency] private readonly CoreAccessComputerSystem _coreTerminal = default!;
     public static readonly EntProtoId CoreTechnicalRule = "CoreTechnical";
+    public HashSet<EntityUid> CoreHash = new();
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EnergyCoreComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<EnergyCoreComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<EnergyCoreComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<CoreTerminalInitEvent>(OnNewCoreTerminalInit);
     }
     private void UpdateDataFromTerminal(EntityUid uid, EnergyCoreComponent core)
     {
@@ -49,17 +53,16 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         {
             return;
         }
-        var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
+        var (safeProtocol, safeProtocolCompleted, tempRiseTerminal, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
 
         core.TempChangeMultiplier = finalTempChangeCoef;
-        core.TempChangeStatus = tempChangeStatus;
+        core.TempRiseStatus = tempRiseTerminal;
     }
-    private void UpdateLightVisual(EntityUid uid, string coreColor, float coreColorRadius, float coreColorEnergy)
+    private void UpdateLightVisual(EntityUid uid, Color coreColor, float coreColorRadius, float coreColorEnergy)
     {
-        var color = Color.FromHex(coreColor);
         if (TryComp<PointLightComponent>(uid, out var light))
         {
-            _pointLight.SetColor(uid, color, light);
+            _pointLight.SetColor(uid, coreColor, light);
             _pointLight.SetRadius(uid, coreColorRadius);
             _pointLight.SetEnergy(uid, coreColorEnergy);
         }
@@ -120,7 +123,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         {
             return;
         }
-        var (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
+        var (safeProtocol, safeProtocolCompleted, tempRiseTerminal, finalTempChangeCoef) = GetTerminalProtocolStatus(nearest);
 
         if (safeProtocol)
             core.IsSafeProtocolActive = false;
@@ -139,17 +142,25 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         Loc.GetString("energycore-protocol-deactivated"), Loc.GetString("energy-department"),
         playDefaultSound: false, colorOverride: Color.Red);
     }
-    private void OnMapInit(EntityUid uid, EnergyCoreComponent core, MapInitEvent args)
+    private void OnInit(EntityUid uid, EnergyCoreComponent core, ComponentInit args)
     {
-        StartCoreWork(uid, core);
+        CoreHash.Add(uid);
+        RaiseLocalEvent(new CoreInitEvent());
+        RejoinController(uid, core);
 
-        core.SearchTime = core.SearchTime + _timing.CurTime;
-    }
-
-    private void StartCoreWork(EntityUid uid, EnergyCoreComponent core)
-    {
         if (HasComp<AmbientSoundComponent>(uid))
             _ambientSound.SetSound(uid, core.CoreAmbience1);
+    }
+    private void OnShutdown(EntityUid uid, EnergyCoreComponent core, ComponentShutdown args) => CoreHash.Remove(uid);
+    private void RejoinController(EntityUid uid, EnergyCoreComponent core)
+        => core.Controller = _coreHelper.FindNearestEnergyCore(uid, _coreTerminal.CoreTerminalHash, 30f);
+    private void OnNewCoreTerminalInit(CoreTerminalInitEvent ev)
+    {
+        var query = EntityQueryEnumerator<EnergyCoreComponent>();
+        while (query.MoveNext(out var uid, out var core))
+        {
+            RejoinController(uid, core);
+        }
     }
     private void OnMeltdown(EntityUid uid, EnergyCoreComponent core) // За ивент расплавления ядра отвечает отдельная система, чтобы не превращать эту в свалку
     {
@@ -296,28 +307,13 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(core.CriticalHighAnnounce));
         core.AnnounceReady = false;
     }
-    private void CheckTempChangeValue(EnergyCoreComponent core)
+    private (bool safeProtocol, bool safeProtocolCompleted, CoreTempChangeLevel tempRiseTerminal, float finalTempChangeCoef) GetTerminalProtocolStatus(CoreAccessComputerComponent terminal)
     {
-        switch (core.TempChangeStatus)
-        {
-            case 1:
-                core.TempRiseStatus = CoreTempChangeLevel.COOLING;
-                break;
-            case 2:
-                core.TempRiseStatus = CoreTempChangeLevel.AUTO;
-                break;
-            case 3:
-                core.TempRiseStatus = CoreTempChangeLevel.HEATING;
-                break;
-        }
-    }
-    private (bool safeProtocol, bool safeProtocolCompleted, byte tempChangeStatus, float finalTempChangeCoef) GetTerminalProtocolStatus(CoreAccessComputerComponent core)
-    {
-        var safeProtocol = core.SaveProtocolWasDeactivated;
-        var safeProtocolCompleted = core.DeactivationCompleted;
-        var tempChangeStatus = core.ByteStatus;
-        var finalTempChangeCoef = core.FinalTempChangeCoef;
-        return (safeProtocol, safeProtocolCompleted, tempChangeStatus, finalTempChangeCoef);
+        var safeProtocol = terminal.SaveProtocolWasDeactivated;
+        var safeProtocolCompleted = terminal.DeactivationCompleted;
+        var tempRiseTerminal = terminal.TempRiseTerminal;
+        var finalTempChangeCoef = terminal.FinalTempChangeCoef;
+        return (safeProtocol, safeProtocolCompleted, tempRiseTerminal, finalTempChangeCoef);
     }
     public override void Update(float frameTime)
     {
@@ -325,21 +321,10 @@ public sealed partial class EnergyCoreSystem : EntitySystem
         var query = EntityQueryEnumerator<EnergyCoreComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var cormp, out _))
         {
-            CheckTempChangeValue(cormp);
             UpdateCoreTemp(cormp, frameTime);
             RefreshCoreStatus(uid, cormp);
             UpdateProtocolStatus(uid, cormp);
             UpdateDataFromTerminal(uid, cormp);
-
-            if (_timing.CurTime < cormp.SearchTime) // Ищет только первые 5 секунд
-            {
-                var nearestUid = _coreHelper.FindNearestProtocolTerminal(uid, 30f);
-                if (nearestUid == null ||
-                    !EntityManager.TryGetComponent<CoreAccessComputerComponent>(nearestUid.Value, out var nearest))
-                    continue;
-
-                cormp.Controller = nearestUid;
-            }
         }
     }
     #region public API

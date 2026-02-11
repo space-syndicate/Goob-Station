@@ -16,7 +16,6 @@ namespace Content.Client.Imperial.EnergyCore.UI
         public CoreTerminalWindow()
         {
             RobustXamlLoader.Load(this);
-            IoCManager.InjectDependencies(this);
 
             AutoButton.OnPressed += _ => OnCoreTerminalButton?.Invoke(UiButton.Auto);
             RiseTempButton.OnPressed += _ => OnCoreTerminalButton?.Invoke(UiButton.RiseTemp);
@@ -32,22 +31,11 @@ namespace Content.Client.Imperial.EnergyCore.UI
             var castState = (CoreTerminalBoundUserInterfaceState)state;
 
             CurrentCoreStatus.Text = Loc.GetString($"energycore-status-{castState.Status.ToString().ToLower()}");
+            RiseStatus.Text = Loc.GetString($"temp-rise-{castState.AutoSystem.ToString().ToLower()}");
+            SafeProtocolStatus.Text = Loc.GetString($"core-protocol-{castState.SafeProtocol.ToString().ToLower()}");
 
-            if (castState.AutoSystem == 1)
-                RiseStatus.Text = Loc.GetString("temp-rise-false");
-            if (castState.AutoSystem == 3)
-                RiseStatus.Text = Loc.GetString("temp-rise-true");
-
-            if (castState.SafeProtocol)
-                SafeProtocolStatus.Text = Loc.GetString("status-active");
-            else
-                SafeProtocolStatus.Text = Loc.GetString("status-inactive");
-
-            if (castState.AutoSystem == 2)
-            {
-                RiseStatus.Text = Loc.GetString("temp-rise-moderate");
+            if (castState.AutoSystem == CoreTempChangeLevel.AUTO)
                 AutoStatus.Text = Loc.GetString("status-active");
-            }
             else
                 AutoStatus.Text = Loc.GetString("status-inactive");
 

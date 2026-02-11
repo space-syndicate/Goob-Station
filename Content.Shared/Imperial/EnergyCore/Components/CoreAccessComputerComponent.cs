@@ -36,7 +36,7 @@ namespace Content.Shared.Imperial.EnergyCore.Components
         /// <summary>
         /// Следующая попытка обновить UI, с учетом UpdateUIPeriod и CurTime
         /// </summary>
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan NextUIUpdate = default!;
 
         /// <summary>
@@ -57,48 +57,50 @@ namespace Content.Shared.Imperial.EnergyCore.Components
         [DataField("deCodeSlot")]
         public ItemSlot DeCodeSlot = new();
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public float Reactivity = 30f;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public float Halflife = 5f;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public float FinalTempChangeCoef;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public AutoSystemStatus AutoStatus = AutoSystemStatus.NONACTIVE;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan Time = TimeSpan.Zero;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public byte TerminalStatus = 1;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public bool DeactivationCompleted = false;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public bool TempRising = false;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public bool SaveProtocolWasDeactivated = false;
 
-        [DataField]
-        public byte ByteStatus = 1;
+        //[ViewVariables(VVAccess.ReadOnly)]
+        //public byte ByteStatus = 1;
+        [ViewVariables(VVAccess.ReadOnly)]
+        public CoreTempChangeLevel TempRiseTerminal = CoreTempChangeLevel.COOLING;
 
         #region Info from the Core
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public CoreStatus Status = CoreStatus.OFFLINE;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public bool AutoSystem = false;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public float CurrCoreTemp = 0;
 
-        [DataField]
+        [ViewVariables(VVAccess.ReadOnly)]
         public float CurrentPowerSupply = 0;
 
         #endregion

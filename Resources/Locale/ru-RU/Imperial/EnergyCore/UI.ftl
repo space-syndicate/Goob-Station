@@ -17,12 +17,14 @@ status-inactive = Неактивно
 
 core-rise-status-label = Изменение температуры:
 core-rise-status = N/A
-temp-rise-true = Повышение
-temp-rise-moderate = Авто
-temp-rise-false = Понижение
+temp-rise-heating = Повышение
+temp-rise-auto = Авто
+temp-rise-cooling = Понижение
 
 core-protocol-status-label = Протокол безопасности:
 core-protocol-status = N/A
+core-protocol-true = Активен
+core-protocol-false = Неактивен
 core-status-label = Статус ядра:
 core-status = N/A
 core-temp-label = Температура ядра:

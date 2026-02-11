@@ -7,12 +7,12 @@ public sealed class CoreTerminalBoundUserInterfaceState : BoundUserInterfaceStat
     public readonly CoreStatus Status;
     public readonly bool TempRising;
     public readonly bool SafeProtocol;
-    public readonly byte AutoSystem;
+    public readonly CoreTempChangeLevel AutoSystem;
     public readonly float CoreTemp;
     public readonly float TempChangeCoef;
     public readonly float CurrentPowerSupply;
 
-    public CoreTerminalBoundUserInterfaceState(CoreStatus status, bool tempRising, bool safeProtocol, byte autoSystem, float coreTemp, float tempChangeCoef, float currentPowerSupply)
+    public CoreTerminalBoundUserInterfaceState(CoreStatus status, bool tempRising, bool safeProtocol, CoreTempChangeLevel autoSystem, float coreTemp, float tempChangeCoef, float currentPowerSupply)
     {
         Status = status;
         TempRising = tempRising;

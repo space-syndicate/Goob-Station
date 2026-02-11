@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
 using Robust.Server.GameObjects;
@@ -17,73 +16,91 @@ using Content.Server.Imperial.EnergyCore.Helpers;
 
 namespace Content.Server.Imperial.EnergyCore;
 
-public sealed class CoreAccessComputerSystem : SharedCoreAccessComputerSystem // : EntitySystem
+public sealed class CoreAccessComputerSystem : SharedCoreAccessComputerSystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
+    [Dependency] private readonly EnergyCoreSystem _core = default!;
+    public HashSet<EntityUid> CoreTerminalHash = new();
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CoreAccessComputerComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<CoreAccessComputerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<CoreAccessComputerComponent, EntInsertedIntoContainerMessage>(OnItemSlotChanged);
         SubscribeLocalEvent<CoreAccessComputerComponent, EntRemovedFromContainerMessage>(OnItemSlotChanged);
+        SubscribeLocalEvent<CoreInitEvent>(OnNewCoreInit);
     }
-    private void OnInit(EntityUid uid, CoreAccessComputerComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, CoreAccessComputerComponent terminal, ComponentInit args)
     {
-        _itemSlots.AddItemSlot(uid, SharedCoreAccessComponent.DeCodeSlotId, component.DeCodeSlot);
+        CoreTerminalHash.Add(uid);
+        RaiseLocalEvent(new CoreTerminalInitEvent());
+        _itemSlots.AddItemSlot(uid, SharedCoreAccessComponent.DeCodeSlotId, terminal.DeCodeSlot);
+        terminal.SearchTime = terminal.SearchTime + _timing.CurTime;
 
-        component.SearchTime = component.SearchTime + _timing.CurTime;
-
-        UpdateUi(uid, component);
+        RejoinCore(uid, terminal);
+        UpdateUi(uid, terminal);
     }
-    private void OnItemSlotChanged(EntityUid uid, CoreAccessComputerComponent component, ContainerModifiedMessage args)
+    private void OnShutdown(EntityUid uid, CoreAccessComputerComponent terminal, ComponentShutdown args)
+        => CoreTerminalHash.Remove(uid);
+    private void RejoinCore(EntityUid uid, CoreAccessComputerComponent terminal)
+        => terminal.ControledCore = _coreHelper.FindNearestEnergyCore(uid, _core.CoreHash, 30f);
+    private void OnNewCoreInit(CoreInitEvent ev)
     {
-        if (!component.Initialized)
+        var query = EntityQueryEnumerator<CoreAccessComputerComponent>();
+        while (query.MoveNext(out var uid, out var terminal))
+        {
+            RejoinCore(uid, terminal);
+        }
+    }
+    private void OnItemSlotChanged(EntityUid uid, CoreAccessComputerComponent terminal, ContainerModifiedMessage args)
+    {
+        if (!terminal.Initialized)
             return;
 
-        if (args.Container.ID != component.DeCodeSlot.ID)
+        if (args.Container.ID != terminal.DeCodeSlot.ID)
             return;
 
-        GetCheckTime(component);
+        GetCheckTime(terminal);
     }
-    private void GetCheckTime(CoreAccessComputerComponent component)
+    private void GetCheckTime(CoreAccessComputerComponent terminal)
     {
-        component.Time = _timing.CurTime + component.TimeToCheck;
+        terminal.Time = _timing.CurTime + terminal.TimeToCheck;
     }
-    private void CompleteProtocolDeactivation(EntityUid uid, CoreAccessComputerComponent component)
+    private void CompleteProtocolDeactivation(EntityUid uid, CoreAccessComputerComponent terminal)
     {
-        component.SaveProtocolWasDeactivated = true;
-        component.TerminalStatus = 2;
+        terminal.SaveProtocolWasDeactivated = true;
+        terminal.TerminalStatus = 2;
     }
-    private void UpdateVisual(EntityUid uid, CoreAccessComputerComponent component)
+    private void UpdateVisual(EntityUid uid, CoreAccessComputerComponent terminal)
     {
         if (TryComp<AppearanceComponent>(uid, out var appearance))
         {
-            _appearance.SetData(uid, CoreStatusScreenVisual.Core_Screen_Visual, component.TerminalStatus, appearance);
+            _appearance.SetData(uid, CoreStatusScreenVisual.Core_Screen_Visual, terminal.TerminalStatus, appearance);
         }
     }
     private void UpdateFinalCoef(EntityUid uid, CoreAccessComputerComponent value)
     {
         value.FinalTempChangeCoef = value.Reactivity * value.Halflife; // Халфлайф 3 не будет
     }
-    private void GetCurrTemp(EntityUid uid, CoreAccessComputerComponent component)
+    private void GetCurrTemp(EntityUid uid, CoreAccessComputerComponent terminal)
     {
-        var nearestUid = component.ControledCore;
+        var nearestUid = terminal.ControledCore;
         if (nearestUid == null || !TryComp(nearestUid, out EnergyCoreComponent? nearest))
         {
             return;
         }
         var (coreTemp, coreStatus) = GetCoreInfo(nearest);
-        component.CurrCoreTemp = coreTemp;
-        component.Status = coreStatus;
+        terminal.CurrCoreTemp = coreTemp;
+        terminal.Status = coreStatus;
     }
-    private (float coreTemp, CoreStatus coreStatus) GetCoreInfo(EnergyCoreComponent component)
+    private (float coreTemp, CoreStatus coreStatus) GetCoreInfo(EnergyCoreComponent terminal)
     {
-        var coreTemp = component.CoreTemp;
-        var coreStatus = component.Status;
+        var coreTemp = terminal.CoreTemp;
+        var coreStatus = terminal.Status;
 
         return (coreTemp, coreStatus);
     }
@@ -92,29 +109,19 @@ public sealed class CoreAccessComputerSystem : SharedCoreAccessComputerSystem //
         base.Update(frameTime);
 
         var query = EntityQueryEnumerator<CoreAccessComputerComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        while (query.MoveNext(out var uid, out var terminal))
         {
-            UpdateFinalCoef(uid, comp);
-            if (_timing.CurTime >= comp.Time && comp.DeCodeSlot.HasItem)
+            UpdateFinalCoef(uid, terminal);
+            if (_timing.CurTime >= terminal.Time && terminal.DeCodeSlot.HasItem)
             {
-                UpdateVisual(uid, comp);
-                if (!comp.DeactivationCompleted)
+                UpdateVisual(uid, terminal);
+                if (!terminal.DeactivationCompleted)
                 {
-                    comp.DeactivationCompleted = true;
-                    CompleteProtocolDeactivation(uid, comp);
+                    terminal.DeactivationCompleted = true;
+                    CompleteProtocolDeactivation(uid, terminal);
                 }
             }
-            GetCurrTemp(uid, comp);
-
-            if (_timing.CurTime < comp.SearchTime) // Ищет только первые 5 секунд
-            {
-                var nearestUid = _coreHelper.FindNearestEnergyCore(uid, 30f);
-                if (nearestUid == null ||
-                    !EntityManager.TryGetComponent<EnergyCoreComponent>(nearestUid.Value, out var nearest))
-                    continue;
-
-                comp.ControledCore = nearestUid;
-            }
+            GetCurrTemp(uid, terminal);
         }
     }
     #region public API
