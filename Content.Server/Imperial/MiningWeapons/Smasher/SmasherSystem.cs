@@ -35,8 +35,10 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
         UpdateSmashers();
         UpdateActiveShields();
+        UpdateDecayShield();
     }
 
     #region Update Methods
@@ -57,6 +59,20 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
             if (_timing.CurTime >= shield.EndTime)
             {
                 DeactivateShield(uid, shield);
+            }
+        }
+    }
+
+    private void UpdateDecayShield()
+    {
+        var shieldQuery = EntityQueryEnumerator<ShieldDecayComponent>();
+        while (shieldQuery.MoveNext(out var uid, out var decay))
+        {
+            // Manually disable sprite state animation at the last state in time (see meta.json)
+            if (_timing.CurTime >= decay.DecayEndTime)
+            {
+                HideShieldEffect(uid);
+                RemComp<ShieldDecayComponent>(uid);
             }
         }
     }

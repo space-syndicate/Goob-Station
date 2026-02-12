@@ -1023,6 +1023,9 @@
       accessLevels: 
       - Federationadmin
       - Federation
+      - FelixGorlexBaseID
+      - FelixGorlexModernID
+      - StarCorps
 
 - type: entity
   parent: Poweredlight

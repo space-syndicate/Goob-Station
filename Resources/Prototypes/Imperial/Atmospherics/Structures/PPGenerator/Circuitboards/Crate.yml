@@ -1,0 +1,24 @@
+- type: entity
+  parent: CrateEngineeringSecure
+  id: CratePPGCircuitboard
+  name: phase particle generator crate
+  description: Contains phase particle generator boards.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PPGCirculatorMachineCircuitboard
+          amount: 2
+        - id: PPGCenterMachineCircuitboard
+
+
+- type: cargoProduct
+  id: EngineeringPPGCircuitboard
+  icon:
+    sprite: Imperial/Gases/Structures/PPGenerator/PPGenerator.rsi
+    state: assembly
+  product: CratePPGCircuitboard
+  cost: 9500
+  category: cargoproduct-category-name-atmospherics
+  group: market

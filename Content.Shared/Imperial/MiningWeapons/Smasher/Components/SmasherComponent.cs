@@ -25,6 +25,10 @@ public sealed partial class SmasherComponent : Component
     [DataField(serverOnly: true)]
     public Dictionary<EntityUid, FixedPoint2> LastTotalDamage = new();
 
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LastStateUpdateTime = TimeSpan.Zero;
+
     /// <summary>
     /// Used dictionary because system dictionaries store temporary server-side state;
     /// components store permanent networked data.
@@ -41,7 +45,7 @@ public sealed partial class SmasherComponent : Component
     };
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan ActiveShieldTime = TimeSpan.FromSeconds(15f);
+    public TimeSpan NextActiveShieldTime = TimeSpan.FromSeconds(15f);
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan TimeDeleteAlertTimeSpan = TimeSpan.FromSeconds(5);
@@ -64,9 +68,6 @@ public sealed partial class SmasherComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ActiveShieldCooldown = TimeSpan.FromSeconds(60f);
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan AlertTime;
-
     /// <summary>
     /// Includes shield decay time.
     /// </summary>
@@ -75,6 +76,12 @@ public sealed partial class SmasherComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan TimeChargingSmasher = TimeSpan.FromSeconds(5.0f);
+
+    /// <summary>
+    /// depends on the animation of the Decay sprite itself
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan TimeDecay = TimeSpan.FromSeconds(2.0f);
 
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]

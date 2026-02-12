@@ -1,0 +1,16 @@
+- type: entity
+  id: PocketDimensionWarp
+  parent: MarkerBase
+  name: pocket dimension warp
+  components:
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: WarpPoint
+    location: pocket dimension
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Sprite
+    state: pink
+  - type: SCP106PocketDimensionMarker

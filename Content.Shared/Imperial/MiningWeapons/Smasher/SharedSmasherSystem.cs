@@ -28,6 +28,11 @@ public abstract partial class SharedSmasherSystem : EntitySystem
         RaiseNetworkEvent(new ShowShieldEffectEvent(GetNetEntity(user), effect, loop));
     }
 
+    protected void HideShieldEffect(EntityUid user)
+    {
+        RaiseNetworkEvent(new HideShieldEffectEvent(GetNetEntity(user)));
+    }
+
     protected bool CanActivateShield(SmasherComponent component)
     {
         return _timing.CurTime >= component.NextActivationTime;
