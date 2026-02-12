@@ -5,15 +5,14 @@
   components:
   - type: XenoGene
   - type: Sprite
-    sprite: Imperial/Xenogenetics/gene_sample:?
-    ">.rsi
+    sprite: Imperial/Xenogenetics/gene_sample.rsi
   - type: Item
     size: Tiny
 
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleMouse
-  name: генетический материал (мелкий грызун)
+  name: gene material (mouse)
   components:
   - type: SpeedModifierGene
   - type: XenoGene
@@ -23,7 +22,7 @@
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleRabbit
-  name: генетический материал (кролик)
+  name: gene material (mouse)
   components:
   - type: AddComponentsGene
     threshold: 65.0
@@ -45,7 +44,7 @@
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleCat
-  name: генетический материал (кошка)
+  name: gene material (mouse)
   components:
   - type: AddComponentsNoRandomGene
     components:
@@ -60,7 +59,7 @@
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleSpacemob
-  name: генетический материал (космическая фауна)
+  name: gene material (mouse)
   components:
   - type: RespiratorGene
     components:
@@ -79,7 +78,7 @@
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleCarp
-  name: генетический материал (карп)
+  name: gene material (mouse)
   components:
   - type: AddComponentsNoRandomGene
     components:
@@ -98,7 +97,7 @@
 - type: entity
   parent: BaseGeneSample
   id: GeneSampleCarpShark
-  name: генетический материал (карпоакула)
+  name: gene material (mouse)
   components:
   - type: AddComponentsNoRandomGene
     components:

@@ -4,11 +4,14 @@
   id: ImperialGeneSplicerBase
   description: Jesse, insert that catgirl gene into yourself Jesse
   components:
+  - type: Appearance
   - type: Sprite
-    sprite: Objects/Devices/gps.rsi
+    sprite: Imperial/Xenogenetics/splicer.rsi
     layers:
     - state: icon
-    - state: active
+    - state: gene-inserted
+      map: [ gene ]
+      visible: false
   - type: UseDelay
     delay: 0.9
   - type: Item
@@ -24,4 +27,12 @@
           components:
             - XenoGene
         priority: 3
+  - type: ItemMapper
+    spriteLayers:
+    - gene
+    mapLayers:
+      gene:
+        whitelist:
+          components:
+            - XenoGene
   - type: GeneSplicer
