@@ -85,7 +85,7 @@ public sealed class NDA079GeneratorSystem : EntitySystem
 
         if (stationaryEntity == null || !Exists(stationaryEntity.Value))
         {
-            SetBaseRegenForEntity(activeEntity.Value);
+            ApplyRegenBonus(activeEntity.Value, 0f);
             return;
         }
 
@@ -136,16 +136,6 @@ public sealed class NDA079GeneratorSystem : EntitySystem
         Dirty(entity, energyComp);
     }
 
-    private void SetBaseRegenForEntity(EntityUid entity)
-    {
-        if (!TryComp<AlertEnergyComponent>(entity, out var energyComp))
-            return;
-
-        var baseRegen = GetBaseRegen(entity, energyComp);
-        energyComp.RegenPerSecond = baseRegen;
-        Dirty(entity, energyComp);
-    }
-
     private float GetBaseRegen(EntityUid uid, AlertEnergyComponent component)
     {
         var proto = MetaData(uid).EntityPrototype;
@@ -161,12 +151,5 @@ public sealed class NDA079GeneratorSystem : EntitySystem
             return component.RegenPerSecond;
 
         return protoComponent.RegenPerSecond;
-    }
-
-    private void SetBaseRegen(EntityUid uid, AlertEnergyComponent component)
-    {
-        var baseRegen = GetBaseRegen(uid, component);
-        component.RegenPerSecond = baseRegen;
-        Dirty(uid, component);
     }
 }

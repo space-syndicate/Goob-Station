@@ -1,49 +1,44 @@
-using System;
-using System.Collections.Generic;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.XxRaay.Nda079;
 
 /// <summary>
-/// Configuration for NDA079 ability values at different CPU levels.
+/// Конфигурация способности мерцания света NDA079 для конкретного уровня CPU.
 /// </summary>
-public static class NDA079LevelConfig
+[Prototype("nda079LightFlickerLevel")]
+public sealed partial class NDA079LightFlickerLevelPrototype : IPrototype
 {
-    public sealed class LightFlickerConfig
-    {
-        public TimeSpan LightOffDuration { get; init; }
-        public float Radius { get; init; }
-        public float SuccessChance { get; init; }
-        public TimeSpan Cooldown { get; init; }
-    }
+    [IdDataField] public string ID { get; } = default!;
 
-    public sealed class AirlockConfig
-    {
-        public TimeSpan BoltDuration { get; init; }
-        public float SuccessChance { get; init; }
-    }
+    [DataField(required: true)]
+    public int Level;
 
-    private static readonly Dictionary<int, LightFlickerConfig> LightFlickerConfigs = new()
-    {
-        { 2, new LightFlickerConfig { LightOffDuration = TimeSpan.FromSeconds(15), Radius = 20f, SuccessChance = 0.95f, Cooldown = TimeSpan.FromSeconds(40) } },
-        { 3, new LightFlickerConfig { LightOffDuration = TimeSpan.FromSeconds(30), Radius = 35f, SuccessChance = 1.0f, Cooldown = TimeSpan.FromSeconds(70) } },
-        { 4, new LightFlickerConfig { LightOffDuration = TimeSpan.FromSeconds(60), Radius = 45f, SuccessChance = 1.0f, Cooldown = TimeSpan.FromSeconds(90) } },
-    };
+    [DataField(required: true)]
+    public TimeSpan LightOffDuration;
 
-    private static readonly Dictionary<int, AirlockConfig> AirlockConfigs = new()
-    {
-        { 2, new AirlockConfig { BoltDuration = TimeSpan.FromSeconds(10), SuccessChance = 0.95f } },
-        { 3, new AirlockConfig { BoltDuration = TimeSpan.FromSeconds(30), SuccessChance = 1.0f } },
-        { 4, new AirlockConfig { BoltDuration = TimeSpan.FromSeconds(60), SuccessChance = 1.0f } },
-    };
+    [DataField(required: true)]
+    public float Radius;
 
-    public static LightFlickerConfig? GetLightFlickerConfig(int level)
-    {
-        return LightFlickerConfigs.GetValueOrDefault(level);
-    }
+    [DataField(required: true)]
+    public float SuccessChance;
 
-    public static AirlockConfig? GetAirlockConfig(int level)
-    {
-        return AirlockConfigs.GetValueOrDefault(level);
-    }
+    [DataField(required: true)]
+    public TimeSpan Cooldown;
 }
+
+[Prototype("nda079AirlockLevel")]
+public sealed partial class NDA079AirlockLevelPrototype : IPrototype
+{
+    [IdDataField] public string ID { get; } = default!;
+
+    [DataField(required: true)]
+    public int Level;
+
+    [DataField(required: true)]
+    public TimeSpan BoltDuration;
+
+    [DataField(required: true)]
+    public float SuccessChance;
+}
+
 

@@ -104,8 +104,6 @@ public sealed class NDA079AirlockAbilitySystem : SharedNDA079AirlockAbilitySyste
         {
             if (_activeRadial == radial)
                 _activeRadial = null;
-
-            radial.Dispose();
         };
 
         radial.OpenAttached(target);

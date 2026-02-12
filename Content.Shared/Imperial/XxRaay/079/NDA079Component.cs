@@ -49,12 +49,12 @@ public sealed partial class NDA079Component : Component
     /// <summary>
     /// Время последнего использования способности мерцания света 
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan? LightFlickerLastUsedTime;
 
     /// <summary>
     /// Время последнего использования способности управления шлюзами
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan? AirlockAbilityLastUsedTime;
 }

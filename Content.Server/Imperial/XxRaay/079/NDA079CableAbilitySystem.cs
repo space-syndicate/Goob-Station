@@ -32,13 +32,13 @@ public sealed class NDA079CableAbilitySystem : SharedNDA079CableAbilitySystem
         SubscribeLocalEvent<NDA079CableAbilityComponent, MindAddedMessage>(OnMindAdded);
     }
 
-    private void OnMindAdded(Entity<NDA079CableAbilityComponent> entity, ref MindAddedMessage args)
+    private void OnMindAdded(EntityUid uid, NDA079CableAbilityComponent comp, ref MindAddedMessage args)
     {
-        if (!_mind.TryGetMind(entity.Owner, out var mindId, out _))
+        if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;
 
         var mindActionContainer = EnsureComp<ActionsContainerComponent>(mindId);
-        var actionProto = entity.Comp.ActionProto;
+        var actionProto = comp.ActionProto;
 
         if (HasActionInContainer(mindActionContainer, actionProto.ToString()))
             return;
@@ -46,7 +46,7 @@ public sealed class NDA079CableAbilitySystem : SharedNDA079CableAbilitySystem
         var action = _actionContainer.AddAction(mindId, actionProto.ToString(), mindActionContainer);
         if (action != null)
         {
-            _actions.GrantContainedAction((entity.Owner, null), (mindId, mindActionContainer), action.Value);
+            _actions.GrantContainedAction((uid, null), (mindId, mindActionContainer), action.Value);
         }
     }
 
@@ -87,12 +87,12 @@ public sealed class NDA079CableAbilitySystem : SharedNDA079CableAbilitySystem
         if (abilityComp.LastUsedTime.HasValue)
         {
             var timeSinceLastUse = curTime - abilityComp.LastUsedTime.Value;
-            var cooldown = TimeSpan.FromSeconds(abilityComp.CooldownSeconds);
+            var cooldown = abilityComp.Cooldown;
             if (timeSinceLastUse < cooldown)
             {
                 var remaining = cooldown - timeSinceLastUse;
                 _popup.PopupEntity(Loc.GetString("nda079-ability-cooldown",
-                    ("remaining", remaining.TotalSeconds.ToString("F1"))),
+                        ("remaining", remaining.TotalSeconds.ToString("F1"))),
                     user,
                     user);
                 return;

@@ -18,7 +18,7 @@ public sealed partial class NDA079CpuHackingComponent : Component
     /// <summary>
     /// Time when the next progress message should be sent.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextMessageTime;
 
     /// <summary>

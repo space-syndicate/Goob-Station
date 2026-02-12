@@ -127,9 +127,7 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
             }
         }
 
-        if (!TryComp<TransformComponent>(user, out var transform))
-            return;
-
+        var transform = Transform(user);
         if (transform.MapID == MapId.Nullspace)
             return;
 

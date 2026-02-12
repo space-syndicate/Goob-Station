@@ -13,31 +13,31 @@ public sealed partial class NDA079CableAbilityComponent : Component
     /// <summary>
     /// Время последнего использования способности
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan? LastUsedTime;
 
     /// <summary>
     /// Цена энергии за использование способности
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float EnergyCost = 5f;
 
     /// <summary>
-    /// Время перезарядки способности в секундах
+    /// Время перезарядки способности
     /// </summary>
-    [DataField]
-    public float CooldownSeconds = 0.3f;
+    [DataField, AutoNetworkedField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(0.3);
 
     /// <summary>
     /// Прототип экшена для спавна кабеля
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntProtoId ActionProto = "ActionNDA079SpawnCable";
 
     /// <summary>
     /// Прототип кабеля
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntProtoId CableProto = "Cable079";
 }
 

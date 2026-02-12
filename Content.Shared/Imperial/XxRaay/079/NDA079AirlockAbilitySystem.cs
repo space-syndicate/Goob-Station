@@ -36,5 +36,7 @@ public abstract class SharedNDA079AirlockAbilitySystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    protected abstract void OnAirlockVerbAct(EntityUid user, EntityUid target);
+    protected virtual void OnAirlockVerbAct(EntityUid user, EntityUid target)
+    {
+    }
 }

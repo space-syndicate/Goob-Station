@@ -33,50 +33,50 @@ public sealed class NDA079System : EntitySystem
         SubscribeLocalEvent<NDA079Component, MindAddedMessage>(OnMindAdded);
     }
 
-    private void OnMindAdded(Entity<NDA079Component> entity, ref MindAddedMessage args)
+    private void OnMindAdded(EntityUid uid, NDA079Component comp, ref MindAddedMessage args)
     {
-        if (!_sharedMind.TryGetMind(entity.Owner, out var mindId, out _))
+        if (!_sharedMind.TryGetMind(uid, out var mindId, out _))
             return;
 
-        var action = EnsureToggleActionInMind(mindId, entity.Comp.ToggleActionProto);
-        GrantActionIfPresent(entity.Owner, mindId, action);
+        var action = EnsureToggleActionInMind(mindId, comp.ToggleActionProto);
+        GrantActionIfPresent(uid, mindId, action);
     }
 
-    private void OnToggleVisionMode(Entity<NDA079Component> entity, ref NDA079ToggleVisionModeEvent args)
+    private void OnToggleVisionMode(EntityUid uid, NDA079Component comp, ref NDA079ToggleVisionModeEvent args)
     {
         if (args.Handled)
             return;
 
-        if (entity.Comp.InAIVisionMode == false)
+        if (!comp.InAIVisionMode)
         {
-            if (!_sharedMind.TryGetMind(entity.Owner, out var mindId, out var mind))
+            if (!_sharedMind.TryGetMind(uid, out var mindId, out var mind))
                 return;
 
             var userId = mind.UserId;
             if (userId == null)
                 return;
 
-            var proto = entity.Comp.AIVisionFlyingEntityProto;
-            var coords = Transform(entity.Owner).Coordinates;
+            var proto = comp.AIVisionFlyingEntityProto;
+            var coords = Transform(uid).Coordinates;
             var newb = SpawnAtPosition(proto, coords);
             var newcomp = EnsureComp<NDA079Component>(newb);
 
             newcomp.InAIVisionMode = true;
-            newcomp.OriginalEntity = entity.Owner;
+            newcomp.OriginalEntity = uid;
             newcomp.AIVisionEntity = null;
-            newcomp.OriginalEntityProto = MetaData(entity.Owner).EntityPrototype?.ID;
+            newcomp.OriginalEntityProto = MetaData(uid).EntityPrototype?.ID;
             Dirty(newb, newcomp);
 
-            entity.Comp.InAIVisionMode = true;
-            entity.Comp.AIVisionEntity = newb;
-            entity.Comp.OriginalEntity = entity.Owner;
-            entity.Comp.OriginalEntityProto = MetaData(entity.Owner).EntityPrototype?.ID;
-            Dirty(entity);
+            comp.InAIVisionMode = true;
+            comp.AIVisionEntity = newb;
+            comp.OriginalEntity = uid;
+            comp.OriginalEntityProto = MetaData(uid).EntityPrototype?.ID;
+            Dirty(uid, comp);
 
             EnsureComp<SpeechComponent>(newb);
             _speech.SetSpeech(newb, true);
 
-            if (TryComp<AlertEnergyComponent>(entity.Owner, out var sourceEnergy))
+            if (TryComp<AlertEnergyComponent>(uid, out var sourceEnergy))
             {
                 if (TryComp<AlertEnergyComponent>(newb, out var targetEnergy))
                 {
@@ -84,7 +84,7 @@ public sealed class NDA079System : EntitySystem
                 }
             }
 
-            if (TryComp<NDA079CpuComponent>(entity.Owner, out var originalCpu))
+            if (TryComp<NDA079CpuComponent>(uid, out var originalCpu))
             {
                 var newCpu = EnsureComp<NDA079CpuComponent>(newb);
                 newCpu.CurrentLevel = originalCpu.CurrentLevel;
@@ -92,48 +92,47 @@ public sealed class NDA079System : EntitySystem
                 Dirty(newb, newCpu);
             }
 
-            if (TryComp<NDA079LightFlickerAbilityComponent>(newb, out var lightFlickerComp))
+            if (TryComp<NDA079CpuComponent>(uid, out var cpu))
             {
-                lightFlickerComp.LastUsedTime = entity.Comp.LightFlickerLastUsedTime;
-                Dirty(newb, lightFlickerComp);
+                var level = cpu.CurrentLevel;
 
-                if (!TryComp<NDA079CpuComponent>(entity, out var cpu))
-                    return;
-
-                var lightConfig = NDA079LevelConfig.GetLightFlickerConfig(cpu.CurrentLevel);
-                if (lightConfig != null)
+                if (TryComp<NDA079LightFlickerAbilityComponent>(newb, out var lightFlickerComp))
                 {
-                    lightFlickerComp.LightOffDuration = lightConfig.LightOffDuration;
-                    lightFlickerComp.Radius = lightConfig.Radius;
-                    lightFlickerComp.SuccessChance = lightConfig.SuccessChance;
-                    lightFlickerComp.Cooldown = lightConfig.Cooldown;
+                    lightFlickerComp.LastUsedTime = comp.LightFlickerLastUsedTime;
+
+                    if (_prototype.TryIndex<NDA079LightFlickerLevelPrototype>($"NDA079LightFlickerLevel{level}", out var lightProto))
+                    {
+                        lightFlickerComp.LightOffDuration = lightProto.LightOffDuration;
+                        lightFlickerComp.Radius = lightProto.Radius;
+                        lightFlickerComp.SuccessChance = lightProto.SuccessChance;
+                        lightFlickerComp.Cooldown = lightProto.Cooldown;
+                    }
+
+                    Dirty(newb, lightFlickerComp);
+                }
+
+                if (TryComp<NDA079AirlockAbilityComponent>(newb, out var airlockComp))
+                {
+                    airlockComp.LastUsedTime = comp.AirlockAbilityLastUsedTime;
+
+                    if (_prototype.TryIndex<NDA079AirlockLevelPrototype>($"NDA079AirlockLevel{level}", out var airlockProto))
+                    {
+                        airlockComp.BoltDuration = airlockProto.BoltDuration;
+                        airlockComp.SuccessChance = airlockProto.SuccessChance;
+                    }
+
+                    Dirty(newb, airlockComp);
                 }
             }
 
-            if (TryComp<NDA079AirlockAbilityComponent>(newb, out var airlockComp))
-            {
-                airlockComp.LastUsedTime = entity.Comp.AirlockAbilityLastUsedTime;
-                Dirty(newb, airlockComp);
-
-                if (!TryComp<NDA079CpuComponent>(entity, out var cpu))
-                    return;
-
-                var airlockConfig = NDA079LevelConfig.GetAirlockConfig(cpu.CurrentLevel);
-                if (airlockConfig != null)
-                {
-                    airlockComp.BoltDuration = airlockConfig.BoltDuration;
-                    airlockComp.SuccessChance = airlockConfig.SuccessChance;
-                }
-            }
-
-            _actions.RemoveProvidedActions(entity.Owner, mindId);
+            _actions.RemoveProvidedActions(uid, mindId);
 
             _mind.WipeMind(mindId);
-            var newMind = _mind.CreateMind(userId.Value, MetaData(entity.Owner).EntityName);
+            var newMind = _mind.CreateMind(userId.Value, MetaData(uid).EntityName);
             _sharedMind.SetUserId(newMind, userId.Value);
 
             _mind.TransferTo(newMind, newb);
-            var action = EnsureToggleActionInMind(newMind, entity.Comp.ToggleActionProto);
+            var action = EnsureToggleActionInMind(newMind, comp.ToggleActionProto);
             GrantActionIfPresent(newb, newMind, action);
 
             if (TryComp<NDA079LightFlickerAbilityComponent>(newb, out var newLightFlickerComp))
@@ -147,14 +146,14 @@ public sealed class NDA079System : EntitySystem
         }
         else
         {
-            if (!_sharedMind.TryGetMind(entity.Owner, out var mindId, out var mind))
+            if (!_sharedMind.TryGetMind(uid, out var mindId, out var mind))
                 return;
 
             var userId = mind.UserId;
             if (userId == null)
                 return;
 
-            var originalEntity = entity.Comp.OriginalEntity;
+            var originalEntity = comp.OriginalEntity;
             if (originalEntity == null || !Exists(originalEntity.Value))
                 return;
 
@@ -172,7 +171,7 @@ public sealed class NDA079System : EntitySystem
             RemComp<BlockListeningComponent>(originalEntityValue);
             _speech.SetSpeech(originalEntityValue, true);
 
-            if (TryComp<AlertEnergyComponent>(entity.Owner, out var sourceEnergy))
+            if (TryComp<AlertEnergyComponent>(uid, out var sourceEnergy))
             {
                 if (TryComp<AlertEnergyComponent>(originalEntityValue, out var targetEnergy))
                 {
@@ -180,7 +179,7 @@ public sealed class NDA079System : EntitySystem
                 }
             }
 
-            if (TryComp<NDA079CpuComponent>(entity.Owner, out var flyingCpu))
+            if (TryComp<NDA079CpuComponent>(uid, out var flyingCpu))
             {
                 var statCpu = EnsureComp<NDA079CpuComponent>(originalEntityValue);
                 statCpu.CurrentLevel = flyingCpu.CurrentLevel;
@@ -188,19 +187,19 @@ public sealed class NDA079System : EntitySystem
                 Dirty(originalEntityValue, statCpu);
             }
 
-            if (TryComp<NDA079LightFlickerAbilityComponent>(entity.Owner, out var lightFlickerComp))
+            if (TryComp<NDA079LightFlickerAbilityComponent>(uid, out var lightFlickerComp))
             {
                 originalComp.LightFlickerLastUsedTime = lightFlickerComp.LastUsedTime;
                 Dirty(originalEntityValue, originalComp);
             }
 
-            if (TryComp<NDA079AirlockAbilityComponent>(entity.Owner, out var airlockComp))
+            if (TryComp<NDA079AirlockAbilityComponent>(uid, out var airlockComp))
             {
                 originalComp.AirlockAbilityLastUsedTime = airlockComp.LastUsedTime;
                 Dirty(originalEntityValue, originalComp);
             }
 
-            _actions.RemoveProvidedActions(entity.Owner, mindId);
+            _actions.RemoveProvidedActions(uid, mindId);
 
             _mind.WipeMind(mindId);
             var newMind = _mind.CreateMind(userId.Value, MetaData(originalEntityValue).EntityName);
@@ -210,7 +209,7 @@ public sealed class NDA079System : EntitySystem
             var action = EnsureToggleActionInMind(newMind, originalComp.ToggleActionProto);
             GrantActionIfPresent(originalEntityValue, newMind, action);
 
-            Del(entity.Owner);
+            Del(uid);
 
             _generatorSystem.RefreshRegen(originalEntityValue);
         }
