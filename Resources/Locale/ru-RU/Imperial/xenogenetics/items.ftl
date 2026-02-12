@@ -1,4 +1,4 @@
-ent-ImperialGeneSplicerBase = сайщик генов
+ent-ImperialGeneSplicerBase = спайщик генов
     .desc = Позволяет выводить и вводить гены. Заставьте вашего главу отрастить пару кошачаьих ушей!
 
 ent-GeneSampleMouse = генетический материал (мышь)
