@@ -1,0 +1,24 @@
+- type: technology
+  id: BasicXenogenetics
+  name: research-technology-basic-xenogenetics
+  icon:
+    sprite: Imperial/Xenogenetics/splicer.rsi
+    state: icon
+  discipline: Experimental
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - GeneSplicerRecipe
+
+- type: latheRecipePack
+  id: ImperialGeneticsPack
+  recipes:
+  - GeneSplicerRecipe
+
+- type: latheRecipe
+  id: GeneSplicerRecipe
+  result: ImperialGeneSplicerBase
+  completetime: 2
+  materials:
+    Steel: 300
+    Plastic: 100
