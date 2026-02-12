@@ -53,6 +53,11 @@ public sealed partial class SupermatterGasComponent : Component
     public float TritiumLightningMultiplier = 2f;
 
     /// <summary>
+    /// Текущий множитель количества молний
+    /// </summary>
+    public float CurrentLightningMultiplier = 1f;
+
+    /// <summary>
     /// Множитель скорости наступления случайных событий при наличии водяного газа.
     /// Значение 2 означает, что события происходят в 2 раза чаще.
     /// </summary>
@@ -68,6 +73,11 @@ public sealed partial class SupermatterGasComponent : Component
     /// Была ли суперматерия выключена антиноблием.
     /// </summary>
     public bool WasShutdownByAntiNoblium = false;
+
+    /// <summary>
+    /// Активен ли эффект гипер-ноблия
+    /// </summary>
+    public bool HyperNobTouchCancelActive = false;
 
     /// <summary>
     /// Кэши газовых смесей из последнего обновления атмосферы.

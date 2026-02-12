@@ -1,15 +1,19 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Power.Components;
-using Content.Server.Imperial.Power.EntitySystems.Events;
 using Content.Server.Lightning;
 using Content.Server.NukeOps;
 using Content.Server.Radio.EntitySystems;
+using Content.Shared.Atmos;
 using Content.Shared.Chat;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Radiation.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Localization;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -203,26 +207,23 @@ public sealed class SupermatterEventSystem : EntitySystem
         var randomEvtIndex = _random.Next(0, comp.AllowedEventTypes.Count);
         var randomEvtType = comp.AllowedEventTypes[randomEvtIndex];
 
-        if (!comp.SupermatterEventTypesToEvents.TryGetValue(randomEvtType, out var eventHandler))
-            return;
-
-        switch (eventHandler)
+        switch (randomEvtType)
         {
-            case SupermatterNoneEvent:
-                SupermatterNoneEvent.Activate(entity, this);
-                AnnounceFromSupermatterConsole(entity.Owner, SupermatterNoneEvent.GetAnnouncement());
+            case SupermatterEventComponent.SupermatterEventType.None:
+                ActivateNoneEvent(entity);
+                AnnounceFromSupermatterConsole(entity.Owner, GetNoneAnnouncement());
                 break;
-            case SupermatterLightningEvent:
-                SupermatterLightningEvent.Activate(entity, this);
-                AnnounceFromSupermatterConsole(entity.Owner, SupermatterLightningEvent.GetAnnouncement());
+            case SupermatterEventComponent.SupermatterEventType.Lightning:
+                ActivateLightningEvent(entity);
+                AnnounceFromSupermatterConsole(entity.Owner, GetLightningAnnouncement());
                 break;
-            case SupermatterRadiationEvent:
-                SupermatterRadiationEvent.Activate(entity, this);
-                AnnounceFromSupermatterConsole(entity.Owner, SupermatterRadiationEvent.GetAnnouncement());
+            case SupermatterEventComponent.SupermatterEventType.Radiation:
+                ActivateRadiationEvent(entity);
+                AnnounceFromSupermatterConsole(entity.Owner, GetRadiationAnnouncement());
                 break;
-            case SupermatterPlasmaEvent:
-                SupermatterPlasmaEvent.Activate(entity, this);
-                AnnounceFromSupermatterConsole(entity.Owner, SupermatterPlasmaEvent.GetAnnouncement());
+            case SupermatterEventComponent.SupermatterEventType.Plasma:
+                ActivatePlasmaEvent(entity);
+                AnnounceFromSupermatterConsole(entity.Owner, GetPlasmaAnnouncement());
                 break;
         }
     }
@@ -234,24 +235,213 @@ public sealed class SupermatterEventSystem : EntitySystem
         if (comp.EventEndTime == TimeSpan.Zero)
             return;
 
-        if (!comp.SupermatterEventTypesToEvents.TryGetValue(comp.CurrentEvent, out var eventHandler))
-            return;
-
-        switch (eventHandler)
+        switch (comp.CurrentEvent)
         {
-            case SupermatterNoneEvent:
-                SupermatterNoneEvent.Process(entity, this, currentTime);
+            case SupermatterEventComponent.SupermatterEventType.None:
+                ProcessNoneEvent(entity, currentTime);
                 break;
-            case SupermatterLightningEvent:
-                SupermatterLightningEvent.Process(entity, this, currentTime);
+            case SupermatterEventComponent.SupermatterEventType.Lightning:
+                ProcessLightningEvent(entity, currentTime);
                 break;
-            case SupermatterRadiationEvent:
-                SupermatterRadiationEvent.Process(entity, this, currentTime);
+            case SupermatterEventComponent.SupermatterEventType.Radiation:
+                ProcessRadiationEvent(entity, currentTime);
                 break;
-            case SupermatterPlasmaEvent:
-                SupermatterPlasmaEvent.Process(entity, this, currentTime);
+            case SupermatterEventComponent.SupermatterEventType.Plasma:
+                ProcessPlasmaEvent(entity, currentTime);
                 break;
         }
+    }
+
+    private static void ActivateNoneEvent(Entity<SupermatterEventComponent> entity)
+    {
+        if (entity.AsType() == EntityUid.Invalid)
+            return;
+
+        var comp = entity.Comp;
+        var currentTime = comp.LastEventEndTimeUpdate;
+
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.None;
+        comp.EventEndTime = TimeSpan.Zero;
+        comp.NextEventTimer = comp.NoneEventDuration;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
+    }
+
+    private static void ProcessNoneEvent(Entity<SupermatterEventComponent> entity, TimeSpan _)
+    {
+    }
+
+    private static string GetNoneAnnouncement()
+    {
+        return Robust.Shared.Localization.Loc.GetString("supermatter-event-none");
+    }
+
+    private void ActivateLightningEvent(Entity<SupermatterEventComponent> entity)
+    {
+        if (entity.AsType() == EntityUid.Invalid)
+        {
+            Log.Error("SupermatterEventSystem.ActivateLightningEvent: Invalid EntityUid provided");
+            return;
+        }
+
+        var comp = entity.Comp;
+        var currentTime = GameTiming.CurTime;
+
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Lightning;
+        comp.EventEndTime = comp.LightningEventDuration;
+        comp.NextEventTimer = comp.EventAfterLightingTime;
+        comp.LightningCooldown = TimeSpan.Zero;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
+        comp.LastLightningCooldownUpdate = currentTime;
+
+        ShootRandomLightnings(entity);
+    }
+
+    private void ProcessLightningEvent(Entity<SupermatterEventComponent> entity, TimeSpan currentTime)
+    {
+        var comp = entity.Comp;
+
+        var elapsedSinceLastUpdate = currentTime - comp.LastLightningCooldownUpdate;
+        comp.LightningCooldown -= elapsedSinceLastUpdate;
+        comp.LastLightningCooldownUpdate = currentTime;
+
+        if (comp.LightningCooldown > TimeSpan.Zero)
+            return;
+
+        ShootRandomLightnings(entity);
+
+        if (TryGetComponent<SupermatterIntegrityComponent>(entity, out var integrity) &&
+            integrity != null &&
+            TryGetComponent<DamageableComponent>(entity, out _))
+        {
+            Damageable.TryChangeDamage(entity.Owner, integrity.TickDamage, origin: null);
+        }
+
+        comp.LightningCooldown = comp.LightningCooldownDuration;
+    }
+
+    private void ShootRandomLightnings(Entity<SupermatterEventComponent> entity)
+    {
+        var boltCount = entity.Comp.LightningBoltCount;
+
+        if (TryGetComponent<SupermatterGasComponent>(entity, out var gasComp)
+            && gasComp != null
+            && gasComp.CurrentLightningMultiplier > 1f)
+        {
+            boltCount = (int) MathF.Max(1, boltCount * gasComp.CurrentLightningMultiplier);
+        }
+
+        LightningSystem?.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, boltCount);
+    }
+
+    private static string GetLightningAnnouncement()
+    {
+        return Robust.Shared.Localization.Loc.GetString("supermatter-event-lightning");
+    }
+
+    private void ActivateRadiationEvent(Entity<SupermatterEventComponent> entity)
+    {
+        if (entity.AsType() == EntityUid.Invalid)
+        {
+            Log.Error("SupermatterEventSystem.ActivateRadiationEvent: Invalid EntityUid provided");
+            return;
+        }
+
+        var comp = entity.Comp;
+        var currentTime = GameTiming.CurTime;
+
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Radiation;
+        comp.EventEndTime = comp.RadiationEventDuration;
+        comp.NextEventTimer = comp.EventAfterRadiationTime;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
+
+        SetRadiation(entity.Owner, comp.RadiationEventIntensity);
+    }
+
+    private void ProcessRadiationEvent(Entity<SupermatterEventComponent> entity, TimeSpan _)
+    {
+    }
+
+    private static string GetRadiationAnnouncement()
+    {
+        return Robust.Shared.Localization.Loc.GetString("supermatter-event-radiation");
+    }
+
+    private void ActivatePlasmaEvent(Entity<SupermatterEventComponent> entity)
+    {
+        if (entity.AsType() == EntityUid.Invalid)
+        {
+            Log.Error("SupermatterEventSystem.ActivatePlasmaEvent: Invalid EntityUid provided");
+            return;
+        }
+
+        var comp = entity.Comp;
+        var currentTime = GameTiming.CurTime;
+
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Plasma;
+        comp.EventEndTime = comp.PlasmaEventDuration;
+        comp.NextEventTimer = comp.EventAfterPlasmaTime;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
+        comp.LastPlasmaTickUpdate = currentTime;
+    }
+
+    private void ProcessPlasmaEvent(Entity<SupermatterEventComponent> entity, TimeSpan currentTime)
+    {
+        var comp = entity.Comp;
+
+        comp.PlasmaTickAccumulator ??= TimeSpan.Zero;
+
+        var elapsedSinceLastUpdate = currentTime - comp.LastPlasmaTickUpdate;
+        comp.PlasmaTickAccumulator += elapsedSinceLastUpdate;
+        comp.LastPlasmaTickUpdate = currentTime;
+
+        if (comp.PlasmaTickAccumulator < comp.PlasmaTickInterval)
+            return;
+
+        if (!TryGetComponent<TransformComponent>(entity, out var xform) || xform == null)
+        {
+            return;
+        }
+
+        var gas = Atmos.GetContainingMixture(entity.Owner, true);
+        if (gas == null)
+            return;
+
+        gas.AdjustMoles((int) Gas.Plasma, comp.PlasmaMolesAmount);
+        gas.AdjustMoles((int) Gas.Oxygen, comp.PlasmaMolesAmount);
+
+        if (!TryGetGridUid(xform, out var gridUid))
+        {
+            Log.Warning($"Supermatter plasma event triggered for entity {entity} without grid");
+            return;
+        }
+
+        if (!TryGetComponent<MapGridComponent>(gridUid, out var grid) || grid == null)
+            return;
+
+        var tile = MapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+        CreateHotspot(Atmos, gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, entity);
+
+        comp.PlasmaTickAccumulator -= comp.PlasmaTickInterval;
+    }
+
+    private static bool TryGetGridUid(TransformComponent xform, out EntityUid gridUid)
+    {
+        gridUid = xform.GridUid ?? default;
+        return xform.GridUid.HasValue;
+    }
+
+    private static void CreateHotspot(AtmosphereSystem atmos, EntityUid gridUid, Vector2i tile, float temp, float volume, EntityUid uid)
+    {
+        atmos.HotspotExpose(gridUid, tile, temp, volume, uid, true);
+    }
+
+    private static string GetPlasmaAnnouncement()
+    {
+        return Robust.Shared.Localization.Loc.GetString("supermatter-event-plasma");
     }
 
 

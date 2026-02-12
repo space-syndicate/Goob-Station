@@ -14,7 +14,6 @@ public sealed class SupermatterTouchSystem : EntitySystem
 {
     [Dependency] private readonly ColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
 
     public override void Initialize()
     {
@@ -46,13 +45,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var xform = Transform(supermatter);
-        var gas = _atmosphereSystem.GetContainingMixture((supermatter.Owner, xform), true, true);
-        if (gas == null)
-            return;
-
-        var hyperNobMoles = gas.GetMoles(Gas.HyperNoblium);
-        if (hyperNobMoles > supermatter.Comp.GasActivationMoles)
+        if (supermatter.Comp.HyperNobTouchCancelActive)
             args.Cancelled = true;
     }
 

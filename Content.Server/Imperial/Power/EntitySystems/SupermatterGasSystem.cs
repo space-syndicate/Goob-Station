@@ -4,8 +4,11 @@ using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
+using Content.Server.Imperial.XxRaay.Systems.Supermatter;
 using Content.Shared.Atmos;
+using Content.Shared.Imperial.XxRaay.Supermatter;
 using Content.Shared.Radiation.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -16,6 +19,9 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 public sealed class SupermatterGasSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
+    private readonly Dictionary<Gas, List<ISupermatterGasReaction>> _reactionsByGas = new();
 
     public override void Initialize()
     {
@@ -23,6 +29,8 @@ public sealed class SupermatterGasSystem : EntitySystem
 
         SubscribeLocalEvent<SupermatterGasComponent, ComponentInit>(OnSupermatterGasInit);
         SubscribeLocalEvent<SupermatterGasComponent, AtmosExposedUpdateEvent>(OnAtmosExposedUpdate);
+
+        LoadReactions();
     }
 
     private void OnSupermatterGasInit(EntityUid uid, SupermatterGasComponent component, ComponentInit args)
@@ -97,7 +105,29 @@ public sealed class SupermatterGasSystem : EntitySystem
             if (!integrity.Activated)
                 continue;
 
-            ApplyGasEffects((uid, integrity), (uid, gasComp), gas, thermActive, ozoneActive, plasmaActive, frameTime);
+            ApplyGasEffects((uid, integrity), (uid, gasComp), gas, frameTime);
+        }
+    }
+
+    private void LoadReactions()
+    {
+        _reactionsByGas.Clear();
+
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<SupermatterGasReactionPrototype>())
+        {
+            if (!typeof(ISupermatterGasReaction).IsAssignableFrom(proto.Reaction))
+                continue;
+
+            if (Activator.CreateInstance(proto.Reaction) is not ISupermatterGasReaction reaction)
+                continue;
+
+            if (!_reactionsByGas.TryGetValue(proto.Gas, out var list))
+            {
+                list = new List<ISupermatterGasReaction>();
+                _reactionsByGas[proto.Gas] = list;
+            }
+
+            list.Add(reaction);
         }
     }
 
@@ -105,37 +135,20 @@ public sealed class SupermatterGasSystem : EntitySystem
         Entity<SupermatterIntegrityComponent> integrity,
         Entity<SupermatterGasComponent> gasComp,
         GasMixture gas,
-        bool thermActive,
-        bool ozoneActive,
-        bool plasmaActive,
         float frameTime)
     {
-        if (thermActive)
+        foreach (var (gasId, reactions) in _reactionsByGas)
         {
-            var regen = gasComp.Comp.ThermoniumIntegrityRegenPerSecond * frameTime;
-            integrity.Comp.Integrity = MathF.Min(integrity.Comp.MaxIntegrity, integrity.Comp.Integrity + regen);
-        }
-
-        if (TryComp(integrity, out RadiationSourceComponent? radiation))
-        {
-            float baseIntensity = radiation.Intensity;
-            
-            if (TryComp<SupermatterEventComponent>(integrity, out var eventComp))
+            foreach (var reaction in reactions)
             {
-                if (eventComp.CurrentEvent != SupermatterEventComponent.SupermatterEventType.Radiation
-                    || eventComp.EventEndTime == TimeSpan.Zero)
-                {
-                    baseIntensity = eventComp.DefaultRadiationIntensity;
-                }
+                reaction.React(this, integrity, gasComp, gas, gasId, frameTime);
             }
-            var multiplier = 1f;
-            if (ozoneActive)
-                multiplier *= gasComp.Comp.OzoneRadiationMultiplier;
-            if (plasmaActive)
-                multiplier *= gasComp.Comp.PlasmaRadiationMultiplier;
-
-            radiation.Intensity = baseIntensity * multiplier;
         }
+    }
+
+    public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
+    {
+        return EntityManager.TryGetComponent(uid, out component);
     }
 }
 
