@@ -4,10 +4,11 @@ using Robust.Shared.Utility; // Для ResPath
 using Robust.Shared.Audio; // Для SoundSpecifier
 using Robust.Shared.Localization; // Для LocId
 
-namespace Content.Server.Imperial.MTFCall;
+namespace Content.Shared.Imperial.MTFCall;
 
 [Prototype("MTFCall")]
-public sealed class MTFCallPresetPrototype : IPrototype
+[DataDefinition]
+public sealed partial class MTFCallPresetPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
