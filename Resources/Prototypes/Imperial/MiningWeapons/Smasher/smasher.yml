@@ -40,3 +40,9 @@
   - type: Prying
   - type: Smasher
   - type: EarthshakerStrike
+  - type: Clothing
+    sprite: Imperial/MiningWeapons/Smasher/smasher_item.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
