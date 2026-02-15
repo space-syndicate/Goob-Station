@@ -11,6 +11,8 @@ using Robust.Shared.Audio;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Robust.Shared.Random;
+using Content.Server.GameTicking;
+using Content.Shared.Eye;
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed partial class SCP106System
@@ -24,6 +26,8 @@ public sealed partial class SCP106System
         SubscribeLocalEvent<SCP106SpawnPuddleActionEvent>(OnPuddleAction);
         SubscribeLocalEvent<SCP106Component, SCP106DoAfterPuddleEvent>(OnPuddleDoAfter);
         SubscribeLocalEvent<SCP106Component, SCP106DoAfterGhostPuddleEvent>(OnGhostPuddleDoAfter);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
+        SubscribeLocalEvent<SCP106Component, GetVisMaskEvent>(OnSCP106GetVis);
     }
     private void OnInit(EntityUid uid, SCP106Component component, ComponentStartup args)
     {
@@ -234,6 +238,32 @@ public sealed partial class SCP106System
                 _transform.SetWorldPosition((user, transform), new Vector2(0, 0));
                 _transform.SetParent(user, transform, mapEnt ?? EntityUid.Invalid);
             }
+        }
+    }
+    #endregion
+
+    #region Vision
+    private void OnSCP106GetVis(Entity<SCP106Component> ent, ref GetVisMaskEvent args)
+    {
+        args.VisibilityMask |= (int)VisibilityFlags.Ghost;
+    }
+
+    public void MakeVisible(bool visible)
+    {
+        var query = EntityQueryEnumerator<SCP106Component, VisibilityComponent>();
+        while (query.MoveNext(out var uid, out _, out var vis))
+        {
+            if (visible)
+            {
+                _visibility.AddLayer((uid, vis), (int) VisibilityFlags.Normal, false);
+                _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
+            }
+            else
+            {
+                _visibility.AddLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
+                _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.Normal, false);
+            }
+            _visibility.RefreshVisibility(uid, vis);
         }
     }
     #endregion

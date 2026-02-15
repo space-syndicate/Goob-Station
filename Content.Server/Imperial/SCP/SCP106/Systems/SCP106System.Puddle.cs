@@ -10,6 +10,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Popups;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Interaction.Components;
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed partial class SCP106System
@@ -86,6 +87,7 @@ public sealed partial class SCP106System
         var endTime = curTime + stunc.Delay;
         stunc.StunEnd = endTime;
         stunc.Puddle = uid;
+        EnsureComp<BlockMovementComponent>(subject);
         _godmode.ToggleGodmode(subject); //I was asked to do it, so the person won't get killed why he gets sucked to doom!!
         _audio.PlayPredicted(sound, subject, uid);
     }
@@ -105,6 +107,7 @@ public sealed partial class SCP106System
             TeleportEntity(stun.Puddle, uid, puddl.TargetMap ?? MapId.Nullspace, puddl.GlobalTeleportSound, puddl.DamagePerSecond);
             var duration = TimeSpan.FromSeconds(5);
             _blindableSystem.UpdateIsBlind(uid);
+            RemComp<BlockMovementComponent>(uid);
             RemComp<SCP106PuddleStunComponent>(uid);
             _godmode.ToggleGodmode(uid);
             _statusEffects.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, duration);
