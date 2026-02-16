@@ -95,17 +95,22 @@ public sealed partial class SCP106System
     private void UpdatePuddleStun()
     {
         var curTime = _gameTiming.CurTime;
+        var duration = TimeSpan.FromSeconds(5);
         var query = EntityQueryEnumerator<SCP106PuddleStunComponent>();
         while (query.MoveNext(out var uid, out var stun))
         {
             if (curTime < stun.StunEnd)
                 continue;
-            if (!TryComp<SCP106PuddleComponent>(stun.Puddle, out var puddl))
+            if (!TryComp<SCP106PuddleComponent>(stun.Puddle, out var puddl) || puddl.TargetMap == null)
+            {
+                RemComp<BlockMovementComponent>(uid);
+                RemComp<SCP106PuddleStunComponent>(uid);
+                _godmode.ToggleGodmode(uid);
+                _blindableSystem.UpdateIsBlind(uid);
+                _statusEffects.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, duration);
                 continue;
-            if (puddl.TargetMap == null)
-                continue;
+            }
             TeleportEntity(stun.Puddle, uid, puddl.TargetMap ?? MapId.Nullspace, puddl.GlobalTeleportSound, puddl.DamagePerSecond);
-            var duration = TimeSpan.FromSeconds(5);
             _blindableSystem.UpdateIsBlind(uid);
             RemComp<BlockMovementComponent>(uid);
             RemComp<SCP106PuddleStunComponent>(uid);
