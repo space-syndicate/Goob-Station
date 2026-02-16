@@ -5,6 +5,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Bed.Sleep;
 using Robust.Shared.Random;
 using System.Numerics;
+using Content.Shared.Bed.Cryostorage;
+using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
@@ -35,6 +37,8 @@ public sealed partial class SCP106System
         }
         if (TryComp<MobStateComponent>(subject, out var mobstate))
         {
+            if (!TryComp<SCP106DimensionDebuffComponent>(subject, out var ddb))
+                return;
             var allPuddls = new HashSet<EntityUid>();
             var query = EntityQueryEnumerator<SCP106PuddleComponent>();
             while (query.MoveNext(out var uidd, out var pddl))
@@ -44,8 +48,24 @@ public sealed partial class SCP106System
             var transform = _entityManager.GetComponent<TransformComponent>(subject);
             if (allPuddls.Count == 0)
             {
+                //_transform.SetWorldPosition((subject, transform), new Vector2(0, 0));
+                var qquery = EntityQueryEnumerator<CryostorageComponent>();
+                while (qquery.MoveNext(out var uiddd, out var cryopod))
+                {
+                    if (Transform(uiddd).MapID == ddb.PastMapId)
+                        allPuddls.Add(uiddd);
+                }
+                //if (TryComp<SCP106DimensionDebuffComponent>(subject, out var ddb) && _mapSystem.TryGetMap(ddb.PastMapId, out var mapEnt1))
+                // {
+                //     _transform.SetParent(subject, transform, mapEnt1.Value);
+                //     RemComp<SCP106DimensionDebuffComponent>(subject);
+                //     return;
+                // }
+            }
+            if (allPuddls.Count == 0)
+            {
                 _transform.SetWorldPosition((subject, transform), new Vector2(0, 0));
-                if (TryComp<SCP106DimensionDebuffComponent>(subject, out var ddb) && _mapSystem.TryGetMap(ddb.PastMapId, out var mapEnt1))
+                if(_mapSystem.TryGetMap(ddb.PastMapId, out var mapEnt1))
                 {
                     _transform.SetParent(subject, transform, mapEnt1.Value);
                     RemComp<SCP106DimensionDebuffComponent>(subject);
