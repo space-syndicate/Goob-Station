@@ -6,7 +6,6 @@ using Content.Shared.Bed.Sleep;
 using Robust.Shared.Random;
 using System.Numerics;
 using Content.Shared.Bed.Cryostorage;
-using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
