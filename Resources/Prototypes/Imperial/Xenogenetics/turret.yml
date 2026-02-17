@@ -1,0 +1,249 @@
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretRND
+  suffix: Research
+  components:
+  - type: Machine
+    board: WeaponEnergyTurretRNDMachineCircuitboard
+  - type: Sprite
+    sprite: Imperial/Xenogenetics/sentry_turret.rsi
+  - type: AccessReader
+    access: [["StationAi"], ["Research"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Armory
+    - Atmospherics
+    - Bar
+    - Brig
+    - Detective
+    - Captain
+    - Cargo
+    - Chapel
+    - Chemistry
+    - ChiefEngineer
+    - ChiefMedicalOfficer
+    - Command
+    - Cryogenics
+    - Engineering
+    - External
+    - HeadOfPersonnel
+    - HeadOfSecurity
+    - Hydroponics
+    - Janitor
+    - Kitchen
+    - Lawyer
+    - Maintenance
+    - Medical
+    - Quartermaster
+    - Research
+    - ResearchDirector
+    - Salvage
+    - Security
+    - Service
+    - Theatre
+    - BasicSilicon
+    - Borg
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret
+  - type: Gun
+    projectileSpeed: 32
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+  - type: BatteryAmmoProvider
+    proto: BulletEnergyTurretSleep
+    fireCost: 333.33
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletEnergyTurretSleep
+      fireCost: 333.33
+    - proto: BulletEnergyTurretToxin
+      fireCost: 500
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: ApcPowerReceiverBattery
+    idleLoad: 5
+    batteryRechargeRate: 100
+    batteryRechargeEfficiency: 0.0 # temporarily no power draw because this was causing potentially seizure inducing light flickering
+
+- type: entity
+  name : disabler bolt
+  id: BulletEnergyTurretSleep
+  parent: BulletEnergyTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 7
+        reagents:
+        - ReagentId: Haloperidol
+          Quantity: 7
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 7
+    solution: ammo
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectOmnilaser
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    layers:
+      - state: minisyringe1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: syringeproj
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  name : disabler bolt
+  id: BulletEnergyTurretToxin
+  parent: BulletEnergyTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 12
+        reagents:
+        - ReagentId: SulfuricAcid
+          Quantity: 12
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 12
+    solution: ammo
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectOmnilaser
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    layers:
+      - state: minisyringe1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: syringeproj
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: RNDSentryComputerCircuitboard
+  name: xeno sentry computer board
+  description: A computer printed circuit board for a RND sentry control computer.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerRNDSentry
+
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretRNDMachineCircuitboard
+  suffix: RND, Silicon
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretRND
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerRNDSentry
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: artifact
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: RNDSentryComputerCircuitboard
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Armory
+    - Atmospherics
+    - Bar
+    - Brig
+    - Detective
+    - Captain
+    - Cargo
+    - Chapel
+    - Chemistry
+    - ChiefEngineer
+    - ChiefMedicalOfficer
+    - Command
+    - Cryogenics
+    - Engineering
+    - External
+    - HeadOfPersonnel
+    - HeadOfSecurity
+    - Hydroponics
+    - Janitor
+    - Kitchen
+    - Lawyer
+    - Maintenance
+    - Medical
+    - Quartermaster
+    - Research
+    - ResearchDirector
+    - Salvage
+    - Security
+    - Service
+    - Theatre
+    - BasicSilicon
+    - Borg
+  - type: DeployableTurretController
+    accessGroups:
+    - Silicon
+    accessLevels:
+    - BasicSilicon
+    - Borg
+  - type: DeviceList
+    isAllowList: true
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: Turret
+    transmitFrequencyId: TurretControl
+    sendBroadcastAttemptEvent: true
+    prefix: device-address-prefix-console
+  - type: DeviceNetworkRequiresPower
+  - type: WiredNetworkConnection
+  - type: ActivatableUI
+    key: enum.DeployableTurretControllerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.DeployableTurretControllerUiKey.Key:
+        type: TurretControllerWindowBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Wires
+    boardName: wires-board-name-turret-controls
+    layoutId: TurretControls
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: LockedWiresPanel
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Electrified
+    enabled: false
+    usesApcPower: true

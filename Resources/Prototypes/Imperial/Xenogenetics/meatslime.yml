@@ -1,0 +1,56 @@
+- type: Tag
+  id: MeatSlime
+
+- type: entity
+  name: meat slime
+  id: MobMeatSlime
+  parent: MobAdultSlimesBlue
+  components:
+  - type: Bloodstream
+    bloodReagents:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 1
+  - type: Tag
+    tags:
+    - MeatSlime
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Reproductive
+    breedRange: 4.0
+    capacity: 12
+    breedChance: 1.0
+    hungerPerBirth: 20
+    makeOffspringInfant: false
+    minBreedAttemptInterval: 1
+    maxBreedAttemptInterval: 5
+    gestationDuration: 10
+    partnerWhitelist:
+      tags:
+      - MeatSlime
+    offspring:
+    - id: MobMeatSlime
+  - type: ReproductivePartner
+  - type: ExaminableHunger
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: Body
+    prototype: AnimalRuminant
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
