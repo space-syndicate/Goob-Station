@@ -1,0 +1,38 @@
+# СБ борг
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionShowStationRecords
+  name: Интерфейс криминальных записей
+  description: Просмотр интерфейса криминальных записей.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Objects/Gadgets/handheldcrewmonitor.rsi, state: icon-sec }
+    iconOn: { sprite: Imperial/Objects/Gadgets/handheldcrewmonitor.rsi, state: icon-sec }
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CriminalRecordsConsoleKey.Key }
+
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionShowCameraMonitor
+  name: Интерфейс монитора камеры
+  description: Просмотр интерфейса монитора камеры.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Stellark/borgs, state: security-borg-camera }
+    iconOn: { sprite: Imperial/Stellark/borgs, state: security-borg-camera }
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.SurveillanceCameraMonitorUiKey.Key }
+
+
+# медицинский борг
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionShowCrewMonitor
+  name: Интерфейс монитора экипажа
+  description: Просмотр интерфейса монитора экипажа
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Stellark/handheldparamediccrewmonitor.rsi, state: icon }
+    iconOn: { sprite: Imperial/Stellark/handheldparamediccrewmonitor.rsi, state: icon }
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }

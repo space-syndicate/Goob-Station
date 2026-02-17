@@ -5,6 +5,8 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
+  - type: Body
+    prototype: ImperialBorg
 
 
 # Security borg
@@ -24,12 +26,27 @@
   defaultModules:
   - BorgModuleJawsSecurity
   - BorgModuleNonLethalSecurity
+  - BorgModuleLethalSecurity
 
   addComponents:
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: FlashImmunity
+  - type: CriminalRecordsConsole
+  - type: Stripping
+  - type: UserInterface
+    interfaces:
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.CriminalRecordsConsoleKey.Key:
+        toggleAction: ActionShowStationRecords
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        toggleAction: ActionShowCameraMonitor
   - type: MobThresholds
     thresholds:
      0: Alive

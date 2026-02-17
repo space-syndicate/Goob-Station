@@ -126,6 +126,7 @@
     - BorgModuleJanitor
 
   defaultModules:
+  - BorgModuleTool # Imperial Space: Add BorgModuleTool
   - BorgModuleCustodial
 #  - BorgModuleCleaning
   - BorgModuleAdvancedCleaning # Ребаланс боргов под Imperial Space. Добавлена новая швабра
@@ -162,6 +163,7 @@
     - BorgModuleMedical
 
   defaultModules:
+  - BorgModuleTool # Imperial Space: Add BorgModuleTool
   - BorgModuleTopicals
   - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
   - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
@@ -172,7 +174,18 @@
   - Medical
 
   addComponents:
+  # Imperial Space: add action. start
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionShowCrewMonitor
+  # Imperial Space: add action. start
   - type: SolutionScanner
+  - type: Stripping # Imperial Space: add ability to search
   - type: ShowHealthBars
     damageContainers:
     - Biological
