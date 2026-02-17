@@ -5,6 +5,15 @@
   abstract: true
   description: It looks friendly. Why don't you give it a hug?
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleSpacemob
+  ### Imperial genetics end
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

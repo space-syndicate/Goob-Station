@@ -9,6 +9,21 @@
   cost: 3000
   recipeUnlocks:
   - GeneSplicerRecipe
+  - CarpCubeSafeRecipe
+  - SpaceBearCubeSafeRecipe
+
+- type: technology
+  id: XenogeneticsMachinery
+  name: research-technology-xenogenetics-machinery
+  icon:
+    sprite: Imperial/Xenogenetics/sentry_turret.rsi
+    state: cover_closed
+  discipline: Experimental
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - RNDSentryRecipe
+  - RNDSentryComputerRecipe
 
 - type: latheRecipePack
   id: ImperialGeneticsPack
@@ -22,3 +37,39 @@
   materials:
     Steel: 300
     Plastic: 100
+  
+- type: latheRecipePack
+  id: ImperialGeneticsCircuitsPack
+  recipes:
+  - RNDSentryRecipe
+  - RNDSentryComputerRecipe
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: RNDSentryRecipe
+  result: WeaponEnergyTurretRNDMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseSilverCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: RNDSentryComputerRecipe
+  result: RNDSentryComputerCircuitboard
+
+- type: latheRecipePack
+  id: ImperialGeneticsCubesPack
+  recipes:
+  - CarpCubeSafeRecipe
+  - SpaceBearCubeSafeRecipe
+
+- type: latheRecipe
+  id: CarpCubeSafeRecipe
+  result: SafeCarpCube 
+  completetime: 20
+  materials:
+    Biomass: 25
+
+- type: latheRecipe
+  id: SpaceBearCubeSafeRecipe
+  result: SafeSpaceBearCube
+  completetime: 20
+  materials:
+    Biomass: 45

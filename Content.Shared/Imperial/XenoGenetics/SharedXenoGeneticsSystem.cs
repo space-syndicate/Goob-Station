@@ -10,6 +10,8 @@ using Robust.Shared.Serialization;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Shared.Alert;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs;
 
 namespace Content.Shared.Imperial.XenoGenetics;
 
@@ -34,11 +36,20 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
     }
     private void OnGeneInsert(EntityUid uid, XenoGeneComponent component, ref GeneInsertedEvent args)
     {
-        _alertsSystem.ShowAlert(args.Target, "XenogeneInserted");
+        _alertsSystem.ShowAlert(args.Target, "XenogeneInserted");   
     }
     private void OnGeneWithdraw(EntityUid uid, XenoGeneComponent component, ref GeneWithdrawnEvent args)
     {
         _alertsSystem.ClearAlert(args.Target, "XenogeneInserted");
+        if(!TryComp<GeneWithdrawnComponent>(uid, out var geneComp) && component.randomizeGeneQuality == true)
+        {
+            var mobState = EnsureComp<MobStateComponent>(uid);
+            if(mobState.CurrentState is MobState.Alive)
+            {
+                component.geneMultiplier += 0.2f;
+                AddComp<GeneWithdrawnComponent>(uid);
+            }      
+        }
     }
     private void OnXenoGeneStartup(EntityUid uid, XenoGeneComponent component, ComponentStartup args)
     {

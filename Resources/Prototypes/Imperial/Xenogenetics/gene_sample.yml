@@ -121,3 +121,27 @@
   - type: XenoGene
   - type: Sprite
     state: blue
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleXenoRunner
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "xeno_sting"
+  - type: AddComponentsGene
+    threshold: 0
+    components:
+    - type: DamageIncreasedByGene
+      bonusAttackRate: 1
+      bonusDamage:
+        types:
+          Slash: 7
+          Structural: 20
+  - type: XenoGene
+  - type: Sprite
+    state: blue

@@ -22,11 +22,18 @@ public sealed class SpeedModifierGeneSystem : EntitySystem
     {
         var comp = AddComp<SpeedModifiedByGeneComponent>(args.Target);
         var geneComp = EnsureComp<XenoGeneComponent>(args.Gene);
-        comp.actualSpeed = component.speedModifier + geneComp.geneMultiplier;
-        /// Чтобы не было ситуаций когда ген тебя замедляет
-        ///if(comp.actualSpeed <= 1)
-        ///    comp.actualSpeed = 1.05f;
-        /// UPD: было пиздец сильным, поэтому убрал. мышей слишком легко получить.
+        if(component.randomizeModifier)
+        {
+            comp.actualSpeed = component.speedModifier + geneComp.geneMultiplier;
+            /// Чтобы не было ситуаций когда ген тебя замедляет
+            ///if(comp.actualSpeed <= 1)
+            ///    comp.actualSpeed = 1.05f;
+            /// UPD: было пиздец сильным, поэтому убрал. мышей слишком легко получить.
+        }
+        else
+            comp.actualSpeed = component.speedModifier;
+        
+       
         _movementSpeedModifier.RefreshMovementSpeedModifiers(args.Target);
     }
     private void OnSpeedGeneWithdraw(EntityUid uid, SpeedModifierGeneComponent component, ref GeneWithdrawnEvent args)

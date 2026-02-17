@@ -8,8 +8,11 @@ namespace Content.Shared.Imperial.XenoGenetics.Genes.Components;
 public sealed partial class SpeedModifierGeneComponent : Component
 {
     /// <summary>
-    /// То насколько увелчится скорость при вводе гена. Считается по формуле скорость_энтити + speedModifier * geneMultiplier
+    /// То насколько увелчится скорость при вводе гена. Считается по формуле скорость_энтити * speedModifier + geneMultiplier
     /// </summary>
     [DataField, AutoNetworkedField]
     public float speedModifier = 0.30f;
+    
+    [DataField, AutoNetworkedField]
+    public bool randomizeModifier = true;
 }
