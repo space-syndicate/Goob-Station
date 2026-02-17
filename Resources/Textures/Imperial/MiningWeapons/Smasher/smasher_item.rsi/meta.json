@@ -8,6 +8,14 @@
     },
     "states": [
         {
+	    	"name": "equipped-BACKPACK",
+	    	"directions": 4
+	    },
+        {
+	    	"name": "equipped-SUITSTORAGE",
+	    	"directions": 4
+	    },
+        {
             "name": "icon_crusher",
             "directions": 1
         },
