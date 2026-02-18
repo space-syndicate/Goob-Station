@@ -29,7 +29,7 @@
   parent: BaseAGhostAction
   id: ActionShowCrewMonitor
   name: Интерфейс монитора экипажа
-  description: Просмотр интерфейса монитора экипажа
+  description: Просмотр интерфейса монитора экипажа.
   components:
   - type: Action
     icon: { sprite: Imperial/Stellark/handheldparamediccrewmonitor.rsi, state: icon }

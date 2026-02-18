@@ -1294,7 +1294,7 @@
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 150
-  - type: PredictedPredictedBatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
   - type: MagazineVisuals

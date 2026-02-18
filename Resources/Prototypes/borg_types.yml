@@ -183,7 +183,7 @@
     uis:
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionShowCrewMonitor
-  # Imperial Space: add action. start
+  # Imperial Space: add action. end
   - type: SolutionScanner
   - type: Stripping # Imperial Space: add ability to search
   - type: ShowHealthBars

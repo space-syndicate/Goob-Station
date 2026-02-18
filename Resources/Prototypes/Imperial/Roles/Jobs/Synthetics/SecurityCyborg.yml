@@ -35,6 +35,7 @@
   - type: FlashImmunity
   - type: CriminalRecordsConsole
   - type: Stripping
+  - type: SurveillanceCameraMonitor
   - type: UserInterface
     interfaces:
       enum.CriminalRecordsConsoleKey.Key:
