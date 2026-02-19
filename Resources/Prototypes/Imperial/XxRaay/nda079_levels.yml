@@ -1,0 +1,42 @@
+- type: nda079LightFlickerLevel
+  id: NDA079LightFlickerLevel2
+  level: 2
+  lightOffDuration: 15
+  radius: 20
+  successChance: 0.95
+  cooldown: 40
+
+- type: nda079LightFlickerLevel
+  id: NDA079LightFlickerLevel3
+  level: 3
+  lightOffDuration: 30
+  radius: 35
+  successChance: 1.0
+  cooldown: 70
+
+- type: nda079LightFlickerLevel
+  id: NDA079LightFlickerLevel4
+  level: 4
+  lightOffDuration: 60
+  radius: 45
+  successChance: 1.0
+  cooldown: 90
+
+- type: nda079AirlockLevel
+  id: NDA079AirlockLevel2
+  level: 2
+  boltDuration: 10
+  successChance: 0.95
+
+- type: nda079AirlockLevel
+  id: NDA079AirlockLevel3
+  level: 3
+  boltDuration: 30
+  successChance: 1.0
+
+- type: nda079AirlockLevel
+  id: NDA079AirlockLevel4
+  level: 4
+  boltDuration: 60
+  successChance: 1.0
+
