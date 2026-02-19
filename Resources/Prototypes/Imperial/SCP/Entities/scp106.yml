@@ -13,11 +13,6 @@
   - type: Tag
     tags:
     - GhostOnlyWarp
-  - type: WarpPoint
-    follow: true
-    blacklist:
-      tags:
-      - GhostOnlyWarp
   - type: Eye
     pvsScale: 1.5
     drawFov: false
