@@ -72,6 +72,10 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: medical
+  # Imperial Space: Add a hand. start
+  - type: Body
+    prototype: ImperialBorg
+  # Imperial Space: Add a hand. end
 
 - type: entity
   id: BorgChassisService

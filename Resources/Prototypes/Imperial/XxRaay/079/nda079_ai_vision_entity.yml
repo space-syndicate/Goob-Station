@@ -1,0 +1,57 @@
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: NDA079AIVisionEntity
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: NoFTL
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: WarpPoint
+    follow: true
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Eye
+    pvsScale: 1.5
+    drawFov: false
+  - type: Visibility
+    layer: 2
+  - type: Sprite
+    sprite: Imperial/XxRaay/079/AiVision.rsi
+    layers:
+    - state: AiVisionObject
+      shader: unshaded
+      map: ["base"]
+  - type: NDA079
+    inAIVisionMode: true
+  - type: StationAiOverlay
+  - type: Input
+    context: "human"
+  - type: Actions
+  - type: CameraRelayChat
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Nedraconnection
+    - NedraCMDconnection
+    - SCPconnection
+  - type: ActiveRadio
+    channels:
+    - Nedraconnection
+    - NedraCMDconnection
+    - SCPconnection
+  - type: AlertEnergy
+  - type: Alerts
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      power:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: NDA079AirlockAbility
+  - type: NDA079LightFlickerAbility
+  - type: NDA079CableAbility
+  - type: NDA079Cpu

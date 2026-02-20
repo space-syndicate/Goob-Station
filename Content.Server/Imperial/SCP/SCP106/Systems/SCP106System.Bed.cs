@@ -57,7 +57,7 @@ public sealed partial class SCP106System : EntitySystem
             return;
         if (!TryComp<StrapComponent>(uid, out var strapComponent))
             return;
-        if (!comp.Started)
+        if (comp.Started)
             return;
         var victims = strapComponent.BuckledEntities;
         if (victims.Count == 0)
