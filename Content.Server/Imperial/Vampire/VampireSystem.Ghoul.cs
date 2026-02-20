@@ -86,6 +86,8 @@ public partial class VampireSystem : EntitySystem
             return;
 
         RemComp<GhoulComponent>(args.Target.Value);
+        _vampireSystem.SetGhoulBloodAlert(ent, ent.Comp);
+        RemoveMindFromGhoul(ent, ent.Comp);
 
         // обновляем данные у вампира
         if (TryComp<VampireComponent>(ent.Comp.Vampire, out var vamp))
@@ -157,5 +159,19 @@ public partial class VampireSystem : EntitySystem
         }
 
         _vampireSystem.SetGhoulBloodAlert(target, ghoulComp);
+    }
+
+    private void RemoveMindFromGhoul(EntityUid uid, GhoulComponent component)
+    {
+        if (!_mind.TryGetMind(uid, out var mindId, out var mind))
+            return;
+
+        if (!TryComp<MindContainerComponent>(uid, out var mindContainer))
+            return;
+
+        var ev = new MindRemovedMessage((mindId, mind), (uid, mindContainer));
+        RaiseLocalEvent(uid, ev);
+
+        _roleSystem.MindRemoveRole<GhoulRoleComponent>((mindId, mind));
     }
 }

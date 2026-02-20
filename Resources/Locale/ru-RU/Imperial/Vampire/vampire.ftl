@@ -81,3 +81,7 @@ vampire-verb-envelope-ghoul-message = Обращает сущность в уп�
 vampire-verb-envelope-vampire-transform = Начинаем обращать {$target}...
 vampire-verb-envelope-ghoul-transform = Вы ощущаете влияние вампирской крови...
 vampire-verb-envelope-vampire-complete = {$target} был успешно обращен.
+
+vampire-dead-text = Со смертью вампира с вас снимаются все проклятия.
+vampire-dead-button = Хорошо
+vampire-dead-title = Смерть вампира

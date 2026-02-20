@@ -503,6 +503,12 @@ public partial class SharedVampireSystem : EntitySystem
 
     public void SetGhoulBloodAlert(EntityUid uid, GhoulComponent component)
     {
+        if (!TryComp<GhoulComponent>(uid, out var ghoulComponent))
+        {
+            _alerts.ClearAlert(uid, component.BloodAlert);
+            return;
+        }
+
         // вычисляем, какой должен быть спрайт в зависимости от количества крови у упыря
         var severity = ContentHelpers.RoundToLevels(
             MathF.Max(0f, component.CritThreshold - component.BloodDamage), component.CritThreshold, component.NumberBloodSections);

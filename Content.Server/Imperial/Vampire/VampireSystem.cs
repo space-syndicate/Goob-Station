@@ -26,6 +26,7 @@ using Robust.Server.Audio;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -61,6 +62,8 @@ public partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireEnvelopeDoAfterEvent>(OnEnvelopeCompleteVampire);
         SubscribeLocalEvent<GhoulComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteGhoul);
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
+
+        SubscribeLocalEvent<VampireComponent, MobStateChangedEvent>(OnDead);
     }
 
     public override void Initialize()
@@ -261,6 +264,36 @@ public partial class VampireSystem : EntitySystem
 
         if (_mobState.IsAlive(target))
             StartDrinking(drinker, target);
+    }
+
+    // если вампир сдох, то освобождаем упырей от проклятия
+    private void OnDead(Entity<VampireComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead)
+            return;
+
+        foreach (var ghoul in ent.Comp.Ghouls)
+        {
+            if (!TryComp<ActorComponent>(ghoul, out var actor) || !TryComp<GhoulComponent>(ghoul, out var ghoulComponent))
+                return;
+
+            RemComp<GhoulComponent>(ghoul);
+            RemoveMindFromGhoul(ghoul, ghoulComponent);
+            _vampireSystem.SetGhoulBloodAlert(ghoul, ghoulComponent);
+
+            // обновляем данные у вампира
+            if (TryComp<VampireComponent>(ent, out var vamp))
+            {
+                if (vamp.Ghouls.Remove(ghoul))
+                {
+                    vamp.GhoulQuantity = Math.Max(0, vamp.GhoulQuantity - 1);
+                    Dirty(ent, vamp);
+                }
+            }
+
+            var eui = new VampireDeadEui();
+            _eui.OpenEui(eui, actor.PlayerSession);
+        }
     }
 
     // выдаем вампиру cooldown на обращение
