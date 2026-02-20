@@ -30,7 +30,7 @@ using Content.Shared.Mobs;
 
 namespace Content.Server.Imperial.Vampire;
 
-public partial class VampireSystem : EntitySystem
+public sealed partial class VampireSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -48,10 +48,10 @@ public partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
-    public const string CooldowAlertAppealGhouls = "AppealGhoulsCooldownAlert";
+    public const string CooldownAlertAppealGhouls = "AppealGhoulsCooldownAlert";
 
     private void VampireInitialize()
     {
@@ -205,7 +205,7 @@ public partial class VampireSystem : EntitySystem
         // вычисляем текущее количество крови
         float currentBlood = vamp != null ? vamp.CritThreshold - vamp.BloodDamage : ghoul!.CritThreshold - ghoul.BloodDamage;
 
-        if (HasComp<VampireComponent>(drinker) && currentBlood >= 100 && vamp != null)
+        if (vamp != null && currentBlood >= 100)
         {
             // мы просто засчитываем эту кровь в TotalDrunk, но BloodDamage не понижаем
             vamp.TotalDrunk += amount;
@@ -275,20 +275,17 @@ public partial class VampireSystem : EntitySystem
         foreach (var ghoul in ent.Comp.Ghouls)
         {
             if (!TryComp<ActorComponent>(ghoul, out var actor) || !TryComp<GhoulComponent>(ghoul, out var ghoulComponent))
-                return;
+                continue;
 
             RemComp<GhoulComponent>(ghoul);
-            RemoveMindFromGhoul(ghoul, ghoulComponent);
+            RemoveMindFromGhoul(ghoul);
             _vampireSystem.SetGhoulBloodAlert(ghoul, ghoulComponent);
 
             // обновляем данные у вампира
-            if (TryComp<VampireComponent>(ent, out var vamp))
+            if (ent.Comp.Ghouls.Remove(ghoul))
             {
-                if (vamp.Ghouls.Remove(ghoul))
-                {
-                    vamp.GhoulQuantity = Math.Max(0, vamp.GhoulQuantity - 1);
-                    Dirty(ent, vamp);
-                }
+                ent.Comp.GhoulQuantity = Math.Max(0, ent.Comp.GhoulQuantity - 1);
+                Dirty(ent, ent.Comp);
             }
 
             var eui = new VampireDeadEui();
@@ -303,7 +300,7 @@ public partial class VampireSystem : EntitySystem
             return;
 
         _statusEffectsSystem.TryAddStatusEffect<AppealGhoulsCooldownComponent>(uid,
-            CooldowAlertAppealGhouls,
+            CooldownAlertAppealGhouls,
             comp.CooldownTimeAppealGhouls,
             true);
     }

@@ -392,16 +392,13 @@ public partial class SharedVampireSystem : EntitySystem
     /// <summary>
     /// спавн лужи крови
     /// </summary>
-    private void SpawnBloodPuddle(EntityUid uid, VampireComponent? comp = null)
+    private void SpawnBloodPuddle(EntityUid uid, string bloodID)
     {
-        if (!Resolve(uid, ref comp, false))
-            return;
-
         var coords = Transform(uid).Coordinates;
 
         if (_net.IsServer)
         {
-            var puddle = Spawn(comp.VampirePuddleID, coords);
+            var puddle = Spawn(bloodID, coords);
 
             if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
             {
@@ -467,7 +464,7 @@ public partial class SharedVampireSystem : EntitySystem
                         dmg.DamageDict["Bloodloss"] = FixedPoint2.New(30);
 
                         _damage.TryChangeDamage(uid, dmg);
-                        SpawnBloodPuddle(uid);
+                        SpawnBloodPuddle(uid, comp.GhoulPuddleID);
                         _stamina.TakeStaminaDamage(uid, 70f, stamina);
 
                         if (_net.IsServer)
@@ -503,7 +500,7 @@ public partial class SharedVampireSystem : EntitySystem
 
     public void SetGhoulBloodAlert(EntityUid uid, GhoulComponent component)
     {
-        if (!TryComp<GhoulComponent>(uid, out var ghoulComponent))
+        if (!HasComp<GhoulComponent>(uid))
         {
             _alerts.ClearAlert(uid, component.BloodAlert);
             return;

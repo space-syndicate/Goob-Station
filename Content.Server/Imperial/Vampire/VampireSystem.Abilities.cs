@@ -106,7 +106,7 @@ public partial class VampireSystem : EntitySystem
 
         _audio.PlayPvs(vamp.TeleportSound, args.Performer);
 
-        TransformSystem.SetCoordinates(target, toCoords.Value);
+        _transformSystem.SetCoordinates(target, toCoords.Value);
 
         _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
         args.Handled = true;
@@ -229,7 +229,7 @@ public partial class VampireSystem : EntitySystem
         }
 
         // получаем местоположение вампира, чтобы рядом с ним заспавнить клона
-        var mapCoords = TransformSystem.GetMapCoordinates(args.Performer);
+        var mapCoords = _transformSystem.GetMapCoordinates(args.Performer);
 
         if (!_cloning.TryCloning(args.Performer, mapCoords, settings, out vamp.CloneUid))
             return;

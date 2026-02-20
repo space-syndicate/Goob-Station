@@ -10,7 +10,6 @@ public sealed partial class VampireDeadUI : FancyWindow
     public VampireDeadUI()
     {
         RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
 
         ConfirmButton.OnPressed += _ => Close();
     }

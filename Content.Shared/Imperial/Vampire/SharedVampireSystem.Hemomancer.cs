@@ -163,7 +163,7 @@ public partial class SharedVampireSystem : EntitySystem
 
             if (_gameTiming.CurTime >= vamp.NextBloodshed)
             {
-                SpawnBloodPuddle(uid);
+                SpawnBloodPuddle(uid, vamp.VampirePuddleID);
                 // оставляем кровавый след за вампиром
                 vamp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(0.1f);
                 Dirty(uid, vamp);

@@ -9,7 +9,7 @@
 
     <BoxContainer Orientation="Vertical" Margin="3">
         <controls:StripeBack>
-        <Label Text="{Loc 'vampire-dead-text'}" Margin="4 4 0 4"/>
+            <Label Text="{Loc 'vampire-dead-text'}" Margin="4 4 0 4"/>
         </controls:StripeBack>
         <BoxContainer Orientation="Horizontal" Align="Center">
             <Button Name="ConfirmButton" Margin="5 10"

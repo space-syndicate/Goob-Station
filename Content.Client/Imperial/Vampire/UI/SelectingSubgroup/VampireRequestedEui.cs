@@ -40,6 +40,7 @@ public sealed class VampireRequestedEui : BaseEui
 
     public override void Closed()
     {
+        base.Closed();
         _window?.Close();
     }
 }
