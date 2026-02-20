@@ -30,6 +30,7 @@ using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
+
 public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent> // Добавлен модификатор partial Imperial
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
@@ -48,7 +49,6 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     {
         base.Initialize();
 
-        InitializeImperial(); // Imperial Инициализация
         SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
         SubscribeLocalEvent<NukeDisarmSuccessEvent>(OnNukeDisarm);
@@ -65,6 +65,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
 
         SubscribeLocalEvent<NukeopsRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
         SubscribeLocalEvent<NukeopsRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
+        InitializeImperial(); // Imperial Инициализация
     }
 
     protected override void Started(EntityUid uid,

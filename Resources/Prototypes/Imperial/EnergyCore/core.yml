@@ -54,6 +54,7 @@
   - type: DeviceNetwork
   - type: Sprite
     sprite: Imperial/EnergyCore/CoreStates/core_state_1.rsi
+    noRot: true
     layers:
     - map: [ "VisualLevel" ]
       state: core_1

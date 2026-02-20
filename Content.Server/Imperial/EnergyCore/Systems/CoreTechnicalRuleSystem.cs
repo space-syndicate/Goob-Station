@@ -10,6 +10,7 @@ namespace Content.Server.Imperial.EnergyCore;
 
 public sealed class CoreTechnicalRuleSystem : GameRuleSystem<CoreTechnicalRuleComponent>
 {
+    public static readonly EntProtoId CoreTechnicalRule = "CoreTechnical";
     public override void Initialize()
     {
         base.Initialize();
@@ -40,11 +41,10 @@ public sealed class CoreTechnicalRuleSystem : GameRuleSystem<CoreTechnicalRuleCo
         var query = QueryActiveRules();
         while (query.MoveNext(out var uid, out _, out var core, out _))
         {
-            if (GameTicker.IsGameRuleActive("CoreTechnical"))
+            if (GameTicker.IsGameRuleActive(CoreTechnicalRule))
             {
                 GameTicker.EndGameRule(uid);
             }
-
         }
     }
 }
