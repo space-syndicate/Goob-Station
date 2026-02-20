@@ -101,15 +101,18 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         // верб для питья крови
-        var verbDrinkBlood = new InnateVerb
+        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target))
         {
-            Act = () => StartDrinking(args.User, args.Target),
-            Text = Loc.GetString("vampire-drinking-envelope-text"),
-            Message = Loc.GetString("vampire-drinking-envelope-message"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
-            Priority = 1
-        };
-        args.Verbs.Add(verbDrinkBlood);
+            var verbDrinkBlood = new InnateVerb
+            {
+                Act = () => StartDrinking(args.User, args.Target),
+                Text = Loc.GetString("vampire-drinking-envelope-text"),
+                Message = Loc.GetString("vampire-drinking-envelope-message"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
+                Priority = 1
+            };
+            args.Verbs.Add(verbDrinkBlood);
+        }
     }
 
     private void StartDrinking(EntityUid drinker, EntityUid target)

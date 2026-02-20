@@ -29,18 +29,21 @@ public partial class VampireSystem : EntitySystem
             return;
 
         // верб для питья крови
-        var verbDrinkBloodGhoul = new InnateVerb
+        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target))
         {
-            Act = () =>
+            var verbDrinkBloodGhoul = new InnateVerb
             {
-                StartDrinking(args.User, args.Target);
-            },
-            Text = Loc.GetString("vampire-drinking-envelope-text"),
-            Message = Loc.GetString("vampire-drinking-envelope-message"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/convertGhoul.png")),
-            Priority = 0
-        };
-        args.Verbs.Add(verbDrinkBloodGhoul);
+                Act = () =>
+                {
+                    StartDrinking(args.User, args.Target);
+                },
+                Text = Loc.GetString("vampire-drinking-envelope-text"),
+                Message = Loc.GetString("vampire-drinking-envelope-message"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Stellark/Vampire/verbs/drinkBlood.png")),
+                Priority = 0
+            };
+            args.Verbs.Add(verbDrinkBloodGhoul);
+        }
     }
 
     private void OnCureGhoulStart(EntityUid uid, GhoulComponent comp, InteractUsingEvent args)
@@ -69,7 +72,7 @@ public partial class VampireSystem : EntitySystem
             args.User, args.User, PopupType.Medium);
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, comp.GhoulCure,
-            new VampireCureGhoulDoAfterEvent(), args.User, target: uid)
+            new VampireCureGhoulDoAfterEvent(), uid, target: uid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
