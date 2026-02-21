@@ -84,6 +84,15 @@
     outerClothing: ClothingOuterHardsuitSyndieCommanderFactionExplosion #Imperial
   inhand:
   - NukeOpsDeclarationOfWar
+#Imperial Space EnergyCore start
+  storage:
+    back:
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
+    - PinpointerNuclearStationFragment
+    - DeauthorizationFragmentCentCom
+#Imperial Space EnergyCore end
 
 - type: chameleonOutfit
   id: NukeopsCommanderOutfit

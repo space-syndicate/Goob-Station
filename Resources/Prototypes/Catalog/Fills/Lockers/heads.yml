@@ -46,6 +46,10 @@
     - id: WeaponDisabler
     #- id: ClothingEyesGlassesCommand #Imperial Space убраны тк есть раундстартом на кепе
     - id: ControlModsuitMagnate # Imperial Space РИГИ
+#Imperial Space Energy Core start
+    - id: DeauthorizationFragmentStation
+    - id: PinpointerNuclearStationFragment
+#Imperial Space Energy Core end
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition

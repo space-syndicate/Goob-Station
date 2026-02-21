@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "License holder: @fantom5946",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "generator",
+            "delays": [
+            [
+                0.2,
+                0.2,
+                0.2,
+                0.2
+            ]
+            ]
+        }
+    ]
+}

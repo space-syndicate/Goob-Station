@@ -71,3 +71,17 @@
       emergencyLightColor: DarkViolet
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+## Imperial EnergyCore code Lambda start
+    lambda:
+      announcement: alert-level-lambda-announcement
+      selectable: false
+      sound:
+        path: /Audio/Imperial/EnergyCore/lambda.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: DarkSalmon
+      emergencyLightColor: DarkSalmon
+      forceEnableEmergencyLights: true
+      shuttleTime: 240
+## Imperial EnergyCore code Lambda end
