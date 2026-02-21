@@ -14,6 +14,12 @@
         "name": "icon-flash"
       },
       {
+        "name": "icon-unshaded"
+      },
+      {
+        "name": "light-overlay"
+      },
+      {
         "name": "inhand-left",
         "directions": 4
       },
@@ -22,11 +28,15 @@
         "directions": 4
       },
       {
-        "name": "off-equipped-MASK",
+        "name": "equipped-HEAD",
         "directions": 4
       },
       {
-        "name": "on-equipped-MASK",
+        "name": "equipped-HEAD-light",
+        "directions": 4
+      },
+      {
+        "name": "equipped-HEAD-unshaded",
         "directions": 4
       }
     ]
