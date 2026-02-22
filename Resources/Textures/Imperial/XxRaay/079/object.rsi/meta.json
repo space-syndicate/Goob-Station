@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "ICLA",
+    "copyright": "By @pups2004 (discord)",
+    "size": {
+        "x": 128,
+        "y": 128
+    },
+    "states": [
+        {
+            "name": "ai-on"
+        },
+        {
+            "name": "ai-off"
+        }
+    ]
+}

@@ -362,6 +362,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserBorg
+    - item: CombatKnife
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-lethal }  #Надо заменить
   - type: Tag
@@ -1294,8 +1295,8 @@
     proto: RedMediumLaser
     fireCost: 150
   - type: PredictedBatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 50
+    autoRechargeRate: 48
+    autoRechargePauseTime: 10
   - type: MagazineVisuals
     magState: mag
     steps: 5

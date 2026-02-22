@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "license": "ICLA",
+    "copyright": "By @pups2004 (discord)",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "energy-1"
+        },
+        {
+            "name": "energy-2"
+        },
+        {
+            "name": "energy-3"
+        },
+        {
+            "name": "energy-4"
+        },
+        {
+            "name": "energy-5"
+        },
+        {
+            "name": "energy-6"
+        },
+        {
+            "name": "energy-7"
+        },
+        {
+            "name": "energy-8"
+        },
+        {
+            "name": "energy-9"
+        },
+        {
+            "name": "energy-10"
+        },
+        {
+            "name": "energy-11"
+        }
+    ]
+}
