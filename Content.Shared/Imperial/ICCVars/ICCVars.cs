@@ -60,4 +60,19 @@ public sealed partial class ICCVars : CVars
         TargetOverlayCapturedAimColor = CVarDef.Create("imperial.target_overlay_captured_aim_color", "#FF0000FF", CVar.CLIENTONLY);
 
     #endregion
+
+    #region Energy Core
+    /// <summary>
+    /// Код угрозы при начале детонации ядра.
+    /// </summary>
+    public static readonly CVarDef<string> AlertLevelOnMeltdown =
+        CVarDef.Create("core.code_on_meltdown", "lambda", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Время до детонации после достижения 1.000.000K (в секундах).
+    /// </summary>
+    public static readonly CVarDef<float> CoreDetonationTime =
+        CVarDef.Create("core.detonation_time", 300f, CVar.SERVERONLY);
+
+    #endregion
 }

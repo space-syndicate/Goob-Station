@@ -22,11 +22,11 @@
         "directions": 4
       },
       {
-        "name": "off-equipped-HELMET",
+        "name": "off-equipped-MASK",
         "directions": 4
       },
       {
-        "name": "on-equipped-HELMET",
+        "name": "on-equipped-MASK",
         "directions": 4
       }
     ]
