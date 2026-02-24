@@ -42,6 +42,8 @@
   - type: SurveillanceCameraMonitor
   - type: UserInterface
     interfaces:
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
       enum.CriminalRecordsConsoleKey.Key:
         type: CriminalRecordsConsoleBoundUserInterface
       enum.SurveillanceCameraMonitorUiKey.Key:
