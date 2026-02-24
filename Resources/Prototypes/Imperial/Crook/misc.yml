@@ -1823,3 +1823,122 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  id: FloorBloodEntity
+  name: water
+  description: A real thirst quencher.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: FloorOccluder
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/blood.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: icon
+  - type: SolutionContainerManager
+    solutions:
+      pool:
+        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
+        reagents:
+        - ReagentId: Blood
+          Quantity: 9999999
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
+  - type: DrainableSolution
+    solution: pool
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    blacklist:
+      tags:
+        - Catwalk
+  - type: TileEntityEffect
+    effects:
+    - !type:Extinguish
+
+- type: entity
+  id: FloorBloodRiverEntity
+  name: lava
+  description: Don't jump in. It's not worth it, no matter how funny it is.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: TileEmission
+    color: "#631a1a"
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    blacklist:
+      tags:
+        - Catwalk
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/bloodriver.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: lava
+        shader: unshaded
+  - type: Icon
+    sprite: Imperial/Crook/Misc/bloodriver.rsi
+    state: full
+  - type: IconSmooth
+    key: floor
+    additionalKeys:
+    - walls
+    base: lava
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: Tag
+    tags:
+      - HideContextMenu

@@ -86,3 +86,8 @@ ent-ClothingHeadHelmetArmoredCoat = экзоскелет SDO
     .desc = Экзоскелет, защищающий носителя от разгерметизации и повышенных температур, имеет функцию магнитных присосок для сцепления с поверхностью, а также прыжки на небольшую дистанцию.
 ent-ClothingHeadHelmetHardsuitArmoredCoat = шлем экзоскелета
     .desc = Часть экзоскелета для защиты головы от разгерметизации.
+
+ent-FloorBloodEntity = кровь
+    .desc = Мерзость...
+ent-FloorBloodRiverEntity = кровавый пол
+    .desc = Мерзость...
