@@ -35,6 +35,10 @@
   - type: FlashImmunity
   - type: CriminalRecordsConsole
   - type: Stripping
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
   - type: SurveillanceCameraMonitor
   - type: UserInterface
     interfaces:
@@ -42,6 +46,8 @@
         type: CriminalRecordsConsoleBoundUserInterface
       enum.SurveillanceCameraMonitorUiKey.Key:
         type: SurveillanceCameraMonitorBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CriminalRecordsConsoleKey.Key:

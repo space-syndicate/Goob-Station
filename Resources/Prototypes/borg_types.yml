@@ -179,6 +179,8 @@
     interfaces:
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CrewMonitoringUIKey.Key:
