@@ -1,0 +1,202 @@
+- type: entity
+  id: BaseStructureComputerCore
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Physics
+    bodyType: Static
+#  - type: Fixtures
+#    fixtures:
+#      fix1:
+#        shape:
+#          !type:PhysShapeAabb
+#          bounds: "-0.25,-0.35,0.25,0.35"
+#        density: 190
+#        mask:
+#        - MachineMask
+#        layer:
+#        - MachineLayer
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+    flags:
+    - Unanchorable
+  - type: Construction
+    graph: Computer
+    node: frameUnsecured
+  - type: Sprite
+    drawdepth: Objects
+
+- type: entity
+  abstract: true
+  parent: BaseStructureComputerCore
+  id: BaseCoreTerminal
+  name: computer
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Animateable
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: Construction
+    graph: Computer
+    node: computer
+    containers:
+      - board
+  ## - type: ApcPowerReceiver
+  ##   powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+  - type: LightningTarget
+    priority: 1
+  ## - type: RequireProjectileTarget
+  ## - type: Electrified
+  ##   enabled: false
+  ##   usesApcPower: true
+  ## - type: ActivatableUIRequiresPower
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+      params:
+        volume: -1
+        variation: 0.10
+        pitch: 1.10
+    blacklist:
+      tags:
+      - NoConsoleSound
+
+- type: entity
+  id: CoreControlTerminal #TODO: Добавить требование по навыками в привате
+  parent: BaseCoreTerminal #BaseComputer
+  name: core control terminal
+  description: Needs to control core ya?
+  suffix: EnergyCore
+  components:
+  - type: ActivatableUI
+    key: enum.CoreTerminalUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CoreTerminalUiKey.Key:
+        type: CoreTerminalBoundUserInterface
+  - type: StationAiWhitelist
+    enabled: true
+  - type: CoreAccessComputer
+    deCodeSlot:
+      name: energycore-key-slot
+      insertSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      ejectSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      whitelist:
+        components:
+        - DeauthorizationCode
+        tags:
+        - NuclearDeauthorizationCode
+  - type: Anchorable ## Терминал специально неяузвим, чтобы экипаж не бежал его ломать раундстартом при ЯО
+    flags:
+    - Anchorable
+  - type: GenericVisualizer
+    visuals:
+      enum.CoreStatusScreenVisual.Core_Screen_Visual:
+       VisualState:
+          1: ## Active
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+            state: screen_active
+            scale: 1.0,1.0
+          2: ## Offline
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_not_active.rsi
+            state: screen_not_active
+            scale: 1.0,1.0
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/ProtocolTerminal/screen_active.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["panelLayer"]
+      state: screen_panel
+    - map: ["VisualState"]
+      shader: unshaded
+      state: screen_active
+  - type: GuideHelp
+    guides:
+    - EnergyCore
+
+- type: entity
+  parent: BaseWallmountMetallic
+  id: CoreStatusScreen
+  name: core status screen
+  description: Screen.
+  suffix: EnergyCore
+  components:
+  - type: Rotatable
+  - type: CoreStatusScreen
+  - type: Clickable
+  - type: LightningTarget
+    priority: 1
+  - type: PointLight
+    enabled: true
+    radius: 1
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_off.rsi
+    layers:
+    - map: [ "ScreenLevel" ]
+      state: corescreen
+    - map: [ "VisualLevel" ]
+      state: corescreen_noth
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.CoreStatusScreenVisual.Core_Screen_Visual:
+       VisualLevel:
+          1: ## Offline
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_off.rsi
+            state: corescreen_off
+            scale: 1.0,1.0
+          2: ## Idle
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_1.rsi
+            state: corescreen_1
+            scale: 1.0,1.0
+          3: ## Stable
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_2.rsi
+            state: corescreen_2
+            scale: 1.0,1.0
+          4: ## Optimal
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_3.rsi
+            state: corescreen_3
+            scale: 1.0,1.0
+          5: ## Moderate
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_4.rsi
+            state: corescreen_4
+            scale: 1.0,1.0
+          6: ## High
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_5.rsi
+            state: corescreen_5
+            scale: 1.0,1.0
+          7: ## Critical
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_6.rsi
+            state: corescreen_6
+            scale: 1.0,1.0
+          8: ## Meltdown
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_7.rsi
+            state: corescreen_7
+            scale: 1.0,1.0
+          9: ## Safe Protocol
+            sprite: Imperial/EnergyCore/Devices/CoreStatusScreens/BigScreen/screen_state_protocol.rsi
+            state: corescreen_safe
+            scale: 1.0,1.0

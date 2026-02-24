@@ -88,6 +88,12 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
         smasher.LastAlertedUser[smasherUid] = user.Value;
         UpdateCooldownAlert(smasherUid, user.Value, smasher);
 
+        if (!_miningWeaponsHelpers.IsItemWielded(smasherUid) && HasComp<SmasherChargingComponent>(user.Value))
+        {
+            CancelCharging(user.Value, smasherUid, smasher);
+            return;
+        }
+
         if (!_miningWeaponsHelpers.IsItemWielded(smasherUid))
             return;
 
