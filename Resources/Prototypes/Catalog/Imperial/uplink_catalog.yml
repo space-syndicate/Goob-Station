@@ -30,6 +30,6 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
   productEntity: GrenadeBlast
   cost:
-    Telecrystal: 2
+    Telecrystal: 3
   categories:
     - UplinkAmmo
