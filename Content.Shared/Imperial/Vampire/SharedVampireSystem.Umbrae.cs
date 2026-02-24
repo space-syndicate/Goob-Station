@@ -236,10 +236,7 @@ public partial class SharedVampireSystem : EntitySystem
             _statusEffects.TryAddStatusEffect(args.OtherEntity, TemporaryBlindnessSystem.BlindingStatusEffect,
             ent.Comp.BlindingTime, false, TemporaryBlindnessSystem.BlindingStatusEffect);
 
-        var dmg = new DamageSpecifier
-        {
-            DamageDict = { [ent.Comp.DamageType] = ent.Comp.Damage }
-        };
+        var dmg = new DamageSpecifier(ent.Comp.Damage);
         _damage.TryChangeDamage(args.OtherEntity, dmg);
 
         if (_net.IsServer)

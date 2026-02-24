@@ -14,7 +14,7 @@ namespace Content.Shared.Imperial.Vampire
         /// ID сущности когтя вампира
         /// </summary>
         [DataField("swordId")]
-        public string SwordId = "VampireSword";
+        public EntProtoId SwordId = "VampireSword";
 
         /// <summary>
         /// был ли уже выдан коготь игроку

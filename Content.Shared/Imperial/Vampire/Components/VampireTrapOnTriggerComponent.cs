@@ -1,3 +1,5 @@
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
@@ -10,13 +12,13 @@ namespace Content.Shared.Imperial.Vampire
         /// количество урона, которое будет нанесено при соприкосновении
         /// </summary>
         [DataField("damage")]
-        public int Damage = 20;
-
-        /// <summary>
-        /// тип урона, который будет нанесен при соприкосновении
-        /// </summary>
-        [DataField("damageType")]
-        public string DamageType = "Slash";
+        public DamageSpecifier Damage = new DamageSpecifier
+        {
+            DamageDict = new Dictionary<string, FixedPoint2>
+            {
+                ["Slash"] = 20
+            }
+        };
 
         /// <summary>
         /// идентификатор приспособления, с которым объект должен столкнуться для получения урона

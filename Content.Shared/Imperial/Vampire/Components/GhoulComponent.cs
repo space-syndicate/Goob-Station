@@ -75,7 +75,7 @@ public sealed partial class GhoulComponent : Component
     public int NumberBloodSections = 10;
 
     [DataField]
-    public string GhoulPuddleID = "VampirePuddle";
+    public EntProtoId GhoulPuddleID = "VampirePuddle";
 
     [AutoNetworkedField]
     public float BloodDamage = 0f;

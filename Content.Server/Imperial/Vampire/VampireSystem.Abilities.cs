@@ -125,7 +125,7 @@ public partial class VampireSystem : EntitySystem
         }
 
         // получаем все сущности перед игроком
-        var transform = Transform(vamp.Owner);
+        var transform = Transform(args.Performer);
         var direction = transform.LocalRotation.GetCardinalDir();
         var frontPos = transform.Coordinates.Offset(direction.ToVec());
         var target = _lookup.GetEntitiesInRange(frontPos, 0.5f, LookupFlags.Uncontained | LookupFlags.Dynamic)
@@ -134,7 +134,7 @@ public partial class VampireSystem : EntitySystem
         if (!_mobState.IsAlive(target))
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-no-one-ahead"),
-                vamp.Owner, vamp.Owner, PopupType.Medium);
+                args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
@@ -145,7 +145,7 @@ public partial class VampireSystem : EntitySystem
         if (flashVampireAttempt.Cancelled)
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-vampire-has-eye-protection"),
-                vamp.Owner, vamp.Owner, PopupType.Medium);
+                args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
@@ -156,14 +156,14 @@ public partial class VampireSystem : EntitySystem
         if (flashAttempt.Cancelled)
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-has-eye-protection"),
-                vamp.Owner, vamp.Owner, PopupType.Medium);
+                args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
         if (TryComp<SleepingComponent>(vamp.SleepUid, out var sleep))
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-asleep"),
-                vamp.Owner, vamp.Owner, PopupType.Medium);
+                args.Performer, args.Performer, PopupType.Medium);
             vamp.SleepUid = EntityUid.Invalid;
             return;
         }

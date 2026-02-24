@@ -1,19 +1,22 @@
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
+
 namespace Content.Shared.Imperial.Vampire
 {
     [RegisterComponent]
     public sealed partial class DamageOnContactComponent : Component
     {
         /// <summary>
-        /// количество урона, которое будет нанесено при соприкосновении
+        /// количество урона, а так же тип, которое будет нанесено при соприкосновении
         /// </summary>
         [DataField("damage")]
-        public int Damage = 15;
-
-        /// <summary>
-        /// тип урона, который будет нанесен при соприкосновении
-        /// </summary>
-        [DataField("damageType")]
-        public string DamageType = "Slash";
+        public DamageSpecifier Damage = new DamageSpecifier
+        {
+            DamageDict = new Dictionary<string, FixedPoint2>
+            {
+                ["Slash"] = 15
+            }
+        };
 
         /// <summary>
         /// приспособление, с которым объект должен столкнуться, чтобы быть оглушенным

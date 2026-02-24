@@ -127,11 +127,11 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnGetMeleeDamage(EntityUid uid, VampireBuffComponent comp, ref GetMeleeDamageEvent args)
     {
-        if (args.Damage.DamageDict.ContainsKey(comp.BuffDamageBluntID))
-            args.Damage.DamageDict[comp.BuffDamageBluntID] *= comp.BoostedDamage;
+        if (args.Damage.DamageDict.ContainsKey(comp.BuffDamageID[0]))
+            args.Damage.DamageDict[comp.BuffDamageID[0]] *= comp.BoostedDamage;
 
-        if (args.Damage.DamageDict.ContainsKey(comp.BuffDamageSlashID))
-            args.Damage.DamageDict[comp.BuffDamageSlashID] *= comp.BoostedDamage;
+        if (args.Damage.DamageDict.ContainsKey(comp.BuffDamageID[1]))
+            args.Damage.DamageDict[comp.BuffDamageID[1]] *= comp.BoostedDamage;
     }
 
     private void MaskExamined(Entity<VampireComponent> ent, ref ExaminedEvent args)
@@ -253,7 +253,7 @@ public partial class SharedVampireSystem : EntitySystem
             foreach (var hand in _hands.EnumerateHeld(uid))
             {
                 // удаляем катану по мете
-                if (MetaData(hand).EntityPrototype?.ID == vamp.SwordId)
+                if (MetaData(hand).EntityPrototype!.ID == vamp.SwordId)
                 {
                     QueueDel(hand);
                     _audio.PlayPvs(vamp.RemoveSwordSound, uid);
@@ -314,10 +314,7 @@ public partial class SharedVampireSystem : EntitySystem
         if (args.OurFixtureId != ent.Comp.FixtureId)
             return;
 
-        var dmg = new DamageSpecifier
-        {
-            DamageDict = { [ent.Comp.DamageType] = ent.Comp.Damage }
-        };
+        var dmg = new DamageSpecifier(ent.Comp.Damage);
 
         _damage.TryChangeDamage(args.OtherEntity, dmg);
     }

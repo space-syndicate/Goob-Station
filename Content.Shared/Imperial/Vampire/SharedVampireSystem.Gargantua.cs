@@ -5,9 +5,7 @@ using Content.Shared.Popups;
 using System.Numerics;
 using Robust.Shared.Map;
 using Robust.Shared.Collections;
-using Robust.Shared.Timing;
 using System.Linq;
-using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Components;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Physics.Events;
@@ -17,6 +15,7 @@ using Content.Shared.Trigger.Systems;
 using Robust.Shared.Map.Components;
 using Content.Shared.Physics;
 using Content.Shared.Flash;
+using Content.Shared.Trigger;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -85,7 +84,8 @@ public partial class SharedVampireSystem : EntitySystem
             smokeComp.SpreadAmount = ent.SmokeRadius;
         }
 
-        RaiseLocalEvent(smoke, EntitySystem.Get<TriggerSystem>());
+        var ev = new TriggerEvent();
+        RaiseLocalEvent(smoke, ref ev);
     }
 
     /// <summary>
@@ -142,9 +142,12 @@ public partial class SharedVampireSystem : EntitySystem
         }
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.DoAfterBeforeReconciliation,
-            new VampireReconciliationDoAfterEvent { StaminaDamage = args.ReconciliationStaminaDamage,
-            DamageItem = args.ReconciliationDamageItem, KnockdownTime = args.ReconciliationKnockdownHuman,
-            DamageType = args.DamageType, VampireFlashEffectID = args.VampireFlashEffectID }, args.Performer)
+            new VampireReconciliationDoAfterEvent
+            {
+                StaminaDamage = args.ReconciliationStaminaDamage,
+                DamageItem = args.ReconciliationDamageItem, KnockdownTime = args.ReconciliationKnockdownHuman,
+                DamageType = args.DamageType, VampireFlashEffectID = args.VampireFlashEffectID
+            }, args.Performer)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

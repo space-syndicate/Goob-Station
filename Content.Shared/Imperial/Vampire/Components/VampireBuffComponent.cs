@@ -1,4 +1,6 @@
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -15,8 +17,9 @@ public sealed partial class VampireBuffComponent : Component
     public float BoostAttackRate;
 
     [DataField]
-    public string BuffDamageBluntID = "Blunt";
-
-    [DataField]
-    public string BuffDamageSlashID = "Slash";
+    public string[] BuffDamageID = new[]
+    {
+        "Blunt",
+        "Slash"
+    };
 }
