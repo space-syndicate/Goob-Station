@@ -89,5 +89,14 @@ ent-ClothingHeadHelmetHardsuitArmoredCoat = шлем экзоскелета
 
 ent-FloorBloodEntity = кровь
     .desc = Мерзость...
+    .suffix = Crook
 ent-FloorBloodRiverEntity = кровавый пол
     .desc = Мерзость...
+    .suffix = Crook
+
+ent-LargeBox = большой ящик
+    .desc = Ящик для хранения.
+    .suffix = Crook
+ent-AlwaysPoweredWallLightAmbient = странный светильник
+    .desc = Издаёт ужасный звук, это сводит с ума.
+    .suffix = Crook
