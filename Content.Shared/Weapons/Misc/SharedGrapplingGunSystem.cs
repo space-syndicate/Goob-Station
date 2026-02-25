@@ -143,9 +143,9 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
             return;
 
         // Imperial Space: fix bug. start
-        if (TryComp<BuckleComponent>(user, out var buckle))
+        if (value && TryComp<BuckleComponent>(user, out var buckle))
         {
-            var entBuckle = new Entity<BuckleComponent?>(user ?? uid, buckle);
+            var entBuckle = new Entity<BuckleComponent?>(user.Value, buckle);
             _buckle.Unbuckle(entBuckle, user);
         }
         // Imperial Space: fix bug. end
