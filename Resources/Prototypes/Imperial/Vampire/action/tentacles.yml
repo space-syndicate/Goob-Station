@@ -38,7 +38,9 @@
     - state: goliath_tentacle_wiggle
   - type: StunOnContact
   - type: DamageOnContact
-    damage: 15
+    damage:
+      types:
+        Slash: 15
   - type: Fixtures
     fixtures:
       fix:

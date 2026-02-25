@@ -34,7 +34,9 @@
     layers:
       - state: shadow_trap
   - type: VampireTrapOnTrigger
-    damage: 20
+    damage:
+      types:
+        Slash: 20
   - type: Stealth
     lastVisibility: 0.5
   - type: Fixtures
