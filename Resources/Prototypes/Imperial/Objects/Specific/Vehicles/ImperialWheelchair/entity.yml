@@ -24,6 +24,7 @@
           restitution: 0.0
           layer:
             - MidImpassable
+            - Impassable
     - type: StaticPrice
       price: 70
     - type: ImperialVehicle
