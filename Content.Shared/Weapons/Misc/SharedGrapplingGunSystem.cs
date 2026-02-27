@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
@@ -29,6 +31,7 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
     [Dependency] private readonly SharedJointSystem _joints = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
 
     public const string GrapplingJoint = "grappling";
 
@@ -138,6 +141,14 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
     {
         if (component.Reeling == value)
             return;
+
+        // Imperial Space: fix bug. start
+        if (value && TryComp<BuckleComponent>(user, out var buckle))
+        {
+            var entBuckle = new Entity<BuckleComponent?>(user.Value, buckle);
+            _buckle.Unbuckle(entBuckle, user);
+        }
+        // Imperial Space: fix bug. end
 
         if (value)
         {
