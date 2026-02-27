@@ -60,7 +60,7 @@ store-category-cs-ammo-submachine-gun = Боеприпасы к ПП
 
 store-category-cs-ammo-heavy = Боеприпасы к тяжёлому
 
-#Catalog
+# Catalog
 # Pistols
 terminal-pistol-usp-s = Usp-s
 terminal-pistol-usp-s-desc = Пиу-Пиу, сорок семь.
