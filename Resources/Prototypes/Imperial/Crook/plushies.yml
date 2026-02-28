@@ -561,3 +561,47 @@
   - type: StorageFill
     contents:
       - id: ChessBoardTabletop
+
+- type: localizedDataset
+  id: AtlasWords
+  values:
+    prefix: plushie-atlas-
+    count: 4
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieAtlas
+  name: Atlas
+  suffix: Crook, COMMUNITY, TOY
+  description: Meow!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/atlas.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: CatMeows
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMeows
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: SpeakOnTrigger
+    pack: AtlasWords
