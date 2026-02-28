@@ -568,6 +568,15 @@
     prefix: plushie-atlas-
     count: 4
 
+- type: speechSounds
+  id: Atlas
+  saySound:
+    path: /Audio/Animals/cat_meow.ogg
+  askSound:
+    path: /Audio/Animals/cat_meow.ogg
+  exclaimSound:
+    path: /Audio/Animals/cat_meow.ogg
+
 - type: entity
   parent: PlushieFumoJunko
   id: PlushieAtlas
@@ -580,25 +589,8 @@
     state: icon
   - type: Item
     size: Normal
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      collection: CatMeows
-  - type: EmitSoundOnUse
-    sound:
-      collection: CatMeows
-  - type: EmitSoundOnActivate
-    sound:
-      collection: CatMeows
-  - type: EmitSoundOnCollide
-    sound:
-      collection: CatMeows
-  - type: EmitSoundOnLand
-    sound:
-      collection: CatMeows
-  - type: EmitSoundOnTrigger
-    sound:
-      collection: CatMeows
+  - type: Speech
+    speechSounds: Atlas
   - type: UseDelay
     delay: 5.0
   - type: StaminaDamageOnHit
