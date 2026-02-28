@@ -566,7 +566,7 @@
   id: AtlasWords
   values:
     prefix: plushie-atlas-
-    count: 4
+    count: 3
 
 - type: speechSounds
   id: Atlas
