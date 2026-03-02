@@ -268,6 +268,23 @@
 
 - type: entity
   parent: FlaskBase
+  id: ThermosBlueFake
+  name: blue thermos
+  suffix: FAKE, Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: LiquidPain
+          Quantity: 40
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosBlue.rsi
+
+- type: entity
+  parent: FlaskBase
   id: ThermosGreen
   name: green thermos
   suffix: Backrooms, Crook
@@ -301,6 +318,23 @@
           Quantity: 20
         - ReagentId: Water
           Quantity: 20
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosRed.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosRedFake
+  name: red thermos
+  suffix: FAKE, Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: AlmondWater
+          Quantity: 40
   - type: Sprite
     sprite: Imperial/Crook/Misc/ThermosRed.rsi
 
