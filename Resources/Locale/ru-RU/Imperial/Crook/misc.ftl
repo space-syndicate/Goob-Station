@@ -46,6 +46,8 @@ ent-PortalGatewayBackrooms = неизвестная аномалия
 ent-HandTeleporterBackrooms = телепорт
     .desc = Используйте, чтобы создать порталы.
 hand-glitch-hurt = Коснувшись аномалии, вы ощущаете, как ваша плоть искажается.
+ghost-role-information-deathmoth-name = Смертомоль
+ghost-role-information-deathmoth-description = Вы - враждебная сущность.
 
 ent-ClothingUniformJumpsuitMadzima = брейкданс костюм
     .desc = Увидимся, мисси!

@@ -457,13 +457,15 @@
       0: Alive
       250: Dead
   - type: Bloodstream
-    bloodReagent: MuteToxin
+    bloodReagents:
+      - MuteToxin
     chemicalMaxVolume: 60
   - type: StatusEffects
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
     animation: WeaponArcBite
+    resistanceBypass: true
     damage:
       types:
         Slash: 12
@@ -530,12 +532,6 @@
   suffix: Backrooms, Crook
   description: This moth will bite off your head if you stroke it. But you don't care.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 5
   - type: Hunger
     baseDecayRate: 0.25
   - type: Physics
@@ -544,13 +540,15 @@
     - Alive
     - Dead
   - type: MeleeWeapon
-    attackRate: 0.65
-    soundHit:
-      collection: AlienClaw
+    altDisarm: false
+    angle: 0
     animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    resistanceBypass: true
     damage:
       types:
-        Piercing: 15
+        Piercing: 17
         Caustic: 10
         Structural: 75
   - type: NpcFactionMember
@@ -561,15 +559,15 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: ghost-role-information-mothroach-name
-    description: ghost-role-information-mothroach-description
+    name: ghost-role-information-deathmoth-name
+    description: ghost-role-information-deathmoth-description
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.7
-        density: 120
+        density: 200
         mask:
         - MobMask
         layer:
@@ -974,7 +972,6 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretControl
     transmitFrequencyId: Turret
-
 
 - type: reaction
   id: Kvass
