@@ -457,8 +457,7 @@
       0: Alive
       250: Dead
   - type: Bloodstream
-    bloodReagents:
-      - MuteToxin
+    bloodReagent: MuteToxin
     chemicalMaxVolume: 60
   - type: StatusEffects
   - type: MeleeWeapon
@@ -2077,3 +2076,54 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+
+- type: entity
+  id: HolyBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Holy: 35
+        Piercing: 36
+
+- type: entity
+  name: big john
+  parent: BaseItem
+  id: WeaponRevolverChaplain
+  description: Big fricking gun
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/BFG.rsi
+    state: icon
+    scale: 0.75, 0.75
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Crook/holyshot.ogg
+  - type: Speech
+    speechSounds: Pai
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BatteryAmmoProvider
+    proto: HolyBulletMagnum
+    fireCost: 10
+  - type: PredictedBattery
+    maxCharge: 10
+    startingCharge: 10
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 1
+  - type: AmmoCounter
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
