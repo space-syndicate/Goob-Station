@@ -23,19 +23,19 @@ public sealed class SpeedModifierGeneSystem : EntitySystem
             return;
 
         var gene = EnsureComp<XenoGeneComponent>(args.Gene);
-        if(gene.geneMultiplier * 100f >= component.geneNeeded)
+        if(gene.GeneMultiplier * 100f >= component.GeneNeeded)
         {
             RemComp<RespiratorComponent>(args.Target);
-            component.active = true;
+            component.Active = true;
         }
 
     }
     private void OnGeneWithdraw(EntityUid uid, RespiratorGeneComponent component, ref GeneWithdrawnEvent args)
     {    
-        if(component.active == true)
+        if(component.Active == true)
         {
             EntityManager.AddComponents(args.Target, component.Components, false);
-            component.active = false;
+            component.Active = false;
         }
         
     }

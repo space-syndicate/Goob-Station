@@ -11,12 +11,12 @@ public sealed partial class ChangePartGeneComponent : Component
 {
 
     [DataField, AutoNetworkedField]
-    public SpriteSpecifier? sprite = null;
+    public SpriteSpecifier? Sprite = null;
 
     [DataField, AutoNetworkedField]
-    public SpriteSpecifier? spriteOrig = null;
+    public SpriteSpecifier? SpriteOrig = null;
 
     [DataField, AutoNetworkedField]
 
-    public HumanoidVisualLayers layer = HumanoidVisualLayers.Head;
+    public HumanoidVisualLayers Layer = HumanoidVisualLayers.Head;
 }

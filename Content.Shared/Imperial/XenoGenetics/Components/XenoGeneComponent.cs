@@ -9,13 +9,13 @@ public sealed partial class XenoGeneComponent : Component
     /// Определяет модификатор применяемый к статам. Смотрите в коде компонентов генов подробнее что к чему.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float geneMultiplier;
+    public float GeneMultiplier;
     
     /// <summary>
     /// Определяет будет ли geneMultiplier рандомиться.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool randomizeGeneQuality = true;
+    public bool RandomizeGeneQuality = true;
 
 }
 

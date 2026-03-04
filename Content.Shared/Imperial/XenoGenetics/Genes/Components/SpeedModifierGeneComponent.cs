@@ -11,8 +11,8 @@ public sealed partial class SpeedModifierGeneComponent : Component
     /// То насколько увелчится скорость при вводе гена. Считается по формуле скорость_энтити * speedModifier + geneMultiplier
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float speedModifier = 0.30f;
+    public float SpeedModifier = 0.30f;
     
     [DataField, AutoNetworkedField]
-    public bool randomizeModifier = true;
+    public bool RandomizeModifier = true;
 }

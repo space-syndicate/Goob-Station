@@ -29,11 +29,11 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
         
-        if (component.sprite is null)
+        if (component.Sprite is null)
             return;
 
         var index = _sprite.LayerMapReserve((uid, sprite), "xeno_gene_layer");
-        _sprite.LayerSetSprite((uid, sprite), index, component.sprite);
+        _sprite.LayerSetSprite((uid, sprite), index, component.Sprite);
         _sprite.LayerSetVisible((uid, sprite), index, true);
     }
     private void OnComponentShutdown(EntityUid uid, AddSpriteGeneComponent component, ComponentShutdown args)

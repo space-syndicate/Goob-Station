@@ -10,5 +10,8 @@ public sealed partial class AddSpriteGeneComponent : Component
 {
 
     [DataField, AutoNetworkedField]
-    public SpriteSpecifier? sprite = null;
+    public SpriteSpecifier? Sprite = null;
+
+    [DataField, AutoNetworkedField]
+    public String Layer = String.Empty;
 }

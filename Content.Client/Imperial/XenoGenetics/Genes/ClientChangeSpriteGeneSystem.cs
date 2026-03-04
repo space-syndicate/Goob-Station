@@ -30,24 +30,24 @@ public sealed partial class ClientChangeSpriteGeneSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
         
-        if (component.sprite is null)
+        if (component.Sprite is null)
             return;
 
-        var index = _sprite.LayerMapGet((uid, sprite), component.layer);
+        var index = _sprite.LayerMapGet((uid, sprite), component.Layer);
 
         var speciesProto = _prototypeManager.Index(humanoidAppearance.Species);
         var baseSprites = _prototypeManager.Index(speciesProto.SpriteSet);
 
         foreach(var (key, id) in baseSprites.Sprites)
         {
-            if(key == component.layer)
+            if(key == component.Layer)
             {
                 var proto = _prototypeManager.Index<HumanoidSpeciesSpriteLayer>(id);
-                component.spriteOrig = proto.BaseSprite;
+                component.SpriteOrig = proto.BaseSprite;
             }
         }
 
-        _sprite.LayerSetSprite((uid, sprite), index, component.sprite);
+        _sprite.LayerSetSprite((uid, sprite), index, component.Sprite);
         _sprite.LayerSetVisible((uid, sprite), index, true);
     }
     private void OnComponentShutdown(EntityUid uid, ChangePartGeneComponent component, ComponentShutdown args)
@@ -55,11 +55,11 @@ public sealed partial class ClientChangeSpriteGeneSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
         
-        if (component.spriteOrig is null)
+        if (component.SpriteOrig is null)
             return;
 
-        var index = _sprite.LayerMapGet((uid, sprite), component.layer);
-        _sprite.LayerSetSprite((uid, sprite), index, component.spriteOrig);
+        var index = _sprite.LayerMapGet((uid, sprite), component.Layer);
+        _sprite.LayerSetSprite((uid, sprite), index, component.SpriteOrig);
     }
     
 }

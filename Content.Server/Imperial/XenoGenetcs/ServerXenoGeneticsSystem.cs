@@ -13,7 +13,7 @@ using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Server.Imperial.XenoGenetics;
 
-public class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
+public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
 {
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -45,7 +45,7 @@ public class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         }
         args.Handled = true;
     }
-    protected virtual void OnGeneInsert(EntityUid uid, GeneSplicerComponent comp, DoAfterEvent args)
+    private void OnGeneInsert(EntityUid uid, GeneSplicerComponent comp, DoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
@@ -57,8 +57,8 @@ public class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
             return;
         }
 
-        var targetContainer = _containerSystem.EnsureContainer<Container>(args.Target.Value, comp.entityGeneContainerID);
-        var geneContainer = _containerSystem.GetContainer(uid, comp.geneContainerID);
+        var targetContainer = _containerSystem.EnsureContainer<Container>(args.Target.Value, comp.EntityGeneContainerID);
+        var geneContainer = _containerSystem.GetContainer(uid, comp.GeneContainerID);
 
         var genesInstalled = new List<EntityUid>(targetContainer.ContainedEntities);
         if(genesInstalled.Any())
@@ -84,7 +84,7 @@ public class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         
         args.Handled = true;
     }
-    protected virtual void OnGeneWithdraw(EntityUid uid, GeneSplicerComponent comp, DoAfterEvent args)
+    private void OnGeneWithdraw(EntityUid uid, GeneSplicerComponent comp, DoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
@@ -96,8 +96,8 @@ public class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
             return;
         }
 
-        var targetContainer = _containerSystem.EnsureContainer<Container>(args.Target.Value, comp.entityGeneContainerID);
-        var geneContainer = _containerSystem.GetContainer(uid, comp.geneContainerID);
+        var targetContainer = _containerSystem.EnsureContainer<Container>(args.Target.Value, comp.EntityGeneContainerID);
+        var geneContainer = _containerSystem.GetContainer(uid, comp.GeneContainerID);
 
         var genesInstalled = new List<EntityUid>(targetContainer.ContainedEntities);
         if(!genesInstalled.Any())

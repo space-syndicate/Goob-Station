@@ -11,13 +11,13 @@ public sealed partial class GeneSplicerComponent : Component
     /// Айдишник слота спайщика генов
     /// </summary>
     [DataField, AutoNetworkedField]
-    public string geneContainerID = "gene_slot";
+    public string GeneContainerID = "gene_slot";
 
     /// <summary>
     /// Айдишник слота для генов у энтити
     /// </summary>
     [DataField, AutoNetworkedField]
-    public string entityGeneContainerID = "gene_entity_slot";
+    public string EntityGeneContainerID = "gene_entity_slot";
 
     /// <summary>
     /// Вводить/доставать

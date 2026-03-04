@@ -41,12 +41,12 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
     private void OnGeneWithdraw(EntityUid uid, XenoGeneComponent component, ref GeneWithdrawnEvent args)
     {
         _alertsSystem.ClearAlert(args.Target, "XenogeneInserted");
-        if(!TryComp<GeneWithdrawnComponent>(uid, out var geneComp) && component.randomizeGeneQuality == true)
+        if(!TryComp<GeneWithdrawnComponent>(uid, out var geneComp) && component.RandomizeGeneQuality == true)
         {
             var mobState = EnsureComp<MobStateComponent>(uid);
             if(mobState.CurrentState is MobState.Alive)
             {
-                component.geneMultiplier += 0.2f;
+                component.GeneMultiplier += 0.2f;
                 AddComp<GeneWithdrawnComponent>(uid);
             }      
         }
@@ -54,7 +54,7 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
     private void OnXenoGeneStartup(EntityUid uid, XenoGeneComponent component, ComponentStartup args)
     {
 
-        if(component.randomizeGeneQuality)
+        if(component.RandomizeGeneQuality)
         {
             float multiplier;
             int quality = _rand.Next(0, 10);
@@ -77,13 +77,13 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
                     break;
             }   
 
-            component.geneMultiplier = multiplier;
+            component.GeneMultiplier = multiplier;
         }
         
     }
     private void OnExamined(EntityUid uid, XenoGeneComponent component, ref ExaminedEvent args)
     {
-        args.PushMarkup(Loc.GetString("Качество гена: " + component.geneMultiplier * 100 + "%"));
+        args.PushMarkup(Loc.GetString("Качество гена: " + component.GeneMultiplier * 100 + "%"));
     }
 
     private void OnGeneSplicerInteract(EntityUid uid, GeneSplicerComponent comp, AfterInteractEvent args)

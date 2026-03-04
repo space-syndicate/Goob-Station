@@ -12,7 +12,7 @@ public sealed partial class AddComponentsGeneComponent : Component
     public ComponentRegistry Components = new();
 
     [DataField, AutoNetworkedField]
-    public float threshold = 70f;
+    public float Threshold = 70f;
 
 }
 

@@ -1,0 +1,23 @@
+[35mContent.Client/Administration/Systems/KillSignSystem.cs[m[36m:[m        var layer = _sprite.[1;31mAddLayer[m((uid, sprite), new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/killsign.rsi"), "sign"));
+[35mContent.Client/Damage/DamageVisualsSystem.cs[m[36m:[m        var newLayer = SpriteSystem.[1;31mAddLayer[m(
+[35mContent.Client/Damage/DamageVisualsSystem.cs[m[36m:[m        spriteLayer = SpriteSystem.[1;31mAddLayer[m(
+[35mContent.Client/DisplacementMap/DisplacementMapSystem.cs[m[36m:[m        _sprite.[1;31mAddLayer[m(sprite.AsNullable(), displacementLayer, index);
+[35mContent.Client/Holopad/HolopadSystem.cs[m[36m:[m                    _sprite.[1;31mAddLayer[m((hologram, hologramSprite), targetAvatar.LayerData[i], i);
+[35mContent.Client/Holopad/HolopadSystem.cs[m[36m:[m            _sprite.[1;31mAddLayer[m((hologram, hologramSprite), layer, null);
+[35mContent.Client/Humanoid/HumanoidAppearanceSystem.cs[m[36m:[m                var layer = _sprite.[1;31mAddLayer[m((entity.Owner, sprite), markingSprite, targetLayer + j + 1);
+[35mContent.Client/Imperial/ElectroMouse/ElectroMouseShieldSystem.cs[m[36m:[m        _layer = spriteComponent.[1;31mAddLayer[m(new SpriteSpecifier.Rsi(new ResPath("Objects/Magic/magicactions.rsi"), "shield"), 1);
+[35mContent.Client/Salvage/FultonSystem.cs[m[36m:[m        var effectLayer = _sprite.[1;31mAddLayer[m((animationEnt, sprite), new SpriteSpecifier.Rsi(new ResPath("Objects/Tools/fulton_balloon.rsi"), "fulton_balloon"));
+[35mContent.IntegrationTests/Tests/Actions/ActionPvsDetachTest.cs[m[36m:[m                visSys.[1;31mAddLayer[m(child, (int) VisibilityFlags.Ghost);
+[35mContent.Server/Ghost/GhostSystem.cs[m[36m:[m                _visibilitySystem.[1;31mAddLayer[m((uid, visibility), (int) VisibilityFlags.Ghost, false);
+[35mContent.Server/Ghost/GhostSystem.cs[m[36m:[m                _visibilitySystem.[1;31mAddLayer[m((uid, visibility), (int) VisibilityFlags.Normal, false);
+[35mContent.Server/Ghost/GhostSystem.cs[m[36m:[m                    _visibilitySystem.[1;31mAddLayer[m((uid, vis), (int) VisibilityFlags.Normal, false);
+[35mContent.Server/Ghost/GhostSystem.cs[m[36m:[m                    _visibilitySystem.[1;31mAddLayer[m((uid, vis), (int) VisibilityFlags.Ghost, false);
+[35mContent.Server/Parallax/BiomeSystem.Commands.cs[m[36m:[m        _console.RegisterCommand("biome_addlayer", Loc.GetString("cmd-biome_addlayer-desc"), Loc.GetString("cmd-biome_addlayer-help"), [1;31mAddLayer[mCallback, [1;31mAddLayer[mCallbackHelp);
+[35mContent.Server/Parallax/BiomeSystem.Commands.cs[m[36m:[m    private void [1;31mAddLayer[mCallback(IConsoleShell shell, string argstr, string[] args)
+[35mContent.Server/Parallax/BiomeSystem.Commands.cs[m[36m:[m    private CompletionResult [1;31mAddLayer[mCallbackHelp(IConsoleShell shell, string[] args)
+[35mContent.Server/Parallax/BiomeSystem.cs[m[36m:[m    public void [1;31mAddLayer[m(EntityUid uid, BiomeComponent component, string id, IBiomeLayer addedLayer, int seedOffset = 0)
+[35mContent.Server/Revenant/EntitySystems/CorporealSystem.cs[m[36m:[m            _visibilitySystem.[1;31mAddLayer[m((uid, visibility), (int) VisibilityFlags.Normal, false);
+[35mContent.Server/Revenant/EntitySystems/CorporealSystem.cs[m[36m:[m            _visibilitySystem.[1;31mAddLayer[m((uid, visibility), (int) VisibilityFlags.Ghost, false);
+[35mContent.Server/Revenant/EntitySystems/RevenantSystem.cs[m[36m:[m            _visibility.[1;31mAddLayer[m((uid, visibility), (int) VisibilityFlags.Ghost, false);
+[35mContent.Server/Revenant/EntitySystems/RevenantSystem.cs[m[36m:[m                _visibility.[1;31mAddLayer[m((uid, vis), (int) VisibilityFlags.Normal, false);
+[35mContent.Server/Revenant/EntitySystems/RevenantSystem.cs[m[36m:[m                _visibility.[1;31mAddLayer[m((uid, vis), (int) VisibilityFlags.Ghost, false);

@@ -8,5 +8,5 @@ namespace Content.Shared.Imperial.XenoGenetics.Genes.Components;
 public sealed partial class SpeedModifiedByGeneComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float actualSpeed;
+    public float ActualSpeed;
 }

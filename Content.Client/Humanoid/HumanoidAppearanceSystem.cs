@@ -73,9 +73,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         foreach (var (key, id) in baseSprites.Sprites)
         {
             /// Imperial Xenogenetics start
-            if(TryComp<ChangePartGeneComponent>(entity, out var gene))
+            if (TryComp<ChangePartGeneComponent>(entity, out var gene))
             {
-                if(gene.layer == key)
+                if(gene.Layer == key)
                     continue;
             }
             /// Imperial Xenogenetics end
@@ -98,7 +98,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             /// Imperial Xenogenetics start
             if(TryComp<ChangePartGeneComponent>(entity, out var gene))
             {
-                if(gene.layer == key)
+                if(gene.Layer == key)
                     continue;
             }
             /// Imperial Xenogenetics end

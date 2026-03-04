@@ -19,14 +19,14 @@ public sealed class AddComponentsGeneSystem : EntitySystem
     private void OnGeneInsert(EntityUid uid, AddComponentsGeneComponent component, ref GeneInsertedEvent args)
     {
         var geneComp = EnsureComp<XenoGeneComponent>(args.Gene);
-        if(geneComp.geneMultiplier * 100f <= component.threshold)
+        if(geneComp.GeneMultiplier * 100f <= component.Threshold)
             return;
         EntityManager.AddComponents(args.Target, component.Components, true);
     }
     private void OnGeneWithdraw(EntityUid uid, AddComponentsGeneComponent component, ref GeneWithdrawnEvent args)
     {
         var geneComp = EnsureComp<XenoGeneComponent>(args.Gene);
-        if(geneComp.geneMultiplier * 100f <= component.threshold)
+        if(geneComp.GeneMultiplier * 100f <= component.Threshold)
             return;
         EntityManager.RemoveComponents(args.Target, component.Components);
     }
