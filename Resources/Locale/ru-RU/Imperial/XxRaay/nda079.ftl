@@ -39,7 +39,7 @@ ent-ActionNDA079SpawnCable = Создать кабель
 
 ent-NDA079AIVisionEntity = Зрение старого ИИ
     .desc = Виртуальное представление AI в камерах.
-    .suffix: Недра, WIP
+    .suffix = Недра, WIP
 
 ent-NDA079Object = старый компьютер
     .desc = Микрокомпьютер модели Exidy Sorcerer, подключён к чёрно-белому телевизору коаксиальным кабелем.

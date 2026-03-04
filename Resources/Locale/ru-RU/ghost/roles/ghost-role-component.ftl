@@ -342,6 +342,21 @@ ghost-role-information-syndicate-cyborg-saboteur-name = Саботажный б�
 ghost-role-information-derelict-cyborg-name = Брошенный Борг
 ghost-role-information-derelict-cyborg-description = Вы обычный борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
 
+ghost-role-information-derelict-engineering-cyborg-name = Брошенный Инженерный Борг
+ghost-role-information-derelict-engineering-cyborg-description = Вы инженерный борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-janitor-cyborg-name = Брошенный Уборочный Борг
+ghost-role-information-derelict-janitor-cyborg-description = Вы уборочный борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-medical-cyborg-name = Брошенный Медицинский Борг
+ghost-role-information-derelict-medical-cyborg-description = Вы медицинский борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-mining-cyborg-name = Брошенный Утилизаторский Борг
+ghost-role-information-derelict-mining-cyborg-description = Вы утилизаторский борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-syndicate-assault-cyborg-name = Брошенный Штурмовой Борг Синдиката
+ghost-role-information-derelict-syndicate-assault-cyborg-description = Вы модель штурмового борга Синдиката, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
 ghost-role-information-gingerbread-name = Пряничный человечек
 ghost-role-information-gingerbread-description = Существо, преисполненное чистого праздничного духа.
                                      Распространяйте доброту мелассы и поднимайте всем настроение.

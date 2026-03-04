@@ -256,8 +256,6 @@ namespace Content.Shared.Atmos
         public const float HydrogenBurnHydrFactor = 10f;
         public const float HydrogenProductionMaxEfficiencyTemperature = 227f;
         public const float HydrogenProductionConversionRate = 220f;
-        public const float N2OzonProductionMaxEfficiencyTemperature = 2273f;
-        public const float N2OzonProductionConversionRate = 2273f;
 
         /// Imperial Added Hydrogen end
         public const float FrezonCoolLowerTemperature = 23.15f;

@@ -195,4 +195,4 @@ ent-MobKoboldSyndicateAgentNukeops = { ent-MobKobold }
     .desc = { ent-MobKobold.desc }
     .suffix = Синдикат, Нюка
 ent-MobMoproach = таракамоль
-    .desc = Этот маленький моль-таракан носит тапочки на лапках! Как мило!
+    .desc = Эта маленькая таракамоль носит тапочки на лапках, как мило!

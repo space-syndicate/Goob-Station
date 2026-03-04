@@ -22,6 +22,8 @@ ent-PlushieClaud = Клавдий Македонский
     .desc = Игрушка задумчивого капитана с шикарной шевелюрой, удерживающая в руке шахматную фигуру пешки.
 ent-PlushieHornet = Шершень
     .desc = Жук в кедах, посмотрите, мне так это понравилось, жук в кедах!
+ent-PlushieAtlas = Куипер
+    .desc = Милый фиолетовый котик, под ободком с рожками написано: "В случае нахождения вернуть Атласу-Илассу, или себе оставьте.".
 
 plushie-hornet-1 = Guarana!
 plushie-hornet-2 = Adida!
@@ -57,6 +59,10 @@ fumo-eirin-2 = Извините, ищите другого врача.
 fumo-teto-1 = Мои волосы это не дрели!
 fumo-teto-2 = Я химера.
 
+plushie-atlas-1 = Мяу!
+plushie-atlas-2 = Мур-р-р.
+plushie-atlas-3 = Мявк!
+
 ent-FumoBoxCrook = коробка c Фумо
     .desc = Хранит в себе плюшевую Фумо.
 ent-FumoBoxCrookOpened = распакованная коробка Фумо
@@ -86,3 +92,17 @@ ent-ClothingHeadHelmetArmoredCoat = экзоскелет SDO
     .desc = Экзоскелет, защищающий носителя от разгерметизации и повышенных температур, имеет функцию магнитных присосок для сцепления с поверхностью, а также прыжки на небольшую дистанцию.
 ent-ClothingHeadHelmetHardsuitArmoredCoat = шлем экзоскелета
     .desc = Часть экзоскелета для защиты головы от разгерметизации.
+
+ent-FloorBloodEntity = кровь
+    .desc = Мерзость...
+    .suffix = Crook
+ent-FloorBloodRiverEntity = кровавый пол
+    .desc = Мерзость...
+    .suffix = Crook
+
+ent-LargeBox = большой ящик
+    .desc = Ящик для хранения.
+    .suffix = Crook
+ent-AlwaysPoweredWallLightAmbient = странный светильник
+    .desc = Издаёт ужасный звук, это сводит с ума.
+    .suffix = Crook

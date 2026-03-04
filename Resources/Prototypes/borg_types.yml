@@ -177,8 +177,12 @@
   # Imperial Space: add action. start
   - type: UserInterface
     interfaces:
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CrewMonitoringUIKey.Key:

@@ -268,6 +268,23 @@
 
 - type: entity
   parent: FlaskBase
+  id: ThermosBlueFake
+  name: blue thermos
+  suffix: FAKE, Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: LiquidPain
+          Quantity: 40
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosBlue.rsi
+
+- type: entity
+  parent: FlaskBase
   id: ThermosGreen
   name: green thermos
   suffix: Backrooms, Crook
@@ -301,6 +318,23 @@
           Quantity: 20
         - ReagentId: Water
           Quantity: 20
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosRed.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosRedFake
+  name: red thermos
+  suffix: FAKE, Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: AlmondWater
+          Quantity: 40
   - type: Sprite
     sprite: Imperial/Crook/Misc/ThermosRed.rsi
 
@@ -1823,3 +1857,226 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  id: FloorBloodEntity
+  name: water
+  description: A real thirst quencher.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: FloorOccluder
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/blood.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: icon
+  - type: SolutionContainerManager
+    solutions:
+      pool:
+        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
+        reagents:
+        - ReagentId: Blood
+          Quantity: 9999999
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
+  - type: DrainableSolution
+    solution: pool
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    blacklist:
+      tags:
+        - Catwalk
+  - type: TileEntityEffect
+    effects:
+    - !type:Extinguish
+
+- type: entity
+  id: FloorBloodRiverEntity
+  name: lava
+  description: Don't jump in. It's not worth it, no matter how funny it is.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: TileEmission
+    color: "#631a1a"
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    blacklist:
+      tags:
+        - Catwalk
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/bloodriver.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: lava
+        shader: unshaded
+  - type: Icon
+    sprite: Imperial/Crook/Misc/bloodriver.rsi
+    state: full
+  - type: IconSmooth
+    key: floor
+    additionalKeys:
+    - walls
+    base: lava
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: LargeBox
+  name: large box
+  description: A large storage container.
+  parent: BaseStructureDynamic
+  components:
+  - type: StaticPrice
+    price: 500
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/Structures/Storage/orebox.rsi
+    layers:
+    - state: orebox
+    - state: orebox-top
+      map: [ top ]
+      visible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        top:
+          True: { visible: false }
+          False: { visible: true }
+  - type: Storage
+    grid:
+    - 0,0,9,5
+    maxItemSize: Huge
+    storageOpenSound: /Audio/Effects/closetopen.ogg
+    storageCloseSound: /Audio/Effects/closetclose.ogg
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: [ ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 20
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: AlwaysPoweredWallLight
+  id: AlwaysPoweredWallLightAmbient
+  name: light
+  description: "An always powered light."
+  components:
+  - type: PointLight
+    color: "#f0d68f"
+    energy: 2
+    radius: 10
+    softness: 1
+    offset: "0, -0.5"
+  - type: AmbientSound
+    volume: -7
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9999999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak

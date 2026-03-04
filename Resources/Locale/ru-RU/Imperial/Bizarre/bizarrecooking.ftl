@@ -15,7 +15,7 @@ ent-FoodBakedPlaguePestPancakes = чумные блинчики
 ent-FoodIdiotSandwich = идиотский сендвич
     .desc = ЭТО ПРОСТО ГОЛОВА ЧЕЛОВЕКА МЕЖДУ ЛОМТИКОВ ХЛЕБА
 
-#Это непереводимая игра слов. Пожалуйста не переводите это
+# Это непереводимая игра слов. Пожалуйста не переводите это
 ent-FoodPlasmaIceCream = Плазменное мороженое
     .desc = i scream, you scream
 #
