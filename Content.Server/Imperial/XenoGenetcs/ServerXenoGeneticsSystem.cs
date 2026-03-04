@@ -32,12 +32,12 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         {
             case GeneSplicerMode.Insert:
             component.InsertMode = GeneSplicerMode.Withdraw;
-            _popup.PopupEntity("Текущий режим: извлечение", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-mode-withdraw"), args.User, PopupType.Small);
             break;
 
             case GeneSplicerMode.Withdraw:
             component.InsertMode = GeneSplicerMode.Insert;
-            _popup.PopupEntity("Текущий режим: ввод", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-mode-insert"), args.User, PopupType.Small);
             break;
 
             default:
@@ -52,7 +52,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         
         if(!TryComp<ContainerManagerComponent>(args.Target, out var slots))
         {
-            _popup.PopupEntity("Ошибка ввода!", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-error"), args.User, PopupType.Small);
             args.Handled = true;
             return;
         }
@@ -63,7 +63,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         var genesInstalled = new List<EntityUid>(targetContainer.ContainedEntities);
         if(genesInstalled.Any())
         {
-            _popup.PopupEntity("У цели уже имеются генные модификации.", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-already-modified"), args.User, PopupType.Small);
             args.Handled = true;
             return;
         }
@@ -71,7 +71,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         var toInsert = new List<EntityUid>(geneContainer.ContainedEntities);
         if(!toInsert.Any())
         {
-            _popup.PopupEntity("Отсутствует образец для ввода.", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-gene-not-inserted"), args.User, PopupType.Small);
             args.Handled = true;
             return;
         }
@@ -91,7 +91,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
 
         if(!TryComp<ContainerManagerComponent>(args.Target, out var slots))
         {
-            _popup.PopupEntity("Ошибка извлечения!", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-error"), args.User, PopupType.Small);
             args.Handled = true;
             return;
         }
@@ -102,7 +102,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         var genesInstalled = new List<EntityUid>(targetContainer.ContainedEntities);
         if(!genesInstalled.Any())
         {
-            _popup.PopupEntity("У цели нет генных модификаций.", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-has-no-gene"), args.User, PopupType.Small);
             args.Handled = true;
             return;
         }
@@ -110,7 +110,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         var toInsert = new List<EntityUid>(geneContainer.ContainedEntities);
         if(toInsert.Any())
         {
-            _popup.PopupEntity("Освободите слот для генного материала спайщика.", args.User, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("gene-splicer-slot-filled"), args.User, PopupType.Small);
             args.Handled = true;
             return;
         }
