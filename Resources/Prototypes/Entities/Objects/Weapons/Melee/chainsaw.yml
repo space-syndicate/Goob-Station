@@ -21,7 +21,7 @@
     damage:
       types:
         Slash: 2
-        Blunt: 3 # Imperial Space 2 -> 3
+        Blunt: 2
         Structural: 4
     soundHit:
       path: /Audio/Weapons/chainsaw.ogg
@@ -30,8 +30,8 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Slash: 8 # Imperial Space 4 -> 8
-        Structural: 8 # Imperial Space 4 -> 8
+        Slash: 4
+        Structural: 4
   - type: Item
     size: Normal
     sprite: Objects/Weapons/Melee/chainsaw.rsi
