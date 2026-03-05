@@ -477,6 +477,7 @@
     - SurgeryStatic
     dynamicPacks:
     - Chemistry
+    - ImperialCompactDefib # Imperial Space Compact Defibrillator
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

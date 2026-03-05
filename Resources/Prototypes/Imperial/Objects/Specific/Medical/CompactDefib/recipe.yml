@@ -9,3 +9,8 @@
     Silver: 250
     Plasma: 500
     Uranium: 100
+
+- type: latheRecipePack
+  id: ImperialCompactDefib
+  recipes:
+  - CompactDefibrillator
