@@ -2086,8 +2086,19 @@
   - type: Projectile
     damage:
       types:
-        Holy: 35
-        Piercing: 36
+        Holy: 46
+        Piercing: 5
+
+- type: entity
+  id: BigBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 42
 
 - type: entity
   name: big john
@@ -2122,8 +2133,24 @@
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 1
   - type: AmmoCounter
-  - type: MultiHandedItem
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
   - type: HeldSpeedModifier
+
+- type: entity
+  name: big john
+  parent: WeaponRevolverChaplain
+  id: WeaponBigJohnRevolver
+  description: Big fricking gun
+  components:
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/SpecialUnits/RCU/Criminality/uts.ogg
+  - type: BatteryAmmoProvider
+    proto: BigBulletMagnum
+    fireCost: 10

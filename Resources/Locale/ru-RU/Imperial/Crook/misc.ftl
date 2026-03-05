@@ -182,6 +182,9 @@ reagent-name-almondwater = миндальная вода
 reagent-desc-almondwater = Нежная, почти прозрачная жидкость, приятно пахнущая свежим миндалём.
 reagent-physical-desc-almondwater = прозрачное
 
-ent-WeaponRevolverChaplain = большой Джон
-    .desc = О чёрт о боже, это же чёртова большая пушка! Она создаёт грёбаные святые пули по божьей воле. На ней гравировка BFG.
+ent-WeaponRevolverChaplain = Big John
+    .desc = О чёрт о боже, это же чёртова большая пушка! Она создаёт святые пули по божьей воле. На ней гравировка BFG.
+    .suffix = Admeme, Crook
+ent-WeaponBigJohnRevolver = Big John
+    .desc = О чёрт о боже, это же чёртова большая пушка! Она воспроизводит пули внутри себя самой. На ней гравировка BFG.
     .suffix = Admeme, Crook
