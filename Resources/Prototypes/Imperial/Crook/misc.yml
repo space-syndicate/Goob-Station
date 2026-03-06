@@ -2055,14 +2055,14 @@
   description: "An always powered light."
   components:
   - type: PointLight
-    color: "#f0d68f"
-    energy: 2
-    radius: 10
+    color: "#d6c081"
+    energy: 1.8
+    radius: 9
     softness: 1
     offset: "0, -0.5"
   - type: AmbientSound
-    volume: -7
-    range: 3
+    volume: -11
+    range: 4
     sound:
       path: /Audio/Ambience/Objects/light_hum.ogg
   - type: Destructible
