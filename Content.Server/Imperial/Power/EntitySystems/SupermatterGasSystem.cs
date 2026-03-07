@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
@@ -54,28 +53,16 @@ public sealed class SupermatterGasSystem : EntitySystem
             if (gas == null)
                 continue;
 
-            var antiNobMoles = gas.GetMoles(Gas.AntiNoblium);
-            var antiNobActive = antiNobMoles > gasComp.GasActivationMoles;
-
-            if (gasComp.AntiNobliumHardShutdownEnabled && antiNobActive)
-            {
-                integrity.Activated = false;
-                gasComp.WasShutdownByAntiNoblium = true;
-            }
-            else if (gasComp.AntiNobliumHardShutdownEnabled && !antiNobActive && gasComp.WasShutdownByAntiNoblium)
-            {
-                integrity.Activated = true;
-                gasComp.WasShutdownByAntiNoblium = false;
-            }
-
             var thermMoles = gas.GetMoles(Gas.Thermonium);
             var ozoneMoles = gas.GetMoles(Gas.Ozonium);
             var plasmaMoles = gas.GetMoles(Gas.Plasma);
+            var antiNobMoles = gas.GetMoles(Gas.AntiNoblium);
             var hyperNobMoles = gas.GetMoles(Gas.HyperNoblium);
 
             var thermActive = thermMoles > gasComp.GasActivationMoles;
             var ozoneActive = ozoneMoles > gasComp.GasActivationMoles;
             var plasmaActive = plasmaMoles > gasComp.GasActivationMoles;
+            var antiNobActive = antiNobMoles > gasComp.GasActivationMoles;
             var hyperNobActive = hyperNobMoles > gasComp.GasActivationMoles;
 
             gasComp.GasTickAccumulator += TimeSpan.FromSeconds(frameTime);
@@ -151,5 +138,4 @@ public sealed class SupermatterGasSystem : EntitySystem
         return EntityManager.TryGetComponent(uid, out component);
     }
 }
-
 

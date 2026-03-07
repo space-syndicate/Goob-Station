@@ -74,29 +74,14 @@ public sealed class RadiationMultiplierReaction : ISupermatterGasReaction
 
         var multiplier = 1f;
 
-        switch (triggerGas)
-        {
-            case Gas.Ozonium:
-            {
-                var moles = gas.GetMoles(triggerGas);
-                if (moles <= gasComp.Comp.GasActivationMoles)
-                    return;
+        if (triggerGas is not (Gas.Ozonium or Gas.Plasma))
+            return;
 
-                multiplier *= gasComp.Comp.OzoneRadiationMultiplier;
-                break;
-            }
-            case Gas.Plasma:
-            {
-                var moles = gas.GetMoles(triggerGas);
-                if (moles <= gasComp.Comp.GasActivationMoles)
-                    return;
+        if (gas.GetMoles(Gas.Ozonium) > gasComp.Comp.GasActivationMoles)
+            multiplier *= gasComp.Comp.OzoneRadiationMultiplier;
 
-                multiplier *= gasComp.Comp.PlasmaRadiationMultiplier;
-                break;
-            }
-            default:
-                return;
-        }
+        if (gas.GetMoles(Gas.Plasma) > gasComp.Comp.GasActivationMoles)
+            multiplier *= gasComp.Comp.PlasmaRadiationMultiplier;
 
         radiation.Intensity = baseIntensity * multiplier;
     }
@@ -185,5 +170,4 @@ public sealed class HyperNobliumTouchCancelReaction : ISupermatterGasReaction
         gasComp.Comp.HyperNobTouchCancelActive = moles > gasComp.Comp.GasActivationMoles;
     }
 }
-
 
