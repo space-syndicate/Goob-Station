@@ -32,7 +32,7 @@ public sealed class SupermatterEventSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = null!;
 
     // Кеш ближайших консолей для кристаллов
-    private readonly Dictionary<EntityUid, (EntityUid console, float time)> _nearestConsoleCache = new();
+    private readonly Dictionary<EntityUid, (EntityUid Console, TimeSpan UpdatedAt)> _nearestConsoleCache = new();
 
     public override void Initialize()
     {
@@ -127,36 +127,6 @@ public sealed class SupermatterEventSystem : EntitySystem
         }
     }
 
-    private void ProcessSingleSupermatter(
-        Entity<SupermatterEventComponent, SupermatterIntegrityComponent> entity)
-    {
-        var currentTime = GameTiming.CurTime;
-
-        UpdateConsoleCache(entity, currentTime);
-        UpdateEventEndTimer(entity.Comp1, currentTime);
-
-        if (!entity.Comp2.Activated)
-        {
-            ResetInactiveTimers(entity.Comp1, currentTime);
-            return;
-        }
-
-        UpdateNextEventTimer(entity.Comp1, currentTime);
-
-        TryStartNewEvent(entity);
-        ProcessActiveEvent(entity, currentTime);
-    }
-
-
-    private void UpdateConsoleCache(Entity<SupermatterEventComponent> entity, TimeSpan currentTime)
-    {
-        if (currentTime - entity.Comp.LastConsoleCacheUpdate < entity.Comp.ConsoleCacheLifetime)
-            return;
-
-        _nearestConsoleCache.Remove(entity);
-        entity.Comp.LastConsoleCacheUpdate = currentTime;
-    }
-
     private static void UpdateEventEndTimer(SupermatterEventComponent comp, TimeSpan currentTime)
     {
         if (comp.EventEndTime <= TimeSpan.Zero)
@@ -168,19 +138,6 @@ public sealed class SupermatterEventSystem : EntitySystem
             comp.EventEndTime = TimeSpan.Zero;
 
         comp.LastEventEndTimeUpdate = currentTime;
-    }
-
-    private static void UpdateNextEventTimer(SupermatterEventComponent comp, TimeSpan currentTime)
-    {
-        if (comp.NextEventTimer <= TimeSpan.Zero)
-            return;
-
-        var elapsed = currentTime - comp.LastNextEventTimerUpdate;
-        comp.NextEventTimer -= elapsed;
-        if (comp.NextEventTimer < TimeSpan.Zero)
-            comp.NextEventTimer = TimeSpan.Zero;
-
-        comp.LastNextEventTimerUpdate = currentTime;
     }
 
     private static void ResetInactiveTimers(SupermatterEventComponent comp, TimeSpan currentTime)
@@ -203,6 +160,9 @@ public sealed class SupermatterEventSystem : EntitySystem
         {
             rad.Intensity = comp.DefaultRadiationIntensity;
         }
+
+        if (comp.AllowedEventTypes.Count == 0)
+            return;
 
         var randomEvtIndex = _random.Next(0, comp.AllowedEventTypes.Count);
         var randomEvtType = comp.AllowedEventTypes[randomEvtIndex];
@@ -252,13 +212,13 @@ public sealed class SupermatterEventSystem : EntitySystem
         }
     }
 
-    private static void ActivateNoneEvent(Entity<SupermatterEventComponent> entity)
+    private void ActivateNoneEvent(Entity<SupermatterEventComponent> entity)
     {
         if (entity.AsType() == EntityUid.Invalid)
             return;
 
         var comp = entity.Comp;
-        var currentTime = comp.LastEventEndTimeUpdate;
+        var currentTime = GameTiming.CurTime;
 
         comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.None;
         comp.EventEndTime = TimeSpan.Zero;
@@ -448,7 +408,7 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     private void AnnounceFromSupermatterConsole(EntityUid crystal, string message)
     {
-        var timeNow = (float)GameTiming.CurTime.TotalSeconds;
+        var now = GameTiming.CurTime;
         EntityUid? nearestConsole = null;
 
         var mapCoordinates = _transformSystem.GetMapCoordinates(crystal);
@@ -458,9 +418,9 @@ public sealed class SupermatterEventSystem : EntitySystem
         if (!EntityManager.TryGetComponent<SupermatterEventComponent>(crystal, out var eventComp))
             return;
 
-        if (_nearestConsoleCache.TryGetValue(crystal, out var cached) && TimeSpan.FromSeconds(timeNow - cached.time) < eventComp.ConsoleCacheLifetime)
+        if (_nearestConsoleCache.TryGetValue(crystal, out var cached) && now - cached.UpdatedAt < eventComp.ConsoleCacheLifetime)
         {
-            nearestConsole = cached.console;
+            nearestConsole = cached.Console;
         }
         else
         {
@@ -480,7 +440,7 @@ public sealed class SupermatterEventSystem : EntitySystem
                 nearestConsole = consoleUid;
             }
             if (nearestConsole != null)
-                _nearestConsoleCache[crystal] = (nearestConsole.Value, timeNow);
+                _nearestConsoleCache[crystal] = (nearestConsole.Value, now);
         }
 
         foreach (var channel in eventComp.RadioChannels)
