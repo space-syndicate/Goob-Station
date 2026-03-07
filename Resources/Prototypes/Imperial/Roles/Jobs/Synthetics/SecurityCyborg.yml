@@ -51,8 +51,8 @@
   - type: MobThresholds
     thresholds:
      0: Alive
-     150: Critical
-     200: Dead
+     130: Critical
+     180: Dead
 
   radioChannels:
   - Security
