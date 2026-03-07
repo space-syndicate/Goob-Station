@@ -4,7 +4,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.StatusEffect;
 using Content.Shared.Hands.Components;
 using Content.Shared.Popups;
 using Content.Shared.Cuffs.Components;
@@ -45,6 +44,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.IdentityManagement;
+using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -52,7 +52,7 @@ namespace Content.Shared.Imperial.Vampire;
 public partial class SharedVampireSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
