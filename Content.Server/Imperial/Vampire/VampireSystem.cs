@@ -24,7 +24,6 @@ using Content.Shared.Actions;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;
 using Content.Shared.Mindshield.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 
@@ -49,9 +48,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-
-    public const string CooldownAlertAppealGhouls = "AppealGhoulsCooldownAlert";
 
     private void VampireInitialize()
     {
@@ -87,7 +83,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         // верб для превращения цели в упыря
         if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target)
-            && !HasComp<MindShieldComponent>(args.Target) && !HasComp<AppealGhoulsCooldownComponent>(uid))
+            && !HasComp<MindShieldComponent>(args.Target) && !_statusEffects.HasStatusEffect(uid, vamp.CooldownStatusEffectAppealGhouls))
         {
             var verbConvert = new InnateVerb
             {
@@ -302,10 +298,11 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp<VampireComponent>(uid, out var comp))
             return;
 
-        _statusEffectsSystem.TryAddStatusEffect<AppealGhoulsCooldownComponent>(uid,
-            CooldownAlertAppealGhouls,
+        _statusEffects.TryAddStatusEffectDuration(uid,
+            comp.CooldownStatusEffectAppealGhouls,
+            out _,
             comp.CooldownTimeAppealGhouls,
-            true);
+            null);
     }
 
     private void OnSelectingSubgroup(VampireSelectingSubgroupEvent args)

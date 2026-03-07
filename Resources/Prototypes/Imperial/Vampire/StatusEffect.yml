@@ -1,4 +1,8 @@
-- type: statusEffect
-  id: AppealGhoulsCooldownAlert
-  alert: AppealGhoulsCooldownAlert
-  alwaysAllowed: true
+- type: entity
+  id: AppealGhoulsCooldown
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StatusEffect
+  - type: StatusEffectAlert
+    alert: AppealGhoulsCooldownAlert
+    showDuration: true

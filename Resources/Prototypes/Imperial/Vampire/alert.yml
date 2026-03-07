@@ -80,7 +80,7 @@
 - type: alert
   id: AppealGhoulsCooldownAlert
   icons:
-  - sprite: /Textures/Mobs/Species/Human/organs.rsi
+  - sprite: Mobs/Species/Human/organs.rsi
     state: brain
   name: Задержка обращения
   description: Вы недавно пытались обратить человека в упыря. Функция обращения временно недоступна.

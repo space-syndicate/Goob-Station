@@ -312,6 +312,9 @@ namespace Content.Shared.Imperial.Vampire
         /// длительность cooldown на обращение в упырей
         /// </summary>
         [DataField("cooldownTimeAppealGhouls")]
-        public TimeSpan CooldownTimeAppealGhouls = TimeSpan.FromMinutes(2.5f);
+        public TimeSpan CooldownTimeAppealGhouls = TimeSpan.FromMinutes(1);
+
+        [DataField]
+        public string CooldownStatusEffectAppealGhouls = "AppealGhoulsCooldown";
     }
 }
