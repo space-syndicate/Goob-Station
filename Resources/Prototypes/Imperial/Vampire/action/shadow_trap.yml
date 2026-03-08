@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseAction
+  id: VampireShadowTrapAction
+  name: Теневой капкан
+  description: Устанавливает ловушку. При срабатывании ослепляет жертву и наносит 20 урона. Стоимость 15 ед. крови. Кулдаун 15 секунд.
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: shadow_trap_icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:VampireShadowTrapEvent
+      costBlood: 15
+
+- type: entity
+  parent: BaseLandMine
+  id: VampireTrap
+  name: Теневой капкан
+  description: Капкан из крови. Выглядит устрашающе.
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Stellark/Vampire/shadow_trap.rsi
+    layers:
+      - state: shadow_trap
+  - type: VampireTrapOnTrigger
+    damage:
+      types:
+        Slash: 20
+  - type: Stealth
+    lastVisibility: 0.5
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 80
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: GlassBreak
+              params:
+                volume: 5
+          - !type:DoActsBehavior
+            acts: ["Destruction"]

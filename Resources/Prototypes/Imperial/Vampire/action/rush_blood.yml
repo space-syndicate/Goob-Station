@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: RushBloodAction
+  name: Прилив крови
+  description: Увеличивает скорость передвижения в 3 раза на 10 секунд. Стоимость 10 ед. крови. Кулдаун 40 секунд.
+  components:
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: rush_blood
+  - type: InstantAction
+    event: !type:VampireRushBloodEvent
+      costBlood: 10

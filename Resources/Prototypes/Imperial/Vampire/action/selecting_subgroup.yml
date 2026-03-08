@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: VampireSelectingSubgroupAction
+  name: Выбрать подгруппу
+  description: Выберите путь развития вампира. Каждая подгруппа обладает уникальными способностями.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: selecting_subgroup
+  - type: InstantAction
+    event: !type:VampireSelectingSubgroupEvent

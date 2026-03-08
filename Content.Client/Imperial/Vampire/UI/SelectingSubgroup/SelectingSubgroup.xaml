@@ -1,0 +1,76 @@
+<controls:FancyWindow xmlns="https://spacestation14.io" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      x:Class="Content.Client.Imperial.Vampire.UI.SelectingSubgroup"
+                      Title="{Loc 'vampire-selecting-window-subgroup-title'}"
+                      Resizable="False" MinSize="1200 650">
+
+    <BoxContainer Orientation="Vertical" Margin="5" SeparationOverride="5">
+        <controls:StripeBack Margin="0 0 0 4">
+                <RichTextLabel Name="SubgroupLabelWarning" HorizontalAlignment="Center" StyleClasses="LabelSubText" Margin="4 4 0 4"/>
+        </controls:StripeBack>
+    </BoxContainer>
+
+    <BoxContainer Orientation="Horizontal" Margin="5 45 5 5" SeparationOverride="5" HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- Hemomancer -->
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+                <Label Text="{Loc 'vampire-subgroup-hemomancer-title'}" StyleClasses="LabelHeading" Align="Center" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <RichTextLabel Name="SubgroupLabelHemomancer" MaxWidth="350" Margin="5 5"/>
+                </ScrollContainer>
+
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabelTurnHemomancer" MaxWidth="350" MinHeight="50" HorizontalExpand="True" Margin="5 5"/>
+
+                <controls:ConfirmButton Name="SubgroupButtonHemomancer" Text="{Loc 'vampire-subgroup-hemomancer-button'}" MinHeight="40"
+                    HorizontalExpand="True" StyleClasses="OpenRight" Margin="5 5"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Umbrae -->
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+                <Label Text="{Loc 'vampire-subgroup-umbrae-title'}" StyleClasses="LabelHeading" Align="Center" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <RichTextLabel Name="SubgroupLabelUmbrae" MaxWidth="350" Margin="5 5"/>
+                </ScrollContainer>
+
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabelTurnUmbrae" MaxWidth="350" MinHeight="50" HorizontalExpand="True" Margin="5 5"/>
+
+                <controls:ConfirmButton Name="SubgroupButtonUmbrae" Text="{Loc 'vampire-subgroup-umbrae-button'}" MinHeight="40" HorizontalExpand="True"
+                    StyleClasses="OpenBoth" Margin="5 5"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Gargantua -->
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+                <Label Text="{Loc 'vampire-subgroup-gargantua-title'}" StyleClasses="LabelHeading" Align="Center" Margin="5 5"/>
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <RichTextLabel Name="SubgroupLabelGargantua" MaxWidth="350" Margin="5 5"/>
+                </ScrollContainer>
+
+                <PanelContainer HorizontalExpand="True" MinHeight="2" StyleClasses="HighDivider" Margin="5 5 0 0"/>
+                <RichTextLabel Name="SubgroupLabelTurnGargantua" MaxWidth="350" MinHeight="50" HorizontalExpand="True" Margin="5 5"/>
+
+                <controls:ConfirmButton Name="SubgroupButtonGargantua" Text="{Loc 'vampire-subgroup-gargantua-button'}" MinHeight="40"
+                    HorizontalExpand="True" StyleClasses="OpenLeft" Margin="5 5"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+    </BoxContainer>
+</controls:FancyWindow>

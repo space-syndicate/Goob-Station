@@ -1,0 +1,25 @@
+- type: factionIcon
+  id: VampireFactionAction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - Vampire
+      - Ghoul
+  icon:
+    sprite: /Textures/Imperial/Stellark/Vampire/statusicon.rsi
+    state: Vampire
+
+- type: factionIcon
+  id: GhoulFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - Vampire
+      - Ghoul
+  icon:
+    sprite: /Textures/Imperial/Stellark/Vampire/statusicon.rsi
+    state: Ghoul

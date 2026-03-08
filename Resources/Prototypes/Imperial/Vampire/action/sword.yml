@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseAction
+  id: VampireSwordAction
+  name: Кровавая катана
+  description: Призывает катану из крови с уроном 15 единиц и ускорением атаки на 25%. Ломается через 30 секунд.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: sword
+  - type: InstantAction
+    event: !type:VampireSwordEvent
+      cooldownSword: 30
+
+- type: entity
+  parent: BaseAction
+  id: VampireSwordPlusAction
+  name: Кровавая катана +
+  description: Призывает катану из крови с уроном 15 единиц и ускорением атаки на 25%.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: sword_plus
+  - type: InstantAction
+    event: !type:VampireSwordEvent
+      cooldownSword: 0
+
+- type: entity
+  name: Кровавая катана
+  parent: Katana
+  id: VampireSword
+  description: Катана из крови. Выглядит устрашающе...
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/Vampire/sword.rsi
+    state: icon
+  - type: Unremoveable
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    wideAnimationRotation: -135
+    attackRate: 1.25
+    damage:
+      types:
+        Blunt: 15

@@ -1,0 +1,83 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Created by Stellark",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "invisible"
+      },
+      {
+        "name": "message"
+      },
+      {
+        "name": "recovery"
+      },
+      {
+        "name": "rush_blood"
+      },
+      {
+        "name": "selecting_subgroup"
+      },
+      {
+        "name": "uncuff"
+      },
+      {
+        "name": "sleep"
+      },
+      {
+        "name": "transform_blood"
+      },
+      {
+        "name": "nosferaty"
+      },
+      {
+        "name": "reconciliation"
+      },
+      {
+        "name": "blood_theft"
+      },
+      {
+        "name": "clone"
+      },
+      {
+        "name": "transform_bat"
+      },
+      {
+        "name": "tentacles_off"
+      },
+      {
+        "name": "tentacles_on"
+      },
+      {
+        "name": "sword"
+      },
+      {
+        "name": "shadow_trap_icon"
+      },
+      {
+        "name": "teleport"
+      },
+      {
+        "name": "turn"
+      },
+      {
+        "name": "sword_plus"
+      },
+      {
+        "name": "invisible_plus"
+      },
+      {
+        "name": "nosferaty_plus"
+      },
+      {
+        "name": "jerk"
+      },
+      {
+        "name": "blood_anchor"
+      }
+    ]
+  }

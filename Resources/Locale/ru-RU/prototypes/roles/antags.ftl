@@ -48,3 +48,9 @@ roles-antag-pirate-objective = Сгруппируйтесь со своей ко
 
 roles-antag-captainpirate-name = Капитан пират
 roles-antag-captainpirate-objective = Ахой! Укажи путь своему экипажу к богатству (путем разграба). Не подведи Муниципальность Горизонта!
+
+roles-antag-vampire-name = Вампир
+roles-antag-vampire-objective = Тайно утоляйте свою жажду кровью экипажа и избегайте разоблачения.
+
+roles-antag-ghoul-name = Упырь
+roles-antag-ghoul-objective = Тайно утоляйте свою жажду кровью экипажа и служите своему хозяину.

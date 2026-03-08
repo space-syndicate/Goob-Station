@@ -1,0 +1,69 @@
+- type: entity
+  parent: BaseAction
+  id: VampireTentaclesAction
+  name: Щупальца
+  description: Из указанной точки вырываются щупальца, наносящие 15 урона и сваливающие жертву на землю. Стоимость 20 ед. крови. Кулдаун 40 секунд.
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 40
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: tentacles_off
+    iconOn:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: tentacles_on
+    sound:
+      path: "/Audio/Weapons/slash.ogg"
+  - type: TargetAction
+    range: 10
+  - type: WorldTargetAction
+    event: !type:VampireTentaclesEvent
+      costBlood: 20
+
+- type: entity
+  id: VampireTentacle
+  name: tentacle
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    layers:
+    - state: goliath_tentacle_wiggle
+  - type: StunOnContact
+  - type: DamageOnContact
+    damage:
+      types:
+        Slash: 15
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: SpawnOnDespawn
+    prototype: EffectGoliathTentacleRetract
+
+- type: entity
+  id: EffectVampireSpawn
+  parent: BaseEffectGoliathTentacleSpawn
+  categories: [ HideSpawnMenu ]
+  name: tentacle
+  components:
+    - type: Sprite
+      state: goliath_tentacle_spawn
+    - type: SpawnOnDespawn
+      prototype: VampireTentacle

@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: VampireTeleportAction
+  name: Телепорт
+  description: Телепортирует на короткую дистанцию, оставляя облако дыма на месте отправления. Стоимость 20 ед. крови. Кулдаун 15 секунд.
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: teleport
+  - type: InstantAction
+    event: !type:VampireTeleportEvent
+      costBlood: 20
