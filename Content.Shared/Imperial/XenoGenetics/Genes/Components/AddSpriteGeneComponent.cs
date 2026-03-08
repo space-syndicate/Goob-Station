@@ -13,5 +13,5 @@ public sealed partial class AddSpriteGeneComponent : Component
     public SpriteSpecifier? Sprite = null;
 
     [DataField, AutoNetworkedField]
-    public String Layer = String.Empty;
+    public String Layer = "xeno_gene_layer";
 }

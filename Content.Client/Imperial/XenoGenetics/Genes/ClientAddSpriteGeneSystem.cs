@@ -32,7 +32,7 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
         if (component.Sprite is null)
             return;
 
-        var index = _sprite.LayerMapReserve((uid, sprite), "xeno_gene_layer");
+        var index = _sprite.LayerMapReserve((uid, sprite), component.Layer);
         _sprite.LayerSetSprite((uid, sprite), index, component.Sprite);
         _sprite.LayerSetVisible((uid, sprite), index, true);
     }
@@ -40,7 +40,7 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
-        var index = _sprite.LayerMapGet((uid, sprite), "xeno_gene_layer");
+        var index = _sprite.LayerMapGet((uid, sprite), component.Layer);
         _sprite.LayerSetVisible((uid, sprite), index, false);
     }
     
