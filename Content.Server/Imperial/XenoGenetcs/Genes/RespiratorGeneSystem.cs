@@ -8,9 +8,8 @@ using Content.Server.Body.Components;
 
 namespace Content.Server.Imperial.XenoGenetics.Genes;
 
-public sealed class SpeedModifierGeneSystem : EntitySystem
+public sealed class RespiratorGeneSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     public override void Initialize()
     {
         base.Initialize();
