@@ -7,12 +7,15 @@ using Robust.Shared.Physics.Events;
 using Content.Shared.Stealth.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye.Blinding.Systems;
+using Robust.Shared.Prototypes;
 
 
 namespace Content.Shared.Imperial.Vampire;
 
 public partial class SharedVampireSystem : EntitySystem
 {
+    public static readonly EntProtoId BlindingStatusEffect = "TemporaryBlindness";
+
     private void UmbraeInitialize()
     {
         SubscribeLocalEvent<VampireUnCuffEvent>(OnUnCuff);
@@ -233,8 +236,8 @@ public partial class SharedVampireSystem : EntitySystem
 
         // ослепляем жертву
         if (_net.IsServer)
-            _statusEffects.TryAddStatusEffect(args.OtherEntity, TemporaryBlindnessSystem.BlindingStatusEffect,
-            ent.Comp.BlindingTime, false, TemporaryBlindnessSystem.BlindingStatusEffect);
+            _statusEffects.TryAddStatusEffectDuration(args.OtherEntity,
+            BlindingStatusEffect, ent.Comp.BlindingTime);
 
         var dmg = new DamageSpecifier(ent.Comp.Damage);
         _damage.TryChangeDamage(args.OtherEntity, dmg);
