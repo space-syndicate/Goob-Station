@@ -6,6 +6,22 @@
   id: MobMeatSlime
   parent: MobAdultSlimesBlue
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenogenetics/meat_slime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: meat_slime
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: meat_slime
+      Dead:
+        Base: meat_slime_dead
   - type: Bloodstream
     bloodReagents:
       reagents:
@@ -20,7 +36,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.30
-        density: 200
+        density: 220
         mask:
         - MobMask
         layer:

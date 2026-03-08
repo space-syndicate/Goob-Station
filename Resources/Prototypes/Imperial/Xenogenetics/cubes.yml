@@ -56,3 +56,31 @@
   components:
   - type: SpawnOnDespawn
     prototype: MobBearSpace
+
+# MEAT SLIME
+- type: entity
+  parent: RehydratableAnimalCube
+  id: MeatSlimeCube
+  name: meat slime cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobMeatSlime
+
+# CARP SHARK
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SafeCarpSharkCube
+  name: carp shark cube (20s)
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - SafeCarpSharkSpawner
+
+- type: entity
+  id: SafeCarpSharkSpawner
+  name: SafeCarpSharkSpawner
+  parent: BaseSafeSpawner20s
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobShark

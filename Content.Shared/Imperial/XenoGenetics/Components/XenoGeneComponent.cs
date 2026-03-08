@@ -1,4 +1,6 @@
 using Robust.Shared.GameStates;
+using Content.Shared.Alert;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.XenoGenetics.Components;
 
@@ -16,6 +18,12 @@ public sealed partial class XenoGeneComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool RandomizeGeneQuality = true;
+
+    /// <summary>
+    /// Айдишник алерта
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<AlertPrototype> AlertProto = "XenogeneInserted";
 
 }
 

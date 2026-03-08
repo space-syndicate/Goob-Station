@@ -9,6 +9,7 @@
   cost: 3000
   recipeUnlocks:
   - GeneSplicerRecipe
+  - MeatSlimeCubeRecipe
   - CarpCubeSafeRecipe
   - SpaceBearCubeSafeRecipe
 
@@ -24,6 +25,18 @@
   recipeUnlocks:
   - RNDSentryRecipe
   - RNDSentryComputerRecipe
+
+- type: technology
+  id: XenogeneticsBigMassEntities
+  name: research-technology-xenogenetics-big-mass
+  icon:
+    sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+    state: icon
+  discipline: Experimental
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - CarpSharkCubeRecipe
 
 - type: latheRecipePack
   id: ImperialGeneticsPack
@@ -59,6 +72,8 @@
   recipes:
   - CarpCubeSafeRecipe
   - SpaceBearCubeSafeRecipe
+  - MeatSlimeCubeRecipe
+  - CarpSharkCubeRecipe
 
 - type: latheRecipe
   id: CarpCubeSafeRecipe
@@ -73,3 +88,17 @@
   completetime: 20
   materials:
     Biomass: 45
+
+- type: latheRecipe
+  id: MeatSlimeCubeRecipe
+  result: MeatSlimeCube
+  completetime: 5
+  materials:
+    Biomass: 30
+   
+- type: latheRecipe
+  id: CarpSharkCubeRecipe
+  result: SafeCarpSharkCube
+  completetime: 20
+  materials:
+    Biomass: 120

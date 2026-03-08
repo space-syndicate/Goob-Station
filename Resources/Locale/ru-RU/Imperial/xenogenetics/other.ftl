@@ -1,14 +1,15 @@
-### АЛЕРТ
+# АЛЕРТ
 
 alerts-xenogene = Генетические Модификации
 alerts-xenogene-desc = Ваше ДНК было подвержено слиянию с инородным геном.
 
-### НАУКА
+# НАУКА
 
 research-technology-basic-xenogenetics = Основы ксеногенетики
 research-technology-xenogenetics-machinery = Оборудование подавления
+research-technology-xenogenetics-big-mass = Ксенофауна высокой массы
 
-### СПАЙЩИК
+# СПАЙЩИК
 
 gene-splicer-mode-withdraw = Режим: извлечение
 gene-splicer-mode-insert = Режим: ввод

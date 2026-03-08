@@ -36,11 +36,11 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
     }
     private void OnGeneInsert(EntityUid uid, XenoGeneComponent component, ref GeneInsertedEvent args)
     {
-        _alertsSystem.ShowAlert(args.Target, "XenogeneInserted");   
+        _alertsSystem.ShowAlert(args.Target, component.AlertProto);   
     }
     private void OnGeneWithdraw(EntityUid uid, XenoGeneComponent component, ref GeneWithdrawnEvent args)
     {
-        _alertsSystem.ClearAlert(args.Target, "XenogeneInserted");
+        _alertsSystem.ClearAlert(args.Target, component.AlertProto);
         if(!TryComp<GeneWithdrawnComponent>(uid, out var geneComp) && component.RandomizeGeneQuality == true)
         {
             var mobState = EnsureComp<MobStateComponent>(uid);
@@ -117,15 +117,3 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
         }
     }
 }
-[Serializable, NetSerializable]
-public sealed partial class GeneInsertingDoAfterEvent : SimpleDoAfterEvent
-{
-}
-[Serializable, NetSerializable]
-public sealed partial class GeneWithdrawDoAfterEvent : SimpleDoAfterEvent
-{
-}
-[ByRefEvent]
-public readonly record struct GeneInsertedEvent(EntityUid Gene, EntityUid Target);
-[ByRefEvent]
-public readonly record struct GeneWithdrawnEvent(EntityUid Gene, EntityUid Target);

@@ -31,17 +31,17 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         switch (component.InsertMode)
         {
             case GeneSplicerMode.Insert:
-            component.InsertMode = GeneSplicerMode.Withdraw;
-            _popup.PopupEntity(Loc.GetString("gene-splicer-mode-withdraw"), args.User, PopupType.Small);
-            break;
+                component.InsertMode = GeneSplicerMode.Withdraw;
+                _popup.PopupEntity(Loc.GetString("gene-splicer-mode-withdraw"), args.User, PopupType.Small);
+                break;
 
             case GeneSplicerMode.Withdraw:
-            component.InsertMode = GeneSplicerMode.Insert;
-            _popup.PopupEntity(Loc.GetString("gene-splicer-mode-insert"), args.User, PopupType.Small);
-            break;
+                component.InsertMode = GeneSplicerMode.Insert;
+                _popup.PopupEntity(Loc.GetString("gene-splicer-mode-insert"), args.User, PopupType.Small);
+                break;
 
             default:
-            break;
+                break;
         }
         args.Handled = true;
     }
