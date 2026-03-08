@@ -464,6 +464,7 @@
     soundHit:
       collection: AlienClaw
     animation: WeaponArcBite
+    resistanceBypass: true
     damage:
       types:
         Slash: 12
@@ -530,12 +531,6 @@
   suffix: Backrooms, Crook
   description: This moth will bite off your head if you stroke it. But you don't care.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 5
   - type: Hunger
     baseDecayRate: 0.25
   - type: Physics
@@ -544,13 +539,15 @@
     - Alive
     - Dead
   - type: MeleeWeapon
-    attackRate: 0.65
-    soundHit:
-      collection: AlienClaw
+    altDisarm: false
+    angle: 0
     animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    resistanceBypass: true
     damage:
       types:
-        Piercing: 15
+        Piercing: 17
         Caustic: 10
         Structural: 75
   - type: NpcFactionMember
@@ -561,15 +558,15 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: ghost-role-information-mothroach-name
-    description: ghost-role-information-mothroach-description
+    name: ghost-role-information-deathmoth-name
+    description: ghost-role-information-deathmoth-description
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.7
-        density: 120
+        density: 200
         mask:
         - MobMask
         layer:
@@ -974,7 +971,6 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretControl
     transmitFrequencyId: Turret
-
 
 - type: reaction
   id: Kvass
@@ -2059,14 +2055,14 @@
   description: "An always powered light."
   components:
   - type: PointLight
-    color: "#f0d68f"
-    energy: 2
-    radius: 10
+    color: "#d6c081"
+    energy: 1.8
+    radius: 9
     softness: 1
     offset: "0, -0.5"
   - type: AmbientSound
-    volume: -7
-    range: 3
+    volume: -11
+    range: 4
     sound:
       path: /Audio/Ambience/Objects/light_hum.ogg
   - type: Destructible
@@ -2080,3 +2076,81 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+
+- type: entity
+  id: HolyBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Holy: 46
+        Piercing: 5
+
+- type: entity
+  id: BigBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 42
+
+- type: entity
+  name: big john
+  parent: BaseItem
+  id: WeaponRevolverChaplain
+  description: Big fricking gun
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/BFG.rsi
+    state: icon
+    scale: 0.75, 0.75
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Crook/holyshot.ogg
+  - type: Speech
+    speechSounds: Pai
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BatteryAmmoProvider
+    proto: HolyBulletMagnum
+    fireCost: 10
+  - type: PredictedBattery
+    maxCharge: 10
+    startingCharge: 10
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 1
+  - type: AmmoCounter
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  name: big john
+  parent: WeaponRevolverChaplain
+  id: WeaponBigJohnRevolver
+  description: Big fricking gun
+  components:
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/SpecialUnits/RCU/Criminality/uts.ogg
+  - type: BatteryAmmoProvider
+    proto: BigBulletMagnum
+    fireCost: 10
