@@ -1293,7 +1293,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
-    fireCost: 150
+    fireCost: 200
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10

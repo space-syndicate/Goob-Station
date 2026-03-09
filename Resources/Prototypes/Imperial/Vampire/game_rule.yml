@@ -1,0 +1,33 @@
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  noSpawn: true
+  components:
+  - type: AntagObjectives
+    objectives:
+    - VampireDrinkBloodObjective
+    - VampireConvertedGhoulsObjective
+    - VampireEscapeShuttleObjective
+  - type: GameRule
+  - type: VampireRole
+  - type: DynamicRuleCost
+    cost: 150
+  - type: AntagSelection
+    agentName: vampire-round-end-agent-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 3
+      lateJoinAdditional: true
+      allowNonHumans: false
+      multiAntagSetting: NotExclusive
+      blacklist:
+        components:
+        - AntagImmune
+      briefing:
+        text: vampire-role-greeting-human
+        color: "#8B0000"
+        sound: /Audio/Ambience/Antag/vampire_start.ogg
+      components:
+      - type: Vampire
+      mindRoles:
+      - MindRoleVampire

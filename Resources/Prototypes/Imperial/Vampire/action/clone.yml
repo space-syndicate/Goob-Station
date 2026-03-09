@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: VampireCloneAction
+  name: Клон
+  description: Создаёт вашу копию, отвлекающую экипаж, пока вы в невидимости покидаете место боя. Стоимость 30 ед. крови. Кулдаун 25 секунд.
+  components:
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: clone
+  - type: InstantAction
+    event: !type:VampireCloneEvent
+      costBlood: 30
