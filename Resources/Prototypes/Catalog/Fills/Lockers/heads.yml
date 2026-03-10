@@ -213,6 +213,11 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
+    - id: SecApartmentTablet # Corvax-SecApartment
+    # Corvax-Resprite-Start
+    - id: ClothingHeadCaptainHat
+    - id: ClothingOuterCoatCaptain
+    # Corvax-Resprite-End
 
 # No laser table + Laser table
 - type: entityTable

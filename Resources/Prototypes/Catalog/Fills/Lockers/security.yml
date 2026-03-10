@@ -122,14 +122,7 @@
     - id: RemoteSignaller
       amount: 2
     - id: Binoculars
-    - id: WeaponEnergyShotgun # Goobstation
-    - id: ClothingHandsGlovesKravMaga # Goobstation - Martial Arts
-    - id: BoxLethalInjection # Goobstation
-    - id: ClothingHeadsetAltWarden # Goobstation
-    - id: Multitool # Goobstation
-    - id: Wrench # Goobstation
-    - id: ContrabandDetectorFlatpack # Goobstation
-    - id: SecurityMegaphone # goob - loudspeakers
+    - id: SecApartmentTablet # Corvax-SecApartment
 
 - type: entityTable
   id: FillLockerWardenHarduit
