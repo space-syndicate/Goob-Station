@@ -122,6 +122,7 @@
     - id: RemoteSignaller
       amount: 2
     - id: Binoculars
+    - id: SecApartmentTablet # Corvax-SecApartment
     - id: WeaponEnergyShotgun # Goobstation
     - id: ClothingHandsGlovesKravMaga # Goobstation - Martial Arts
     - id: BoxLethalInjection # Goobstation

@@ -212,6 +212,7 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
+    - id: SecApartmentTablet # Corvax-SecApartment
 
 # No laser table + Laser table
 - type: entityTable
