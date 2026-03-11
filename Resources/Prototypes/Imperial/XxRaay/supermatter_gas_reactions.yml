@@ -1,0 +1,30 @@
+- type: supermatterGasReaction
+  id: SupermatterThermoniumRegen
+  gas: Thermonium
+  reaction: !type:Content.Server.Imperial.XxRaay.Systems.Supermatter.ThermoniumIntegrityRegenReaction
+
+- type: supermatterGasReaction
+  id: SupermatterOzoniumRadiation
+  gas: Ozonium
+  reaction: !type:Content.Server.Imperial.XxRaay.Systems.Supermatter.RadiationMultiplierReaction
+
+- type: supermatterGasReaction
+  id: SupermatterPlasmaRadiation
+  gas: Plasma
+  reaction: !type:Content.Server.Imperial.XxRaay.Systems.Supermatter.RadiationMultiplierReaction
+
+- type: supermatterGasReaction
+  id: SupermatterAntiNobliumShutdown
+  gas: AntiNoblium
+  reaction: !type:Content.Server.Imperial.XxRaay.Systems.Supermatter.AntiNobliumShutdownReaction
+
+- type: supermatterGasReaction
+  id: SupermatterTritiumLightningMultiplier
+  gas: Tritium
+  reaction: !type:Content.Server.Imperial.XxRaay.Systems.Supermatter.TritiumLightningMultiplierReaction
+
+- type: supermatterGasReaction
+  id: SupermatterHyperNobliumTouchCancel
+  gas: HyperNoblium
+  reaction: !type:Content.Server.Imperial.XxRaay.Systems.Supermatter.HyperNobliumTouchCancelReaction
+

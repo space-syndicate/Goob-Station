@@ -1464,6 +1464,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1492,6 +1497,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1520,6 +1530,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1548,6 +1563,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1576,6 +1596,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1604,6 +1629,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -2154,3 +2184,75 @@
   - type: BatteryAmmoProvider
     proto: BigBulletMagnum
     fireCost: 10
+
+- type: entity
+  id: ImperialSteamvent
+  parent: BaseStructure
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  suffix: Crook
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/steamvent.rsi
+    state: icon
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break1.ogg
+          params:
+            volume: -6
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.5"
+        hard: false
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+  - type: Slippery
+    staminaDamage: 0
+    frictionStatusTime: 0
+    slipData:
+      stunTime: 0
+      knockdownTime: 0
+      launchForwardsMultiplier: 0
+    slipSound:
+      path: /Audio/Effects/Footsteps/catwalk4.ogg
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Imperial/Crook/steam_hiss.ogg
+      params:
+        volume: -5
+        variation: 0.128
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition
+  - type: UseDelay
+    delay: 120
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: TriggerOnStepTrigger
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 8
