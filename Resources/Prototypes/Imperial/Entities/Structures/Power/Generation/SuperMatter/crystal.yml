@@ -60,6 +60,7 @@
         types:
           Structural: 0.65
     - type: SupermatterEvent
+    - type: SupermatterGas
     - type: GuideHelp
       guides:
       - SupermatterEngine
