@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "TODO IT",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+		{
+            "name": "chip_5-1"
+        },
+        {
+            "name": "chip_5-5"
+        },
+        {
+            "name": "chip_5-10"
+        },
+        {
+            "name": "chip_25-1"
+        },
+        {
+            "name": "chip_25-5"
+        },
+        {
+            "name": "chip_25-10"
+        },
+        {
+            "name": "chip_50-1"
+        },
+        {
+            "name": "chip_50-5"
+        },
+        {
+            "name": "chip_50-10"
+        },
+        {
+            "name": "chip_100-1"
+        },
+        {
+            "name": "chip_100-5"
+        },
+        {
+            "name": "chip_100-10"
+        }
+    ]
+}
