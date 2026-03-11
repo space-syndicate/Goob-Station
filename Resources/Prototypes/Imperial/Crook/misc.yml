@@ -1464,6 +1464,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1492,6 +1497,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1520,6 +1530,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1548,6 +1563,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1576,6 +1596,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
@@ -1604,6 +1629,11 @@
     sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
 
 - type: entity
   parent: ClothingOuterRedRacoon
