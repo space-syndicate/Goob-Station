@@ -188,3 +188,6 @@ ent-WeaponRevolverChaplain = Big "John"
 ent-WeaponBigJohnRevolver = Big "John"
     .desc = О чёрт о боже, это же чёртова большая пушка! Она воспроизводит пули внутри себя самой. На ней гравировка BFG.
     .suffix = Admeme, Crook
+
+ent-ImperialSteamvent = паровая вентиляция
+    .desc = Пщщщщ! Кхе-кхе...
