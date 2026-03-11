@@ -14,6 +14,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Interaction.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Silicons.Borgs.Components;
 
 namespace Content.Shared.Execution;
 
@@ -54,6 +55,11 @@ public sealed class SharedExecutionSystem : EntitySystem
 
         if (!CanBeExecuted(victim, attacker))
             return;
+
+        // imperial space: fix bug. start
+        if (HasComp<BorgSwitchableTypeComponent>(victim))
+            return;
+        // imperial space: fix bug. end
 
         UtilityVerb verb = new()
         {
