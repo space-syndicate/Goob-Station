@@ -34,7 +34,7 @@
   - type: CustomHypospray
     injectionDelayTime: 1.0
   - type: StaticPrice
-    price: 1000
+    price: 10
 
 - type: entity
   id: CrateChemistryStandartHypo
