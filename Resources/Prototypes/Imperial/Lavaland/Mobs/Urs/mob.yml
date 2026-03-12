@@ -68,9 +68,9 @@
     damage:
       groups:
         Brute: 20
-    updateInterval: 0.55
+    updateInterval: 0.65
     updateIntervalToDash: 0.3
-    pushStrength: 20
+    pushStrength: 8
 
 
 - type: Tag
