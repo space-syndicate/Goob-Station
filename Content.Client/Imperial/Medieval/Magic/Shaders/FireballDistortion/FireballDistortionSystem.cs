@@ -11,6 +11,7 @@ public sealed partial class FireballDistortionSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
+    private static string _shaderId = "FireballDistortion";
 
     private Dictionary<EntityUid, ShaderInstance> _shaders = new();
 
@@ -36,7 +37,7 @@ public sealed partial class FireballDistortionSystem : EntitySystem
     {
         _shaders.Add(
             uid,
-            _prototypeManager.Index<ShaderPrototype>("FireballDistortion").InstanceUnique()
+            _prototypeManager.Index<ShaderPrototype>(_shaderId).InstanceUnique()
         );
 
         SetShader(uid, true);

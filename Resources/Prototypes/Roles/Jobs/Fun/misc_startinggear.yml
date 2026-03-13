@@ -174,7 +174,7 @@
     - trayScanner
     - AccessConfiguratorUniversal
     - Multitool
-    - HandheldHealthAnalyzerUnpowered # Imperial Space
+    - HandheldHealthAnalyzer # Imperial Space
 
 #Gladiator with spear
 - type: startingGear

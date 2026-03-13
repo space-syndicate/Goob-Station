@@ -2629,8 +2629,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
-  - type: Body
-    prototype: Animal
   - type: Actions
   - type: DoAfter
   - type: Polymorphable

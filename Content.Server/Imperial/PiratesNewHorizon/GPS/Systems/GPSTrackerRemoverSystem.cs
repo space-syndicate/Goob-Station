@@ -1,39 +1,23 @@
-
-using Content.Server.Cargo.Components;
 using Content.Server.Popups;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
-using Content.Shared.Cargo.Events;
 using Content.Shared.Verbs;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
-using Content.Server.Storage;
-using Content.Shared.Storage;
-using Content.Server.Cargo;
-using Content.Server.Cargo.Systems;
-using Content.Shared.Cargo.Systems;
 using Content.Server.Imperial.PiratesNewHorizon.GPS.Components;
 using Content.Shared.Imperial.PiratesNewHorizon.GPS.Events;
-using Content.Shared.Body.Components;
 using Content.Shared.Hands.Components;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-using Robust.Shared.Utility;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
 using Content.Server.Hands.Systems;
+using Content.Shared.Body;
 namespace Content.Server.Imperial.PiratesNewHorizon.GPS.Systems;
 
 public sealed class GPSTrackerRemoverSystem : EntitySystem
 {
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly PricingSystem _pricingSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly CargoSystem _bountySystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
 
 

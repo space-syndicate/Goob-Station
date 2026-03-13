@@ -10,7 +10,7 @@ public sealed class NrpPanelEui : BaseEui
 {
 
     #region Internal classes
-    internal class MultiMap<TKey, TValue> where TKey : notnull
+    internal sealed class MultiMap<TKey, TValue> where TKey : notnull
     {
         private readonly Dictionary<TKey, List<TValue>> _map = new();
 

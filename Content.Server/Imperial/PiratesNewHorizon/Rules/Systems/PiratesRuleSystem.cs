@@ -1,18 +1,13 @@
 using Content.Server.Antag;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Imperial.PiratesNewHorizon.Roles;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
-using Robust.Shared.Maths;
 using Content.Server.Imperial.PiratesNewHorizon.Rules.Components;
 using Content.Server.Roles;
 using Content.Server.GameTicking;
-using Content.Server.Mind;
-using Content.Shared.Mind;
 using Robust.Server.Player;
 
 namespace Content.Server.Imperial.PiratesNewHorizon.Rules.Systems;
@@ -21,7 +16,6 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
 
     public override void Initialize()

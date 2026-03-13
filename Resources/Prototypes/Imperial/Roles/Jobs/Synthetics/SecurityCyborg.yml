@@ -5,8 +5,6 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
-  - type: Body
-    prototype: ImperialBorg
 
 
 # Security borg
@@ -92,15 +90,3 @@
   - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_1.ogg
   - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_2.ogg
   - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_3.ogg
-
-- type: body
-  id: ImperialBorg # Тело для киборгов Империала, чтобы у них была рука
-  name: "Imperial borg"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-      - hand
-    hand:
-      part: HandsAnimal

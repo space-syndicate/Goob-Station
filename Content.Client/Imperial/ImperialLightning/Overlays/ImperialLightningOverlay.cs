@@ -20,6 +20,7 @@ public sealed class ImperialLightningOverlay : Overlay
     [Dependency] private readonly IGameTiming _timing = default!;
     private SharedTransformSystem _transformSystem = default!;
 
+    private static string _shaderId = "Lightning";
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     public override bool RequestScreenTexture => true;
@@ -96,7 +97,7 @@ public sealed class ImperialLightningOverlay : Overlay
 
         if (_shaders.TryGetValue(Lightnings.Count, out var _)) return;
 
-        _shaders.Add(_prototypeManager.Index<ShaderPrototype>("Lightning").InstanceUnique());
+        _shaders.Add(_prototypeManager.Index<ShaderPrototype>(_shaderId).InstanceUnique());
     }
 
     public void AddLightning(
@@ -116,7 +117,7 @@ public sealed class ImperialLightningOverlay : Overlay
 
         if (_shaders.TryGetValue(Lightnings.Count - 1, out var _)) return;
 
-        _shaders.Add(_prototypeManager.Index<ShaderPrototype>("Lightning").InstanceUnique());
+        _shaders.Add(_prototypeManager.Index<ShaderPrototype>(_shaderId).InstanceUnique());
     }
 
 

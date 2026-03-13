@@ -155,7 +155,7 @@ namespace Content.Shared.Roles
         public List<ProtoId<GuideEntryPrototype>>? Guides;
 
         [DataField]
-        public bool SponsorsOnly { get; } = false; //Imperial sponsors
+        public bool SponsorsOnly { get; set; } = false; //Imperial sponsors
 
         [DataField]
         public List<string> Skills = new(); //Imperial crew skills

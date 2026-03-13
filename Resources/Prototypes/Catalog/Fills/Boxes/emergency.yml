@@ -355,7 +355,6 @@
         - id: EmergencyMedipen
         - id: Flare
         - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
         - id: FoodSnackNutribrick
   - type: Sprite
     layers:
@@ -380,9 +379,47 @@
         - id: ExtendedEmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
-        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
         - id: FoodSnackNutribrick
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+        - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: nitrogentank
+  - type: Label
+    currentLabel: reagent-name-nitrogen
+
+
+- type: entity
+  parent: BoxCardboardSmall # Cannot fit 3x3 boxes into already-filled ERT backpacks.
+  id: BoxSurvivalMilitaryDouble
+  suffix: Military O2
+  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: extendedtank
+
+- type: entity
+  parent: BoxSurvivalMilitaryDouble
+  id: BoxSurvivalMilitaryDoubleNitrogen
+  suffix: Military N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals

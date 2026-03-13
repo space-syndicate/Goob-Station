@@ -10,7 +10,6 @@ public sealed class ExpendableLightSystem : VisualizerSystem<ExpendableLightComp
     [Dependency] private readonly PointLightSystem _pointLightSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly LightBehaviorSystem _lightBehavior = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
