@@ -13,6 +13,7 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
@@ -47,6 +48,7 @@
     - BorgModuleEngineering
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -89,6 +91,7 @@
     - BorgModuleCargo
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -127,6 +130,8 @@
 
   defaultModules:
   - BorgModuleTool # Imperial Space: Add BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleCleaning
   - BorgModuleCustodial
 #  - BorgModuleCleaning
   - BorgModuleAdvancedCleaning # Ребаланс боргов под Imperial Space. Добавлена новая швабра
@@ -164,6 +169,8 @@
 
   defaultModules:
   - BorgModuleTool # Imperial Space: Add BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
   - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
@@ -229,7 +236,7 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModulePrying
   - BorgModuleMusique
   - BorgModuleService
   - BorgModuleClowning

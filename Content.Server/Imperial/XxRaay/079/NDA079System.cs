@@ -20,7 +20,6 @@ public sealed class NDA079System : EntitySystem
     [Dependency] private readonly SharedMindSystem _sharedMind = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SpeechSystem _speech = default!;
     [Dependency] private readonly AlertEnergySystem _energySystem = default!;

@@ -135,17 +135,6 @@
       spawned:
       - id: FoodMeatHuman
         amount: 5
-    - type: Body
-      prototype: Human
-      parts:
-        head: BodyPartHumanHead
-        torso: BodyPartHumanTorso
-        left_arm: BodyPartHumanLeftArm
-        right_arm: BodyPartHumanRightArm
-        left_leg: BodyPartHumanLeftLeg
-        right_leg: BodyPartHumanRightLeg
-        extra_arm1: BodyPartHumanLeftArm
-        extra_arm2: BodyPartHumanRightArm
     - type: PassiveDamage
       allowedStates:
       - Alive

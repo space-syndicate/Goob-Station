@@ -52,11 +52,8 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Human
-    hideLayersOnEquip:
-    - Hair
-    - Snout
   - type: Inventory
     femaleDisplacements:
       jumpsuit:
@@ -132,7 +129,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
-  - type: StunVisuals 
+  - type: StunVisuals
 
 - type: entity
   save: false
@@ -216,7 +213,7 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Human
   - type: TypingIndicator
   - type: SlowOnDamage
@@ -267,8 +264,6 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
-  - type: Body
-    prototype: Human
     requiredLegs: 2
   - type: Identity
   - type: IdExaminable

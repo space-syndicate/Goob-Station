@@ -54,8 +54,6 @@ public sealed class PunishOnStorageTakeSystem : EntitySystem
         }
 
         var changed = _damageable.TryChangeDamage(userUid, comp.Damage, ignoreResistances: true, interruptsDoAfters: false);
-        if (changed == null)
-            return;
 
         if (comp.Sound != null)
             _audio.PlayPvs(comp.Sound, storageUid.Value);

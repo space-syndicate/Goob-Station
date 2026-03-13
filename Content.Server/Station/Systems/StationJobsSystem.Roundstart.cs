@@ -393,9 +393,6 @@ public sealed partial class StationJobsSystem
                 if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
                     continue;
 
-                if (sponsors is not null && !sponsors.HavePriorityJoin && job.SponsorsOnly)//Imperial sponsors
-                    continue;
-
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);
                 availableJobs.Add(jobId);
             }

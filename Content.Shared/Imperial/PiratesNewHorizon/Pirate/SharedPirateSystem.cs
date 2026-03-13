@@ -1,15 +1,12 @@
-using Content.Shared.IdentityManagement;
-using Content.Shared.Popups;
 using Content.Shared.Imperial.PiratesNewHorizon.StatusIcons;
-using Content.Shared.Stunnable;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Content.Shared.Antag;
 namespace Content.Shared.Imperial.PiratesNewHorizon.Pirate;
 
+
 public abstract class SharedPirateSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

@@ -5,8 +5,8 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
-using Robust.Shared.Audio;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
@@ -37,9 +37,9 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
     public static readonly SoundSpecifier DefaultAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Corvax/Announcements/announce.ogg"); // Corvax-Announcements
+        = new SoundPathSpecifier("/Audio/Corvax/Announcements/announce.ogg"); // Imperial Corvax-Announcements
     public static readonly SoundPathSpecifier CentComAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Corvax/Announcements/centcomm.ogg"); // Corvax-Announcements
+        = new SoundPathSpecifier("/Audio/Corvax/Announcements/centcomm.ogg"); // Imperial Corvax-Announcements
 
     public static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
 
@@ -300,7 +300,10 @@ public abstract partial class SharedChatSystem : EntitySystem
     public static string InjectTagAroundString(ChatMessage message, string targetString, string tag, string? tagParameter)
     {
         var rawmsg = message.WrappedMessage;
+        // TODO: Figure out if there's any way we can cache this, and if not then rewrite this to not use regex.
+#pragma warning disable RA0026
         rawmsg = Regex.Replace(rawmsg, "(?i)(" + targetString + ")(?-i)(?![^[]*])", $"[{tag}={tagParameter}]$1[/{tag}]");
+#pragma warning restore RA0026
         return rawmsg;
     }
 

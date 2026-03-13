@@ -5,7 +5,6 @@ using Content.Shared.Imperial.MiningWeapons;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Alert;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Movement.Systems;
@@ -18,7 +17,6 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly MiningWeaponsHelpers _miningWeaponsHelpers = default!;
 

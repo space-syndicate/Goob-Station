@@ -2,7 +2,7 @@
   # Унатх
 
   <Box>
-    <GuideEntityEmbed Entity="MobReptilian" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceReptilian" Caption=""/>
   </Box>
 
   Едят ТОЛЬКО фрукты и мясо, но могут есть последнее сырым, а также пить кровь без каких-либо последствий.

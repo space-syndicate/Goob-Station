@@ -25,6 +25,8 @@ public sealed class MedievalArrowsMinigameOverlay : Overlay
     [Dependency] private readonly IGameTiming _timing = default!;
     private readonly SpriteSystem _spriteSystem;
 
+    private static string _arrowMinigameShader = "ArrowMinigame";
+
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
@@ -63,7 +65,7 @@ public sealed class MedievalArrowsMinigameOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototypeManager.Index<ShaderPrototype>("ArrowMinigame").InstanceUnique();
+        _shader = _prototypeManager.Index<ShaderPrototype>(_arrowMinigameShader).InstanceUnique();
         _spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
     }
 

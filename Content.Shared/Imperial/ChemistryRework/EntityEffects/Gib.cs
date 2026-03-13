@@ -13,12 +13,14 @@ public sealed partial class GibEntityEffectSystem : EntityEffectSystem<Damageabl
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
+    private readonly ProtoId<DamageTypePrototype> _damageType = "Blunt";
+
 
     protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<Gib> args)
     {
         _damageableSystem.TryChangeDamage( // I could use the BodySystem, but for some reason the brain and organs don't fall out when it gibs.
             entity.Owner,
-            new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 10000),
+            new DamageSpecifier(_prototypeManager.Index(_damageType), 10000),
             true
         );
     }

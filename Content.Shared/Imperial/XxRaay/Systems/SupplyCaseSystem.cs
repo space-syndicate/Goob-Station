@@ -17,7 +17,6 @@ namespace Content.Shared.Imperial.XxRaay.Systems;
 /// </summary>
 public abstract class SupplyCaseSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStorageSystem _storageSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -40,7 +39,7 @@ public abstract class SupplyCaseSystem : EntitySystem
 
         var user = args.User;
         var isEmpty = storage.Container.ContainedEntities.Count == 0;
-        
+
         args.Verbs.Add(new InteractionVerb
         {
             Act = () =>
@@ -68,8 +67,7 @@ public abstract class SupplyCaseSystem : EntitySystem
         var itemPrototypes = new List<EntProtoId>();
         foreach (var item in containedEntities)
         {
-            if (!TryComp<MetaDataComponent>(item, out var meta))
-                continue;
+            var meta = MetaData(item);
 
             var protoId = meta.EntityPrototype?.ID;
             if (string.IsNullOrEmpty(protoId))

@@ -13,6 +13,7 @@ using Content.Shared.Body.Components;
 using Robust.Shared.Random;
 using Content.Server.GameTicking;
 using Content.Shared.Eye;
+using Content.Shared.Body;
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed partial class SCP106System
@@ -218,8 +219,8 @@ public sealed partial class SCP106System
             var oldmap = scp.PastMapId;
             scp.InDimension = true;
             scp.PastPosition = coords;
-            if (!TryComp<TransformComponent>(user, out var transform))
-                return;
+
+            var transform = Transform(user);
             if (_mapSystem.TryGetMap(oldmap, out var mapEnt))
             {
                 _transform.SetCoordinates(user, oldcords);
@@ -229,10 +230,10 @@ public sealed partial class SCP106System
         else
         {
             scp.PastPosition = coords;
+            var transform = Transform(user);
 
-            if (!TryComp<TransformComponent>(user, out var transform))
-                return;
             scp.PastMapId = transform.MapID;
+
             if (_mapSystem.TryGetMap(scp.PocketMapId, out var mapEnt))
             {
                 _transform.SetWorldPosition((user, transform), new Vector2(0, 0));
@@ -255,13 +256,13 @@ public sealed partial class SCP106System
         {
             if (visible)
             {
-                _visibility.AddLayer((uid, vis), (int) VisibilityFlags.Normal, false);
-                _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
+                _visibility.AddLayer((uid, vis), (int)VisibilityFlags.Normal, false);
+                _visibility.RemoveLayer((uid, vis), (int)VisibilityFlags.Ghost, false);
             }
             else
             {
-                _visibility.AddLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
-                _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.Normal, false);
+                _visibility.AddLayer((uid, vis), (int)VisibilityFlags.Ghost, false);
+                _visibility.RemoveLayer((uid, vis), (int)VisibilityFlags.Normal, false);
             }
             _visibility.RefreshVisibility(uid, vis);
         }

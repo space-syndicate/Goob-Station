@@ -11,7 +11,6 @@ namespace Content.Server.Imperial.Medieval.EntityEffects;
 public sealed partial class GAddMagicEssenceEffectSystem : EntityEffectSystem<MetaDataComponent, AddMagicEssence>
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<AddMagicEssence> args)
