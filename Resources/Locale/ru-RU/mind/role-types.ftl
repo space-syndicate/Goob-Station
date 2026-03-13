@@ -33,3 +33,5 @@ role-subtype-survivor = Выживший
 role-subtype-subverted = Взломанный Синтетик
 role-subtype-paradox-clone = Временной парадокс
 role-subtype-wizard = Маг
+role-subtype-vampire = Вампир
+role-subtype-ghoul = Упырь

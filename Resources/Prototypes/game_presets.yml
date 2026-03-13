@@ -41,6 +41,7 @@
     - SyndieBorgroundstart  # Imperial Syndie Borg
     - Pirates # Imperial Space Pirates: New Horizon
     - Wizard
+    - Vampire # imperial space: Added a new vampire antagonist
     - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
@@ -65,6 +66,7 @@
     - Wizard
     - Pirates # Imperial Space Pirates: New Horizon
     - Xenoborgs
+    - Vampire # imperial space: Added a new vampire antagonist
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler

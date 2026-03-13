@@ -1,0 +1,16 @@
+- type: antag
+  id: Vampire
+  name: roles-antag-vampire-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-vampire-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 1h
+
+- type: antag
+  id: Ghoul
+  name: roles-antag-ghoul-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-ghoul-objective

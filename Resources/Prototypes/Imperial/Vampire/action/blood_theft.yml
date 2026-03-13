@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: VampireBloodTheftAction
+  name: Похищение крови
+  description: Выкачивает у упырей по 10% крови, давая вампиру +2 ед. за каждого раба. Стоимость 0 ед. крови. Кулдаун 120 секунд.
+  components:
+  - type: Action
+    useDelay: 120
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: blood_theft
+  - type: InstantAction
+    event: !type:VampireBloodTheftEvent
+      damageGhoul: 10
