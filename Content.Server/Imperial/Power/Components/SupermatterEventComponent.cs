@@ -32,6 +32,17 @@ public sealed partial class SupermatterEventComponent : Component
     ];
 
     /// <summary>
+    /// Тип события в само событие.
+    /// </summary>
+    public readonly Dictionary<SupermatterEventType, object> SupermatterEventTypesToEvents = new()
+    {
+        { SupermatterEventType.None, new SupermatterNoneEvent() },
+        { SupermatterEventType.Lightning, new SupermatterLightningEvent() },
+        { SupermatterEventType.Radiation, new SupermatterRadiationEvent() },
+        { SupermatterEventType.Plasma, new SupermatterPlasmaEvent() },
+    };
+
+    /// <summary>
     /// Объявлена ли война Ядерными Оперативниками. Если да - не создавать события.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
