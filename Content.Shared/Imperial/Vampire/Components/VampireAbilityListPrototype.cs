@@ -2,7 +2,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire;
 
-[Prototype("vampireAbilityList")]
+[Prototype]
 public sealed partial class VampireAbilityListPrototype : IPrototype
 {
     [IdDataField]
