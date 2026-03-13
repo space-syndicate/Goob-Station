@@ -424,7 +424,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadBase, BaseFoldable, BaseSecurityContraband]
+  parent: [ClothingHeadBase, BaseFoldable, BaseSecurityContraband, ClothingHeadHelmetBase]
   id: ClothingHeadHatUshankaSecurity
   name: security's armored ushanka
   description: Perfect for saving heads in Siberia, da?
@@ -445,3 +445,4 @@
     - state: icon-up
       map: ["foldedLayer"]
       visible: false
+
