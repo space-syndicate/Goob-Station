@@ -173,7 +173,7 @@
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
-  - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
+  - BorgModuleAdvancedTopical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
   - BorgModuleSurgeryTools # Imperial Space хирургия
 
   radioChannels:
