@@ -200,6 +200,7 @@
     - ChemistryStatic
     - SurgeryStatic
     dynamicPacks:
+    - ImperialGeneticsPack # Imperial Xenogenetics
     - SalvagePlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
     - SalvageAdvancedPlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
     - AdvancedTools
@@ -264,6 +265,7 @@
     - EngineeringBoardsStatic
     - ImperialCircuitStatic # Imperial Space
     dynamicPacks:
+    - ImperialGeneticsCircuitsPack # Imperial Xenogenetics
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -360,6 +362,8 @@
   - type: Lathe
     idleState: icon
     runningState: building
+    dynamicPacks:
+    - ImperialGeneticsCubesPack ### Imperial Xenogenetics
     staticPacks:
     - FriendlyCubesStatic
   - type: EmagLatheRecipes

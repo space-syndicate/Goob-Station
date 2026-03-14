@@ -1,0 +1,5 @@
+- type: alert
+  id: XenogeneInserted
+  icons: [ { sprite: Imperial/Xenogenetics/interface.rsi, state: icon } ]
+  name: alerts-xenogene
+  description: alerts-xenogene-desc
