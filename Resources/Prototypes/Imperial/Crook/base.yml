@@ -74,57 +74,12 @@
           - ReagentId: AndroidBlood
             Quantity: 10
 
-- type: body
-  id: Android
-  name: "android"
-  root: torso
-  slots:
-    head:
-      part: HeadHuman
-      connections:
-      - torso
-    torso:
-      part: TorsoHuman
-      connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
-      organs:
-        core: AndroidCore
-    right_arm:
-      part: RightArmHuman
-      connections:
-      - right_hand
-    left_arm:
-      part: LeftArmHuman
-      connections:
-      - left_hand
-    right_hand:
-      part: RightHandHuman
-    left_hand:
-      part: LeftHandHuman
-    right_leg:
-      part: RightLegHuman
-      connections:
-      - right_foot
-    left_leg:
-      part: LeftLegHuman
-      connections:
-      - left_foot
-    right_foot:
-      part: RightFootHuman
-    left_foot:
-      part: LeftFootHuman
-
 - type: entity
   save: false
-  parent: [BaseMobSpecies, MobBloodstream]
+  parent: [BaseSpeciesMob, MobBloodstream]
   id: BaseMobMechanic
   abstract: true
   components:
-  - type: Body
-    prototype: Android
   - type: Bloodstream
     bloodReagent: AndroidBlood
     chemicalMaxVolume: 150
@@ -242,11 +197,8 @@
       Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Human
-    hideLayersOnEquip:
-    - Hair
-    - Snout
   - type: WiresPanel
     openingTool: Prying
   - type: ActivatableUIRequiresPanel

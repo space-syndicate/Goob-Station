@@ -24,9 +24,12 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
+
+    private readonly Regex _mutationRegex = new(@"(?<=[a-z])([A-Z])");
+    private readonly Regex _chemicalsRegex = new(@"(?<=[a-z])([A-Z])");
+
 
     public override void Initialize()
     {
@@ -190,14 +193,14 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
             ? string.Join(",\n      " + string.Concat(Enumerable.Repeat(" ", Loc.GetString("plants-analyzer-window-mutations").Length * 2)),
                 plantHolder.Seed.Mutations.Select(mutation =>
                     Loc.GetString("random-mutation-name-" +
-                    Regex.Replace(mutation.Name, @"(?<=[a-z])([A-Z])", "-$1").ToLower())))
+                    _mutationRegex.Replace(mutation.Name, "-$1").ToLower())))
             : Loc.GetString("plants-analyzer-window-no-mutations");
 
         var chemicals = plantHolder.Seed?.Chemicals.Any() == true
             ? string.Join(",\n      " + string.Concat(Enumerable.Repeat(" ", Loc.GetString("plants-analyzer-window-chemicals").Length * 2)),
                 plantHolder.Seed.Chemicals.Keys.Select(reagent =>
                     Loc.GetString("reagent-name-" +
-                    Regex.Replace(reagent, @"(?<=[a-z])([A-Z])", "-$1").ToLower())))
+                    _chemicalsRegex.Replace(reagent, "-$1").ToLower())))
             : Loc.GetString("plants-analyzer-window-no-chemicals");
 
         _uiSystem.ServerSendUiMessage(plantsAnalyzer, PlantsAnalyzerUiKey.Key, new PlantsAnalyzerScannedUserMessage(

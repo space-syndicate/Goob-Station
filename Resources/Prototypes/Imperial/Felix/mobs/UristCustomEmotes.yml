@@ -1,7 +1,7 @@
 - type: entity
   name: Urist McFelix
   suffix: Felix
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixUrist
   components:
   - type: NpcFactionMember

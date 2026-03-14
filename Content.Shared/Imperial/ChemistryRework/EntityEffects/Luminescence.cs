@@ -1,5 +1,4 @@
 using Content.Shared.EntityEffects;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -9,7 +8,6 @@ namespace Content.Shared.Chemistry.ReactionEffects;
 public sealed partial class LuminescenceEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Luminescence>
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLightSystem = default!;
 
 

@@ -16,8 +16,6 @@
     damage:
       types:
        Piercing: 0
-  - type: Body
-    prototype: Animal
   - type: Climbing
 
 - type: entity

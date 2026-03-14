@@ -14,7 +14,6 @@ namespace Content.Server.Imperial.XxRaay.Nda079;
 /// </summary>
 public sealed class NDA079CpuSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;

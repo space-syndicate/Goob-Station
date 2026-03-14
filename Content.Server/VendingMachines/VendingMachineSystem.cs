@@ -6,14 +6,11 @@ using Content.Server.Vocalization.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Destructible;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
-using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -32,12 +29,10 @@ namespace Content.Server.VendingMachines
             base.Initialize();
 
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, TryVocalizeEvent>(OnTryVocalize);
 
-            SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
@@ -71,22 +66,9 @@ namespace Content.Server.VendingMachines
             }
         }
 
-        private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)
-        {
-            if (component.Broken)
-                args.Cancel();
-        }
-
         private void OnPowerChanged(EntityUid uid, VendingMachineComponent component, ref PowerChangedEvent args)
         {
             TryUpdateVisualState((uid, component));
-        }
-
-        private void OnBreak(EntityUid uid, VendingMachineComponent vendComponent, BreakageEventArgs eventArgs)
-        {
-            vendComponent.Broken = true;
-            Dirty(uid, vendComponent);
-            TryUpdateVisualState((uid, vendComponent));
         }
 
         private void OnDamageChanged(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
@@ -164,6 +146,7 @@ namespace Content.Server.VendingMachines
                 return;
 
             var item = _random.Pick(availableItems);
+
             if (forceEject)
             {
                 vendComponent.NextItemToEject = item.ID;
@@ -209,23 +192,9 @@ namespace Content.Server.VendingMachines
 
             if (vendComponent.ThrowNextItem)
             {
-                //Imperial Space Vending Machine; Start
-                if (vendComponent.TargetDirection == null)
-                {
-                //Imperial Space Vending Machine; End
-                    var range = vendComponent.NonLimitedEjectRange;
-                    var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
-                    _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
-                //Imperial Space Vending Machine; Start
-                }
-                else
-                {
-
-                    var direction = vendComponent.TargetDirection ?? new EntityCoordinates();
-                    vendComponent.TargetDirection = null;
-                    _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
-                }
-                //Imperial Space Vending Machine; End
+                var range = vendComponent.NonLimitedEjectRange;
+                var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
+                _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
             }
 
             vendComponent.NextItemToEject = null;

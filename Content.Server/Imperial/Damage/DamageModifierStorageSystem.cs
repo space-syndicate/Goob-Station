@@ -1,11 +1,6 @@
-using System.Collections.Generic;
 using Content.Shared.Imperial.Damage.Components;
 using Content.Shared.Storage;
 using Content.Shared.Stacks;
-using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using Content.Shared.FixedPoint;
  using Content.Shared.Weapons.Melee.Events;
 
@@ -14,7 +9,6 @@ namespace Content.Server.Imperial.Damage
     public sealed class DamageModifierStorageSystem : EntitySystem
     {
         [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         public override void Initialize()
         {

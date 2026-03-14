@@ -1,15 +1,6 @@
-using Robust.Shared.Prototypes;
-using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Radio.EntitySystems;
-using Content.Shared.Audio;
 using Content.Shared.Imperial.EnergyCore;
-using Content.Shared.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Components;
 using Content.Server.Imperial.EnergyCore.Events;
 using Content.Server.Imperial.EnergyCore.Helpers;
@@ -19,7 +10,6 @@ namespace Content.Server.Imperial.EnergyCore
 {
     public sealed class CoreGeneratorSystem : EntitySystem
     {
-        [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
         [Dependency] private readonly EnergyCoreSystem _core = default!;

@@ -16,6 +16,8 @@ public class ImperialProgressBar : BorderedPanelContainer
     protected ShaderInstance GradientShader;
     private IRenderTexture? _renderTexture;
 
+    private static string _uiGradientProtoId = "UIGradient";
+
 
     [ViewVariables]
     public float Progress = 1.0f;
@@ -41,7 +43,7 @@ public class ImperialProgressBar : BorderedPanelContainer
         IoCManager.InjectDependencies(this);
 
         BackgroundPanelColor = Color.White;
-        GradientShader = _prototypeManager.Index<ShaderPrototype>("UIGradient").InstanceUnique();
+        GradientShader = _prototypeManager.Index<ShaderPrototype>(_uiGradientProtoId).InstanceUnique();
     }
 
 

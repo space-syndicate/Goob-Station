@@ -8,7 +8,6 @@ namespace Content.Shared.Imperial.TargetOverlay;
 public abstract class SharedTargetOverlaySystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
 
 
     #region Public API

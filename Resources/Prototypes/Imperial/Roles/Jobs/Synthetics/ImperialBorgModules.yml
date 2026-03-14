@@ -67,8 +67,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -203,8 +207,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
@@ -251,7 +259,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
 #    - Beaker  Imperial Space Удалено в связи с ребалансом медицинского борга
 #    - Beaker
 #    - BorgDropper
@@ -300,7 +308,7 @@
   id: WeaponDisablerBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
 
@@ -310,7 +318,7 @@
   id: StunbatonBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
 
@@ -525,7 +533,7 @@
   parent: WeaponTaser
   id: ErtBorgWeaponTaser
   components:
-    - type: PredictedBatterySelfRecharger
+    - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 15
 
@@ -550,7 +558,7 @@
   - type: Battery
     maxCharge: 200
     startingCharge: 200
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
 
@@ -560,7 +568,7 @@
   id: ErtBorgWeaponDisablerSMG
   description: Advanced borg weapon that exhausts organic targets, weakening them until they collapse.
   components:
-    - type: PredictedBatterySelfRecharger
+    - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 10
 
@@ -592,7 +600,7 @@
   - type: BatteryAmmoProvider
     proto: PulseDeathSquad
     fireCost: 200
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 45
   - type: Battery
@@ -663,7 +671,7 @@
   - type: Battery
     maxCharge: 35000
     startingCharge: 35000
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 200
   - type: AmmoCounter
@@ -1036,8 +1044,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: BorgHypo
@@ -1089,7 +1101,7 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: DefibrillatorOneHandedUnpowered
     - item: JawsOfLife
     - item: JetpackErtBorg
@@ -1111,7 +1123,7 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: HyposprayBorgErt
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -1138,7 +1150,7 @@
 
 - type: entity
   id: HandheldHealthAnalyzerErtBorg
-  parent: HandheldHealthAnalyzerUnpowered
+  parent: HandheldHealthAnalyzer
   name: ert borg health analyzer
   suffix: Always Powered
   description: A hand-held body scanner capable of distinguishing vital signs of the subject.
@@ -1293,8 +1305,8 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
-    fireCost: 200
-  - type: PredictedBatterySelfRecharger
+    fireCost: 150
+  - type: BatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
   - type: MagazineVisuals

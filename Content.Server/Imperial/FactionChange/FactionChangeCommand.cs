@@ -17,7 +17,7 @@ namespace Content.Server.Imperial.FactionChange
 
         public override string Command => "changefaction";
         public override string Description => Loc.GetString("changefaction-desc");
-        public string Help => Loc.GetString("changefaction-help");
+        public override string Help => Loc.GetString("changefaction-help");
 
         public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {

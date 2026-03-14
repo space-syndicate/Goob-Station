@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Atmos.Reactions.Prototypes;
 
-[Prototype("gasPhazeReaction"), DataDefinition]
+[Prototype]
 public sealed partial class GasPhazeReactionPrototype : IPrototype
 {
     [ViewVariables]

@@ -20,7 +20,6 @@ public abstract partial class SharedMedievalSpellTeleportEffectSystem : EntitySy
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
 
 
     public override void Initialize()

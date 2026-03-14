@@ -404,9 +404,6 @@
     damageModifierSet: Slime
   - type: Bloodstream
     bloodReagent: Slime
-  - type: Body
-    prototype: Slimes
-    requiredLegs: 1
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/punch3.ogg
@@ -637,8 +634,6 @@
     tags:
       - FootstepSound
       - CannotSuicide
-  - type: Body
-    prototype: Mothroach
   - type: TypingIndicator
     proto: alien
   - type: Destructible
@@ -1829,10 +1824,10 @@
     range: 5
     sound:
       path: /Audio/Imperial/Seriozha/SCP/ambient/HeavyContainment.ogg
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 600
     startingCharge: 600
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 2
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitArmoredCoat
@@ -2157,10 +2152,10 @@
   - type: BatteryAmmoProvider
     proto: HolyBulletMagnum
     fireCost: 10
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 10
     startingCharge: 10
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 1
   - type: AmmoCounter
   - type: ClothingSpeedModifier

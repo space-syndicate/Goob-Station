@@ -1,6 +1,6 @@
 - type: entity
   name: Urist McLLM
-  parent: BaseMobHuman
+  parent: MobHuman
   id: LLMNPCMob
   suffix: XxRaay
   components:

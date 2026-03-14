@@ -52,7 +52,7 @@
 
 - type: entity
   parent: IDCardStandard
-  id: NinjaIDCard
+  id: ImperialNinjaIDCard
   name: Spider Clan card
   description: It looks quite unusual...
   suffix: Agent, Crook, SpiderClan

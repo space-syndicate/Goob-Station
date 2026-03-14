@@ -25,8 +25,6 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: true
   - type: UseDelay
     delay: 0.5
   - type: Appearance
