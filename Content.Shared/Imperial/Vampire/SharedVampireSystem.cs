@@ -400,7 +400,8 @@ public partial class SharedVampireSystem : EntitySystem
             if (_solutionSystem.TryGetSolution(puddle, "puddle", out var solution))
             {
                 var bloodSolution = new Solution();
-                bloodSolution.AddReagent("Blood", 10f);
+                var bloodReagent = "Blood";
+                bloodSolution.AddReagent(bloodReagent, 10f);
 
                 _solutionSystem.TryAddSolution(solution.Value, bloodSolution);
             }

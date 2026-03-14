@@ -143,21 +143,10 @@
   equipment:
     id: SecurityPDA
 
-#Imperial закомментирован в связи с возвращением сеньор ролей Imperial Space
-# - type: loadout
-#   id: SeniorOfficerPDA
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: SeniorOfficer
-#   equipment:
-#     id: SeniorOfficerPDA
-
-    # Misc
-# - type: loadout
-#   id: SecStar
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: SecurityStarWorthy
-#   storage:
-#     back:
-#     - Dinkystar
+- type: loadout
+  id: SeniorOfficerPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    id: SeniorOfficerPDA

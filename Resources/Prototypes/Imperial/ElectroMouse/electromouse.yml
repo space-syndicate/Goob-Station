@@ -5,8 +5,6 @@
   suffix: ElectroMouse
   description: Squeak!
   components:
-  - type: Body
-    prototype: Mouse
   - type: GhostRole
     name: ghost-role-information-elmouse-name
     description: ghost-role-information-elmouse-description

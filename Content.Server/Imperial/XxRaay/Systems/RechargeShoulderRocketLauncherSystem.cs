@@ -11,7 +11,6 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 public sealed class RechargeShoulderRocketLauncherSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()

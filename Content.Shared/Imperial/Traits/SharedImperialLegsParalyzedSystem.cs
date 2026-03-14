@@ -10,7 +10,7 @@ public abstract partial class SharedImperialLegsParalyzedSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    // [Dependency] private readonly SharedBodySystem _bodySystem = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
 
     public override void Initialize()
@@ -40,14 +40,14 @@ public abstract partial class SharedImperialLegsParalyzedSystem : EntitySystem
             RemComp<KnockedDownComponent>(uid);
         }
 
-        _bodySystem.UpdateMovementSpeed(uid);
+        // _bodySystem.UpdateMovementSpeed(uid);
     }
 
     private void OnWeightlessnessChanged(EntityUid uid, ImperialLegsParalyzedComponent component, WeightlessnessChangedEvent args)
     {
         if (args.Weightless)
         {
-            _bodySystem.UpdateMovementSpeed(uid);
+            // _bodySystem.UpdateMovementSpeed(uid);
             _standingState.Down(uid);
         }
         else

@@ -3,13 +3,14 @@ using Robust.Shared.Timing;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Body.Systems;
 using Content.Server.Imperial.ExplosiveProjectile.Components;
+using Content.Shared.Gibbing;
 
 namespace Content.Server.Imperial.ExplosiveProjectile
 {
     [UsedImplicitly]
     public sealed class ExplosiveProjectileResultOnSystem : EntitySystem
     {
-        [Dependency] private readonly SharedBodySystem _body = default!;
+        [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
         [Dependency] private readonly ExplosionSystem _explosion = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -21,7 +22,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         private void GibEntity(EntityUid uid)
         {
             _explosion.QueueExplosion(uid, ExplosionSystem.DefaultExplosionPrototypeId, 1, 1, 1);
-            _body.GibBody(uid, splatModifier: 5f);
+            _gibbingSystem.Gib(uid);
             RemComp<ExplosiveProjectileResultOnComponent>(uid);
         }
         private void GetDelayTime(EntityUid uid, ExplosiveProjectileResultOnComponent component, ComponentStartup args)

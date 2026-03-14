@@ -17,7 +17,7 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        private readonly PhysicsComponent? _pushComp;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -30,7 +30,7 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
             var direction = _transform.GetWorldRotation(uid).ToWorldVec();
             _stun.TryAddStunDuration(uid, args.StunTime);
             _popup.PopupPredicted(Loc.GetString("Revers-dash-action-message", ("entity", args.Performer)), args.Performer, args.Performer, type: PopupType.SmallCaution);
-            _physics.SetLinearVelocity(uid, direction * comp.ReversePushStrength * -1f, body: _pushComp);
+            _physics.SetLinearVelocity(uid, direction * comp.ReversePushStrength * -1f);
             comp.IsDashing = true;
             comp.Accumulator -= comp.Accumulator;
             comp.Target = args.Target;
@@ -52,7 +52,7 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
                     var fromCoords = xform.Coordinates;
                     var fromMap = _transform.ToMapCoordinates(fromCoords);
                     var direction = targetPos - fromMap.Position;
-                    _physics.SetLinearVelocity(body, direction * compOne.PushStrength * 1.8f, body: _pushComp);
+                    _physics.SetLinearVelocity(body, direction * compOne.PushStrength * 1.8f);
                 }
                 if (compOne.Accumulator >= compOne.UpdateInterval && compOne.IsDashing == true)
                 {

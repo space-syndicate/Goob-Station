@@ -15,8 +15,9 @@ public sealed class ShockWaveDistortionOverlay : Overlay, IEntityEventSubscriber
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-
     private SharedTransformSystem? _xformSystem = null;
+
+    private static string _shockWaveShaderProtoId = "ShockWave";
 
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -42,7 +43,7 @@ public sealed class ShockWaveDistortionOverlay : Overlay, IEntityEventSubscriber
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototypeManager.Index<ShaderPrototype>("ShockWave").Instance().Duplicate();
+        _shader = _prototypeManager.Index<ShaderPrototype>(_shockWaveShaderProtoId).Instance().Duplicate();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)

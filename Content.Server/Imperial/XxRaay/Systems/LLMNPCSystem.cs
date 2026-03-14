@@ -56,7 +56,7 @@ public sealed class LLMNPCSystem : EntitySystem
 
         var listener = EnsureComp<ActiveListenerComponent>(uid);
         listener.Range = component.MaxDistanceTiles;
-        
+
         if (string.IsNullOrWhiteSpace(component.NPCName))
         {
             component.NPCName = MetaData(uid).EntityName;
@@ -99,7 +99,7 @@ public sealed class LLMNPCSystem : EntitySystem
         }
 
         npcComp.MessageHistory.Add(new LLMMessageHistoryItem { Role = "user", Content = userMessage });
-        
+
         while (npcComp.MessageHistory.Count > npcComp.MaxHistoryMessages)
         {
             npcComp.MessageHistory.RemoveAt(0);
@@ -113,11 +113,11 @@ public sealed class LLMNPCSystem : EntitySystem
         var infoParts = new List<string>();
 
         infoParts.Add(Loc.GetString("llmnpc-context-header-speaker"));
-        
+
         var name = Identity.Name(entity, EntityManager);
         infoParts.Add(Loc.GetString("llmnpc-context-speaker-name", ("name", name)));
 
-        if (TryComp<HumanoidAppearanceComponent>(entity, out var humanoid))
+        if (TryComp<HumanoidProfileComponent>(entity, out var humanoid))
         {
             if (_prototypeManager.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
             {
@@ -177,7 +177,7 @@ public sealed class LLMNPCSystem : EntitySystem
         }
 
         infoParts.Add("\n" + Loc.GetString("llmnpc-context-header-npc"));
-        
+
         if (!string.IsNullOrWhiteSpace(npcComp.NPCName))
         {
             infoParts.Add(Loc.GetString("llmnpc-context-npc-name", ("name", npcComp.NPCName)));
@@ -227,18 +227,18 @@ public sealed class LLMNPCSystem : EntitySystem
         try
         {
             var messages = new List<object>();
-            
+
             var systemPrompt = component.SystemPrompt;
             if (string.IsNullOrWhiteSpace(systemPrompt))
             {
                 systemPrompt = GetDefaultSystemPrompt(component);
             }
-            
+
             if (!string.IsNullOrWhiteSpace(systemPrompt))
             {
                 messages.Add(new { role = "system", content = systemPrompt });
             }
-            
+
             foreach (var historyMessage in component.MessageHistory)
             {
                 messages.Add(new { role = historyMessage.Role, content = historyMessage.Content });
@@ -259,7 +259,7 @@ public sealed class LLMNPCSystem : EntitySystem
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var response = await _httpClient.SendAsync(request);
-            
+
             if (!response.IsSuccessStatusCode)
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
@@ -283,7 +283,7 @@ public sealed class LLMNPCSystem : EntitySystem
             }
 
             component.MessageHistory.Add(new LLMMessageHistoryItem { Role = "assistant", Content = generatedMessage });
-            
+
             while (component.MessageHistory.Count > component.MaxHistoryMessages)
             {
                 component.MessageHistory.RemoveAt(0);

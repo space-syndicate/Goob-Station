@@ -42,6 +42,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Body;
 
 namespace Content.Server.Imperial.ElectroMouse.EntitySystems;
 
@@ -560,13 +561,13 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         if (!TryComp<BatteryComponent>(target, out var targetBattery) || !TryComp<PowerNetworkBatteryComponent>(target, out var pnb))
             return false;
 
-        if (targetBattery.CurrentCharge <= targetBattery.MaxCharge / 100 * 20)
+        if (targetBattery.LastCharge <= targetBattery.MaxCharge / 100 * 20)
         {
             _popup.PopupEntity(Loc.GetString("battery-drainer-empty", ("battery", target)), uid, uid, PopupType.Medium);
             return false;
         }
 
-        var available = targetBattery.CurrentCharge;
+        var available = targetBattery.LastCharge;
         int required;
 
         if (HasComp<ApcComponent>(target))

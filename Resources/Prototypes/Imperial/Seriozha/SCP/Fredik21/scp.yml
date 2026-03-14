@@ -851,7 +851,7 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
 
@@ -890,7 +890,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: Item
@@ -1233,8 +1233,6 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
   - type: UseDelay
     delay: 20
   - type: SolutionRegeneration
@@ -1328,7 +1326,7 @@
   - type: Battery
     maxCharge: 300
     startingCharge: 300
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 25
   - type: AmmoCounter
@@ -1339,9 +1337,6 @@
     rules: You remember nothing from previous life.
     raffle:
       settings: short
-  - type: PredictedBattery
-    maxCharge: 30
-    startingCharge: 30
 
 - type: entity
   id: HandTeleporterSCPDeva
@@ -8749,7 +8744,7 @@
   id: NDA013
   suffix: Fredik21, Недра, Объект
   parent: Cigarette
-  name: Cigarette «Blue Lady» 
+  name: Cigarette «Blue Lady»
   components:
   - type: SolutionContainerManager
     solutions:
@@ -13321,7 +13316,7 @@
 - type: currency
   id: CreditNDA
   displayName: Кредиты Недр
-  cash: 
+  cash:
     1: CreditNDA1
   canWithdraw: true
 
@@ -16413,7 +16408,7 @@
       - id: TrashDecorativegauze
       - id: TrashDecorativeglasses
       - id: TrashDecorativewire
-  
+
 - type: entity
   name: Trash Spawner
   id: RandomSpawnerTrashDecorative

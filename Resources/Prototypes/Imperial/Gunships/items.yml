@@ -100,9 +100,12 @@
           Quantity: 3
         - ReagentId: Saline
           Quantity: 5
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 20
+    currentTransferAmount: 20
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: Sprite
     sprite: Imperial/TGMC/item/marineautoinjectors.rsi
     layers:

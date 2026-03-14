@@ -1,18 +1,14 @@
-using Content.Server.Imperial.XxRaay.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Nodes;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Nda079;
 using Content.Shared.NodeContainer;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.XxRaay.Nda079;
 
 public sealed class NDA079GeneratorSystem : EntitySystem
 {
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly AlertEnergySystem _energySystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

@@ -112,9 +112,7 @@
         - id: Bloodpack
           amount: 2
         - id: AmpulaBica # imperial hardsuit injection
-          amount: 1
         - id: AmpulaDerm # imperial hardsuit injection
-          amount: 1
 
 - type: entity
   id: MedkitCombatFilled

@@ -3,15 +3,11 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
-using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
@@ -26,8 +22,6 @@ public sealed class OrbitalStrikeSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {
@@ -73,7 +67,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
 
                 var spawnPos = centerPos + offset;
                 var mapCoords = new MapCoordinates(spawnPos, userXform.MapID);
-                
+
                 EntityCoordinates spawnCoords;
                 if (_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
                 {
@@ -89,7 +83,7 @@ public sealed class OrbitalStrikeSystem : EntitySystem
 
                 var podEntity = Spawn(component.PodPrototype, spawnCoords);
                 var podComp = EnsureComp<OrbitalStrikePodComponent>(podEntity);
-                
+
                 var mode = component.AvailableExplosionModes.GetValueOrDefault(component.CurrentExplosionMode)
                            ?? new OrbitalExplosionMode(100f, 1f, 12f);
                 podComp.ExplosionIntensity = mode.Intensity;

@@ -199,9 +199,6 @@ public abstract partial class SharedHandsSystem
         if (!CheckWhitelists((uid, handsComp), handId, entity))
             return false;
 
-        if (!CheckWhitelists((uid, handsComp), handId, entity))
-            return false;
-
         if (ContainerSystem.TryGetContainingContainer((entity, null, null), out var container))
         {
             if (!ContainerSystem.CanRemove(entity, container))
