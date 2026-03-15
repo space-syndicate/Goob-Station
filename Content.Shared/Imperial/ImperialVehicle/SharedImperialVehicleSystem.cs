@@ -18,6 +18,8 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio.Systems;
 using System.Numerics;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Hands.Components;
 
 namespace Content.Shared.Imperial.ImperialVehicle;
 
@@ -34,6 +36,8 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -197,7 +201,6 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         args.Handled = true;
     }
 
-
     /// <summary>
     /// To avoid the problem where the user can operate the vehicle from
     /// a cabinet/trash can and other similar containers.
@@ -277,6 +280,8 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
 
         _modifier.RefreshMovementSpeedModifiers(vehicleUid);
         _modifier.RefreshMovementSpeedModifiers(riderUid);
+
+        RiderDropEverything(riderUid, vehicleUid);
     }
 
     public void RemoveRider(EntityUid vehicleUid, EntityUid riderUid, ImperialVehicleComponent component)
@@ -320,6 +325,26 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
 
         if (vehicleComp.HornSound != null)
             _actions.AddAction(driver, ref vehicleComp.HornAction, vehicleComp.HornActionId, vehicle);
+    }
+
+    private void RiderDropEverything(EntityUid riderUid, EntityUid vehicleUid)
+    {
+        if (!TryComp<HandsComponent>(riderUid, out var hands))
+            return;
+
+        foreach (var handName in hands.Hands.Keys)
+        {
+            if (_hands.TryGetHeldItem(riderUid, handName, out var heldItem))
+            {
+                if (TryComp<VirtualItemComponent>(heldItem, out var virtualItem) &&
+                    virtualItem.BlockingEntity == vehicleUid)
+                {
+                    continue;
+                }
+
+                _hands.TryDrop(riderUid, handName);
+            }
+        }
     }
 }
 
