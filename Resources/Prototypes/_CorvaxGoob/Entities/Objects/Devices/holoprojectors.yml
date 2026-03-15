@@ -2,7 +2,7 @@
   parent: Holoprojector
   id: HoloprojectorCrate
   name: holocrate holoprojector
-  description: A projector that creates a temporary, hard light crate.
+  description: A projector that creates a temporary hard light crate.
   components:
   - type: HolosignProjector
     signProto: Crateholographic
