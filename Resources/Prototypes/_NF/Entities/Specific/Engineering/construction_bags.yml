@@ -53,7 +53,7 @@
           - RawMaterial
           - PartBase
         components:
-          - FloorTile
+          - FloorTile # CorvaxGoob
     - type: Dumpable
     - type: ItemToggle
       soundActivate:
