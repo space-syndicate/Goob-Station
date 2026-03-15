@@ -217,6 +217,7 @@ public sealed partial class VampireSystem : EntitySystem
                 if (currentBlood >= 100 && HasComp<MindContainerComponent>(target) && HasComp<ActorComponent>(target))
                 {
                     vamp.TotalDrunk += amount;
+                    _vampireSystem.SetBloodCounterAlert(drinker, vamp);
                     var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
                     eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
                 }
@@ -257,6 +258,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (vamp != null)
         {
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
+            _vampireSystem.SetBloodCounterAlert(drinker, vamp);
             _vampireSystem.SetBloodAlert(drinker, vamp);
             vamp.TotalDrunk += amount;
             _audio.PlayPvs(vamp.DrinkSound, drinker);
