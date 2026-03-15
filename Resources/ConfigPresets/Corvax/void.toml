@@ -23,3 +23,6 @@ time = 30.0
 [hub]
 advertise = true
 tags = "lang:ru,rp:med,region:eu_e,tts"
+
+[thunderdome]
+enabled = false
