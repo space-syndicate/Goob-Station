@@ -18,11 +18,11 @@ public sealed class RespiratorGeneSystem : EntitySystem
     }
     private void OnGeneInsert(EntityUid uid, RespiratorGeneComponent component, ref GeneInsertedEvent args)
     {
-        if(!TryComp<RespiratorComponent>(args.Target, out var resp))
+        if (!HasComp<RespiratorComponent>(args.Target))
             return;
 
         var gene = EnsureComp<XenoGeneComponent>(args.Gene);
-        if(gene.GeneMultiplier * 100f >= component.GeneNeeded)
+        if (gene.GeneMultiplier * 100f >= component.GeneNeeded)
         {
             RemComp<RespiratorComponent>(args.Target);
             component.Active = true;
@@ -30,7 +30,7 @@ public sealed class RespiratorGeneSystem : EntitySystem
     }
     private void OnGeneWithdraw(EntityUid uid, RespiratorGeneComponent component, ref GeneWithdrawnEvent args)
     {
-        if(component.Active == true)
+        if (component.Active == true)
         {
             EntityManager.AddComponents(args.Target, component.Components, false);
             component.Active = false;
