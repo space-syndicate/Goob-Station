@@ -185,13 +185,6 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
         if (!_cfg.GetCVar(ThunderdomeCVars.ThunderdomeEnabled))
             return;
 
-        // CorvaxGoob-Thunderdome-start
-        var duration = _ticker.RoundDuration();
-        if (_cfg.GetCVar(ThunderdomeCVars.ActivationDelayEnabled) &&
-            (_cfg.GetCVar(ThunderdomeCVars.ActivationDelay) > (int) duration.TotalMinutes))
-            return;
-        // CorvaxGoob-Thunderdome-end
-
         EnsureRule();
 
         if (_ruleEntity == null
