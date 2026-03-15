@@ -1,51 +1,41 @@
 - type: construction
-  name: Факел # Imperial Recipes Locale
   id: LightTorch
   graph: LightTorch
   startNode: start
   targetNode: torch
   category: construction-category-tools
-  description: Факел, сделанный из дерева. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Логический вентиль # Imperial Recipes Locale
   id: LogicGate
   graph: LogicGate
   startNode: start
   targetNode: logic_gate
   category: construction-category-tools
-  description: Логический элемент с двумя входами и одним выходом. Техники могут изменить его режим работы с помощью отвёртки. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Краевой детектор # Imperial Recipes Locale
   id: EdgeDetector
   graph: LogicGate
   startNode: start
   targetNode: edge_detector
   category: construction-category-tools
-  description: Разделяет нарастающие и спадающие фронты на уникальные импульсы и определяет, насколько вы нервничаете. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Электросенсор # Imperial Recipes Locale
   id: PowerSensor
   graph: LogicGate
   startNode: start
   targetNode: power_sensor
   category: construction-category-tools
-  description: Генерирует сигналы в ответ на изменения в сети питания. Может переключаться между напряжениями кабеля. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Ячейка памяти # Imperial Recipes Locale
   id: MemoryCell
   graph: LogicGate
   startNode: start
   targetNode: memory_cell
   category: construction-category-tools
-  description: Схема D-Latch, хранящая сигнал, который можно изменить в зависимости от входных и выходных портов. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction

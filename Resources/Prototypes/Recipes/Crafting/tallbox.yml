@@ -1,51 +1,41 @@
 - type: construction
   id: ClosetSteel
-  name: Шкаф # Imperial Recipes Locale
   graph: ClosetSteel
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Высокий стальной ящик, который невозможно запереть. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   id: ClosetSteelSecure
-  name: Защищённый шкаф # Imperial Recipes Locale
   graph: ClosetSteelSecure
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Высокий стальной ящик, который можно запереть. Можно настроить доступ с помощью конфигуратора доступов. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   id: ClosetFreezer
-  name: Холодильник # Imperial Recipes Locale
   graph: ClosetFreezer
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Высокий стальной ящик с замораживающими способностями. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   id: GunSafe
-  name: Оружейный сейф # Imperial Recipes Locale
   graph: GunSafe
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: рочный оружейный сейф, который можно запереть. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   id: ClosetWall
-  name: Настенный шкаф # Imperial Recipes Locale
   graph: ClosetWall
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Стандартное хранилище Nanotrasen, теперь на стене. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

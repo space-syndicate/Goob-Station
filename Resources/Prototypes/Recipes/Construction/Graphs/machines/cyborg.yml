@@ -16,14 +16,14 @@
         store: part-container
 
       - component: Flash
-        name: вспышку # Imperial Recipes Locale
+        name: recipes-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: вспышку # Imperial Recipes Locale
+        name: recipes-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
