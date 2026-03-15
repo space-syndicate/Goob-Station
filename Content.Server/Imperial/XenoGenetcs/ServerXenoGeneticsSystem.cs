@@ -76,7 +76,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
             return;
         }
         var insertedEv = new GeneInsertedEvent(toInsert[0], args.Target.Value);
-        RaiseLocalEvent(toInsert[0], ref insertedEv);
+        RaiseLocalEvent(toInsert[0], insertedEv);
         foreach (EntityUid geneUid in toInsert)
         {
             _containerSystem.Insert(geneUid, targetContainer);
@@ -114,7 +114,7 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
             return;
         }
         var withdrawEv = new GeneWithdrawnEvent(genesInstalled[0], args.Target.Value);
-        RaiseLocalEvent(genesInstalled[0], ref withdrawEv);
+        RaiseLocalEvent(genesInstalled[0], withdrawEv);
         foreach (EntityUid geneUid in genesInstalled)
         {
             _containerSystem.Insert(geneUid, geneContainer);
