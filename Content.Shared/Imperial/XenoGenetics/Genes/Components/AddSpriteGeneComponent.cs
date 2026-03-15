@@ -8,10 +8,9 @@ namespace Content.Shared.Imperial.XenoGenetics.Genes.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class AddSpriteGeneComponent : Component
 {
-
     [DataField, AutoNetworkedField]
     public SpriteSpecifier? Sprite = null;
 
     [DataField, AutoNetworkedField]
-    public String Layer = "xeno_gene_layer";
+    public string Layer = "xeno_gene_layer";
 }

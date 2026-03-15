@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.XenoGenetics.Genes.Components;
 public sealed partial class RespiratorGeneComponent : Component
 {
     /// <summary>
-    /// То насколько увелчится скорость при вводе гена. Считается по формуле скорость_энтити + speedModifier * geneMultiplier
+    /// Трешхолд качества генов после которого у энтити пропадает потребность в воздухе
     /// </summary>
     [DataField, AutoNetworkedField]
     public float GeneNeeded = 75f;

@@ -20,14 +20,12 @@ public sealed class AddDamageGeneSystem : EntitySystem
     }
     private void OnGetMeleeDamage(EntityUid uid, DamageIncreasedByGeneComponent component, ref GetMeleeDamageEvent args)
     {
-        if(component.BonusDamage == null)
+        if (component.BonusDamage == null)
             return;
         args.Damage += component.BonusDamage;
     }
     private void OnGetAttackRate(EntityUid uid, DamageIncreasedByGeneComponent component, ref GetMeleeAttackRateEvent args)
     {
-        if(component.BonusAttackRate == null)
-            return;
         args.Rate += component.BonusAttackRate;
     }
 

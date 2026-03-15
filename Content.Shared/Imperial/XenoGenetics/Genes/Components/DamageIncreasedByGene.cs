@@ -9,7 +9,6 @@ namespace Content.Shared.Imperial.XenoGenetics.Genes.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class DamageIncreasedByGeneComponent : Component
 {
-
     [DataField, AutoNetworkedField]
     public DamageSpecifier BonusDamage;
 

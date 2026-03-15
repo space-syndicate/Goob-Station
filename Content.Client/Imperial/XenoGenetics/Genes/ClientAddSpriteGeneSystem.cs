@@ -8,7 +8,6 @@ using Robust.Shared.Utility;
 using Content.Shared.Imperial.XenoGenetics.Genes;
 using Content.Shared.Humanoid;
 
-
 namespace Content.Client.Imperial.XenoGenetics.Genes;
 
 public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
@@ -19,16 +18,15 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<AddSpriteGeneComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
         SubscribeLocalEvent<AddSpriteGeneComponent, ComponentShutdown>(OnComponentShutdown);
-
     }
     private void OnAfterHandleState(EntityUid uid, AddSpriteGeneComponent component, AfterAutoHandleStateEvent args)
     {
-        if(!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearance))
+        if (!TryComp<HumanoidProfileComponent >(uid, out var humanoidAppearance))
             return;
 
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
-        
+
         if (component.Sprite is null)
             return;
 
@@ -43,5 +41,4 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
         var index = _sprite.LayerMapGet((uid, sprite), component.Layer);
         _sprite.LayerSetVisible((uid, sprite), index, false);
     }
-    
 }

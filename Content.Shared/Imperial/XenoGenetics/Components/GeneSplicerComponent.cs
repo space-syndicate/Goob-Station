@@ -25,6 +25,18 @@ public sealed partial class GeneSplicerComponent : Component
     [DataField, AutoNetworkedField]
     public GeneSplicerMode InsertMode = GeneSplicerMode.Insert;
 
+    /// <summary>
+    /// Время на ввод
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float InsertTime = 2.5f;
+
+    /// <summary>
+    /// Время на доставание
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float WithdrawTime = 5f;
+
 }
 [Serializable, NetSerializable]
 public enum GeneSplicerMode : byte

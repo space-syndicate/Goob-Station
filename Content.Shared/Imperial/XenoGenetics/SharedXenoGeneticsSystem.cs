@@ -7,11 +7,11 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Shared.Alert;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Humanoid;
 
 namespace Content.Shared.Imperial.XenoGenetics;
 
@@ -20,12 +20,11 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<GeneSplicerComponent, AfterInteractEvent>(OnGeneSplicerInteract);
 
         SubscribeLocalEvent<XenoGeneComponent, ExaminedEvent>(OnExamined);
@@ -36,29 +35,29 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
     }
     private void OnGeneInsert(EntityUid uid, XenoGeneComponent component, ref GeneInsertedEvent args)
     {
-        _alertsSystem.ShowAlert(args.Target, component.AlertProto);   
+        _alertsSystem.ShowAlert(args.Target, component.AlertProto);
     }
     private void OnGeneWithdraw(EntityUid uid, XenoGeneComponent component, ref GeneWithdrawnEvent args)
     {
         _alertsSystem.ClearAlert(args.Target, component.AlertProto);
-        if(!TryComp<GeneWithdrawnComponent>(uid, out var geneComp) && component.RandomizeGeneQuality == true)
+        if (!HasComp<GeneWithdrawnComponent>(uid) && component.RandomizeGeneQuality == true)
         {
             var mobState = EnsureComp<MobStateComponent>(uid);
             if(mobState.CurrentState is MobState.Alive)
             {
                 component.GeneMultiplier += 0.2f;
                 AddComp<GeneWithdrawnComponent>(uid);
-            }      
+            }
         }
     }
     private void OnXenoGeneStartup(EntityUid uid, XenoGeneComponent component, ComponentStartup args)
     {
 
-        if(component.RandomizeGeneQuality)
+        if (component.RandomizeGeneQuality)
         {
             float multiplier;
             int quality = _rand.Next(0, 10);
-            switch(quality)
+            switch (quality)
             {
                 case <= 2:
                     multiplier = _rand.Next(1, 200) / 1000f;
@@ -75,45 +74,45 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
                 default:
                     multiplier = 0.1f;
                     break;
-            }   
+            }
 
             component.GeneMultiplier = multiplier;
         }
-        
+
     }
     private void OnExamined(EntityUid uid, XenoGeneComponent component, ref ExaminedEvent args)
     {
-        args.PushMarkup(Loc.GetString("Качество гена: " + component.GeneMultiplier * 100 + "%"));
+        args.PushMarkup(Loc.GetString("gene-quanity", ("multiplier", component.GeneMultiplier * 100)));
     }
 
     private void OnGeneSplicerInteract(EntityUid uid, GeneSplicerComponent comp, AfterInteractEvent args)
     {
-        if(args.Handled == true)
+        if (args.Handled == true)
             return;
-        if(args.Target == null)
+        if (args.Target == null)
             return;
-        if(!TryComp<MobStateComponent>(args.Target, out var stateComp))
+        if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
         switch (comp.InsertMode)
         {
             case GeneSplicerMode.Insert:
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5f), new GeneInsertingDoAfterEvent(), uid, target: args.Target, used: uid)
-            {
-                BreakOnMove = true,
-                NeedHand = true,
-            });
-            break;
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(comp.InsertTime), new GeneInsertingDoAfterEvent(), uid, target: args.Target, used: uid)
+                {
+                    BreakOnMove = true,
+                    NeedHand = true,
+                });
+                break;
 
             case GeneSplicerMode.Withdraw:
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(7.5f), new GeneWithdrawDoAfterEvent(), uid, target: args.Target, used: uid)
-            {
-                BreakOnMove = true,
-                NeedHand = true,
-            });
-            break;
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(comp.WithdrawTime), new GeneWithdrawDoAfterEvent(), uid, target: args.Target, used: uid)
+                {
+                    BreakOnMove = true,
+                    NeedHand = true,
+                });
+                break;
 
             default:
-            break;
+                break;
         }
     }
 }
