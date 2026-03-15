@@ -27,16 +27,13 @@ public sealed class RespiratorGeneSystem : EntitySystem
             RemComp<RespiratorComponent>(args.Target);
             component.Active = true;
         }
-
     }
     private void OnGeneWithdraw(EntityUid uid, RespiratorGeneComponent component, ref GeneWithdrawnEvent args)
-    {    
+    {
         if(component.Active == true)
         {
             EntityManager.AddComponents(args.Target, component.Components, false);
             component.Active = false;
         }
-        
     }
-        
 }

@@ -82,7 +82,7 @@
   components:
   - type: AddComponentsNoRandomGene
     components:
-    - type: ChangePartGene
+    - type: AddSpriteGene
       sprite:
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "carp"
@@ -101,7 +101,7 @@
   components:
   - type: AddComponentsNoRandomGene
     components:
-    - type: ChangePartGene
+    - type: AddSpriteGene
       sprite:
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "carp"

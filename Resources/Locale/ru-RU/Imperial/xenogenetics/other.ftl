@@ -1,3 +1,7 @@
+# ГЕНЫ
+
+gene-quanity = Качество гена: {$multiplier}%
+
 # АЛЕРТ
 
 alerts-xenogene = Генетические Модификации
