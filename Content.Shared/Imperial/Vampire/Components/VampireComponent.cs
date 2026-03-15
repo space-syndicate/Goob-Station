@@ -1,4 +1,6 @@
 using Content.Shared.Alert;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -91,7 +93,7 @@ namespace Content.Shared.Imperial.Vampire
         /// количество выпитой крови за 1 тик
         /// </summary>
         [DataField("bloodPerTick")]
-        public float BloodPerTick = 1;
+        public float BloodPerTick = 3;
 
         /// <summary>
         /// кд между призывами катаны
@@ -185,6 +187,32 @@ namespace Content.Shared.Imperial.Vampire
         /// </summary>
         [DataField("bloodLossDisguiseIsActive")]
         public float BloodLossDisguiseIsActive = 1;
+
+        /// <summary>
+        /// время следующего тика потери крови
+        /// </summary>
+        public TimeSpan NextBloodDecay = TimeSpan.Zero;
+
+        /// <summary>
+        /// Интервал между тиками потери крови
+        /// </summary>
+        [DataField]
+        public TimeSpan BloodDecayInterval = TimeSpan.FromSeconds(45);
+
+        /// <summary>
+        /// количество урона за каждый тик
+        /// </summary>
+        [DataField]
+        public float BloodDecayAmount = 2f;
+
+        [DataField]
+        public EntProtoId GhoulPuddleID = "VampirePuddle";
+
+        /// <summary>
+        /// длительность тряски при критическом состоянии
+        /// </summary>
+        [DataField]
+        public TimeSpan ShakingTime = TimeSpan.FromSeconds(5);
 
         [DataField]
         public string VampirePuddleID = "VampirePuddle";
@@ -312,9 +340,37 @@ namespace Content.Shared.Imperial.Vampire
         /// длительность cooldown на обращение в упырей
         /// </summary>
         [DataField("cooldownTimeAppealGhouls")]
-        public TimeSpan CooldownTimeAppealGhouls = TimeSpan.FromMinutes(1);
+        public TimeSpan CooldownTimeAppealGhouls = TimeSpan.FromMinutes(2.5f);
 
         [DataField]
         public string CooldownStatusEffectAppealGhouls = "AppealGhoulsCooldown";
+
+        [DataField]
+        public DamageSpecifier DivineDamage = new DamageSpecifier
+        {
+            DamageDict = new Dictionary<string, FixedPoint2>
+            {
+                ["Heat"] = 2
+            }
+        };
+
+        [DataField]
+        public SoundSpecifier DivineDamageSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(3)
+        };
+
+        [AutoNetworkedField]
+        public float UpdateDelay;
+
+        [DataField]
+        public ProtoId<AlertPrototype> AdjacentChaplainAlert = "VampireAdjacentChaplainAlert";
+
+        /// <summary>
+        /// максимальное количество упырей, которое может иметь вампир
+        /// </summary>
+        [DataField]
+        public int MaxNumberGhouls = 5;
+
     }
 }

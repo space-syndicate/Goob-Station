@@ -435,9 +435,50 @@ public partial class SharedVampireSystem : EntitySystem
             }
         }
 
+        var vampirelQuery = EntityQueryEnumerator<VampireComponent>();
+        while (vampirelQuery.MoveNext(out var uid, out var comp))
+        {
+            if (_mobStateSystem.IsDead(uid))
+                continue;
+
+            if (comp.NextBloodDecay == TimeSpan.Zero)
+            {
+                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
+                Dirty(uid, comp);
+            }
+
+            if (_gameTiming.CurTime >= comp.NextBloodDecay)
+            {
+                // наносим урон каждые BloodDecayInterval секунд
+                DealBloodDamage(uid, comp.BloodDecayAmount, comp);
+                comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
+                Dirty(uid, comp);
+
+                // если урон больше количества крови, то применяем дебафы
+                if (comp.BloodDamage >= comp.CritThreshold)
+                {
+                    if (TryComp<StaminaComponent>(uid, out var stamina))
+                    {
+                        var dmg = new DamageSpecifier();
+                        dmg.DamageDict["Bloodloss"] = FixedPoint2.New(30);
+
+                        _damage.TryChangeDamage(uid, dmg);
+                        SpawnBloodPuddle(uid, comp.GhoulPuddleID);
+                        _stamina.TakeStaminaDamage(uid, 70f, stamina);
+
+                        if (_net.IsServer)
+                            _jitterSystem.DoJitter(uid, comp.ShakingTime, refresh: false, amplitude: 15f, frequency: 4f);
+                    }
+                }
+            }
+        }
+
         var ghoulQuery = EntityQueryEnumerator<GhoulComponent>();
         while (ghoulQuery.MoveNext(out var uid, out var comp))
         {
+            if (_mobStateSystem.IsDead(uid))
+                continue;
+
             // заставляем упырей пить кровь
             if (comp.NextBloodDecay == TimeSpan.Zero)
             {

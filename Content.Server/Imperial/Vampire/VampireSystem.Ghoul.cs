@@ -11,8 +11,6 @@ using Content.Server.Bible.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio;
-using Robust.Shared.Player;
-using Content.Shared.Mind.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -23,13 +21,8 @@ public partial class VampireSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract || uid == args.Target || !_mobState.IsAlive(args.Target))
             return;
 
-        // если у цели нет крови/разума, кнопки не добавляем
-        if (!HasComp<BloodstreamComponent>(args.Target) || !HasComp<MindContainerComponent>(args.Target)
-            || !HasComp<ActorComponent>(args.Target))
-            return;
-
         // верб для питья крови
-        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target))
+        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target) && HasComp<BloodstreamComponent>(args.Target))
         {
             var verbDrinkBloodGhoul = new InnateVerb
             {

@@ -178,7 +178,8 @@ public partial class VampireSystem : EntitySystem
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = false,
-            BlockDuplicate = true
+            BlockDuplicate = true,
+            Hidden = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -267,14 +268,6 @@ public partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (vamp.GhoulQuantity < args.NecessaryGhoulQuantity)
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-quantity", ("quantity", args.NecessaryGhoulQuantity - vamp.GhoulQuantity)),
-            args.Performer, args.Performer, PopupType.Medium);
-
-            return;
-        }
-
         switch (vamp.SelectedSubgroup)
         {
             case VampireAbilityType.Hemomancer:
@@ -312,10 +305,8 @@ public partial class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    public override void Update(float frameTime)
+    public void AbilitiesUpdate()
     {
-        base.Update(frameTime);
-
         var queryVampBat = EntityQueryEnumerator<VampireComponent>();
         while (queryVampBat.MoveNext(out var uid, out var vamp))
         {
