@@ -872,7 +872,7 @@
   suffix: CentComm
   components:
   - type: NavMapBeacon
-    text: CentComm
+    text: station-beacon-cc # imperial space localization
 
 - type: entity
   parent: DefaultStationBeaconGhost
@@ -880,7 +880,7 @@
   suffix: CentComm Afterhours
   components:
   - type: NavMapBeacon
-    text: Afterhours
+    text: station-beacon-cc-afterhours # imperial space localization
 
 - type: entity
   parent: DefaultStationBeaconGhost
@@ -888,7 +888,7 @@
   suffix: CentComm Thunder Dome
   components:
   - type: NavMapBeacon
-    text: Thunderdome
+    text: station-beacon-cc-thunderdome # imperial space localization
 
 - type: entity
   parent: DefaultStationBeaconGhost
@@ -896,4 +896,4 @@
   suffix: CentComm ERT
   components:
   - type: NavMapBeacon
-    text: ERT
+    text: station-beacon-cc-ert # imperial space localization
