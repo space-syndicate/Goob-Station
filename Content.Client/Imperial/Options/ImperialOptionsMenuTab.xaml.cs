@@ -100,15 +100,6 @@ public sealed partial class ImperialOptionsMenuTab : Control
             _keyControls.Add(function, control);
         }
 
-        void AddCheckBox(string checkBoxName, bool currentState, Action<BaseButton.ButtonToggledEventArgs>? callBackOnClick)
-        {
-            var newCheckBox = new CheckBox() { Text = Loc.GetString(checkBoxName) };
-            newCheckBox.Pressed = currentState;
-            newCheckBox.OnToggled += callBackOnClick;
-
-            KeybindsContainer.AddChild(newCheckBox);
-        }
-
         void AddColorSelector(string name, Color currentColor, Action<string>? callback)
         {
             var newColorSelector = new ColorSelectControl(this, name, currentColor, callback);

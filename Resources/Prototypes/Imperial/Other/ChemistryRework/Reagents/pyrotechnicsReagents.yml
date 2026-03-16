@@ -85,15 +85,15 @@
         damage:
           types:
             Poison: 5
-      - !type:AdjustReagentsByGroup
-        group: Poison
-        amount: -3
-      - !type:AdjustReagentsByGroup
-        group: Medicine
-        amount: -3
-      - !type:AdjustReagentsByGroup
-        group: Narcotic
-        amount: -3
+      # - !type:AdjustReagentsByGroup
+      #   group: Poison
+      #   amount: -3
+      # - !type:AdjustReagentsByGroup
+      #   group: Medicine
+      #   amount: -3
+      # - !type:AdjustReagentsByGroup
+      #   group: Narcotic
+      #   amount: -3
 
 - type: reagent
   id: QuantumHairDye

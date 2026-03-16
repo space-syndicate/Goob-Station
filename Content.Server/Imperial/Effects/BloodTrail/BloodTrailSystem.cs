@@ -165,7 +165,7 @@ namespace Content.Server.Imperial.BloodTrail
         {
             TryComp<BloodstreamComponent>(victim, out var bloodstream);
 
-            return bloodstream?.BloodReagents?.GetColor(_prototype) ?? Color.DarkRed;
+            return bloodstream?.BloodSolution?.Comp.Solution.GetColor(_prototype) ?? Color.DarkRed;
         }
 
         private (Vector2 position, Angle rotation) CalculateDecalPositionAndRotation(Vector2 victimWorldPos, EntityUid? damageSource, float spread)

@@ -58370,7 +58370,7 @@
 /Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰    .desc = Пиратская вариация комбинезона космического моряка и космического носорога. Что?
 /Locale/ru-RU/Imperial/PiratesNewHorizon/clothing.ftl鎰    .suffix = { "Пират" }
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰ent-MobHuman = Урист МакХэндс
-/Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰    .desc = { ent-BaseMobHuman.desc }
+/Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰    .desc = { ent-MobHuman.desc }
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰    .suffix = { "" }
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰ent-MobHumanSyndicateAgent = Агент Синдиката
 /Locale/ru-RU/prototypes/entities/mobs/player/human.ftl鎰    .desc = { ent-MobHuman.desc }
@@ -59152,7 +59152,7 @@
 /Locale/ru-RU/Imperial/PiratesNewHorizon/mobs.ftl鎰ent-MobParrotPirate = пиратский попугай
 /Locale/ru-RU/Imperial/PiratesNewHorizon/mobs.ftl鎰    .desc = Выглядит как попугай, но более пиратестей! Поить только ромом!
 /Locale/ru-RU/Imperial/PiratesNewHorizon/mobs.ftl鎰    .suffix = { "Пират" }
-/Locale/ru-RU/prototypes/entities/mobs/species/human.ftl鎰ent-BaseMobHuman = Урист МакХэндс
+/Locale/ru-RU/prototypes/entities/mobs/species/human.ftl鎰ent-MobHuman = Урист МакХэндс
 /Locale/ru-RU/prototypes/entities/mobs/species/human.ftl鎰    .desc = { ent-BaseMobOrganic.desc }
 /Locale/ru-RU/prototypes/entities/mobs/species/human.ftl鎰    .suffix = { "" }
 /Locale/ru-RU/prototypes/entities/mobs/species/human.ftl鎰ent-MobHumanDummy = Урист МакХэндс

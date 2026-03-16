@@ -21,9 +21,7 @@ public sealed class SpawnItemsOnDespawnSystem : EntitySystem
         if (comp.Items.Count == 0)
             return;
 
-        if (!TryComp<TransformComponent>(uid, out var xform))
-            return;
-
+        var xform = Transform(uid);
         var coords = xform.Coordinates;
 
         foreach (var itemProto in comp.Items)

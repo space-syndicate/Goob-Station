@@ -27,7 +27,7 @@ public sealed class ShowSpawnedEntityOverlay : Overlay
 
 
     private readonly ShaderInstance _shader;
-
+    private readonly string _shaderId = "PrespawnOverlay";
 
     public List<PrespawnedEntitySprite> Sprites = new();
     public Angle Rotation = Angle.FromDegrees(0);
@@ -39,7 +39,7 @@ public sealed class ShowSpawnedEntityOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototypeManager.Index<ShaderPrototype>("PrespawnOverlay").InstanceUnique();
+        _shader = _prototypeManager.Index<ShaderPrototype>(_shaderId).InstanceUnique();
 
         _spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
         _transformSystem = _entitySystem.GetEntitySystem<SharedTransformSystem>();

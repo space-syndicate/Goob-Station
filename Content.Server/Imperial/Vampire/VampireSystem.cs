@@ -18,7 +18,6 @@ using Content.Server.Polymorph.Systems;
 using Content.Server.Cloning;
 using Robust.Shared.Prototypes;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
-using Content.Shared.Humanoid;
 using Content.Server.EUI;
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
@@ -281,11 +280,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         // после того, как вампир выпивает кровь его глаза становятся красными
-        if (TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
-        {
-            appear.EyeColor = Color.Red;
-            Dirty(drinker, appear);
-        }
+        TrySetEntityEyeColor(drinker, Color.Red);
 
         // наносим жертве урон от кровопотери
         damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);

@@ -5,6 +5,7 @@ namespace Content.Server.Chat.Systems;
 
 public sealed partial class ChatSystem
 {
+    private static readonly Regex ReplaceRegex = new("\\b(\\w+)\\b");
     private static readonly Dictionary<string, string> SlangReplace = new()
     {
         // Game
@@ -230,12 +231,13 @@ public sealed partial class ChatSystem
         if (string.IsNullOrEmpty(message))
             return message;
 
-        return Regex.Replace(message, "\\b(\\w+)\\b", match =>
+        return ReplaceRegex.Replace(message, match =>
         {
-            bool isUpperCase = match.Value.All(Char.IsUpper);
+            var isUpperCase = match.Value.All(Char.IsUpper);
 
             if (SlangReplace.TryGetValue(match.Value.ToLower(), out var replacement))
                 return isUpperCase ? replacement.ToUpper() : replacement;
+
             return match.Value;
         });
     }

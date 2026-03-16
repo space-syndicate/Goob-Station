@@ -28,8 +28,6 @@
     - type: Clumsy
     - type: Damageable
       damageModifierSet: SCPStandart
-    - type: Body
-      prototype: Human
     - type: Bloodstream
       bloodMaxVolume: 0
     - type: NpcFactionMember

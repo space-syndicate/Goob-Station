@@ -71,7 +71,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     {
         var dict = new Dictionary<string, (int, int)>();
 
-        var resolves =  await _db.GetNrpResolves();
+        var resolves = await _db.GetNrpResolves();
 
         foreach (var resolve in resolves)
         {
@@ -159,7 +159,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             ("message", banMessage),
             ("adminName", adminName));
 
-        _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
+        OnViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
     }
 
     public void OnViolation(NetUserId targetId, string targetName, string reason, int violationCount, NetUserId senderId)
@@ -172,10 +172,10 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         var banText = Loc.GetString("nrp-ban-message", ("reason", reason), ("adminName", adminName));
         var curseText = Loc.GetString("nrp-curse-message", ("reason", reason), ("adminName", adminName), ("minutes", _cfg.GetCVar(CCVars.NrpMinutesBeforeBan)));
 
-        _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
+        OnViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
     }
 
-    private void _onViolation(int violationCount, NetUserId targetId, NetUserId senderId, string targetName, string bwoinkText, string curseText, string banText)
+    private void OnViolation(int violationCount, NetUserId targetId, NetUserId senderId, string targetName, string bwoinkText, string curseText, string banText)
     {
         if (violationCount <= 2)
         {
@@ -295,7 +295,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         return matches;
     }
 
-    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords, string openingTag = "[color=red]", string closingTag="[/color]")
+    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords, string openingTag = "[color=red]", string closingTag = "[/color]")
     {
         if (string.IsNullOrEmpty(input) || bannedWords.Count == 0)
             return input;
@@ -319,11 +319,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         if (patterns.Any())
         {
             var combinedPattern = string.Join("|", patterns);
-            result = Regex.Replace(
-                result,
-                combinedPattern,
-                match => $"{openingTag}{match.Value}{closingTag}",
-                RegexOptions.IgnoreCase);
+            var regex = new Regex(combinedPattern, RegexOptions.IgnoreCase);
+            result = regex.Replace(result, match => $"{openingTag}{match.Value}{closingTag}");
         }
 
         return result;
@@ -370,6 +367,6 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         }
 
 
-        _audio.PlayGlobal("/Audio/Imperial/Medieval/Misk/pop.ogg", Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), true, AudioParams.Default.WithVolume(-4f));
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Misk/pop.ogg"), Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), true, AudioParams.Default.WithVolume(-4f));
     }
 }

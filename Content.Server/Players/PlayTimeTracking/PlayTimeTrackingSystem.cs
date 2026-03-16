@@ -21,7 +21,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Imperial.Sponsors;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -35,7 +34,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
@@ -78,7 +76,9 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         {
             trackers.Add(PlayTimeTrackingShared.TrackerAdmin);
             trackers.Add(PlayTimeTrackingShared.TrackerOverall);
-            return;
+
+            if (!_cfg.GetCVar(CCVars.GameAdminJobTracking))
+                return;
         }
 
         if (!IsPlayerAlive(player))

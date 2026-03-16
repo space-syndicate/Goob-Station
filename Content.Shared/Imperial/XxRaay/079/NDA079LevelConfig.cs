@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.XxRaay.Nda079;
 [Prototype("nda079LightFlickerLevel")]
 public sealed partial class NDA079LightFlickerLevelPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
     public int Level;
@@ -29,7 +29,7 @@ public sealed partial class NDA079LightFlickerLevelPrototype : IPrototype
 [Prototype("nda079AirlockLevel")]
 public sealed partial class NDA079AirlockLevelPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
     public int Level;
