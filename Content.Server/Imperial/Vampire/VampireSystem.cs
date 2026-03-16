@@ -222,8 +222,6 @@ public sealed partial class VampireSystem : EntitySystem
                 {
                     vamp.TotalDrunk += amount;
                     _vampireSystem.SetBloodCounterAlert(drinker, vamp);
-                    var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
-                    eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
                 }
                 // мы просто понижаем BloodDamage, но в TotalDrunk не засчитываем
                 else if (!HasComp<MindContainerComponent>(target) || !HasComp<ActorComponent>(target))
