@@ -19,7 +19,7 @@ public sealed partial class GhoulComponent : Component
     /// Интервал между тиками потери крови
     /// </summary>
     [DataField]
-    public TimeSpan BloodDecayInterval = TimeSpan.FromSeconds(30);
+    public TimeSpan BloodDecayInterval = TimeSpan.FromSeconds(60);
 
     /// <summary>
     /// количество урона за каждый тик
@@ -43,7 +43,7 @@ public sealed partial class GhoulComponent : Component
     /// количество выпитой крови за 1 тик
     /// </summary>
     [DataField("bloodPerTick")]
-    public float BloodPerTick = 1;
+    public float BloodPerTick = 3;
 
     /// <summary>
     /// сколько занимает излечение упыря
