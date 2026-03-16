@@ -18,27 +18,28 @@ public sealed partial class ChameleonStampWindow : FancyWindow
 
     private EntityUid? _owner;
     private EntityUid? _preview;
+    private ChameleonStampSystem _chameleonStampSystem;
 
     public ChameleonStampWindow()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        _chameleonStampSystem = _entMan.System<ChameleonStampSystem>();
     }
 
     public void UpdateVisuals()
     {
-        var chameleonSystem = _entMan.System<ChameleonStampSystem>();
-
         if (!_entMan.TryGetComponent<ChameleonStampComponent>(_owner, out var chameleonStamp))
             return;
 
-        if (!chameleonSystem.ValidatePreset(chameleonStamp.SelectedStampColorPrototype, out var stampColorPrototype, out var stampColorComponent))
+        if (!_chameleonStampSystem.ValidatePreset(chameleonStamp.SelectedStampColorPrototype, out var stampColorPrototype, out var stampColorComponent))
             return;
 
-        if (!chameleonSystem.ValidatePreset(chameleonStamp.SelectedStampStatePrototype, out var stampStatePrototype, out var stampStateComponent))
+        if (!_chameleonStampSystem.ValidatePreset(chameleonStamp.SelectedStampStatePrototype, out var stampStatePrototype, out var stampStateComponent))
             return;
 
-        if (!chameleonSystem.ValidatePreset(chameleonStamp.SelectedStampSpritePrototype, out var stampSpritePrototype, out var stampSpriteComponent))
+        if (!_chameleonStampSystem.ValidatePreset(chameleonStamp.SelectedStampSpritePrototype, out var stampSpritePrototype, out var stampSpriteComponent))
             return;
 
         int i = 0;
@@ -47,7 +48,7 @@ public sealed partial class ChameleonStampWindow : FancyWindow
         StampSpriteOptionButton.Clear();
         StampStateOptionButton.Clear();
 
-        foreach (var proto in chameleonSystem.GetAllPresets())
+        foreach (var proto in _chameleonStampSystem.GetAllPresets())
         {
             this.StampColorOptionButton.AddItem(_proto.Index<EntityPrototype>(proto).Name, i);
             StampColorOptionButton.SetItemMetadata(i, proto.Id);
@@ -75,6 +76,7 @@ public sealed partial class ChameleonStampWindow : FancyWindow
 
         this.StampMetaDataName.PlaceHolder = Loc.GetString(stampSpritePrototype.Name);
         this.StampMetaDataDescription.PlaceHolder = Loc.GetString(stampSpritePrototype.Description);
+        this.StampedNameLineEdit.PlaceHolder = Loc.GetString(stampSpriteComponent.StampedName);
 
         this.StampMetaDataName.Text = Loc.GetString(chameleonStamp.CustomName ?? "");
         this.StampMetaDataDescription.Text = Loc.GetString(chameleonStamp.CustomDescription ?? "");
@@ -82,7 +84,6 @@ public sealed partial class ChameleonStampWindow : FancyWindow
 
         StampColorSelector.Color = chameleonStamp.CustomStampColor.HasValue ? chameleonStamp.CustomStampColor.Value : stampColorComponent.StampedColor;
 
-        this.StampedNameLineEdit.PlaceHolder = Loc.GetString(stampSpriteComponent.StampedName);
         SpritePreview.SetEntity(_preview);
     }
 
@@ -112,6 +113,13 @@ public sealed partial class ChameleonStampWindow : FancyWindow
 
         previewSprite.CopyFrom(presetSprite);
         StampSpriteOptionButton.Select(obj.Id);
+
+        if (!_chameleonStampSystem.ValidatePreset((string) meta, out var stampSpritePrototype, out var stampSpriteComponent))
+            return;
+
+        this.StampMetaDataName.PlaceHolder = Loc.GetString(stampSpritePrototype.Name);
+        this.StampMetaDataDescription.PlaceHolder = Loc.GetString(stampSpritePrototype.Description);
+        this.StampedNameLineEdit.PlaceHolder = Loc.GetString(stampSpriteComponent.StampedName);
     }
 
     private void ColorOptionButton_OnItemSelected(ItemSelectedEventArgs obj)

@@ -10,4 +10,10 @@
     interfaces:
       enum.ChameleonStampUiKey.Key:
         type: ChameleonStampUserInterface
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-approved
+    stampedColor: "#00be00"
+    stampState: "paper_stamp-ok"
+  - type: Sprite
+    state: stamp-ok
   - type: ChameleonStamp
