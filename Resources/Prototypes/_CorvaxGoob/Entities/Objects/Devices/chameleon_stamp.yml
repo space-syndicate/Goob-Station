@@ -1,0 +1,13 @@
+- type: entity
+  id: RubberStampChameleon
+  parent: RubberStampBase
+  name: APPROVED rubber stamp
+  suffix: Chameleon
+  components:
+  - type: ActivatableUI
+    key: enum.ChameleonStampUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonStampUiKey.Key:
+        type: ChameleonStampUserInterface
+  - type: ChameleonStamp
