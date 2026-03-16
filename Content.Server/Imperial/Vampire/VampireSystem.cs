@@ -18,7 +18,6 @@ using Content.Server.Polymorph.Systems;
 using Content.Server.Cloning;
 using Robust.Shared.Prototypes;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
-using Content.Shared.Humanoid;
 using Content.Server.EUI;
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
@@ -28,6 +27,9 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Server.Bible.Components;
 using Content.Shared.Alert;
+using System.Runtime.CompilerServices;
+using Content.Server.Body;
+using System.Linq;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -51,6 +53,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly AlertsSystem _alert = default!;
+    [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
+
 
     private void VampireInitialize()
     {
@@ -240,12 +244,11 @@ public sealed partial class VampireSystem : EntitySystem
                 damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
                 _damage.TryChangeDamage(target, damage);
 
-                // после того, как вампир выпивает кровь его глаза становятся красными
-                if (TryComp<HumanoidAppearanceComponent>(drinker, out var humanoidAppearance))
-                {
-                    humanoidAppearance.EyeColor = Color.Red;
-                    Dirty(drinker, humanoidAppearance);
-                }
+            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
+            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+
+            // после того, как вампир выпивает кровь его глаза становятся красными
+            TrySetEntityEyeColor(drinker, Color.Red);
 
                 if (_mobState.IsAlive(target))
                     StartDrinking(drinker, target);
@@ -281,11 +284,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         // после того, как вампир выпивает кровь его глаза становятся красными
-        if (TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
-        {
-            appear.EyeColor = Color.Red;
-            Dirty(drinker, appear);
-        }
+        TrySetEntityEyeColor(drinker, Color.Red);
 
         // наносим жертве урон от кровопотери
         damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
@@ -386,5 +385,15 @@ public sealed partial class VampireSystem : EntitySystem
 
             comp.UpdateDelay = 0;
         }
+    }
+
+    private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor)
+    {
+        if (!_visualBodySystem.TryGatherMarkingsData(uid, null, out var profiles, out _, out var markings)) return false;
+
+        var coloredProfile = profiles.ToDictionary(pair => pair.Key, pair => pair.Value with { EyeColor = eyeColor });
+        _visualBodySystem.ApplyProfiles(uid, coloredProfile);
+
+        return true;
     }
 }
