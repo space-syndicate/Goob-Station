@@ -27,6 +27,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Server.Bible.Components;
 using Content.Shared.Alert;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Imperial.Vampire;
 
