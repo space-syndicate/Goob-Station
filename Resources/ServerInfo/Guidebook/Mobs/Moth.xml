@@ -2,7 +2,7 @@
   # Моль
 
   <Box>
-    <GuideEntityEmbed Entity="MobMoth" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceMoth" Caption=""/>
   </Box>
 
   Едят хлопок, ткань и одежду, но почти не едят обычную еду. Предпочитают температуру чуть ниже, чем люди.

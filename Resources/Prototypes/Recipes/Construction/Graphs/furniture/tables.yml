@@ -273,6 +273,11 @@
             - material: FloorCarpetSkyBlue
               amount: 1
 
+        - to: TableFancySkyBlue
+          steps:
+            - material: FloorCarpetSkyBlue
+              amount: 1
+
         - to: TableFancyCyan
           steps:
             - tag: CarpetCyan

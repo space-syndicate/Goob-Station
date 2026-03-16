@@ -29,6 +29,10 @@
       # - Anchorable // Imperial Space Fix
       - Item
       - MobState
+    whitelist:
+      tags:
+      - Wall
+      - Window
   - type: Explosive # Powerful explosion in a large radius. Will break underplating.
     explosionType: DemolitionCharge
     totalIntensity: 360

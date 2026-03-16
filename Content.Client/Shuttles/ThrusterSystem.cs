@@ -8,8 +8,6 @@ namespace Content.Client.Shuttles;
 /// </summary>
 public sealed class ThrusterSystem : VisualizerSystem<ThrusterComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
     /// <summary>
     /// Updates whether or not the thruster is visibly active/thrusting.
     /// </summary>

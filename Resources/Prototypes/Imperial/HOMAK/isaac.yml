@@ -118,7 +118,7 @@
     sprite: Imperial/HOMAK/coollawyer.rsi
   - type: Clothing
     sprite: Imperial/HOMAK/coollawyer.rsi
-      
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitLawyerStrange
@@ -267,7 +267,7 @@
   components:
   - type: Appearance
   - type: Lock
-  - type: LockVisuals
+  # - type: LockVisuals у спрайта отсутствует слой "Lock", что вызывает спам ошибок в консоли
   - type: AccessReader
     access: [ [ "Lawyer" ] ]
   - type: Sprite

@@ -2494,4 +2494,26 @@
         - MidImpassable
         - LowImpassable
 
+- type: entity
+  parent: ImperialSimpleRadio
+  id: ImperialSimpleRadio1Felix
+  name: Simple Radio
+  description: A simple radio. It might play music.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/oldradio.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: radio1
 
+- type: entity
+  parent: ImperialSimpleRadio
+  id: ImperialSimpleRadio2Felix
+  name: Simple Radio
+  description: A simple radio. It might play music.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/oldradio.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: radio2

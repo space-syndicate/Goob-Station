@@ -5,7 +5,7 @@
 - type: entity
   name: star corps soldier
   suffix: Felix, NPC
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixStarCorpsSoldier
   components:
   - type: NpcFactionMember
@@ -29,7 +29,7 @@
 - type: entity
   name: star corps pilot
   suffix: Felix, NPC
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixStarCorpsPilot
   components:
   - type: NpcFactionMember
@@ -61,7 +61,7 @@
 - type: entity
   name: mercenary
   suffix: Felix, NPC
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixMercenaryAKS
   components:
   - type: NpcFactionMember
@@ -85,7 +85,7 @@
 - type: entity
   name: mercenary
   suffix: Felix, NPC
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixMercenaryGlock
   components:
   - type: NpcFactionMember
@@ -109,7 +109,7 @@
 - type: entity
   name: mercenary
   suffix: Felix, NPC
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixMercenarySniper
   components:
   - type: NpcFactionMember
@@ -137,7 +137,7 @@
 - type: entity
   name: agent syndicate
   suffix: Felix, NPC
-  parent: BaseMobHuman
+  parent: MobHuman
   id: FelixAgentSyndicate
   components:
   - type: NpcFactionMember

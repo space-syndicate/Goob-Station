@@ -94,8 +94,6 @@ public partial class VampireSystem : EntitySystem
         }
 
         var target = vamp.TargetUser ? args.Performer : args.Performer;
-        if (target == null)
-            return;
 
         var fromCoords = Transform(target).Coordinates;
         var toCoords = _vampireSystem.VampireRandomTileInRange(Transform(target), args.TeleportRadius);

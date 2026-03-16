@@ -15,6 +15,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
 using Content.Server.Imperial.ExplosiveProjectile.Components;
+using Content.Shared.Body;
 
 namespace Content.Server.Imperial.ExplosiveProjectile
 {

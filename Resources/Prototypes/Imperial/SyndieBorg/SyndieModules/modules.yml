@@ -46,7 +46,7 @@
     - type: ItemBorgModule
       hands:
         - item: SyndiBorgEpinephrineInjector
-        - item: HandheldHealthAnalyzerUnpowered
+        - item: HandheldHealthAnalyzer
         - item: DefibrillatorSyndicateAgentCyborg
         - item: Gauze
           hand:

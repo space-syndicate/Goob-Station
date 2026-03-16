@@ -431,6 +431,9 @@ public abstract class SharedAnomalySystem : EntitySystem
 
             if (!settings.CanSpawnOnEntities)
             {
+                // If it can't spawn on entities, ensure that maximum one entity will be spawned here this pulse.
+                tilerefs.Remove(tileref);
+
                 var valid = true;
                 foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices))
                 {
@@ -447,7 +450,6 @@ public abstract class SharedAnomalySystem : EntitySystem
                 }
                 if (!valid)
                 {
-                    tilerefs.Remove(tileref);
                     continue;
                 }
             }
@@ -486,7 +488,7 @@ public abstract class SharedAnomalySystem : EntitySystem
 }
 
 [DataRecord]
-public record struct AnomalySpawnSettings()
+public partial record struct AnomalySpawnSettings()
 {
     /// <summary>
     /// should entities block spawning?

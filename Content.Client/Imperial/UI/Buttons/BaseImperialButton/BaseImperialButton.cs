@@ -12,6 +12,9 @@ public class BaseImperialButton : Button
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     protected ShaderInstance GradientShader;
 
+    private static string _uiColorShaderId = "UIGradient";
+
+
     [ViewVariables]
     public float GradiendIntensity = 0.3f;
     [ViewVariables]
@@ -53,7 +56,7 @@ public class BaseImperialButton : Button
     {
         IoCManager.InjectDependencies(this);
 
-        GradientShader = _prototypeManager.Index<ShaderPrototype>("UIGradient").InstanceUnique();
+        GradientShader = _prototypeManager.Index<ShaderPrototype>(_uiColorShaderId).InstanceUnique();
 
         FirstGradientColorNormal = Color.FromHex("#d1992c");
         LastGradientColorNormal = Color.FromHex("#d1992c");

@@ -6,8 +6,7 @@ namespace Content.Shared.Imperial.ImperialStore;
 /// <summary>
 ///     Used to define different categories for a store.
 /// </summary>
-[Prototype("imperialStoreCategory")]
-[Serializable, NetSerializable, DataDefinition]
+[Prototype]
 public sealed partial class ImperialStoreCategoryPrototype : IPrototype
 {
     [ViewVariables, IdDataField]

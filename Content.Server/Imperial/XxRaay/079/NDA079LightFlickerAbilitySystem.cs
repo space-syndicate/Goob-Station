@@ -7,10 +7,7 @@ using Content.Shared.Imperial.XxRaay.Nda079.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -25,10 +22,8 @@ public sealed class NDA079LightFlickerAbilitySystem : SharedNDA079LightFlickerAb
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly NDA079CpuSystem _cpuSystem = default!;
 

@@ -38,7 +38,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
     - AtmosianHardsuit #Imperial Added Hydrogen
@@ -76,7 +75,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -113,7 +111,6 @@
     - Hardsuit
     - WhitelistChameleon
     - HardsuitSpatio
-    - CorgiWearable
 
 #Salvage Hardsuit
 - type: entity
@@ -148,7 +145,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -188,7 +184,6 @@
     node: hardsuitGoliath
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -261,7 +256,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -368,7 +362,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitCap
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -411,7 +404,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -447,7 +439,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -492,7 +483,6 @@
     tags:
     - WhitelistChameleon
     - HighRiskItem
-    - CorgiWearable
     - Hardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
@@ -616,7 +606,6 @@
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
-    - CorgiWearable
     - ScurretWearable
   - type: StaticPrice
     price: 5000
@@ -681,7 +670,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -720,7 +708,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -764,7 +751,6 @@
   - type: Tag
     tags:
     - MonkeyWearable
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -801,7 +787,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
   - type: Tag
     tags:
-    - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
 
@@ -921,7 +906,7 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
   name: ERT chaplain's hardsuit
   description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
@@ -935,7 +920,7 @@
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
   description: A protective hardsuit worn by the engineers of an emergency response team.
@@ -983,7 +968,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTJanitor
   name: ERT janitor's hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.

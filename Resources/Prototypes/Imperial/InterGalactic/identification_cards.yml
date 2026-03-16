@@ -9,7 +9,6 @@
   - type: Sprite
     layers:
     - state: silver
-    - state: idchiefengineer
   - type: Item
     heldPrefix: silver
   - type: IdCard
@@ -30,7 +29,6 @@
   - type: Sprite
     layers:
     - state: orange
-    - state: idatmospherictechnician
   - type: IdCard
     jobIcon: JobIconAtmosphericTechnician
     jobTitle: Атмосферный техник InterGalactic
@@ -49,7 +47,6 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idseniorengineer
   - type: IdCard
     jobIcon: JobIconSeniorEngineer
     jobTitle: Инженер InterGalactic

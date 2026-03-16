@@ -1,17 +1,11 @@
-using Content.Server.Chat.Systems;
 using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Station.Systems;
 using Content.Shared.Imperial.EmergencyButton.Components;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
-using Content.Shared.Station;
-using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -21,7 +15,6 @@ public sealed class EmergencyButtonSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

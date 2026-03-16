@@ -34,7 +34,6 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly CoreSearchSystem _coreHelper = default!;
     [Dependency] private readonly CoreAccessComputerSystem _coreTerminal = default!;
     public static readonly EntProtoId CoreTechnicalRule = "CoreTechnical";
@@ -296,7 +295,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
     }
     private void SendCriticalAnnounce(EntityUid uid, EnergyCoreComponent core)
     {
-        if(!core.AnnounceReady) return;
+        if (!core.AnnounceReady) return;
 
         var station = _stationSystem.GetOwningStation(uid);
 

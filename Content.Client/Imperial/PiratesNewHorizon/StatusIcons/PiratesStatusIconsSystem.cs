@@ -1,18 +1,14 @@
-using System.Linq;
-using Content.Shared.Ghost;
-using Content.Shared.Humanoid;
-using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Imperial.PiratesNewHorizon.StatusIcons;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Imperial.PiratesNewHorizon.Pirate;
+
 namespace Content.Client.Imperial.PiratesNewHorizon.StatusIcons;
 
 public sealed class PirateStatusIconsSystem : SharedPirateSystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

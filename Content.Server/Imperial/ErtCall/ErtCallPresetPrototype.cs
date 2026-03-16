@@ -1,10 +1,11 @@
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.ErtCall;
-[Serializable, Prototype("ertCall")]
-public sealed class ErtCallPresetPrototype : IPrototype
+
+[Prototype("ertCall")]
+public sealed partial class ErtCallPresetPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     [DataField("path")] public string Path { get; set; } = string.Empty;
 

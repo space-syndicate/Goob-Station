@@ -52,6 +52,7 @@
     - ImperialNutrimentPumpImplant
     - ImperialBlinkImplanter
     ## Imperial Space Implants End
+    - VoiceMaskImplant
     deimplantFailureDamage:
       types:
         Cellular: 50
@@ -260,6 +261,14 @@
   components:
   - type: Implanter
     implant: ChameleonControllerImplant
+
+- type: entity
+  id: VoiceMaskImplanter
+  name: identity mask implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: VoiceMaskImplant
 
 #Nuclear Operative/Special implanters
 

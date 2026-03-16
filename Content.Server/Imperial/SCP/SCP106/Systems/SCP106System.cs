@@ -44,7 +44,6 @@ namespace Content.Server.Imperial.SCP.SCP106.Systems;
 public sealed partial class SCP106System : EntitySystem
 {
     #region Dependencies
-    [Dependency] private readonly BuckleSystem _buckleSystem = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IChatManager _chatM = default!;
@@ -70,11 +69,11 @@ public sealed partial class SCP106System : EntitySystem
     [Dependency] private readonly SharedGodmodeSystem _godmode = default!;
     [Dependency] private readonly SleepingSystem _sleep = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     #endregion
+
     #region Init and Stuff
-    private readonly List<string> BlacklistedTags = ["Wall", "Window"];
+    private readonly List<string> _blacklistedTags = ["Wall", "Window"];
     public override void Initialize()
     {
         base.Initialize();
@@ -116,8 +115,9 @@ public sealed partial class SCP106System : EntitySystem
             if (mobd.CurrentState == Shared.Mobs.MobState.Dead ||
                 mobd.CurrentState == Shared.Mobs.MobState.Critical)
                 continue;
-            if (!TryComp<TransformComponent>(mob, out var mobTransform))
-                continue;
+
+            var mobTransform = Transform(mob);
+
             if (mobTransform.MapID != mapCoords.MapId)
                 continue;
             var mobPos = _transform.GetWorldPosition(mobTransform);
@@ -139,8 +139,10 @@ public sealed partial class SCP106System : EntitySystem
 
         foreach (var puddle in scp.Puddles)
         {
-            if (!Exists(puddle) || !TryComp<TransformComponent>(puddle, out var puddleTransform))
+            if (!Exists(puddle))
                 continue;
+
+            var puddleTransform = Transform(puddle);
 
             if (puddleTransform.MapID != targetMap)
                 continue;
@@ -193,7 +195,7 @@ public sealed partial class SCP106System : EntitySystem
 
         foreach (var anchovy in anchovies)
         {
-            foreach (string tag in BlacklistedTags)
+            foreach (string tag in _blacklistedTags)
             {
                 if (_tag.HasTag(anchovy, tag))
                 {
