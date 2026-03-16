@@ -163,6 +163,11 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMilitaryScientist
 
+- type: loadout # corvaxgoob
+  id: ScientistJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientistFormal
+
 
 # Back
 - type: loadout

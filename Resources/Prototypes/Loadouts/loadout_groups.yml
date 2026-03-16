@@ -1230,6 +1230,7 @@
   - SeniorResearcherJumpsuit
   - SeniorResearcherJumpskirt
   - ResearchMJ # goob
+  - ScientistJumpsuitFormal # corvaxgoob
 
 - type: loadoutGroup
   id: ScientistBackpack
