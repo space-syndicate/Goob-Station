@@ -101,5 +101,5 @@ station-beacon-reporter = Репортер
 
 station-beacon-cc = Центральное командование
 station-beacon-cc-afterhours = После рабочего дня
-station-beacon-cc-thunderdome = Громовержцы
+station-beacon-cc-thunderdome = Тандердром
 station-beacon-cc-ert = ОБР
