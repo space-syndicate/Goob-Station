@@ -1,9 +1,9 @@
 using Content.Server.Communications;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._CorvaxGoob;
 using Content.Shared._CorvaxGoob.TTS;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Station.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -55,7 +55,8 @@ public sealed partial class TTSSystem
 
         if (!_isEnabled ||
             ev.Text.Length > MaxMessageChars ||
-            voiceId == null)
+            voiceId == null ||
+            voiceId == "")
             return;
 
         if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var protoVoice))

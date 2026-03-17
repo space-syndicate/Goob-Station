@@ -88,7 +88,8 @@ public sealed partial class TTSSystem : EntitySystem
         var voiceId = component.VoicePrototypeId;
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars ||
-            voiceId == null)
+            voiceId == null ||
+            voiceId == "")
             return;
 
         var voiceEv = new TransformSpeakerVoiceEvent(uid, voiceId);
@@ -193,7 +194,8 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (!_isEnabled ||
             text.Length > MaxMessageChars ||
-            voice == "None")
+            voice == "None" ||
+            voice == "")
             return;
 
         if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voice, out var protoVoice))

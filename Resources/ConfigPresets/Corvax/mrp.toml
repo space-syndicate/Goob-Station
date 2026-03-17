@@ -12,6 +12,8 @@ enable_during_round = false
 
 [atmos]
 max_explosion_range = 10.0
+space_wind_max_velocity = 22.0
+space_wind = true
 
 [shuttle]
 emergency_early_launch_allowed = true

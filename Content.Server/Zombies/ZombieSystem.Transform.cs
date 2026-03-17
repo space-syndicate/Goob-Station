@@ -66,7 +66,6 @@ using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
 using Content.Server.Inventory;
 using Content.Server.Mind;
-using Content.Server.Mind.Commands;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
@@ -227,6 +226,14 @@ public sealed partial class ZombieSystem
             _autoEmote.AddEmote(target, "ZombieGroan");
         }
 
+        // CorvaxGoob-AppearanceConverter-Start
+        //This is specifically here to combat insuls, because frying zombies on grilles is funny as shit.
+        _inventory.TryUnequip(target, "gloves", true, true);
+
+        //Should prevent instances of zombies using comms for information they shouldnt be able to have.
+        _inventory.TryUnequip(target, "ears", true, true);
+        // CorvaxGoob-AppearanceConverter-End
+
         //We have specific stuff for humanoid zombies because they matter more
         if (TryComp<HumanoidAppearanceComponent>(target, out var huApComp)) //huapcomp
         {
@@ -271,16 +278,11 @@ public sealed partial class ZombieSystem
         //Give them zombie blood
         _bloodstream.ChangeBloodReagent(target, zombiecomp.NewBloodReagent);
 
-        //This is specifically here to combat insuls, because frying zombies on grilles is funny as shit.
-        _inventory.TryUnequip(target, "gloves", true, true);
-        //Should prevent instances of zombies using comms for information they shouldnt be able to have.
-        _inventory.TryUnequip(target, "ears", true, true);
-
         //popup
         _popup.PopupEntity(Loc.GetString("zombie-transform", ("target", target)), target, PopupType.LargeCaution);
 
         //Make it sentient if it's an animal or something
-        MakeSentientCommand.MakeSentient(target, EntityManager);
+        _mind.MakeSentient(target);
 
         //Make the zombie not die in the cold. Good for space zombies
         if (TryComp<TemperatureComponent>(target, out var tempComp))

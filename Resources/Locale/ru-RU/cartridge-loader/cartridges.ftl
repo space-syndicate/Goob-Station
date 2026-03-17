@@ -67,7 +67,7 @@ nano-task-printed-high-priority = [bold]Приоритет[/bold]: [color=red]В
 nano-task-printed-medium-priority = [bold]Приоритет[/bold]: Средний
 nano-task-printed-low-priority = [bold]Приоритет[/bold]: Низкий
 # Wanted list cartridge
-wanted-list-program-name = Список разыскиваемых
+wanted-list-program-name = WatchDog
 wanted-list-label-no-records = Всё спокойно, ковбой.
 wanted-list-search-placeholder = Поиск по имени и статусу
 wanted-list-age-label = [color=darkgray]Возраст:[/color] [color=white]{ $age }[/color]

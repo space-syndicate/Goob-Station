@@ -160,9 +160,11 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, HumanoidAppearanceComponent component, ExaminedEvent args)
     {
-        var identity = Identity.Entity(uid, EntityManager);
-        var species = GetSpeciesRepresentation(component.Species).ToLower();
-        var age = GetAgeRepresentation(component.Species, component.Age);
+		// CorvaxGoob 
+		// Fix for incorrect pronouns PR #564
+        var identity = ("user", Identity.Entity(uid, EntityManager));
+        var species = ("species", GetSpeciesRepresentation(component.Species).ToLower());
+        var age = ("age", GetAgeRepresentation(component.Species, component.Age));
 
         // WWDP EDIT
         string locale = "humanoid-appearance-component-examine";
@@ -171,8 +173,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             locale += "-selfaware";
 
         // Goob Sanitize Text
-        var escapedIdentity = FormattedMessage.EscapeText(identity.ToString());
-        args.PushText(Loc.GetString(locale, ("user", escapedIdentity), ("age", age), ("species", species)),
+        args.PushText(Loc.GetString(locale, identity, age, species),
             100); // priority for examine
         // WWDP EDIT END
     }
@@ -593,16 +594,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Age = profile.Age;
 
         // CorvaxGoob-Clearing
-/*        // begin Goobstation: port EE height/width sliders
+        // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);
 
-        if (profile.Height <= 0 || profile.Width <= 0)
-            SetScale(uid, new Vector2(species.DefaultWidth, species.DefaultHeight), true, humanoid);
-        else
-            SetScale(uid, new Vector2(profile.Width, profile.Height), true, humanoid);
+        SetScale(uid, new Vector2(species.DefaultWidth, species.DefaultHeight), true, humanoid);
 
         _heightAdjust.SetScale(uid, new Vector2(humanoid.Width, humanoid.Height));
-        // end Goobstation: port EE height/width sliders*/
+        // end Goobstation: port EE height/width sliders
 
         RaiseLocalEvent(uid, new ProfileLoadFinishedEvent()); // Shitmed Change
         Dirty(uid, humanoid);

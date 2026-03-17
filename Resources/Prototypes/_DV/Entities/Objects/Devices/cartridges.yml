@@ -27,8 +27,8 @@
   - type: Cartridge
     programName: mail-metrics-program-name
     icon:
-      sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
-      state: icon
+      sprite: _CorvaxGoob/Interface/Misc/program_icons.rsi # Corvax-Goob-RespriteProgramsIcons
+      state: mailmetrics
 
 - type: entity
   parent: BaseItem
