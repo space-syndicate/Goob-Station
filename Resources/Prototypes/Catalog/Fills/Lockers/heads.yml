@@ -140,7 +140,6 @@
     - id: HoPIDCard
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
-    - id: RubberStampHop # Imperial Space
     - id: PlushieLizardJobHeadofpersonnel
       prob: 0.02
 
