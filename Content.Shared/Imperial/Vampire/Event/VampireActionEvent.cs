@@ -343,12 +343,6 @@ namespace Content.Shared.Imperial.Vampire
     {
         [DataField("costBlood")]
         public float CostBlood = 30;
-
-        /// <summary>
-        /// необходимо иметь упырей для обращения
-        /// </summary>
-        [DataField("necessaryGhoulQuantity")]
-        public int NecessaryGhoulQuantity = 25;
     }
 
     public sealed partial class VampireSwordEvent : InstantActionEvent

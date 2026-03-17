@@ -84,3 +84,11 @@
     state: brain
   name: Задержка обращения
   description: Вы недавно пытались обратить человека в упыря. Функция обращения временно недоступна.
+
+- type: alert
+  id: VampireAdjacentChaplainAlert
+  icons:
+  - sprite: Imperial/Crook/Chaplain/wood_cross.rsi
+    state: icon
+  name: Священная сила
+  description: Рядом находится священник. Держитесь подальше!
