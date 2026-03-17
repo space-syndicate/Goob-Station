@@ -422,3 +422,15 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPwigFancy
+  name: fancy pwig
+  description: To be honest, those look ridiculous.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Head/Hats/true_wig.rsi
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Head/Hats/true_wig.rsi
+
