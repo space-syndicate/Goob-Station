@@ -2,8 +2,8 @@
 - type: entity
   parent: IDCardStandard
   id: InterGalacticCEIDCard
-  name: ID карта старшего инженера InterGalactic
-  description: ID карта корпорации InterGalactic
+  name: id card
+  description: intergalactic
   suffix: InterGalactic
   components:
   - type: Sprite
@@ -13,7 +13,7 @@
     heldPrefix: silver
   - type: IdCard
     jobIcon: JobIconChiefEngineer
-    jobTitle: Старший Инженер InterGalactic
+    jobTitle: id-name-intergalactic-ce
   - type: Access
     tags:
     - InterGalactic
@@ -22,8 +22,8 @@
 - type: entity
   parent: IDCardStandard
   id: InterGalacticAtmosIDCard
-  name: ID карта атмосферного техника InterGalactic
-  description: ID карта корпорации InterGalactic
+  name: id card
+  description: intergalactic
   suffix: InterGalactic
   components:
   - type: Sprite
@@ -31,7 +31,7 @@
     - state: orange
   - type: IdCard
     jobIcon: JobIconAtmosphericTechnician
-    jobTitle: Атмосферный техник InterGalactic
+    jobTitle: id-name-intergalactic-atmos
   - type: Access
     tags:
     - InterGalactic
@@ -41,7 +41,7 @@
   parent: IDCardStandard
   id: InterGalacticEngineerIDCard
   name: ID карта инженера InterGalactic
-  description: ID карта корпорации InterGalactic
+  description: intergalactic
   suffix: InterGalactic
   components:
   - type: Sprite
@@ -58,8 +58,8 @@
 - type: entity
   parent: PirateIDCard
   id: InterGalacticVlArcaneMercIDCard
-  name: ID карта наёмника InterGalactic
-  description: Выглядит небычно. Взята с военных образцов.
+  name: id card
+  description: intergalactic
   suffix: InterGalactic
   components:
   - type: Access
@@ -68,4 +68,4 @@
     - InterGalactic
   - type: IdCard
     jobIcon: JobIconSecurityOfficer
-    jobTitle: Наёмник InterGalactic
+    jobTitle: id-name-intergalactic-merc
