@@ -42,7 +42,7 @@
     eyes: ClothingEyesGlassesCommand
     gloves: ClothingHandsGlovesColorWhite
     ears: ClothingHeadsetMagistrate
-    pocket1: BoxFolderBlackThreePapers
+    pocket1: BoxFolderBlack
   storage:
     back:
     - Flash
