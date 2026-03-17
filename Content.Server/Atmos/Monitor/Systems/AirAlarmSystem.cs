@@ -753,9 +753,6 @@ public partial class AirAlarmSystem : EntitySystem
             {
                 SyncAllSensors(uid);
             }
-            //CorvaxGoob-Start
-            AlarmforOpenFirelocks();//closing open fire locks
-            // CorvaxGoob-End
         }
     }
 
