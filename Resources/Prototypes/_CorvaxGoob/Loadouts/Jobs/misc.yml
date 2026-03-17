@@ -42,12 +42,6 @@
     - MobButterfly
 
 - type: loadout
-  id: Homunculus
-  storage:
-    back:
-    - MobHomunculus
-
-- type: loadout
   id: Cockroach
   storage:
     back:
