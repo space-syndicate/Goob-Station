@@ -1,6 +1,6 @@
-marking-MothEyesSoft-eyes_soft = Нежные глаза
+marking-MothEyesSoft-eyes_soft = Милые глаза
 marking-MothEyesSoft-eyes_soft_skin = Кожа
-marking-MothEyesSoft = Нежные глаза
+marking-MothEyesSoft = Милые глаза
 
-marking-HeterochromiaMothSoft-eyes_heterochromia_soft = Гетерофобия
-marking-HeterochromiaMothSoft = Гетерофобия (Нежные глаза)
+marking-HeterochromiaMothSoft-eyes_heterochromia_soft = Гетерохромия
+marking-HeterochromiaMothSoft = Гетерохромия (Милые глаза)
