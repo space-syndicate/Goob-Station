@@ -371,7 +371,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 GetMultiplierModifier((ent, modifiers), MartialArtModifierType.Damage, args.Weapon != ent);
             args.ModifiersList.Add(GetDamageModifierSet(args.BaseDamage, mult, mod));
         }
-
+        
         if (!TryComp(ent, out MartialArtsKnowledgeComponent? comp))
             return;
 
@@ -527,6 +527,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         {
             case MartialArtsForms.KungFuDragon:
                 EnsureComp<DragonKungFuTimerComponent>(user);
+                _damageable.SetDamageModifierSetId(user, "Dragon");
                 break;
             case MartialArtsForms.Ninjutsu:
                 EnsureComp<NinjutsuSneakAttackComponent>(user);
