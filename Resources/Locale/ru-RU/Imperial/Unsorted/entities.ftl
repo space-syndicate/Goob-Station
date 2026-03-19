@@ -1422,3 +1422,5 @@ ent-WallReinforcedChitin = укреплённый хитин
     .desc = {ent-WallSolid.desc}
 ent-ClothingUniformJumpskirtColorRainbow = радужная юбка-комбинезон
     .desc = Разноцветный комбинезон!
+ent-SyndimovCircuitKit = набор плат Синдимова
+    .desc = Комплект, содержащий электронную плату с набором законов Синдимова и идентификатором синдиката.

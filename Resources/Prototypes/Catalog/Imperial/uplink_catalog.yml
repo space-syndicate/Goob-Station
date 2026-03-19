@@ -22,6 +22,11 @@
     Telecrystal: 2
   categories:
     - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: GrenadeBlast
@@ -33,6 +38,11 @@
     Telecrystal: 3
   categories:
     - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkEDoubleSword
