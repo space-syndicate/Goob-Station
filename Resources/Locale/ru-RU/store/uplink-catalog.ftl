@@ -176,8 +176,14 @@ uplink-ammo-bundle-name = Набор боеприпасов
 uplink-ammo-bundle-desc = Перезаряжаю! Содержит 4 магазина для C-20r, 2 магазина для AKM, 5 барабанов для Бульдога, 3 магазина для Estoc DMR и 2 короба патронов для L6 SAW.
 uplink-sniper-bundle-name = Набор снайпера
 uplink-sniper-bundle-desc = Неприметный чемодан, в котором находятся Христов, 10 запасных патронов и удобная маскировка.
+uplink-c20r-name = Набор "C-20r"
+uplink-c20r-desc = Старый добрый: Классический пистолет-пулемёт C-20r.
+uplink-bulldog-name = Набор "Бульдог"
+uplink-bulldog-desc = Простой и надёжный: Содержит популярный дробовик Бульдог.
+uplink-hushpup-name = Тихострел
+uplink-hushpup-desc = Мощное бесшумное ружье с малой емкостью магазина. Использует патроны калибра .50 для дробовиков.
 
-# Bundles
+# Bundle
 uplink-c20r-bundle-name = Набор "C-20r"
 uplink-c20r-bundle-desc = Старый добрый: Классический пистолет-пулемёт C-20r в комплекте с тремя магазинами.
 uplink-buldog-bundle-name = Набор "Бульдог"

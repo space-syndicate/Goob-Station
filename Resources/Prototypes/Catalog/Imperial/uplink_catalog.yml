@@ -33,3 +33,14 @@
     Telecrystal: 3
   categories:
     - UplinkAmmo
+
+- type: listing
+  id: UplinkEDoubleSword
+  name: uplink-edoublesword-name
+  description: uplink-edoublesword-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword_double.rsi, state: icon }
+  productEntity: EnergySwordDouble
+  cost:
+    Telecrystal: 16
+  categories:
+  - UplinkWeaponry
