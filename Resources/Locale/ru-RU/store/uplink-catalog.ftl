@@ -156,6 +156,8 @@ uplink-micro-bomb-implanter-name = Имплантер Микробомба
 uplink-micro-bomb-implanter-desc = Взрывается при ручной активации или гибели носителя этого импланта. Уничтожает тело пользователя со всем снаряжением.
 uplink-radio-implanter-name = Имплантер Радио
 uplink-radio-implanter-desc = Вживляет рацию Синдиката, позволяющую осуществлять скрытую связь без гарнитуры.
+uplink-voice-mask-implanter-name = Имплантер Голосовой маски
+uplink-voice-mask-implanter-desc = Изменяет ваши голосовые связки и черты лица, позволяя имитировать любого человека, которого вы только можете себе представить.
 
 # Bundles
 uplink-observation-kit-name = Набор наблюдателя
@@ -201,7 +203,7 @@ uplink-super-surplus-bundle-name = Ящик суперприпасов Синд�
 uplink-super-surplus-bundle-desc = Содержит случайное снаряжение Синдиката, общей стоимостью в 125 телекристаллов.
 uplink-starter-kit-name = Базовый набор оперативника
 uplink-starter-kit-desc = Содержит базовое снаряжение оперативника стоимостью 40 телекристаллов. Для тех оперативников, которые просто не знают что им покупать.
-uplink-syndimov-law-name = Syndi Law Circuit Kit
+uplink-syndimov-law-name = Набор плат законов Синдиката
 uplink-syndimov-law-desc = Подрывной свод законов, который можно использовать, когда вы хотите переманить ИИ на свою сторону, используйте его как можно чаще. В комплекте идёт идентификатор синдиката.
 # Tools
 uplink-toolbox-name = Ящик инструментов
