@@ -527,7 +527,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         {
             case MartialArtsForms.KungFuDragon:
                 EnsureComp<DragonKungFuTimerComponent>(user);
-                _damageable.SetDamageModifierSetId(user, "Dragon");
+                _damageable.SetDamageModifierSetId(user, "Dragon"); // CorvaxGoob - Fix dragon chudfu
                 break;
             case MartialArtsForms.Ninjutsu:
                 EnsureComp<NinjutsuSneakAttackComponent>(user);
