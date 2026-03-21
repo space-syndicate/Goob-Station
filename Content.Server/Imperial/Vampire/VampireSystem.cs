@@ -243,11 +243,11 @@ public sealed partial class VampireSystem : EntitySystem
                 damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
                 _damage.TryChangeDamage(target, damage);
 
-            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
-            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+                var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
+                eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
 
-            // после того, как вампир выпивает кровь его глаза становятся красными
-            TrySetEntityEyeColor(drinker, Color.Red);
+                // после того, как вампир выпивает кровь его глаза становятся красными
+                TrySetEntityEyeColor(drinker, Color.Red);
 
                 if (_mobState.IsAlive(target))
                     StartDrinking(drinker, target);
