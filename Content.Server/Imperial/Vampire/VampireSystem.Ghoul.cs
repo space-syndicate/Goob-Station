@@ -88,6 +88,12 @@ public partial class VampireSystem : EntitySystem
         // обновляем данные у вампира
         if (TryComp<VampireComponent>(ent.Comp.Vampire, out var vamp))
         {
+            var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(args.Target.Value);
+            transmitter.Channels.Remove(new ProtoId<RadioChannelPrototype>(vamp.VampireRadioID));
+
+            var activeRadio = EnsureComp<ActiveRadioComponent>(args.Target.Value);
+            activeRadio.Channels.Remove(new ProtoId<RadioChannelPrototype>(vamp.VampireRadioID));
+
             if (vamp.Ghouls.Remove(args.Target.Value))
             {
                 vamp.GhoulQuantity = Math.Max(0, vamp.GhoulQuantity - 1);

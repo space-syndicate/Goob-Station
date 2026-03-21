@@ -27,9 +27,10 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Server.Bible.Components;
 using Content.Shared.Alert;
-using System.Runtime.CompilerServices;
 using Content.Server.Body;
 using System.Linq;
+using Content.Shared.Radio.Components;
+using Content.Shared.Radio;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -312,6 +313,12 @@ public sealed partial class VampireSystem : EntitySystem
             RemComp<GhoulComponent>(ghoul);
             RemoveMindFromGhoul(ghoul);
             _vampireSystem.SetGhoulBloodAlert(ghoul, ghoulComponent);
+
+            var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(ghoul);
+            transmitter.Channels.Remove(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+
+            var activeRadio = EnsureComp<ActiveRadioComponent>(ghoul);
+            activeRadio.Channels.Remove(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
 
             // обновляем данные у вампира
             if (ent.Comp.Ghouls.Remove(ghoul))
