@@ -275,6 +275,18 @@ figurines-space-dragon-3 = Экипаж вкусный.
 figurines-space-dragon-4 = Только попробуй сделать суши.
 figurines-space-dragon-5 = На этой станции для нас двоих места нет.
 
+figurines-skeleton-1 = АЧК АЧК!
+figurines-skeleton-2 = Ухх, какой тесный шкафчик!
+figurines-skeleton-3 = У тебя будут неприятности.
+figurines-skeleton-4 = У вас есть молоко?
+figurines-skeleton-5 = У меня к вам костензии!
+
+figurines-thief-1 = У вас нет ордера!
+figurines-thief-2 = Это обычный маяк!
+figurines-thief-3 = В этой сумке нет ничего подозрительного, офицер.
+figurines-thief-4 = Я понятия не имею, где ваш питомец...
+figurines-thief-5 = Ух ты, я не знал, что эта стена может открыться...
+
 figurines-queen-1 = Наша территория должна расширяться.
 figurines-queen-2 = Улей голоден.
 figurines-queen-3 = Мы поглотим всё.
