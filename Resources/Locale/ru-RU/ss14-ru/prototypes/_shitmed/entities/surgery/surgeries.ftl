@@ -120,3 +120,7 @@ ent-SurgeryLobotomize = Лоботомия
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryMendBrainTissue = Восстановить мозговую ткань
     .desc = { ent-SurgeryBase.desc }
+ent-SurgeryPacify = Усмирить пациента  
+    .desc = Хирургическая операция, которая навсегда усмиряет пациента.  
+ent-SurgeryRemovePacification = Убрать усмирение  
+    .desc = Хирургическая операция, которая убирает последствия усмирения.  
