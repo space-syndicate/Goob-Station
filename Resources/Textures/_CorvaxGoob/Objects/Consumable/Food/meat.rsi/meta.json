@@ -1,0 +1,69 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by Prazat911",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+        {
+            "name": "arachnid"
+        },
+        {
+            "name": "arachnid-cooked"
+        },
+        {
+            "name": "moth"
+        },
+        {
+            "name": "moth-cooked"
+        },
+        {
+            "name": "resomi"
+        },
+        {
+            "name": "resomi-cooked"
+        },
+        {
+            "name": "slime"
+        },
+        {
+            "name": "slime-cooked"
+        },
+        {
+            "name": "tajaran"
+        },
+        {
+            "name": "tajaran-cooked"
+        },
+        {
+            "name": "vox"
+        },
+        {
+            "name": "vox-cooked"
+        },
+        {
+            "name": "vulp"
+        },
+        {
+            "name": "vulp-cooked"
+        },
+        {
+            "name": "plain-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "plain-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "plain-cooked-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "plain-cooked-inhand-left",
+            "directions": 4
+        }
+    ]
+}

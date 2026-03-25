@@ -147,6 +147,11 @@
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
+  - type: Butcherable # CorvaxGoob organ resprite
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatVulpkanin
+      amount: 3
   - type: Tag
     tags:
     - CanPilot

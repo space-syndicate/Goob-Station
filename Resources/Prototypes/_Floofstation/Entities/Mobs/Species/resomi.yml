@@ -68,6 +68,11 @@
       Male: MaleAvaliEmote
       Unsexed: MaleAvaliEmote
       Female: FemaleAvaliEmote
+  - type: Butcherable # CorvaxGoob organ resprite
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatResomi
+      amount: 2
   - type: Tag
     tags:         # Goob - What the fuck is FootstepSound and DoorBumpOpener for if they work without them - rest fixes anoms though.
     - CanPilot

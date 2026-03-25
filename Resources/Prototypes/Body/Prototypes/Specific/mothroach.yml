@@ -16,17 +16,17 @@
       connections: # Shitmed
       - groin
       organs:
-        lungs: OrganAnimalLungs
-        heart: OrganAnimalHeart
+        lungs: OrganMothLungs # CorvaxGoob organs resprite
+        heart: OrganMothHeart # CorvaxGoob organs resprite
     # <Shitmed>
     groin:
       part: GroinAnimal
       connections:
       - legs
       organs:
-        stomach: OrganMothStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganAnimalKidneys
+        stomach: OrganMothStomach # CorvaxGoob organs resprite
+        liver: OrganMothLiver # CorvaxGoob organs resprite
+        kidneys: OrganMothKidneys # CorvaxGoob organs resprite
     legs:
       part: LegsAnimal
       connections:

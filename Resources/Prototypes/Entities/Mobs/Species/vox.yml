@@ -156,11 +156,11 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-    - id: FoodMeatChicken
-      amount: 5
+    - id: FoodMeatVox
+      amount: 3
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vox
@@ -290,7 +290,7 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
-      outerClothing: # Goob 
+      outerClothing: # Goob
         sizeMaps:
           32:
             sprite: Mobs/Species/Vox/displacement.rsi

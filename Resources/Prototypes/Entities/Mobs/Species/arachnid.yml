@@ -72,11 +72,11 @@
     - DoorBumpOpener
     - SpiderCraft
     - AnomalyHost
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-      - id: FoodMeatSpider
-        amount: 5
+    - id: FoodMeatArachnid
+      amount: 3
   - type: Reactive
     reactions:
     - reagents: [Water]
