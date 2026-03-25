@@ -1,6 +1,6 @@
 # Shoes
 
 - type: loadout
-  id: ClothingShoesSwatBoots
+  id: ClothingShoesSwatBootsBase
   equipment:
     shoes: ClothingShoesSwat
