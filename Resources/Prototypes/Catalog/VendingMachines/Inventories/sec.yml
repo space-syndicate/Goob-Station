@@ -20,7 +20,7 @@
     RiotLaserShield: 2
     RiotBulletShield: 2
     RadioHandheldSecurity: 5
-    EnergyBola: 3 # Imperial Space EnergyBola
+    EnergyBola: 2 # Imperial Space EnergyBola
   # security officers need to follow a diet regimen!
   contrabandInventory:
     WeaponMeleeNeedle: 2
