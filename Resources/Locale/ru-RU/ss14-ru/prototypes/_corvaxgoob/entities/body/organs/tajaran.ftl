@@ -10,9 +10,6 @@ ent-OrganTajaranHeart = { ent-OrganAnimalHeart }
 ent-OrganTajaranLungs = { ent-OrganHumanLungs }
   .desc = { ent-OrganHumanLungs.desc }
 
-ent-OrganTajaranStomach = { ent-OrganAnimalStomach }
-  .desc = { ent-OrganAnimalStomach.desc }
-
 ent-OrganTajaranLiver = { ent-OrganAnimalLiver }
   .desc = { ent-OrganAnimalLiver.desc }
 
