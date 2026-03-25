@@ -1,0 +1,6 @@
+# Shoes
+
+- type: loadout
+  id: ClothingShoesSwatBoots
+  equipment:
+    shoes: ClothingShoesSwat
