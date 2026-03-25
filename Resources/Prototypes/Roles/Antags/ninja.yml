@@ -13,13 +13,14 @@
     jumpsuit: ClothingUniformJumpsuitNinja
     back: ClothingBackpackSatchelNinja
     mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinja
+    head: GreenHelmetSpaceNinja # Imperial Space ClothingHeadHelmetSpaceNinja
+    neck: NinjaScarfID # Imperial Space
     eyes: ClothingEyesVisorNinja
     gloves: ClothingHandsGlovesSpaceNinja
     outerClothing: ClothingOuterSuitSpaceNinja
     shoes: ClothingShoesSpaceNinja
     id: NinjaPDA
-    ears: ClothingHeadsetNinja
+    ears: ClothingHeadsetNinja # Imperial Space
     pocket1: SpiderCharge
     pocket2: PinpointerStation
     belt: EnergyKatana
