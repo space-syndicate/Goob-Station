@@ -5,12 +5,15 @@
 
 - files: ["nuclearremake_infil.ogg"]
   license: "Custom"
-  copyright: "CC0 1.0 Universal. Created by A-Guy, taken from https://github.com/A-Guy173/Music."
+  copyright: "CC0 1.0 Universal. Created by A-Guy."
+  source: "https://github.com/A-Guy173/Music"
   
 - files: ["nuclearremake_def.ogg"]
   license: "Custom"
-  copyright: "CC0 1.0 Universal. Created by A-Guy, taken from https://github.com/A-Guy173/Music."
- 
+  copyright: "CC0 1.0 Universal. Created by A-Guy."
+  source: "https://github.com/A-Guy173/Music"
+
 - files: ["nuclearoperations.ogg"]
   license: "Custom"
-  copyright: "CC0 1.0 Universal. Created by A-Guy, taken from https://github.com/A-Guy173/Music."
+  copyright: "CC0 1.0 Universal. Created by A-Guy."
+  source: "https://github.com/A-Guy173/Music"
