@@ -94,5 +94,5 @@ surgery-popup-step-SurgeryStepXenoTakeSample = { $user } аккуратно уд
 surgery-popup-step-SurgeryStepGraftXenoSample = { $user } прививает ксеноткань к { $part } { $target }!
 
 # CorvaxGoob Pacification
-surgery-popup-step-SurgeryStepPacify = {$user} усмиряет {$target}!  
-surgery-popup-step-SurgeryStepRemovePacification = {$user} ликвидирует последствия усмирения для {$target}!
+surgery-popup-step-SurgeryStepPacify = {$user} усмиряет {$target}!
+surgery-popup-step-SurgeryStepRemovePacification = {$user} снимает усмирение у {$target}!
