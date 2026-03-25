@@ -15,19 +15,19 @@
   groups:
   - Inventory
   - SurgeonHead
+  - MedicalEyewear
   - SurgeonJumpsuit
   - MedicalGloves
   - MedicalBackpack
   - MedicalShoes
-  - MedicalEyewear
   - SurgeonScalpel
-  - MedicalDoctorEnvirohelm
-  - MedicalDoctorEnvirosuit
-  - MedicalDoctorEnvirogloves
   - Trinkets
   - Animals
   - SurvivalMedical
   - GroupSpeciesBreathToolMedical
+  - MedicalDoctorEnvirohelm
+  - MedicalDoctorEnvirosuit
+  - MedicalDoctorEnvirogloves
 
 - type: roleLoadout
   id: JobWardenHelper
@@ -35,7 +35,7 @@
   - Inventory
   - WardenHead
   - WardenJumpsuit
-  - SecurityBackpack
+  - WardenBackpack
   - SecurityMelee
   - SecurityNeck
   - SecurityBelt
