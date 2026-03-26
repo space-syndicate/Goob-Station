@@ -54,3 +54,9 @@ roles-antag-vampire-objective = Тайно утоляйте свою жажду 
 
 roles-antag-ghoul-name = Упырь
 roles-antag-ghoul-objective = Тайно утоляйте свою жажду кровью экипажа и служите своему хозяину.
+
+roles-antag-mothership-core-name = Материнское ядро
+roles-antag-mothership-core-objective = Используй своих ксеноборгов для создания ещё большего их количества.
+
+roles-antag-xenoborg-name = Ксеноборг
+roles-antag-xenoborg-objective = Помоги материнскому ядру создать ещё больше ксеноборгов.
