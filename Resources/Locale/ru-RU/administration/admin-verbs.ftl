@@ -7,6 +7,7 @@ admin-verbs-teleport-to = Телепортироваться к
 admin-verbs-teleport-here = Телепортировать сюда
 admin-verbs-freeze = Заморозить
 admin-verbs-unfreeze = Разморозить
+admin-verbs-camera = Открыть камеру
 admin-verbs-erase = Стереть
 admin-verbs-erase-description = Удаляет игрока из манифеста раунда и команды, а также удаляет его сообщения в чате.
     Их предметы падают на землю.

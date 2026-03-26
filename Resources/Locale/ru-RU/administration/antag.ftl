@@ -7,6 +7,10 @@ admin-verb-make-head-rev = Превратите цель в главу-рево�
 admin-verb-make-thief = Превратить цель в вора.
 admin-verb-make-paradox-clone = Создать парадоксального клона цели.
 admin-verb-make-vampire = Превратить цель в вампира.
+admin-verb-make-wizard = Превратить цель в мага
+admin-verb-make-space-ninja = Превратить цель в космического ниндзя
+admin-verb-make-changeling = Превратить цель в генокрада
+
 
 admin-verb-text-make-traitor = Сделать предателем
 admin-verb-text-make-zombie = Сделать зомби
@@ -18,3 +22,6 @@ admin-verb-text-make-initial-infected = Сделать нулевым пацие
 admin-verb-make-initial-infected = Сделать цель нулевым пациентом.
 admin-verb-text-make-paradox-clone = Создать парадоксального клона
 admin-verb-text-make-vampire = Сделать вампиром
+admin-verb-text-make-wizard = Сделать магом
+admin-verb-text-make-space-ninja = Сделать ниндзя
+admin-verb-text-make-changeling = Сделать генокрадом (WIP)
