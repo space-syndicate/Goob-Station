@@ -32,6 +32,6 @@ namespace Content.Server.Holosign
 
         // CorvaxGoob
         [DataField]
-        public bool Anchor = true;
+        public bool AnchorOnSpawn = true;
     }
 }
