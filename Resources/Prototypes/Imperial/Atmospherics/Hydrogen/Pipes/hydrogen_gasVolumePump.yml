@@ -1,0 +1,83 @@
+- type: entity
+  parent: GasPipeSansLayers
+  id: HydrogenGasVolumePump
+  name: hydrogen volumetric gas pump
+  description: A pump that moves gas by volume.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: AtmosDevice
+    - type: Tag
+      tags:
+        - Unstackable
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: North
+        outlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+    - type: ExtensionCableReceiver
+    - type: LightningTarget
+      priority: 1
+    - type: ApcPowerReceiver
+      powerLoad: 250
+    - type: Rotatable
+    - type: Transform
+      noRot: false
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
+      blockInteractions: false
+      blockAmbience: false
+    - type: Sprite
+      sprite: /Textures/Imperial/Gases/Hydrogen/Pipes/hydrogenpump.rsi
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeStraight
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: pumpVolume
+          map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.GasVolumePumpVisuals.State:
+          enabled:
+            On: { state: pumpVolumeOn }
+            Off: { state: pumpVolume }
+            Blocked: { state: pumpVolumeBlocked }
+    - type: PipeColorVisuals
+    - type: HydrogenGasVolumePump
+      enabled: false
+    - type: ActivatableUI
+      key: enum.HydrogenGasVolumePumpUiKey.Key
+    - type: ActivatableUIRequiresAnchor
+    - type: UserInterface
+      interfaces:
+        enum.HydrogenGasVolumePumpUiKey.Key:
+          type: HydrogenVolumePumpBoundUserInterface
+    - type: Construction
+      graph: GasHydrogenPipes
+      node: hydrogenVolumePump
+    - type: AmbientSound
+      enabled: false
+      volume: -9
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_pump.ogg
+    - type: DeviceNetwork
+      deviceNetId: AtmosDevices
+      receiveFrequencyId: AtmosMonitor
+      transmitFrequencyId: AtmosMonitor
+      sendBroadcastAttemptEvent: true
+      examinableAddress: true
+      prefix: device-address-prefix-volume-pump
+    - type: WiredNetworkConnection
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasFlowRegulator
+    - type: GuideHelp
+      guides:
+      - Pumps

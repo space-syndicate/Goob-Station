@@ -1,0 +1,51 @@
+- type: entity
+  id: AtmosphericRCD
+  parent: [ BaseItem, BaseEngineeringContraband ]
+  name: Atmospheric RCD
+  description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
+  components:
+  - type: AtmosphericRCD
+    availablePrototypes:
+    - GasPipeBend
+    - GasPipeStraight
+    - GasPipeFourway
+    - GasPipeTJunction
+    - GasVentScrubber
+    - GasPassiveVent
+    - GasVentPump
+    - GasOutletInjector
+    - GasPressurePump
+    - GasVolumePump
+    - SignalControlledValve
+    - GasPort
+    - HeatExchanger
+    - GasFilter
+    - GasFilterFlipped
+    - GasMixer
+    - GasMixerFlipped
+    - HydrogenGasFilter
+    - HydrogenGasFilterFlipped
+    - HydrogenGasVolumePump
+    - HydrogenGasPressurePump
+    - HydrogenGasMixer
+    - HydrogenGasMixerFlipped
+  - type: LimitedCharges
+    maxCharges: 40
+  - type: Sprite
+    sprite: Imperial/Gases/Tools/AtmosphericRCD/AtmosphericRCD.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 600
+      Plastic: 100
+  - type: StaticPrice
+    price: 220
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: AtmosphericRCDMenuBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: true
+    key: enum.RcdUiKey.Key
