@@ -24,6 +24,7 @@ ent-PlushieHornet = Шершень
     .desc = Жук в кедах, посмотрите, мне так это понравилось, жук в кедах!
 ent-PlushieAtlas = Куипер
     .desc = Милый фиолетовый котик, под ободком с рожками написано: "В случае нахождения вернуть Атласу-Илассу, или себе оставьте.".
+ent-PlushieJohnson = Джонсон Пат
 
 plushie-hornet-1 = Guarana!
 plushie-hornet-2 = Adida!
