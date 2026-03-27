@@ -755,17 +755,17 @@
     sprite: Clothing/Belt/holster.rsi
     slots:
     - belt
-    - neck
-  - type: Storage
-    grid:
-    - 0,0,3,1
+    - neck # CorvaxGoob start
+#  - type: Storage
+#    grid:
+#    - 0,0,3,1
   # Goobstation
-    whitelist:
-      components:
-        - BallisticAmmoProvider
-        - CartridgeAmmo
-      tags:
-        - EnergySpeedloader # Goobstation
+#    whitelist:
+#      components:
+#        - BallisticAmmoProvider
+#        - CartridgeAmmo
+#      tags:
+#        - EnergySpeedloader # Goobstation # CorvaxGoob end
   - type: ContainerContainer
     containers:
       item: !type:ContainerSlot
@@ -794,23 +794,23 @@
     - neck
   - type: Item
     size: Ginormous
-  # Goobstation
-  #- type: Storage
-  #  maxItemSize: Huge
-  #  grid:
-  #  - 0,0,3,3
-  #  whitelist:
-  #    components:
-  #    - Gun
-  #    - BallisticAmmoProvider
-  #    - CartridgeAmmo
+  # CorvaxGoob - shoulder holster neck slot start
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+      tags:
+        - Cartridge # Goobstation # CorvaxGoob end
   - type: ItemSlots
     slots:
       item:
         # name: Gun # CorvaxGoob-Loc-in-UI
         whitelist:
-          components:
-          - Gun
+          tags:
+          - Sidearm # CorvaxGoob 
 
 # Belts without visualizers
 
