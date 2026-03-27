@@ -12,4 +12,4 @@ cargo-console-menu-order-requester-format = { $name }, { $job }
 cargo-console-bounty-manifest-name = этикетка запроса ({ $entries })
 cargo-console-bounty-manifest-name-entry = { $detailName } x { $detailQuantity }
 
-cargo-console-secure-order-checkbox = Поместить заказ в защищенный ящик отдела?
+cargo-console-secure-order-checkbox = Поместить заказ в защищенный ящик отдела? (+{ $cost }cr)

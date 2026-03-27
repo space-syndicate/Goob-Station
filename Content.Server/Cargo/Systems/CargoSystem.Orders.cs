@@ -437,7 +437,7 @@ namespace Content.Server.Cargo.Systems
                 {
                     // CorvaxGoob-CargoFeatures-Start
                     EntityUid? previousCrate = null;
-                    List<EntitySpawnEntry>? excessItems = null;
+                    List<string>? excessItems = null;
                     // CorvaxGoob-CargoFeatures-End
 
                     foreach (var pad in freePads)
@@ -814,7 +814,7 @@ namespace Content.Server.Cargo.Systems
         /// Fulfills the specified cargo order and spawns paper attached to it.
         /// </summary>
         /// CorvaxGoob-CargoFeatures : Новые аргументы функции для работы с оптовыми заказами
-        private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto, out EntityUid? nextCrate, out List<EntitySpawnEntry>? excessItemsOut, EntityUid? previousCrate = null, List<EntitySpawnEntry>? excessItemsIn = null)
+        private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto, out EntityUid? nextCrate, out List<string>? excessItemsOut, EntityUid? previousCrate = null, List<string>? excessItemsIn = null)
         {
             // Create the item itself
             EntityUid? item = null;
@@ -857,31 +857,28 @@ namespace Content.Server.Cargo.Systems
                 nextCrate = item;
 
                 // Избыток предметов при заполнении
-                var entitiesExcess = new List<EntitySpawnEntry>();
+                var entitiesExcess = new List<string>();
                 bool doExcessFill = false;
 
                 if (excessItemsIn is not null) // Если предметы из избытка были переданы в функцию — помещаем их первыми
-                    foreach (var excessItem in EntitySpawnCollection.GetSpawns(excessItemsIn, _random))
+                    foreach (var excessItem in excessItemsIn)
                         _storage.Insert(item.Value, Spawn(excessItem), out var stacked);
 
                 // Проходимся по всему содержимому StorageFill и помещаем в ящик, если цикл не был закончен и при этом места уже нету
                 // То весь избыток отправляется в список который передаётся на выход из функции для следующего круга
-                foreach (var content in storageFill.Contents)
+                var spawns = EntitySpawnCollection.GetSpawns(storageFill.Contents, _random);
+                foreach (var contentItem in spawns)
                 {
-                    var spawns = EntitySpawnCollection.GetSpawns(storageFill.Contents, _random);
-                    foreach (var contentItem in spawns)
+                    if (crateEntityStorage.Contents.Count >= crateEntityStorage.Capacity && spawns.Count <= crateEntityStorage.Capacity)
+                        doExcessFill = true;
+
+                    if (doExcessFill)
                     {
-                        if (crateEntityStorage.Contents.Count >= crateEntityStorage.Capacity && spawns.Count <= crateEntityStorage.Capacity)
-                            doExcessFill = true;
-
-                        if (doExcessFill)
-                        {
-                            entitiesExcess.Add(content);
-                            continue;
-                        }
-
-                        _entityStorage.Insert(Spawn(contentItem), item.Value);
+                        entitiesExcess.Add(contentItem);
+                        continue;
                     }
+
+                    _entityStorage.Insert(Spawn(contentItem), item.Value);
                 }
 
                 if (entitiesExcess.Count != 0)

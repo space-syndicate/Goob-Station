@@ -138,9 +138,13 @@ namespace Content.Client.Cargo.BUI
                 _orderMenu.Amount.Value = 1;
 
                 // CorvaxGoob-CargoFeatures-Start
-                if (_product is not null && EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
-                    if (_protoManager.TryIndex<EntityPrototype>(_product.Product, out var cargoProductEntPrototype))
+                if (EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
+                {
+                    _orderMenu.ToggleDepartmentSecureCrate.Text = Loc.GetString("cargo-console-secure-order-checkbox", ("cost", orderConsole.SecureOrderCost));
+
+                    if (_product is not null && _protoManager.TryIndex<EntityPrototype>(_product.Product, out var cargoProductEntPrototype))
                         _orderMenu.ToggleDepartmentSecureCrate.Disabled = !_cargoSystem.CanBeSecuredDelivery((Owner, orderConsole), cargoProductEntPrototype);
+                }
                 // CorvaxGoob-CargoFeatures-End
 
                 _orderMenu.OpenCentered();
