@@ -70,7 +70,7 @@ namespace Content.Client.Imperial.Atmos.UI
             if (_window == null || state is not HydrogenGasMixerBoundUserInterfaceState cast)
                 return;
 
-            _window.Title = (cast.MixerLabel);
+            _window.Title = cast.MixerLabel;
             _window.SetMixerStatus(cast.Enabled);
             _window.SetOutputPressure(cast.OutputPressure);
             _window.SetNodePercentages(cast.NodeOne);

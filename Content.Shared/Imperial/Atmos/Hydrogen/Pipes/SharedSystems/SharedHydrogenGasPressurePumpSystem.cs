@@ -1,7 +1,6 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Imperial.Atmos.Components;
 using Content.Shared.Atmos.Piping;
-using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -96,7 +95,7 @@ public abstract class SharedHydrogenGasPressurePumpSystem : EntitySystem
         Dirty(ent);
         UpdateAppearance(ent);
 
-        UserInterfaceSystem.CloseUi(ent.Owner, GasPressurePumpUiKey.Key);
+        UserInterfaceSystem.CloseUi(ent.Owner, HydrogenGasPressurePumpUiKey.Key);
     }
 
     protected virtual void UpdateUi(Entity<HydrogenGasPressurePumpComponent> ent)

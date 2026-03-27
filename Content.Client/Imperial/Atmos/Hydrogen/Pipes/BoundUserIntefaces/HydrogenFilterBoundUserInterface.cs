@@ -75,7 +75,7 @@ namespace Content.Client.Imperial.Atmos.UI
             if (_window == null || state is not HydrogenGasFilterBoundUserInterfaceState cast)
                 return;
 
-            _window.Title = (cast.FilterLabel);
+            _window.Title = cast.FilterLabel;
             _window.SetFilterStatus(cast.Enabled);
             _window.SetTransferRate(cast.TransferRate);
             if (cast.FilteredGas is not null)
