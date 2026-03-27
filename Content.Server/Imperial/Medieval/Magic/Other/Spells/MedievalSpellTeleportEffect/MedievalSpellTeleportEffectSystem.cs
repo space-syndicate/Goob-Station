@@ -10,9 +10,6 @@ namespace Content.Server.Imperial.Medieval.Magic.MedievalSpellTeleportEffect;
 /// </summary>
 public sealed partial class MedievalSpellTeleportEffectSystem : SharedMedievalSpellTeleportEffectSystem
 {
-    [Dependency] private readonly ExamineSystem _examineSystem = default!;
-
-
     public override void Initialize()
     {
         base.Initialize();

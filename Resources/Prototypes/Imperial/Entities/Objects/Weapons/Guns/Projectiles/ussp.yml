@@ -1,15 +1,19 @@
-- type: hitscan
-  id: SovietStrike # Вобля
-  damage:
-    types:
-      Radiation: 25
-      Heat: 10
-  muzzleFlash:
-    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
-    state: impact_u_laser
+- type: entity
+  parent: BasicHitscan
+  id: SovietStrike
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 25
+        Heat: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+      state: impact_u_laser

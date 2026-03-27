@@ -70,6 +70,23 @@
 
 - type: construction
   name: Коробка пиццы # Imperial Recipes Locale
+  id: ToteBase
+  graph: ToteBase
+  startNode: start
+  targetNode: totebase
+  category: construction-category-storage
+  objectType: Item
+
+- type: construction
+  id: BoxCardboardSmall
+  name: construction-recipe-box-cardboard-small
+  graph: BoxCardboardSmall
+  startNode: start
+  targetNode: boxcardboardsmall
+  category: construction-category-storage
+  objectType: Item
+
+- type: construction
   id: FoodBoxPizza
   graph: FoodBoxPizza
   startNode: start

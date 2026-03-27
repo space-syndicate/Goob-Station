@@ -1998,9 +1998,9 @@
   productEntity: UWUMSSetSyndieBattle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 999999
   cost:
-    Telecrystal: 12
+    Telecrystal: 999998
   categories:
   - SyndiebattleUplinkCustom
 
@@ -2163,9 +2163,6 @@
     - SyndicateAgent
   - type: Bloodstream
     bloodMaxVolume: 0
-  - type: Body
-    prototype: SyndiebattlePrimate
-    requiredLegs: 1
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
@@ -2178,25 +2175,6 @@
     damage:
       types:
         Slash: 0
-
-- type: body
-  id: SyndiebattlePrimate
-  name: "primate"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-      - hands
-      - legs
-    hands:
-      part: HandsAnimal
-    legs:
-      part: LegsAnimal
-      connections:
-      - feet
-    feet:
-      part: FeetAnimal
 
 - type: entity
   name: поисковик искупления

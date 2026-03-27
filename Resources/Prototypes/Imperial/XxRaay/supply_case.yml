@@ -1,0 +1,28 @@
+- type: entity
+  id: SupplyCase
+  name: запрос поставки
+  description: Чемодан для отправки предметов.
+  suffix: XxRaay, Admin
+  parent: BaseStorageItem
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,10,8
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: SupplyCase
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 30
+

@@ -281,6 +281,57 @@
     sprite: Imperial/Other/TFG/Toughguys/Yesenia.rsi
     state: icon
 
+
+# Ilya Kovalchuk
+
+- type: soundCollection
+  id: ArachnidSoundCollection
+  files:
+    - /Audio/Voice/Talk/arachnid.ogg
+    - /Audio/Voice/Talk/arachnid_ask.ogg
+    - /Audio/Voice/Talk/arachnid_exclaim.ogg
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieIlya
+  name: Ilya Kovalchuk
+  description:
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/Ilya.rsi
+    state: ilya
+  - type: EmitSoundOnUse
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnCollide
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: UseDelay
+    delay: 1.0
+  - type: StorageFill
+    contents:
+    - id: LuxuryPen
+    - id: PaperCNCSheet
+
 #OCC with gift pen
 - type: entity
   parent: PlushieYesenia

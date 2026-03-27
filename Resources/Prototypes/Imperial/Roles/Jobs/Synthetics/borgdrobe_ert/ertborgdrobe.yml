@@ -9,7 +9,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: DatasetVocalizer
-    pack: ErtBorgDrobeAds
+    dataset: ErtBorgDrobeAds
   - type: SpeakOnUIClosed
     pack: ErtBorgDrobeGoodbyes
   - type: Sprite

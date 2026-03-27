@@ -18,7 +18,8 @@
             Poison: -0.1
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Adenosine
           min: 11
         damage:
           groups:
@@ -47,7 +48,8 @@
             Brute: -0.35
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: AdenosineTriPhosphate
           min: 16
         damage:
           groups:
@@ -76,7 +78,8 @@
             Poison: -0.85
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Rezocillin
           min: 30
         damage:
           groups:
@@ -108,7 +111,8 @@
             Brute: -2
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Thrivenin
           min: 26
         damage:
           types:

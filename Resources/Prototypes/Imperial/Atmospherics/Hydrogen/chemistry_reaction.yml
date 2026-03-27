@@ -9,5 +9,5 @@
     Frezon:
       amount: 5
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: SheetHydrogen1

@@ -1,6 +1,8 @@
 using System.Numerics;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.ImperialVehicle.Components;
 
@@ -48,6 +50,7 @@ public sealed partial class ImperialVehicleComponent : Component
     [AutoNetworkedField]
     public EntityUid? LastRider;
 
+
     /// <summary>
     /// The base offset for the vehicle (when facing east)
     /// </summary>
@@ -84,4 +87,12 @@ public sealed partial class ImperialVehicleComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public bool HideRider;
+
+    [DataField]
+    [ViewVariables]
+    public ProtoId<TagPrototype> DoorBumpOpenerTag = "DoorBumpOpener";
+
+    [DataField]
+    [ViewVariables]
+    public EntProtoId HornActionId = "ImperialActionHorn";
 }

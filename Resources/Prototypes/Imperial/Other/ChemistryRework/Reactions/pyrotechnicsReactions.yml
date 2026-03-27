@@ -11,7 +11,7 @@
     Nitrogen:
       amount: 1
   effects:
-    - !type:AdjustSolutionTemperatureEffect
+    - !type:AdjustSolutionTemperature
       delta: -100
       minTemp: 20
       scaled: true
@@ -67,7 +67,7 @@
     Carbon:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BlackHoleEffect
     - !type:GravityReactionEffect
       maxRange: 3.5
@@ -82,7 +82,7 @@
     LiquidDarkMatter:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BlackHoleEffect
     - !type:GravityReactionEffect
       maxRange: 3.5
@@ -121,7 +121,7 @@
     Carbon:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: WhiteHoleEffect
     - !type:GravityReactionEffect
       maxRange: 3.5
@@ -136,7 +136,7 @@
     LiquidWhiteMatter:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: WhiteHoleEffect
     - !type:GravityReactionEffect
       maxRange: 3.5
@@ -154,7 +154,7 @@
     LiquidDarkMatter:
       amount: 1
   effects:
-    - !type:ExplosionReactionEffect
+    - !type:Explosion
       explosionType: Cryo # This is not a crutch. This is great plan.
       maxIntensity: 1
       intensitySlope: 0.001
@@ -332,7 +332,7 @@
     Mutadone:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: MobCorgi
     - !type:PopupMessage
         visualType: LargeCaution
@@ -368,7 +368,7 @@
     LiquidDarkMatter:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 1
@@ -382,7 +382,7 @@
     UnstableBluespaceLiquid:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 1
@@ -416,7 +416,7 @@
     StrangeReagent:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 1
@@ -431,7 +431,7 @@
     ConcentratedBluespaceLiquid:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: BluespaceHoleEffect
     - !type:Teleport
       energyPerUnit: 1

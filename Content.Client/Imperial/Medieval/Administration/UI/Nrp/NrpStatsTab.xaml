@@ -1,0 +1,9 @@
+﻿<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:ui="clr-namespace:Content.Client.Options.UI">
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical" VerticalExpand="True">
+        <ScrollContainer VerticalExpand="True" Name="Scroll" HScrollEnabled="False">
+            <BoxContainer Orientation="Vertical" Name="Entries" VerticalExpand="True" HorizontalAlignment="Stretch"></BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</Control>

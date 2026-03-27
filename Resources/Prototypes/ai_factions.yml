@@ -13,6 +13,7 @@
   - Pirate # Imperial Space Pirates: New Horizon
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: NanoTrasen
@@ -39,13 +40,14 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
   - Mouse
   - SimpleHostile
   - Zombie
   - Xeno
   - AllHostile
-  - Wizard
   - Dragon
 
 - type: npcFaction

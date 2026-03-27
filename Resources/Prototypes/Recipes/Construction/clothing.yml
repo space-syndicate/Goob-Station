@@ -1,41 +1,33 @@
 - type: construction
-  name: Скафандр клоуна # Imperial Recipes Locale
   id: ClownHardsuit
   graph: ClownHardsuit
   startNode: start
   targetNode: clownHardsuit
   category: construction-category-clothing
-  description: Самодельный скафандр для клоуна. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Скафандр мима # Imperial Recipes Locale
   id: MimeHardsuit
   graph: MimeHardsuit
   startNode: start
   targetNode: mimeHardsuit
   category: construction-category-clothing
-  description: Самодельный скафандр для мима. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Костяная броня # Imperial Recipes Locale
   id: BoneArmor
   graph: BoneArmor
   startNode: start
   targetNode: armor
   category: construction-category-clothing
-  description: Кажется костянные шутки тут неуместны... # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Костяной шлем # Imperial Recipes Locale
   id: BoneHelmet
   graph: BoneHelmet
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Крутой шлем из черепов ваших врагов. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -60,86 +52,68 @@
   startNode: start
   targetNode: mask
   category: construction-category-clothing
-  description: Наряд настоящего проказника. Клоун неполноценен без парика и маски. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Костюм бананового клоуна # Imperial Recipes Locale
   id: BananaClownJumpsuit
   graph: BananaClownJumpsuit
   startNode: start
   targetNode: jumpsuit
   category: construction-category-clothing
-  description: ХОНК! # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Банановые туфли клоуна # Imperial Recipes Locale
   id: BananaClownShoes
   graph: BananaClownShoes
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Когда юмор и обувь поднимаются на новый уровень абсурда. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Медохранный визор # Imperial Recipes Locale
   id: ClothingEyesHudMedSec
   graph: HudMedSec
   startNode: start
   targetNode: medsecHud
   category: construction-category-clothing
-  description: Медицинский и охранный визоры, объединенные в один. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Тапки-уточки # Imperial Recipes Locale
   id: ClothingShoeSlippersDuck
   graph: ClothingShoeSlippersDuck
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Удобные, но преследуемые призраками уток, которых вы кормили в детстве. # Imperial Recipes Locale
   objectType: Item
 
-
 - type: construction
-  name: Тапочки-ящерицы
   id: ClothingShoeSlippersLizard
   graph: ClothingShoeSlippersLizard
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Очаровательная пара тапочек, напоминающих человека-ящерицу. Сочетайте это с другой зеленой одеждой, и вы станете самым крутым членом экипажа на станции!
   objectType: Item
 
 - type: construction
-  name: Очки СБ # Imperial Recipes Locale
   id: ClothingEyesGlassesSecurity
   graph: GlassesSecHUD
   startNode: start
   targetNode: glassesSec
   category: construction-category-clothing
-  description: Пара солнцезащитных очков со встроенным интерфейсом СБ. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Колчан # Imperial Recipes Locale
   id: ClothingBeltQuiver
   graph: Quiver
   startNode: start
   targetNode: Quiver
   category: construction-category-clothing
-  description: Вмещает до 15 стрел и плотно прилегает к талии. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Шлем правосудия # Imperial Recipes Locale
   id: ClothingHeadHelmetJustice
   graph: HelmetJustice
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Передовое средство безопасности. Защищает станцию от бездельников. # Imperial Recipes Locale
   objectType: Item

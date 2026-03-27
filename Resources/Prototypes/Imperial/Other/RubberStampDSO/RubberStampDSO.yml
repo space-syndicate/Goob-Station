@@ -1,0 +1,13 @@
+- type: entity
+  name: DSO rubber stamp
+  parent: [RubberStampBase, BaseCentcommContraband]
+  id: RubberStampDSO
+  suffix: Phantom4502
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-dso
+    stampedColor: "#393939"
+    stampState: "paper_stamp-DSO"
+  - type: Sprite
+    sprite: Imperial/Other/RubberStampDSO.rsi
+    state: stamp-DSO

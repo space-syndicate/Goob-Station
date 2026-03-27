@@ -17,6 +17,7 @@ public sealed class ShockWaveSystem : SharedShockWaveSystem
     [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
 
     public override void Initialize()
@@ -60,15 +61,7 @@ public sealed class ShockWaveSystem : SharedShockWaveSystem
                 RaiseLocalEvent(uid, new ShockWaveEntityCollideEvent(uid, entity));
                 RaiseLocalEvent(uid, ref triggerEv, true);
 
-                foreach (var effect in component.Effects)
-                {
-                    var args = new EntityEffectBaseArgs(entity, EntityManager);
-                    var canApplyEffect = effect.Conditions?.Aggregate(true, (acc, condition) => condition.Condition(args) && acc) ?? true;
-
-                    if (!canApplyEffect) continue;
-
-                    effect.Effect(args);
-                }
+                _entityEffects.ApplyEffects(entity, component.Effects, user: entity);
             }
         }
     }

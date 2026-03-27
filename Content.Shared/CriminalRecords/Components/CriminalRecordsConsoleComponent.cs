@@ -5,6 +5,7 @@ using Content.Shared.Radio;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 using Content.Shared.Security;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.CriminalRecords.Components;
 
@@ -12,7 +13,7 @@ namespace Content.Shared.CriminalRecords.Components;
 /// A component for Criminal Record Console storing an active station record key and a currently applied filter
 /// </summary>
 [RegisterComponent]
-[Access(typeof(SharedCriminalRecordsConsoleSystem))]
+[Access(typeof(SharedCriminalRecordsConsoleSystem)), NetworkedComponent] // imperial space: add NetworkedComponent
 public sealed partial class CriminalRecordsConsoleComponent : Component
 {
     /// <summary>

@@ -17,14 +17,9 @@ lathe-menu-result-reagent-display = {$reagent} ({$amount}ед.)
 lathe-menu-material-display = {$material} ({$amount})
 lathe-menu-tooltip-display = {$amount} {$material}
 lathe-menu-description-display = [italic]{$description}[/italic]
-lathe-menu-material-amount = { $amount ->
-[1] {NATURALFIXED($amount, 2)} {$unit}
-*[other] {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit)}
-}
-lathe-menu-material-amount-missing = { $amount ->
-[1] {NATURALFIXED($amount, 2)} {$unit} {$material} ([color=red]{NATURALFIXED($missingAmount, 2)} {$unit} не хватает[/color])
-*[other] {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit)} {$material} ([color=red]{NATURALFIXED($missingAmount, 2)} {MAKEPLURAL($unit)} не хватает[/color])
-}
+lathe-menu-material-amount = {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit, $amount)}
+lathe-menu-material-amount-missing = {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit, $amount)} {MAKEPLURAL($material, $amount)} ([color=red]{NATURALFIXED($missingAmount, 2)} {MAKEPLURAL($unit, $missingAmount)} не хватает[/color])
+
 lathe-menu-no-materials-message = Материалы не загружены
 lathe-menu-silo-linked-message = Склад подключен
 lathe-menu-fabricating-message = Производство...

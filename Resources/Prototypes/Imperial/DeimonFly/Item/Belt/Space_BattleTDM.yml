@@ -1,0 +1,157 @@
+#Belt Brigmedic
+- type: entity
+  parent: ClothingBeltMilitaryWebbingBrigmed
+  id: ClothingTDMWebbingBrigmedFilled
+  name: Big Army RPS Medic
+  description: Advanced RPS for field doctors.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Storage
+    grid:
+    - 0,0,8,2
+  - type: StorageFill
+    contents:
+      - id: CompactDefibrillator
+        amount: 1
+      - id: CombatMedipen
+        amount: 4
+      - id: EmergencyMedipen
+        amount: 4
+      - id: HardTraumapack
+      - id: HardBurnKit
+      - id: MedicatedSuture
+      - id: Bloodpack
+        amount: 2
+      - id: MagazineMagnum
+        amount: 2
+      - id: Stimpack
+
+#Security officer Belt
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBigBeltMilitaryWebbingTDM
+  name: big chest rig
+  description: A set of tactical webbing worn by Syndicate boarding parties.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,2
+  - type: StorageFill
+    contents:
+      - id: MagazineLightRifle
+        amount: 5
+      - id: mac10-Magazine
+        amount: 3
+      - id: GrenadeShrapnel
+        amount: 2
+      - id: GrenadeIncendiary
+      - id: ExGrenade
+
+
+#Engineer Belt
+- type: entity
+  parent: [ ClothingBeltStorageBase, ClothingBeltChiefEngineer ]
+  id: ClothingBeltTDM
+  name: tactical belt
+  description: A belt for tactful combat!
+  suffix: space battle, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/assault.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
+  - type: StorageFill
+    contents:
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: WelderExperimental
+      - id: Multitool
+      - id: trayScanner
+      - id: HolofanProjector
+      - id: RCD
+      - id: RCDAmmo
+      - id: AirGrenade
+      - id: CableApcStack
+  - type: Appearance 
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,11,1
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - HandGrenade # allow AirGrenade
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - RCD
+        - RCDAmmo
+        - Welder
+        - Flash
+        - Handcuff
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+
+- type: entity
+  parent: ClothingBigBeltMilitaryWebbingTDM
+  id: ClothingBigBeltMilitaryWebbingTDMPilot
+  name: big chest rig pilot
+  description: A set of tactical webbing worn by Syndicate boarding parties.
+  suffix: space battle, DeimonFly
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle
+        amount: 2
+      - id: EmpGrenade
+        amount: 3
+      - id: MagazinePistolCaselessRifle
+        amount: 2
+      - id: CSWeaponUSP-S
+      - id: EmergencyMedipen
+      - id: TGMCombatMedipen
+      - id: RadarConsoleCircuitboard
+      - id: AirGrenade
+
+#Leader Belt
+- type: entity
+  parent: ClothingBigBeltMilitaryWebbingTDM
+  id: ClothingBigBeltMilitaryCapitanyTDM
+  name: flotilla captain field pack
+  description: A hardened field pack for flotilla captains, loaded with combat-ops essentials, strike orders, and the means to keep a battle group alive under fire.
+  suffix: space battle, DeimonFly
+  components:
+  - type: StorageFill
+    contents:
+      - id: DualBerettaMagazinePistol
+        amount: 4
+      - id: ExGrenade
+        amount: 2
+      - id: GrenadeShrapnel
+        amount: 3
+      - id: GrenadeIncendiary
+        amount: 2
+      - id: TGMCombatMedipen
+        amount: 2
+
+

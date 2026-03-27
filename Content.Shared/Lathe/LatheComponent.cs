@@ -44,12 +44,12 @@ namespace Content.Shared.Lathe
         /// <summary>
         /// Imperial PrinterDoc
         /// </summary>
+        /// <remarks>
+        /// This is a LinkedList to allow for constant time insertion/deletion (vs a List), and more efficient
+        /// moves (vs a Queue).
+        /// </remarks>
         [DataField]
         public EntityUid? LastUser { get; set; }
-
-        /// <summary>
-        /// The sound that plays when the lathe is producing an item, if any
-        /// </summary>
         [DataField]
         public SoundSpecifier? ProducingSound;
 

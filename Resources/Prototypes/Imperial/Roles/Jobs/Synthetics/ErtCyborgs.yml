@@ -45,7 +45,6 @@
     - Security
     - Service
     - Supply
-  - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
     allowedEmotes:
@@ -80,11 +79,10 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 4
+      maxModules: 3
       moduleWhitelist:
         tags:
           - BorgModulePulseCannon
-          - BorgModuleEswordErt
           - BorgModuleNonLethalSecurityErt
           - ErtBorgModuleJaws
       hasMindState: def_e
@@ -146,8 +144,12 @@
           requireInputValidation: false
         enum.BorgUiKey.Key:
           type: BorgBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
         enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
         enum.GeneralStationRecordConsoleKey.Key:
           type: GeneralStationRecordConsoleBoundUserInterface
     - type: ActivatableUI
@@ -155,8 +157,15 @@
     - type: SiliconLawBound
     - type: IntrinsicUI
       uis:
+        enum.CrewMonitoringUIKey.Key:
+          toggleAction: ActionAGhostShowCrewMonitoring
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
         enum.GeneralStationRecordConsoleKey.Key:
           toggleAction: ActionAGhostShowStationRecords
+    - type: CrewMonitoringConsole
+    - type: RadarConsole
+      followEntity: true
     - type: GeneralStationRecordConsole
       canDeleteEntries: false
     - type: DeviceNetwork
@@ -182,7 +191,6 @@
         - PositronicBrain
       borg_module:
         - BorgModulePulseCannon
-        - BorgModuleEswordErt
         - BorgModuleNonLethalSecurityErt
         - ErtBorgModuleJaws
   - type: ItemSlots
@@ -281,6 +289,22 @@
     - type: Inventory
       speciesId: human
       templateId: ertengineerborg
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
+    - type: RadarConsole
+      followEntity: true
     - type: NameIdentifier
       group: ErtBorgID
     - type: RandomMetadata
@@ -290,7 +314,7 @@
 - type: entity
   id: PlayerBorgErtEngineerBattery
   parent: BorgChassisErtEngineer
-  suffix: Батерея, модули, ОБР
+  suffix: Батарея, модули, ОБР
   components:
   - type: ContainerFill
     containers:
@@ -413,6 +437,8 @@
           type: BorgBoundUserInterface
         enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
         enum.CrewMonitoringUIKey.Key:
           type: CrewMonitoringBoundUserInterface
         enum.GeneralStationRecordConsoleKey.Key:
@@ -424,9 +450,13 @@
       uis:
         enum.CrewMonitoringUIKey.Key:
           toggleAction: ActionAGhostShowCrewMonitoring
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
         enum.GeneralStationRecordConsoleKey.Key:
           toggleAction: ActionAGhostShowStationRecords
     - type: CrewMonitoringConsole
+    - type: RadarConsole
+      followEntity: true
     - type: GeneralStationRecordConsole
       canDeleteEntries: false
     - type: DeviceNetwork
@@ -498,11 +528,10 @@
         map: ["light"]
         visible: false
     - type: BorgChassis
-      maxModules: 5
+      maxModules: 4
       moduleWhitelist:
         tags:
         - BorgModuleFlameThrower
-        - BorgModuleEswordErt
         - ErtBorgModuleJaws
         - ErtBorgModuleBomb
         - BorgModuleNonLethalSecurityErt
@@ -559,13 +588,29 @@
       footstepSoundCollection:
         collection: FootstepHoverBorg
     - type: MovementSpeedModifier
-      baseWalkSpeed : 1.5
-      baseSprintSpeed : 3.5 # Медленнее обычных киборгов
+      baseWalkSpeed : 1.0
+      baseSprintSpeed : 2.5 # Медленнее обычных киборгов
     - type: NameIdentifier
       group: CburnBorgID
     - type: RandomMetadata
       nameSegments:
       - NamesErtCburnBorg
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
+    - type: RadarConsole
+      followEntity: true
 
 - type: entity
   id: PlayerBorgErtCburnBattery
@@ -578,7 +623,6 @@
         - PositronicBrain
       borg_module:
         - BorgModuleFlameThrower
-        - BorgModuleEswordErt
         - ErtBorgModuleJaws
         - ErtBorgModuleBomb
   - type: ItemSlots

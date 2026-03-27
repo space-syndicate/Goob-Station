@@ -1,46 +1,48 @@
-using Content.Shared.Damage;
+using System.Linq;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.EntityEffects;
+using Content.Shared.EntityConditions;
 using Content.Shared.FixedPoint;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
-namespace Content.Shared.Chemistry.ReagentEffectConditions
+namespace Content.Shared.Chemistry.ReagentEffectConditions;
+
+
+public sealed partial class TotalDamageByGroupsEntityConditionSystem : EntityConditionSystem<DamageableComponent, TotalDamageByGroups>
 {
-    public sealed partial class TotalDamageByGroups : EntityEffectCondition
+    protected override void Condition(Entity<DamageableComponent> entity, ref EntityConditionEvent<TotalDamageByGroups> args)
     {
-        [DataField("max")]
-        public FixedPoint2 Max = FixedPoint2.MaxValue;
+        var totalDamage = new FixedPoint2();
 
-        [DataField("min")]
-        public FixedPoint2 Min = FixedPoint2.Zero;
+        args.Condition.DamageTypes.ToList().ForEach(type => totalDamage += entity.Comp.Damage[type]);
+        args.Condition.DamageGroups.ToList().ForEach(group => totalDamage += entity.Comp.DamagePerGroup[group]);
 
-        [DataField("damageTypes", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageTypePrototype>))]
-        public List<string> DamageTypes = new();
+        args.Result = totalDamage > args.Condition.Min && totalDamage < args.Condition.Max;
+    }
+}
 
-        [DataField("damageGroups", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageGroupPrototype>))]
-        public List<string> DamageGroups = new();
+public sealed partial class TotalDamageByGroups : EntityConditionBase<TotalDamageByGroups>
+{
+    [DataField]
+    public FixedPoint2 Max = FixedPoint2.MaxValue;
 
-        public override bool Condition(EntityEffectBaseArgs args)
-        {
-            if (!args.EntityManager.TryGetComponent<DamageableComponent>(args.TargetEntity, out var entityDamage)) return false;
-            FixedPoint2 totalDamage = new();
+    [DataField]
+    public FixedPoint2 Min = FixedPoint2.Zero;
 
-            DamageTypes.ForEach(type => totalDamage += entityDamage.Damage[type]);
-            DamageGroups.ForEach(group => totalDamage += entityDamage.DamagePerGroup[group]);
+    [DataField]
+    public List<ProtoId<DamageTypePrototype>> DamageTypes = new();
 
-            return totalDamage > Min && totalDamage < Max;
-        }
+    [DataField]
+    public List<ProtoId<DamageGroupPrototype>> DamageGroups = new();
 
-        public override string GuidebookExplanation(IPrototypeManager prototype)
-        {
-            return Loc.GetString("reagent-effect-condition-guidebook-total-by-groups-damage",
-                ("max", Max == FixedPoint2.MaxValue ? (float) int.MaxValue : Max.Float()),
-                ("min", Min.Float()),
-                ("groups", ContentLocalizationManager.FormatList(DamageGroups)),
-                ("types", ContentLocalizationManager.FormatList(DamageTypes))
-            );
-        }
+    public override string EntityConditionGuidebookText(IPrototypeManager prototype)
+    {
+        return Loc.GetString("reagent-effect-condition-guidebook-total-by-groups-damage",
+            ("max", Max == FixedPoint2.MaxValue ? int.MaxValue : Max.Float()),
+            ("min", Min.Float()),
+            ("groups", ContentLocalizationManager.FormatList(DamageGroups.Select(el => el.Id).ToList())),
+            ("types", ContentLocalizationManager.FormatList(DamageTypes.Select(el => el.Id).ToList()))
+        );
     }
 }

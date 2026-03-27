@@ -13,6 +13,11 @@
     - NTFactionPoints
     balance:
       NTFactionPoints: 0
+    categories:
+    - NTWeapons
+    - NTAmmo
+    - NTMedical
+    - NTTools
     whitelist:
       components:
       - FactionShop
@@ -36,6 +41,11 @@
     - SindiFactionPoints
     balance:
       SindiFactionPoints: 0
+    categories:
+    - SindiWeapons
+    - SindiAmmo
+    - SindiMedical
+    - SindiTools
     whitelist:
       components:
       - FactionShop
@@ -59,6 +69,11 @@
     - GreenFactionPoints
     balance:
       GreenFactionPoints: 0
+    categories:
+    - GreenWeapons
+    - GreenAmmo
+    - GreenMedical
+    - GreenTools
     whitelist:
       components:
       - FactionShop
@@ -82,6 +97,11 @@
     - YellowFactionPoints
     balance:
       YellowFactionPoints: 0
+    categories:
+    - YellowWeapons
+    - YellowAmmo
+    - YellowMedical
+    - YellowTools
     whitelist:
       components:
       - FactionShop
@@ -105,6 +125,11 @@
     - RedFactionPoints
     balance:
       RedFactionPoints: 0
+    categories:
+    - RedWeapons
+    - RedAmmo
+    - RedMedical
+    - RedTools
     whitelist:
       components:
       - FactionShop
@@ -128,6 +153,11 @@
     - BlueFactionPoints
     balance:
       BlueFactionPoints: 0
+    categories:
+    - BlueWeapons
+    - BlueAmmo
+    - BlueMedical
+    - BlueTools
     whitelist:
       components:
       - FactionShop
@@ -151,6 +181,11 @@
     - USSPFactionPoints
     balance:
       USSPFactionPoints: 0
+    categories:
+    - USSPWeapons
+    - USSPAmmo
+    - USSPMedical
+    - USSPTools
     whitelist:
       components:
       - FactionShop

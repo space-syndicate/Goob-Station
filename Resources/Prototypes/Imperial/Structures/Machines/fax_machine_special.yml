@@ -20,6 +20,7 @@
     receiveNukeCodes: true
     notifyAdmins: true
     receiveStationGoal: true
+  - type: CallJRTViaCentcomFax
 
 - type: entity
   parent: FaxMachineBase
@@ -65,7 +66,7 @@
     name: "Капитан"
     receiveNukeCodes: true
     receiveStationGoal: true
-  - type: StealTarget 
+  - type: StealTarget
     stealGroup: FaxMachineCaptain
 
 - type: entity

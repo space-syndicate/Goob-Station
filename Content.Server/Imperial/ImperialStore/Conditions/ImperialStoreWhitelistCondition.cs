@@ -11,14 +11,15 @@ public sealed partial class ImperialStoreWhitelistCondition : ImperialListingCon
     /// <summary>
     /// A whitelist of tags or components.
     /// </summary>
-    [DataField("whitelist")]
+    [DataField]
     public EntityWhitelist? Whitelist;
 
     /// <summary>
     /// A blacklist of tags or components.
     /// </summary>
-    [DataField("blacklist")]
+    [DataField]
     public EntityWhitelist? Blacklist;
+
 
     public override bool Condition(ImperialListingConditionArgs args)
     {
@@ -29,7 +30,7 @@ public sealed partial class ImperialStoreWhitelistCondition : ImperialListingCon
         var whitelistSystem = ent.System<EntityWhitelistSystem>();
 
         if (whitelistSystem.IsWhitelistFail(Whitelist, args.StoreEntity.Value) ||
-            whitelistSystem.IsBlacklistPass(Blacklist, args.StoreEntity.Value))
+            whitelistSystem.IsWhitelistPass(Blacklist, args.StoreEntity.Value))
             return false;
 
         return true;

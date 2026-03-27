@@ -1,0 +1,42 @@
+- type: alert
+  id: energy_alert
+  alertViewEntity: AlertEnergySpriteView
+  icons:
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-1
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-2
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-3
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-4
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-5
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-6
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-7
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-8
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-9
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-10
+  - sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+    state: energy-11
+  minSeverity: 0
+  maxSeverity: 10
+  name: energy-alert-name
+  description: energy-alert-description
+
+- type: entity
+  id: AlertEnergySpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+      sprite: /Textures/Imperial/XxRaay/079/energy.rsi
+      state: energy-1
+      scale: 0.5, 0.5
+

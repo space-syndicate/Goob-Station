@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "ICLA",
+    "copyright": "By @pups2004 (discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "AiVisionObject",
+            "delays": [
+                [
+                    1.0,
+                    1.0
+                ]
+            ]
+        }
+    ]
+}
+
+

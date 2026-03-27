@@ -3,7 +3,7 @@
   id: SyndieBorgroundstart
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 40
     delay:
       min: 420
       max: 600

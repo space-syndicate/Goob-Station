@@ -1,0 +1,161 @@
+- type: entity
+  name: nuclear deauthorization codes
+  parent: [BaseItem, BaseGrandTheftContraband]
+  id: NuclearDeauthorizationCodes
+  description: An item, in significance and importance standing next to a nuclear authorization disk. It comes with a note "DO NOT USE ON THE ENERGY CORE ACCESS TERMINAL!"
+  suffix: EnergyCore
+  components:
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: DeauthorizationCode
+#  - type: SpecialRespawn
+#    prototype: NuclearDeauthorizationCodes
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/codes.rsi
+    state: icon
+  - type: StaticPrice
+    price: 2400
+  - type: CargoSellBlacklist
+  - type: ArrivalsBlacklist
+  - type: WarpPoint
+    follow: true
+    location: nuclear deauthorization codes
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - GhostOnlyWarp
+    - NuclearDeauthorizationCode ## ВЛ
+## Продать диск... а потом коды ядерной деавторизации...
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 63012
+  - type: Construction
+    graph: NuclearDeauthorizationCodes
+    node: nuclearDeauthorizationCodes
+
+- type: entity
+  name: deauthorization fragment (station)
+  parent: [BaseItem, BaseGrandTheftContraband]
+  id: DeauthorizationFragmentStation
+  description: Half of core codes (station).
+  suffix: EnergyCore
+  components:
+  - type: StationFragmentCodes
+  - type: SpecialRespawn
+    prototype: DeauthorizationFragmentStation
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/codes.rsi
+    state: fragment1
+  - type: StaticPrice
+    price: 1800
+  - type: CargoSellBlacklist
+  - type: ArrivalsBlacklist
+  - type: WarpPoint
+    follow: true
+    location: station codes fragment
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - GhostOnlyWarp
+    - DeauthorizationFragmentStation
+
+- type: Tag
+  id: DeauthorizationFragmentStation
+
+- type: entity
+  name: pinpointer
+  id: PinpointerNuclearStationFragment
+  parent: [ PinpointerBase, BaseCommandContraband ]
+  suffix: EnergyCore
+  components:
+  - type: Pinpointer
+    component: StationFragmentCodes
+    targetName: deauthorization fragment station
+
+- type: entity
+  name: deauthorization fragment (centcom)
+  parent: [BaseItem, BaseGrandTheftContraband]
+  id: DeauthorizationFragmentCentCom
+  description: Half of core codes (centcom).
+  suffix: EnergyCore
+  components:
+#  - type: SpecialRespawn
+#    prototype: DeauthorizationFragmentCentCom
+  - type: Sprite
+    sprite: Imperial/EnergyCore/Devices/codes.rsi
+    state: fragment2
+  - type: StaticPrice
+    price: 1800
+  - type: CargoSellBlacklist
+  - type: ArrivalsBlacklist
+  - type: WarpPoint
+    follow: true
+    location: centcom codes fragment
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - GhostOnlyWarp
+    - DeauthorizationFragmentCentCom
+
+- type: Tag
+  id: DeauthorizationFragmentCentCom
+
+- type: construction
+  name: Коды ядерной деавторизации
+  id: NuclearDeauthorizationCodes
+  graph: NuclearDeauthorizationCodes
+  startNode: start
+  targetNode: nuclearDeauthorizationCodes
+  category: construction-category-clothing
+  description: Нужны для деактивации защитных протоколов ядра
+  objectType: Item
+
+- type: constructionGraph
+  id: NuclearDeauthorizationCodes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nuclearDeauthorizationCodes
+          steps:
+            - tag: DeauthorizationFragmentStation
+              name: Фрагмент кодов станции
+              icon:
+                sprite: Imperial/EnergyCore/Devices/codes.rsi
+                state: fragment1
+              doAfter: 5
+            - tag: DeauthorizationFragmentCentCom
+              name: Фрагмент кодов ЦК
+              icon:
+                sprite: Imperial/EnergyCore/Devices/codes.rsi
+                state: fragment2
+              doAfter: 5
+    - node: nuclearDeauthorizationCodes
+      entity: NuclearDeauthorizationCodes
+
+## Walls
+- type: entity
+  id: CoreWindow
+  name: core window
+  parent: PlastitaniumWindow
+  suffix: EnergyCore
+  components:
+  - type: CoreShielding
+
+- type: entity
+  id: CoreWindowDiagonal
+  name: core window diagonal
+  parent: PlastitaniumWindowDiagonal
+  suffix: EnergyCore
+  components:
+  - type: CoreShielding

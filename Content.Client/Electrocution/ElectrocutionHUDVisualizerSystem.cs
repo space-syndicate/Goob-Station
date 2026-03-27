@@ -11,7 +11,6 @@ namespace Content.Client.Electrocution;
 public sealed class ElectrocutionHUDVisualizerSystem : VisualizerSystem<ElectrocutionHUDVisualsComponent>
 {
     [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

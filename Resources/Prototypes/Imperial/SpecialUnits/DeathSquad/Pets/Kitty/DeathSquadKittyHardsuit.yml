@@ -89,7 +89,10 @@
         Caustic: 0.1
         Cold: 0.1
         Shock: 0.1
-        Stamina: 0.3
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  # Imperial Space Stamina Resistance End
   - type: ProtectedFromStepTriggers
   - type: Insulated
   - type: BreathMask

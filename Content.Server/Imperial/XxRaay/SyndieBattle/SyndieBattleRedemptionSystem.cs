@@ -1,5 +1,4 @@
 using Content.Shared.Interaction;
-using Robust.Server.GameObjects;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 using Content.Server.Traitor.Uplink;
@@ -12,8 +11,9 @@ namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 public sealed class SyndieBattleRedemptionSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly UplinkSystem _uplink = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+
+    private readonly EntProtoId _telecrystalId = "Telecrystal1";
 
     public override void Initialize()
     {
@@ -46,7 +46,7 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
         {
             if (store.Balance.TryGetValue(UplinkSystem.TelecrystalCurrencyPrototype, out var bal))
             {
-                var value = (double)bal; 
+                var value = (double)bal;
                 payout = (int)Math.Floor(value * 0.45);
             }
         }
@@ -56,7 +56,7 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
 
         for (var i = 0; i < payout; i++)
         {
-            if (!_prototype.TryIndex<EntityPrototype>("Telecrystal1", out var itemProto))
+            if (!_prototype.TryIndex(_telecrystalId, out var itemProto))
                 continue;
 
             Spawn(itemProto.ID, spawnPos);

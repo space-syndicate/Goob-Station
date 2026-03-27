@@ -2,7 +2,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Botany.Components;
 using Content.Server.Imperial.PlantsAnalyzer.Components;
-using Content.Server.PowerCell;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -14,6 +13,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared.PowerCell;
 
 namespace Content.Server.Imperial.PlantsAnalyzer;
 
@@ -24,9 +24,12 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
+
+    private readonly Regex _mutationRegex = new(@"(?<=[a-z])([A-Z])");
+    private readonly Regex _chemicalsRegex = new(@"(?<=[a-z])([A-Z])");
+
 
     public override void Initialize()
     {
@@ -69,7 +72,7 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
 
     private void OnAfterInteract(Entity<PlantsAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !HasComp<PlantHolderComponent>(args.Target) || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Target == null || !args.CanReach || !HasComp<PlantHolderComponent>(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
@@ -86,7 +89,7 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
 
     private void OnDoAfter(Entity<PlantsAnalyzerComponent> uid, ref PlantsAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)
@@ -190,14 +193,14 @@ public sealed class PlantsAnalyzerSystem : EntitySystem
             ? string.Join(",\n      " + string.Concat(Enumerable.Repeat(" ", Loc.GetString("plants-analyzer-window-mutations").Length * 2)),
                 plantHolder.Seed.Mutations.Select(mutation =>
                     Loc.GetString("random-mutation-name-" +
-                    Regex.Replace(mutation.Name, @"(?<=[a-z])([A-Z])", "-$1").ToLower())))
+                    _mutationRegex.Replace(mutation.Name, "-$1").ToLower())))
             : Loc.GetString("plants-analyzer-window-no-mutations");
 
         var chemicals = plantHolder.Seed?.Chemicals.Any() == true
             ? string.Join(",\n      " + string.Concat(Enumerable.Repeat(" ", Loc.GetString("plants-analyzer-window-chemicals").Length * 2)),
                 plantHolder.Seed.Chemicals.Keys.Select(reagent =>
                     Loc.GetString("reagent-name-" +
-                    Regex.Replace(reagent, @"(?<=[a-z])([A-Z])", "-$1").ToLower())))
+                    _chemicalsRegex.Replace(reagent, "-$1").ToLower())))
             : Loc.GetString("plants-analyzer-window-no-chemicals");
 
         _uiSystem.ServerSendUiMessage(plantsAnalyzer, PlantsAnalyzerUiKey.Key, new PlantsAnalyzerScannedUserMessage(

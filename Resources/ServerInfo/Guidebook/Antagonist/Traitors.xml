@@ -93,7 +93,7 @@
   </Box>
   - Кража [bold]энергетического дробовика[/bold] [color=#cb0000]Главы Службы Безопасности[/color].
   <Box>
-    <GuideEntityEmbed Entity="WeaponEnergyShotgun" Caption=""/>
+    <GuideEntityEmbed Entity="WeaponEnergyMagnum" Caption=""/>
   </Box>
   - Кража [bold]продвинутых магнитных сапогов[/bold] [color=#f39f27]Старшего Инженера[/color].
   <Box>

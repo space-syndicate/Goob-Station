@@ -1,0 +1,227 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseVampireObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-vampire
+    difficulty: 1
+  - type: RoleRequirement
+    roles:
+    - VampireRole
+
+- type: weightedRandom
+  id: VampireObjectiveGroups
+  weights:
+    VampireObjectiveGroupSteal: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupSteal
+  weights:
+    VampireBibleStealObjective: 1
+    VampireWardenHatStealObjective: 1
+    VampireForensicScannerStealObjective: 1
+    VampireCMOHyposprayStealObjective: 1
+    VampireCorgiMeatStealObjective: 1
+    VampireFireAxeStealObjective: 1
+    VampireCaptainSwordStealObjective: 0.5
+    VampireHandTeleporterStealObjective: 0.5
+    VampireEnergyMagnumStealObjective: 0.5
+    VampireNukeDiskStealObjective: 0.3
+
+- type: entity
+  parent: [BaseVampireObjective, BaseKillObjective]
+  id: VampireKillRandomPersonObjective
+  description: Сделайте это как считаете нужным, главное чтобы он не попал на станцию ЦентКома
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickRandomPerson
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireMaroon: true
+
+- type: entity
+  parent: BaseVampireObjective
+  id: VampireDrinkBloodObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: Imperial/Stellark/Vampire/purposes.rsi
+      state: drink_blood
+  - type: NumberObjective
+    min: 250
+    max: 300
+    title: objective-condition-blood-title
+    description: objective-condition-blood-description
+  - type: VampireDrinkBloodPurposes
+
+# - type: entity
+#   parent: BaseVampireObjective
+#   id: VampireConvertedGhoulsObjective
+#   components:
+#   - type: Objective
+#     icon:
+#       sprite: /Textures/Mobs/Species/Human/organs.rsi
+#       state: brain
+#   - type: NumberObjective
+#     min: 15
+#     max: 20
+#     title: objective-condition-converted-ghouls-title
+#     description: objective-condition-converted-ghouls-description
+#   - type: VampireConvertedGhoulsPurposes
+
+- type: entity
+  parent: [BaseVampireObjective, BaseLivingObjective]
+  id: VampireEscapeShuttleObjective
+  name: Улететь на станцию ЦентКома живым и свободным
+  components:
+  - type: Objective
+    difficulty: 1.3
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireBibleStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Chaplain ]
+  - type: StealCondition
+    stealGroup: Bible
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 0.4
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireCaptainSwordStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Captain ]
+  - type: StealCondition
+    stealGroup: CaptainSword
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 1.5
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireWardenHatStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: ClothingHeadHatWarden
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 1.2
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireFireAxeStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ AtmosphericTechnician ]
+  - type: StealCondition
+    stealGroup: FireAxe
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 0.8
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireForensicScannerStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Detective ]
+  - type: StealCondition
+    stealGroup: ForensicScanner
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 1.0
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireCMOHyposprayStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ChiefMedicalOfficer ]
+  - type: StealCondition
+    stealGroup: Hypospray
+    owner: job-name-cmo
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 1.5
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireHandTeleporterStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ResearchDirector ]
+  - type: StealCondition
+    stealGroup: HandTeleporter
+    owner: job-name-rd
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 2.0
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireEnergyMagnumStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ HeadOfSecurity ]
+  - type: StealCondition
+    stealGroup: WeaponEnergyMagnum
+    owner: job-name-hos
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 3.0
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireCorgiMeatStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ HeadOfPersonnel ]
+  - type: ObjectiveLimit
+    limit: 3
+  - type: StealCondition
+    stealGroup: FoodMeatCorgi
+    owner: objective-condition-steal-Ian
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 2.5
+
+- type: entity
+  parent: [BaseVampireObjective, BaseStealObjective]
+  id: VampireNukeDiskStealObjective
+  components:
+  - type: NotCommandRequirement
+  - type: NotJobRequirement
+    jobs: [ Captain ]
+  - type: StealCondition
+    stealGroup: NukeDisk
+    owner: objective-condition-steal-station
+    verifyMapExistence: false
+    checkStealAreas: true
+  - type: Objective
+    difficulty: 4.0

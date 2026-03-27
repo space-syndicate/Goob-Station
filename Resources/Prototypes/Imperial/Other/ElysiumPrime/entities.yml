@@ -1023,6 +1023,9 @@
       accessLevels: 
       - Federationadmin
       - Federation
+      - FelixGorlexBaseID
+      - FelixGorlexModernID
+      - StarCorps
 
 - type: entity
   parent: Poweredlight
@@ -1330,4 +1333,3 @@
     radius: 1.5
     energy: 1.6
     color: "#00FF00"
-

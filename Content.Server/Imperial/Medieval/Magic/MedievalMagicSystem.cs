@@ -6,11 +6,10 @@ using Content.Server.Imperial.Medieval.Magic.MedievalHomingProjectile;
 using Content.Server.Imperial.MouseInput;
 using Content.Server.Imperial.TargetOverlay;
 using Content.Server.Weapons.Ranged.Systems;
-using Content.Shared.Damage;
+using Content.Shared.Chat;
+using Content.Shared.EntityEffects;
 using Content.Shared.Imperial.Medieval.Magic;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Magic;
@@ -34,10 +33,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
     [Dependency] private readonly MedievalHomingProjectileSystem _homingProjectileSystem = default!;
     [Dependency] private readonly TargetOverlaySystem _targetOverlaySystem = default!;
     [Dependency] private readonly ImperialLightningSystem _lightningSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedBroadphaseSystem _broadphaseSystem = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
 
     public override void Initialize()

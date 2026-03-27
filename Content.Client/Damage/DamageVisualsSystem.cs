@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Client.GameObjects;
@@ -27,7 +28,6 @@ namespace Content.Client.Damage;
 public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

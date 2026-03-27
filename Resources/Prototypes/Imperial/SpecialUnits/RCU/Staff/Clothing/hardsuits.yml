@@ -30,7 +30,10 @@
         Caustic: 0.3
         Cold: 0.3
         Shock: 0.3
-        Stamina: 0.4
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -67,7 +70,10 @@
         Caustic: 0.4
         Cold: 0.4
         Shock: 0.4
-        Stamina: 0.45
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.45
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: ClothingFactionExplosion

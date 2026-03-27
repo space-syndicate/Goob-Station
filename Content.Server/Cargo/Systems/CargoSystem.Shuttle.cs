@@ -290,7 +290,7 @@ public sealed partial class CargoSystem
         {
             var totalCash = goods.Sum(t => t.Item3);
             var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
-            _stack.Spawn((int)totalCash, stackPrototype, xform.Coordinates);
+            _stack.SpawnAtPosition((int)totalCash, stackPrototype, xform.Coordinates);
         }
 
         _audio.PlayPvs(ApproveSound, uid);

@@ -165,6 +165,7 @@
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
+  - type: PiercingLunge # Imperial Space "MiningWeapons"
 
 # No mark ability in exchange for wideswing, autoattack, and being one-handed
 - type: entity

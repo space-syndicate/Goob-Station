@@ -57,9 +57,6 @@
       prototypes: [ fightCruentaODTLoadout ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -87,7 +84,7 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
-  
+
 - type: entity
   parent: MobHuman
   id: MedCruentaODTPreset
@@ -102,9 +99,6 @@
       prototypes: [ MedCruentaODTLoadout ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: NpcFactionMember
       factions:
       - NanoTrasen

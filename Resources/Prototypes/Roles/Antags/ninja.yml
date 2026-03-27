@@ -11,15 +11,16 @@
   id: SpaceNinjaGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNinja
-    back: ClothingBackpackSatchel
+    back: ClothingBackpackSatchelNinja
     mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinja
+    head: GreenHelmetSpaceNinja # Imperial Space ClothingHeadHelmetSpaceNinja
+    neck: NinjaScarfID # Imperial Space
     eyes: ClothingEyesVisorNinja
     gloves: ClothingHandsGlovesSpaceNinja
     outerClothing: ClothingOuterSuitSpaceNinja
     shoes: ClothingShoesSpaceNinja
-    id: AgentIDCard
-    ears: ClothingHeadsetNinja # Imperial Space NinjaHeadset
+    id: NinjaPDA
+    ears: ClothingHeadsetNinja # Imperial Space
     pocket1: SpiderCharge
     pocket2: PinpointerStation
     belt: EnergyKatana
@@ -33,11 +34,15 @@
     - Wirecutter
     - Welder
     - Multitool
+    - EmergencyMedipen
+    - Flare
+    - FoodSnackNutribrick
+    - DrinkWaterBottleFull
 
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
   name: roles-antag-space-ninja-name
+  icon: "JobIconNinja"
   startingGear: SpaceNinjaGear
   equipment:
-    id: PassengerPDA
     neck: ClothingNeckGoldmedal

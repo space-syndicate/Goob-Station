@@ -1,0 +1,26 @@
+using System.Numerics;
+using Robust.Shared.Audio;
+
+namespace Content.Shared.Imperial.MiningWeapons.EmpoweredAttacks.EnhancedShot;
+
+[RegisterComponent]
+public sealed partial class UserEnhancedShotComponent : Component
+{
+    [ViewVariables]
+    public SoundSpecifier? StartDoAfterSound;
+
+    [ViewVariables]
+    public EntityUid? Item;
+
+    [ViewVariables]
+    public float DoAfterTime;
+
+    [ViewVariables]
+    public Vector2 Direction = Vector2.Zero;
+
+    [ViewVariables]
+    public bool HasDoAfter;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IsChargedAttackActive = false;
+}

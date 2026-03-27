@@ -1,5 +1,5 @@
 - type: gas
-  id: 9
+  id: Thermonium
   name: gases-thermonium
   specificHeat: 5
   heatCapacityRatio: 1.3

@@ -1,0 +1,27 @@
+- type: entity
+  name: ERT Leader rubber stamp
+  parent: [RubberStampBase, BaseCentcommContraband]
+  id: RubberStampERTLeader
+  suffix: Phantom4502
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ert-leader
+    stampedColor: "#384573"
+    stampState: "paper_stamp-ERT-Leader"
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/RubberStamp.rsi
+    state: stamp-ERT-Leader
+
+- type: entity
+  name: CBURN Leader rubber stamp
+  parent: [RubberStampBase, BaseCentcommContraband]
+  id: RubberStampCBURNLeader
+  suffix: Phantom4502
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cburn-leader
+    stampedColor: "#37423e"
+    stampState: "paper_stamp-CBURN-Leader"
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/RubberStamp.rsi
+    state: stamp-CBURN-Leader

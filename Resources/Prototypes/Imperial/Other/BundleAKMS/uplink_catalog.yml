@@ -17,3 +17,20 @@
       blacklist:
         components:
           - SurplusBundle
+
+# Imperial Magazine AKM
+- type: listing
+  id: MagazineLightRifle
+  name: ent-MagazineLightRifle
+  description: ent-BaseMagazineLightRifle
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: MagazineLightRifle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink

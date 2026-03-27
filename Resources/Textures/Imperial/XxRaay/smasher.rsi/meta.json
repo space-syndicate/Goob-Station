@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By NotAFemboy",
+  "size": {
+    "x": 64,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "adam_smasherovich",
+      "directions": 4
+    }
+  ]
+}

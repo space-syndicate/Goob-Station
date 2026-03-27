@@ -709,6 +709,9 @@
         Cold: 0.85
         Shock: 0.75
         Caustic: 0.85
-        Stamina: 0.8
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.80

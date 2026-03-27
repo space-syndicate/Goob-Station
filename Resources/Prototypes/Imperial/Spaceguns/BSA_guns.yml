@@ -25,7 +25,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 100
     fireRate: 1
     angleDecay: 45
     minAngle: 0
@@ -89,7 +89,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 100
     fireRate: 1
     angleDecay: 45
     minAngle: 0
@@ -144,7 +144,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 100
     fireRate: 0.05
     angleDecay: 45
     minAngle: 0
@@ -212,7 +212,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 100
     fireRate: 0.05
     angleDecay: 45
     minAngle: 0
@@ -265,7 +265,7 @@
     explosionType: Default
     maxIntensity: 100
     intensitySlope: 5
-    totalIntensity: 850000
+    totalIntensity: 950000
   - type: RadiationSource
     intensity: 85
   - type: WarpPoint

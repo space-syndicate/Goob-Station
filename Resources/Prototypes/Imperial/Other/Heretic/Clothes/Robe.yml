@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitHeretic
+  name: heretic robe
+  description: Heretic's robe
+  components:
+  - type: AllowSuitStorage
+  - type: Sprite
+    sprite: Imperial/Other/Heretic/Clothes/HereticRobe.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Other/Heretic/Clothes/HereticRobe.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHereticRobe
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: HideLayerClothing
+    slots:
+    - Tail

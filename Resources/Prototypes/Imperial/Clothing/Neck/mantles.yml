@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingNeckMantleHOS
+  id: ClothingNeckMantleHOSShoulder # Наплечная мантия ГСБ, взято с Corvax
+  name: head of security's shoulder mantle
+  description: Shootouts with nukies are just another Tuesday for this HoS. This mantle is a symbol of commitment to the station.
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/Neck/Mantles/hosmantle_shoulder.rsi
+  - type: Clothing
+    sprite: Corvax/Clothing/Neck/Mantles/hosmantle_shoulder.rsi

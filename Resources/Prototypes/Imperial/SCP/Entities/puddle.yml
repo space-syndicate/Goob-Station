@@ -1,0 +1,30 @@
+- type: entity
+  id: PortalSCP106
+  name: pocket dimension portal
+  description: Seems pretty strange.
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: /Textures/Imperial/SCP/puddle106.rsi
+    layers:
+    - state: icon
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: SCP106Puddle
+    damagePerSecond:
+      types:
+        Blunt: 1

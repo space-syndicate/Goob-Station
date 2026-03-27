@@ -29,7 +29,10 @@
         Shock: 0.20
         Caustic: 0.7
         Radiation: 0.01
-        Stamina: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9

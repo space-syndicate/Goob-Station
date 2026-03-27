@@ -9,6 +9,7 @@ using Content.Shared.Database;
 using Content.Server.Chat.Managers;
 using Content.Shared.NPC.Components;
 using Content.Shared.Hands;
+using Content.Shared.Chat;
 
 namespace Content.Server.Clothing.Systems;
 

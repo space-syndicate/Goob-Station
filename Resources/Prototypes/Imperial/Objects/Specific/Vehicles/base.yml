@@ -58,7 +58,6 @@
   - type: ImperialVehicle
     autoAnimate: true
     hideRider: false
-    useHand: false
     southOverride: 0
     northOverride: 0
     baseWalkSpeed: 2.5

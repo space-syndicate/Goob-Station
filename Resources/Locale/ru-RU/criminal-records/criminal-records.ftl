@@ -16,6 +16,8 @@ criminal-records-status-detained = Под арестом
 criminal-records-status-suspected = Подозреваемый
 criminal-records-status-discharged = Выписан
 criminal-records-status-paroled = Условно-досрочно освобожден
+criminal-records-status-hostile = Враг NT
+criminal-records-status-eliminated = Ликвидирован
 
 criminal-records-console-wanted-reason = Причина розыска
 criminal-records-console-suspected-reason = Причина подозрения
@@ -34,14 +36,18 @@ criminal-records-permission-denied = Доступ запрещён
 
 ## Security channel notifications
 
-criminal-records-console-wanted = {$name} ({$job}) объявлен в розыск {$officer} по причине: {$reason}.
+criminal-records-console-wanted = {$name} ({$job}) объявлен в розыск сотрудником {$officer} по причине: {$reason}.
 criminal-records-console-not-wanted = {$officer} снял статус розыска с {$name} ({$job}).
 criminal-records-console-suspected = {$officer} отметил {$name} ({$job}) как подозреваемого по причине: {$reason}
-criminal-records-console-not-suspected = {$name} ({$job}) снят с подозрения {$officer}.
-criminal-records-console-detained = {$name} ({$job}) был задержан {$officer}.
-criminal-records-console-released = {$name} ({$job}) был освобождён {$officer}.
-criminal-records-console-paroled = {$name} ({$job}) был освобождён условно-досрочно {$officer}.
+criminal-records-console-not-suspected = {$name} ({$job}) снят с подозрения сотрудником {$officer}.
+criminal-records-console-detained = {$name} ({$job}) был задержан сотрудником {$officer}.
+criminal-records-console-released = {$name} ({$job}) был освобождён сотрудником {$officer}.
+criminal-records-console-paroled = {$name} ({$job}) был освобождён условно-досрочно сотрудником {$officer}.
 criminal-records-console-not-parole = {$officer} снял статус условно-досрочного освобождения с {$name} ({$job}).
+criminal-records-console-hostile = {$name} ({$job}) был помечен как Враг NanoTrasen сотрудником {$officer} по причине: {$reason}.
+criminal-records-console-not-hostile = С {$name} ({$job}) был снят статус Врага NanoTrasen сотрудником {$officer}.
+criminal-records-console-eliminated = {$name} ({$job}) был ликвидирован сотрудником {$officer}.
+criminal-records-console-not-eliminated = С {$name} ({$job}) был снят статус ликвидации сотрудником {$officer}.
 criminal-records-console-unknown-officer = <неизвестный>
 
 ## Filters

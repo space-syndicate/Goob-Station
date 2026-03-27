@@ -30,16 +30,18 @@
       - !type:Polymorph
         prototype: ReagentUwUReaction
         conditions:
-        - !type:OrganType
+        - !type:MetabolizerTypeCondition
           type: Animal
           shouldHave: false
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: JuiceThatMakesYouUwU
           min: 50
       - !type:AdjustReagent
         reagent: JuiceThatMakesYouUwU
         amount: -20
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: JuiceThatMakesYouUwU
           min: 50
 
 - type: polymorph

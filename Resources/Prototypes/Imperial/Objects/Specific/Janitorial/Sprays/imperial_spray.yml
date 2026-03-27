@@ -15,7 +15,7 @@
 - type: entity
   name: syndi space cleaner
   description: Syndicate Space Cleaner
-  parent: SprayBottleSpaceCleaner
+  parent: SprayBottle
   id: SyndiSpaceCleanerSprayBottleFull
   suffix: Full
   components:

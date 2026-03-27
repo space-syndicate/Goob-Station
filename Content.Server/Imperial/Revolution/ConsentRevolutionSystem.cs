@@ -87,7 +87,7 @@ namespace Content.Server.Imperial.Revolutionary
 
             var alwaysConvertible = HasComp<AlwaysRevolutionaryConvertibleComponent>(verbArgs.Target);
 
-            if ((!HasComp<HumanoidAppearanceComponent>(verbArgs.Target) ||
+            if ((!HasComp<HumanoidProfileComponent>(verbArgs.Target) ||
                  !_mindSystem.TryGetMind(verbArgs.Target, out var mindId, out var mind))
                 && !alwaysConvertible)
             {

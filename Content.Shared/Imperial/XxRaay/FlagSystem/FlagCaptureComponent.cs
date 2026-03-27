@@ -1,5 +1,7 @@
+using Content.Shared.DoAfter;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.XxRaay.FlagSystem;
 
@@ -34,6 +36,9 @@ public sealed partial class FlagCaptureComponent : Component
     [DataField]
     public bool IsBeingCaptured = false;
 
+    [DataField]
+    public string NeutralFactionId = "NeutralFaction";
+
     /// <summary>
     /// Можно ли захватить этот флаг
     /// </summary>
@@ -55,6 +60,12 @@ public sealed partial class FlagCaptureComponent : Component
     /// Последнее время сканирования окружения
     /// </summary>
     public TimeSpan LastScanTime = TimeSpan.Zero;
+
+    /// <summary>
+    /// Идентификатор активного DoAfter процесса захвата.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public DoAfterId? ActiveCaptureDoAfter;
 }
 
 /// <summary>

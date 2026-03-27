@@ -1,0 +1,15 @@
+- type: gamePreset
+  id: Vampire
+  alias:
+    - vampire
+  name: vampire-title
+  description: vampire-description
+  showInVote: false
+  rules:
+  - DummyNonAntagChance
+  - Vampire
+  - SubGamemodesRuleNoWizard
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation

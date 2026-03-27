@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseAction
+  id: ActionNDA079ToggleVisionMode
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: Imperial/XxRaay/079/actions.rsi, state: AiVision }
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:NDA079ToggleVisionModeEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionNDA079LightFlicker
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon: { sprite: Imperial/XxRaay/079/actions.rsi, state: LightFlicker }
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:NDA079LightFlickerActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionNDA079SpawnCable
+  components:
+  - type: Action
+    useDelay: 0.3
+    icon: { sprite: Imperial/XxRaay/079/actions.rsi, state: Cable }
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:NDA079SpawnCableActionEvent

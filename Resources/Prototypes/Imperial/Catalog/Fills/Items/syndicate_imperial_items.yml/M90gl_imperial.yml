@@ -31,7 +31,7 @@
 
 - type: entity
   id: CartridgeM90gl
-  name: cartridge (.45 rifle)
+  name: cartridge (.20 rifle)
   parent: BaseCartridge
   components:
   - type: Tag
@@ -54,7 +54,7 @@
 
 - type: entity
   id: MagazineM90gl # Магазины с разрывными патронами калибра .45
-  name: magazine (.45 rifle)
+  name: magazine (.20 rifle)
   parent: BaseItem
   components:
   - type: Tag
@@ -105,7 +105,7 @@
 
 - type: entity
   parent: BaseItem
-  name: Box (.45 rifle)
+  name: Box (.20 rifle)
   id: MagazineBoxM90gl # Коробки разрывных патронов M90GL
   components:
   - type: BallisticAmmoProvider
@@ -129,8 +129,9 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 4
     zeroVisible: false
+  - type: Appearance
 
 
 - type: entity

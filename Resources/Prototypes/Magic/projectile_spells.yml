@@ -5,6 +5,7 @@
   description: Fires an explosive fireball towards the clicked location.
   components:
   - type: Magic
+    requiresClothes: true ### Imperial Mage Rework
   - type: Action
     useDelay: 15
     itemIconStyle: BigAction

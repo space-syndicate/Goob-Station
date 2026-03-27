@@ -68,13 +68,6 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: SCPZombieMorph
-  - type: TriggerWhitelist
-    whitelist:
-      components:
-      - Body
-    blacklist:
-      tags:
-      - SCP
   - type: TimedDespawn
     lifetime: 0.1
 

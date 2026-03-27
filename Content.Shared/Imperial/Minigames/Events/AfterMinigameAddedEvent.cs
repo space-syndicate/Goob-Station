@@ -1,9 +1,11 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Shared.Imperial.Minigames.Events;
 
 
 public sealed partial class AfterMinigameAddedEvent : EventArgs
 {
-    public MinigamePrototype Minigame = new();
+    public ProtoId<MinigamePrototype> MinigamePrototype = new();
 
     public EntityUid NewPlayer;
 }

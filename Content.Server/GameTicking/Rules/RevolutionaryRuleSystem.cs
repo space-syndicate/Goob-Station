@@ -118,6 +118,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
             // TODO: someone suggested listing all alive? revs maybe implement at some point
         }
+        args.AddLine("");
     }
 
     private void OnGetBriefing(EntityUid uid, RevolutionaryRoleComponent comp, ref GetBriefingEvent args)
@@ -150,7 +151,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
+            !HasComp<HumanoidProfileComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target))
@@ -395,7 +396,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // - Мертв или является зомби
         if (HasComp<RevolutionaryComponent>(uid) ||
             HasComp<MindShieldComponent>(uid) ||
-            !HasComp<HumanoidAppearanceComponent>(uid) && !alwaysConvertible ||
+            !HasComp<HumanoidProfileComponent>(uid) && !alwaysConvertible ||
             !_mobState.IsAlive(uid) ||
             HasComp<ZombieComponent>(uid))
         {

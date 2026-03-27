@@ -9,7 +9,6 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Server.Atmos.EntitySystems;
 using Robust.Shared.Random;
 using Content.Server.Imperial.PiratesNewHorizon.Trigger.Components;
-using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Trigger.Components;
 using Content.Shared.Trigger.Systems;
 
@@ -18,7 +17,6 @@ namespace Content.Server.Imperial.PiratesNewHorizon.Trigger.Systems;
 public sealed class TriggerSystemOnHeat : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TriggerSystem _triggerSystem = default!;
 
@@ -68,12 +66,13 @@ public sealed class TriggerSystemOnHeat : EntitySystem
     }
     private void OnUsing(EntityUid uid, TriggerOnHeatComponent component, InteractUsingEvent args)
     {
-
         if (!component.ActivateHotItems || !CheckHot(args.Used))
             return;
+
         _triggerSystem.ActivateTimerTrigger(
             uid,
-            args.User);
+            args.User
+        );
     }
 
     private bool CheckHot(EntityUid usedUid)

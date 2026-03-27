@@ -22,4 +22,7 @@
         Piercing: 0.9
         Heat: 0.9
         Caustic: 0.9
-        Stamina: 0.95
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.9
+  # Imperial Space Stamina Resistance End

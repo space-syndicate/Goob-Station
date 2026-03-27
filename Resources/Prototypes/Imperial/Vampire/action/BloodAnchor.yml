@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseAction
+  id: VampireBloodAnchorAction
+  name: Кровавый якорь
+  description: Создает якорь в точке активации. При повторном нажатии телепортирует к себе. Якорь исчезает через 2 минуты или после использования. Стоимость 20 ед. крови. Кулдаун 130 секунд.
+  components:
+  - type: Action
+    useDelay: 130
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: blood_anchor
+  - type: InstantAction
+    event: !type:VampireBloodAnchorEvent
+      costBlood: 20
+
+- type: entity
+  id: VampireBloodAnchor
+  parent: BaseItem
+  name: Кровавый якорь
+  description: Якорь из крови. Выглядит устрашающе...
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/Vampire/bloodanchor.rsi
+    state: blood_anchor
+  - type: Item
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 80
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: GlassBreak
+              params:
+                volume: 5
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+  - type: Transform
+    noRot: true
+  - type: Appearance

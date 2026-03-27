@@ -1,6 +1,6 @@
 ent-VendingMachineBorgERTdrobe = Боргомат NT
     .desc = Терминал быстрого развёртывания тактических кибернетических единиц, и механоидов. Только для сотрудников спецподразделений.
-store-category-ert-borgdrobe-borg = Борги
+store-category-ert-borgdrobe-borg = Киборги
 ert-borgdrobe-uplink-ert-borg-assault-name = Боевой киборг ОБР
 ert-borgdrobe-uplink-ert-borg-assault-desc = Тяжёлый киборг военного образца в конфигурации ОБР. Оснащён импульсной пушкой, энергетическим мечом, и модулем для нелетального задержания особо опасных преступников.
 borgdrobe-uplink-ert-borg-medical-name = Медицинский киборг ОБР

@@ -25,8 +25,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: Body
-    prototype: PrimateAdv
     requiredLegs: 1
   - type: Tag
     tags:
@@ -89,59 +87,3 @@
     id: DeadSquadIDCard
   inhand:
   - WeaponSniperHristovDonDon
-
-- type: body
-  id: PrimateAdv #Дон Дон крайне умен и это не шутка. Его IQ составляет 120.
-  name: "primateext"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-      - right_hand #Вторая рука для применения минигана и импульсного дробовика. А еще потому что так монки становится действительно полезным.
-      - left_hand
-      - legs
-      organs:
-        lungs: OrganAnimalLungs
-        stomach: OrganAnimalStomach
-        liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
-        kidneys: OrganAnimalKidneys
-    right_hand:
-      part: HandAnimalAdvR
-    left_hand:
-      part: HandAnimalAdvL
-    legs:
-      part: LegsAnimal
-      connections:
-      - feet
-    feet:
-      part: FeetAnimal
-
-- type: entity
-  id: HandAnimalAdvL
-  name: animal hands
-  parent: PartAnimal
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: l_hand
-    - state: r_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
-
-- type: entity
-  id: HandAnimalAdvR
-  name: animal hands
-  parent: PartAnimal
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: l_hand
-    - state: r_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right

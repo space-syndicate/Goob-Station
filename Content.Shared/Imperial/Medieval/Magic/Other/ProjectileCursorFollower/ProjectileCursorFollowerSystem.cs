@@ -19,7 +19,6 @@ public sealed partial class ProjectileCursorFollowerSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMouseInputSystem _mouseInputSystem = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
 
     public override void Initialize()

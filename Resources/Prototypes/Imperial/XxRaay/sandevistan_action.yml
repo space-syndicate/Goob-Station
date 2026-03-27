@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSandevistan
+  components:
+  - type: Action
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SandevistanActionEvent
+

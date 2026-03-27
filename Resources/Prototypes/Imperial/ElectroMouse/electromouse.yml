@@ -5,8 +5,6 @@
   suffix: ElectroMouse
   description: Squeak!
   components:
-  - type: Body
-    prototype: Mouse
   - type: GhostRole
     name: ghost-role-information-elmouse-name
     description: ghost-role-information-elmouse-description
@@ -79,7 +77,7 @@
         Base: dead-0
       Dead:
         Base: splat-0
-  - type: Food
+  - type: Edible
   - type: Extractable
     grindableSolutionName: food
   - type: SolutionContainerManager

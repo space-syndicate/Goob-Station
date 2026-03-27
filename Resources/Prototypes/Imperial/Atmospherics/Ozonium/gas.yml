@@ -1,5 +1,5 @@
 - type: gas
-  id: 11
+  id: Ozonium
   name: gases-ozonium
   specificHeat: 110
   heatCapacityRatio: 1.3

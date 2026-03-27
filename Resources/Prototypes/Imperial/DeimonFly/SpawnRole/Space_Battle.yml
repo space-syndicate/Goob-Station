@@ -1,0 +1,963 @@
+##PDA ID
+
+#Pilot NT ID
+- type: entity
+  parent: IDCardStandard
+  id: ERTPilotIDCard
+  name: ERT pilot ID card
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    layers:
+      - state: centcom
+  - type: IdCard
+    jobTitle: Пилот ОБР
+    jobIcon: JobIconNanotrasen      # иконка N над головой
+    jobPrototype: ERTSecurity       # опционально: берём департаменты из этого джоба
+  - type: Access
+    tags:
+    - CentralCommand
+    - EmergencyShuttleRepealAll
+    - Captain
+    - HeadOfPersonnel
+    - ChiefEngineer
+    - ChiefMedicalOfficer
+    - HeadOfSecurity
+    - ResearchDirector
+    - Command
+    - Cryogenics
+    - Security
+    - Detective
+    - Armory
+    - Brig
+    - Lawyer
+    - Engineering
+    - Medical
+    - Quartermaster
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+    - GenpopEnter
+    - GenpopLeave
+
+#Security NT ID
+- type: entity
+  parent: ERTPilotIDCard
+  id: ERTStormtrooperIDCard
+  name: ERT stormtrooper ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: &color-security-top "#cb0000"
+    - state: stripe_bottom
+      color: &color-security-bottom "#830000"
+    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625
+      state: ERTSecurity
+  - type: IdCard
+    jobTitle: Штурмовик ОБР
+
+#Leader NT ID
+- type: entity
+  parent: ERTPilotIDCard
+  id: ERTCapitanIDCard
+  name: ERT capitan ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - state: stripe_top
+      color: &color-centcomm-top "#134975"
+    - state: stripe_bottom
+      color: &color-centcomm-bottom "#0d304d"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTLeader
+  - type: IdCard
+    jobTitle: Капитан ОБР
+
+#Security NT PDA
+- type: entity
+  parent: ERTSecurityPDA
+  id: ERTStormtrooperPDA
+  name: ERT Stormtrooper PDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: ERTStormtrooperIDCard
+
+#Pilot NT PDA
+- type: entity
+  parent: ERTLeaderPDA
+  id: ERTPilotPDA
+  name: ERT Pilot PDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: ERTPilotIDCard
+
+#Leader NT PDA
+- type: entity
+  parent: ERTLeaderPDA
+  id: ERTCapitanPDA
+  name: ERT Capitan PDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: ERTCapitanIDCard
+
+#Для Medic, Engineer - взяты оригинальные визовские асеты.
+
+# Security Syndicate ID
+- type: entity
+  parent: IDCardStandard
+  id: SyndicateStormtrooperIDCard
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobTitle: Штурмовик Синдиката
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+# Leader Syndicate ID
+- type: entity
+  parent: IDCardStandard
+  id: SyndicateCapitanIDCard
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: SyndicateCommander
+  - type: IdCard
+    jobTitle: Капитан Синдиката
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+# Medic Syndicate ID
+- type: entity
+  parent: IDCardStandard
+  id: SyndicateCorpsmanIDCard
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobTitle: Медик Синдиката
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+# Engineer Syndicate ID
+- type: entity
+  parent: IDCardStandard
+  id: SyndicateEngineerIDCard
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobTitle: Инженер Синдиката
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+# Pilot Syndicate ID
+- type: entity
+  parent: IDCardStandard
+  id: SyndicatePilotIDCard
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: *color-syndicate-top
+    - state: stripe_bottom
+      color: *color-syndicate-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobTitle: Пилот Синдиката
+    jobIcon: JobIconSyndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+# Security Syndicate PDA
+- type: entity
+  parent: SyndiOperativePDA
+  id: SyndicateStormtrooperPDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: SyndicateStormtrooperIDCard
+
+# Leader Syndicate PDA
+- type: entity
+  parent: SyndiCommanderPDA
+  id: SyndicateCapitanPDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: SyndicateCapitanIDCard
+
+# Medic Syndicate PDA
+- type: entity
+  parent: SyndiCorpsmanPDA
+  id: SyndicateCorpsmanPDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: SyndicateCorpsmanIDCard
+
+# Engineer Syndicate PDA
+- type: entity
+  parent: SyndiPDA
+  id: SyndicateEngineerPDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: SyndicateEngineerIDCard
+
+# Pilot Syndicate PDA
+- type: entity
+  parent: SyndiPDA
+  id: SyndicatePilotPDA
+  suffix: space battle, DeimonFly
+  components:
+  - type: Pda
+    id: SyndicatePilotIDCard
+
+
+##Loadout
+
+#Security NT Load
+- type: startingGear
+  id: ERTStormtrooperGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurityTDM
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTSecuritySpaceBattle
+    suitstorage: OxygenTankFilled
+    id: ERTStormtrooperPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBigBeltMilitaryWebbingTDM
+
+#Medic NT Load
+- type: startingGear
+  id: ERTCallMedicalGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTBrigmedicTDM
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesHudMedSec
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTMedicSpaceBattle
+    suitstorage: OxygenTankFilled
+    id: ERTMedicPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingTDMWebbingBrigmedFilled
+
+#Engineer NT Load
+- type: startingGear
+  id: ERTCallEngineerGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+    back: ClothingBackpackERTEngineerTDM
+    shoes: ClothingShoesMagBootsNT
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesMeson
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTEngineerSpaceBattle
+    suitstorage: OxygenTankFilled
+    id: ERTEngineerPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltTDM
+
+#Pilot NT Load
+- type: startingGear
+  id: ERTCallPilotGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTPilotTDM
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskRebreatherPilotTDM
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTPilotSpaceBattle
+    suitstorage: OxygenTankFilled
+    id: ERTPilotPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBigBeltMilitaryWebbingTDMPilot
+    pocket1: EnergySwordDodgerBlue
+
+#Leader NT Load
+- type: startingGear
+  id: ERTCapitanGearTDM
+  equipment:
+    neck: ClothingNeckCloakCOTGMC
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTCapitanTDM
+    shoes: ClothingShoesMagBootsNT
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTLeaderSpaceBattle
+    suitstorage: DoubleEmergencyOxygenTankFilled
+    id: ERTCapitanPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBigBeltMilitaryCapitanyTDM
+    pocket1: EnergySwordDoubleDodgerBlue
+
+#Security Syndi Load
+- type: startingGear
+  id: SyndicateStormtrooperGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSyndicateSecurityTDM
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSyndicateSecuritySpaceBattle
+    suitstorage: OxygenTankFilled
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndicateStormtrooperPDA
+    belt: ClothingBigBeltMilitaryWebbingTDM
+
+#Medic Syndi Load
+- type: startingGear
+  id: SyndicateMedicGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSyndicateBrigmedicTDM
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudSyndicateAgent
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSyndicateMedicSpaceBattle
+    suitstorage: OxygenTankFilled
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndicateCorpsmanPDA
+    belt: ClothingTDMWebbingBrigmedFilled
+
+#Engineer Syndi Load
+- type: startingGear
+  id: SyndicateEngineerGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepairmanSyndie
+    back: ClothingBackpackSyndicateEngineerTDM
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesGlassesMeson
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSyndicateEngineerSpaceBattle
+    suitstorage: OxygenTankFilled
+    shoes: ClothingShoesBootsMagSyndie
+    id: SyndicateEngineerPDA
+    belt: ClothingBeltTDM
+
+#Pilot Syndi Load
+- type: startingGear
+  id: SyndicatePilotGearTDM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndieFormal
+    back: ClothingBackpackSyndicatePilotTDM
+    mask: ClothingMaskRebreatherPilotTDM
+    eyes: ClothingEyesHudSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSyndicatePilotSpaceBattle
+    suitstorage: OxygenTankFilled
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndicatePilotPDA
+    belt: ClothingBigBeltMilitaryWebbingTDMPilot
+    pocket1: EnergySwordTomato
+
+#Leader Syndi Load
+- type: startingGear
+  id: SyndicateCapitanGearTDM
+  equipment:
+    head: ClothingHeadHatOutlawHat
+    neck: ClothingNeckCloakCOTGMCRed
+    jumpsuit: ClothingUniformJumpsuitSyndieFormal
+    back: ClothingBackpackSyndicateCapitanTDM
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSyndicateLeaderSpaceBattle
+    suitstorage: DoubleEmergencyOxygenTankFilled
+    shoes: ClothingShoesBootsMagSyndie
+    id: SyndicateCapitanPDA
+    belt: ClothingBigBeltMilitaryCapitanyTDM
+    pocket1: EnergySwordDoubleTomato
+
+
+##Preset Role
+
+#Security NT
+- type: entity
+  parent: MobHuman
+  id: ERTStormtrooperTDMPreset
+  name: ERT Stormtrooper
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertsecurityeva
+    - type: Loadout
+      prototypes: [ ERTStormtrooperGearTDM ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ert-stormtrooper-tdm-name
+      description: ert-stormtrooper-tdm-desc
+      rules: ert-stormtrooper-tdm-rules
+      raffle:
+        settings: short
+
+#Medic NT
+- type: entity
+  parent: MobHuman
+  id: ERTMedicTDMPreset
+  name: ERT medic
+  suffix: EVA
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertmedicaleva
+    - type: Loadout
+      prototypes: [ ERTCallMedicalGearTDM ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ert-medic-tdm-name
+      description: ert-medic-tdm-desc
+      rules: ert-medic-tdm-rules
+      raffle:
+        settings: short
+
+#Engineer NT
+- type: entity
+  parent: MobHuman
+  id: ERTEngineerTDMPreset
+  name: ERT engineer
+  suffix: EVA
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertengineereva
+    - type: Loadout
+      prototypes: [ ERTCallEngineerGearTDM ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ert-engineer-tdm-name
+      description: ert-engineer-tdm-desc
+      rules: ert-engineer-tdm-rules
+      raffle:
+        settings: short
+
+#Pilot NT
+- type: entity
+  parent: MobHuman
+  id: ERTPilotTDMPreset
+  name: ERT pilot
+  suffix: EVA
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ERTCallPilotGearTDM ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ert-pilot-tdm-name
+      description: ert-pilot-tdm-desc
+      rules: ert-pilot-tdm-rules
+      raffle:
+        settings: short
+
+#Leader NT
+- type: entity
+  parent: MobHuman
+  id: ERTCapitanTDMPreset
+  name: ERT leader
+  suffix: EVA
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ERTCapitanGearTDM ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+    - type: GhostRole
+      name: ert-capitan-tdm-name
+      description: ert-capitan-tdm-desc
+      rules: ert-capitan-tdm-rules
+      raffle:
+        settings: short
+
+# Security Syndicate
+- type: entity
+  parent: MobHuman
+  id: SyndiStormtrooperTDMPreset
+  name: Syndicate stormtrooper
+  components:
+  - type: RandomMetadata
+    nameSegments:
+      - NamesSyndicatePrefix
+      - NamesSyndicateNormal
+    nameFormat: name-format-nukie-generic
+  - type: Loadout
+    prototypes: [ SyndicateStormtrooperGearTDM ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: syndi-stormtrooper-tdm-name
+    description: syndi-stormtrooper-tdm-desc
+    rules: syndi-stormtrooper-tdm-rules
+    raffle:
+      settings: short
+
+# Medic Syndicate
+- type: entity
+  parent: MobHuman
+  id: SyndiMedicTDMPreset
+  name: Syndicate medic
+  components:
+  - type: RandomMetadata
+    nameSegments:
+      - NamesSyndicatePrefix
+      - NamesSyndicateNormal
+    nameFormat: name-format-nukie-generic
+  - type: Loadout
+    prototypes: [ SyndicateMedicGearTDM ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: syndi-medic-tdm-name
+    description: syndi-medic-tdm-desc
+    rules: syndi-medic-tdm-rules
+    raffle:
+      settings: short
+
+# Engineer Syndicate
+- type: entity
+  parent: MobHuman
+  id: SyndiEngineerTDMPreset
+  name: Syndicate engineer
+  components:
+  - type: RandomMetadata
+    nameSegments:
+      - NamesSyndicatePrefix
+      - NamesSyndicateNormal
+    nameFormat: name-format-nukie-generic
+  - type: Loadout
+    prototypes: [ SyndicateEngineerGearTDM ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: syndi-engineer-tdm-name
+    description: syndi-engineer-tdm-desc
+    rules: syndi-engineer-tdm-rules
+    raffle:
+      settings: short
+
+# Pilot Syndicate
+- type: entity
+  parent: MobHuman
+  id: SyndiPilotTDMPreset
+  name: Syndicate pilot
+  components:
+  - type: RandomMetadata
+    nameSegments:
+      - NamesSyndicatePrefix
+      - NamesSyndicateElite
+    nameFormat: name-format-nukie-generic
+  - type: Loadout
+    prototypes: [ SyndicatePilotGearTDM ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: syndi-pilot-tdm-name
+    description: syndi-pilot-tdm-desc
+    rules: syndi-pilot-tdm-rules
+    raffle:
+      settings: short
+
+# Leader Syndicate
+- type: entity
+  parent: MobHuman
+  id: SyndiCaptainTDMPreset
+  name: Syndicate captain
+  components:
+  - type: RandomMetadata
+    nameSegments:
+      - NamesSyndicateElite
+    nameFormat: name-format-nukie-commander
+  - type: Loadout
+    prototypes: [ SyndicateCapitanGearTDM ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: syndi-captain-tdm-name
+    description: syndi-captain-tdm-desc
+    rules: syndi-captain-tdm-rules
+    raffle:
+      settings: short
+
+
+##Ghost Role
+
+# Security NT spawn
+- type: entity
+  id: SpawnERTStormtrooperTDMPreset
+  name: ghost role spawn point
+  parent: MarkerBase
+  suffix: space battle, DeimonFly
+  components:
+  - type: GhostRole
+    name: ert-stormtrooper-tdm-name
+    description: ert-stormtrooper-tdm-desc
+    rules: ert-stormtrooper-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ERTStormtrooperTDMPreset
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertsecurityeva
+
+# Medic NT spawn
+- type: entity
+  id: SpawnERTMedicTDMPreset
+  name: ghost role spawn point
+  parent: MarkerBase
+  suffix: space battle, DeimonFly
+  components:
+  - type: GhostRole
+    name: ert-medic-tdm-name
+    description: ert-medic-tdm-desc
+    rules: ert-medic-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ERTMedicTDMPreset
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertmedicaleva
+
+# Engineer NT spawn
+- type: entity
+  id: SpawnERTEngineerTDMPreset
+  name: ghost role spawn point
+  parent: MarkerBase
+  suffix: space battle, DeimonFly
+  components:
+  - type: GhostRole
+    name: ert-engineer-tdm-name
+    description: ert-engineer-tdm-desc
+    rules: ert-engineer-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ERTEngineerTDMPreset
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertengineereva
+
+# Pilot NT spawn
+- type: entity
+  id: SpawnERTPilotTDMPreset
+  name: ghost role spawn point
+  parent: MarkerBase
+  suffix: space battle, DeimonFly
+  components:
+  - type: GhostRole
+    name: ert-pilot-tdm-name
+    description: ert-pilot-tdm-desc
+    rules: ert-pilot-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ERTPilotTDMPreset
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertleadereva
+
+# Leader NT spawn
+- type: entity
+  id: SpawnERTCapitanTDMPreset
+  name: ghost role spawn point
+  parent: MarkerBase
+  suffix: space battle, DeimonFly
+  components:
+  - type: GhostRole
+    name: ert-capitan-tdm-name
+    description: ert-capitan-tdm-desc
+    rules: ert-capitan-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ERTCapitanTDMPreset
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertleadereva
+
+# Syndicate Stormtrooper spawn
+- type: entity
+  parent: MarkerBase
+  id: SpawnSyndiStormtrooperTDMPreset
+  name: ghost role spawn point
+  suffix: space battle, DeimonFly
+  components:
+    - type: GhostRole
+      name: syndi-stormtrooper-tdm-name
+      description: syndi-stormtrooper-tdm-desc
+      rules: syndi-stormtrooper-tdm-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SyndiStormtrooperTDMPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
+
+# Syndicate Medic spawn
+- type: entity
+  parent: MarkerBase
+  id: SpawnSyndiMedicTDMPreset
+  name: ghost role spawn point
+  suffix: space battle, DeimonFly
+  components:
+    - type: GhostRole
+      name: syndi-medic-tdm-name
+      description: syndi-medic-tdm-desc
+      rules: syndi-medic-tdm-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SyndiMedicTDMPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
+
+# Syndicate Engineer spawn
+- type: entity
+  parent: MarkerBase
+  id: SpawnSyndiEngineerTDMPreset
+  name: ghost role spawn point
+  suffix: space battle, DeimonFly
+  components:
+    - type: GhostRole
+      name: syndi-engineer-tdm-name
+      description: syndi-engineer-tdm-desc
+      rules: syndi-engineer-tdm-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SyndiEngineerTDMPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
+
+# Syndicate Pilot spawn
+- type: entity
+  parent: MarkerBase
+  id: SpawnSyndiPilotTDMPreset
+  name: ghost role spawn point
+  suffix: space battle, DeimonFly
+  components:
+    - type: GhostRole
+      name: syndi-pilot-tdm-name
+      description: syndi-pilot-tdm-desc
+      rules: syndi-pilot-tdm-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SyndiPilotTDMPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
+
+# Syndicate Captain spawn
+- type: entity
+  parent: MarkerBase
+  id: SpawnSyndiCaptainTDMPreset
+  name: ghost role spawn point
+  suffix: space battle, DeimonFly
+  components:
+    - type: GhostRole
+      name: syndi-captain-tdm-name
+      description: syndi-captain-tdm-desc
+      rules: syndi-captain-tdm-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SyndiCaptainTDMPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Objects/Fun/Balloons/syndicate.rsi
+          state: icon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

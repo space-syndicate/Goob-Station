@@ -1,22 +1,21 @@
 using Content.Shared.EntityEffects;
-using Content.Shared.Flash;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Chemistry.ReactionEffects;
 
 
-public sealed partial class ImperialFlashReactionEffect : EventEntityEffect<ImperialFlashReactionEffect>
+public sealed partial class ImperialFlashReactionEffect : EntityEffectBase<ImperialFlashReactionEffect>
 {
-    [DataField("maxRange", required: true)]
+    [DataField(required: true)]
     public float MaxRange = 10;
 
-    [DataField("maxDuration")]
+    [DataField]
     public TimeSpan MaxDuration = TimeSpan.FromSeconds(3.0f);
 
-    [DataField("slowTo")]
+    [DataField]
     public float SlowTo = 0.8f;
 
-    [DataField("powerPerUnit")]
+    [DataField]
     public float PowerPerUnit = 0.25f;
 
     [DataField]
@@ -29,7 +28,7 @@ public sealed partial class ImperialFlashReactionEffect : EventEntityEffect<Impe
     public EntProtoId? FlashEffectPrototype = "ReactionFlash";
 
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
         Loc.GetString("reagent-effect-guidebook-flash",
             ("chance", Probability)
         );

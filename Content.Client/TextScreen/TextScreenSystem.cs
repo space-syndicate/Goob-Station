@@ -27,7 +27,6 @@ namespace Content.Client.TextScreen;
 public sealed class TextScreenSystem : VisualizerSystem<TextScreenVisualsComponent>
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     /// <summary>
     ///     Contains char/state Key/Value pairs. <br/>

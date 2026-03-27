@@ -9,7 +9,7 @@
   - type: Openable
     openableByHand: true
   - type: FlavorProfile
-  - type: Food
+  - type: Edible
     trash:
     - MeatCanDeadSectorTrash
   - type: Tag
@@ -35,7 +35,7 @@
   - type: Openable
     openableByHand: true
   - type: FlavorProfile
-  - type: Food
+  - type: Edible
     trash:
     - OldMeatCanDeadSectorTrash
   - type: Tag
@@ -61,7 +61,7 @@
   - type: Openable
     openableByHand: true
   - type: FlavorProfile
-  - type: Food
+  - type: Edible
     trash:
     - TomatoCanDeadSectorTrash
   - type: Tag
@@ -87,7 +87,7 @@
   - type: Openable
     openableByHand: true
   - type: FlavorProfile
-  - type: Food
+  - type: Edible
     trash:
     - BeefCanDeadSectorTrash
   - type: Tag
@@ -113,7 +113,7 @@
   - type: Openable
     openableByHand: true
   - type: FlavorProfile
-  - type: Food
+  - type: Edible
     trash:
     - SardinesCanDeadSectorTrash
   - type: Tag
@@ -139,7 +139,7 @@
   - type: Openable
     openableByHand: true
   - type: FlavorProfile
-  - type: Food
+  - type: Edible
     trash:
     - PorkCanDeadSectorTrash
   - type: Tag

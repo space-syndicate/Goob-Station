@@ -8,7 +8,8 @@ public sealed partial class ImperialVehiclePilotComponent : Component
     /// <summary>
     /// The vehicle this rider is currently riding.
     /// </summary>
-    [ViewVariables] public EntityUid? Vehicle;
+    [ViewVariables]
+    public EntityUid? Vehicle;
 
     public override bool SendOnlyToOwner => true;
 }

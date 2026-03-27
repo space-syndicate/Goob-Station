@@ -31,7 +31,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
+public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent> // Добавлен модификатор partial Imperial
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
@@ -65,6 +65,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         SubscribeLocalEvent<NukeopsRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
         SubscribeLocalEvent<NukeopsRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
+        InitializeImperial(); // Imperial Инициализация
     }
 
     protected override void Started(EntityUid uid,
@@ -86,6 +87,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             return;
 
         component.TargetStation = RobustRandom.Pick(eligible);
+        var ev = new NukeopsTargetStationSelectedEvent(uid, component.TargetStation);
+        RaiseLocalEvent(ref ev);
     }
 
     #region Event Handlers
@@ -111,6 +114,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         {
             args.AddLine(Loc.GetString("nukeops-list-name-user", ("name", name), ("user", sessionData.UserName)));
         }
+        args.AddLine("");
     }
 
     private void OnNukeExploded(NukeExplodedEvent ev)
@@ -178,7 +182,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             }
         }
     }
-
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
     {
         if (ev.New is not GameRunLevel.PostRound)
@@ -547,4 +550,21 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         return null;
     }
+}
+
+/// <summary>
+/// Raised when a station has been assigned as a target for the NukeOps rule.
+/// </summary>
+[ByRefEvent]
+public readonly struct NukeopsTargetStationSelectedEvent(EntityUid ruleEntity, EntityUid? targetStation)
+{
+    /// <summary>
+    /// The entity containing the NukeOps gamerule.
+    /// </summary>
+    public readonly EntityUid RuleEntity = ruleEntity;
+
+    /// <summary>
+    /// The target station, if it exists.
+    /// </summary>
+    public readonly EntityUid? TargetStation = targetStation;
 }

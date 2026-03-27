@@ -1,15 +1,15 @@
 
-- type: listing
-  id: UplinkEnergy-crossbow
-  name: uplink-energy-crossbow-name
-  description: uplink-energy-crossbow-desc
-  productEntity: energy-crossbow
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkWeaponry
-  conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - NukeOpsUplink
+# - type: listing
+#   id: UplinkEnergy-crossbow
+#   name: uplink-energy-crossbow-name
+#   description: uplink-energy-crossbow-desc
+#   productEntity: energy-crossbow
+#   cost:
+#     Telecrystal: 8
+#   categories:
+#   - UplinkWeaponry
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       blacklist:
+#         tags:
+#           - NukeOpsUplink

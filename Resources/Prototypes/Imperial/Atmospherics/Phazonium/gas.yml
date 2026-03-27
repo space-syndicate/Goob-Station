@@ -1,5 +1,5 @@
 - type: gas
-  id: 10
+  id: Phazonium
   name: gases-phazonium
   specificHeat: 800
   heatCapacityRatio: 1.3

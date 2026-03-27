@@ -6,6 +6,8 @@
   name: ForestRiflemanPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -42,6 +44,8 @@
   name: ForestMachineGunnerPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -78,6 +82,8 @@
   name: ForestGrenadierPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -114,6 +120,8 @@
   name: ForestMedicalPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -151,6 +159,8 @@
   name: ForestCommanderPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -187,6 +197,8 @@
   name: ForestSniperPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -225,6 +237,8 @@
   name: ForestRiflemanPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -261,6 +275,8 @@
   name: ForestMachineGunnerPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -297,6 +313,8 @@
   name: ForestGrenadierPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -333,6 +351,8 @@
   name: ForestMedicalPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -370,6 +390,8 @@
   name: ForestCommanderPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
@@ -406,6 +428,8 @@
   name: ForestSniperPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - NanoTrasen

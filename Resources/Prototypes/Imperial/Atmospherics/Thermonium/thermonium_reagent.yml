@@ -12,7 +12,7 @@
     Flammable:
       methods: [ Touch ]
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 0.8
   metabolisms:
     Poison:
@@ -20,16 +20,14 @@
       - !type:HealthChange
         damage:
           types:
-            Radiation: 8
+            Radiation: 2.66
     Gas:
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
         ignoreResistances: true
         damage:
            groups:
-            Brute: -4
-            Burn: -6
-            Toxin: -4
-           types:
-            Bloodloss: -2
+            Brute: -1.33
+            Burn: -2
+            Toxin: -1.33
+            Airloss: -0.66

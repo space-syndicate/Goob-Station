@@ -1,32 +1,40 @@
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: PulseSniper
-  damage:
-    types:
-      Heat: 90
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 90
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 
 ##DeathSquad start
-- type: hitscan #Новый хитскан для пушек дедов
+- type: entity
+  parent: BasicHitscan
   id: PulseDeathSquad
-  damage:
-    types:
-      Heat: 40
-      Structural: 25
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 40
+        Structural: 25
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 ##DeathSquad end

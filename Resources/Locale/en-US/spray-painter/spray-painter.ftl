@@ -5,6 +5,8 @@ spray-painter-ammo-after-interact-refilled = You refill the spray painter.
 
 spray-painter-interact-no-charges = Not enough paint left.
 spray-painter-interact-nothing-to-remove = Nothing to remove!
+spray-painter-interact-no-color-pick = Can't find a color to pick!
+spray-painter-interact-color-picked = Picked color from '{$id}'.
 
 spray-painter-on-examined-painted-message = It seems to have been freshly painted.
 spray-painter-style-not-available = Cannot apply the selected style to this object.
@@ -192,7 +194,3 @@ spray-painter-style-canisters-plasma = Plasma
 spray-painter-style-canisters-storage = Storage
 spray-painter-style-canisters-tritium = Tritium
 spray-painter-style-canisters-water-vapor = Water vapor
-spray-painter-style-canisters-ozonium = Ozonium
-spray-painter-style-canisters-thermonium = Thermonium
-spray-painter-style-canisters-hydrogen = Hydrogen
-spray-painter-style-canisters-phazonium = Phazonium

@@ -18,6 +18,20 @@
 
 - type: entity
   parent: BasePlushieCharacter
+  id: PlushieJohnson
+  name: Johnson Pat
+  suffix: Crook, COMMUNITY, TOY
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/johnsonpat.rsi
+    state: icon
+
+- type: entity
+  parent: BasePlushieCharacter
   id: PlushieTaylor
   name: Alex Taylor
   suffix: Crook, COMMUNITY, TOY
@@ -297,6 +311,11 @@
   values:
     prefix: fumo-eirin-
     count: 2
+- type: localizedDataset
+  id: FumoTeto
+  values:
+    prefix: fumo-teto-
+    count: 2
 # Datasets for Fumo
 
 - type: speechSounds
@@ -326,7 +345,7 @@
     tags:
       - Payload
       - ClothMade
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       collection: ToySqueak
@@ -352,6 +371,21 @@
     speechSounds: Fumo
   - type: SpeakOnTrigger
     pack: FumoJunko
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieFumoTeto
+  name: Teto
+  suffix: Crook, COMMUNITY, TOY
+  description: "The text on the tag reads: 'Feed her a baguette and she'll sing.'"
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/fumoplush.rsi
+    state: teto
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoTeto
 
 - type: entity
   parent: PlushieFumoJunko
@@ -490,6 +524,15 @@
       - id: PlushieFumoCirno
         orGroup: GiftPool
         prob: .1
+      - id: PlushieFumoSakuya
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoEirin
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoTeto
+        onGroup: GiftPool
+        prob: .1
     sound:
       path: /Audio/Effects/unwrap.ogg
 - type: entity
@@ -532,3 +575,39 @@
   - type: StorageFill
     contents:
       - id: ChessBoardTabletop
+
+- type: localizedDataset
+  id: AtlasWords
+  values:
+    prefix: plushie-atlas-
+    count: 3
+
+- type: speechSounds
+  id: Atlas
+  saySound:
+    path: /Audio/Animals/cat_meow.ogg
+  askSound:
+    path: /Audio/Animals/cat_meow.ogg
+  exclaimSound:
+    path: /Audio/Animals/cat_meow.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieAtlas
+  name: Atlas
+  suffix: Crook, COMMUNITY, TOY
+  description: Meow!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/atlas.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Speech
+    speechSounds: Atlas
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: SpeakOnTrigger
+    pack: AtlasWords

@@ -79,15 +79,6 @@
   categories:
   - RCUAmmoCombat
 
-- type: listing
-  id: RCUCallUplinkSpeedLoaderGrenadeFrag
-  name: ert-uplink-ammononcombat-speedloaderfraggrenade-name
-  description: ert-uplink-ammononcombat-speedloaderfraggrenade-desc
-  productEntity: SpeedLoaderGrenadeFrag
-  cost:
-    BlueSpaceCube: 6
-  categories:
-  - RCUAmmoCombat
 
 - type: listing
   id: RCUCallUplinkMagazineBoxMagnumAP

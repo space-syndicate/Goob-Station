@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakCOTGMCRed
+  name: syndicate commander cloak
+  description: A pompous syndicate command cloak with heavy trim and just enough menace to match the armor.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Clothing/CloakSyndicateCommander.rsi
+  - type: Clothing
+    sprite: Imperial/DeimonFly/Clothing/CloakSyndicateCommander.rsi

@@ -1,0 +1,23 @@
+- type: entity
+  name: S-93 "Redline" pulse rifle
+  parent: WeaponPulseSniper
+  id: WeaponPulseSniperRed
+  description: A pirated modification of the corporate pulse rifle, adapted to the needs of the Syndicate. I've kept the range and accuracy of the original, but now every shot leaves a red trail and a memo to the morgue.
+  suffix: space battle, DeimonFly
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/DeimonFly/Weapon/SyndicateSniper.rsi
+  - type: BatteryAmmoProvider
+    proto: PulseSniperRed
+
+  # ДЕЛАЕМ ЕЁ ДВУРУЧНОЙ
+  - type: Wieldable
+
+  # 1) Как у Христова: нельзя стрелять, пока не взял в обе руки
+  - type: GunRequiresWield
+
+  # 2) «Бинокль» при переходе в боевой режим (wield)
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3

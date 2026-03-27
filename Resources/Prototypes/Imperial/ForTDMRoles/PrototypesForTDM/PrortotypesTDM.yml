@@ -18,7 +18,10 @@
         Heat: 0.5
         Radiation: 0.6
         Caustic: 0.75
-        Stamina: 0.2 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.55
     sprintModifier: 0.55

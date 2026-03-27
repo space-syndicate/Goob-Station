@@ -1,0 +1,13 @@
+- type: entity
+  id: PPGCirculatorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: circulator of phase particle generator board
+  description: A printed circuit board for a phase particle generator.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: PPGCirculator
+    stackRequirements:
+      Manipulator: 1
+      Steel: 10

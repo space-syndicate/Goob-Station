@@ -1,0 +1,26 @@
+- type: entity
+  id: EnhancedShotProjectile
+  name: enhanced shot projectile
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: locale
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/MiningWeapons/EmpoweredAttacks/charged_shot.rsi
+    layers:
+    - state: charged_bullet
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 25
+        Structural: 45
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: GatheringProjectile

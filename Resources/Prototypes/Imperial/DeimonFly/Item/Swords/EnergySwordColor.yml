@@ -1,0 +1,129 @@
+- type: entity
+  parent: EnergySword
+  id: EnergySwordTomato
+  name: tomato energy sword
+  description: An energy sword calibrated to pure tomato frequency. Perfect for chefs who decided that kitchen knives just weren’t resolving conflicts fast enough.
+  suffix: Red
+  components:
+  - type: EnergySword
+    # фиксированный цвет лезвия
+    activatedColor: "#FF6347FF"
+
+    # пустой список => рандом НИКОГДА не сработает
+    colorOptions: []
+
+
+- type: entity
+  parent: EnergySword
+  id: EnergySwordDodgerBlue
+  name: dodger-blue energy sword
+  description: Favored by officers who shout “NON-LETHAL!” right before doing something extremely lethal. Glows the same color as your chances of talking your way out of brig time.
+  suffix: Blue
+  components:
+  - type: EnergySword
+    # фиксированный цвет лезвия
+    activatedColor: "#1E90FFFF"
+
+    # пустой список => рандом НИКОГДА не сработает
+    colorOptions: []
+
+
+- type: entity
+  parent: EnergySword
+  id: EnergySwordAqua
+  name: aqua energy sword
+  description: Looks like clean, refreshing coolant. Functions like a high-energy limb removal device. Atmos techs hate it, janitors fear it, assistants love it.
+  suffix: Aqua
+  components:
+  - type: EnergySword
+    # фиксированный цвет лезвия
+    activatedColor: "#00FFFFFF"
+
+    # пустой список => рандом НИКОГДА не сработает
+    colorOptions: []
+
+
+- type: entity
+  parent: EnergySword
+  id: EnergySwordSpring
+  name: spring-green energy sword
+  description: A violently green blade that screams “definitely not biohazardous” on every swing. Medbay insists it’s safe. Medbay also insists you sign the waiver first.|
+  suffix: Green
+  components:
+  - type: EnergySword
+    # фиксированный цвет лезвия
+    activatedColor: "#00FA9AFF"
+
+    # пустой список => рандом НИКОГДА не сработает
+    colorOptions: []
+
+
+- type: entity
+  parent: EnergySword
+  id: EnergySwordOrchid
+  name: orchid energy sword
+  description: A stylish purple blade for operatives who want their war crimes to have a consistent color palette. Perfectly complements spilled security blood and clown shoes.
+  suffix: Violet
+  components:
+  - type: EnergySword
+    # фиксированный цвет лезвия
+    activatedColor: "#BA55D3FF"
+
+    # пустой список => рандом НИКОГДА не сработает
+    colorOptions: []
+
+# Double-bladed variants
+- type: entity
+  parent: EnergySwordDouble
+  id: EnergySwordDoubleTomato
+  name: double tomato energy sword
+  description: Two blazing tomato blades forged from pure food budget cuts. Splatters enough red across the halls that Security keeps asking if it’s sauce or a crime scene.
+  suffix: Red
+  components:
+  - type: EnergySword
+    activatedColor: "#FF6347FF"
+    colorOptions: []
+
+- type: entity
+  parent: EnergySwordDouble
+  id: EnergySwordDoubleDodgerBlue
+  name: double dodger-blue energy sword
+  description: A double-bladed baton for officers who got tired of missing their swings. When this thing lights up, even the paperwork tries to flee the brig.
+  suffix: Blue
+  components:
+  - type: EnergySword
+    activatedColor: "#1E90FFFF"
+    colorOptions: []
+
+- type: entity
+  parent: EnergySwordDouble
+  id: EnergySwordDoubleAqua
+  name: double aqua energy sword
+  description: Twin aqua beams that look suspiciously like a catastrophic pipe leak. Atmos techs instinctively rush toward it, then realize it’s the source of the emergency.
+  suffix: Aqua
+  components:
+  - type: EnergySword
+    activatedColor: "#00FFFFFF"
+    colorOptions: []
+
+- type: entity
+  parent: EnergySwordDouble
+  id: EnergySwordDoubleSpring
+  name: double spring-green energy sword
+  description: A violently spring-green staff of “enhanced photosynthesis.” Botany swears it boosts plant growth. Medbay swears it boosts the casualty report.
+  suffix: Green
+  components:
+  - type: EnergySword
+    activatedColor: "#00FA9AFF"
+    colorOptions: []
+
+- type: entity
+  parent: EnergySwordDouble
+  id: EnergySwordDoubleOrchid
+  name: double orchid energy sword
+  description: Two orchid-colored blades humming like an overfunded opera. For operatives who want every backstab to feel less like murder and more like a very expensive performance.
+  suffix: Violet
+  components:
+  - type: EnergySword
+    activatedColor: "#BA55D3FF"
+    colorOptions: []

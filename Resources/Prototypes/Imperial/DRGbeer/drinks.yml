@@ -48,7 +48,7 @@
         amount: 0.8
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BlackoutStout
           min: 25
         key: ForcedSleep
@@ -151,10 +151,10 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: MacteraBrew
           min: 6
 
@@ -176,13 +176,13 @@
       #   reagent: Etanol
       #   stage: 1
       #   conditions: # psychosis
-      #   - !type:ReagentThreshold # psychosis
+      #   - !type:ReagentCondition # psychosis
       #     min: 1 # psychosis
       # dwarves take less toxin damage and heal a marginal amount of brute
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: TelEthanol
           min: 1
       - !type:Drunk
@@ -235,22 +235,23 @@
       - !type:ChangeMarkingColor
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 20
             reagent: RandoVeisser
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 20
             reagent: RandoVeisser
       - !type:ChangeMarkingColor
         markingCategory: "Skin"
         invertColor: true
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
             min: 20
+            reagent: RandoVeisser
 
 #GNOMIZATOR (SINDIKAT)
 
@@ -292,13 +293,15 @@
       - !type:Polymorph
         prototype: PolymorphGnomificatorPerma
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: GnomificatorPermanent
           min: 7
       - !type:AdjustReagent
         reagent: Gnomificator
         amount: -5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: GnomificatorPermanent
           min: 7
 
 - type: reagent
@@ -316,13 +319,15 @@
       - !type:Polymorph
         prototype: PolymorphGnomificator
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Gnomificator
           min: 7
       - !type:AdjustReagent
         reagent: Gnomificator
         amount: -5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Gnomificator
           min: 7
 
 - type: entity

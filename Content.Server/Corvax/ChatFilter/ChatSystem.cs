@@ -5,6 +5,7 @@ namespace Content.Server.Chat.Systems;
 
 public sealed partial class ChatSystem
 {
+    private static readonly Regex ReplaceRegex = new("\\b(\\w+)\\b");
     private static readonly Dictionary<string, string> SlangReplace = new()
     {
         // Game
@@ -26,6 +27,7 @@ public sealed partial class ChatSystem
         { "дек", "детектив" },
         { "деку", "детективу" },
         { "дека", "детектива" },
+        { "дамаг", "ранение" },
         { "мш", "имплант защиты разума" },
         { "мщ", "имплант защиты разума" }, // Imperial rus replace @Ser1-1y start
         { "майншилд", "имплант защиты разума" },
@@ -71,6 +73,11 @@ public sealed partial class ChatSystem
         { "деловен", "диловен"}, // Imperial rus replace @Ser1-1y
         { "дило", "диловен"},
         { "дил", "диловен"},
+        { "куллдаун", "задержка"},
+        { "кулдаун", "задержка"},
+        { "кд", "задержка"},
+        { "скил", "навык"},
+        { "антаг", "враг"},
         // IC
         { "норм", "нормально" },
         { "вард", "смотритель" }, // Imperial rus replace @Ser1-1y start
@@ -111,7 +118,7 @@ public sealed partial class ChatSystem
         { "пох", "плевать" },
         { "ясн", "ясно" },
         { "всм", "всмысле" },
-        { "чзх", "что за херня?" },
+        { "чзх", "что за хрень?" },
         { "изи", "легко" },
         { "гг", "хорошо сработано" },
         { "гиб", "растерзание в клочья" }, // Imperial rus replace @Ser1-1y start
@@ -130,6 +137,7 @@ public sealed partial class ChatSystem
         { "юзай", "используй" },
         { "юзнул", "использовал" },
         { "хилл", "лечение" },
+        { "хил", "лечение" },
         { "подхиль", "полечи" },
         { "хильни", "полечи" },
         { "хелп", "помоги" },
@@ -140,6 +148,16 @@ public sealed partial class ChatSystem
         { "брут", "механические" },
         { "берн", "ожоговые" },
         { "бёрн", "ожоговые" },
+        { "пирс", "колотые" },
+        { "пуш", "вперед" },
+        { "крафт", "создание" },
+        { "рил", "реально" },
+        { "фаст", "быстро" },
+        { "фастом", "быстро" },
+        { "фасту", "быстро" },
+        { "дефать", "защищать" },
+        { "ливаю", "ухожу" },
+        { "ливай", "уходи" },
         // OOC
         { "афк", "ссд" },
         { "админ", "бог" },
@@ -171,6 +189,8 @@ public sealed partial class ChatSystem
         { "робастить", "бить"}, // Imperial rus replace @Ser1-1y
         { "анробаст", "слабый" },
         { "анроб", "слабый" },
+        { "лак", "удача" },
+        { "анлак", "неудача" },
         // Брейнрот, сленг
         { "сосо", "я идиот" },
         { "окак", "о как" }, // Imperial rus replace @Ser1-1y
@@ -200,7 +220,10 @@ public sealed partial class ChatSystem
         { "чилю", "отдыхаю" },
         { "чилим", "отдыхаем" },  // Imperial rus replace @Ser1-1y end
         { "чечик", "человек" },
-        { "скуф", "старик" }
+        { "скуф", "старик" },
+        { "щовел", "щавель" },
+        { "щовель", "щавель" },
+        { "кринж", "стыд" }
     };
 
     private string ReplaceWords(string message)
@@ -208,12 +231,13 @@ public sealed partial class ChatSystem
         if (string.IsNullOrEmpty(message))
             return message;
 
-        return Regex.Replace(message, "\\b(\\w+)\\b", match =>
+        return ReplaceRegex.Replace(message, match =>
         {
-            bool isUpperCase = match.Value.All(Char.IsUpper);
+            var isUpperCase = match.Value.All(Char.IsUpper);
 
             if (SlangReplace.TryGetValue(match.Value.ToLower(), out var replacement))
                 return isUpperCase ? replacement.ToUpper() : replacement;
+
             return match.Value;
         });
     }

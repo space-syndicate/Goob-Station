@@ -23,7 +23,7 @@
     id: LawyerPDA
     ears: ClothingHeadsetSecurity
   inhand:
-    - BriefcaseBrownFilled
+    - BriefcaseLocker # Imperial Space Стандартный чемоданчик изменен на чемодан с замком
   storage:
     back:
     - RubberStampLawyer

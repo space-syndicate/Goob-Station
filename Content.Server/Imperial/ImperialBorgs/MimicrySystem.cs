@@ -1,9 +1,6 @@
 using Content.Shared.Borgs;
 using Robust.Server.GameObjects;
-using Robust.Shared.Prototypes;
 using Content.Server.Actions;
-using System;
-using Content.Shared.Actions;
 using Content.Shared.Popups;
 using Content.Shared.Mobs;
 using Robust.Shared.Player;
@@ -12,8 +9,6 @@ namespace Content.Server.Borgs
 {
     public sealed class MimicrySystem : EntitySystem
     {
-        [Dependency] private readonly IComponentFactory _factory = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;

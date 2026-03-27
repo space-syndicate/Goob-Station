@@ -37,6 +37,7 @@
   - type: Tag
     tags:
       - ErtUplinkCombat
+      - ErtUplinkERT
 
 #Medic
 - type: entity
@@ -64,6 +65,7 @@
   - type: Tag
     tags:
       - ErtUplinkCombat
+      - ErtUplinkERT
 
 #Engineer
 - type: entity
@@ -74,9 +76,9 @@
   - type: Store
     balance:
       BlueSpaceCube: 25
-  # - type: Tag
-  #   tags:
-  #     - ErtUplinkCombat
+  - type: Tag
+    tags:
+      - ErtUplinkERT
 
 #Junitor
 - type: entity

@@ -32,6 +32,9 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/encryptionkey.rsi
+  - type: Tag
+    tags:
+    - EncryptionNedraconnection
 
 - type: entity
   parent: EncryptionKey
@@ -49,6 +52,9 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
+  - type: Tag
+    tags:
+    - EncryptionNedraCMDconnection
 
 - type: entity
   parent: EncryptionKey

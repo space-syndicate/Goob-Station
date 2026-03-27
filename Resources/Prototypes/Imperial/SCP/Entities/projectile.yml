@@ -1,0 +1,19 @@
+- type: entity
+  id: ImperialProjectileBoneShard
+  name: bone shard
+  suffix: Недра, Ham Maggotson
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+    soundHit:
+      path: /Audio/Imperial/SCP/nothingthere_projectile.ogg
+    forceSound: true
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Materials/materials.rsi
+    layers:
+    - state: bones
+      shader: unshaded

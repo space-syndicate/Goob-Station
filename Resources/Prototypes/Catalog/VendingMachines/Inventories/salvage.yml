@@ -10,5 +10,6 @@
     RadioHandheld: 2
     WeaponGrapplingGun: 4
     WeaponProtoKineticAccelerator: 4
+    WeaponSmasher: 1 # Imperial "MiningWeapons"
   contrabandInventory:
     PlushieCarp: 1

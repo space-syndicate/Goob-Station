@@ -17,7 +17,7 @@
 - type: radioChannel
   id: Military
   name: chat-radio-military
-  keycode: 'в'
+  keycode: 'я'
   frequency: 1069
   color: "#0f4910"
   longRange: true

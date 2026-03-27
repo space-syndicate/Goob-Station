@@ -1,0 +1,13 @@
+- type: soundCollection
+  id: OldRadioAmbient
+  files:
+    - /Audio/Imperial/Asimov/Oldradio/Ashes.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Echoes.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Shadows.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Snow.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Postapock.ogg
+    - /Audio/Imperial/Asimov/Oldradio/poctapok2.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Wind.ogg
+    - /Audio/Imperial/Asimov/Oldradio/The_Sky.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Highway.ogg
+    - /Audio/Imperial/Asimov/Oldradio/Horizon.ogg

@@ -57,9 +57,6 @@
       prototypes: [ fightsacerdosODTLoadout ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -87,7 +84,7 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
-  
+
 - type: entity
   parent: MobHuman
   id:  MedsacerdosODTPreset
@@ -102,9 +99,6 @@
       prototypes: [ MedsacerdosODTLoadout ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -265,19 +259,19 @@
 #######################################################################################
 #######################################################################################
 
-- type: localizedDataset 
+- type: localizedDataset
   id: sacerdosroleLeadersName
   values:
     prefix: imperial-space-sacerdos-role-Leaders-dataset-
     count: 1
 
-- type: localizedDataset 
+- type: localizedDataset
   id: sacerdosroleFightName
   values:
     prefix: imperial-space-sacerdos-role-fight-dataset-
     count: 1
 
-- type: localizedDataset 
+- type: localizedDataset
   id: sacerdosroleMedName
   values:
     prefix: imperial-space-sacerdos-role-med-dataset-

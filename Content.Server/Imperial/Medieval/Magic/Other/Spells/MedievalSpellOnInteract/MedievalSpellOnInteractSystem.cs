@@ -8,6 +8,7 @@ namespace Content.Server.Imperial.Medieval.Magic.MedievalSpellOnInteract;
 public sealed partial class MedievalSpellOnInteractSystem : EntitySystem
 {
     [Dependency] private readonly AudioSystem _audioSystem = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
 
 
     public override void Initialize()
@@ -25,14 +26,12 @@ public sealed partial class MedievalSpellOnInteractSystem : EntitySystem
         component.UseCount += 1;
 
         var effects = args.User == args.Target
-            ? component.SelfUseEffects.Count == 0
+            ? component.SelfUseEffects.Length == 0
                 ? component.Effects
                 : component.SelfUseEffects
             : component.Effects;
 
-        foreach (var effect in effects)
-            effect.Effect(new EntityEffectBaseArgs(args.Target.Value, EntityManager));
-
+        _entityEffectsSystem.ApplyEffects(args.Target.Value, effects, user: args.User);
         _audioSystem.PlayPvs(component.SoundOnInteract, args.User);
 
         if (component.UseCount >= component.RemainingUses)
