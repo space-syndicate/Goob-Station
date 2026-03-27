@@ -5,6 +5,13 @@
   color: "#b48b57"
   radioChannel: Supply
   acquisitionSlip: PaperAcquisitionSlipCargo
+  # CorvaxGoob-CargoFeatures-Start
+  secureCratePrototype: CratePrivateCargoSecure
+  secureCrateOrderAccess:
+  - Cargo
+  - Salvage
+  - Quartermaster
+  # CorvaxGoob-CargoFeatures-End
 
 - type: cargoAccount
   id: Engineering
@@ -13,6 +20,13 @@
   color: "#ff733c"
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
+  # CorvaxGoob-CargoFeatures-Start
+  secureCratePrototype: CrateEngineeringSecure
+  secureCrateOrderAccess:
+  - Engineering
+  - Atmospherics
+  - ChiefEngineer
+  # CorvaxGoob-CargoFeatures-End
 
 - type: cargoAccount
   id: Medical
@@ -21,6 +35,14 @@
   color: "#57b8f0"
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
+  # CorvaxGoob-CargoFeatures-Start
+  secureCratePrototype: CrateMedicalSecure
+  secureCrateOrderAccess:
+  - Medical
+  - Chemistry
+  - Paramedic
+  - ChiefMedicalOfficer
+  # CorvaxGoob-CargoFeatures-End
 
 - type: cargoAccount
   id: Science
@@ -29,6 +51,13 @@
   color: "#cd7ccd"
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
+  # CorvaxGoob-CargoFeatures-Start
+  secureCratePrototype: CrateScienceSecure
+  secureCrateOrderAccess:
+  - ResearchDirector
+  - Research
+  - Robotics
+  # CorvaxGoob-CargoFeatures-End
 
 - type: cargoAccount
   id: Security
@@ -37,6 +66,15 @@
   color: "#ff4242"
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
+  # CorvaxGoob-CargoFeatures-Start
+  secureCratePrototype: CrateWeaponSecure
+  secureCrateOrderAccess:
+  - Security
+  - Armory
+  - HeadOfSecurity
+  - Detective
+  - Brig
+  # CorvaxGoob-CargoFeatures-End
 
 - type: cargoAccount
   id: Service
@@ -45,3 +83,15 @@
   color: "#539c00"
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
+  # CorvaxGoob-CargoFeatures-Start
+  secureCratePrototype: CrateHydroSecure
+  secureCrateOrderAccess:
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Service
+  - Janitor
+  - Theatre
+  - Chapel
+  - Lawyer
+  # CorvaxGoob-CargoFeatures-End

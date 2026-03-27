@@ -80,6 +80,13 @@ public sealed partial class CargoOrderConsoleComponent : Component
     [DataField]
     public ProtoId<StackPrototype> CashType = "Credit";
 
+    // CorvaxGoob-CargoFeatures
+    /// <summary>
+    /// Надбавка к цене за отправку груза в защищённом ящике отдела.
+    /// </summary>
+    [DataField]
+    public int SecureOrderCost = 100;
+
     /// <summary>
     /// All of the <see cref="CargoProductPrototype.Group"/>s that are supported.
     /// </summary>
