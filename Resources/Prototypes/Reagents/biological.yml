@@ -144,7 +144,7 @@
   name: reagent-name-insect-blood
   group: Biological
   desc: reagent-desc-insect-blood
-  flavor: salty
+  flavor: salty # CorvaxGoob
   color: "#808A51"
   recognizable: true
   physicalDesc: reagent-physical-desc-slimy
