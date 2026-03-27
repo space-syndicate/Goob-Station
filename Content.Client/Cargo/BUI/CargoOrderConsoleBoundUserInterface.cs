@@ -83,11 +83,6 @@ namespace Content.Client.Cargo.BUI
 
             var spriteSystem = EntMan.System<SpriteSystem>();
 
-            // CorvaxGoob-CargoFeatures-Start
-            var accessReader = EntMan.System<AccessReaderSystem>();
-            var idCardSystem = EntMan.System<SharedIdCardSystem>();
-            // CorvaxGoob-CargoFeatures-End
-
             var dependencies = IoCManager.Instance!;
             _menu = new CargoConsoleMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
             var localPlayer = dependencies.Resolve<IPlayerManager>().LocalEntity;
@@ -117,29 +112,17 @@ namespace Content.Client.Cargo.BUI
                 if (row.MainButton.ToolTip != null)
                     description.AddText(row.MainButton.ToolTip);
 
-                // CorvaxGoob-CargoFeatures-Start : Пытаемся найти любую айди карту в слотах и использовать данные оттуда, либо напрямую берём с сущности
-                string requester = string.Empty;
-                if (EntMan.EntityExists(localPlayer))
-                    if (accessReader.FindAccessItemsInventory(localPlayer.Value, out var items))
-                        foreach (var item in items)
-                        {
-                            if (idCardSystem.TryGetIdCard(item, out var idCard))
-                                requester = Loc.GetString("cargo-console-menu-order-requester-format", ("name", idCard.Comp.FullName ?? ""), ("job", idCard.Comp.JobTitle ?? idCard.Comp.LocalizedJobTitle ?? "")); // Сдеать локаль ёпта
-                        }
-                    else
-                        requester = Identity.Name(localPlayer.Value, EntMan);
-                // CorvaxGoob-CargoFeatures-End
-
                 _orderMenu.Description.SetMessage(description);
                 _product = row.Product;
                 _orderMenu.ProductName.Text = row.ProductName.Text;
                 _orderMenu.PointCost.Text = row.PointCost.Text;
-                _orderMenu.Requester.Text = requester; // CorvaxGoob-CargoFeatures
                 _orderMenu.Amount.Value = 1;
 
                 // CorvaxGoob-CargoFeatures-Start
                 if (EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
                 {
+                    _orderMenu.Requester.Text = localPlayer.HasValue ? _cargoSystem.GenerateRequesterName((Owner, orderConsole), localPlayer.Value) : string.Empty;
+
                     _orderMenu.ToggleDepartmentSecureCrate.Text = Loc.GetString("cargo-console-secure-order-checkbox", ("cost", orderConsole.SecureOrderCost));
 
                     if (_product is not null && _protoManager.TryIndex<EntityPrototype>(_product.Product, out var cargoProductEntPrototype))
