@@ -791,7 +791,7 @@
     sprite: Clothing/Belt/syndieholster.rsi
     slots:
     - belt
-    - neck
+    - neck # corvaxgoob
   - type: Item
     size: Ginormous
   # CorvaxGoob - shoulder holster neck slot start
