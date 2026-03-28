@@ -98,7 +98,7 @@ marking-VitiligoRLeg = Витилиго, правая нога [Акила]
 marking-VitiligoLLeg = Витилиго, левая нога [Акила]
 
 marking-Lipstick = Помада [Акила]
-marking-Wrinkles = Веснушки [Акила]
+marking-Freckles = Веснушки [Акила]
 marking-Blush = Румянец [Акила]
 
 marking-LizardJawCyborg = Челюсть киборга [Акила]

@@ -415,15 +415,15 @@
 
 
 - type: marking
-  id: Wrinkles
+  id: Freckles
   bodyPart: Head
   markingCategory: Head
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Dwarf]
   sprites:
-    - sprite: Imperial/Aquila/Customization/Markings/wrinkles.rsi
-      state: wrinkles
+    - sprite: Imperial/Aquila/Customization/Markings/freckles.rsi
+      state: freckles
 
 - type: marking
   id: Blush
