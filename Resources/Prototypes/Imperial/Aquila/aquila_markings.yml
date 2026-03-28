@@ -446,32 +446,32 @@
       state: lipstick
 
 
-- type: marking
-  id: LizardTailCyborg
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
-  sprites:
-  - sprite: Imperial\Aquila\Customization\Markings\reptilian_cyborg_parts.rsi
-    state: tail_cyborg
+# - type: marking
+#   id: LizardTailCyborg
+#   bodyPart: Tail
+#   markingCategory: Tail
+#   speciesRestriction: [Reptilian]
+#   sprites:
+#   - sprite: Imperial\Aquila\Customization\Markings\reptilian_cyborg_parts.rsi
+#     state: tail_cyborg
 
-- type: marking
-  id: LizardTailCyborgAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
-  sprites:
-    - sprite: Imperial\Aquila\Customization\Markings\reptilian_cyborg_parts.rsi
-      state: tail_cyborg_wagging
+# - type: marking
+#   id: LizardTailCyborgAnimated
+#   bodyPart: Tail
+#   markingCategory: Tail
+#   speciesRestriction: []
+#   sprites:
+#     - sprite: Imperial\Aquila\Customization\Markings\reptilian_cyborg_parts.rsi
+#       state: tail_cyborg_wagging
 
-- type: marking
-  id: LizardJawCyborg
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Reptilian]
-  sprites:
-  - sprite: Imperial\Aquila\Customization\Markings\headaugs_reptilian.rsi
-    state: iron_jaw_reptilian
+# - type: marking
+#   id: LizardJawCyborg
+#   bodyPart: Head
+#   markingCategory: Head
+#   speciesRestriction: [Reptilian]
+#   sprites:
+#   - sprite: Imperial\Aquila\Customization\Markings\headaugs_reptilian.rsi
+#     state: iron_jaw_reptilian
 
 
 - type: marking
