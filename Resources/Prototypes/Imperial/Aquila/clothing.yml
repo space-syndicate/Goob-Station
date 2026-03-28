@@ -137,3 +137,604 @@
     sprite: Imperial/Aquila/Clothing/Neck/janedoe.rsi
   - type: Clothing
     sprite: Imperial/Aquila/Clothing/Neck/janedoe.rsi
+
+# INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtWhiteDressSweater
+  name: white dress sweater
+  description: For elegant women who likes cotton
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/whitesweater.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/whitesweater.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBlackDressVelvet
+  name: black velvet dress 
+  description: For elegant women who likes velvet
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/blackdress.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/blackdress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitKatanaRed
+  name: red samurai's kimono
+  description: War crimes! Now comes in red
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/katana.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/katana.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMedievalStyledJacket
+  name: medieval styled jacket
+  description: Peak of fashion circa 1500 years ago
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/jacket.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/jacket.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtRevealingDress
+  name: revealing dress
+  description: Contains a lot of detailes, yet barely covers skin
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/whitedress.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/whitedress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMedievalStyledCostume
+  name: medieval styled costume
+  description: uh i don't know tbh i hope nobody see this
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/costume.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/costume.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitJustice
+  name: justice's costume
+  description: A costume only awesome can wear!
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/justice.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/justice.rsi
+  
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMalina
+  name: malina's costume
+  description: Great, more braindead idiots...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/malina.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/malina.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHelltaker
+  name: one hell of a suit
+  description: Why there is no Helltaker description in a freaking wiki wth
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/suit.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformColorfulGildedClownCostume
+  name: colorful gilded clown costume
+  description: An expensive court jester's costume, painted with vibrant colors and trimmed with real gold. With it, no one will be able to take their eyes off you on stage.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/clownSuit.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/clownSuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMonochromeMimeSuit
+  name: monochrome mime suit
+  description: A gilded mime costume, complete with gloves, a cap, and a mask. Now you can mirror both sides of a coin.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Uniforms/mimesuit.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Uniforms/mimesuit.rsi
+
+# NECK
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckBlackHood
+  name: black hood
+  description: A dark, hooded cloak capable of concealing or giving a terrifying appearance to anyone who wears it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Neck/blackhood.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Neck/blackhood.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadBlackCapeHood
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckBlueShieldCapeAlt
+  name: blue shield cape alt
+  description: For those who wants to be different among different
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Neck/BScape.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Neck/BScape.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckJustice
+  name: justice's jacket
+  description: Looks awesome, even when not worn intended way
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Neck/justice.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Neck/justice.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckDante
+  name: Dante's scarf
+  description: Makes you uncontrolably dance
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Neck/dante.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Neck/dante.rsi
+
+# HAND
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandWhiteGlovesSpecial
+  name: White gloves special
+  description: Makes you not feel that naked
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Hands/whitegloves.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Hands/whitegloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandHelltakerGloves
+  name: one hell of the gloves
+  description: Will help you even in hell. Flammable.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Hands/hellgloves.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Hands/hellgloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandJustice
+  name: justice's gloves
+  description: 'There is something written on them: "HPJ"'
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Hands/justicegloves.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Hands/justicegloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandDante
+  name: dante's gloves
+  description: Your portal-opening days are over...
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandMonochromeMimeGloves
+  name: gilded monochrome mime gloves
+  description: The mime's black and white gloves, trimmed with gold, emphasize his status.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+
+# OUTERCLOTHING
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCloakOfFutureN
+  name: trench coat from future
+  description: A dark, short-sleeved trench coat from the near future with an iridescent "N" etched on the back.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/cloakoffutureN.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/cloakoffutureN.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCloakOfFutureS
+  name: trench coat from future
+  description: A dark, short-sleeved trench coat from the near future with an iridescent "S" etched on the back.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/cloakoffutureS.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/cloakoffutureS.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterWhiteCorset
+  name: white corset
+  description: Keeps your spine straight, keeps their eyes on you
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/whitecorset.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/whitecorset.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterBlackCorset
+  name: black corset
+  description: Keeps your spine straight, keeps their eyes on you
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/blackcorset.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/blackcorset.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterShark
+  name: shark hoodie
+  description: Rawr!
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/shark.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/shark.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadShark
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterRichChapel
+  name: rich chapel cloak
+  description: God's favorite child
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/chapelRich.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/chapelRich.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterAquamarine
+  name: aquamarine sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/aquamarine.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/aquamarine.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterBlack
+  name: black sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/black.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/black.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterBlue
+  name: blue sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/blue.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/blue.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterDarkblue
+  name: dark blue sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/darkblue.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/darkblue.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterDarkgreen
+  name: dark green sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/darkgreen.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/darkgreen.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterGreen
+  name: green sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/green.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/green.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterGrey
+  name: grey sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/grey.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/grey.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterOrange
+  name: orange sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/orange.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/orange.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterPink
+  name: pink sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/pink.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/pink.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterRed
+  name: red sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/red.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/red.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterViolet
+  name: violet sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/violet.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/violet.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterWhite
+  name: white sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/white.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/white.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSweaterYellow
+  name: yellow sweater
+  description: Wool warm sweater
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/yellow.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/yellow.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterDanteCape
+  name: Dante's cape
+  description: Smells like pizza
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/OuterClothing/dante.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/OuterClothing/dante.rsi
+
+# HEAD
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatDante
+  name: dante's hat
+  description: Jackpot!
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/dante.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/dante.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadThornedCrown
+  name: crown of thorns
+  description: The crown of thorns, which has since ancient times been a symbol of the torment and suffering that follows self-sacrifice. Its needles are piercing, but the awareness of sin is far more painful
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/thornedcrown.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/thornedcrown.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadShark
+  name: shark hood
+  description: Nom!
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/shark.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/shark.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBlackCapeHood
+  name: dark hood
+  description: a dark hood from an equally dark cloak wrapped around your body.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/blackcapehood.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/blackcapehood.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBlackHatAquila
+  name: black hat
+  description: They can't see your eyes
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/blackhat.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/blackhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadJustABlueCap
+  name: blue cap
+  description: NT issued cap for everyone!
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/cap.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadRedHatAquila
+  name: red cap
+  description: Gives you unwanted attention
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/red_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/red_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadColorfulJestersHat
+  name: colorful jester's hat
+  description: A playful, colorful jester's cap, trimmed with gold. The sound of its bells will captivate anyone who hears it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/clownHat.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/clownHat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadMonochromeMimeHat
+  name: monochrome gilded mime hat
+  description: A black and white mime hat decorated with gold and jingling bells.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Head/mimehat.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Head/mimehat.rsi
+
+# BOOTS
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesKatanaRed
+  name: red samurai boots
+  description: with a quiet gait
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Shoes/katana.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Shoes/katana.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesJestersBoots
+  name: jester's boots
+  description: Comfortable court jester's boots to keep your feet from getting tired even during the longest performances and constant dancing to music.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Shoes/clownBoots.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Shoes/clownBoots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesMonocromeMimeBoots
+  name: monochrome mime boots
+  description: The mime's boots painted in contrasting colours, reflect the essence of his art.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Shoes/mimeBoots.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Shoes/mimeBoots.rsi
+
+# MASK
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskMonocromeMimeMask
+  name: monochrome mime mask
+  description: A black-and-white mime mask with a wicked yet captivating smile. Each side reflects a different state of the actor.
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Clothing/Mask/mimemask.rsi
+  - type: Clothing
+    sprite: Imperial/Aquila/Clothing/Mask/mimemask.rsi

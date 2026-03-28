@@ -18,6 +18,10 @@
     {
       "name": "allmier_tattoo_rarm",
       "directions": 4
+    },
+    {
+      "name": "snake_tattoo",
+      "directions": 4
     }
   ]
 }

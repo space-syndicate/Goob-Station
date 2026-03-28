@@ -20,3 +20,128 @@ ent-ClothingOuterCoatJaneDoe = куртка мыши тирена
     .desc = Я не ожидала увидеть тебя в такое время.
 ent-ClothingNeckJaneDoeTail = хвост мыши тирена
     .desc = Я не имела в виду ничего особенного, но на самом деле...
+
+ent-ClothingUniformJumpskirtWhiteDressSweater = Белое хлопковое платье
+    .desc = Для элегантных женщин, любящих хлопок
+ent-ClothingUniformJumpskirtBlackDressVelvet = Черноё бархатное платье
+    .desc = Для элегантных женщин, любящих бархат
+
+ent-ClothingUniformJumpsuitKatanaRed = Красное самурайское кимоно
+    .desc = Военные преступления! Теперь в красном цвете
+ent-ClothingShoesKatanaRed = Ботинки красного самурая
+    .desc = Тихой поступью...
+
+ent-ClothingUniformJumpsuitMedievalStyledJacket = Рубаха аля средневековье
+    .desc = Было вершиной моды примерно полторы тысячи лет назад
+ent-ClothingUniformJumpsuitMedievalStyledCostume = Костюм аля средневековье
+    .desc = Эх... Я думал, что порталы - самая мерзкая вещь на свете. А нет, налоги хуже.
+
+ent-ClothingUniformJumpsuitJustice = Костюм Джастис
+    .desc = Костюм для потрясных!
+ent-ClothingNeckJustice = Жилетка Джастис
+    .desc = Выглядит потрясно, даже если носится не как положено
+ent-ClothingHandJustice = Перчатки Джастис
+    .desc = На них какая-то надпись: "HPJ"
+
+ent-ClothingUniformJumpsuitMalina = Костюм Малины
+    .desc = Отлично, ещё больше тупорылых идиотов...
+
+ent-ClothingUniformJumpsuitHelltaker = Адский костюм
+    .desc = Когда дело касается девушек-демонов, нет такой цены, которая была бы слишком высока.
+ent-ClothingHandHelltakerGloves = Адские перчатки
+    .desc = Помогут даже в аду. Огнеопасны.
+
+
+ent-ClothingNeckBlueShieldCapeAlt = Алтернативный плащ Синего Щита
+    .desc = Для тех кто хочет выделятся среди тех, кто выделяется
+
+ent-ClothingNeckDante = Шарф демоноборца
+    .desc = Заставляет бесконтрольно танцевать
+ent-ClothingOuterDanteCape = Плащ демоноборца
+    .desc = Пахнет пиццей
+ent-ClothingHeadHatDante = Шляпа демоноборца
+    .desc = При виде такой шляпы даже дьявол может заплакать
+ent-ClothingHandDante = Перчатки демоноборца
+    .desc = Твои портальные деньки окончены...
+
+ent-ClothingUniformJumpskirtRevealingDress = Открытое платье
+    .desc = Содержит внушительное количество деталий, хотя все равно не особо прикрывает тело
+ent-ClothingHandWhiteGlovesSpecial = Особые белые перчатки
+    .desc = В них чувствуешь себя не настолько нагишом
+
+ent-ClothingOuterSweaterAquamarine = Аквамариновый свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterBlack = Чёрный свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterBlue = Синий свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterDarkblue = Тёмно-синий свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterDarkgreen = Тёмно-зелёный свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterGreen = Зелёный свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterGrey = Серый свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterOrange = Оранжевый свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterPink = Розовый свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterRed = Красный свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterViolet = Фиолетовый свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterWhite = Белый свитер
+    .desc = Шерстяной тёплый свитер
+ent-ClothingOuterSweaterYellow = Жёлтый свитер
+    .desc = Шерстяной тёплый свитер
+
+ent-ClothingHeadBlackHatAquila = Черная шляпа
+    .desc =  Они не увидят твоих глаз
+ent-ClothingHeadJustABlueCap = Синий кепарик
+    .desc =  Кепка от НТ для каждого!
+ent-ClothingHeadRedHatAquila = Красная шляпа
+    .desc = Привлекает к тебе незаслуженное внимание
+
+ent-ClothingOuterRichChapel = Дорогая роба священника
+    .desc = Любимейшее дитя Бога
+
+ent-ClothingOuterWhiteCorset = Белый корсет
+    .desc = Удерживает твою осанку, удерживает их взгляды
+ent-ClothingOuterBlackCorset = Чёрный корсет
+    .desc = Удерживает твою осанку, удерживает их взгляды
+
+ent-ClothingOuterShark = Худи акулы
+    .desc = Равр!
+ent-ClothingHeadShark = Капюшон акулы
+    .desc = Кусь!
+
+ent-ClothingOuterCloakOfFutureN = Тренч из будущего
+    .desc = Темное пальто с короткими рукавами, с переливающейся "N", вышитей на спине
+ent-ClothingOuterCloakOfFutureS = Тренч из будущего
+    .desc = Темное пальто с короткими рукавами, с переливающейся "S", вышитей на спине
+
+ent-ClothingHeadThornedCrown = Терновый венок
+    .desc = С давних времен терновый венок был символом мучений и страданий, за чем после следует самопожертвование. Его шипы остры, но осведомленность о грехе куда больнее.
+ent-ClothingHeadBlackCapeHood = Тёмный капюшон
+    .desc = Тёмный капюшон от не менее тёмной мантии обернутой вокруг тела
+ent-ClothingHeadBlackHood = Тёмная мантия
+    .desc = Тёмная мантия с капюшоном, которая способна утаить или придать устрашающий вид всякому носящему её.
+
+ent-ClothingHeadColorfulJestersHat = Цветастая шутовская шляпа
+    .desc = Цветная и игривая шутовская шляпа с золотой отделкой. Звук её колокольчиков очаруют любого, кто его услышит.
+ent-ClothingShoesJestersBoots = Ботинки шута
+    .desc = Удобные ботинки придворного шута, позволяют держать тебя на ногах даже во время самых долгих выступлений и постоянных танцов.
+ent-ClothingUniformColorfulGildedClownCostume = Цветастый позолоченный костюм клоуна
+    .desc = Дорогой костюм придворного шута, крашеный в яркие цвета с инкрустированным в него золотом. С ним, никто не сможет оторвать от вас глаз на сцене.
+
+ent-ClothingShoesMonocromeMimeBoots = Монохромные ботинки мима
+    .desc = Ботинки мима, крашенные в контрастные цвета, отражают сущность его творчества
+ent-ClothingHandMonochromeMimeGloves = Монохромные позолоченные перчатки мима
+    .desc = Белая и черная перчатки, инкрустированные золотом, подчеркивающие статус
+ent-ClothingHeadMonochromeMimeHat = Монохромная позолоченная шляпа мима
+    .desc = Чёрно-белая шляпа мима украшенная золотом и бубенчиками.
+ent-ClothingMaskMonocromeMimeMask = Монохромная маска мима
+    .desc = Чёрно-белая маска мима с жуткой, но завораживающей улыбкой. Каждая сторона маски отражает различное состояние актера.
+ent-ClothingUniformMonochromeMimeSuit = Монохромный костюм мима
+    .desc = Инкрустированный золотом костюм мима, который носится с перчатками, шляпой и маской из комплекта. Теперь, в тебе отражаются обе стороны одной медали.

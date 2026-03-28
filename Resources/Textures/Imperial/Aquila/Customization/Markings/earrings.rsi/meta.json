@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "big_earrings",
+      "directions": 4
+    },
+    {
+      "name": "brow_through",
+      "directions": 4
+    },
+    {
+      "name": "cheeks_trough",
+      "directions": 4
+    },
+    {
+      "name": "many_earrings",
+      "directions": 4
+    },
+    {
+      "name": "small_earrings",
+      "directions": 4
+    }
+  ]
+}

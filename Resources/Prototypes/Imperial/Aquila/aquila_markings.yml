@@ -2,7 +2,7 @@
   id: NewAndroidTorso
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sprites:
   - sprite: Imperial/Aquila/Customization/Markings/new_android_torso.rsi
     state: new_android_torso
@@ -11,7 +11,7 @@
   id: OldAndroidTorso
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   forcedColoring: true
   followSkinColor: false
   coloring:
@@ -26,7 +26,7 @@
   id: CyborgTorsoM
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sexRestriction: [Male]
   forcedColoring: true
   followSkinColor: false
@@ -42,7 +42,7 @@
   id: CyborgTorsoW
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sexRestriction: [Female]
   forcedColoring: true
   followSkinColor: false
@@ -58,7 +58,7 @@
   id: CyborgRLeg
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   forcedColoring: true
   followSkinColor: false
   coloring:
@@ -73,7 +73,7 @@
   id: CyborgLLeg
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   forcedColoring: true
   followSkinColor: false
   coloring:
@@ -88,7 +88,7 @@
   id: CyborgRArm
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   forcedColoring: true
   followSkinColor: false
   coloring:
@@ -103,7 +103,7 @@
   id: CyborgLArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   forcedColoring: true
   followSkinColor: false
   coloring:
@@ -118,7 +118,7 @@
   id: JointRArm
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -131,7 +131,7 @@
   id: JointLArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -144,7 +144,7 @@
   id: JointRLeg
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -157,7 +157,7 @@
   id: JointLLeg
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -170,7 +170,7 @@
   id: JointRHand
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -183,7 +183,7 @@
   id: JointLHand
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -196,7 +196,7 @@
   id: JointLShoulder
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sexRestriction: [Male]
   coloring:
     default:
@@ -210,7 +210,7 @@
   id: JointRShoulder
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sexRestriction: [Male]
   coloring:
     default:
@@ -224,7 +224,7 @@
   id: JointLShoulderW
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sexRestriction: [Female]
   coloring:
     default:
@@ -238,7 +238,7 @@
   id: JointRShoulderW
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   sexRestriction: [Female]
   coloring:
     default:
@@ -263,11 +263,10 @@
     state: angry_eyes
 
 - type: marking
-  id: AnimeWhites
+  id: AnimeEyes
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Human, Dwarf]
-  forcedColoring: true
+  speciesRestriction: [Human, Dwarf, Reptilian]
   coloring:
     default:
       type: null
@@ -275,17 +274,6 @@
   sprites:
   - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
     state: anime_whites
-
-- type: marking
-  id: AnimeEyes
-  bodyPart: Eyes
-  markingCategory: Overlay
-  speciesRestriction: [Human, Dwarf]
-  coloring:
-    default:
-      type: null
-      fallbackColor: '#21DC21'
-  sprites:
   - sprite: Imperial/Aquila/Customization/Markings/eyes.rsi
     state: anime_eyes
 
@@ -307,8 +295,7 @@
   id: TiredEyes
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Human, Dwarf]
-  forcedColoring: true
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   coloring:
     default:
       type: null
@@ -321,7 +308,7 @@
   id: NoEyes
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction: [Human, Dwarf, Reptilian, Moth]
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -354,8 +341,6 @@
   sprites:
   - sprite: Imperial/Aquila/Customization/Markings/aquila_tattoo.rsi
     state: allmier_tattoo_larm
-
-
 
 - type: marking
   id: VitiligoHead
@@ -427,3 +412,118 @@
   sprites:
     - sprite: Imperial/Aquila/Customization/Markings/vitiligo.rsi
       state: vitiligo_lleg
+
+
+- type: marking
+  id: Wrinkles
+  bodyPart: Head
+  markingCategory: Head
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/wrinkles.rsi
+      state: wrinkles
+
+- type: marking
+  id: Blush
+  bodyPart: Head
+  markingCategory: Head
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/blush.rsi
+      state: blush
+
+- type: marking
+  id: Lipstick
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/lipstick.rsi
+      state: lipstick
+
+
+- type: marking
+  id: LizardTailCyborg
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Imperial\Aquila\Customization\Markings\reptilian_cyborg_parts.rsi
+    state: tail_cyborg
+
+- type: marking
+  id: LizardTailCyborgAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Imperial\Aquila\Customization\Markings\reptilian_cyborg_parts.rsi
+      state: tail_cyborg_wagging
+
+- type: marking
+  id: LizardJawCyborg
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Imperial\Aquila\Customization\Markings\headaugs_reptilian.rsi
+    state: iron_jaw_reptilian
+
+
+- type: marking
+  id: SnakeTattoo
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+  - sprite: Imperial/Aquila/Customization/Markings/aquila_tattoo.rsi
+    state: snake_tattoo
+
+- type: marking
+  id: BigEarrings
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/earrings.rsi
+      state: big_earrings
+
+- type: marking
+  id: BrowTrough
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/earrings.rsi
+      state: brow_through
+
+- type: marking
+  id: CheeksTrough
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/earrings.rsi
+      state: cheeks_trough
+
+- type: marking
+  id: ManyEarrings
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/earrings.rsi
+      state: many_earrings
+
+- type: marking
+  id: SmallEarrings
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/earrings.rsi
+      state: small_earrings

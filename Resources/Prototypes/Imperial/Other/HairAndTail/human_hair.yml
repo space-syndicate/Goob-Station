@@ -777,3 +777,11 @@
   sprites:
     - sprite: Imperial/Other/HairAndTail/human_hair.rsi
       state: undercutright_gradient
+
+- type: marking
+  id: HumanHairShortBraid
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/human_hair.rsi
+      state: shortbraid

@@ -12,6 +12,58 @@
       ClothingShoesBootsJaneDoe: 1
       ClothingOuterCoatJaneDoe: 1
       ClothingNeckJaneDoeTail: 1
+      ClothingUniformJumpskirtWhiteDressSweater: 2
+      ClothingUniformJumpskirtBlackDressVelvet: 2
+      ClothingUniformJumpsuitKatanaRed: 1
+      ClothingShoesKatanaRed: 1
+      ClothingUniformJumpsuitMedievalStyledJacket: 2
+      ClothingUniformJumpsuitMedievalStyledCostume: 2
+      ClothingUniformJumpsuitJustice: 1
+      ClothingNeckJustice: 1
+      ClothingHandJustice: 1
+      ClothingUniformJumpsuitMalina: 1
+      ClothingUniformJumpsuitHelltaker: 1
+      ClothingHandHelltakerGloves: 1
+      ClothingNeckBlueShieldCapeAlt: 1
+      ClothingNeckDante: 1
+      ClothingOuterDanteCape: 1
+      ClothingHeadHatDante: 1
+      ClothingHandDante: 1
+      ClothingUniformJumpskirtRevealingDress: 2
+      ClothingHandWhiteGlovesSpecial: 2
+      ClothingOuterSweaterAquamarine: 2
+      ClothingOuterSweaterBlack: 2
+      ClothingOuterSweaterBlue: 2
+      ClothingOuterSweaterDarkblue: 2
+      ClothingOuterSweaterDarkgreen: 2
+      ClothingOuterSweaterGreen: 2
+      ClothingOuterSweaterGrey: 2
+      ClothingOuterSweaterOrange: 2
+      ClothingOuterSweaterPink: 2
+      ClothingOuterSweaterRed: 2
+      ClothingOuterSweaterViolet: 2
+      ClothingOuterSweaterWhite: 2
+      ClothingOuterSweaterYellow: 2
+      ClothingHeadBlackHatAquila: 2
+      ClothingHeadJustABlueCap: 2
+      ClothingHeadRedHatAquila: 2
+      ClothingOuterRichChapel: 1
+      ClothingOuterWhiteCorset: 2
+      ClothingOuterBlackCorset: 2
+      ClothingOuterShark: 1
+      ClothingOuterCloakOfFutureN: 1
+      ClothingOuterCloakOfFutureS: 1
+      ClothingHeadThornedCrown: 2
+      ClothingHeadBlackHood: 2
+      ClothingHeadColorfulJestersHat: 1
+      ClothingShoesJestersBoots: 1
+      ClothingUniformColorfulGildedClownCostume: 1
+      ClothingShoesMonocromeMimeBoots: 1
+      ClothingHandMonochromeMimeGloves: 1
+      ClothingHeadMonochromeMimeHat: 1
+      ClothingMaskMonocromeMimeMask: 1
+      ClothingUniformMonochromeMimeSuit: 1
+
 
 - type: localizedDataset
   id: AquilaMateAdv
