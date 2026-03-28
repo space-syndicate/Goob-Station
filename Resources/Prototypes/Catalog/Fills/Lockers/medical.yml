@@ -43,10 +43,6 @@
   id: LockerFillMedicalDoctor
   table: !type:AllSelector
     children:
-    # imperial space: added hypospray for doctors. Start
-    - id: StandardHypospray
-      prob: 1.0
-   # imperial space: added hypospray for doctors. End
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
     - id: JetInjector

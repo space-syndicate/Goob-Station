@@ -298,6 +298,11 @@
   - type: StaminaResistance
     damageCoefficient: 0.85
   # Imperial Space Stamina Resistance End
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9

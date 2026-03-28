@@ -52,7 +52,6 @@
     - id: DeauthorizationFragmentStation
     - id: PinpointerNuclearStationFragment
 #Imperial Space Energy Core end
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
     - id: OrganSkeletonPersonHead # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition

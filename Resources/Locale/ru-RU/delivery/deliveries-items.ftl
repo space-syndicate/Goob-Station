@@ -28,5 +28,8 @@ ent-CargoMailTeleporter = почтовый телепортер
 ent-MailTeleporterMachineCircuitboard = почтовый телепортер (машинная плата)
     .desc = Машинная печатная плата для почтового телепорта.
 
+ent-MailCart = почтовая тележка
+    .desc = Доставляй посылки эффективно и со стилем.
+
 ent-PackageDelivery = посылка
 ent-LetterDelivery = письмо

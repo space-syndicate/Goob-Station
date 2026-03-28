@@ -41,6 +41,6 @@
     breakoutTime: 6
     walkSpeed: 0.5
     sprintSpeed: 0.5
-    staminaDamage: 0
+    staminaDamage: 70
     canThrowTrigger: true
     canMoveBreakout: true
