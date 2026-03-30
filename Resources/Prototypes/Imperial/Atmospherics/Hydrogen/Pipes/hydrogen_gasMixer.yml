@@ -1,0 +1,114 @@
+- type: entity
+  parent: GasPipeSansLayers
+  id: HydrogenGasMixer
+  name: hydrogen gas mixer
+  description: Very useful for mixing gases.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: AtmosDevice
+    - type: Tag
+      tags:
+        - Unstackable
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
+      blockInteractions: false
+      blockAmbience: false
+    - type: Sprite
+      sprite: /Textures/Imperial/Gases/Hydrogen/Pipes/gasmixer.rsi
+      layers:
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeTrinaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: gasMixer
+          map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.FilterVisuals.Enabled:
+          enabled:
+            True: { state: gasMixerOn }
+            False: { state: gasMixer }
+    - type: PipeColorVisuals
+    - type: UserInterface
+      interfaces:
+        enum.HydrogenGasMixerUiKey.Key:
+          type: HydrogenMixerBoundUserInterface
+    - type: HydrogenGasMixer
+      enabled: false
+      inletOne: inlet
+      inletTwo: filter
+    - type: Flippable
+      mirrorEntity: HydrogenGasMixerFlipped
+    - type: Construction
+      graph: GasHydrogenPipes
+      node: hydrogenMixer
+    - type: AmbientSound
+      enabled: false
+      volume: -9
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/gas_hiss.ogg
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasFlowRegulator
+    - type: GuideHelp
+      guides:
+      - MixingAndFiltering
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: North
+        filter:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: West
+        outlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+
+- type: entity
+  parent: HydrogenGasMixer
+  id: HydrogenGasMixerFlipped
+  name: hydrogen gas mixer
+  suffix: Flipped
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Gases/Hydrogen/Pipes/gasmixer.rsi
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixerF
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FilterVisuals.Enabled:
+        enabled:
+          True: { state: gasMixerFOn }
+          False: { state: gasMixerF }
+  - type: PipeColorVisuals
+  - type: Flippable
+    mirrorEntity: HydrogenGasMixer
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+      filter:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: West
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North
+  - type: Construction
+    node: hydrogenMixerFlipped
