@@ -2,11 +2,11 @@
   id: HydrogenSheet
   impact: Low
   quantized: true
-  minTemp: 292
+  minTemp: 200
   reactants:
     Hydrogen:
       amount: 5
-    Frezon:
+    Ozonium:
       amount: 5
   effects:
     - !type:SpawnEntity

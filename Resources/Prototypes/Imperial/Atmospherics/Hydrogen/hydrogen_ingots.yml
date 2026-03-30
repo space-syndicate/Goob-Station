@@ -55,6 +55,9 @@
         - ReagentId: Tritium
           Quantity: 5
         canReact: false
+  - type: Tag
+    tags:
+      - Sheet
 
 - type: material
   id: Hydrogen
@@ -62,7 +65,7 @@
   name: materials-hydrogen
   icon: { sprite: /Textures/Imperial/Gases/Hydrogen/HydrogenIngots.rsi, state: hydrogen }
   color: "#0e0e4d"
-  price: 0.50 # $50 for 1 unit
+  price: 0.90 # $90 for 1 unit
 
 - type: entity
   parent: SheetHydrogen
