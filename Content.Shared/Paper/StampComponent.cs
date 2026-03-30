@@ -65,25 +65,25 @@ public partial struct StampDisplayInfo
     public Color StampedColor;
 };
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // CorvaxGoob-ChameleonStamp : добавлено серверно-клиенсткое взаимодействие
 public sealed partial class StampComponent : Component
 {
     /// <summary>
     ///     The loc string name that will be stamped to the piece of paper on examine.
     /// </summary>
-    [DataField("stampedName"), AutoNetworkedField]
+    [DataField("stampedName"), AutoNetworkedField] // CorvaxGoob-ChameleonStamp : AutoNetworkedField
     public string StampedName { get; set; } = "stamp-component-stamped-name-default";
 
     /// <summary>
     ///     The sprite state of the stamp to display on the paper from paper Sprite path.
     /// </summary>
-    [DataField("stampState"), AutoNetworkedField]
+    [DataField("stampState"), AutoNetworkedField] // CorvaxGoob-ChameleonStamp : AutoNetworkedField
     public string StampState { get; set; } = "paper_stamp-generic";
 
     /// <summary>
     /// The color of the ink used by the stamp in UIs
     /// </summary>
-    [DataField("stampedColor"), AutoNetworkedField]
+    [DataField("stampedColor"), AutoNetworkedField] // CorvaxGoob-ChameleonStamp : AutoNetworkedField
     public Color StampedColor = Color.FromHex("#BB3232"); // StyleNano.DangerousRedFore
 
     /// <summary>

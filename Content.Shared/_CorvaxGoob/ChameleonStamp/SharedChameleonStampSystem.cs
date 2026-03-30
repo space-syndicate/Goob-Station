@@ -10,11 +10,6 @@ public abstract class SharedChameleonStampSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private List<ProtoId<EntityPrototype>> _stampsPresets = new();
-    public override void Initialize()
-    {
-        base.Initialize();
-
-    }
 
     protected void UpdatePresets()
     {

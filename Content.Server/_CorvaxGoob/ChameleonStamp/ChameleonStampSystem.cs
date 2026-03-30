@@ -16,6 +16,7 @@ public sealed partial class ChameleonStampSystem : SharedChameleonStampSystem
         base.Initialize();
 
         SubscribeLocalEvent<ChameleonStampComponent, ChameleonStampApplySettingsMessage>(OnApplySettings);
+
         UpdatePresets();
     }
 
