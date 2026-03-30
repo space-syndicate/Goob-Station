@@ -418,3 +418,12 @@
       orGroup: PlushieImi
 
 ### Имиринка Ирисова END
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieYanZuev
+  name: Yan Zuev
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/yanzuev.rsi
+    state: icon

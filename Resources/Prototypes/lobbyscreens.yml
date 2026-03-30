@@ -51,6 +51,6 @@
 #Imperial Space title screens
 
 - type: lobbyBackground
-  id: ImperialDefault
-  background: /Textures/Imperial/LobbyScreens/imperialDefault.jpg
+  id: aquilaMenuSpring
+  background: /Textures/Imperial/LobbyScreens/aquilaMenuSpring.png
 # imperial add-on end

@@ -394,6 +394,10 @@
     {
       "name": "undercutright_gradient",
       "directions": 4
+    },
+    {
+      "name": "shortbraid",
+      "directions": 4
     }
   ]
 }
