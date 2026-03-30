@@ -37,7 +37,7 @@
                     <RichTextLabel Text="{Loc 'ui-chameleon-stamp-state'}"/>
                     <OptionButton Name="StampStateOptionButton" Access="Public" HorizontalExpand="True" Margin="0 0"/>
                     
-                    <Button Name="ApplyButton" Text="Применить" SetWidth="150" Margin="0 5" Access="Public"/>
+                    <Button Name="ApplyButton" Text="{Loc 'ui-chameleon-stamp-apply-button'}" SetWidth="150" Margin="0 5" Access="Public"/>
                 </BoxContainer>
             </BoxContainer>
     </BoxContainer>

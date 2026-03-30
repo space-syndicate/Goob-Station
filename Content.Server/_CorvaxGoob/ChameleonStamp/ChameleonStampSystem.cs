@@ -1,14 +1,10 @@
 using Content.Shared._CorvaxGoob.ChameleonStamp;
 using Content.Shared.Paper;
-using Robust.Shared.Prototypes;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Content.Server._CorvaxGoob.ChameleonStamp;
 
 public sealed partial class ChameleonStampSystem : SharedChameleonStampSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public override void Initialize()

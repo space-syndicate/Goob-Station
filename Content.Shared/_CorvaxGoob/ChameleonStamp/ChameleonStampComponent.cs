@@ -14,6 +14,12 @@ public sealed partial class ChameleonStampComponent : Component
     public EntProtoId SelectedStampColorPrototype = "RubberStampApproved";
 
     [DataField, AutoNetworkedField]
+    public EntProtoId SelectedStampSpritePrototype = "RubberStampApproved";
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId SelectedStampStatePrototype = "RubberStampApproved";
+
+    [DataField, AutoNetworkedField]
     public Color? CustomStampColor = null;
 
     [DataField, AutoNetworkedField]
@@ -24,12 +30,6 @@ public sealed partial class ChameleonStampComponent : Component
 
     [DataField, AutoNetworkedField]
     public string? StampedName;
-
-    [DataField, AutoNetworkedField]
-    public EntProtoId SelectedStampSpritePrototype = "RubberStampApproved";
-
-    [DataField, AutoNetworkedField]
-    public EntProtoId SelectedStampStatePrototype = "RubberStampApproved";
 }
 
 [Serializable, NetSerializable]
