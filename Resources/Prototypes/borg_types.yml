@@ -182,6 +182,13 @@
 
   addComponents:
   # Imperial Space: add action. start
+  - type: CrewMonitoringConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
   - type: UserInterface
     interfaces:
       enum.BorgUiKey.Key:

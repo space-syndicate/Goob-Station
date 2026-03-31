@@ -1,0 +1,19 @@
+- type: entity
+  name: atmospheric ammo
+  parent: BaseItem
+  id: AtmosphericRCDAmmo
+  description: A cartridge of raw matter compacted by bluespace technology. Used in rapid construction devices.
+  components:
+  - type: AtmosphericRCDAmmo
+  - type: Sprite
+    sprite: Imperial/Gases/Tools/AtmosphericRCD/AtmosphericRCD.rsi
+    state: ammo
+  - type: Item
+    sprite: Imperial/Gases/Tools/AtmosphericRCD/AtmosphericRCD.rsi
+    heldPrefix: ammo
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
+  - type: StaticPrice
+    price: 120

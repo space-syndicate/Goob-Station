@@ -154,7 +154,9 @@
     - id: ClothingOuterSuitAtmosFire
     - id: ClothingHeadHelmetAtmosFire
     - id: GasAnalyzer
-    - id: MedkitOxygenFilled
+    - id: AtmosphericRCDAmmo # Imperial Atmos update start
+    - id: AtmosphericRCD
+    - id: ClothingHandsGlovesColorYellow # Imperial Atmos update end
     - id: HolofanProjector
     - id: RCD
     - id: RCDAmmo

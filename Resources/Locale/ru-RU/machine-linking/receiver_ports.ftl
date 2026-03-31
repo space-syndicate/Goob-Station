@@ -25,6 +25,9 @@ signal-port-description-close = Закрывает устройство.
 signal-port-name-doorbolt = Дверной болт
 signal-port-description-doorbolt = Запирает дверь при ВЫСОКОМ уровне.
 
+signal-port-name-trigger-receiver = Триггер
+signal-port-description-trigger-receiver = Запускает определенный механизм на устройстве.
+
 signal-port-name-trigger = Триггер
 signal-port-description-trigger = Запускает определенный механизм на устройстве.
 
