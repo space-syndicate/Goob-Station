@@ -321,6 +321,8 @@ namespace Content.Shared.Atmos
         public const float DeuteriumProductionMaxEfficiencyTemperature = 1400.15f;
         public const float DeuteriumProductionMaxCapacity = 7000f;
         public const float MinimumAntiNoblium = 5f;
+        public const float HydrogenMaxTransferRate = 650;
+        public const float HydrogenMaxOutputPressure = 9000;
         /// Imperial Imperial Atmos Update end
 
         /// <summary>

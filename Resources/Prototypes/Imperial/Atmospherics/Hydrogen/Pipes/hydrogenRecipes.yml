@@ -1,0 +1,95 @@
+- type: constructionGraph
+  id: GasHydrogenPipes
+  start: start
+  graph:
+  - node: start
+  - node: hydrogenMixer
+    entity: HydrogenGasMixer
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
+  - node: hydrogenMixerFlipped
+    entity: HydrogenGasMixerFlipped
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
+  - node: hydrogenFilter
+    entity: HydrogenGasFilter
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
+  - node: hydrogenFilterFlipped
+    entity: HydrogenGasFilterFlipped
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
+  - node: hydrogenPressurePump
+    entity: HydrogenGasPressurePump
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
+  - node: hydrogenVolumePump
+    entity: HydrogenGasVolumePump
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
