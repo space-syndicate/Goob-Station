@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxPacked
-  mapName: 'NTJU Пакет'
+  id: CorvaxDelta
+  mapName: 'NTTG Бокс'
   mapPath: /Maps/_CorvaxGoob/Stations/Packed/corvax_packed.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Пакет {1}'
+          mapNameTemplate: '{0} Бокс {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'JU'
+            prefixCreator: 'TG'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Packed/Shuttles/corvax_emergency_packed.yml
         - type: StationJobs

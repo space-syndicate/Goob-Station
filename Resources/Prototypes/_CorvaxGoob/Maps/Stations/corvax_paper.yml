@@ -1,5 +1,5 @@
 - type: gameMap
-  id: CorvaxPaper
+  id: CorvaxAwesome
   mapName: 'NTTG Пейпер'
   mapPath: /Maps/_CorvaxGoob/Stations/Paper/corvax_paper.yml
   maxRandomOffset: 0

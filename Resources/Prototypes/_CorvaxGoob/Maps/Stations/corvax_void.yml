@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxVoid
-  mapName: 'NTKF Войд'
+  id: CorvaxPilgrim
+  mapName: 'NTLPK Хлорис'
   mapPath: /Maps/_CorvaxGoob/Stations/Void/corvax_void.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Войд {1}'
+          mapNameTemplate: '{0} Хлорис {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'KF'
+            prefixCreator: 'LPK'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Void/Shuttles/corvax_emergency_void.yml
         - type: StationJobs

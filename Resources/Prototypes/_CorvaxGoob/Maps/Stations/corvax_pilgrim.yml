@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxPilgrim
-  mapName: 'NTTA Пилигрим'
+  id: CorvaxVoid
+  mapName: 'NGT Кластер'
   mapPath: /Maps/_CorvaxGoob/Stations/Pilgrim/corvax_pilgrim.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -10,10 +10,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Пилигрим {1}'
+          mapNameTemplate: '{0} Кластер {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'TA'
+            prefixCreator: 'KL'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Pilgrim/Shuttles/corvax_emergency_pilgrim.yml
         - type: StationJobs

@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxOutpost
-  mapName: 'NTKVA Аутпост'
+  id: CorvaxBagel
+  mapName: 'NTTN Ишимура'
   mapPath: /Maps/_CorvaxGoob/Stations/Outpost/corvax_outpost.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Аутпост {1}'
+          mapNameTemplate: '{0} Ишимура {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'KVA'
+            prefixCreator: 'TN'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Base/Shuttles/corvax_emergency_small.yml
         - type: StationJobs

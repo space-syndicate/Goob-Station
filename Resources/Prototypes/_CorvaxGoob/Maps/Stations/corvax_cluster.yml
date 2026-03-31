@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxCluster
-  mapName: 'NGT Кластер'
+  id: CorvaxAstra
+  mapName: 'NT14 Багель'
   mapPath: /Maps/_CorvaxGoob/Stations/Cluster/corvax_cluster.yml
   minPlayers: 0
   maxPlayers: 25
@@ -11,10 +11,10 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_cluster.yml
         - type: StationNameSetup
-          mapNameTemplate: '{0} Кластер {1}'
+          mapNameTemplate: '{0} Багель {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'KL'
+            prefixCreator: '14'
         - type: StationJobs
           availableJobs:
             #command

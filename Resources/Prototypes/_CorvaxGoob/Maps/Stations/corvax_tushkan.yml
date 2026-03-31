@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxTushkan
-  mapName: 'NTTA Тушканчик'
+  id: CorvaxBox
+  mapName: 'NTMT Астра'
   mapPath: /Maps/_CorvaxGoob/Stations/Tushkan/corvax_tushkan.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Тушканчик {1}'
+          mapNameTemplate: '{0} Астра {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'TA'
+            prefixCreator: 'MT'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Base/Shuttles/corvax_emergency_small.yml
         - type: StationJobs

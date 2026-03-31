@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxGlacier
-  mapName: 'NTDZX Гласир'
+  id: CorvaxOmega
+  mapName: 'NTJU Пакет'
   mapPath: /Maps/_CorvaxGoob/Stations/Glacier/corvax_glacier.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -10,10 +10,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Гласир {1}'
+          mapNameTemplate: '{0} Пакет {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'DZX'
+            prefixCreator: 'JU'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Glacier/Shuttles/corvax_emergency_glacier.yml
         - type: StationJobs
@@ -26,7 +26,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 4, 5 ]
-            ShaftMiner: [ 2, 2 ]            
+            ShaftMiner: [ 2, 2 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]

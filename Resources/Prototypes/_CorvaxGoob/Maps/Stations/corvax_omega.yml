@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxOmega
-  mapName: 'NTRK Омега'
+  id:  CorvaxGlacier
+  mapName: 'NTKVA Аутпост'
   mapPath: /Maps/_CorvaxGoob/Stations/Omega/corvax_omega.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Омега {1}'
+          mapNameTemplate: '{0} Аутпост {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'RK'
+            prefixCreator: 'KVA'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Omega/Shuttles/corvax_emergency_omega.yml
         - type: StationJobs

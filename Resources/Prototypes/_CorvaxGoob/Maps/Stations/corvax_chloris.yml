@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxChloris
-  mapName: 'NTLPK Хлорис'
+  id: CorvaxSilly
+  mapName: 'NTABK Силли'
   mapPath: /Maps/_CorvaxGoob/Stations/Chloris/corvax_chloris.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -10,10 +10,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Хлорис {1}'
+          mapNameTemplate: '{0} Силли {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'LPK'
+            prefixCreator: 'ABK'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Chloris/Shuttles/corvax_emergency_chloris.yml
         - type: StationJobs

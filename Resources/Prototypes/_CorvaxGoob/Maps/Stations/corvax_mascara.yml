@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxMascara
-  mapName: 'NTSX Маскара'
+  mapName: 'NTKF Войд'
   mapPath: /Maps/_CorvaxGoob/Stations/Mascara/corvax_mascara.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Маскара {1}'
+          mapNameTemplate: '{0} Войд {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'SX'
+            prefixCreator: 'KF'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Marathon/Shuttles/corvax_emergency_marathon.yml
         - type: StationJobs

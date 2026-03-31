@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxBagel
-  mapName: 'NT14 Багель'
+  id: CorvaxOutpost
+  mapName: 'NTDZX Гласир'
   mapPath: /Maps/_CorvaxGoob/Stations/Bagel/corvax_bagel.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Багель {1}'
+          mapNameTemplate: '{0} Гласир {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+            prefixCreator: 'DZX'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Bagel/Shuttles/corvax_emergency_bagel.yml
         - type: StationJobs

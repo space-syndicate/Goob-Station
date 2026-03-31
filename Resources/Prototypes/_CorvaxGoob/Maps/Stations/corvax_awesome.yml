@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxAwesome
-  mapName: 'NTTBK Авесом'
+  id: CorvaxPaper
+  mapName: 'NTRK Омега'
   mapPath: /Maps/_CorvaxGoob/Stations/Awesome/corvax_awesome.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Авесом {1}'
+          mapNameTemplate: '{0} Омега {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'TBK'
+            prefixCreator: 'RK'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Awesome/Shuttles/corvax_emergency_awesome.yml
         - type: StationJobs

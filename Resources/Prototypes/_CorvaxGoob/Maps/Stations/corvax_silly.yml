@@ -1,6 +1,6 @@
 - type: gameMap
-  id: CorvaxSilly
-  mapName: 'NTABK Силли'
+  id: CorvaxChloris
+  mapName: 'NTTN Гельта'
   mapPath: /Maps/_CorvaxGoob/Stations/Silly/corvax_silly.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -11,10 +11,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Силли {1}'
+          mapNameTemplate: '{0} Гельта {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'ABK'
+            prefixCreator: 'TN'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_CorvaxGoob/Stations/Silly/Shuttles/corvax_emergency_silly.yml
         - type: StationJobs
