@@ -48,3 +48,13 @@ ent-PokerChip100One = { ent-PokerChip100 }
 ent-PokerChip100Five = { ent-PokerChip100 }
     .desc = { ent-PokerChip100.desc }
     .suffix = Значение 100, 5
+
+stack-poker-chip-5 =
+    { $amount ->
+        [1] покерная фишка
+       *[other] покерные фишки
+    }
+
+stack-poker-chip-25 = { stack-poker-chip-5 }
+stack-poker-chip-50 = { stack-poker-chip-5 }
+stack-poker-chip-100 = { stack-poker-chip-5 }
