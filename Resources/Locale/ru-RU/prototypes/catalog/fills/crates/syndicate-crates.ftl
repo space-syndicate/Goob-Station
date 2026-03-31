@@ -4,7 +4,10 @@ ent-CrateSyndicateSurplusBundle = ящик припасов
 ent-CrateSyndicateSuperSurplusBundle = ящик суперприпасов
     .desc = Содержит случайное снаряжение Синдиката, общей стоимостью в 125 телекристаллов.
 
-ent-CrateSyndicate = { ent-CrateBaseWeldable }
+ent-CrateSyndicate = контрабандный ящик
+    .desc = { ent-CrateBaseWeldable.desc }
+
+ent-CrateSyndicateSecure = защищённый контрабандный ящик
     .desc = { ent-CrateBaseWeldable.desc }
 
 ent-CrateCybersunJuggernautBundle = комплект джаггернаута Cybersun
