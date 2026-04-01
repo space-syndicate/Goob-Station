@@ -21,7 +21,7 @@
         damage:
           types:
             Radiation: 2.66
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
