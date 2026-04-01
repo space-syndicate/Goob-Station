@@ -25,9 +25,12 @@ using Robust.Server.Audio;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using System.Runtime.CompilerServices;
+using Content.Server.Bible.Components;
+using Content.Shared.Alert;
 using Content.Server.Body;
 using System.Linq;
+using Content.Shared.Radio.Components;
+using Content.Shared.Radio;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -50,6 +53,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly AlertsSystem _alert = default!;
     [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
 
 
@@ -80,14 +84,10 @@ public sealed partial class VampireSystem : EntitySystem
             || !_mobState.IsAlive(args.Target))
             return;
 
-        // если у цели нет крови/разума, кнопки не добавляем
-        if (!HasComp<BloodstreamComponent>(args.Target) || !HasComp<MindContainerComponent>(args.Target)
-            || !HasComp<ActorComponent>(args.Target))
-            return;
-
         // верб для превращения цели в упыря
-        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target)
-            && !HasComp<MindShieldComponent>(args.Target) && !_statusEffects.HasStatusEffect(uid, vamp.CooldownStatusEffectAppealGhouls))
+        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target) && HasComp<MindContainerComponent>(args.Target)
+            && !HasComp<MindShieldComponent>(args.Target) && !_statusEffects.HasStatusEffect(uid, vamp.CooldownStatusEffectAppealGhouls)
+            && HasComp<ActorComponent>(args.Target))
         {
             var verbConvert = new InnateVerb
             {
@@ -101,7 +101,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         // верб для питья крови
-        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target))
+        if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target) && HasComp<BloodstreamComponent>(args.Target))
         {
             var verbDrinkBlood = new InnateVerb
             {
@@ -134,6 +134,12 @@ public sealed partial class VampireSystem : EntitySystem
     {
         if (!TryComp<VampireComponent>(vampire, out var vamp))
             return;
+
+        if (vamp.GhoulQuantity == vamp.MaxNumberGhouls)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-popup-max-number-ghouls"), vampire, vampire, PopupType.Medium);
+            return;
+        }
 
         _popup.PopupEntity(Loc.GetString("vampire-verb-envelope-vampire-transform",
             ("target", MetaData(target).EntityName)),
@@ -208,38 +214,70 @@ public sealed partial class VampireSystem : EntitySystem
         // вычисляем текущее количество крови
         float currentBlood = vamp != null ? vamp.CritThreshold - vamp.BloodDamage : ghoul!.CritThreshold - ghoul.BloodDamage;
 
-        if (vamp != null && currentBlood >= 100)
+        if (currentBlood >= 100 || !HasComp<MindContainerComponent>(target) || !HasComp<ActorComponent>(target))
         {
-            // мы просто засчитываем эту кровь в TotalDrunk, но BloodDamage не понижаем
-            vamp.TotalDrunk += amount;
-            _audio.PlayPvs(vamp.DrinkSound, drinker);
+            if (vamp != null)
+            {
+                // мы просто засчитываем эту кровь в TotalDrunk, но BloodDamage не понижаем
+                if (currentBlood >= 100 && HasComp<MindContainerComponent>(target) && HasComp<ActorComponent>(target))
+                {
+                    vamp.TotalDrunk += amount;
+                    _vampireSystem.SetBloodCounterAlert(drinker, vamp);
+                }
+                // мы просто понижаем BloodDamage, но в TotalDrunk не засчитываем
+                else if (!HasComp<MindContainerComponent>(target) || !HasComp<ActorComponent>(target))
+                {
+                    if (currentBlood >= 100)
+                    {
+                        _popup.PopupEntity(Loc.GetString("vampire-popup-target-no-mind-full"), drinker, drinker, PopupType.Medium);
+                        return;
+                    }
 
-            damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
-            _damage.TryChangeDamage(target, damage);
+                    vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount / 2, 0);
+                    _vampireSystem.SetBloodAlert(drinker, vamp);
+                    _popup.PopupEntity(Loc.GetString("vampire-popup-target-no-mind"), drinker, drinker, PopupType.Medium);
+                }
 
-            var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
-            eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
+                _audio.PlayPvs(vamp.DrinkSound, drinker);
 
-            // после того, как вампир выпивает кровь его глаза становятся красными
-            TrySetEntityEyeColor(drinker, Color.Red);
+                damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount);
+                _damage.TryChangeDamage(target, damage);
 
-            if (_mobState.IsAlive(target))
-                StartDrinking(drinker, target);
+                var eui = new VampireRequestedEui(drinker, EntityManager, _actions, _vampireSystem, _prototypeManager);
+                eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
 
-            return;
+                // после того, как вампир выпивает кровь его глаза становятся красными
+                TrySetEntityEyeColor(drinker, Color.Red);
+
+                if (_mobState.IsAlive(target))
+                    StartDrinking(drinker, target);
+
+                return;
+            }
         }
 
         // увеличиваем количество крови
         if (vamp != null)
         {
             vamp.BloodDamage = Math.Max(vamp.BloodDamage - amount, 0f);
+            _vampireSystem.SetBloodCounterAlert(drinker, vamp);
             _vampireSystem.SetBloodAlert(drinker, vamp);
             vamp.TotalDrunk += amount;
             _audio.PlayPvs(vamp.DrinkSound, drinker);
         }
         else if (ghoul != null)
         {
-            ghoul.BloodDamage = Math.Max(ghoul.BloodDamage - amount, 0f);
+            if (ghoul.BloodDamage - amount < 0)
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-drinking-full-blood"), drinker, drinker, PopupType.Medium);
+                return;
+            }
+
+            if (!HasComp<MindContainerComponent>(target) || !HasComp<ActorComponent>(target))
+                ghoul.BloodDamage = Math.Max(ghoul.BloodDamage - amount / 2, 0);
+            else
+                ghoul.BloodDamage = Math.Max(ghoul.BloodDamage - amount, 0f);
+
             _vampireSystem.SetGhoulBloodAlert(drinker, ghoul);
             _audio.PlayPvs(ghoul.DrinkSound, drinker);
         }
@@ -276,6 +314,12 @@ public sealed partial class VampireSystem : EntitySystem
             RemoveMindFromGhoul(ghoul);
             _vampireSystem.SetGhoulBloodAlert(ghoul, ghoulComponent);
 
+            var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(ghoul);
+            transmitter.Channels.Remove(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+
+            var activeRadio = EnsureComp<ActiveRadioComponent>(ghoul);
+            activeRadio.Channels.Remove(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+
             // обновляем данные у вампира
             if (ent.Comp.Ghouls.Remove(ghoul))
             {
@@ -311,6 +355,41 @@ public sealed partial class VampireSystem : EntitySystem
 
         var eui = new VampireRequestedEui(args.Performer, EntityManager, _actions, _vampireSystem, _prototypeManager);
         _eui.OpenEui(eui, actor.PlayerSession);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        BaseUpdate(frameTime);
+        AbilitiesUpdate();
+    }
+
+    public void BaseUpdate(float frameTime)
+    {
+        var querySearch = EntityQueryEnumerator<VampireComponent>();
+        while (querySearch.MoveNext(out var uid, out var comp))
+        {
+            comp.UpdateDelay += frameTime;
+            var priests = _lookup.GetEntitiesInRange<BibleUserComponent>(Transform(uid).Coordinates, 7).FirstOrNull();
+
+            if (priests == null || _mobState.IsDead(priests.Value))
+            {
+                _alert.ClearAlert(uid, comp.AdjacentChaplainAlert);
+                comp.UpdateDelay = 0f;
+                continue;
+            }
+
+            if (comp.UpdateDelay < 1)
+                continue;
+
+            _damage.TryChangeDamage(uid, comp.DivineDamage);
+            _audio.PlayPvs(comp.DivineDamageSound, uid);
+            _popup.PopupEntity(Loc.GetString("vampire-popup-chaplain-closely"), uid, uid, PopupType.Medium);
+            _alert.ShowAlert(uid, comp.AdjacentChaplainAlert);
+
+            comp.UpdateDelay = 0;
+        }
     }
 
     private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor)

@@ -228,6 +228,10 @@
       ]
     },
     {
+      "name": "tail_docked",
+      "directions": 4
+    },
+    {
       "name": "tail_docked_animated",
       "directions": 4,
       "delays": [

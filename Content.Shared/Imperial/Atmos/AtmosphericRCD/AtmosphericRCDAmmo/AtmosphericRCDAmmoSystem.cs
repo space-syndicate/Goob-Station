@@ -1,0 +1,63 @@
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
+using Content.Shared.Examine;
+using Content.Shared.Interaction;
+using Content.Shared.Popups;
+using Robust.Shared.Timing;
+using Content.Shared.Imperial.Atmospheric.RCD.Components;
+
+namespace Content.Shared.Imperial.Atmospheric.RCD.Systems;
+
+public sealed partial class AtmosphericRCDAmmoSystem : EntitySystem
+{
+    [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AtmosphericRCDAmmoComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<AtmosphericRCDAmmoComponent, AfterInteractEvent>(OnAfterInteract);
+    }
+
+    private void OnExamine(EntityUid uid, AtmosphericRCDAmmoComponent comp, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        var examineMessage = Loc.GetString("atmospheric-rcd-ammo-component-on-examine", ("charges", comp.Charges));
+        args.PushText(examineMessage);
+    }
+
+    private void OnAfterInteract(EntityUid uid, AtmosphericRCDAmmoComponent comp, AfterInteractEvent args)
+    {
+        if (args.Handled || !args.CanReach || !_timing.IsFirstTimePredicted)
+            return;
+
+        if (args.Target is not { Valid: true } target ||
+            !HasComp<AtmosphericRCDComponent>(target) ||
+            !TryComp<LimitedChargesComponent>(target, out var charges))
+            return;
+
+        var current = _sharedCharges.GetCurrentCharges((target, charges));
+        var user = args.User;
+        args.Handled = true;
+        var count = Math.Min(charges.MaxCharges - current, comp.Charges);
+        if (count <= 0)
+        {
+            _popup.PopupClient(Loc.GetString("atmospheric-rcd-ammo-component-after-interact-full"), target, user);
+            return;
+        }
+
+        _popup.PopupClient(Loc.GetString("atmospheric-rcd-ammo-component-after-interact-refilled"), target, user);
+        _sharedCharges.AddCharges(target, count);
+        comp.Charges -= count;
+        Dirty(uid, comp);
+
+        // prevent having useless ammo with 0 charges
+        if (comp.Charges <= 0)
+            QueueDel(uid);
+    }
+}

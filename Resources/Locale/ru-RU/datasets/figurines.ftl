@@ -264,16 +264,32 @@ figurines-footsoldier-3 = Слава Синдикату!
 figurines-footsoldier-4 = Долой Нанотрейзен!
 figurines-footsoldier-5 = Лучше смерть, чем Нанотрейзен.
 
-figurines-wizard-1 = Эй Натх!
-figurines-wizard-2 = Вехгардум Левиоза!
-figurines-wizard-3 = Скедадл скедудл!
-figurines-wizard-4 = Я кастую... ОГНЕННЫЙ ШАР!!!
+figurines-wizard-1 = EI NATH!!
+figurines-wizard-2 = ONI'SOMA!!
+figurines-wizard-3 = Скидаддл Скидуддл!
+figurines-wizard-4 = Настоящие маги поддерживают веселье.
+figurines-wizard-5 = Кто из вас, зануд, хочет быть заперт в шкафчике?
+figurines-wizard-6 = Я не маг! Я не капитан! Я поменялся телами!
+figurines-wizard-7 = Сейчас ты видишь меня... А сейчас нет!
+figurines-wizard-8 = Пушки для людей, кто не может взорвать других только силой мысли.
 
 figurines-space-dragon-1 = Карпы поглотят станцию
 figurines-space-dragon-2 = Дракон де... Ладно, неважно.
 figurines-space-dragon-3 = Экипаж вкусный.
 figurines-space-dragon-4 = Только попробуй сделать суши.
 figurines-space-dragon-5 = На этой станции для нас двоих места нет.
+
+figurines-skeleton-1 = АЧК АЧК!
+figurines-skeleton-2 = Ухх, какой тесный шкафчик!
+figurines-skeleton-3 = У тебя будут неприятности.
+figurines-skeleton-4 = У вас есть молоко?
+figurines-skeleton-5 = У меня к вам костензии!
+
+figurines-thief-1 = У вас нет ордера!
+figurines-thief-2 = Это обычный маяк!
+figurines-thief-3 = В этой сумке нет ничего подозрительного, офицер.
+figurines-thief-4 = Я понятия не имею, где ваш питомец...
+figurines-thief-5 = Ух ты, я не знал, что эта стена может открыться...
 
 figurines-queen-1 = Наша территория должна расширяться.
 figurines-queen-2 = Улей голоден.
@@ -308,6 +324,12 @@ figurines-slime-2 = Блимпуф?
 figurines-slime-3 = Блумп!
 figurines-slime-4 = Вомп Вомп.
 
+figurines-owlman-1 = Нет нужды бояться, совочеловек здесь!
+figurines-owlman-2 = До скорой встречи, сова!
+figurines-owlman-3 = ХУУ!!
+figurines-owlman-4 = Как называется сова-волшебник, Ху-Дини!
+figurines-owlman-5 = Не волнуйтесь, гражданин, я спасу положение!
+
 figurines-hamlet-1 = Пи!
 figurines-hamlet-2 = Писк!
 figurines-hamlet-3 = Чу!
@@ -316,3 +338,9 @@ figurines-hamlet-5 = Пип!
 figurines-hamlet-6 = Фвип!
 figurines-hamlet-7 = Хип!
 figurines-hamlet-8 = ТОЛЬКО НЕ В МИКРОВОЛНОВКУ!
+
+figurines-griffin-1 = Мух-ха-ха-ха, я такой злой!
+figurines-griffin-2 = Как только я вижу совочеловека, я сразу понимаю, что они мертвы!!
+figurines-griffin-3 = Как мы, Гриффины, справляемся со стрессом? Мы импровизируем!
+figurines-griffin-4 = Меня зовут не Гильда!!
+figurines-griffin-5 = Быть криминальным гением непросто.

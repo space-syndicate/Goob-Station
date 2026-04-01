@@ -23,3 +23,7 @@ xenoborg-max-number = Наибольшее количество ксенобор
 
 xenoborgs-list-start = В стартовый состав команды ксеноборгов входили:
 xenoborgs-list = - [color=White]{$name}[/color] ([color=gray]{$user}[/color])
+
+xenoborgs-no-more-threat-mothership-core-alive-announcement = Датчики дальнего действия указывают на то, что все ксеноборги были уничтожены. Ядро материнского корабля по-прежнему дрейфует в космосе.
+xenoborgs-no-more-threat-mothership-core-dead-announcement = Датчики дальнего действия указывают на то, что все ксеноборги были уничтожены вместе с ядром материнского корабля.
+mothership-destroyed-announcement = Датчики дальнего действия указывают на то, что ядро ​​материнского корабля было уничтожено.
