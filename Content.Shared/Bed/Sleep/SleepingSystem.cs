@@ -259,7 +259,6 @@ public sealed partial class SleepingSystem : EntitySystem
     private void OnInteractHand(Entity<SleepingComponent> ent, ref InteractHandEvent args)
     {
         args.Handled = true;
-
         TryWakeWithCooldown((ent, ent.Comp), args.User);
     }
 

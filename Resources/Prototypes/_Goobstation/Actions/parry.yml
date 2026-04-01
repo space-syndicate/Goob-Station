@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCQCParry
+  name: Toggle CQC Parry
+  description: Enter or leave a CQC parry stance.
+  components:
+  - type: Action
+    icon: Interface/Actions/parry.png
+    iconOn: Interface/Actions/parry-on.png
+  - type: InstantAction
+    event: !type:ToggleActionEvent

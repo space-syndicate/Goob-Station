@@ -529,7 +529,6 @@ public abstract partial class SharedStunSystem
 
     // EE verbs end
 
-
     #endregion
 
     #region Action Blockers

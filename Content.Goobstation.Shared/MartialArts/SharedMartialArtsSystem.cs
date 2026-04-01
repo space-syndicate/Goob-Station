@@ -30,6 +30,7 @@ using Content.Goobstation.Shared.Changeling.Components;
 using Content.Goobstation.Shared.MartialArts.Components;
 using Content.Goobstation.Shared.Sprinting;
 using Content.Goobstation.Shared.Stealth;
+using Content.Goobstation.Shared.Weapons.Parry.Components;
 using Content.Shared._Goobstation.Heretic.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared._Shitmed.Targeting;
@@ -280,6 +281,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
 
     private void OnComboAttackPerformed(Entity<MartialArtsKnowledgeComponent> ent, ref ComboAttackPerformedEvent args)
     {
+        if (IsMartialArtSuppressed(ent))
+            return;
+
         if (ent.Comp.Blocked)
         {
             var ev = new CanDoCQCEvent();
@@ -532,24 +536,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 EnsureComp<NinjutsuSneakAttackComponent>(user);
                 break;
             case MartialArtsForms.CloseQuartersCombat:
-                var itcryeverytime =
-                    new CanDoCQCEvent();
-                  /*
-                var riposte = EnsureComp<RiposteeComponent>(user);
-                riposte.Data.TryAdd("CQC",
-                    new(0.1f,
-                    false,
-                    null,
-                    true,
-                    new SoundPathSpecifier("/Audio/Weapons/genhit1.ogg"),
-                    TimeSpan.Zero,
-                    TimeSpan.FromSeconds(4),
-                    false,
-                    0.75f,
-                    null,
-                    null,
-                    new CanDoCQCEvent()));
-                    */
+                EnsureComp<CqcParryComponent>(user);
                 break;
         }
 
@@ -603,6 +590,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         if (knowledgeComponent.MartialArtsForm != proto.MartialArtsForm)
             return false;
 
+        if (IsMartialArtSuppressed(ent))
+            return false;
+
         if (!proto.CanDoWhileProne && IsDown(ent))
         {
             _popupSystem.PopupEntity(Loc.GetString("martial-arts-fail-prone"), ent, ent);
@@ -627,6 +617,13 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
 
             return !standingState.Standing;
         }
+    }
+
+    private bool IsMartialArtSuppressed(EntityUid uid)
+    {
+        return TryComp<ParryComponent>(uid, out var parry) &&
+               parry.DisableMartialArtsWhileActive &&
+               (parry.Active || parry.AlwaysActive);
     }
 
     private void DoDamage(EntityUid ent,

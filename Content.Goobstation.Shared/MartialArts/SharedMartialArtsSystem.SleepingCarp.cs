@@ -19,6 +19,7 @@ using System.Linq;
 using Content.Goobstation.Shared.Changeling.Components;
 using Content.Goobstation.Shared.MartialArts.Components;
 using Content.Goobstation.Shared.MartialArts.Events;
+using Content.Goobstation.Shared.Weapons.Parry.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Pulling.Components;
@@ -91,6 +92,7 @@ public partial class SharedMartialArtsSystem
                 userReflect.Examinable = false; // no doxxing scarp users by examining lmao
                 userReflect.ReflectProb = 1;
                 userReflect.Spread = 60;
+                EnsureComp<SleepingCarpParryComponent>(args.User);
                 Dirty(args.User, userReflect);
                 _popupSystem.PopupEntity(
                     Loc.GetString("carp-scroll-complete"),
@@ -181,6 +183,7 @@ public partial class SharedMartialArtsSystem
             return;
 
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out var damage);
+        _newStatus.TryAddStatusEffectDuration(target, "StatusEffectForcedSleeping", out _, TimeSpan.FromSeconds(2));
         var mapPos = _transform.GetMapCoordinates(ent).Position;
         var hitPos = _transform.GetMapCoordinates(target).Position;
         var dir = hitPos - mapPos;

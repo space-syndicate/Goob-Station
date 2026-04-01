@@ -1,0 +1,9 @@
+parry-popup-self = Вы парируете атаку.
+parry-popup-attacker = Вашу атаку парируют.
+parry-popup-self-cqc = CQC: вы парируете атаку.
+parry-popup-attacker-cqc = CQC: вашу атаку парируют.
+parry-popup-self-shield = Щит: вы парируете атаку.
+parry-popup-attacker-shield = Щит: вашу атаку парируют.
+parry-popup-requires-wielded = Для парирования предмет нужно удерживать двумя руками.
+parry-popup-requires-free-hands = Для этого парирования нужно {$count} свободные руки.
+parry-popup-hypospray-blocked = Инъекция парирована.

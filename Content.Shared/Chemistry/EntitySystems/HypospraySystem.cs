@@ -128,7 +128,11 @@ public sealed class HypospraySystem : EntitySystem
 
         if (selfEvent.Cancelled)
         {
-            _popup.PopupClient(Loc.GetString(selfEvent.InjectMessageOverride ?? "hypospray-cant-inject", ("owner", Identity.Entity(target, EntityManager))), target, user);
+            _popup.PopupClient(
+                Loc.GetString(selfEvent.InjectMessageOverride ?? "hypospray-cant-inject", ("owner", Identity.Entity(target, EntityManager))),
+                target,
+                user,
+                selfEvent.InjectMessageOverride == "parry-popup-hypospray-blocked" ? PopupType.MediumCaution : PopupType.Small);
             return false;
         }
 
@@ -143,7 +147,11 @@ public sealed class HypospraySystem : EntitySystem
 
         if (targetEvent.Cancelled)
         {
-            _popup.PopupClient(Loc.GetString(targetEvent.InjectMessageOverride ?? "hypospray-cant-inject", ("owner", Identity.Entity(target, EntityManager))), target, user);
+            _popup.PopupClient(
+                Loc.GetString(targetEvent.InjectMessageOverride ?? "hypospray-cant-inject", ("owner", Identity.Entity(target, EntityManager))),
+                target,
+                user,
+                targetEvent.InjectMessageOverride == "parry-popup-hypospray-blocked" ? PopupType.MediumCaution : PopupType.Small);
             return false;
         }
 

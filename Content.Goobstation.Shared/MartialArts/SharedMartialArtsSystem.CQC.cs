@@ -61,6 +61,9 @@ public partial class SharedMartialArtsSystem
         if (args.Handled)
             return;
 
+        if (IsMartialArtSuppressed(ent))
+            return;
+
         if (!ent.Comp.Blocked)
         {
             args.Handled = true;
@@ -116,8 +119,12 @@ public partial class SharedMartialArtsSystem
 
     private void OnCQCAttackPerformed(Entity<MartialArtsKnowledgeComponent> ent, ref ComboAttackPerformedEvent args)
     {
-        if (args.Weapon != args.Performer || args.Target == args.Performer)
+        if (IsMartialArtSuppressed(ent) ||
+            args.Weapon != args.Performer ||
+            args.Target == args.Performer)
+        {
             return;
+        }
 
         switch (args.Type)
         {

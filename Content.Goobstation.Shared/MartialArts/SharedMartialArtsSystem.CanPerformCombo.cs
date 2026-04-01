@@ -14,6 +14,7 @@
 using System.Linq;
 using Content.Goobstation.Common.MartialArts;
 using Content.Goobstation.Shared.MartialArts.Components;
+using Content.Goobstation.Shared.Weapons.Parry.Components;
 using Content.Shared.Mobs.Components;
 
 namespace Content.Goobstation.Shared.MartialArts;
@@ -70,6 +71,19 @@ public partial class SharedMartialArtsSystem
     {
         if (!HasComp<MobStateComponent>(args.Target))
             return;
+
+        if (TryComp<ParryComponent>(uid, out var parry) &&
+            parry.BlockCombosWhileActive &&
+            (parry.Active || parry.AlwaysActive))
+        {
+            component.LastAttacks.Clear();
+            component.CurrentTarget = null;
+            component.BeingPerformed = default;
+            component.ConsecutiveGnashes = 0;
+            component.ResetTime = TimeSpan.Zero;
+            Dirty(uid, component);
+            return;
+        }
 
         if (component.CurrentTarget != null && args.Target != component.CurrentTarget.Value)
             component.LastAttacks.Clear();

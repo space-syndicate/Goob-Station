@@ -107,6 +107,7 @@ using Content.Shared._White.Grab; // Goobstation
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification; // Goobstation
@@ -580,10 +581,13 @@ public sealed class PullingSystem : EntitySystem
 
         var entity = args.Entity;
 
-        if (ent.Comp.GrabStage == GrabStage.Soft)
+        if (ent.Comp.GrabStage == GrabStage.Soft && CanSelfEscapeGrab(entity))
             TryStopPull(ent, ent, ent);
 
         if (!_blocker.CanMove(entity))
+            return;
+
+        if (!CanSelfEscapeGrab(entity))
             return;
 
         TryStopPull(ent, ent, user: ent);
@@ -975,6 +979,9 @@ public sealed class PullingSystem : EntitySystem
         if (user == null || user.Value != pullableUid)
             return true;
 
+        if (!CanSelfEscapeGrab(pullableUid))
+            return false;
+
         var releaseAttempt = AttemptGrabRelease(pullableUid);
 
         if (!_netManager.IsServer)
@@ -1010,6 +1017,21 @@ public sealed class PullingSystem : EntitySystem
 
         return true;
     }
+
+    private bool CanSelfEscapeGrab(EntityUid uid)
+    {
+        if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState != MobState.Alive)
+            return false;
+
+        if (TryComp<StaminaComponent>(uid, out var stamina) && stamina.Critical)
+            return false;
+
+        if (HasComp<SleepingComponent>(uid))
+            return false;
+
+        return true;
+    }
+
     public void StopAllPulls(EntityUid uid, bool stopPullable = true, bool stopPuller = true) // Goobstation
     {
         if (stopPullable && TryComp<PullableComponent>(uid, out var pullable) && IsPulled(uid, pullable))
