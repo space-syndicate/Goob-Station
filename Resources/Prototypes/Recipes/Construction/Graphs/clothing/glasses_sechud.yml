@@ -7,13 +7,13 @@
         - to: glassesSec
           steps:
             - tag: Sunglasses
-              name: солнцезащитные очки # Imperial Recipes Locale
+              name: recipes-sunglasses-name
               icon:
                 sprite: Clothing/Eyes/Glasses/sunglasses.rsi
                 state: icon
               doAfter: 5
             - tag: HudSecurity
-              name: охранный визор # Imperial Recipes Locale
+              name: recipes-hud-security-name
               icon:
                 sprite: Clothing/Eyes/Hud/sec.rsi
                 state: icon

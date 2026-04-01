@@ -30,7 +30,7 @@
         impact: High
       steps:
       - tag: GlassShard
-        name: осколок стекла # Imperial Recipes Locale
+        name: recipes-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
@@ -73,7 +73,7 @@
         impact: High
       steps:
       - tag: ReinforcedGlassShard
-        name: осколок бронестекла # Imperial Recipes Locale
+        name: recipes-reinforced-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
@@ -116,7 +116,7 @@
         impact: High
       steps:
       - tag: PlasmaGlassShard
-        name: осколок плазменного стекла # Imperial Recipes Locale
+        name: recipes-plasma-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
@@ -159,7 +159,7 @@
         impact: High
       steps:
       - tag: UraniumGlassShard
-        name: осколок плазменного стекла # Imperial Recipes Locale
+        name: recipes-uranium-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1

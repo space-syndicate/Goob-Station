@@ -112,7 +112,7 @@
         - ReagentId: SpaceCleaner
           Quantity: 100
   - type: Label
-    currentLabel: space cleaner
+    currentLabel: label-space-cleaner # Imperial Space Localization
   - type: Tag
     tags:
       - Spray
@@ -131,7 +131,7 @@
         - ReagentId: SpaceCleaner
           Quantity: 250
   - type: Label
-    currentLabel: space cleaner
+    currentLabel: label-space-cleaner # Imperial Space Localization
 
 - type: entity
   parent: SprayBottle

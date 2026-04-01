@@ -37,7 +37,7 @@
           data: 4
 
       - tag: HamtrCentralControlModule
-        name: центральный модуль управления ХАМЯК # Imperial Recipes Locale
+        name: recipes-hamster-central-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -54,7 +54,7 @@
           data: 6
 
       - tag: HamtrPeripheralsControlModule
-        name: модуль управления периферией меха ХАМЯК. # Imperial Recipes Locale
+        name: recipes-hamster-peripherals-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -74,7 +74,7 @@
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
       - component: PowerCell
-        name: любую батарейку # Imperial Recipes Locale
+        name: recipes-any-powercell-name
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi

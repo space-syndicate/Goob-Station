@@ -94,8 +94,12 @@ admin-trick-snap-joints-description = Удаляет все физические
 admin-trick-minigun-fire-description = Заставляет целевое оружие стрелять как миниган (очень быстро).
 admin-trick-set-bullet-amount-description = Быстро устанавливает значение количества незаспавненных патронов в оружии.
 admin-smite-omni-accent-description = Заставляет цель разговаривать почти с каждым доступным акцентом.
+admin-smite-crawler-description = Заставляет цель упасть и потерять способность встать. Для усиления эффекта можно также убрать ей руки!
+admin-smite-homing-rod-description = Запускает в их сторону неподвижный самонаводящийся стержень.
+admin-smite-homing-rod-slow-description = Запускает медленно движущийся, самонаводящийся неподвижный стержень прямо в их сторону.
+admin-smite-silicon-laws-bound-description = Заставляет цель подчиняться законам синтетиков. Закон 2: Выпрыгнуть из окна.
 
-    ## Smite names
+## Smite names
 
 admin-smite-explode-name = Взрыв
 admin-smite-chess-dimension-name = Шахматное измерение
@@ -139,3 +143,7 @@ admin-smite-terminate-name = Экстерминировать
 admin-smite-super-slip-name = Суперскольжение
 admin-smite-super-slip-description = Подскальзывается  очень, очень сильно.
 admin-smite-omni-accent-name = Супер-акцент
+admin-smite-crawler-name = Ползающий
+admin-smite-homing-rod-name = Неподвижный жезл
+admin-smite-homing-rod-slow-name = Медленный жезл
+admin-smite-silicon-laws-bound-name = Сделать синтетиком

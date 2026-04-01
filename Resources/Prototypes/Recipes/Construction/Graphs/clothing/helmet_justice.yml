@@ -7,7 +7,7 @@
     - to: helmet
       steps:
       - tag: SecurityHelmet
-        name: шлем охраны # Imperial Recipes Locale
+        name: recipes-security-helmet-name
         icon:
           sprite: Clothing/Head/Helmets/security.rsi
           state: icon
@@ -16,7 +16,7 @@
       - material: Glass
         amount: 1
       - tag: LightBulb
-        name: лампочка # Imperial Recipes Locale
+        name: recipes-light-bulb-name
         icon:
           sprite: Objects/Power/light_bulb.rsi
           state: normal

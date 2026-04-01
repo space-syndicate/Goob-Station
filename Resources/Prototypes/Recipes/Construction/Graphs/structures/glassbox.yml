@@ -42,7 +42,7 @@
             - !type:EntityAnchored
           steps:
             - tag: SignalTrigger
-              name: сигнальный триггер # Imperial Recipes Locale
+              name: recipes-signal-trigger-name
               icon:
                 sprite: Objects/Devices/signaltrigger.rsi
                 state: signaltrigger

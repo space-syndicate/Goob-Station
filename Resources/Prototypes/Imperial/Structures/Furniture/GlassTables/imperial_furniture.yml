@@ -1,11 +1,9 @@
 - type: construction
-  name: стол из уранового стекла
   id: TableUraniumGlass
   graph: Table
   startNode: start
   targetNode: TableUraniumGlass
   category: construction-category-furniture
-  description: Стильный зелёный кусок стекла с примесью урана, установленный на каркас стола.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -13,13 +11,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: стол из уранового бронестекла
   id: TableUraniumGlassReinforced
   graph: Table
   startNode: start
   targetNode: TableUraniumGlassReinforced
   category: construction-category-furniture
-  description: "Стильный квадратный лист уранового стекла, установленный на укреплённый каркас стола"
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -27,13 +23,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: стол из плазменного бронестекла
   id: TablePlasmaGlassReinforced
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlassReinforced
   category: construction-category-furniture
-  description: Стильный квадратный лист плазменного стекла, установленный на укреплённый каркас стола
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

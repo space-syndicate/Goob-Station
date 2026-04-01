@@ -7,19 +7,19 @@
         - to: beerEyepatch
           steps:
             - tag: Eyepatch
-              name: повязка на глаза
+              name: recipes-eyepatch-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: HudBeer
-              name: пивные очки
+              name: recipes-hud-beer-name
               icon:
                 sprite: Clothing/Eyes/Hud/beergoggles.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -36,19 +36,19 @@
         - to: securityEyepatch
           steps:
             - tag: Eyepatch
-              name: повязка на глаза
+              name: recipes-eyepatch-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: HudSecurity
-              name: охранный визор
+              name: recipes-hud-security-name
               icon:
                 sprite: Clothing/Eyes/Hud/sec.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -65,19 +65,19 @@
         - to: medicalEyepatch
           steps:
             - tag: Eyepatch
-              name: повязка на глаза
+              name: recipes-eyepatch-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: HudMedical
-              name: медицинский визор
+              name: recipes-hud-medical-name
               icon:
                 sprite: Clothing/Eyes/Hud/med.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -94,19 +94,19 @@
         - to: diagnosticEyepatch
           steps:
             - tag: Eyepatch
-              name: повязка на глаза
+              name: recipes-eyepatch-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: HudDiagnostic
-              name: диагностический визор
+              name: recipes-hud-diagnostic-name
               icon:
                 sprite: Clothing/Eyes/Hud/diag.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -123,19 +123,19 @@
         - to: chemicalEyepatch
           steps:
             - tag: Eyepatch
-              name: повязка на глаза
+              name: recipes-eyepatch-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: HudChemical
-              name: очки химического анализа
+              name: recipes-hud-chemical-name
               icon:
                 sprite: Clothing/Eyes/Glasses/science.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -152,19 +152,19 @@
         - to: flashEyepatch
           steps:
             - tag: Eyepatch
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: Sunglasses
-              name: солнцезащитные очки
+              name: recipes-sunglasses-name
               icon:
                 sprite: Clothing/Eyes/Glasses/sunglasses.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -181,19 +181,19 @@
         - to: engEyepatch
           steps:
             - tag: Eyepatch
-              name: повязка на глаза
+              name: recipes-eyepatch-name
               icon:
                 sprite: Clothing/Eyes/Misc/eyepatch.rsi
                 state: icon
               doAfter: 10
             - tag: Meson
-              name: инженерные очки
+              name: recipes-meson-name
               icon:
                 sprite: Clothing/Eyes/Glasses/meson.rsi
                 state: icon
               doAfter: 10
             - tag: BlackMark
-              name: черная метка
+              name: recipes-black-mark-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/doubloon.rsi
                 state: black_mark
@@ -210,55 +210,55 @@
         - to: omniEyepatch
           steps:
             - tag: EyepatchMedical
-              name: медицинская повязка на глаза
+              name: recipes-eyepatch-medical-name
               icon:
                 sprite: Clothing/Eyes/Hud/medpatch.rsi
                 state: icon
               doAfter: 10
             - tag: EyepatchSecurity
-              name: охранная повязка на глаза
+              name: recipes-eyepatch-security-name
               icon:
                 sprite: Clothing/Eyes/Hud/secpatch.rsi
                 state: icon
               doAfter: 10
             - tag: EyepatchBeer
-              name: пивная повязка на глаза
+              name: recipes-eyepatch-beer-name
               icon:
                 sprite: Clothing/Eyes/Hud/beerpatch.rsi
                 state: icon
               doAfter: 10
             - tag: EyepatchDiagnostic
-              name: диагностическая повязка на глаза
+              name: recipes-eyepatch-diagnostic-name
               icon:
                 sprite: Clothing/Eyes/Hud/diagpatch.rsi
                 state: icon
-              doAfter: 10           
+              doAfter: 10
             - tag: EyepatchChemical
-              name: химическая повязка на глаза
+              name: recipes-eyepatch-chemical-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/chempatch.rsi
                 state: icon
               doAfter: 10
             - tag: EyepatchFlashproof
-              name: солнцезащитная повязка на глаза
+              name: recipes-eyepatch-flashproof-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/flashpatch.rsi
                 state: icon
               doAfter: 10
             - tag: EyepatchEngineering
-              name: инженерная повязка на глаза
+              name: recipes-eyepatch-engineering-name
               icon:
                 sprite: Imperial/PiratesNewHorizon/engpatch.rsi
                 state: icon
-              doAfter: 10        
+              doAfter: 10
             - material: Cable
               amount: 15
               doAfter: 10
             - tag: TrayScanner
-              name: т-лучевой сканер
+              name: recipes-tray-scanner-name
               icon:
                 sprite: Objects/Tools/t-ray.rsi
                 state: tray-on
-              doAfter: 10     
+              doAfter: 10
     - node: omniEyepatch
       entity: ClothingEyesEyepatchHudOmni

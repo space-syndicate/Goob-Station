@@ -7,13 +7,13 @@
     - to: icon
       steps:
       - tag: GlassShard
-        name: осколок стекла # Imperial Recipes Locale
+        name: recipes-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
         doAfter: 1
       - tag: BrimFlatcapGrey
-        name: серая кепка # Imperial Recipes Locale
+        name: recipes-grey-cap-name
         icon:
           sprite: Clothing/Head/Hats/greyflatcap.rsi
           state: icon
@@ -29,13 +29,13 @@
     - to: icon
       steps:
       - tag: GlassShard
-        name: осколок стекла # Imperial Recipes Locale
+        name: recipes-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
         doAfter: 1
       - tag: BrimFlatcapBrown
-        name: коричневая кепка # Imperial Recipes Locale
+        name: recipes-brown-cap-name
         icon:
           sprite: Clothing/Head/Hats/brownflatcap.rsi
           state: icon

@@ -7,12 +7,12 @@
         - to: plushie
           steps:
             - tag: PlushieGhost
-              name: плюшевый призрак # Imperial Recipes Locale
+              name: recipes-plushie-ghost-name
               icon:
                 sprite: Mobs/Ghosts/ghost_human.rsi
                 state: icon
             - tag: Ectoplasm
-              name: эктоплазма # Imperial Recipes Locale
+              name: recipes-ectoplasm-name
               icon:
                 sprite: Mobs/Ghosts/revenant.rsi
                 state: ectoplasm
@@ -29,7 +29,7 @@
     - to: suit
       steps:
       - tag: HideCorgi
-        name: шкура корги # Imperial Recipes Locale
+        name: recipes-hide-corgi-name
         icon:
           sprite: Objects/Materials/materials.rsi
           state: corgihide

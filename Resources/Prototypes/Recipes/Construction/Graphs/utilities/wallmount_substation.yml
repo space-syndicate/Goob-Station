@@ -43,7 +43,7 @@
         steps:
         - tag: WallmountSubstationElectronics
           store: board
-          name: микросхема настенной подстанции # Imperial Recipes Locale
+          name: recipes-wallmount-substation-electronics-name
           icon:
             sprite: "Objects/Misc/module.rsi"
             state: "charger_APC"
@@ -52,7 +52,7 @@
             - PowerCell
             - PowerCellSmall
           store: powercell
-          name: любая батарейка # Imperial Recipes Locale
+          name: recipes-any-powercell-name
           icon:
             sprite: "Objects/Power/power_cells.rsi"
             state: "medium"
