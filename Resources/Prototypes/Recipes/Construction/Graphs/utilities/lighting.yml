@@ -10,7 +10,7 @@
               amount: 1
               doAfter: 1
             - tag: CrystalCyan
-              name: голубой осколок кристалла # Imperial Recipes Locale
+              name: recipes-cyan-crystal-name
               icon:
                 sprite: Objects/Materials/Shards/crystal.rsi
                 state: shard1
@@ -31,7 +31,7 @@
               amount: 1
               doAfter: 1
             - tag: CrystalBlue
-              name: синий осколок кристалла # Imperial Recipes Locale
+              name: recipes-blue-crystal-name
               icon:
                 sprite: Objects/Materials/Shards/crystal.rsi
                 state: shard1
@@ -71,7 +71,7 @@
               amount: 1
               doAfter: 1
             - tag: CrystalPink
-              name: розовый осколок кристалла # Imperial Recipes Locale
+              name: recipes-pink-crystal-name
               icon:
                 sprite: Objects/Materials/Shards/crystal.rsi
                 state: shard1
@@ -91,7 +91,7 @@
               amount: 1
               doAfter: 1
             - tag: CrystalOrange
-              name: оранжевый осколок кристалла # Imperial Recipes Locale
+              name: recipes-orange-crystal-name
               icon:
                 sprite: Objects/Materials/Shards/crystal.rsi
                 state: shard1
@@ -131,7 +131,7 @@
               amount: 1
               doAfter: 1
             - tag: CrystalRed
-              name: красный осколок кристалла # Imperial Recipes Locale
+              name: recipes-red-crystal-name
               icon:
                 sprite: Objects/Materials/Shards/crystal.rsi
                 state: shard1
@@ -151,7 +151,7 @@
               amount: 1
               doAfter: 1
             - tag: CrystalGreen
-              name: зеленый осколок кристалла # Imperial Recipes Locale
+              name: recipes-green-crystal-name
               icon:
                 sprite: Objects/Materials/Shards/crystal.rsi
                 state: shard1

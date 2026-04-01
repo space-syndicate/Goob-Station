@@ -398,7 +398,7 @@
   - type: Sprite
     state: pill16
   - type: Label
-    currentLabel: dexalin 10u
+    currentLabel: label-dexalin # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -414,7 +414,7 @@
   suffix: Dexalin 10u, 7
   components:
   - type: Label
-    currentLabel: dexalin 10u
+    currentLabel: label-dexalin # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -432,7 +432,7 @@
   - type: Sprite
     state: pill10
   - type: Label
-    currentLabel: dylovene 10u
+    currentLabel: label-dylovene # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -448,7 +448,7 @@
   suffix: Dylovene 10u, 5
   components:
   - type: Label
-    currentLabel: dylovene 10u
+    currentLabel: label-dylovene # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -466,7 +466,7 @@
   - type: Sprite
     state: pill17
   - type: Label
-    currentLabel: hyronalin 10u
+    currentLabel: label-hyronalin # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -482,7 +482,7 @@
   suffix: Hyronalin 10u, 5
   components:
   - type: Label
-    currentLabel: hyronalin 10u
+    currentLabel: label-hyronalin # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -500,7 +500,7 @@
   - type: Sprite
     state: pill9
   - type: Label
-    currentLabel: potassium iodide 10u
+    currentLabel: label-potassium-iodide # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -516,7 +516,7 @@
   suffix: Potassium iodide 10u, 5
   components:
   - type: Label
-    currentLabel: potassium iodide 10u
+    currentLabel: label-potassium-iodide # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -534,7 +534,7 @@
   - type: Sprite
     state: pill14
   - type: Label
-    currentLabel: iron 10u
+    currentLabel: label-iron # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -554,7 +554,7 @@
   - type: Sprite
     state: pill13
   - type: Label
-    currentLabel: copper 10u
+    currentLabel: label-copper # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -570,7 +570,7 @@
   suffix: Iron 10u, 5
   components:
   - type: Label
-    currentLabel: iron 10u
+    currentLabel: label-iron # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -584,7 +584,7 @@
   suffix: Copper 10u, 5
   components:
   - type: Label
-    currentLabel: copper 10u
+    currentLabel: label-copper # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -602,7 +602,7 @@
   - type: Sprite
     state: pill4
   - type: Label
-    currentLabel: kelotane 10u
+    currentLabel: label-kelotane # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -618,7 +618,7 @@
   suffix: Kelotane 10u, 5
   components:
   - type: Label
-    currentLabel: kelotane 10u
+    currentLabel: label-kelotane # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -636,7 +636,7 @@
   - type: Sprite
     state: pill8
   - type: Label
-    currentLabel: dermaline 10u
+    currentLabel: label-dermaline # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -652,7 +652,7 @@
   suffix: Dermaline 10u, 5
   components:
   - type: Label
-    currentLabel: dermaline 10u
+    currentLabel: label-dermaline # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -683,7 +683,7 @@
   - type: Sprite
     state: pill3
   - type: Label
-    currentLabel: tricordrazine 10u
+    currentLabel: label-tricordrazine # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -699,7 +699,7 @@
   suffix: Tricordrazine 10u, 5
   components:
   - type: Label
-    currentLabel: tricordrazine 10u
+    currentLabel: label-tricordrazine # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -717,7 +717,7 @@
   - type: Sprite
     state: pill5
   - type: Label
-    currentLabel: bicaridine 10u
+    currentLabel: label-bicaridine # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -733,7 +733,7 @@
   suffix: Bicaridine 10u, 5
   components:
   - type: Label
-    currentLabel: bicaridine 10u
+    currentLabel: label-bicaridine # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -751,7 +751,7 @@
   - type: Sprite
     state: pill21
   - type: Label
-    currentLabel: charcoal 10u
+    currentLabel: label-charcoal # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -767,7 +767,7 @@
   suffix: Charcoal 10u, 3
   components:
   - type: Label
-    currentLabel: charcoal 10u
+    currentLabel: label-charcoal # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:

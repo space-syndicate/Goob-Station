@@ -111,13 +111,11 @@
   id: DeauthorizationFragmentCentCom
 
 - type: construction
-  name: Коды ядерной деавторизации
   id: NuclearDeauthorizationCodes
   graph: NuclearDeauthorizationCodes
   startNode: start
   targetNode: nuclearDeauthorizationCodes
   category: construction-category-clothing
-  description: Нужны для деактивации защитных протоколов ядра
   objectType: Item
 
 - type: constructionGraph

@@ -39,7 +39,7 @@
       steps:
       - tag: StationMapElectronics
         store: board
-        name: микросхема карты станции # Imperial Recipes Locale
+        name: recipes-station-map-electronics-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics" # /tg/ uses the same sprite, right?

@@ -1,72 +1,58 @@
 - type: construction
-  name: Чистобот # Imperial Recipes Locale
   id: cleanbot
   graph: CleanBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Ужас автоматизации угрожает и космическим уборщикам. # Imperial Recipes Locale
 
 - type: construction
-  name: Пожарбот # Imperial Recipes Locale
   id: firebot
   graph: FireBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Этот бот тушит пожары, где бы они ни находились. # Imperial Recipes Locale
 
 - type: construction
-  name: Хонкобот # Imperial Recipes Locale
   id: honkbot
   graph: HonkBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Этот бот смеётся и подскальзывает людей. # Imperial Recipes Locale
 
 - type: construction
-  name: Кринжбот # Imperial Recipes Locale
   id: jonkbot
   graph: JonkBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Этот проклятый бот сигналит, смеется и подскальзывает людей. # Imperial Recipes Locale
 
 - type: construction
-  name: Медибот # Imperial Recipes Locale
   id: medibot
   graph: MediBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Не заменит врача, но лучше, чем ничего. # Imperial Recipes Locale
 
 - type: construction
-  name: Мимбот # Imperial Recipes Locale
   id: mimebot
   graph: MimeBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Почему бы не помахать мимботу? # Imperial Recipes Locale
 
 - type: construction
-  name: Каргобот # Imperial Recipes Locale
   id: supplybot
   graph: SupplyBot
   startNode: start
   targetNode: bot
   category: construction-category-utilities
   objectType: Item
-  description: Космические грузчики повторяют судьбу уборщиков. # Imperial Recipes Locale
 
 - type: construction
   id: hugbot

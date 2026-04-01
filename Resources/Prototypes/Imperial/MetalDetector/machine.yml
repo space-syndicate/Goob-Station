@@ -433,7 +433,7 @@
           steps:
             - tag: MetalDetectorTag
               store: board
-              name: микросхема металлоискателя # Imperial Recipes Locale
+              name: recipes-microcircuit-metal-detector-name
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "security"
@@ -442,7 +442,7 @@
                 - PowerCell
                 - PowerCellSmall
               store: powercell
-              name: любая батарейка # Imperial Recipes Locale
+              name: recipes-any-powercell-name
               icon:
                 sprite: "Objects/Power/power_cells.rsi"
                 state: "medium"

@@ -17,7 +17,7 @@
           data: 1
 
       - tag: HonkerCentralControlModule
-        name: центральный модуль управления меха Х.О.Н.К. # Imperial Recipes Locale
+        name: recipes-honker-central-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -34,7 +34,7 @@
           data: 3
 
       - tag: HonkerPeripheralsControlModule
-        name: модуль управления периферией меха Х.О.Н.К. # Imperial Recipes Locale
+        name: recipes-honker-peripherals-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -51,7 +51,7 @@
           data: 5
 
       - tag: HonkerTargetingControlModule
-        name: электрическую систему управления огнём меха Х.О.Н.К. # Imperial Recipes Locale
+        name: recipes-honker-targeting-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -71,7 +71,7 @@
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
       - component: PowerCell
-        name: любую батарейку # Imperial Recipes Locale
+        name: recipes-any-powercell-name
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi
@@ -92,7 +92,7 @@
         icon:
           sprite: "Clothing/Mask/clown.rsi"
           state: "icon"
-        name: парик и маска клоуна # Imperial Recipes Locale
+        name: recipes-clown-mask-name
         doAfter: 1
         completed:
         - !type:VisualizerDataInt
@@ -103,7 +103,7 @@
         icon:
           sprite: "Clothing/Shoes/Specific/clown.rsi"
           state: "icon"
-        name: клоунские туфли # Imperial Recipes Locale
+        name: recipes-clown-shoes-name
         doAfter: 1
         completed:
         - !type:VisualizerDataInt

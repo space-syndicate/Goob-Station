@@ -13,7 +13,7 @@
         amount: 1
         doAfter: 0.5
       - tag: GlassShard
-        name: осколок стекла # Imperial Recipes Locale
+        name: recipes-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
@@ -37,7 +37,7 @@
         amount: 1
         doAfter: 0.5
       - tag: PlasmaGlassShard
-        name: осколо плазменного стекла # Imperial Recipes Locale
+        name: recipes-plasma-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
@@ -61,7 +61,7 @@
         amount: 1
         doAfter: 0.5
       - tag: UraniumGlassShard
-        name: осколок уранового стекла # Imperial Recipes Locale
+        name: recipes-uranium-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1

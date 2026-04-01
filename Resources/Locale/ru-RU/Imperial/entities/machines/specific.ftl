@@ -18,6 +18,8 @@ ent-WeaponEnergyTurretAIMachineCircuitboard = охранная турель ИИ
     .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
 ent-WeaponEnergyTurretSecurityMachineCircuitboard = охранная турель СБ (машинная плата)
     .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
+ent-WeaponEnergyTurretCommandMachineCircuitboard = охранная турель командования (машинная плата)
+    .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
 
 ent-WeaponEnergyTurretStationControlPanelBase = панель управления турелями
     .desc = Настенный интерфейс для удаленной настройки рабочих параметров связанных охранных турелей.
@@ -27,6 +29,15 @@ ent-WeaponEnergyTurretSecurityControlPanel = панель управления �
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
 ent-WeaponEnergyTurretCommandControlPanel = панель управления турелями командования
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
+
+ent-WeaponEnergyTurretAIControlPanelElectronics = микросхема панели управления турелями ИИ
+    .desc = Электронная плата, используемая в панели управления охранными турелями.
+ent-WeaponEnergyTurretCommandControlPanelElectronics = микросхема панели управления турелями командования
+    .desc = {ent-WeaponEnergyTurretAIControlPanelElectronics.desc}
+ent-WeaponEnergyTurretSecurityControlPanelElectronics = микросхема панели управления турелями СБ
+    .desc = {ent-WeaponEnergyTurretAIControlPanelElectronics.desc}
+ent-WeaponEnergyTurretControlPanelFrame = рамка панели управления турелями
+    .desc = Незаконченная настенная рамка для панели управления охранными турелями.
 
 ent-BulletEnergyTurretBase = энергетический снаряд
 ent-BulletEnergyTurretLaser = лазерный снаряд

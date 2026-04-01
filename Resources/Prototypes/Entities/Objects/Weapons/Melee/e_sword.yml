@@ -340,7 +340,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .75
+    reflectProb: 0.5 # Imperial Space .75 >> 0.5
     spread: 75
 
 # Item will look weird in handslot. Will need to adjust handstorage visuals in a future PR
