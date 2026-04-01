@@ -25,17 +25,20 @@
   id: DroneShuttleLinkable
 
 - type: Tag
-  id: FlashlightSeclite
-
-- type: Tag
   id: EnergyCautery
 
 - type: Tag
   id: EnergyScalpel
 
 - type: Tag
+  id: FlashlightSeclite
+
+- type: Tag
+  id: HandHeldMassScanner
+
+- type: Tag
   id: Hemostat
-  
+
 - type: Tag
   id: LavalandJaunter
 
@@ -65,6 +68,9 @@
 
 - type: Tag
   id: Photo
+
+- type: Tag
+  id: PokerChip
 
 - type: Tag
   id: Retractor
