@@ -5,7 +5,8 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "states": [
+    "copyright": "Resprite by @gopararelav",
+    "states": 
         {
             "name": "icon",
             "delays": [
