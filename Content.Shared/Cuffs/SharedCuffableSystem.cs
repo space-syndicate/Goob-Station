@@ -35,7 +35,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
-using Content.Shared.Zombies;
+using Content.Shared.Zombies; // Imperial Sopace edit
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 
 namespace Content.Shared.Cuffs
