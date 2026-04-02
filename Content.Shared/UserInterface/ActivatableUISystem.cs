@@ -163,9 +163,12 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         if (component.RequiresComplex)
         {
-            if (component.InHandsOnly && args.Hands != null) // CorvaxGoob-GhostUIViewing
+            if (args.Hands == null)
+                return false;
+
+            if (component.InHandsOnly)
             {
-                if (!_hands.IsHolding((args.User, args.Hands), uid, out var hand ))
+                if (!_hands.IsHolding((args.User, args.Hands), uid, out var hand))
                     return false;
 
                 if (component.RequireActiveHand && args.Hands.ActiveHandId != hand)
@@ -173,7 +176,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
             }
         }
 
-        return args.CanInteract || (!component.BlockSpectators && TryComp<GhostComponent>(args.User, out var ghost) && ghost.CanGhostOpenUI); // CorvaxGoob-GhostUIViewing
+        return args.CanInteract || HasComp<GhostComponent>(args.User) && !component.BlockSpectators;
     }
 
     private void OnUseInHand(EntityUid uid, ActivatableUIComponent component, UseInHandEvent args)
@@ -248,7 +251,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (!_blockerSystem.CanInteract(user, uiEntity) && (!HasComp<GhostComponent>(user) || aui.BlockSpectators))
             return false;
 
-        /* if (aui.RequiresComplex) CorvaxGoob-GhostUIViewing
+        /* if (aui.RequiresComplex) CorvaxGoob-GhostUIViewing : смещено вниз
         {
             if (!_blockerSystem.CanComplexInteract(user))
                 return false;
@@ -281,13 +284,15 @@ public sealed partial class ActivatableUISystem : EntitySystem
         }
 
         // CorvaxGoob-GhostUIViewing-Start
-        if (aui.RequiresComplex && !HasComp<GhostComponent>(user))
+        TryComp<GhostComponent>(user, out var ghostComp);
+
+        if (aui.RequiresComplex && ghostComp is null) // Гостам не думаю что требуется комплексное взаимодействие для открытие консолей. ведь так?
         {
             if (!_blockerSystem.CanComplexInteract(user))
                 return false;
         }
 
-        if (TryComp<GhostComponent>(user, out var ghost) && !ghost.CanGhostOpenUI)
+        if (ghostComp is not null && !ghostComp.CanGhostOpenUI)
             return false;
         // CorvaxGoob-GhostUIViewing-End
 
