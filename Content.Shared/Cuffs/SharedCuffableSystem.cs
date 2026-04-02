@@ -35,6 +35,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.Zombies;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 
 namespace Content.Shared.Cuffs
@@ -334,6 +335,14 @@ namespace Content.Shared.Cuffs
         private void OnAddCuffDoAfter(EntityUid uid, HandcuffComponent component, AddCuffDoAfterEvent args)
         {
             var user = args.Args.User;
+
+            // Imperial Space Edit start
+            if (HasComp<PendingZombieComponent>(user))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
+                return;
+            }
+            // Imperial Space Edit end
 
             if (!TryComp<CuffableComponent>(args.Args.Target, out var cuffable))
                 return;

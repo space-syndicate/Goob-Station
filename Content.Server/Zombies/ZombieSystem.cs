@@ -26,6 +26,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.CombatMode.Pacification; // Imperial Space edit
 
 namespace Content.Server.Zombies
 {
@@ -96,6 +97,7 @@ namespace Content.Server.Zombies
                 return;
 
             EnsureComp<PendingZombieComponent>(uid, out PendingZombieComponent pendingComp);
+            EnsureComp<PacifiedComponent>(uid); // Imperial Space edit
 
             pendingComp.GracePeriod = _random.Next(pendingComp.MinInitialInfectedGrace, pendingComp.MaxInitialInfectedGrace);
         }
