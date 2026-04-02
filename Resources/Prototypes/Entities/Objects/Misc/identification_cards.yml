@@ -1052,17 +1052,24 @@
   suffix: Ninja
   components:
   - type: Sprite
+    sprite: Imperial/SpiderClan/Misc/Card.rsi # Imperial Space
     layers:
-    - state: ninja
-    - state: stripe_top
-      color: "#38D848"
-    - state: stripe_bottom
-      color: "#309000"
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Ninja
-  - type: Item
-    heldPrefix: green
+    - state: spaceninja
+    - state: unshaded
+      shader: unshaded
+    - state: holo
+      shader: unshaded
+    # layers:
+    # - state: ninja
+    # - state: stripe_top
+    #   color: "#38D848"
+    # - state: stripe_bottom
+    #   color: "#309000"
+    # - sprite: *icon-rsi
+    #   offset: *icon-offset
+    #   state: Ninja
+  # - type: Item # Imperial Space
+  #   heldPrefix: green
   - type: AgentIDCard
   - type: IdCard
     jobIcon: JobIconNinja
