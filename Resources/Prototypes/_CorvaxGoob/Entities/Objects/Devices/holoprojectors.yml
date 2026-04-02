@@ -7,7 +7,7 @@
   - type: HolosignProjector
     signProto: Crateholographic
     chargeUse: 300
-    anchor: false
+    anchorOnSpawn: false
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Devices/Holoprojectors/cargo.rsi
     state: icon
