@@ -15,7 +15,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Imperial.Zombies
 {
-    public sealed partial class ZombifySystem : EntitySystem
+    public sealed partial class ZombieSystem : EntitySystem
     {
         public override void Initialize()
         {
