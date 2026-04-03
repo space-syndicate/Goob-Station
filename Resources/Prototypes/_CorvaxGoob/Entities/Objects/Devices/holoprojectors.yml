@@ -11,11 +11,20 @@
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Devices/Holoprojectors/cargo.rsi
     state: icon
-  - type: Tag
-    tags:
-    - HolofanProjector
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellMedium    
+  - type: Tag
+    tags:
+    - HolofanProjector
+
+- type: entity
+  parent: HoloprojectorCrate
+  id: HoloprojectorCrateEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

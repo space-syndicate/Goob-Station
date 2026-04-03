@@ -83,6 +83,12 @@
   - type: Construction
     graph: Crateholographic
     node: crateholographic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        mask:
+        - ItemMask
+
   - type: Destructible
     thresholds:
     - trigger:
