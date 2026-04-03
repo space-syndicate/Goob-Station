@@ -4,3 +4,6 @@ ent-ToiletEmpty = туалет
 ent-ToiletDirtyWater = { ent-ToiletEmpty }
     .desc = { ent-ToiletEmpty.desc }
     .suffix = Грязная вода
+ent-ToiletDirtyWaterFilled = { ent-ToiletEmpty }
+    .desc = { ent-ToiletEmpty.desc }
+    .suffix = Грязная вода, Случайный лут
