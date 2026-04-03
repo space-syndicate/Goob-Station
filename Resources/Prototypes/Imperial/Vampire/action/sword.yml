@@ -47,3 +47,6 @@
     damage:
       types:
         Blunt: 15
+  - type: Reflect
+    reflectProb: .1
+    spread: 90
