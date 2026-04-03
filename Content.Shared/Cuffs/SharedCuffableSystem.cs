@@ -337,7 +337,7 @@ namespace Content.Shared.Cuffs
             var user = args.Args.User;
 
             // Imperial Space Edit start
-            if (HasComp<PendingZombieComponent>(user))
+            if (HasComp<IncurableZombieComponent>(user))
             {
                 _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
                 return;

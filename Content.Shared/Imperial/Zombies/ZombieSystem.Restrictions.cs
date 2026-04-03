@@ -1,22 +1,19 @@
 using Content.Shared.Zombies;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Hands;
 using Content.Shared.Item;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Pulling.Events;
-using Robust.Shared.GameObjects;
+using Content.Shared.Popups;
+using Content.Shared.Mind;
+using Content.Shared.Roles;
 
 namespace Content.Shared.Imperial.Zombies
 {
     public sealed partial class ZombieSystem : EntitySystem
     {
+        [Dependency] private readonly SharedRoleSystem _roles = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly SharedMindSystem _mind = default!;
+
         public override void Initialize()
         {
             base.Initialize();

@@ -5,9 +5,7 @@ using Content.Server.ParticleAccelerator.Components;
 using Content.Shared.Popups;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
-using Content.Shared.Strip.Components;
 using Content.Shared.Ghost;
-using System.Reflection.Metadata;
 
 namespace Content.Server.Imperial.Thief;
 public sealed class ThiefRoleSystem : EntitySystem

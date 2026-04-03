@@ -2,11 +2,9 @@ using Content.Shared.Singularity.Components;
 using Content.Shared.Popups;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
-using Content.Shared.Strip.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
-using System.Reflection.Metadata;
 
 namespace Content.Shared.Imperial.Thief;
 public sealed class SharedThiefRoleSystem : EntitySystem

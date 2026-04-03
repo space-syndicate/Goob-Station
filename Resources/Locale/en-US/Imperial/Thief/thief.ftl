@@ -1,1 +1,1 @@
-thief-restriction-popup = So they can reveal me
+thief-restriction-popup = That would reveal me.
