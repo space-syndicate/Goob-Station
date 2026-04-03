@@ -1,16 +1,15 @@
-using Content.Shared.Roles;
-using Content.Shared.Roles.Components;
-using Content.Server.Ame.Components;
-using Content.Server.ParticleAccelerator.Components;
+using Content.Shared.Singularity.Components;
 using Content.Shared.Popups;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
 using Content.Shared.Strip.Components;
 using Content.Shared.Ghost;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using System.Reflection.Metadata;
 
-namespace Content.Server.Imperial.Thief;
-public sealed class ThiefRoleSystem : EntitySystem
+namespace Content.Shared.Imperial.Thief;
+public sealed class SharedThiefRoleSystem : EntitySystem
 {
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -20,16 +19,16 @@ public sealed class ThiefRoleSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<AmeControllerComponent, GettingInteractedWithAttemptEvent>(OnAmeInteractionAttempt);
-        SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, GettingInteractedWithAttemptEvent>(OnPaInteractionAttempt);
+        SubscribeLocalEvent<EmitterComponent, GettingInteractedWithAttemptEvent>(GettingInteractedWithEmitterAttempt);
+        SubscribeLocalEvent<ContainmentFieldGeneratorComponent, GettingInteractedWithAttemptEvent>(GettingInteractedWithCfgAttempt);
     }
 
-    private void OnAmeInteractionAttempt(Entity<AmeControllerComponent> ent, ref GettingInteractedWithAttemptEvent args)
+    private void GettingInteractedWithEmitterAttempt(Entity<EmitterComponent> ent, ref GettingInteractedWithAttemptEvent args)
     {
         CheckRestriction(ref args);
     }
 
-    private void OnPaInteractionAttempt(Entity<ParticleAcceleratorControlBoxComponent> ent, ref GettingInteractedWithAttemptEvent args)
+    private void GettingInteractedWithCfgAttempt(Entity<ContainmentFieldGeneratorComponent> ent, ref GettingInteractedWithAttemptEvent args)
     {
         CheckRestriction(ref args);
     }
@@ -49,6 +48,6 @@ public sealed class ThiefRoleSystem : EntitySystem
             return;
 
         args.Cancelled = true;
-        _popup.PopupEntity(Loc.GetString("thief-restriction-popup"), args.Uid, args.Uid, PopupType.LargeCaution);
+        _popup.PopupClient(Loc.GetString("thief-restriction-popup"), args.Uid, args.Uid, PopupType.LargeCaution);
     }
 }
