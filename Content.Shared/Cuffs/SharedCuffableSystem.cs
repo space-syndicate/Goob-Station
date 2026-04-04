@@ -336,14 +336,6 @@ namespace Content.Shared.Cuffs
         {
             var user = args.Args.User;
 
-            // Imperial Space Edit start
-            if (HasComp<IncurableZombieComponent>(user))
-            {
-                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
-                return;
-            }
-            // Imperial Space Edit end
-
             if (!TryComp<CuffableComponent>(args.Args.Target, out var cuffable))
                 return;
 
@@ -530,6 +522,14 @@ namespace Content.Shared.Cuffs
                 _popup.PopupClient(Loc.GetString("handcuff-component-cannot-drop-cuffs", ("target", Identity.Name(target, EntityManager, user))), user, user);
                 return false;
             }
+
+            // Imperial Space Edit start
+            if (HasComp<IncurableZombieComponent>(user))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), user, user);
+                return true;
+            }
+            // Imperial Space Edit end
 
             var cuffTime = handcuffComponent.CuffTime;
 

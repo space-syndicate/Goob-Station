@@ -31,7 +31,7 @@ public sealed class SharedThiefRoleSystem : EntitySystem
         CheckRestriction(ref args);
     }
 
-    private void CheckRestriction(ref GettingInteractedWithAttemptEvent args)
+    public void CheckRestriction(ref GettingInteractedWithAttemptEvent args)
     {
         if (args.Cancelled)
             return;
