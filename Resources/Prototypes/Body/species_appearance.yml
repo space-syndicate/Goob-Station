@@ -37,9 +37,10 @@
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "eyes" ]
-    - map: [ "belt" ]
+    #- map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "belt" ] ## Imperial рпс над бронежилетами
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ]
