@@ -346,7 +346,7 @@ public sealed partial class HereticAbilitySystem : SharedHereticAbilitySystem
         }
 
         Popup.PopupEntity(loc, uid, uid, PopupType.Medium);
-        _aud.PlayPvs(new SoundPathSpecifier("/Audio/_Goobstation/Heretic/heartbeat.ogg"), uid, uid, AudioParams.Default.WithVolume(-3f)); // CorvaxGoob Anti meta 
+        _aud.PlayPredicted(new SoundPathSpecifier("/Audio/_Goobstation/Heretic/heartbeat.ogg"), uid, uid, AudioParams.Default.WithVolume(-3f)); // CorvaxGoob Anti meta 
     }
 
     public static ProtoId<CollectiveMindPrototype> MansusLinkMind = "MansusLink";
