@@ -10,9 +10,6 @@ namespace Content.Shared.Imperial.Zombies
 {
     public sealed partial class ZombieSystem : EntitySystem
     {
-        [Dependency] private readonly SharedRoleSystem _roles = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedMindSystem _mind = default!;
 
         public override void Initialize()
         {
