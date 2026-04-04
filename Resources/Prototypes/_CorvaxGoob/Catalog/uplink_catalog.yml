@@ -32,3 +32,13 @@
     Telecrystal: 40
   categories:
   - UplinkWearables
+  
+- type: listing
+  id: UplinkBloodRedPaperBox
+  name: uplink-blood-red-paper-box-name
+  description: uplink-blood-red-paper-box-desc
+  productEntity: BloodRedPaperBox
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkPointless
