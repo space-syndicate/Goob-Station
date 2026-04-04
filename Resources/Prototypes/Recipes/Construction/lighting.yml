@@ -1,159 +1,127 @@
 ﻿- type: construction
-  name: Голубая лампа-трубка # Imperial Recipes Locale
   id: CyanLight
   graph: CyanLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Синяя лампа-трубка # Imperial Recipes Locale
   id: BlueLight
   graph: BlueLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим синим кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Желтая лампа-трубка # Imperial Recipes Locale
   id: YellowLight
   graph: YellowLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: A high powered light tube containing a yellow crystal
   objectType: Item
 
 - type: construction
-  name: Розовая лампа-трубка # Imperial Recipes Locale
   id: PinkLight
   graph: PinkLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим розовым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Оранжевая лампа-трубка # Imperial Recipes Locale
   id: OrangeLight
   graph: OrangeLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Черная лампа-трубка # Imperial Recipes Locale
   id: BlackLight
   graph: BlackLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: A high powered light tube containing a black crystal. It won't be very bright.
   objectType: Item
 
 - type: construction
-  name: Красная лампа-трубка # Imperial Recipes Locale
   id: RedLight
   graph: RedLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим цветным красным кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Зеленая лампа-трубка # Imperial Recipes Locale
   id: GreenLight
   graph: GreenLight
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим зелёным кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name:  Голубая лампа-трубка # Imperial Recipes Locale
   id: CyanLightBulb
   graph: CyanLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Синяя лампа-трубка # Imperial Recipes Locale
   id: BlueLightBulb
   graph: BlueLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим синим кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Желтая лампа-трубка # Imperial Recipes Locale
   id: YellowLightBulb
   graph: YellowLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: A high powered light bulb containing a yellow crystal.
   objectType: Item
 
 - type: construction
-  name: Розовая лампа-трубка # Imperial Recipes Locale
   id: PinkLightBulb
   graph: PinkLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим розовым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Оранжевая лампа-трубка # Imperial Recipes Locale
   id: OrangeLightBulb
   graph: OrangeLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Черная лампа-трубка # Imperial Recipes Locale
   id: BlackLightBulb
   graph: BlackLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: A high powered light bulb containing a black crystal. It won't be very bright.
   objectType: Item
 
 - type: construction
-  name: Красная лампа-трубка # Imperial Recipes Locale
   id: RedLightBulb
   graph: RedLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим цветным красным кристаллом внутри. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Зеленая лампа-трубка # Imperial Recipes Locale
   id: GreenLightBulb
   graph: GreenLightBulb
   startNode: start
   targetNode: icon
   category: construction-category-utilities
-  description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
   objectType: Item

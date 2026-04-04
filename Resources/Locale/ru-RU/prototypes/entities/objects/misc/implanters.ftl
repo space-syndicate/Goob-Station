@@ -64,3 +64,6 @@ ent-RadioImplanter = имплантер радио
 ent-DeathRattleImplanterCentcomm = имплантер предсмертного хрипа ЦентКомма
     .desc = { ent-BaseImplanter.desc }
     .suffix = { "" }
+ent-VoiceMaskImplanter = имплантер голосовой маски
+    .desc = { ent-BaseImplanter.desc }
+    .suffix = { "" }

@@ -45,7 +45,7 @@
               anchored: true
           steps:
             - component: DoorElectronics
-              name: микросхема шлюза # Imperial Recipes Locale
+              name: recipes-door-electronics-name
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "door_electronics"

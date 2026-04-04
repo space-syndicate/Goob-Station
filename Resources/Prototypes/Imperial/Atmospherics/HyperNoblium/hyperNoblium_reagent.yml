@@ -15,7 +15,7 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -23,7 +23,7 @@
             Radiation: 2
           groups:
             Toxin: 2
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true

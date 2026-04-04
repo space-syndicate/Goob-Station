@@ -1,0 +1,47 @@
+- type: entity
+  parent: BaseItem
+  id: TitorsClockKaktycOne
+  name: titor's clock
+  suffix: Gate, kaktyc, LessThan1
+  description: El. Psy. Kongroo.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/KAKTYC/Gate/TitorClocks.rsi
+    state: icon
+  - type: TitorClock
+    coefficentNumber: 0.8
+  - type: Anchorable
+
+- type: entity
+  parent: BaseItem
+  id: TitorsClockKaktycTwo
+  name: titor's clock
+  suffix: Gate, kaktyc, MoreThan1
+  description: El. Psy. Kongroo.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/KAKTYC/Gate/TitorClocks.rsi
+    state: icon
+  - type: TitorClock
+    coefficentNumber: 1.2206742
+  - type: Anchorable
+
+- type: entity
+  parent: BaseItem
+  id: TitorsClockKaktycThree
+  name: titor's clock
+  suffix: Gate, kaktyc, MoreThan2
+  description: El. Psy. Kongroo.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/KAKTYC/Gate/TitorClocks.rsi
+    state: icon
+  - type: TitorClock
+    coefficentNumber: 2.20674252
+  - type: Anchorable

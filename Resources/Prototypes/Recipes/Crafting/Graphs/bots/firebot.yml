@@ -10,24 +10,24 @@
         icon:
           sprite: Objects/Misc/fire_extinguisher.rsi
           state: fire_extinguisher_open
-        name: огнетушитель # Imperial Recipes Locale
+        name: recipes-fire-extinguisher-name
       - tag: FireHelmet
         icon:
           sprite: Clothing/Head/Helmets/firehelmet.rsi
           state: icon
-        name: пожарный шлем # Imperial Recipes Locale
+        name: recipes-fire-helmet-name
         doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения # Imperial Recipes Locale
+        name: recipes-proximity-sensor-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: рука борга # Imperial Recipes Locale
+        name: recipes-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobFireBot

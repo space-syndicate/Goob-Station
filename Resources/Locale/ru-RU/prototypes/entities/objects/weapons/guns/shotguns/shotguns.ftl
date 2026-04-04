@@ -36,3 +36,6 @@ ent-WeaponShotgunImprovisedLoaded = импровизированный дроб�
 ent-WeaponShotgunSawnEmpty = обрез
     .desc = Против всякой шелупони. Использует патроны калибра .50 ружейный.
     .suffix = Дробовик, Пустой
+ent-WeaponShotgunHushpup = тихострел
+    .desc = Мощное бесшумное ружье с малой емкостью магазина. Использует патроны калибра .50 для дробовиков.
+    .suffix = Дробовик

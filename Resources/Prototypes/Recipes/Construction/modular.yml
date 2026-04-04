@@ -1,19 +1,15 @@
 - type: construction
-  name: Модульная граната # Imperial Recipes Locale
   id: ModularGrenadeRecipe
   graph: ModularGrenadeGraph
   startNode: start
   targetNode: grenade
   category: construction-category-weapons
-  description: Соберите гранату, используя триггер и заряд. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Модульная мина # Imperial Recipes Locale
   id: ModularMineRecipe
   graph: ModularMineGraph
   startNode: start
   targetNode: mine
   category: construction-category-weapons
-  description: Соберите мину, используя заряд. # Imperial Recipes Locale
   objectType: Item

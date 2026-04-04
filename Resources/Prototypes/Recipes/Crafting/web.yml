@@ -1,50 +1,42 @@
 - type: construction
-  name: Пол из паутины # Imperial Recipes Locale
   id: TileWeb
   graph: WebObjects
   startNode: start
   targetNode: tile
   category: construction-category-tiles
-  description: Красиво и гладко. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
   objectType: Item
 
 - type: construction
-  name: Зимняя куртка из паутины # Imperial Recipes Locale
   id: ClothingOuterWinterWeb
   graph: WebObjects
   startNode: start
   targetNode: coat
   category: construction-category-clothing
-  description: Удивительно теплая и прочная. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
   objectType: Item
 
 - type: construction
-  name: Комбинезон из паутины # Imperial Recipes Locale
   id: ClothingUniformJumpsuitWeb
   graph: WebObjects
   startNode: start
   targetNode: jumpsuit
   category: construction-category-clothing
-  description: По крайней мере, это хоть что-то. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
   objectType: Item
 
 - type: construction
-  name: Юбка-комбинезон из паутины # Imperial Recipes Locale
   id: ClothingUniformJumpskirtWeb
   graph: WebObjects
   startNode: start
   targetNode: jumpskirt
   category: construction-category-clothing
-  description: По крайней мере, это хоть что-то. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -52,38 +44,32 @@
 
 - type: construction
   id: SilkWovenCloth
-  name: Ткань # Imperial Recipes Locale
   graph: WebObjects
   startNode: start
   targetNode: cloth
   category: construction-category-materials
-  description: На ощупь как ткань, как ни странно. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
   objectType: Item
 
 - type: construction
-  name: Щит из паутины # Imperial Recipes Locale
   id: WebShield
   graph: WebObjects
   startNode: start
   targetNode: shield
   category: construction-category-clothing
-  description: Он достаточно толстый, чтобы выдержать несколько ударов, но вряд ли температуру. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
   objectType: Item
 
 - type: construction
-  name: Зимние ботинки из паутины # Imperial Recipes Locale
   id: ClothingShoesBootsWinterWeb
   graph: WebObjects
   startNode: start
   targetNode: boots
   category: construction-category-clothing
-  description: Плотно сплетенная паутина должна защищать от холода. # Imperial Recipes Locale
   entityWhitelist:
     tags:
     - SpiderCraft
