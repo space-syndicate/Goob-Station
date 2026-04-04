@@ -141,3 +141,5 @@ ent-SyndiCorpsmanIDCard = ID карта
     .desc = Карта, открывающая шлюзы… и проблемы для НТ.
 ent-SyndiOperativeIDCard = ID карта
     .desc = Карта, открывающая шлюзы… и проблемы для НТ.
+ent-NinjaPDA = КПК ниндзя
+    .desc = Ах ты скрытный сукин сын!

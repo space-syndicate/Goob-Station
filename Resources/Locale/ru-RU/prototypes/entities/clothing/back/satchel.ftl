@@ -91,3 +91,5 @@ ent-RandomSatchelSpawner = спавнер сумки контрабандист�
 ent-BorgOreBag = встроенная сумка для руды
     .desc = Большая сумка для руды, встроенная в корпус киборга.
     .suffix = Борги
+ent-ClothingBackpackSatchelNinja = сумка клана Паука
+    .desc = Профессиональная сумка для хранения вещей.
