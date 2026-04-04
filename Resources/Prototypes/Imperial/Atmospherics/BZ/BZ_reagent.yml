@@ -57,4 +57,4 @@
           type: [ Slime ]
         effectProto: StatusEffectForcedSleeping
         time: 3
-        type: Add
+        type: Update
