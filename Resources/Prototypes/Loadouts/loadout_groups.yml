@@ -1376,6 +1376,7 @@
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
   - TrooperUniform
+  - VeteranOfficerBlackJumpsuit # Goobstation
   - UniformJumpsuitDSS # _CorvaxGoob
 
 - type: loadoutGroup
@@ -1403,6 +1404,7 @@
   - ArmorVestSlim
   - SecurityOfficerWintercoat
   - WinterCoatSeniorSecArmored # Goobstation
+  - VeteranOfficerArmor # Goobstation
 
 - type: loadoutGroup
   id: SecurityShoes

@@ -283,7 +283,7 @@
   name: red cap
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlippable, BaseSecurityContraband] #goobstation - contraband marking
+  parent: [ClothingHeadHatArmored, ClothingHeadHeadHatBaseFlippable, BaseSecurityContraband] #goobstation - contraband marking
   id: ClothingHeadHatSecsoft
   name: security cap
   description: A baseball cap colored to match security's uniforms.
@@ -307,7 +307,6 @@
         Slash: 0.7
         Piercing: 0.7
         Heat: 0.8
-
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoft]
   id: ClothingHeadHatSecsoftFlipped

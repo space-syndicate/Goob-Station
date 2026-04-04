@@ -198,7 +198,7 @@
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetAltMedical # Goobstation
-#   eyes: ClothingEyesGlassesMed # Goobstation # CorvaxGoob-loadouts: replaced on a ChiefMedicalOfficerGlasses loadout
+#   eyes: ClothingEyesGlassesMedChemFlash #Omu # CorvaxGoob-loadouts: replaced on a ChiefMedicalOfficerGlasses loadout
     belt: ClothingBeltMedicalFilled
   storage:
     back:
@@ -211,7 +211,7 @@
   hasMindShield: true
   equipment:
     head: ClothingHeadHatBeretCmo
-    eyes: ClothingEyesHudMedical
+    eyes: ClothingEyesGlassesMedChemFlash # Omu
     mask: ClothingMaskSterile
     neck: ClothingCloakCmo
     outerClothing: ClothingOuterCoatLabCmo

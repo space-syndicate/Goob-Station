@@ -1158,6 +1158,7 @@
   loadouts:
   - Bodycam # Goobstation - Body cameras
   - ClothingNeckCWPSec
+  - ClothingNeckMantleVeteranSecurity
 
 #honkops
 
@@ -1301,7 +1302,6 @@
   minLimit: 0
   loadouts:
   - MinerCloak
-  - SalvageEspecialistEnsemble
 
 # Chemist
 
