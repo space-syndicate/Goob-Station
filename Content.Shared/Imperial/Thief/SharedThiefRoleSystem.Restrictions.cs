@@ -23,29 +23,36 @@ public sealed class SharedThiefRoleSystem : EntitySystem
 
     private void GettingInteractedWithEmitterAttempt(Entity<EmitterComponent> ent, ref GettingInteractedWithAttemptEvent args)
     {
-        CheckRestriction(ref args);
+        if (CheckRestriction(ref args))
+        {
+            args.Cancelled = true;
+            _popup.PopupClient(Loc.GetString("thief-restriction-popup"), args.Uid, args.Uid, PopupType.LargeCaution);
+        }
     }
 
     private void GettingInteractedWithCfgAttempt(Entity<ContainmentFieldGeneratorComponent> ent, ref GettingInteractedWithAttemptEvent args)
     {
-        CheckRestriction(ref args);
+        if (CheckRestriction(ref args))
+        {
+            args.Cancelled = true;
+            _popup.PopupClient(Loc.GetString("thief-restriction-popup"), args.Uid, args.Uid, PopupType.LargeCaution);
+        }
     }
 
-    public void CheckRestriction(ref GettingInteractedWithAttemptEvent args)
+    public bool CheckRestriction(ref GettingInteractedWithAttemptEvent args)
     {
         if (args.Cancelled)
-            return;
+            return false;
 
         if (HasComp<GhostComponent>(args.Uid))
-            return;
+            return false;
 
         if (!_mind.TryGetMind(args.Uid, out var mindId, out _))
-            return;
+            return false;
 
         if (!_roles.MindHasRole<ThiefRoleComponent>(mindId, out _))
-            return;
+            return false;
 
-        args.Cancelled = true;
-        _popup.PopupClient(Loc.GetString("thief-restriction-popup"), args.Uid, args.Uid, PopupType.LargeCaution);
+        return true;
     }
 }
