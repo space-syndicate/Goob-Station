@@ -1,26 +1,19 @@
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Imperial.AutoPacified.Components;
-using Content.Shared.Mind;
+using Content.Shared.Imperial.MindPacified.Components;
 using Content.Shared.Mind.Components;
 
-namespace Content.Shared.Imperial.AutoPacified;
-public sealed class AutoPacifiedSystem : EntitySystem
+namespace Content.Shared.Imperial.MindPacified;
+public sealed class MindPacifiedSystem : EntitySystem
 {
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MindGotAddedEvent>(OnMindAdded);
+        SubscribeLocalEvent<MindPacifiedComponent, MindGotAddedEvent>(OnMindGotAdded);
     }
 
-    private void OnMindAdded(MindGotAddedEvent args)
+    private void OnMindGotAdded(Entity<MindPacifiedComponent> ent, ref MindGotAddedEvent args)
     {
-        if (args.TransferEntity == null)
-            return;
-
-        if (HasComp<AutoPacifiedComponent>(args.Mind))
-        {
-            EnsureComp<PacifiedComponent>(args.TransferEntity.Value);
-        }
+        EnsureComp<PacifiedComponent>(args.Container);
     }
 }

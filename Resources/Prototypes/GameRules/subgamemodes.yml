@@ -35,6 +35,10 @@
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true
+      ### Imperial Space edit start
+      mindComponents:
+      - type: MindPacified
+      ### Imperial Space edit end
       mindRoles:
       - MindRoleThief
       briefing:
