@@ -1,2 +1,2 @@
 sheath-insert-verb = Сложить
-sheath-eject-verb = Обножить
+sheath-eject-verb = Обнажить

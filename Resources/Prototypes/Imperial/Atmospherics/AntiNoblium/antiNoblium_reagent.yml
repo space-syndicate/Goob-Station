@@ -34,6 +34,5 @@
             Cellular: 0.01
           groups:
             Toxin: 0.03
-      - !type:Luminescence
-        color: "#e4fd00"
-        energyPerUnit: 6
+      - !type:Oxygenate
+        factor: 4

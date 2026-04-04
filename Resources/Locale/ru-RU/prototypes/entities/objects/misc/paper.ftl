@@ -115,6 +115,15 @@ ent-PaperCNCSheet = лист персонажа
     .desc = "Лист для ваших персонажей из «ДнД»."
 ent-BoxFolderClipboard = доска с зажимом для бумаги
     .desc = Оружие бюрократов!
+ent-BoxFolderClipboardEmpty = { ent-BoxFolderClipboard }
+    .desc = { ent-BoxFolderClipboard.desc }
+    .suffix = Пустая
+ent-BoxFolderClipboardThreePapers = { ent-BoxFolderClipboard }
+    .desc = { ent-BoxFolderClipboard.desc }
+    .suffix = 3 бумаги
+ent-BoxFolderPlasticClipboardThreePapers = { ent-BoxFolderClipboard }
+    .desc = { ent-BoxFolderClipboard.desc }
+    .suffix = 3 бумаги
 
 ent-BoxFolderCentComClipboard = планшет ЦентКом
     .desc = Роскошная папка для обмена, обитая зеленым бархатом. Ее часто носят с собой сотрудники ЦентКома, но её редко используют по назначению.
