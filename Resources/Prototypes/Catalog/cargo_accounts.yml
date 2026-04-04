@@ -6,6 +6,7 @@
   radioChannel: Supply
   acquisitionSlip: PaperAcquisitionSlipCargo
   # CorvaxGoob-CargoFeatures-Start
+  departmentDestinationName: cargo-account-cargo-destination
   secureCratePrototype: CratePrivateCargoSecure
   secureCrateOrderAccess:
   - Cargo
@@ -21,6 +22,7 @@
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
   # CorvaxGoob-CargoFeatures-Start
+  departmentDestinationName: cargo-account-engineering-destination
   secureCratePrototype: CrateEngineeringSecure
   secureCrateOrderAccess:
   - Engineering
@@ -36,6 +38,7 @@
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
   # CorvaxGoob-CargoFeatures-Start
+  departmentDestinationName: cargo-account-medical-destination
   secureCratePrototype: CrateMedicalSecure
   secureCrateOrderAccess:
   - Medical
@@ -52,6 +55,7 @@
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
   # CorvaxGoob-CargoFeatures-Start
+  departmentDestinationName: cargo-account-science-destination
   secureCratePrototype: CrateScienceSecure
   secureCrateOrderAccess:
   - ResearchDirector
@@ -67,6 +71,7 @@
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
   # CorvaxGoob-CargoFeatures-Start
+  departmentDestinationName: cargo-account-security-destination
   secureCratePrototype: CrateWeaponSecure
   secureCrateOrderAccess:
   - Security
@@ -84,6 +89,7 @@
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
   # CorvaxGoob-CargoFeatures-Start
+  departmentDestinationName: cargo-account-security-destination
   secureCratePrototype: CrateHydroSecure
   secureCrateOrderAccess:
   - Bar

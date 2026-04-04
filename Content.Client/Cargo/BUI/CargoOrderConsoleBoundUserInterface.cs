@@ -25,7 +25,6 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Client.Cargo.UI;
-using Content.Shared.Access.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -121,6 +120,11 @@ namespace Content.Client.Cargo.BUI
                 // CorvaxGoob-CargoFeatures-Start
                 if (EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
                 {
+                    _orderMenu.Requester.Editable = orderConsole.EditableRequesterName;
+
+                    if (_protoManager.TryIndex<CargoAccountPrototype>(orderConsole.Account, out var accountPrototype))
+                        _orderMenu.DeliveryDestination.PlaceHolder = Loc.GetString(accountPrototype.DepartmentDestinationName ?? "cargo-console-paper-delivery-destination-default");
+
                     _orderMenu.Requester.Text = localPlayer.HasValue ? _cargoSystem.GenerateRequesterName((Owner, orderConsole), localPlayer.Value) : string.Empty;
 
                     _orderMenu.ToggleDepartmentSecureCrate.Text = Loc.GetString("cargo-console-secure-order-checkbox", ("cost", orderConsole.SecureOrderCost));
@@ -220,6 +224,10 @@ namespace Content.Client.Cargo.BUI
 
         private bool AddOrder()
         {
+            // CorvaxGoob-CargoFeatures
+            if (!EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
+                return false;
+
             var orderAmt = _orderMenu?.Amount.Value ?? 0;
             if (orderAmt < 1 || orderAmt > OrderCapacity)
             {
@@ -227,10 +235,11 @@ namespace Content.Client.Cargo.BUI
             }
 
             SendMessage(new CargoConsoleAddOrderMessage(
-                _orderMenu?.DeliveryDestination.Text == "" ? null : _orderMenu?.DeliveryDestination.Text, // CorvaxGoob-CargoFeatures
+                orderConsole.EditableRequesterName ? _orderMenu?.Requester.Text : null, // CorvaxGoob-CargoFeatures
+                _orderMenu?.DeliveryDestination.Text == "" ? _orderMenu?.DeliveryDestination.PlaceHolder : _orderMenu?.DeliveryDestination.Text, // CorvaxGoob-CargoFeatures
                 _orderMenu?.Note.Text == "" ? null : _orderMenu?.Note.Text, // CorvaxGoob-CargoFeatures
                 _product?.ID ?? "",
-                orderAmt, 
+                orderAmt,
                 _orderMenu?.ToggleDepartmentSecureCrate.Pressed ?? false)); // CorvaxGoob-CargoFeatures
 
             return true;

@@ -1159,8 +1159,7 @@
     account: Engineering
     announcementChannel: Engineering
     removeLimitAccess: [ "ChiefEngineer" ]
-    # CorvaxGoob-CargoFeatures
-    # mode: SendToPrimary
+    mode: PrintSlip # CorvaxGoob-CargoFeatures
   - type: ActiveRadio
     channels:
     - Engineering
@@ -1193,8 +1192,7 @@
     account: Medical
     announcementChannel: Medical
     removeLimitAccess: [ "ChiefMedicalOfficer" ]
-    # CorvaxGoob-CargoFeatures
-    # mode: SendToPrimary
+    mode: PrintSlip # CorvaxGoob-CargoFeatures
   - type: ActiveRadio
     channels:
     - Medical
@@ -1227,8 +1225,7 @@
     account: Science
     announcementChannel: Science
     removeLimitAccess: [ "ResearchDirector" ]
-    # CorvaxGoob-CargoFeatures
-    # mode: SendToPrimary
+    mode: PrintSlip # CorvaxGoob-CargoFeatures
   - type: ActiveRadio
     channels:
     - Science
@@ -1261,8 +1258,7 @@
     account: Security
     announcementChannel: Security
     removeLimitAccess: [ "HeadOfSecurity" ]
-    # CorvaxGoob-CargoFeatures
-    # mode: SendToPrimary
+    mode: PrintSlip # CorvaxGoob-CargoFeatures
   - type: ActiveRadio
     channels:
     - Security
@@ -1295,8 +1291,7 @@
     account: Service
     announcementChannel: Service
     removeLimitAccess: [ "HeadOfPersonnel" ]
-    # CorvaxGoob-CargoFeatures
-    # mode: SendToPrimary
+    mode: PrintSlip # CorvaxGoob-CargoFeatures
   - type: ActiveRadio
     channels:
     - Service

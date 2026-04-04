@@ -52,6 +52,12 @@ public sealed partial class CargoAccountPrototype : IPrototype
     public HashSet<ProtoId<AccessLevelPrototype>> SecureCrateOrderAccess = new();
 
     /// <summary>
+    /// Название для отдела, куда будет указывать доставка по умолчанию.
+    /// </summary>
+    [DataField]
+    public LocId? DepartmentDestinationName;
+
+    /// <summary>
     /// Прототип для ящика, который будет спавнится при одобрении заказа с пометкой о защите заказа.
     /// </summary>
     [DataField]

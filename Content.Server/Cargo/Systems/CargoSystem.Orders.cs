@@ -239,6 +239,9 @@ namespace Content.Server.Cargo.Systems
             if (_emag.CheckFlag(ent, EmagType.Interaction))
                 return;
 
+            ent.Comp.EditableRequesterName = true;
+            Dirty(ent);
+
             args.Handled = true;
         }
 
@@ -564,7 +567,14 @@ namespace Content.Server.Cargo.Systems
             if (args.SecuredDelivery) // CorvaxGoob-CargoFeatures : Валидация поля запроса
                 args.SecuredDelivery = CanBeSecuredDelivery((uid, component), _protoMan.Index<CargoProductPrototype>(args.CargoProductId));
 
-            string requester = GenerateRequesterName((uid, component), args.Actor); // CorvaxGoob-CargoFeatures
+
+            // CorvaxGoob-CargoFeatures-Start
+            string requester = string.Empty;
+            if (component.EditableRequesterName && args.Requester is not null)
+                requester = args.Requester;
+            else
+                requester = GenerateRequesterName((uid, component), args.Actor);
+            // CorvaxGoob-CargoFeatures-End
 
             if (component.Mode == CargoOrderConsoleMode.PrintSlip)
             {

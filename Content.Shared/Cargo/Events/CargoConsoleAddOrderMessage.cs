@@ -17,7 +17,7 @@ namespace Content.Shared.Cargo.Events;
 public sealed class CargoConsoleAddOrderMessage : BoundUserInterfaceMessage
 {
     // CorvaxGoob-CargoFeatures-Start
-    //public string Requester;
+    public string? Requester;
     public string? DeliveryDestination;
     public string? Note;
     public bool SecuredDelivery;
@@ -27,10 +27,10 @@ public sealed class CargoConsoleAddOrderMessage : BoundUserInterfaceMessage
     public int Amount;
 
     // CorvaxGoob-CargoFeatures 
-    public CargoConsoleAddOrderMessage(string? deliveryDestination, string? note, string cargoProductId, int amount, bool securedDelivery = false)
+    public CargoConsoleAddOrderMessage(string? requester, string? deliveryDestination, string? note, string cargoProductId, int amount, bool securedDelivery = false)
     {
         // CorvaxGoob-CargoFeatures-Start
-        //Requester = requester;
+        Requester = requester;
         DeliveryDestination = deliveryDestination;
         Note = note;
         SecuredDelivery = securedDelivery;
