@@ -2,13 +2,10 @@ using Content.Shared.Zombies;
 using Content.Shared.Item;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Pulling.Events;
-using Content.Shared.Popups;
-using Content.Shared.Mind;
-using Content.Shared.Roles;
 
 namespace Content.Shared.Imperial.Zombies
 {
-    public sealed partial class ZombieSystem : EntitySystem
+    public sealed partial class ZombieRestrictionsSystem : EntitySystem
     {
 
         public override void Initialize()
