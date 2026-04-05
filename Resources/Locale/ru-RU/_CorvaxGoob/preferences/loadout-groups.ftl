@@ -16,3 +16,5 @@ loadout-group-radiohost-glasses = Радиоведущий, очки
 loadout-group-engineering-welder = Инженер, сварочный аппарат
 # Command
 loadout-group-head-of-personnel-glasses = Глава персонала, очки
+# Other
+loadout-group-bso-mask = ОСЩ, лицо
