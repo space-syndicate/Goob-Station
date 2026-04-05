@@ -16,5 +16,3 @@ loadout-group-radiohost-glasses = Radiohost glasses
 loadout-group-engineering-welder = Engineer welder
 # Command
 loadout-group-head-of-personnel-glasses = Head Of Personnel glasses
-# Other
-loadout-group-bso-mask = Blueshield Officer mask

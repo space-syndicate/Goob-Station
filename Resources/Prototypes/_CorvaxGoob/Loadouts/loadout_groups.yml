@@ -180,10 +180,3 @@
   minLimit: 0
   maxLimit: 5
   loadouts: []
-
-- type: loadoutGroup
-  id: BSOMask
-  name: loadout-group-bso-mask
-  minLimit: 0
-  loadouts:
-  - BlueShieldMaskGasSWAT
