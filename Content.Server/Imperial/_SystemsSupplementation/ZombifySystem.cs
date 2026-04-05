@@ -1,14 +1,12 @@
 using Content.Shared.Zombies;
 using Content.Server.Atmos.Components;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Imperial.Zombies;
 
-namespace Content.Shared.Zombies
+namespace Content.Server.Zombies
 {
     public sealed partial class ZombifySystem : EntitySystem
     {
@@ -23,9 +21,6 @@ namespace Content.Shared.Zombies
 
         private void OnZombified(Entity<PendingZombieComponent> ent, ref EntityZombifiedEvent args)
         {
-            var damage = new DamageSpecifier();
-            damage.DamageDict.Add("Blunt", FixedPoint2.New(0.20));
-
             if (!TryComp<ZombieBarotraumaDamageComponent>(ent, out var zombieBaro))
                 return;
 
@@ -38,6 +33,7 @@ namespace Content.Shared.Zombies
             EnsureComp<PullerComponent>(ent);
             EnsureComp<BarotraumaComponent>(ent).Damage = zombieBaro.Damage;
 
+            RemCompDeferred<ZombieBarotraumaDamageComponent>(ent);
             RemCompDeferred<ComplexInteractionComponent>(ent);
         }
     }

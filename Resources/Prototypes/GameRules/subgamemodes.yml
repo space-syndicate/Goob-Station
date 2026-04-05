@@ -31,14 +31,21 @@
         - BorgTransponder
       ### Imperial Syndie Borg End
       components:
+      # Imperial Space edit start
+      - type: GiveMindPacified
+      - type: Restriction
+        restrictions:
+          components:
+          - Emitter
+          - ContainmentFieldGenerator
+          - AmeController
+          - ContainmentFieldGenerator
+        message: thief-restriction-popup
+      # Imperial Space edit end
       - type: Pacified
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true
-      ### Imperial Space edit start
-      mindComponents:
-      - type: MindPacified
-      ### Imperial Space edit end
       mindRoles:
       - MindRoleThief
       briefing:

@@ -1,16 +1,16 @@
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Zombies;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class ZombieBarotraumaDamageComponent : Component
 {
     /// <summary>
-    /// The damage that the zombie will take from barotrauma.
+    /// Компонент, хранящий информацию о том,
+    /// какой урон будет наносится сущности после зомбификации от компонента BarotraumaComponent.
     /// </summary>
-    [DataField("damage"), AutoNetworkedField]
+    [DataField("damage")]
     public DamageSpecifier Damage = new()
     {
         DamageDict = new() { { "Blunt", FixedPoint2.New(0.20) } }
