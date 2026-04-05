@@ -10,6 +10,6 @@ ent-HandheldStationMapEmpty = ручная карта станции
 ent-HandheldStationMapStatic = ручная карта станции
     .desc = Отображает схему текущей станции.
     .suffix = Ручная, Работает вне станции
-ent-HandheldStationMapEmpty = карта целевой станции
+ent-HandheldStationMapNukeops = карта целевой станции
     .desc = Отображает схему целевой станции.
     .suffix = Ручная, Ядерные оперативники
