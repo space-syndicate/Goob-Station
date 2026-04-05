@@ -56,7 +56,7 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
         if (component.RandomizeGeneQuality)
         {
             float multiplier;
-            int quality = _rand.Next(0, 10);
+            var quality = _rand.Next(0, 10);
             switch (quality)
             {
                 case <= 2:
@@ -96,7 +96,7 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
         switch (comp.InsertMode)
         {
             case GeneSplicerMode.Insert:
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(comp.InsertTime), new GeneInsertingDoAfterEvent(), uid, target: args.Target, used: uid)
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, comp.InsertTime, new GeneInsertingDoAfterEvent(), uid, target: args.Target, used: uid)
                 {
                     BreakOnMove = true,
                     NeedHand = true,
@@ -104,7 +104,7 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
                 break;
 
             case GeneSplicerMode.Withdraw:
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(comp.WithdrawTime), new GeneWithdrawDoAfterEvent(), uid, target: args.Target, used: uid)
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, comp.WithdrawTime, new GeneWithdrawDoAfterEvent(), uid, target: args.Target, used: uid)
                 {
                     BreakOnMove = true,
                     NeedHand = true,

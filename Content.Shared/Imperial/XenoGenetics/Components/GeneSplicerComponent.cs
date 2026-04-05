@@ -29,13 +29,13 @@ public sealed partial class GeneSplicerComponent : Component
     /// Время на ввод
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float InsertTime = 2.5f;
+    public TimeSpan InsertTime = TimeSpan.FromSeconds(2.5f);
 
     /// <summary>
     /// Время на доставание
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float WithdrawTime = 5f;
+    public TimeSpan WithdrawTime = TimeSpan.FromSeconds(5f);
 
 }
 [Serializable, NetSerializable]

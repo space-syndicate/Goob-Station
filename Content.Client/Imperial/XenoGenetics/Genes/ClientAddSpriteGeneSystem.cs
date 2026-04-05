@@ -21,7 +21,7 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
     }
     private void OnAfterHandleState(EntityUid uid, AddSpriteGeneComponent component, AfterAutoHandleStateEvent args)
     {
-        if (!TryComp<HumanoidProfileComponent >(uid, out var humanoidAppearance))
+        if (!HasComp<HumanoidProfileComponent >(uid))
             return;
 
         if (!TryComp<SpriteComponent>(uid, out var sprite))
