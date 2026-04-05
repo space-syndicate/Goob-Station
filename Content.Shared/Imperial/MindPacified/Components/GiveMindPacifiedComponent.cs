@@ -4,7 +4,7 @@ namespace Content.Shared.Imperial.MindPacified.Components;
 
 /// <summary>
 /// Компонент, использующийся для пометки того разума сущности,
-/// которая должна получить компонент MindPacified в свой разум после взаимодействия с чем-либо.
+/// который должен получить компонент MindPacified в свой разум после взаимодействия с чем-либо.
 /// </summary>
 
 [RegisterComponent, NetworkedComponent]
