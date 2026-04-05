@@ -69,7 +69,7 @@ public sealed class ReplaySplitterSystem : EntitySystem
         var dateStr = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm");
         var timeStr = ticker.RoundDuration().ToString(@"hh\-mm\-ss");
 
-        var replayName = $"void-{dateStr}-round_{ticker.RoundId}-started_{timeStr}";
+        var replayName = $"{dateStr}-round_{ticker.RoundId}-started_{timeStr}";
 
         _console.ExecuteCommand("replay_recording_stop");
         _console.ExecuteCommand($"replay_recording_start \"{replayName}\"");
