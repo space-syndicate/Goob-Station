@@ -55,7 +55,7 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
 
         if (component.RandomizeGeneQuality)
         {
-            float multiplier;
+            var multiplier;
             var quality = _rand.Next(0, 10);
             switch (quality)
             {
