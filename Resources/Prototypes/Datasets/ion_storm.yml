@@ -557,7 +557,7 @@
 
 - type: dataset
   id: IonStormNumberBase
-  values:
+  values: # Imperial Space Localization
   - ВОСЕМЬ
   - ВОСЕМЬДЕСЯТ
   - ПЯТЬДЕСЯТ
