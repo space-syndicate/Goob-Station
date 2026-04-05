@@ -201,7 +201,6 @@
     - ChemistryStatic
     - SurgeryStatic
     dynamicPacks:
-    - ImperialGeneticsPack # Imperial Xenogenetics
     - SalvagePlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
     - SalvageAdvancedPlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
     - AdvancedTools
