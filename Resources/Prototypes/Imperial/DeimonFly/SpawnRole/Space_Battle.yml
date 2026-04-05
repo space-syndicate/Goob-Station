@@ -11,7 +11,7 @@
     layers:
       - state: centcom
   - type: IdCard
-    jobTitle: Пилот ОБР
+    jobTitle: id-name-ert-pilot
     jobIcon: JobIconNanotrasen      # иконка N над головой
     jobPrototype: ERTSecurity       # опционально: берём департаменты из этого джоба
   - type: Access
@@ -68,7 +68,7 @@
       offset: &icon-offset -0.09375, 0.0625
       state: ERTSecurity
   - type: IdCard
-    jobTitle: Штурмовик ОБР
+    jobTitle: id-name-ert-stormtrooper
 
 #Leader NT ID
 - type: entity
@@ -87,7 +87,7 @@
       offset: *icon-offset
       state: ERTLeader
   - type: IdCard
-    jobTitle: Капитан ОБР
+    jobTitle: id-name-ert-captain
 
 #Security NT PDA
 - type: entity
@@ -137,7 +137,7 @@
       offset: *icon-offset
       state: Syndicate
   - type: IdCard
-    jobTitle: Штурмовик Синдиката
+    jobTitle: id-name-syndi-stormtrooper
     jobIcon: JobIconSyndicate
   - type: Access
     tags:
@@ -160,7 +160,7 @@
       offset: *icon-offset
       state: SyndicateCommander
   - type: IdCard
-    jobTitle: Капитан Синдиката
+    jobTitle: id-name-syndi-captain
     jobIcon: JobIconSyndicate
   - type: Access
     tags:
@@ -183,7 +183,7 @@
       offset: *icon-offset
       state: Syndicate
   - type: IdCard
-    jobTitle: Медик Синдиката
+    jobTitle: id-name-syndi-medic
     jobIcon: JobIconSyndicate
   - type: Access
     tags:
@@ -206,7 +206,7 @@
       offset: *icon-offset
       state: Syndicate
   - type: IdCard
-    jobTitle: Инженер Синдиката
+    jobTitle: id-name-syndi-engineer
     jobIcon: JobIconSyndicate
   - type: Access
     tags:
@@ -229,7 +229,7 @@
       offset: *icon-offset
       state: Syndicate
   - type: IdCard
-    jobTitle: Пилот Синдиката
+    jobTitle: id-name-syndi-pilot
     jobIcon: JobIconSyndicate
   - type: Access
     tags:

@@ -37,7 +37,7 @@
         steps:
         - tag: TimerSignalElectronics
           store: board
-          name: микросхема сигнального таймера # Imperial Recipes Locale
+          name: recipes-signal-timer-electronics-name
           icon:
             sprite: "Objects/Misc/module.rsi"
             state: "charger_APC"
@@ -46,7 +46,7 @@
         steps:
         - tag: TimerScreenElectronics
           store: board
-          name: микросхема экранного таймера # Imperial Recipes Locale
+          name: recipes-screen-timer-electronics-name
           icon:
             sprite: "Objects/Misc/module.rsi"
             state: "charger_APC"
@@ -55,7 +55,7 @@
         steps:
         - tag: TimerBrigElectronics
           store: board
-          name: микросхема бриг-таймера # Imperial Recipes Locale
+          name: recipes-brig-timer-electronics-name
           icon:
             sprite: "Objects/Misc/module.rsi"
             state: "charger_APC"

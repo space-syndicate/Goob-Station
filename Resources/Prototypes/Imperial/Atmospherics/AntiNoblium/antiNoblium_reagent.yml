@@ -15,7 +15,7 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -24,7 +24,7 @@
             Cellular: 2
           groups:
             Toxin: 4
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -34,6 +34,5 @@
             Cellular: 0.01
           groups:
             Toxin: 0.03
-      - !type:Luminescence
-        color: "#e4fd00"
-        energyPerUnit: 6
+      - !type:Oxygenate
+        factor: 4

@@ -21,13 +21,13 @@
         damage:
           types:
             Radiation: 2.66
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
         damage:
            groups:
-            Brute: -1.33
-            Burn: -2
-            Toxin: -1.33
-            Airloss: -0.66
+            Brute: -0.67
+            Burn: -1
+            Toxin: -0.67
+            Airloss: -0.67

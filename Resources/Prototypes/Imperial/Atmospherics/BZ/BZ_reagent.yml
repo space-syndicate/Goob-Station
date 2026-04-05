@@ -15,7 +15,7 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -23,7 +23,7 @@
             Radiation: 1
           groups:
             Toxin: 3
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         conditions:
@@ -57,4 +57,4 @@
           type: [ Slime ]
         effectProto: StatusEffectForcedSleeping
         time: 3
-        type: Add
+        type: Update

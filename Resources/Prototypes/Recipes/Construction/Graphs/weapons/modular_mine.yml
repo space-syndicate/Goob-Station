@@ -22,7 +22,7 @@
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения # Imperial Recipes Locale
+        name: recipes-proximity-sensor-name
     - to: start
       completed:
       - !type:SpawnPrototype
@@ -52,7 +52,7 @@
       steps:
       - tag: Payload
         store: payload
-        name: заряд # Imperial Recipes Locale
+        name: recipes-payload-name
         doAfter: 0.5
 
   - node: mine

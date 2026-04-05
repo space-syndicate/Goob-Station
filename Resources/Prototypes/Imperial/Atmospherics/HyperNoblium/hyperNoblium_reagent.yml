@@ -15,7 +15,7 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -23,7 +23,7 @@
             Radiation: 2
           groups:
             Toxin: 2
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -33,19 +33,16 @@
             Cellular: 0.1
           groups:
             Toxin: 0.1
-      - !type:GenericStatusEffect
-        key: Stun
-        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 3.5
         type: Remove
-      - !type:GenericStatusEffect
-        key: KnockedDown
-        time: 3
+      - !type:ModifyKnockdown
+        time: 3.5
         type: Remove
-      - !type:GenericStatusEffect
-        key: StaminaModifier
-        component: StaminaModifier
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina
         time: 3
-        type: Add
       - !type:ModifyStatusEffect
         effectProto: StatusEffectForcedSleeping
         time: 15

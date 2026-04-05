@@ -34,3 +34,6 @@ ent-CrayonPurple = фиолетовый мелок
 ent-CrayonBox = коробка для мелков
     .desc = Это коробка с мелками.
     .suffix = { "" }
+ent-CrayonBoxEmpty = { ent-CrayonBox }
+    .desc = { ent-CrayonBox.desc }
+    .suffix = Пустая

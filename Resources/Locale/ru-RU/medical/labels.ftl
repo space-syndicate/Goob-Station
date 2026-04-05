@@ -1,0 +1,12 @@
+label-dexalin = Дексалин 10u
+label-dylovene = Диловен 10u
+label-hyronalin = Хироналин 10u
+label-potassium-iodide = Иодид калия 10u
+label-iron = Железо 10u
+label-copper = Медь 10u
+label-kelotane = Келотан 10u
+label-dermaline = Дермалин 10u
+label-tricordrazine = Трикордразин 10u
+label-bicaridine = Бикаридин 10u
+label-charcoal = Уголь 10u
+label-space-cleaner = Космический очиститель

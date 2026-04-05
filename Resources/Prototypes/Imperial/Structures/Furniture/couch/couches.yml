@@ -18,13 +18,11 @@
     node: couchComfy
 
 - type: construction
-  name: Комфортный диван
   id: CouchComfy
   graph: Seat
   startNode: start
   targetNode: couchComfy
   category: construction-category-furniture
-  description: Выглядит комфортно.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -52,13 +50,11 @@
 
 
 - type: construction
-  name: Золотой диван
   id: CouchGold
   graph: Seat
   startNode: start
   targetNode: couchGold
   category: construction-category-furniture
-  description: Выглядит богато.
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

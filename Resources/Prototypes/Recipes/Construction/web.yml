@@ -1,11 +1,9 @@
 - type: construction
-  name: Стена из паутины # Imperial Recipes Locale
   id: WallWeb
   graph: WebStructures
   startNode: start
   targetNode: wall
   category: construction-category-structures
-  description: Удерживает пауков внутри и снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -17,13 +15,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Стол из паутины # Imperial Recipes Locale
   id: TableWeb
   graph: WebStructures
   startNode: start
   targetNode: table
   category: construction-category-furniture
-  description: Действительно гладкий и на удивление прочный. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -35,13 +31,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Кровать из паутины # Imperial Recipes Locale
   id: WebBed
   graph: WebStructures
   startNode: start
   targetNode: bed
   category: construction-category-furniture
-  description: Ты попал в паутину. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -53,13 +47,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Паутинный стул # Imperial Recipes Locale
   id: ChairWeb
   graph: WebStructures
   startNode: start
   targetNode: chair
   category: construction-category-furniture
-  description: Для настоящих web-разработчиков.  # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -68,13 +60,11 @@
     - SpiderCraft
 
 - type: construction
-  name: Ящик из паутины # Imperial Recipes Locale
   id: CrateWeb
   graph: WebStructures
   startNode: start
   targetNode: crate
   category: construction-category-storage
-  description: Большой контейнер для предметов. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -84,13 +74,11 @@
     - SpiderCraft
 
 - type: construction
-  name: Дверь из паутины # Imperial Recipes Locale
   id: WebDoor
   graph: WebStructures
   startNode: start
   targetNode: door
   category: construction-category-structures
-  description: Дверь из паутины, обычно размещаемая прямо перед ямой или ловушкой. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

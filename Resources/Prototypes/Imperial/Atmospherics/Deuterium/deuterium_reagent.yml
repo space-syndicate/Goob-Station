@@ -15,14 +15,14 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Radiation: 0.3
             Heat: 0.9
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true

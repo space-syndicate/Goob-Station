@@ -21,9 +21,6 @@
   - type: Anchorable
     flags:
     - Unanchorable
-  - type: Construction
-    graph: Computer
-    node: frameUnsecured
   - type: Sprite
     drawdepth: Objects
 
@@ -40,16 +37,9 @@
     soundGroups:
       Brute:
         collection: GlassSmash
-  - type: Construction
-    graph: Computer
-    node: computer
-    containers:
-      - board
   ## - type: ApcPowerReceiver
   ##   powerLoad: 200
-  - type: ExtensionCableReceiver
   - type: Appearance
-  - type: LitOnPowered
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -58,10 +48,6 @@
     autoRot: true
     offset: "0, 0.4" # shine from the top, not bottom of the computer
     castShadows: false
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-        ents: []
   - type: LightningTarget
     priority: 1
   ## - type: RequireProjectileTarget

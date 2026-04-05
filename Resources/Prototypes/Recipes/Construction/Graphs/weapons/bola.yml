@@ -11,7 +11,7 @@
                 sprite: Objects/Misc/cablecuffs.rsi
                 state: cuff
                 color: red
-              name: стяжки # Imperial Recipes Locale
+              name: recipes-handcuffs-name
             - material: Steel
               amount: 6
               doAfter: 2
