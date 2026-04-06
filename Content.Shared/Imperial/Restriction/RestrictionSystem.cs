@@ -9,9 +9,7 @@ namespace Content.Shared.Imperial.Restriction
 {
     public sealed class RestrictionSystem : EntitySystem
     {
-        [Dependency] private readonly SharedRoleSystem _roles = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedMindSystem _mind = default!;
         [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
         public override void Initialize()
