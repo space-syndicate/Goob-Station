@@ -4,3 +4,16 @@ ent-PortalSCP106 = нечистая лужа небрежности
     .desc = Оставшееся после умерших ценно для нас, если они были дороги при жизни.
 ent-ImperialSCP106Ghost = межпространственное перемещение старика
     .desc = Все ангелы упали ради тебя, видишь их нет?
+
+ent-ImperialSCPNothingThere = чудо
+    .desc = Я не думаю, что тебе стоит приближаться к нему.
+ent-ImperialSCPNothingThereEgg = многоглазное яйцо
+    .desc = Либо беги, либо ломай.
+ent-ImperialSCPNothingThereTrue = чудо: аннигиляция всего живого
+    .desc = ПРИВЕТ!!!! ПОДОЙДИ КО МНЕ!!!!
+ent-ImperialNothingThereEmpowerHit = до свидания
+    .desc = Вина лежит на тебе.
+ent-ImperialNothingThereHit = менеджер
+    .desc = Я тебя люблю.
+ent-ImperialProjectileBoneShard = осколок кости
+    .desc = Ауч.
