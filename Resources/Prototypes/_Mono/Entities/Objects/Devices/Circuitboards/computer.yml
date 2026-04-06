@@ -1,10 +1,10 @@
 - type: entity
   parent: BaseComputerCircuitboard
-  id: GunneryControlComputerCircuitboard
+  id: GunneryControlComputerCircuitboard 
   name: gunnery control computer board
   description: A computer printed circuit board for a gunnery control computer.
   components:
     - type: Sprite
-      state: cpu_command
+      state: cpu_security # Corvax-Goob-Gunnery-Research
     - type: ComputerBoard
       prototype: ComputerGunneryConsole

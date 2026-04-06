@@ -8,3 +8,14 @@
   recipes:
   - MagazineLargeCaliber
   - MagazineBoxLargeCaliber
+
+# Corvax-Goob-Gunnery-Research-start
+
+- type: latheRecipePack
+  id: SecurityBoardsCorvaxGoob
+  recipes:
+  - GunneryControlComputerCircuitboard # Corvax-Goob-Gunnery-Research
+  - MachineGCSLowCircuitboard # Corvax-Goob-Gunnery-Research
+  - MachineGCSMediumCircuitboard # Corvax-Goob-Gunnery-Research
+
+# Corvax-Goob-Gunnery-Research-end

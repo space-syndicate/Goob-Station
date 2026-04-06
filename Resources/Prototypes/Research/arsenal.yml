@@ -295,6 +295,8 @@
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
+  - GunneryControlComputerCircuitboard # Corvax-Goob-Gunnery-Research
+  - MachineGCSLowCircuitboard # Corvax-Goob-Gunnery-Research
   technologyPrerequisites:
   - Shuttlecraft  # Goobstation R&D Console rework
   position: 3,-4  # Goobstation R&D Console rework
@@ -366,6 +368,7 @@
   - GrenadeEMP
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
+  - MachineGCSMediumCircuitboard # Corvax-Goob-Gunnery-Research
   technologyPrerequisites:
   - BasicShuttleArmament
   - Shuttlecraft  # Goobstation R&D Console rework

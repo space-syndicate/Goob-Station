@@ -9,9 +9,14 @@
   - type: MachineBoard
     prototype: GunneryServerLow
     stackRequirements:
-      Glass: 10
-      Steel: 10
+    # Corvax-Goob-Gunnery-Research-start    
+      Glass: 15
+      Steel: 15
+      Cable: 10
+      Uranium: 5
+      Gold: 10
       Manipulator: 4
+    # Corvax-Goob-Gunnery-Research-end
 
 - type: entity
   id: MachineGCSMediumCircuitboard
@@ -24,9 +29,14 @@
   - type: MachineBoard
     prototype: GunneryServerMedium
     stackRequirements:
-      Glass: 10
-      Steel: 10
+    # Corvax-Goob-Gunnery-Research-start
+      Glass: 25
+      Steel: 25
+      Cable: 10
+      Uranium: 10
+      Gold: 15
       Manipulator: 4
+    # Corvax-Goob-Gunnery-Research-end
 
 - type: entity
   id: MachineGCSHighCircuitboard

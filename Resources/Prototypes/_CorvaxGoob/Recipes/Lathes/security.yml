@@ -22,3 +22,28 @@
   result: MagazineBoxLargeCaliber
   materials:
     Steel: 1000
+
+# Corvax-Goob-Gunnery-Research-start
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: GunneryControlComputerCircuitboard
+  icon: _CorvaxGoob/Structures/Machines/Icons/Computers/computerпunnery.png
+  result: GunneryControlComputerCircuitboard
+  completetime: 8
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: MachineGCSLowCircuitboard
+  icon: _CorvaxGoob/Structures/Machines/Icons/Computers/gunneryserver.png
+  result: MachineGCSLowCircuitboard
+  completetime: 12
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: MachineGCSMediumCircuitboard
+  icon: _CorvaxGoob/Structures/Machines/Icons/Computers/gunneryserver.png
+  result: MachineGCSMediumCircuitboard
+  completetime: 16
+
+# Corvax-Goob-Gunnery-Research-end
