@@ -54,6 +54,9 @@ trait-italian-desc = Mamma mia! Вы, кажется, жили в космиче
 trait-spanish-name = Испанский акцент
 trait-spanish-desc = Hola señor, где находится библиотека.
 
+trait-scottish-name = Шотландский акцент
+trait-scottish-desc = Ты говоришь как настоящий шотландец!
+
 trait-german-name = Немецкий акцент
 trait-german-desc = Вы, кажется, родом из космической Германии.
 
