@@ -91,7 +91,7 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
             return;
         if (args.Target == null)
             return;
-        if (!HasComp<HumanoidProfileComponent>(args.Target))
+        if (!HasComp<MobStateComponent>(args.Target))
             return;
         switch (comp.InsertMode)
         {
