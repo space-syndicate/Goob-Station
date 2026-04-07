@@ -38,9 +38,9 @@
         Blunt: 3
   - type: Ensnaring
     freeTime: 2.0
-    breakoutTime: 6
+    breakoutTime: 3.5
     walkSpeed: 0.5
     sprintSpeed: 0.5
-    staminaDamage: 70
+    staminaDamage: 30
     canThrowTrigger: true
     canMoveBreakout: true
