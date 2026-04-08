@@ -28,17 +28,6 @@
       role: JobClown
       time: 18000 #5 hrs
 
-# Imperial Space Chaplain start
-# Playtime requirement for Big John, big fricking revolver
-- type: loadoutEffectGroup
-  id: ChaplainBigGunRequirement
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobChaplain
-      time: 360000 # 100 hrs
-# Imperial Space Chaplain end
 # Head
 - type: loadout
   id: ChaplainHead
@@ -149,7 +138,6 @@
   storage:
     back:
     - BibleNanoTrasen
-
 - type: loadout
   id: BibleNarsie
   storage:
@@ -170,13 +158,3 @@
   storage:
     back:
     - BibleRatvar
-# Imperial Space Chaplain start
-- type: loadout
-  id: ChaplainBigGun
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ChaplainBigGunRequirement
-  storage:
-    back:
-    - WeaponRevolverChaplain
-# Imperial Space Chaplain end

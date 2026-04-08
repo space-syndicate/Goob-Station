@@ -84,18 +84,18 @@ public sealed class PPGNodeGroup : BaseNodeGroup
 public sealed partial class PPGNodeGenerator : Node
 {
     public override IEnumerable<Node> GetReachableNodes(
-        TransformComponent xform,
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
-        if (!xform.Anchored || grid == null)
+        if (!xform.Comp.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var gridIndex = grid.Value.Comp.TileIndicesFor(xform.Comp.Coordinates);
 
-        var dir = xform.LocalRotation.GetDir();
+        var dir = xform.Comp.LocalRotation.GetDir();
         var a = FindCirculator(dir);
         var b = FindCirculator(dir.GetOpposite());
 
@@ -131,18 +131,18 @@ public sealed partial class PPGNodeGenerator : Node
 public sealed partial class PPGNodeCirculator : Node
 {
     public override IEnumerable<Node> GetReachableNodes(
-        TransformComponent xform,
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
-        if (!xform.Anchored || grid == null)
+        if (!xform.Comp.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var gridIndex = grid.Value.Comp.TileIndicesFor(xform.Comp.Coordinates);
 
-        var dir = xform.LocalRotation.GetDir();
+        var dir = xform.Comp.LocalRotation.GetDir();
         var searchDir = dir.GetClockwise90Degrees();
         var targetIdx = gridIndex.Offset(searchDir);
 

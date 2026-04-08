@@ -1,7 +1,9 @@
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Vampire
 {
@@ -14,7 +16,7 @@ namespace Content.Shared.Imperial.Vampire
         [DataField("damage")]
         public DamageSpecifier Damage = new DamageSpecifier
         {
-            DamageDict = new Dictionary<string, FixedPoint2>
+            DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
             {
                 ["Slash"] = 20
             }

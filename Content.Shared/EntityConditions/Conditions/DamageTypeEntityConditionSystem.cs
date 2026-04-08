@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
@@ -12,9 +13,11 @@ namespace Content.Shared.EntityConditions.Conditions;
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
 public sealed partial class DamageTypeEntityConditionSystem : EntityConditionSystem<DamageableComponent, DamageTypeCondition>
 {
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+
     protected override void Condition(Entity<DamageableComponent> entity, ref EntityConditionEvent<DamageTypeCondition> args)
     {
-        var value = entity.Comp.Damage.DamageDict.GetValueOrDefault(args.Condition.DamageType);
+        var value = _damageableSystem.GetAllDamage(entity.Owner).DamageDict.GetValueOrDefault(args.Condition.DamageType);
         args.Result = value >= args.Condition.Min && value <= args.Condition.Max;
     }
 }

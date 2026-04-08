@@ -1,4 +1,4 @@
-﻿﻿using Content.Shared.Administration.Logs;
+﻿using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -163,6 +163,10 @@ public sealed partial class IngestionSystem : EntitySystem
 
     private void OnSolutionContainerChanged(Entity<EdibleComponent> entity, ref SolutionContainerChangedEvent args)
     {
+        // The changes are already networked as part of the same game state.
+        if (_timing.ApplyingState)
+            return;
+
         UpdateAppearance(entity);
     }
 

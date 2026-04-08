@@ -14,6 +14,7 @@ using Content.Shared.Imperial.Power.Generation.PPG;
 using Content.Server.Imperial.Atmos.Reactions.Prototypes;
 using System.Linq;
 using Robust.Shared.Prototypes;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Imperial.Power.Generation.PPG;
 

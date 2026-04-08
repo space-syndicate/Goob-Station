@@ -1,5 +1,6 @@
 using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
@@ -348,7 +349,7 @@ namespace Content.Shared.Imperial.Vampire
         [DataField]
         public DamageSpecifier DivineDamage = new DamageSpecifier
         {
-            DamageDict = new Dictionary<string, FixedPoint2>
+            DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
             {
                 ["Heat"] = 2
             }

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.EntityConditions;
 using Content.Shared.FixedPoint;
 using Content.Shared.Localizations;
@@ -11,12 +12,15 @@ namespace Content.Shared.Chemistry.ReagentEffectConditions;
 
 public sealed partial class TotalDamageByGroupsEntityConditionSystem : EntityConditionSystem<DamageableComponent, TotalDamageByGroups>
 {
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+
+
     protected override void Condition(Entity<DamageableComponent> entity, ref EntityConditionEvent<TotalDamageByGroups> args)
     {
         var totalDamage = new FixedPoint2();
 
-        args.Condition.DamageTypes.ToList().ForEach(type => totalDamage += entity.Comp.Damage[type]);
-        args.Condition.DamageGroups.ToList().ForEach(group => totalDamage += entity.Comp.DamagePerGroup[group]);
+        args.Condition.DamageTypes.ToList().ForEach(type => totalDamage += _damageableSystem.GetAllDamage(entity.Owner)[type]);
+        args.Condition.DamageGroups.ToList().ForEach(group => totalDamage += _damageableSystem.GetDamagePerGroup(entity.Owner)[group]);
 
         args.Result = totalDamage > args.Condition.Min && totalDamage < args.Condition.Max;
     }
