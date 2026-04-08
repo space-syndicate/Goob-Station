@@ -1,5 +1,8 @@
 uplink-syndicate-capture-device-scd-name = Syndicate Capture Device SCD
 uplink-syndicate-capture-device-scd-desc = A crimson capture gun that fires a tethered snare head, hauling victims in while electrocuting them. Keep both hands on it or the snare retracts.
-
 uplink-cat-maid-bundle-name = Cat Maid Bundle
 uplink-cat-maid-bundle-desc = OwO UwU :3 Nyaaa~
+uplink-plasma-scythe-name = Plasma scythe
+uplink-plasma-scythe-desc = A powerful weapon that can serve as an excellent counterpart to the double energy sword. Warning: that it requires infrequent refueling with liquid plasma for stable operation.
+uplink-plasma-sword-name = Plasma sword
+uplink-plasma-sword-desc = A weapon that is a more expensive and showy version of an energy sword. Warning: Requires infrequent refueling with liquid plasma for stable operation.

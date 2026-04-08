@@ -42,3 +42,30 @@
     Telecrystal: 20
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkPlasmaSword
+  name: uplink-plasma-sword-name
+  description: uplink-plasma-sword-desc
+  icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword.rsi, state: icon-on }
+  productEntity: PlasmaSword
+  cost:
+    Telecrystal: 35
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkPlasmaScythe
+  name: uplink-plasma-scythe-name
+  description: uplink-plasma-scythe-desc
+  icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword_double.rsi, state: icon }
+  productEntity: PlasmaScythe
+  cost:
+    Telecrystal: 72
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
