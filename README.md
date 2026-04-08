@@ -22,7 +22,7 @@ CorvaxGoob - это активно модифицируемый и основы�
 3. Скачайте Dotnet 9 SDK с официального сайта Microsoft.
 4. Откройте консоль в директории проекта.
 5. Соберите проект с помощью `dotnet build`.
-6. Запустить сервер можно с помощью `runserver.bat`.
+6. Запустите сервер при помощи `runserver.bat`.
 
 [Более подробная инструкция по запуску проекта.](https://docs.spacestation14.com/en/general-development/setup.html)
 
