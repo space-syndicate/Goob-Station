@@ -1,11 +1,7 @@
 # ГЕНЫ
 
 gene-quanity = Качество гена: {$multiplier}%
-
-# АЛЕРТ
-
-alerts-xenogene = Генетические Модификации
-alerts-xenogene-desc = Ваше ДНК было подвержено слиянию с инородным геном.
+gene-slot-name = образец гена
 
 # НАУКА
 

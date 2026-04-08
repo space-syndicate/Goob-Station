@@ -38,6 +38,10 @@ public sealed partial class ClientAddSpriteGeneSystem : EntitySystem
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
+
+        if (!_sprite.LayerExists((uid, sprite), component.Layer))
+            return;
+
         var index = _sprite.LayerMapGet((uid, sprite), component.Layer);
         _sprite.LayerSetVisible((uid, sprite), index, false);
     }
