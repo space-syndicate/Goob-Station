@@ -228,8 +228,8 @@ namespace Content.Server.Database
                 .ToList();
             var flattenedMarkings = appearance.Markings.SelectMany(it => it.Value)
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrDefault();
-            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrDefault();
+            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrNull();
+            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrNull();
             profile.Markings =
                 JsonSerializer.SerializeToDocument(legacyMarkings.Select(marking => marking.ToString()).ToList());
             profile.HairName = hairMarking?.MarkingId ?? HairStyles.DefaultHairStyle;
@@ -448,125 +448,6 @@ namespace Content.Server.Database
             return list;
         }
 
-        #endregion
-
-        #region Imperial Medieval
-
-        public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-
-            var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
-
-            var count = await db.DbContext.NrpViolations
-                .Where(v => v.UserId == player && v.ViolationTime >= daysAgo)
-                .CountAsync(cancel);
-
-            return count;
-        }
-
-        public async Task AddNrpViolation(Guid player, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-
-            var violation = new NrpViolation
-            {
-                UserId = player,
-                ViolationTime = DateTime.UtcNow
-            };
-
-            await db.DbContext.NrpViolations.AddAsync(violation, cancel);
-            await db.DbContext.SaveChangesAsync(cancel);
-        }
-        public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-
-            var violations = await db.DbContext.NrpViolations
-                .Where(v => v.UserId == player)
-                .OrderBy(v => v.ViolationTime)
-                .ToListAsync(cancel);
-
-            if (violations.Count <= 0)
-                return;
-
-            var violation = violations.Last();
-
-            db.DbContext.NrpViolations.Remove(violation);
-            await db.DbContext.SaveChangesAsync(cancel);
-        }
-
-        public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-            var current = await db.DbContext.NrpResolves
-                .Where(v => v.UserId == player)
-                .FirstOrDefaultAsync(cancel) ?? new NrpResolves
-            {
-                UserId = player,
-                Rp = 0,
-                Nrp = 0,
-            };
-            return (current.Rp, current.Nrp);
-        }
-
-        public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-            var current = await db.DbContext.NrpResolves
-                .ToListAsync(cancel);
-            return current;
-        }
-
-        public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-            var current = await db.DbContext.NrpResolves
-                .Where(v => v.UserId == player)
-                .FirstOrDefaultAsync(cancel);
-
-            if (current == null)
-            {
-                await db.DbContext.AddAsync(new NrpResolves
-                {
-                    UserId = player,
-                    Rp = isRp ? 1 : 0,
-                    Nrp = isRp ? 0 : 1,
-                },
-                    cancel);
-            }
-            else
-            {
-                if(isRp) current.Rp++;
-                else current.Nrp++;
-            }
-            await db.DbContext.SaveChangesAsync(cancel);
-        }
-
-        public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-            var current = await db.DbContext.NrpResolves
-                .Where(v => v.UserId == player)
-                .FirstOrDefaultAsync(cancel);
-
-            if (current == null)
-            {
-                await db.DbContext.AddAsync(new NrpResolves
-                    {
-                        UserId = player,
-                        Rp = 0,
-                        Nrp = 0,
-                    },
-                    cancel);
-            }
-            else
-            {
-                if(isRp) current.Rp--;
-                else current.Nrp--;
-            }
-            await db.DbContext.SaveChangesAsync(cancel);
-        }
         #endregion
 
         #region Playtime
@@ -1667,6 +1548,125 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             db.DbContext.RoleWhitelists.Remove(entry);
             await db.DbContext.SaveChangesAsync();
             return true;
+        }
+
+        #endregion
+
+        #region Imperial Medieval
+
+        public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
+
+            var count = await db.DbContext.NrpViolations
+                .Where(v => v.UserId == player && v.ViolationTime >= daysAgo)
+                .CountAsync(cancel);
+
+            return count;
+        }
+
+        public async Task AddNrpViolation(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var violation = new NrpViolation
+            {
+                UserId = player,
+                ViolationTime = DateTime.UtcNow
+            };
+
+            await db.DbContext.NrpViolations.AddAsync(violation, cancel);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+        public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var violations = await db.DbContext.NrpViolations
+                .Where(v => v.UserId == player)
+                .OrderBy(v => v.ViolationTime)
+                .ToListAsync(cancel);
+
+            if (violations.Count <= 0)
+                return;
+
+            var violation = violations.Last();
+
+            db.DbContext.NrpViolations.Remove(violation);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel) ?? new NrpResolves
+                {
+                    UserId = player,
+                    Rp = 0,
+                    Nrp = 0,
+                };
+            return (current.Rp, current.Nrp);
+        }
+
+        public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .ToListAsync(cancel);
+            return current;
+        }
+
+        public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel);
+
+            if (current == null)
+            {
+                await db.DbContext.AddAsync(new NrpResolves
+                {
+                    UserId = player,
+                    Rp = isRp ? 1 : 0,
+                    Nrp = isRp ? 0 : 1,
+                },
+                    cancel);
+            }
+            else
+            {
+                if(isRp) current.Rp++;
+                else current.Nrp++;
+            }
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel);
+
+            if (current == null)
+            {
+                await db.DbContext.AddAsync(new NrpResolves
+                {
+                    UserId = player,
+                    Rp = 0,
+                    Nrp = 0,
+                }, cancel);
+            }
+            else
+            {
+                if(isRp) current.Rp--;
+                else current.Nrp--;
+            }
+            await db.DbContext.SaveChangesAsync(cancel);
         }
 
         #endregion

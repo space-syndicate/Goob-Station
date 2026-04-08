@@ -45,16 +45,16 @@ public sealed partial class SmasherSystem
 
     private bool CheckDamageInterruption(EntityUid user, SmasherComponent smasher)
     {
-        if (!TryComp<DamageableComponent>(user, out var damageComp))
+        if (!HasComp<DamageableComponent>(user))
             return false;
 
         if (!smasher.LastTotalDamage.TryGetValue(user, out var lastDamage))
         {
-            smasher.LastTotalDamage[user] = damageComp.TotalDamage;
+            smasher.LastTotalDamage[user] = _damageableSystem.GetTotalDamage(user);
             return false;
         }
 
-        var damageReceived = damageComp.TotalDamage - lastDamage;
+        var damageReceived = _damageableSystem.GetTotalDamage(user) - lastDamage;
 
         if (damageReceived > FixedPoint2.New(1.0))
         {
@@ -73,7 +73,7 @@ public sealed partial class SmasherSystem
             return true;
         }
 
-        smasher.LastTotalDamage[user] = damageComp.TotalDamage;
+        smasher.LastTotalDamage[user] = _damageableSystem.GetTotalDamage(user);
         return false;
     }
     #endregion

@@ -127,7 +127,8 @@ namespace Content.Server.Imperial.ImperialBorgs
             {
                 return;
             }
-            solution.Value.Comp.Solution.RemoveAllSolution();
+
+            _solutionSystem.RemoveAllSolution(solution.Value);
 
             var generated = solutionRegenerationComponent.Generated;
 
