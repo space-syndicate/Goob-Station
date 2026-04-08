@@ -4,14 +4,14 @@ using System.Linq;
 using Content.Shared.Imperial.XenoGenetics.Genes.Components;
 using Content.Shared.Imperial.XenoGenetics.Components;
 using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.CombatMode.Pacification;
 
 namespace Content.Shared.Imperial.XenoGenetics.Genes;
 
 public sealed class RemoveFactionGeneSystem : EntitySystem
 {
-    private NpcFactionMemberComponent  _faction = new NpcFactionMemberComponent ();
-
+    [Dependency] private readonly NpcFactionSystem _npc = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -22,7 +22,7 @@ public sealed class RemoveFactionGeneSystem : EntitySystem
     {
         if (TryComp<NpcFactionMemberComponent>(uid, out var fact))
         {
-            _faction = fact;
+            component.Factions = fact.Factions;
             RemComp<NpcFactionMemberComponent>(uid);
             component.Active = true;
         }
@@ -33,7 +33,8 @@ public sealed class RemoveFactionGeneSystem : EntitySystem
     {
         if (component.Active == true)
         {
-            AddComp(uid, _faction, true);
+            var npcComp = EnsureComp<NpcFactionMemberComponent>(uid);
+            _npc.AddFactions((uid, npcComp), component.Factions);
             component.Active = false;
         }
 

@@ -10,8 +10,6 @@ namespace Content.Server.Imperial.XenoGenetics.Genes;
 
 public sealed class RespiratorGeneSystem : EntitySystem
 {
-    private RespiratorComponent _resp = new RespiratorComponent();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -28,14 +26,13 @@ public sealed class RespiratorGeneSystem : EntitySystem
         {
             RemComp<RespiratorComponent>(args.Target);
             component.Active = true;
-            _resp = respirator;
         }
     }
     private void OnGeneWithdraw(EntityUid uid, RespiratorGeneComponent component, ref GeneWithdrawnEvent args)
     {
-        if (component.Active == true && _resp != null)
+        if (component.Active == true)
         {
-            AddComp(args.Target, _resp, overwrite: true);
+            EnsureComp<RespiratorComponent>(args.Target);
             component.Active = false;
         }
     }
