@@ -15,6 +15,7 @@
   name: gene material (mouse)
   components:
   - type: SpeedModifierGene
+    speedModifier: 0.15
   - type: XenoGene
   - type: Sprite
     state: yellow
@@ -46,6 +47,19 @@
   id: GeneSampleCat
   name: gene material (mouse)
   components:
+  - type: AddComponentsGene
+    threshold: 60.0
+    components:
+    - type: JumpAbility
+      action: ActionVulpkaninGravityJump
+      canCollide: true
+      jumpDistance: 2
+      jumpSound:
+        path: /Audio/Weapons/punchmiss.ogg
+        params:
+          pitch: 1.33
+          volume: -5
+          variation: 0.05
   - type: AddComponentsNoRandomGene
     components:
     - type: AddSpriteGene
@@ -62,15 +76,7 @@
   name: gene material (mouse)
   components:
   - type: RespiratorGene
-    components:
-    - type: Respirator
-      geneNeeded: 85.0
-      damage:
-        types:
-          Asphyxiation: 1.0
-      damageRecovery:
-        types:
-          Asphyxiation: -1.0
+    geneNeeded: 75.0
   - type: XenoGene
   - type: Sprite
     state: blue
@@ -87,7 +93,7 @@
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "carp"
   - type: AddComponentsGene
-    threshold: 80.0
+    threshold: 70.0
     components:
     - type: MovementAlwaysTouching
   - type: XenoGene
@@ -110,21 +116,14 @@
     components:
     - type: MovementAlwaysTouching
   - type: RespiratorGene
-    components:
-    - type: Respirator
-      damage:
-        types:
-          Asphyxiation: 1.0
-      damageRecovery:
-        types:
-          Asphyxiation: -1.0
+    geneNeeded: 60.0
   - type: XenoGene
   - type: Sprite
     state: blue
 
 - type: entity
   parent: BaseGeneSample
-  id: GeneSampleXenoRunner
+  id: GeneSampleXenoDrone
   name: gene material (mouse)
   components:
   - type: AddComponentsNoRandomGene
@@ -134,7 +133,7 @@
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "xeno_sting"
   - type: AddComponentsGene
-    threshold: 0
+    threshold: 40.0
     components:
     - type: DamageIncreasedByGene
       bonusAttackRate: 1
@@ -144,4 +143,35 @@
           Structural: 20
   - type: XenoGene
   - type: Sprite
-    state: blue
+    state: green
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSamplePacify
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: RemoveFactionGene
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleXenoSpit
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "xeno_jaw"
+  - type: GrantActionsGene
+    threshold: 0.2
+    actionsList:
+    - ActionXenoGeneSpit
+  - type: XenoGene
+  - type: Sprite
+    state: green

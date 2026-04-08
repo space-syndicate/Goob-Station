@@ -12,9 +12,7 @@ public sealed partial class RespiratorGeneComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float GeneNeeded = 75f;
-    
-    [DataField(required: true)]
-    public ComponentRegistry Components = new();
+
 
     [DataField, AutoNetworkedField]
     public bool Active = false;

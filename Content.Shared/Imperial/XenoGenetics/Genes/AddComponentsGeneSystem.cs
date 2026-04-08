@@ -21,7 +21,7 @@ public sealed class AddComponentsGeneSystem : EntitySystem
         var geneComp = EnsureComp<XenoGeneComponent>(args.Gene);
         if (geneComp.GeneMultiplier * 100f <= component.Threshold)
             return;
-        EntityManager.AddComponents(args.Target, component.Components, true);
+        EntityManager.AddComponents(args.Target, component.Components, false);
     }
     private void OnGeneWithdraw(EntityUid uid, AddComponentsGeneComponent component, ref GeneWithdrawnEvent args)
     {

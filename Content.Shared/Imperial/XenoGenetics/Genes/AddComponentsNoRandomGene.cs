@@ -17,7 +17,7 @@ public sealed class AddComponentsNoRandomGeneSystem : EntitySystem
     }
     private void OnGeneInsert(EntityUid uid, AddComponentsNoRandomGeneComponent component, ref GeneInsertedEvent args)
     {
-        EntityManager.AddComponents(args.Target, component.Components, true);
+        EntityManager.AddComponents(args.Target, component.Components, false);
     }
     private void OnGeneWithdraw(EntityUid uid, AddComponentsNoRandomGeneComponent component, ref GeneWithdrawnEvent args)
     {

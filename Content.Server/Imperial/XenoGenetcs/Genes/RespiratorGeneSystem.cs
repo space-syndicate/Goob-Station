@@ -18,7 +18,7 @@ public sealed class RespiratorGeneSystem : EntitySystem
     }
     private void OnGeneInsert(EntityUid uid, RespiratorGeneComponent component, ref GeneInsertedEvent args)
     {
-        if (!HasComp<RespiratorComponent>(args.Target))
+        if (!TryComp<RespiratorComponent>(args.Target, out var respirator))
             return;
 
         var gene = EnsureComp<XenoGeneComponent>(args.Gene);
@@ -32,7 +32,7 @@ public sealed class RespiratorGeneSystem : EntitySystem
     {
         if (component.Active == true)
         {
-            EntityManager.AddComponents(args.Target, component.Components, false);
+            EnsureComp<RespiratorComponent>(args.Target);
             component.Active = false;
         }
     }

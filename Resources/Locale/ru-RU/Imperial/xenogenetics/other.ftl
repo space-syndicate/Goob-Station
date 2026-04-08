@@ -1,11 +1,7 @@
 # ГЕНЫ
 
 gene-quanity = Качество гена: {$multiplier}%
-
-# АЛЕРТ
-
-alerts-xenogene = Генетические Модификации
-alerts-xenogene-desc = Ваше ДНК было подвержено слиянию с инородным геном.
+gene-slot-name = образец гена
 
 # НАУКА
 
@@ -22,3 +18,8 @@ gene-splicer-already-modified = У цели уже есть генные мод�
 gene-splicer-gene-not-inserted = Отсутствует материал для ввода.
 gene-splicer-has-no-gene = У цели отсутвуют генные модификации.
 gene-splicer-slot-filled = Освободите слот под материал.
+
+# МИТ СЛИМ
+
+ent-MobMeatSlime = мясной слайм
+    .desc = Мясо-мясо-мясо, ведь все мы любим мясо!
