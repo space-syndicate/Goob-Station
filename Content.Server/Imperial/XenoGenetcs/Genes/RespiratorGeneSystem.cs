@@ -33,7 +33,7 @@ public sealed class RespiratorGeneSystem : EntitySystem
     }
     private void OnGeneWithdraw(EntityUid uid, RespiratorGeneComponent component, ref GeneWithdrawnEvent args)
     {
-        if (component.Active == true || _resp != null)
+        if (component.Active == true && _resp != null)
         {
             AddComp(args.Target, _resp, overwrite: true);
             component.Active = false;
