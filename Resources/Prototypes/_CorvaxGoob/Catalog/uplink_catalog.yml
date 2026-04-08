@@ -50,7 +50,7 @@
   icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword.rsi, state: icon-on }
   productEntity: PlasmaSword
   cost:
-    Telecrystal: 35
+    Telecrystal: 32
   categories:
   - UplinkWeaponry
 
@@ -61,7 +61,7 @@
   icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword_double.rsi, state: icon }
   productEntity: PlasmaScythe
   cost:
-    Telecrystal: 72
+    Telecrystal: 70
   categories:
   - UplinkWeaponry
   conditions:
