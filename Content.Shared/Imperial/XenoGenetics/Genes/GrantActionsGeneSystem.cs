@@ -27,25 +27,25 @@ public sealed class GrantActionsGeneSystem : EntitySystem
         if(xenoGeneComp.GeneMultiplier < component.Threshold)
             return;
 
-        foreach (var _actionProto in component.ActionsList)
+        foreach (var actionProto in component.ActionsList)
         {
-            EntityUid? _actionEntity = null;
-            _aSyst.AddAction(args.Target, ref _actionEntity, _actionProto);
+            EntityUid? actionEntity = null;
+            _aSyst.AddAction(args.Target, ref actionEntity, actionProto);
 
-            if (_actionEntity != null)
-                component.EntityList.Add(_actionEntity.Value);
+            if (actionEntity != null)
+                component.EntityList.Add(actionEntity.Value);
         }
         if (component.RandomCooldown)
         {
-            foreach (var _actionEnt2 in component.EntityList)
+            foreach (var actionEnt2 in component.EntityList)
             {
-                if (!TryComp<ActionComponent>(_actionEnt2, out var _actionComp))
+                if (!TryComp<ActionComponent>(actionEnt2, out var actionComp))
                     continue;
 
-                if (_actionComp.UseDelay == null)
+                if (actionComp.UseDelay == null)
                     continue;
 
-                _aSyst.SetUseDelay((_actionEnt2, _actionComp), TimeSpan.FromSeconds((float)_actionComp.UseDelay.Value.TotalSeconds * (component.BasicModifier - xenoGeneComp.GeneMultiplier)));
+                _aSyst.SetUseDelay((actionEnt2, actionComp), TimeSpan.FromSeconds((float)actionComp.UseDelay.Value.TotalSeconds * (component.BasicModifier - xenoGeneComp.GeneMultiplier)));
             }
         }
     }
@@ -56,9 +56,9 @@ public sealed class GrantActionsGeneSystem : EntitySystem
         if(xenoGeneComp.GeneMultiplier < component.Threshold)
             return;
 
-        foreach (var _actionEntity in component.EntityList)
+        foreach (var actionEntity in component.EntityList)
         {
-            _aSyst.RemoveAction(args.Target, _actionEntity);
+            _aSyst.RemoveAction(args.Target, actionEntity);
         }
     }
 }

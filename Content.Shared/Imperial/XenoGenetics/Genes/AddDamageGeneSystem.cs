@@ -28,5 +28,4 @@ public sealed class AddDamageGeneSystem : EntitySystem
     {
         args.Rate += component.BonusAttackRate;
     }
-
 }

@@ -35,7 +35,7 @@ public sealed class RespiratorGeneSystem : EntitySystem
     {
         if (component.Active == true || _resp != null)
         {
-            EntityManager.AddComponent(args.Target, _resp, overwrite: true);
+            AddComp(args.Target, _resp, overwrite: true);
             component.Active = false;
         }
     }

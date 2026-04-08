@@ -26,8 +26,8 @@ public sealed class RemoveFactionGeneSystem : EntitySystem
             RemComp<NpcFactionMemberComponent>(uid);
             component.Active = true;
         }
-        if (!HasComp<PacifiedComponent>(uid))
-            AddComp<PacifiedComponent>(uid);
+
+        EnsureComp<PacifiedComponent>(uid);
     }
     private void OnComponentShutdown(EntityUid uid, RemoveFactionGeneComponent component, ComponentShutdown args)
     {
@@ -36,7 +36,7 @@ public sealed class RemoveFactionGeneSystem : EntitySystem
             AddComp(uid, _faction, true);
             component.Active = false;
         }
-        if (HasComp<PacifiedComponent>(uid))
-            RemComp<PacifiedComponent>(uid);
+
+        RemComp<PacifiedComponent>(uid);
     }
 }
