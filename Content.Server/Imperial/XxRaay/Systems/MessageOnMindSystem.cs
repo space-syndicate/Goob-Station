@@ -29,7 +29,7 @@ public sealed class MessageOnMindSystem : EntitySystem
 
     private void SendMessage(EntityUid uid, MessageOnMindComponent comp)
     {
-        if (!EntityManager.TryGetComponent<ActorComponent>(uid, out var actor))
+        if (!TryComp<ActorComponent>(uid, out var actor))
             return;
 
         _chatManager.DispatchServerMessage(actor.PlayerSession, comp.Message);

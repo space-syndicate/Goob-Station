@@ -10,15 +10,6 @@
   - type: Sprite
     sprite: Objects/Fun/snap_pops.rsi
     state: icon
-  - type: Clothing
-    quickEquip: false
-    sprite: Objects/Fun/toy_ian.rsi
-    slots:
-      - HEAD
-    clothingVisuals:
-      head:
-      - state: equipped-HELMET
-        offset: "0, 0.06"
   - type: Item
     size: Tiny
   - type: Damageable

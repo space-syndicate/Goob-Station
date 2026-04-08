@@ -251,7 +251,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             {
                 if (ent == default || EntityManager.Deleted(ent))
                     continue;
-                EntityManager.DeleteEntity(ent);
+                QueueDel(ent);
             }
         }
 

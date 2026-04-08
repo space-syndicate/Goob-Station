@@ -1002,11 +1002,18 @@
   - type: ItemBorgModule
     hands:
     - item: HandheldHealthAnalyzer
-    # - item: BorgHypo
     - item: Syringe
     # - item: BorgDropper
     #  Imperial Space Удалено в связи с ребалансом медицинского борга
     - item: HyposprayBorg
+    # - item: BorgHypos
+    - item: Gauze
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Gauze
+        whitelist:
+          components:
+          - Healing
     - item: Brutepack
       hand:
         emptyLabel: borg-slot-topicals-empty

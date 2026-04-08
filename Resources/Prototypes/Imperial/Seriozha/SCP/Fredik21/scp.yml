@@ -9375,7 +9375,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - WallWhiteSCPTimedDespawn
@@ -9396,7 +9395,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - WallBlackSCPTimedDespawn
@@ -11800,7 +11798,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPinfectedNDA020
@@ -11821,7 +11818,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPZombie
@@ -11865,7 +11861,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPAvelGhost
@@ -11886,7 +11881,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialMem
@@ -13190,7 +13184,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - tesla1
@@ -13211,7 +13204,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - tesla2
@@ -14714,7 +14706,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPZombieShadow
@@ -14735,7 +14726,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPJellyShadow
@@ -14756,7 +14746,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPnda131AShadow
@@ -14777,7 +14766,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPDOCShadow
@@ -14798,7 +14786,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPFiremanShadow
@@ -14819,7 +14806,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPAvelShadow
@@ -14840,7 +14826,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPDedShadow

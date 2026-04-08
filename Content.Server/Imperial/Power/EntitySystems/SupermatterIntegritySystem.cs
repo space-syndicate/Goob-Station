@@ -251,7 +251,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
                         cause: entity
                     );
                 }
-                EntityManager.QueueDeleteEntity(entity);
+                QueueDel(entity);
                 return;
             }
         }
