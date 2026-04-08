@@ -1,23 +1,30 @@
 guidebook-reagent-effect-description =
-    { $chance ->
+    {$quantity ->
+        [0] {""}
+        *[other] Если присутствует как минимум {$quantity}u {$reagent},{" "}
+    }{$chance ->
         [1] { $effect }
-        *[other] Имеет { NATURALPERCENT($chance, 2) } шанс { $effect }
+        *[other] С вероятностью { NATURALPERCENT($chance, 2) } { $effect }
     }{ $conditionCount ->
         [0] .
-        *[other] { " " }, пока { $conditions }.
+        *[other] {" "}когда { $conditions }.
     }
 
-guidebook-reagent-name = [bold][color={ $color }]{ CAPITALIZE($name) }[/color][/bold]
+guidebook-reagent-name = [bold][color={$color}]{CAPITALIZE($name)}[/color][/bold]
 guidebook-reagent-recipes-header = Рецепт
-guidebook-reagent-recipes-reagent-display = [bold]{ $reagent }[/bold] \[{ $ratio }\]
-guidebook-reagent-sources-header = Источник
+guidebook-reagent-recipes-reagent-display = [bold]{$reagent}[/bold] \[{$ratio}\]
+guidebook-reagent-sources-header = Источники
 guidebook-reagent-sources-ent-wrapper = [bold]{$name}[/bold] \[1\]
-guidebook-reagent-sources-gas-wrapper = [bold]{$name} (gas)[/bold] \[1\]
+guidebook-reagent-sources-gas-wrapper = [bold]{$name} (газ)[/bold] \[1\]
 guidebook-reagent-recipes-mix = Смешайте
 guidebook-reagent-recipes-mix-and-heat = Смешать как указано выше {$temperature}K
 guidebook-reagent-effects-header = Эффекты
-guidebook-reagent-effects-metabolism-group-rate = [bold]{ $group }[/bold] [color=gray]({ $rate } единиц в секунду)[/color]
-guidebook-reagent-physical-description = На вид вещество { $description }.
+guidebook-reagent-effects-metabolism-stage-rate = [bold]{$stage}[/bold] [color=gray]({$rate}u в секунду)[/color]
+guidebook-reagent-effects-metabolite-item = {$reagent} со скоростью { NATURALPERCENT($rate, 2) }
+guidebook-reagent-effects-metabolites = Метаболизируется в { $items }.
+guidebook-reagent-plant-metabolisms-header = Метаболизм растений
+guidebook-reagent-plant-metabolisms-rate = [bold]Метаболизм растений[/bold] [color=gray](1u каждые 3 секунды как база)[/color]
+guidebook-reagent-physical-description = [italic]Кажется, {$description}.[/italic]
 guidebook-reagent-recipes-mix-info = {$minTemp ->
     [0] {$hasMax ->
             [true] {CAPITALIZE($verb)} ниже {NATURALFIXED($maxTemp, 2)}K
@@ -28,6 +35,3 @@ guidebook-reagent-recipes-mix-info = {$minTemp ->
             *[false] выше {NATURALFIXED($minTemp, 2)}K
         }
 }
-guidebook-reagent-plant-metabolisms-header = Метаболизм растений
-guidebook-reagent-plant-metabolisms-rate = [bold]Метаболизм растений[/bold] [color=gray](1 единица каждые 3 секунды в качестве базовой)[/color]
-
