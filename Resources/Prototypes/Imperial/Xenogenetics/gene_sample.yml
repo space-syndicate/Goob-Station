@@ -15,6 +15,7 @@
   name: gene material (mouse)
   components:
   - type: SpeedModifierGene
+    speedModifier: 0.15
   - type: XenoGene
   - type: Sprite
     state: yellow
@@ -47,12 +48,12 @@
   name: gene material (mouse)
   components:
   - type: AddComponentsGene
-    threshold: 40.0
+    threshold: 60.0
     components:
     - type: JumpAbility
       action: ActionVulpkaninGravityJump
       canCollide: true
-      jumpDistance: 3
+      jumpDistance: 2
       jumpSound:
         path: /Audio/Weapons/punchmiss.ogg
         params:
@@ -75,6 +76,7 @@
   name: gene material (mouse)
   components:
   - type: RespiratorGene
+    geneNeeded: 75.0
   - type: XenoGene
   - type: Sprite
     state: blue
@@ -91,7 +93,7 @@
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "carp"
   - type: AddComponentsGene
-    threshold: 80.0
+    threshold: 70.0
     components:
     - type: MovementAlwaysTouching
   - type: XenoGene
@@ -114,13 +116,14 @@
     components:
     - type: MovementAlwaysTouching
   - type: RespiratorGene
+    geneNeeded: 60.0
   - type: XenoGene
   - type: Sprite
     state: blue
 
 - type: entity
   parent: BaseGeneSample
-  id: GeneSampleXenoRunner
+  id: GeneSampleXenoDrone
   name: gene material (mouse)
   components:
   - type: AddComponentsNoRandomGene
@@ -159,10 +162,16 @@
   id: GeneSampleXenoSpit
   name: gene material (mouse)
   components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "xeno_jaw"
   - type: GrantActionsGene
-    threshold: 0.0
+    threshold: 0.2
     actionsList:
-    - ActionRepulse
+    - ActionXenoGeneSpit
   - type: XenoGene
   - type: Sprite
-    state: yellow
+    state: green

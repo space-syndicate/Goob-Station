@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseAction
+  id: ActionXenoGeneSpit
+  name: Spit
+  description: HATFU!
+  components:
+  - type: Action
+    useDelay: 22
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    icon:
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      state: xeno_toxic
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletAcidXenoGene
+  - type: SpeakOnAction
+    sentence: action-speech-gene-spit

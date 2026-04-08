@@ -9,6 +9,7 @@
   cost: 3000
   recipeUnlocks:
   - GeneSplicerRecipe
+  - MeatwheatBushelRecipe
   - MeatSlimeCubeRecipe
   - CarpCubeSafeRecipe
   - SpaceBearCubeSafeRecipe
@@ -37,6 +38,8 @@
   cost: 7500
   recipeUnlocks:
   - CarpSharkCubeRecipe
+  - SafeXenoDroneCubeRecipe
+  - SafeXenoSpitCubeRecipe
 
 - type: latheRecipePack
   id: ImperialGeneticsPack
@@ -74,6 +77,17 @@
   - SpaceBearCubeSafeRecipe
   - MeatSlimeCubeRecipe
   - CarpSharkCubeRecipe
+  - SafeXenoDroneCubeRecipe
+  - SafeXenoSpitCubeRecipe
+  - MeatwheatBushelRecipe
+
+
+- type: latheRecipe
+  id: MeatwheatBushelRecipe
+  result: FoodPotato 
+  completetime: 1
+  materials:
+    Biomass: 4
 
 - type: latheRecipe
   id: CarpCubeSafeRecipe
@@ -99,6 +113,20 @@
 - type: latheRecipe
   id: CarpSharkCubeRecipe
   result: SafeCarpSharkCube
+  completetime: 20
+  materials:
+    Biomass: 120
+
+- type: latheRecipe
+  id: SafeXenoDroneCubeRecipe
+  result: SafeXenoDroneCube
+  completetime: 20
+  materials:
+    Biomass: 120
+
+- type: latheRecipe
+  id: SafeXenoSpitCubeRecipe
+  result: SafeXenoSpitCube
   completetime: 20
   materials:
     Biomass: 120

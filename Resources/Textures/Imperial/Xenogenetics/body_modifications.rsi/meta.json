@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "made by : Light_Lava",
+  "copyright": "made by : Light_Lava & lewdxd",
   "size": {
     "x": 32,
     "y": 32
@@ -17,6 +17,10 @@
     },
     {
       "name": "carp_alt",
+      "directions": 4
+    },
+    {
+      "name": "xeno_jaw",
       "directions": 4
     }
   ]

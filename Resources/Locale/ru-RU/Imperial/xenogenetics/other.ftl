@@ -18,3 +18,8 @@ gene-splicer-already-modified = У цели уже есть генные мод�
 gene-splicer-gene-not-inserted = Отсутствует материал для ввода.
 gene-splicer-has-no-gene = У цели отсутвуют генные модификации.
 gene-splicer-slot-filled = Освободите слот под материал.
+
+# МИТ СЛИМ
+
+ent-MobMeatSlime = мясной слайм
+    .desc = Мясо-мясо-мясо, ведь все мы любим мясо!

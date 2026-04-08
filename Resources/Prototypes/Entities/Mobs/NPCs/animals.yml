@@ -493,6 +493,15 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSamplePacify
+  ### Imperial genetics end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -1736,6 +1745,15 @@
   id: MobMouse
   description: Squeak!
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleMouse
+  ### Imperial genetics end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true

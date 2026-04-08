@@ -160,6 +160,15 @@
   parent: MobXeno
   id: MobXenoDrone
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleXenoDrone
+  ### Imperial genetics end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/drone.rsi
@@ -318,6 +327,15 @@
   parent: MobXeno
   id: MobXenoSpitter
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleXenoSpit
+  ### Imperial genetics end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/spitter.rsi
