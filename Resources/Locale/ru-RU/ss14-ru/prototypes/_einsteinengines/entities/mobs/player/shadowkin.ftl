@@ -1,2 +1,2 @@
-ent-MobShadowkin = Урист МакТень
+ent-MobShadowkin = Урист МакТенекин
     .desc = { "" }
