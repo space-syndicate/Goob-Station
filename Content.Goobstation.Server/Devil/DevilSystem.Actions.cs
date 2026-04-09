@@ -36,7 +36,7 @@ public sealed partial class DevilSystem
         _hands.TryPickupAnyHand(devil, contract);
         if (TryComp<DevilContractComponent>(contract, out var contractComponent))
             contractComponent.ContractOwner = args.Performer;
-
+// CorvaxGoob-Devil-Refactor-End
         PlayFwooshSound(devil);
         DoContractFlavor(devil, Identity.Name(devil, EntityManager));
     }
@@ -45,16 +45,16 @@ public sealed partial class DevilSystem
     {
         if (!TryUseAbility(args))
             return;
-
+// CorvaxGoob-Devil-Refactor-Start
         var contract = SpawnAndPickup(devil, devil.Comp.RevivalContractPrototype);
         _hands.TryPickupAnyHand(devil, contract);
         if (TryComp<RevivalContractComponent>(contract, out var contractComponent))
             contractComponent.ContractOwner = args.Performer;
-
+// CorvaxGoob-Devil-Refactor-End
         PlayFwooshSound(devil);
         DoContractFlavor(devil, Identity.Name(devil, EntityManager));
     }
-
+// CorvaxGoob-Devil-Refactor-Start
     private EntityUid SpawnAndPickup(Entity<DevilComponent> devil, string prototype)
     {
         var coords = Transform(devil).Coordinates;
@@ -63,16 +63,16 @@ public sealed partial class DevilSystem
         _hands.TryPickupAnyHand(devil, entity);
         return entity;
     }
-
+// CorvaxGoob-Devil-Refactor-End
     private void OnShadowJaunt(Entity<DevilComponent> devil, ref ShadowJauntEvent args)
     {
         if (!TryUseAbility(args))
             return;
-
+// CorvaxGoob-Devil-Refactor-Start
         var coords = Transform(devil).Coordinates;
         Spawn(devil.Comp.JauntAnimationProto, coords);
         Spawn(devil.Comp.PentagramEffectProto, coords);
-
+// CorvaxGoob-Devil-Refactor-End
         if (TryComp<CuffableComponent>(devil, out var cuffableComponent))
             _container.EmptyContainer(cuffableComponent.Container, true);
 
@@ -116,16 +116,16 @@ public sealed partial class DevilSystem
             return;
 
         if (devil.Comp.PowerLevel != DevilPowerLevel.None)
-            devil.Comp.PossessionDuration *= (int) devil.Comp.PowerLevel;
+            devil.Comp.PossessionDuration *= (int) devil.Comp.PowerLevel; // CorvaxGoob-Devil-Refactor
 
         // Only mark as handled if possession succeeds to avoid wasting the cooldown.
         if (!_possession.TryPossessTarget(args.Target, args.Performer, devil.Comp.PossessionDuration, true, polymorphPossessor: true))
             return;
-
+// CorvaxGoob-Devil-Refactor-Start
         var targetCoords = Transform(args.Target).Coordinates;
         Spawn(devil.Comp.JauntAnimationProto, targetCoords);
         Spawn(devil.Comp.PentagramEffectProto, targetCoords);
-
+// CorvaxGoob-Devil-Refactor-End
         args.Handled = true;
     }
 }
