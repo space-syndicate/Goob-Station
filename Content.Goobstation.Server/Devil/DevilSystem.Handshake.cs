@@ -44,13 +44,15 @@ public sealed partial class DevilSystem
     private void OnGetVerbs(EntityUid uid, DevilComponent comp, GetVerbsEvent<InnateVerb> args)
     {
         // Can't shake your own hand, and you can't shake from a distance
+        // CorvaxGoob-Devil-Refactor-Start
         if (!args.CanAccess ||
             !args.CanInteract ||
             !CanOfferHandshake(args.User, args.Target))
         {
             return;
         }
-
+        // CorvaxGoob-Devil-Refactor-End
+// CorvaxGoob-Devil-Refactor-Start
         args.Verbs.Add(new InnateVerb
         {
             Act = () => OfferHandshake(args.User, args.Target),
@@ -58,10 +60,12 @@ public sealed partial class DevilSystem
             Icon = HandshakeIcon,
             Priority = HandshakeVerbPriority
         });
+        // CorvaxGoob-Devil-Refactor-End
     }
 
     private void OnGetVerbsPending(EntityUid uid, PendingHandshakeComponent comp, GetVerbsEvent<InnateVerb> args)
     {
+    // CorvaxGoob-Devil-Refactor-Start
         if (!args.CanAccess ||
             !args.CanInteract ||
             _state.IsIncapacitated(args.Target) ||
@@ -70,7 +74,8 @@ public sealed partial class DevilSystem
         {
             return;
         }
-
+        // CorvaxGoob-Devil-Refactor-End
+// CorvaxGoob-Devil-Refactor-Start
         args.Verbs.Add(new InnateVerb
         {
             Act = () => HandleHandshake(args.Target, args.User),
@@ -78,20 +83,23 @@ public sealed partial class DevilSystem
             Icon = HandshakeIcon,
             Priority = HandshakeVerbPriority
         });
+        // CorvaxGoob-Devil-Refactor-End
     }
 
     private void OfferHandshake(EntityUid user, EntityUid target)
     {
+    // CorvaxGoob-Devil-Refactor-Start
         if (HasComp<DevilComponent>(target) ||
             HasComp<PendingHandshakeComponent>(target) ||
             !_contract.IsUserValid(target, out _))
         {
             return;
         }
+        // CorvaxGoob-Devil-Refactor-End
 
         var pending = AddComp<PendingHandshakeComponent>(target);
         pending.Offerer = user;
-        pending.ExpiryTime = _timing.CurTime + HandshakeOfferDuration;
+        pending.ExpiryTime = _timing.CurTime + HandshakeOfferDuration; // CorvaxGoob-Devil-Refactor
 
         var popupMessage = Loc.GetString("handshake-offer-popup", ("user", user));
         _popup.PopupEntity(popupMessage, target, target);
@@ -108,10 +116,10 @@ public sealed partial class DevilSystem
             _popup.PopupEntity(handshakeFail, user, user);
             return;
         }
-
+// CorvaxGoob-Devil-Refactor-Start
         var handshakeSuccess = Loc.GetString("handshake-success", ("user", user));
         _popup.PopupEntity(handshakeSuccess, target, target);
-
+// CorvaxGoob-Devil-Refactor-End
         _rejuvenate.PerformRejuvenate(target);
 
         var cheatdeath = EnsureComp<CheatDeathComponent>(target);
