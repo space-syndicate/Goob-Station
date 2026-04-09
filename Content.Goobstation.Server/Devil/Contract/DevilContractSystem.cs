@@ -273,6 +273,7 @@ public sealed partial class DevilContractSystem : EntitySystem
     }
     public bool TryTransferSouls(EntityUid devil, EntityUid contractee, int added)
     {
+        // Corvax | Fatal error fix
         if (Deleted(contractee) || !Exists(contractee))
             return false;
         // Can't sell what doesn't exist.
@@ -372,6 +373,7 @@ public sealed partial class DevilContractSystem : EntitySystem
 
     private void ApplyEffectToTarget(EntityUid target, DevilClausePrototype clause, Entity<DevilContractComponent>? contract)
     {
+        // Corvax | Fatal error fix
         if (!Exists(target) || Deleted(target))
             return;
 
