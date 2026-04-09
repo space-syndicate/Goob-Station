@@ -52,7 +52,7 @@ public sealed partial class DevilSystem
             return;
         }
         // CorvaxGoob-Devil-Refactor-End
-// CorvaxGoob-Devil-Refactor-Start
+        // CorvaxGoob-Devil-Refactor-Start
         args.Verbs.Add(new InnateVerb
         {
             Act = () => OfferHandshake(args.User, args.Target),
@@ -65,7 +65,8 @@ public sealed partial class DevilSystem
 
     private void OnGetVerbsPending(EntityUid uid, PendingHandshakeComponent comp, GetVerbsEvent<InnateVerb> args)
     {
-    // CorvaxGoob-Devil-Refactor-Start
+        // Can't shake your own hand, and you can't shake from a distance
+        // CorvaxGoob-Devil-Refactor-Start
         if (!args.CanAccess ||
             !args.CanInteract ||
             _state.IsIncapacitated(args.Target) ||
@@ -75,20 +76,20 @@ public sealed partial class DevilSystem
             return;
         }
         // CorvaxGoob-Devil-Refactor-End
-// CorvaxGoob-Devil-Refactor-Start
+        // CorvaxGoob-Devil-Refactor-Start
         args.Verbs.Add(new InnateVerb
         {
             Act = () => HandleHandshake(args.Target, args.User),
             Text = Loc.GetString("hand-shake-accept-verb", ("target", args.Target)),
             Icon = HandshakeIcon,
-            Priority = HandshakeVerbPriority
+            Priority = HandshakeVerbPriority // Higher priority than default verbs
         });
         // CorvaxGoob-Devil-Refactor-End
     }
 
     private void OfferHandshake(EntityUid user, EntityUid target)
     {
-    // CorvaxGoob-Devil-Refactor-Start
+        // CorvaxGoob-Devil-Refactor-Start
         if (HasComp<DevilComponent>(target) ||
             HasComp<PendingHandshakeComponent>(target) ||
             !_contract.IsUserValid(target, out _))
@@ -101,9 +102,11 @@ public sealed partial class DevilSystem
         pending.Offerer = user;
         pending.ExpiryTime = _timing.CurTime + HandshakeOfferDuration; // CorvaxGoob-Devil-Refactor
 
+        // Notify target
         var popupMessage = Loc.GetString("handshake-offer-popup", ("user", user));
         _popup.PopupEntity(popupMessage, target, target);
 
+        // Notify self
         var selfPopup = Loc.GetString("handshake-offer-popup-self", ("target", target));
         _popup.PopupEntity(selfPopup, user, user);
     }
@@ -116,10 +119,10 @@ public sealed partial class DevilSystem
             _popup.PopupEntity(handshakeFail, user, user);
             return;
         }
-// CorvaxGoob-Devil-Refactor-Start
+        // CorvaxGoob-Devil-Refactor-Start
         var handshakeSuccess = Loc.GetString("handshake-success", ("user", user));
         _popup.PopupEntity(handshakeSuccess, target, target);
-// CorvaxGoob-Devil-Refactor-End
+        // CorvaxGoob-Devil-Refactor-End
         _rejuvenate.PerformRejuvenate(target);
 
         var cheatdeath = EnsureComp<CheatDeathComponent>(target);
