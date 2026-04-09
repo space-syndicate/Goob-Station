@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Imperial.Entry;
-using Content.Shared.IoC;
 using Content.Shared.Maps;
 using Robust.Shared;
 using Robust.Shared.Configuration;

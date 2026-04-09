@@ -99,6 +99,10 @@
     factions:
       - Passive
   - type: Hands
+    activeHandId: Hand
+    hands:
+      Hand:
+        location: Left
   - type: Clumsy #НИКАКИХ ГНОМОВ С АВТОМАТАМИ , РП - обьяснение : Гномов разносит отдачей пушки
     gunShootFailDamage:
       types:

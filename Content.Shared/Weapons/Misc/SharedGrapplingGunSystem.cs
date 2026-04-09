@@ -36,7 +36,7 @@ public abstract class SharedGrapplingGunSystem : VirtualController
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckleSystem = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckleSystem = default!; // Imperial
 
     public const string GrapplingJoint = "grappling";
 

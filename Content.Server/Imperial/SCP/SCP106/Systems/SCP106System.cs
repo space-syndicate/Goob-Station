@@ -287,7 +287,6 @@ public sealed partial class SCP106System : EntitySystem
         var newscp = EnsureComp<SCP106Component>(newb ?? EntityUid.Invalid);
         if (!TryComp<DamageableComponent>(newb, out var newdmgable))
             return EntityUid.Invalid;
-        _damageable.SetDamage((newb ?? EntityUid.Invalid, newdmgable), dmgable.Damage);
         newscp.Puddles = scp.Puddles;
         newscp.SleepOnAttack = scp.SleepOnAttack;
         newscp.PocketMapId = scp.PocketMapId;

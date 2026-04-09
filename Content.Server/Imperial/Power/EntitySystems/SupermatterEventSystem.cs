@@ -68,7 +68,7 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     private void TriggerEventNow(EntityUid uid)
     {
-        if (!EntityManager.TryGetComponent<SupermatterEventComponent>(uid, out var comp))
+        if (!TryComp<SupermatterEventComponent>(uid, out var comp))
             return;
         comp.EventEndTime = TimeSpan.Zero;
         comp.NextEventTimer = TimeSpan.Zero;
@@ -229,7 +229,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         var crystalPos = mapCoordinates.Position;
         var mapId = mapCoordinates.MapId;
 
-        if (!EntityManager.TryGetComponent<SupermatterEventComponent>(crystal, out var eventComp))
+        if (!TryComp<SupermatterEventComponent>(crystal, out var eventComp))
             return;
 
         if (_nearestConsoleCache.TryGetValue(crystal, out var cached) && TimeSpan.FromSeconds(timeNow - cached.time) < eventComp.ConsoleCacheLifetime)
@@ -266,17 +266,17 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     public void SetRadiation(EntityUid uid, float intensity)
     {
-        if (EntityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
+        if (TryComp<RadiationSourceComponent>(uid, out var radComponent))
             radComponent.Intensity = intensity;
         else
         {
-            var newRad = EntityManager.EnsureComponent<RadiationSourceComponent>(uid);
+            var newRad = EnsureComp<RadiationSourceComponent>(uid);
             newRad.Intensity = intensity;
         }
     }
 
     public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
     {
-        return EntityManager.TryGetComponent(uid, out component);
+        return TryGetComponent(uid, out component);
     }
 }

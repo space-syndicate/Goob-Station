@@ -16,7 +16,7 @@ public sealed partial class AddReagentToTargetEntityEffectSystem : EntityEffectS
         if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.MetabolitesSolutionName, out var injectorSolution)) return;
 
         foreach (var reagent in args.Effect.Reagents)
-            injectorSolution.Value.Comp.Solution.AddReagent(reagent.Reagent, reagent.Quantity);
+            _solutionContainerSystem.TryAddReagent(injectorSolution.Value, reagent, out var _);
     }
 }
 

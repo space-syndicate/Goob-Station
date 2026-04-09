@@ -150,6 +150,7 @@
   rules:
   - DummyNonAntagChance
   - Traitor
+  - Vampire # imperial space: Added a new vampire antagonist
   - SyndieBorgroundstart # Imperial Syndie Borg
   - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler

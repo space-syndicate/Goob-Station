@@ -85,8 +85,8 @@
     state: icon
 
 - type: stealTargetGroup
-  id: Figurines
-  name: фигурки (любые) # Imperial objectives translate
+  id: WeaponEnergyMagnum
+  name: steal-target-groups-weapon-energy-magnum
   sprite:
     sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
     state: icon
@@ -259,13 +259,6 @@
 - type: stealTargetGroup
   id: CargoShuttleConsoleCircuitboard
   name: плата консоли грузового шаттла # Imperial objectives translate
-  sprite:
-    sprite: Objects/Misc/module.rsi
-    state: cpuboard
-
-- type: stealTargetGroup
-  id: SalvageShuttleConsoleCircuitboard
-  name: консоль управления утилизаторским шаттлом # Imperial objectives translate
   sprite:
     sprite: Objects/Misc/module.rsi
     state: cpuboard

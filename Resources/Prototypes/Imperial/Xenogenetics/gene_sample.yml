@@ -1,0 +1,177 @@
+- type: entity
+  parent: BaseItem
+  id: BaseGeneSample
+  abstract: true
+  components:
+  - type: XenoGene
+  - type: Sprite
+    sprite: Imperial/Xenogenetics/gene_sample.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleMouse
+  name: gene material (mouse)
+  components:
+  - type: SpeedModifierGene
+    speedModifier: 0.15
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleRabbit
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsGene
+    threshold: 65.0
+    components:
+    - type: JumpAbility
+      action: ActionVulpkaninGravityJump
+      canCollide: true
+      jumpDistance: 3
+      jumpSound:
+        path: /Audio/Weapons/punchmiss.ogg
+        params:
+          pitch: 1.33
+          volume: -5
+          variation: 0.05
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleCat
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsGene
+    threshold: 60.0
+    components:
+    - type: JumpAbility
+      action: ActionVulpkaninGravityJump
+      canCollide: true
+      jumpDistance: 2
+      jumpSound:
+        path: /Audio/Weapons/punchmiss.ogg
+        params:
+          pitch: 1.33
+          volume: -5
+          variation: 0.05
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Clothing/Head/Hats/catears.rsi"
+        state: "equipped-HELMET"
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleSpacemob
+  name: gene material (mouse)
+  components:
+  - type: RespiratorGene
+    geneNeeded: 75.0
+  - type: XenoGene
+  - type: Sprite
+    state: blue
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleCarp
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "carp"
+  - type: AddComponentsGene
+    threshold: 70.0
+    components:
+    - type: MovementAlwaysTouching
+  - type: XenoGene
+  - type: Sprite
+    state: blue
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleCarpShark
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "carp"
+  - type: AddComponentsGene
+    threshold: 55.0
+    components:
+    - type: MovementAlwaysTouching
+  - type: RespiratorGene
+    geneNeeded: 60.0
+  - type: XenoGene
+  - type: Sprite
+    state: blue
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleXenoDrone
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "xeno_sting"
+  - type: AddComponentsGene
+    threshold: 40.0
+    components:
+    - type: DamageIncreasedByGene
+      bonusAttackRate: 1
+      bonusDamage:
+        types:
+          Slash: 7
+          Structural: 20
+  - type: XenoGene
+  - type: Sprite
+    state: green
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSamplePacify
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: RemoveFactionGene
+  - type: XenoGene
+  - type: Sprite
+    state: yellow
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleXenoSpit
+  name: gene material (mouse)
+  components:
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "xeno_jaw"
+  - type: GrantActionsGene
+    threshold: 0.2
+    actionsList:
+    - ActionXenoGeneSpit
+  - type: XenoGene
+  - type: Sprite
+    state: green

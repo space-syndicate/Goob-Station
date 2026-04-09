@@ -3,39 +3,37 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
-using Content.Shared.Imperial.PiratesNewHorizon.Reagent.Components;
 
 
 namespace Content.Shared.Imperial.PiratesNewHorizon.EntityEffects;
 
 
-public sealed partial class ResistChangeEntityEffectSystem : EntityEffectSystem<ResistModifierMetabolismComponent, ResistChange>
-{
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+// public sealed partial class ResistChangeEntityEffectSystem : EntityEffectSystem<ResistModifierMetabolismComponent, ResistChange>
+// {
+//     [Dependency] private readonly IGameTiming _gameTiming = default!;
+//     [Dependency] private readonly IEntityManager _entityManager = default!;
 
 
-    protected override void Effect(Entity<ResistModifierMetabolismComponent> entity, ref EntityEffectEvent<ResistChange> args)
-    {
-        var status = _entityManager.EnsureComponent<ResistModifierMetabolismComponent>(entity);
-        var statusLifetime = args.Effect.StatusLifetime;
+//     protected override void Effect(Entity<ResistModifierMetabolismComponent> entity, ref EntityEffectEvent<ResistChange> args)
+//     {
+//         var status = _entityManager.EnsureComponent<ResistModifierMetabolismComponent>(entity);
+//         var statusLifetime = args.Effect.StatusLifetime;
 
-        status.Modifiers = args.Effect.Modifiers;
-        statusLifetime = args.Effect.StatusLifetime * args.Scale;
+//         status.Modifiers = args.Effect.Modifiers;
+//         statusLifetime = args.Effect.StatusLifetime * args.Scale;
 
 
-        IncreaseTimer(status, statusLifetime, entity.Owner);
-    }
+//         IncreaseTimer(status, statusLifetime, entity.Owner);
+//     }
 
-    private void IncreaseTimer(ResistModifierMetabolismComponent status, float time, EntityUid uid)
-    {
-        var offsetTime = Math.Max(status.ModifierTimer.TotalSeconds, _gameTiming.CurTime.TotalSeconds);
+//     private void IncreaseTimer(ResistModifierMetabolismComponent status, float time, EntityUid uid)
+//     {
+//         var offsetTime = Math.Max(status.ModifierTimer.TotalSeconds, _gameTiming.CurTime.TotalSeconds);
 
-        status.ModifierTimer = TimeSpan.FromSeconds(offsetTime + time);
-        _entityManager.Dirty(uid, status);
-    }
-}
+//         status.ModifierTimer = TimeSpan.FromSeconds(offsetTime + time);
+//         _entityManager.Dirty(uid, status);
+//     }
+// }
 
 public sealed partial class ResistChange : EntityEffectBase<ResistChange>
 {

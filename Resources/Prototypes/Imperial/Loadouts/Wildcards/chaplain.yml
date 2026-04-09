@@ -1,0 +1,18 @@
+# Playtime requirement for Big John, big fricking revolver
+- type: loadoutEffectGroup
+  id: ChaplainBigGunRequirement
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChaplain
+      time: 360000 # 100 hrs
+
+- type: loadout
+  id: ChaplainBigGun
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ChaplainBigGunRequirement
+  storage:
+    back:
+    - WeaponRevolverChaplain

@@ -8,6 +8,7 @@ using Content.Shared.Imperial.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Shared.Audio;
 using JetBrains.Annotations;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Imperial.Atmos.Piping.Binary.EntitySystems;
 

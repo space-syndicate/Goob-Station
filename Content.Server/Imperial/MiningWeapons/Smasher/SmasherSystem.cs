@@ -17,6 +17,7 @@ public sealed partial class SmasherSystem : SharedSmasherSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly MiningWeaponsHelpers _miningWeaponsHelpers = default!;
 
