@@ -76,7 +76,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
   <Box>
     <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Фигурки"/>
-    <GuideEntityEmbed Entity="PassengerIDCard" Caption="Айди карты"/>
+    <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID карты"/>
     <GuideEntityEmbed Entity="ChemDispenser" Caption="Структуры"/>
     <GuideEntityEmbed Entity="MobCorgiIan" Caption="Животные/Питомцы"/>
   </Box>
