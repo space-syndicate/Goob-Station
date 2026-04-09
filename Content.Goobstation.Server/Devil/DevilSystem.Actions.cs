@@ -31,7 +31,7 @@ public sealed partial class DevilSystem
     {
         if (!TryUseAbility(args))
             return;
-
+// CorvaxGoob-Devil-Refactor-Start
         var contract = SpawnAndPickup(devil, devil.Comp.ContractPrototype);
         _hands.TryPickupAnyHand(devil, contract);
         if (TryComp<DevilContractComponent>(contract, out var contractComponent))
