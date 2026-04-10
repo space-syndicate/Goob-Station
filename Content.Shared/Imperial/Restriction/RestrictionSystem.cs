@@ -27,7 +27,6 @@ namespace Content.Shared.Imperial.Restriction
                 }
 
                 args.Cancelled = true;
-                _popup.PopupClient(Loc.GetString("restriction-system-default-message"), args.Uid, args.Uid, PopupType.LargeCaution);
             }
         }
 
