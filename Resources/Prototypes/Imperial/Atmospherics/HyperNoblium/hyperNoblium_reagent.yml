@@ -21,8 +21,7 @@
         damage:
           types:
             Radiation: 2
-          groups:
-            Toxin: 2
+            Poison: 2
     Respiration:
       effects:
       - !type:HealthChange
@@ -31,8 +30,7 @@
           types:
             Radiation: 0.1
             Cellular: 0.1
-          groups:
-            Toxin: 0.1
+            Poison: 0.1
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
         time: 3.5
