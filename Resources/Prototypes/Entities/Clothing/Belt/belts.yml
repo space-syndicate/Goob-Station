@@ -464,6 +464,9 @@
         - Defibrillator # Goobstation
         - SyringeGun # Goobstation
         - GunApplySolution # Goobstation - Syndicate dart gun
+    blacklist: # CorvaxGoob
+      components:
+        - BatteryDrinkerSource
   - type: ItemMapper
     mapLayers:
       bottle:

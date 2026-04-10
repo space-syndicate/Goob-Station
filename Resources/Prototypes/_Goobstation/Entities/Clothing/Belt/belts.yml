@@ -60,6 +60,9 @@
         - SurgeryTool # Shitmed Change
         - Defibrillator # Goobstation
         - GunApplySolution # Goobstation - Syndicate dart gun
+    blacklist: # CorvaxGoob
+      components:
+        - BatteryDrinkerSource
   - type: ExplosionResistance
     damageCoefficient: 0.25
 
@@ -175,6 +178,9 @@
         - Defibrillator
         - SolutionTransfer
         - GunApplySolution # Dart gun
+    blacklist: # CorvaxGoob
+      components:
+        - BatteryDrinkerSource
 
 - type: entity
   parent: ClothingBeltSheath
