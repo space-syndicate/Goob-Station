@@ -4,7 +4,6 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Imperial.Zombies;
 
 namespace Content.Server.Zombies
 {

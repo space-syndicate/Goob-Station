@@ -319,6 +319,14 @@ namespace Content.Shared.Cuffs
                 return;
             }
 
+            // Imperial Space edit start
+            if (HasComp<IncurableZombieComponent>(args.User))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
+                return;
+            }
+            // Imperial Space edit end
+
             var result = TryCuffing(args.User, target, uid, component);
             args.Handled = result;
         }
@@ -327,6 +335,14 @@ namespace Content.Shared.Cuffs
         {
             if (!args.HitEntities.Any())
                 return;
+
+            // Imperial Space edit start
+            if (HasComp<IncurableZombieComponent>(args.User))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
+                return;
+            }
+            // Imperial Space edit end
 
             TryCuffing(args.User, args.HitEntities.First(), uid, component);
             args.Handled = true;
@@ -522,14 +538,6 @@ namespace Content.Shared.Cuffs
                 _popup.PopupClient(Loc.GetString("handcuff-component-cannot-drop-cuffs", ("target", Identity.Name(target, EntityManager, user))), user, user);
                 return false;
             }
-
-            // Imperial Space Edit start
-            if (HasComp<IncurableZombieComponent>(user))
-            {
-                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), user, user);
-                return true;
-            }
-            // Imperial Space Edit end
 
             var cuffTime = handcuffComponent.CuffTime;
 

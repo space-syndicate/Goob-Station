@@ -7,9 +7,9 @@ namespace Content.Shared.Imperial.Restriction.Components;
 [Access(typeof(RestrictionSystem))]
 public sealed partial class RestrictionComponent : Component
 {
-    [DataField("restrictions"), AutoNetworkedField]
-    public EntityWhitelist? RestrictionsIDs;
+    [DataField, AutoNetworkedField]
+    public EntityWhitelist? Restrictions;
 
-    [DataField("message"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public LocId? Message;
 }

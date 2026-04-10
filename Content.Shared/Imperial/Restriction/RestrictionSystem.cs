@@ -1,8 +1,6 @@
 using Content.Shared.Imperial.Restriction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mind;
-using Content.Shared.Roles;
 using Content.Shared.Whitelist;
 
 namespace Content.Shared.Imperial.Restriction
@@ -37,7 +35,7 @@ namespace Content.Shared.Imperial.Restriction
                 args.Target == null)
                 return false;
 
-            if (!_whitelist.IsWhitelistPass(ent.Comp.RestrictionsIDs, args.Target.Value))
+            if (!_whitelist.IsWhitelistPass(ent.Comp.Restrictions, args.Target.Value))
                 return false;
 
             return true;
