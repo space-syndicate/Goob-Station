@@ -205,18 +205,18 @@
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
   - OffsetCane
-  - OffsetCaneWood
-  - OffsetCaneClown
-  - OffsetCaneMime
-  - OffsetCaneNT
-  - Cane
-  # GoobStation Start
+    # GoobStation Start
   - CardBoxBlack
   - CardBoxNanotrasen
   - FoodSnackLollypopWrapped
   - FoodSnackLollypopWrappedRainbow
   - FoodSnackLollypopWrappedCarp
   # Goobstation End
+  - OffsetCaneWood
+  - OffsetCaneClown
+  - OffsetCaneMime
+  - OffsetCaneNT
+  - Cane
   - FoodSnackLollypopWrappedTricordrazine # CorvaxGoob-loadouts
   - TowelColorBlack
   - TowelColorDarkBlue
