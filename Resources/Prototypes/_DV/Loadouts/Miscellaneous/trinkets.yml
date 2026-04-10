@@ -5,6 +5,74 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+
+# Corvax-Goob Pechatkas
+- type: loadout
+  id: RubberStampEngineer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 360000 # 100 hrs
+  storage:
+    back: 
+    - RubberStampEngineer
+  groupBy: "stamps"
+
+- type: loadout
+  id: RubberStampScientist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobScientist
+      time: 360000 # 100 hrs
+  storage:
+    back: 
+    - RubberStampScientist
+  groupBy: "stamps"
+
+- type: loadout
+  id: RubberStampLoader
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCargoTechnician
+      time: 360000 # 100 hrs
+  storage:
+    back: 
+    - RubberStampLoader
+  groupBy: "stamps"
+
+- type: loadout
+  id: RubberStampDoctor
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 360000 # 100 hrs
+  storage:
+    back: 
+    - RubberStampDoctor
+  groupBy: "stamps"
+
+- type: loadout
+  id: RubberStampPassenger
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 360000 # 100 hrs
+  storage:
+    back: 
+    - RubberStampPassenger
+  groupBy: "stamps"
+# Corvax-Goob Pechatkas end
+
 - type: loadout
   id: GoldRing
   storage:

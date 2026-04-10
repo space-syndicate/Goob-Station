@@ -219,6 +219,74 @@
   - type: Sprite
     state: stamp-ce
 
+# Corvax-Goob Stamps
+- type: entity
+  name: печать пассажира
+  parent: RubberStampBase
+  id: RubberStampPassenger
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Пассажир"
+    stampedColor: "#636363"
+    stampState: "paper_stamp-greytide"
+  - type: Sprite
+    state: stamp-passenger
+
+- type: entity
+  name: печать инженера
+  parent: RubberStampBase
+  id: RubberStampEngineer
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Инженер"
+    stampedColor: "#f5b342"
+    stampState: "paper_stamp-ce"
+  - type: Sprite
+    state: stamp-engineer
+
+- type: entity
+  name: печать врача
+  parent: RubberStampBase
+  id: RubberStampDoctor
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Врач"
+    stampedColor: "#3392ff"
+    stampState: "paper_stamp-cmo"
+  - type: Sprite
+    state: stamp-doctor
+
+- type: entity
+  name: печать учёного
+  parent: RubberStampBase
+  id: RubberStampScientist
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Учёный"
+    stampedColor: "#a159ff"
+    stampState: "paper_stamp-rd"
+  - type: Sprite
+    state: stamp-scientist
+
+- type: entity
+  name: печать грузчика
+  parent: RubberStampBase
+  id: RubberStampLoader
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Грузчик"
+    stampedColor: "#694018"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    state: stamp-loader
+
+# Corvax-Goob Stamps end
+
 - type: entity
   name: chief medical officer's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]

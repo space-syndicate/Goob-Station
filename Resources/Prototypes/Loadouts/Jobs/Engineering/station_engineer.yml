@@ -134,18 +134,15 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineering
 
-
 - type: loadout
   id: StationEngineerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtEngineering
 
-
 - type: loadout
   id: StationEngineerHazardsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringHazard
-
 
 - type: loadout
   id: SeniorEngineerJumpsuit

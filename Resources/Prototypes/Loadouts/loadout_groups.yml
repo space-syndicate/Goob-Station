@@ -244,6 +244,12 @@
   - ClothingNeckNovaPin
   - ClothingNeckSolarisPin
   - ClothingNeckWhiteListPin
+
+  - RubberStampEngineer
+  - RubberStampScientist
+  - RubberStampLoader
+  - RubberStampDoctor
+  - RubberStampPassenger
   # CorvaxGoob-Loadouts-End
   # Begin DeltaV Additions
   - GoldRing
