@@ -21,11 +21,13 @@ namespace Content.Shared.Imperial.Restriction
         {
             if (CheckRestriction(ent, ref args))
             {
-                if (ent.Comp.Message is not { } message)
-                    return;
+                if (ent.Comp.Message is { } message)
+                {
+                    _popup.PopupClient(Loc.GetString(message), args.Uid, args.Uid, PopupType.LargeCaution);
+                }
 
                 args.Cancelled = true;
-                _popup.PopupClient(Loc.GetString(message), args.Uid, args.Uid, PopupType.LargeCaution);
+                _popup.PopupClient(Loc.GetString("restriction-system-default-message"), args.Uid, args.Uid, PopupType.LargeCaution);
             }
         }
 

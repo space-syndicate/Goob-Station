@@ -39,7 +39,7 @@
           - Emitter
           - ContainmentFieldGenerator
           - AmeController
-          - ContainmentFieldGenerator
+          - ParticleAcceleratorControlBox
         message: thief-restriction-popup
       # Imperial Space edit end
       - type: Pacified

@@ -3,13 +3,13 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Server.Zombies;
 
+/// <summary>
+/// Компонент, хранящий информацию о том,
+/// какой урон будет наносится сущности после зомбификации от компонента BarotraumaComponent.
+/// </summary>
 [RegisterComponent]
 public sealed partial class ZombieBarotraumaDamageComponent : Component
 {
-    /// <summary>
-    /// Компонент, хранящий информацию о том,
-    /// какой урон будет наносится сущности после зомбификации от компонента BarotraumaComponent.
-    /// </summary>
     [DataField]
     public DamageSpecifier Damage = new()
     {
