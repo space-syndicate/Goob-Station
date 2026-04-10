@@ -26,8 +26,13 @@
       - !type:HealthChange
         ignoreResistances: true
         damage:
-           groups:
-            Brute: -0.67
-            Burn: -1
-            Toxin: -0.67
-            Airloss: -0.67
+          types:
+            Slash: -0.33
+            Blunt: -0.33
+            Heat: -0.33
+            Asphyxiation: -0.67
+            Radiation: -0.33
+            Poison: -0.33
+            Bloodloss: -0.33
+            Shock: -0.20
+            Caustic: -0.12
