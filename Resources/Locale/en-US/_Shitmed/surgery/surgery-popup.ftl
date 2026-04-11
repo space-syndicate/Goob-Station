@@ -99,7 +99,3 @@ surgery-popup-step-SurgeryStepInsertPlasmaVessel = {$user} is inserting a plasma
 surgery-popup-step-SurgeryStepInsertEggSack = {$user} is inserting an egg sack into {$target}'s {$part}!
 surgery-popup-step-SurgeryStepXenoTakeSample = {$user} is carefully removing a piece of {$target}'s {$part}.
 surgery-popup-step-SurgeryStepGraftXenoSample = {$user} is grafting xeno tissue onto {$target}'s {$part}!
-
-# CorvaxGoob Pacification
-surgery-popup-step-SurgeryStepPacify = {$user} is pacifying {$target}!  
-surgery-popup-step-SurgeryStepRemovePacification = {$user} is removing pacification from {$target}!

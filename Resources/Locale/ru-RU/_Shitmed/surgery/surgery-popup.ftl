@@ -92,7 +92,3 @@ surgery-popup-step-SurgeryStepInsertPlasmaVessel = { $user } вставляет 
 surgery-popup-step-SurgeryStepInsertEggSack = { $user } вставляет яйцевой мешок в { $part } { $target }!
 surgery-popup-step-SurgeryStepXenoTakeSample = { $user } аккуратно удаляет кусочек { $part } { $target }.
 surgery-popup-step-SurgeryStepGraftXenoSample = { $user } прививает ксеноткань к { $part } { $target }!
-
-# CorvaxGoob Pacification
-surgery-popup-step-SurgeryStepPacify = {$user} усмиряет {$target}!
-surgery-popup-step-SurgeryStepRemovePacification = {$user} снимает усмирение у {$target}!
