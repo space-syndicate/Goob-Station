@@ -22,6 +22,14 @@
     {
       "name": "xeno_jaw",
       "directions": 4
+    },
+    {
+      "name": "goliath",
+      "directions": 4
+    },
+    {
+      "name": "phantom",
+      "directions": 4
     }
   ]
 }
