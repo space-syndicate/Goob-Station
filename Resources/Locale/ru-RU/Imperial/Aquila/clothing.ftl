@@ -23,7 +23,7 @@ ent-ClothingNeckJaneDoeTail = хвост мыши тирена
 
 ent-ClothingUniformJumpskirtWhiteDressSweater = Белое хлопковое платье
     .desc = Для элегантных женщин, любящих хлопок
-ent-ClothingUniformJumpskirtBlackDressVelvet = Черноё бархатное платье
+ent-ClothingUniformJumpskirtBlackDressVelvet = Чёрное бархатное платье
     .desc = Для элегантных женщин, любящих бархат
 
 ent-ClothingUniformJumpsuitKatanaRed = Красное самурайское кимоно
@@ -31,9 +31,9 @@ ent-ClothingUniformJumpsuitKatanaRed = Красное самурайское к�
 ent-ClothingShoesKatanaRed = Ботинки красного самурая
     .desc = Тихой поступью...
 
-ent-ClothingUniformJumpsuitMedievalStyledJacket = Рубаха аля средневековье
+ent-ClothingUniformJumpsuitMedievalStyledJacket = Рубаха а-ля средневековье
     .desc = Было вершиной моды примерно полторы тысячи лет назад
-ent-ClothingUniformJumpsuitMedievalStyledCostume = Костюм аля средневековье
+ent-ClothingUniformJumpsuitMedievalStyledCostume = Костюм а-ля средневековье
     .desc = Эх... Я думал, что порталы - самая мерзкая вещь на свете. А нет, налоги хуже.
 
 ent-ClothingUniformJumpsuitJustice = Костюм Джастис
@@ -52,7 +52,7 @@ ent-ClothingHandHelltakerGloves = Адские перчатки
     .desc = Помогут даже в аду. Огнеопасны.
 
 
-ent-ClothingNeckBlueShieldCapeAlt = Алтернативный плащ Синего Щита
+ent-ClothingNeckBlueShieldCapeAlt = Альтернативный плащ Синего Щита
     .desc = Для тех, кто хочет выделяться среди тех, кто выделяется
 
 ent-ClothingNeckDante = Шарф демоноборца
@@ -96,10 +96,10 @@ ent-ClothingOuterSweaterWhite = Белый свитер
 ent-ClothingOuterSweaterYellow = Жёлтый свитер
     .desc = Шерстяной тёплый свитер
 
-ent-ClothingHeadBlackHatAquila = Черная шляпа
-    .desc =  Они не увидят твоих глаз
+ent-ClothingHeadBlackHatAquila = Чёрная шляпа
+    .desc = Они не увидят твоих глаз
 ent-ClothingHeadJustABlueCap = Синий кепарик
-    .desc =  Кепка от НТ для каждого!
+    .desc = Кепка от НТ для каждого!
 ent-ClothingHeadRedHatAquila = Красная шляпа
     .desc = Привлекает к тебе незаслуженное внимание
 
@@ -124,24 +124,24 @@ ent-ClothingOuterCloakOfFutureS = Тренч из будущего
 ent-ClothingHeadThornedCrown = Терновый венок
     .desc = С давних времен терновый венок был символом мучений и страданий, за чем после следует самопожертвование. Его шипы остры, но осведомленность о грехе куда больнее.
 ent-ClothingHeadBlackCapeHood = Тёмный капюшон
-    .desc = Тёмный капюшон от не менее тёмной мантии обернутой вокруг тела
-ent-ClothingHeadBlackHood = Тёмная мантия
+    .desc = Тёмный капюшон от не менее тёмной мантии, обернутой вокруг тела
+ent-ClothingNeckBlackHood = Тёмная мантия
     .desc = Тёмная мантия с капюшоном, которая способна утаить или придать устрашающий вид всякому носящему её.
 
 ent-ClothingHeadColorfulJestersHat = Цветастая шутовская шляпа
-    .desc = Цветная и игривая шутовская шляпа с золотой отделкой. Звук её колокольчиков очаруют любого, кто его услышит.
+    .desc = Цветная и игривая шутовская шляпа с золотой отделкой. Звук её колокольчиков очарует любого, кто его услышит.
 ent-ClothingShoesJestersBoots = Ботинки шута
-    .desc = Удобные ботинки придворного шута, позволяют держать тебя на ногах даже во время самых долгих выступлений и постоянных танцов.
+    .desc = Удобные ботинки придворного шута, позволяют держать тебя на ногах даже во время самых долгих выступлений и постоянных танцев.
 ent-ClothingUniformColorfulGildedClownCostume = Цветастый позолоченный костюм клоуна
-    .desc = Дорогой костюм придворного шута, крашеный в яркие цвета с инкрустированным в него золотом. С ним, никто не сможет оторвать от вас глаз на сцене.
+    .desc = Дорогой костюм придворного шута, крашеный в яркие цвета с инкрустированным в него золотом. С ним никто не сможет оторвать от вас глаз на сцене.
 
 ent-ClothingShoesMonocromeMimeBoots = Монохромные ботинки мима
     .desc = Ботинки мима, крашенные в контрастные цвета, отражают сущность его творчества
 ent-ClothingHandMonochromeMimeGloves = Монохромные позолоченные перчатки мима
-    .desc = Белая и черная перчатки, инкрустированные золотом, подчеркивающие статус
+    .desc = Белая и чёрная пара перчаток, инкрустированные золотом, подчёркивающие статус
 ent-ClothingHeadMonochromeMimeHat = Монохромная позолоченная шляпа мима
-    .desc = Чёрно-белая шляпа мима украшенная золотом и бубенчиками.
+    .desc = Чёрно-белая шляпа мима украшенная золотом и бубенчиками
 ent-ClothingMaskMonocromeMimeMask = Монохромная маска мима
-    .desc = Чёрно-белая маска мима с жуткой, но завораживающей улыбкой. Каждая сторона маски отражает различное состояние актера.
+    .desc = Чёрно-белая маска мима с жуткой, но завораживающей улыбкой. Каждая сторона маски отражает разное состояние актера.
 ent-ClothingUniformMonochromeMimeSuit = Монохромный костюм мима
     .desc = Инкрустированный золотом костюм мима, который носится с перчатками, шляпой и маской из комплекта. Теперь, в тебе отражаются обе стороны одной медали.
