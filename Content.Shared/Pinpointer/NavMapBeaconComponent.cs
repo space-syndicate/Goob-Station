@@ -28,7 +28,7 @@ public sealed partial class NavMapBeaconComponent : Component
     /// Used so that mappers can still override Text while mapping.
     /// </summary>
     [DataField]
-    public LocId? DefaultText;
+    public string? DefaultText;
 
     [DataField, AutoNetworkedField]
     public Color Color = Color.Orange;
