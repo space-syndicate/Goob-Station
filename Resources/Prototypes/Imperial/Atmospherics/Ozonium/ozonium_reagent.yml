@@ -19,12 +19,14 @@
       effects:
       - !type:HealthChange
         damage:
-           groups:
-            Airloss: 4
+          types:
+            Asphyxiation: 4
+            Bloodloss: 4
     Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
         damage:
-           groups:
-            Airloss: 8
+          types:
+            Asphyxiation: 4
+            Bloodloss: 4

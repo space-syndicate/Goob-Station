@@ -31,6 +31,48 @@
           type: Android
           shouldHave: false
 
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceAndroid
+  name: android appearance
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: InitialBody
+    organs:
+      Torso: OrganHumanTorso
+      Head: OrganHumanHead
+      ArmLeft: OrganHumanArmLeft
+      ArmRight: OrganHumanArmRight
+      HandRight: OrganHumanHandRight
+      HandLeft: OrganHumanHandLeft
+      LegLeft: OrganHumanLegLeft
+      LegRight: OrganHumanLegRight
+      FootLeft: OrganHumanFootLeft
+      FootRight: OrganHumanFootRight
+      Brain: AndroidCore
+  - type: HumanoidProfile
+    species: Human
+
+- type: species
+  id: Android
+  name: species-name-android
+  roundStart: false
+  prototype: MobMechanic
+  defaultSkinTone: "#b9b199"
+  dollPrototype: AppearanceAndroid
+  skinColoration: Hues
+  maleFirstNames: NamesFirstMale
+  femaleFirstNames: NamesFirstFemale
+  lastNames: NamesLast
+  sexes:
+  - Unsexed
+
 - type: metabolizerType
   id: Android
   name: metabolizer-type-android

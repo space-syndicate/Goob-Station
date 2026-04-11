@@ -173,6 +173,7 @@ metabolizer-type-android = Андроид
 laws-empty = Пустой
 ent-AndroidCore = ядро андроида
     .desc = Искусственный разум.
+species-name-android = андроид
 
 reagent-name-liquidpain = жидкая боль
 reagent-desc-liquidpain = Высокотоксичная, разлагающая, и кислотная субстанция.
