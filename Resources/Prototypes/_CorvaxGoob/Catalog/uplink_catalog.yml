@@ -47,7 +47,7 @@
   id: UplinkPlasmaSword
   name: uplink-plasma-sword-name
   description: uplink-plasma-sword-desc
-  icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword.rsi, state: icon-on }
+  icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword.rsi, state: uplink }
   productEntity: PlasmaSword
   cost:
     Telecrystal: 32
@@ -58,7 +58,7 @@
   id: UplinkPlasmaScythe
   name: uplink-plasma-scythe-name
   description: uplink-plasma-scythe-desc
-  icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword_double.rsi, state: icon }
+  icon: { sprite: _Orion/Objects/Weapons/Melee/plasma_sword_double.rsi, state: uplink }
   productEntity: PlasmaScythe
   cost:
     Telecrystal: 70
