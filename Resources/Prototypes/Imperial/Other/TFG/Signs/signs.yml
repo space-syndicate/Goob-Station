@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseSign
+  id: SignDomeImperial
+  name: знак "Купол"
+  description: Знак, указывающий на купол.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Signs/dome.rsi
+    state: dome
