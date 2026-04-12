@@ -459,7 +459,7 @@
   id: LizardTailCyborgAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: []
+  speciesRestriction: [Reptilian]
   sprites:
     - sprite: Imperial/Aquila/Customization/Markings/reptilian_cyborg_parts.rsi
       state: tail_cyborg_wagging

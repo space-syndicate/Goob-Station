@@ -154,7 +154,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtBlackDressVelvet
-  name: black velvet dress 
+  name: black velvet dress
   description: For elegant women who likes velvet
   components:
   - type: Sprite
@@ -216,7 +216,7 @@
     sprite: Imperial/Aquila/Clothing/Uniforms/justice.rsi
   - type: Clothing
     sprite: Imperial/Aquila/Clothing/Uniforms/justice.rsi
-  
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitMalina
@@ -264,17 +264,23 @@
 # NECK
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingOuterWinterCoat
   id: ClothingNeckBlackHood
   name: black hood
   description: A dark, hooded cloak capable of concealing or giving a terrifying appearance to anyone who wears it.
   components:
   - type: Sprite
     sprite: Imperial/Aquila/Clothing/Neck/blackhood.rsi
+    layers:
+    - state: icon
   - type: Clothing
     sprite: Imperial/Aquila/Clothing/Neck/blackhood.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-NECK
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadBlackCapeHood
+    slot: head
 
 - type: entity
   parent: ClothingNeckBase
@@ -351,9 +357,9 @@
   description: Your portal-opening days are over...
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+    sprite: Imperial/Aquila/Clothing/Hands/mimegloves.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+    sprite: Imperial/Aquila/Clothing/Hands/mimegloves.rsi
 
 - type: entity
   parent: ClothingHandsBase
@@ -362,9 +368,9 @@
   description: The mime's black and white gloves, trimmed with gold, emphasize his status.
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+    sprite: Imperial/Aquila/Clothing/Hands/mimegloves.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Hands/dante.rsi
+    sprite: Imperial/Aquila/Clothing/Hands/mimegloves.rsi
 
 # OUTERCLOTHING
 
@@ -626,7 +632,7 @@
     sprite: Imperial/Aquila/Clothing/Head/shark.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatHoodWinterBase
   id: ClothingHeadBlackCapeHood
   name: dark hood
   description: a dark hood from an equally dark cloak wrapped around your body.
