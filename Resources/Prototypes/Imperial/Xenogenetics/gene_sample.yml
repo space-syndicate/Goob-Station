@@ -133,10 +133,10 @@
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "xeno_sting"
   - type: AddComponentsGene
-    threshold: 40.0
+    threshold: 65.0
     components:
     - type: DamageIncreasedByGene
-      bonusAttackRate: 1
+      bonusAttackRate: 0.4
       bonusDamage:
         types:
           Slash: 7
@@ -175,3 +175,60 @@
   - type: XenoGene
   - type: Sprite
     state: green
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSampleGoliath
+  name: gene material (goliath)
+  components:
+  - type: GrantActionsGene
+    basicModifier: 3.5
+    threshold: 0.4
+    actionsList:
+    - ActionGoliathTentacle
+  - type: SpeedModifierGene
+    speedModifier: 0.2
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "goliath"
+    - type: AddDamageResistanceGene
+      modifiers:
+        coefficients:
+          Blunt: 0.35
+          Slash: 0.35
+          Piercing: 0.35
+          Heat: 0.35
+  - type: XenoGene
+  - type: Sprite
+    state: red
+
+- type: entity
+  parent: BaseGeneSample
+  id: GeneSamplePhanthomor
+  name: gene material (phantomor)
+  components:
+  - type: GrantActionsGene
+    basicModifier: 1.22
+    threshold: 0.2
+    actionsList:
+    - ActionPhantomorGeneBlink
+  - type: AddComponentsGene
+    threshold: 60.0
+    components:
+    - type: DamageIncreasedByGene
+      bonusAttackRate: -0.3
+      bonusDamage:
+        types:
+          Slash: 22
+  - type: AddComponentsNoRandomGene
+    components:
+    - type: AddSpriteGene
+      sprite:
+        sprite: "Imperial/Xenogenetics/body_modifications.rsi"
+        state: "phantom"
+  - type: XenoGene
+  - type: Sprite
+    state: red
