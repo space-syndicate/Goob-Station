@@ -4,8 +4,19 @@
   equipment:
     shoes: ClothingShoesBootsJackSecFilled
 
+- type: loadout
+  id: ClothingShoesSwatBoots
+  equipment:
+    shoes: ClothingShoesSwat
+
 # Outerclothing
 - type: loadout
   id: ArmorVestSec
   equipment:
     outerClothing: ClothingOuterVestArmorSec
+
+# Jumpsuit
+- type: loadout
+  id: UniformJumpsuitDSS
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDSS

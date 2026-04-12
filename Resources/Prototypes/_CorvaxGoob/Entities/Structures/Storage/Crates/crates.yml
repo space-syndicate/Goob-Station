@@ -64,6 +64,13 @@
     access: [["Command"]]
 
 - type: entity
+  parent: CratePrivateSecure
+  id: CratePrivateCargoSecure
+  components:
+  - type: AccessReader
+    access: [["Cargo"]]    
+
+- type: entity
   parent: CrateGeneric
   id: Crateholographic
   name: holographic crate
@@ -88,7 +95,6 @@
       fix1:
         mask:
         - ItemMask
-
   - type: Destructible
     thresholds:
     - trigger:
@@ -100,3 +106,5 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/stealthoff.ogg
+     
+
