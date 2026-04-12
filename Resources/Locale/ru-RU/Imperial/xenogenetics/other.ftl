@@ -3,10 +3,16 @@
 gene-quanity = Качество гена: {$multiplier}%
 gene-slot-name = образец гена
 
+ent-MachineGeneCompiner = комбинатор генов
+    .desc = Соединяет гены одного типа, повышая их качество.
+
+ent-GeneCombinerCircuitboard = машинная плата (соеденитель генов)
+    .desc = Необходима для сборки соеденителя генов.
+
 # НАУКА
 
 research-technology-basic-xenogenetics = Основы ксеногенетики
-research-technology-xenogenetics-machinery = Оборудование подавления
+research-technology-xenogenetics-machinery = Продвинутая ксеногенетика
 research-technology-xenogenetics-big-mass = Ксенофауна высокой массы
 
 # СПАЙЩИК

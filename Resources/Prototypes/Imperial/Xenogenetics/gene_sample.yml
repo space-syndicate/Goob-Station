@@ -133,10 +133,10 @@
         sprite: "Imperial/Xenogenetics/body_modifications.rsi"
         state: "xeno_sting"
   - type: AddComponentsGene
-    threshold: 40.0
+    threshold: 65.0
     components:
     - type: DamageIncreasedByGene
-      bonusAttackRate: 1
+      bonusAttackRate: 0.4
       bonusDamage:
         types:
           Slash: 7
@@ -187,7 +187,7 @@
     actionsList:
     - ActionGoliathTentacle
   - type: SpeedModifierGene
-    speedModifier: 0.01
+    speedModifier: 0.2
   - type: AddComponentsNoRandomGene
     components:
     - type: AddSpriteGene
@@ -211,15 +211,15 @@
   name: gene material (phantomor)
   components:
   - type: GrantActionsGene
-    basicModifier: 1.1
+    basicModifier: 1.22
     threshold: 0.2
     actionsList:
     - ActionPhantomorGeneBlink
   - type: AddComponentsGene
-    threshold: 40.0
+    threshold: 60.0
     components:
     - type: DamageIncreasedByGene
-      bonusAttackRate: -0.5
+      bonusAttackRate: -0.3
       bonusDamage:
         types:
           Slash: 22
