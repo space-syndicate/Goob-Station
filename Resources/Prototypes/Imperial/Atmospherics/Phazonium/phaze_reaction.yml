@@ -1,11 +1,11 @@
 - type: gasPhazeReaction
-  id: BZPhaseProduction
-  energyScale: 60
+  id: PhasoniumPhaseProduction
+  energyScale: 400
   useGasTwo: True
-  addedGasID: 16
-  missingGasID: 3
-  missingGasIDTwo: 11
-  outputFactor: 1.1
+  addedGasID: 10
+  missingGasID: 11
+  missingGasIDTwo: 14
+  outputFactor: 1.2
  # oxygen 0
  # nitrogen 1
  # carbon dioxide 2

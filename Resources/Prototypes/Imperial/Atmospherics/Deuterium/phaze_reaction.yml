@@ -1,11 +1,11 @@
 - type: gasPhazeReaction
-  id: BZPhaseProduction
-  energyScale: 60
+  id: DeuteriumPhaseProduction
+  energyScale: 20
   useGasTwo: True
-  addedGasID: 16
-  missingGasID: 3
-  missingGasIDTwo: 11
-  outputFactor: 1.1
+  addedGasID: 13
+  missingGasID: 4
+  missingGasIDTwo: 12
+  outputFactor: 0.01
  # oxygen 0
  # nitrogen 1
  # carbon dioxide 2

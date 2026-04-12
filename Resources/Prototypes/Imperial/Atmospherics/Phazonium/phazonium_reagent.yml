@@ -37,6 +37,7 @@
             Heat: 1.5
             Asphyxiation: 1
             Poison: 2
+            Piercing: 1
       - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition
