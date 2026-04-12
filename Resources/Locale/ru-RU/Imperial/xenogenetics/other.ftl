@@ -9,6 +9,9 @@ ent-MachineGeneCompiner = комбинатор генов
 ent-GeneCombinerCircuitboard = машинная плата (соеденитель генов)
     .desc = Необходима для сборки соеденителя генов.
 
+gene-combiner-start = начать совмещение
+gene-slot-output = конечный ген
+
 # НАУКА
 
 research-technology-basic-xenogenetics = Основы ксеногенетики
