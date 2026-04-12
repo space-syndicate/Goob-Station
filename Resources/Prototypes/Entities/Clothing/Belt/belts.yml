@@ -758,9 +758,9 @@
     slots:
     - belt
     - neck # CorvaxGoob start
-#  - type: Storage
-#    grid:
-#    - 0,0,3,1
+  - type: Storage
+    grid:
+    - 0,0,5,1
   # Goobstation
 #    whitelist:
 #      components:
@@ -812,7 +812,7 @@
         # name: Gun # CorvaxGoob-Loc-in-UI
         whitelist:
           tags:
-          - Sidearm # CorvaxGoob 
+          - Gun
 
 # Belts without visualizers
 
