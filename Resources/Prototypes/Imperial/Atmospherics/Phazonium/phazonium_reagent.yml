@@ -31,11 +31,12 @@
       - !type:HealthChange
         ignoreResistances: true
         damage:
-           groups:
-            Airloss: 1
-            Brute: 2
-            Burn: 1.5
-            Toxin: 2
+          types:
+            Slash: 1
+            Blunt: 1
+            Heat: 1.5
+            Asphyxiation: 1
+            Poison: 2
       - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition

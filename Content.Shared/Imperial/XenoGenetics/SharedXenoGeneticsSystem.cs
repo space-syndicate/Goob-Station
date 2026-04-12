@@ -12,6 +12,7 @@ using Content.Shared.Alert;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Humanoid;
+using Content.Shared.Silicons.Borgs.Components;
 
 namespace Content.Shared.Imperial.XenoGenetics;
 
@@ -93,6 +94,9 @@ public abstract class SharedXenoGeneticsSystem : EntitySystem
             return;
         if (!HasComp<MobStateComponent>(args.Target))
             return;
+        if (HasComp<BorgChassisComponent>(args.Target))
+            return;
+
         switch (comp.InsertMode)
         {
             case GeneSplicerMode.Insert:
