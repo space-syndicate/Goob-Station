@@ -760,7 +760,7 @@
     - neck # CorvaxGoob start
   - type: Storage
     grid:
-    - 0,0,5,1
+    - 0,0,5,1 #corvaxgoob 
   # Goobstation
 #    whitelist:
 #      components:
