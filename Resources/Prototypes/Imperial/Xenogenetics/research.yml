@@ -22,10 +22,11 @@
     state: cover_closed
   discipline: Experimental
   tier: 2
-  cost: 5000
+  cost: 7500
   recipeUnlocks:
   - RNDSentryRecipe
   - RNDSentryComputerRecipe
+  - GeneCombinerRecipe
 
 - type: technology
   id: XenogeneticsBigMassEntities
@@ -59,6 +60,7 @@
   recipes:
   - RNDSentryRecipe
   - RNDSentryComputerRecipe
+  - GeneCombinerRecipe
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
@@ -69,6 +71,11 @@
   parent: [ BaseSilverCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
   id: RNDSentryComputerRecipe
   result: RNDSentryComputerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseSilverCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: GeneCombinerRecipe
+  result: GeneCombinerCircuitboard
 
 - type: latheRecipePack
   id: ImperialGeneticsCubesPack
