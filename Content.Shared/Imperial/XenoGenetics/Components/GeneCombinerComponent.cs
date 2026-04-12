@@ -9,12 +9,7 @@ namespace Content.Shared.Imperial.XenoGenetics.Components;
 public sealed partial class GeneCombinerComponent : Component
 {
     /// <summary>
-    /// Обновляется если вставить ген, предотвращает спам и дубли.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool Worked = false;
-    /// <summary>
-    /// Айдишники слотов для генов 
+    /// Айдишники слотов для генов
     /// </summary>
     [DataField, AutoNetworkedField]
     public int MaxGenes = 2;
@@ -24,7 +19,7 @@ public sealed partial class GeneCombinerComponent : Component
     [DataField, AutoNetworkedField]
     public string GeneContainerIDOutput = "gene_output";
     /// <summary>
-    /// Айдишники слотов для генов 
+    /// Айдишники слотов для генов
     /// </summary>
     [DataField, AutoNetworkedField]
     public string GeneContainerID = "gene_slot";

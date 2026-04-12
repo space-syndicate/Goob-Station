@@ -94,15 +94,7 @@
     spawned:
     - id: FoodMeatXeno
       amount: 5
-  #- type: GhostRole
-  #  allowMovement: true IMPERIAL GENETICS
-  #  allowSpeech: true
-  #  makeSentient: true
-  #  name: ghost-role-information-xeno-name
-  #  description: ghost-role-information-xeno-description
-  #  rules: ghost-role-information-xeno-rules
-  #  raffle:
-  #    settings: default
+  ### IMPERIAL: REMOVED GHOST ROLE
   - type: GhostTakeoverAvailable
   - type: TypingIndicator
     proto: alien

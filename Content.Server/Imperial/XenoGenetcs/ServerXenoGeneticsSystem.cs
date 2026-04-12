@@ -8,13 +8,14 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
-using  Content.Shared.Containers;
+using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
 using Content.Shared.Verbs;
 using Microsoft.VisualBasic;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Content.Server.Imperial.XenoGenetics;
 
@@ -143,8 +144,6 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
 
         _containerSystem.Insert(entToInsert, geneContainer);
 
-        comp.Worked = false;
-
         args.Handled = true;
     }
     private void AddAltVerb(EntityUid uid, GeneCombinerComponent comp, ref GetVerbsEvent<AlternativeVerb> args)
@@ -152,7 +151,10 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
         var geneContainer = _containerSystem.GetContainer(uid, comp.GeneContainerID);
         var geneContainerEnt = new List<EntityUid>(geneContainer.ContainedEntities);
 
-        if (!args.CanAccess || !args.CanInteract || args.Hands == null || comp.Worked == true || !geneContainerEnt.Any())
+        if (geneContainerEnt.Count < 2)
+            return;
+
+        if (!args.CanAccess || !args.CanInteract || args.Hands == null || !geneContainerEnt.Any())
             return;
 
         var user = args.User;
@@ -166,14 +168,16 @@ public sealed class ServerXenoGeneticsSystem : SharedXenoGeneticsSystem
     }
     private void OnCombinerInteract(EntityUid uid, GeneCombinerComponent comp, EntityUid user)
     {
-        comp.Worked = true;
         var geneContainer = _containerSystem.GetContainer(uid, comp.GeneContainerID);
         var geneContainerEnt = new List<EntityUid>(geneContainer.ContainedEntities);
+
+        if (geneContainerEnt.Count < 2)
+            return;
 
         var geneProtoID1 = MetaData(geneContainerEnt[0]).EntityPrototype;
         var geneProtoID2 = MetaData(geneContainerEnt[1]).EntityPrototype;
 
-        if(geneProtoID1 == null || geneProtoID2 == null)
+        if (geneProtoID1 == null || geneProtoID2 == null)
             return;
 
         if (!geneContainerEnt.Any() || geneContainerEnt.Count() > comp.MaxGenes || geneProtoID1 != geneProtoID2)
