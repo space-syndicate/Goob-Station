@@ -523,7 +523,6 @@
 # End GoobStation
 
 # CorvaxGoob Candy
-# Щиткод конфета, по хорошему надо переделать под вид других
 - type: loadout
   id: FoodSnackLollypopWrappedTricordrazine
   storage:
