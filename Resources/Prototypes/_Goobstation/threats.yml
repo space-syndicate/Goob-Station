@@ -3,7 +3,7 @@
   id: NumberStationThreats
   weights:
     LoneOperative: 1
-    ShuttleInstigator: 0.8
+    ShuttleInstigator: 0.6 # CorvaxGoob-changes: 0.8 > 0.6
     VoxRaiders: 0.8
     GreyTide: 0.65
     #TODO When Slasher is ready Slasher: 0.6 # Goobstation
