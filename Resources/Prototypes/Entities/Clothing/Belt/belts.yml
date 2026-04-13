@@ -809,9 +809,9 @@
   - type: ItemSlots
     slots:
       item:
-        # name: Gun # CorvaxGoob-Loc-in-UI
+        name: Gun # CorvaxGoob-Loc-in-UI
         whitelist:
-          tags:
+          components:
           - Gun
 
 # Belts without visualizers
