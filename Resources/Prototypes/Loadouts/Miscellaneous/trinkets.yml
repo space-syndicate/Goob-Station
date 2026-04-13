@@ -522,17 +522,17 @@
 
 # End GoobStation
 
-# Corvax Candy
-#- type: loadout
-#  id: FoodSnackLollypopWrappedTricordrazine
-#  storage:
-#    back:
-#    - FoodSnackLollypopWrappedTricordrazine
-#  effects:
-#  - !type:GroupLoadoutEffect # Ломает проверки
-#    proto: LollypopTricordrazine
-# groupBy: "candy"
-# Щиткод конфета, "GroupLoadoutEffect" ломает проверки. Дубликат уже существующей конфеты, закомментил. вдруг пригодиться, по хорошему можно удалить
+# CorvaxGoob Candy
+# Щиткод конфета, по хорошему надо переделать под вид других
+- type: loadout
+  id: FoodSnackLollypopWrappedTricordrazine
+  storage:
+    back:
+    - FoodSnackLollypopWrappedTricordrazine
+  effects:
+  - !type:GroupLoadoutEffect 
+    proto: LollypopTricordrazine
+  groupBy: "candy"
     
 - type: loadoutEffectGroup
   id: LollypopTricordrazine
@@ -542,7 +542,7 @@
       !type:DepartmentTimeRequirement
       department: Medical
       time: 360000 # 100 hours
-  groupBy: "candy"
+# CorvaxGoob Candy end
 
 # Towels
 - type: loadout
