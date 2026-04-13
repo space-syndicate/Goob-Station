@@ -219,10 +219,10 @@ ghost-role-information-lost-challenge-cargo-technican-rules =
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
     Вам разрешается помнить знания об игре в целом, например, как готовить, как использовать предметы и т.д.
     Вам [color=red]НЕ[/color] разрешается помнить, имя, внешность и т.д. вашего предыдущего персонажа.
-ghost-role-information-syndie-soldier-name = Солдат Синдиката
-ghost-role-information-syndie-soldier-description = Вы солдат Синдиката
-ghost-role-information-syndie-soldier-teamlead-name = Командир команды Синдиката
-ghost-role-information-syndie-soldier-teamlead-description = Вы - командир огневой группы в оперативном отряде Синдиката.
+ghost-role-information-syndie-soldier-name = Рейдер Синдиката
+ghost-role-information-syndie-soldier-description = Вы - рейдер Синдиката. Ваша задача - нанести максимальный ущерб станции и её обитателям при помощи снаряжения, выданного вам нанимателями и коммандером.
+ghost-role-information-syndie-soldier-teamlead-name = Коммандер рейдеров Синдиката
+ghost-role-information-syndie-soldier-teamlead-description = Вы - коммандер группы рейдеров Синдиката. Вашей задачей является нанесение максимального ущерба станции и её обитателям, а также снабжение остальных бойцов своего отряда при помощи аплинка.
 ghost-role-information-blackmarketeer-name = Торговец чёрного рынка
 ghost-role-information-blackmarketeer-description = Заключайте сделки или беритесь за непосильную работу, чтобы к концу смены собрать самые интересные предметы.
 ghost-role-information-cossack-name = Древний путешественник

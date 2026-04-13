@@ -1,0 +1,18 @@
+- type: startingGear
+  id: SyndicateRaiderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    eyes: ClothingEyesHudSyndicate
+    gloves: ClothingHandsGlovesCombat
+    back: ClothingBackpackDuffelSyndicate
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndiPDA
+    ears: ClothingHeadsetAltSyndicate
+
+- type: startingGear
+  id: SyndicateRaidersCommanderGear
+  parent: SyndicateRaiderGear
+  equipment:
+    head: ClothingHeadHatOutlawHat
+    outerClothing: ClothingOuterCoatSyndieCap
+    pocket1: BaseUplinkRadio225TC

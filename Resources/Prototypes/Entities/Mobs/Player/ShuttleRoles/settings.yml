@@ -860,7 +860,7 @@
       raffle:
         settings: default
     - type: Loadout
-      prototypes: [ SyndicateFootsoldierTeamLeaderGear ]
+      prototypes: [ SyndicateRaidersCommanderGear ] # CorvaxGoob-changes: SyndicateFootsoldierTeamLeaderGear > SyndicateRaidersCommanderGear
       roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: randomHumanoidSettings
@@ -882,7 +882,7 @@
       raffle:
         settings: default
     - type: Loadout
-      prototypes: [ SyndicateFootsoldierGear ]
+      prototypes: [ SyndicateRaiderGear ] # CorvaxGoob-changes: SyndicateFootsoldierGear > SyndicateRaiderGear
       roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: randomHumanoidSettings

@@ -350,11 +350,11 @@ ghost-role-information-disaster-victim-description = You were rescued in an esca
 ghost-role-information-syndie-disaster-victim-name = Syndicate Disaster Victim
 ghost-role-information-syndie-disaster-victim-description = You're a regular passenger from a syndicate station. You have defected from your home station and found yourself in unfamiliar territory...
 
-ghost-role-information-syndie-soldier-name = Syndicate Soldier
-ghost-role-information-syndie-soldier-description = You are a soldier from the Syndicate.
+ghost-role-information-syndie-soldier-name = Syndicate Raider
+ghost-role-information-syndie-soldier-description = You are a Syndicate raider. Your objective is to inflict maximum damage on the station and its inhabitants using the equipment provided by your employers and the commander.
 
-ghost-role-information-syndie-soldier-teamlead-name = Syndicate Team Leader
-ghost-role-information-syndie-soldier-teamlead-description = You are the fire team leader for a Syndicate operative taskforce.
+ghost-role-information-syndie-soldier-teamlead-name = Commander of the Syndicate Raiders
+ghost-role-information-syndie-soldier-teamlead-description = You are the commander of a Syndicate raider group. Your task is to inflict maximum damage on the station and its inhabitants, as well as to supply your squad members with the aid of the aplink provided to you.
 
 ghost-role-information-blackmarketeer-name = Black Market Trader
 ghost-role-information-blackmarketeer-description = Make trades or take odd jobs to collect the most interesting items by the end of the shift.
