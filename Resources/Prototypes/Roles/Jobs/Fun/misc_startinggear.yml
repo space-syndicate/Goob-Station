@@ -149,10 +149,10 @@
   id: SyndicateFootsoldierGearRuin
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
+    head: ClothingHeadHatSyndie
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterArmorBasic
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesColorBlack
     back: ClothingBackpack
     shoes: ClothingShoesBootsCombat
     id: SyndiPDA
