@@ -1,0 +1,8 @@
+- type: entity
+  parent: BaseUplinkRadio
+  id: BaseUplinkRadio175TC
+  suffix: 175 TC
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 175
