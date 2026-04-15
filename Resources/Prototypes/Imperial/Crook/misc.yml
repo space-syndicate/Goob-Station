@@ -454,8 +454,10 @@
       0: Alive
       250: Dead
   - type: Bloodstream
-    bloodReagent: MuteToxin
-    chemicalMaxVolume: 60
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId:  MuteToxin
+        Quantity: 60
   - type: StatusEffects
   - type: MeleeWeapon
     soundHit:
