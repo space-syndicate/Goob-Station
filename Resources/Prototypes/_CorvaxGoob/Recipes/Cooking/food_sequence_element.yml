@@ -27,9 +27,6 @@
   tags:
   - Cooked
   - Meat
-  flavors:
-  - meaty
-  - slimy
 
 - type: foodSequenceElement
   id: TajaranCutlet
@@ -50,8 +47,6 @@
   tags:
   - Cooked
   - Meat
-  flavors:
-  - chicken
 
 - type: foodSequenceElement
   id: MothCutlet
@@ -62,9 +57,6 @@
   tags:
   - Cooked
   - Meat
-  flavors:
-  - meaty
-  - light
 
 - type: foodSequenceElement
   id: ResomiCutlet
@@ -75,5 +67,3 @@
   tags:
   - Cooked
   - Meat
-  flavors:
-  - chicken
