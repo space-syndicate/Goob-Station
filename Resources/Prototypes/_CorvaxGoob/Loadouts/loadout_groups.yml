@@ -1,3 +1,29 @@
+#Law
+
+- type: loadoutGroup
+  id: MagistrateHead
+  name: loadout-group-magistrate-head
+  loadouts:
+  - MagistrateHeadPwig
+  - MagistrateHeadPwigFancy
+
+- type: loadoutGroup
+  id: MagistrateJumpsuit
+  name: loadout-group-magistrate-jumpsuit
+  loadouts:
+  - MagistrateJumpsuit
+  - MagistrateJumpskirt
+  - MagistrateJumpsuitFormal
+
+- type: loadoutGroup
+  id: MagistrateOuterClothing
+  name: loadout-group-magistrate-outerclothing
+  loadouts:
+  - MagistrateOuterClothingRobe
+  - MagistrateOuterClothingRobeAlt
+  - MagistrateOuterClothingRobeFancy
+  - MagistrateOuterClothingRobeRed
+
 # Medical
 - type: loadoutGroup
   id: SurgeonHead
@@ -83,9 +109,9 @@
 - type: loadoutGroup
   id: BrigmedicMask
   name: loadout-group-brigmedic-mask
+  minLimit: 0
   loadouts:
   - BrigmedicSecurityMedicalRespirator
-  - BrigmedicGasSecurity
   - BrigmedicMedicalSecurity
   
 - type: loadoutGroup

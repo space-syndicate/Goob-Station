@@ -72,6 +72,9 @@
     solutions:
       pen:
         maxVol: 15
+  - type: Tag # CorvaxGoob
+    tags:
+    - Medipen
 
 - type: entity
   name: chemical microstimpen

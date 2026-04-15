@@ -1023,6 +1023,7 @@
   minLimit: 0
   loadouts:
   - BlueshieldOfficerMaskLollypop
+  - BlueShieldMaskGasSWAT # CorvaxGoob-loadouts
 
 - type: loadoutGroup
   id: BlueshieldOfficerShoes
@@ -1031,6 +1032,7 @@
   - JackBoots
   - BlackCowboyBoots
   - SnowjacksBso
+  - ClothingShoesSwatBoots # corvaxgoob
 
 - type: loadoutGroup
   id: BlueshieldOfficerEnvirohelm
