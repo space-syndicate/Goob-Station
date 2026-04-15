@@ -149,6 +149,8 @@
   storage:
     back:
     - Flash
+    - MagazinePistol # CorvaxGoob-RubberAmmo
+    - MagazinePistolRubber # CorvaxGoob-RubberAmmo
     - MagazinePistol
 
 - type: chameleonOutfit

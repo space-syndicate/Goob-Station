@@ -1,0 +1,53 @@
+# .20 Rifle
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifleRubber
+  result: MagazineRifleRubber
+  materials:
+    Steel: 400
+    Plastic: 200
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBoxRifleRubber
+  result: MagazineBoxRifleRubber
+  materials:
+    Steel: 750
+    Plastic: 400
+
+# .35 Auto
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolRubber
+  result: MagazinePistolRubber
+  materials:
+    Steel: 145
+    Plastic: 60
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBoxPistolRubber
+  result: MagazineBoxPistolRubber
+  materials:
+    Steel: 600
+    Plastic: 300
+
+# .45 Magnum
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBoxMagnumRubber
+  result: MagazineBoxMagnumRubber
+  materials:
+    Steel: 240
+    Plastic: 120
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderMagnumRubber
+  result: SpeedLoaderMagnumRubber
+  materials:
+    Steel: 170
+    Plastic: 60

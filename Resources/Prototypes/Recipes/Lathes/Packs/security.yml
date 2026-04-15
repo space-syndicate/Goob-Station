@@ -53,6 +53,16 @@
   - MagazineBoxRifle
   # - MagazineLightRifle # Goobstation - remove light rifle
   # - MagazineLightRifleEmpty # Goobstation - remove light rifle
+
+  # CorvaxGoob-RubberAmmo-Start
+  - MagazineRifleRubber
+  - MagazineBoxRifleRubber
+  - MagazinePistolRubber
+  - MagazineBoxPistolRubber
+  - MagazineBoxMagnumRubber
+  - SpeedLoaderMagnumRubber
+  # CorvaxGoob-RubberAmmo-End
+
   - MagazinePistol
   - MagazinePistolEmpty
   - MagazinePistolSubMachineGun
