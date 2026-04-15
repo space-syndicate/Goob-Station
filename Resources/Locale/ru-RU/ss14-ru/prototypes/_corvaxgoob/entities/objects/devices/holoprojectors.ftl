@@ -2,4 +2,4 @@ ent-HoloprojectorCrate = проектор голографического ящ�
     .desc = Удобный голографический проектор, отображающий ящик из твёрдого света.
 ent-HoloprojectorCrateEmpty = {ent-HoloprojectorCrate}
     .desc = {ent-HoloprojectorCrate.desc}
-    .suffix = Empty
+    .suffix = Пустой

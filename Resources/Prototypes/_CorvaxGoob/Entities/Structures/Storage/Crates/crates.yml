@@ -68,11 +68,11 @@
   id: CratePrivateCargoSecure
   components:
   - type: AccessReader
-    access: [["Cargo"]]    
+    access: [["Cargo"]]
 
 - type: entity
   parent: CrateGeneric
-  id: Crateholographic
+  id: CrateHolographic
   name: holographic crate
   components:
   - type: HologramVisuals
@@ -87,8 +87,10 @@
     - timer
   - type: StaticPrice
     price: 0
+  - type: EntityStorage
+    capacity: 5
   - type: Construction
-    graph: Crateholographic
+    graph: CrateHolographic
     node: crateholographic
   - type: Fixtures
     fixtures:
@@ -106,5 +108,5 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/stealthoff.ogg
-     
+
 

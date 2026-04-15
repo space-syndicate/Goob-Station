@@ -1,5 +1,5 @@
 - type: constructionGraph
-  id: Crateholographic
+  id: CrateHolographic
   start: start
   graph:
     - node: start
@@ -7,7 +7,7 @@
         - to: crateholographic
 
     - node: crateholographic
-      entity: Crateholographic
+      entity: CrateHolographic
       edges:
         - to: start
           steps:

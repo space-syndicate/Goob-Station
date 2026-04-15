@@ -5,7 +5,7 @@
   description: A projector that creates a temporary hard light crate.
   components:
   - type: HolosignProjector
-    signProto: Crateholographic
+    signProto: CrateHolographic
     chargeUse: 300
     anchorOnSpawn: false
   - type: Sprite
@@ -15,7 +15,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium    
+        startingItem: PowerCellMedium
   - type: Tag
     tags:
     - HolofanProjector
@@ -23,6 +23,7 @@
 - type: entity
   parent: HoloprojectorCrate
   id: HoloprojectorCrateEmpty
+  suffix: Empty
   components:
   - type: ItemSlots
     slots:
