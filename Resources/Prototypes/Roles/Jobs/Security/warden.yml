@@ -193,7 +193,7 @@
     back:
     - Flash
     - MagazinePistol
-    - ClothingMaskGasSecurity # Goobstation
+#   - ClothingMaskGasSecurity # Goobstation # CorvaxGoob-changes: commented
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

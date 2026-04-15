@@ -6,3 +6,5 @@ uplink-plasma-scythe-name = Plasma scythe
 uplink-plasma-scythe-desc = A powerful weapon that can serve as an excellent counterpart to the double energy sword. Warning: that it requires infrequent refueling with liquid plasma for stable operation.
 uplink-plasma-sword-name = Plasma sword
 uplink-plasma-sword-desc = A weapon that is a more expensive and showy version of an energy sword. Warning: Requires infrequent refueling with liquid plasma for stable operation.
+uplink-blood-red-paper-box-name = A box of Syndicate paper
+uplink-blood-red-paper-box-desc = A box filled with blood-red paper with the Syndicate logo. This is a great propaganda tool if you've run out of free business cards.
