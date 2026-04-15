@@ -97,8 +97,8 @@ meta:
   engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/13/2026 18:25:17
-  entityCount: 525
+  time: 04/15/2026 20:54:02
+  entityCount: 523
 maps: []
 grids:
 - 1
@@ -2503,32 +2503,29 @@ entities:
   - uid: 506
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.4890846,2.5393298
+      pos: -0.61444366,3.6690967
       parent: 1
 - proto: GrenadeBlast
   entities:
   - uid: 508
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5544467,2.5419302
+      pos: -0.42694366,3.5961802
       parent: 1
 - proto: GrenadeEMP
   entities:
   - uid: 507
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.490082,2.8833182
+      pos: -0.29152703,3.7003467
       parent: 1
 - proto: GrenadeFlash
   entities:
-  - uid: 505
+  - uid: 3
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -1.5620012,2.8833182
+      pos: -0.6886116,3.3982637
       parent: 1
 - proto: Grille
   entities:
@@ -2598,8 +2595,7 @@ entities:
   - uid: 513
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.66289496,3.5898402
+      pos: -0.97902715,3.6795137
       parent: 1
 - proto: MagazineGrenadeFrag
   entities:
@@ -3012,18 +3008,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
-      parent: 1
-  - uid: 495
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,2.5
-      parent: 1
-  - uid: 496
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,2.5
       parent: 1
 - proto: TableWood
   entities:
