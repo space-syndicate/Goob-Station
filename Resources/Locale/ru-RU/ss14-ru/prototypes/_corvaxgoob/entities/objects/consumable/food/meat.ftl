@@ -39,3 +39,45 @@ ent-FoodMeatResomi = сырое мясо резоми
 
 ent-FoodMeatCookedResomi = стейк из резоми
   .desc = { ent-FoodMeatCooked.desc }
+
+ent-FoodVulpkaninCutlet = сырая котлета из вульпканина
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodVulpkaninCutletCooked = котлета из вульпканина
+  .desc = { ent-FoodMeatCutletCooked.desc }
+
+ent-FoodArachnidCutlet = сырая котлета из арахнида
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodArachnidCutletCooked = котлета из арахнида
+  .desc = { ent-FoodMeatCutletCooked.desc }
+
+ent-FoodSlimeCutlet = сырая котлета из слайма
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodSlimeCutletCooked = котлета из слайма
+  .desc = { ent-FoodMeatCutletCooked.desc }
+
+ent-FoodTajaranCutlet = сырая котлета из таяра
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodTajaranCutletCooked = котлета из таяра
+  .desc = { ent-FoodMeatCutletCooked.desc }
+
+ent-FoodVoxCutlet = сырая котлета из вокса
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodVoxCutletCooked = котлета из вокса
+  .desc = { ent-FoodMeatCutletCooked.desc }
+
+ent-FoodMothCutlet = сырая котлета из ниана
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodMothCutletCooked = котлета из ниана
+  .desc = { ent-FoodMeatCutletCooked.desc }
+
+ent-FoodResomiCutlet = сырая котлета из резоми
+  .desc = { ent-FoodMeatCutlet.desc }
+
+ent-FoodResomiCutletCooked = котлета из резоми
+  .desc = { ent-FoodMeatCutletCooked.desc }
