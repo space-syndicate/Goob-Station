@@ -611,3 +611,39 @@
     damage: 8
   - type: SpeakOnTrigger
     pack: AtlasWords
+
+- type: localizedDataset
+  id: SanabiWords
+  values:
+    prefix: plushie-sanabi-
+    count: 6
+
+- type: speechSounds
+  id: SanabiSaid
+  saySound:
+    path: /Audio/Imperial/Crook/sanabi.ogg
+  askSound:
+    path: /Audio/Imperial/Crook/sanabi.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Crook/sanabi.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieSanabi
+  name: sanabi
+  suffix: Crook, COMMUNITY, TOY
+  description: sanabi
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/sanabi.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 12.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: SanabiSaid
+  - type: SpeakOnTrigger
+    pack: SanabiWords
