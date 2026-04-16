@@ -38,7 +38,7 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     id: PilotPDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetAltSecurityRegular
     pocket1: WeaponPistolMk58
   storage:
     back:
@@ -55,7 +55,7 @@
     mask: ClothingMaskGasSecurity
     neck: Dinkystar
     gloves: ClothingHandsGlovesColorBlack
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetAltSecurityRegular
     outerClothing: ClothingOuterArmorBasic
     jumpsuit: ClothingUniformSecurityTrooper
     id: PilotPDA
