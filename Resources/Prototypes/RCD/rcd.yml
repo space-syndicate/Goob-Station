@@ -235,7 +235,7 @@
 - type: rcd
   id: SurveillanceCamera
   category: Lighting
-  sprite: /Textures/Structures/Wallmounts/camera.rsi/camera.png
+  sprite: /Textures/Interface/Radial/RCD/cameracase.png
   mode: ConstructObject
   prototype: SurveillanceCameraConstructed
   cost: 3
@@ -245,7 +245,7 @@
   rules:
     - IsWallLight
   rotation: User
-  fx: EffectRCDConstruct1
+  fx: EffectRCDConstruct3
 #Corvax-Goob-rcd-camera-end
 
 # Electrical
