@@ -125,4 +125,5 @@ public sealed partial class SSDIndicatorComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
+    public bool SleepOnSSD = true; // CorvaxGoob-SleepOnSSD
 }

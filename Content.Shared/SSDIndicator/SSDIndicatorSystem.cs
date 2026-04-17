@@ -43,7 +43,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         component.IsSSD = false;
 
         // Removes force sleep and resets the time to zero
-        if (_icSsdSleep)
+        if (_icSsdSleep && component.SleepOnSSD) // CorvaxGoob-SleepOnSSD
         {
             component.FallAsleepTime = TimeSpan.Zero;
             _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
@@ -57,7 +57,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         component.IsSSD = true;
 
         // Sets the time when the entity should fall asleep
-        if (_icSsdSleep)
+        if (_icSsdSleep && component.SleepOnSSD) // CorvaxGoob-SleepOnSSD
         {
             component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
         }
@@ -68,7 +68,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
     // Prevents mapped mobs to go to sleep immediately
     private void OnMapInit(EntityUid uid, SSDIndicatorComponent component, MapInitEvent args)
     {
-        if (!_icSsdSleep || !component.IsSSD)
+        if (!_icSsdSleep || !component.IsSSD || !component.SleepOnSSD) // CorvaxGoob-SleepOnSSD
             return;
 
         component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
@@ -90,6 +90,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         {
             // Forces the entity to sleep when the time has come
             if (!ssd.IsSSD
+                || !ssd.SleepOnSSD //CorvaxGoob
                 || ssd.NextUpdate > curTime
                 || ssd.FallAsleepTime > curTime
                 || TerminatingOrDeleted(uid))
