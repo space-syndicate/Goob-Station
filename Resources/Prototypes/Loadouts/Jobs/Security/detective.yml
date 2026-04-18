@@ -136,8 +136,3 @@
   id: DetectiveCoatGrey
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadoutGrey
-
-- type: loadout
-  id: DetectiveCoatBlack # CorvaxGoob
-  equipment:
-    outerClothing: ClothingOuterCoatDetectiveDark
