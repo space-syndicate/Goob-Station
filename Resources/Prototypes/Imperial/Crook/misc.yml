@@ -1678,7 +1678,7 @@
     sprite: Clothing/Head/Misc/red_racoon.rsi
     state: icon
   product: CrateCargoFursuits
-  cost: 25000
+  cost: 15000
   category: cargoproduct-category-name-fun
   group: market
 
