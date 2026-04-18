@@ -70,3 +70,6 @@ ent-ChameleonControllerImplanter = { ent-BaseImplanter }
 ent-VoiceMaskImplanter = { ent-BaseImplanter }
     .desc = { ent-BaseImplanter.desc }
     .suffix = Голосовая маска
+ent-RadioImplanterCentcomm = { ent-BaseImplanter }
+    .desc = { ent-BaseImplanter.desc }
+    .suffix = Рация ЦентКома
