@@ -493,7 +493,7 @@
   storage:
     back:
     - FoodSnackLollypopWrapped
-  groupBy: "candy"
+  groupBy: "candy" # CorvaxGoob
 
 - type: loadout
   id: FoodSnackLollypopWrappedRainbow
@@ -505,7 +505,7 @@
   storage:
     back:
     - FoodSnackLollypopWrappedRainbow
-  groupBy: "candy"
+  groupBy: "candy" # CorvaxGoob
 
 - type: loadout
   id: FoodSnackLollypopWrappedCarp
@@ -518,7 +518,7 @@
   storage:
     back:
     - FoodSnackLollypopWrappedCarp
-  groupBy: "candy"
+  groupBy: "candy" # CorvaxGoob
 
 # End GoobStation
 
@@ -529,10 +529,10 @@
     back:
     - FoodSnackLollypopWrappedTricordrazine
   effects:
-  - !type:GroupLoadoutEffect 
+  - !type:GroupLoadoutEffect
     proto: LollypopTricordrazine
   groupBy: "candy"
-    
+
 - type: loadoutEffectGroup
   id: LollypopTricordrazine
   effects:
