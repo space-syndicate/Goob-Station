@@ -261,10 +261,8 @@ namespace Content.Server.PDA
             if (!_containerSystem.TryGetContainingContainer((ent, null, null), out var container))
                 return;
 
-            TryComp<ActorComponent>(container.Owner, out var actor);
-
             // Отдельная проверка на случай если КПК содержится в ядре ИИ
-            if (actor is null
+            if (!TryComp<ActorComponent>(container.Owner, out var actor)
                 && TryComp<StationAiCoreComponent>(container.Owner, out var core)
                 && _ai.TryGetHeld((container.Owner, core), out var held))
             {
