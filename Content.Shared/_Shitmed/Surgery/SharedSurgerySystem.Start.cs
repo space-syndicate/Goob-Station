@@ -33,8 +33,7 @@ public abstract partial class SharedSurgerySystem
             return;
 
         if (_noSelfOperate && user == target
-            // CorvaxGoob-start: SelfOperate for IPC and who has SelfSurgery skill
-            && !HasComp<SiliconComponent>(user)
+            // CorvaxGoob-start: SelfOperate who has SelfSurgery skill
             && !_skills.HasSkill(user, Skills.SelfSurgery))
         {
             _popup.PopupEntity(Loc.GetString("surgery-error-self-surgery"), user, user); // Client -> Entity

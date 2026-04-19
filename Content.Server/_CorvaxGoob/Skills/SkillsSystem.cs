@@ -97,17 +97,16 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         if (clearSkills)
             mindComp.Skills.Clear();
 
-        if (skills.Count() < 1)
+        if (skills.Count < 1)
         {
-            var callerInfo = GetCallerInfo();
-            Log.Info($"HashSet<Skills> skills is empty, entity {entity.Id}, clearskills: {clearSkills}. Called from {callerInfo}");
+            Log.Info($"HashSet<Skills> skills is empty, entity {entity.Id}, clearskills: {clearSkills}.");
             return;
         }
 
         if (skills.Contains(SkillTypes.All))
         {
             mindComp.Skills.Clear();
-            mindComp.Skills.UnionWith(new HashSet<SkillTypes>() { SkillTypes.AdvancedBuilding, SkillTypes.Butchering, SkillTypes.MedicalEquipment, SkillTypes.SelfSurgery, SkillTypes.Shooting, SkillTypes.ShuttleControl, SkillTypes.Surgery });
+            mindComp.Skills.Add(SkillTypes.All);
         }
         else
             mindComp.Skills.UnionWith(skills);
@@ -115,10 +114,9 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         HashSet<SkillTypes> newSkills = new HashSet<SkillTypes>(mindComp.Skills);
         newSkills.ExceptWith(oldSkills);
 
-        if (newSkills.Count() < 1)
+        if (newSkills.Count < 1)
         {
-            var callerInfo = GetCallerInfo();
-            Log.Info($"No new skills added to entity {entity.Id} with mind {mind.Id}. Clear skills: {clearSkills}. Called from {callerInfo}");
+            Log.Info($"No new skills added to entity {entity.Id} with mind {mind.Id}. Clear skills: {clearSkills}.");
             return;
         }
 
@@ -162,10 +160,9 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
         }
 
-        if (skills.Count() < 1)
+        if (skills.Count < 1)
         {
-            var callerInfo = GetCallerInfo();
-            Log.Info($"HashSet<Skills> skills is empty, entity {entity}. Called from {callerInfo}");
+            Log.Info($"HashSet<Skills> skills is empty, entity {entity}.");
             return;
         }
 
@@ -184,7 +181,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         HashSet<SkillTypes> revokedSkills = new HashSet<SkillTypes>(oldSkills);
         revokedSkills.ExceptWith(mindComp.Skills);
 
-        if (revokedSkills.Count() < 1)
+        if (revokedSkills.Count < 1)
         {
             Log.Info($"No skills revoked from entity {entity.Id} with mind {mind.Id}");
             return;
@@ -213,44 +210,5 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     public void RevokeSkill(EntityUid entity, SkillTypes skill)
     {
         RevokeSkill(entity, new HashSet<SkillTypes>() { skill });
-    }
-
-    /// <summary>
-    /// Get information about the calling method from stack trace
-    /// </summary>
-    /// <returns>string with name of method and system.
-    /// Example: "method GrantAllSkills, system SkillsSystem"</returns>
-    private string GetCallerInfo()
-    {
-        var stackTrace = new StackTrace(true);
-
-        // Skip zero frame (GetCallerInfo) and frame where it's called (GrantSkill/RevokeSkill)
-        for (int i = 2; i < stackTrace.FrameCount; i++)
-        {
-            var frame = stackTrace.GetFrame(i);
-            if (frame == null)
-                continue;
-
-            var method = frame.GetMethod();
-
-            if (method == null)
-                continue;
-
-            var declaringType = method.DeclaringType;
-
-            if (declaringType == null)
-                continue;
-
-            // Skip frames from this class
-            if (declaringType.FullName == "Content.Server._CorvaxGoob.Skills.SkillsSystem")
-                continue;
-
-            var methodName = method.Name;
-            var systemName = declaringType.Name;
-
-            return $"method {methodName}, system {systemName})";
-        }
-
-        return "Unknown";
     }
 }

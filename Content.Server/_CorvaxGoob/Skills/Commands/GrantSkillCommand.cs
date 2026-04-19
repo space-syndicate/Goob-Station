@@ -65,8 +65,9 @@ public sealed class GrantSkillCommand : LocalizedEntityCommands
         {
             return CompletionResult.FromHintOptions(
                 CompletionHelper.Components<MindContainerComponent>(args[0], EntityManager, 1000).Where(option =>
-                !EntityManager.HasComponent<MindComponent>(new EntityUid(int.Parse(option.Value))) &&
-                EntityManager.GetComponent<MindContainerComponent>(new EntityUid(int.Parse(option.Value))).HasMind),
+                int.TryParse(option.Value, out var optionNum) &&
+                !EntityManager.HasComponent<MindComponent>(new EntityUid(optionNum)) &&
+                EntityManager.GetComponent<MindContainerComponent>(new EntityUid(optionNum)).HasMind),
                 _localization.GetString("shell-argument-net-entity"));
         }
 
