@@ -29,13 +29,14 @@
     range: 500
   - type: StationLimitedNetwork
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.BatteryVisuals.State:
-        enum.PowerDeviceVisualLayers.Powered:
-          Full: { visible: true }
-          Neither: { visible: true }
-          Empty: { visible: false }
+# Not in the game yet
+#  - type: GenericVisualizer 
+#    visuals:
+#      enum.BatteryVisuals.State:
+#        enum.PowerDeviceVisualLayers.Powered:
+#          Full: { visible: true }
+#          Neither: { visible: true }
+#          Empty: { visible: false }
 
 - type: entity
   id: SecApartmentTablet
