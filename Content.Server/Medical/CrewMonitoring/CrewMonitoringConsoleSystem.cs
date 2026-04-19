@@ -15,6 +15,7 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
+// SPDX-FileCopyrightText: 2026 termertop1gg <pasdnikov777@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -92,12 +93,16 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         // Update all sensors info
         // GoobStation - Start
-        var isCommandOnly = HasComp<CrewMonitorScanningComponent>(uid);
+        TryComp<CrewMonitorScanningComponent>(uid, out var scanning);
+        var isCommandOnly = scanning != null;
+        var channel = scanning?.TrackerChannel;
 
         var filteredSensors = component.ConnectedSensors
-            .Where(pair => isCommandOnly
-                ? pair.Value.IsCommandTracker
-                : !pair.Value.IsCommandTracker)
+            .Where(pair => channel != null
+                ? pair.Value.TrackerChannel == channel
+                : isCommandOnly
+                    ? pair.Value.IsCommandTracker
+                    : !pair.Value.IsCommandTracker)
             .Select(pair => pair.Value)
             .ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(filteredSensors));

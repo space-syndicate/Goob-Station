@@ -14,6 +14,7 @@
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Baptr0b0t <152836416+Baptr0b0t@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2026 termertop1gg <pasdnikov777@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -49,6 +50,7 @@ public sealed class SuitSensorStatus
     public float? DamagePercentage => TotalDamageThreshold == null || TotalDamage == null ? null : TotalDamage / (float) TotalDamageThreshold;
     public NetCoordinates? Coordinates;
     public bool IsCommandTracker = false; ///Goob station
+    public string? TrackerChannel; ///Goob station
 }
 
 [Serializable, NetSerializable]
@@ -89,6 +91,7 @@ public static class SuitSensorConstants
     public const string NET_SUIT_SENSOR_UID = "uid";
 
     public const string NET_IS_COMMAND = "iscommand"; ///Goob Sation
+    public const string NET_TRACKER_CHANNEL = "trackerChannel"; ///Goob station
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";

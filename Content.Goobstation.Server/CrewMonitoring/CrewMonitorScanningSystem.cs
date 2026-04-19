@@ -2,6 +2,7 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
+// SPDX-FileCopyrightText: 2026 termertop1gg <pasdnikov777@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -26,7 +27,6 @@ public sealed class CrewMonitorScanningSystem : EntitySystem
     [Dependency] private readonly SharedSubdermalImplantSystem _implantSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    private const string CommandTrackerImplant = "CommandTrackingImplant";
     private const string CommandTrackerImplantName = "command tracking implant";
 
     public override void Initialize()
@@ -71,7 +71,7 @@ public sealed class CrewMonitorScanningSystem : EntitySystem
         }
 
         comp.ScannedEntities.Add(args.Target.Value); //Keep for don't double implant
-        _implantSystem.AddImplant(args.Target.Value, CommandTrackerImplant);
+        _implantSystem.AddImplant(args.Target.Value, comp.Implant);
 
         if (comp.ApplyDeathrattle)
             EnsureComp<RelayedDeathrattleComponent>(args.Target.Value).Target = uid;

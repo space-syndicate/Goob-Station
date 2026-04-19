@@ -93,6 +93,7 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Ignaz "Ian" Kraft <ignaz.k@live.de>
 // SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 termertop1gg <pasdnikov777@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -539,6 +540,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
                 status.Coordinates = GetNetCoordinates(coordinates);
                 status.IsCommandTracker = sensor.CommandTracker; //Goob station
+                status.TrackerChannel = sensor.TrackerChannel; //Goob station
                 break;
         }
 
@@ -569,6 +571,8 @@ public sealed class SuitSensorSystem : EntitySystem
             payload.Add(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, status.TotalDamageThreshold);
         if (status.Coordinates != null)
             payload.Add(SuitSensorConstants.NET_COORDINATES, status.Coordinates);
+        if (status.TrackerChannel != null)
+            payload.Add(SuitSensorConstants.NET_TRACKER_CHANNEL, status.TrackerChannel); //Goob station
 
         return payload;
     }
@@ -598,6 +602,7 @@ public sealed class SuitSensorSystem : EntitySystem
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, out int? totalDamageThreshold);
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
+        payload.TryGetValue(SuitSensorConstants.NET_TRACKER_CHANNEL, out string? trackerChannel); //Goob station
 
         var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments)
         {
@@ -606,6 +611,7 @@ public sealed class SuitSensorSystem : EntitySystem
             TotalDamageThreshold = totalDamageThreshold,
             Coordinates = coords,
             IsCommandTracker = iscommand,//Goob station
+            TrackerChannel = trackerChannel, //Goob station
         };
         return status;
     }
