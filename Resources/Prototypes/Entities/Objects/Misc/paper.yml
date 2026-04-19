@@ -142,6 +142,15 @@
   id: BasePaper
   abstract: true
   components:
+  - type: Fixtures
+    fixtures: #corvaxgoob nerf paper in space
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        density: 20
+        mask:
+        - ItemMask
   # Goobstation edit start
   - type: EmitSoundOnPickup
     sound:
@@ -384,7 +393,7 @@
     tags:
     - Document
     - Trash
-    - Paper
+#    - Paper # corvaxgoob nerf nanotask
   - type: StaticPrice
     price: 0
   - type: NanoTaskPrinted
