@@ -62,7 +62,7 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: LollypopTricordrazine
-    
+
 - type: loadoutEffectGroup
   id: LollypopTricordrazine
   effects:
@@ -71,3 +71,23 @@
       !type:DepartmentTimeRequirement
       department: Medical
       time: 360000 # 100 hours
+
+# Smokeables
+- type: loadout
+  id: FlippoLighter
+  storage:
+    back:
+    - FlippoLighter
+  groupBy: "smokeables"
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LigtherZippo
+
+- type: loadoutEffectGroup
+  id: LigtherZippo
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 3600 # 1 hours
