@@ -198,6 +198,27 @@
     - CigarGold
   groupBy: "smokeables"
 
+# CorvaxGoob-loadouts-start:
+- type: loadout
+  id: FlippoLighter
+  storage:
+    back:
+    - FlippoLighter
+  groupBy: "smokeables"
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LigtherZippo
+
+- type: loadoutEffectGroup
+  id: LigtherZippo
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 3600 # 1 hours
+# CorvaxGoob-loadouts-end.
+
 # Pins
 - type: loadout
   id: ClothingNeckLGBTPin
@@ -493,7 +514,7 @@
   storage:
     back:
     - FoodSnackLollypopWrapped
-  groupBy: "candy" # CorvaxGoob
+  groupBy: "candy" # CorvaxGoob-loadouts
 
 - type: loadout
   id: FoodSnackLollypopWrappedRainbow
@@ -505,7 +526,7 @@
   storage:
     back:
     - FoodSnackLollypopWrappedRainbow
-  groupBy: "candy" # CorvaxGoob
+  groupBy: "candy" # CorvaxGoob-loadouts
 
 - type: loadout
   id: FoodSnackLollypopWrappedCarp
@@ -518,11 +539,11 @@
   storage:
     back:
     - FoodSnackLollypopWrappedCarp
-  groupBy: "candy" # CorvaxGoob
+  groupBy: "candy" # CorvaxGoob-loadouts
 
 # End GoobStation
 
-# CorvaxGoob Candy
+# CorvaxGoob-loadouts-start:
 - type: loadout
   id: FoodSnackLollypopWrappedTricordrazine
   storage:
@@ -541,7 +562,7 @@
       !type:DepartmentTimeRequirement
       department: Medical
       time: 360000 # 100 hours
-# CorvaxGoob Candy end
+# CorvaxGoob-loadouts-end.
 
 # Towels
 - type: loadout
