@@ -15,7 +15,7 @@ namespace Content.Shared._Shitmed.Medical.Surgery.Tools;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class TendingComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a wound tender";
+    public string ToolName => "itemswitch-component-state-wound-tender"; // CorvaxGoob-localization
     [DataField]
     public bool? Used { get; set; } = null;
     [DataField]

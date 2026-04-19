@@ -1,26 +1,25 @@
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Mind;
+using SkillTypes = Content.Shared._CorvaxGoob.Skills.Skills;
 using Content.Shared.Administration;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Robust.Shared.Console;
 
 namespace Content.Server._CorvaxGoob.Skills.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class GrantSkillCommand : IConsoleCommand
+public sealed class GrantSkillCommand : LocalizedEntityCommands
 {
     [Dependency] private readonly ILocalizationManager _localization = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
 
-    public string Command => "grantskill";
+    public override string Command => "grantskill";
 
-    public string Description => "Grants skill to given entity.";
-
-    public string Help => "grantskill <entityuid> <skill>";
-
-    public void Execute(IConsoleShell shell, string arg, string[] args)
+    public override void Execute(IConsoleShell shell, string arg, string[] args)
     {
-        if (args.Length != 2)
+        if (args.Length < 2)
         {
             shell.WriteError(_localization.GetString("shell-wrong-arguments-number"));
             return;
@@ -32,43 +31,69 @@ public sealed class GrantSkillCommand : IConsoleCommand
             return;
         }
 
-        if (!_entity.TryGetEntity(id, out var entity))
+        if (!EntityManager.TryGetEntity(id, out var entity))
         {
             shell.WriteError(_localization.GetString("shell-invalid-entity-id"));
             return;
         }
 
-        if (!Enum.TryParse<Shared._CorvaxGoob.Skills.Skills>(args[1], out var skill))
+        if (!_mind.TryGetMind(entity.Value, out _, out _))
         {
-            shell.WriteError("No such skill.");
+            shell.WriteError(_localization.GetString("shell-invalid-entity-id"));
             return;
         }
 
-        if (!_entity.System<MindSystem>().TryGetMind(entity.Value, out _, out var mind))
-            return;
+        HashSet<SkillTypes> skills = new HashSet<SkillTypes>();
 
-        mind.Skills.Add(skill);
+        for (int i = 1; i < args.Length; i++)
+        {
+            if (!Enum.TryParse<SkillTypes>(args[i], out var skill))
+            {
+                shell.WriteError(Loc.GetString("cmd-grantskill-not-a-skill-type", ("args", args[i])));
+                return;
+            }
+
+            skills.Add(skill);
+        }
+
+        _skills.GrantSkill(entity.Value, skills);
     }
 
-    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
-        if (args.Length == 2)
+        if (args.Length == 1)
         {
-            var component = int.TryParse(args[0], out var id)
-                ? _entity.TryGetEntity(new(id), out var entity)
-                    ? _entity.System<MindSystem>().TryGetMind(entity.Value, out _, out var comp)
-                        ? comp
-                        : null
-                    : null
-                : null;
-
-            return CompletionResult.FromOptions(Enum.GetValues<Shared._CorvaxGoob.Skills.Skills>()
-                .Where(value => component?.Skills.Contains(value) != true)
-                .Select(value => value.ToString())
-                .Where(name => name.ToString().StartsWith(args[1], true, null))
-                .Select(value => new CompletionOption(value.ToString())));
+            return CompletionResult.FromHintOptions(
+                CompletionHelper.Components<MindContainerComponent>(args[0], EntityManager, 1000).Where(option =>
+                !EntityManager.HasComponent<MindComponent>(new EntityUid(int.Parse(option.Value))) &&
+                EntityManager.GetComponent<MindContainerComponent>(new EntityUid(int.Parse(option.Value))).HasMind),
+                _localization.GetString("shell-argument-net-entity"));
         }
 
-        return CompletionResult.Empty;
+        var component = int.TryParse(args[0], out var id)
+            ? EntityManager.TryGetEntity(new(id), out var entity)
+                ? _mind.TryGetMind(entity.Value, out _, out var comp)
+                    ? comp
+                    : null
+                : null
+            : null;
+
+        var existingSkills = component?.Skills ?? new HashSet<SkillTypes>();
+
+        var alreadyEnteredSkills = new HashSet<SkillTypes>();
+        for (int i = 1; i < args.Length - 1; i++)
+        {
+            if (Enum.TryParse<SkillTypes>(args[i], out var skill))
+                alreadyEnteredSkills.Add(skill);
+        }
+
+        var allExcludedSkills = new HashSet<SkillTypes>(existingSkills);
+        allExcludedSkills.UnionWith(alreadyEnteredSkills);
+
+        return CompletionResult.FromOptions(Enum.GetValues<SkillTypes>()
+            .Where(skill => !allExcludedSkills.Contains(skill))
+            .Select(skill => skill.ToString())
+            .Where(name => name.StartsWith(args[^1], StringComparison.OrdinalIgnoreCase))
+            .Select(name => new CompletionOption(name)));
     }
 }

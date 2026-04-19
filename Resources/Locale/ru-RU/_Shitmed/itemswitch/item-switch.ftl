@@ -59,5 +59,10 @@ itemswitch-component-state-bonesetter = установщик костей
 itemswitch-component-state-cautery = термокаутер
 itemswitch-component-state-drill = дрель
 
+# ToolName for ISurgeryToolComponent
+itemswitch-component-state-stitches = хирургическая нить
+itemswitch-component-state-wound-tender = лечащий инструмент
+itemswitch-component-state-tweezers = пинцет
+
 # CorvaxGoob-shitcode-localization-end
 

@@ -69,8 +69,8 @@ using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using Robust.Shared.Map.Components;
-using Content.Server._CorvaxGoob.Skills;
 using Content.Shared._CorvaxGoob.Skills;
+using Content.Server._CorvaxGoob.Skills;
 
 namespace Content.Server.Physics.Controllers;
 
