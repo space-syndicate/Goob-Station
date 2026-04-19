@@ -80,7 +80,7 @@ ent-ClothingHeadHatFurMoki = фиолетовая фурсьют маска
 ent-ClothingOuterFurMoki = фиолетовый фурсьют
     .desc = Невероятный костюм с фиолетовой шёрсткой, который понравится вашему партнёру!
 ent-CrateCargoFursuits = набор фурсьютов
-    .desc = Наконец-то, фурри пятница.
+    .desc = Наконец-то, фурри вторник.
 
 ent-WallInvisibleCrook = невидимая стена
     .desc = Даже тут невидимые стены...

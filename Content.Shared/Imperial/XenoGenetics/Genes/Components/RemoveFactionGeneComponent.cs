@@ -12,7 +12,10 @@ public sealed partial class RemoveFactionGeneComponent : Component
     [DataField, AutoNetworkedField]
     public bool Active = false;
 
-     /// <summary>
+    [DataField, AutoNetworkedField]
+    public bool HadPacifist = false;
+
+    /// <summary>
     /// Factions this entity is a part of.
     /// </summary>
     [DataField]

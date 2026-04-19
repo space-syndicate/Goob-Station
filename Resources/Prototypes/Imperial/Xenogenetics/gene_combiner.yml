@@ -22,6 +22,8 @@
   - type: WiresVisuals
   - type: GeneCombiner
   - type: Sprite
+    drawdepth: SmallObjects
+    snapCardinals: true
     sprite: Imperial/Xenogenetics/combiner.rsi
     noRot: true
     offset: "0.0,0.4"
