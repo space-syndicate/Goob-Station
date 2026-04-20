@@ -102,7 +102,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
                 ? pair.Value.TrackerChannel == channel
                 : isCommandOnly
                     ? pair.Value.IsCommandTracker
-                    : !pair.Value.IsCommandTracker)
+                    : !pair.Value.IsCommandTracker && pair.Value.TrackerChannel == null)
             .Select(pair => pair.Value)
             .ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(filteredSensors));
