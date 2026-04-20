@@ -28,7 +28,7 @@ public sealed class SwappableInstrumentSystem : EntitySystem
 
     private void AddStyleVerb(EntityUid uid, SwappableInstrumentComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess || component.InstrumentList.Count <= 1)
+        if (!args.CanComplexInteract || !args.CanInteract || !args.CanAccess || component.InstrumentList.Count <= 1) // CorvaxGoob-GhostUIViewing : Добавлен CanComplexInteract
             return;
 
         if (!TryComp<InstrumentComponent>(uid, out var instrument))
