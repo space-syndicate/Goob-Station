@@ -142,8 +142,8 @@
   id: BasePaper
   abstract: true
   components:
-  - type: Fixtures
-    fixtures: #corvaxgoob nerf paper in space
+  - type: Fixtures # CorvaxGoob
+    fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
@@ -393,7 +393,7 @@
     tags:
     - Document
     - Trash
-#    - Paper # corvaxgoob nerf nanotask
+#    - Paper # CorvaxGoob
   - type: StaticPrice
     price: 0
   - type: NanoTaskPrinted
