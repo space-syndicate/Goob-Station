@@ -1,4 +1,4 @@
 - type: guideEntry
   id: SlaughterDemon
-  name: "Slaughter Demon"
+  name: "Демон резни" # CorvaxGoob Slaughter Demon -> Демон резни
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/SlaughterDemon.xml"
