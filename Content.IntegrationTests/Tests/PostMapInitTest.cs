@@ -257,7 +257,6 @@ namespace Content.IntegrationTests.Tests
             "CorvaxPacked",
             "CorvaxTushkan",
             "CorvaxAvrite",
-            "CorvaxAwesome",
             "CorvaxChloris",
             "CorvaxSilly",
             "CorvaxCluster",
