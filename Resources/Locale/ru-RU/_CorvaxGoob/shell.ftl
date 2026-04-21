@@ -1,1 +1,1 @@
-shell-argument-net-entity = NetEntity
+shell-argument-net-entity = EntityUid
