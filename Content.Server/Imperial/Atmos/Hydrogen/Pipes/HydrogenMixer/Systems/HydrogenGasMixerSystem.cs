@@ -16,6 +16,7 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Content.Server.Imperial.Atmos.Piping.Trinary.Components;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Imperial.Atmos.Piping.Trinary.EntitySystems
 {

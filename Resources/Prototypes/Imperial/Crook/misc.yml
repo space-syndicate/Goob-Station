@@ -454,8 +454,10 @@
       0: Alive
       250: Dead
   - type: Bloodstream
-    bloodReagent: MuteToxin
-    chemicalMaxVolume: 60
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId:  MuteToxin
+        Quantity: 60
   - type: StatusEffects
   - type: MeleeWeapon
     soundHit:
@@ -1676,7 +1678,7 @@
     sprite: Clothing/Head/Misc/red_racoon.rsi
     state: icon
   product: CrateCargoFursuits
-  cost: 25000
+  cost: 15000
   category: cargoproduct-category-name-fun
   group: market
 

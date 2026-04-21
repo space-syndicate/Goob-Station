@@ -89,7 +89,7 @@ public sealed class SupermatterMonitorConsoleSystem : EntitySystem
         {
             var nearestUid = FindNearestSupermatter(uid);
             if (nearestUid == null
-                || !EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest)
+                || !TryComp<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest)
                 || !nearest.Activated)
             {
                 console.BeepCooldownTimer = TimeSpan.Zero;

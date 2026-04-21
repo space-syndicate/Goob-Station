@@ -1,0 +1,122 @@
+# CARP
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SafeCarpCube
+  name: carp cube (20s)
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - SafeCarpSpawner
+
+- type: entity
+  id: BaseSafeSpawner20s
+  abstract: true
+  components:
+  - type: TimedDespawn
+    lifetime: 20
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Xenogenetics/ammorph.rsi
+    state: icon
+  - type: Transform
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SafeCarpSpawner
+  name: SafeCarpSpawner
+  parent: BaseSafeSpawner20s
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobCarp
+
+# SPACE BEAR
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SafeSpaceBearCube
+  name: sapce bear cube (20s)
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - SafeSpaceBearSpawner
+
+- type: entity
+  id: SafeSpaceBearSpawner
+  name: SafeSpaceBearSpawner
+  parent: BaseSafeSpawner20s
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobBearSpace
+
+# MEAT SLIME
+- type: entity
+  parent: RehydratableAnimalCube
+  id: MeatSlimeCube
+  name: meat slime cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobMeatSlime
+
+# CARP SHARK
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SafeCarpSharkCube
+  name: carp shark cube (20s)
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - SafeCarpSharkSpawner
+
+- type: entity
+  id: SafeCarpSharkSpawner
+  name: SafeCarpSharkSpawner
+  parent: BaseSafeSpawner20s
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobShark
+
+# XENO DRONE
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SafeXenoDroneCube
+  name: xeno drone cube (20s)
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - SafeXenoDroneSpawner
+
+- type: entity
+  id: SafeXenoDroneSpawner
+  name: SafeXenoDroneSpawner
+  parent: BaseSafeSpawner20s
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobXenoDrone
+
+# XENO SPIT
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SafeXenoSpitCube
+  name: carp shark cube (20s)
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - SafeXenoSpitSpawner
+
+- type: entity
+  id: SafeXenoSpitSpawner
+  name: SafeXenoSpitSpawner
+  parent: BaseSafeSpawner20s
+  components:
+  - type: SpawnOnDespawn
+    prototype: MobXenoSpitter

@@ -120,3 +120,10 @@ ent-LockerWallPrisoner7 = {ent-LockerWallBasePrisoner}
     .desc = {ent-LockerPrisoner.desc}
 ent-LockerWallPrisoner8 = {ent-LockerWallBasePrisoner}
     .desc = {ent-LockerPrisoner.desc}
+
+ent-LockerEvacRepair = шкаф ремонта эвакуации
+    .desc = Это касается всех чрезвычайных ситуаций.
+    .suffix = { "" }
+ent-LockerEvacRepairFilled = шкаф ремонта эвакуации
+    .desc = Это касается всех чрезвычайных ситуаций.
+    .suffix = { "Заполненный" }

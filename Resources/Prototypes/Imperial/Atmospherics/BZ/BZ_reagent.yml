@@ -21,8 +21,7 @@
         damage:
           types:
             Radiation: 1
-          groups:
-            Toxin: 3
+            Poison: 2
     Respiration:
       effects:
       - !type:Oxygenate
@@ -37,8 +36,7 @@
         damage:
           types:
             Radiation: 0.1
-          groups:
-            Toxin: 0.3
+            Poison: 0.3
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition

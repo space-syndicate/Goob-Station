@@ -46,3 +46,8 @@
   - type: Tag
     tags:
     - FakeNukeDisk
+    #Imperial Space Pirates: New Horizon start
+  - type: GPSTrackerPrice
+    startprice: 1999
+    endprice: 0
+    #Imperial Space Pirates: New Horizon end

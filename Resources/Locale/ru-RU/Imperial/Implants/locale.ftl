@@ -1,9 +1,12 @@
-ent-ImperialSmokeImplanter = имплантер дымовой завесы
+ent-ImperialSmokeImplanter = { ent-BaseImplanter }
     .desc = { ent-BaseImplanter.desc }
-ent-ImperialNutrimentPumpImplanter = имплантер помпы питательных веществ
+    .suffix = Дымовая завеса
+ent-ImperialNutrimentPumpImplanter = { ent-BaseImplanter }
     .desc = { ent-BaseImplanter.desc }
-ent-ImperialBlinkImplanter = имплантер близкой телепортации
+    .suffix = Помпа питательных веществ
+ent-ImperialBlinkImplanter = { ent-BaseImplanter }
     .desc = { ent-BaseImplanter.desc }
+    .suffix = Близкий телепорт
 ent-ImperialSmokeImplant = имплант дымовой завесы
     .desc = Позволяет выпустить дымовую завесу.
 ent-ImperialNutrimentPumpImplant = имплант помпы питательных веществ

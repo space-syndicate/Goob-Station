@@ -31,6 +31,17 @@
         - BorgTransponder
       ### Imperial Syndie Borg End
       components:
+      # Imperial Space edit start
+      - type: GiveMindPacified
+      - type: Restriction
+        restrictions:
+          components:
+          - Emitter
+          - ContainmentFieldGenerator
+          - AmeController
+          - ParticleAcceleratorControlBox
+        message: thief-restriction-popup
+      # Imperial Space edit end
       - type: Pacified
       - type: Thieving
         stripTimeReduction: 2

@@ -22,6 +22,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     public override void Initialize()
     {
@@ -184,7 +185,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
                 return;
             }
             var damageType = comp.DamageType.Value;
-            if (!damagecomp.Damage.DamageDict.TryGetValue(damageType, out var damageDelta))
+            if (!_damageableSystem.GetAllDamage(mcomp.OwnedEntity.Value).DamageDict.TryGetValue(damageType, out var damageDelta))
             {
                 return;
             }

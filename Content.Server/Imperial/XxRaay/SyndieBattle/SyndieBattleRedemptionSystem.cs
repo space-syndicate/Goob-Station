@@ -70,6 +70,6 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
             args.User);
 
         args.Handled = true;
-        EntityManager.DeleteEntity(args.Used);
+        QueueDel(args.Used);
     }
 }

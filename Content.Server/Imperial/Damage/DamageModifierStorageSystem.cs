@@ -3,6 +3,8 @@ using Content.Shared.Storage;
 using Content.Shared.Stacks;
 using Content.Shared.FixedPoint;
  using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Damage
 {
@@ -54,7 +56,7 @@ namespace Content.Server.Imperial.Damage
             if (totalCount == FixedPoint2.Zero)
                 return;
 
-            var newDamageDict = new Dictionary<string, FixedPoint2>(args.Damage.DamageDict);
+            var newDamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>(args.Damage.DamageDict);
             var damageIncrease = component.DamageIncrease * totalCount;
 
             if (newDamageDict.TryGetValue("Blunt", out var currentBlunt))

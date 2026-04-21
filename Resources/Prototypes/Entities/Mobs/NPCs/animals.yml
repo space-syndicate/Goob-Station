@@ -340,7 +340,6 @@
   parent: FoodEgg
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -493,6 +492,15 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSamplePacify
+  ### Imperial genetics end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -779,7 +787,6 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -1722,7 +1729,7 @@
 - type: entity
   name: guidebook monkey
   parent: MobMonkey
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ] 
   id: MobGuidebookMonkey
   description: A hopefully helpful monkey whose only purpose in life is for you to click on. Does this count as having a monkey give you a tutorial?
   components:
@@ -2426,8 +2433,8 @@
     angle: 0
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 5
+      types:
+        Piercing: 5
   - type: Item
     size: Normal
     sprite: Mobs/Animals/grenadepenguin.rsi
@@ -2590,13 +2597,15 @@
   - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute from base.yml.
     allowedStates:
     - Alive
-    damageCap: 89
     damage:
       types:
         Poison: -0.07
-      groups:
-        Brute: -0.07
-        Burn: -0.07
+        Blunt: -0.03
+        Slash: -0.03
+        Piercing: -0.03
+        Heat: -0.03
+        Cold: -0.03
+        Shock: -0.03
 
 - type: entity
   parent: MobSpiderBase
@@ -3114,6 +3123,15 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
+  ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleCat
+  ### Imperial genetics end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
