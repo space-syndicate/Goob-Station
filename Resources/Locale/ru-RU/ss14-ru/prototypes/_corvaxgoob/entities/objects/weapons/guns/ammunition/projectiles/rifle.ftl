@@ -1,2 +1,2 @@
-ent-BulletRifleRubber = пуля (0.20 винтовочная резиновая)
+ent-BulletRifleRubber = пуля (.20 винтовочная травматическая)
     .desc = { ent-BaseBulletIncendiary.desc }
