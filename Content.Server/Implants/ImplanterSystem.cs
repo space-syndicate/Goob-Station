@@ -112,7 +112,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
     // Goobstation - allow traitors to buy suicide implants (add time multiplier)
     public void TryImplant(ImplanterComponent component, EntityUid user, EntityUid target, EntityUid implanter, float timeMultiplier = 1)
     {
-        var delay = component.ImplantTime * (!_skills.HasSkill(user, Skills.Surgery) ? ImplantDelayModifierWithoutSkill : 1); // CorvaxGoob-Skills
+        var delay = component.ImplantTime * (!_skills.HasSkill(user, Skills.Surgery) ? ImplantDelayModifierWithoutSkill : timeMultiplier); // CorvaxGoob-Skills
 
         var args = new DoAfterArgs(EntityManager, user, delay, new ImplantEvent(), implanter, target: target, used: implanter) // CorvaxGoob-Skills
         {

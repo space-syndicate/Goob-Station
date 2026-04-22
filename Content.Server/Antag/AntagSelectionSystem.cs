@@ -535,7 +535,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
     /// <summary>
     /// Gets an ordered player pool based on player preferences and the antagonist definition.
-       /// </summary>
+    /// </summary>
     public AntagSelectionPlayerPool GetPlayerPool(Entity<AntagSelectionComponent> ent, IList<ICommonSession> sessions, AntagSelectionDefinition def)
     {
         var preferredList = new List<ICommonSession>();

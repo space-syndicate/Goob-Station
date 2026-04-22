@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionOpenPDA
+  name: Open personal PDA
+  description: Opens your own PDA.
+  components:
+  - type: Action
+    priority: -8
+    itemIconStyle: BigAction
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: manifest
+  - type: InstantAction
+    event: !type:OpenPDAUIEvent

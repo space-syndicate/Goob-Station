@@ -1,0 +1,31 @@
+- type: entity
+  parent: Holoprojector
+  id: HoloprojectorCrate
+  name: holocrate holoprojector
+  description: A projector that creates a temporary hard light crate.
+  components:
+  - type: HolosignProjector
+    signProto: CrateHolographic
+    chargeUse: 300
+    anchorOnSpawn: false
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Devices/Holoprojectors/cargo.rsi
+    state: icon
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: Tag
+    tags:
+    - HolofanProjector
+
+- type: entity
+  parent: HoloprojectorCrate
+  id: HoloprojectorCrateEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

@@ -31,13 +31,24 @@
     MysteryFigureBox: 2
     BooksBag: 3
     CardBoxBlack: 3 # GoobStation
-    PokerChipsBox: 1 # CorvaxGoob-Poker
-    CarcBoxClassic: 1 # CorvaxGoob Spacessonne
-    BoxPlaysetEvacPod: 1 # Corvax-Goob-EvacPod
-    CardBoxKotahi: 3 # CorvaxGoob-kotahi
+# CorvaxGoob-changes-start:
+    PokerChipsBox: 1
+    CarcBoxClassic: 1
+    BoxPlaysetEvacPod: 1
+    CardBoxKotahi: 3
+    YellowPaperBox: 2
+    RedPaperBox: 2
+    OrangePaperBox: 2
+    GreenPaperBox: 2
+    CyanPaperBox: 2
+    BluePaperBox: 2
+    VioletPaperBox: 2
+# CorvaxGoob-changes-end.
   contrabandInventory:
     Basketball: 1
     FoodSnackBoritos: 3
     DrinkSpaceMountainWindCan: 3
+    GreyPaperBox: 2 # CorvaxGoob
   emaggedInventory: #Goob
     CardBoxSyndicate: 1
+    BloodRedPaperBox: 2 # CorvaxGoob

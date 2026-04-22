@@ -120,6 +120,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.Projectiles; // Goobstation
+using Content.Server._CorvaxGoob.Skills;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Cargo.Systems;
@@ -149,7 +150,6 @@ using Content.Server.PowerCell;
 using Content.Shared._Lavaland.Weapons.Ranged.Events; // Lavaland Change
 using Content.Shared._CorvaxGoob.Skills;
 using Content.Goobstation.Common.Weapons.NoWieldNeeded;
-using Content.Server._CorvaxGoob.Skills;
 using Content.Shared._Lavaland.Weapons.Ranged.Events;
 using Robust.Server.GameObjects; // Goobstation
 using Content.Goobstation.Common.Weapons.Ranged;

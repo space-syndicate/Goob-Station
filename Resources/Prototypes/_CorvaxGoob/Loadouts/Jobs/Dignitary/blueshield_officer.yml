@@ -1,0 +1,5 @@
+# Mask
+- type: loadout
+  id: BlueShieldMaskGasSWAT
+  equipment:
+    mask: ClothingBSOMaskGasSwat

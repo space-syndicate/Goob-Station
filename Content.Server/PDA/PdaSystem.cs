@@ -102,6 +102,7 @@ using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
 using Content.Server.Instruments;
 using Content.Server.PDA.Ringer;
+using Content.Server.Silicons.StationAi;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
@@ -115,6 +116,7 @@ using Content.Shared.Light;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.PDA;
 using Content.Shared.PDA.Ringer;
+using Content.Shared.Silicons.StationAi;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -135,6 +137,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
+        [Dependency] private readonly StationAiSystem _ai = default!; // CorvaxGoob-StationAiPda
 
         public override void Initialize()
         {
@@ -254,8 +257,20 @@ namespace Content.Server.PDA
         {
             _ringer.RingerPlayRingtone(ent.Owner);
 
-            if (!_containerSystem.TryGetContainingContainer((ent, null, null), out var container)
-                || !TryComp<ActorComponent>(container.Owner, out var actor))
+            // CorvaxGoob-StationAiPda-Start
+            if (!_containerSystem.TryGetContainingContainer((ent, null, null), out var container))
+                return;
+
+            // Отдельная проверка на случай если КПК содержится в ядре ИИ
+            if (!TryComp<ActorComponent>(container.Owner, out var actor)
+                && TryComp<StationAiCoreComponent>(container.Owner, out var core)
+                && _ai.TryGetHeld((container.Owner, core), out var held))
+            {
+                TryComp<ActorComponent>(held, out actor);
+            }
+            // CorvaxGoob-StationAiPda-End
+
+            if (actor is null)
                 return;
 
             var message = FormattedMessage.EscapeText(args.Message);

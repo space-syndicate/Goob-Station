@@ -69,3 +69,44 @@
   components:
   - type: AccessReader
     access: [["Cargo"]]
+
+- type: entity
+  parent: CrateGeneric
+  id: CrateHolographic
+  name: holographic crate
+  components:
+  - type: HologramVisuals
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 300
+  - type: DamageOnTrigger
+    damage:
+      types:
+        Blunt: 5000
+    keysIn:
+    - timer
+  - type: StaticPrice
+    price: 0
+  - type: EntityStorage
+    capacity: 5
+  - type: Construction
+    graph: CrateHolographic
+    node: crateholographic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        mask:
+        - ItemMask
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/stealthoff.ogg
+
+

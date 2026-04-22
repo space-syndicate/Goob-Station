@@ -29,5 +29,9 @@ namespace Content.Server.Holosign
         // Goobstation
         [DataField]
         public ProtoId<TagPrototype> HolosignTag = "Holosign";
+
+        // CorvaxGoob
+        [DataField]
+        public bool AnchorOnSpawn = true;
     }
 }

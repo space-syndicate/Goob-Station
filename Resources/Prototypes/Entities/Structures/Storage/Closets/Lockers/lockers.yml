@@ -648,6 +648,7 @@
     contents:
     - id: VehicleClowncarTrainee
     - id: ClownMegaphone # goob - loudspeakers
+    - id: PinkPaperBox # CorvaxGoob
 
 # Mime
 - type: entity
