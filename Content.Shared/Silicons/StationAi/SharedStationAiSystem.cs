@@ -32,21 +32,25 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared._CorvaxNext.Silicons.Borgs;
+using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
-using Content.Shared.Doors.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
 using Content.Shared.Intellicard;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mind;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.PDA;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
@@ -62,7 +66,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._CorvaxNext.Silicons.Borgs;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Silicons.StationAi;
@@ -93,6 +96,8 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     [Dependency] private readonly   SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly   StationAiVisionSystem _vision = default!;
     [Dependency] private readonly   IPrototypeManager _protoManager = default!;
+
+    [Dependency] private readonly SharedIdCardSystem _id = default!; // CorvaxGoob-StationAiPda
 
     [Dependency] private readonly SharedAiRemoteControlSystem _remoteSystem = default!; // Corvax-Next-AiRemoteControl
 
@@ -517,8 +522,30 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         _mover.SetRelay(user, ent.Comp.RemoteEntity.Value);
 
-        var eyeName = Loc.GetString("station-ai-eye-name", ("name", Name(user)));
+        // CorvaxGoob-StationAiPda : Вывод имени в отдельную переменную
+        var name = Name(user);
+
+        var eyeName = Loc.GetString("station-ai-eye-name", ("name", name)); // CorvaxGoob-StationAiPda : Использование переменной имени
         _metadata.SetEntityName(ent.Comp.RemoteEntity.Value, eyeName);
+
+        // CorvaxGoob-StationAiPda-Start
+        if (_containers.TryGetContainer(ent.Owner, StationAiCoreComponent.PdaContainer, out var pdaContainer))
+        {
+            EntityUid? pda;
+
+            // Либо найти существующий КПК либо создать новый
+            if (pdaContainer.Count > 0)
+                pda = pdaContainer.ContainedEntities[0];
+            else
+                pda = SpawnInContainerOrDrop(ent.Comp.StationAiPdaProto, ent, StationAiCoreComponent.PdaContainer);
+
+            if (pda is null || !TryComp<PdaComponent>(pda, out var pdaComp) || !pdaComp.ContainedId.HasValue)
+                return;
+
+            _id.TryChangeFullName(pdaComp.ContainedId.Value, name);
+            _id.TryChangeJobTitle(pdaComp.ContainedId.Value, Loc.GetString("job-name-station-ai"));
+        }
+        // CorvaxGoob-StationAiPda-End
     }
 
     private EntityUid? GetInsertedAI(Entity<StationAiCoreComponent> ent)

@@ -1023,6 +1023,7 @@
   minLimit: 0
   loadouts:
   - BlueshieldOfficerMaskLollypop
+  - BlueShieldMaskGasSWAT # CorvaxGoob-loadouts
 
 - type: loadoutGroup
   id: BlueshieldOfficerShoes

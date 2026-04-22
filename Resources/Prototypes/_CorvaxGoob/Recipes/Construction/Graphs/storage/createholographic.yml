@@ -1,0 +1,18 @@
+- type: constructionGraph
+  id: CrateHolographic
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: crateholographic
+
+    - node: crateholographic
+      entity: CrateHolographic
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity

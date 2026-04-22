@@ -72,7 +72,7 @@ public sealed class SurgeryToolExamineSystem : EntitySystem
         };
         var key = "surgery-tool-" + (comp.Used == true ? "used" : "unlimited");
         var speed = comp.Speed.ToString("N2"); // 2 decimal places to not get trolled by float
-        msg.PushMarkup(Loc.GetString(key, ("tool", comp.ToolName), ("speed", speed), ("color", color)));
+        msg.PushMarkup(Loc.GetString(key, ("tool", Loc.GetString(comp.ToolName)), ("speed", speed), ("color", color))); // CorvaxGoob-localization: added GetString for ToolName for localization
     }
 }
 

@@ -104,7 +104,7 @@ public sealed class HolosignSystem : EntitySystem
         var holoUid = Spawn(component.SignProto, coords);
         // Goob edit end
         var xform = Transform(holoUid);
-        if (!xform.Anchored)
+        if (!xform.Anchored && component.AnchorOnSpawn) //CorvaxGoob
             _transform.AnchorEntity(holoUid, xform); // anchor to prevent any tempering with (don't know what could even interact with it)
 
         args.Handled = true;

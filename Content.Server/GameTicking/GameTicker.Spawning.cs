@@ -424,7 +424,7 @@ namespace Content.Server.GameTicking
             }
 
             if (jobPrototype is not null) // CorvaxGoob-Skills
-                _skills.UpdateSkills(newMind, jobPrototype.Skills);
+                _skills.GrantSkill(mob, jobPrototype.Skills, true);
 
             // We raise this event directed to the mob, but also broadcast it so game rules can do something now.
             PlayersJoinedRoundNormally++;

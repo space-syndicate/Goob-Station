@@ -195,7 +195,7 @@
     - MagazinePistol
     - MagazinePistol # CorvaxGoob-RubberAmmo
     - MagazinePistolRubber # CorvaxGoob-RubberAmmo
-    - ClothingMaskGasSecurity # Goobstation
+#   - ClothingMaskGasSecurity # Goobstation # CorvaxGoob-changes: commented
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

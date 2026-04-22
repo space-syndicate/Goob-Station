@@ -77,7 +77,7 @@ ghost-role-intern-rules = Следуйте приказам, данными ва
 ghost-role-lead-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем NanoTrasen[/bold][/color] и ЦК. Защищай командование, отдавайте приказы другим стажёрам.
 # cargo bingle
 ghost-role-cargo-bingle-name = Бингл снабжения
-ghost-role-cargo-bingle-desc = Служите Представителю Nanotrasen и его интересам, не причиняйте вред членам экипажа, помогайте отделу снабжения и станции.
+ghost-role-cargo-bingle-desc = Служите отделу снабжения и их интересам, не причиняйте вред членам экипажа.
 
 # shuttle roles
 

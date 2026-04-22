@@ -175,6 +175,7 @@
     - id: CargoMegaphone # goob - loudspeaker
     - id: SlotMachineHighRollerFlatPack # Goob - gambling
     - id: ComputerFundingAllocationFlatpack #CorvaxGoob-QuarterMaster-finance
+    - id: HoloprojectorCrate #CorvaxGoob-CargoHoloprojector
 
 - type: entity
   id: LockerQuarterMasterFilled

@@ -142,6 +142,8 @@
   - Cargo
   - Theatre
   - NanotrasenRepresentative
+  skills: # CorvaxGoob-Skills
+  - ShuttleControl
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

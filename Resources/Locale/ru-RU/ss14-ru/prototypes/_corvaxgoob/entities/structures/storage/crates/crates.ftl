@@ -16,3 +16,6 @@ ent-CrateLimitedSecure = блюспейс ограниченный ящик
 ent-CratePrivateCargoSecure = специальный ящик
     .suffix = Защищённый
     .desc = { ent-CrateBaseSecure.desc }
+ent-CrateHolographic = голографический ящик
+    .suffix = голографический
+    .desc = { ent-CrateGeneric.desc }

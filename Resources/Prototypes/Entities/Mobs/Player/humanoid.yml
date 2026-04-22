@@ -222,6 +222,8 @@
         settings: short
       mindRoles:
       - MindRoleGhostRoleFamiliar
+      skills: # CorvaxGoob-Skills
+      - All
       job: DeathSquad
     - type: Loadout
       prototypes: [ DeathSquadGear ]
@@ -261,6 +263,8 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      skills: # CorvaxGoob-Skills
+      - All
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
@@ -293,6 +297,8 @@
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTLeader
@@ -330,6 +336,8 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      skills: # CorvaxGoob-Skills
+      - All
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
@@ -360,6 +368,8 @@
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTChaplain
@@ -396,6 +406,8 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      skills: # CorvaxGoob-Skills
+      - All
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
@@ -426,6 +438,8 @@
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTJanitor
@@ -460,6 +474,8 @@
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTEngineer
@@ -492,6 +508,8 @@
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTEngineer
@@ -526,6 +544,8 @@
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTSecurity
@@ -560,6 +580,8 @@
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTSecurity
@@ -623,6 +645,8 @@
       raffle:
         settings: short
       job: ERTMedical
+      skills: # CorvaxGoob-Skills
+      - All
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -656,6 +680,8 @@
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTMedical
@@ -691,6 +717,8 @@
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: CBURN
@@ -722,6 +750,8 @@
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: default
       job: CentralCommandOfficial
