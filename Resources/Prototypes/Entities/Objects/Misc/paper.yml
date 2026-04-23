@@ -142,8 +142,8 @@
   id: BasePaper
   abstract: true
   components:  
-- type: Fixtures #CorvaxGoob
-  fixtures:
+  - type: Fixtures
+    fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
@@ -153,7 +153,6 @@
           - ItemMask
         restitution: 0.3 
         friction: 0.2
-  # Goobstation edit start
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Goobstation/Items/handling/paper_pickup.ogg
@@ -179,7 +178,6 @@
       path: /Audio/_Goobstation/Items/handling/paper_throw.ogg
       params:
         volume: -6
-  # Goobstation edit end
   - type: Tag
     tags:
     - Document
@@ -198,7 +196,7 @@
     damageModifierSet: Wood
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
+    - trigger:
         !type:DamageTrigger
         damage: 100
       behaviors:
@@ -229,10 +227,10 @@
           Quantity: 1
   - type: Item
     size: Tiny
-  - type: PhysicalComposition #Goobstation - Recycle update
+  - type: PhysicalComposition
     materialComposition:
-      Paper: 100 # CorvaxGoob-Printer from 25 to 100
-  - type: Material # CorvaxGoob-TTS
+      Paper: 100
+
 
 - type: entity
   name: paper
