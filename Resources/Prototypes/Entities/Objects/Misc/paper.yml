@@ -141,16 +141,18 @@
   parent: BaseItem
   id: BasePaper
   abstract: true
-  components:
-  - type: Fixtures # CorvaxGoob
+  components:  
+- type: Fixtures #CorvaxGoob
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.15,-0.15,0.15,0.15"
+          bounds: "-0.10,-0.05,0.10,0.05"
         density: 20
         mask:
-        - ItemMask
+          - ItemMask
+        restitution: 0.3 
+        friction: 0.2
   # Goobstation edit start
   - type: EmitSoundOnPickup
     sound:
