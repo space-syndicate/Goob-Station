@@ -34,6 +34,14 @@
     Steel: 600
     Plastic: 300
 
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazinePistolSubMachineGunRubber
+  result: MagazinePistolSubMachineGunRubber
+  materials:
+    Steel: 300
+    Plastic: 150
+
 # .45 Magnum
 
 - type: latheRecipe

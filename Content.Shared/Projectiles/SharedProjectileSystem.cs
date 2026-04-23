@@ -313,3 +313,10 @@ public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, Projectile
 /// </summary>
 [ByRefEvent]
 public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null);
+
+// CorvaxGoob
+/// <summary>
+/// Вызывается после попадания и просчёта урона
+/// </summary>
+[ByRefEvent]
+public record struct AfterProjectileHitEvent(DamageSpecifier Damage, DamageSpecifier? ModifiedDamage, EntityUid Target, EntityUid? Shooter = null);
