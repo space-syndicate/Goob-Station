@@ -12,17 +12,17 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
-      color: "#8299ff"
+      color: "#28b4d3"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-stripe
-        color: "#8299ff"
+        color: "#28b4d3"
       right:
       - state: inhand-right-mag
       - state: inhand-right-stripe
-        color: "#8299ff"
+        color: "#28b4d3"
 
 - type: entity
   id: MagazineMagnumSubMachineGunRubber
@@ -38,14 +38,14 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: stripe
-      color: "#8299ff"
+      color: "#28b4d3"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-stripe
-        color: "#8299ff"
+        color: "#28b4d3"
       right:
       - state: inhand-right-mag
       - state: inhand-right-stripe
-        color: "#8299ff"
+        color: "#28b4d3"
