@@ -52,6 +52,7 @@
           - CableCoil
           - RawMaterial
           - PartBase
+          - SalvageScrap # CorvaxGoob
         components:
           - FloorTile # CorvaxGoob
     - type: Dumpable
