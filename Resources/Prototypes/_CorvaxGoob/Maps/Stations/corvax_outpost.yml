@@ -56,7 +56,9 @@
             SecurityCadet: [ 2, 2 ]
             Pilot: [ 1, 1 ]
             Brigmedic: [ 1, 1 ]
+            # court
             Lawyer: [ 1, 1 ]
+            Magistrate: [ 1, 1 ]
             # service
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
