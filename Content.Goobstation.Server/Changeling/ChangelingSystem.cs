@@ -698,7 +698,7 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
             typeof(Shared.Overlays.ThermalVisionComponent)
         };
         foreach (var type in types)
-            _polymorph.CopyPolymorphComponent(uid, newEnt, type);
+            _polymorph.CopyPolymorphComponent(uid, newEnt, type); // CorvaxGoob edit
 
         // CopyPolymorphComponent fails to copy the HumanoidAppearanceComponent in TransformData
         // outside of the first list item so this has to be done manually unfortunately
