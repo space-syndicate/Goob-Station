@@ -6,6 +6,7 @@
 
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CCVar;
+using Content.Shared.NPC; // CorvaxGoob
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -92,7 +93,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
             if (!ssd.IsSSD
                 || ssd.NextUpdate > curTime
                 || ssd.FallAsleepTime > curTime
-                || TerminatingOrDeleted(uid))
+                || TerminatingOrDeleted(uid)
+                || HasComp<ActiveNPCComponent>(uid)) // CorvaxGoob
                 continue;
 
             _statusEffects.TryUpdateStatusEffectDuration(uid, StatusEffectSSDSleeping);
