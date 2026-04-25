@@ -11,4 +11,4 @@ gunnery-select-missiles = Missiles
 gunnery-select-mining = Mining
 gunner-console-display-label = Display
 # CorvaxGoob edit
-ship-gun-class-component-examine-detail = This weapon costs {$processingPower} processing power to control.
+ship-gun-class-component-examine-detail = This weapon costs [color=yellow]{ $processingPower }[/color] processing power to control.
