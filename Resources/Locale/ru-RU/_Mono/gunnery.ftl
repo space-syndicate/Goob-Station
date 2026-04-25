@@ -10,3 +10,5 @@ gunnery-select-energy = Энергия
 gunnery-select-missiles = Ракеты
 gunnery-select-mining = Копание
 gunner-console-display-label = Дисплей
+# CorvaxGoob edit
+ship-gun-class-component-examine-detail = Это орудие требует { $processingPower } единиц вычислительной мощности для управления.
