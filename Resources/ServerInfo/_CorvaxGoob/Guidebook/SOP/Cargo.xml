@@ -30,6 +30,7 @@
   ### Утилизатору запрещено
   <FTLTextpart Key="guidebook-SOP-SalvageSpecialist-prohibited"/>
 
+  <!-- Corvax-Goob-Start -->
   ## СРП Шахтёра
   ### Шахтёр обязан
   <FTLTextpart Key="guidebook-SOP-ShaftMiner-must"/>
@@ -39,6 +40,7 @@
 
   ### Шахтёру запрещено
   <FTLTextpart Key="guidebook-SOP-ShaftMiner-prohibited"/>
+  <!-- Corvax-Goob-End -->
 
   ## СРП Грузчика
   ### Грузчик обязан
