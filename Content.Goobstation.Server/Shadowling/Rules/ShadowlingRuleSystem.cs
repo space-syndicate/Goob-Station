@@ -11,6 +11,7 @@ using Content.Server.Antag;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
+using Content.Server.RoundEnd; //CorvaxGoob edit
 using Content.Server.Roles;
 using Content.Server.Zombies;
 using Content.Shared.GameTicking.Components;
