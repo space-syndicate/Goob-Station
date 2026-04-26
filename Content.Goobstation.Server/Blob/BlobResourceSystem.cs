@@ -54,6 +54,17 @@ public sealed class BlobResourceSystem : EntitySystem
         {
             points += 1;
         }
+        // CorvaxGoob-Blob-New-chems-start
+        if (blobCoreComponent.CurrentChem == BlobChemType.ChainCoating)
+        {
+            points = 0;
+        }
+
+        if (blobCoreComponent.CurrentChem == BlobChemType.SinewyTendons)
+        {
+            points -= 1;
+        }
+        // CorvaxGoob-Blob-New-chems-end
 
         if (_blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points))
         {
