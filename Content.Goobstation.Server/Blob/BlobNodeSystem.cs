@@ -44,6 +44,21 @@ public sealed class BlobNodeSystem : EntitySystem
         _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
 
+    // CorvaxGoob-Blob-New-chems-start
+    private float GetPulseFrequencyByChem(BlobChemType chemType)
+    {
+        switch (chemType)
+        {
+            case BlobChemType.SinewyTendons:
+                return 2f;
+            case BlobChemType.ChainCoating:
+                return 8f;
+            default:
+                return 4.0f;
+        }
+    }
+    // CorvaxGoob-Blob-New-chems-end
+
     private void OnNodePulse(Entity<BlobNodeComponent> ent, ref BlobNodePulseEvent args)
     {
         var xform = Transform(ent);
@@ -169,6 +184,17 @@ public sealed class BlobNodeSystem : EntitySystem
         var blobNodeQuery = EntityQueryEnumerator<BlobNodeComponent, BlobTileComponent>();
         while (blobNodeQuery.MoveNext(out var ent, out var comp, out var blobTileComponent))
         {
+            // CorvaxGoob-Blob-New-chems-start
+            if (blobTileComponent.Core != null && TryComp<BlobCoreComponent>(blobTileComponent.Core.Value, out var coreComp))
+                {
+                    comp.PulseFrequency = GetPulseFrequencyByChem(coreComp.CurrentChem);
+                }
+                else
+            {
+                comp.PulseFrequency = GetPulseFrequencyByChem(default);
+            }
+            // CorvaxGoob-Blob-New-chems-start
+
             comp.NextPulse += frameTime;
             if (comp.PulseFrequency > comp.NextPulse)
                 continue;
