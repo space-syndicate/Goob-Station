@@ -56,20 +56,20 @@ blob-target-already-connected = already connected
 # UI
 blob-chem-swap-ui-window-name = Swap chemicals
 blob-chem-reactivespines-info = Reactive Spines
-                                Deals 25 brute damage.
+                                Deals 8 brute, 8 slash, 8 pierce and 150 structural damage.
 blob-chem-blazingoil-info = Blazing Oil
-                            Deals 15 burn damage and lights targets on fire.
+                            Deals 15 burn and 150 structural damage, lights targets on fire.
                             Makes you vulnerable to water.
 blob-chem-regenerativemateria-info = Regenerative Materia
-                                    Deals 6 brute damage and 15 toxin damage.
-                                    The blob core regenerates health 10 times faster than normal and generates 1 extra resource.
+                                    Deals 150 structural damage and 15 toxin damage.
+                                    The blob core regenerates health 10 times faster than normal and resource blobs generates 1 extra resource.
 blob-chem-explosivelattice-info = Explosive Lattice
-                                    Deals 5 burn damage and explodes the target, dealing 10 brute damage.
+                                    Deals 5 burn damage and 150 structural damage, explodes the target, dealing 10 brute damage.
                                     Spores explode on death.
                                     You become immune to explosions.
                                     You take 50% more damage from burns and electrical shock.
 blob-chem-electromagneticweb-info = Electromagnetic Web
-                                    Deals 20 burn damage, 20% chance to cause an EMP pulse when attacking.
+                                    Deals 20 burn damage and 150 structural damage, 20% chance to cause an EMP pulse when attacking.
                                     Blob tiles cause an EMP pulse when destroyed.
                                     You take 25% more brute and heat damage.
 
