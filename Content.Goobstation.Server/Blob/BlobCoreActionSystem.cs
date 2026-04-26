@@ -203,9 +203,29 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         }*/
 
         var cost = core.Comp.BlobTileCosts[BlobTileType.Normal];
+
+        // CorvaxGoob-Blob-New-chems-start
+        switch (core.Comp.CurrentChem)
+        {
+            case BlobChemType.ChainCoating:
+                cost *= 1.5f;
+                break;
+        }
+        // CorvaxGoob-Blob-New-chems-end
+
         if (targetTileEmpty)
         {
-            cost *= 2.5f;
+        // CorvaxGoob-Blob-New-chems-start
+            switch (core.Comp.CurrentChem)
+            {
+                case BlobChemType.ComatoseFiber:
+                    cost *= 1f;
+                    break;
+                default:
+                    cost *= 2.5f;
+                    break;
+            }
+        // CorvaxGoob-Blob-New-chems-end
 
             var plating = _tileDefinitionManager["Plating"];
             var platingTile = new Tile(plating.TileId);
