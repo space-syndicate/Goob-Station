@@ -104,7 +104,7 @@ public sealed partial class BlobCoreComponent : Component
                 DamageDict = new Dictionary<string, FixedPoint2>
                 {
                     { "Structural", 150 },
-                    { "Heat", 20 },
+                    { "Shock", 18 },
                 },
             }
         },
@@ -113,7 +113,7 @@ public sealed partial class BlobCoreComponent : Component
             {
                 DamageDict = new Dictionary<string, FixedPoint2>
                 {
-                    { "Structural", 150 },
+                    { "Structural", 120 },
                     { "Poison", 15 },
                 }
             }
@@ -151,6 +151,8 @@ public sealed partial class BlobCoreComponent : Component
                     { "Piercing", -8 },
                     { "Poison", -8 },
                     { "Heat", -8 },
+                    { "Cold", -8 },
+                    { "Asphyxiation", -8 },
                 }
             }
         },
@@ -161,7 +163,7 @@ public sealed partial class BlobCoreComponent : Component
                 {
                     { "Structural", 320 },
                     { "Caustic", 13 },
-                    { "Genetic", 3}
+                    { "Genetic", 2}
                 }
             }
         },
@@ -170,7 +172,7 @@ public sealed partial class BlobCoreComponent : Component
             {
                 DamageDict = new Dictionary<string, FixedPoint2>
                 {
-                    { "Structural", 120 },
+                    { "Structural", 100 },
                     { "Cold", 16 },
                     { "Slash", 4}
                 }
@@ -192,11 +194,11 @@ public sealed partial class BlobCoreComponent : Component
         {BlobChemType.ExplosiveLattice, Color.FromHex("#6e2a00")}, // CorvaxGoob-Blob-New-chems
         {BlobChemType.ElectromagneticWeb, Color.FromHex("#0d7777")},
         // CorvaxGoob-Blob-New-chems-start
-        {BlobChemType.ComatoseFiber, Color.FromHex("#0a0a47")},
+        {BlobChemType.ComatoseFiber, Color.FromHex("#191978")},
         {BlobChemType.ChainCoating, Color.FromHex("#3b3b3b")},
-        {BlobChemType.SinewyTendons, Color.FromHex("#67084a")},
-        {BlobChemType.CorrosiveSlime, Color.FromHex("#a4be6a")},
-        {BlobChemType.CryogenicPoison, Color.FromHex("#4d7dab")},
+        {BlobChemType.SinewyTendons, Color.FromHex("#690f53")},
+        {BlobChemType.CorrosiveSlime, Color.FromHex("#9cae6b")},
+        {BlobChemType.CryogenicPoison, Color.FromHex("#5282ae")},
         // CorvaxGoob-Blob-New-chems-end
     };
 
