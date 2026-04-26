@@ -91,10 +91,14 @@ public sealed partial class XenobiologySystem : EntitySystem
 
     //CorvaxGoob edit
     private void OnSlimeCountInit(Entity<SlimeComponent> ent, ref ComponentInit args)
-        => _slimeCount++;
+    {
+        if (!_net.IsServer) return;
+        _slimeCount++;
+    }
 
     private void OnSlimeCountShutdown(Entity<SlimeComponent> ent, ref ComponentShutdown args)
     {
+        if (!_net.IsServer) return;
         _slimeCount--;
         DebugTools.Assert(_slimeCount >= 0, "Negative number of xeno slimes."); // If the count drops below zero
     }
