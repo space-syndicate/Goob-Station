@@ -9,6 +9,7 @@ using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Shared.Examine;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.Components; //CorvaxGoob edit
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
@@ -18,6 +19,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility; //CorvaxGoob edit
 
 namespace Content.Goobstation.Shared.Xenobiology.Systems;
 
@@ -41,6 +43,8 @@ public sealed partial class XenobiologySystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
 
+    private readonly HashSet<Entity<SlimeComponent, MobGrowthComponent, HungerComponent>> _eligibleSlimes = new(); //CorvaxGoob edit
+    private int _slimeCount;
     public override void Initialize()
     {
         base.Initialize();
@@ -49,6 +53,9 @@ public sealed partial class XenobiologySystem : EntitySystem
         SubscribeBreeding();
 
         SubscribeLocalEvent<SlimeComponent, ExaminedEvent>(OnExamined);
+        //CorvaxGoob edit
+        SubscribeLocalEvent<SlimeComponent, ComponentInit>(OnSlimeCountInit);
+        SubscribeLocalEvent<SlimeComponent, ComponentShutdown>(OnSlimeCountShutdown);
     }
 
     public override void Update(float frameTime)
@@ -79,5 +86,15 @@ public sealed partial class XenobiologySystem : EntitySystem
         return _prototypeManager.TryIndex(slime.Comp.Breed, out var breedPrototype)
             ? breedPrototype.ProducedExtract
             : slime.Comp.DefaultExtract;
+    }
+
+    //CorvaxGoob edit
+    private void OnSlimeCountInit(Entity<SlimeComponent> ent, ref ComponentInit args)
+        => _slimeCount++;
+
+    private void OnSlimeCountShutdown(Entity<SlimeComponent> ent, ref ComponentShutdown args)
+    {
+        _slimeCount--;
+        DebugTools.Assert(_slimeCount >= 0, "Negative number of xeno slimes."); // Если их станет каким то образом меньше 0
     }
 }

@@ -54,7 +54,7 @@ public partial class XenobiologySystem
     /// </summary>
     private void UpdateMitosis()
     {
-        var eligibleSlimes = new HashSet<Entity<SlimeComponent, MobGrowthComponent, HungerComponent>>();
+        _eligibleSlimes.Clear(); //CorvaxGoob edit
 
         var query = EntityQueryEnumerator<SlimeComponent, MobGrowthComponent, HungerComponent>();
         while (query.MoveNext(out var uid, out var slime, out var growthComp, out var hungerComp))
@@ -64,16 +64,19 @@ public partial class XenobiologySystem
                 || growthComp.IsFirstStage)
                 continue;
 
-            eligibleSlimes.Add((uid, slime, growthComp, hungerComp));
+            _eligibleSlimes.Add((uid, slime, growthComp, hungerComp)); //CorvaxGoob edit eligibleSlimes -> _eligibleSlimes
             slime.NextUpdateTime = _gameTiming.CurTime + slime.UpdateInterval;
         }
 
-        foreach (var ent in eligibleSlimes)
+        foreach (var ent in _eligibleSlimes)
         {
             if (_hunger.GetHunger(ent) > ent.Comp1.MitosisHunger - ent.Comp1.JitterDifference)
                 _jitter.DoJitter(ent, TimeSpan.FromSeconds(1), true);
 
             if (_hunger.GetHunger(ent) < ent.Comp1.MitosisHunger)
+                continue;
+
+            if (_slimeCount >= _configuration.GetCVar(GoobCVars.XenobiologyMaxSlimes)) //CorvaxGoob edit
                 continue;
 
             DoMitosis(ent);

@@ -300,6 +300,9 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<float> BreedingInterval =
         CVarDef.Create("xenobiology.breeding.interval", 1f, CVar.REPLICATED | CVar.SERVER);
 
+    public static readonly CVarDef<int> XenobiologyMaxSlimes = //CorvaxGoob edit ограничение по количеству слаймов
+        CVarDef.Create("xenobiology.max_slimes", 40, CVar.SERVER);
+
     #endregion
 
     #region Goobcoins

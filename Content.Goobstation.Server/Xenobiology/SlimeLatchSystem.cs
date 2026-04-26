@@ -53,7 +53,7 @@ public sealed partial class SlimeLatchSystem : EntitySystem
         SubscribeLocalEvent<SlimeComponent, PullAttemptEvent>(OnPullAttempt);
         SubscribeLocalEvent<SlimeComponent, EntGotRemovedFromContainerMessage>(OnEntGotRemovedFromContainer);
         SubscribeLocalEvent<SlimeComponent, EntGotInsertedIntoContainerMessage>(OnEntGotInsertedIntoContainer);
-        SubscribeLocalEvent<SlimeComponent, SlimeMitosisEvent>(OnSlimeMitosis);
+        SubscribeLocalEvent<SlimeComponent, ComponentShutdown>(OnSlimeShutdown); //CorvaxGoob edit
     }
 
     public override void Update(float frameTime)
@@ -118,7 +118,7 @@ public sealed partial class SlimeLatchSystem : EntitySystem
         Unlatch(ent);
     }
 
-    private void OnSlimeMitosis(Entity<SlimeComponent> ent, ref SlimeMitosisEvent args)
+    private void OnSlimeShutdown(Entity<SlimeComponent> ent, ref ComponentShutdown args) //CorvaxGoob edit
     {
         Unlatch(ent);
     }
