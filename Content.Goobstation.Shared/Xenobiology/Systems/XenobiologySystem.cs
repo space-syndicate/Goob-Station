@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
 // SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 RomiGur <RomiGur@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 RomiGur <gurilevroman@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -96,6 +96,6 @@ public sealed partial class XenobiologySystem : EntitySystem
     private void OnSlimeCountShutdown(Entity<SlimeComponent> ent, ref ComponentShutdown args)
     {
         _slimeCount--;
-        DebugTools.Assert(_slimeCount >= 0, "Negative number of xeno slimes."); // Если их станет каким то образом меньше 0
+        DebugTools.Assert(_slimeCount >= 0, "Negative number of xeno slimes."); // If the count drops below zero
     }
 }

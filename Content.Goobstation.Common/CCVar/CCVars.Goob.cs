@@ -45,7 +45,7 @@
 // SPDX-FileCopyrightText: 2025 shibe <95730644+shibechef@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 tetra <169831122+Foralemes@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 vanx <61917534+Vaaankas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 RomiGur <RomiGur@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 RomiGur <gurilevroman@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -301,7 +301,7 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<float> BreedingInterval =
         CVarDef.Create("xenobiology.breeding.interval", 1f, CVar.REPLICATED | CVar.SERVER);
 
-    public static readonly CVarDef<int> XenobiologyMaxSlimes = //CorvaxGoob edit ограничение по количеству слаймов
+    public static readonly CVarDef<int> XenobiologyMaxSlimes = //CorvaxGoob edit slime population cap
         CVarDef.Create("xenobiology.max_slimes", 40, CVar.REPLICATED | CVar.SERVER);
 
     #endregion
