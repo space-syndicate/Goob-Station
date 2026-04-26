@@ -163,7 +163,7 @@ public sealed partial class BlobCoreComponent : Component
                 {
                     { "Structural", 320 },
                     { "Caustic", 13 },
-                    { "Genetic", 2}
+                    { "Cellular", 2}
                 }
             }
         },

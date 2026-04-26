@@ -534,7 +534,7 @@ public sealed class BlobCoreSystem : EntitySystem
         if (!CheckValidBlobTile(blobTile.Value, nearNode, args.RequireNode, args))
             return;
 
-        if (!TryUseAbility(blobCore, GetTileCost(blobCore, tileType), coords))
+        if (!TryUseAbility(blobCore, GetTileCost(blobCore, tileType), coords)) // CorvaxGoob-Blob-New-chems
             return;
 
         TransformBlobTile(
@@ -623,7 +623,7 @@ public sealed class BlobCoreSystem : EntitySystem
 
         if (target.Comp.ReturnCost)
         {
-            returnCost = GetTileCost(core, tileComp.BlobTileType);
+            returnCost = GetTileCost(core, tileComp.BlobTileType); // CorvaxGoob-Blob-New-chems
         }
 
         if (returnCost <= 0)
