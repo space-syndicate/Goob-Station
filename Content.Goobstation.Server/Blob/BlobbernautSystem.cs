@@ -107,14 +107,14 @@ public sealed class BlobbernautSystem : SharedBlobbernautSystem
             case BlobChemType.ExplosiveLattice:
                 _explosionSystem.QueueExplosion(args.HitEntities.FirstOrDefault(), blobCoreComponent.BlobExplosive, 4, 1, 2, maxTileBreak: 0);
                 break;
-            // CorvaxGoob-Blob-New-chems-start
 
+            // CorvaxGoob-Blob-New-chems-start
             case BlobChemType.ChainCoating:
             {
                 _damageableSystem.SetDamageModifierSetId(uid, "BlobBlobbernautChainCoating");
                 break;
             }
-            // // CorvaxGoob-Blob-New-chems-end
+            // CorvaxGoob-Blob-New-chems-end
 
             case BlobChemType.ElectromagneticWeb:
             {
