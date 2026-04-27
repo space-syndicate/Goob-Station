@@ -1764,7 +1764,7 @@
   - type: Computer
     board: RoboticsConsoleCircuitboard
   - type: AccessReader # only used for dangerous things
-    access: [["ResearchDirector"]]
+    access: [["ResearchDirector"], ["Robotics"]] # CorvaxGoob-changes: added ["Robotics"]
   - type: Lock
     unlockOnClick: false
   # Corvax-Goob-MutableLaws-Start
