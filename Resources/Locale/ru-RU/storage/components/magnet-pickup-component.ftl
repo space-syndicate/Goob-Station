@@ -8,6 +8,6 @@
 
 ## Used when examining the MagnetPickupComponent
 
-comp-magnet-pickup-examined-on = The magnet is currently [color=darkgreen]on[/color].
-comp-magnet-pickup-examined-off = The magnet is currently [color=darkred]off[/color].
-comp-magnet-pickup-toggle-verb = Toggle magnet
+comp-magnet-pickup-examined-on = Магнит сейчас [color=darkgreen]включён[/color].
+comp-magnet-pickup-examined-off = Магнит сейчас [color=darkred]выключен[/color].
+comp-magnet-pickup-toggle-verb = Переключить магнит
