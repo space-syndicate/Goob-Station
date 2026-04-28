@@ -29,9 +29,13 @@ public sealed class StaminaDamageModifierOnCollideSystem : EntitySystem
         if (!HasComp<StaminaComponent>(ev.Target))
             return;
 
-        var blunt = ev.ModifiedDamage.DamageDict[entity.Comp.AppliedModifier];
-        var staminaDamage = blunt * entity.Comp.StaminaCoefficient;
+        var armorEv = new CoefficientStaminaQueryEvent(Shared.Inventory.SlotFlags.All);
+        RaiseLocalEvent(ev.Target, armorEv);
 
-        _stamina.TakeStaminaDamage(ev.Target, staminaDamage.Int());
+        var blunt = ev.ModifiedDamage.DamageDict[entity.Comp.AppliedModifier];
+
+        var staminaDamage = blunt * entity.Comp.StaminaCoefficient * armorEv.StaminaDamage;
+
+        _stamina.TakeStaminaDamage(ev.Target, staminaDamage.Float());
     }
 }

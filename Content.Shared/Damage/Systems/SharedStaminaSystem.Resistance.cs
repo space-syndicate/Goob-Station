@@ -12,6 +12,8 @@ public partial class SharedStaminaSystem
         SubscribeLocalEvent<StaminaResistanceComponent, BeforeStaminaDamageEvent>(OnGetResistance);
         SubscribeLocalEvent<StaminaResistanceComponent, InventoryRelayedEvent<BeforeStaminaDamageEvent>>(RelayedResistance);
         SubscribeLocalEvent<StaminaResistanceComponent, ArmorExamineEvent>(OnArmorExamine);
+
+        SubscribeLocalEvent<StaminaResistanceComponent, InventoryRelayedEvent<CoefficientStaminaQueryEvent>>(OnCoefficientQuery); // CorvaxGoob-RubberAmmo
     }
 
     private void OnGetResistance(Entity<StaminaResistanceComponent> ent, ref BeforeStaminaDamageEvent args)
@@ -25,6 +27,12 @@ public partial class SharedStaminaSystem
             OnGetResistance(ent, ref args.Args);
     }
 
+    // CorvaxGoob-RubberAmmo
+    private void OnCoefficientQuery(Entity<StaminaResistanceComponent> ent, ref InventoryRelayedEvent<CoefficientStaminaQueryEvent> args)
+    {
+        if (ent.Comp.Worn)
+            args.Args.StaminaDamage *= ent.Comp.DamageCoefficient;
+    }
     private void OnArmorExamine(Entity<StaminaResistanceComponent> ent, ref ArmorExamineEvent args)
     {
         var value = MathF.Round((1f - ent.Comp.DamageCoefficient) * 100, 1);
