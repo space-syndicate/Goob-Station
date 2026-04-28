@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: [ClothingShoesBootsMagBase]
+  parent: ClothingShoesBootsMag
   id: ClothingShoesBootsMagAtmos
   components:
   - type: Sprite
@@ -9,7 +9,3 @@
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: _CorvaxGoob/Clothing/Shoes/Boots/atmos-magboots.rsi
-  - type: PhysicalComposition #Goobstation - Recycle update
-    materialComposition:
-      Steel: 250
-      Plastic: 125
