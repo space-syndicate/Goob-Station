@@ -8,3 +8,17 @@
   recipes:
   - MagazineLargeCaliber
   - MagazineBoxLargeCaliber
+
+- type: latheRecipePack
+  id: NonLethalAmmo
+  recipes:
+  - MagazineRifleRubber
+  - MagazineBoxRifleRubber
+  - MagazinePistolRubber
+  - MagazinePistolSubMachineGunRubber
+  - MagazineBoxPistolRubber
+  - MagazineBoxMagnumRubber
+  - SpeedLoaderMagnumRubber
+  - MagazineShotgunBeanbag
+  - BoxBeanbag
+  - MagazineBoxShotgunBeanbagHighCaliber

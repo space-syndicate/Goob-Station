@@ -224,6 +224,7 @@
   - MagazineSmart
   technologyPrerequisites:
   - UraniumMunitions
+  - NonLethalAmmunition # CorvaxGoob
   position: 4,2
 
 - type: technology

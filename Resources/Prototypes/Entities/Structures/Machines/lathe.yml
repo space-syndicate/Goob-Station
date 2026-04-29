@@ -802,6 +802,7 @@
     # CorvaxGoob Packs
     - SecurityCaptureDevicePack # WeaponGrapplingGunHunter
     - WorkBeltsSecDynamic # WorkBelts-Techfab
+    - NonLethalAmmo
   - type: EmagLatheRecipes # Goobstation
     emagStaticPacks:
     - SyndicateAmmoLightStatic

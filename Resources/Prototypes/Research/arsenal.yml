@@ -146,27 +146,27 @@
   - WeaponLaserCellRevolverTech
   # Goobstation R&D Console rework end
 
-- type: technology
-  id: NonlethalAmmunition
-  name: research-technology-nonlethal-ammunition
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: beanbag
-  discipline: Arsenal
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  #- MagazineShotgunBeanbag # Commented by CorvaxGoob-RubberAmmo
-  - BoxShellTranquilizer
-  #- BoxBeanbag # Commented by CorvaxGoob-RubberAmmo
-  - MagazineBoxShotgunBeanbagHighCaliber # Goobstation
-  - WeaponDisabler
-  - WeaponMechCombatDisabler # Goobstation
-  # Goobstation R&D Console rework start
-  position: 2,3
-  technologyPrerequisites:
-  - SalvageWeapons
-  # Goobstation R&D Console rework end
+#- type: technology # Commented by CorvaxGoob: Replaced to a StoppingActionArms technology
+#  id: NonlethalAmmunition
+#  name: research-technology-nonlethal-ammunition
+#  icon:
+#    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+#    state: beanbag
+#  discipline: Arsenal
+#  tier: 1
+#  cost: 5000
+#  recipeUnlocks:
+#  #- MagazineShotgunBeanbag # Commented by CorvaxGoob-RubberAmmo
+#  - BoxShellTranquilizer
+#  #- BoxBeanbag # Commented by CorvaxGoob-RubberAmmo
+#  - MagazineBoxShotgunBeanbagHighCaliber # Goobstation 
+#  - WeaponDisabler
+#  - WeaponMechCombatDisabler # Goobstation
+#  # Goobstation R&D Console rework start
+#  position: 2,3
+#  technologyPrerequisites:
+#  - SalvageWeapons
+#  # Goobstation R&D Console rework end
 
 - type: technology
   id: UraniumMunitions
@@ -203,7 +203,7 @@
     state: icon
   discipline: Arsenal
   tier: 1
-  cost: 8000
+  cost: 12500 # CorvaxGoob-changes: 8000 > 12500
   recipeUnlocks:
   - Truncheon
   - TelescopicShield
@@ -213,7 +213,7 @@
   # Goobstation R&D Console rework start
   position: 3,3
   technologyPrerequisites:
-  - NonlethalAmmunition
+  - StoppingActionArms # CorvaxGoob-changes: NonlethalAmmunition > StoppingActionArms
   # Goobstation R&D Console rework end
 
 - type: technology
@@ -228,7 +228,7 @@
   recipeUnlocks:
   - ClothingBackpackElectropack
   # Goobstation R&D Console rework start
-  position: 4,3
+  position: 5,3 # CorvaxGoob-changes: 4,3 > 5,3
   technologyPrerequisites:
   - AdvancedRiotControl
   - RestraintTechnology
@@ -313,7 +313,7 @@
   technologyPrerequisites: # Goobstation R&D Console rework
   - SmartWeaponry
   - SpecialMeans
-  position: 5, 3 # Goobstation R&D Console rework
+  position: 6,3 # Goobstation R&D Console rework # CorvaxGoob-changes: 5,3 > 6,3
 
 # Tier 3
 

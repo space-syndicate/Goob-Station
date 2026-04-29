@@ -340,6 +340,8 @@
       - ERTAmmoStaticGoob
       - SecurityHypoStatic
       - SecurityEquipmentStaticGoob
+      # CorvaxGoob Packs
+      - NonLethalAmmo
     - type: MaterialStorage
       whitelist:
         tags:
