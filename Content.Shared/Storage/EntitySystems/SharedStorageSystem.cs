@@ -1205,6 +1205,23 @@ public abstract class SharedStorageSystem : EntitySystem
         return false;
     }
 
+    //CorvaxGoob edit start
+
+    /// <summary>
+    /// Returns true if <paramref name="item"/> is currently stored
+    /// inside the storage of <paramref name="storageOwner"/>.
+    /// Uses O(1) dictionary lookup via StoredItems.
+    /// </summary>
+    public bool IsStoredIn(EntityUid item, EntityUid storageOwner, StorageComponent? storage = null)
+    {
+        if (!Resolve(storageOwner, ref storage, false))
+            return false;
+
+        return !TerminatingOrDeleted(item) && storage.StoredItems.ContainsKey(item);
+    }
+
+    //CorvaxGoob edit end
+
     /// <summary>
     ///     Inserts into the storage container
     /// </summary>
