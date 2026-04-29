@@ -2,9 +2,9 @@ meta:
   format: 7
   category: Map
   engineVersion: 266.0.0
-  forkId: syndicate-goob
-  forkVersion: 513fa71254c1ff351c96d052d4f5a6869ae24022
-  time: 04/24/2026 04:17:27
+  forkId: ""
+  forkVersion: ""
+  time: 04/29/2026 09:58:59
   entityCount: 33543
 maps:
 - 1
@@ -21921,7 +21921,7 @@ entities:
       pos: -5.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -438757.03
+      secondsUntilStateChange: -438901.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -23574,7 +23574,7 @@ entities:
       pos: -50.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -213740.12
+      secondsUntilStateChange: -213884.52
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -93751,7 +93751,7 @@ entities:
       pos: 30.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -581952.5
+      secondsUntilStateChange: -582096.9
       state: Opening
   - uid: 11706
     components:
@@ -93760,7 +93760,7 @@ entities:
       pos: 33.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -721591.7
+      secondsUntilStateChange: -721736.06
       state: Opening
   - uid: 11707
     components:
@@ -110973,7 +110973,7 @@ entities:
       pos: -23.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -115770.914
+      secondsUntilStateChange: -115915.305
       state: Closing
   - uid: 13808
     components:
@@ -156282,7 +156282,7 @@ entities:
       pos: 9.5,-70.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -98087.06
+      secondsUntilStateChange: -98231.45
       state: Closing
 - proto: hydroponicsSoil
   entities:
@@ -156834,14 +156834,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-  - uid: 19591
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 38.5,-42.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 19592
     components:
     - type: Transform
@@ -156853,6 +156845,14 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-28.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23628
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 36.5,-43.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -174314,10 +174314,10 @@ entities:
     - type: Transform
       pos: -7.5,8.5
       parent: 2
-  - uid: 23628
+  - uid: 25702
     components:
     - type: Transform
-      pos: -3.5,7.5
+      pos: -3.5,2.5
       parent: 2
   - uid: 27389
     components:
@@ -186002,10 +186002,10 @@ entities:
       parent: 2
 - proto: SpawnPointMagistrate
   entities:
-  - uid: 25702
+  - uid: 19591
     components:
     - type: Transform
-      pos: -12.5,5.5
+      pos: -12.5,4.5
       parent: 2
 - proto: SpawnPointMedicalDoctor
   entities:
