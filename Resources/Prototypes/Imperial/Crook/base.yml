@@ -56,6 +56,7 @@
       FootLeft: OrganHumanFootLeft
       FootRight: OrganHumanFootRight
       Brain: AndroidCore
+      Eyes: OrganHumanEyes
   - type: HumanoidProfile
     species: Human
 
@@ -246,8 +247,6 @@
       Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
-  - type: HumanoidProfile
-    species: Human
   - type: WiresPanel
     openingTool: Prying
   - type: ActivatableUIRequiresPanel
