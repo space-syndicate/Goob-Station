@@ -59,6 +59,15 @@ public sealed partial class MaterialStorageComponent : Component
     [DataField]
     public EntityWhitelist? Whitelist;
 
+    // CorvaxGoob-changes-start:
+    /// <summary>
+    /// Blacklist for specifying items that cannot be inserted into this entity.
+    /// Has priority over Whitelist.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist;
+    // CorvaxGoob-changes-end.
+
     /// <summary>
     /// Whether or not to drop contained materials when deconstructed.
     /// </summary>
