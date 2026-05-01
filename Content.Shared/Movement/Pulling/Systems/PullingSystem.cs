@@ -96,6 +96,7 @@
 // SPDX-FileCopyrightText: 2025 Verm <32827189+Vermidia@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
 // SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 RpmaGur <gurilevroman@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
