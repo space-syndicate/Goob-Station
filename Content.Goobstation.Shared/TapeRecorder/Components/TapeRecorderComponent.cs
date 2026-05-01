@@ -6,6 +6,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared._EinsteinEngines.Language; //CorvaxGoob-RecorderLanguage-Fix
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -86,4 +87,10 @@ public sealed partial class TapeRecorderComponent : Component
     {
         Params = AudioParams.Default.WithVolume(-2f).WithMaxDistance(3f)
     };
+
+    /// <summary>
+    /// In which language the transcription will be made
+    /// </summary>
+    [DataField]
+    public ProtoId<LanguagePrototype> TranscriptionLanguage;  //CorvaxGoob-RecorderLanguage-Fix
 }

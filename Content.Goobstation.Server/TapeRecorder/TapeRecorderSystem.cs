@@ -8,9 +8,12 @@ using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
+using Content.Server._EinsteinEngines.Language; //CorvaxGoob-RecorderLanguage-Fix
 using Content.Shared.Chat;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
+using Content.Shared._EinsteinEngines.Language.Components; //CorvaxGoob-RecorderLanguage-Fix
+using Content.Shared._EinsteinEngines.Language; //CorvaxGoob-RecorderLanguage-Fix
 using Content.Goobstation.Shared.TapeRecorder;
 using Robust.Shared.Prototypes;
 using System.Text;
@@ -23,6 +26,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; //CorvaxGoob-RecorderLanguage-Fix
 
     public override void Initialize()
     {
@@ -40,6 +44,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     {
         var voice = EnsureComp<VoiceOverrideComponent>(ent);
         var speech = EnsureComp<SpeechComponent>(ent);
+        var language = EnsureComp<LanguageSpeakerComponent>(ent); //CorvaxGoob-RecorderLanguage-Fix
 
         foreach (var message in tape.RecordedData)
         {
@@ -51,6 +56,8 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             // TODO: mimic the exact string chosen when the message was recorded
             var verb = message.Verb ?? SharedChatSystem.DefaultSpeechVerb;
             speech.SpeechVerb = _proto.Index<SpeechVerbPrototype>(verb);
+            language.CurrentLanguage = message.Language; //CorvaxGoob-RecorderLanguage-Fix
+
             //Play the message
             _chat.TrySendInGameICMessage(ent, message.Message, InGameICChatType.Speak, false);
         }
@@ -81,7 +88,10 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         //Add a new entry to the tape
         var verb = _chat.GetSpeechVerb(args.Source, args.Message);
         var name = nameEv.VoiceName;
-        cassette.Comp.Buffer.Add(new TapeCassetteRecordedMessage(cassette.Comp.CurrentPosition, name, verb, args.Message));
+        //CorvaxGoob-RecorderLanguage-Fix-Start
+        var language = _language.GetLanguage(args.Source);
+        cassette.Comp.Buffer.Add(new TapeCassetteRecordedMessage(cassette.Comp.CurrentPosition, name, verb, args.Message, language));
+        //CorvaxGoob-RecorderLanguage-Fix-End
     }
 
     private void OnPrintMessage(Entity<TapeRecorderComponent> ent, ref PrintTapeRecorderMessage args)
@@ -118,11 +128,16 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         {
             var name = message.Name ?? ent.Comp.DefaultName;
             var time = TimeSpan.FromSeconds((double) message.Timestamp);
+            //CorvaxGoob-RecorderLanguage-Fix-Start
+            var information = message.Message;
+            if (message.Language != ent.Comp.TranscriptionLanguage)
+                information = Loc.GetString("tape-recorded-print-transcription-failure");
 
             text.AppendLine(Loc.GetString("tape-recorder-print-message-text",
                 ("time", time.ToString(@"hh\:mm\:ss")),
                 ("source", name),
-                ("message", message.Message)));
+                ("message", information)));
+            //CorvaxGoob-RecorderLanguage-Fix-End
         }
         text.AppendLine();
         text.Append(Loc.GetString("tape-recorder-print-end-text"));

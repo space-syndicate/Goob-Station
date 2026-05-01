@@ -4,6 +4,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared._EinsteinEngines.Language; //CorvaxGoob-RecorderLanguage-Fix
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 
@@ -39,12 +40,19 @@ public sealed partial class TapeCassetteRecordedMessage : IComparable<TapeCasset
     [DataField]
     public string Message = string.Empty;
 
-    public TapeCassetteRecordedMessage(float timestamp, string name, ProtoId<SpeechVerbPrototype> verb, string message)
+    /// <summary>
+    /// spoken language
+    /// </summary>
+    [DataField]
+    public ProtoId<LanguagePrototype> Language;  //CorvaxGoob-RecorderLanguage-Fix
+
+    public TapeCassetteRecordedMessage(float timestamp, string name, ProtoId<SpeechVerbPrototype> verb, string message, ProtoId<LanguagePrototype> language) //CorvaxGoob-RecorderLanguage-Fix
     {
         Timestamp = timestamp;
         Name = name;
         Verb = verb;
         Message = message;
+        Language = language; //CorvaxGoob-RecorderLanguage-Fix
     }
 
     public int CompareTo(TapeCassetteRecordedMessage? other)

@@ -1,0 +1,1 @@
+tape-recorded-print-transcription-failure = [bold][color=red]Транскрипция невозможна[/color][/bold] 
