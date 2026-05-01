@@ -4,6 +4,7 @@
 // SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
 // SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 // SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+// SPDX-FileCopyrightText: 2026 RomaGur <gurilevroman@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,5 +28,6 @@ public enum GrabResistResult
 {
     TooSoon,
     Failed,
-    Succeeded
+    Succeeded,
+    Incapacitated // CorvaxGoob edit
 }

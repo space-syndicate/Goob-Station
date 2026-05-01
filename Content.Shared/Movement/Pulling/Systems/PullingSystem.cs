@@ -108,6 +108,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Bed.Sleep; // CorvaxGoob edit
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification; // Goobstation
 using Content.Shared.Cuffs.Components; // Goobstation
@@ -186,6 +187,7 @@ public sealed class PullingSystem : EntitySystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ContestsSystem _contests = default!; // Goobstation - Grab Intent
     [Dependency] private readonly StandingStateSystem _standing = default!; // Goobstation - Grab Intent
+    [Dependency] private readonly MobStateSystem _mobState = default!; // CorvaxGoob edit
 
     public override void Initialize()
     {
@@ -994,6 +996,8 @@ public sealed class PullingSystem : EntitySystem
                                 pullableUid,
                                 PopupType.SmallCaution);
                 return false;
+            case GrabResistResult.Incapacitated: // CorvaxGoob edit
+                return false;
         }
 
         _popup.PopupEntity(Loc.GetString("popup-grab-release-success-self"),
@@ -1284,6 +1288,10 @@ public sealed class PullingSystem : EntitySystem
         if (!Resolve(pullable.Owner, ref pullable.Comp)
             || _timing.CurTime < pullable.Comp.NextEscapeAttempt)
             return GrabResistResult.TooSoon;
+
+        if (_mobState.IsIncapacitated(pullable) || HasComp<SleepingComponent>(pullable)) // CorvaxGoob edit
+            return GrabResistResult.Incapacitated;
+
 
         if (_random.Prob(pullable.Comp.GrabEscapeChance))
             return GrabResistResult.Succeeded;
