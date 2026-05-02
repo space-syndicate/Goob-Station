@@ -140,7 +140,7 @@
       time: 18000 #5 hrs
     - !type:RoleTimeRequirement
       role: JobBrigmedic
-      time: 3600 #1 hrs
+      time: 3600 #CorvaxGoob 18000 -> 3600 1hrs
     - !type:DepartmentTimeRequirement
       department: Security
       time: 36000 # 10 hrs
