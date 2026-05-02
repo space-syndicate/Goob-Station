@@ -526,7 +526,7 @@
   - type: Storage
     whitelist:
       tags:
-        # - PlantAnalyzer
+        - PlantAnalyzer # CorvaxGoob
         - PlantSampleTaker
         - BotanyShovel
         - BotanyHoe
@@ -547,10 +547,12 @@
         whitelist:
           tags:
           - BotanyHatchet
-      # hydro:
-      #   whitelist:
-      #     tags:
-      #     - PlantAnalyzer # Dunno what to put here, should be aight.
+      # CorvaxGoob start
+      hydro:
+        whitelist:
+          tags:
+          - PlantAnalyzer
+      # CorvaxGoob end
       hoe:
         whitelist:
           tags:
@@ -763,7 +765,7 @@
     - neck # CorvaxGoob start
   - type: Storage
     grid:
-    - 0,0,5,1 #corvaxgoob 
+    - 0,0,5,1 #corvaxgoob
   # Goobstation
 #    whitelist:
 #      components:
