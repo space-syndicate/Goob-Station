@@ -2,7 +2,6 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-// SPDX-FileCopyrightText: 2026 termertop1gg <pasdnikov777@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -26,6 +25,7 @@ public sealed partial class CrewMonitorScanningComponent : Component
     [DataField]
     public EntityWhitelist Whitelist = new ();
 
+    // CorvaxGoob — start
     /// <summary>
     ///     The implant prototype to inject into scanned targets.
     ///     Defaults to the command tracking implant used by the BSO crew monitor.
@@ -41,4 +41,5 @@ public sealed partial class CrewMonitorScanningComponent : Component
     /// </summary>
     [DataField]
     public string? TrackerChannel;
+    // CorvaxGoob — end
 }

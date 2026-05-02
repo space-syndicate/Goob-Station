@@ -50,7 +50,7 @@ public sealed class SuitSensorStatus
     public float? DamagePercentage => TotalDamageThreshold == null || TotalDamage == null ? null : TotalDamage / (float) TotalDamageThreshold;
     public NetCoordinates? Coordinates;
     public bool IsCommandTracker = false; ///Goob station
-    public string? TrackerChannel; ///Goob station
+    public string? TrackerChannel; // CorvaxGoob
 }
 
 [Serializable, NetSerializable]
@@ -91,7 +91,7 @@ public static class SuitSensorConstants
     public const string NET_SUIT_SENSOR_UID = "uid";
 
     public const string NET_IS_COMMAND = "iscommand"; ///Goob Sation
-    public const string NET_TRACKER_CHANNEL = "trackerChannel"; ///Goob station
+    public const string NET_TRACKER_CHANNEL = "trackerChannel"; // CorvaxGoob
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";
