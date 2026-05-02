@@ -526,7 +526,7 @@
   - type: Storage
     whitelist:
       tags:
-        - PlantAnalyzer # CorvaxGoob
+        - PlantAnalyzer
         - PlantSampleTaker
         - BotanyShovel
         - BotanyHoe
@@ -547,12 +547,10 @@
         whitelist:
           tags:
           - BotanyHatchet
-      # CorvaxGoob start
       hydro:
         whitelist:
           tags:
-          - PlantAnalyzer
-      # CorvaxGoob end
+          - PlantAnalyzer # Dunno what to put here, should be aight.
       hoe:
         whitelist:
           tags:
