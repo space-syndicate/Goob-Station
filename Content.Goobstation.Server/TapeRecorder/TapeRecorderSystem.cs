@@ -129,10 +129,13 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             var name = message.Name ?? ent.Comp.DefaultName;
             var time = TimeSpan.FromSeconds((double) message.Timestamp);
             //CorvaxGoob-RecorderLanguage-Fix-Start
-            var information = message.Message;
-            if (message.Language != ent.Comp.TranscriptionLanguage)
-                information = Loc.GetString("tape-recorded-print-transcription-failure");
-
+            var information = Loc.GetString("tape-recorded-print-transcription-failure");
+            foreach (var language in ent.Comp.TranscriptionLanguages)
+                if (message.Language == language)
+                {
+                    information = message.Message;
+                    break;
+                }
             text.AppendLine(Loc.GetString("tape-recorder-print-message-text",
                 ("time", time.ToString(@"hh\:mm\:ss")),
                 ("source", name),

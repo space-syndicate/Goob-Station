@@ -92,5 +92,5 @@ public sealed partial class TapeRecorderComponent : Component
     /// In which language the transcription will be made
     /// </summary>
     [DataField]
-    public ProtoId<LanguagePrototype> TranscriptionLanguage;  //CorvaxGoob-RecorderLanguage-Fix
+    public List<ProtoId<LanguagePrototype>> TranscriptionLanguages;  //CorvaxGoob-RecorderLanguage-Fix
 }
