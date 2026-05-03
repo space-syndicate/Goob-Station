@@ -48,6 +48,8 @@
     DrinkBeerCan: 5
     DrinkWineCan: 5
     DrinkKarmotrineCan: 5 # Imperial Space / VA-11Hall-A
+    DrinkBlackMonsterCan: 5 # Imperial MONSTR
+    DrinkWhiteMonsterCan: 5 # Imperial MONSTR
   contrabandInventory:
     ChemistryBottleEthanol: 3
     DrinkBottleOfNothingFull: 1

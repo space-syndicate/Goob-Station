@@ -1,0 +1,77 @@
+- type: reagent
+  id: BlackMonster
+  name: reagent-name-black-claw
+  parent: BaseSoda
+  desc: reagent-desc-black-claw
+  physicalDesc: reagent-black-claw-desc-metabolize
+  flavor: blackMonster
+  color: "#d1d43b"
+  recognizable: true
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 8
+        type: Remove
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackMonster
+          min: 45
+        damage:
+          types:
+            Asphyxiation: 22
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 2.20
+        sprintSpeedModifier: 2.20
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackMonster
+          min: 45
+
+- type: reagent
+  id: WhiteMonster
+  name: reagent-name-white-claw
+  parent: BaseSoda
+  desc: reagent-desc-white-claw
+  physicalDesc: reagent-white-claw-desc-metabolize
+  flavor: whiteMonster
+  color: "#d6ffdf"
+  recognizable: true
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 8
+        type: Remove
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: WhiteMonster
+          min: 30
+        damage:
+          types:
+            Asphyxiation: -0.322
+            Poison: -0.322
+            Heat: -0.322
+            Blunt: -0.322
+            Slash: -0.322
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.67
+        sprintSpeedModifier: 0.67
+        conditions:
+        - !type:ReagentCondition
+          reagent: WhiteMonster
+          min: 30
