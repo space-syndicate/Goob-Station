@@ -39,10 +39,13 @@
   - type: SolutionContainerManager
     solutions:
       lamp:
-        maxVol: 3
+        maxVol: 5
         reagents:
         - ReagentId: Oil
           Quantity: 3
+        - ReagentId: Phlogiston
+          Quantity: 2
+  - type: Temperature
   - type: DamageOnLand
     damage:
       types:
@@ -72,6 +75,9 @@
         transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Construction
+    graph: LavaLampExposion
+    node: start
   - type: Physics
     canCollide: false
   - type: Tag
