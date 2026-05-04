@@ -213,6 +213,49 @@
           tags:
           - Justice
   - type: Appearance
+  # CorvaxGoob edit
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
+      storagebase: !type:Container
+        ents: []
+  - type: Storage
+    grid:
+    - 0,0,5,1
+    whitelist:
+      tags:
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - CombatKnife
+      - Truncheon
+      - BolaEnergy
+      - EnergySpeedloader
+      - MilitaryPowerCell
+      - EnergyMagAmmo
+      - HandGrenade
+      - TelescopicBaton
+      - TelescopicShield
+      components:
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+      - DoorRemote
+      - Whistle
+      - BalloonPopper
+      - ScatteringGrenade
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
 
 - type: entity
   parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband ]
@@ -313,7 +356,7 @@
       amount: 1
     - id: EbifinlLazideChemistryVial
       amount: 1
-    - id: ChemistryBottlePax  # CorvaxGoob 
+    - id: ChemistryBottlePax  # CorvaxGoob
       amount: 1
 
 - type: entity
