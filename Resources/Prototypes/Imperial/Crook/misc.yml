@@ -2251,5 +2251,5 @@
     stepOn: true
   - type: TriggerOnStepTrigger
   - type: SmokeOnTrigger
-    duration: 10
-    spreadAmount: 8
+    duration: 8
+    spreadAmount: 5
