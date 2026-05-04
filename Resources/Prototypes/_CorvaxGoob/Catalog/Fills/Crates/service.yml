@@ -1,0 +1,12 @@
+- type: entity
+  id: CrateLavaLamps
+  parent: CratePlastic
+  name: lava lamp crate
+  description: Contains 5 lava lamp for your station moth.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: RandomLavaLamp
+        rolls: !type:ConstantNumberSelector
+          value: 5
