@@ -76,6 +76,10 @@ namespace Content.Shared.Damage
         // Goobstation
         [DataField(customTypeSerializer: typeof(PrototypeIdDictionarySerializer<FixedPoint2, DamageTypePrototype>))]
         public Dictionary<string, FixedPoint2> WoundSeverityMultipliers { get; set; } = new();
+		
+        // CorvaxGoob
+        [DataField]
+        public bool BypassFlatReductions { get; set; }
 
         /// <summary>
         ///     Returns a sum of the damage values.
@@ -146,6 +150,7 @@ namespace Content.Shared.Damage
             ArmorPenetration = damageSpec.ArmorPenetration; // Goobstation
             PartDamageVariation = damageSpec.PartDamageVariation; // Goobstation
             WoundSeverityMultipliers = new(damageSpec.WoundSeverityMultipliers);
+			BypassFlatReductions = damageSpec.BypassFlatReductions; // CorvaxGoob
         }
 
         /// <summary>
@@ -215,7 +220,38 @@ namespace Content.Shared.Damage
 
             return newDamage;
         }
+// CorvaxGoob-changes-start:
+        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, bool bypassFlatReductions)
+        {
+            if (!bypassFlatReductions)
+                return ApplyModifierSet(damageSpec, modifierSet);
 
+            DamageSpecifier newDamage = new(damageSpec.ArmorPenetration, damageSpec.PartDamageVariation, damageSpec.WoundSeverityMultipliers);
+            newDamage.DamageDict.EnsureCapacity(damageSpec.DamageDict.Count);
+
+            foreach (var (key, value) in damageSpec.DamageDict)
+            {
+                if (value == 0)
+                    continue;
+
+                if (value < 0)
+                {
+                    newDamage.DamageDict[key] = value;
+                    continue;
+                }
+
+                float newValue = value.Float();
+
+                if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
+                    newValue *= coefficient;
+
+                if (newValue != 0)
+                    newDamage.DamageDict[key] = FixedPoint2.New(newValue);
+            }
+
+            return newDamage;
+        }
+// CorvaxGoob-changes-end.
         /// <summary>
         ///     Reduce (or increase) damages by applying multiple modifier sets.
         /// </summary>
