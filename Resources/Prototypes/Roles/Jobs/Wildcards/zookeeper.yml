@@ -71,7 +71,7 @@
     holiday: MonkeyDay
     prototype: MonkeyCubeBox
   - !type:AddImplantSpecial
-    implants: [ ZookeeperTranslatorImplant ] # Goobstation add implanter
+    implants: [ ZookeeperTranslatorImplant ] # CorvaxGoob:  add implanter
 
 - type: startingGear
   id: ZookeeperGear
