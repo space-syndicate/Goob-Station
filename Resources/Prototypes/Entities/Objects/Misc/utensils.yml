@@ -92,10 +92,10 @@
     bypassFlatReductions: true # CorvaxGoob
     animationRotation: 180 # WWDP
     wideAnimationRotation: 180
-    attackRate: 1 # CorvaxGoob: 1.5 > 1
+    attackRate: 1 # CorvaxGoob-changes: 1.5 > 1
     damage:
       types:
-        Piercing: 5
+        Piercing: 2 # CorvaxGoob-changes: 5 > 2
         Structural: 0.1 # CorvaxGoob
   - type: Tweezers # Shitmed: Forks are better than spoons
     speed: 0.35
