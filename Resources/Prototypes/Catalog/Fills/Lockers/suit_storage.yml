@@ -185,6 +185,7 @@
         - id: NitrogenTankFilled
         - id: ClothingModsuitAtmostechPowerCell
         - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagAtmos #Corvax-Goob-atmos-magboots
   - type: AccessReader
     access: [["Atmospherics"]]
 

@@ -204,10 +204,48 @@
   name: engineering hardsuit helmet # Goob edit
   description: An engineering hardsuit helmet designed for working in low-pressure, highly radioactive environments. # Goob edit
   components:
-  - type: Sprite
+  - type: Sprite #corvaxGoob-Start
     sprite: Clothing/Head/Hardsuits/engineering.rsi
+    layers: 
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/engineering.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-dog
+      - state: equipped-head-unshaded-dog
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-vulpkanin
+      - state: equipped-head-unshaded-vulpkanin
+        shader: unshaded
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-light-dog
+        shader: unshaded #corvaxGoob-end
   - type: PointLight
     color: "#ffdbad"
   - type: PressureProtection
@@ -268,6 +306,10 @@
       head-dog:
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
+        shader: unshaded
+      head-vulpkanin: #corvaxGoob
+      - state: equipped-head-vulpkanin
+      - state: equipped-head-unshaded-vulpkanin
         shader: unshaded
   - type: PointLight
     radius: 6
@@ -552,10 +594,48 @@
   name: chief engineer's hardsuit helmet # Goob edit
   description: Special hardsuit helmet, made for the chief engineer of the station. # Goob edit
   components:
-  - type: Sprite
+  - type: Sprite #corvaxGoob-start
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
+    layers: 
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-dog
+      - state: equipped-head-unshaded-dog
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-vulpkanin
+      - state: equipped-head-unshaded-vulpkanin
+        shader: unshaded
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-light-dog
+        shader: unshaded #corvaxGoob-end
   - type: PointLight
     color: "#daffad"
   - type: PressureProtection
@@ -830,7 +910,7 @@
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: ClothingHeadHardsuitWithLightBase #CorvaxGoob
   id: ClothingHeadHelmetHardsuitCybersun
   name: cybersun juggernaut helmet
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
@@ -857,6 +937,8 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
+  - type: PointLight #CorvaxGoob
+    color: red
   - type: FlashImmunity # Goobstation
   - type: FlashSoundSuppression # Goobstation
   - type: Tag

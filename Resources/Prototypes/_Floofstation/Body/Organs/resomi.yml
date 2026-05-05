@@ -23,6 +23,9 @@
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi # CorvaxGoob resprite
+    state: stomach
   - type: Stomach
   - type: SolutionContainerManager
     solutions:
@@ -33,3 +36,67 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+
+# CorvaxGoob organs resprite start
+
+- type: entity
+  id: OrganResomiBrain
+  parent: OrganHumanBrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi
+    state: brain
+
+- type: entity
+  id: OrganResomiEyes
+  parent: OrganHumanEyes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+
+- type: entity
+  id: OrganResomiHeart
+  parent: OrganHumanHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi
+    state: heart-on
+
+- type: entity
+  id: OrganResomiLungs
+  parent: OrganHumanLungs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi
+    layers:
+      - state: lung-l
+      - state: lung-r
+
+- type: entity
+  id: OrganResomiLiver
+  parent: OrganHumanLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi
+    state: liver
+
+- type: entity
+  id: OrganResomiKidneys
+  parent: OrganHumanKidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Resomi/organs.rsi
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+
+# CorvaxGoob organs resprite end

@@ -116,3 +116,15 @@ public sealed class CoefficientQueryEvent : EntityEventArgs, IInventoryRelayEven
         TargetSlots = slots;
     }
 }
+
+public sealed class CoefficientStaminaQueryEvent : EntityEventArgs, IInventoryRelayEvent
+{
+    public SlotFlags TargetSlots { get; set; }
+
+    public float StaminaDamage { get; set; } = 1;
+
+    public CoefficientStaminaQueryEvent(SlotFlags slots)
+    {
+        TargetSlots = slots;
+    }
+}

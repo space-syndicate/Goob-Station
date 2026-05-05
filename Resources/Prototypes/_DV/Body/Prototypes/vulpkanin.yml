@@ -21,8 +21,8 @@
       connections:
       - chest
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganVulpkaninBrain # CorvaxGoob resprite
+        eyes: OrganVulpkaninEyes # CorvaxGoob resprite
     chest:
       part: ChestVulpkanin
       connections: # Goobstation - fix some species having their hands the wrong way around
@@ -31,8 +31,8 @@
       - left arm
       - head # Shitmed Change
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
+        heart: OrganVulpkaninHeart # CorvaxGoob resprite
+        lungs: OrganVulpkaninLungs # CorvaxGoob resprite
     groin:
       part: GroinVulpkanin
       connections:
@@ -40,8 +40,8 @@
       - left leg
       organs:
         stomach: OrganVulpkaninStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        liver: OrganVulpkaninLiver # CorvaxGoob resprite
+        kidneys: OrganVulpkaninKidneys # CorvaxGoob resprite
     right arm:
       part: RightArmVulpkanin
       connections:

@@ -118,7 +118,7 @@
     state: icon
 
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkKvassGlass
   suffix: kvass
   components:
@@ -129,8 +129,6 @@
           reagents:
             - ReagentId: Kvass
               Quantity: 30
-    - type: Sprite
-      sprite: _CorvaxGoob/Objects/Consumable/Drinks/kvass.rsi
 
 - type: entity
   parent: DrinkGlass

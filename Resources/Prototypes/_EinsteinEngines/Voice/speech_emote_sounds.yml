@@ -134,7 +134,7 @@
     Scream:
       collection: SlimeFemaleScreams
     Laugh:
-      collection: MaleLaugh
+      collection: FemaleLaugh #CorvaxGoob: shadowkin-female-laught
     Sneeze:
       collection: FemaleSneezes
     Cough:

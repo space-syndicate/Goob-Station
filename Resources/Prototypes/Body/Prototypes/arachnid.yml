@@ -24,7 +24,7 @@
       part: ChestArachnid
       organs:
         heart: OrganArachnidHeart
-        lungs: OrganAnimalLungs
+        lungs: OrganArachnidLungs # CorvaxGoob resprite
       connections:
       - right arm
       - left arm

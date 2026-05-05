@@ -34,8 +34,8 @@
   description: "The source of incredible, unending gooeyness."
   components:
     - type: Sprite
-      sprite: Mobs/Species/Slime/organs.rsi
-      state: brain-slime
+      sprite: _CorvaxGoob/Mobs/Species/Slime/organ.rsi # CorvaxGoob resprite
+      state: core
     - type: Stomach
     - type: Organ
       intCap: 60 # to prevent slimes from getting oneshot
@@ -86,10 +86,10 @@
   description: "Collects nitrogen, which slime cells use for maintenance."
   components:
   - type: Sprite
-    sprite: Mobs/Species/Slime/organs.rsi
+    sprite: _CorvaxGoob/Mobs/Species/Slime/organ.rsi # CorvaxGoob resprite
     layers:
-      - state: lung-l-slime
-      - state: lung-r-slime
+      - state: lung-l
+      - state: lung-r
   - type: Organ # Shitmed
     intCap: 21 #
     integrity: 21

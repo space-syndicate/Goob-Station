@@ -546,6 +546,7 @@
     - Firelock
     - TubeLight
     - BulbLight
+    - SurveillanceCamera #Corvax-Goob-rcd-camera
     - LVCable
     - MVCable
     - HVCable

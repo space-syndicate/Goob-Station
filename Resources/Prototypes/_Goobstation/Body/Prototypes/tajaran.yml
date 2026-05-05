@@ -26,8 +26,8 @@
       connections:
       - chest
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganTajaranBrain # CorvaxGoob organs resprite
+        eyes: OrganTajaranEyes # CorvaxGoob organs resprite
     chest:
       part: ChestTajaran
       connections:
@@ -36,17 +36,17 @@
       - left arm
       - head # Shitmed Change
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
+        heart: OrganTajaranHeart # CorvaxGoob organs resprite
+        lungs: OrganTajaranLungs # CorvaxGoob organs resprite
     groin:
       part: GroinTajaran
       connections:
       - right leg
       - left leg
       organs:
-        stomach: OrganAnimalStomach
-        liver:  OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        stomach: OrganTajaranStomach # CorvaxGoob organs resprite
+        liver:  OrganTajaranLiver # CorvaxGoob organs resprite
+        kidneys: OrganTajaranKidneys # CorvaxGoob organs resprite
     right arm:
       part: RightArmTajaran
       connections:

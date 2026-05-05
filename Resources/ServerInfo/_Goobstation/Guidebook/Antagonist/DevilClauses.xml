@@ -15,14 +15,6 @@
   - Контрагент полностью блокирует половину получаемого урона.
   - Увеличивает получемый святой урон.
 
-<!-- Disabled, Used by shitters  ## Avarice
-  <Box>
-    [color=#999999][italic]-30 Вес[/italic][/color]
-  </Box>
-
-  - Allows the contractee to devour things whole, just like a dragon.
-  -->
-
   ## Страх смерти
   <Box>
     [color=#999999][italic]-10 Вес[/italic][/color]
@@ -44,13 +36,6 @@
   </Box>
 
   - Делает контрагента невидимым.
-
-  <!-- ## Поломка removed by CorvaxGoob; LRP bullshit
-  <Box>
-    [color=#999999][italic]-20 Вес[/italic][/color]
-  </Box>
-
-  - Даёт контрагенту пару офигенных кроссовок, подписанных Майклом Джорданом лично. -->
 
   ## Страх огня
   <Box>
@@ -226,4 +211,17 @@
   </Box>
 
   - Перманетно убивает контрагента спустя 5 минут.
+
+  <!-- ## Поломка removed by CorvaxGoob; LRP bullshit
+  <Box>
+    [color=#999999][italic]-20 Вес[/italic][/color]
+  </Box>
+
+  - Даёт контрагенту пару офигенных кроссовок, подписанных Майклом Джорданом лично. -->
+<!-- Disabled, Used by shitters  ## Avarice
+  <Box>
+    [color=#999999][italic]-30 Вес[/italic][/color]
+  </Box>
+
+  - Allows the contractee to devour things whole, just like a dragon.-->
 </Document>

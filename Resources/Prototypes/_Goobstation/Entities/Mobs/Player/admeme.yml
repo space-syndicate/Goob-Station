@@ -47,15 +47,7 @@
   - type: Speech
     speechVerb: HolierThanThou
   - type: GhostRole
-    skills: # CorvaxGoob-Skills
-    - All
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000 # Ten Hours
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 108000 # Thirty hours. Fuck you.
+    job: CentralCommandOfficial
 
 # Navy Officer
 
@@ -65,7 +57,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -107,7 +99,7 @@
   suffix: ADMIN ONLY, DO FUCKING NOT
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -149,7 +141,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -191,7 +183,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -233,7 +225,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/diplomat.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -275,7 +267,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:

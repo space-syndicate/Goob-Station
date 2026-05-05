@@ -143,6 +143,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
+    speechSounds: Moth # CorvaxGoob Addition
     allowedEmotes: ['Chitter', 'Squeak', 'Flap'] #flap is from goob
   - type: LanguageKnowledge # Einstein Engines - Languages
     speaks:
@@ -153,11 +154,11 @@
     - Moffic
   - type: TypingIndicator
     proto: moth
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-    - id: FoodMeat
-      amount: 5
+    - id: FoodMeatMoth
+      amount: 3
   - type: Bloodstream
     bloodReagent: InsectBlood
 #  - type: DamageVisuals

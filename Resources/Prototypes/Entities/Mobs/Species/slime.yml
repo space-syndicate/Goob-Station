@@ -190,11 +190,11 @@
           components:
           - type: PressureProtection
           invert: true
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-    - id: FoodMeatSlime
-      amount: 5
+    - id: FoodMeatSlimeMeat
+      amount: 3
   - type: Respirator
     damage:
       types:

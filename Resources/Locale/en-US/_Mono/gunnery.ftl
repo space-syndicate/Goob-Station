@@ -4,11 +4,11 @@ gunnery-window-connected = CONNECTED
 gunnery-select-all = Select All
 gunnery-unselect-all = Unselect All
 gunnery-guns = Guns
-
 gunnery-server-examine-detail = The server is using [color={$valueColor}]{$usedProcessingPower}/{$processingPower}[/color] of its processing power.
-
 gunnery-select-ballistics = Ballistics
 gunnery-select-energy = Energy
 gunnery-select-missiles = Missiles
 gunnery-select-mining = Mining
 gunner-console-display-label = Display
+# CorvaxGoob edit
+ship-gun-class-component-examine-detail = This weapon costs [color=yellow]{ $processingPower }[/color] processing power to control.

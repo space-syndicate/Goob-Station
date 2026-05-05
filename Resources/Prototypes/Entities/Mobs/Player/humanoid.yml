@@ -121,7 +121,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 ## Random humanoids
-## All role time requirements are from goobstation.
 
 - type: randomHumanoidSettings
   id: EventHumanoid
@@ -221,13 +220,11 @@
       rules: ghost-role-information-Death-Squad-rules
       raffle:
         settings: short
-      requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 48000 # Goobstation
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 18000 # Goobstation
+      mindRoles:
+      - MindRoleGhostRoleFamiliar
+      skills: # CorvaxGoob-Skills
+      - All
+      job: DeathSquad
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -266,14 +263,9 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      skills: # CorvaxGoob-Skills
+      - All
       job: ERTLeader
-      requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # ten hours
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 18000 # five hours
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
       roleLoadout: [ RoleSurvivalExtended ]
@@ -305,6 +297,8 @@
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTLeader
@@ -342,6 +336,8 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      skills: # CorvaxGoob-Skills
+      - All
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
@@ -372,6 +368,8 @@
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTChaplain
@@ -408,6 +406,8 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      skills: # CorvaxGoob-Skills
+      - All
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
@@ -438,6 +438,8 @@
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTJanitor
@@ -472,16 +474,11 @@
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTEngineer
-      requirements:
-      - !type:DepartmentTimeRequirement
-        department: Engineering
-        time: 36000 # ten hours
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 18000 # five hours
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -511,6 +508,8 @@
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTEngineer
@@ -545,6 +544,8 @@
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTSecurity
@@ -579,6 +580,8 @@
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
       job: ERTSecurity
@@ -642,6 +645,8 @@
       raffle:
         settings: short
       job: ERTMedical
+      skills: # CorvaxGoob-Skills
+      - All
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -675,15 +680,10 @@
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
-      requirements:
-      - !type:DepartmentTimeRequirement
-        department: Medical
-        time: 36000 # ten hours
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 18000 # five hours
       job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
@@ -717,15 +717,11 @@
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: short
-      requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # ten hours
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 18000 # five hours
+      job: CBURN
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -754,8 +750,11 @@
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
       rules: ghost-role-information-nonantagonist-rules
+      skills: # CorvaxGoob-Skills
+      - All
       raffle:
         settings: default
+      job: CentralCommandOfficial
     - type: Loadout
       prototypes: [ CentcomGear ]
       roleLoadout: [ RoleSurvivalStandard ]

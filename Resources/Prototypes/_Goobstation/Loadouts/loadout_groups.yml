@@ -1023,6 +1023,7 @@
   minLimit: 0
   loadouts:
   - BlueshieldOfficerMaskLollypop
+  - BlueShieldMaskGasSWAT # CorvaxGoob-loadouts
 
 - type: loadoutGroup
   id: BlueshieldOfficerShoes
@@ -1031,6 +1032,7 @@
   - JackBoots
   - BlackCowboyBoots
   - SnowjacksBso
+  - ClothingShoesSwatBoots # corvaxgoob
 
 - type: loadoutGroup
   id: BlueshieldOfficerEnvirohelm
@@ -1594,3 +1596,21 @@
   - JumpsuitHawaiBlue
   - JumpsuitHawaiRed
   - JumpsuitHawaiYellow
+
+# Salvage/Shaft Miner
+
+- type: loadoutGroup
+  id: SalvageSpecialistJumpsuit
+  name: loadout-group-salvage-specialist-jumpsuit
+  loadouts:
+  - SalvageSpecialistJumpsuit
+  - SalvageSpecialistJumpskirt
+  - SalvageSpecialistOveralls
+
+- type: loadoutGroup
+  id: ShaftMinerJumpsuit
+  name: loadout-group-shaft-miner-jumpsuit
+  loadouts:
+  - ShaftMinerJumpsuit
+  - ShaftMinerJumpskirt
+  - ShaftMinerOveralls

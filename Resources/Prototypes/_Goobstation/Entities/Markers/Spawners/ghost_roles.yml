@@ -78,6 +78,9 @@
     name: ghost-role-information-Singuloth-Knight-name
     description: ghost-role-information-Singuloth-Knight-description
     rules: ghost-role-information-freeagent-rules
+    skills: # CorvaxGoob-Skills
+    - AdvancedBuilding
+    - ShuttleControl
     mindRoles:
     - MindRoleGhostRoleFreeAgent
     raffle:
@@ -99,6 +102,8 @@
     name: ghost-role-information-dark-lord-name
     description: ghost-role-information-dark-lord-description
     rules: ghost-role-information-antagonist-rules
+    skills: # CorvaxGoob-Skills
+    - Shooting
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:
@@ -121,6 +126,8 @@
     name: ghost-role-information-mime-Assassin-name
     description: ghost-role-information-mime-Assassin-description
     rules: ghost-role-information-antagonist-rules
+    skills: # CorvaxGoob-Skills
+      - All
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:
@@ -184,6 +191,8 @@
     name: ghost-role-information-vox-raider-name
     description: ghost-role-information-vox-raider-description
     rules: ghost-role-information-antagonist-rules
+    skills: # CorvaxGoob-Skills
+    - All
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:

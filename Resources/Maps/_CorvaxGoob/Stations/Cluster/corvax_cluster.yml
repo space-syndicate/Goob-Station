@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 266.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 02/15/2026 08:32:48
-  entityCount: 13240
+  forkId: syndicate-goob
+  forkVersion: 513fa71254c1ff351c96d052d4f5a6869ae24022
+  time: 04/24/2026 05:03:03
+  entityCount: 13241
 maps:
 - 12281
 grids:
@@ -6548,7 +6548,7 @@ entities:
       pos: 16.5,-5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -35607.67
+      secondsUntilStateChange: -36470.176
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -60404,6 +60404,13 @@ entities:
     - type: Transform
       pos: 38.602123,10.482112
       parent: 1
+- proto: MagistrateGavel
+  entities:
+  - uid: 13241
+    components:
+    - type: Transform
+      pos: 42.9324,33.54921
+      parent: 1
 - proto: MailBag
   entities:
   - uid: 1786
@@ -73005,6 +73012,18 @@ entities:
     - type: Transform
       pos: -15.5,-3.5
       parent: 1
+- proto: SpawnMobBingleCargo
+  entities:
+  - uid: 11927
+    components:
+    - type: Transform
+      pos: 9.5,-19.5
+      parent: 1
+  - uid: 11928
+    components:
+    - type: Transform
+      pos: -38.5,-3.5
+      parent: 1
 - proto: SpawnMobCatException
   entities:
   - uid: 5924
@@ -73051,18 +73070,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,29.5
-      parent: 1
-- proto: SpawnMobGorillaLargo
-  entities:
-  - uid: 11927
-    components:
-    - type: Transform
-      pos: 9.5,-19.5
-      parent: 1
-  - uid: 11928
-    components:
-    - type: Transform
-      pos: -38.5,-3.5
       parent: 1
 - proto: SpawnMobMcGriff
   entities:
@@ -73307,11 +73314,6 @@ entities:
     - type: Transform
       pos: 32.5,5.5
       parent: 1
-  - uid: 12442
-    components:
-    - type: Transform
-      pos: 42.5,32.5
-      parent: 1
   - uid: 12443
     components:
     - type: Transform
@@ -73323,6 +73325,13 @@ entities:
     components:
     - type: Transform
       pos: -37.5,-9.5
+      parent: 1
+- proto: SpawnPointMagistrate
+  entities:
+  - uid: 12442
+    components:
+    - type: Transform
+      pos: 41.5,34.5
       parent: 1
 - proto: SpawnPointMedicalDoctor
   entities:

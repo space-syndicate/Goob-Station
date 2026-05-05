@@ -22,6 +22,8 @@
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
   - type: Stomach
   - type: SolutionContainerManager
     solutions:
@@ -32,3 +34,48 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+
+# CorvaxGoob resprite start
+- type: entity
+  parent: OrganHumanBrain
+  id: OrganVulpkaninBrain
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
+
+- type: entity
+  parent: OrganHumanEyes
+  id: OrganVulpkaninEyes
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
+
+- type: entity
+  parent: OrganAnimalHeart
+  id: OrganVulpkaninHeart
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
+
+- type: entity
+  parent: OrganHumanLungs
+  id: OrganVulpkaninLungs
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
+
+- type: entity
+  parent: OrganAnimalLiver
+  id: OrganVulpkaninLiver
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
+
+- type: entity
+  parent: OrganHumanKidneys
+  id: OrganVulpkaninKidneys
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vulp/organs.rsi
+
+# CorvaxGoob resprite end

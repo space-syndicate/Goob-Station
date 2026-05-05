@@ -215,7 +215,7 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
 
     private void OnGetAntagBlocker(Entity<ChangelingComponent> ent, ref GetAntagSelectionBlockerEvent args)
     {
-        args.IsChangeling = true;
+        args.Blocked = true;
     }
 
     private void OnMindswapAttempt(Entity<ChangelingComponent> ent, ref BeforeMindSwappedEvent args)
@@ -698,7 +698,7 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
             typeof(Shared.Overlays.ThermalVisionComponent)
         };
         foreach (var type in types)
-            _polymorph.CopyPolymorphComponent(uid, newEnt, nameof(type));
+            _polymorph.CopyPolymorphComponent(uid, newEnt, type); // CorvaxGoob edit
 
         // CopyPolymorphComponent fails to copy the HumanoidAppearanceComponent in TransformData
         // outside of the first list item so this has to be done manually unfortunately
@@ -793,16 +793,14 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
     // in the future ChangelingIdentity should have its own system and be ONLY used for holding stored DNA and handling transformations.
     private void OnChangelingMapInit(Entity<ChangelingComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.EvolutionsAssigned) // this is solely because polymorph will cause mega errors otherwise
+        if (ent.Comp.EvolutionsAssigned // this is solely because polymorph will cause mega errors otherwise
+            || !_proto.TryIndex(ent.Comp.EvolutionsProto, out var evoProto))
             return;
 
-        if (!_proto.TryIndex(ent.Comp.EvolutionsProto, out var evoProto))
-            return;
-
-        foreach (var startingComp in evoProto.Components)
+        foreach (var startingCompEntry in evoProto.Components.Values)
         {
-            var startCompType = startingComp.Value.Component.GetType();
-            var startComp = Factory.GetComponent(startCompType);
+            var startComp = Factory.GetComponent(startingCompEntry);
+            var startCompType = startComp.GetType();
 
             if (!HasComp(ent, startCompType)) // don't overwrite the starting components if you already have them (somehow)
                 AddComp(ent, startComp, true);

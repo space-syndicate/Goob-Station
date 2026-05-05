@@ -1,0 +1,12 @@
+- type: entity
+  id: BulletPistolRubber
+  parent: BaseBulletRubber
+  name: bullet (.35 auto rubber)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageModifierOnCollide
+    staminaCoefficient: 5

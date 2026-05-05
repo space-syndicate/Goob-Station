@@ -39,6 +39,7 @@ using System.Numerics;
 using Content.Shared._EinsteinEngines.Contests;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind.Components;
+using Content.Goobstation.Common.Traits; // CorvaxGoob edit
 
 namespace Content.Shared._DV.Carrying;
 
@@ -79,7 +80,7 @@ public sealed class CarryingSystem : EntitySystem
         SubscribeLocalEvent<BeingCarriedComponent, UnbuckledEvent>(OnDrop);
         SubscribeLocalEvent<BeingCarriedComponent, StrappedEvent>(OnDrop);
         SubscribeLocalEvent<BeingCarriedComponent, UnstrappedEvent>(OnDrop);
-        SubscribeLocalEvent<BeingCarriedComponent, EscapeInventoryEvent>(OnDrop);
+        SubscribeLocalEvent<BeingCarriedComponent, EscapeInventoryEvent>(OnEscapeDrop); // Goob
         SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<BeingCarriedComponent, EntityTerminatingEvent>(OnDelete);
     }
@@ -227,6 +228,14 @@ public sealed class CarryingSystem : EntitySystem
         DropCarried(ent.Comp.Carrier, ent);
     }
 
+    // Separate event so that cancels dont just drop the ent
+    private void OnEscapeDrop(Entity<BeingCarriedComponent> ent, ref EscapeInventoryEvent args)
+    {
+        if (args.Cancelled)
+            return;
+        DropCarried(ent.Comp.Carrier, ent.Owner);
+    }
+
     private void OnDoAfter(Entity<CarriableComponent> ent, ref CarryDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
@@ -327,7 +336,8 @@ public sealed class CarryingSystem : EntitySystem
     private void Drop(EntityUid carried)
     {
         RemComp<BeingCarriedComponent>(carried);
-        RemComp<KnockedDownComponent>(carried); // TODO SHITMED: make sure this doesnt let you make someone with no legs walk
+        if (!HasComp<LegsParalyzedComponent>(carried)) // CorvaxGoob edit
+            RemComp<KnockedDownComponent>(carried);
         _actionBlocker.UpdateCanMove(carried);
         Transform(carried).AttachToGridOrMap();
         _standingState.Stand(carried);

@@ -1,5 +1,5 @@
 - type: collectiveMind
   id: AbductormindAntag
   name: collective-mind-abductormindAntag
-  keycode: 'a'
+  keycode: 'а' # CorvaxGoob-Loc
   color: "#cb00d6"

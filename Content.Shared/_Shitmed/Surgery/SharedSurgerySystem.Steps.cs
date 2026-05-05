@@ -48,6 +48,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared._Shitmed.Surgery;
+using Content.Shared._CorvaxGoob.Skills;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 
@@ -59,6 +60,7 @@ public abstract partial class SharedSurgerySystem
     private EntityQuery<SurgeryToolComponent> _toolQuery;
 
     private readonly List<EntityUid> _nextStepList = new();
+    private const float SpeedWithoutSurgerySkill = 0.25f; // CorvaxGoob-Skills
 
     private void InitializeSteps()
     {
@@ -882,8 +884,12 @@ public abstract partial class SharedSurgerySystem
         var ev = new SurgeryDoAfterEvent(surgeryId, stepId, toolUsed);
         var duration = GetSurgeryDuration(step, user, body, speed);
 
+        /* CorvaxGoob-Skills-start: you need Surgery skill for anyone modifier, if you haven't skill, take debufff | fix duplicate duration
         if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod))
-            duration = duration / surgerySpeedMod.SpeedModifier;
+        {
+            duration /= surgerySpeedMod.SpeedModifier;
+        }
+        // CorvaxGoob-Skills-end*/
 
         var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(duration), ev, body, part)
         {
@@ -923,11 +929,18 @@ public abstract partial class SharedSurgerySystem
             return 2f; // Shouldnt really happen but just a failsafe.
 
         var speed = toolSpeed;
-        if(TryComp<BuckleComponent>(target, out var buckleComp)) // Get buckle component from target.
-            if(TryComp<OperatingTableComponent>(buckleComp.BuckledTo, out var operatingTableComponent))  // If they are buckled to entity with operating table component
-                speed *= operatingTableComponent.SpeedModifier; // apply surgery speed modifier
-        if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod))
-            speed *= surgerySpeedMod.SpeedModifier;
+        // CorvaxGoob-Skills-start: you need Surgery skill for anyone modifier, if you haven't skill, take debufff
+        if (_skills.HasSkill(user, Skills.Surgery))
+        {
+            if (TryComp<BuckleComponent>(target, out var buckleComp)) // Get buckle component from target.
+                if (TryComp<OperatingTableComponent>(buckleComp.BuckledTo, out var operatingTableComponent))  // If they are buckled to entity with operating table component
+                    speed *= operatingTableComponent.SpeedModifier; // apply surgery speed modifier
+            if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod))
+                speed *= surgerySpeedMod.SpeedModifier;
+        }
+        else
+            speed *= SpeedWithoutSurgerySkill;
+        // CorvaxGoob-Skills-end
 
         return stepComp.Duration / speed;
     }

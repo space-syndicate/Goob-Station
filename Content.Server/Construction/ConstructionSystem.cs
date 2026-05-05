@@ -44,7 +44,6 @@
 using Content.Server._CorvaxGoob.Skills;
 using Content.Server.Construction.Components;
 using Content.Server.Stack;
-using Content.Shared._CorvaxGoob.Skills;
 using Content.Shared.Construction;
 using Content.Shared.DoAfter;
 using Content.Shared.Stacks;

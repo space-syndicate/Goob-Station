@@ -15,6 +15,10 @@
   - Cargo
   goobcoins: 20
   supervisors: job-supervisors-qm
+  skills: # CorvaxGoob-Skills
+  - ShuttleControl
+  - Shooting
+  - Butchering
   access:
   - Cargo
   - Salvage
@@ -24,7 +28,7 @@
 - type: startingGear
   id: ShaftMinerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitShaftMiner
+## Goob comment out - jumpsuit: ClothingUniformJumpsuitShaftMiner
     id: MinerPDA
     ears: ClothingHeadsetCargo
   storage:

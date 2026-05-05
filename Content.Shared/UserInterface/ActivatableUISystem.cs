@@ -53,6 +53,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.UserInterface;
@@ -168,7 +169,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
             if (component.InHandsOnly)
             {
-                if (!_hands.IsHolding((args.User, args.Hands), uid, out var hand ))
+                if (!_hands.IsHolding((args.User, args.Hands), uid, out var hand))
                     return false;
 
                 if (component.RequireActiveHand && args.Hands.ActiveHandId != hand)
@@ -195,7 +196,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
     private void OnActivate(EntityUid uid, ActivatableUIComponent component, ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex)
+        if (args.Handled || !args.Complex && TryComp<GhostComponent>(args.User, out var ghost) && !ghost.CanGhostOpenUI) // CorvaxGoob-GhostUIViewing
             return;
 
         if (component.VerbOnly)
@@ -248,14 +249,17 @@ public sealed partial class ActivatableUISystem : EntitySystem
             return true;
         }
 
-        if (!_blockerSystem.CanInteract(user, uiEntity) && (!HasComp<GhostComponent>(user) || aui.BlockSpectators))
+        if (!_blockerSystem.CanInteract(user, uiEntity)) // CorvaxGoob-GhostUIViewing
             return false;
 
-        if (aui.RequiresComplex)
+        if (TryComp<GhostComponent>(user, out var ghost) && aui.BlockSpectators && !ghost.CanGhostInteract) // CorvaxGoob-GhostUIViewing
+            return false;
+
+        /* if (aui.RequiresComplex) CorvaxGoob-GhostUIViewing : смещено вниз
         {
             if (!_blockerSystem.CanComplexInteract(user))
                 return false;
-        }
+        } */
 
         if (aui.InHandsOnly)
         {
@@ -282,6 +286,17 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
             Log.Error($"Activatable UI has user without being opened? Entity: {ToPrettyString(uiEntity)}. User: {aui.CurrentSingleUser}, Key: {aui.Key}");
         }
+
+        // CorvaxGoob-GhostUIViewing-Start
+        if (aui.RequiresComplex && ghost is null) // Гостам не думаю что требуется комплексное взаимодействие для открытие консолей. ведь так?
+        {
+            if (!_blockerSystem.CanComplexInteract(user))
+                return false;
+        }
+
+        if (ghost is not null && !ghost.CanGhostOpenUI)
+            return false;
+        // CorvaxGoob-GhostUIViewing-End
 
         // If we've gotten this far, fire a cancellable event that indicates someone is about to activate this.
         // This is so that stuff can require further conditions (like power).

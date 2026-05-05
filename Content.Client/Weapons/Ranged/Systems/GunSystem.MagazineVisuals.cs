@@ -60,9 +60,12 @@ public sealed partial class GunSystem
                 capacity = component.MagSteps;
             }
 
+            bool isEmpty = false; // CorvaxGoob
+
             if (!args.AppearanceData.TryGetValue(AmmoVisuals.AmmoCount, out var current))
             {
                 current = component.MagSteps;
+                isEmpty = true; // CorvaxGoob
             }
 
             var step = ContentHelpers.RoundToLevels((int)current, (int)capacity, component.MagSteps);
@@ -70,7 +73,7 @@ public sealed partial class GunSystem
             if (component.ZeroNoAmmo && step == 0 && (int) current > 0) // Goobstation
                 step = Math.Min(1, component.MagSteps - 1);
 
-            if (step == 0 && !component.ZeroVisible)
+            if (isEmpty || step == 0 && !component.ZeroVisible) // CorvaxGoob : добавлена проверка и реализация переменной отвечающей за отсутствие магазина
             {
                 if (_sprite.LayerMapTryGet((uid, sprite), GunVisualLayers.Mag, out _, false))
                 {

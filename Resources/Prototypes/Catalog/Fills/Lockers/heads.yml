@@ -175,6 +175,7 @@
     - id: CargoMegaphone # goob - loudspeaker
     - id: SlotMachineHighRollerFlatPack # Goob - gambling
     - id: ComputerFundingAllocationFlatpack #CorvaxGoob-QuarterMaster-finance
+    - id: HoloprojectorCrate #CorvaxGoob-CargoHoloprojector
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -597,3 +598,5 @@
     - id: SpaceCash1000
     - id: BeachBall
     - id: BikeHorn
+    - id: FoodMango #Goobstation
+      prob: 0.65

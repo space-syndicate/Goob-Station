@@ -86,6 +86,15 @@
         - TabletopMachineMask
         layer:
         - GlassAirlockLayer
+      fix2: # CorvaxGoob edit
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.36,0.49,0.49"
+        density: 1500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - HighImpassable
   - type: Sprite
     sprite: Structures/Doors/Windoors/windoor.rsi
     layers:

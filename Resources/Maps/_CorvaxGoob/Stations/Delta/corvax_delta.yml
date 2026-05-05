@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 266.0.0
   forkId: syndicate-goob
-  forkVersion: 8e86a6ff3505ab0044ef126d85040cfc32a4c503
-  time: 02/19/2026 04:16:06
-  entityCount: 37236
+  forkVersion: 513fa71254c1ff351c96d052d4f5a6869ae24022
+  time: 04/24/2026 04:24:19
+  entityCount: 37230
 maps:
 - 84
 grids:
@@ -21283,7 +21283,7 @@ entities:
       pos: 22.5,3.5
       parent: 13307
     - type: Door
-      secondsUntilStateChange: -59146.324
+      secondsUntilStateChange: -59220.574
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -22993,7 +22993,7 @@ entities:
       pos: -20.5,6.5
       parent: 13307
     - type: Door
-      secondsUntilStateChange: -188788.33
+      secondsUntilStateChange: -188862.58
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -95409,26 +95409,26 @@ entities:
       pos: 38.491764,-41.364925
       parent: 13307
     - type: Stethoscope
-      actionEntity: 1873
+      actionEntity: invalid
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
         actions: !type:Container
           ents:
-          - 1873
+          - invalid
   - uid: 2039
     components:
     - type: Transform
       pos: 29.51191,-31.395493
       parent: 13307
     - type: Stethoscope
-      actionEntity: 2233
+      actionEntity: invalid
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
         actions: !type:Container
           ents:
-          - 2233
+          - invalid
   - uid: 14966
     components:
     - type: Transform
@@ -118083,7 +118083,7 @@ entities:
       pos: -31.49463,-40.90357
       parent: 13307
     - type: HandheldLight
-      toggleActionEntity: 15657
+      toggleActionEntity: invalid
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
@@ -118094,7 +118094,7 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 15657
+          - invalid
     - type: ActionsContainer
   - uid: 25703
     components:
@@ -118116,7 +118116,7 @@ entities:
       pos: -28.613546,-74.81218
       parent: 13307
     - type: HandheldLight
-      toggleActionEntity: 7066
+      toggleActionEntity: invalid
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
@@ -118127,7 +118127,7 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 7066
+          - invalid
     - type: ActionsContainer
 - proto: FlippoLighter
   entities:
@@ -118947,7 +118947,7 @@ entities:
   - uid: 15784
     components:
     - type: Transform
-      pos: 29.620113,-2.432455
+      pos: 29.718054,-2.5486026
       parent: 13307
 - proto: FoodDonutChaos
   entities:
@@ -174808,16 +174808,16 @@ entities:
       pos: -45.636387,-15.32077
       parent: 13307
     - type: GasTank
-      toggleActionEntity: 17424
+      toggleActionEntity: invalid
     - type: Jetpack
-      toggleActionEntity: 17143
+      toggleActionEntity: invalid
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
         actions: !type:Container
           ents:
-          - 17143
-          - 17424
+          - invalid
+          - invalid
 - proto: JetpackBlueFilled
   entities:
   - uid: 2911
@@ -175169,7 +175169,7 @@ entities:
       pos: -45.550945,18.48654
       parent: 13307
     - type: HandheldLight
-      toggleActionEntity: 17655
+      toggleActionEntity: invalid
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
@@ -175180,7 +175180,7 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 17655
+          - invalid
     - type: Physics
       canCollide: True
     - type: ActionsContainer
@@ -178538,6 +178538,13 @@ entities:
     - type: Transform
       pos: 84.13359,-0.45258796
       parent: 13307
+- proto: MagistrateGavel
+  entities:
+  - uid: 2233
+    components:
+    - type: Transform
+      pos: 29.613876,-2.325388
+      parent: 13307
 - proto: MailBag
   entities:
   - uid: 43
@@ -179996,13 +180003,13 @@ entities:
       pos: 34.424454,-39.43835
       parent: 13307
     - type: GasTank
-      toggleActionEntity: 23026
+      toggleActionEntity: invalid
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
         actions: !type:Container
           ents:
-          - 23026
+          - invalid
 - proto: NodeScanner
   entities:
   - uid: 5310
@@ -208636,6 +208643,13 @@ entities:
     - type: Transform
       pos: -34.5,48.5
       parent: 13307
+- proto: SpawnMobBingleCargo
+  entities:
+  - uid: 21665
+    components:
+    - type: Transform
+      pos: 27.5,41.5
+      parent: 13307
 - proto: SpawnMobButterfly
   entities:
   - uid: 419
@@ -208706,13 +208720,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,5.5
-      parent: 13307
-- proto: SpawnMobGorillaLargo
-  entities:
-  - uid: 21665
-    components:
-    - type: Transform
-      pos: 27.5,41.5
       parent: 13307
 - proto: SpawnMobMcGriff
   entities:
@@ -209004,6 +209011,13 @@ entities:
     components:
     - type: Transform
       pos: -22.5,-11.5
+      parent: 13307
+- proto: SpawnPointMagistrate
+  entities:
+  - uid: 1873
+    components:
+    - type: Transform
+      pos: 31.5,-1.5
       parent: 13307
 - proto: SpawnPointMedicalDoctor
   entities:

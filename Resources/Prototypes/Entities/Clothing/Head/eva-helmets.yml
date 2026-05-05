@@ -160,9 +160,9 @@
   description: A void helmet made for paramedics.
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Head/Hardsuits/goobparamed.rsi # goobstation - wizden sprites SUCK ASS!!!
+    sprite: Clothing/Head/Hardsuits/paramedhelm.rsi #corvaxGoob
   - type: Clothing
-    sprite: _Goobstation/Clothing/Head/Hardsuits/goobparamed.rsi # goobstation - wizden sprites SUCK ASS!!!
+    sprite: Clothing/Head/Hardsuits/paramedhelm.rsi #corvaxGoob
   - type: PointLight # goobstation
     color: "#3385cc"
   - type: TemperatureProtection

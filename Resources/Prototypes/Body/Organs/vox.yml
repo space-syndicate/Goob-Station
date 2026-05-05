@@ -21,7 +21,10 @@
   name: vox lungs # Shitmed
   components:
   - type: Sprite
-    sprite: Mobs/Species/Vox/organs.rsi
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi # CorvaxGoob resprite
+    layers:
+      - state: lung-l
+      - state: lung-r
   - type: Metabolizer
     metabolizerTypes: [ Vox ]
   - type: Lung
@@ -36,6 +39,8 @@
   name: stomach
   description: "A stomach that smells of ammonia."
   components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi # CorvaxGoob organs resprite
   - type: Metabolizer #Skreeeee!
     metabolizerTypes: [Vox]
   - type: Stomach
@@ -51,6 +56,8 @@
   name: liver
   description: "Smells flammable."
   components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi # CorvaxGoob organs resprite
   - type: Metabolizer
     metabolizerTypes: [Vox]
 
@@ -60,5 +67,32 @@
   name: heart
   description: "The strange heart of a vox."
   components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi # CorvaxGoob organs resprite
   - type: Metabolizer
     metabolizerTypes: [Vox]
+
+# CorvaxGoob organs resprite start
+
+- type: entity
+  parent: OrganHumanBrain
+  id: OrganVoxBrain
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi
+
+- type: entity
+  parent: OrganHumanEyes
+  id: OrganVoxEyes
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi
+
+- type: entity
+  parent: OrganHumanKidneys
+  id: OrganVoxKidneys
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Vox/organs.rsi
+
+# CorvaxGoob organs resprite end
