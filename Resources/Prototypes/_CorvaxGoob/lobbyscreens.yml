@@ -448,7 +448,7 @@
 
 - type: lobbyBackground  
   id: NoCompromises
-  background: /Textures/_CorvaxGoob/LobbyScreens/no-сompromises.webp
+  background: /Textures/_CorvaxGoob/LobbyScreens/no-compromises.webp
   name: "Никаких Компромиссов"  
   artist: "AscArt"
 
