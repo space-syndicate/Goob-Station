@@ -19,7 +19,7 @@
   - type: Item
     size: Small
   - type: TapeRecorder
-    transcriptionLanguages: [TauCetiBasic, Canilunzt] #CorvaxGoob-RecorderLanguage-Fix
+    transcriptionLanguages: [TauCetiBasic] #CorvaxGoob-RecorderLanguage-Fix
   - type: ActiveListener
     range: 4
   - type: UseDelay
