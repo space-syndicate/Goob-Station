@@ -102,12 +102,14 @@ public sealed class SmartEquipSystem : EntitySystem
         // 1) doesn't have an item
         //    - with hand item: try to put it in the slot
         //    - without hand item: fail
+        // CorvaxGoob edit start
         // 2) has an item, and that item is an item slots holder
         //    - with hand item: get the highest priority item slot with a valid whitelist and try to insert it
         //    - without hand item: get the highest priority item slot with an item and try to eject it
         // 3) has an item, and that item is a storage item
         //    - with hand item: try to put it in storage
         //    - without hand item: try to take the last stored item and put it in our hands
+        // CorvaxGoob edit end
         // 4) has an item, with no special storage components
         //    - with hand item: fail
         //    - without hand item: try to put the item into your hand
@@ -134,6 +136,8 @@ public sealed class SmartEquipSystem : EntitySystem
             _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter:true);
             return;
         }
+
+        // CorvaxGoob edit start
 
         // case 2 (itemslot item):
         if (TryComp<ItemSlotsComponent>(slotItem, out var slots))
@@ -216,6 +220,8 @@ public sealed class SmartEquipSystem : EntitySystem
 
             return;
         }
+
+        // CorvaxGoob edit end
 
         // case 4 (just an item):
         if (handItem != null)
