@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Content.Shared._CorvaxGoob.InternalResources.Data; // CorvaxGoob edit
 
 namespace Content.Goobstation.Shared.InternalResources.Data;
 

@@ -1,7 +1,6 @@
-// CorvaxGoob
 using Robust.Shared.Serialization;
 
-namespace Content.Goobstation.Shared.InternalResources.Data;
+namespace Content.Shared._CorvaxGoob.InternalResources.Data;
 
 [Serializable, NetSerializable]
 [DataDefinition]

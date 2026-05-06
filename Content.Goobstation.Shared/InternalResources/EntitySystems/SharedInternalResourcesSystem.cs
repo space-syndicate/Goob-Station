@@ -2,6 +2,7 @@ using Content.Goobstation.Shared.Alert.Events;
 using Content.Goobstation.Shared.InternalResources.Components;
 using Content.Goobstation.Shared.InternalResources.Data;
 using Content.Goobstation.Shared.InternalResources.Events;
+using Content.Shared._CorvaxGoob.InternalResources.Data; // CorvaxGoob edit
 using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;

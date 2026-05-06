@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared._CorvaxGoob.InternalResources.Data; // CorvaxGoob edit
 
 namespace Content.Goobstation.Shared.InternalResources.Data;
 
