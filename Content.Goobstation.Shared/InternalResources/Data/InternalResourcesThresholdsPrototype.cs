@@ -12,9 +12,9 @@ public sealed class InternalResourcesThresholdsPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     /// <summary>
-    /// Float is the percentage from 0 to 1. 
+    /// Float is the percentage from 0 to 1.
     /// Bool is if the threshold was met.
     /// </summary>
     [DataField]
-    public Dictionary<string, (float, bool)>? Thresholds;
+    public Dictionary<string, ThresholdData>? Thresholds; // CorvaxGoob edit
 }

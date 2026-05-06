@@ -32,7 +32,7 @@ public sealed partial class InternalResourcesData
     /// The thresholds at which InternalResourcesThresholdMetEvent will be raised.
     /// </summary>
     [DataField]
-    public Dictionary<string, (float, bool)>? Thresholds;
+    public Dictionary<string, ThresholdData>? Thresholds; // CorvaxGoob edit
 
     /// <summary>
     /// Prototype with visual information of internal resources
@@ -44,7 +44,7 @@ public sealed partial class InternalResourcesData
         float maxAmount,
         float regenerationRate,
         float startingAmount,
-        Dictionary<string, (float, bool)>? thresholds,
+        Dictionary<string, ThresholdData>? thresholds, // CorvaxGoob edit
         string protoId)
     {
         CurrentAmount = startingAmount;

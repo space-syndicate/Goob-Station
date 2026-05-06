@@ -273,9 +273,12 @@ public abstract class SharedInternalResourcesSystem : EntitySystem
         return Resolve(uid, ref component) && component.HasResourceData(type, out data);
     }
 
+
+
     /// <summary>
     /// Handles internal resources regeneration
     /// </summary>
+    // СorvaxGoob edit start
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -288,6 +291,8 @@ public abstract class SharedInternalResourcesSystem : EntitySystem
         var query = EntityQueryEnumerator<InternalResourcesComponent>();
         while (query.MoveNext(out var uid, out var resourcesComp))
         {
+            var dirtyNeeded = false;
+
             foreach (var resourceData in resourcesComp.CurrentInternalResources)
             {
                 var modEv = new InternalResourcesRegenModifierEvent(
@@ -296,34 +301,34 @@ public abstract class SharedInternalResourcesSystem : EntitySystem
                     resourceData.RegenerationRate);
                 RaiseLocalEvent(uid, ref modEv);
 
+
                 TryUpdateResourcesAmount(uid, resourceData, modEv.Modifier, resourcesComp);
 
                 if (resourceData.Thresholds == null)
                     continue;
 
-                var thresholdsArray = resourceData.Thresholds.Keys.ToArray();
-                foreach (var key in thresholdsArray)
+                foreach (var (key, threshold) in resourceData.Thresholds)
                 {
-                    var threshold = resourceData.Thresholds[key];
-                    // threshold.Item1 is the threshold percentage
-                    // threshold.Item2 is the bool for the threshold having been met
+                    var scaledAmount = resourceData.MaxAmount * threshold.Percentage;
 
-                    var scaledAmount = resourceData.MaxAmount * threshold.Item1;
-
-                    if (!threshold.Item2 // threshold needs to not have been met already
-                        && resourceData.CurrentAmount <= scaledAmount)
+                    if (!threshold.Met && resourceData.CurrentAmount <= scaledAmount)
                     {
                         var threshEv = new InternalResourcesThresholdMetEvent(uid, resourceData, key);
                         RaiseLocalEvent(uid, ref threshEv);
                     }
 
-                    threshold.Item2 = resourceData.CurrentAmount <= scaledAmount;
-
-                    resourceData.Thresholds[key] = threshold;
+                    var newMet = resourceData.CurrentAmount <= scaledAmount;
+                    if (newMet != threshold.Met)
+                    {
+                        threshold.Met = newMet;
+                        dirtyNeeded = true;
+                    }
                 }
-
-                Dirty(uid, resourcesComp);
             }
+
+            if (dirtyNeeded)
+                Dirty(uid, resourcesComp);
         }
-    }
+        // СorvaxGoob edit end
+}
 }
