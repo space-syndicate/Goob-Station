@@ -6,7 +6,6 @@ using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Content.Goobstation.Shared.InternalResources.EntitySystems;
 public abstract class SharedInternalResourcesSystem : EntitySystem
@@ -273,12 +272,10 @@ public abstract class SharedInternalResourcesSystem : EntitySystem
         return Resolve(uid, ref component) && component.HasResourceData(type, out data);
     }
 
-
-
     /// <summary>
     /// Handles internal resources regeneration
     /// </summary>
-    // СorvaxGoob edit start
+    // CorvaxGoob edit start
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -300,7 +297,6 @@ public abstract class SharedInternalResourcesSystem : EntitySystem
                     resourceData,
                     resourceData.RegenerationRate);
                 RaiseLocalEvent(uid, ref modEv);
-
 
                 TryUpdateResourcesAmount(uid, resourceData, modEv.Modifier, resourcesComp);
 
@@ -329,6 +325,6 @@ public abstract class SharedInternalResourcesSystem : EntitySystem
             if (dirtyNeeded)
                 Dirty(uid, resourcesComp);
         }
-        // СorvaxGoob edit end
-}
+        // CorvaxGoob edit end
+    }
 }
