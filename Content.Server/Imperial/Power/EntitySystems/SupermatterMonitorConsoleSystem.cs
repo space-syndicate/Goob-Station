@@ -1,6 +1,7 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Examine;
+using Content.Shared.Imperial.Power.Components;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
 

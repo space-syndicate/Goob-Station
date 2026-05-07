@@ -2,6 +2,7 @@ using Content.Server.Effects;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Imperial.Power.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
@@ -13,13 +14,11 @@ public sealed class SupermatterTouchSystem : EntitySystem
 {
     [Dependency] private readonly ColorFlashEffectSystem _colorFlash = null!;
     [Dependency] private readonly SharedAudioSystem _audio = null!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<SupermatterTouchComponent, StartCollideEvent>(OnStartCollide);
-        SubscribeLocalEvent<SupermatterGasComponent, SupermatterTouchedEvent>(OnTouched);
+        SubscribeLocalEvent<SupermatterGasComponent, SupermatterTouchedEvent>(OnTouched, before: [typeof(SupermatterEventSystem)]);
     }
 
     private void OnStartCollide(Entity<SupermatterTouchComponent> supermatter, ref StartCollideEvent args)
@@ -45,13 +44,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var xform = Transform(supermatter);
-        var gas = _atmosphereSystem.GetContainingMixture((supermatter.Owner, xform), true, true);
-        if (gas == null)
-            return;
-
-        var hyperNobMoles = gas.GetMoles(Gas.HyperNoblium);
-        if (hyperNobMoles > supermatter.Comp.GasActivationMoles)
+        if (supermatter.Comp.RuntimeDisableTouchGib)
             args.Cancelled = true;
     }
 

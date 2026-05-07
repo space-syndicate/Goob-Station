@@ -1,6 +1,7 @@
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
+using Content.Shared.Imperial.Power.Components;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
 
@@ -58,13 +59,8 @@ public sealed class SupermatterLightningEvent
         if (supermatterSystem.TryGetComponent<SupermatterGasComponent>(entity, out var gasComp)
             && gasComp != null)
         {
-            var gas = gasComp.CachedGasMixture;
-            if (gas != null)
-            {
-                var tritiumMoles = gas.GetMoles(Gas.Tritium);
-                if (tritiumMoles > gasComp.GasActivationMoles && gasComp.TritiumLightningMultiplier > 1f)
-                    boltCount = (int) MathF.Max(1, boltCount * gasComp.TritiumLightningMultiplier);
-            }
+            if (gasComp.RuntimeLightningMultiplier > 1f)
+                boltCount = (int) MathF.Max(1, boltCount * gasComp.RuntimeLightningMultiplier);
         }
 
         // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе

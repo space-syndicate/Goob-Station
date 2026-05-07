@@ -8,6 +8,7 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Examine;
+using Content.Shared.Imperial.Power.Components;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Tag;
 using Content.Shared.Imperial.Power;

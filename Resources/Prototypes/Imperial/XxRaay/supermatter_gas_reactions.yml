@@ -1,0 +1,51 @@
+- type: supermatterGasReaction
+  id: SupermatterGasAntiNobliumShutdown
+  gas: AntiNoblium
+  priority: 1000
+  appliesWhenInactive: true
+  consumeWhenInactive: true
+  processWhenBelowThreshold: true
+  reaction: !type:SupermatterAntiNobliumShutdownReaction {}
+
+- type: supermatterGasReaction
+  id: SupermatterGasThermoniumRegen
+  gas: Thermonium
+  priority: 0
+  reaction: !type:SupermatterIntegrityRegenReaction
+    regenPerSecond: 0.5
+
+- type: supermatterGasReaction
+  id: SupermatterGasTritiumLightning
+  gas: Tritium
+  priority: 0
+  reaction: !type:SupermatterLightningMultiplierReaction
+    multiplier: 2
+
+- type: supermatterGasReaction
+  id: SupermatterGasOzoniumRadiation
+  gas: Ozonium
+  priority: 0
+  reaction: !type:SupermatterRadiationMultiplierReaction
+    multiplier: 1.5
+
+- type: supermatterGasReaction
+  id: SupermatterGasPlasmaRadiation
+  gas: Plasma
+  priority: 0
+  reaction: !type:SupermatterRadiationMultiplierReaction
+    multiplier: 0.5
+
+- type: supermatterGasReaction
+  id: SupermatterGasHyperNobliumDisableTouch
+  gas: HyperNoblium
+  priority: 0
+  appliesWhenInactive: true
+  reaction: !type:SupermatterDisableTouchReaction {}
+
+- type: supermatterGasReaction
+  id: SupermatterGasWaterVaporEventSpeed
+  gas: WaterVapor
+  priority: 0
+  reaction: !type:SupermatterEventSpeedMultiplierReaction
+    multiplier: 2
+
