@@ -68,11 +68,7 @@ public sealed class SupermatterLightningEvent
         }
 
         // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе
-<<<<<<< HEAD
-        supermatterSystem.LightningSystem.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, entity.Comp.LightningBoltCount);
-=======
         supermatterSystem.LightningSystem?.ShootRandomLightnings(entity, entity.Comp.LightningBoltRadius, boltCount);
->>>>>>> ecd9cef67f (Enhance SupermatterGasComponent and SupermatterGasSystem to include caching of gas mixtures and improve event handling. Added CachedGasMixture property for efficient gas data retrieval and updated event subscriptions for better integration with atmosphere updates.)
     }
 
     public static string GetAnnouncement()

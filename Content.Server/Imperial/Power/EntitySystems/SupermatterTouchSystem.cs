@@ -5,6 +5,7 @@ using Content.Shared.Atmos;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Content.Server.Atmos.EntitySystems;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -12,6 +13,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
 {
     [Dependency] private readonly ColorFlashEffectSystem _colorFlash = null!;
     [Dependency] private readonly SharedAudioSystem _audio = null!;
+    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
 
     public override void Initialize()
     {
