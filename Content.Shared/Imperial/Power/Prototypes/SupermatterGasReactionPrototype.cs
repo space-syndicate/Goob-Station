@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.Power.Prototypes;
 /// <summary>
 /// Describes how supermatter reacts to a specific gas.
 /// </summary>
-[Prototype("supermatterGasReaction")]
+[Prototype]
 public sealed partial class SupermatterGasReactionPrototype : IPrototype
 {
     [ViewVariables]
