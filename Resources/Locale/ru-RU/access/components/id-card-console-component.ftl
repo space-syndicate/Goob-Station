@@ -6,6 +6,8 @@ id-card-console-window-job-title-label = Название профессии:
 id-card-console-window-eject-button = Извлечь
 id-card-console-window-insert-button = Вставить
 id-card-console-window-job-selection-label = Форма профессии (Указывает значок профессии и должность):
+id-card-console-window-select-all-button = Получить все
+id-card-console-window-deselect-all-button = Убрать все
 
 access-id-card-console-component-no-hands-error = У тебя нету рук.
 id-card-console-privileged-id = Основной ID

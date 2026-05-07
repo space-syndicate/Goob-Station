@@ -1,0 +1,76 @@
+- type: entity
+  id: MachineGeneCompiner
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  name: tabletop centrifuge
+  description: Around and around it goes...
+  components:
+  - type: Transform
+    anchored: true
+  - type: Appearance
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.17,0,0.20,0.4"
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: GeneCombiner
+  - type: Sprite
+    drawdepth: SmallObjects
+    snapCardinals: true
+    sprite: Imperial/Xenogenetics/combiner.rsi
+    noRot: true
+    offset: "0.0,0.4"
+    layers:
+    - state: base
+      map: ["beyblade"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: True }
+          False: { visible: False }
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gene_slot: !type:Container
+        ents: []
+  - type: ItemSlots
+    slots:
+      gene_output:
+        name: gene-slot-output
+        whitelist:
+          components:
+            - XenoGene
+  - type: Machine
+    board: GeneCombinerCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: PowerState
+    idlePowerDraw: 100
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: GeneCombinerCircuitboard
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: MachineBoard
+    prototype: MachineGeneCompiner
+    stackRequirements:
+      Manipulator: 1
+      Steel: 1

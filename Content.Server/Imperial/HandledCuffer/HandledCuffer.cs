@@ -24,21 +24,21 @@ public sealed class HandledCufferSystem : EntitySystem
         if (args.Target is not { Valid: true } target)
             return;
 
-        if(!HasComp<SleepingComponent>(target) && !HasComp<StunnedComponent>(target))
+        if (!HasComp<SleepingComponent>(target) && !HasComp<StunnedComponent>(target))
             return;
 
         if (!args.CanReach)
             return;
 
-        if(!TryComp<CuffableComponent>(args.Target, out var cuffableComp))
+        if (!TryComp<CuffableComponent>(args.Target, out var cuffableComp))
             return;
 
-        if(!cuffableComp.CanStillInteract)
+        if (!cuffableComp.CanStillInteract)
             return;
 
-        var cuffs = EntityManager.SpawnEntity(component.SpawnedPrototype, Transform(uid).Coordinates);
+        var cuffs = Spawn(component.SpawnedPrototype, Transform(uid).Coordinates);
 
-        if(!TryComp<HandcuffComponent>(cuffs, out var cuffsComp))
+        if (!TryComp<HandcuffComponent>(cuffs, out var cuffsComp))
             return;
 
         _cuffs.TryAddNewCuffs(target, args.User, cuffs, cuffableComp);

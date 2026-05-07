@@ -20,10 +20,9 @@
       - !type:HealthChange
         damage:
           types:
-            Radiation: 1
+            Radiation: 3
             Cellular: 2
-          groups:
-            Toxin: 4
+            Poison: 2
     Respiration:
       effects:
       - !type:HealthChange
@@ -32,7 +31,6 @@
           types:
             Radiation: 0.01
             Cellular: 0.01
-          groups:
-            Toxin: 0.03
+            Poison: 0.01
       - !type:Oxygenate
         factor: 4

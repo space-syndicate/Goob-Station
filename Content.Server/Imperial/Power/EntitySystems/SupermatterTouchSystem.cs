@@ -25,7 +25,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
     private void OnStartCollide(Entity<SupermatterTouchComponent> supermatter, ref StartCollideEvent args)
     {
         var other = args.OtherEntity;
-        if (!EntityManager.HasComponent<MobStateComponent>(other))
+        if (!HasComp<MobStateComponent>(other))
             return;
 
         var touchEvent = new SupermatterTouchedEvent();
@@ -59,8 +59,8 @@ public sealed class SupermatterTouchSystem : EntitySystem
     {
         _audio.PlayPvs(supermatter.Comp.GibSound, entity.Comp.Coordinates);
         _colorFlash.RaiseEffect(supermatter.Comp.FlashColor, [supermatter], Filter.Pvs(supermatter));
-        EntityManager.QueueDeleteEntity(entity);
-        EntityManager.SpawnEntity(supermatter.Comp.AshPrototype, entity.Comp.Coordinates);
+        QueueDel(entity);
+        Spawn(supermatter.Comp.AshPrototype, entity.Comp.Coordinates);
 
         if (TryComp<SupermatterIntegrityComponent>(supermatter, out var integrityComponent) && !integrityComponent.Activated)
             integrityComponent.Activated = true;

@@ -198,7 +198,7 @@ public sealed class AtmosphericRCDSystem : EntitySystem
 
         // Try to start the do after
         var effect = Spawn(effectPrototype, location);
-        var ev = new RCDDoAfterEvent(GetNetCoordinates(location), component.ConstructionDirection, component.ProtoId, cost, EntityManager.GetNetEntity(effect));
+        var ev = new RCDDoAfterEvent(GetNetCoordinates(location), component.ConstructionDirection, component.ProtoId, cost, GetNetEntity(effect));
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, delay, ev, uid, target: args.Target, used: uid)
         {
@@ -253,7 +253,7 @@ public sealed class AtmosphericRCDSystem : EntitySystem
         {
             // Delete the effect entity if the do-after was cancelled (server-side only)
             if (_net.IsServer)
-                QueueDel(EntityManager.GetEntity(args.Effect));
+                QueueDel(GetEntity(args.Effect));
             return;
         }
 

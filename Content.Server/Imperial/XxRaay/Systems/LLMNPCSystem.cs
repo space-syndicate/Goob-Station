@@ -27,6 +27,7 @@ using Content.Shared.Speech.Components;
 using Robust.Shared.Localization;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
@@ -38,6 +39,7 @@ public sealed class LLMNPCSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     private readonly HttpClient _httpClient = new();
     private ISawmill _sawmill = default!;
@@ -198,7 +200,7 @@ public sealed class LLMNPCSystem : EntitySystem
     private float GetCurrentHealth(EntityUid entity, DamageableComponent damageable)
     {
         var maxHealth = GetMaxHealth(entity, damageable);
-        var currentHealth = maxHealth - (float)damageable.TotalDamage;
+        var currentHealth = maxHealth - (float)_damageableSystem.GetTotalDamage(entity);
         return Math.Max(0f, currentHealth);
     }
 

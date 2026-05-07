@@ -103,6 +103,10 @@
   - type: IgnoreUIRange
   - type: ShowAntagIcons
   - type: ShowContrabandDetails
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
   - type: Inventory
     templateId: aghost
   - type: Loadout

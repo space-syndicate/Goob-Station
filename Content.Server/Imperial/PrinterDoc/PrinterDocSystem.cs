@@ -32,7 +32,7 @@ namespace Content.Server.PrinterDoc
         private void OnPrinterDocCheckIdCard(PrinterDocCheckIdCardMessage msg, EntitySessionEventArgs args)
         {
             var uid = args.SenderSession.AttachedEntity;
-            if (uid == null || !EntityManager.TryGetComponent<LatheComponent>(uid, out var latheComponent))
+            if (uid == null || !TryComp<LatheComponent>(uid, out var latheComponent))
                 return;
 
             latheComponent.UseCardId = msg.UseCardId;
@@ -41,10 +41,9 @@ namespace Content.Server.PrinterDoc
 
         public void TrySetContentPrintedDocument(EntityUid uid, EntityUid? userId, bool useCardId)
         {
-            if (!HasComp<PaperComponent>(uid))
+            if (!TryComp<PaperComponent>(uid, out var paperComp))
                 return;
 
-            var paperComp = EntityManager.GetComponent<PaperComponent>(uid);
             var content = paperComp.Content;
             var stationName = GetStationNameForObject(uid);
             var currentDate = DateTime.Now.AddYears(1000).ToString("dd/MM/yyyy").Replace(".", "/");
@@ -101,10 +100,10 @@ namespace Content.Server.PrinterDoc
         {
             var stationUid = _stationSystem.GetOwningStation(uid);
 
-            if (stationUid == null || !EntityManager.TryGetComponent<MetaDataComponent>(stationUid.Value, out var stationMetaData))
+            if (stationUid == null)
                 return string.Empty;
 
-            return stationMetaData.EntityName;
+            return MetaData(stationUid.Value).EntityName;
         }
 
         public bool TryToCheckPrinter(EntityUid uid)

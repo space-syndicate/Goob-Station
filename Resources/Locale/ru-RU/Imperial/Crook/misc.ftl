@@ -80,7 +80,7 @@ ent-ClothingHeadHatFurMoki = фиолетовая фурсьют маска
 ent-ClothingOuterFurMoki = фиолетовый фурсьют
     .desc = Невероятный костюм с фиолетовой шёрсткой, который понравится вашему партнёру!
 ent-CrateCargoFursuits = набор фурсьютов
-    .desc = Наконец-то, фурри пятница.
+    .desc = Наконец-то, фурри вторник.
 
 ent-WallInvisibleCrook = невидимая стена
     .desc = Даже тут невидимые стены...
@@ -173,6 +173,7 @@ metabolizer-type-android = Андроид
 laws-empty = Пустой
 ent-AndroidCore = ядро андроида
     .desc = Искусственный разум.
+species-name-android = андроид
 
 reagent-name-liquidpain = жидкая боль
 reagent-desc-liquidpain = Высокотоксичная, разлагающая, и кислотная субстанция.

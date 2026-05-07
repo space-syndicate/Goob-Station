@@ -16,6 +16,7 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Content.Shared.Imperial.Atmos.Piping.Trinary.Components;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Imperial.Atmos.Piping.Trinary.EntitySystems
 {
@@ -103,10 +104,10 @@ namespace Content.Server.Imperial.Atmos.Piping.Trinary.EntitySystems
             if (args.Handled || !args.Complex)
                 return;
 
-            if (!EntityManager.TryGetComponent(args.User, out ActorComponent? actor))
+            if (!TryComp(args.User, out ActorComponent? actor))
                 return;
 
-            if (EntityManager.GetComponent<TransformComponent>(uid).Anchored)
+            if (Comp<TransformComponent>(uid).Anchored)
             {
                 _userInterfaceSystem.OpenUi(uid, HydrogenGasFilterUiKey.Key, actor.PlayerSession);
                 DirtyUI(uid, filter);

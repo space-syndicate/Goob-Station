@@ -170,13 +170,6 @@
 #  loadouts: []
 
 - type: loadoutGroup
-  id: CaptainJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieCaptain
-
-- type: loadoutGroup
   id: HoPHead
   name: loadout-group-hop-head
   minLimit: 0
@@ -281,13 +274,6 @@
 #  loadouts: []
 
 - type: loadoutGroup
-  id: PassengerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushiePassenger
-
-- type: loadoutGroup
   id: BartenderHead
   name: loadout-group-bartender-head
   minLimit: 0
@@ -362,13 +348,6 @@
 #  loadouts:
 
 - type: loadoutGroup
-  id: ChefJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieChef
-
-- type: loadoutGroup
   id: LibrarianJumpsuit
   name: loadout-group-librarian-jumpsuit
   loadouts:
@@ -382,13 +361,6 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
-
-- type: loadoutGroup
-  id: LibrarianJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieLibrarian
 
 - type: loadoutGroup
   id: LawyerJumpsuit
@@ -417,13 +389,6 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
-
-- type: loadoutGroup
-  id: LawyerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieLawyer
 
 - type: loadoutGroup
   id: ChaplainHead
@@ -573,13 +538,6 @@
 #  loadouts:
 
 - type: loadoutGroup
-  id: BotanistJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieBotanist
-
-- type: loadoutGroup
   id: ClownHead
   name: loadout-group-clown-head
   minLimit: 0
@@ -703,13 +661,6 @@
 #  loadouts:
 
 - type: loadoutGroup
-  id: MimeJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMime
-
-- type: loadoutGroup
   id: MusicianJumpsuit
   name: loadout-group-musician-jumpsuit
   loadouts:
@@ -772,6 +723,12 @@
 #  minLimit: 0
 #  loadouts:
 
+#- type: loadoutGroup
+#  id: MusicianJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
+
 # Cargo
 - type: loadoutGroup
   id: QuartermasterHead
@@ -819,13 +776,6 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
-
-- type: loadoutGroup
-  id: QuartermasterJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieQuartermaster
 
 - type: loadoutGroup
   id: CargoTechnicianHead
@@ -952,13 +902,6 @@
 #  loadouts:
 
 - type: loadoutGroup
-  id: ChiefEngineerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieChiefEngineer
-
-- type: loadoutGroup
   id: TechnicalAssistantJumpsuit
   name: loadout-group-technical-assistant-jumpsuit
   loadouts:
@@ -970,13 +913,6 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
-
-- type: loadoutGroup
-  id: TechnicalAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieTechnicalAssistant
 
 - type: loadoutGroup
   id: StationEngineerHead
@@ -1041,6 +977,12 @@
 #  minLimit: 0
 #  loadouts:
 
+#- type: loadoutGroup
+#  id: StationEngineerJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
+
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
   name: loadout-group-atmospheric-technician-jumpsuit
@@ -1077,13 +1019,6 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
-
-- type: loadoutGroup
-  id: AtmosphericTechnicianJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieAtmosphericTechnician
 
 - type: loadoutGroup
   id: SurvivalExtended
@@ -1140,6 +1075,12 @@
   minLimit: 0
   loadouts:
   - LizardPlushieResearchDirector
+
+#- type: loadoutGroup
+#  id: ResearchDirectorJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 #- type: loadoutGroup
 #  id: ResearchDirectorJobTrinkets
@@ -1225,6 +1166,12 @@
   minLimit: 0
   loadouts:
   - LizardPlushieScientist
+
+#- type: loadoutGroup
+#  id: ScientistJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 #- type: loadoutGroup
 #  id: ScientistJobTrinkets
@@ -1438,13 +1385,6 @@
 #  loadouts:
 
 - type: loadoutGroup
-  id: SecurityCadetJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieSecurityCadet
-
-- type: loadoutGroup
   id: SurvivalSecurity
   name: loadout-group-survival-security
   minLimit: 2
@@ -1494,20 +1434,6 @@
 #  name: loadout-group-jobtrinkets
 #  minLimit: 0
 #  loadouts:
-
-- type: loadoutGroup
-  id: BoxerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieBoxer
-
-- type: loadoutGroup
-  id: ZookeeperJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieZookeeper
 
 # Other
 - type: loadoutGroup
