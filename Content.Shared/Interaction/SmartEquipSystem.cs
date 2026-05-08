@@ -104,8 +104,10 @@ public sealed class SmartEquipSystem : EntitySystem
         //    - without hand item: fail
         // CorvaxGoob edit start
         // 2) has an item, and that item is an item slots holder
-        //    - with hand item: get the highest priority item slot with a valid whitelist and try to insert it
-        //    - without hand item: get the highest priority item slot with an item and try to eject it
+        //    - with hand item: get the highest priority item slot with a valid whitelist and try to insert it;
+        //                      if no valid item slot found, try storage as fallback
+        //    - without hand item: get the highest priority item slot with an item and try to eject it;
+        //                         if no item slot has an item, try storage as fallback
         // 3) has an item, and that item is a storage item
         //    - with hand item: try to put it in storage
         //    - without hand item: try to take the last stored item and put it in our hands
@@ -133,7 +135,7 @@ public sealed class SmartEquipSystem : EntitySystem
             }
 
             _hands.TryDrop((uid, hands), hands.ActiveHandId!);
-            _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter:true);
+            _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter: true);
             return;
         }
 
@@ -152,11 +154,24 @@ public sealed class SmartEquipSystem : EntitySystem
                         toEjectFrom = slot;
                 }
 
+                // CorvaxGoob edit start
                 if (toEjectFrom == null)
                 {
+                    // No item in any ItemSlot — try Storage as an explicit fallback.
+                    // Needed for items that have both components (e.g. modsuit controller).
+                    if (TryComp<StorageComponent>(slotItem, out var ejectStorage)
+                        && ejectStorage.Container.ContainedEntities.Count > 0)
+                    {
+                        var removing = ejectStorage.Container.ContainedEntities[^1];
+                        _container.RemoveEntity(slotItem, removing);
+                        _hands.TryPickup(uid, removing, handsComp: hands);
+                        return;
+                    }
+
                     _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
                     return;
                 }
+                // CorvaxGoob edit end
 
                 _slots.TryEjectToHands(slotItem, toEjectFrom, uid, excludeUserAudio: true);
                 return;
@@ -174,14 +189,24 @@ public sealed class SmartEquipSystem : EntitySystem
                 }
             }
 
-            if (toInsertTo == null)
+            // CorvaxGoob edit start
+            if (toInsertTo != null)
             {
-                _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
+                _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
                 return;
             }
 
-            _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
+            // No valid ItemSlot found — try Storage as an explicit fallback.
+            // Needed for items that have both components (e.g. modsuit controller).
+            if (TryComp<StorageComponent>(slotItem, out var fallbackStorage))
+            {
+                TryInsertIntoStorage(slotItem, handItem.Value, uid, hands.ActiveHandId!, hands, fallbackStorage);
+                return;
+            }
+
+            _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
             return;
+            // CorvaxGoob edit end
         }
 
         // case 3 (storage item):
@@ -199,25 +224,7 @@ public sealed class SmartEquipSystem : EntitySystem
                     return;
             }
 
-            if (!_storage.CanInsert(slotItem, handItem.Value, out var reason))
-            {
-                if (reason != null)
-                    _popup.PopupClient(Loc.GetString(reason), uid, uid);
-
-                return;
-            }
-
-            _hands.TryDrop((uid, hands), hands.ActiveHandId!);
-            _storage.Insert(slotItem, handItem.Value, out var stacked, out _);
-
-            // if the hand item stacked with the things in inventory, but there's no more space left for the rest
-            // of the stack, place the stack back in hand rather than dropping it on the floor
-            if (stacked != null && !_storage.CanInsert(slotItem, handItem.Value, out _))
-            {
-                if (TryComp<StackComponent>(handItem.Value, out var handStack) && handStack.Count > 0)
-                    _hands.TryPickup(uid, handItem.Value, handsComp: hands);
-            }
-
+            TryInsertIntoStorage(slotItem, handItem.Value, uid, hands.ActiveHandId!, hands, storage); // CorvaxGoob edit
             return;
         }
 
@@ -236,4 +243,33 @@ public sealed class SmartEquipSystem : EntitySystem
         _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
         _hands.TryPickup(uid, slotItem, handsComp: hands);
     }
+
+    // CorvaxGoob edit start
+    private void TryInsertIntoStorage(
+        EntityUid slotItem,
+        EntityUid handItem,
+        EntityUid uid,
+        string activeHandId,
+        HandsComponent hands,
+        StorageComponent storage)
+    {
+        if (!_storage.CanInsert(slotItem, handItem, out var reason))
+        {
+            if (reason != null)
+                _popup.PopupClient(Loc.GetString(reason), uid, uid);
+            return;
+        }
+
+        _hands.TryDrop((uid, hands), activeHandId);
+        _storage.Insert(slotItem, handItem, out var stacked, out _);
+
+        // if the hand item stacked with the things in inventory but theres no more space left for the rest
+        // of the stack place the stack back in hand rather not drop it on the floor
+        if (stacked != null && !_storage.CanInsert(slotItem, handItem, out _))
+        {
+            if (TryComp<StackComponent>(handItem, out var handStack) && handStack.Count > 0)
+                _hands.TryPickup(uid, handItem, handsComp: hands);
+        }
+    }
+    // CorvaxGoob edit end
 }
