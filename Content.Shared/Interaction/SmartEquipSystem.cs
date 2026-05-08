@@ -159,8 +159,8 @@ public sealed class SmartEquipSystem : EntitySystem
                 // CorvaxGoob edit start
                 if (toEjectFrom == null)
                 {
-                    // No item in any ItemSlot — try Storage as an explicit fallback.
-                    // Needed for items that have both components (e.g. modsuit controller).
+                    // No item in any ItemSlot - try Storage as an explicit fallback.
+                    // Needed for items that have both components.
                     if (TryComp<StorageComponent>(slotItem, out var ejectStorage)
                         && ejectStorage.Container.ContainedEntities.Count > 0)
                     {
@@ -198,8 +198,8 @@ public sealed class SmartEquipSystem : EntitySystem
                 return;
             }
 
-            // No valid ItemSlot found — try Storage as an explicit fallback.
-            // Needed for items that have both components (e.g. modsuit controller).
+            // No valid ItemSlot found - try Storage as an explicit fallback.
+            // Needed for items that have both components.
             if (TryComp<StorageComponent>(slotItem, out var fallbackStorage))
             {
                 TryInsertIntoStorage(slotItem, handItem.Value, uid, hands.ActiveHandId!, hands, fallbackStorage);
