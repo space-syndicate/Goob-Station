@@ -283,6 +283,6 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
     {
-        return EntityManager.TryGetComponent(uid, out component);
+        return TryComp(uid, out component);
     }
 }
