@@ -40,6 +40,7 @@
   gas: HyperNoblium
   priority: 0
   appliesWhenInactive: true
+  consumeWhenInactive: true
   reaction: !type:SupermatterDisableTouchReaction {}
 
 - type: supermatterGasReaction
