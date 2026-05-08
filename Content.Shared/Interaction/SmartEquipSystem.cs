@@ -148,10 +148,12 @@ public sealed class SmartEquipSystem : EntitySystem
             {
                 ItemSlot? toEjectFrom = null;
 
-                foreach (var slot in slots.Slots.Values)
+                foreach (var slot in slots.Slots.Values)  // CorvaxGoob edit
                 {
-                    if (slot.HasItem && slot.Priority > (toEjectFrom?.Priority ?? int.MinValue))
-                        toEjectFrom = slot;
+                    if (slot.HasItem
+                    && _slots.CanEject(slotItem, uid, slot)
+                    && slot.Priority > (toEjectFrom?.Priority ?? int.MinValue))
+                    toEjectFrom = slot;
                 }
 
                 // CorvaxGoob edit start
