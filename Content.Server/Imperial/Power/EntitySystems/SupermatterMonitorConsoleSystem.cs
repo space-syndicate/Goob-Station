@@ -100,7 +100,14 @@ public sealed class SupermatterMonitorConsoleSystem : EntitySystem
             var (integrityPercent, _) = CalculateIntegrity(nearest);
             var integrity = (int)Math.Round(integrityPercent);
 
-            var highestThreshold = nearest.SupermatterIntegrity.MaxBy(e => e.Threshold).Threshold;
+            var highestLevel = nearest.SupermatterIntegrity.MaxBy(e => e.Threshold);
+            if (highestLevel == null)
+            {
+                console.BeepCooldownTimer = TimeSpan.Zero;
+                continue;
+            }
+
+            var highestThreshold = highestLevel.Threshold;
             if (integrity >= highestThreshold)
             {
                 console.BeepCooldownTimer = TimeSpan.Zero;
@@ -117,7 +124,7 @@ public sealed class SupermatterMonitorConsoleSystem : EntitySystem
         }
     }
 
-    private static (float integrity, (float Threshold, Color Color, LocId Description, LocId Warning, bool Flag) integrityLevel)
+    private static (float integrity, SupermatterIntegrityLevel integrityLevel)
         CalculateIntegrity(SupermatterIntegrityComponent component)
     {
         var integrity = component.Integrity / component.MaxIntegrity * 100f;
@@ -126,7 +133,9 @@ public sealed class SupermatterMonitorConsoleSystem : EntitySystem
         var ordered = component.SupermatterIntegrity.OrderByDescending(e => e.Threshold).ToList();
         var idx = ordered.FindIndex(entry => integrity >= entry.Threshold);
 
-        var level = idx >= 0 ? ordered[idx] : component.SupermatterIntegrity.MinBy(e => e.Threshold);
+        var level = idx >= 0
+            ? ordered[idx]
+            : component.SupermatterIntegrity.MinBy(e => e.Threshold) ?? new SupermatterIntegrityLevel();
 
         return (integrity, level);
     }

@@ -7,6 +7,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Imperial.Power.EntitySystems.Events;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -59,6 +60,3 @@ public sealed class SupermatterTouchSystem : EntitySystem
             integrityComponent.Activated = true;
     }
 }
-
-[ByRefEvent]
-public record struct SupermatterTouchedEvent(bool Cancelled = false);

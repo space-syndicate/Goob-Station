@@ -1,4 +1,5 @@
 using Content.Shared.Atmos;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Imperial.Power.Components;
 
@@ -38,10 +39,13 @@ public sealed partial class SupermatterGasComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public bool RuntimeDisableTouchGib;
 
-    public TimeSpan GasTickAccumulator = TimeSpan.Zero;
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan LastAtmosUpdate;
 
     public bool WasShutdownByAntiNoblium;
 
+    [ViewVariables(VVAccess.ReadOnly)]
     public GasMixture? CachedGasMixture;
 }
 

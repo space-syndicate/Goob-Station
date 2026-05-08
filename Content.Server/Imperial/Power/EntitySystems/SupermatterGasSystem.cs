@@ -9,6 +9,7 @@ using Content.Shared.Imperial.Power.Components;
 using Content.Shared.Imperial.Power.Prototypes;
 using Content.Shared.Radiation.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -18,6 +19,7 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 /// </summary>
 public sealed class SupermatterGasSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
     private readonly List<(int gasId, SupermatterGasReactionPrototype proto)> _reactions = new();
@@ -58,39 +60,36 @@ public sealed class SupermatterGasSystem : EntitySystem
     private void OnAtmosExposedUpdate(EntityUid uid, SupermatterGasComponent component, ref AtmosExposedUpdateEvent args)
     {
         component.CachedGasMixture = args.GasMixture;
-    }
+        if (!TryComp(uid, out SupermatterIntegrityComponent? integrity))
+            return;
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
+        var now = _gameTiming.CurTime;
+        var frameTime = component.LastAtmosUpdate == TimeSpan.Zero
+            ? 0f
+            : (float) (now - component.LastAtmosUpdate).TotalSeconds;
 
-        var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, SupermatterGasComponent>();
-        while (enumerator.MoveNext(out var uid, out var integrity, out var gasComp))
+        component.LastAtmosUpdate = now;
+
+        var gas = args.GasMixture;
+        component.RuntimeRadiationMultiplier = 1f;
+        component.RuntimeLightningMultiplier = 1f;
+        component.RuntimeEventSpeedMultiplier = 1f;
+        component.RuntimeDisableTouchGib = false;
+
+        foreach (var (gasId, proto) in _reactions)
         {
-            var gas = gasComp.CachedGasMixture;
-            if (gas == null)
+            if (!integrity.Activated && !proto.ConsumeWhenInactive)
                 continue;
 
-            gasComp.RuntimeRadiationMultiplier = 1f;
-            gasComp.RuntimeLightningMultiplier = 1f;
-            gasComp.RuntimeEventSpeedMultiplier = 1f;
-            gasComp.RuntimeDisableTouchGib = false;
+            var moles = gas.GetMoles(gasId);
+            var excess = moles - component.GasActivationMoles;
+            if (excess <= 0f)
+                continue;
 
-            foreach (var (gasId, proto) in _reactions)
-            {
-                if (!integrity.Activated && !proto.ConsumeWhenInactive)
-                    continue;
-
-                var moles = gas.GetMoles(gasId);
-                var excess = moles - gasComp.GasActivationMoles;
-                if (excess <= 0f)
-                    continue;
-
-                gas.AdjustMoles(gasId, -gasComp.GasConsumptionPerSecond);
-            }
-
-            ApplyGasEffects((uid, integrity), (uid, gasComp), gas, frameTime);
+            gas.AdjustMoles(gasId, -component.GasConsumptionPerSecond);
         }
+
+        ApplyGasEffects((uid, integrity), (uid, component), gas, frameTime);
     }
 
     private void ApplyGasEffects(
@@ -111,7 +110,10 @@ public sealed class SupermatterGasSystem : EntitySystem
             if (!integrity.Comp.Activated && !proto.AppliesWhenInactive)
                 continue;
 
-            proto.Reaction.React(integrity.Owner, integrity.Comp, gasComp.Comp, gas, frameTime, entMan, sysMan, active);
+            foreach (var reaction in proto.Reactions)
+            {
+                reaction.React(integrity.Owner, integrity.Comp, gasComp.Comp, gas, frameTime, entMan, sysMan, active);
+            }
         }
 
         if (TryComp(integrity, out RadiationSourceComponent? radiation))

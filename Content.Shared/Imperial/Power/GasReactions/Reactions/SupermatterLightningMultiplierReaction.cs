@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.Power.GasReactions.Reactions;
 
 public sealed partial class SupermatterLightningMultiplierReaction : ISupermatterGasReaction
 {
-    [DataField("multiplier", required: true)]
+    [DataField(required: true)]
     public float Multiplier = 1f;
 
     public void React(

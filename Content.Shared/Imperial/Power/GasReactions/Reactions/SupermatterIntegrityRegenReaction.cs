@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.Power.GasReactions.Reactions;
 
 public sealed partial class SupermatterIntegrityRegenReaction : ISupermatterGasReaction
 {
-    [DataField("regenPerSecond", required: true)]
+    [DataField(required: true)]
     public float RegenPerSecond = 0.5f;
 
     public void React(

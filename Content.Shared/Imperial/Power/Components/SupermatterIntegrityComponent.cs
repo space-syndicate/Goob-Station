@@ -4,20 +4,22 @@ using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Imperial.Power.Components;
 
 [RegisterComponent]
 public sealed partial class SupermatterIntegrityComponent : Component
 {
-    public List<(float Threshold, Color Color, LocId Description, LocId Warning, bool Flag)> SupermatterIntegrity = new()
+    [DataField]
+    public List<SupermatterIntegrityLevel> SupermatterIntegrity = new()
     {
-        (95f, Color.Green, "supermatter-desc-pristine", "supermatter-warn-95", false),
-        (75f, Color.Yellow, "supermatter-desc-scratched", "supermatter-warn-75", false),
-        (50f, Color.Orange, "supermatter-desc-cracked", "supermatter-warn-50", false),
-        (25f, Color.Brown, "supermatter-desc-badly-cracked", "supermatter-warn-25", false),
-        (10f, Color.DarkRed, "supermatter-desc-critical", "supermatter-warn-10", false),
-        (0f, Color.Red, "", "", false),
+        new() { Threshold = 95f, Color = Color.Green, Description = "supermatter-desc-pristine", Warning = "supermatter-warn-95" },
+        new() { Threshold = 75f, Color = Color.Yellow, Description = "supermatter-desc-scratched", Warning = "supermatter-warn-75" },
+        new() { Threshold = 50f, Color = Color.Orange, Description = "supermatter-desc-cracked", Warning = "supermatter-warn-50" },
+        new() { Threshold = 25f, Color = Color.Brown, Description = "supermatter-desc-badly-cracked", Warning = "supermatter-warn-25" },
+        new() { Threshold = 10f, Color = Color.DarkRed, Description = "supermatter-desc-critical", Warning = "supermatter-warn-10" },
+        new() { Threshold = 0f, Color = Color.Red, Description = "", Warning = "" },
     };
 
     [DataField]
@@ -35,7 +37,9 @@ public sealed partial class SupermatterIntegrityComponent : Component
     [DataField]
     public TimeSpan DamageTickInterval = TimeSpan.FromSeconds(1);
 
-    public TimeSpan TickAccumulator = TimeSpan.Zero;
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan NextDamageTick;
 
     [DataField]
     public float CatastropheThreshold;
@@ -46,10 +50,17 @@ public sealed partial class SupermatterIntegrityComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public bool CatastropheActive;
 
-    public readonly float UpperTempThreshold = 350f;
-    public readonly float LowerTempThreshold = 250f;
-    public readonly float UpperPressureThreshold = 300f;
-    public readonly float LowerPressureThreshold = 10f;
+    [DataField]
+    public float UpperTempThreshold = 350f;
+
+    [DataField]
+    public float LowerTempThreshold = 250f;
+
+    [DataField]
+    public float UpperPressureThreshold = 300f;
+
+    [DataField]
+    public float LowerPressureThreshold = 10f;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan CatastropheTimer = TimeSpan.Zero;
@@ -94,10 +105,39 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public int CatastropheLightningCount = 3;
 
     [DataField]
-    public List<(float Volume, float Range)> AmbientSound = new()
+    public List<SupermatterAmbientSoundEntry> AmbientSound = new()
     {
-        (0f, 5f),
-        (-10f, 3f),
+        new() { Volume = 0f, Range = 5f },
+        new() { Volume = -10f, Range = 3f },
     };
+}
+
+[DataDefinition]
+public sealed partial class SupermatterIntegrityLevel
+{
+    [DataField]
+    public float Threshold;
+
+    [DataField]
+    public Color Color = Color.White;
+
+    [DataField]
+    public LocId Description = string.Empty;
+
+    [DataField]
+    public LocId Warning = string.Empty;
+
+    [DataField]
+    public bool Flag;
+}
+
+[DataDefinition]
+public sealed partial class SupermatterAmbientSoundEntry
+{
+    [DataField]
+    public float Volume;
+
+    [DataField]
+    public float Range;
 }
 

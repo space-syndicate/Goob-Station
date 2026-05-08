@@ -20,6 +20,7 @@ using Content.Shared.Chat;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -38,6 +39,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     [Dependency] private readonly RadioSystem _radioSystem = null!;
     [Dependency] private readonly StationSystem _stationSystem = null!;
     [Dependency] private readonly TagSystem _tagSystem = null!;
+    [Dependency] private readonly IGameTiming _gameTiming = null!;
 
     public override void Initialize()
     {
@@ -168,7 +170,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         {
             var oldEntry = entity.Comp.SupermatterIntegrity[index];
             if (oldEntry.Flag)
-                entity.Comp.SupermatterIntegrity[index] = (oldEntry.Threshold, oldEntry.Color, oldEntry.Description, oldEntry.Warning, false);
+                oldEntry.Flag = false;
         }
 
         foreach (var level in entity.Comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
@@ -197,12 +199,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             }
 
             // Устанавливаем флаг предупреждения
-            var levelIndex = entity.Comp.SupermatterIntegrity.FindIndex(entry => Math.Abs(level.Threshold - entry.Threshold) < 1f);
-            if (levelIndex >= 0)
-            {
-                var updated = entity.Comp.SupermatterIntegrity[levelIndex];
-                entity.Comp.SupermatterIntegrity[levelIndex] = (updated.Threshold, updated.Color, updated.Description, updated.Warning, true);
-            }
+            level.Flag = true;
             break;
         }
 
@@ -260,13 +257,19 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         // Обработка урона от плохих условий
         if (badConditions)
         {
-            entity.Comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
-            while (entity.Comp.TickAccumulator >= entity.Comp.DamageTickInterval)
+            if (entity.Comp.NextDamageTick == TimeSpan.Zero)
+                entity.Comp.NextDamageTick = _gameTiming.CurTime + entity.Comp.DamageTickInterval;
+
+            while (_gameTiming.CurTime >= entity.Comp.NextDamageTick)
             {
-                entity.Comp.TickAccumulator -= entity.Comp.DamageTickInterval;
+                entity.Comp.NextDamageTick += entity.Comp.DamageTickInterval;
                 var tickAmount = entity.Comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
                 entity.Comp.Integrity = MathF.Max(0, entity.Comp.Integrity - tickAmount);
             }
+        }
+        else
+        {
+            entity.Comp.NextDamageTick = TimeSpan.Zero;
         }
     }
 
