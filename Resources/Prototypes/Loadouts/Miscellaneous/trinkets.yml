@@ -142,6 +142,28 @@
     - CandleBlue
     - CandleGreenSmall
 
+# CorvaxGoob-loadouts-start:
+- type: loadout
+  id: ClothingMaskClownBase
+  storage:
+    back:
+    - ClothingMaskClownBase
+requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 187200 # 52 hours
+
+- type: loadout
+  id: CrayonRainbow
+  storage:
+    back:
+    - CrayonRainbow
+requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 187200 # 52 hours
+# CorvaxGoob-loadouts-end.
+
 # Smokeables
 - type: loadout
   id: Lighter
