@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.Destructible;  //CorvaxGoob-DestructionFix
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -32,6 +33,10 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         SubscribeLocalEvent<SmartFridgeComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
         SubscribeLocalEvent<SmartFridgeComponent, DumpEvent>(OnDump);
+        //CorvaxGoob-DestructionFix-Start
+        SubscribeLocalEvent<SmartFridgeComponent, BreakageEventArgs>(OnBreak);
+        SubscribeLocalEvent<SmartFridgeComponent, DestructionEventArgs>(OnBreak);
+        //CorvaxGoob-DestructionFix-End
 
         Subs.BuiEvents<SmartFridgeComponent>(SmartFridgeUiKey.Key,
             sub =>
@@ -154,4 +159,18 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         DoInsert(ent, args.User, args.DumpQueue, false);
     }
+    //CorvaxGoob-DestructionFix-Start
+    private void OnBreak(EntityUid uid, SmartFridgeComponent component, EntityEventArgs args)
+    {
+        if (component.ContainedEntries == null)
+            return;
+
+        foreach (var values in component.ContainedEntries.Values)
+        {
+            foreach (var item in values)
+                _container.TryRemoveFromContainer(GetEntity(item));
+
+        }
+    }
+    //CorvaxGoob-DestructionFix-End
 }
