@@ -1,3 +1,5 @@
+ent-WallFlockBase = странная стеклянная стена
+    .desc = Изнутри доносится слабое жужжание.
 ent-fullWallFlock = { ent-WallFlockBase }
     .suffix = Полная
     .desc = { ent-WallFlockBase.desc }
