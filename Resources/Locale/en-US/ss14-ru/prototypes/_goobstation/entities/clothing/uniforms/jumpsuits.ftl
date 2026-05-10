@@ -67,3 +67,7 @@ ent-ClothingUniformOverallsShaftMiner = shaft miner's overalls
     .desc = It's a sturdy set of overalls, looks a bit burnt.
 ent-ClothingUniformJumpsuitResearchDirectorAlt = research director's turtleneck
     .desc = It's a turtleneck worn by those with the know-how to achieve the position of Research Director. Its fabric provides minor protection from biological contaminants.
+ent-ClothingUniformJumpsuitCentralCommandLiaison = CentComm Liaison Jumpsuit
+    .desc = Rumor has it, the CCO that first saw the Outer Command uniform was so jealous that they stained it green with their envy.
+ent-ClothingUniformJumpsuitVeteranSecurity = дышащий комбинезон Службы Безопасности
+    .desc = Дышащая версия стандартного комбинезона Службы Безопасности, обычно выдаётся в те смены, когда не хватает атмосов.

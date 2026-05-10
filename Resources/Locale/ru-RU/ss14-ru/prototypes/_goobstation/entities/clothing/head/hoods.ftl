@@ -14,3 +14,5 @@ ent-ClothingHeadHatHoodHereticFleshCostume = { ent-ClothingHeadHatHoodHereticCos
     .desc = { ent-ClothingHeadHatHoodHereticCostume.desc }
 ent-ClothingHeadHatHoodHereticBladeCostume = { ent-ClothingHeadHatHoodHereticCostume }
     .desc = { ent-ClothingHeadHatHoodHereticCostume.desc }
+ent-ClothingHeadHatHoodSchemaMonk = капюшон монашеского облачения
+    .desc = Удобный капюшон монашеского облачения.
