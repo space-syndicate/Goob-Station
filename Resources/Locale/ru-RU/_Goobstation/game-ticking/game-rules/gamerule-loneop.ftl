@@ -10,7 +10,7 @@ loneop-crewmajor = [color=green]Крупная победа экипажа![/col
 loneop-cond-nukeexplodedoncorrectstation = Одиночному оперативнику удалось взорвать станцию.
 loneop-cond-nukeexplodedonincorrectlocation = Ядерная бомба была взорвана за пределами станции.
 loneop-cond-nukeactiveinstation = Ядерная бомба была оставлена на станции во взведённом состоянии.
-loneop-cond-nukeactiveatcentcom = Одиночный оперативник доставил ядерную бомбу в Центральное Командование! Охренеть!
+loneop-cond-nukeactiveatcentcom = Одиночный оперативник доставил ядерную бомбу на Центральное Командование! Охренеть!
 loneop-cond-nukediskoncentcom = Экипаж спасся, забрав с собой диск ядерной аутентификации.
 loneop-cond-nukedisknotoncentcom = Экипаж спасся, оставив диск ядерной аутентификации на станции.
 loneop-cond-nukiesabandoned = Одиночный оперативник был брошен.
