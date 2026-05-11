@@ -4,7 +4,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
-namespace Content.Client.Corvax.SecApartment.Stylesheets;
+namespace Content.Client._CorvaxGoob.SecApartment.Stylesheets;
 
 public sealed class SecApartmentStyles
 {

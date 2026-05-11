@@ -1,9 +1,10 @@
+using Content.Client.Overlays;
 using Content.Shared.Overlays;
 using Content.Shared.SecApartment;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Overlays;
+namespace Content.Client._CorvaxGoob.SecApartment.Overlays;
 
 public sealed class ShowSquadIconsSystem : EquipmentHudSystem<ShowSquadIconsComponent>
 {

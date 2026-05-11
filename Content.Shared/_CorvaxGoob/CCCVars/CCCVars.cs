@@ -25,6 +25,13 @@ public sealed class CCCVars
     public static readonly CVarDef<bool> PanicBunkerDenyVPN =
         CVarDef.Create("game.panic_bunker.deny_vpn", false, CVar.SERVERONLY);
 
+
+    /// <summary>
+    /// Maximum name for a squad in SecApartment
+    /// </summary>
+    public static readonly CVarDef<int> MaxSquadNameLength =
+        CVarDef.Create("game.max_squad_name", 16, CVar.SERVER | CVar.REPLICATED);
+
     /**
      * TTS (Text-To-Speech)
      */

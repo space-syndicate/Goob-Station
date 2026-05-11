@@ -446,12 +446,12 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
     [PublicAPI]
     public string GetNearestBeaconString(Entity<TransformComponent?> ent, bool onlyName = false)
     {
-        // Add onlyName. Wasn't in the game. Will appear with Upstream.
+        // Add onlyName. Wasn't in the game. Will appear with Upstream - CorvaxGoob-SecApartment.
 
         if (!Resolve(ent, ref ent.Comp))
             return Loc.GetString("nav-beacon-pos-no-beacons");
 
-        return GetNearestBeaconString(_transformSystem.GetMapCoordinates(ent, ent.Comp), onlyName);
+        return GetNearestBeaconString(_transformSystem.GetMapCoordinates(ent, ent.Comp), onlyName); //CorvaxGoob-SecApartment
     }
 
     /// <summary>
@@ -461,13 +461,15 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
 
     public string GetNearestBeaconString(MapCoordinates coordinates, bool onlyName = false)
     {
-        // Add onlyName. Wasn't in the game. Will appear with Upstream.
+        // Add onlyName. Wasn't in the game. Will appear with Upstream - CorvaxGoob-SecApartment.
 
         if (!TryGetNearestBeacon(coordinates, out var beacon, out var pos))
             return Loc.GetString("nav-beacon-pos-no-beacons");
 
+        //CorvaxGoob-SecApartment-Start
         if (onlyName)
             return beacon.Value.Comp.Text!;
+        ////CorvaxGoob-SecApartment-End
 
         var gridOffset = Angle.Zero;
         if (_mapManager.TryFindGridAt(pos.Value, out var grid, out _))

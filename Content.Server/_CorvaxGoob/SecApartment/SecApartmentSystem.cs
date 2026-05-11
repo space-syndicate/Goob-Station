@@ -2,12 +2,13 @@ using Content.Server.CrewManifest;
 using Content.Server.DeviceLinking.Components;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Pinpointer;
+using Content.Shared._CorvaxGoob.SecApartment;
 using Content.Shared.CrewManifest;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Roles;
 using Content.Shared.SecApartment;
-using Content.Shared.Security.Components;
 using Content.Shared.Station;
+using Content.Shared.StatusIcon;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -18,7 +19,7 @@ using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
 
-namespace Content.Server.Corvax.SecApartment;
+namespace Content.Server._CorvaxGoob.SecApartment;
 
 public sealed partial class SecApartmentSystem : EntitySystem
 {
@@ -34,7 +35,6 @@ public sealed partial class SecApartmentSystem : EntitySystem
     private readonly Dictionary<EntityUid, StationData> _stationData = new();
     private readonly Dictionary<NetEntity, TimeSpan> _finishedTimers = new();
 
-    private const string SecurityDepartment = "Security";
     private readonly HashSet<string> _securityJobs = new();
     private TimeSpan _lastSensorUpdate = TimeSpan.Zero;
     private TimeSpan _lastTimerUpdate = TimeSpan.Zero;
@@ -90,18 +90,14 @@ public sealed partial class SecApartmentSystem : EntitySystem
         }
     }
 
-    private void InitializeSecurityJobs()
+    private void InitializeSecurityJobs(SecApartmentComponent? comp = null)
     {
         _securityJobs.Clear();
-        foreach (var department in _prototype.EnumeratePrototypes<DepartmentPrototype>())
+        var departmentId = comp?.SecurityDepartment ?? "Security";
+        if (_prototype.TryIndex<DepartmentPrototype>(departmentId, out var department))
         {
-            if (department.ID == SecurityDepartment)
-            {
-                foreach (var role in department.Roles)
-                    _securityJobs.Add(role);
-
-                break;
-            }
+            foreach (var role in department.Roles)
+                _securityJobs.Add(role);
         }
     }
 
@@ -524,34 +520,11 @@ public sealed partial class SecApartmentSystem : EntitySystem
 
     private string GetIconPrototypeId(SquadIconNum icon)
     {
-        return icon switch
-        {
-            SquadIconNum.Alpha => "SecuritySquadIconAlpha",
-            SquadIconNum.Beta => "SecuritySquadIconBeta",
-            SquadIconNum.Gamma => "SecuritySquadIconGamma",
-            SquadIconNum.Delta => "SecuritySquadIconDelta",
-            SquadIconNum.Epsilon => "SecuritySquadIconEpsilon",
-            SquadIconNum.Zeta => "SecuritySquadIconZeta",
-            SquadIconNum.Heta => "SecuritySquadIconHeta",
-            SquadIconNum.Theta => "SecuritySquadIconTheta",
-            SquadIconNum.Iota => "SecuritySquadIconIota",
-            SquadIconNum.Kappa => "SecuritySquadIconKappa",
-            SquadIconNum.Lambda => "SecuritySquadIconLambda",
-            SquadIconNum.Mu => "SecuritySquadIconMu",
-            SquadIconNum.Nu => "SecuritySquadIconNu",
-            SquadIconNum.Xi => "SecuritySquadIconXi",
-            SquadIconNum.Omicron => "SecuritySquadIconOmicron",
-            SquadIconNum.Pi => "SecuritySquadIconPi",
-            SquadIconNum.Ro => "SecuritySquadIconRo",
-            SquadIconNum.Sigma => "SecuritySquadIconSigma",
-            SquadIconNum.Tau => "SecuritySquadIconTau",
-            SquadIconNum.Upsilon => "SecuritySquadIconUpsilon",
-            SquadIconNum.Fi => "SecuritySquadIconFi",
-            SquadIconNum.Hi => "SecuritySquadIconHi",
-            SquadIconNum.Psi => "SecuritySquadIconPsi",
-            SquadIconNum.Omega => "SecuritySquadIconOmega",
-            _ => "SecuritySquadIconAlpha"
-        };
+        var protoId = $"SecuritySquadIcon{icon}";
+        if (_prototype.HasIndex<StatusIconPrototype>(protoId))
+            return protoId;
+        else
+            return "SecuritySquadIconAlpha";
     }
 
     private static string SanitizeString(string input, int maxLength)

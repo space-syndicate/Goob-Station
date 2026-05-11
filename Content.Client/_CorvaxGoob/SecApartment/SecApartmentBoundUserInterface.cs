@@ -1,8 +1,8 @@
-using Content.Shared.SecApartment;
+using Content.Shared._CorvaxGoob.SecApartment;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Corvax.SecApartment;
+namespace Content.Client._CorvaxGoob.SecApartment;
 
 [UsedImplicitly]
 public sealed class SecApartmentBoundUserInterface : BoundUserInterface

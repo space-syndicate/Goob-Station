@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.SecApartment;
+namespace Content.Shared._CorvaxGoob.SecApartment;
 
 [Serializable, NetSerializable]
 public enum SquadIconNum : byte
