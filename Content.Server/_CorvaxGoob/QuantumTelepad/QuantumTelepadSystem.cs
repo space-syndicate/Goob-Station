@@ -6,9 +6,11 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Whitelist;
+using Content.Shared.Movement.Pulling.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Movement.Pulling.Components;
 
 namespace Content.Server._CorvaxGoob.QuantumTelepad;
 
@@ -21,6 +23,7 @@ public sealed partial class QuantumTelepadSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly PullingSystem _pullingSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -117,6 +120,10 @@ public sealed partial class QuantumTelepadSystem : EntitySystem
             if (entity.Comp.Whitelist is not null && _whitelist.IsWhitelistFail(entity.Comp.Whitelist, lookupEntity))
                 continue;
 
+            if (HasComp<ActivePullerComponent>(lookupEntity))
+            {
+                _pullingSystem.StopAllPulls(lookupEntity);
+            }
             _xform.SetWorldPosition(lookupEntity, _xform.GetWorldPosition(teleportTo));
 
             sendedEnts++;
