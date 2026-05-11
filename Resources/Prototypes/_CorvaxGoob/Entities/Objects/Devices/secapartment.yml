@@ -31,18 +31,16 @@
   - type: Appearance
   - type: GenericVisualizer 
     visuals:
-      enum.BatteryVisuals.State:
+      enum.PowerCellSlotVisuals.Enabled:
         enum.PowerDeviceVisualLayers.Powered:
-          Full: { visible: true }
-          Neither: { visible: true }
-          Empty: { visible: false }
+          True: { visible: true }
+          False: { visible: false }
 
 - type: entity
   id: SecApartmentTablet
   parent: [ SecApartmentTabletUnpowered, PowerCellSlotHighItem ]
   suffix: Powered
   components:
-  - type: BatteryVisuals
   - type: PowerCellDraw
     drawRate: 1.2
   - type: ToggleCellDraw

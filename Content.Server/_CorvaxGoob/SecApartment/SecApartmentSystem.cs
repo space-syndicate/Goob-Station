@@ -521,7 +521,7 @@ public sealed partial class SecApartmentSystem : EntitySystem
     private string GetIconPrototypeId(SquadIconNum icon)
     {
         var protoId = $"SecuritySquadIcon{icon}";
-        if (_prototype.HasIndex<StatusIconPrototype>(protoId))
+        if (_prototype.HasIndex<SecurityIconPrototype>(protoId))
             return protoId;
         else
             return "SecuritySquadIconAlpha";
