@@ -5,7 +5,7 @@
   description: "A NanoTrasen-approved device for organizing and coordinating the actions of security personnel at corporate facilities."
   components:
   - type: Sprite
-    sprite: Corvax/Objects/Devices/secapartment.rsi
+    sprite: _CorvaxGoob/Objects/Devices/secapartment.rsi
     layers:
     - state: base
     - state: powered
@@ -29,14 +29,13 @@
     range: 500
   - type: StationLimitedNetwork
   - type: Appearance
-# Not in the game yet
-#  - type: GenericVisualizer 
-#    visuals:
-#      enum.BatteryVisuals.State:
-#        enum.PowerDeviceVisualLayers.Powered:
-#          Full: { visible: true }
-#          Neither: { visible: true }
-#          Empty: { visible: false }
+  - type: GenericVisualizer 
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerDeviceVisualLayers.Powered:
+          Full: { visible: true }
+          Neither: { visible: true }
+          Empty: { visible: false }
 
 - type: entity
   id: SecApartmentTablet
