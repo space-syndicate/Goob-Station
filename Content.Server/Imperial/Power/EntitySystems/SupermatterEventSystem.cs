@@ -7,6 +7,7 @@ using Content.Server.NukeOps;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Imperial.Power.Components;
 using Content.Shared.NukeOps;
 using Content.Shared.Radiation.Components;
 using Robust.Server.GameObjects;
@@ -63,6 +64,8 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     private void OnTouched(Entity<SupermatterEventComponent> entity, ref SupermatterTouchedEvent args)
     {
+        if (args.Cancelled)
+            return;
         TriggerEventNow(entity);
     }
 
@@ -101,7 +104,7 @@ public sealed class SupermatterEventSystem : EntitySystem
             return;
         }
 
-        UpdateNextEventTimer(entity.Comp1, currentTime);
+        UpdateNextEventTimer(entity.Owner, entity.Comp1, currentTime);
 
         TryStartNewEvent(entity);
         ProcessActiveEvent(entity, currentTime);
@@ -130,12 +133,15 @@ public sealed class SupermatterEventSystem : EntitySystem
         comp.LastEventEndTimeUpdate = currentTime;
     }
 
-    private static void UpdateNextEventTimer(SupermatterEventComponent comp, TimeSpan currentTime)
+    private void UpdateNextEventTimer(EntityUid uid, SupermatterEventComponent comp, TimeSpan currentTime)
     {
         if (comp.NextEventTimer <= TimeSpan.Zero)
             return;
 
         var elapsed = currentTime - comp.LastNextEventTimerUpdate;
+        if (TryComp<SupermatterGasComponent>(uid, out var gasComp) && gasComp.RuntimeEventSpeedMultiplier > 1f)
+            elapsed = TimeSpan.FromTicks((long) (elapsed.Ticks * gasComp.RuntimeEventSpeedMultiplier));
+
         comp.NextEventTimer -= elapsed;
         if (comp.NextEventTimer < TimeSpan.Zero)
             comp.NextEventTimer = TimeSpan.Zero;
@@ -277,6 +283,6 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
     {
-        return TryGetComponent(uid, out component);
+        return TryComp(uid, out component);
     }
 }

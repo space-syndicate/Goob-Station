@@ -23,11 +23,18 @@ public sealed class RemoveFactionGeneSystem : EntitySystem
         if (TryComp<NpcFactionMemberComponent>(uid, out var fact))
         {
             component.Factions = fact.Factions;
+            
             RemComp<NpcFactionMemberComponent>(uid);
             component.Active = true;
         }
 
-        EnsureComp<PacifiedComponent>(uid);
+        if (HasComp<PacifiedComponent>(uid))
+        {
+            component.HadPacifist = true;
+            return;
+        }
+
+         EnsureComp<PacifiedComponent>(uid);
     }
     private void OnComponentShutdown(EntityUid uid, RemoveFactionGeneComponent component, ComponentShutdown args)
     {
@@ -38,6 +45,7 @@ public sealed class RemoveFactionGeneSystem : EntitySystem
             component.Active = false;
         }
 
-        RemComp<PacifiedComponent>(uid);
+        if (!component.HadPacifist)
+            RemComp<PacifiedComponent>(uid);
     }
 }

@@ -12,6 +12,9 @@ ent-GeneCombinerCircuitboard = машинная плата (соеденител
 gene-combiner-start = начать совмещение
 gene-slot-output = конечный ген
 
+alerts-xenogene = Ввёден Ген
+alerts-xenogene-desc = Ваше ДНК было подвержено слиянию с инородным геном!
+
 # НАУКА
 
 research-technology-basic-xenogenetics = Основы ксеногенетики

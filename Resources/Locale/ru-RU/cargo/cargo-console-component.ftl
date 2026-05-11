@@ -48,8 +48,8 @@ cargo-console-insufficient-funds = Недостаточно средств (тр
 cargo-console-unfulfilled = Нет места для выполнения заказа
 cargo-console-trade-station = Отправлено на {$destination}
 cargo-console-unlock-approved-order-broadcast = [bold]{$productName} x{$orderAmount}[/bold] стоимостью [bold]{$cost}[/bold] одобрен [bold]{$approver}[/bold]
-cargo-console-fund-withdraw-broadcast = [bold]{$name} снял {$amount} спесосов со счёта {$name1} \[{$code1}\][/bold]
-cargo-console-fund-transfer-broadcast = [bold]{$name} перевёл {$amount} спесосов со счёта {$name1} \[{$code1}\] на счёт {$name2} \[{$code2}\][/bold]
+cargo-console-fund-withdraw-broadcast = [bold]{$name} снял {$amount} кредитов со счёта {$name1} \[{$code1}\][/bold]
+cargo-console-fund-transfer-broadcast = [bold]{$name} перевёл {$amount} кредитов со счёта {$name1} \[{$code1}\] на счёт {$name2} \[{$code2}\][/bold]
 cargo-console-fund-transfer-user-unknown = Неизвестно
 
 cargo-console-paper-reason-default = Отсутствует

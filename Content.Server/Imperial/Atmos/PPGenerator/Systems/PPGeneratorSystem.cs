@@ -143,6 +143,7 @@ public sealed class PPGSystem : EntitySystem
             _atmosphere.Merge(outletB.Air, airB);
             continue;
         }
+        return;
     }
 
     private void UpdateAppearance(
