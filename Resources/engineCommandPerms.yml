@@ -129,7 +129,7 @@
 - Flags: FUN
   Commands:
   - tippy
-  - loadprototype # Goobstation
+  #- loadprototype # Goobstation // CorvaxGoob-Revert
   - tip
 
 - Flags: SERVER
@@ -173,6 +173,7 @@
   Commands:
   - uploadfile
   - uploadfolder
+  - loadprototype # CorvaxGoob-Revert
 
 - Commands:
   - "|"

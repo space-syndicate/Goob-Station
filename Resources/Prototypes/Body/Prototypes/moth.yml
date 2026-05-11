@@ -20,13 +20,13 @@
       connections:
       - chest
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganMothBrain # CorvaxGoob organs resprite
+        eyes: OrganMothEyes # CorvaxGoob organs resprite
     chest:
       part: ChestMoth
       organs:
-        heart: OrganAnimalHeart
-        lungs: OrganHumanLungs
+        heart: OrganMothHeart # CorvaxGoob organs resprite
+        lungs: OrganMothLungs # CorvaxGoob organs resprite
       connections:
       - right arm
       - left arm
@@ -38,9 +38,9 @@
       - right leg
       - left leg
       organs:
-        stomach: OrganMothStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        stomach: OrganMothStomach # CorvaxGoob organs resprite
+        liver: OrganMothLiver # CorvaxGoob organs resprite
+        kidneys: OrganMothKidneys # CorvaxGoob organs resprite
     right arm:
       part: RightArmMoth
       connections:

@@ -128,11 +128,13 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Empty # CorvaxGoob : поставлен пустой прототип пистолета
   storage:
     back:
     - Flash
     - MagazinePistol
+    - MagazinePistol # CorvaxGoob-RubberAmmo
+    - MagazinePistolRubber # CorvaxGoob-RubberAmmo
 
 - type: chameleonOutfit
   id: SecurityOfficerChameleonOutfit

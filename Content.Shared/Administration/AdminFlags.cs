@@ -158,6 +158,11 @@ namespace Content.Shared.Administration
         Playtime = 1 << 30,
 
         /// <summary>
+        ///     Lets you make goob polls.
+        /// </summary>
+        Polls = 1 << 23,
+
+        /// <summary>
         ///     Dangerous host permissions like scsi.
         /// </summary>
         Host = 1u << 31,

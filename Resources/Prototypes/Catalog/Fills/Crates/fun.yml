@@ -552,6 +552,7 @@
       - id: ClothingShoesSkates
       - id: RubberChicken
       - id: CardBoxKotahi # CorvaxGoob-kotahi
+      - id: TennisBall # goob edit
 
 - type: entity
   id: CrateFunBikeHornImplants

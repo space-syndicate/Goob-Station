@@ -94,6 +94,7 @@
 // SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 // SPDX-FileCopyrightText: 2025 UpAndLeaves <92269094+Alpha-Two@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 router <messagebus@vk.com>
+// SPDX-FileCopyrightText: 2026 RomaGur <gurilevroman@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -219,13 +220,13 @@ public sealed partial class ZombieComponent : Component
     [DataField("passiveHealing")]
     public DamageSpecifier PassiveHealing = new()
     {
-        DamageDict = new () ///Changed to be higher for goob
+        DamageDict = new () ///Changed to be higher for goob // CorvaxGoob edit
         {
-            { "Blunt", -2 },
-            { "Slash", -1 },
-            { "Piercing", -1 },
-            { "Heat", -1 },
-            { "Shock", -1 }
+            { "Blunt", -3 },
+            { "Slash", -2 },
+            { "Piercing", -2 },
+            { "Heat", -2 },
+            { "Shock", -2 }
         }
     };
 
@@ -233,7 +234,7 @@ public sealed partial class ZombieComponent : Component
     /// A multiplier applied to <see cref="PassiveHealing"/> when the entity is in critical condition.
     /// </summary>
     [DataField("passiveHealingCritMultiplier")]
-    public float PassiveHealingCritMultiplier = 5f; ///Goobchange
+    public float PassiveHealingCritMultiplier = 2.5f; ///Goobchange //CorvaxGoob edit 5 -> 2.5
 
     /// <summary>
     /// Healing given when a zombie bites a living being.

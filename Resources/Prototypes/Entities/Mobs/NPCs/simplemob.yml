@@ -152,6 +152,7 @@
   suffix: AI
   abstract: true
   components:
+  - type: ZombieImmune # Goob - armok nerf
   - type: Hunger
     thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
       Overfed: 100
@@ -185,3 +186,4 @@
   - type: FloatingVisuals
   - type: CombatPower # Goobstation
     factor: 0.5 # As dangerous as half a crew-member
+  - type: Grabbable # Goobstation

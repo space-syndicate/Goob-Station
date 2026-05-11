@@ -8,4 +8,7 @@
   color: "#381600"
   metamorphicSprite:
     sprite: _CorvaxGoob/Objects/Consumable/Drinks/kvass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false

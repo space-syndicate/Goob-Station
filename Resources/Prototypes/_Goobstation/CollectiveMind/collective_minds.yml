@@ -11,13 +11,13 @@
 - type: collectiveMind
   id: Dragonmind
   name: collective-mind-dragon
-  keycode: 'f'
+  keycode: 'д' # CorvaxGoob-Loc
   color: "#787878"
 
 - type: collectiveMind
   id: Lingmind
   name: collective-mind-lingmind
-  keycode: 'h'
+  keycode: 'г' # CorvaxGoob-Loc
   color: "#FFA000"
   showNames: false
 
@@ -31,59 +31,59 @@
 - type: collectiveMind
   id: Blobmind
   name: collective-mind-blobmind
-  keycode: 'e'
+  keycode: 'б' # CorvaxGoob-Loc
   color: "#637b19"
 
 - type: collectiveMind
   id: MansusLink
   name: collective-mind-mansus-link
-  keycode: 'm'
+  keycode: 'м' # CorvaxGoob-Loc
   color: "#237500"
 
 - type: collectiveMind
   id: Abductormind
   name: collective-mind-abductormind
-  keycode: 'g' # Corvax-Goob-GreySpecies
+  keycode: 'с' # Corvax-Goob-GreySpecies # CorvaxGoob-Loc
   color: "#d600bd"
 
 - type: collectiveMind
   id: Binary
   name: collective-mind-binary
-  keycode: 'b'
+  keycode: 'и' # CorvaxGoob-Loc
   color: "#5ed7aa"
 
 - type: collectiveMind
   id: Dronemind
   name: collective-mind-dronemind
-  keycode: 'd'
+  keycode: 'ч' # CorvaxGoob-Loc
   color: "#6e979a" # like binary but more gray
 
 - type: collectiveMind
   id: Mousemind
   name: collective-mind-mousemind
-  keycode: 'p'
+  keycode: 'к' # CorvaxGoob-Loc
   color: "#c18851"
 
 - type: collectiveMind
   id: Empathy
   name: collective-mind-empathy
-  keycode: 's'
+  keycode: 'э' # CorvaxGoob-Loc
   color: "#7f32a8"
 
 - type: collectiveMind
   id: Binglemind
   name: collective-mind-bingle
-  keycode: 'w'
+  keycode: 'я' # CorvaxGoob-Loc
   color: "#386a9b"
 
 - type: collectiveMind
   id: Shadowmind
   name: collective-mind-shadow-mind
-  keycode: 'q'
+  keycode: 'т' # CorvaxGoob-Loc
   color: "#77698d"
 
 - type: collectiveMind
   id: Xenomorphivemind
   name: collective-mind-xeno
-  keycode: 'z'
+  keycode: 'п' # CorvaxGoob-Loc
   color: "#8c3986"

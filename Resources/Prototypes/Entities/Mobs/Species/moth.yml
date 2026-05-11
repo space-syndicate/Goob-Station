@@ -154,11 +154,11 @@
     - Moffic
   - type: TypingIndicator
     proto: moth
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-    - id: FoodMeat
-      amount: 5
+    - id: FoodMeatMoth
+      amount: 3
   - type: Bloodstream
     bloodReagent: InsectBlood
 #  - type: DamageVisuals

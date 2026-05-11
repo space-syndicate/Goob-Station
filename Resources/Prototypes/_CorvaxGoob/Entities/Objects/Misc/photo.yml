@@ -22,6 +22,9 @@
     whitelist:
       tags:
         - Paper
+    blacklist:
+      tags:
+        - InfinityPaper
 
 - type: entity
   parent: PhotoCamera

@@ -44,23 +44,31 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   - Превращает вас в точную копию по имени и голосу активной ДНК, потребляя её.
   - Можно использовать, будучи связанным или в меньшей форме.
 
-  ## Вход в регенеративный стазис
+  ## Regenerative Stasis
   <Box>
-    [color=#999999][italic]Все химикаты, 1 биомасса[italic][/color]
+    [color=#999999][italic]0/15 Chems[italic][/color]
   </Box>
 
-  - Генокрад мгновенно умирает, разблокируется способность выхода из стазиса.
-  - Можно использовать, будучи связанным или в меньшей форме.
-  - Можно использовать в огне.
+  - Enters stasis if not already in it.
+  - Stasis is also automatically triggered when the user dies.
+  - Cannot ghost while stasis is active.
+  - When leaving stasis, instantly revive with all health fully recovered.
+  - Limbs are not regrown.
+  - Diseases and chemicals are not purged.
+  - Can be used while cuffed or in lesser form.
+  - Can be used while on fire.
+  - The time to leave stasis scales with damage taken, minimum of 15s to maximum of 60s.
 
-  ## Выход из регенеративного стазиса
+  ## Regenerate
   <Box>
-    [color=#999999][italic]60 Химикатов[italic][/color]
+    [color=#999999][italic]15 Chems[italic][/color]
   </Box>
 
-  - Генокрад мгновенно возрождается, все показатели здоровья полностью восстановлены.
-  - Можно использовать, будучи связанным или в меньшей форме.
-  - Можно использовать в огне.
+  - Changeling instantly regrows any missing limbs.
+  - Wounds, bleeding and broken bones are all treated instantly.
+  - Blood levels are restored to full.
+  - If used when limbs are missing, a sound is made.
+  - Can be used while cuffed or in lesser form.
 
   # Боевые способности
 
@@ -260,11 +268,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   <Box>
     [color=#999999][italic] 4 очка эволюции / 20 химикатов[italic][/color]
   </Box>
+
   - Генокрад становится невидимым.
-  - Невидимость усиливается, если стоять неподвижно.
-  - Невидимость быстро уменьшается при движении.
-  - Можно использовать, будучи связанным.
-  - Замедляет регенерацию химикатов на 25%.
+  - Invisibility rapidly increases while motionless.
+  - Invisibility instantly breaks on any motion.
+  - Can be used while cuffed.
 
   ## Запасы адреналина
   <Box>
@@ -297,11 +305,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   <Box>
     [color=#999999][italic] 5 очков эволюции / 35 химикатов[italic][/color]
   </Box>
-  - Генокрад производит 5 единиц меняющихся плотских магов.
-  - Уменьшает кровотечение на 8 за единицу.
-  - Восстанавливает 20 уровня крови за единицу.
-  - Исцеляет 70 от каждого грубого урона.
-  - Исцеляет 30 от каждого урона от ожогов.
+  - User is given the "Fleshmend" status effect, lasting for 10 seconds.
+  - Fleshmend's effects will temporarily cease while on fire.
+  - Heals 10 overall brute damage per tick (100 in total).
+  - Heals 5 overall burn damage per tick (50 in total).
+  - Heals 2 asphyxiation damage per tick (20 in total).
+  - Reduces bleeding severity by 2.5 per tick (25 in total).
   - Можно использовать, находясь в критическом состоянии.
   - Можно использовать в наручниках или в меньшей форме.
 </Document>

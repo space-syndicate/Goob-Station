@@ -333,6 +333,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     {
         if (!Resolve(receiver, ref storage)
             || !Resolve(toInsert, ref material, ref composition, false)
+		    || (storage.Blacklist != null && !_whitelistSystem.IsWhitelistFail(storage.Blacklist, toInsert)) // CorvaxGoob
             || _whitelistSystem.IsWhitelistFail(storage.Whitelist, toInsert)
             || HasComp<UnremoveableComponent>(toInsert))
             return false;
@@ -366,6 +367,10 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
 
         if (!Resolve(toInsert, ref material, ref composition, false))
             return false;
+        // CorvaxGoob-changes-start:
+        if (storage.Blacklist != null && !_whitelistSystem.IsWhitelistFail(storage.Blacklist, toInsert))
+            return false;
+        // CorvaxGoob-changes-end.
 
         if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, toInsert))
             return false;

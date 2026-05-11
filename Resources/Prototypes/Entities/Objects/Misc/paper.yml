@@ -222,6 +222,17 @@
     materialComposition:
       Paper: 100 # CorvaxGoob-Printer from 25 to 100
   - type: Material # CorvaxGoob-TTS
+  - type: Fixtures # CorvaxGoob
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 0.1
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
 
 - type: entity
   name: paper
@@ -255,6 +266,7 @@
   - type: Construction
     graph: SpesosCounterfeit
     node: start
+  - type: StationAiWhitelist
 
 - type: entity
   name: paper scrap
@@ -385,6 +397,7 @@
     - Document
     - Trash
     - Paper
+    - InfinityPaper # CorvaxGoob
   - type: StaticPrice
     price: 0
   - type: NanoTaskPrinted
@@ -432,6 +445,7 @@
     - Document
     - Trash
     - Paper
+    - InfinityPaper # CorvaxGoob
   - type: PaperVisuals
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
     contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
@@ -473,6 +487,7 @@
     - Document
     - Trash
     - Paper
+    - InfinityPaper # CorvaxGoob
   - type: PaperVisuals
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
     contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
@@ -634,3 +649,4 @@
       - !type:EmptyAllContainersBehaviour
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: StationAiWhitelist

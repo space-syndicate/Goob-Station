@@ -31,11 +31,11 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-    - id: FoodMeat
-      amount: 5
+    - id: FoodMeatTajaran
+      amount: 3
   - type: HumanoidAppearance
     species: Tajaran
   - type: Body

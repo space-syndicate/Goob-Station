@@ -146,7 +146,7 @@
       department: Medical
       time: 36000 #10 hrs
     - !type:RoleTimeRequirement  # CorvaxGoob
-      role: JobSurgeon  
+      role: JobSurgeon
       time: 7200 # CorvaxGoob 2 hrs
     - !type:SpeciesRequirement # Goob - None Felinid
       inverted: true
@@ -211,7 +211,7 @@
   hasMindShield: true
   equipment:
     head: ClothingHeadHatBeretCmo
-    eyes: ClothingEyesHudMedical
+    eyes: ClothingEyesGlassesMedChemFlash # Omu
     mask: ClothingMaskSterile
     neck: ClothingCloakCmo
     outerClothing: ClothingOuterCoatLabCmo

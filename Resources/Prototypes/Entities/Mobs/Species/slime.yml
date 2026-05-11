@@ -104,8 +104,6 @@
       # Goobstation - changelings
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.HereticLivingHeartKey.Key: # goob edit - heretics
-        type: LivingHeartMenuBoundUserInterface
       enum.RadarConsoleUiKey.Key: #goob - contractor
         type: RadarConsoleBoundUserInterface
   # to prevent bag open/honk spam
@@ -190,11 +188,11 @@
           components:
           - type: PressureProtection
           invert: true
-  - type: Butcherable
+  - type: Butcherable # CorvaxGoob organ resprite
     butcheringType: Spike
     spawned:
-    - id: FoodMeatSlime
-      amount: 5
+    - id: FoodMeatSlimeMeat
+      amount: 3
   - type: Respirator
     damage:
       types:

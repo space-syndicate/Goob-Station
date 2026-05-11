@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 266.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 02/19/2026 17:15:19
-  entityCount: 21316
+  forkId: syndicate-goob
+  forkVersion: 513fa71254c1ff351c96d052d4f5a6869ae24022
+  time: 04/24/2026 04:40:40
+  entityCount: 21319
 maps:
 - 1
 grids:
@@ -27348,7 +27348,7 @@ entities:
   - uid: 858
     components:
     - type: Transform
-      pos: -8.354505,26.572025
+      pos: -8.383116,26.744015
       parent: 2
 - proto: BoxFolderYellow
   entities:
@@ -67258,6 +67258,13 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Смотритель
+  - uid: 21286
+    components:
+    - type: Transform
+      pos: -6.5,26.5
+      parent: 2
+    - type: FaxMachine
+      name: Суд
 - proto: FaxMachineCaptain
   entities:
   - uid: 7272
@@ -98196,6 +98203,13 @@ entities:
     - type: Transform
       pos: -54.494003,-19.54851
       parent: 2
+- proto: MagistrateGavel
+  entities:
+  - uid: 21288
+    components:
+    - type: Transform
+      pos: -7.177621,26.639849
+      parent: 2
 - proto: MailMetricsCartridge
   entities:
   - uid: 21156
@@ -98817,7 +98831,7 @@ entities:
   - uid: 10890
     components:
     - type: Transform
-      pos: -6.843706,26.516718
+      pos: -8.13011,26.416634
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -111288,6 +111302,13 @@ entities:
     - type: Transform
       pos: -78.5,8.5
       parent: 2
+- proto: SpawnMobBingleCargo
+  entities:
+  - uid: 12561
+    components:
+    - type: Transform
+      pos: -19.5,37.5
+      parent: 2
 - proto: SpawnMobButterfly
   entities:
   - uid: 12542
@@ -111403,13 +111424,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,24.5
-      parent: 2
-- proto: SpawnMobGorillaLargo
-  entities:
-  - uid: 12561
-    components:
-    - type: Transform
-      pos: -19.5,37.5
       parent: 2
 - proto: SpawnMobMcGriff
   entities:
@@ -111734,6 +111748,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,1.5
+      parent: 2
+- proto: SpawnPointMagistrate
+  entities:
+  - uid: 21287
+    components:
+    - type: Transform
+      pos: -6.5,27.5
       parent: 2
 - proto: SpawnPointMedicalDoctor
   entities:

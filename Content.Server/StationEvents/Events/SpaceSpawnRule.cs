@@ -58,7 +58,7 @@ public sealed class SpaceSpawnRule : StationEventSystem<SpaceSpawnRuleComponent>
 
         // create the spawner!
         var xform = Transform(gridUid.Value);
-        var position = _transform.GetWorldPosition(xform) + location;
+        var position = _transform.GetWorldPosition(xform) + grid.LocalAABB.Center + location; // CorvaxGoob edit
         comp.Coords = new MapCoordinates(position, xform.MapID);
         Sawmill.Info($"Picked location {comp.Coords} for {ToPrettyString(uid):rule}");
     }

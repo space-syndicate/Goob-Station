@@ -522,6 +522,7 @@ public abstract class SharedAnomalySystem : EntitySystem
             }
 
             resultList.Add(tileref);
+            tilerefs.Remove(tileref); //CorvaxGoob-RockSpawnFix
         }
         return resultList;
     }

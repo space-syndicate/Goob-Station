@@ -180,6 +180,7 @@
   - CrewCassette # Goobstation
   - ThreeCandles
   - Lighter
+  - FlippoLighter # CorvaxGoob-loadouts
   - CigPackGreen
   - CigPackRed
   - CigPackBlue
@@ -1377,6 +1378,7 @@
   - SeniorOfficerJumpskirt
   - TrooperUniform
   - UniformJumpsuitDSS # _CorvaxGoob
+  - VeteranOfficerBlackJumpsuit # Goobstation
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1403,6 +1405,7 @@
   - ArmorVestSlim
   - SecurityOfficerWintercoat
   - WinterCoatSeniorSecArmored # Goobstation
+  - VeteranOfficerArmor # Goobstation
 
 - type: loadoutGroup
   id: SecurityShoes

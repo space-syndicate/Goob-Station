@@ -231,6 +231,9 @@ uplink-RPOA-desc = A single shot disposable thermobaric rocket launcher, which l
 uplink-ExplosivePayloadBlueprint-name = Explosive Payload Blueprint
 uplink-ExplosivePayloadBlueprint-desc = A blueprint that will allow a single lathe to print explosive payloads, an illegal and dangerous device that can be used in grenades.
 
+uplink-box-reagent-grenades-name = Box of reagent grenades
+uplink-box-reagent-grenades-desc = Contains 2 glue grenades and 2 lube grenades
+
 # Mechs
 
 uplink-mech-teleporter-heavy-name = Heavy Mech teleporter

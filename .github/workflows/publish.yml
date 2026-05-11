@@ -113,3 +113,7 @@ jobs:
     #      run: Tools/actions_changelog_rss.py
     #      env:
     #        CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}
+#    - name: Publish changelog (RSS)
+#      run: Tools/actions_changelog_rss.py
+#      env:
+#        CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}

@@ -40,6 +40,9 @@
   id: Hemostat
 
 - type: Tag
+  id: InfinityPaper
+
+- type: Tag
   id: LavalandJaunter
 
 - type: Tag

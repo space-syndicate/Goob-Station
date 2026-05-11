@@ -89,7 +89,7 @@
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
   # CorvaxGoob-CargoFeatures-Start
-  departmentDestinationName: cargo-account-security-destination
+  departmentDestinationName: cargo-account-service-destination
   secureCratePrototype: CrateHydroSecure
   secureCrateOrderAccess:
   - Bar

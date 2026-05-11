@@ -181,13 +181,14 @@
         - Multitool
         - AppraisalTool
         - JawsOfLife
-        - GPS
-        - WeldingMask
         - RemoteSignaller
         - Hammer # Goobstation
         - Nailgun # Goobstation
         - MagazineNailgun # Goobstation
         - HandHeldMassScanner # CorvaxGoob
+        - WeldingMask # Goobstation
+        - GPS # Goobstation
+        - MesonGoggles # Goobstation
       components:
         - StationMap
         - SprayPainter
@@ -201,6 +202,7 @@
         - TrayScanner
         - GasAnalyzer
         - HandLabeler
+        - RadarConsole # Goobstation
   - type: ItemMapper
     mapLayers:
       drill:
@@ -235,6 +237,18 @@
         whitelist:
           tags:
             - Multitool
+      weldmask:
+        whitelist:
+          tags:
+            - WeldingMask
+      mass_scanner:
+        whitelist:
+          tags:
+           - GPS
+      meson:
+        whitelist:
+          tags:
+           - MesonGoggles
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
   - type: Tag
@@ -277,6 +291,9 @@
         - Nailgun # Goobstation
         - MagazineNailgun # Goobstation
         - HandHeldMassScanner # CorvaxGoob
+        - WeldingMask # Goobstation
+        - GPS # Goobstation
+        - MesonGoggles #Goobstation
       components:
         - StationMap
         - SprayPainter
@@ -291,6 +308,7 @@
         - Geiger
         - TrayScanner
         - GasAnalyzer
+        - RadarConsole # Goobstation
   - type: ItemMapper
     mapLayers:
       drill:
@@ -325,6 +343,20 @@
         whitelist:
           tags:
           - Wrench
+      weldmask:
+        whitelist:
+          tags:
+          - WeldingMask
+      mass_scanner:
+        whitelist:
+          tags:
+          - GPS
+          components:
+          - RadarConsole
+      meson:
+        whitelist:
+          tags:
+          - MesonGoggles
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -464,6 +496,9 @@
         - Defibrillator # Goobstation
         - SyringeGun # Goobstation
         - GunApplySolution # Goobstation - Syndicate dart gun
+    blacklist: # CorvaxGoob
+      components:
+        - BatteryDrinkerSource
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -523,7 +558,7 @@
   - type: Storage
     whitelist:
       tags:
-        # - PlantAnalyzer
+        - PlantAnalyzer
         - PlantSampleTaker
         - BotanyShovel
         - BotanyHoe
@@ -544,10 +579,10 @@
         whitelist:
           tags:
           - BotanyHatchet
-      # hydro:
-      #   whitelist:
-      #     tags:
-      #     - PlantAnalyzer # Dunno what to put here, should be aight.
+      hydro:
+        whitelist:
+          tags:
+          - PlantAnalyzer # Dunno what to put here, should be aight.
       hoe:
         whitelist:
           tags:
@@ -758,9 +793,9 @@
     slots:
     - belt
     - neck # CorvaxGoob start
-#  - type: Storage
-#    grid:
-#    - 0,0,3,1
+  - type: Storage
+    grid:
+    - 0,0,5,1 #corvaxgoob
   # Goobstation
 #    whitelist:
 #      components:
@@ -809,10 +844,10 @@
   - type: ItemSlots
     slots:
       item:
-        # name: Gun # CorvaxGoob-Loc-in-UI
+        name: Gun # CorvaxGoob-Loc-in-UI
         whitelist:
-          tags:
-          - Sidearm # CorvaxGoob 
+          components:
+          - Gun
 
 # Belts without visualizers
 

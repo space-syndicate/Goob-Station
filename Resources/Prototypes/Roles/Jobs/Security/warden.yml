@@ -188,11 +188,13 @@
     eyes: ClothingEyesGlassesSecurityContraDetect # Goobstation
     id: WardenPDA
     ears: ClothingHeadsetAltWarden # Goobstation
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Empty # CorvaxGoob : поставлен пустой прототип пистолета
   storage:
     back:
     - Flash
     - MagazinePistol
+    - MagazinePistol # CorvaxGoob-RubberAmmo
+    - MagazinePistolRubber # CorvaxGoob-RubberAmmo
 #   - ClothingMaskGasSecurity # Goobstation # CorvaxGoob-changes: commented
 
 - type: chameleonOutfit

@@ -49,4 +49,5 @@
     speed: 5
   - type: KnockdownOnHit
     duration: 1 # CorvaxGoob item-drop-fix
+    autostand: false
     knockdownOnHeavyAttack: false

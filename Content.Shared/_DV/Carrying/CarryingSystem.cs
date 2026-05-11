@@ -39,6 +39,7 @@ using System.Numerics;
 using Content.Shared._EinsteinEngines.Contests;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind.Components;
+using Content.Goobstation.Common.Traits; // CorvaxGoob edit
 
 namespace Content.Shared._DV.Carrying;
 
@@ -335,7 +336,8 @@ public sealed class CarryingSystem : EntitySystem
     private void Drop(EntityUid carried)
     {
         RemComp<BeingCarriedComponent>(carried);
-        RemComp<KnockedDownComponent>(carried); // TODO SHITMED: make sure this doesnt let you make someone with no legs walk
+        if (!HasComp<LegsParalyzedComponent>(carried)) // CorvaxGoob edit
+            RemComp<KnockedDownComponent>(carried);
         _actionBlocker.UpdateCanMove(carried);
         Transform(carried).AttachToGridOrMap();
         _standingState.Stand(carried);

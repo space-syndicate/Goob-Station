@@ -252,11 +252,15 @@
     id: BrigmedicPDA
     ears: ClothingHeadsetBrigmedic # EE parity like i was told to do
     belt: ClothingBeltMedicalEMTFilled
-    pocket1: WeaponPistolMk58 # EE parity, make corpsman able to carry weapons like the rest of security
+    #pocket1: WeaponPistolMk58 # EE parity, make corpsman able to carry weapons like the rest of security
+    pocket1: WeaponPistolMk58Empty # CorvaxGoob : поставлен пустой прототип пистолета
     pocket2: WeaponDisabler # Goob
   storage:
     back:
     - Flash
+    - MagazinePistol # CorvaxGoob-RubberAmmo
+    - MagazinePistol # CorvaxGoob-RubberAmmo
+    - MagazinePistolRubber # CorvaxGoob-RubberAmmo
 #   - ClothingMaskBreathMedicalSecurity # CorvaxGoob-loadouts: replaced on a BrigmedicMask loadout
 
 # Aghost

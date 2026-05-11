@@ -156,9 +156,9 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - MagazineShotgunBeanbag
+  #- MagazineShotgunBeanbag # Commented by CorvaxGoob-RubberAmmo
   - BoxShellTranquilizer
-  - BoxBeanbag
+  #- BoxBeanbag # Commented by CorvaxGoob-RubberAmmo
   - MagazineBoxShotgunBeanbagHighCaliber # Goobstation
   - WeaponDisabler
   - WeaponMechCombatDisabler # Goobstation

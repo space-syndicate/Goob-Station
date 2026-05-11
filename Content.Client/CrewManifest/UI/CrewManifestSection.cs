@@ -83,6 +83,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using Content.Shared.Roles;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.CrewManifest.UI;
 
@@ -91,6 +92,7 @@ public sealed class CrewManifestSection : BoxContainer
     public CrewManifestSection(
         IPrototypeManager prototypeManager,
         SpriteSystem spriteSystem,
+        IClipboardManager clipboardManager, // CorvaxGoob-ClipboardManifest
         DepartmentPrototype section,
         List<CrewManifestEntry> entries)
     {
@@ -113,10 +115,20 @@ public sealed class CrewManifestSection : BoxContainer
 
         foreach (var entry in entries)
         {
-            var name = new RichTextLabel()
+            var name = new RichTextLabel();
+
+            // CorvaxGoob-Start-ClipboardManifest
+            var containerButtonName = new ContainerButton()
             {
-                HorizontalExpand = true,
+                HorizontalExpand = true
             };
+
+            var containerButtonTitle = new ContainerButton()
+            {
+                HorizontalExpand = true
+            };
+            // CorvaxGoob-End
+
             name.SetMessage(entry.Name);
 
             var titleContainer = new BoxContainer()
@@ -147,8 +159,31 @@ public sealed class CrewManifestSection : BoxContainer
                 titleContainer.AddChild(title);
             }
 
-            gridContainer.AddChild(name);
-            gridContainer.AddChild(titleContainer);
+            // CorvaxGoob-Start-ClipboardManifest
+
+            containerButtonName.OnButtonDown += (args) =>
+            {
+                if (name.Text is not null)
+                    clipboardManager.SetText(name.Text);
+            };
+
+            containerButtonTitle.OnButtonDown += (args) =>
+            {
+                if (title.Text is not null)
+                    clipboardManager.SetText(title.Text);
+            };
+
+            containerButtonName.AddChild(name);
+            containerButtonTitle.AddChild(titleContainer);
+
+            gridContainer.AddChild(containerButtonName);
+            gridContainer.AddChild(containerButtonTitle);
+            // CorvaxGoob-End-ClipboardManifest
         }
+    }
+
+    private void ContainerButtonName_OnButtonDown(BaseButton.ButtonEventArgs obj)
+    {
+        throw new NotImplementedException();
     }
 }
