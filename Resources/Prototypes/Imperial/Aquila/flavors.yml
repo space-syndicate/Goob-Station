@@ -1,0 +1,9 @@
+- type: flavor
+  id: blackMonster
+  flavorType: Base
+  description: flavor-base-bMonster
+
+- type: flavor
+  id: whiteMonster
+  flavorType: Base
+  description: flavor-base-wMonster
