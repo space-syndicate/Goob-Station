@@ -82,7 +82,7 @@ jobs:
         with:
           wiki_text_file: ./bin/Content.Server/data/loc.json
           edit_summary: Update loc.json via GitHub Actions
-          page_name: "${{ secrets.WIKI_PAGE_ROOT }}/${{ secrets.WIKI_BOT_NAMESPACE }}/loc.json"
+          page_name: "${{ secrets.WIKI_PAGE_ROOT }}/loc.json"
           api_url: ${{ secrets.WIKI_ROOT_URL }}/api.php
           username: ${{ secrets.WIKI_BOT_USER }}
           password: ${{ secrets.WIKI_BOT_PASS }}
@@ -94,7 +94,7 @@ jobs:
         with:
           wiki_text_file: ./bin/Content.Server/data/meta_license.json
           edit_summary: Update meta_license.json via GitHub Actions
-          page_name: "${{ secrets.WIKI_PAGE_ROOT }}/${{ secrets.WIKI_BOT_NAMESPACE }}/meta_license.json"
+          page_name: "${{ secrets.WIKI_PAGE_ROOT }}/meta_license.json"
           api_url: ${{ secrets.WIKI_ROOT_URL }}/api.php
           username: ${{ secrets.WIKI_BOT_USER }}
           password: ${{ secrets.WIKI_BOT_PASS }}
