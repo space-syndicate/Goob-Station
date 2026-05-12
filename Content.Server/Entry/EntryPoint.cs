@@ -271,11 +271,10 @@ namespace Content.Server.Entry
             {
                 var resPath = new ResPath(dest).ToRootedPath();
                 // Corvax-Wiki-Start
-                void WriteFile(string name, Action<StreamWriter> write)
+                void WriteFile(string name, Action<Stream> write)
                 {
-                    using var file = resourceManager.UserData.OpenWriteText(resPath.WithName(name));
-                    write(file);
-                    file.Flush();
+                    using var stream = resourceManager.UserData.OpenWrite(resPath.WithName(name));
+                    write(stream);
                 }
                 WriteFile("entity_prototypes.json", EntityJsonGenerator.PublishJson);
                 WriteFile("entity_parent.json", EntityParentJsonGenerator.PublishJson);
