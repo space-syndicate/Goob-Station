@@ -26,7 +26,7 @@
       - id: FoodMeatVulpkanin
       - id: FoodMeatChicken
       - id: FoodMeat
-        weight: 7
+        weight: 10
       - id: FoodMeatMoth
       - id: FoodMeatPlant
       - id: FoodMeatTajaran
@@ -36,4 +36,4 @@
       - id: FoodMeatSlimeMeat
       - id: FoodMeatSynth
       - id: FoodMeatDragon
-        weight: 0.5
+        weight: 0.075
