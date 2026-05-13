@@ -1,8 +1,8 @@
-ent-SpawnPointBlueshieldOfficer = офицер Синего Щита
+ent-SpawnPointBlueshieldOfficer = офицер "Синий Щит"
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointNanotrasenRepresentative = представитель NanoTrasen
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointNanotrasenCareerTrainer = наставник ЦентКом
+ent-SpawnPointNanotrasenCareerTrainer = наставник ЦК
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointRoboticist = робототехник
     .desc = { ent-SpawnPointJobBase.desc }

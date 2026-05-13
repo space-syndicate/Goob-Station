@@ -17,6 +17,6 @@ ent-ClothingMaskMuzzleShock = шоковый намордник
 ent-ClothingMaskGasUnremoveable = { ent-ClothingMaskGas }
     .suffix = Неснимаемый
     .desc = { ent-ClothingMaskGas.desc }
-ent-ClothingBSOMaskGasSwat = боевой противогаз Синего Щита
-    .desc = Стандартный противогаз офицеров Синего Щита.
+ent-ClothingBSOMaskGasSwat = боевой противогаз офицера "Синий Щит"
+    .desc = Стандартный противогаз офицера "Синий Щит"
 
