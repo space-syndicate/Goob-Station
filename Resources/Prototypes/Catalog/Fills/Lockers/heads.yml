@@ -213,7 +213,6 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
-    - id: SecApartmentTablet # CorvaxGoob-SecApartment
 
 # No laser table + Laser table
 - type: entityTable
@@ -294,7 +293,7 @@
     - id: HoPIDCard
     - id: IDComputerCircuitboard
     #- id: ComputerFundingAllocationFlatpack # Goobstation #CorvaxGoob-QuarterMaster-finance
-    - id: ComputerCargoRequestServiceFlatpack # Goobstation 
+    - id: ComputerCargoRequestServiceFlatpack # Goobstation
     - id: PrinterDocFlatpack #CorvaxGoob-Docprinter
     - id: RubberStampApproved
     - id: RubberStampDenied
