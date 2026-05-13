@@ -4,14 +4,14 @@ ent-FoodPizzaCrust = корочка пиццы
 ent-FoodCottonPizzaCrust = хлопковая корочка пиццы
     .desc = { ent-FoodPizzaCrust }
 
-ent-FoodPizzaCotton = пирохлопковая пицца
+ent-FoodPizzaPyrotton = пирохлопковая пицца
     .desc = Плоское хлопковое тесто с пирохлопковой начинкой. Невероятно.
 
-ent-FoodPizzaCottonSlice = кусок пирохлопковой пиццы
+ent-FoodPizzaPyrottonSlice = кусок пирохлопковой пиццы
     .desc = Кусочек пирохлопковой пиццы. Пирохлопок присутствует.
 
-ent-FoodPizzaCotton = карпохлопковая пицца
+ent-FoodPizzaCarptton = карпохлопковая пицца
     .desc = Плоское хлопковое тесто с начинкой из плюшевого карпа. Невероятно.
 
-ent-FoodPizzaCottonSlice = кусок карпохлопковой пиццы
+ent-FoodPizzaCarpttonSlice = кусок карпохлопковой пиццы
     .desc = Кусочек карпохлопковой пиццы. Плюшевый карп присутствует.

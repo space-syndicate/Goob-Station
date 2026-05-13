@@ -48,6 +48,9 @@
     - cotton
     - pyrotton
     - bread
+  - type: Food
+    trash:
+    - FoodCottonPizzaCrust
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
     layers:
@@ -121,6 +124,9 @@
     - cotton
     - fishops
     - bread
+  - type: Food
+    trash:
+    - FoodCottonPizzaCrust
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
     layers:
