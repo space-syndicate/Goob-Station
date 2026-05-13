@@ -31,7 +31,6 @@
         reagents:
         - ReagentId: JuiceApple
           Quantity: 150
-  - type: Drink
   - type: Label
     currentLabel: reagent-name-juice-apple
   - type: Sprite
