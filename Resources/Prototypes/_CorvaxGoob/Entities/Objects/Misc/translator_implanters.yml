@@ -1,0 +1,7 @@
+- type: entity
+  id: ZookeeperTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  suffix: Zookeeper
+  components:
+  - type: Implanter
+    implant: ZookeeperTranslatorImplant
