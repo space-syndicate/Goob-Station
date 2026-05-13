@@ -28,5 +28,5 @@ action-description-load-janitor = Выбор уборочного модуля.
 action-name-load-cargo = Загрузить шахтёрский модуль
 action-description-load-cargo = Выбор шахтёрский модуля.
 
-action-name-change-reagent = Сменить реагент в гипоспрее
-action-description-change-reagent = Изменить текущий реагент, вырабатываемый гипоспреем.
+ent-ChangeReagent = Сменить реагент в гипоспрее
+    .desc = Изменить текущий реагент, вырабатываемый гипоспреем.

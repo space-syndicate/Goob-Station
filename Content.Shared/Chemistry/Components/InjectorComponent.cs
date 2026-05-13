@@ -94,6 +94,11 @@ public sealed partial class InjectorComponent : Component
     [DataField]
     public float MovementThreshold = 0.1f;
 
+    // Imperial Space
+    [DataField]
+    public bool PopupOnInjectFail = true;
+    // Imperial Space
+
     #endregion
 }
 
