@@ -2,9 +2,9 @@ meta:
   format: 7
   category: Map
   engineVersion: 266.0.0
-  forkId: syndicate-goob
-  forkVersion: a72f37f6999ade374b554793ad65b26abf9cba70
-  time: 03/02/2026 15:20:00
+  forkId: ""
+  forkVersion: ""
+  time: 05/14/2026 08:39:45
   entityCount: 58684
 maps:
 - 1
@@ -57232,9 +57232,9 @@ entities:
   - uid: 52511
     components:
     - type: MetaData
-      name: grid
+      name: ERT-Shuttle-Ruins-1
     - type: Transform
-      pos: -308.14685,80.57143
+      pos: 585.7,288.8
       parent: 1
     - type: MapGrid
       chunks:
@@ -57888,9 +57888,9 @@ entities:
   - uid: 53057
     components:
     - type: MetaData
-      name: grid
+      name: ERT-Shuttle-Ruins-2
     - type: Transform
-      pos: -303.22455,78.78475
+      pos: 591.9,287.2
       parent: 1
     - type: MapGrid
       chunks:
@@ -111135,13 +111135,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.528511,38.619408
-      parent: 2
-- proto: BookDAM
-  entities:
-  - uid: 7536
-    components:
-    - type: Transform
-      pos: -30.603775,-42.403282
       parent: 2
 - proto: BookEarth
   entities:
@@ -166346,6 +166339,23 @@ entities:
           priority: 0
           component: Armor
         title: null
+    - type: Armor
+      modifiers:
+        ignoreArmorPierceFlags: []
+        flatReductions: {}
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.75
+          Piercing: 0.65
+          Heat: 0.6
+          Radiation: 0.5
+          Caustic: 0.9
+    - type: ExplosionResistance
+      damageCoefficient: 0.6
+    - type: FireProtection
+      reduction: 0.6
+    - type: StaminaResistance
+      damageCoefficient: 0.5
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -166355,59 +166365,23 @@ entities:
     components:
     - type: Transform
       parent: 52616
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: Понижает вашу скорость на [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Эта броня снижает входящий урон груди[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон паха[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон рук[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон кистей[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон ног[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон стоп[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон хвоста[/color]
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]65%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]65%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]70%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]55%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]80%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]60%[/color].
-
-            - [color=orange]Огненный[/color] урон снижается на [color=lightblue]75%[/color].
-
-            - [color=green]Увеличивает[/color] задержку отложенного оглушения дубинкой на [color=lightblue]3 секунд[/color].
-
-            - [color=green]Уменьшает[/color] длительность отложенного оглушения дубинкой на [color=lightblue]3 секунд[/color].
-
-            - Урон по [color=lightyellow]выносливости[/color] уменьшен на [color=lightblue]65%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]50%[/color].
-          priority: 0
-          component: Armor
-        title: null
+    - type: Armor
+      modifiers:
+        ignoreArmorPierceFlags: []
+        flatReductions: {}
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.65
+          Heat: 0.6
+          Radiation: 0.4
+          Caustic: 0.8
+    - type: ExplosionResistance
+      damageCoefficient: 0.6
+    - type: FireProtection
+      reduction: 0.5
+    - type: StaminaResistance
+      damageCoefficient: 0.6
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -166422,76 +166396,23 @@ entities:
       rot: -0.7853981633974483 rad
       pos: 1.5745249,12.418003
       parent: 52511
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Эта броня снижает входящий урон груди[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон паха[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон рук[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон кистей[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон ног[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон стоп[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон хвоста[/color]
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]30%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]35%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]94.5%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]10%[/color].
-
-            - Урон по [color=lightyellow]выносливости[/color] уменьшен на [color=lightblue]40%[/color].
-
-            - [color=orange]Огненный[/color] урон снижается на [color=lightblue]40%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]40%[/color].
-
-            - [color=green]Увеличивает[/color] задержку отложенного оглушения дубинкой на [color=lightblue]3 секунд[/color].
-
-            - [color=green]Уменьшает[/color] длительность отложенного оглушения дубинкой на [color=lightblue]3 секунд[/color].
-          priority: 0
-          component: Armor
-        - message: Понижает вашу скорость на [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        title: null
     - type: Armor
       modifiers:
         ignoreArmorPierceFlags: []
         flatReductions: {}
         coefficients:
-          Blunt: 0.75
-          Slash: 0.75
-          Piercing: 0.7
-          Heat: 0.65
-          Radiation: 0.055
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.75
+          Heat: 0.7
+          Radiation: 0.5
           Caustic: 0.9
     - type: ExplosionResistance
-      damageCoefficient: 0.6
+      damageCoefficient: 0.7
     - type: FireProtection
-      reduction: 0.4
+      reduction: 0.5
     - type: StaminaResistance
-      damageCoefficient: 0.6
+      damageCoefficient: 0.7
   - uid: 52619
     components:
     - type: MetaData
@@ -166501,59 +166422,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.4802513,4.435398
       parent: 52511
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Эта броня снижает входящий урон груди[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон паха[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон рук[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон кистей[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон ног[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон стоп[/color]
-
-            - [color=yellow]Эта броня снижает входящий урон хвоста[/color]
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]5%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]5%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]5%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]5%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]70%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]10%[/color].
-
-            - Урон по [color=lightyellow]выносливости[/color] уменьшен на [color=lightblue]35%[/color].
-
-            - [color=orange]Огненный[/color] урон снижается на [color=lightblue]30%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]30%[/color].
-
-            - [color=green]Увеличивает[/color] задержку отложенного оглушения дубинкой на [color=lightblue]3 секунд[/color].
-
-            - [color=green]Уменьшает[/color] длительность отложенного оглушения дубинкой на [color=lightblue]3 секунд[/color].
-          priority: 0
-          component: Armor
-        - message: Понижает вашу скорость на [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        title: null
     - type: Armor
       modifiers:
         ignoreArmorPierceFlags: []
@@ -166563,14 +166431,14 @@ entities:
           Slash: 0.95
           Piercing: 0.95
           Heat: 0.95
-          Radiation: 0.3
+          Radiation: 0.5
           Caustic: 0.9
     - type: ExplosionResistance
       damageCoefficient: 0.7
     - type: FireProtection
       reduction: 0.3
     - type: StaminaResistance
-      damageCoefficient: 0.65
+      damageCoefficient: 0.8
 - proto: ClothingOuterHardsuitLuxury
   entities:
   - uid: 15415
@@ -184633,7 +184501,7 @@ entities:
     - type: Label
       currentLabel: вода
     - type: PressurizedSolution
-      sprayFizzinessThresholdRoll: 0.87552524
+      sprayFizzinessThresholdRoll: 0.86492735
     - type: MeleeWeapon
       nextAttack: -3348.2300363
     - type: EmitSoundOnCollide
@@ -248315,7 +248183,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#006600FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#006600FF'
         stampedName: stamp-component-stamped-name-centcom
       content: >-
         [color=#228B22][color=#d4af37]███[/color][color=#228B22]░███░░░░██░░░░                  [color=#d4af37]       ★★★[/color]
@@ -248924,7 +248795,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-syndicate
       stampedBy:
-      - stampedColor: '#850000FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#850000FF'
         stampedName: Boykisser
       content: >
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -249549,7 +249423,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#006600FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#006600FF'
         stampedName: stamp-component-stamped-name-centcom
       content: "-----------------------------------------------------------------------------------\r\n                    ДЛЯ СЛУЖЕБНОГО ПОЛЬЗОВАНИЯ\r\n                    Отдел исследований и разработок\r\n\r\nКОПИРОВАНИЕ БЕЗ ПИСЬМЕННОГО РАЗРЕШЕНИЯ НАУЧНОГО РУКОВОДИТЕЛЯ КАРАЕТСЯ 142 СТАТЬЁЙ КОРПОРАТИВНОГО ЗАКОНА.\r\n-----------------------------------------------------------------------------------\r\n                            Лазерные технологии нт\r\n-----------------------------------------------------------------------------------\r\n  Принцип работы:\r\n               ___________________________________\r\n               |                                                     | \r\n               |   ЭНЕРГОНАКОПЛЕНИЕ       | Стандартная ёмкость\r\n               |    (БАТАРЕЯ)                             | 1000 Вт\r\n               |_________________________________|\r\n                     |          Подача энергии для 1 выстрела\r\n                     |          От 62.5 до 100 Вт \r\n                     v _______________________________________________________________________\r\n|                                             Активная среда содержит\r\n|   АКТИВНАЯ СРЕДА        атомы или молекулы,\r\n|   (КРИСТАЛЛ/ГАЗ)          которые находятся в  \r\n| ___________________________ возбужденном состоянии,  \r\n||  1. НАСЫЩЕНИЕ        |  где энергия атомов\r\n||  АКТИВНОЙ СРЕДЫ  | или молекул выше\r\n||_________________________| чем в основном состоянии\r\n|                     |\r\n|                     |\r\n|                     v                                            при наличии фотонов\r\n|   _______________________________________ определённой энергии\r\n|  |                                                           | возбужденные атомы  \r\n|  |     2. СТИМУЛИРОВАННАЯ        |  или молекулы \r\n|  |         ЭМИССИЯ                              |  переходят\r\n|  |   (Усиление & когерентность)|  в основное состояние\r\n|  |_____________________________________| излучая фотоны\r\n|                     |\r\n|                     |\r\n|                     v\r\n|        ___________________________\r\n|      |                                         |  Зеркала отражают фотоны\r\n|      |  3. ОБРАТНАЯ СВЯЗЬ|  обратно в активную среду\r\n|      |    (ЗЕРКАЛА)                 |  создавая условия для\r\n|      |     ↑        ↑                        | дополнительной эмиссии\r\n|      |     |        |                        | Этот процесс создаёт эффект\r\n|      |   (Усиление)                | лавины, при котором кол-во\r\n|      |__________________________| фотонов растёт\r\n|                    |    \r\n|                    |\r\n|                    v\r\n|       ____________________________             ____________________\r\n|      |                                           |           |                             |\r\n|      |  ЧАСТИЧНО                   |           |    ПОЛНОЕ       |\r\n|      |  ПРОПУСКАЮЩЕЕ       | ---->  |    ЗЕРКАЛО       |\r\n|      |   ЗЕРКАЛО                      |           |                             |\r\n|      |___________________________|           |__________________|\r\n|______________________________________________________________________\r\n                    |                  Полное зеркало препятствует выходу\r\n                  (КУРОК)       излучения из камеры. При нажатии\r\n                    |                   на курок оно поднимается и поток\r\n                    v                   фотонов идёт дальше\r\n               _________________________________\r\n              |      КАМЕРА ФОКУСА            |\r\n              |                                                   |\r\n              |    ЛИНЗЫ И ОПТИЧЕСКИЕ |\r\n              |            ЭЛЕМЕНТЫ                 |\r\n              |________________________________|\r\n                    |\r\n                    |\r\n                    v\r\n              ________________________________\r\n             |   КАМЕРА ИЗЛУЧЕНИЯ       | Взаимодействие луча\r\n             |                                                   | с материалами,\r\n             |      (усиление за счёт          | которые могут\r\n             |        сдвига Рамана)             | испытывать сдвиг\r\n             |________________________________| фотонной энергии\r\n-----------------------------------------------------------------------------------\r\nЭТОТ ДОКУМЕНТ ПРЕДНАЗНАЧЕН ДЛЯ СЛУЖЕБНОГО ПОЛЬЗОВАНИЯ. КОПИРОВАНИЕ И РАСПРОСТРАНЕНИЕ РАЗРЕШЕНО ТОЛЬКО С ПИСЬМЕННОГО РАЗРЕШЕНИЯ НАУЧНОГО РУКОВОДИТЕЛЯ. "
   - uid: 24916
@@ -249699,7 +249576,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#006600FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#006600FF'
         stampedName: stamp-component-stamped-name-centcom
       content: >-
         [color=#1b487e]███░███░░░░██░░░░[/color]
@@ -249852,7 +249732,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-psychologist
       stampedBy:
-      - stampedColor: '#0082AEFF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#0082AEFF'
         stampedName: stamp-component-stamped-name-psychologist
       content: "Медикаментозная терапия психических расстройств.\n\n \n Нарколепсия \n - эфедрин, дозировка 30 +диловен\n - дезоксиэфедрин - лучший выбор, дозировка 20 +диловен\n - этилоксиэфедрин, дозировка 10\n - дифенилметиламин, очень дорог, дозировка 5\n\nПриступы агрессии, обострения.\n \n - пакс - успокоительное, дозировка от 5\n - хлоральгидрат - снотворное, дозировка от 10\n - криптобиолин - дезориентирует больного\n\nПовреждения мозга\n \n - маннитол, действие до конца не изучено\n\nТревожность, дрожь, опьянение\n\n - псикодин, побочные эффекты в виде галлюцинаций\n - этилредоксразин - безопасный отрезвитель\n\nГаллюцинации\n\n - синаптизин, крайне токсичен, только с диловеном\n - галоперидол, также убирает дрожь, вызывает сонливость\n\nДепрессия, шизофрения\n\n - Импедризин, токсичен, только с диловеном\n - Космический мираж - безопасный галлюциноген\n - Счастье - вызывает повреждения мозга\n - ТГК - содержится в конопле\n - Токсин Майндбрекер, он же ЛСД. Действует дольше, чем мираж\n\n\n"
   - uid: 24936
@@ -250523,7 +250406,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#006600FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#006600FF'
         stampedName: stamp-component-stamped-name-centcom
       content: >
         =============================================
@@ -250558,7 +250444,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#006600FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#006600FF'
         stampedName: stamp-component-stamped-name-centcom
       content: >
         Уважаемый Глава Персонала. В рамках проведения программы улучшения рабочих условий, Центральным Командованием были предоставлены альтернативные версии уже имеющихся у вас стандартных печатей ОДОБРЕНО и ОТКАЗАНО. Вы можете использовать их в работе с сотрудниками станции, однако, воздержитесь от их использования во время связи с ЦентКомом. Благодарим за понимание, удачной работы. Слава NanoTrasen!
@@ -279004,7 +278893,7 @@ entities:
       pos: 42.5,-27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -29941.555
+      secondsUntilStateChange: -30497.898
       state: Opening
   - uid: 27936
     components:
@@ -279296,7 +279185,7 @@ entities:
   - uid: 52707
     components:
     - type: Transform
-      pos: 1.5,4.5
+      pos: 0.5,7.5
       parent: 52511
   - uid: 52708
     components:
@@ -397579,6 +397468,18 @@ entities:
     - type: InsideEntityStorage
 - proto: WeaponTurretAllHostile
   entities:
+  - uid: 7536
+    components:
+    - type: MetaData
+      desc: Автоматическая охранная турель с баллистическим пулемётом. Кажется она сильно повреждена... она ещё стреляет?
+      name: повреждённая охранная турель
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 52511
+    - type: Gun
+      fireRate: 4
+    - type: BallisticAmmoProvider
+      capacity: 94
   - uid: 49888
     components:
     - type: Transform
