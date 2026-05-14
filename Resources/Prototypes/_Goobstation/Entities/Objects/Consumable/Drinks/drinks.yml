@@ -30,7 +30,7 @@
   - type: Sprite
     sprite: _Goobstation/Objects/Consumable/Drinks/shakerblack.rsi
     state: icon
-  - type: Shakeable
+  - type: Shakeable # CorvaxGoob
 
 - type: entity
   parent: DrinkFitnessShakerBlack
