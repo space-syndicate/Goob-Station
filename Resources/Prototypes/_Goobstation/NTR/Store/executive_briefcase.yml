@@ -100,7 +100,7 @@
 
 - type: storeCategory
   id: NTREvil
-  name: Evil
+  name: ntr-executive-tier-4-name # CorvaxGoob-changes: Evil > ntr-executive-tier-4-name 
   priority: 3
   evil: true # lol
 
