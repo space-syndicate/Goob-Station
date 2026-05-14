@@ -722,15 +722,16 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
 
     public void RemoveAllChangelingEquipment(EntityUid target, ChangelingIdentityComponent comp)
     {
-        // check if there's no entities or all entities are null
-        if (comp.Equipment.Values.Count == 0
-        || comp.Equipment.Values.All(ent => ent == null ? true : false))
+        if (comp.Equipment.Count == 0) // CorvaxGoob edit
             return;
 
         foreach (var equip in comp.Equipment.Values)
             QueueDel(equip);
 
+        comp.Equipment.Clear(); // CorvaxGoob edit
+
         PlayMeatySound(target, comp);
+
     }
 
     #endregion

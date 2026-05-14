@@ -87,10 +87,6 @@
       - Monkey
       - Kobold
 
-
-
-
-
 - type: entity
   parent: BaseSubdermalImplant
   id: ChevalTranslatorImplant

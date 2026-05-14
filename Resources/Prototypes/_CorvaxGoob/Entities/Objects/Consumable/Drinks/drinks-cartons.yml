@@ -1,0 +1,14 @@
+- type: entity
+  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  id: DrinkJuiceAppleCarton
+  name: apple juice
+  description: A pure set of vitamins that is useful for corporate employees.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: JuiceApple
+          Quantity: 50
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Drinks/applejuice.rsi

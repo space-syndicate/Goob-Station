@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ZookeeperTranslatorImplant
+  name: zookeeper translator implant
+  description: An implant giving the ability to understand animals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+      - Cat
+      - Dog
+      - Fox
+      - Xeno
+      - Monkey
+      - Mouse
+      - Chicken
+      - Duck
+      - Cow
+      - Sheep
+      - Kangaroo
+      - Pig
+      - Crab
+      - Kobold
+      - Hissing
+      - Penguin
+      - Deer
+      - Bingle
+      - Cheval

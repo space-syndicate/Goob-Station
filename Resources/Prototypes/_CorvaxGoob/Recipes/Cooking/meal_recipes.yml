@@ -1,0 +1,8 @@
+- type: microwaveMealRecipe
+  id: RecipeMothdogMothroach
+  name: mothdog recipe
+  result: FoodSnackMothdog
+  time: 10
+  group: Savory
+  solids:
+     MobMothroach: 1

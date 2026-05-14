@@ -47,7 +47,7 @@
     attackRate: 1.5
     damage:
       types:
-        Slash: 12
+        Slash: 15 # CorvaxGoob edit 12 -> 15
       woundSeverityMultipliers:
         Slash: 2
     soundHit:
@@ -94,7 +94,7 @@
           attackRate: 1.5
           damage:
             types:
-              Slash: 12
+              Slash: 15 # CorvaxGoob edit 12 -> 15
             woundSeverityMultipliers:
               Slash: 2
           soundHit:

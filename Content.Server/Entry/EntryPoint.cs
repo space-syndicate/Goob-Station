@@ -168,6 +168,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._CorvaxGoob.TTS;
+using Content.Server.Corvax.GuideGenerator;
+using System.IO;
 
 namespace Content.Server.Entry
 {
@@ -268,13 +270,28 @@ namespace Content.Server.Entry
             if (!string.IsNullOrEmpty(dest))
             {
                 var resPath = new ResPath(dest).ToRootedPath();
-                var file = resourceManager.UserData.OpenWriteText(resPath.WithName("chem_" + dest));
-                ChemistryJsonGenerator.PublishJson(file);
-                file.Flush();
-                file = resourceManager.UserData.OpenWriteText(resPath.WithName("react_" + dest));
-                ReactionJsonGenerator.PublishJson(file);
-                file.Flush();
-                IoCManager.Resolve<IBaseServer>().Shutdown("Data generation done");
+                // Corvax-Wiki-Start
+                void WriteFile(string name, Action<Stream> write)
+                {
+                    using var stream = resourceManager.UserData.OpenWrite(resPath.WithName(name));
+                    write(stream);
+                }
+                WriteFile("entity_prototypes.json", EntityJsonGenerator.PublishJson);
+                WriteFile("entity_parent.json", EntityParentJsonGenerator.PublishJson);
+                WriteFile("loc.json", LocJsonGenerator.PublishJson);
+                WriteFile("meta_license.json", MetaLicenseGenerator.PublishJson);
+                WriteFile("prototype.json", PrototypeListGenerator.PublishJson);
+                WriteFile("component.json", ComponentListGenerator.PublishJson);
+                WriteFile("prototype_store.json", PrototypeStoreGenerator.PublishJson);
+                WriteFile("component_store.json", ComponentStoreGenerator.PublishJson);
+                WriteFile("entity_project.json", EntityProjectGenerator.PublishJson);
+                WriteFile("entity_name.json", EntityNameDuplicatesJsonGenerator.PublishNameJson);
+                WriteFile("entity_name_wiki.json", file => WikiEntityNameGenerator.PublishJson(file, resourceManager, resPath));
+                WriteFile("entity_name_duplicates.json", EntityNameDuplicatesJsonGenerator.PublishDuplicatesJson);
+                PrototypeJsonGenerator.PublishAll(resourceManager, new ResPath("prototype").ToRootedPath());
+                ComponentJsonGenerator.PublishAll(resourceManager, new ResPath("component").ToRootedPath());
+                // Corvax-Wiki-End
+                Dependencies.Resolve<IBaseServer>().Shutdown("Data generation done");
             }
             else
             {

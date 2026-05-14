@@ -1,6 +1,9 @@
 ent-LibrarianTranslatorImplanter = { ent-BaseTranslatorImplanter }
     .suffix = Librarian
     .desc = { ent-BaseTranslatorImplanter.desc }
+ent-ZookeeperTranslatorImplanter = { ent-BaseTranslatorImplanter }
+    .suffix = Zookeeper
+    .desc = { ent-BaseTranslatorImplanter.desc }
 ent-ChevalTranslatorImplanter = { ent-BaseTranslatorImplanter }
     .suffix = Cheval
     .desc = { ent-BaseTranslatorImplanter.desc }

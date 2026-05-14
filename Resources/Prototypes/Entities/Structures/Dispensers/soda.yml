@@ -143,6 +143,7 @@
     - id: DrinkIceJug
     - id: DrinkJuiceLimeCartonXL
     - id: DrinkJuiceOrangeCartonXL
+    - id: DrinkJuiceAppleCartonXL # CorvaxGoob
     - id: DrinkLemonLimeJug
     - id: DrinkRootBeerJug
     - id: DrinkSodaWaterBottleFull

@@ -426,16 +426,40 @@
   id: EvacQul  
   background: /Textures/_CorvaxGoob/LobbyScreens/evac-qul.webp  
   name: "Эвакуация"  
-  artist: qulezza
+  artist: "qulezza"
 
 - type: lobbyBackground  
   id: HereticQul  
   background: /Textures/_CorvaxGoob/LobbyScreens/heretic-qul.webp  
   name: "Культист"  
-  artist: qulezza
+  artist: "qulezza"
 
 - type: lobbyBackground  
   id: AfterNewYear  
   background: /Textures/_CorvaxGoob/LobbyScreens/after-new-year.webp  
   name: "После нового года"  
   artist: "Сообщество художников"
+
+- type: lobbyBackground  
+  id: LeBingle
+  background: /Textures/_CorvaxGoob/LobbyScreens/le-bingle.webp
+  name: "Le Bingle"  
+  artist: "Sirnapalka"
+
+- type: lobbyBackground  
+  id: NoCompromises
+  background: /Textures/_CorvaxGoob/LobbyScreens/no-compromises.webp
+  name: "Никаких Компромиссов"  
+  artist: "AscArt"
+
+- type: lobbyBackground  
+  id: RNDOnWork
+  background: /Textures/_CorvaxGoob/LobbyScreens/rnd-on-work.webp
+  name: "Всё стабильно, учёные работают"  
+  artist: "Ugog"
+
+- type: lobbyBackground  
+  id: NightGlacier
+  background: /Textures/_CorvaxGoob/LobbyScreens/night-glacier.webp
+  name: "Ночной «Гласир»"  
+  artist: "Yashastepanov"
