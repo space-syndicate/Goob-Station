@@ -8,7 +8,7 @@
   pricePerUnit: 1.5
   color: "#A7B0E9"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -79,7 +79,7 @@
   color: "#2DA94C"
   group: Toxins
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -104,7 +104,7 @@
   color: "#982CEE"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:ChangeMarkingColor
   reactiveEffects:
@@ -127,7 +127,7 @@
   color: "#982CEE"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
@@ -152,7 +152,7 @@
   color: "#5CCE6C"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:RemoveMark
         conditions:
@@ -169,7 +169,7 @@
   color: "#F37A00"
   group: Biological
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:Luminescence
         color: "#F37A00"
@@ -184,7 +184,7 @@
   color: "#A9A43A"
   group: Biological
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:Luminescence
         energyPerUnit: 2
@@ -198,7 +198,7 @@
   color: "#5CCE6C"
   group: Unknown
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 5.0
       effects:
       - !type:ChangeMarkingColor
@@ -219,7 +219,7 @@
   pricePerUnit: 20
   color: "#92DA6D"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
