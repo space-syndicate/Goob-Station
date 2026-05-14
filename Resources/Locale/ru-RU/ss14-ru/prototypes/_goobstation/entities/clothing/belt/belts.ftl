@@ -27,3 +27,6 @@ ent-ClothingBeltSecurityWebbingContractor = РПС наёмника
 ent-ClothingBeltSecurityWebbingContractorFilled = { ent-ClothingBeltSecurityWebbingContractor }
     .desc = { ent-ClothingBeltSecurityWebbingContractor.desc }
     .suffix = Заполненный
+ent-ClothingBeltWhipping = батин ремен
+    .suffix = Адмем
+    .desc = Пьяный офицер специальных операций вернулся с работы домой к семье...
