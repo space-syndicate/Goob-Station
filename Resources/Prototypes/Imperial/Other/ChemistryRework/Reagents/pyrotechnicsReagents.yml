@@ -177,6 +177,16 @@
         energyPerUnit: 2
         maxEnergy: 140
         maxRange: 20
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:Luminescence
+        color: "#F37A00"
+        maxEnergy: 140
+        maxRange: 20
+        energyPerUnit: 2
+        touchExpiryPerUnit: 4
 
 - type: reagent
   id: UnstableTineaLuxor
@@ -193,6 +203,15 @@
         maxEnergy: 140
         maxRange: 20
         energyPerUnit: 2
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:Luminescence
+        maxEnergy: 140
+        maxRange: 20
+        energyPerUnit: 2
+        touchExpiryPerUnit: 4
 
 - type: reagent
   id: Mutadone
