@@ -113,10 +113,6 @@
       effects:
       - !type:ChangeMarkingColor
         invertColor: true
-        conditions:
-          - !type:ReagentCondition
-            min: 5
-            reagent: QuantumHairDye
 
 - type: reagent
   id: QuantumTailDye
@@ -138,10 +134,6 @@
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
         invertColor: true
-        conditions:
-          - !type:ReagentCondition
-            min: 5
-            reagent: QuantumTailDye
 
 - type: reagent
   id: ValproicAcid

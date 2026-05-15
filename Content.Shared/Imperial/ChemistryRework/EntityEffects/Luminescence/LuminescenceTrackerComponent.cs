@@ -15,4 +15,7 @@ public sealed partial class LuminescenceTrackerComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan GracePeriod = TimeSpan.FromSeconds(1);
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan NextCheck = TimeSpan.Zero;
 }
