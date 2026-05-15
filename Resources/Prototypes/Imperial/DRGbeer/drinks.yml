@@ -104,6 +104,8 @@
         reagent: Ethanol
         amount: 0.05
       - !type:Luminescence
+        maxEnergy: 50
+        maxRange: 5
         energyPerUnit: 2
 
 - type: reagent

@@ -170,11 +170,13 @@
   color: "#F37A00"
   group: Biological
   metabolisms:
-    Digestion:
+    Bloodstream:
       effects:
       - !type:Luminescence
         color: "#F37A00"
         energyPerUnit: 2
+        maxEnergy: 140
+        maxRange: 20
 
 - type: reagent
   id: UnstableTineaLuxor
@@ -188,6 +190,8 @@
     Digestion:
       effects:
       - !type:Luminescence
+        maxEnergy: 140
+        maxRange: 20
         energyPerUnit: 2
 
 - type: reagent
