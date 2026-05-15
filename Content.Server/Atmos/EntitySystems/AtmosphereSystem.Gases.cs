@@ -28,6 +28,20 @@ namespace Content.Server.Atmos.EntitySystems
             Array.Sort(_gasReactions, (a, b) => b.Priority.CompareTo(a.Priority));
         }
 
+        public override float GetMass(GasMixture mix)
+        {
+            return GetMass(mix.Moles);
+        }
+
+        public override float GetMass(float[] moles)
+        {
+            Span<float> tmp = stackalloc float[moles.Length];
+            NumericsHelpers.Multiply(moles, GasMolarMasses, tmp);
+
+            // Conversion of grams to kilograms.
+            return NumericsHelpers.HorizontalAdd(tmp) * Atmospherics.gToKg;
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override float GetHeatCapacityCalculation(float[] moles, bool space)
         {
@@ -38,7 +52,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
 
             Span<float> tmp = stackalloc float[moles.Length];
-            NumericsHelpers.Multiply(moles, GasSpecificHeats, tmp);
+            NumericsHelpers.Multiply(moles, GasMolarHeatCapacities, tmp);
             // Adjust heat capacity by speedup, because this is primarily what
             // determines how quickly gases heat up/cool.
             return MathF.Max(NumericsHelpers.HorizontalAdd(tmp), Atmospherics.MinimumHeatCapacity);

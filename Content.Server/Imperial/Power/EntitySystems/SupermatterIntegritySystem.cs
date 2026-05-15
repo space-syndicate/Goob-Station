@@ -21,6 +21,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;
 using Robust.Shared.Timing;
+using Content.Server.Radiation.Systems;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -40,6 +41,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = null!;
     [Dependency] private readonly TagSystem _tagSystem = null!;
     [Dependency] private readonly IGameTiming _gameTiming = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
     public override void Initialize()
     {
@@ -127,7 +129,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     private void ProcessSupermatterUpdate(Entity<SupermatterIntegrityComponent> entity, TransformComponent transComp, float frameTime)
     {
         if (TryComp(entity, out RadiationSourceComponent? radiation))
-            radiation.Enabled = entity.Comp.Activated;
+            _radiationSystem.SetEnabled(entity, entity.Comp.Activated);
 
         if (TryComp(entity, out PointLightComponent? light))
             _lightSystem.SetEnabled(entity, entity.Comp.Activated, light);

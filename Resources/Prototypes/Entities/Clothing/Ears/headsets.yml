@@ -304,6 +304,7 @@
     - type: Clothing
       sprite: Clothing/Ears/Headsets/wizard.rsi
 
+# Imperial Space
 # - type: entity
 #   parent: [ClothingHeadset, BaseMajorContraband]
 #   id: ClothingHeadsetNinja
