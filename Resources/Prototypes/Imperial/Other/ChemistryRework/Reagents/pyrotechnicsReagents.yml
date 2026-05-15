@@ -155,6 +155,7 @@
     Bloodstream:
       effects:
       - !type:RemoveMark
+        markingCategory: Hair
         conditions:
           - !type:ReagentCondition
             reagent: ValproicAcid
