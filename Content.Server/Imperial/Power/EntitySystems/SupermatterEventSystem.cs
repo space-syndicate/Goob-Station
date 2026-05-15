@@ -4,6 +4,7 @@ using Content.Server.Imperial.Power.Components;
 using Content.Server.Imperial.Power.EntitySystems.Events;
 using Content.Server.Lightning;
 using Content.Server.NukeOps;
+using Content.Server.Radiation.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Systems;
@@ -27,6 +28,7 @@ public sealed class SupermatterEventSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = null!;
     [Dependency] private readonly RadioSystem _radio = null!;
     [Dependency] private readonly TransformSystem _transformSystem = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
     // Кеш ближайших консолей для кристаллов
     private readonly Dictionary<EntityUid, (EntityUid console, float time)> _nearestConsoleCache = new();
@@ -164,10 +166,9 @@ public sealed class SupermatterEventSystem : EntitySystem
             || comp.IsWarOps)
             return;
 
-        if (comp.CurrentEvent == SupermatterEventComponent.SupermatterEventType.Radiation
-            && TryComp<RadiationSourceComponent>(entity.Owner, out var rad))
+        if (comp.CurrentEvent == SupermatterEventComponent.SupermatterEventType.Radiation)
         {
-            rad.Intensity = comp.DefaultRadiationIntensity;
+            _radiationSystem.SetIntensity(entity.Owner, comp.DefaultRadiationIntensity);
         }
 
         var randomEvtIndex = _random.Next(0, comp.AllowedEventTypes.Count);
@@ -273,11 +274,11 @@ public sealed class SupermatterEventSystem : EntitySystem
     public void SetRadiation(EntityUid uid, float intensity)
     {
         if (TryComp<RadiationSourceComponent>(uid, out var radComponent))
-            radComponent.Intensity = intensity;
+            _radiationSystem.SetIntensity(uid, intensity);
         else
         {
-            var newRad = EnsureComp<RadiationSourceComponent>(uid);
-            newRad.Intensity = intensity;
+            EnsureComp<RadiationSourceComponent>(uid);
+            _radiationSystem.SetIntensity(uid, intensity);
         }
     }
 

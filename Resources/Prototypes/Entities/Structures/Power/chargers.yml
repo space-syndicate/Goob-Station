@@ -113,6 +113,9 @@
         blacklist:
           tags:
           - PotatoBattery
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
@@ -178,6 +181,9 @@
           tags:
           - PotatoBattery
           - OnlyMaterialEnergy # Imperial "plasma Cutter + Advanced Version"
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: BaseItemRecharger
@@ -207,6 +213,9 @@
         # In order not to devalue charging with materials
           - OnlyMaterialEnergy
         # Imperial "plasma Cutter + Advanced Version" End
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: [ BaseItemRecharger, BaseWallmount ]

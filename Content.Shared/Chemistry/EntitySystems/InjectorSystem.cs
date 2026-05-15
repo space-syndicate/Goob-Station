@@ -435,9 +435,6 @@ public sealed partial class InjectorSystem : EntitySystem
                 throw new ArgumentOutOfRangeException();
         }
 
-        if (!injector.Comp.PopupOnInjectFail) // Imprial Space
-            return false; // Imprial Space
-
         _popup.PopupClient(Loc.GetString(msg, ("target", Identity.Entity(target, EntityManager))), injector, user);
         return false;
     }

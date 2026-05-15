@@ -4,6 +4,7 @@ using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
@@ -21,6 +22,7 @@ public sealed class PPGNodeGroup : BaseNodeGroup
     [ViewVariables(VVAccess.ReadWrite)]
     public PPGNodeCirculator? CirculatorB { get; set; }
     private IEntityManager? _entityManager;
+
     public override void Initialize(Node sourceNode, IEntityManager entMan)
     {
         base.Initialize(sourceNode, entMan);
@@ -93,7 +95,8 @@ public sealed partial class PPGNodeGenerator : Node
         if (!xform.Comp.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.Value.Comp.TileIndicesFor(xform.Comp.Coordinates);
+        var mapSystm = entMan.System<MapSystem>();
+        var gridIndex = mapSystm.TileIndicesFor(grid.Value, xform.Comp.Coordinates);
 
         var dir = xform.Comp.LocalRotation.GetDir();
         var a = FindCirculator(dir);
@@ -140,7 +143,8 @@ public sealed partial class PPGNodeCirculator : Node
         if (!xform.Comp.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.Value.Comp.TileIndicesFor(xform.Comp.Coordinates);
+        var mapSystm = entMan.System<MapSystem>();
+        var gridIndex = mapSystm.TileIndicesFor(grid.Value, xform.Comp.Coordinates);
 
         var dir = xform.Comp.LocalRotation.GetDir();
         var searchDir = dir.GetClockwise90Degrees();
