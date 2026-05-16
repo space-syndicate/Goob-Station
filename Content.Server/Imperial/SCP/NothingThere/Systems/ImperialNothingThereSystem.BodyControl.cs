@@ -16,7 +16,6 @@ namespace Content.Server.Imperial.SCP.NothingThere.Systems;
 
 public sealed partial class ImperialNothingThereSystem
 {
-    private static readonly SoundSpecifier? GibSound = new SoundCollectionSpecifier("gib", AudioParams.Default.WithVariation(0.025f));
     private void InitializeBodyControl()
     {
         SubscribeLocalEvent<ImperialControlledNothingThereComponent, MobStateChangedEvent>(OnControlledMobStateChanged);
@@ -111,7 +110,7 @@ public sealed partial class ImperialNothingThereSystem
         var control = EnsureComp<ImperialControlledNothingThereComponent>(target);
         if (TryComp<HandsComponent>(target, out var hands))
         {
-            foreach (string hand in hands.Hands.Keys)
+            foreach (var hand in hands.Hands.Keys)
             {
                 _hands.TryDrop((target, hands), hand!);
             }
@@ -154,7 +153,7 @@ public sealed partial class ImperialNothingThereSystem
             _transform.SetCoordinates(newb, transformA, transformB.Coordinates, transformB.LocalRotation);
             _mind.TransferTo(mindId, newb);
             _audio.PlayPvs(comp.ExitSound, newb);
-            Gib(uid, true);
+            Gib(uid, comp.GibSound, comp.GibletLaunchImpulse, comp.GibletLaunchImpulseVariance, true);
             if (TryComp<ImperialNothingThereComponent>(newb, out var nt))
             {
                 nt.KillCount = comp.KillCount;
@@ -162,12 +161,12 @@ public sealed partial class ImperialNothingThereSystem
             }
         }
     }
-    public HashSet<EntityUid> Gib(EntityUid ent, bool dropGiblets = true, EntityUid? user = null)
+    public HashSet<EntityUid> Gib(EntityUid ent, SoundSpecifier gibSound, float gibletLaunchImpulse, float gibletLaunchImpulseVariance, bool dropGiblets = true, EntityUid? user = null)
     {
         if (!_destructible.DestroyEntity(ent))
             return new();
 
-        _audio.PlayPvs(GibSound, ent);
+        _audio.PlayPvs(gibSound, ent);
 
         var gibbed = new HashSet<EntityUid>();
         var beingGibbed = new BeingGibbedEvent(gibbed);
@@ -178,7 +177,7 @@ public sealed partial class ImperialNothingThereSystem
             foreach (var giblet in gibbed)
             {
                 _transform.DropNextTo(giblet, ent);
-                FlingDroppedEntity(giblet);
+                FlingDroppedEntity(giblet, gibletLaunchImpulse, gibletLaunchImpulseVariance);
             }
         }
 
@@ -188,12 +187,9 @@ public sealed partial class ImperialNothingThereSystem
         return gibbed;
     }
 
-    private const float GibletLaunchImpulse = 150;
-    private const float GibletLaunchImpulseVariance = 3;
-
-    private void FlingDroppedEntity(EntityUid target)
+    private void FlingDroppedEntity(EntityUid target, float gibletLaunchImpulse, float gibletLaunchImpulseVariance)
     {
-        var impulse = GibletLaunchImpulse + _random.NextFloat(GibletLaunchImpulseVariance);
+        var impulse = gibletLaunchImpulse + _random.NextFloat(gibletLaunchImpulseVariance);
         var scatterVec = _random.NextAngle().ToVec() * impulse;
         _physics.ApplyLinearImpulse(target, scatterVec);
     }

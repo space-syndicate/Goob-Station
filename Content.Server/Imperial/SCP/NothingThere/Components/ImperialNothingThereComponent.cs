@@ -15,7 +15,6 @@ namespace Content.Server.Imperial.SCP.NothingThere.Components;
 [RegisterComponent]
 public sealed partial class ImperialNothingThereComponent : Component
 {
-    [DataField("chaseSound")]
     public SoundSpecifier ChaseSound = new SoundPathSpecifier("/Audio/Imperial/SCP/nothingthere_idle.ogg");
 
     [ViewVariables]
@@ -25,10 +24,9 @@ public sealed partial class ImperialNothingThereComponent : Component
     public bool IsPlaying = false;
     [DataField("enterBodyAction")]
     public EntProtoId EnterBodyAction = "ImperialNothingThereEnterBodyAction";
-    [AutoNetworkedField, DataField("enterBodyEntity")]
     public EntityUid? EnterBodyEntity;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan EnterBodyWindUp = TimeSpan.FromSeconds(2);
     [DataField("threshold", required: true)]
     public FixedPoint2 Threshold = new();
@@ -39,11 +37,11 @@ public sealed partial class ImperialNothingThereComponent : Component
     public int KillCount = 0;
 
     [DataField("phase")]
-    public int Phase = 0;
+    public NothingTherePhase Phase = NothingTherePhase.Original;
     public EntProtoId? EggEntityProto = "ImperialSCPNothingThereEgg";
     [DataField("transformEggAction")]
     public EntProtoId TransformEggAction = "ImperialNothingThereEggAction";
-    [AutoNetworkedField, DataField("transformEggEntity")]
+    [DataField("transformEggEntity")]
     public EntityUid? TransformEggEntity;
     [DataField("enterSound")]
     public SoundSpecifier EnterSound = new SoundPathSpecifier("/Audio/Imperial/SCP/nothingthere_enter.ogg");
@@ -52,14 +50,15 @@ public sealed partial class ImperialNothingThereComponent : Component
     public TimeSpan EggTransformDuration = TimeSpan.FromSeconds(30);
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan EggTransformEnd = TimeSpan.Zero;
+    [ViewVariables]
     public EntProtoId? TrueEntityProto = "ImperialSCPNothingThereTrue";
     [DataField("hatchSound")]
     public SoundSpecifier HatchSound = new SoundPathSpecifier("/Audio/Imperial/SCP/nothingthere_hatch.ogg");
-
+    [ViewVariables]
     public bool Empowered = false;
     [DataField("empowerAction")]
     public EntProtoId EmpowerAction = "ImperialNothingThereHelloAction";
-    [AutoNetworkedField, DataField("empowerEntity")]
+    [DataField("empowerEntity")]
     public EntityUid? EmpowerEntity;
     [DataField("empowerSound")]
     public SoundSpecifier EmpowerSound = new SoundPathSpecifier("/Audio/Imperial/SCP/nothingthere_empower.ogg");
@@ -70,14 +69,25 @@ public sealed partial class ImperialNothingThereComponent : Component
     [ViewVariables]
     public ProtoId<PolymorphPrototype> TrueMorph = "NothingThereTrueMorph";
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [ViewVariables]
     public TimeSpan GoodbyeDelay = TimeSpan.FromSeconds(0.5f);
+    [ViewVariables]
     public EntProtoId GoodbyeProto = "ImperialNothingThereEmpowerHit";
+    [ViewVariables]
     public EntProtoId HitProto = "ImperialNothingThereHit";
     [DataField]
     public bool NeedItems = false;
+    [ViewVariables]
     public bool NeedGoodbye = false;
     [DataField("projectileAction")]
     public EntProtoId ProjectileAction = "ImperialNothingThereProjectileAction";
-    [AutoNetworkedField, DataField("projectileEntity")]
+    [DataField("projectileEntity")]
     public EntityUid? ProjectileEntity;
+}
+
+public enum NothingTherePhase : byte
+{
+    Original = 0,
+    Egg = 1,
+    True = 2
 }

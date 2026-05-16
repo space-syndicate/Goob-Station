@@ -15,6 +15,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Server.Player;
 using Content.Server.Chat.Managers;
+using System.Linq.Expressions;
 namespace Content.Server.Imperial.SCP.NothingThere.Systems;
 
 public sealed partial class ImperialNothingThereSystem : EntitySystem
@@ -55,44 +56,43 @@ public sealed partial class ImperialNothingThereSystem : EntitySystem
     private void OnInit(EntityUid uid, ImperialNothingThereComponent comp, MapInitEvent args)
     {
         StartChaseMusic(uid, comp);
-        if (comp.Phase == 0)
+        switch (comp.Phase)
         {
-            if (comp.EnterBodyEntity == null)
-            {
-                _actions.AddAction(uid,
-                    ref comp.EnterBodyEntity,
-                    comp.EnterBodyAction);
-                _actions.AddAction(uid,
-                    ref comp.TransformEggEntity,
-                    comp.TransformEggAction);
-            }
-        }
-
-        if (comp.Phase == 1)
-        {
-            var curTime = _gameTiming.CurTime;
-            comp.EggTransformEnd = curTime + comp.EggTransformDuration;
-        }
-        if (comp.Phase == 2 )
-        {
-            _actions.AddAction(uid,
-                ref comp.EmpowerEntity,
-                comp.EmpowerAction);
-            _actions.AddAction(uid,
-                ref comp.ProjectileEntity,
-                comp.ProjectileAction);
-            var hands = EnsureComp<HandsComponent>(uid);
-            if (_hands.TryGetEmptyHand((uid, hands), out var emptyHand)  && comp.NeedItems == true)
-            {
-                var hit = Spawn(comp.HitProto, Transform(uid).Coordinates);
-                if (!_hands.TryForcePickup(uid, hit, emptyHand, checkActionBlocker: false, handsComp: hands))
+            case NothingTherePhase.Original:
+                if (comp.EnterBodyEntity == null)
                 {
-                    QueueDel(hit);
-                    return;
+                    _actions.AddAction(uid,
+                        ref comp.EnterBodyEntity,
+                        comp.EnterBodyAction);
+                    _actions.AddAction(uid,
+                        ref comp.TransformEggEntity,
+                        comp.TransformEggAction);
                 }
-                else
-                    comp.NeedItems = false;
-            }
+                break;
+            case NothingTherePhase.Egg:
+                var curTime = _gameTiming.CurTime;
+                comp.EggTransformEnd = curTime + comp.EggTransformDuration;
+                break;
+            case NothingTherePhase.True:
+                _actions.AddAction(uid,
+                    ref comp.EmpowerEntity,
+                    comp.EmpowerAction);
+                _actions.AddAction(uid,
+                    ref comp.ProjectileEntity,
+                    comp.ProjectileAction);
+                var hands = EnsureComp<HandsComponent>(uid);
+                if (_hands.TryGetEmptyHand((uid, hands), out var emptyHand) && comp.NeedItems == true)
+                {
+                    var hit = Spawn(comp.HitProto, Transform(uid).Coordinates);
+                    if (!_hands.TryForcePickup(uid, hit, emptyHand, checkActionBlocker: false, handsComp: hands))
+                    {
+                        QueueDel(hit);
+                        return;
+                    }
+                    else
+                        comp.NeedItems = false;
+                }
+                break;
         }
     }
 }

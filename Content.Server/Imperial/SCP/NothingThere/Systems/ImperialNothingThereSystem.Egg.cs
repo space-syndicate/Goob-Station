@@ -45,7 +45,7 @@ public sealed partial class ImperialNothingThereSystem
         var query = EntityQueryEnumerator<ImperialNothingThereComponent>();
         while (query.MoveNext(out var entity, out var egg))
         {
-            if (curTime >= egg.EggTransformEnd && egg.Phase == 1)
+            if (curTime >= egg.EggTransformEnd && egg.Phase == NothingTherePhase.Egg)
             {
                 if (!_mind.TryGetMind(entity, out var mindId, out var mind))
                     continue;

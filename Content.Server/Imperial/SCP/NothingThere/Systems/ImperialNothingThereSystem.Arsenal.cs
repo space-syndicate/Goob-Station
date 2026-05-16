@@ -25,13 +25,13 @@ public sealed partial class ImperialNothingThereSystem
         var query = EntityQueryEnumerator<ImperialNothingThereComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.NeedItems == false)
+            if (!comp.NeedItems)
                 continue;
             var hands = EnsureComp<HandsComponent>(uid);
             if (_hands.TryGetEmptyHand((uid, hands), out var emptyHand))
             {
-                var hit = EntityUid.Invalid;
-                if (comp.NeedGoodbye == true)
+                EntityUid? hit;
+                if (comp.NeedGoodbye)
                 {
                     hit = Spawn(comp.GoodbyeProto, Transform(uid).Coordinates);
                     comp.NeedGoodbye = false;
@@ -40,13 +40,33 @@ public sealed partial class ImperialNothingThereSystem
                 {
                     hit = Spawn(comp.HitProto, Transform(uid).Coordinates);
                 }
-                if (!_hands.TryForcePickup(uid, hit, emptyHand, checkActionBlocker: false, handsComp: hands))
+                if (!_hands.TryForcePickup(uid, hit ?? EntityUid.Invalid, emptyHand, checkActionBlocker: false, handsComp: hands))
                 {
                     QueueDel(hit);
                     return;
                 }
                 else
                     comp.NeedItems = false;
+            }
+        }
+        var weaponquery = EntityQueryEnumerator<ImperialNothingThereGoodbyeComponent>();
+        while (weaponquery.MoveNext(out var wpnuid, out var wpncomp))
+        {
+            var curTime = _gameTiming.CurTime;
+            if (wpncomp.WeaponUser == EntityUid.Invalid || wpncomp.AttackEnd < curTime)
+                continue;
+            var user = wpncomp.WeaponUser;
+            if (!TryComp<HandsComponent>(user, out var hands))
+                continue;
+            wpncomp.AttackEnd = TimeSpan.Zero;
+            wpncomp.WeaponUser = EntityUid.Invalid;
+            var handd = _hands.GetActiveHand((user, hands));
+            _hands.DoDrop((user, hands), handd!, false, false);
+            if (Exists(wpnuid))
+                QueueDel(wpnuid);
+            if (TryComp<ImperialNothingThereComponent>(user, out var scp))
+            {
+                scp.NeedItems = true;
             }
         }
     }
@@ -94,21 +114,15 @@ public sealed partial class ImperialNothingThereSystem
         if (comp.Used || args.Handled)
             return;
         if (!TryComp<HandsComponent>(args.User, out var hands))
+            return;
         args.Handled = true;
         _audio.PlayPvs(comp.EmpowerSound, args.User);
         comp.Used = true;
         var user = args.User;
         var handd = _hands.GetActiveHand((user, hands));
-        Timer.Spawn(100, () =>
-        {
-            _hands.DoDrop((user, hands), handd!, false, false);
-            if (Exists(uid))
-                QueueDel(uid);
-            if (TryComp<ImperialNothingThereComponent>(user, out var scp))
-            {
-                scp.NeedItems = true;
-            }
-        });
+        comp.WeaponUser = user;
+        var curTime = _gameTiming.CurTime;
+        comp.AttackEnd = curTime + comp.AttackDuration;
     }
     #endregion
 }

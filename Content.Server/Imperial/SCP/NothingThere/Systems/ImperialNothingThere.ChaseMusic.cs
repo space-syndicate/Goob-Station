@@ -22,7 +22,7 @@ public sealed partial class ImperialNothingThereSystem
     {
         if (comp.IsPlaying)
             return;
-        if (comp.Phase == 2)
+        if (comp.Phase == NothingTherePhase.True)
             return;
         comp.PlayingStream = _audio.PlayPvs(
             comp.ChaseSound,
@@ -37,7 +37,7 @@ public sealed partial class ImperialNothingThereSystem
     {
         if (!comp.IsPlaying)
             return;
-        if (comp.Phase == 2)
+        if (comp.Phase == NothingTherePhase.True)
             return;
         if (comp.PlayingStream != null)
         {

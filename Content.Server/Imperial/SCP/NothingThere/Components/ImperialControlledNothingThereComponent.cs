@@ -13,12 +13,18 @@ public sealed partial class ImperialControlledNothingThereComponent : Component
 {
     [DataField("gibBodyAction")]
     public EntProtoId GibBodyAction = "ImperialNothingThereGibBodyAction";
-    [AutoNetworkedField, DataField("gibBodyEntity")]
+    [ViewVariables]
     public EntityUid? GibBodyEntity;
-
+    [ViewVariables]
     public EntityUid OriginalBody = EntityUid.Invalid;
-    [DataField("exitSound")]
+    [ViewVariables]
     public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/Imperial/SCP/nothingthere_gibbody.ogg");
-    [DataField("killCount")]
+    [ViewVariables]
     public int KillCount = 0;
+    [ViewVariables]
+    public SoundSpecifier GibSound = new SoundCollectionSpecifier("gib", AudioParams.Default.WithVariation(0.025f));
+    [ViewVariables]
+    public float GibletLaunchImpulse = 150;
+    [ViewVariables]
+    public float GibletLaunchImpulseVariance = 3;
 }
