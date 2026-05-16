@@ -1403,23 +1403,16 @@
     - map: [ "eyes" ] ##Imperial Space ancestors simple rework
     - map: [ "mask" ]
     - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
   - type: Hands
     activeHandId: Hand
     hands:
       Hand:
         location: Left
   - type: ComplexInteraction
-  - type: GenericVisualizer
-    visuals:
-      enum.CreamPiedVisuals.Creamed:
-        clownedon:
-          True: {visible: true}
-          False: {visible: false}
   - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_monkey
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
@@ -1457,7 +1450,10 @@
       - Passive
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: MonkeyCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
   - type: IdExaminable
   - type: Tag
     tags:
@@ -1516,7 +1512,7 @@
 - type: entity
   name: monkey
   id: MobBaseSyndicateMonkey
-  parent: MobBaseAncestor
+  parent: MobBaseAncestor # TODO: fix copy paste from MobMonkey
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
@@ -1640,10 +1636,6 @@
     - map: [ "id" ]
     - map: [ "mask" ]
     - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
   - type: RandomSprite
     getAllGroups: true
     available:
@@ -1729,7 +1721,7 @@
 - type: entity
   name: guidebook monkey
   parent: MobMonkey
-  categories: [ HideSpawnMenu ] 
+  categories: [ HideSpawnMenu ]
   id: MobGuidebookMonkey
   description: A hopefully helpful monkey whose only purpose in life is for you to click on. Does this count as having a monkey give you a tutorial?
   components:
@@ -3002,6 +2994,11 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  # TODO: Fix the sprite offset
+  #- type: CreamPied
+  #  sprite:
+  #    sprite: Effects/creampie.rsi
+  #    state: creampie_corgi
 
 - type: entity
   parent: MobCorgiBase

@@ -59,8 +59,8 @@ public sealed class ClothingFactionExplosionSystem : EntitySystem
     }
     private void OnGotEquipped(EntityUid uid, ClothingFactionExplosionComponent component, GotEquippedEvent args)
     {
-        component.LastUser = args.Equipee;
-        SearchFriendlyFaction(args.Equipee, component);
+        component.LastUser = args.EquipTarget;
+        SearchFriendlyFaction(args.EquipTarget, component);
         if (!component.OwnerIsFriendly)
         {
             component.TimerOn = true;

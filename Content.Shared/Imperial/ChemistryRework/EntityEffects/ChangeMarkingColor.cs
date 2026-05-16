@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Shared.EntityEffects;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -13,7 +12,7 @@ namespace Content.Shared.Chemistry.ReactionEffects;
 public sealed partial class ChangeMarkingColor : EntityEffectBase<ChangeMarkingColor>
 {
     /// <summary>
-    ///     Includes all enums from <see cref="Shared.Humanoid.Markings.MarkingCategories"/> and Skin.
+    ///     Marking layer to recolor. Use <see cref="ChemicalMarkingCategory.Skin"/> to change skin tone instead.
     /// </summary>
     [DataField]
     public ChemicalMarkingCategory MarkingCategory = ChemicalMarkingCategory.Hair;

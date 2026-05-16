@@ -7,7 +7,7 @@
   flavor: bitter
   color: "#152332"
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate : 0.25
       effects:
       - !type:Polymorph
@@ -45,7 +45,7 @@
   metamorphicChangeColor: true
   pricePerUnit: 250
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 30
@@ -72,7 +72,7 @@
   metamorphicChangeColor: false
   pricePerUnit: 350
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.25
@@ -81,7 +81,7 @@
         probability: 0.04
       - !type:Drunk
         boozePower: 30
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:ReagentCondition
           reagent: BeerEssence
@@ -89,8 +89,7 @@
         - !type:MetabolizerTypeCondition
           type: Dwarf
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
 
 
 - type: reagent
@@ -102,7 +101,7 @@
   color: "black"
   recognizable: true
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -126,7 +125,7 @@
   metamorphicChangeColor: true
   pricePerUnit: 300
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: -3
@@ -143,14 +142,12 @@
   flavor: acid
   color: "#202905"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Heat: 0.1
-    Medicine:
-      effects:
       - !type:AdjustReagent
         reagent: Ethanol
         amount: -1
@@ -172,7 +169,7 @@
   metamorphicChangeColor: false
   pricePerUnit: 1250
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 60
@@ -184,11 +181,11 @@
             Heat: 0.8
             Shock: 0.7
             Slash: 0.8
-      - !type:HealthChange
-        conditions:
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
+      - !type:HealthChange
+        damage:
           types:
             Piercing: -3
             Heat: -3
@@ -198,12 +195,11 @@
         amount: 30
       - !type:Oxygenate
       - !type:CureZombieInfection
-    Poison:
+    Bloodstream:
       effects:
       - !type:Vomit
         probability: 0.005
       - !type:HealthChange
-        conditions:
         damage:
           types:
             Poison: 0.1
@@ -211,8 +207,6 @@
         modifiers:
           coefficients:
             Poison: 2
-    Narcotic:
-      effects:
       - !type:Jitter
       - !type:Drunk
         boozePower: 15

@@ -41,7 +41,7 @@
   pricePerUnit: 1 #imperial
   physicalDesc: reagent-physical-desc-nondescript
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65

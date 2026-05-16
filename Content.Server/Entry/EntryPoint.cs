@@ -138,8 +138,6 @@ namespace Content.Server.Entry
             _watchlistWebhookManager.Initialize();
             _job.Initialize();
             _rateLimit.Initialize();
-
-            ImperialEntry.Init(); // Imperial Space
         }
 
         public override void PostInit()
@@ -176,8 +174,6 @@ namespace Content.Server.Entry
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
             _feedbackManager.Initialize();
-
-            ImperialEntry.PostInit();
         }
 
         public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)

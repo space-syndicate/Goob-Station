@@ -8360,7 +8360,7 @@
   flavor: bitter
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
@@ -8732,7 +8732,7 @@
   flavor: sweet
   color: "#4682B4"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -17059,7 +17059,7 @@
   physicalDesc: Имеется подпись - "А"
   color: "#00FFFF"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -17076,7 +17076,7 @@
   flavor: sweet
   color: "#87CEEB"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -17093,7 +17093,7 @@
   flavor: sweet
   color: "#60008F"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local

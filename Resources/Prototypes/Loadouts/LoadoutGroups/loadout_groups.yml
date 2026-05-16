@@ -545,6 +545,7 @@
   - JesterHat
   - JesterAltHat
   - HonkmotherFace ## Imperial space honkmother loadout
+  - ClownMitre
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -716,6 +717,12 @@
   minLimit: 0
   loadouts:
   - LizardPlushieMusician
+
+#- type: loadoutGroup
+#  id: MusicianJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 #- type: loadoutGroup
 #  id: MusicianJobTrinkets
@@ -983,6 +990,12 @@
 #  minLimit: 0
 #  loadouts:
 
+#- type: loadoutGroup
+#  id: StationEngineerJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
+
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
   name: loadout-group-atmospheric-technician-jumpsuit
@@ -1088,6 +1101,12 @@
 #  minLimit: 0
 #  loadouts:
 
+#- type: loadoutGroup
+#  id: ResearchDirectorJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
+
 - type: loadoutGroup
   id: ScientistHead
   name: loadout-group-scientist-head
@@ -1166,6 +1185,12 @@
   minLimit: 0
   loadouts:
   - LizardPlushieScientist
+
+#- type: loadoutGroup
+#  id: ScientistJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 #- type: loadoutGroup
 #  id: ScientistJobTrinkets

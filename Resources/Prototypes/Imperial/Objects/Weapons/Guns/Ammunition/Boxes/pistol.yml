@@ -11,7 +11,6 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: rubber
+    - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: rubber
-      map: ["enum.GunVisualLayers.Mag"]

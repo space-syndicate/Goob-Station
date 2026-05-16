@@ -7,7 +7,7 @@
   flavor: shocking
   color: "#4d7ee7"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
@@ -24,8 +24,9 @@
           shouldHave: false
       - !type:HealthChange
         damage:
-          groups:
-            Airloss: 1
+          types:
+            Asphyxiation: 0.5
+            Bloodloss: 0.5
         conditions:
         - !type:MetabolizerTypeCondition
           type: Android

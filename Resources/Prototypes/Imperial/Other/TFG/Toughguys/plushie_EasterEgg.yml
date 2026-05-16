@@ -29,7 +29,7 @@
   boilingPoint: 331.0
   meltingPoint: 162.0
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -44,8 +44,6 @@
           types:
             Poison: 2
             Asphyxiation: 2
-    Narcotic:
-      effects:
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.45
         sprintSpeedModifier: 1.45
@@ -73,8 +71,6 @@
         type: Add
         time: 5
         refresh: false
-    Medicine:
-      effects:
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentCondition

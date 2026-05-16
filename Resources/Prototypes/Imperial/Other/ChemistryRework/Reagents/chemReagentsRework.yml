@@ -11,7 +11,7 @@
   - !type:PlantAdjustToxins
     amount: -7.25
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -36,7 +36,7 @@
   boilingPoint: 55.5
   meltingPoint: -50.0
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         probability: 0.8
@@ -58,7 +58,7 @@
   flavor: medicine
   color: "#cca300"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
@@ -99,7 +99,7 @@
   pricePerUnit: 1
   color: "#99004d"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -137,7 +137,7 @@
   pricePerUnit: 6
   color: "#4d4d00"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
@@ -201,7 +201,7 @@
   pricePerUnit: 0.8
   color: "#660033"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -226,13 +226,12 @@
         conditions:
         - !type:TotalDamageCondition
           min: 19
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:TemperatureCondition
           max: 151.0
         damage:
-          groups:
-            Brute: -4.25
+          Brute: -4.25
 
 - type: reagent
   id: Retropine
@@ -244,7 +243,7 @@
   pricePerUnit: 3
   color: "#663300"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -287,8 +286,6 @@
         conditions:
         - !type:TotalDamageCondition
           min: 15
-    Alcohol:
-      effects:
       - !type:Drunk
 
 - type: reagent
@@ -301,7 +298,7 @@
   pricePerUnit: 7.5
   color: "#00001a"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
@@ -351,7 +348,7 @@
   pricePerUnit: 25
   color: "#bd5902"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -568,21 +565,25 @@
   flavor: medicine
   color: "#fffde4"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Brute: -1.25
-            Burn: -0.35
+          Brute: -1.25
+          Burn: -0.35
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           min: 40
         damage:
-          groups:
-            Brute: 0.65
-            Burn: 0.15
+          types:
+            Blunt: 0.21666667
+            Slash: 0.21666667
+            Piercing: 0.21666667
+            Heat: 0.0375
+            Shock: 0.0375
+            Cold: 0.0375
+            Caustic: 0.0375
       - !type:ModifyBloodLevel
         amount: 6
       - !type:AdjustReagent
@@ -598,20 +599,26 @@
   flavor: medicine
   color: "#b0fe8a"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -1.15
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -1.15
-            Toxin: 0.10
+          types:
+            Poison: 0.05
+            Radiation: 0.05
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           min: 35
         damage:
-          groups:
-            Burn: 0.80
+          types:
+            Heat: 0.2
+            Shock: 0.2
+            Cold: 0.2
+            Caustic: 0.2
 
 - type: reagent
   id: Antihol
@@ -622,7 +629,7 @@
   flavor: medicine
   color: "#b0a28a"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
@@ -645,12 +652,11 @@
   flavor: medicine
   color: "#149efd"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Airloss: -0.90
+          Airloss: -0.90
 
 
 - type: reaction

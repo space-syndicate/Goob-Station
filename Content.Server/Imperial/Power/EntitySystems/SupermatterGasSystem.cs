@@ -4,6 +4,7 @@ using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
+using Content.Server.Radiation.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Imperial.Power.Components;
 using Content.Shared.Imperial.Power.Prototypes;
@@ -21,6 +22,7 @@ public sealed class SupermatterGasSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = default!;
 
     private readonly List<(int gasId, SupermatterGasReactionPrototype proto)> _reactions = new();
 
@@ -119,7 +121,7 @@ public sealed class SupermatterGasSystem : EntitySystem
         if (TryComp(integrity, out RadiationSourceComponent? radiation))
         {
             float baseIntensity = radiation.Intensity;
-            
+
             if (TryComp<SupermatterEventComponent>(integrity, out var eventComp))
             {
                 if (eventComp.CurrentEvent != SupermatterEventComponent.SupermatterEventType.Radiation
@@ -128,7 +130,7 @@ public sealed class SupermatterGasSystem : EntitySystem
                     baseIntensity = eventComp.DefaultRadiationIntensity;
                 }
             }
-            radiation.Intensity = baseIntensity * gasComp.Comp.RuntimeRadiationMultiplier;
+            _radiationSystem.SetIntensity(integrity.Owner, baseIntensity * gasComp.Comp.RuntimeRadiationMultiplier);
         }
     }
 }

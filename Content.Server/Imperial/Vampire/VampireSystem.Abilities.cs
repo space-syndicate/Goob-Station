@@ -16,7 +16,7 @@ using Content.Shared.Flash;
 
 namespace Content.Server.Imperial.Vampire;
 
-[Virtual]
+
 public partial class VampireSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
