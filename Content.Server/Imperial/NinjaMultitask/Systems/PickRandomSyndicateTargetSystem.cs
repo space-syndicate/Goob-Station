@@ -6,6 +6,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using Content.Server.Objectives.Systems;
 using Content.Server.Imperial.NinjaMultitask.Components;
+using Content.Shared.Objectives.Systems;
 namespace Content.Server.Imperial.NinjaMultitask.Systems;
 
 public sealed class PickRandomSyndicateTargetSystem : EntitySystem
@@ -14,6 +15,8 @@ public sealed class PickRandomSyndicateTargetSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TraitorRuleSystem _traitorRule = default!;
+    [Dependency] private readonly TargetSystem _targetSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -53,7 +56,7 @@ public sealed class PickRandomSyndicateTargetSystem : EntitySystem
         }
         else
         {
-            var allHumans = _mind.GetAliveHumans(args.MindId);
+            var allHumans = _targetSystem.GetAliveHumans(args.MindId);
 
             // Can't have multiple objectives to kill the same person
             foreach (var objective in args.Mind.Objectives)

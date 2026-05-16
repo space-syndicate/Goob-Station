@@ -34,6 +34,7 @@ using Content.Shared.Radio;
 
 namespace Content.Server.Imperial.Vampire;
 
+
 public sealed partial class VampireSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;

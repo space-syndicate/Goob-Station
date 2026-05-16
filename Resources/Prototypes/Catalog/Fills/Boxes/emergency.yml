@@ -388,11 +388,6 @@
     - state: nitrogentank
   - type: Label
     currentLabel: reagent-name-nitrogen
-  #Imperial emergency box size
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,2
 
 - type: entity
   parent: BoxCardboardSmall # Cannot fit 3x3 boxes into already-filled ERT backpacks.

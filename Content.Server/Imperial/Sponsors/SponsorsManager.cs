@@ -42,16 +42,7 @@ public sealed class SponsorsManager
 
     public async Task OnConnecting(NetConnectingArgs e) //Imperial We need call this before cheking new player on pass info
     {
-        var info = await LoadSponsorInfo(e.UserId);
-        //if (info?.Tier == null)
-        if (info == null)
-        {
-            _sawmill.Debug("no info found");
-            //_cachedSponsors.Remove(e.UserId); // Remove from cache if sponsor expired
-            return;
-        }
-        DebugTools.Assert(!_cachedSponsors.ContainsKey(e.UserId), "Cached data was found on client connect");
-        _cachedSponsors[e.UserId] = info;
+
     }
 
     private void OnConnected(object? sender, NetChannelArgs e)

@@ -7,7 +7,7 @@
   flavor: bitter
   color: "#417681"
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows

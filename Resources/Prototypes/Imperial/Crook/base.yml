@@ -7,11 +7,12 @@
   flavor: shocking
   color: "#4d7ee7"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: AndroidBlood
           min: 5
         - !type:MetabolizerTypeCondition
           type: Android
@@ -24,8 +25,9 @@
           shouldHave: false
       - !type:HealthChange
         damage:
-          groups:
-            Airloss: 1
+          types:
+            Asphyxiation: 0.5
+            Bloodloss: 0.5
         conditions:
         - !type:MetabolizerTypeCondition
           type: Android
@@ -56,6 +58,7 @@
       FootLeft: OrganHumanFootLeft
       FootRight: OrganHumanFootRight
       Brain: AndroidCore
+      Eyes: OrganHumanEyes
   - type: HumanoidProfile
     species: Human
 
@@ -246,8 +249,6 @@
       Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
-  - type: HumanoidProfile
-    species: Human
   - type: WiresPanel
     openingTool: Prying
   - type: ActivatableUIRequiresPanel

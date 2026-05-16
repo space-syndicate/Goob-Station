@@ -48,7 +48,7 @@ public sealed partial class ManaRegenSystem : EntitySystem
 
     private void OnEquip(EntityUid uid, ManaRegenComponent component, GotEquippedEvent args)
     {
-        component.Equipee = args.Equipee;
+        component.Equipee = args.EquipTarget;
     }
 
     private void OnUnequip(EntityUid uid, ManaRegenComponent component, GotUnequippedEvent args)

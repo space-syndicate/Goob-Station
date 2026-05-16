@@ -191,7 +191,7 @@
   - !type:PlantAdjustHealth
     amount: -5
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -206,7 +206,7 @@
       - !type:Emote
         emote: Scream
         probability: 0.2
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: -4
@@ -221,7 +221,7 @@
   flavor: sweet
   color: "#a7def3"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:AdjustReagent
         reagent: Histamine
@@ -241,7 +241,7 @@
         messages: ["ethyloxyephedrine-effect-feeling-awake"]
         type: Local
         probability: 0.1
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -2251,5 +2251,5 @@
     stepOn: true
   - type: TriggerOnStepTrigger
   - type: SmokeOnTrigger
-    duration: 10
-    spreadAmount: 8
+    duration: 8
+    spreadAmount: 5

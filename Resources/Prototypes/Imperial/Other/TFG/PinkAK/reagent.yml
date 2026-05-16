@@ -18,7 +18,7 @@
   flavor: uwu
   color: "#ff80e8"
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 0.25
       effects:
       - !type:Emote

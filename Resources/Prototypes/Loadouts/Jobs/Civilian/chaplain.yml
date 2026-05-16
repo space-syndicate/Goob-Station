@@ -138,6 +138,7 @@
   storage:
     back:
     - BibleNanoTrasen
+
 - type: loadout
   id: BibleNarsie
   storage:

@@ -71,6 +71,7 @@
     solutionName: hypospray
     currentTransferAmount: 5
     activeModeProtoId: HyposprayInjectMode
+    popupOnInjectFail: false # Impreial Space
     allowedModes:
     - HyposprayInjectMode
   - type: UseDelay

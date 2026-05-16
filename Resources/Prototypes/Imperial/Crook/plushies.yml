@@ -197,20 +197,20 @@
       collection: CatMeows
 
 - type: localizedDataset
-  id: SavirWords
+  id: CrookieWords
   values:
-    prefix: plushie-savir-
+    prefix: plushie-crookie-
     count: 7
 
 - type: entity
   parent: PlushieFumoJunko
-  id: PlushieSavir
-  name: Savir Murphy
+  id: PlushieCrookie
+  name: Crookie Lim
   suffix: Crook, COMMUNITY, TOY
   description: A slippery fellow.
   components:
   - type: Sprite
-    sprite: Imperial/Crook/Plushie/savirmurphy.rsi
+    sprite: Imperial/Crook/Plushie/crookielim.rsi
     state: icon
   - type: Item
     size: Normal
@@ -219,14 +219,14 @@
   - type: StaminaDamageOnHit
     damage: 8
   - type: Speech
-    speechSounds: SavirSaid
+    speechSounds: CrookieSaid
   - type: SpeakOnTrigger
-    pack: SavirWords
+    pack: CrookieWords
 
 - type: speechSounds
-  id: SavirSaid
+  id: CrookieSaid
   saySound:
-    path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+    path: /Audio/Voice/Talk/Silicon/syndieborg.ogg
   askSound:
     path: /Audio/Voice/Talk/Silicon/syndieborg_ask.ogg
   exclaimSound:
