@@ -199,9 +199,9 @@
       modifiers:
         coefficients:
           Blunt: 0.3
-          Slash: 0.3
-          Piercing: 0.3
-          Heat: 0.3
+          Slash: 0.2
+          Piercing: 0.1
+          Heat: 0.2
   - type: XenoGene
   - type: Sprite
     state: red
