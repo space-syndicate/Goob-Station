@@ -22,4 +22,6 @@
       - id: ClothingOuterCoatRnd
       - id: AnomalyScanner
       - id: NodeScanner
+      #- id: NetworkConfigurator
+      #  prob: 0.5
       - id: ClothingBeltUtilityEngineering #CorvaxGoob
