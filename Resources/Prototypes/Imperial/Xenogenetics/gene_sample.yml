@@ -187,6 +187,7 @@
     actionsList:
     - ActionGoliathTentacle
   - type: SpeedModifierGene
+    randomizeModifier: false
     speedModifier: 0.4
   - type: AddComponentsNoRandomGene
     components:
