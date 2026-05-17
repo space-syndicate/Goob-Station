@@ -10,6 +10,8 @@
             <PanelContainer Name="Container" StyleClasses="WindowHeadingBackgroundPass" Access="Public"/>
             <BoxContainer Orientation="Horizontal">
                 <Label Margin="4 0 0 0" HorizontalExpand="true" Name="HeaderLabel" HorizontalAlignment ="Left" VerticalAlignment="Bottom" StyleClasses="LabelSubTextPassExtraBoldServerName" />
+                <!-- Imperial Space -->
+                <TextureButton Margin="0 0 0 0" Scale="0.9 0.9" Name="PopOutButton" StyleClasses="imperialWindowPopOutButton" VerticalAlignment="Center" />
                 <TextureButton Margin="0 0 4 0" Scale="0.9 0.9" Name="CloseButton" StyleClasses="windowCloseButton" VerticalAlignment="Center" />
             </BoxContainer>
         </Control>
