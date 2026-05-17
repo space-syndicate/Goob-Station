@@ -130,7 +130,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: CrowbarYellow
+      - id: Crowbar #CorvaxGoob
       - id: Wrench
       - id: Screwdriver
       - id: Wirecutter
