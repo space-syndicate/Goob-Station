@@ -110,6 +110,11 @@
       rootTask:
         task: SimpleHumanoidHostileCompound
     - type: PartialAbsorbable # Goobstation - changelings
+    - type: RandomMetadata # CorvaxGoob
+      nameSegments:
+      - NamesSyndicateFootsoldierRole
+      - NamesSyndicateNormal
+      nameFormat: name-format-nukie-generic
 
 - type: entity
   name: syndicate shuttle pilot
@@ -125,7 +130,7 @@
   description: I think they're dead.
   components:
   - type: RandomHumanoidAppearance
-    randomizeName: false
+    randomizeName: true # CorvaxGoob-changes: false > true
   - type: Damageable
     damage:
       types:
