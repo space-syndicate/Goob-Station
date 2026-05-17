@@ -476,6 +476,7 @@ public sealed class StyleImperial : StyleBase
 
         rules.AddRange(new LabelsH(resCache).Stylesheet.Rules); // Labels
         rules.AddRange(new ImperialScrollbars(resCache).Stylesheet.Rules); // Scroll bars
+        rules.AddRange(new ImperialWindowPopOutStyles(resCache).Stylesheet.Rules); // Window pop-out
 
         Stylesheet = new Stylesheet(rules);
     }
