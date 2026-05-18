@@ -103,3 +103,13 @@
       state: big_lock_1
     - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
       state: big_lock_2
+
+- type: marking
+  id: HumanHairTallHairTwoLayer
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: tailHair1
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: tailHair2

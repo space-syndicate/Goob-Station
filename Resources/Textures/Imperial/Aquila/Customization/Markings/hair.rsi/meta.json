@@ -62,6 +62,14 @@
     {
         "name": "venti",
         "directions": 4
+    },
+    {
+        "name": "tailHair1",
+        "directions": 4
+    },
+    {
+        "name": "tailHair2",
+        "directions": 4
     }
   ]
 }
