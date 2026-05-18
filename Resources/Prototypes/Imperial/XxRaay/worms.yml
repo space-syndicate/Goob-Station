@@ -95,9 +95,8 @@
   - MobWormBase
   - MobAtmosStandard
   - MobRespirator
-  id: MobWormTier1
-  suffix: XxRaay, Глист
-  name: blood tapeworm
+  suffix: XxRaay, Кровавый червь I
+  name: Blood Worm
   description: A small blood-red worm that twitches nervously and darts around your feet.
   components:
   - type: Speech
