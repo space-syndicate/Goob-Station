@@ -1,5 +1,6 @@
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -9,6 +10,9 @@ public sealed partial class ActiveWormCorpsePossessionComponent : Component
 {
     [DataField, AutoNetworkedField]
     public EntityUid Corpse;
+
+    [DataField, AutoNetworkedField]
+    public EntityCoordinates CorpseCoordinates;
 
     [DataField, AutoNetworkedField]
     public bool RelocatedHtn;

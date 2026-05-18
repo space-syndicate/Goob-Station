@@ -25,12 +25,20 @@ public sealed class WormBloodDrinkSystem : SharedWormBloodDrinkSystem
         if (drain <= 0)
             return;
 
-        var gained = Math.Max(1, (int) (drain * drinker.ConversionRatio));
-
         if (!TryComp<WormBloodComponent>(worm, out var wormBlood))
             return;
 
-        gained = Math.Min(gained, wormBlood.MaxBlood - wormBlood.Blood);
+        var space = wormBlood.MaxBlood - wormBlood.Blood;
+        if (space <= 0)
+            return;
+
+        var maxDrainBySpace = FixedPoint2.New((int) Math.Ceiling(space / drinker.ConversionRatio));
+        drain = FixedPoint2.Min(drain, maxDrainBySpace);
+        if (drain <= 0)
+            return;
+
+        var gained = Math.Max(1, (int) (drain * drinker.ConversionRatio));
+        gained = Math.Min(gained, space);
         if (gained <= 0)
             return;
 

@@ -182,7 +182,8 @@
     eyeSeeSpiderVentLayer: true
   - type: WormDoorHider
     enterDelay: 2
-    useStealth: false
+    useStealth: true
+    stealthVisibility: -1
     hiddenVisibilityLayer: 1
     doorHideVisibilityLayer: 32
     eyeSeeDoorHideLayer: true
@@ -254,7 +255,8 @@
     enterCooldown: 180
   - type: WormDoorHider
     enterDelay: 2
-    useStealth: false
+    useStealth: true
+    stealthVisibility: -1
     hiddenVisibilityLayer: 1
     doorHideVisibilityLayer: 32
     eyeSeeDoorHideLayer: true

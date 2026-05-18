@@ -66,8 +66,8 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
             return;
         }
 
-        EnsureComp<WormDoorHideRevealedComponent>(door.Value);
-        DisableLocalOccluder(door.Value);
+        if (DisableLocalOccluder(door.Value))
+            EnsureComp<WormDoorHideRevealedComponent>(door.Value);
 
         var revealedQuery = AllEntityQuery<WormDoorHideRevealedComponent>();
         while (revealedQuery.MoveNext(out var uid, out _))
@@ -75,6 +75,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
             if (uid == door)
                 continue;
 
+            RestoreLocalOccluder(uid);
             RemCompDeferred<WormDoorHideRevealedComponent>(uid);
         }
     }
@@ -93,18 +94,30 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
         ClearRevealed();
     }
 
-    private void DisableLocalOccluder(EntityUid door)
+    private bool DisableLocalOccluder(EntityUid door)
     {
         if (!TryComp(door, out OccluderComponent? occluder) || !occluder.Enabled)
-            return;
+            return false;
 
         _occluder.SetEnabled(door, false, occluder);
+        return true;
+    }
+
+    private void RestoreLocalOccluder(EntityUid door)
+    {
+        if (!TryComp(door, out OccluderComponent? occluder) || occluder.Enabled)
+            return;
+
+        _occluder.SetEnabled(door, true, occluder);
     }
 
     private void ClearRevealed()
     {
         var query = AllEntityQuery<WormDoorHideRevealedComponent>();
         while (query.MoveNext(out var uid, out _))
+        {
+            RestoreLocalOccluder(uid);
             RemCompDeferred<WormDoorHideRevealedComponent>(uid);
+        }
     }
 }

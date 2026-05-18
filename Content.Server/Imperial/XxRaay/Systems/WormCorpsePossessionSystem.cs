@@ -20,6 +20,7 @@ using System.Numerics;
 using Content.Shared.Rejuvenate;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
@@ -40,6 +41,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly WormBloodDrinkSystem _wormBloodDrink = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+
+    private readonly HashSet<EntityUid> _exitingPossession = new();
 
     public EntityUid? PausedMap { get; private set; }
 
@@ -77,6 +80,9 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (args.NewMobState is not (MobState.Critical or MobState.Dead))
             return;
 
+        if (_exitingPossession.Contains(ent.Comp.Worm))
+            return;
+
         ExitPossession(ent.Comp.Worm, ent.Owner, forced: true);
     }
 
@@ -101,6 +107,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
         var active = EnsureComp<ActiveWormCorpsePossessionComponent>(worm);
         active.Corpse = corpse;
+        active.CorpseCoordinates = Transform(corpse).Coordinates;
         active.RelocatedHtn = false;
         active.CorpseHadHtn = false;
         active.PlayerControlled = mind.UserId != null;
@@ -137,26 +144,71 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (!TryComp(worm, out ActiveWormCorpsePossessionComponent? active))
             return;
 
-        if (TerminatingOrDeleted(corpse))
+        if (!_exitingPossession.Add(worm))
+            return;
+
+        try
+        {
             corpse = active.Corpse;
 
-        if (!TryComp(worm, out WormCorpseHostComponent? host))
+            if (TerminatingOrDeleted(corpse))
+            {
+                FinishExitWithoutCorpse(worm, active, forced);
+                return;
+            }
+
+            if (!TryComp(worm, out WormCorpseHostComponent? host))
+            {
+                FinishExit(worm, corpse, active, host: null, forced);
+                return;
+            }
+
+            RemoveExitAction(corpse);
+
+            var bleed = new DamageSpecifier();
+            bleed.DamageDict["Bloodloss"] = host.ExitBleedDamage;
+            _damageable.TryChangeDamage(corpse, bleed);
+
+            if (host.ExitSound != null)
+                _audio.PlayPvs(host.ExitSound, corpse);
+
+            FinishExit(worm, corpse, active, host, forced);
+        }
+        finally
         {
-            FinishExit(worm, corpse, active, host: null, forced);
+            _exitingPossession.Remove(worm);
+        }
+    }
+
+    private void RemoveExitAction(EntityUid corpse)
+    {
+        if (!TryComp(corpse, out WormCorpseOccupiedComponent? occupied) || occupied.ExitActionEntity is not {} actionUid)
             return;
+
+        if (TryComp(actionUid, out ActionComponent? action) && action.AttachedEntity == corpse)
+            _actions.RemoveAction(corpse, actionUid);
+
+        occupied.ExitActionEntity = null;
+        Dirty(corpse, occupied);
+    }
+
+    private void FinishExitWithoutCorpse(
+        EntityUid worm,
+        ActiveWormCorpsePossessionComponent active,
+        bool forced)
+    {
+        PlaceWormAtStoredCoordinates(worm, active.CorpseCoordinates);
+
+        if (_mind.TryGetMind(active.Corpse, out var mindId, out var mind)
+            || _mind.TryGetMind(worm, out mindId, out mind))
+        {
+            _mind.TransferTo(mindId, worm, ghostCheckOverride: true, mind: mind);
         }
 
-        if (TryComp(corpse, out WormCorpseOccupiedComponent? occupied) && occupied.ExitActionEntity != null)
-            _actions.RemoveAction(corpse, occupied.ExitActionEntity);
+        ApplyPostExitHtn(worm, active.Corpse, active);
 
-        var bleed = new DamageSpecifier();
-        bleed.DamageDict["Bloodloss"] = host.ExitBleedDamage;
-        _damageable.TryChangeDamage(corpse, bleed);
-
-        if (host.ExitSound != null)
-            _audio.PlayPvs(host.ExitSound, corpse);
-
-        FinishExit(worm, corpse, active, host, forced);
+        TryComp(worm, out WormCorpseHostComponent? host);
+        CleanupPossession(worm, active.Corpse, active, host, forced);
     }
 
     private void FinishExit(
@@ -245,11 +297,15 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
     private void PlaceWormAtCorpse(EntityUid worm, EntityUid corpse)
     {
-        var corpseXform = Transform(corpse);
+        PlaceWormAtStoredCoordinates(worm, Transform(corpse).Coordinates);
+    }
+
+    private void PlaceWormAtStoredCoordinates(EntityUid worm, EntityCoordinates coordinates)
+    {
         var wormXform = Transform(worm);
 
-        _transform.SetParent(worm, wormXform, corpseXform.ParentUid);
-        _transform.SetCoordinates(worm, wormXform, corpseXform.Coordinates, corpseXform.LocalRotation);
+        _transform.SetParent(worm, wormXform, coordinates.EntityId);
+        _transform.SetCoordinates(worm, wormXform, coordinates);
 
         if (TryComp(worm, out PhysicsComponent? physics))
         {

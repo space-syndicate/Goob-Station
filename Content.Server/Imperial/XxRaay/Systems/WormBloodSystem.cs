@@ -23,6 +23,7 @@ public sealed class WormBloodSystem : EntitySystem
         SubscribeLocalEvent<WormBloodComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<WormBloodComponent, GetVisMaskEvent>(OnGetVisMask);
         SubscribeLocalEvent<WormCorpseOccupiedComponent, ComponentStartup>(OnCorpseOccupiedStartup);
+        SubscribeLocalEvent<WormCorpseOccupiedComponent, ComponentShutdown>(OnCorpseOccupiedShutdown);
         SubscribeLocalEvent<WormCorpseOccupiedComponent, GetVisMaskEvent>(OnCorpseOccupiedGetVisMask);
     }
 
@@ -56,6 +57,9 @@ public sealed class WormBloodSystem : EntitySystem
     {
         _lastSeverity.Remove(uid);
         _alerts.ClearAlert(uid, component.BloodAlert);
+
+        if (TryComp(uid, out EyeComponent? eye))
+            _eye.RefreshVisibilityMask((uid, eye));
     }
 
     private void OnGetVisMask(Entity<WormBloodComponent> ent, ref GetVisMaskEvent args)
@@ -64,6 +68,12 @@ public sealed class WormBloodSystem : EntitySystem
     }
 
     private void OnCorpseOccupiedStartup(Entity<WormCorpseOccupiedComponent> ent, ref ComponentStartup args)
+    {
+        if (TryComp(ent.Owner, out EyeComponent? eye))
+            _eye.RefreshVisibilityMask((ent.Owner, eye));
+    }
+
+    private void OnCorpseOccupiedShutdown(Entity<WormCorpseOccupiedComponent> ent, ref ComponentShutdown args)
     {
         if (TryComp(ent.Owner, out EyeComponent? eye))
             _eye.RefreshVisibilityMask((ent.Owner, eye));

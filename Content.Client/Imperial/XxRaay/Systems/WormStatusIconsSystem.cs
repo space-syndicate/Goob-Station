@@ -17,12 +17,14 @@ public sealed class WormStatusIconsSystem : EntitySystem
 
         SubscribeLocalEvent<WormBloodComponent, GetStatusIconsEvent>(OnGetWormStatusIcon);
         SubscribeLocalEvent<WormCorpseOccupiedComponent, GetStatusIconsEvent>(OnGetWormStatusIcon);
-        SubscribeLocalEvent<WormDoorHideOccupiedComponent, GetStatusIconsEvent>(OnGetWormStatusIcon);
     }
 
     private void OnGetWormStatusIcon<T>(Entity<T> ent, ref GetStatusIconsEvent args)
         where T : Component
     {
+        if (HasComp<ActiveWormDoorHidingComponent>(ent.Owner))
+            return;
+
         if (!_prototype.TryIndex(WormFactionIcon, out var iconPrototype))
             return;
 

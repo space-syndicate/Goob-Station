@@ -16,7 +16,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
@@ -244,16 +243,11 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
 
         if (hider.UseStealth)
             ApplyStealth(worm, hiding, hider);
-        else
-            ApplyDoorVisibility(worm, hiding, hider);
 
-        var hadStatusIcon = HasComp<StatusIconComponent>(door);
-        if (!hadStatusIcon)
-            EnsureComp<StatusIconComponent>(door);
+        ApplyDoorVisibility(worm, hiding, hider);
 
         var occupied = EnsureComp<WormDoorHideOccupiedComponent>(door);
         occupied.Worm = worm;
-        occupied.AddedStatusIcon = !hadStatusIcon;
         Dirty(door, occupied);
 
         hiding.IgnoreNextMove = true;
@@ -294,12 +288,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
             var door = hiding.SourceDoor;
 
             if (Exists(door) && TryComp(door, out WormDoorHideOccupiedComponent? occupied) && occupied.Worm == worm)
-            {
-                if (occupied.AddedStatusIcon)
-                    RemComp<StatusIconComponent>(door);
-
                 RemComp<WormDoorHideOccupiedComponent>(door);
-            }
 
             RemComp<WormDoorHidingComponent>(worm);
         }

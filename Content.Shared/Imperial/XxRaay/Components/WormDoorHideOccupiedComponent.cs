@@ -7,7 +7,4 @@ public sealed partial class WormDoorHideOccupiedComponent : Component
 {
     [DataField, AutoNetworkedField]
     public EntityUid Worm;
-
-    [DataField, AutoNetworkedField]
-    public bool AddedStatusIcon;
 }
