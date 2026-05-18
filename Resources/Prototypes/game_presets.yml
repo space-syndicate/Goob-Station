@@ -43,6 +43,7 @@
     - Wizard
     - Vampire # imperial space: Added a new vampire antagonist
     - Xenoborgs
+    - AllAtOnceWormVentSpawnRule # Imperial space: All at once worm vent spawn rule
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler

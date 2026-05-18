@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "crookielv (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "0" },
+    { "name": "20" },
+    { "name": "40" },
+    { "name": "60" },
+    { "name": "80" },
+    { "name": "100" },
+    { "name": "120" },
+    { "name": "140" },
+    { "name": "160" },
+    { "name": "180" },
+    { "name": "200" },
+    { "name": "220" },
+    { "name": "240" },
+    { "name": "260" },
+    { "name": "280" },
+    { "name": "300" },
+    { "name": "300plus" }
+  ]
+}

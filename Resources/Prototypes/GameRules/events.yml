@@ -32,6 +32,9 @@
     - id: ClosetSkeleton
     - id: KingRatMigration
     - id: RevenantSpawn
+    # Imperial Worm Vent Spawn Start
+    - id: WormVentSpawn
+    # Imperial Worm Vent Spawn End
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -546,6 +549,39 @@
       rolls: 4, 8
       children:
       - id: MobClownSpider
+
+# Imperial Worm Vent Spawn Start
+- type: entity
+  id: WormVentSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-worm-vent-spawn-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 25
+    minimumPlayers: 15
+    weight: 4
+    duration: 1
+    maxOccurrences: 1
+    reoccurrenceDelay: 60
+    occursDuringRoundEnd: false
+  - type: WormVentSpawnRule
+    prototype: MobWormTier1
+    count: 3
+
+- type: entity
+  id: AllAtOnceWormVentSpawnRule
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    delay:
+      min: 300
+      max: 480
+  - type: AllAtOnceWormVentSpawnRule
+    prototype: MobWormTier1
+    count: 3
+# Imperial Worm Vent Spawn End
 
 - type: entity
   id: ZombieOutbreak
