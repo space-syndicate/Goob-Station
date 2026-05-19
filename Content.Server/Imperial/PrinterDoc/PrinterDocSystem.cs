@@ -32,7 +32,7 @@ namespace Content.Server.PrinterDoc
         private void OnPrinterDocCheckIdCard(PrinterDocCheckIdCardMessage msg, EntitySessionEventArgs args)
         {
             var uid = args.SenderSession.AttachedEntity;
-            if (uid == null || !EntityManager.TryGetComponent<LatheComponent>(uid, out var latheComponent))
+            if (uid == null || !TryComp<LatheComponent>(uid, out var latheComponent))
                 return;
 
             latheComponent.UseCardId = msg.UseCardId;
@@ -41,10 +41,9 @@ namespace Content.Server.PrinterDoc
 
         public void TrySetContentPrintedDocument(EntityUid uid, EntityUid? userId, bool useCardId)
         {
-            if (!HasComp<PaperComponent>(uid))
+            if (!TryComp<PaperComponent>(uid, out var paperComp))
                 return;
 
-            var paperComp = EntityManager.GetComponent<PaperComponent>(uid);
             var content = paperComp.Content;
             var stationName = GetStationNameForObject(uid);
             var currentDate = DateTime.Now.AddYears(1000).ToString("dd/MM/yyyy").Replace(".", "/");
@@ -68,21 +67,18 @@ namespace Content.Server.PrinterDoc
                 {
                     if (idCard.Comp != null)
                     {
-                        string profession = string.Empty;
+                        var profession = string.Empty;
+                        var idCardEntity = idCard.Owner;
+                        var metaData = MetaData(idCardEntity);
 
-                        EntityUid idCardEntity = idCard.Comp.Owner;
+                        var entityName = metaData.EntityName;
 
-                        if (TryComp<MetaDataComponent>(idCardEntity, out var metaData))
+                        var regex = new Regex(@"\((.*?)\)");
+                        var match = regex.Match(entityName);
+
+                        if (match.Success && match.Groups.Count > 1)
                         {
-                            string entityName = metaData.EntityName;
-
-                            Regex regex = new Regex(@"\((.*?)\)");
-                            Match match = regex.Match(entityName);
-
-                            if (match.Success && match.Groups.Count > 1)
-                            {
-                                profession = match.Groups[1].Value;
-                            }
+                            profession = match.Groups[1].Value;
                         }
 
                         content = content
@@ -104,10 +100,10 @@ namespace Content.Server.PrinterDoc
         {
             var stationUid = _stationSystem.GetOwningStation(uid);
 
-            if (stationUid == null || !EntityManager.TryGetComponent<MetaDataComponent>(stationUid.Value, out var stationMetaData))
+            if (stationUid == null)
                 return string.Empty;
 
-            return stationMetaData.EntityName;
+            return MetaData(stationUid.Value).EntityName;
         }
 
         public bool TryToCheckPrinter(EntityUid uid)
@@ -127,16 +123,16 @@ namespace Content.Server.PrinterDoc
             return false;
         }
 
-        public void TryAddPaperToPrinter(EntityUid toInsert, MaterialStorageComponent? storage, EntityUid receiver, SharedPopupSystem _popup, IAdminLogManager _adminLogger, EntityUid user)
+        public void TryAddPaperToPrinter(EntityUid toInsert, MaterialStorageComponent? storage, EntityUid receiver, SharedPopupSystem popup, IAdminLogManager adminLogger, EntityUid user)
         {
             if (HasComp<PaperComponent>(toInsert) && TryToCheckPrinter(receiver))
             {
                 _materialStorageSystem.TryChangeMaterialAmount(receiver, "Paper", 100, storage);
 
-                _popup.PopupEntity(Loc.GetString("machine-insert-item", ("user", user), ("machine", receiver), ("item", toInsert)), receiver);
+                popup.PopupEntity(Loc.GetString("machine-insert-item", ("user", user), ("machine", receiver), ("item", toInsert)), receiver);
                 QueueDel(toInsert);
 
-                _adminLogger.Add(LogType.Action, LogImpact.Low,
+                adminLogger.Add(LogType.Action, LogImpact.Low,
                     $"{ToPrettyString(user):player} inserted paper into {ToPrettyString(receiver):receiver}");
             }
         }

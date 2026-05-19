@@ -7,7 +7,7 @@
         - to: solarassembly
           steps:
             - tag: SolarAssemblyFlatpack
-              name: упаковка солнечной панели # Imperial Recipes Locale
+              name: recipes-solar-assembly-flatpack-name
               icon:
                 sprite: Objects/Devices/flatpack.rsi
                 state: solar-assembly-part
@@ -57,7 +57,7 @@
             - !type:EntityAnchored
           steps:
             - tag: SolarTrackerElectronics
-              name: микросхема солнечного трекера # Imperial Recipes Locale
+              name: recipes-solar-tracker-electronics-name
               icon:
                 sprite: Objects/Misc/module.rsi
                 state: engineering

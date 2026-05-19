@@ -18,6 +18,13 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: GhostRole
+      name: jrt-eva-name
+      description: jrt-eva-desc
+      rules: jrt-eva-rules
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
 
 
 - type: entity

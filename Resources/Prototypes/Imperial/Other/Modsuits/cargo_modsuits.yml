@@ -1,6 +1,6 @@
 - type: entity
   id: CrateModsuitsBasic
-  parent: CrateEngineeringSecure
+  parent: CrateScienceSecure
   components:
   - type: StorageFill
     contents:

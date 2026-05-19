@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Created by Waldfogel (github) for Imperial Space.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base-part-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "base-stripes-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "base-stripes-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "icon-nanotrasen"
+    },
+    {
+      "name": "nanotrasen"
+    },
+    {
+      "name": "base-icon-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "base-icon-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "base-module-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "base-module-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "base-part-inhand-left",
+      "directions": 4
+    }
+  ]
+}

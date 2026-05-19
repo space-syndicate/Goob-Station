@@ -101,3 +101,11 @@ barsign-prototype-description-empbarsign = Что-то пошло совсем �
 
 ## SignOff
 barsign-prototype-description-sign-off = Этот знак, похоже, не включен.
+
+## Maltroach
+barsign-prototype-name-maltroach = МальдивоМоли
+barsign-prototype-description-maltroach = Пи-и!
+
+## Whiskey Echoes
+barsign-prototype-name-whiskeyechoes = Эхо Виски
+barsign-prototype-description-whiskeyechoes = Элитный бар для элитных опер... Погодите, это же станция NanoTrasen. Почему этот знак в базе данных?

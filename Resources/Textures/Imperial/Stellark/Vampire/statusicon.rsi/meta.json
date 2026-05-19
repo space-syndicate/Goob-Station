@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Created by Stellark",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "Vampire"
+        },
+        {
+            "name": "Ghoul"
+        }
+    ]
+}

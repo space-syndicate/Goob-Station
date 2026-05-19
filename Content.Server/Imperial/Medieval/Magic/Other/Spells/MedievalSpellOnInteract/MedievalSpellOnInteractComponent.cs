@@ -15,10 +15,10 @@ public sealed partial class MedievalSpellOnInteractComponent : Component
     /// List of effects that should be applied.
     /// </summary>
     [DataField]
-    public List<EntityEffect> Effects = new();
+    public EntityEffect[] Effects = [];
 
     [DataField]
-    public List<EntityEffect> SelfUseEffects = new();
+    public EntityEffect[] SelfUseEffects = [];
 
     [DataField]
     public SoundSpecifier? SoundOnInteract;

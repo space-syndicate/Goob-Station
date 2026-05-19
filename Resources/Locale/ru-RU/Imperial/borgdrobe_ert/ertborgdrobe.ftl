@@ -1,0 +1,13 @@
+ent-VendingMachineBorgERTdrobe = Боргомат NT
+    .desc = Терминал быстрого развёртывания тактических кибернетических единиц, и механоидов. Только для сотрудников спецподразделений.
+store-category-ert-borgdrobe-borg = Киборги
+ert-borgdrobe-uplink-ert-borg-assault-name = Боевой киборг ОБР
+ert-borgdrobe-uplink-ert-borg-assault-desc = Тяжёлый киборг военного образца в конфигурации ОБР. Оснащён импульсной пушкой, энергетическим мечом, и модулем для нелетального задержания особо опасных преступников.
+borgdrobe-uplink-ert-borg-medical-name = Медицинский киборг ОБР
+borgdrobe-uplink-ert-borg-medical-desc = Мобильный медицинский киборг, способный оказывать первую помощь, и проводить хирургические операции прямо на поле боя. Лёгкий корпус обеспечивает повышенную мобильность, которая позволяет в кратчайшие сроки реанимировать пациентов.
+borgdrobe-uplink-ert-borg-engineer-name = Инженерный киборг ОБР
+borgdrobe-uplink-ert-borg-engineer-desc = Технологичная инженерная модель, имеющая при себе весь арсенал для проведения самых трудных ремонтных работ в опасной для человека среде.
+borgdrobe-uplink-ert-borg-cburn-name = Киборг РХБЗЗ
+borgdrobe-uplink-ert-borg-cburn-desc = Закалённая кибернетическая единица, заточенная под борьбу с агрессивной флорой и фауной. Чрезвычайно бронированная. Осторожно, горячо!
+store-category-ert-borgomat-borg = Киборги
+store-category-ert-borgomat-mech = Экзокостюмы

@@ -1,0 +1,48 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: SteampunkGoogles
+  name: Steampunk googles
+  suffix: seriozha, Кастомизация
+  description: Stylish glasses, produced in limited edition
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Customization/steampunk_googles.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/misc/Customization/steampunk_googles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAid
+  name: Aid
+  suffix: Seriozha, COMMUNITY, TOY
+  description: Loves rice!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Plushie/aid.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: FoodRiceBoiled
+
+- type: entity
+  parent: ClothingNeckBase
+  id: CloakViolet
+  name: vampire cloak
+  suffix: Seriozha, Кастомизация
+  description: Worn by high ranking vampires of the transylvanian society of vampires.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Customization/violet_cloak.rsi

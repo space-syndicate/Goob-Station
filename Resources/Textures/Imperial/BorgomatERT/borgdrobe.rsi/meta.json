@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Sprite made by @crookielv for @waldfogel",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken"
+    },
+    {
+      "name": "off"
+    },
+    {
+      "name": "panel"
+    },
+    {
+      "name": "normal-unshaded",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          1
+        ]
+      ]
+    }
+  ]
+}

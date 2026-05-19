@@ -10,53 +10,52 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterPlasmaEvent
 {
-    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
+    public static void Activate(Entity<SupermatterEventComponent> entity, SupermatterEventSystem supermatterSystem)
     {
-        // Валидация входных параметров
-        if (uid == EntityUid.Invalid)
+        if (entity.AsType() == EntityUid.Invalid)
         {
             supermatterSystem.Log.Error("SupermatterPlasmaEvent.Activate: Invalid EntityUid provided");
             return;
         }
 
         var currentTime = supermatterSystem.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Plasma;
-        comp.EventEndTime = comp.PlasmaEventDuration;
-        comp.NextEventTimer = comp.EventAfterPlasmaTime;
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
-        comp.LastPlasmaTickUpdate = currentTime;
+        entity.Comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Plasma;
+        entity.Comp.EventEndTime = entity.Comp.PlasmaEventDuration;
+        entity.Comp.NextEventTimer = entity.Comp.EventAfterPlasmaTime;
+        entity.Comp.LastEventEndTimeUpdate = currentTime;
+        entity.Comp.LastNextEventTimerUpdate = currentTime;
+        entity.Comp.LastPlasmaTickUpdate = currentTime;
     }
 
-    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
+    public static void Process(Entity<SupermatterEventComponent> entity, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
-        comp.PlasmaTickAccumulator ??= TimeSpan.Zero;
+        entity.Comp.PlasmaTickAccumulator ??= TimeSpan.Zero;
 
-        var elapsedSinceLastUpdate = currentTime - comp.LastPlasmaTickUpdate;
-        comp.PlasmaTickAccumulator += elapsedSinceLastUpdate;
-        comp.LastPlasmaTickUpdate = currentTime;
+        var elapsedSinceLastUpdate = currentTime - entity.Comp.LastPlasmaTickUpdate;
+        entity.Comp.PlasmaTickAccumulator += elapsedSinceLastUpdate;
+        entity.Comp.LastPlasmaTickUpdate = currentTime;
 
-        if (comp.PlasmaTickAccumulator < comp.PlasmaTickInterval)
+        if (entity.Comp.PlasmaTickAccumulator < entity.Comp.PlasmaTickInterval)
             return;
 
         // Получаем компоненты один раз
-        if (!supermatterSystem.TryGetComponent<TransformComponent>(uid, out var xform) || xform == null)
+        if (!supermatterSystem.TryGetComponent<TransformComponent>(entity, out var xform) || xform == null)
         {
             return;
         }
 
-        var gas = supermatterSystem.Atmos.GetContainingMixture(uid, true);
+        var gas = supermatterSystem.Atmos.GetContainingMixture(entity.Owner, true);
         if (gas == null)
             return;
 
         // Добавляем газы
-        gas.AdjustMoles((int)Gas.Plasma, comp.PlasmaMolesAmount);
-        gas.AdjustMoles((int)Gas.Oxygen, comp.PlasmaMolesAmount);
+        gas.AdjustMoles((int)Gas.Plasma, entity.Comp.PlasmaMolesAmount);
+        gas.AdjustMoles((int)Gas.Oxygen, entity.Comp.PlasmaMolesAmount);
 
         // Создаём хотспот
         if (!TryGetGridUid(xform, out var gridUid))
         {
-            supermatterSystem.Log.Warning($"Supermatter plasma event triggered for entity {uid} without grid");
+            supermatterSystem.Log.Warning($"Supermatter plasma event triggered for entity {entity} without grid");
             return;
         }
 
@@ -64,9 +63,9 @@ public sealed class SupermatterPlasmaEvent
             return;
 
         var tile = supermatterSystem.MapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
-        CreateHotspot(supermatterSystem.Atmos, gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid);
+        CreateHotspot(supermatterSystem.Atmos, gridUid, tile, entity.Comp.PlasmaHotspotTemperature, entity.Comp.PlasmaHotspotVolume, entity);
 
-        comp.PlasmaTickAccumulator -= comp.PlasmaTickInterval;
+        entity.Comp.PlasmaTickAccumulator -= entity.Comp.PlasmaTickInterval;
     }
 
     private static bool TryGetGridUid(TransformComponent xform, out EntityUid gridUid)

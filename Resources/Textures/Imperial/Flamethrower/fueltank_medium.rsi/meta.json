@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Sprited by Phantom4502",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

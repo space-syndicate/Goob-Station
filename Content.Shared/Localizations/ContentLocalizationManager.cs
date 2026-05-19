@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Localizations
 {
-    public sealed class ContentLocalizationManager
+    public sealed partial class ContentLocalizationManager // Imperial Space Localization add partial
     {
         [Dependency] private readonly ILocalizationManager _loc = default!;
 
@@ -63,6 +63,8 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
+
+            InitializeRussianLocale();
         }
 
         private ILocValue FormatMany(LocArgs args)
@@ -145,7 +147,7 @@ namespace Content.Shared.Localizations
                 <= 0 => string.Empty,
                 1 => list[0],
                 2 => $"{list[0]} or {list[1]}",
-                _ => $"{string.Join(" or ", list)}"
+                _ => $"{string.Join(", ", list.GetRange(0, list.Count - 1))}, or {list[^1]}"
             };
         }
 

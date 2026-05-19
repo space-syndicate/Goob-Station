@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakCOTGMC
+  name: co cloak
+  description: A pompous and comfy blue cloak with a nice gold trim, while not particularly valuable as your other possessions, it sure is fancy.
+  components:
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Neck/Cloaks/CO.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Neck/Cloaks/CO.rsi

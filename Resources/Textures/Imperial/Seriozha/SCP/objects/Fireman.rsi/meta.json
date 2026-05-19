@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "ICLA",
-  "copyright": "Created by: @_deklex Discord",
+  "copyright": "Created by: @fufunuru Discord",
   "size": {
     "x": 32,
     "y": 32
@@ -10,6 +10,9 @@
     {
       "name": "alive",
       "directions": 4
+    },
+    {
+      "name": "dead"
     }
   ]
 }

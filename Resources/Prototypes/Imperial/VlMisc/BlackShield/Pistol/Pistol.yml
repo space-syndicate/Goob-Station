@@ -1,17 +1,21 @@
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
   id: SinguloPulse
-  damage:
-    types:
-      Radiation: 35
-  muzzleFlash:
-    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
-    state: impact_u_laser
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 35
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+      state: impact_u_laser
 
 - type: entity
   name: The Singular Gun
@@ -36,7 +40,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: SinguloPulse
     fireCost: 200
   - type: Battery

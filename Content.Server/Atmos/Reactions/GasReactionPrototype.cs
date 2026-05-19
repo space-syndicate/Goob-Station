@@ -15,7 +15,7 @@ namespace Content.Server.Atmos.Reactions
         /// <summary>
         ///     Minimum gas amount requirements.
         /// </summary>
-        [DataField("minimumRequirements")]
+        [DataField("minimumRequirements", customTypeSerializer: typeof(GasArraySerializer))]
         public float[] MinimumRequirements { get; private set; } = new float[Atmospherics.TotalNumberOfGases];
 
         /// <summary>
@@ -42,6 +42,8 @@ namespace Content.Server.Atmos.Reactions
         /// </summary>
         [DataField("priority")]
         public int Priority { get; private set; } = int.MinValue;
+        [DataField] // Imperial Atmos Update
+        public bool StoppedAntiNoblium { get; private set; } = true;// Imperial Atmos Update
 
         /// <summary>
         ///     A list of effects this will produce.

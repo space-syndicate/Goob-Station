@@ -1,43 +1,62 @@
+using Content.Server.Effects;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
-using Robust.Shared.Physics.Events;
-using Content.Server.Effects;
+using Content.Shared.Atmos;
+using Content.Shared.Imperial.Power.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Imperial.Power.EntitySystems.Events;
 
-namespace Content.Server.Imperial.Power.EntitySystems
+namespace Content.Server.Imperial.Power.EntitySystems;
+
+public sealed class SupermatterTouchSystem : EntitySystem
 {
-    public sealed class SupermatterTouchSystem : EntitySystem
+    [Dependency] private readonly ColorFlashEffectSystem _colorFlash = null!;
+    [Dependency] private readonly SharedAudioSystem _audio = null!;
+    public override void Initialize()
     {
-        [Dependency] private readonly ColorFlashEffectSystem _colorFlash = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            SubscribeLocalEvent<SupermatterTouchComponent, StartCollideEvent>(OnStartCollide);
-        }
-
-        private void OnStartCollide(EntityUid uid, SupermatterTouchComponent component, ref StartCollideEvent args)
-        {
-            var other = args.OtherEntity;
-            if (!EntityManager.HasComponent<MobStateComponent>(other))
-                return;
-
-            var transformComp = Transform(other);
-
-            GibCollidedEntity(component, transformComp, other, uid);
-            RaiseLocalEvent(uid, new SupermatterTouchedEvent());
-        }
-
-        private void GibCollidedEntity(SupermatterTouchComponent supermatterTouchComponent, TransformComponent transformComp, EntityUid entityUid, EntityUid supermatterUid)
-        {
-            _audio.PlayPvs(supermatterTouchComponent.GibSound, transformComp.Coordinates);
-            _colorFlash.RaiseEffect(supermatterTouchComponent.FlashColor, [supermatterUid], Filter.Pvs(supermatterUid));
-            EntityManager.QueueDeleteEntity(entityUid);
-            EntityManager.SpawnEntity(supermatterTouchComponent.AshPrototype, transformComp.Coordinates);
-        }
+        base.Initialize();
+        SubscribeLocalEvent<SupermatterTouchComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<SupermatterGasComponent, SupermatterTouchedEvent>(OnTouched, before: [typeof(SupermatterEventSystem)]);
     }
 
-    public sealed class SupermatterTouchedEvent : EntityEventArgs;
+    private void OnStartCollide(Entity<SupermatterTouchComponent> supermatter, ref StartCollideEvent args)
+    {
+        var other = args.OtherEntity;
+        if (!HasComp<MobStateComponent>(other))
+            return;
+
+        var touchEvent = new SupermatterTouchedEvent();
+        RaiseLocalEvent(supermatter, ref touchEvent);
+        if (touchEvent.Cancelled)
+            return;
+
+        var transformComp = Transform(other);
+
+        Entity<TransformComponent> entity = new(other, transformComp);
+        GibCollidedEntity(supermatter, entity);
+
+    }
+
+    private void OnTouched(Entity<SupermatterGasComponent> supermatter, ref SupermatterTouchedEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (supermatter.Comp.RuntimeDisableTouchGib)
+            args.Cancelled = true;
+    }
+
+    private void GibCollidedEntity(Entity<SupermatterTouchComponent> supermatter, Entity<TransformComponent> entity)
+    {
+        _audio.PlayPvs(supermatter.Comp.GibSound, entity.Comp.Coordinates);
+        _colorFlash.RaiseEffect(supermatter.Comp.FlashColor, [supermatter], Filter.Pvs(supermatter));
+        QueueDel(entity);
+        Spawn(supermatter.Comp.AshPrototype, entity.Comp.Coordinates);
+
+        if (TryComp<SupermatterIntegrityComponent>(supermatter, out var integrityComponent) && !integrityComponent.Activated)
+            integrityComponent.Activated = true;
+    }
 }

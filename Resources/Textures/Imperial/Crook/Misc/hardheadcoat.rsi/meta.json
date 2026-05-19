@@ -1,0 +1,43 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by @crookielv",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "icon"
+      },
+      {
+        "name": "icon-flash"
+      },
+      {
+        "name": "icon-unshaded"
+      },
+      {
+        "name": "light-overlay"
+      },
+      {
+        "name": "inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "inhand-right",
+        "directions": 4
+      },
+      {
+        "name": "equipped-HEAD",
+        "directions": 4
+      },
+      {
+        "name": "equipped-HEAD-light",
+        "directions": 4
+      },
+      {
+        "name": "equipped-HEAD-unshaded",
+        "directions": 4
+      }
+    ]
+  }

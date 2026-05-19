@@ -1,0 +1,24 @@
+- type: paintableGroup
+  cost: 2
+  id: Canisters
+  defaultStyle: storage
+  styles:
+    air: AirCanister
+    ammonia: AmmoniaCanister
+    carbon-dioxide: CarbonDioxideCanister
+    frezon: FrezonCanister
+    nitrogen: NitrogenCanister
+    nitrous-oxide: NitrousOxideCanister
+    oxygen: OxygenCanister
+    plasma: PlasmaCanister
+    storage: StorageCanister
+    tritium: TritiumCanister
+    water-vapor: WaterVaporCanister
+    ozonium: OzoniumCanister # Imperial Space Gases
+    thermonium: ThermoniumCanister # Imperial Space Gases
+    hydrogen: HydrogenCanister # Imperial Space Gases
+    phazonium: PhazoniumCanister # Imperial Space Gases
+    deuterium: DeuteriumCanister # Imperial Space Gases
+    hyper-noblium: HyperNobliumCanister # Imperial Space Gases
+    anti-noblium: AntiNobliumCanister # Imperial Space Gases
+    bz: BZCanister # Imperial Space Gases

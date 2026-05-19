@@ -18,6 +18,9 @@
         Slash: 0.6
         Piercing: 0.25
         Heat: 0.75
-        Stamina: 0.85
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.85
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.6

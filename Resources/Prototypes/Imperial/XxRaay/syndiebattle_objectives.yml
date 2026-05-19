@@ -1,0 +1,16 @@
+- type: entity
+  parent: [BaseSurviveObjective, BaseTraitorObjective]
+  id: SyndieBattleSurviveObjective
+  name: Сохранить жизнь
+  description: Выжить до конца раунда.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: RoleRequirement
+    roles:
+    - TraitorRole
+  - type: SurviveCondition

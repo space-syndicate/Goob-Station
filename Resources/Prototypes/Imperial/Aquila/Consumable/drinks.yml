@@ -1,0 +1,35 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkBlackMonsterCan
+  name: Black claw
+  description: Could use up some of that
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BlackMonster
+          Quantity: 30
+  - type: Sprite
+    sprite: Imperial/Aquila/Objects/Consumables/monster_black.rsi
+  - type: Item
+    sprite: Imperial/Aquila/Objects/Consumables/monster_black.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkWhiteMonsterCan
+  name: White claw
+  description: Could use up some of that (femboy milk edition)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: WhiteMonster
+          Quantity: 30
+  - type: Sprite
+    sprite: Imperial/Aquila/Objects/Consumables/monster_white.rsi
+  - type: Item
+    sprite: Imperial/Aquila/Objects/Consumables/monster_white.rsi

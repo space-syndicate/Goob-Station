@@ -9,6 +9,7 @@ using Content.Shared.Database;
 using Content.Server.Chat.Managers;
 using Content.Shared.NPC.Components;
 using Content.Shared.Hands;
+using Content.Shared.Chat;
 
 namespace Content.Server.Clothing.Systems;
 
@@ -58,8 +59,8 @@ public sealed class ClothingFactionExplosionSystem : EntitySystem
     }
     private void OnGotEquipped(EntityUid uid, ClothingFactionExplosionComponent component, GotEquippedEvent args)
     {
-        component.LastUser = args.Equipee;
-        SearchFriendlyFaction(args.Equipee, component);
+        component.LastUser = args.EquipTarget;
+        SearchFriendlyFaction(args.EquipTarget, component);
         if (!component.OwnerIsFriendly)
         {
             component.TimerOn = true;

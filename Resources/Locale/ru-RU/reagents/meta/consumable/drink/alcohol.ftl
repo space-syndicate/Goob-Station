@@ -262,8 +262,8 @@ reagent-desc-three-mile-island = "Сделан для женщин, достат
 reagent-name-toxins-special = особый токсин
 reagent-desc-toxins-special = Эта штука ОГОНЬ! ВЫЗЫВАЙТЕ ЧЁРТОВ ШАТТЛ!
 
-reagent-name-vampiro = vampiro
-reagent-desc-vampiro = Popular in Mexico and Transylvania.
+reagent-name-vampiro = вампиро
+reagent-desc-vampiro = Популярно в Мексике и Трансильвании.
 
 reagent-name-vodka-martini = водка мартини
 reagent-desc-vodka-martini = Водка с джином. Не совсем как пил 007, но все равно вкусно.
@@ -274,7 +274,7 @@ reagent-desc-vodka-tonic = Для тех случаев, когда джин-т�
 reagent-name-whiskey-cola = виски кола
 reagent-desc-whiskey-cola = Виски, смешанный с колой. Удивительно освежает.
 
-reagent-name-mimeosa = мимоза
+reagent-name-mimeosa = мимеоза
 reagent-desc-mimeosa = Имеет настолько кислый апельсиновый вкус, что его невозможно описать.
 
 reagent-name-moscow-mule = московский мул
@@ -321,3 +321,30 @@ reagent-name-zombiecocktail = зомби
 reagent-desc-zombiecocktail = Это лезет тебе в голову. В твои глаза.
 reagent-name-irish-slammer = ирландская тюрьма
 reagent-desc-irish-slammer = Необычная смесь ирландских сливок и стаута.
+
+reagent-name-the-sun-also-rises = солнце тоже встает
+reagent-desc-the-sun-also-rises = Крепкий коктейль, смешанный в мутную смесь. Тайный фаворит измученных авторов.
+
+reagent-name-mimosa = мимоза
+reagent-desc-mimosa = Идеально подходит для оживленного завтрака с подругами.
+
+reagent-name-espresso-martini = эспрессо мартини
+reagent-desc-espresso-martini = Чтобы разбудить и успокоить вас. Украшен кофейными зернами и ледяным напитком.
+
+reagent-name-caipirinha = кайпиринья
+reagent-desc-caipirinha = Фирменный напиток Сан-Паулу прямиком из старой Бразилии.
+
+reagent-name-daiquiri = дайкири
+reagent-desc-daiquiri = Классический ромовый коктейль, который остается популярным даже в холодных уголках космоса.
+
+reagent-name-death-in-the-afternoon = cмерть днём
+reagent-desc-death-in-the-afternoon = "Налейте одну рюмку абсента в бокал для шампанского. Добавьте охлаждённое шампанское, пока не появится правильная опалесцирующая молочность. Пейте медленно от трёх до пяти таких." - Эрнест Хемингуэй
+
+reagent-name-empress-75 = императрица 75
+reagent-desc-empress-75 = Более изысканный вариант мимозы. Именно такой, какой Мария-Антуанетта, возможно, любила до революции.
+
+reagent-name-tortuga = тортуга
+reagent-desc-tortuga = Идеально подходит для пиратов, выбранных в качестве водителя. Йарр!
+
+reagent-name-mayojito = майожито
+reagent-desc-mayojito = Оскорбление бога и человека. Не пейте это.

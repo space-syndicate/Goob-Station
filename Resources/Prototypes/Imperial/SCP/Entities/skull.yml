@@ -1,0 +1,15 @@
+- type: entity
+  id: ImperialSkullSCP106HamMaggotson
+  parent: BaseStructure
+  name: skull
+  suffix: SCP
+  description: I dare you to touch it.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/Imperial/SCP/skull.rsi
+    layers:
+    - state: icon
+    - state: eyes-unshaded
+      shader: unshaded
+  - type: SCP106Skull

@@ -1,0 +1,27 @@
+- type: entity
+  parent: BaseComputer
+  id: ImperialSimpleRadio
+  name: Simple Radio
+  description: A simple radio. It might play music.
+  components:
+  - type: Rotatable
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: on
+    sprite: Imperial/Asimov/oldradio.rsi
+  - type: ApcPowerReceiver
+    powerLoad: 100
+    needsPower: true
+  - type: AmbientSound # За гул. Отвечает за основной тип звука, один и тот же (но можно поставить рандом)
+    enabled: false
+    volume: -5
+    range: 2
+    sound:
+      path: /Audio/Imperial/Asimov/Oldradio/static.ogg # Пример звука - шум
+  - type: AmbientOnPowered
+    range: 7
+    volume: -1
+    enabled: true
+    sound:
+      collection: OldRadioAmbient

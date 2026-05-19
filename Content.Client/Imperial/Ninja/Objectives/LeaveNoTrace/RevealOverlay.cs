@@ -19,6 +19,9 @@ public sealed class RevealOverlay : Overlay
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
+    private readonly string _fillShaderProtoId = "SpriteFill";
+    private readonly string _glitchShaderProtoId = "Glitch";
+
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
     public override bool RequestScreenTexture => false;
@@ -58,8 +61,8 @@ public sealed class RevealOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
-        _fillShader = _prototypeManager.Index<ShaderPrototype>("SpriteFill").InstanceUnique();
-        _glitchShader = _prototypeManager.Index<ShaderPrototype>("Glitch").InstanceUnique();
+        _fillShader = _prototypeManager.Index<ShaderPrototype>(_fillShaderProtoId).InstanceUnique();
+        _glitchShader = _prototypeManager.Index<ShaderPrototype>(_glitchShaderProtoId).InstanceUnique();
         _font = _resourceCache.GetFont(FontPath, FontSize);
 
         _configurationManager.OnValueChanged(CVars.DisplayUIScale, v => _scale = v == 0 ? 1 : v, true);

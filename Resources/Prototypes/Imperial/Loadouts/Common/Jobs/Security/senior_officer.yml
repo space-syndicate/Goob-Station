@@ -1,7 +1,7 @@
 - type: roleLoadout
   id: JobSeniorOfficer
   groups:
-  - SecurityHead
+  - SeniorOfficerHead
   - SeniorOfficerJumpsuit
   - SeniorOfficerBackpack
   - SecurityOuterClothing
@@ -11,8 +11,14 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - SeniorOfficerSecStar
 
 # Groups Start
+- type: loadoutGroup
+  id: SeniorOfficerSecStar
+  name: loadout-group-security-star
+  loadouts:
+  - SecStar
 
 - type: loadoutGroup
   id: SeniorOfficerJumpsuit
@@ -40,6 +46,15 @@
   name: loadout-group-SeniorOfficer-gloves
   loadouts:
   - ClothingHandsGlovesCombat
+
+- type: loadoutGroup
+  id: SeniorOfficerHead
+  name: loadout-group-SeniorOfficer-head
+  loadouts:
+  - ClothingHeadHatSeniorOfficerBeret
+  - SecurityHat
+  - TrooperHat
+  - SecurityHelmet
 
 # Groups End
 
@@ -86,5 +101,12 @@
   id: ClothingHandsGlovesCombat
   equipment:
     gloves: ClothingHandsGlovesCombat
+
+# ClothingHeadHatSeniorOfficerBeret
+
+- type: loadout
+  id: ClothingHeadHatSeniorOfficerBeret
+  equipment:
+    head: ClothingHeadHatSeniorOfficerBeret
 
 # Loadouts End

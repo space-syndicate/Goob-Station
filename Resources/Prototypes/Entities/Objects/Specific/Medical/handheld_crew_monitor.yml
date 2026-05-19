@@ -31,6 +31,13 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: HandheldCrewMonitor
+  # imperial space: added a medium-capacity battery to the portable crew monitor CMO. Start
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # imperial space: added a medium-capacity battery to the portable crew monitor CMO. End
   #Imperial Space Pirates: New Horizon start
   - type: GPSTrackerPrice
     startprice: 0
@@ -45,3 +52,4 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        startingItem: null

@@ -1,0 +1,7 @@
+- type: entity
+  name: anti-noblium gas miner
+  parent: GasMinerBase
+  id: GasMinerAntiNoblium
+  components:
+    - type: GasMiner
+      spawnGas: AntiNoblium

@@ -7,12 +7,12 @@
         - to: plushie
           steps:
             - tag: PlushieGhost
-              name: плюшевый призрак # Imperial Recipes Locale
+              name: recipes-plushie-ghost-name
               icon:
                 sprite: Mobs/Ghosts/ghost_human.rsi
                 state: icon
             - tag: Ectoplasm
-              name: эктоплазма # Imperial Recipes Locale
+              name: recipes-ectoplasm-name
               icon:
                 sprite: Mobs/Ghosts/revenant.rsi
                 state: ectoplasm
@@ -29,10 +29,57 @@
     - to: suit
       steps:
       - tag: HideCorgi
-        name: шкура корги # Imperial Recipes Locale
+        name: recipes-hide-corgi-name
         icon:
           sprite: Objects/Materials/materials.rsi
           state: corgihide
         doAfter: 5
   - node: suit
     entity: ClothingOuterSuitIan
+
+- type: constructionGraph
+  id: MoproachShoes
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: shoes
+      steps:
+      - tag: MopBasic
+        name: construction-graph-tag-mop-basic
+        icon:
+          sprite: Objects/Specific/Janitorial/mop.rsi
+          state: mop
+        doAfter: 5
+      - tag: MopBasic
+        name: construction-graph-tag-mop-basic
+        icon:
+          sprite: Objects/Specific/Janitorial/mop.rsi
+          state: mop
+        doAfter: 5
+      - tag: MopBasic
+        name: construction-graph-tag-mop-basic
+        icon:
+          sprite: Objects/Specific/Janitorial/mop.rsi
+          state: mop
+        doAfter: 5
+      - tag: MopBasic
+        name: construction-graph-tag-mop-basic
+        icon:
+          sprite: Objects/Specific/Janitorial/mop.rsi
+          state: mop
+        doAfter: 5
+      - tag: MopBasic
+        name: construction-graph-tag-mop-basic
+        icon:
+          sprite: Objects/Specific/Janitorial/mop.rsi
+          state: mop
+        doAfter: 5
+      - tag: MopBasic
+        name: construction-graph-tag-mop-basic
+        icon:
+          sprite: Objects/Specific/Janitorial/mop.rsi
+          state: mop
+        doAfter: 5
+  - node: shoes
+    entity: MoproachShoes

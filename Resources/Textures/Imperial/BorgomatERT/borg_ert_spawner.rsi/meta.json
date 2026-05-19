@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Sprite made by @crookielv for @waldfogel",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cburn_borg-spawn"
+    },
+    {
+      "name": "def_borg-spawn"
+    },
+    {
+      "name": "eng_borg-spawn"
+    },
+    {
+      "name": "med_borg-spawn"
+    },
+    {
+      "name": "green"
+    }
+  ]
+}

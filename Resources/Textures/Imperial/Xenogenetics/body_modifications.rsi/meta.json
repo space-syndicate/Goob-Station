@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by : Light_Lava & lewdxd",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "carp",
+      "directions": 4
+    },
+    {
+      "name": "xeno_sting",
+      "directions": 4
+    },
+    {
+      "name": "carp_alt",
+      "directions": 4
+    },
+    {
+      "name": "xeno_jaw",
+      "directions": 4
+    },
+    {
+      "name": "goliath",
+      "directions": 4
+    },
+    {
+      "name": "phantom",
+      "directions": 4
+    }
+  ]
+}

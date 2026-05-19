@@ -102,3 +102,6 @@ reagent-desc-arnold-palmer = Теперь взгляните на этот уд�
 
 reagent-name-coconut-water = кокосовая вода
 reagent-desc-coconut-water = Фаворит выживающих на необитаемых островах.
+
+reagent-name-orange-lime-soda = цитрус-спор
+reagent-desc-orange-lime-soda = Газировка должна быть оранжевой! Нет, лимонно-лаймовой!

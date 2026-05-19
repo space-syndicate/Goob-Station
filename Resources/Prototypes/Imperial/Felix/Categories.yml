@@ -1,0 +1,44 @@
+- type: storeCategory
+  id: FEmergencyequipment
+  name: FEmergencyequipment
+  priority: 0
+
+- type: storeCategory
+  id: FEngineering
+  name: FEngineering
+  priority: 1
+
+- type: storeCategory
+  id: FMaterials
+  name: FMaterials
+  priority: 2
+
+- type: storeCategory
+  id: FMedicine
+  name: FMedicine
+  priority: 3
+
+- type: storeCategory
+  id: FRnD
+  name: FRnD
+  priority: 4
+
+- type: storeCategory
+  id: FSecure
+  name: FSecure
+  priority: 5
+
+- type: storeCategory
+  id: FProvisions
+  name: FProvisions
+  priority: 6
+
+- type: storeCategory
+  id: FEntertainments
+  name: FEntertainments
+  priority: 7
+
+- type: storeCategory
+  id: FService
+  name: FService
+  priority: 8

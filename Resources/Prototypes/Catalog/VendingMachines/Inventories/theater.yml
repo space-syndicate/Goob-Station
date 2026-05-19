@@ -40,6 +40,7 @@
     ClothingUniformJumpsuitDameDane: 2
     ClothingShoesDameDane: 2
     ClothingOuterDameDane: 2
+    ClothingHeadHatMitreClown: 1
     ClothingOuterClownPriest: 1
     ClothingMaskSadMime: 1
     ClothingMaskScaredMime: 1
@@ -57,17 +58,17 @@
     ClothingShoesBootsCowboyWhite: 1
     ClothingHeadHatSnowmaiden: 2 #Imperial Space community costume
     ClothingUniformOuterSnowmaiden: 2 #Imperial Space community costume
+    ClothingUniformJumpsuitMadzima: 2 #Imperial Space community costume
+    ClothingShoesMadzima: 2 #Imperial Space community costume
+    ClothingOuterMadzima: 2 #Imperial Space community costume
   contrabandInventory:
     ClothingHeadHatRichard: 1
     ToyFigurineBoxer: 1
     ToyFigurineMusician: 1
-  emaggedInventory:
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
+    ClothingOuterSuitCarp: 1
     ClothingMaskBlushingClown: 1
     ClothingMaskBlushingMime: 1
     ClothingHeadHatCowboyBountyHunter: 1
-    ClothingUniformJumpsuitMadzima: 1 #Imperial Space community costume
-    ClothingShoesMadzima: 1 #Imperial Space community costume
-    ClothingOuterMadzima: 1 #Imperial Space community costume

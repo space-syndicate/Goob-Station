@@ -14,6 +14,7 @@
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
+  - ClothingShoesBootsJump
 
 - type: technology
   id: SpaceScanning
@@ -97,6 +98,8 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
+  - PPGCenterMachineCircuitboard # Imperial Atmos Update
+  - PPGCirculatorMachineCircuitboard # Imperial Atmos Update
 
 - type: technology
   id: RipleyAPLU

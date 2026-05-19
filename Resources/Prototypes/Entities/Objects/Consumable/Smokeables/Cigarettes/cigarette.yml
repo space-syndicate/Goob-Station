@@ -82,7 +82,7 @@
           - ReagentId: Nicotine
             Quantity: 10
           - ReagentId: Omnizine
-            Quantity: 30
+            Quantity: 15 # Изначально 30. Изменено для избежания дюпов Imperial Space
 
 - type: entity
   id: CigaretteOmnizine

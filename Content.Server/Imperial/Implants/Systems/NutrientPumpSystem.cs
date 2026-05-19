@@ -15,10 +15,7 @@ public sealed class NutrimentPumpSystem : EntitySystem
 
     private void HandleImplant(EntityUid uid, NutrimentPumpComponent component, ImplantImplantedEvent args)
     {
-        if (!args.Implanted.HasValue)
-            return;
-
-        var target = args.Implanted.Value;
+        var target = args.Implanted;
         component.HadHunger = TryRemoveComponent<HungerComponent>(target);
         component.HadThirst = TryRemoveComponent<ThirstComponent>(target);
     }

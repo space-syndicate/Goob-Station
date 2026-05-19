@@ -1,20 +1,10 @@
 
-- files: ["Battle_of_Kings.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Per Kiilstofte"
-  source: "https://youtu.be/CybIj9hPYlQ"
-
-- files: ["the_fallen_queen.ogg", "Destiny_of_Colonists.ogg"]
+- files: ["the_fallen_queen.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Болгарыч / Bolgarich"
   source: "https://www.youtube.com/@bolgarich1181"
 
-- files: ["Dark_Alley_Deals.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Aaron Kenny"
-  source: "https://youtu.be/MfzzZB_W8JA"
-
-- files: ["Dead_Pilot.ogg", "Hopefully_Dead.ogg", "Run_Run_My_Darling.ogg"]
+- files: ["Hopefully_Dead.ogg"]
   license: "CC-BY-ND-3.0"
   copyright: "LuckyIdiots"
   source: "Discord @idiot_1212"
@@ -22,11 +12,9 @@
 - files:
     - "X4TheJourneyBegins.ogg"
     - "X4PromotionCeremony.ogg"
-    - "X4Winterblossom.ogg"
     - "X4Artillery.ogg"
     - "X4AsteroidField.ogg"
     - "X4ShieldsRecharged.ogg"
-    - "X4ToTheDeathForTheGlory.ogg"
   license: "CC-BY-ND-3.0"
   copyright: "Alexei Zakharov Music"
   source: "https://www.youtube.com/channel/UCH9vAAnK-F3mkvmS_mZMbgg"
@@ -35,11 +23,6 @@
   license: "CC-BY-ND-3.0"
   copyright: "Evil Fire by Alan Paul Ett"
   source: "https://www.youtube.com/channel/UC-VWe_wKXKQXR-uCpwTgvVA"
-
-- files: ["Super_Nova_In_The_Catacombs.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Super Nova In The Catacombs by WigWoo1 on youtube."
-  source: "https://www.youtube.com/watch?v=ly3-rhDTeOU&ab_channel=WigWoo1"
 
 - files: ["Last_Stand.ogg"]
   license: "CC-BY-ND-3.0"

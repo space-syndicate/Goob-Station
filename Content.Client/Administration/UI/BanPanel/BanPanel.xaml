@@ -6,6 +6,8 @@
         <TabContainer Name="Tabs" VerticalExpand="True">
             <!-- Basic info -->
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <!-- Imperial Space: Добавлена новая кнопка "Правила" -->
+                <Button Name="Rules" Text="{Loc ban-panel-rules}" HorizontalExpand="True" Margin="2 2 2 2" StyleClasses="OpenBoth"/>
                 <BoxContainer Orientation="Horizontal" Margin="2">
                     <CheckBox Name="PlayerCheckbox" MinWidth="100" Text="{Loc ban-panel-player}" Pressed="True" />
                     <Control MinWidth="50" />

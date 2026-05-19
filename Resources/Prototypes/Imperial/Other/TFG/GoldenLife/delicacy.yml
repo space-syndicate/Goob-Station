@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Other/TFG/GoldenLife/presentableTin.rsi
-  - type: Food
+  - type: Edible
     trash:
     - FoodPresentableTinMRECaviarTrash
   - type: FlavorProfile
@@ -39,7 +39,7 @@
   - type: Item
     sprite: Imperial/Other/TFG/GoldenLife/presentableRag.rsi
     size: Small
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: Tag
     tags:
@@ -123,7 +123,7 @@
         acts: [ "Destruction" ]
   - type: Item
     sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
-  - type: Food
+  - type: Edible
     trash:
     - CaviarBowlEmpty
   - type: FlavorProfile

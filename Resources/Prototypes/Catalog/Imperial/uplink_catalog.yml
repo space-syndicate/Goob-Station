@@ -11,3 +11,46 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+
+- type: listing
+  id: GrenadeFrag
+  name: ent-GrenadeFrag
+  description: ent-GrenadeFrag.desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
+  productEntity: GrenadeFrag
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: GrenadeBlast
+  name: ent-GrenadeBlast
+  description: ent-GrenadeBlast.desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
+  productEntity: GrenadeBlast
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkEDoubleSword
+  name: uplink-edoublesword-name
+  description: uplink-edoublesword-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword_double.rsi, state: icon }
+  productEntity: EnergySwordDouble
+  cost:
+    Telecrystal: 16
+  categories:
+  - UplinkWeaponry

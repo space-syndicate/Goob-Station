@@ -1,0 +1,17 @@
+- type: entity
+  id: BulletAcidXenoGene
+  name: acid spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 7
+          Heat: 10
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null

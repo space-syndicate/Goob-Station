@@ -10,6 +10,7 @@
 - type: loadoutGroup
   id: HoPImperialGlasses
   name: loadout-group-hop-glasses
+  minLimit: 0
   loadouts:
   - Glasses
   - GlassesJamjar

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by Mirna Samey,  https://ya.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fwww.gwi.com%2Fhubfs%2FPreview%2520image-2.png&isize=small&lr=37155&pos=5&rpt=simage&text=%D0%A1%D0%B8%D0%BD%D1%8F%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20%D0%BC%D0%B8%D1%80%D0%B0",
+  "size": {
+    "x": 256,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "icon"
+    }
+  ]
+}

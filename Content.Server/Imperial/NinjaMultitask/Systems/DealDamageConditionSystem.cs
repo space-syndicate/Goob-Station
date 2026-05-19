@@ -1,37 +1,29 @@
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
-using Content.Server.Shuttles.Systems;
-using Content.Shared.CCVar;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
-using Robust.Shared.Configuration;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
-using Content.Server.Objectives.Systems;
-using Content.Shared.Damage;
 using Content.Server.Imperial.NinjaMultitask.Components;
 using Robust.Shared.Random;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Shared.Ninja.Components;
-using Robust.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Mobs;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 namespace Content.Server.Imperial.NinjaMultitask.Systems;
+
 
 public sealed class DealDamageConditionSystem : EntitySystem
 {
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMindSystem _mindManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -55,13 +47,13 @@ public sealed class DealDamageConditionSystem : EntitySystem
         if (failed)
             return 0f;
         if (Math.Clamp((float)(dltdmg), (float)(mindmg), (float)(maxdmg)) == dltdmg)
-            {
-                return 1f;
-            }
-            else if (dltdmg < mindmg)
-            {
-                return (float)(dltdmg / mindmg);
-            }
+        {
+            return 1f;
+        }
+        else if (dltdmg < mindmg)
+        {
+            return (float)(dltdmg / mindmg);
+        }
         return 0f;
 
     }
@@ -74,7 +66,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
         {
             bodyUid = mindComp.OwnedEntity ?? EntityUid.Invalid;
         }
-        comp.Ninja = args.Mind.Owner;
+        comp.Ninja = args.MindId;
         var trgt = target ?? EntityUid.Invalid;
         var targcomp = EnsureComp<NinjaDamageTargetComponent>(bodyUid);
         comp.OriginalBody = args.Mind.OwnedEntity;
@@ -117,7 +109,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
             session = actor.PlayerSession;
             if (!_mindManager.TryGetMind(session, out var mindIdNinja, out var mindComponentNinja))
                 return;
-            if (mindComponentNinja.Owner == comp.Ninja && args.Origin == comp.OriginalBody && args.DamageIncreased && damageDelta > 0)
+            if (mindIdNinja == comp.Ninja && args.Origin == comp.OriginalBody && args.DamageIncreased && damageDelta > 0)
             {
                 comp.DamageDealt += damageDelta;
             }
@@ -138,7 +130,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
         }
         if (string.IsNullOrEmpty(title))
             return string.Empty;
-        if (ownedEntity == null || !TryComp<NinjaDamageTargetComponent>(ownedEntity, out var compninjatarget))
+        if (!TryComp<NinjaDamageTargetComponent>(ownedEntity, out var compninjatarget))
         {
             return string.Empty;
         }
@@ -150,14 +142,13 @@ public sealed class DealDamageConditionSystem : EntitySystem
         }
         var mindmg = comp.MinDamage.ToString();
         var maxdmg = comp.MaxDamage.ToString();
-        var damageTypeProto = new DamageTypePrototype();
-        if (_prototype.TryIndex<DamageTypePrototype>(comp.DamageType, out var proto))
-        {
-            damageTypeProto = proto;
-        }
+
+        if (_prototype.TryIndex(comp.DamageType, out var damageTypeProto))
+            return "error";
+
         var type = damageTypeProto?.LocalizedName ?? comp.DamageType.Value;
         var jobName = "Unknown";
-        if (TryComp<MindComponent>(target, out var mindComp))
+        if (TryComp<MindComponent>(target, out var _))
         {
             jobName = _job.MindTryGetJobName(target) ?? jobName;
         }
@@ -181,7 +172,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
             {
                 return;
             }
-            if (!TryComp<MindContainerComponent>(component.Owner, out var mccomp))
+            if (!TryComp<MindContainerComponent>(uid, out var mccomp))
             {
                 return;
             }
@@ -194,7 +185,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
                 return;
             }
             var damageType = comp.DamageType.Value;
-            if (!damagecomp.Damage.DamageDict.TryGetValue(damageType, out var damageDelta))
+            if (!_damageableSystem.GetAllDamage(mcomp.OwnedEntity.Value).DamageDict.TryGetValue(damageType, out var damageDelta))
             {
                 return;
             }

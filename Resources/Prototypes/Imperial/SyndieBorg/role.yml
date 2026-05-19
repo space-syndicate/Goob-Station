@@ -1,0 +1,11 @@
+- type: antag
+  id: SyndieBorg
+  name: roles-antag-syndie-borg-agent-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-syndie-borg-agent-objective
+  guides: [ Traitors ]
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 18000  #5ч

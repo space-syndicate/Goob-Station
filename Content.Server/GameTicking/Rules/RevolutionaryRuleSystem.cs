@@ -1,7 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Antag;
 using Content.Server.EUI;
-using Content.Server.Flash;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Popups;
@@ -12,6 +11,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
+using Content.Shared.Flash;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -23,6 +23,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
@@ -117,6 +118,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
             // TODO: someone suggested listing all alive? revs maybe implement at some point
         }
+        args.AddLine("");
     }
 
     private void OnGetBriefing(EntityUid uid, RevolutionaryRoleComponent comp, ref GetBriefingEvent args)
@@ -149,10 +151,11 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
+            !HasComp<HumanoidProfileComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
-            HasComp<ZombieComponent>(ev.Target))
+            HasComp<ZombieComponent>(ev.Target) ||
+            !HasComp<RevolutionaryConverterComponent>(ev.Used))
         {
             return;
         }
@@ -169,7 +172,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             if (_mind.TryGetMind(ev.User.Value, out var revMindId, out _))
             {
                 if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
+                {
                     role.Value.Comp2.ConvertedCount++;
+                    Dirty(role.Value.Owner, role.Value.Comp2);
+                }
             }
         }
 
@@ -236,7 +242,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     continue;
 
                 _npcFaction.RemoveFaction(uid, RevolutionaryNpcFaction);
-                _stun.TryParalyze(uid, stunTime, true);
+                _stun.TryUpdateParalyzeDuration(uid, stunTime);
                 RemCompDeferred<RevolutionaryComponent>(uid);
                 _popup.PopupEntity(Loc.GetString("rev-break-control", ("name", Identity.Entity(uid, EntityManager))), uid);
                 _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(uid)} was deconverted due to all Head Revolutionaries dying.");
@@ -391,7 +397,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // - Мертв или является зомби
         if (HasComp<RevolutionaryComponent>(uid) ||
             HasComp<MindShieldComponent>(uid) ||
-            !HasComp<HumanoidAppearanceComponent>(uid) && !alwaysConvertible ||
+            !HasComp<HumanoidProfileComponent>(uid) && !alwaysConvertible ||
             !_mobState.IsAlive(uid) ||
             HasComp<ZombieComponent>(uid))
         {

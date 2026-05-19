@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "copyright": "Taken from tgstation, mod - Fredik21",
+    "license": "CC-BY-SA-3.0",
+    "states": [
+        {
+            "name": "nda"
+        },
+        {
+            "name": "door"
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "open"
+        },
+        {
+            "name": "welded"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from TGstation and modified by @sentryprimies",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "combat"
+    },
+    {
+      "name": "advanced"
+    },
+    {
+      "name": "caustic"
+    },
+    {
+      "name": "drugs"
+    },
+    {
+      "name": "hypoxia"
+    },
+    {
+      "name": "hypoxia_empty"
+    },
+    {
+      "name": "drugs_empty"
+    },
+    {
+      "name": "caustic_empty"
+    },
+    {
+      "name": "advanced_empty"
+    },
+    {
+      "name": "combat_empty"
+    }
+  ]
+}

@@ -7,6 +7,12 @@ ghost-role-component-default-rules = К вам применяются все о�
 ghost-role-information-mouse-name = Мышь
 ghost-role-information-mouse-description = Голодная и озорная мышь.
 
+ghost-role-information-cancer-mouse-name = Раковая мышь
+ghost-role-information-cancer-mouse-description = Облученная мышь, распространяй свою болезнь и ищи пищу.
+
+ghost-role-information-moproach-name = Швабромоль
+ghost-role-information-moproach-description = Милая таракамоль с ещё более милыми туфельками, похожими на швабры, на лапках.
+
 ghost-role-information-giant-spider-name = Гигантский паук
 ghost-role-information-giant-spider-description = Устройте хаос обитателям станции!
 
@@ -336,9 +342,27 @@ ghost-role-information-syndicate-cyborg-saboteur-name = Саботажный б�
 ghost-role-information-derelict-cyborg-name = Брошенный Борг
 ghost-role-information-derelict-cyborg-description = Вы обычный борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
 
+ghost-role-information-derelict-engineering-cyborg-name = Брошенный Инженерный Борг
+ghost-role-information-derelict-engineering-cyborg-description = Вы инженерный борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-janitor-cyborg-name = Брошенный Уборочный Борг
+ghost-role-information-derelict-janitor-cyborg-description = Вы уборочный борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-medical-cyborg-name = Брошенный Медицинский Борг
+ghost-role-information-derelict-medical-cyborg-description = Вы медицинский борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-mining-cyborg-name = Брошенный Утилизаторский Борг
+ghost-role-information-derelict-mining-cyborg-description = Вы утилизаторский борг, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-syndicate-assault-cyborg-name = Брошенный Штурмовой Борг Синдиката
+ghost-role-information-derelict-syndicate-assault-cyborg-description = Вы модель штурмового борга Синдиката, который заблудился в космосе. После многих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
 ghost-role-information-gingerbread-name = Пряничный человечек
 ghost-role-information-gingerbread-description = Существо, преисполненное чистого праздничного духа.
                                      Распространяйте доброту мелассы и поднимайте всем настроение.
 
 ghost-role-information-wizard-name = Маг
 ghost-role-information-wizard-desc = ВЫ МАГ! Покажите станции, насколько вы профи в магии!
+
+ghost-role-information-emotional-support-scurret-name = Слизенёк эмоциональной поддержки
+ghost-role-information-emotional-support-scurret-description = Поддерживайте экипаж, будьте очаровательными, часто говорите "ва".

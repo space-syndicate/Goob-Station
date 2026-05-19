@@ -1,0 +1,14 @@
+- type: gameMap
+  id: Dev_Core_Map
+  mapName: Dev Core Map
+  mapPath: /Maps/Imperial/Maps/Core/Dev_Core_Map.yml
+  minPlayers: 0
+  stations:
+    Devcore:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Dev_Core_Test"
+        - type: StationJobs
+          availableJobs:
+            ChiefEngineer: [ -1, -1 ]

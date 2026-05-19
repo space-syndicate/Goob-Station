@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "Created by: @.sane4ka Discord",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "light",
+      "directions": 4
+    },
+    {
+      "name": "hard",
+      "directions": 4
+    },
+    {
+      "name": "ofc",
+      "directions": 4
+    },
+    {
+      "name": "gate",
+      "directions": 4
+    },
+    {
+      "name": "dclass",
+      "directions": 4
+    },
+    {
+      "name": "avel",
+      "directions": 4
+    },
+    {
+      "name": "fire",
+      "directions": 4
+    },
+    {
+      "name": "dog",
+      "directions": 4
+    },
+    {
+      "name": "ded",
+      "directions": 4
+    },
+    {
+      "name": "doc",
+      "directions": 4
+    },
+    {
+      "name": "mask",
+      "directions": 4
+    }
+  ]
+}

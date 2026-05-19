@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "mcdonaldsobamaburger and ryslan32",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Urs_dead"
+    },
+    {
+      "name": "urs",
+      "directions": 4
+    },
+    {
+      "name": "DashActionIcon"
+    }
+  ]
+}

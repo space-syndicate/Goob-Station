@@ -115,6 +115,15 @@ ent-PaperCNCSheet = лист персонажа
     .desc = "Лист для ваших персонажей из «ДнД»."
 ent-BoxFolderClipboard = доска с зажимом для бумаги
     .desc = Оружие бюрократов!
+ent-BoxFolderClipboardEmpty = { ent-BoxFolderClipboard }
+    .desc = { ent-BoxFolderClipboard.desc }
+    .suffix = Пустая
+ent-BoxFolderClipboardThreePapers = { ent-BoxFolderClipboard }
+    .desc = { ent-BoxFolderClipboard.desc }
+    .suffix = 3 бумаги
+ent-BoxFolderPlasticClipboardThreePapers = { ent-BoxFolderClipboard }
+    .desc = { ent-BoxFolderClipboard.desc }
+    .suffix = 3 бумаги
 
 ent-BoxFolderCentComClipboard = планшет ЦентКом
     .desc = Роскошная папка для обмена, обитая зеленым бархатом. Ее часто носят с собой сотрудники ЦентКома, но её редко используют по назначению.
@@ -136,3 +145,6 @@ ent-RubberStampLawyer = печать юриста
     .suffix = НЕ МАППИТЬ
 ent-PaperSalvageJobLabel = манифест задачи утилизаторов
     .desc = Бумажная этикетка, обозначающая, что ящик содержит то что нужно для задач утилизаторов. Продажа ящика с этой этикеткой приведет к выполнению задачи.
+
+ent-PaperNanoTaskItem = задача НаноЗадачи
+    .desc = Задача из картриджа НаноЗадачи. Можно вставить в КПК.

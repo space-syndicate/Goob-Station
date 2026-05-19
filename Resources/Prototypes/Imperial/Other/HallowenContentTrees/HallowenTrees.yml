@@ -1,0 +1,33 @@
+- type: entity
+  id: HalloweenTreeLarge
+  parent: BaseTree
+  suffix: Hallowen
+  name: Dark wood
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/HallowenContentTrees/HalloweenTreesLarge.rsi
+    state: TreeLarge
+    offset: 0,0.6
+
+- type: entity
+  id: HalloweenTreeLargeHorror
+  parent: BaseTree
+  suffix: Hallowen
+  name: Dark wood horror
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/HallowenContentTrees/HalloweenTreesLarge.rsi
+    state: HorrorTreeLarge
+    offset: 0,0.5
+
+- type: entity
+  id: HalloweenTreeSmall
+  parent: BaseTree
+  suffix: Hallowen
+  name: Small dark wood
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/HallowenContentTrees/HalloweenTreeSmall.rsi
+    state: SmallDarkWood
+    scale: "0.7, 0.7"
+    offset: 0,0.3

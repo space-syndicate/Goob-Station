@@ -1,0 +1,108 @@
+# Space station 13
+# Graytider
+
+- type: entity
+  parent: PassengerIDCard
+  id: IDCardXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_card.rsi
+      layers:
+      - state: icon
+    - type: IdCard
+      jobtitle: Passenger
+      jobicon: JobIconPassenger
+
+- type: entity
+  parent: ClothingMaskGas
+  id: GasMaskXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_gasmask.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesColorYellow
+  id: InsulatedGlovesXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_gloves.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitColorGrey
+  id: GreyJumpsuitXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_jumpsuit.rsi
+      layers:
+      - state: icon
+    - type: Item
+      inhandVisuals: {}
+    - type: Clothing
+      sprite: Imperial/XxRaay/SS13/graytider_jumpsuit.rsi
+      clothingVisuals:
+        jumpsuit:
+        - state: equipped-INNERCLOTHING
+
+- type: entity
+  parent: BasePDA
+  id: PDAXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+        state: pda
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+    - type: PdaBorderColor
+      borderColor: "#717059"
+      accentVColor: "#717059"
+
+- type: entity
+  parent: ClothingShoesColorBlack
+  id: ShoesXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_shoes.rsi
+      layers:
+      - state: icon
+    - type: Item
+      inhandVisuals: {}
+    - type: Clothing
+      sprite: Imperial/XxRaay/SS13/graytider_shoes.rsi
+      clothingVisuals:
+        shoes:
+        - state: equipped-FEET
+
+- type: entity
+  parent: ToolboxBase
+  id: ToolboxXxRaayTimePortal
+  suffix: XxRaay, TimePortal
+  components:
+    - type: Sprite
+      sprite: Imperial/XxRaay/SS13/graytider_toolbox.rsi
+
+- type: startingGear
+  id: XxRaayTimePortalGear
+  equipment:
+    jumpsuit: GreyJumpsuitXxRaayTimePortal
+    mask: GasMaskXxRaayTimePortal
+    gloves: InsulatedGlovesXxRaayTimePortal
+    id: IDCardXxRaayTimePortal
+    belt: PDAXxRaayTimePortal
+    shoes: ShoesXxRaayTimePortal
+  inhand:
+    - ToolboxXxRaayTimePortal

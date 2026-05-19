@@ -49,7 +49,6 @@
         types:
           Piercing: 30
           Structural: 40
-          Stamina: 60
           Bloodloss: 15
           Slash: 10
     - type: FootstepModifier
@@ -96,4 +95,3 @@
       damage:
         types:
           Piercing: 10
-          Stamina: 35

@@ -13,7 +13,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -39,7 +39,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 5
@@ -48,7 +48,7 @@
         amount: 0.8
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: BlackoutStout
           min: 25
         key: ForcedSleep
@@ -71,7 +71,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -96,7 +96,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -104,6 +104,8 @@
         reagent: Ethanol
         amount: 0.05
       - !type:Luminescence
+        maxEnergy: 50
+        maxRange: 5
         energyPerUnit: 2
 
 - type: reagent
@@ -121,7 +123,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -144,17 +146,17 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: -5
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.3
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: MacteraBrew
           min: 6
 
@@ -170,19 +172,19 @@
   meltingPoint: -114.1
   metamorphicChangeColor: false
   metabolisms:
-    Alcohol:
+    Bloodstream:
       effects:
       # - !type:HealPsychosis # psychosis
       #   reagent: Etanol
       #   stage: 1
       #   conditions: # psychosis
-      #   - !type:ReagentThreshold # psychosis
+      #   - !type:ReagentCondition # psychosis
       #     min: 1 # psychosis
       # dwarves take less toxin damage and heal a marginal amount of brute
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: TelEthanol
           min: 1
       - !type:Drunk
@@ -203,7 +205,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -228,29 +230,30 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:ChangeMarkingColor
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 20
             reagent: RandoVeisser
       - !type:ChangeMarkingColor
         markingCategory: "Tail"
         invertColor: true
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
             min: 20
             reagent: RandoVeisser
       - !type:ChangeMarkingColor
         markingCategory: "Skin"
         invertColor: true
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
             min: 20
+            reagent: RandoVeisser
 
 #GNOMIZATOR (SINDIKAT)
 
@@ -286,19 +289,21 @@
   flavor: magical
   color: "#5EC4CD"
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 0.25
       effects:
       - !type:Polymorph
         prototype: PolymorphGnomificatorPerma
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: GnomificatorPermanent
           min: 7
       - !type:AdjustReagent
         reagent: Gnomificator
         amount: -5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: GnomificatorPermanent
           min: 7
 
 - type: reagent
@@ -310,19 +315,21 @@
   flavor: magical
   color: "#5EC4CD"
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 0.25
       effects:
       - !type:Polymorph
         prototype: PolymorphGnomificator
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Gnomificator
           min: 7
       - !type:AdjustReagent
         reagent: Gnomificator
         amount: -5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Gnomificator
           min: 7
 
 - type: entity
@@ -337,51 +344,22 @@
         - ReagentId: Gnomificator
           Quantity: 20
 
-
 - type: entity
-  parent: BaseItem
+  parent: DrinkCanBaseFull
   id: DrinkCanSyndicate
   name: syndicate chemical container
   description: Dangerous!
   components:
-  - type: Drink
-  - type: Openable
-  - type: PressurizedSolution
   - type: SolutionContainerManager
     solutions:
       drink:
         maxVol: 20
-  - type: SolutionTransfer
-    canChangeTransferAmount: true
-    maxTransferAmount: 15
-  - type: UserInterface
-    interfaces:
-      enum.TransferAmountUiKey.Key:
-        type: TransferAmountBoundUserInterface
   - type: Sprite
     sprite: Imperial/DRGbeer/gnomizator.rsi
     state: icon
     layers:
       - state: icon
         map: ["enum.OpenableVisuals.Layer"]
-  - type: DrawableSolution
-    solution: drink
-  - type: RefillableSolution
-    solution: drink
-  - type: DrainableSolution
-    solution: drink
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
-  - type: Spillable
-    solution: drink
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 50
 
 - type: listing
   id: UplinkChemicalGnome

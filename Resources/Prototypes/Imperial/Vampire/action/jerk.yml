@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: VampireJerkAction
+  name: Рывок
+  description: Вы кидаетесь в сторону, куда нажали. Если вы попадёте в человека, вы оглушите его. Если попадёте в предмет, то он получит 200 ед урона. Стоимость 15 ед. крови. Кулдаун 30 секунд.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: jerk
+  - type: InstantAction
+    event: !type:VampireJerkEvent
+      costBlood: 15

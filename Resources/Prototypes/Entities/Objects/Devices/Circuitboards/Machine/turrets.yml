@@ -23,6 +23,9 @@
         amount: 1
         defaultPrototype: PowerCellMedium
         examineName: construction-insert-info-examine-name-power-cell
+    stackRequirements: # Imperial Space Усложнен рецепт турелей СБ для избежания дюпов
+      Steel: 30
+      PlasmaGlass: 15
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase
@@ -31,7 +34,7 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
-    state: command
+    state: science
   - type: MachineBoard
     prototype: WeaponEnergyTurretAI
 
@@ -45,4 +48,15 @@
     state: security
   - type: MachineBoard
     prototype: WeaponEnergyTurretSecurity
+    
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretCommandMachineCircuitboard
+  suffix: Command
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: command
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretCommand
 

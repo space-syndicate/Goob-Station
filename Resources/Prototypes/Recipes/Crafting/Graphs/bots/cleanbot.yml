@@ -10,18 +10,18 @@
         icon:
           sprite: Objects/Tools/bucket.rsi
           state: icon
-        name: ведро # Imperial Recipes Locale
+        name: recipes-bucket-name
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения # Imperial Recipes Locale
+        name: recipes-proximity-sensor-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: рука борга # Imperial Recipes Locale
+        name: recipes-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobCleanBot

@@ -1,0 +1,7 @@
+- type: entity
+  name: hyper-noblium gas miner
+  parent: GasMinerBase
+  id: GasMinerHyperNoblium
+  components:
+    - type: GasMiner
+      spawnGas: HyperNoblium

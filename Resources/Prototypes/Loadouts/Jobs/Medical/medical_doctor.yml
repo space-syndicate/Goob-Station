@@ -1,50 +1,17 @@
-# Senior Time
-- type: loadoutEffectGroup
-  id: SeniorPhysician
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobChemist
-      time: 21600 #6 hrs
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 21600 #6 hrs
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Medical
-      time: 216000 # 60 hrs
-
-# Other Timers
-
-- type: loadoutEffectGroup
-  id: MedicalHeadMirrorTimer
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 108000 #30 hrs
-
 # Head
-
-#Imperial закомментирован в связи с возвращением сеньор ролей Imperial Space
-# - type: loadout
-#   id: SeniorPhysicianBeret
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: SeniorPhysician
-#   equipment:
-#     head: ClothingHeadHatBeretSeniorPhysician
+- type: loadout
+  id: SeniorPhysicianBeret
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    head: ClothingHeadHatBeretSeniorPhysician
 
 - type: loadout
   id: MedicalHeadMirror
   effects:
   - !type:GroupLoadoutEffect
-    proto: MedicalHeadMirrorTimer
+    proto: MedicalJourneymanTimer
   equipment:
     head: ClothingHeadMirror
 
@@ -169,25 +136,8 @@
 #   equipment:
 #     id: SeniorPhysicianPDA
 
-# Gloves
-- type: loadout
-  id: NitrileGloves
-  equipment:
-    gloves: ClothingHandsGlovesNitrile
-
 #Masks
 - type: loadout
   id: SterileMask
   equipment:
     mask: ClothingMaskSterile
-
-#Eyewear
-- type: loadout
-  id: MedicalHud
-  equipment:
-    eyes: ClothingEyesHudMedical
-
-- type: loadout
-  id: MedicalEyePatchHud
-  equipment:
-    eyes: ClothingEyesEyepatchHudMedical

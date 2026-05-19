@@ -1,38 +1,26 @@
-
-using Content.Server.Cargo.Components;
 using Content.Server.Popups;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
-using Content.Shared.Cargo.Events;
 using Content.Shared.Verbs;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
-using Content.Server.Storage;
-using Content.Shared.Storage;
-using Content.Server.Cargo;
-using Content.Server.Cargo.Systems;
-using Content.Shared.Cargo.Systems;
 using Content.Server.Imperial.PiratesNewHorizon.GPS.Components;
 using Content.Shared.Imperial.PiratesNewHorizon.GPS.Events;
-using Content.Shared.Body.Components;
 using Content.Shared.Hands.Components;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-using Robust.Shared.Utility;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
+using Content.Server.Hands.Systems;
+using Content.Shared.Body;
 namespace Content.Server.Imperial.PiratesNewHorizon.GPS.Systems;
 
 public sealed class GPSTrackerRemoverSystem : EntitySystem
 {
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly PricingSystem _pricingSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly CargoSystem _bountySystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
+
+
     public override void Initialize()
     {
         SubscribeLocalEvent<GPSTrackerRemoverComponent, AfterInteractEvent>(OnAfterInteract);
@@ -99,10 +87,8 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
             !ev.CanAccess ||
             !TryComp<BodyComponent>(ev.User, out var body) ||
             !TryComp<HandsComponent>(ev.User, out var hands) ||
-            hands.ActiveHand == null ||
-            !hands.ActiveHand.HeldEntity.HasValue ||
-            !_entityManager.EntityExists(hands.ActiveHand.HeldEntity.Value) ||
-            !TryComp<GPSTrackerRemoverComponent>(hands.ActiveHand.HeldEntity.Value, out var remover))
+            _handsSystem.TryGetActiveItem(ev.User, out var activeItem) ||
+            !TryComp<GPSTrackerRemoverComponent>(activeItem, out var remover))
             return;
         var user = ev.User;
         var target = ev.Target;
@@ -110,7 +96,7 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
         {
             Act = () =>
             {
-                if (!TryComp(hands.ActiveHand.HeldEntity.Value, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((hands.ActiveHand.HeldEntity.Value, useDelay)))
+                if (!TryComp(activeItem, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((activeItem.Value, useDelay)))
                     return;
                 if (!TryComp(target, out GPSTrackerPriceComponent? gpsTracker) || gpsTracker.GPSTrackerInstalled == false)
                 {
@@ -121,9 +107,9 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
                 user,
                 TimeSpan.FromSeconds(remover.Delay),
                 new GPSTrackerRemoveDoAfterEvent(),
-                eventTarget: hands.ActiveHand.HeldEntity.Value,
+                eventTarget: activeItem,
                 target: target,
-                used: hands.ActiveHand.HeldEntity.Value)
+                used: activeItem)
                 {
                     BreakOnMove = true,
                     BreakOnDamage = true,

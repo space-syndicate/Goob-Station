@@ -1,0 +1,374 @@
+# Borgs
+- type: storeCategory
+  id: BorgDrobeErtBorg
+  name: store-category-ert-borgdrobe-borg
+
+- type: listing
+  id: ErtBorgDrobeUplinkAssault
+  name: ert-borgdrobe-uplink-ert-borg-assault-name
+  description: ert-borgdrobe-uplink-ert-borg-assault-desc
+  productEntity: PlayerBorgErtAssaultGhostRole
+  priority: 1
+  cost:
+    BlueSpaceCube: 25
+  categories:
+  - BorgDrobeErtBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ErtBorgDrobeUplinkMedical
+  name: borgdrobe-uplink-ert-borg-medical-name
+  description: borgdrobe-uplink-ert-borg-medical-desc
+  productEntity: PlayerBorgErtMedicGhostRole
+  priority: 2
+  cost:
+    BlueSpaceCube: 20
+  categories:
+  - BorgDrobeErtBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ErtBorgDrobeUplinkEngineer
+  name: borgdrobe-uplink-ert-borg-engineer-name
+  description: borgdrobe-uplink-ert-borg-engineer-desc
+  productEntity: PlayerBorgErtEngineerGhostRole
+  priority: 3
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - BorgDrobeErtBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: ErtBorgDrobeUplinkCburn
+  name: borgdrobe-uplink-ert-borg-cburn-name
+  description: borgdrobe-uplink-ert-borg-cburn-desc
+  productEntity: PlayerBorgErtCburnGhostRole
+  priority: 4
+  cost:
+    BlueSpaceCube: 20
+  categories:
+  - BorgDrobeErtBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+# Mech
+
+- type: listing
+  id: ErtBorgDrobeUplinkMechMarauder
+  productEntity: MechMarauder
+  priority: 1
+  cost:
+    BlueSpaceCube: 30
+  categories:
+  - ErtBorgDrobeMech
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ErtBorgDrobeUplinkMechGygaxERT
+  productEntity: MechGygaxERT
+  priority: 2
+  cost:
+    BlueSpaceCube: 25
+  categories:
+  - ErtBorgDrobeMech
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Equipment
+
+# Active
+
+- type: listing
+  id: ErtBorgDrobeUplinkMechEquipmentDrilleDiamond
+  productEntity: MechEquipmentDrilleDiamond
+  priority: 3
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: BorgDrobeUplinkMechEquipmentFistNT
+  productEntity: MechEquipmentFistNT
+  priority: 4
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentNoMoreLight
+  productEntity: MechEquipmentNoMoreLight
+  priority: 5
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentLaser
+  productEntity: MechEquipmentLaser
+  priority: 6
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentDisablerNt
+  productEntity: MechEquipmentDisablerNt
+  priority: 7
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentBasilisk
+  productEntity: MechEquipmentBasilisk
+  priority: 7
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentNovaNt
+  productEntity: MechEquipmentNovaNt
+  priority: 8
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentSupraNt
+  productEntity: MechEquipmentSupraNt
+  priority: 9
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentDragonBorn
+  productEntity: MechEquipmentDragonBorn
+  priority: 10
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentDoomBringerNt
+  productEntity: MechEquipmentDoomBringerNt
+  priority: 11
+  cost:
+    BlueSpaceCube: 16
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: CartridgeRocketMech
+  productEntity: CartridgeRocketMech
+  priority: 12
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentIronStorm
+  productEntity: MechEquipmentIronStorm
+  priority: 13
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MagazineMechaIronStorm
+  productEntity: MagazineMechaIronStorm
+  priority: 14
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - ErtBorgDrobeMech
+
+# Passive
+
+- type: listing
+  id: MechEquipmentThruster
+  productEntity: MechEquipmentThruster
+  priority: 15
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentPilotProtection
+  productEntity: MechEquipmentPilotProtection
+  priority: 16
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentTeleporter
+  productEntity: MechEquipmentTeleporter
+  priority: 17
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentPhaseShift
+  productEntity: MechEquipmentPhaseShift
+  priority: 18
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - ErtBorgDrobeMech
+
+
+- type: listing
+  id: MechEquipmentHp1
+  productEntity: MechEquipmentHp1
+  priority: 19
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentHp2
+  productEntity: MechEquipmentHp2
+  priority: 20
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentHp3
+  productEntity: MechEquipmentHp3
+  priority: 21
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - ErtBorgDrobeMech
+
+
+- type: listing
+  id: MechEquipmentSpeed1
+  productEntity: MechEquipmentSpeed1
+  priority: 22
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentSpeed2
+  productEntity: MechEquipmentSpeed2
+  priority: 23
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentSpeed3
+  productEntity: MechEquipmentSpeed3
+  priority: 24
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - ErtBorgDrobeMech
+
+
+- type: listing
+  id: MechEquipmentRemdrone1
+  productEntity: MechEquipmentRepairDrone1
+  priority: 25
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentRemdrone2
+  productEntity: MechEquipmentRepairDrone2
+  priority: 26
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentRemdrone3
+  productEntity: MechEquipmentRepairDrone3
+  priority: 27
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentTeslaEnergyRelay
+  productEntity: MechEquipmentTeslaEnergyRelay
+  priority: 28
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentPlasmaGenerator
+  productEntity: MechEquipmentPlasmaGeneratorFilled
+  priority: 29
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentUraniumGenerator
+  productEntity: MechEquipmentUraniumGeneratorFilled
+  priority: 30
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentGrabberMed
+  productEntity: MechEquipmentGrabberMed
+  priority: 31
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - ErtBorgDrobeMech
+
+- type: listing
+  id: MechEquipmentGrabber
+  productEntity: MechEquipmentGrabber
+  priority: 32
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - ErtBorgDrobeMech

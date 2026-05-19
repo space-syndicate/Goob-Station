@@ -77,8 +77,9 @@
   Когда все в сборе, совершайте БСС прыжок до станции и начинайте штурм. Не забудьте код от бомбы, навигаторы и, если она вам нужна, саму боеголовку.
 
   <Box>
-    <GuideEntityEmbed Entity="JetpackBlack"/>
+    <GuideEntityEmbed Entity="BoxFolderNuclearCodes"/>
     <GuideEntityEmbed Entity="ComputerIFFSyndicate"/>
+    <GuideEntityEmbed Entity="JetpackBlack"/>
   </Box>
 
   ## Процедура взвода Боеголовки

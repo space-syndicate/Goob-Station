@@ -1,0 +1,52 @@
+- type: entity
+  name: EnergyZipties
+  description: Zipties made from pure plasma.
+  id: EnergyZipties
+  parent: Handcuffs
+  components:
+  - type: Handcuff
+    used: true
+    breakoutTime: 5
+    cuffedRSI: Objects/Misc/cablecuffs.rsi  # cablecuffs will look fine
+    bodyIconState: body-overlay
+    breakOnRemove: true
+    brokenPrototype: EnergyZiptiesBroken
+    startCuffSound:
+      path: /Audio/Items/Handcuffs/ziptie_start.ogg
+    endCuffSound:
+      path: /Audio/Items/Handcuffs/ziptie_end.ogg
+    startUncuffSound:
+      path: /Audio/Items/Handcuffs/rope_start.ogg
+    endUncuffSound:
+      path: /Audio/Items/Handcuffs/rope_breakout.ogg
+    startBreakoutSound:
+      path: /Audio/Items/Handcuffs/rope_takeoff.ogg
+  - type: Sprite
+    sprite: Objects/Misc/zipties.rsi
+    state: cuff
+
+- type: entity
+  name: broken zipties
+  description: These zipties look like they tried to manage the wrong cables.
+  id: EnergyZiptiesBroken
+  parent: BaseHandcuffsBroken
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/zipties.rsi
+    state: cuff-broken
+  - type: TriggerOnSpawn
+  - type: DeleteOnTrigger
+
+- type: entity
+  parent: BaseItem
+  id: HandedHandcuffer
+  name: handed handucuffer
+  description: Zip 'em up!
+  components:
+  - type: HandledCuffer
+    spawnedPrototype: EnergyZipties
+  - type: Sprite
+    sprite: Objects/Tools/access_breaker.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/access_breaker.rsi

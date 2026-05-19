@@ -106,7 +106,7 @@
     sprite: Imperial/Structures/Flora/Sakura/cupidarrow.rsi
     state: icon
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -115,15 +115,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.05
-    Medicine:
+    Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -1
-            Brute: -1
-            Airloss: -1
-            Toxin: -1
+          Burn: -1
+          Brute: -1
+          Airloss: -1
+          Toxin: -1
 
 - type: reaction
   id: CupidArrow

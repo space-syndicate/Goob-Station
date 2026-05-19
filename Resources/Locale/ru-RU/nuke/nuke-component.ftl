@@ -1,9 +1,12 @@
 nuke-component-cant-anchor-floor = Похоже, что без диска болты заблокированы!
+nuke-component-cant-anchor-toggle = Для закрепления бомбы необходимо вставить диск ядерной авторизации!
 nuke-component-announcement-sender = Ядерная боеголовка
 nuke-component-announcement-armed = Внимание! Механизм самоуничтожения станции был активирован {$location}. До детонации {$time} секунд.
 nuke-component-announcement-unarmed = Механизм самоуничтожение станции деактивирован! Хорошего дня!
 nuke-component-announcement-send-codes = Внимание! Запрошенные коды самоуничтожения были отправлены на консоли связи.
 nuke-component-doafter-warning = Вы начинаете перебирать провода и кнопки, в попытке обезвредить ядерную бомбу. Это может занять некоторое время.
+
+nuke-disk-component-microwave = Диск немного искрит и шипит, но, кажется, в основном не поврежден?
 
 # Nuke UI
 nuke-user-interface-title = Ядерная боеголовка
@@ -45,6 +48,3 @@ nuke-slot-component-slot-name-disk = Диск
 ## Examine
 nuke-examine-armed = Эй, а почему этот [color=red]красный свет[/color] мигает?
 nuke-examine-exploding = Да... Думаю, приятель, уже слишком поздно.
-
-# Nuke bolt
-nuke-component-cant-anchor-toggle = Для закрепления бомбы необходимо вставить диск ядерной авторизации!

@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseWallmountMetallic
+  id: WallmountSignboardAquila
+  suffix: entertainment
+  name: aquila sign
+  description: cool sign
+  components:
+  - type: Sprite
+    sprite: Imperial/Aquila/Objects/signboard.rsi
+    layers:
+      - state: icon
+      - state: unshaded
+        shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#b89f25"
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalGlassBreak
+              params:
+                volume: -4

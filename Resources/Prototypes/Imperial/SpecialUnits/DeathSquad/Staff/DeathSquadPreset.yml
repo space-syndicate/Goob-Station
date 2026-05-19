@@ -47,6 +47,13 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    - type: GhostRole
+      name: ertcall-deathsquad-security-eva-name
+      description: ertcall-deathsquad-security-eva-desc
+      rules: ertcall-deathsquad-security-eva-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
 
 - type: startingGear #gear
   id: DeathSquadEVALodout

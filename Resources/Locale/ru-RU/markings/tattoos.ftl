@@ -43,3 +43,12 @@ marking-TattooEyeMothRight = Правый глаз (Мотылёк)
 
 marking-TattooEyeMothLeft-tattoo_eye_moth_l = Левый глаз (Мотылёк)
 marking-TattooEyeMothLeft = Левый глаз (Мотылёк)
+
+marking-TattooEyeshadowUpper-tattoo_eyeshadow_upper = Тени для век (Верхние)
+marking-TattooEyeshadowUpper = Тени для век (Верхние)
+
+marking-TattooEyeshadowLower-tattoo_eyeshadow_lower = Тени для век (Нижние)
+marking-TattooEyeshadowLower = Тени для век (Нижние)
+
+marking-TattooEyeshadowLowerReptilian-tattoo_eyeshadow_lower_reptilian = Тени для век (Нижние)
+marking-TattooEyeshadowLowerReptilian = Тени для век (Нижние)

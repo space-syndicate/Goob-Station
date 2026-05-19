@@ -24,21 +24,41 @@
   defaultModules:
   - BorgModuleJawsSecurity
   - BorgModuleNonLethalSecurity
+  - BorgModuleLethalSecurity
 
   addComponents:
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: FlashImmunity
-  - type: Body
-    prototype: ImperialBorg
+  - type: CriminalRecordsConsole
+  - type: Stripping
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCameraMonitor
+  - type: UserInterface
+    interfaces:
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.CriminalRecordsConsoleKey.Key:
+        toggleAction: ActionShowStationRecords
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        toggleAction: ActionShowCameraMonitor
   - type: MobThresholds
     thresholds:
      0: Alive
-     200: Critical
-     300: Dead
-  - type: BorgHandsImperial
-    whitelistHandTag: SecurityBorgItem
+     130: Critical
+     180: Dead
 
   radioChannels:
   - Security
@@ -70,18 +90,3 @@
   - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_1.ogg
   - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_2.ogg
   - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_3.ogg
-
-- type: body
-  id: ImperialBorg # Тело для киборгов Империала, чтобы у них была рука
-  name: "Imperial borg"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-      - hand
-    hand:
-      part: HandsAnimal
-
-- type: Tag
-  id: SecurityBorgItem # Тег, позволяющий СБ боргу брать предметы Imperial Space

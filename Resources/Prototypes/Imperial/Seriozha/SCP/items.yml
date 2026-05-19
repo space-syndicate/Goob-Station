@@ -32,6 +32,9 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/encryptionkey.rsi
+  - type: Tag
+    tags:
+    - EncryptionNedraconnection
 
 - type: entity
   parent: EncryptionKey
@@ -49,6 +52,9 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
+  - type: Tag
+    tags:
+    - EncryptionNedraCMDconnection
 
 - type: entity
   parent: EncryptionKey
@@ -101,47 +107,43 @@
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/lasthopeencryptionkey.rsi
 
+# Stamps
 - type: entity
-  parent: ClothingHeadset
-  id: ClothingHeadsetSCPMain
-  name: scpe
-  description: scp is real
+  name: Nedra stamp
+  parent: RubberStampMime
+  id: RubberStampNedra
   suffix: seriozha, Недра
   components:
-    - type: ContainerFill
-      containers:
-        key_slots:
-        - EncryptionKeyNedraconnection
-    - type: EncryptionKeyHolder
-      keySlots: 6
+    - type: Stamp
+      stampedName: stamp-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#FFA500"
     - type: Sprite
-      sprite: Imperial/Seriozha/SCP/misc/headset.rsi
-    - type: Clothing
-      sprite: Imperial/Seriozha/SCP/misc/headset.rsi
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp
 
 - type: entity
-  parent: ClothingHeadset
-  id: ClothingHeadsetSCPAlt
-  name: scpe
-  description: scp is real
-  suffix: seriozha, Недра
+  name: Nedra command stamp
+  parent: RubberStampNedra
+  id: RubberStampNedraCommand
   components:
-    - type: ContainerFill
-      containers:
-        key_slots:
-        - EncryptionKeyNedraconnection
-    - type: EncryptionKeyHolder
-      keySlots: 8
+    - type: Stamp
+      stampedName: stamp-command-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#ff7e2e"
     - type: Sprite
-      sprite: Imperial/Seriozha/SCP/misc/altheadset.rsi
-    - type: Clothing
-      sprite: Imperial/Seriozha/SCP/misc/altheadset.rsi
-    - type: Armor
-      modifiers:
-        coefficients:
-          Blunt: 0.9
-          Slash: 0.9
-          Piercing: 0.9
-          Heat: 0.9
-          Radiation: 0.9
-          Stamina: 0.9
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp
+
+- type: entity
+  name: Nedra comitet stamp
+  parent: RubberStampNedra
+  id: RubberStampNedraComitet
+  components:
+    - type: Stamp
+      stampedName: stamp-comitet-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#60008f"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp

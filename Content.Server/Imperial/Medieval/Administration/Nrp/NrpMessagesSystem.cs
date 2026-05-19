@@ -13,13 +13,17 @@ using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
-using Content.Shared.Mind;
-using Content.Server.Mind;
+using Content.Server.Administration;
 using Content.Shared.Administration;
-using Content.Shared.Database;
-using Content.Shared.Roles.Jobs;
+using Content.Shared.CCVar;
 using Robust.Shared.Player;
 using Content.Shared.IdentityManagement;
+using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
+using Content.Server.Mind;
+using Content.Shared.Roles.Jobs;
+using Content.Shared.Chat;
+
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -30,8 +34,13 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IBanManager _banManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly NrpCurseSystem _curse = default!;
+    [Dependency] private readonly IPlayerLocator _locator = default!;
+
     [Dependency] private readonly MindSystem _minds = default!;
+
     [Dependency] private readonly SharedJobSystem _jobs = default!;
 
 
@@ -43,15 +52,39 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     private readonly List<NrpMessage> _unsolvedMessages = new();
     private readonly List<NrpPanelEui> _activeEuis = new();
-    private readonly Dictionary<string, int> _stats = new();
+    private readonly Dictionary<string, (int, int)> _stats = new();
 
-    public void AddResolveToStats(string administrator)
+    public async void AddResolveToStats(string administrator, bool isRp, NetUserId id)
     {
-        _stats.TryAdd(administrator, 0);
-        _stats[administrator]++;
+        _stats.TryAdd(administrator, (0, 0));
+        var stat = _stats[administrator];
+        if (isRp)
+            _stats[administrator] = (stat.Item1 + 1, stat.Item2);
+        else
+            _stats[administrator] = (stat.Item1, stat.Item2 + 1);
+        await _db.AddNrpResolve(id, isRp);
     }
 
-    public Dictionary<string, int> GetStats() => _stats;
+    public Dictionary<string, (int, int)> GetRoundStats() => _stats;
+
+    public async Task<Dictionary<string, (int, int)>> GetDbStats()
+    {
+        var dict = new Dictionary<string, (int, int)>();
+
+        var resolves = await _db.GetNrpResolves();
+
+        foreach (var resolve in resolves)
+        {
+            var located = await _locator.LookupIdAsync((NetUserId)resolve.UserId);
+
+            if (located == null)
+                continue;
+
+            dict[located.Username] = (resolve.Rp, resolve.Nrp);
+        }
+
+        return dict;
+    }
 
     public void RegisterEui(NrpPanelEui eui)
     {
@@ -66,30 +99,45 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     public void RemoveMessage(NrpMessage message)
     {
         _unsolvedMessages.Remove(message);
+        foreach (var eui in _activeEuis)
+            eui.SendRemoveMessage(message);
     }
 
-    private void Bwoink(ICommonSession player, NetUserId sender, string text)
+    public bool ContainsMessage(NrpMessage message)
     {
+        return _unsolvedMessages.Contains(message);
+    }
+
+    public void Bwoink(ICommonSession player, NetUserId? sender, string text)
+    {
+
         var bwoinkMessage = new SharedBwoinkSystem.BwoinkTextMessage(
             player.UserId,
-            sender,
+            sender ?? default,
             text
             );
 
         RaiseNetworkEvent(bwoinkMessage, player.Channel);
     }
 
-    private void Ban(NetUserId playerId, string playerName, NetUserId sender, string text, uint banMinutes)
+    public void AddCurseComponent(NetUserId playerId)
     {
-        _banManager.CreateServerBan(playerId,
-            playerName,
-            sender,
-            null, // думаю бан по ip и hwid здесь неуместен
-            null,
-            banMinutes,
-            NoteSeverity.Minor,
-            text
-        );
+        if (!_playerManager.TryGetSessionById(playerId, out var senderSession))
+            return;
+        var playerEntity = senderSession.AttachedEntity;
+        if (!playerEntity.HasValue)
+            return;
+        if (HasComp<NrpCurseComponent>(playerEntity))
+            return;
+        AddComp<NrpCurseComponent>(playerEntity.Value);
+    }
+
+    private void Curse(NetUserId playerId, NetUserId sender, string text, uint banMinutes)
+    {
+        AddCurseComponent(playerId);
+        var banTime = _gameTiming.CurTime + TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.NrpMinutesBeforeBan));
+        var cursedEntity = new CursedEntity(playerId, sender, text, banTime, banMinutes);
+        _curse.CurseEntity(cursedEntity);
     }
 
     public void OnViolation(NrpMessage message, int violationCount, NetUserId senderId)
@@ -102,11 +150,16 @@ public sealed partial class NrpMessagesSystem : EntitySystem
             adminName = senderSession.Name;
 
         var bwoinkText = Loc.GetString("nrp-panel-ahelp-message", ("message", message.Message), ("adminName", adminName));
-        var banText = Loc.GetString("nrp-panel-ban-message",
+        var curseText = Loc.GetString("nrp-panel-curse-message",
             ("message", message.Message),
+            ("adminName", adminName),
+            ("minutes", _cfg.GetCVar(CCVars.NrpMinutesBeforeBan)));
+        var banMessage = WrapBannedWordsInTag(message.UnformattedMessage, message.BannedWords, "->", "<-");
+        var banText = Loc.GetString("nrp-panel-ban-message",
+            ("message", banMessage),
             ("adminName", adminName));
 
-        _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, banText);
+        OnViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
     }
 
     public void OnViolation(NetUserId targetId, string targetName, string reason, int violationCount, NetUserId senderId)
@@ -117,23 +170,39 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
         var bwoinkText = Loc.GetString("nrp-ahelp-message", ("reason", reason), ("adminName", adminName));
         var banText = Loc.GetString("nrp-ban-message", ("reason", reason), ("adminName", adminName));
+        var curseText = Loc.GetString("nrp-curse-message", ("reason", reason), ("adminName", adminName), ("minutes", _cfg.GetCVar(CCVars.NrpMinutesBeforeBan)));
 
-        _onViolation(violationCount, targetId, senderId, targetName, bwoinkText, banText);
+        OnViolation(violationCount, targetId, senderId, targetName, bwoinkText, curseText, banText);
     }
 
-    private void _onViolation(int violationCount, NetUserId targetId, NetUserId senderId, string targetName, string bwoinkText, string banText)
+    private void OnViolation(int violationCount, NetUserId targetId, NetUserId senderId, string targetName, string bwoinkText, string curseText, string banText)
     {
-        if (violationCount == 1)
+        if (violationCount <= 2)
         {
+            // Первые 2 нарушения - только предупреждение
             if (_playerManager.TryGetSessionById(targetId, out var session))
                 Bwoink(session, senderId, bwoinkText);
         }
         else
         {
-            var banHours = (uint)(Math.Pow(2, 2 * (violationCount - 2)));
-            var banMinutes = banHours * 60;
-            Ban(targetId, targetName, senderId, banText, banMinutes);
+            var banMinutes = GetBanMinutesByViolationCount(violationCount);
+
+            if (_playerManager.TryGetSessionById(targetId, out var session))
+                Bwoink(session, senderId, curseText);
+            Curse(targetId, senderId, banText, banMinutes);
         }
+    }
+
+    private uint GetBanMinutesByViolationCount(int violationCount)
+    {
+        return violationCount switch
+        {
+            3 => 5,    // 5 минута
+            4 => 10,   // 10 минут
+            5 => 30,   // 30 минут
+            >= 6 => 60, // 1 час (максимум)
+            _ => 1     // На всякий случай
+        };
     }
 
 
@@ -164,12 +233,23 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     public async Task RemovePlayerNrpViolation(NetUserId player)
     {
         await _db.RemoveNrpViolation(player);
+        _curse.RemoveCursedEntity(player);
+        var uncurseText = Loc.GetString("nrp-uncurse-message");
+        if (!_playerManager.TryGetSessionById(player, out var session))
+            return;
+        Bwoink(session, null, uncurseText);
+
+        if (!session.AttachedEntity.HasValue)
+            return;
+        RemComp<NrpCurseComponent>(session.AttachedEntity.Value);
     }
 
     private void OnMapInit(RoundStartAttemptEvent ev)
     {
         if (ev.Cancelled)
             return;
+
+        _stats.Clear();
 
         var notifPrototypes = _prototype.EnumeratePrototypes<MessageNotifPrototype>().ToList();
         foreach (var i in notifPrototypes)
@@ -215,7 +295,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         return matches;
     }
 
-    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords)
+    private string WrapBannedWordsInTag(string input, Dictionary<string, bool> bannedWords, string openingTag = "[color=red]", string closingTag = "[/color]")
     {
         if (string.IsNullOrEmpty(input) || bannedWords.Count == 0)
             return input;
@@ -239,18 +319,18 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         if (patterns.Any())
         {
             var combinedPattern = string.Join("|", patterns);
-            result = Regex.Replace(
-                result,
-                combinedPattern,
-                match => $"[color=red]{match.Value}[/color]",
-                RegexOptions.IgnoreCase);
+            var regex = new Regex(combinedPattern, RegexOptions.IgnoreCase);
+            result = regex.Replace(result, match => $"{openingTag}{match.Value}{closingTag}");
         }
 
         return result;
     }
 
-    private void CheckMessage(EntitySpokeEvent ev)
+    private async void CheckMessage(EntitySpokeEvent ev)
     {
+        if (!_cfg.GetCVar(CCVars.NrpPanelEnabled))
+            return;
+
         if (_bannedWords.Count == 0)
             return;
 
@@ -276,10 +356,9 @@ public sealed partial class NrpMessagesSystem : EntitySystem
                 playerJob = jobProto.LocalizedName;
             }
         }
-
         var name = Identity.Name(session.AttachedEntity.Value, EntityManager);
-
-        var nrpMessage = new NrpMessage(formattedMessage, session.Name, session.UserId, senderNetEntity, name, playerJob);
+        var violations = await GetPlayerNrpViolations(session.UserId, 3);
+        var nrpMessage = new NrpMessage(message, matches, formattedMessage, session.Name, session.UserId, senderNetEntity, name, playerJob, violations);
         _unsolvedMessages.Add(nrpMessage);
 
         foreach (var eui in _activeEuis)
@@ -288,6 +367,6 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         }
 
 
-        _audio.PlayGlobal("/Audio/Imperial/Medieval/Misk/pop.ogg", Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), true, AudioParams.Default.WithVolume(-4f));
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Misk/pop.ogg"), Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), true, AudioParams.Default.WithVolume(-4f));
     }
 }

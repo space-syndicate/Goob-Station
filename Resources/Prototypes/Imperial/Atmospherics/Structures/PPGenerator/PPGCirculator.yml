@@ -1,0 +1,55 @@
+- type: entity
+  id: PPGCirculator
+  name: PhaseCirculatorPPG
+  description: Passes gas through the phase particle generator to exchange heat. Has an inlet and outlet port.
+  parent: [ BaseMachine, ConstructibleMachine ]
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      noRot: false
+    - type: Sprite
+      sprite: Imperial/Gases/Structures/PPGenerator/PPGenerator.rsi
+      layers:
+        - state: circ-0
+    - type: Appearance
+    - type: Tag
+      tags:
+        - Pipe
+        - Unstackable
+    - type: Rotatable
+    - type: Anchorable
+    - type: Pullable
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: North
+          volume: 100
+        outlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+          volume: 100
+        circulator:
+          !type:PPGNodeCirculator
+          nodeGroupID: PPG
+    - type: AtmosUnsafeUnanchor
+    - type: PipeRestrictOverlap
+    - type: PPGCirculator
+    - type: Machine
+      board: PPGCirculatorMachineCircuitboard
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalGlassBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]

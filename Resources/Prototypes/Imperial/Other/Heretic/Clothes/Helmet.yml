@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHereticRobe
+  name: heretic cloak hood
+  description: A hood of a heretic cloak, it is made from the hide of resilient fauna from a distant planet.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/Heretic/Clothes/HereticHelmet.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: Imperial/Other/Heretic/Clothes/HereticHelmet.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair

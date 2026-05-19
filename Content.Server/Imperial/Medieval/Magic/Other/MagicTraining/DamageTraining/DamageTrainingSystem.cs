@@ -13,7 +13,7 @@ namespace Content.Server.Imperial.Medieval.Magic.MagicTraining.DamageTraining;
 public sealed partial class DamageTrainingSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
 
     public override void Initialize()
     {
@@ -35,19 +35,11 @@ public sealed partial class DamageTrainingSystem : EntitySystem
 
     private void OnProjectileHit(EntityUid uid, MedievalAddEssenceOnProjectileHitComponent component, ProjectileHitEvent args)
     {
-        var magicEntityEffectsArgs = new MagicEntityEffectsArgs(args.Target, component.Performer, component.Action, EntityManager);
-
         foreach (var trainingResult in component.TrainingResults)
         {
-            var canApplyTrainingResult = trainingResult.Conditions?.Aggregate(true, (acc, cond) => acc && cond.Condition(magicEntityEffectsArgs)) ?? true;
+            if (!_random.Prob(trainingResult.Probability)) continue;
 
-            if (
-                canApplyTrainingResult &&
-                _random.Prob(trainingResult.Probability)
-            )
-            {
-                trainingResult.Effect(magicEntityEffectsArgs);
-            }
+            _entityEffectsSystem.TryApplyEffect(args.Target, trainingResult, user: component.Performer);
         }
     }
 }

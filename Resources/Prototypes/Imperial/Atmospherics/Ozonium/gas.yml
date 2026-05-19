@@ -1,12 +1,14 @@
 - type: gas
-  id: 11
+  id: Ozonium
   name: gases-ozonium
-  specificHeat: 110
+  abbreviation: gas-ozonium-abbreviation
+  molarHeatCapacity: 110
   heatCapacityRatio: 1.3
   molarMass: 48
-  gasOverlaySprite: /Textures/Imperial/Gases/Ozonium/ozonium.rsi
-  gasOverlayState: ozonium
+  gasOverlaySprite:
+    sprite: /Textures/Imperial/Gases/Ozonium/ozonium.rsi
+    state: ozonium
   gasMolesVisible: 0.2
-  color: 00a352
+  color: '#00a352'
   reagent: Ozonium
   pricePerMole: 2

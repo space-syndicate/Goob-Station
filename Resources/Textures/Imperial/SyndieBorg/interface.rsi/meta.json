@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by de_liva (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "abduct-module"
+        },
+        {
+            "name": "advanced-fiting-module"
+        },
+        {
+            "name": "guardian-angel-module"
+        },
+        {
+            "name": "advanced-tools"
+        }
+    ]
+}

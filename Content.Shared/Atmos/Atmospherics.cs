@@ -20,6 +20,11 @@ namespace Content.Shared.Atmos
         public const float OneAtmosphere = 101.325f;
 
         /// <summary>
+        /// Global Atmospherics epsilon. Used for all general floating-point comparisons.
+        /// </summary>
+        public const float Epsilon = 0.5f;
+
+        /// <summary>
         ///     Maximum external pressure (in kPA) a gas miner will, by default, output to.
         ///     This is used to initialize roundstart atmos rooms.
         /// </summary>
@@ -99,6 +104,21 @@ namespace Content.Shared.Atmos
         public const float OxygenMolesGasMiner = MolesCellGasMiner * OxygenStandard;
         public const float NitrogenMolesGasMiner = MolesCellGasMiner * NitrogenStandard;
 
+        /// <summary>
+        /// Converts Grams to Kilograms.
+        /// </summary>
+        public const float gToKg = 0.001f;
+
+        /// <summary>
+        /// Convert kPa to Kg/m^2
+        /// </summary>
+        public const float kPaToKg_m2 = 0.00980665f;
+
+        /// <summary>
+        /// Convert Kg/m^2 to kPa
+        /// </summary>
+        public const float Kg_m2TokPa = 101.9716212978f;
+
         #endregion
 
         /// <summary>
@@ -133,8 +153,19 @@ namespace Content.Shared.Atmos
         /// </summary>
         public const float MinimumAirToSuspend = (MolesCellStandard * MinimumAirRatioToSuspend);
 
-        public const float MinimumTemperatureToMove = (T20C + 100f);
+        /// <summary>
+        /// The minimum difference in temperature between <see cref="GasMixture"/>s
+        /// (<see cref="TileAtmosphere"/>s) required
+        /// for LINDA to report a pressure difference between them for space wind.
+        /// In Kelvin.
+        /// </summary>
+        public const float MinimumTemperatureToMove = 5f;
 
+        /// <summary>
+        /// The minimum difference in moles between <see cref="GasMixture"/>s
+        /// (<see cref="TileAtmosphere"/>s) required for LINDA to
+        /// report a pressure difference between them for space wind.
+        /// </summary>
         public const float MinimumMolesDeltaToMove = (MolesCellStandard * MinimumAirRatioToMove);
 
         /// <summary>
@@ -159,30 +190,11 @@ namespace Content.Shared.Atmos
         public const float MinimumHeatCapacity = 0.0003f;
 
         /// <summary>
-        ///     For the purposes of making space "colder"
+        /// Allows Atmospherics to cool down rooms during spacing
+        /// by assigning a fake heat capacity to space,
+        /// making space "actually cold" for gameplay reasons.
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
-
-        /// <summary>
-        ///     Dictionary of chemical abbreviations for <see cref="Gas"/>
-        /// </summary>
-        public static Dictionary<Gas, string> GasAbbreviations = new Dictionary<Gas, string>()
-        {
-            [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
-            [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
-            [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
-            [Gas.Nitrogen] = Loc.GetString("gas-nitrogen-abbreviation"),
-            [Gas.NitrousOxide] = Loc.GetString("gas-nitrous-oxide-abbreviation"),
-            [Gas.Oxygen] = Loc.GetString("gas-oxygen-abbreviation"),
-            [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
-            [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
-            [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
-            [Gas.Thermonium] = Loc.GetString("gas-thermonium-abbreviation"), /// Imperial Added Thermonium
-            [Gas.Phazonium] = Loc.GetString("gas-phazonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
-            [Gas.Ozonium] = Loc.GetString("gas-ozonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
-            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"), /// Imperial Added Hydrogen
-
-        };
 
         #region Excited Groups
 
@@ -211,7 +223,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 13; /// Imperial Added Thermonium
+        public const int TotalNumberOfGases = 17; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -222,7 +234,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
         /// </summary>
-        public const float FireHydrogenEnergyReleased = 284e3f; // hydrogen is 284 kJ/mol
+        public const float FireHydrogenEnergyReleased = 284e3f;
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;
@@ -233,8 +245,8 @@ namespace Content.Shared.Atmos
         public const float SuperSaturationEnds = SuperSaturationThreshold / 3;
 
         public const float OxygenBurnRateBase = 1.4f;
-        public const float PlasmaMinimumBurnTemperature = (100f+T0C);
-        public const float PlasmaUpperTemperature = (1370f+T0C);
+        public const float PlasmaMinimumBurnTemperature = 100f + T0C;
+        public const float PlasmaUpperTemperature = 1370f + T0C;
         public const float PlasmaOxygenFullburn = 10f;
         public const float PlasmaBurnRateDelta = 9f;
 
@@ -245,15 +257,14 @@ namespace Content.Shared.Atmos
 
         public const float TritiumBurnOxyFactor = 100f;
         public const float TritiumBurnTritFactor = 10f;
+        public const float TritiumBurnFuelRatio = 2f;
 
         /// Imperial Added Hydrogen start
         public const float MinimumHydrogenOxyburnEnergy = 143000f;
         public const float HydrogenBurnOxyFactor = 100f;
         public const float HydrogenBurnHydrFactor = 10f;
-        public const float HydrogenProductionMaxEfficiencyTemperature = 2273f;
-        public const float HydrogenProductionConversionRate = 2273f;
-        public const float N2OzonProductionMaxEfficiencyTemperature = 2273f;
-        public const float N2OzonProductionConversionRate = 2273f;
+        public const float HydrogenProductionMaxEfficiencyTemperature = 227f;
+        public const float HydrogenProductionConversionRate = 220f;
 
         /// Imperial Added Hydrogen end
         public const float FrezonCoolLowerTemperature = 23.15f;
@@ -282,7 +293,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     1 mol of Tritium is required per X mol of oxygen.
         /// </summary>
-        public const float FrezonProductionTritRatio = 8.0f;
+        public const float FrezonProductionTritRatio = 50.0f;
 
         /// <summary>
         ///     1 / X of the tritium is converted into Frezon each tick
@@ -311,6 +322,14 @@ namespace Content.Shared.Atmos
         public const float OzoniumProductionMaxEfficiencyTemperature = 33.15f;
 
         /// Imperial Added Phazonium and Ozonium end
+        /// Imperial Imperial Atmos Update start
+        public const float DeuteriumProductionConversionRate = 220f;
+        public const float DeuteriumProductionMaxEfficiencyTemperature = 1400.15f;
+        public const float DeuteriumProductionMaxCapacity = 7000f;
+        public const float MinimumAntiNoblium = 5f;
+        public const float HydrogenMaxTransferRate = 650;
+        public const float HydrogenMaxOutputPressure = 9000;
+        /// Imperial Imperial Atmos Update end
 
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
@@ -401,6 +420,10 @@ namespace Content.Shared.Atmos
         Thermonium = 9, /// Imperial Added Thermonium
         Phazonium = 10, /// Imperial Added Phazonium and Ozonium
         Ozonium = 11, /// Imperial Added Phazonium and Ozonium
-        Hydrogen = 12 /// Imperial Added Hydrogen
+        Hydrogen = 12, /// Imperial Added Hydrogen
+        Deuterium = 13, // Imperial Imperial Atmos Update start
+        HyperNoblium = 14,
+        AntiNoblium = 15,
+        BZ = 16 // Imperial Imperial Atmos Update end
     }
 }

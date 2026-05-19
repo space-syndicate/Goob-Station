@@ -14,8 +14,8 @@
 # Ammo
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: p90-Magazine
-  result: p90-Magazine
+  id: p90-MagazineNDA
+  result: p90-MagazineNDA
   materials:
     Steel: 300
 

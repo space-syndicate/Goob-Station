@@ -18,6 +18,20 @@
 
 - type: entity
   parent: BasePlushieCharacter
+  id: PlushieJohnson
+  name: Johnson Pat
+  suffix: Crook, COMMUNITY, TOY
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/johnsonpat.rsi
+    state: icon
+
+- type: entity
+  parent: BasePlushieCharacter
   id: PlushieTaylor
   name: Alex Taylor
   suffix: Crook, COMMUNITY, TOY
@@ -94,7 +108,7 @@
   id: PlushieErika
   name: Erika Steinhofer
   suffix: Crook, COMMUNITY, TOY
-  description: Doesn't believe in coincidences. Especially when a passenger is standing next to a body.
+  description: Believes that the perfect mixture exists. Unlike perfect people.
   components:
   - type: Item
     size: Normal
@@ -105,8 +119,7 @@
     state: icon
   - type: StorageFill
     contents:
-      - id: ForensicPad
-      - id: ForensicPad
+      - id: GasAnalyzer
 
 - type: entity
   parent: BasePlushieCharacter
@@ -184,20 +197,20 @@
       collection: CatMeows
 
 - type: localizedDataset
-  id: SavirWords
+  id: CrookieWords
   values:
-    prefix: plushie-savir-
+    prefix: plushie-crookie-
     count: 7
 
 - type: entity
   parent: PlushieFumoJunko
-  id: PlushieSavir
-  name: Savir Murphy
+  id: PlushieCrookie
+  name: Crookie Lim
   suffix: Crook, COMMUNITY, TOY
   description: A slippery fellow.
   components:
   - type: Sprite
-    sprite: Imperial/Crook/Plushie/savirmurphy.rsi
+    sprite: Imperial/Crook/Plushie/crookielim.rsi
     state: icon
   - type: Item
     size: Normal
@@ -206,18 +219,54 @@
   - type: StaminaDamageOnHit
     damage: 8
   - type: Speech
-    speechSounds: SavirSaid
+    speechSounds: CrookieSaid
   - type: SpeakOnTrigger
-    pack: SavirWords
-  
+    pack: CrookieWords
+
 - type: speechSounds
-  id: SavirSaid
+  id: CrookieSaid
   saySound:
-    path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+    path: /Audio/Voice/Talk/Silicon/syndieborg.ogg
   askSound:
     path: /Audio/Voice/Talk/Silicon/syndieborg_ask.ogg
   exclaimSound:
     path: /Audio/Voice/Talk/Silicon/syndieborg_exclaim.ogg
+
+- type: localizedDataset
+  id: HornetWords
+  values:
+    prefix: plushie-hornet-
+    count: 4
+
+- type: speechSounds
+  id: HornetSaid
+  saySound:
+    path: /Audio/Items/Toys/weh.ogg
+  askSound:
+    path: /Audio/Items/Toys/weh.ogg
+  exclaimSound:
+    path: /Audio/Items/Toys/weh.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieHornet
+  name: Hornet
+  suffix: Crook, COMMUNITY, TOY
+  description: Shaw!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/hornet.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: HornetSaid
+  - type: SpeakOnTrigger
+    pack: HornetWords
 
 # Фумо @buhoj_med
 
@@ -262,6 +311,11 @@
   values:
     prefix: fumo-eirin-
     count: 2
+- type: localizedDataset
+  id: FumoTeto
+  values:
+    prefix: fumo-teto-
+    count: 2
 # Datasets for Fumo
 
 - type: speechSounds
@@ -291,7 +345,7 @@
     tags:
       - Payload
       - ClothMade
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       collection: ToySqueak
@@ -317,6 +371,21 @@
     speechSounds: Fumo
   - type: SpeakOnTrigger
     pack: FumoJunko
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieFumoTeto
+  name: Teto
+  suffix: Crook, COMMUNITY, TOY
+  description: "The text on the tag reads: 'Feed her a baguette and she'll sing.'"
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/fumoplush.rsi
+    state: teto
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoTeto
 
 - type: entity
   parent: PlushieFumoJunko
@@ -455,6 +524,15 @@
       - id: PlushieFumoCirno
         orGroup: GiftPool
         prob: .1
+      - id: PlushieFumoSakuya
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoEirin
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoTeto
+        onGroup: GiftPool
+        prob: .1
     sound:
       path: /Audio/Effects/unwrap.ogg
 - type: entity
@@ -474,3 +552,98 @@
   - type: SpaceGarbage
 
 # Фумо @buhoj_med
+
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieClaud
+  name: Claudius the Great
+  suffix: Vl, COMMUNITY, TOY
+  description: A toy of a thoughtful captain with gorgeous hair holding a chess piece of a pawn in his hand.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/plushclaud.rsi
+    state: Plush
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoJunko
+  - type: StorageFill
+    contents:
+      - id: ChessBoardTabletop
+
+- type: localizedDataset
+  id: AtlasWords
+  values:
+    prefix: plushie-atlas-
+    count: 3
+
+- type: speechSounds
+  id: Atlas
+  saySound:
+    path: /Audio/Animals/cat_meow.ogg
+  askSound:
+    path: /Audio/Animals/cat_meow.ogg
+  exclaimSound:
+    path: /Audio/Animals/cat_meow.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieAtlas
+  name: Atlas
+  suffix: Crook, COMMUNITY, TOY
+  description: Meow!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/atlas.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Speech
+    speechSounds: Atlas
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: SpeakOnTrigger
+    pack: AtlasWords
+
+- type: localizedDataset
+  id: SanabiWords
+  values:
+    prefix: plushie-sanabi-
+    count: 6
+
+- type: speechSounds
+  id: SanabiSaid
+  saySound:
+    path: /Audio/Imperial/Crook/sanabi.ogg
+  askSound:
+    path: /Audio/Imperial/Crook/sanabi.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Crook/sanabi.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieSanabi
+  name: sanabi
+  suffix: Crook, COMMUNITY, TOY
+  description: sanabi
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/sanabi.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 12.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: SanabiSaid
+  - type: SpeakOnTrigger
+    pack: SanabiWords

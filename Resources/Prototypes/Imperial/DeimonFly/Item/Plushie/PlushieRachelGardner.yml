@@ -1,0 +1,84 @@
+- type: localizedDataset
+  id: PlushieCapitanRay
+  values:
+    prefix: plushie-capitan-ray-
+    count: 109
+
+- type: soundCollection
+  id: PlushieFoxRay
+  files:
+    - /Audio/Animals/fox12.ogg
+    - /Audio/Animals/fox7.ogg
+
+# Кофе со сливками в кастомной кружке (3 состояния: icon-0 пусто, icon-1 половина, icon-2 полно)
+- type: entity
+  parent: DrinkHotCoffee
+  id: DrinkCoffeeWithCreamCustom
+  name: Coffee with cream
+  description: Hot coffee with cream.
+  components:
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+        reagents:
+          - ReagentId: Coffee
+            Quantity: 20
+          - ReagentId: Cream
+            Quantity: 5
+  - type: Icon
+    sprite: Imperial/DeimonFly/item/Drinks/CoffeeWithCream.rsi
+    state: icon-2
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: icon-
+    changeColor: false
+    emptySpriteName: icon-0
+  - type: Sprite
+    sprite: Imperial/DeimonFly/item/Drinks/CoffeeWithCream.rsi
+    layers:
+      - map: ["enum.SolutionContainerLayers.Base"]
+        state: icon-0
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: icon-2
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieCapitanRay
+  name: Rachel Gardner
+  suffix: COMMUNITY,TOY
+  description: A plush captain toy with a tag reading "Rachel Gardner" - tired eyes, a fox tail, and an eternal readiness to take a sip of coffee and pretend everything is under control. She really doesn’t seem to like it when someone touches her coffee.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Plushie/RachelGardner.rsi
+    state: Plush
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+  - type: StorageFill
+    contents:
+      - id: DrinkCoffeeWithCreamCustom
+  - type: ContainerFill
+    containers:
+      stash:
+      - VoiceTrigger
+  - type: UseDelay
+    delay: 5
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition
+  - type: TriggerOnUse
+  - type: EmitSoundOnTrigger
+    sound: { collection: PlushieFoxRay, params: { variation: 0.125 } }
+  - type: SpeakOnTrigger
+    pack: PlushieCapitanRay
+  - type: PunishOnStorageTake
+    targetItems:
+      - DrinkCoffeeWithCreamCustom
+    damage:
+      types:
+        Blunt: 7
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+    popup: plushie-bite-popup
+    cooldown: 1.5

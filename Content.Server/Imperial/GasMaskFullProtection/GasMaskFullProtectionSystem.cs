@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Radiation.Components;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory.Events;
 
@@ -21,18 +21,18 @@ public sealed class GasMaskFullProtectionSystem : EntitySystem
 
     private void OnEquipee(EntityUid uid, GasMaskFullProtectionComponent component, GotEquippedEvent args)
     {
-        EnsureComp<GasMaskFullProtectionUserComponent>(args.Equipee).GasMasks.Add(uid);
+        EnsureComp<GasMaskFullProtectionUserComponent>(args.EquipTarget).GasMasks.Add(uid);
     }
 
     private void OnUnequipee(EntityUid uid, GasMaskFullProtectionComponent component, GotUnequippedEvent args)
     {
-        if (!TryComp<GasMaskFullProtectionUserComponent>(args.Equipee, out var gasMaskFullProtectionUserComponent)) return;
+        if (!TryComp<GasMaskFullProtectionUserComponent>(args.EquipTarget, out var gasMaskFullProtectionUserComponent)) return;
 
         gasMaskFullProtectionUserComponent.GasMasks.Remove(uid);
 
         if (gasMaskFullProtectionUserComponent.GasMasks.Any()) return;
 
-        RemComp<GasMaskFullProtectionUserComponent>(args.Equipee);
+        RemComp<GasMaskFullProtectionUserComponent>(args.EquipTarget);
     }
 
     private void OnBeforeDamageChanged(EntityUid uid, GasMaskFullProtectionUserComponent component, ref BeforeDamageChangedEvent args)

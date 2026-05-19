@@ -1,0 +1,36 @@
+- type: reagent
+  id: AntiNoblium
+  name: reagent-name-anti-noblium
+  desc: reagent-desc-anti-noblium
+  physicalDesc: reagent-physical-desc-anti-noblium
+  flavor: bitter
+  color: "#FFD700"
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 2.0
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
+        multiplier: 0.8
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 3
+            Cellular: 2
+            Poison: 2
+    Respiration:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Radiation: 0.01
+            Cellular: 0.01
+            Poison: 0.01
+      - !type:Oxygenate
+        factor: 4

@@ -8,6 +8,7 @@
           steps:
             - material: Steel
               amount: 3
+              doAfter: 2
 
     - node: apcFrame
       entity: APCFrame
@@ -15,7 +16,7 @@
         - to: apc
           steps:
             - component: ApcElectronics
-              name: микросхема ЛКП # Imperial Recipes Locale
+              name: recipes-apc-electronics-name
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "charger_APC"

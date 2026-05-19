@@ -17,33 +17,33 @@
     Flammable:
       methods: [ Touch ]
       effects:
-      - !type:FlammableReaction
+      - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Radiation: 12
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
-        scaleByQuantity: false
         ignoreResistances: true
         damage:
-           groups:
-            Airloss: 2
-            Brute: 4
-            Burn: 3
-            Toxin: 4
-      - !type:GenericStatusEffect
+          types:
+            Slash: 1
+            Blunt: 1
+            Heat: 1.5
+            Asphyxiation: 1
+            Poison: 2
+            Piercing: 1
+      - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Phazonium
           min: 1
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 500
         refresh: true

@@ -25,12 +25,6 @@ public sealed partial class ToggleMarkingComponent : Component
     public EntityUid? ActionEntity;
 
     /// <summary>
-    ///     The category of markings this toggle controls (e.g. Tail, Ears).
-    /// </summary>
-    [DataField]
-    public MarkingCategories Marking;
-
-    /// <summary>
     ///     The localization string ID used for the toggle popup text.
     /// </summary>
     [DataField(required: true)]

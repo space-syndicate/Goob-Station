@@ -1,0 +1,659 @@
+## Базовые шасси ОБР
+- type: entity
+  id: BaseBorgChassisERT
+  parent: BaseBorgChassis
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Access
+    groups:
+    - AllAccess
+    - Silicon
+    tags:
+    - CentralCommand
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: SiliconLawProvider
+    laws: EmergencyResponseTeam
+    subverted: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Critical
+      350: Dead
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: ActiveRadio
+    channels:
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: PointLight
+    color: "#9defee"
+    radius: 7
+    energy: 3
+  - type: FlashImmunity
+
+## Боевой киборг НаноТрейзен
+- type: entity
+  id: BorgChassisErtAssault
+  parent: BaseBorgChassisERT
+  suffix: ОБР
+  name: ERT assault borg
+  description: 
+  components:
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert.rsi
+      layers:
+        - state: def_borg
+          map: ["enum.BorgVisualLayers.Body", "movement"]
+        - state: def_e
+          map: ["enum.BorgVisualLayers.Light"]
+          visible: false
+        - state: def_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+    - type: BorgChassis
+      maxModules: 3
+      moduleWhitelist:
+        tags:
+          - BorgModulePulseCannon
+          - BorgModuleNonLethalSecurityErt
+          - ErtBorgModuleJaws
+      hasMindState: def_e
+      noMindState: def_borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-ert-assault-cyborg
+      interactFailureString: petting-failure-ert-assault-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Machines/warning_buzzer.ogg
+                params:
+                  volume: 5
+        - trigger:
+            !type:DamageTrigger
+            damage: 450
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:EmptyContainersBehaviour
+              containers:
+                - borg_brain
+                - borg_module
+                - cell_slot
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        350: Critical
+        450: Dead
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: Loadout
+      prototypes: [ ErtAssaultBorgLodout ]
+    - type: Inventory
+      speciesId: human
+      templateId: ertassaultborg
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHoverBorg
+    - type: PointLight
+      radius: 7
+      energy: 3
+      color: "#e8c170"
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.BorgUiKey.Key:
+          type: BorgBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
+        enum.GeneralStationRecordConsoleKey.Key:
+          type: GeneralStationRecordConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.CrewMonitoringUIKey.Key:
+          toggleAction: ActionAGhostShowCrewMonitoring
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
+        enum.GeneralStationRecordConsoleKey.Key:
+          toggleAction: ActionAGhostShowStationRecords
+    - type: CrewMonitoringConsole
+    - type: RadarConsole
+      followEntity: true
+    - type: GeneralStationRecordConsole
+      canDeleteEntries: false
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: CrewMonitor
+    - type: WirelessNetworkConnection
+      range: 500
+    - type: StationLimitedNetwork
+    - type: NameIdentifier
+      group: ErtBorgID
+    - type: RandomMetadata
+      nameSegments:
+        - NamesErtAssaultBorg
+
+- type: entity
+  id: PlayerBorgErtAssaultBattery
+  parent: BorgChassisErtAssault
+  suffix: Батарея, Модули, ОБР
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModulePulseCannon
+        - BorgModuleNonLethalSecurityErt
+        - ErtBorgModuleJaws
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  id: PlayerBorgErtAssaultGhostRole
+  parent: PlayerBorgErtAssaultBattery
+  suffix: Гост роль
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-assault-name
+      description: ghost-role-information-ert-cyborg-assault-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: BorgChassisErtEngineer
+  parent: BaseBorgChassisERT
+  suffix: ОБР
+  name: ERT engineer borg
+  description: 
+  components:
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert.rsi
+      layers:
+      - state: eng_borg
+        map: ["enum.BorgVisualLayers.Body", "movement"]
+      - state: eng_e
+        map: ["enum.BorgVisualLayers.Light"]
+        visible: false
+      - state: eng_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+    - type: BorgChassis
+      maxModules: 5
+      moduleWhitelist:
+        tags:
+        - BorgModuleToolErt
+        - BorgModuleErtRCD
+        - BorgModuleConstructionErt
+        - BorgModuleCableErt
+        - BorgModuleSelfDefenseErt
+      hasMindState: eng_e
+      noMindState: eng_borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-ert-engineer-cyborg
+      interactFailureString: petting-failure-ert-engineer-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Machines/warning_buzzer.ogg
+                params:
+                  volume: 5
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:EmptyContainersBehaviour
+              containers:
+                - borg_brain
+                - borg_module
+                - cell_slot
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        250: Critical
+        350: Dead
+    - type: ShowHealthBars
+      damageContainers:
+      - Inorganic
+      - Silicon
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: Loadout
+      prototypes: [ ErtEngineerBorgLodout ]
+    - type: Inventory
+      speciesId: human
+      templateId: ertengineerborg
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
+    - type: RadarConsole
+      followEntity: true
+    - type: NameIdentifier
+      group: ErtBorgID
+    - type: RandomMetadata
+      nameSegments:
+      - NamesErtEngineerBorg
+
+- type: entity
+  id: PlayerBorgErtEngineerBattery
+  parent: BorgChassisErtEngineer
+  suffix: Батарея, модули, ОБР
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleToolErt
+        - BorgModuleCableErt
+        - BorgModuleErtRCD
+        - BorgModuleConstructionErt
+        - BorgModuleSelfDefenseErt
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  id: PlayerBorgErtEngineerGhostRole
+  parent: PlayerBorgErtEngineerBattery
+  suffix: Гост роль
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-engineer-name
+      description: ghost-role-information-ert-cyborg-engineer-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: BorgChassisErtMedic
+  parent: BaseBorgChassisERT
+  suffix: ОБР
+  name: ERT medical borg
+  description: 
+  components:
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert.rsi
+      layers:
+      - state: med_borg
+        map: ["enum.BorgVisualLayers.Body", "movement"]
+      - state: med_e
+        map: ["enum.BorgVisualLayers.Light"]
+        visible: false
+      - state: med_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+    - type: BorgChassis
+      maxModules: 5
+      moduleWhitelist:
+        tags:
+        - ErtBorgModuleTopicals
+        - BorgModuleAdvancedChemicalErt
+        - BorgModuleRescueErt
+        - ErtBorgModuleSurgeryTools
+        - BorgModuleSelfDefenseErt
+      hasMindState: med_e
+      noMindState: med_borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-ert-medical-cyborg
+      interactFailureString: petting-failure-ert-medical-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 150
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Machines/warning_buzzer.ogg
+                params:
+                  volume: 5
+        - trigger:
+            !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:EmptyContainersBehaviour
+              containers:
+                - borg_brain
+                - borg_module
+                - cell_slot
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Critical
+        250: Dead # Наименее живучий киборг ОБР
+    - type: ShowHealthBars
+      damageContainers:
+      - Biological
+    - type: ShowHealthIcons
+      damageContainers:
+      - Biological
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: Loadout
+      prototypes: [ ErtMedicalBorgLodout ]
+    - type: Inventory
+      speciesId: human
+      templateId: ertmedicalborg
+    - type: PointLight
+      radius: 7
+      energy: 3
+      color: "#dd200b"
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.BorgUiKey.Key:
+          type: BorgBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
+        enum.GeneralStationRecordConsoleKey.Key:
+          type: GeneralStationRecordConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.CrewMonitoringUIKey.Key:
+          toggleAction: ActionAGhostShowCrewMonitoring
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
+        enum.GeneralStationRecordConsoleKey.Key:
+          toggleAction: ActionAGhostShowStationRecords
+    - type: CrewMonitoringConsole
+    - type: RadarConsole
+      followEntity: true
+    - type: GeneralStationRecordConsole
+      canDeleteEntries: false
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: CrewMonitor
+    - type: WirelessNetworkConnection
+      range: 500
+    - type: StationLimitedNetwork
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 3
+      baseSprintSpeed : 6 # Быстрее обычных киборгов
+    - type: NameIdentifier
+      group: ErtBorgID
+    - type: RandomMetadata
+      nameSegments:
+      - NamesErtMedicalBorg
+
+- type: entity
+  id: PlayerBorgErtMedicBattery
+  parent: BorgChassisErtMedic
+  suffix: Батарея, модули, ОБР
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - ErtBorgModuleTopicals
+        - BorgModuleAdvancedChemicalErt
+        - BorgModuleRescueErt
+        - ErtBorgModuleSurgeryTools
+        - BorgModuleSelfDefenseErt
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  id: PlayerBorgErtMedicGhostRole
+  parent: PlayerBorgErtMedicBattery
+  suffix: Гост роль
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-medic-name
+      description: ghost-role-information-ert-cyborg-medic-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: BorgChassisErtCburn
+  parent: BaseBorgChassisERT
+  suffix: РХБЗЗ
+  name: CBURN assault borg
+  description: 
+  components:
+    - type: Sprite
+      sprite: Imperial/BorgomatERT/borg_ert.rsi
+      layers:
+      - state: cburn_borg
+        map: ["enum.BorgVisualLayers.Body", "movement"]
+      - state: cburn_e
+        map: ["enum.BorgVisualLayers.Light"]
+        visible: false
+      - state: cburn_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+    - type: BorgChassis
+      maxModules: 4
+      moduleWhitelist:
+        tags:
+        - BorgModuleFlameThrower
+        - ErtBorgModuleJaws
+        - ErtBorgModuleBomb
+        - BorgModuleNonLethalSecurityErt
+      hasMindState: cburn_e
+      noMindState: cburn_borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-cburn-cyborg
+      interactFailureString: petting-failure-cburn-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: PointLight
+      color: orange
+      radius: 7
+      energy: 3
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 550
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Machines/warning_buzzer.ogg
+                params:
+                  volume: 5
+        - trigger:
+            !type:DamageTrigger
+            damage: 650
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:EmptyContainersBehaviour
+              containers:
+                - borg_brain
+                - borg_module
+                - cell_slot
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        550: Critical
+        650: Dead # Больше ХП в ущерб скорости передвижения
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: Loadout
+      prototypes: [ ErtBorgLodout ]
+    - type: Inventory
+      speciesId: human
+      templateId: ertborg
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHoverBorg
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 1.0
+      baseSprintSpeed : 2.5 # Медленнее обычных киборгов
+    - type: NameIdentifier
+      group: CburnBorgID
+    - type: RandomMetadata
+      nameSegments:
+      - NamesErtCburnBorg
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.RadarConsoleUiKey.Key:
+          toggleAction: ActionAGhostShowRadar
+    - type: RadarConsole
+      followEntity: true
+
+- type: entity
+  id: PlayerBorgErtCburnBattery
+  parent: BorgChassisErtCburn
+  suffix: Батарея, модули
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleFlameThrower
+        - ErtBorgModuleJaws
+        - ErtBorgModuleBomb
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  id: PlayerBorgErtCburnGhostRole
+  parent: PlayerBorgErtCburnBattery
+  suffix: Гост роль
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-cyborg-cburn-name
+      description: ghost-role-information-ert-cyborg-cburn-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: nameIdentifierGroup
+  id: ErtBorgID
+  format: name-identifier-format-ert-borg
+  prefix: ERT
+  minValue: 1000
+  maxValue: 9999
+
+- type: nameIdentifierGroup
+  id: CburnBorgID
+  format: name-identifier-format-cburn-borg
+  prefix: CBURN
+  minValue: 1000
+  maxValue: 9999

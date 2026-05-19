@@ -209,28 +209,8 @@ namespace Content.Shared.Wires
     {
         public static string Name(this WireColor color)
         {
-            // Imperial Space
             var colorName = Enum.GetName(color) ?? throw new InvalidOperationException();
             return Loc.GetString($"wire-name-color-{colorName.ToLower()}");
-            // Imperial Space
-            /*
-            return Loc.GetString(color switch
-            {
-                WireColor.Red => "Red",
-                WireColor.Blue => "Blue",
-                WireColor.Green => "Green",
-                WireColor.Orange => "Orange",
-                WireColor.Brown => "Brown",
-                WireColor.Gold => "Gold",
-                WireColor.Gray => "Gray",
-                WireColor.Cyan => "Cyan",
-                WireColor.Navy => "Navy",
-                WireColor.Purple => "Purple",
-                WireColor.Pink => "Pink",
-                WireColor.Fuchsia => "Fuchsia",
-                _ => throw new InvalidOperationException()
-            });
-            */
         }
 
         public static Color ColorValue(this WireColor color)

@@ -10,7 +10,7 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: plasmshake
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -19,7 +19,7 @@
       - !type:AdjustReagent
         reagent: Inaprovaline
         amount: -2.0
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -43,10 +43,10 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: aos
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:SatiateHunger
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -72,10 +72,10 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: pps
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:SatiateHunger
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -101,7 +101,7 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: icespirits
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:AdjustTemperature
         amount: -7000
@@ -142,7 +142,7 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: meatwine
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
@@ -160,11 +160,11 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: magmawhiskey
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 365 ## Температура, при которой персонаж чувствует себя тепло, но не умирает
         amount: 65000 ## 100 кДж понижено до 65 уменьшения шанса отступа за максимальную температуру
 
@@ -202,7 +202,7 @@
     probability: 0.2
     amount: 0.1
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -219,9 +219,12 @@
   color: "#d1d1d155"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
@@ -237,9 +240,12 @@
   color: "#7E4043"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/wineglass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: true
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
@@ -257,16 +263,15 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: ambrosia
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -2
-            Toxin: -2
-            Airloss: -2
-            Brute: -2
-    Drink:
+          Burn: -2
+          Toxin: -2
+          Airloss: -2
+          Brute: -2
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
@@ -282,9 +287,11 @@
   color: "#CFA85F"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerglass.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
@@ -302,14 +309,14 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: protofuel
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 1
             Caustic: 0.1
-    Drink:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
@@ -326,12 +333,13 @@
   metamorphicSprite:
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: ksspecialblend
-    Drink:
+  metabolisms:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.49
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -352,32 +360,33 @@
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
     state: ambrosia
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           max: 293.15
         amount: 100000
       - !type:AdjustTemperature
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 293.15
         amount: -10000
       - !type:GenericStatusEffect
         key: PressureImmunity
         component: PressureImmunity
+      - !type:EvenHealthChange
+        damage:
+          Burn: -20
+          Toxin: -20
+          Airloss: -20
+          Brute: -20
       - !type:HealthChange
         damage:
           types:
             Cellular: -20
             Bloodloss: -20
-          groups:
-            Burn: -20
-            Toxin: -20
-            Airloss: -20
-            Brute: -20
-    Drink:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Ethanol

@@ -1,0 +1,53 @@
+- type: entity
+  parent: BaseFigurine
+  id: PlushieAtmosJohn
+  name: John Fontime
+  suffix: COMMUNITY, TOY
+  description: A plush toy of an experienced atmospheric technician.
+  components:
+  - type: Item
+    sprite: Imperial/Other/TFG/Toughguys/JohnAtmos.rsi
+    heldPrefix: JohnAtmos
+    storedRotation: -90
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: Tag
+    tags:
+      - Payload
+      - ClothMade
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      collection: ToySqueak
+    delay: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/JohnAtmos.rsi
+    state: JohnAtmos
+    scale: 0.75, 0.75
+  - type: SpeakOnTrigger
+    pack: AtmosJohn
+
+# pack
+- type: localizedDataset
+  id: AtmosJohn
+  values:
+    prefix: atmos-john-speek-
+    count: 3

@@ -327,7 +327,6 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-    - HidesNose
 
 #PDA
 # TODO Переписать на под новые реалии
@@ -416,6 +415,9 @@
         Slash: 0.6
         Piercing: 0.55
         Heat: 0.8
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.8

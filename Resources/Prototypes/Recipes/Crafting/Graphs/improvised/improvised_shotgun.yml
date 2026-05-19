@@ -10,17 +10,17 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: труба # Imperial Recipes Locale
+        name: recipes-pipe-name
       - tag: ModularReceiver
         icon:
           sprite: Objects/Misc/modular_receiver.rsi
           state: icon
-        name: затворная рама # Imperial Recipes Locale
+        name: recipes-modular-receiver-name
       - tag: RifleStock
         icon:
           sprite: Objects/Misc/rifle_stock.rsi
           state: icon
-        name: приклад # Imperial Recipes Locale
+        name: recipes-rifle-stock-name
       - material: Cloth
         amount: 3
         doAfter: 10

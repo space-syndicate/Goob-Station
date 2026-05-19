@@ -6,14 +6,15 @@
   name: SnowRiflemanPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -23,10 +24,6 @@
     - type: Loadout
       prototypes: [ TDMSnowRiflemanGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -47,14 +44,15 @@
   name: SnowMachineGunnerPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -64,10 +62,6 @@
     - type: Loadout
       prototypes: [ TDMSnowMachineGunnerGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -88,14 +82,15 @@
   name: SnowGrenadierPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -105,10 +100,6 @@
     - type: Loadout
       prototypes: [ TDMSnowGrenadierGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -129,14 +120,15 @@
   name: SnowMedicalPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteammedicfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -146,10 +138,6 @@
     - type: Loadout
       prototypes: [ TDMSnowMedicalGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -171,14 +159,15 @@
   name: SnowCommanderPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
+      - redteamcommanderfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -188,10 +177,6 @@
     - type: Loadout
       prototypes: [ TDMSnowCommanderGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -212,14 +197,15 @@
   name: SnowSniperPreset_S
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - redteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -229,10 +215,6 @@
     - type: Loadout
       prototypes: [ TDMSnowSniperGear_S ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -255,14 +237,15 @@
   name: SnowRiflemanPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: soldier
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -272,10 +255,6 @@
     - type: Loadout
       prototypes: [ TDMSnowRiflemanGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -296,14 +275,15 @@
   name: SnowMachineGunnerPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: heavy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -313,10 +293,6 @@
     - type: Loadout
       prototypes: [ TDMSnowMachineGunnerGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -337,14 +313,15 @@
   name: SnowGrenadierPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: demoman
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -354,10 +331,6 @@
     - type: Loadout
       prototypes: [ TDMSnowGrenadierGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -378,14 +351,15 @@
   name: SnowMedicalPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: medic
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteammedicfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -395,10 +369,6 @@
     - type: Loadout
       prototypes: [ TDMSnowMedicalGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -420,14 +390,15 @@
   name: SnowCommanderPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: spy
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
+      - blueteamcommanderfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -437,10 +408,6 @@
     - type: Loadout
       prototypes: [ TDMSnowCommanderGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany
@@ -461,14 +428,15 @@
   name: SnowSniperPreset_N
   suffix: TDM
   components:
+    - type: TTSProvider
+      voice: sniper
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
+      - blueteamfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -478,10 +446,6 @@
     - type: Loadout
       prototypes: [ TDMSnowSniperGear_N ]
     - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplant
     - type: CrewSkills
       skills:
         - skillBotany

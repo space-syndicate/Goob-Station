@@ -54,8 +54,23 @@ trait-italian-desc = Mamma mia! Вы, кажется, жили в космиче
 trait-spanish-name = Испанский акцент
 trait-spanish-desc = Hola señor, где находится библиотека.
 
+trait-scottish-name = Шотландский акцент
+trait-scottish-desc = Ты говоришь как настоящий шотландец!
+
 trait-german-name = Немецкий акцент
 trait-german-desc = Вы, кажется, родом из космической Германии.
 
 trait-french-name = Французский акцент
 trait-french-desc = В вашем акценте, кажется, есть что-то особенное «je ne sais quoi».
+
+trait-monochromacy-name = Монохромия
+trait-monochromacy-desc = У вас полная цветовая слепота: всё, что вы видите, — в оттенках чёрного и белого.
+
+trait-painnumbness-name = Нечувствительность к боли
+trait-painnumbness-desc = Вы не чувствуете боли и можете не осознавать степень полученных повреждений.
+
+trait-hemophilia-name = Гемофилия
+trait-hemophilia-desc = Кровотечения несут для вас большую опасность.
+
+trait-impaired-mobility-name = Ограничение подвижности
+trait-impaired-mobility-desc = Вам тяжело передвигаться без посторонней помощи.

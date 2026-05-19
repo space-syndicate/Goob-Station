@@ -34,23 +34,6 @@ public sealed partial class ICCVars : CVars
     public static readonly CVarDef<bool> DiscordRoundStartOnly =
         CVarDef.Create("discord.round_start_only", false, CVar.SERVERONLY);
 
-    #region Broadphase Check
-
-    /// <summary>
-    /// Should we check players broadphas to avoid collision errors
-    /// </summary>
-    public static readonly CVarDef<bool> BroadphaseCheckEnabled =
-        CVarDef.Create("imperial.broadphase_check_enable", true, CVar.SERVERONLY);
-
-
-    /// <summary>
-    /// The time in seconds after which we will iterate over all entities and check them
-    /// </summary>
-    public static readonly CVarDef<float> BroadphaseCheckUpdateRate =
-        CVarDef.Create("imperial.broadphase_check_update_rate", 1.0f, CVar.SERVERONLY);
-
-    #endregion
-
     #region Target Overlay
 
     public static readonly CVarDef<string>
@@ -58,6 +41,21 @@ public sealed partial class ICCVars : CVars
 
     public static readonly CVarDef<string>
         TargetOverlayCapturedAimColor = CVarDef.Create("imperial.target_overlay_captured_aim_color", "#FF0000FF", CVar.CLIENTONLY);
+
+    #endregion
+
+    #region Energy Core
+    /// <summary>
+    /// Код угрозы при начале детонации ядра.
+    /// </summary>
+    public static readonly CVarDef<string> AlertLevelOnMeltdown =
+        CVarDef.Create("core.code_on_meltdown", "lambda", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Время до детонации после достижения 1.000.000K (в секундах).
+    /// </summary>
+    public static readonly CVarDef<float> CoreDetonationTime =
+        CVarDef.Create("core.detonation_time", 300f, CVar.SERVERONLY);
 
     #endregion
 }

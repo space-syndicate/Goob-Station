@@ -13,7 +13,9 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
+  - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
   radioChannels:
@@ -46,6 +48,7 @@
     - BorgModuleEngineering
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -88,6 +91,7 @@
     - BorgModuleCargo
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -125,6 +129,9 @@
     - BorgModuleJanitor
 
   defaultModules:
+  - BorgModuleTool # Imperial Space: Add BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleCleaning
   - BorgModuleCustodial
 #  - BorgModuleCleaning
   - BorgModuleAdvancedCleaning # Ребаланс боргов под Imperial Space. Добавлена новая швабра
@@ -161,16 +168,42 @@
     - BorgModuleMedical
 
   defaultModules:
+  - BorgModuleTool # Imperial Space: Add BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
-  - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
+  - BorgModuleAdvancedTopical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
+  - BorgModuleSurgeryTools # Imperial Space хирургия
 
   radioChannels:
   - Science
   - Medical
 
   addComponents:
+  # Imperial Space: add action. start
+  - type: CrewMonitoringConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: UserInterface
+    interfaces:
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionShowCrewMonitor
+  # Imperial Space: add action. end
   - type: SolutionScanner
+  - type: Stripping # Imperial Space: add ability to search
   - type: ShowHealthBars
     damageContainers:
     - Biological
@@ -210,7 +243,7 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModulePrying
   - BorgModuleMusique
   - BorgModuleService
   - BorgModuleClowning

@@ -1,18 +1,20 @@
 ﻿### EmitterComponent
 
-# Shows when attempting to turn the emitter on or off without proper access
-comp-emitter-access-locked = Доступ к { $target } заблокирован!
+# Показывается при попытке включить или выключить излучатель без соответствующего доступа
+comp-emitter-access-locked = Доступ {$target} заблокирован!
 
-# Shows when turning the emitter on/off
-comp-emitter-turned-on = { $target } включается.
+# Показывается при включении/выключении излучателя
+comp-emitter-turned-on = {$target} включается.
 
-comp-emitter-turned-off = { $target } отключается.
+comp-emitter-turned-off = {$target} отключается.
 
-# Shows if the user attempts to activate the emitter while it's un-anchored.
-comp-emitter-not-anchored = { $target } не закреплён!
+# Показывается, если игрок пытается активировать излучатель, пока тот не закреплён
+comp-emitter-not-anchored = {$target} не закреплён!
 
-# Upgrades
-emitter-component-upgrade-fire-rate = скорострельность
+emitter-component-current-type = Текущий выбранный тип: [color=yellow]{$type}[/color].
+emitter-component-type-set = Тип установлен: {$type}
 
-emitter-component-current-type = Установленный тип: { $type }.
-emitter-component-type-set = Установить тип: { $type }
+emitter-destroyed-broadcast = {$location} уничтожен работающий эмиттер.
+emitter-deconstructed-broadcast = {$location} разобран работающий эмиттер.
+emitter-unlocked-broadcast = {$location} разблокирован работающий эмиттер.
+emitter-unpowered-broadcast = Эмиттер {$location} обесточен.

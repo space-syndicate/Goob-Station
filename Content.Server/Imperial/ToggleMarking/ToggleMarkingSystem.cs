@@ -34,18 +34,18 @@ public sealed class ToggleMarkingSystem : EntitySystem
     /// </summary>
     private void OnGotUnequipped(Entity<ToggleMarkingComponent> ent, ref ClothingGotUnequippedEvent args)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(args.Wearer, out var huAp))
-            return;
+        // if (!TryComp<HumanoidAppearanceComponent>(args.Wearer, out var huAp))
+        //     return;
 
-        for (var i = 0; i < ent.Comp.MarkingsDefault.Count; i++)
-        {
-            huAp.MarkingSet.Replace(ent.Comp.Marking, i, ent.Comp.MarkingsDefault[i]);
-        }
+        // for (var i = 0; i < ent.Comp.MarkingsDefault.Count; i++)
+        // {
+        //     huAp.MarkingSet.Replace(ent.Comp.Marking, i, ent.Comp.MarkingsDefault[i]);
+        // }
 
-        Dirty(args.Wearer, huAp);
+        // Dirty(args.Wearer, huAp);
 
-        ent.Comp.MarkingsDefault.Clear();
-        _actions.SetToggled(ent.Comp.ActionEntity, false);
+        // ent.Comp.MarkingsDefault.Clear();
+        // _actions.SetToggled(ent.Comp.ActionEntity, false);
     }
 
     /// <summary>
@@ -97,27 +97,27 @@ public sealed class ToggleMarkingSystem : EntitySystem
     /// <returns>True if the marking was successfully toggled; otherwise false.</returns>
     private bool TryToggleMarking(Entity<ToggleMarkingComponent> ent, EntityUid user, bool actionEnabled)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(user, out var huAp))
-            return false;
+        // if (!TryComp<HumanoidAppearanceComponent>(user, out var huAp))
+        //     return false;
 
-        if (!huAp.MarkingSet.Markings.TryGetValue(ent.Comp.Marking, out var markings))
-            return false;
+        // if (!huAp.MarkingSet.Markings.TryGetValue(ent.Comp.Marking, out var markings))
+        //     return false;
 
-        foreach (var marking in markings)
-        {
-            // Save the original marking once for restoration on unequip
-            if (ent.Comp.MarkingsDefault.All(m => m.MarkingId != marking.MarkingId))
-            {
-                var newMark = new Marking(marking.MarkingId, marking.MarkingColors)
-                {
-                    Visible = marking.Visible,
-                };
+        // foreach (var marking in markings)
+        // {
+        //     // Save the original marking once for restoration on unequip
+        //     if (ent.Comp.MarkingsDefault.All(m => m.MarkingId != marking.MarkingId))
+        //     {
+        //         var newMark = new Marking(marking.MarkingId, marking.MarkingColors)
+        //         {
+        //             Visible = marking.Visible,
+        //         };
 
-                ent.Comp.MarkingsDefault.Add(newMark);
-            }
+        //         ent.Comp.MarkingsDefault.Add(newMark);
+        //     }
 
-            marking.Visible = !marking.Visible;
-        }
+        //     marking.Visible = !marking.Visible;
+        // }
 
         _popup.PopupEntity(
             Loc.GetString(ent.Comp.ToggleText, ("visible", actionEnabled)),
@@ -126,7 +126,7 @@ public sealed class ToggleMarkingSystem : EntitySystem
 
         _actions.SetToggled(ent.Comp.ActionEntity, !actionEnabled);
 
-        Dirty(user, huAp);
+        // Dirty(user, huAp);
         return true;
     }
 }

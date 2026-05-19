@@ -19,11 +19,13 @@
         Blunt: 0.7
         Slash: 0.7
         Piercing: 0.7
-        Heat: 0.45
-        Cold: 0.45
-        Shock: 0.45
-        Caustic: 0.45
+        Heat: 0.4
+        Cold: 0.4
+        Shock: 0.8
+        Caustic: 0.4
         Radiation: 0.15
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
   - type: ContainerContainer
     containers:
       key_slots: !type:Container

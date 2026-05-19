@@ -7,8 +7,6 @@ namespace Content.Client.Atmos.Monitor;
 
 public sealed class AtmosAlarmableVisualsSystem : VisualizerSystem<AtmosAlarmableVisualsComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
     protected override void OnAppearanceChange(EntityUid uid, AtmosAlarmableVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null || !SpriteSystem.LayerMapTryGet((uid, args.Sprite), component.LayerMap, out var layer, false))

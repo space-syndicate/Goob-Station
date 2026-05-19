@@ -119,6 +119,14 @@
         - ClothingBackpackSatchelSmugglerFilled
         - StorageImplant
         - ClothingUniformJumpsuitChiefEngineerSyndie
+        # Chief Medic Officer CMO
+        - ClothingCloakCmo
+        - ClothingNeckMantleCMO
+        - ClothingHeadHatBeretCmo
+        - ClothingUniformJumpsuitCMO
+        - ClothingUniformJumpskirtCMO
+        - ClothingUniformJumpskirtCMOTurtle
+        - ClothingUniformJumpsuitCMOTurtle
         # Captain CAP
         - ClothingUniformJumpsuitWhiteCaptain
         - ClothingUniformJumpskirtWhiteCaptain
@@ -199,14 +207,15 @@
         - ClothingHandsGlovesCentCom
         - ClothingUniformJumpsuitCentcomOfficer
         - ClothingUniformJumpskirtSpecialOfficer
+        # Other
+        - ClothingGaloshesExplosive
+        - ClothingShoesGaloshes
+        - ClothingOuterDogi
+        - DualToySword
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
-      range: 1000
-    - type: DeviceLinkSource
-      range: 1000
-      ports:
-        - SignalMetalDetector
+      range: 200
     - type: Construction
       graph: ImperialMetalDetector
       node: detector
@@ -230,11 +239,12 @@
           shape: !type:PhysShapeAabb
             bounds: "-0.45,-0.45,0.45,0.45"
           hard: false
-          density: 1500
+          density: 100
           mask:
-            - DoorPassable
+          - Impassable
+          - HighImpassable
           layer:
-            - AirlockLayer
+          - AirlockLayer
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTrigger
@@ -423,7 +433,7 @@
           steps:
             - tag: MetalDetectorTag
               store: board
-              name: микросхема металлоискателя # Imperial Recipes Locale
+              name: recipes-microcircuit-metal-detector-name
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "security"
@@ -432,7 +442,7 @@
                 - PowerCell
                 - PowerCellSmall
               store: powercell
-              name: любая батарейка # Imperial Recipes Locale
+              name: recipes-any-powercell-name
               icon:
                 sprite: "Objects/Power/power_cells.rsi"
                 state: "medium"

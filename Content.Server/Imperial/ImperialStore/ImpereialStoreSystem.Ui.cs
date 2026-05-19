@@ -30,7 +30,6 @@ public sealed partial class ImperialStoreSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private void InitializeUi()
     {
@@ -278,7 +277,7 @@ public sealed partial class ImperialStoreSystem
         //log dat shit.
         _admin.Add(LogType.StorePurchase,
             LogImpact.Low,
-            $"{ToPrettyString(buyer):player} purchased listing \"{ImperialListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _prototypeManager)}\" from {ToPrettyString(uid)}");
+            $"{ToPrettyString(buyer):player} purchased listing \"{ImperialListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _proto)}\" from {ToPrettyString(uid)}");
 
         listing.PurchaseAmount++; //track how many times something has been purchased
         _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
@@ -317,7 +316,7 @@ public sealed partial class ImperialStoreSystem
         {
             var cashId = proto.Cash[value];
             var amountToSpawn = (int)MathF.Floor((float)(amountRemaining / value));
-            var ents = _stack.SpawnMultiple(cashId, amountToSpawn, coordinates);
+            var ents = _stack.SpawnMultipleAtPosition((EntProtoId)cashId, amountToSpawn, coordinates);
 
             _hands.PickupOrDrop(buyer, ents.First());
             amountRemaining -= value * amountToSpawn;
@@ -358,7 +357,7 @@ public sealed partial class ImperialStoreSystem
             if (action != null)
                 _actionContainer.RemoveAction((action.Value.Owner, action.Value.Comp));
 
-            EntityManager.DeleteEntity(purchase);
+            Del(purchase);
         }
 
         component.BoughtEntities.Clear();

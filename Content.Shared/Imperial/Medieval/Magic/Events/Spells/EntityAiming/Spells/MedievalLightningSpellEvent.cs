@@ -20,7 +20,7 @@ public sealed partial class MedievalLightningSpellEvent : MedievalEntityAimingSp
     /// Entity effects aplyed after lightning collide
     /// </summary>
     [DataField(serverOnly: true)]
-    public List<EntityEffect> LightningCollideEffects = new();
+    public EntityEffect[] LightningCollideEffects = [];
 
     /// <summary>
     /// Speed of lightning

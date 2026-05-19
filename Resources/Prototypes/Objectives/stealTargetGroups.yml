@@ -61,7 +61,7 @@
   name: ID карта капитана # Imperial objectives translate
   sprite:
     sprite: Objects/Misc/id_cards.rsi
-    state: ert_commander #no one will know the difference.
+    state: icon-captain
 
 - type: stealTargetGroup
   id: JetpackCaptainFilled
@@ -85,11 +85,11 @@
     state: icon
 
 - type: stealTargetGroup
-  id: Figurines
-  name: фигурки (любые) # Imperial objectives translate
+  id: WeaponEnergyMagnum
+  name: steal-target-groups-weapon-energy-magnum
   sprite:
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
-    state: base
+    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
+    state: icon
 
 # Thief Collection
 
@@ -120,6 +120,13 @@
   sprite:
     sprite: Objects/Devices/door_remote.rsi
     state: door_remotebase
+
+- type: stealTargetGroup
+  id: OfficerHandgun
+  name: steal-target-groups-officer-handguns
+  sprite:
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+    state: base
 
 - type: stealTargetGroup
   id: EncryptionKey
@@ -156,6 +163,13 @@
     sprite: Objects/Tools/lantern.rsi
     state: lantern
 
+- type: stealTargetGroup
+  id: ClothingEyesHuds
+  name: steal-target-groups-huds
+  sprite:
+    sprite: Clothing/Eyes/Hud/sec.rsi
+    state: icon
+
 # Thief single item
 
 - type: stealTargetGroup
@@ -169,7 +183,7 @@
   id: FlippoEngravedLighter
   name: зажигалка детектива Flippo с гравировкой # Imperial objectives translate
   sprite:
-    sprite: Objects/Tools/lighters.rsi
+    sprite: Objects/Tools/Lighters/lighters.rsi
     state: zippo_engraved_icon_base
 
 - type: stealTargetGroup
@@ -229,6 +243,13 @@
     state: ame-part
 
 - type: stealTargetGroup
+  id: ChiefEngineerToolBelt
+  name: steal-target-groups-belt-ce
+  sprite:
+    sprite: Clothing/Belt/ce.rsi
+    state: icon
+
+- type: stealTargetGroup
   id: SalvageExpeditionsComputerCircuitboard
   name: компьютерная плата экспедиций # Imperial objectives translate
   sprite:
@@ -241,20 +262,6 @@
   sprite:
     sprite: Objects/Misc/module.rsi
     state: cpuboard
-
-- type: stealTargetGroup
-  id: SalvageShuttleConsoleCircuitboard
-  name: консоль управления утилизаторским шаттлом # Imperial objectives translate
-  sprite:
-    sprite: Objects/Misc/module.rsi
-    state: cpuboard
-
-- type: stealTargetGroup
-  id: ClothingEyesHudBeer
-  name: пивные очки # Imperial objectives translate
-  sprite:
-    sprite: Clothing/Eyes/Hud/beergoggles.rsi
-    state: icon
 
 - type: stealTargetGroup
   id: Bible
@@ -283,6 +290,13 @@
   sprite:
     sprite: Objects/Devices/cartridge.rsi
     state: cart-sec
+
+- type: stealTargetGroup
+  id: CaptainSword
+  name: steal-target-groups-captain-sword
+  sprite:
+    sprite: Objects/Weapons/Melee/captain_sabre.rsi
+    state: icon
 
 #Thief structures
 

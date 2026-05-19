@@ -11,7 +11,6 @@
         reagents:
         - ReagentId: Karmotrine
           Quantity: 30
-  - type: Drink
   - type: Sprite
     sprite: Imperial/VA11_HallA/drinkkarmotrinecan.rsi
   - type: Item

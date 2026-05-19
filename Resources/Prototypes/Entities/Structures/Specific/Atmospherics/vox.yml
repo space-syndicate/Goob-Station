@@ -19,6 +19,10 @@
       Phazonium: danger #Imperial Added Phazonium and Ozonium
       Ozonium: danger #Imperial Added Phazonium and Ozonium
       Hydrogen: danger #Imperial Added Hydrogen
+      Deuterium: danger #Imperial Atmos Update start
+      HyperNoblium: danger
+      AntiNoblium: danger
+      BZ: danger #Imperial Atmos Update end
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
@@ -47,6 +51,10 @@
     - Phazonium #Imperial Added Phazonium and Ozonium
     - Ozonium #Imperial Added Phazonium and Ozonium
     - Hydrogen #Imperial Added Hydrogen
+    - Deuterium #Imperial Atmos Update start
+    - HyperNoblium
+    - AntiNoblium
+    - BZ #Imperial Atmos Update end
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

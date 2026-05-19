@@ -1,18 +1,13 @@
 using Content.Server.Antag;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Imperial.PiratesNewHorizon.Roles;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
-using Robust.Shared.Maths;
 using Content.Server.Imperial.PiratesNewHorizon.Rules.Components;
 using Content.Server.Roles;
 using Content.Server.GameTicking;
-using Content.Server.Mind;
-using Content.Shared.Mind;
 using Robust.Server.Player;
 
 namespace Content.Server.Imperial.PiratesNewHorizon.Rules.Systems;
@@ -21,7 +16,6 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
 
     public override void Initialize()
@@ -32,13 +26,13 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
         SubscribeLocalEvent<PiratesRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
         SubscribeLocalEvent<PirateRoleComponent, GetBriefingEvent>(OnGetBriefing);
     }
-    
+
     private void OnGetBriefing(Entity<PirateRoleComponent> role, ref GetBriefingEvent args)
     {
         args.Append(Loc.GetString("pirate-welcome"));
         args.Append(Loc.GetString("pirate-briefing"));
     }
-    
+
     private void OnRuleLoadedGrids(Entity<PiratesRuleComponent> ent, ref RuleLoadedGridsEvent args)
     {
         var query = EntityQueryEnumerator<PiratesShuttleComponent>();
@@ -60,7 +54,7 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
             }
         }
     }
-    
+
     protected override void AppendRoundEndText(EntityUid uid, PiratesRuleComponent comp, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
     {
         var pirates = comp;
@@ -147,7 +141,7 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
             }
         }
     }
-    
+
     private void OnAfterAntagEntSelected(Entity<PiratesRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         _antag.SendBriefing(args.Session,
@@ -155,7 +149,7 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
             Color.Yellow,
             ent.Comp.PirateAlertSound);
     }
-    
+
     private EntityUid? GetShuttle(Entity<PiratesRuleComponent> ent)
     {
         var query = EntityQueryEnumerator<PiratesShuttleComponent>();

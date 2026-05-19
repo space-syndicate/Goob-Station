@@ -110,7 +110,10 @@
         Piercing: 0.6
         Heat: 0.6
         Caustic: 0.6
-        Stamina: 0.2
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1.0 #Because coolguys must walk!
     sprintModifier: 0.7
@@ -120,15 +123,6 @@
     reflectProb: 0.3
     reflects:
       - NonEnergy
-  # - type: QualityOfItem
-  #   qualityWeights:
-  #     0: 0
-  #     1: 0
-  #     2: 0
-  #     3: 80
-  #     4: 20
-  #     5: 0
-  #     6: 0
 
 - type: entity
   id: ClothingHeadHardsuitCCAgent

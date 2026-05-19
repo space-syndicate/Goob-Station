@@ -5,7 +5,7 @@
 #Basic armor vest for inheritance
 - type: entity
   abstract: true
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBase
   name: armor vest
   description: A standard Type I armored vest that provides decent protection against most types of damage.
@@ -21,23 +21,25 @@
         Slash: 0.70
         Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         Heat: 0.80
-        Stamina: 0.80 # Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
-#Standard armor vest, allowed for security and bartenders
+#Standard armor vest, allowed for security only
 - type: entity
-  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  parent: [ BaseSecurityContraband, ClothingOuterArmorBase ]
   id: ClothingOuterArmorBasic
   components:
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
 
-#Alternate / slim basic armor vest
+#Alternate / slim basic armor vest, allowed for security and bartenders
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBasic ]
   id: ClothingOuterArmorBasicSlim
   name: armor vest
   suffix: slim
@@ -49,7 +51,7 @@
     sprite: Clothing/OuterClothing/Armor/security_slim.rsi
 
 - type: entity
-  parent: ClothingOuterArmorBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorBulletproof
   name: bulletproof vest
   description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
@@ -65,12 +67,15 @@
         Slash: 0.9
         Piercing: 0.4
         Heat: 0.9
-        Stamina: 0.8 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
 - type: entity
-  parent: ClothingOuterArmorBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorReflective
   name: reflective vest
   description: An armored vest with advanced shielding to protect against energy weapons.
@@ -86,7 +91,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
-        Stamina: 0.80 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: Reflect
     reflectProb: 1
     reflects:
@@ -95,7 +103,7 @@
 
 #Detective's vest
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ClothingOuterArmorBasic, BaseSecurityContraband]
   id: ClothingOuterVestDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.
@@ -106,7 +114,7 @@
     sprite: Clothing/OuterClothing/Vests/detvest.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBaseCarapace
   abstract: true
   components:
@@ -118,13 +126,12 @@
         Piercing: 0.6
         Heat: 0.5
         Caustic: 0.9
-        Stamina: 0.75
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.65
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: HeldSpeedModifier
   - type: GroupExamine
 
 - type: entity
@@ -139,7 +146,6 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
 
 - type: entity
@@ -155,7 +161,7 @@
 
 #Web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -171,15 +177,16 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
-        Stamina: 0.90 # Stamina resistance Imperial
-  - type: ExplosionResistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
     damageCoefficient: 0.9
+  # Imperial Space Stamina Resistance End
   - type: StaticPrice
     price: 1500
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterArmorBase, AllowSuitStorageClothing, BaseSyndicateContraband]
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
@@ -200,7 +207,10 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
-        Stamina: 0.75 # Stamina resistance Imperial
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection
@@ -226,8 +236,6 @@
         Slash: 0.7
         Piercing: 0.5
         Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
 
 
 # Armor covering multiple body parts including limbs
@@ -254,11 +262,10 @@
         Piercing: 0.35
         Heat: 0.35
         Caustic: 0.5
-        Stamina: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.35
-  #- type: StaminaResistance
-  #  damageCoefficient: 0.45
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.45
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -300,14 +307,13 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
+        startValue: 0.1
+        endValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
     startingCharge: 600
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 2
   - type: Item
     size: Normal
@@ -349,9 +355,12 @@
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.6
+        Piercing: 0.5
         Heat: 0.5
-        Stamina: 0.5 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
   - type: GroupExamine
 
 - type: entity
@@ -373,7 +382,10 @@
         Heat: 0.5
         Radiation: 0
         Caustic: 0.75
-        Stamina: 0.2 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
@@ -440,7 +452,10 @@
         Piercing: 0.5
         Heat: 0.9
         Radiation: 0.8
-        Stamina: 0.8 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.65
     sprintModifier: 0.65
@@ -467,7 +482,10 @@
         Blunt: 0.6
         Slash: 0.8
         Piercing: 0.4
-        Stamina: 0.8 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -498,8 +516,28 @@
         Slash: 0.5
         Piercing: 0.6
         Heat: 0.5
-        Stamina: 0.8 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: CardArmour
+  name: cardboard armour
+  description: A medieval chestpiece built from cardboard.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/card_armour.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/card_armour.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+  - type: Construction
+    graph: cardArmour
+    node: cardarmour

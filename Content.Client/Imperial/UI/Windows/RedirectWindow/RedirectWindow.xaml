@@ -4,10 +4,9 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:iui="clr-namespace:Content.Client.Imperial.UI.Windows.RedirectWindow"
     HeaderText="Imperial"
-    MinSize="500 0"
-    SetSize="500 260"
-    Resizable="False">
-    <BoxContainer Name="Contents" Access="Public" Orientation="Vertical" VerticalAlignment="Center" Margin="20">
+    MinWidth="500"
+    SetWidth="500">
+    <BoxContainer Name="Contents" Access="Public" Orientation="Vertical" VerticalAlignment="Center" Margin="20 45 20 20">
         <Label Name="HeaderLabelText" Text="{Loc 'imperial-pass-ui-redirect-header'}" StyleClasses="LabelSubTextPass1" Access="Public" />
         <controls:HSpacer Spacing="5"/>
         <RichTextLabel Name="InfoText" StyleClasses="LabelSubTextPassMediumBuy" Access="Public" />
@@ -28,7 +27,7 @@
                 HoverColor="#808080"
                 PressedColor="#676767"
                 Access="Public"
-                Text="imperial-pass-ui-redirect-cancel">
+                Text="{Loc 'imperial-pass-ui-cancel'}">
             </i:BaseImperialButton>
         </BoxContainer>
     </BoxContainer>

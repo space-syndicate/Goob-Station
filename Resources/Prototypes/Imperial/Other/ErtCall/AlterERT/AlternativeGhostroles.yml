@@ -10,6 +10,8 @@
       name: ertcall-leader-eva-name-alternative
       description: ertcall-leader-eva-desc-alternative
       rules: ertcall-leader-eva-rules-alternative
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTLeaderEVAPresetAlternative
     - type: Sprite
@@ -31,6 +33,8 @@
       name: ertcall-medic-eva-name-alternative
       description: ertcall-medic-eva-desc-alternative
       rules: ertcall-medic-eva-rules-alternative
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTMedicEVAPresetAlternative
     - type: Sprite
@@ -52,6 +56,8 @@
       name: ertcall-security-eva-name-alternative
       description: ertcall-security-eva-desc-alternative
       rules: ertcall-security-eva-rules-alternative
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTSecurityEVAPresetAlternative
     - type: Sprite
@@ -73,6 +79,8 @@
       name: ertcall-engineer-eva-name-alternative
       description: ertcall-engineer-eva-desc-alternative
       rules: ertcall-engineer-eva-rules-alternative
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTEngineerEVAPresetAlternative
     - type: Sprite
@@ -94,6 +102,8 @@
       name: ertcall-junitor-eva-name-alternative
       description: ertcall-junitor-eva-desc-alternative
       rules: ertcall-junitor-eva-rules-alternative
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTJanitorEVAPresetAlternative
     - type: Sprite

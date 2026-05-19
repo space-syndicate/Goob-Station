@@ -1,0 +1,77 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106SpawnPuddle
+  name: Spawn Puddle
+  description: I hope people won't fall in there.
+  components:
+  - type: Action
+    icon: Imperial/SCP/createhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106SpawnPuddleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106ExitDimension
+  name: Exit pocket dimension
+  description: Go back.
+  components:
+  - type: Action
+    icon: Imperial/SCP/switchdimension.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106DimensionSwitchActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106GoIntoDimension
+  name: Enter pocket dimension
+  description: FINISH HIM.
+  components:
+  - type: Action
+    icon: Imperial/SCP/switchdimension.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106DimensionSwitchActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106ExitPuddle
+  name: Exit puddle
+  description: Suprise!
+  components:
+  - type: Action
+    icon: Imperial/SCP/exithole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106TransmissionPuddleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106EnterPuddle
+  name: Enter puddle
+  description: liar dancer
+  components:
+  - type: Action
+    icon: Imperial/SCP/enterhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106TransmissionPuddleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP106DestroyPuddle
+  name: Destroy puddle
+  description: liar dancer
+  components:
+  - type: Action
+    icon: Imperial/SCP/destroyhole.png
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SCP106DestroyPuddleActionEvent

@@ -16,14 +16,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.65
-        Piercing: 0.65
-        Heat: 0.35
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.9
         Cold: 0.35
-        Shock: 0.35
-        Caustic: 0.35
-        Radiation: 0.15
+        Shock: 0.9
+        Caustic: 0.9
+        Radiation: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
   - type: ContainerContainer
     containers:
       key_slots: !type:Container

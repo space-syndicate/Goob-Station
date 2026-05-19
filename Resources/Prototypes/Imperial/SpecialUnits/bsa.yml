@@ -14,7 +14,7 @@
     projectileSpeed: 30
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDebugBSA
     fireCost: 1
 

@@ -5,11 +5,15 @@
     - node: start
       edges:
         - to: msstunprod
+          completed:
+          - !type:AdminLog
+            message: "Construction"
+            impact: High
           steps:
             - material: MetalRod
               amount: 1
             - tag: PowerCellSmall
-              name: батарея малой мощности # Imperial Recipes Locale
+              name: recipes-powercell-small-name
               icon:
                 sprite: Objects/Power/power_cells.rsi
                 state: small
@@ -18,9 +22,9 @@
                 sprite: Objects/Misc/cablecuffs.rsi
                 state: cuff
                 color: red
-              name: стяжки # Imperial Recipes Locale
+              name: recipes-handcuffs-name
             - tag: Igniter
-              name: воспламенитель # Imperial Recipes Locale
+              name: recipes-igniter-name
               icon:
                 sprite: Objects/Devices/igniter.rsi
                 state: icon

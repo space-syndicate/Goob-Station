@@ -52,3 +52,9 @@ accessing-on = Переключение аварийного доступа вк
 
 electro-off = Электризация выкл
 electro-on = Электризация вкл
+
+station-ai-hologram-robot = Андроид
+station-ai-hologram-eye = Глаз
+station-ai-hologram-core = Ядро
+station-ai-hologram-audio = Аудио
+station-ai-hologram-corgi-spin = Корги (крутится)

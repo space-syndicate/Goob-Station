@@ -8,6 +8,7 @@ using Content.Shared.Imperial.ImperialBorgs;
 using Content.Shared.Imperial.ImperialBorgs.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Chemistry.Components;
 namespace Content.Server.Imperial.ImperialBorgs
 {
     public sealed class BorgHypoSystem : EntitySystem
@@ -23,7 +24,7 @@ namespace Content.Server.Imperial.ImperialBorgs
             SubscribeLocalEvent<BorgHypoComponent, GetItemActionsEvent>(OnGetActions);
             SubscribeLocalEvent<BorgHypoComponent, ChangeReagentAction>(OnReagentAction);
             SubscribeNetworkEvent<ChangeReagentEvent>(OnReagentChange);
-            SubscribeLocalEvent<BorgHypoComponent, UseInHandEvent>(OnUseInHand);
+            SubscribeLocalEvent<BorgHypoComponent, UseInHandEvent>(OnUseInHand, before: [ typeof(InjectorSystem) ] );
         }
 
         private void OnGetActions(EntityUid uid, BorgHypoComponent component, GetItemActionsEvent args)
@@ -126,7 +127,8 @@ namespace Content.Server.Imperial.ImperialBorgs
             {
                 return;
             }
-            solution.Value.Comp.Solution.RemoveAllSolution();
+
+            _solutionSystem.RemoveAllSolution(solution.Value);
 
             var generated = solutionRegenerationComponent.Generated;
 

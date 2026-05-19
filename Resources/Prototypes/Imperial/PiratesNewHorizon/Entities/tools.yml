@@ -15,7 +15,7 @@
     attackRate: 0.2
     damage:
       types:
-        Piercing: 50
+        Piercing: 20
   - type: Sprite
     sprite: Imperial/PiratesNewHorizon/gpstrackerremover.rsi
     state: icon

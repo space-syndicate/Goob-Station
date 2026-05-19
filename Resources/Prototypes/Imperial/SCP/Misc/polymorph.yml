@@ -1,0 +1,41 @@
+- type: polymorph
+  id: SCP106GhostMorph
+  configuration:
+    entity: ImperialSCP106Ghost
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    polymorphPopup: ""
+    exitPolymorphPopup: ""
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: SCP106PhysicalMorph
+  configuration:
+    entity: ImperialSCPDed
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    polymorphPopup: ""
+    exitPolymorphPopup: ""
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: SCP106PhysicalDMorph
+  configuration:
+    entity: ImperialSCPDedD
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    polymorphPopup: ""
+    exitPolymorphPopup: ""
+    allowRepeatedMorphs: true

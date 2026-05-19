@@ -11,7 +11,6 @@ namespace Content.Shared.FoldableCard;
 public sealed class FoldableCardSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {

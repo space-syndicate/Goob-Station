@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseAction
+  id: VampireReconciliationAction
+  name: Сверк
+  description: Ослепляющая вспышка в радиусе 3 тайлов, оглушающая всех жертв и полностью истощающая их выносливость, так же наносит предметам 80 ед. урона. Стоимость 10 ед. крови. Кулдаун 30 секунд.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: reconciliation
+  - type: InstantAction
+    event: !type:VampireReconciliationEvent
+      costBlood: 10
+
+- type: entity
+  id: VampireFlashEffect
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 10
+    color: '#8B0000'
+    netsync: false
+  - type: LightFade
+    duration: 0.5
+  - type: TimedDespawn
+    lifetime: 0.5

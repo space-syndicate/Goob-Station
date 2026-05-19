@@ -16,8 +16,6 @@
   components:
   - type: Sprite
     sprite: Imperial/Entities/Structures/Doors/SyndieLocks/airlock/normal.rsi
-  - type: PaintableAirlock
-    group: Glass
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSyndicateAgent ]

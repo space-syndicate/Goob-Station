@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Made by @ryslan32",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "borg-interface-gun"
+    },
+    {
+      "name": "borg-interface-jaws"
+    },
+    {
+      "name": "borg-interface-materials"
+    },
+    {
+      "name": "borg-interface-medical-kits"
+    },
+    {
+      "name": "borg-interface-nonlethal"
+    },
+    {
+      "name": "borg-interface-RCS"
+    },
+    {
+      "name": "borg-interface-tools"
+    },
+    {
+      "name": "borg-module-Cable"
+    },
+    {
+      "name": "defib-module"
+    },
+    {
+      "name": "adv-chem-module"
+    },
+    {
+      "name": "adv-diagnosis-module"
+    },
+    {
+      "name": "borg-interface-Energomech"
+    },
+    {
+      "name": "borg-module-Stanner"
+    },
+    {
+      "name": "borg-interface-C4"
+    },
+    {
+      "name": "borg-interface-flamethrower"
+    }
+  ]
+}

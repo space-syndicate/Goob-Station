@@ -1,0 +1,208 @@
+#Leader
+- type: entity
+  parent: ClothingOuterHardsuitERTLeader
+  id: ClothingOuterHardsuitERTLeaderSpaceBattle
+  name: captain’s battle voidsuit
+  description: A fortified command voidsuit for flotilla captains parade-grade presence with plated armor, encrypted comms, and magboots so the skipper never abandons ship.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3      # 70%
+        Slash: 0.3      # 70%
+        Piercing: 0.25  # 75%
+        Heat: 0.4       # 60%
+        Radiation: 0.25 # 75%
+        Caustic: 0.35   # 65%
+  - type: ExplosionResistance
+    damageCoefficient: 0.5   # 50%
+  - type: StaminaResistance
+    damageCoefficient: 0.4   # 60%
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.6  # 40%
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9   # дебаф 10%
+    sprintModifier: 0.9
+
+#Warrion
+- type: entity
+  parent: ClothingOuterHardsuitERTSecurityAlternative
+  id: ClothingOuterHardsuitERTSecuritySpaceBattle
+  name: assault trooper battle suit
+  description: A reinforced assault voidsuit for frontline breaches trades comfort for plating and sealed joints, just enough life support to finish the job.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4        # 60%
+        Slash: 0.4        # 60%
+        Piercing: 0.3     # 70%
+        Heat: 0.5         # 50%
+        Radiation: 1      # нет защиты
+        Caustic: 1        # нет защиты
+  - type: ExplosionResistance
+    damageCoefficient: 0.55  # ~45% взрывного урона
+  - type: StaminaResistance
+    damageCoefficient: 0.5   # 50% выносливости
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75  # 25% защита от заражения
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9       # дебаф скорости 10%
+    sprintModifier: 0.9
+
+#Medic
+- type: entity
+  parent: ClothingOuterHardsuitERTMedicalAlternative
+  id: ClothingOuterHardsuitERTMedicSpaceBattle
+  name: assault medic battle suit
+  description: An armored assault medic voidsuit resists infection, keeps you moving, and survives the crossfire while you patch others up.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5       # 50%
+        Slash: 0.5       # 50%
+        Piercing: 0.55   # 45%
+        Heat: 0.75       # 25%
+        Radiation: 0.5   # 50%
+        Caustic: 0.25    # 75%
+  - type: ExplosionResistance
+    damageCoefficient: 0.75   # 25%
+  - type: StaminaResistance
+    damageCoefficient: 0.6    # 40%
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.1   # 90%
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05   # +5%
+    sprintModifier: 1.05
+
+#Pilot
+- type: entity
+  parent: ClothingOuterHardsuitERTLeaderAlternative
+  id: ClothingOuterHardsuitERTPilotSpaceBattle
+  name: assault pilot battle suit
+  description: A nimble assault voidsuit for pilots enough armor and mobility to walk away from a hard landing and get back in the fight.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55      # 45%
+        Slash: 0.55      # 45%
+        Piercing: 0.65   # 35%
+        Heat: 0.5        # 50%
+        Radiation: 0.5   # 50%
+        Caustic: 0.7     # 30%
+  - type: ExplosionResistance
+    damageCoefficient: 0.75   # 25%
+  - type: StaminaResistance
+    damageCoefficient: 0.2    # 80%
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75  # 25%
+  - type: ClothingSpeedModifier
+    walkModifier: 1.10  # +10%
+    sprintModifier: 1.10
+
+#Engineer
+- type: entity
+  parent: ClothingOuterHardsuitERTEngineerAlternative
+  id: ClothingOuterHardsuitERTEngineerSpaceBattle
+  name: assault engineer battle suit
+  description: A hardened engineer’s assault suit shrugs off fire and radiation while keeping you repairing under fire.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3       # 70%
+        Slash: 0.3       # 70%
+        Piercing: 0.8    # 20%
+        Heat: 0.25       # 75%
+        Radiation: 0.0   # 100%
+        Caustic: 0.55    # 45%
+  - type: ExplosionResistance
+    damageCoefficient: 0.15   # 85%
+  - type: StaminaResistance
+    damageCoefficient: 0.7    # 30%
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75  # 25%
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0   # без изменения скорости
+    sprintModifier: 1.0
+
+
+##Syndicate set:
+
+#Leader Syndicate
+- type: entity
+  parent: ClothingOuterHardsuitERTLeaderSpaceBattle
+  id: ClothingOuterHardsuitSyndicateLeaderSpaceBattle
+  name: syndicate command battlesuit
+  description: A heavy command hardsuit with reinforced plating for syndicate officers leading the charge.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
+
+#Warrion Syndicate
+- type: entity
+  parent: ClothingOuterHardsuitERTSecuritySpaceBattle
+  id: ClothingOuterHardsuitSyndicateSecuritySpaceBattle
+  name: syndicate assault battlesuit
+  description: The classic blood-red assault suit no comfort, all protection for breach teams.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndie
+
+#Medic Syndicate
+- type: entity
+  parent: ClothingOuterHardsuitERTMedicSpaceBattle
+  id: ClothingOuterHardsuitSyndicateMedicSpaceBattle
+  name: syndicate medic battlesuit
+  description: A field-medic variant sealed, armored, and ready to drag teammates out of any firefight.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
+
+#Pilot Syndicate
+- type: entity
+  parent: ClothingOuterHardsuitERTPilotSpaceBattle
+  id: ClothingOuterHardsuitSyndicatePilotSpaceBattle
+  name: syndicate pilot battlesuit
+  description: A mobile, sturdy pilot suit built to handle brutal maneuvers and rough dockings.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
+
+#Engineer Syndicate
+- type: entity
+  parent: ClothingOuterHardsuitERTEngineerSpaceBattle
+  id: ClothingOuterHardsuitSyndicateEngineerSpaceBattle
+  name: syndicate engineer battlesuit
+  description: An armored work suit for syndicate engineers shrugs off radiation, acid, and blasts while you plant or patch charges.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitCybersun
+
+
+
+
+
+

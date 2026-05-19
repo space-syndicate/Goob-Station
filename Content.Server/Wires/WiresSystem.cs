@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using Content.Server.Construction;
 using Content.Server.Construction.Components;
+using Content.Server.Hands.Systems;
 using Content.Server.Power.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
@@ -24,9 +25,9 @@ public sealed class WiresSystem : SharedWiresSystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ConstructionSystem _construction = default!;
 
@@ -71,7 +72,7 @@ public sealed class WiresSystem : SharedWiresSystem
         List<IWireAction> wireActions = new();
         var dummyWires = 0;
 
-        if (!_protoMan.TryIndex(wires.LayoutId, out WireLayoutPrototype? layoutPrototype))
+        if (!_protoMan.Resolve(wires.LayoutId, out WireLayoutPrototype? layoutPrototype))
         {
             return;
         }
@@ -393,7 +394,7 @@ public sealed class WiresSystem : SharedWiresSystem
     {
         var player = args.Actor;
 
-        if (!EntityManager.TryGetComponent(player, out HandsComponent? handsComponent))
+        if (!TryComp(player, out HandsComponent? handsComponent))
         {
             _popupSystem.PopupEntity(Loc.GetString("wires-component-ui-on-receive-message-no-hands"), uid, player);
             return;
@@ -405,19 +406,13 @@ public sealed class WiresSystem : SharedWiresSystem
             return;
         }
 
-        var activeHand = handsComponent.ActiveHand;
-
-        if (activeHand == null)
+        if (!_hands.TryGetActiveItem((player, handsComponent), out var heldEntity))
             return;
 
-        if (activeHand.HeldEntity == null)
+        if (!TryComp(heldEntity, out ToolComponent? tool))
             return;
 
-        var activeHandEntity = activeHand.HeldEntity.Value;
-        if (!EntityManager.TryGetComponent(activeHandEntity, out ToolComponent? tool))
-            return;
-
-        TryDoWireAction(uid, player, activeHandEntity, args.Id, args.Action, component, tool);
+        TryDoWireAction(uid, player, heldEntity.Value, args.Id, args.Action, component, tool);
     }
 
     private void OnDoAfter(EntityUid uid, WiresComponent component, WireDoAfterEvent args)
@@ -452,7 +447,7 @@ public sealed class WiresSystem : SharedWiresSystem
         {
             if (TryComp(args.User, out ActorComponent? actor))
             {
-                _uiSystem.OpenUi(uid, WiresUiKey.Key, actor.PlayerSession);
+                UI.OpenUi(uid, WiresUiKey.Key, actor.PlayerSession);
                 args.Handled = true;
             }
         }
@@ -463,7 +458,7 @@ public sealed class WiresSystem : SharedWiresSystem
         if (args.Open)
             return;
 
-        _uiSystem.CloseUi(ent.Owner, WiresUiKey.Key);
+        UI.CloseUi(ent.Owner, WiresUiKey.Key);
     }
 
     private void OnMapInit(EntityUid uid, WiresComponent component, MapInitEvent args)
@@ -552,17 +547,12 @@ public sealed class WiresSystem : SharedWiresSystem
 
         statuses.Sort((a, b) => a.position.CompareTo(b.position));
 
-        _uiSystem.SetUiState((uid, ui), WiresUiKey.Key, new WiresBoundUserInterfaceState(
+        UI.SetUiState((uid, ui), WiresUiKey.Key, new WiresBoundUserInterfaceState(
             clientList.ToArray(),
             statuses.Select(p => new StatusEntry(p.key, p.value)).ToArray(),
             Loc.GetString(wires.BoardName),
             wires.SerialNumber,
             wires.WireSeed));
-    }
-
-    public void OpenUserInterface(EntityUid uid, ICommonSession player)
-    {
-        _uiSystem.OpenUi(uid, WiresUiKey.Key, player);
     }
 
     /// <summary>
@@ -606,7 +596,7 @@ public sealed class WiresSystem : SharedWiresSystem
 
         if (!args.WiresAccessible)
         {
-            _uiSystem.CloseUi(uid, WiresUiKey.Key);
+            UI.CloseUi(uid, WiresUiKey.Key);
         }
     }
 

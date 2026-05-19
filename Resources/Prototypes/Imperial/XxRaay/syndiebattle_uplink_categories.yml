@@ -1,0 +1,59 @@
+- type: storeCategory
+  id: SyndiebattleUplinkWeaponry
+  name: store-category-weapons
+  priority: 0
+
+- type: storeCategory
+  id: SyndiebattleUplinkAmmo
+  name: store-category-ammo
+  priority: 1
+
+- type: storeCategory
+  id: SyndiebattleUplinkExplosives
+  name: store-category-explosives
+  priority: 2
+
+- type: storeCategory
+  id: SyndiebattleUplinkWearables
+  name: store-category-wearables
+  priority: 3
+
+- type: storeCategory
+  id: SyndiebattleUplinkChemicals
+  name: store-category-chemicals
+  priority: 4
+
+- type: storeCategory
+  id: SyndiebattleUplinkDeception
+  name: store-category-deception
+  priority: 5
+
+- type: storeCategory
+  id: SyndiebattleUplinkDisruption
+  name: store-category-disruption
+  priority: 6
+
+- type: storeCategory
+  id: SyndiebattleUplinkImplants
+  name: store-category-implants
+  priority: 7
+
+- type: storeCategory
+  id: SyndiebattleUplinkAllies
+  name: store-category-allies
+  priority: 8
+
+- type: storeCategory
+  id: SyndiebattleUplinkJob
+  name: store-category-job
+  priority: 9
+
+- type: storeCategory
+  id: SyndiebattleUplinkPointless
+  name: store-category-pointless
+  priority: 10
+
+- type: storeCategory
+  id: SyndiebattleUplinkCustom
+  name: Бой предателей
+  priority: 11

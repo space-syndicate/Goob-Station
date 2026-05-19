@@ -1,0 +1,52 @@
+- type: reagent
+  id: HyperNoblium
+  name: reagent-name-hyper-noblium
+  desc: reagent-desc-hyper-noblium
+  physicalDesc: reagent-physical-desc-hyper-noblium
+  flavor: bitter
+  color: "#20B2AA"
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 2.0
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
+        multiplier: 0.8
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 2
+            Poison: 2
+    Respiration:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Radiation: 0.1
+            Cellular: 0.1
+            Poison: 0.1
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 3.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 3.5
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina
+        time: 3
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 15
+        type: Remove
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.6
+        sprintSpeedModifier: 1.60
+        statusLifetime: 6
+      - !type:Oxygenate

@@ -41,7 +41,6 @@
       damage:
         types:
           Structural: 5
-          Stamina: 40
           Bloodloss: 25
     - type: Speech
       speechVerb: LargeMob

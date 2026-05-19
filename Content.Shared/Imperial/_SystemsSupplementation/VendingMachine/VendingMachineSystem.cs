@@ -5,8 +5,6 @@ namespace Content.Shared.VendingMachines;
 
 public abstract partial class SharedVendingMachineSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-
     private void InitializeVending()
     {
         SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseTargetEvent>(OnSelfDispense);
@@ -30,7 +28,7 @@ public abstract partial class SharedVendingMachineSystem
         if (availableItems.Count <= 0)
             return;
 
-        var item = _random.Pick(availableItems);
+        var item = Randomizer.Pick(availableItems);
         if (forceEject)
         {
             vendComponent.NextItemToEject = item.ID;

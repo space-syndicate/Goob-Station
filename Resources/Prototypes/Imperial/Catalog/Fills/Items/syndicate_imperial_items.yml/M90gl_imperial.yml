@@ -1,0 +1,156 @@
+# M90GL Imperial START
+
+- type: entity
+  name: M90 GL
+  parent: WeaponRifleM90GrenadeLauncher
+  id: WeaponRifleM90GrenadeLauncherImperial # Версия M90GL Империала с поддержкой разрывных боеприпасов
+  description: "An older bullpup carbine model, with an attached underbarrel grenade launcher.\nFeeds from .20 rifle magazines."
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+            - MagazineM90gl
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+            - CartridgeM90gl
+
+
+- type: entity
+  id: CartridgeM90gl
+  name: cartridge (.20 rifle)
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeM90gl
+  - type: CartridgeAmmo
+    proto: BulletGrenadeM90gl
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+        color: "#891212"
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#0a0a0a"
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: MagazineM90gl # Магазины с разрывными патронами калибра .45
+  name: magazine (.20 rifle)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineM90gl
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeM90gl
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeM90gl
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Catalog/ImperialSyndicateUplink/M90gl_Imperial/magazines.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+
+- type: entity
+  id: BulletGrenadeM90gl # Разрывные патроны M90GL
+  name: bullet
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: piercing
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1 
+    intensitySlope: 1
+    maxIntensity: 10
+
+- type: entity
+  parent: BaseItem
+  name: Box (.20 rifle)
+  id: MagazineBoxM90gl # Коробки разрывных патронов M90GL
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeM90gl
+    proto: CartridgeM90gl
+    capacity: 50
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Catalog/ImperialSyndicateUplink/M90gl_Imperial/boxes.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle # Сам набор M90GL Империала
+  id: ClothingBackpackDuffelSyndicateFilledCarbineImperial
+  name: M-90gl bundle
+  description: "A versatile battle rifle with an attached grenade launcher, bundled with 3 magazines and 6 grenades of various capabilities."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleM90GrenadeLauncherImperial
+      - id: MagazineRifle
+        amount: 2
+      - id: MagazineM90gl
+        amount: 2
+
+- type: Tag
+  id: CartridgeM90gl
+
+- type: Tag
+  id: MagazineM90gl
+# M90GL Imperial END

@@ -112,6 +112,7 @@ guide-entry-salad-recipes = Салаты
 guide-entry-medicinal-recipes = Медицинские блюда
 guide-entry-other-recipes = Другое
 guide-entry-secret-recipes = Секретные блюда
+guide-entry-lawsets = Законы боргов
 
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные Оперативники
@@ -121,6 +122,7 @@ guide-entry-revolutionaries = Революционеры
 guide-entry-minor-antagonists = Минорные Антагонисты
 guide-entry-space-ninja = Космический Ниндзя
 guide-entry-wizard = Маги
+vampire-round-end-agent-name = Вампир
 
 guide-entry-writing = Письменность
 guide-entry-glossary = Словарь терминов

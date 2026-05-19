@@ -24,7 +24,6 @@
       - id: PlushieHOP
       - id: PlushieNuclearmedic
       - id: PlushiePassenger
-      - id: PlushieHlimmy
       - id: PlushieTaylor
       - id: PlushieVenya
       - id: PlushieMichael
@@ -34,8 +33,10 @@
       - id: PlushieKainov
       - id: PlushieYesenia
       - id: PlushieCSCC
-      - id: PlushieSavir
+      - id: PlushieCrookie
       - id: PlushieKarner
+      - id: PlushieAid
+      - id: PlushieZevs
 
 - type: cargoProduct
   id: FunPlushieCommunity

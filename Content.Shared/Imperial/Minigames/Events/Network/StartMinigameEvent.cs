@@ -1,3 +1,4 @@
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Minigames.Events;
@@ -8,5 +9,5 @@ public sealed class StartMinigameEvent : EntityEventArgs
 {
     public NetEntity Player;
 
-    public MinigamePrototype Minigame = default!;
+    public ProtoId<MinigamePrototype> MinigamePrototype = default!;
 }

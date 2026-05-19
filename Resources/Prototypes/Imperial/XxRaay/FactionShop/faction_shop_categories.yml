@@ -1,19 +1,146 @@
+# NT Faction Categories
 - type: storeCategory
-  id: FactionWeapons
+  id: NTWeapons
   name: faction-store-category-weapons
   description: faction-store-category-weapons-desc
 
 - type: storeCategory
-  id: FactionAmmo
+  id: NTAmmo
   name: faction-store-category-ammo
   description: faction-store-category-ammo-desc
 
 - type: storeCategory
-  id: FactionMedical
+  id: NTMedical
   name: faction-store-category-medical
   description: faction-store-category-medical-desc
 
 - type: storeCategory
-  id: FactionTools
+  id: NTTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc
+
+# Sindi Faction Categories
+- type: storeCategory
+  id: SindiWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: SindiAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: SindiMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: SindiTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc
+
+# Green Faction Categories
+- type: storeCategory
+  id: GreenWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: GreenAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: GreenMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: GreenTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc
+
+# Yellow Faction Categories
+- type: storeCategory
+  id: YellowWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: YellowAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: YellowMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: YellowTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc
+
+# Red Faction Categories
+- type: storeCategory
+  id: RedWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: RedAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: RedMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: RedTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc
+
+# Blue Faction Categories
+- type: storeCategory
+  id: BlueWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: BlueAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: BlueMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: BlueTools
+  name: faction-store-category-tools
+  description: faction-store-category-tools-desc
+
+# USSP Faction Categories
+- type: storeCategory
+  id: USSPWeapons
+  name: faction-store-category-weapons
+  description: faction-store-category-weapons-desc
+
+- type: storeCategory
+  id: USSPAmmo
+  name: faction-store-category-ammo
+  description: faction-store-category-ammo-desc
+
+- type: storeCategory
+  id: USSPMedical
+  name: faction-store-category-medical
+  description: faction-store-category-medical-desc
+
+- type: storeCategory
+  id: USSPTools
   name: faction-store-category-tools
   description: faction-store-category-tools-desc

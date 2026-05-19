@@ -10,8 +10,7 @@ namespace Content.Shared.Imperial.ImperialStore;
 ///     Mainly used for antags, such as traitors, nukies, and revenants
 ///     This is separate to the cargo ordering system.
 /// </summary>
-[Prototype("imperialCurrency")]
-[DataDefinition, Serializable, NetSerializable]
+[Prototype]
 public sealed partial class ImperialCurrencyPrototype : IPrototype
 {
     [ViewVariables]

@@ -188,7 +188,7 @@
     radius: 1.5
     energy: 1
     color: red
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
   - type: MovementSpeedModifier

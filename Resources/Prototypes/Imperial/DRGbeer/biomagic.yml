@@ -41,14 +41,14 @@
   pricePerUnit: 1 #imperial
   physicalDesc: reagent-physical-desc-nondescript
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: GnomishBeer
           min: 5
         key: ForcedSleep

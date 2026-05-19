@@ -63,6 +63,12 @@
               amount: 1
               doAfter: 1
 
+        - to: TableCard
+          steps:
+            - material: Cardboard
+              amount: 3
+              doAfter: 1
+
         - to: TableReinforcedGlass
           steps:
             - material: ReinforcedGlass
@@ -180,6 +186,18 @@
             - tool: Anchoring
               doAfter: 1
 
+    - node: TableCard
+      entity: TableCard
+      edges:
+        - to: TableFrame
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCardboard1
+              amount: 3
+          steps:
+            - tool: Slicing
+              doAfter: 2
+
     - node: TableReinforcedGlass
       entity: TableReinforcedGlass
       edges:
@@ -237,7 +255,7 @@
         - to: TableFancyBlack
           steps:
             - tag: CarpetBlack
-              name: черный ковер # Imperial Recipes Locale
+              name: recipes-black-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-black
@@ -245,15 +263,35 @@
         - to: TableFancyBlue
           steps:
             - tag: CarpetBlue
-              name: синий ковер # Imperial Recipes Locale
+              name: recipes-blue-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-blue
 
+        - to: TableFancySkyBlue
+          steps:
+            - material: FloorCarpetSkyBlue
+              amount: 1
+
+        - to: TableFancySkyBlue
+          steps:
+            - material: FloorCarpetSkyBlue
+              amount: 1
+
+        - to: TableFancySkyBlue
+          steps:
+            - material: FloorCarpetSkyBlue
+              amount: 1
+
+        - to: TableFancySkyBlue
+          steps:
+            - material: FloorCarpetSkyBlue
+              amount: 1
+
         - to: TableFancyCyan
           steps:
             - tag: CarpetCyan
-              name: голубой ковер # Imperial Recipes Locale
+              name: recipes-cyan-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-cyan
@@ -261,7 +299,7 @@
         - to: TableFancyGreen
           steps:
             - tag: CarpetGreen
-              name: зеленый ковер # Imperial Recipes Locale
+              name: recipes-green-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-green
@@ -269,7 +307,7 @@
         - to: TableFancyOrange
           steps:
             - tag: CarpetOrange
-              name: оранжевый ковер # Imperial Recipes Locale
+              name: recipes-orange-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-orange
@@ -277,7 +315,7 @@
         - to: TableFancyPurple
           steps:
             - tag: CarpetPurple
-              name: фиолетовый ковер # Imperial Recipes Locale
+              name: recipes-purple-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-purple
@@ -285,7 +323,7 @@
         - to: TableFancyPink
           steps:
             - tag: CarpetPink
-              name: розовый ковер # Imperial Recipes Locale
+              name: recipes-pink-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-pink
@@ -293,7 +331,7 @@
         - to: TableFancyRed
           steps:
             - tag: CarpetRed
-              name: красный ковер # Imperial Recipes Locale
+              name: recipes-red-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-red
@@ -301,7 +339,7 @@
         - to: TableFancyWhite
           steps:
             - tag: CarpetWhite
-              name: белый ковер # Imperial Recipes Locale
+              name: recipes-white-carpet-name
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-white
@@ -341,6 +379,18 @@
           steps:
             - tool: Prying
               doAfter: 1
+
+    - node: TableFancySkyBlue
+      entity: TableFancySkyBlue
+      edges:
+        - to: TableWood
+          completed:
+          - !type:SpawnPrototype
+            prototype: FloorCarpetItemSkyBlue
+            amount: 1
+          steps:
+          - tool: Prying
+            doAfter: 1
 
     - node: TableFancyCyan
       entity: TableFancyCyan
@@ -487,3 +537,14 @@
             - tool: Anchoring
               doAfter: 1
 #Imperial Space imperial furniture End
+    - node: TableXeno
+      entity: TableXeno
+      edges:
+      - to: TableFrame
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 1
+        steps:
+        - tool: Anchoring
+          doAfter: 1

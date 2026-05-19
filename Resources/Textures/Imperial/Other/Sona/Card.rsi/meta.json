@@ -35,6 +35,12 @@
     },
     {
       "name": "idcentcom"
+    },
+    {
+      "name": "stripe_bottom"
+    },
+    {
+      "name": "stripe_top"
     }
   ]
 }

@@ -5,7 +5,7 @@ namespace Content.Server.Imperial.Medieval.Magic.Triggers;
 /// <summary>
 /// Trigger when a else fixture with same ID collide
 /// </summary>
-[RegisterComponent, Access(typeof(StaminaDamageOnTriggerSystem))]
+[RegisterComponent]
 public sealed partial class TriggerOnSimilarFixtureCollideComponent : Component
 {
     [DataField("fixtureID", required: true)]

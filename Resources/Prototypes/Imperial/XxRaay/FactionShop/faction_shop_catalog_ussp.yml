@@ -1,0 +1,146 @@
+# USSP Faction Shop Catalog
+
+# Weapons
+- type: listing
+  id: FactionLecterUSSP
+  name: lecter
+  description: lecter-desc
+  productEntity: WeaponRifleLecter
+  cost:
+    USSPFactionPoints: 120
+  categories:
+  - USSPWeapons
+
+- type: listing
+  id: FactionDrozdUSSP
+  name: drozd
+  description: drozd-desc
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    USSPFactionPoints: 90
+  categories:
+  - USSPWeapons
+
+- type: listing
+  id: FactionL6USSP
+  name: l6-saw
+  description: l6-saw-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    USSPFactionPoints: 200
+  categories:
+  - USSPWeapons
+
+- type: listing
+  id: FactionAKMSUSSP
+  name: akms
+  description: akms-desc
+  productEntity: WeaponRifleAk
+  cost:
+    USSPFactionPoints: 100
+  categories:
+  - USSPWeapons
+
+# Ammo
+- type: listing
+  id: FactionAmmoLightRifleUSSP
+  name: ammo-light-rifle
+  description: ammo-light-rifle-desc
+  productEntity: MagazineLightRifle
+  cost:
+    USSPFactionPoints: 15
+  categories:
+  - USSPAmmo
+
+- type: listing
+  id: FactionAmmoSMGUSSP
+  name: ammo-smg
+  description: ammo-smg-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    USSPFactionPoints: 12
+  categories:
+  - USSPAmmo
+
+- type: listing
+  id: FactionAmmoL6BeltUSSP
+  name: ammo-l6-belt
+  description: ammo-l6-belt-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    USSPFactionPoints: 40
+  categories:
+  - USSPAmmo
+
+# Armor
+- type: listing
+  id: FactionArmorBulletproofUSSP
+  name: faction-armor-bulletproof
+  description: faction-armor-bulletproof-desc
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    USSPFactionPoints: 120
+  categories:
+  - USSPTools
+
+- type: listing
+  id: FactionArmorRiotUSSP
+  name: faction-armor-riot
+  description: faction-armor-riot-desc
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    USSPFactionPoints: 140
+  categories:
+  - USSPTools
+
+- type: listing
+  id: FactionArmorWebUSSP
+  name: faction-armor-web
+  description: faction-armor-web-desc
+  productEntity: ClothingOuterVestWeb
+  cost:
+    USSPFactionPoints: 100
+  categories:
+  - USSPTools
+
+# Medical
+- type: listing
+  id: FactionMedkitUSSP
+  name: faction-medkit
+  description: faction-medkit-desc
+  productEntity: Medkit
+  cost:
+    USSPFactionPoints: 40
+  categories:
+  - USSPMedical
+
+- type: listing
+  id: FactionGauzeUSSP
+  name: faction-gauze
+  description: faction-gauze-desc
+  productEntity: Gauze
+  cost:
+    USSPFactionPoints: 8
+  categories:
+  - USSPMedical
+
+- type: listing
+  id: FactionOintmentUSSP
+  name: faction-ointment
+  description: faction-ointment-desc
+  productEntity: Ointment
+  cost:
+    USSPFactionPoints: 8
+  categories:
+  - USSPMedical
+
+- type: listing
+  id: FactionBruisePackUSSP
+  name: faction-bruise-pack
+  description: faction-bruise-pack-desc
+  productEntity: Brutepack
+  cost:
+    USSPFactionPoints: 10
+  categories:
+  - USSPMedical
+

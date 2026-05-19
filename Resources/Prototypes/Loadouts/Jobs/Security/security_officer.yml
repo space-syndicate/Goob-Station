@@ -6,22 +6,12 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobWarden
-      time: 21600 #6 hrs
+      time: 6h
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:DepartmentTimeRequirement
       department: Security
-      time: 216000 # 60 hrs
-
-#Security Star
-- type: loadoutEffectGroup
-  id: SecurityStarWorthy
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 360000 #100 hrs
+      time: 60h
 
 # Head
 - type: loadout
@@ -67,7 +57,7 @@
 
 - type: loadout
   id: TrooperUniform
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformSecurityTrooper
 
 #Imperial закомментирован в связи с возвращением сеньор ролей Imperial Space
@@ -153,21 +143,10 @@
   equipment:
     id: SecurityPDA
 
-#Imperial закомментирован в связи с возвращением сеньор ролей Imperial Space
-# - type: loadout
-#   id: SeniorOfficerPDA
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: SeniorOfficer
-#   equipment:
-#     id: SeniorOfficerPDA
-
-    # Misc
 - type: loadout
-  id: SecStar
+  id: SeniorOfficerPDA
   effects:
   - !type:GroupLoadoutEffect
-    proto: SecurityStarWorthy
-  storage:
-    back:
-    - Dinkystar
+    proto: SeniorOfficer
+  equipment:
+    id: SeniorOfficerPDA

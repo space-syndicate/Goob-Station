@@ -1,7 +1,7 @@
 using Content.Server.Mech.Systems;
-using Content.Server.Power.Components;
 using Content.Shared.Construction;
 using Content.Shared.Mech.Components;
+using Content.Shared.Power.Components;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -71,4 +71,3 @@ public sealed partial class BuildMech : IGraphAction
         entityManager.QueueDeleteEntity(uid);
     }
 }
-

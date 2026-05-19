@@ -1,20 +1,16 @@
-using System.Collections.Generic;
 using Content.Shared.Imperial.Damage.Components;
 using Content.Shared.Storage;
 using Content.Shared.Stacks;
-using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using Content.Shared.FixedPoint;
  using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Damage
 {
     public sealed class DamageModifierStorageSystem : EntitySystem
     {
         [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         public override void Initialize()
         {
@@ -60,7 +56,7 @@ namespace Content.Server.Imperial.Damage
             if (totalCount == FixedPoint2.Zero)
                 return;
 
-            var newDamageDict = new Dictionary<string, FixedPoint2>(args.Damage.DamageDict);
+            var newDamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>(args.Damage.DamageDict);
             var damageIncrease = component.DamageIncrease * totalCount;
 
             if (newDamageDict.TryGetValue("Blunt", out var currentBlunt))

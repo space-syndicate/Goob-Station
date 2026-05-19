@@ -10,35 +10,35 @@
         icon:
           sprite: Objects/Storage/Happyhonk/mime.rsi
           state: box
-        name: обед Хэппи Хонк мима # Imperial Recipes Locale
+        name: recipes-mime-happy-honk-name
       - tag: MimeBelt
         icon:
             sprite: Clothing/Belt/suspenders_red.rsi
             state: icon
-        name: подтяжки # Imperial Recipes Locale
+        name: recipes-mime-belt-name
         doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения # Imperial Recipes Locale
+        name: recipes-proximity-sensor-name
       - tag: BorgHead
         icon:
           sprite: Objects/Specific/Robotics/cyborg_parts.rsi
           state: borg_head
-        name: голова борга # Imperial Recipes Locale
+        name: recipes-borg-head-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: рука борга # Imperial Recipes Locale
+        name: recipes-borg-arm-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: рука борга # Imperial Recipes Locale
+        name: recipes-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobMimeBot

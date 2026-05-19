@@ -175,6 +175,80 @@
   weather: false
   indestructible: true
 
+- type: reagent
+  id: LiquidPain
+  name: reagent-name-liquidpain
+  group: Toxins
+  desc: reagent-desc-liquidpain
+  flavor: acid
+  color: "#b12323"
+  recognizable: false
+  physicalDesc: reagent-physical-desc-liquidpain
+  contrabandSeverity: Major
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+            Cellular: 1
+      - !type:PopupMessage
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: -4
+
+- type: reagent
+  id: AlmondWater
+  name: reagent-name-almondwater
+  group: Medicine
+  desc: reagent-desc-almondwater
+  recognizable: true
+  physicalDesc: reagent-physical-desc-almondwater
+  flavor: sweet
+  color: "#a7def3"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:AdjustReagent
+        reagent: Histamine
+        amount: -3.0
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:EvenHealthChange
+        damage:
+          Burn: -0.3
+          Toxin: -0.3
+          Airloss: -0.3
+          Brute: -0.3
+      - !type:PopupMessage
+        visualType: Medium
+        messages: ["ethyloxyephedrine-effect-feeling-awake"]
+        type: Local
+        probability: 0.1
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 1
+
 - type: entity
   parent: FlaskBase
   id: ThermosBlue
@@ -187,10 +261,25 @@
       drink:
         maxVol: 40
         reagents:
-        - ReagentId: Water
-          Quantity: 35
-        - ReagentId: Vitamin
-          Quantity: 5
+        - ReagentId: AlmondWater
+          Quantity: 40
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosBlue.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosBlueFake
+  name: blue thermos
+  suffix: FAKE, Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: LiquidPain
+          Quantity: 40
   - type: Sprite
     sprite: Imperial/Crook/Misc/ThermosBlue.rsi
 
@@ -225,12 +314,27 @@
       drink:
         maxVol: 40
         reagents:
-        - ReagentId: Synaptizine
-          Quantity: 6
+        - ReagentId: LiquidPain
+          Quantity: 20
         - ReagentId: Water
           Quantity: 20
-        - ReagentId: Retropine
-          Quantity: 14
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosRed.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosRedFake
+  name: red thermos
+  suffix: FAKE, Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: AlmondWater
+          Quantity: 40
   - type: Sprite
     sprite: Imperial/Crook/Misc/ThermosRed.rsi
 
@@ -246,10 +350,8 @@
       drink:
         maxVol: 40
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 30
-        - ReagentId: Water
-          Quantity: 10
+        - ReagentId: AlmondWater
+          Quantity: 40
   - type: Sprite
     sprite: Imperial/Crook/Misc/ThermosGray.rsi
 
@@ -302,9 +404,6 @@
     damageModifierSet: Slime
   - type: Bloodstream
     bloodReagent: Slime
-  - type: Body
-    prototype: Slimes
-    requiredLegs: 1
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/punch3.ogg
@@ -346,10 +445,6 @@
         shader: SmilerGlitch
       - state: unshaded
         shader: unshaded
-  - type: PointLight
-    radius: 1.4
-    energy: 2.1
-    color: "#ffffff"
   - type: MobState
     allowedStates:
     - Alive
@@ -359,13 +454,16 @@
       0: Alive
       250: Dead
   - type: Bloodstream
-    bloodReagent: MuteToxin
-    chemicalMaxVolume: 60
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId:  MuteToxin
+        Quantity: 60
   - type: StatusEffects
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
     animation: WeaponArcBite
+    resistanceBypass: true
     damage:
       types:
         Slash: 12
@@ -422,6 +520,8 @@
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
+  - type: Eye
+    visMask: 5
 
 - type: entity
   name: deathmoth
@@ -430,13 +530,6 @@
   suffix: Backrooms, Crook
   description: This moth will bite off your head if you stroke it. But you don't care.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 5
-  - type: Food
   - type: Hunger
     baseDecayRate: 0.25
   - type: Physics
@@ -445,13 +538,15 @@
     - Alive
     - Dead
   - type: MeleeWeapon
-    attackRate: 0.65
-    soundHit:
-      collection: AlienClaw
+    altDisarm: false
+    angle: 0
     animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    resistanceBypass: true
     damage:
       types:
-        Piercing: 15
+        Piercing: 17
         Caustic: 10
         Structural: 75
   - type: NpcFactionMember
@@ -462,15 +557,15 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: ghost-role-information-mothroach-name
-    description: ghost-role-information-mothroach-description
+    name: ghost-role-information-deathmoth-name
+    description: ghost-role-information-deathmoth-description
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.7
-        density: 120
+        density: 200
         mask:
         - MobMask
         layer:
@@ -499,7 +594,7 @@
       0: Alive
       450: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
+    baseWalkSpeed : 8
     baseSprintSpeed : 2
     weightlessAcceleration: 1.5
     weightlessFriction: 1
@@ -515,8 +610,6 @@
     spawned:
       - id: FoodMeatXeno
         amount: 6
-  - type: Extractable
-    grindableSolutionName: food
   - type: ReplacementAccent
     accent: mothroach
   - type: Vocal
@@ -535,13 +628,14 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Stamina: 0.2
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  # Imperial Space Stamina Resistance End
   - type: Tag
     tags:
       - FootstepSound
       - CannotSuicide
-  - type: Body
-    prototype: Mothroach
   - type: TypingIndicator
     proto: alien
   - type: Destructible
@@ -585,10 +679,6 @@
       types:
         Cellular: 15
     popupText: hand-glitch-hurt
-  - type: PointLight
-    radius: 1.5
-    energy: 0.5
-    netsync: false
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Crook/backrooms/glitchspawn.ogg
@@ -675,7 +765,10 @@
           Blunt: 0.9
           Slash: 0.9
           Piercing: 0.7
-          Stamina: 0.2
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.2
+    # Imperial Space Stamina Resistance End
     - type: MeleeWeapon
       hidden: true
       angle: 0
@@ -843,6 +936,10 @@
     exemptAccessLevels:
     - NuclearOperative
     - SyndicateAgent
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretSyndicateMachineCircuitboard
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase
@@ -871,7 +968,6 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretControl
     transmitFrequencyId: Turret
-
 
 - type: reaction
   id: Kvass
@@ -1235,3 +1331,925 @@
     state: yellow
 
 # double bed
+
+
+# hydroponics
+
+- type: reagent
+  id: ParadoxalJuice
+  name: reagent-name-paradoxal-juice
+  group: Unknown
+  desc: reagent-desc-paradoxal-juice
+  physicalDesc: reagent-physical-desc-chaotic
+  flavor: strange
+  pricePerUnit: 100
+  color: "#b75ef3"
+  tileReactions:
+    - !type:CreateEntityTileReaction
+      entity: BluespaceHoleEffect
+    - !type:TeleportTileReaction
+      radiusPerUnit: 1
+      energyPerUnit: 1
+      teleportType: Random
+
+- type: reaction
+  id: ParadoxalJuiceCollapse
+  impact: High
+  minTemp: 288
+  reactants:
+    ParadoxalJuice:
+      amount: 1
+  effects:
+    - !type:SpawnEntity
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 1
+      teleportType: Random
+
+- type: entity
+  name: bluespace tomato
+  parent: FoodBlueTomato
+  id: FoodBlueSpaceTomato
+  description: This one is blue.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: ParadoxalJuice
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 4
+        canReact: false
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: blueSpaceTomato
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Fruit
+    - Vegetable
+
+- type: seed
+  id: blueSpaceTomato
+  name: seeds-bluespacetomato-name
+  noun: seeds-noun-seeds
+  displayName: seeds-bluespacetomato-display-name
+  plantRsi: Objects/Specific/Hydroponics/blue_tomato.rsi
+  packetPrototype: BlueSpaceTomatoSeeds
+  productPrototypes:
+    - FoodBlueSpaceTomato
+  harvestRepeat: Repeat
+  lifespan: 45
+  maturation: 8
+  production: 6
+  yield: 3
+  potency: 30
+  waterConsumption: 1.5
+  nutrientConsumption: 1.5
+  idealLight: 9
+  idealHeat: 298
+  splatPrototype: PuddleSplatter
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    ParadoxalJuice:
+      Min: 1
+      Max: 1
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  name: packet of blue tomato seeds
+  id: BlueSpaceTomatoSeeds
+  components:
+    - type: Seed
+      seedId: blueSpaceTomato
+    - type: Sprite
+      sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurPuro
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurPuro
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/purosuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/purosuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurKiss
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurKiss
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/kisssuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/kisssuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurBeige
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurBeige
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurNixuelle
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurNixuelle
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nixusuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nixusuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurNacho
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurNacho
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nachosuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nachosuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurMoki
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurMoki
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/mokisuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/mokisuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  id: CrateCargoFursuits
+  parent: CratePrivateSecure
+  name: fursuit crate
+  description: Finally, furry friday.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadHatFurPuro
+    - id: ClothingOuterFurPuro
+    - id: ClothingHeadHatFurKiss
+    - id: ClothingOuterFurKiss
+    - id: ClothingHeadHatFurBeige
+    - id: ClothingOuterFurBeige
+    - id: ClothingHeadHatFurNixuelle
+    - id: ClothingOuterFurNixuelle
+    - id: ClothingHeadHatFurNacho
+    - id: ClothingOuterFurNacho
+    - id: ClothingHeadHatFurMoki
+    - id: ClothingOuterFurMoki
+    - id: ClothingHeadHatRedRacoon
+    - id: ClothingOuterRedRacoon
+
+- type: cargoProduct
+  id: FunCrateFursuits
+  icon:
+    sprite: Clothing/Head/Misc/red_racoon.rsi
+    state: icon
+  product: CrateCargoFursuits
+  cost: 15000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterArmoredCommanderCoat
+  name: coat
+  suffix: Crook
+  description: A suit that protects against major damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/o5coat.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/o5coat.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.45
+        Heat: 0.2
+        Caustic: 0.5
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetArmoredCoat
+    requiredSlot:
+    - outerclothing
+    slot: mask
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 750
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 500000
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingHeadHelmetArmoredCoat
+  name: elite exo
+  suffix: Crook
+  description: An elite coat's exo, with improved radiation resistance and fireproofing. Property of SDO.
+  components:
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: true
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/headcoat.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      map: [ "light" ]
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    sprite: Imperial/Crook/Misc/headcoat.rsi
+    equippedPrefix: off
+  - type: PointLight
+    color: cyan
+    radius: 6
+    energy: 2
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots: []
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: NoSlip
+  - type: Magboots
+  - type: JumpAbility
+    jumpDistance: 4
+    jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump
+  - type: ItemActionGrant
+    actions:
+    - ActionGravityJump
+    activeIfWorn: true
+  - type: AmbientSound
+    volume: -2
+    range: 5
+    sound:
+      path: /Audio/Imperial/Seriozha/SCP/ambient/HeavyContainment.ogg
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 2
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitArmoredCoat
+    requiredSlot:
+    - mask
+    slot: head
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitArmoredCoat
+  name: hardsuit helmet
+  description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/hardheadcoat.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-HEAD-light
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HEAD
+      - state: equipped-HEAD-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#adffe6"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  id: FloorBloodEntity
+  name: water
+  description: A real thirst quencher.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: FloorOccluder
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/blood.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: icon
+  - type: SolutionContainerManager
+    solutions:
+      pool:
+        maxVol: 9999999 #.inf seems to break the whole yaml file, but would definitely be preferable.
+        reagents:
+        - ReagentId: Blood
+          Quantity: 9999999
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
+  - type: DrainableSolution
+    solution: pool
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 8
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    blacklist:
+      tags:
+        - Catwalk
+  - type: TileEntityEffect
+    effects:
+    - !type:Extinguish
+
+- type: entity
+  id: FloorBloodRiverEntity
+  name: lava
+  description: Don't jump in. It's not worth it, no matter how funny it is.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: TileEmission
+    color: "#631a1a"
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    blacklist:
+      tags:
+        - Catwalk
+  - type: Transform
+    anchored: true
+  - type: SyncSprite
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/bloodriver.rsi
+    drawdepth: BelowFloor
+    layers:
+      - state: lava
+        shader: unshaded
+  - type: Icon
+    sprite: Imperial/Crook/Misc/bloodriver.rsi
+    state: full
+  - type: IconSmooth
+    key: floor
+    additionalKeys:
+    - walls
+    base: lava
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: LargeBox
+  name: large box
+  description: A large storage container.
+  parent: BaseStructureDynamic
+  components:
+  - type: StaticPrice
+    price: 500
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/Structures/Storage/orebox.rsi
+    layers:
+    - state: orebox
+    - state: orebox-top
+      map: [ top ]
+      visible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        top:
+          True: { visible: false }
+          False: { visible: true }
+  - type: Storage
+    grid:
+    - 0,0,9,5
+    maxItemSize: Huge
+    storageOpenSound: /Audio/Effects/closetopen.ogg
+    storageCloseSound: /Audio/Effects/closetclose.ogg
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: [ ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 20
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: AlwaysPoweredWallLight
+  id: AlwaysPoweredWallLightAmbient
+  name: light
+  description: "An always powered light."
+  components:
+  - type: PointLight
+    color: "#d6c081"
+    energy: 1.8
+    radius: 9
+    softness: 1
+    offset: "0, -0.5"
+  - type: AmbientSound
+    volume: -11
+    range: 4
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9999999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+
+- type: entity
+  id: HolyBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Holy: 46
+        Piercing: 5
+
+- type: entity
+  id: BigBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 42
+
+- type: entity
+  name: big john
+  parent: BaseItem
+  id: WeaponRevolverChaplain
+  description: Big fricking gun
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/BFG.rsi
+    state: icon
+    scale: 0.75, 0.75
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Crook/holyshot.ogg
+  - type: Speech
+    speechSounds: Pai
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BatteryAmmoProvider
+    proto: HolyBulletMagnum
+    fireCost: 10
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: BatterySelfRecharger
+    autoRechargeRate: 1
+  - type: AmmoCounter
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  name: big john
+  parent: WeaponRevolverChaplain
+  id: WeaponBigJohnRevolver
+  description: Big fricking gun
+  components:
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/SpecialUnits/RCU/Criminality/uts.ogg
+  - type: BatteryAmmoProvider
+    proto: BigBulletMagnum
+    fireCost: 10
+
+- type: entity
+  id: ImperialSteamvent
+  parent: BaseStructure
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  suffix: Crook
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/steamvent.rsi
+    state: icon
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break1.ogg
+          params:
+            volume: -6
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.5"
+        hard: false
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+  - type: Slippery
+    staminaDamage: 0
+    frictionStatusTime: 0
+    slipData:
+      stunTime: 0
+      knockdownTime: 0
+      launchForwardsMultiplier: 0
+    slipSound:
+      path: /Audio/Effects/Footsteps/catwalk4.ogg
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Imperial/Crook/steam_hiss.ogg
+      params:
+        volume: -5
+        variation: 0.128
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition
+  - type: UseDelay
+    delay: 120
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: TriggerOnStepTrigger
+  - type: SmokeOnTrigger
+    duration: 8
+    spreadAmount: 5

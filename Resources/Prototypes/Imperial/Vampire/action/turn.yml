@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAction
+  id: VampireTurnAction
+  name: Обратиться
+  description: Финальная стадия вашего класса. Выдает вам улучшенную способность в зависимости от выбранного ранее класса.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: turn
+  - type: InstantAction
+    event: !type:VampireTurnEvent
+      costBlood: 0

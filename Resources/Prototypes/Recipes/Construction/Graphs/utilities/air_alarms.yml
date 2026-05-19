@@ -37,7 +37,7 @@
       steps:
       - tag: AirAlarmElectronics
         store: board
-        name: микросхема воздушной сигнализации # Imperial Recipes Locale
+        name: recipes-airalarm-electronics-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics" # /tg/ uses the same sprite, right?
@@ -116,7 +116,7 @@
       steps:
       - tag: FireAlarmElectronics
         store: board
-        name: микросхема пожарной сигнализации # Imperial Recipes Locale
+        name: recipes-firealarm-electronics-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics" # /tg/ uses the same sprite, right?

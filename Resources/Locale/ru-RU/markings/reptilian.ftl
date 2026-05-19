@@ -116,6 +116,11 @@ marking-LizardSnoutSplotch = Унатх, морда лица (Пятно)
 marking-LizardSnoutSplotch-snout_splotch_primary = Морда
 marking-LizardSnoutSplotch-snout_splotch_secondary = Нос
 
-
 marking-LizardHornsDemonic-horns_demonic = Унатх, рожки (Демонические)
 marking-LizardHornsDemonic = Унатх, рожки (Демонические)
+
+marking-LizardSnoutVisageSharp = Унатх, лицо (Заострённое)
+marking-LizardSnoutVisageSharp-visage_sharp = Унатх, лицо (Заострённое)
+
+marking-LizardSnoutVisageRound = Унатх, лицо (Круглое)
+marking-LizardSnoutVisageRound-visage_round = Унатх, лицо (Круглое)

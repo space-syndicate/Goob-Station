@@ -1,0 +1,24 @@
+- type: gasReaction
+  id: DeuteriumProduction
+  priority: -1
+  minimumTemperature: 320.15
+  minimumRequirements:
+  - 0     # oxygen
+  - 0.1   # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # ammonia
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # thermonium
+  - 0     # phazonium
+  - 0     # ozonium
+  - 0.1   # hydrogen
+  - 0     # deuterium
+  - 0     # hyper noblium
+  - 0     # anti noblium
+  - 0     # BZ
+  effects:
+  - !type:DeuteriumProductionReaction {}

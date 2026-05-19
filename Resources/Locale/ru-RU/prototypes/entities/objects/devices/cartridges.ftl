@@ -1,7 +1,7 @@
 ent-NotekeeperCartridge = картридж Заметки
     .desc = Программа для хранения заметок
     .suffix = { "" }
-ent-NetProbeCartridge = картридж NetProbe
+ent-NetProbeCartridge = картридж ЛогСеть
     .desc = Программа для получения адресов и частот сетевых устройств
     .suffix = { "" }
 ent-NewsReadCartridge = картридж Новостей
@@ -12,3 +12,5 @@ ent-LogProbeCartridge = картридж ЛогШлюз
     .desc = Программа для получения логов доступа с устройств
 ent-NewsReaderCartridge = картридж Новостей
     .desc = Программа для чтения новостей
+ent-NanoTaskCartridge = картридж НаноЗадачи
+    .desc = Программа для слежки за своими задачами

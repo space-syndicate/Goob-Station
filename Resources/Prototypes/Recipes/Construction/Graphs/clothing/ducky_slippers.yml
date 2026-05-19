@@ -7,13 +7,13 @@
         - to: shoes
           steps:
             - tag: ToyRubberDuck
-              name: резиновая уточка # Imperial Recipes Locale
+              name: recipes-toy-duck-name
               icon:
                 sprite: Objects/Fun/ducky.rsi
                 state: icon
               doAfter: 1
             - tag: ToyRubberDuck
-              name: резиновая уточка # Imperial Recipes Locale
+              name: recipes-toy-duck-name
               icon:
                 sprite: Objects/Fun/ducky.rsi
                 state: icon

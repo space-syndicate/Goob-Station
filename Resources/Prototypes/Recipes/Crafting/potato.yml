@@ -1,29 +1,23 @@
 - type: construction
-  name: Картофельная батарея # Imperial Recipes Locale
   id: PowerCellPotato
   graph: PowerCellPotato
   startNode: start
   targetNode: potatobattery
   category: construction-category-misc
-  description: Поистине гениальный источник силы. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Картофельный ИИ # Imperial Recipes Locale
   id: PotatoAI
   graph: PotatoAI
   startNode: start
   targetNode: potatoai
   category: construction-category-misc
-  description: Высокотехнологичное устройство, способное к общению. На самом деле это просто картошка, которую вы заставили стать разумной. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Суперкомкатный ИИ чип # Imperial Recipes Locale
   id: PotatoAIChip
   graph: PotatoAIChip
   startNode: start
   targetNode: potatoaichip
   category: construction-category-misc
-  description: Мастерски(?) созданный ИИ-чип, требующий такого же импровизированного источника питания в 1,1 В. # Imperial Recipes Locale
   objectType: Item

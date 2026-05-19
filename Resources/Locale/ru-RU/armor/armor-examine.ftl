@@ -6,7 +6,6 @@ armor-coefficient-value = - [color=yellow]{$type}[/color] урон снижае�
 armor-reduction-value = - [color=yellow]{$type}[/color] урон снижается на [color=lightblue]{$value}[/color].
 armor-coefficient-value-stamina = - [color=#00bfff]{$type}[/color] урон снижается на [color=lightblue]{$value}%[/color].
 
-damage-type-stamina = Stamina
 armor-damage-type-blunt = Ударный
 armor-damage-type-slash = Режущий
 armor-damage-type-piercing = Колющий
