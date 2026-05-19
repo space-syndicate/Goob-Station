@@ -527,3 +527,66 @@
   sprites:
     - sprite: Imperial/Aquila/Customization/Markings/earrings.rsi
       state: small_earrings
+
+- type: marking
+  id: LongPointedHorns
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: long_pointed_horns
+
+- type: marking
+  id: RamHorns
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: ram_horns
+
+- type: marking
+  id: ShortHorns
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: short_horns
+
+- type: marking
+  id: ShortStraightHorns
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: short_straight_horns
+
+- type: marking
+  id: ShortTwistedHorns
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: short_twisted_horns
+
+- type: marking
+  id: TwistedHorns
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: twisted_horns
+
+- type: marking
+  id: TwistedHorns2
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf]
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/horns.rsi
+      state: twisted_horns_2

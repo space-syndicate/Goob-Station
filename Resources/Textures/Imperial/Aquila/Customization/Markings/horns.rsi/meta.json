@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "long_pointed_horns",
+      "directions": 4
+    },
+    {
+      "name": "ram_horns",
+      "directions": 4
+    },
+    {
+      "name": "short_horns",
+      "directions": 4
+    },
+    {
+      "name": "short_straight_horns",
+      "directions": 4
+    },
+    {
+      "name": "short_twisted_horns",
+      "directions": 4
+    },
+    {
+        "name": "twisted_horns",
+        "directions": 4
+    },
+    {
+        "name": "twisted_horns_2",
+        "directions": 4
+    }
+  ]
+}
