@@ -16,10 +16,10 @@ public sealed partial class WormBloodDrinkerComponent : Component
     public EntityUid? DrinkActionEntity;
 
     [DataField]
-    public float InitialDelay = 2f;
+    public TimeSpan InitialDelay = TimeSpan.FromSeconds(2);
 
     [DataField]
-    public float TickDelay = 0.5f;
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(0.5);
 
     [DataField]
     public int DrainAmount = 4;

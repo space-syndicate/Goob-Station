@@ -1,3 +1,4 @@
+using Content.Server.Ghost;
 using Content.Server.Imperial.XxRaay.Components;
 using Content.Server.Mind;
 using Content.Server.NPC;
@@ -12,13 +13,16 @@ using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusIcon.Components;
 using System.Numerics;
+using Content.Shared.Ghost;
 using Content.Shared.Rejuvenate;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -41,6 +45,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly WormBloodDrinkSystem _wormBloodDrink = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly ISharedPlayerManager _players = default!;
+    [Dependency] private readonly GhostSystem _ghosts = default!;
 
     private readonly HashSet<EntityUid> _exitingPossession = new();
 
@@ -92,6 +98,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
             return;
 
         _wormBloodDrink.StopDrinking(worm);
+
+        DetachPlayersFromCorpse(corpse, worm);
 
         if (!_mind.TryGetMind(worm, out var mindId, out var mind))
             (mindId, mind) = _mind.CreateMind(null, Name(worm));
@@ -165,9 +173,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
             RemoveExitAction(corpse);
 
-            var bleed = new DamageSpecifier();
-            bleed.DamageDict["Bloodloss"] = host.ExitBleedDamage;
-            _damageable.TryChangeDamage(corpse, bleed);
+            _damageable.TryChangeDamage(corpse, host.ExitBleedDamage);
+            EnsureCorpseDeadAfterWormExit(corpse);
 
             if (host.ExitSound != null)
                 _audio.PlayPvs(host.ExitSound, corpse);
@@ -241,11 +248,13 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (TryComp(corpse, out WormCorpseOccupiedComponent? occupied) && occupied.AddedStatusIcon)
             RemComp<StatusIconComponent>(corpse);
 
+        RestoreVictimPlayers(corpse);
+
         RemComp<WormCorpseOccupiedComponent>(corpse);
         RemComp<ActiveWormCorpsePossessionComponent>(worm);
 
         if (!forced && host?.EnterActionEntity != null)
-            _actions.SetCooldown(host.EnterActionEntity, TimeSpan.FromSeconds(host.EnterCooldown));
+            _actions.SetCooldown(host.EnterActionEntity, host.EnterCooldown);
     }
 
     private void RelocateHtn(EntityUid worm, EntityUid corpse, ActiveWormCorpsePossessionComponent active)
@@ -312,6 +321,125 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
             _physics.SetLinearVelocity(worm, Vector2.Zero, body: physics);
             _physics.SetAngularVelocity(worm, 0f, body: physics);
         }
+    }
+
+    private void DetachPlayersFromCorpse(EntityUid corpse, EntityUid worm)
+    {
+        var netCorpse = GetNetEntity(corpse);
+
+        if (_mind.TryGetMind(corpse, out var corpseMindId, out var corpseMind)
+            && corpseMind.UserId != null
+            && (!_mind.TryGetMind(worm, out var wormMindId, out _) || corpseMindId != wormMindId))
+        {
+            _ghosts.OnGhostAttempt(corpseMindId, canReturnGlobal: false, forced: true, mind: corpseMind);
+        }
+
+        if (TryComp<ActorComponent>(corpse, out var actor)
+            && actor.PlayerSession.AttachedEntity == corpse)
+        {
+            var detachSession = true;
+
+            if (TryComp(worm, out MindContainerComponent? wormContainer)
+                && wormContainer.Mind is { } possessedWormMindId
+                && _mind.TryGetMind(possessedWormMindId, out _, out var possessedWormMind)
+                && possessedWormMind.UserId == actor.PlayerSession.UserId)
+            {
+                detachSession = false;
+            }
+
+            if (detachSession)
+                _players.SetAttachedEntity(actor.PlayerSession, null);
+        }
+
+        var query = EntityQueryEnumerator<MindComponent>();
+        while (query.MoveNext(out var mindId, out var mind))
+        {
+            if (mind.UserId == null || mind.OriginalOwnedEntity != netCorpse)
+                continue;
+
+            if (_players.TryGetSessionById(mind.UserId.Value, out var session) && session.AttachedEntity == corpse)
+            {
+                if (TryGetPlayerGhost(mind, session, out var ghostUid))
+                    _players.SetAttachedEntity(session, ghostUid);
+                else
+                    _players.SetAttachedEntity(session, null);
+            }
+
+            if (TryGetPlayerGhost(mind, null, out var ghost) && TryComp(ghost, out GhostComponent? ghostComp))
+                _ghosts.SetCanReturnToBody((ghost, ghostComp), false);
+        }
+    }
+
+    private void RestoreVictimPlayers(EntityUid corpse)
+    {
+        var netCorpse = GetNetEntity(corpse);
+        var canReturn = _mobState.IsDead(corpse) && !HasComp<WormCorpseOccupiedComponent>(corpse);
+
+        var query = EntityQueryEnumerator<MindComponent>();
+        while (query.MoveNext(out var mindId, out var mind))
+        {
+            if (mind.UserId == null || mind.OriginalOwnedEntity != netCorpse)
+                continue;
+
+            if (!TryGetPlayerGhost(mind, _players.TryGetSessionById(mind.UserId.Value, out var session) ? session : null, out var ghostUid)
+                || !TryComp(ghostUid, out GhostComponent? ghost))
+                continue;
+
+            ReestablishGhostVisit(mindId, mind, corpse);
+
+            _ghosts.SetCanReturnToBody((ghostUid, ghost), canReturn);
+        }
+    }
+
+    /// <summary>
+    /// Возврат в тело работает через Visit: OwnedEntity = труп, VisitingEntity = призрак, UnVisit переносит сессию на труп.
+    /// </summary>
+    private void ReestablishGhostVisit(EntityUid mindId, MindComponent mind, EntityUid corpse)
+    {
+        if (!Exists(corpse) || mind.OwnedEntity != corpse || !TryGetPlayerGhost(mind, null, out var ghostUid))
+            return;
+
+        if (mind.VisitingEntity == ghostUid)
+            return;
+
+        if (mind.VisitingEntity != null)
+            _mind.UnVisit(mindId, mind);
+
+        if (mind.VisitingEntity != ghostUid)
+            _mind.Visit(mindId, ghostUid, mind);
+    }
+
+    private bool TryGetPlayerGhost(MindComponent mind, ICommonSession? session, out EntityUid ghostUid)
+    {
+        ghostUid = default;
+
+        if (mind.VisitingEntity != null && HasComp<GhostComponent>(mind.VisitingEntity))
+        {
+            ghostUid = mind.VisitingEntity.Value;
+            return true;
+        }
+
+        if (mind.OwnedEntity != null && HasComp<GhostComponent>(mind.OwnedEntity))
+        {
+            ghostUid = mind.OwnedEntity.Value;
+            return true;
+        }
+
+        if (session?.AttachedEntity is { } attached && HasComp<GhostComponent>(attached))
+        {
+            ghostUid = attached;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void EnsureCorpseDeadAfterWormExit(EntityUid corpse)
+    {
+        if (_mobState.IsDead(corpse))
+            return;
+
+        _mobState.ChangeMobState(corpse, MobState.Dead);
     }
 
 }

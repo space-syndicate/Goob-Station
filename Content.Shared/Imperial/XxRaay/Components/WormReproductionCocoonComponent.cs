@@ -1,7 +1,7 @@
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -24,7 +24,9 @@ public sealed partial class WormReproductionCocoonComponent : Component
     [DataField]
     public EntProtoId SourceProto;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField]
+    [DataField]
+    public ProtoId<DamageTypePrototype> FailDeathDamageType;
+
+    [DataField, AutoNetworkedField]
     public TimeSpan EndTime;
 }

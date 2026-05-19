@@ -9,10 +9,10 @@ namespace Content.Shared.Imperial.XxRaay.Components;
 public sealed partial class VentCrawlerComponent : Component
 {
     [DataField(required: true)]
-    public float EnterDelay;
+    public TimeSpan EnterDelay;
 
     [DataField(required: true)]
-    public float ExitDelay;
+    public TimeSpan ExitDelay;
 
     [DataField(required: true)]
     public float VentSpeedMultiplier;

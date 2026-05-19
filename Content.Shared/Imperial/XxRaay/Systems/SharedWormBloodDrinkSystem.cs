@@ -86,7 +86,7 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(ent.Comp.InitialDelay),
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.InitialDelay,
                 new WormBloodDrinkAttachDoAfterEvent(), ent, target: target)
             {
                 BreakOnMove = true,
@@ -183,7 +183,7 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
 
     private void StartTickDoAfter(Entity<WormBloodDrinkerComponent> ent, EntityUid target)
     {
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(ent.Comp.TickDelay),
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.TickDelay,
             new WormBloodDrinkTickDoAfterEvent(), ent, target: target)
         {
             BreakOnMove = true,

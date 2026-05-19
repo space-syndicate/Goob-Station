@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.XxRaay.Components;
 public sealed partial class WormDoorHiderComponent : Component
 {
     [DataField]
-    public float EnterDelay = 2f;
+    public TimeSpan EnterDelay = TimeSpan.FromSeconds(2);
 
     [DataField]
     public bool UseStealth;
@@ -49,5 +49,5 @@ public sealed partial class WormDoorHiderComponent : Component
     public float AmbushStaminaDamage = 100f;
 
     [DataField]
-    public float AmbushKnockdownTime = 6f;
+    public TimeSpan AmbushKnockdownTime = TimeSpan.FromSeconds(6);
 }

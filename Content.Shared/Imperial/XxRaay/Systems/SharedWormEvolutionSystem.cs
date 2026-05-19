@@ -76,7 +76,7 @@ public abstract class SharedWormEvolutionSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(ent.Comp.WeaveDelay),
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.WeaveDelay,
                 new WormEvolutionDoAfterEvent(), ent)
             {
                 BreakOnMove = true,

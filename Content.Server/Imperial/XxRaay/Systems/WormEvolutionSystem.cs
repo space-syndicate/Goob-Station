@@ -4,6 +4,7 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.GameTicking;
@@ -102,7 +103,8 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         cocoonComp.Worm = worm;
         cocoonComp.ResultProto = evolver.ResultProto;
         cocoonComp.SourceProto = evolver.SourceProto;
-        cocoonComp.EndTime = _timing.CurTime + TimeSpan.FromSeconds(evolver.EvolutionDuration);
+        cocoonComp.FailDeathDamageType = evolver.FailDeathDamageType;
+        cocoonComp.EndTime = _timing.CurTime + evolver.EvolutionDuration;
         Dirty(cocoon, cocoonComp);
 
         var pausedMap = _corpsePossession.EnsurePausedMap();
@@ -187,7 +189,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
             && TryComp(worm, out ActiveWormEvolutionComponent? active)
             && active.PlayerControlled;
 
-        var corpse = SpawnDeadWorm(cocoon.SourceProto, coords);
+        var corpse = SpawnDeadWorm(cocoon.SourceProto, coords, cocoon.FailDeathDamageType);
 
         if (playerControlled)
             TryTransferPlayerMind(worm, cocoonUid, corpse);
@@ -213,7 +215,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         return true;
     }
 
-    private EntityUid SpawnDeadWorm(EntProtoId proto, EntityCoordinates coords)
+    private EntityUid SpawnDeadWorm(EntProtoId proto, EntityCoordinates coords, ProtoId<DamageTypePrototype> lethalDamageType)
     {
         var corpse = Spawn(proto, coords);
         _mobState.ChangeMobState(corpse, MobState.Dead);
@@ -222,7 +224,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         {
             var deadThreshold = _mobThreshold.GetThresholdForState(corpse, MobState.Dead, thresholds);
             var damage = new DamageSpecifier();
-            damage.DamageDict["Blunt"] = deadThreshold;
+            damage.DamageDict[lethalDamageType] = deadThreshold;
             _damageable.TryChangeDamage(corpse, damage);
         }
 

@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -19,13 +20,13 @@ public sealed partial class WormCorpseHostComponent : Component
     public EntityUid? EnterActionEntity;
 
     [DataField]
-    public float EnterDelay = 10f;
+    public TimeSpan EnterDelay = TimeSpan.FromSeconds(10);
 
     [DataField]
-    public float EnterCooldown = 180f;
+    public TimeSpan EnterCooldown = TimeSpan.FromSeconds(180);
 
     [DataField]
-    public float ExitBleedDamage = 200f;
+    public DamageSpecifier ExitBleedDamage = new();
 
     [DataField]
     public float Range = 1.5f;

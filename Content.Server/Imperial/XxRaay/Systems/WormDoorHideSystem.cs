@@ -130,7 +130,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
         if (!_actionBlocker.CanConsciouslyPerformAction(worm) || !_interaction.InRangeUnobstructed(worm, door))
             return;
 
-        var args = new DoAfterArgs(EntityManager, worm, TimeSpan.FromSeconds(hider.EnterDelay), new WormDoorHideDoAfterEvent(), door, target: door)
+        var args = new DoAfterArgs(EntityManager, worm, hider.EnterDelay, new WormDoorHideDoAfterEvent(), door, target: door)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
@@ -266,7 +266,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
             return;
 
         _transform.SetCoordinates(worm, Transform(worm), Transform(target).Coordinates);
-        _stun.TryKnockdown(target, TimeSpan.FromSeconds(hider.AmbushKnockdownTime), force: true);
+        _stun.TryKnockdown(target, hider.AmbushKnockdownTime, force: true);
 
         if (TryComp(target, out StaminaComponent? stamina))
         {

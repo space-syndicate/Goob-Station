@@ -79,7 +79,7 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(ent.Comp.EnterDelay),
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.EnterDelay,
                 new WormCorpseEnterDoAfterEvent(), ent, target: target)
             {
                 BreakOnMove = true,

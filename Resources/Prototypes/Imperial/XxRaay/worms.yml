@@ -155,7 +155,9 @@
     conversionRatio: 0.4
   - type: WormCorpseHost
     enterDelay: 10
-    exitBleedDamage: 200
+    exitBleedDamage:
+      types:
+        Bloodloss: 200
     enterCooldown: 180
   - type: VentCrawler
     enterDelay: 2
@@ -248,10 +250,12 @@
   - type: PressureImmunity
   - type: WormBloodDrinker
     conversionRatio: 0.45
-    MinVictimBloodFraction: 0.25
+    minVictimBloodFraction: 0.25
   - type: WormCorpseHost
     enterDelay: 10
-    exitBleedDamage: 200
+    exitBleedDamage:
+      types:
+        Bloodloss: 200
     enterCooldown: 180
   - type: WormDoorHider
     enterDelay: 2
@@ -321,7 +325,7 @@
   - type: PressureImmunity
   - type: WormBloodDrinker
     conversionRatio: 0.5
-    MinVictimBloodFraction: 0
+    minVictimBloodFraction: 0
   - type: WormReproducer
     bloodCost: 300
     weaveDelay: 3

@@ -1,3 +1,4 @@
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -18,10 +19,13 @@ public sealed partial class WormReproducerComponent : Component
     public int BloodCost = 300;
 
     [DataField]
-    public float WeaveDelay = 3f;
+    public TimeSpan WeaveDelay = TimeSpan.FromSeconds(3);
 
     [DataField]
-    public float ReproductionDuration = 120f;
+    public TimeSpan ReproductionDuration = TimeSpan.FromSeconds(120);
+
+    [DataField]
+    public ProtoId<DamageTypePrototype> FailDeathDamageType = "Blunt";
 
     [DataField]
     public EntProtoId CocoonProto;

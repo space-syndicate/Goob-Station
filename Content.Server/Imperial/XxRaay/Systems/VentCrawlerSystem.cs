@@ -134,7 +134,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         if (!_interaction.InRangeUnobstructed(user, vent))
             return;
 
-        var args = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(crawler.EnterDelay), new EnterVentCrawlerDoAfterEvent(), vent, target: vent)
+        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentCrawlerDoAfterEvent(), vent, target: vent)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
@@ -166,7 +166,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         if (!TryComp(user, out VentCrawlingComponent? active) || !CanExitVent(user, vent, active, showPopup: true))
             return;
 
-        var args = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(crawler.ExitDelay), new ExitVentCrawlerDoAfterEvent(), vent, target: vent)
+        var args = new DoAfterArgs(EntityManager, user, crawler.ExitDelay, new ExitVentCrawlerDoAfterEvent(), vent, target: vent)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
