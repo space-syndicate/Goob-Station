@@ -51,9 +51,6 @@ public sealed partial class VentCrawlingComponent : Component
     public ushort PreviousVisibilityLayer;
 
     [DataField]
-    public bool RevertingMove;
-
-    [DataField]
     public float SoundDistance;
 
     public HashSet<EntityUid> DisabledActions = [];

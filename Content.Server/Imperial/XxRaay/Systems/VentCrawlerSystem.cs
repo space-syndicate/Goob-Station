@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Imperial.XxRaay.Components;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
@@ -74,21 +75,31 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         SubscribeLocalEvent<VentCrawlingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMoveSpeed);
         SubscribeLocalEvent<VentCrawlingComponent, MoveEvent>(OnMoved);
         SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<VentCrawlingComponent, VentCrawlTileMoveAttemptEvent>(OnVentCrawlTileMoveAttempt);
+    }
+
+    private void OnVentCrawlTileMoveAttempt(Entity<VentCrawlingComponent> ent, ref VentCrawlTileMoveAttemptEvent args)
+    {
+        if (!TryComp(args.GridUid, out MapGridComponent? grid))
+            return;
+
+        var targetCoords = _map.ToCenterCoordinates(args.GridUid, args.TargetTile, grid);
+        args.CanMove = IsOnPipeNetwork(ent.Comp, targetCoords);
     }
 
     private void OnVentGetVerbs(Entity<VentCrawlPointComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
-        AddVentVerbs(ent.Owner, ref args);
+        AddVentVerbs(ent, ref args);
     }
 
     private void OnEnterDoAfter(Entity<VentCrawlPointComponent> ent, ref EnterVentCrawlerDoAfterEvent args)
     {
-        HandleEnterDoAfter(ent.Owner, ref args);
+        HandleEnterDoAfter(ent, ref args);
     }
 
     private void OnExitDoAfter(Entity<VentCrawlPointComponent> ent, ref ExitVentCrawlerDoAfterEvent args)
     {
-        HandleExitDoAfter(ent.Owner, ref args);
+        HandleExitDoAfter(ent, ref args);
     }
 
     private void AddVentVerbs(EntityUid vent, ref GetVerbsEvent<InteractionVerb> args)
@@ -292,7 +303,6 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         active.PreviousStealthEnabled = true;
         active.PreviousStealthVisibility = 1f;
         active.PreviousVisibilityLayer = crawler.HiddenVisibilityLayer;
-        active.RevertingMove = false;
         active.SoundDistance = 0f;
         active.DisabledActions.Clear();
 
@@ -321,6 +331,8 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         _transform.SetCoordinates(user, Transform(user), Transform(vent).Coordinates);
         _movement.RefreshMovementSpeedModifiers(user);
 
+        EnsureComp<EntityTileMovementComponent>(user);
+
         if (TryComp(user, out EyeComponent? eye))
             _eye.RefreshVisibilityMask((user, eye));
     }
@@ -336,28 +348,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void OnMoved(Entity<VentCrawlingComponent> ent, ref MoveEvent args)
     {
-        if (ent.Comp.RevertingMove)
-        {
-            ent.Comp.RevertingMove = false;
-            return;
-        }
-
-        if (IsOnPipeNetwork(ent.Comp, args.NewPosition))
-        {
-            TryPlayVentCrawlSound(ent, ref args);
-            return;
-        }
-
-        ent.Comp.RevertingMove = true;
-        _transform.SetCoordinates(ent.Owner, args.Component, args.OldPosition);
-
-        if (TryComp(ent.Owner, out PhysicsComponent? physics))
-            _physics.ResetDynamics(ent.Owner, physics);
+        TryPlayVentCrawlSound(ent, ref args);
     }
 
     private void OnGetVisMask(Entity<VentCrawlingComponent> ent, ref GetVisMaskEvent args)
     {
-        if (!TryComp(ent.Owner, out VentCrawlerComponent? crawler))
+        if (!TryComp(ent, out VentCrawlerComponent? crawler))
             return;
 
         if (crawler.EyeSeeSubfloor)
@@ -369,37 +365,39 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void OnShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
     {
-        if (TryComp(ent.Owner, out PhysicsComponent? physics))
+        DisableTileMovement(ent);
+
+        if (TryComp(ent, out PhysicsComponent? physics))
         {
-            RestoreFixtures(ent.Owner, ent.Comp, physics);
-            _physics.SetCanCollide(ent.Owner, ent.Comp.WasCollidable, body: physics);
-            _physics.ResetDynamics(ent.Owner, physics);
+            RestoreFixtures(ent, ent.Comp, physics);
+            _physics.SetCanCollide(ent, ent.Comp.WasCollidable, body: physics);
+            _physics.ResetDynamics(ent, physics);
         }
 
-        if (TryComp(ent.Owner, out VentCrawlerComponent? crawler))
+        if (TryComp(ent, out VentCrawlerComponent? crawler))
         {
             if (crawler.RemoveComplexInteraction)
-                RestoreComplexInteraction(ent.Owner, ent.Comp);
+                RestoreComplexInteraction(ent, ent.Comp);
 
-            RestoreVisibility(ent.Owner, ent.Comp);
+            RestoreVisibility(ent, ent.Comp);
 
             if (crawler.UseStealth)
-                RestoreStealth(ent.Owner, ent.Comp);
+                RestoreStealth(ent, ent.Comp);
 
             if (crawler.DisableActions)
-                SetActionsEnabled(ent.Owner, true, ent.Comp);
+                SetActionsEnabled(ent, true, ent.Comp);
         }
 
-        RemComp<ActiveVentCrawlingComponent>(ent.Owner);
-        _movement.RefreshMovementSpeedModifiers(ent.Owner);
+        RemComp<ActiveVentCrawlingComponent>(ent);
+        _movement.RefreshMovementSpeedModifiers(ent);
 
-        if (TryComp(ent.Owner, out EyeComponent? eye))
-            _eye.RefreshVisibilityMask((ent.Owner, eye));
+        if (TryComp(ent, out EyeComponent? eye))
+            _eye.RefreshVisibilityMask((ent, eye));
     }
 
     private void OnRefreshMoveSpeed(Entity<VentCrawlingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (!TryComp(ent.Owner, out VentCrawlerComponent? crawler))
+        if (!TryComp(ent, out VentCrawlerComponent? crawler))
             return;
 
         args.ModifySpeed(crawler.VentSpeedMultiplier, crawler.VentSpeedMultiplier);
@@ -650,9 +648,21 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         ExitVent(user, active.SourceVent);
     }
 
+    private void DisableTileMovement(EntityUid user)
+    {
+        if (HasComp<EntityTileMovementComponent>(user))
+            RemComp<EntityTileMovementComponent>(user);
+
+        if (!TryComp(user, out PhysicsComponent? physics))
+            return;
+
+        _physics.SetLinearVelocity(user, Vector2.Zero, body: physics);
+        _physics.SetAngularVelocity(user, 0f, body: physics);
+    }
+
     private void TryPlayVentCrawlSound(Entity<VentCrawlingComponent> ent, ref MoveEvent args)
     {
-        if (!TryComp(ent.Owner, out VentCrawlerComponent? crawler) || crawler.MoveSound == null || crawler.MoveSoundInterval <= 0f)
+        if (!TryComp(ent, out VentCrawlerComponent? crawler) || crawler.MoveSound == null || crawler.MoveSoundInterval <= 0f)
             return;
 
         if (!args.OldPosition.TryDistance(EntityManager, args.NewPosition, out var distance) || distance <= 0f)
@@ -668,6 +678,6 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
             return;
 
         ent.Comp.SoundDistance -= interval;
-        _audio.PlayPvs(crawler.MoveSound, ent.Owner);
+        _audio.PlayPvs(crawler.MoveSound, ent);
     }
 }
