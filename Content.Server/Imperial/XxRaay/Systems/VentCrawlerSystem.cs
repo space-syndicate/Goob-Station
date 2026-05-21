@@ -363,7 +363,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         if (crawler.EyeSeeSubfloor)
             args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
 
-        if (crawler.EyeSeeSpiderVentLayer)
+        if (crawler.EyeSeeCrawlVisibilityLayer)
             args.VisibilityMask |= crawler.CrawlVisibilityLayer;
     }
 

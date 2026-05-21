@@ -181,7 +181,7 @@
     hiddenVisibilityLayer: 1
     crawlVisibilityLayer: 16
     eyeSeeSubfloor: true
-    eyeSeeSpiderVentLayer: true
+    eyeSeeCrawlVisibilityLayer: true
   - type: WormDoorHider
     enterDelay: 2
     useStealth: true

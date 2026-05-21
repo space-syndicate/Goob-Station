@@ -69,5 +69,5 @@ public sealed partial class VentCrawlerComponent : Component
     public bool EyeSeeSubfloor;
 
     [DataField]
-    public bool EyeSeeSpiderVentLayer;
+    public bool EyeSeeCrawlVisibilityLayer;
 }
