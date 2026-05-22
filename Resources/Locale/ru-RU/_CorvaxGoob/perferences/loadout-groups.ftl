@@ -16,6 +16,7 @@ loadout-group-roboticist-glasses = Робототехник, очки
 loadout-group-musician-glasses = Музыкант, очки
 loadout-group-musician-helmet = Музыкант, голова
 loadout-group-radiohost-glasses = Радиоведущий, очки
+loadout-group-chaplain-bible = Священная книга
 # Engineering
 loadout-group-engineering-welder = Инженер, сварочный аппарат
 # Command
