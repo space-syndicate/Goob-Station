@@ -77,6 +77,7 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
+            /// CorvaxGoob - Nuclear Reactor localization - start
             _loc.AddFunction(cultureEn, "PRESSURE", FormatPressure);
             _loc.AddFunction(cultureEn, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(cultureEn, "POWERJOULES", FormatPowerJoules);
@@ -87,6 +88,7 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(cultureEn, "NATURALFIXED", FormatNaturalFixed);
             _loc.AddFunction(cultureEn, "NATURALPERCENT", FormatNaturalPercent);
             _loc.AddFunction(cultureEn, "PLAYTIME", FormatPlaytime);
+            /// CorvaxGoob - Nuclear Reactor localization - end
         }
 
         private ILocValue FormatMany(LocArgs args)

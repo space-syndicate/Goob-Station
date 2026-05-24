@@ -78,7 +78,7 @@ namespace Content.Shared.Materials
         [DataField(required: true)]
         public double Price = 0;
 
-        // Far Horizons Edit
+        // CorvaxGoob - Nuclear Reactor Edit
         /// <summary>
         /// The physical properties of this material.
         /// </summary>
