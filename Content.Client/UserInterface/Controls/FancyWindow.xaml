@@ -12,6 +12,8 @@
                 <Label Name="WindowTitle"
                        HorizontalExpand="True" VAlign="Center" StyleClasses="FancyWindowTitle" ClipText="true" />
                 <TextureButton Name="HelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" Disabled="True" Visible="False" Access="Public" />
+                <!-- Imperial Space -->
+                <TextureButton Name="PopOutButton" StyleClasses="imperialWindowPopOutButton" VerticalAlignment="Center" />
                 <TextureButton Name="CloseButton" StyleClasses="windowCloseButton"
                                VerticalAlignment="Center" />
             </BoxContainer>
