@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "big_lock_1",
+      "directions": 4
+    },
+    {
+      "name": "big_lock_2",
+      "directions": 4
+    },
+    {
+      "name": "dafna_hair",
+      "directions": 4
+    },
+    {
+      "name": "double_bangs",
+      "directions": 4
+    },
+    {
+      "name": "fluffy_bangs",
+      "directions": 4
+    },
+    {
+        "name": "fluffy_tail",
+        "directions": 4
+    },
+    {
+        "name": "kind",
+        "directions": 4
+    },
+    {
+        "name": "koume",
+        "directions": 4
+    },
+    {
+        "name": "long_tail",
+        "directions": 4
+    },
+    {
+        "name": "ronin",
+        "directions": 4
+    },
+    {
+        "name": "slime",
+        "directions": 4
+    },
+    {
+        "name": "sokaku",
+        "directions": 4
+    },
+    {
+        "name": "tinybraids",
+        "directions": 4
+    },
+    {
+        "name": "venti",
+        "directions": 4
+    },
+    {
+        "name": "tailHair1",
+        "directions": 4
+    },
+    {
+        "name": "tailHair2",
+        "directions": 4
+    }
+  ]
+}

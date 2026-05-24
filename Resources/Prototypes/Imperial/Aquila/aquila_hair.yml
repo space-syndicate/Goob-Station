@@ -1,0 +1,115 @@
+- type: marking
+  id: HumanHairSokaku
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: sokaku
+
+- type: marking
+  id: HumanHairSlime
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: slime
+
+- type: marking
+  id: HumanHairVenti
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: venti
+
+- type: marking
+  id: HumanHairTinyBraids
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: tinybraids
+
+- type: marking
+  id: HumanHairTinyRonin
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: ronin
+
+- type: marking
+  id: HumanHairReallyLongTail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: long_tail
+
+- type: marking
+  id: HumanHairKoume
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: koume
+
+- type: marking
+  id: HumanHairKind
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: kind
+
+- type: marking
+  id: HumanHairFluffyTail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: fluffy_tail
+
+- type: marking
+  id: HumanHairFluffyBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: fluffy_bangs
+
+- type: marking
+  id: HumanHairDoubleBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: double_bangs
+
+- type: marking
+  id: HumanHairDafna
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: dafna_hair
+
+- type: marking
+  id: HumanHairBigLock
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: big_lock_1
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: big_lock_2
+
+- type: marking
+  id: HumanHairTallHairTwoLayer
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: tailHair1
+    - sprite: Imperial/Aquila/Customization/Markings/hair.rsi
+      state: tailHair2
