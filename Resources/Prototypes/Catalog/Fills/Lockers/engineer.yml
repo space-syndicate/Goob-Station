@@ -242,8 +242,8 @@
     - id: GeigerCounter
       amount: !type:ConstantNumberSelector
         value: 2
-    - id: RadiationBlockingProjector # Far Horizons
-    - id: PillCanisterPotassiumIodide # Far Horizons
+    - id: RadiationBlockingProjector # CorvaxGoob - Nuclear Reactor
+    - id: PillCanisterPotassiumIodide # CorvaxGoob - Nuclear Reactor
       prob: 0.75
 
 - type: entity

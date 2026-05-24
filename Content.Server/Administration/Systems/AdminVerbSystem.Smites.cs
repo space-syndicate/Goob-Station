@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 0x6273 <0x40@keemail.me>
+﻿// SPDX-FileCopyrightText: 2022 0x6273 <0x40@keemail.me>
 // SPDX-FileCopyrightText: 2022 Jezithyr <Jezithyr@gmail.com>
 // SPDX-FileCopyrightText: 2022 Julian Giebel <juliangiebel@live.de>
 // SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
@@ -85,7 +85,7 @@
 // SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 to4no_fix <156101927+chavonadelal@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 voidnull000 <18663194+voidnull000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Джексон Миссиссиппи <tripwiregamer@gmail.com>
+// SPDX-FileCopyrightText: 2024 Р”Р¶РµРєСЃРѕРЅ РњРёСЃСЃРёСЃСЃРёРїРїРё <tripwiregamer@gmail.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
@@ -1077,21 +1077,19 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(crawler);
 
-        // Far Horizons - Start
+        // CorvaxGoob Start
         var fuelRodifyName = Loc.GetString("admin-smite-become-fuelrod-name").ToLowerInvariant();
         Verb fuelRodify = new()
         {
             Text = fuelRodifyName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi"), "default_rod"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_CorvaxGoob/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi"), "default_rod"),
             Act = () => _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite"),
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
         };
         args.Verbs.Add(fuelRodify);
-        // Far Horizons - End
 
-        // WF: Gib smite
         var gibName = Loc.GetString("admin-smite-gib-name").ToLowerInvariant();
         Verb gib = new()
         {
@@ -1106,6 +1104,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", gibName, Loc.GetString("admin-smite-gib-description"))
         };
         args.Verbs.Add(gib);
-        // End WF
+        // CorvaxGoob - End
     }
 }

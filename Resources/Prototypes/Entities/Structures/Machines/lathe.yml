@@ -612,7 +612,7 @@
     - BluespaceTechnologyBoards # BluespaceHarvester
     - BluespaceHarvesterBoards # BluespaceHarvester
     - Cloning # Cloning
-    - ReactorCircuitboards # Far Horizons
+    - ReactorCircuitboards # Nuclear Reactor
   - type: MaterialStorage
     whitelist:
       tags:

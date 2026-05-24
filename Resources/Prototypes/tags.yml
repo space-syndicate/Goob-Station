@@ -1422,7 +1422,7 @@
   id: RawMaterial
 
 - type: Tag
-  id: ReactorPart #FarHorizons
+  id: ReactorPart #CorvaxGoob - Nuclear Reactor
 
 # Give this to something that doesn't need any special recycler behavior and just needs deleting.
 - type: Tag

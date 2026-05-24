@@ -21,7 +21,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
-using Content.Shared._FarHorizons.Materials;
+using Content.Shared._CorvaxGoob.Materials;
 
 namespace Content.Shared.Materials
 {

@@ -38,7 +38,7 @@
   icon: { sprite: /Textures/Objects/Misc/monkeycube.rsi, state: cube }
   color: "#8A9A5B"
   price: 0.1
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     flammable: 3
 
@@ -49,7 +49,7 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: cardboard }
   color: "#70736c"
   price: 0.025
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     hard: 1
     density: 2
@@ -63,7 +63,7 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: cloth }
   color: "#e7e7de"
   price: 0.05
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     hard: 1
     density: 1
@@ -78,7 +78,7 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: durathread }
   color: "#8291a1"
   price: 0.35 # 1-1 mix of plastic and cloth.
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 8
     thermal: 9
     hard: 4
@@ -93,7 +93,7 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: paper }
   color: "#d9d9d9"
   price: 0.01 # it's paper bro what do you expect?
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 2
     hard: 1
     density: 1
@@ -106,7 +106,7 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: plasma }
   color: "#7e009e"
   price: 0.35 # $35 for 1 unit
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 5
     thermal: 3
     hard: 2
@@ -123,7 +123,7 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: plastic }
   color: "#d9d9d9"
   price: 0.20 # $20 for 1 unit
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 2
     thermal: 3
     hard: 1
@@ -138,7 +138,7 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: wood }
   color: "#966F33"
   price: 0.10 # $10 for 1 unit
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     hard: 3
     density: 5
@@ -151,7 +151,7 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: uranium }
   color: "#32a852"
   price: 0.85 # $85 for 1 unit
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     thermal: 3
     hard: 5
@@ -169,7 +169,7 @@
   color: "#32a852"
   price: 1.0 # $100 for 1 unit
   # Interpolated properties, 50/50 biomass/uranium
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     thermal: 4
     hard: 4
@@ -186,7 +186,7 @@
   icon: { sprite: Objects/Materials/Sheets/meaterial.rsi, state: meat }
   color: "#c53648"
   price: 0.05
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     hard: 1
     density: 3
@@ -199,7 +199,7 @@
   icon: { sprite: Objects/Materials/silk.rsi, state: icon }
   color: "#eeeeee" #eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   price: 0 # Maybe better for it to be priceless, knowing how greedy cargo is.
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     thermal: 4
     hard: 1
@@ -221,7 +221,7 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: bones }
   color: "#896f5e"
   price: 0
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     hard: 5
     density: 3
@@ -235,7 +235,7 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: coal }
   color: "#404040"
   price: 0.1 # $10 for 1 unit
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 4
     hard: 3
     density: 2
@@ -248,7 +248,7 @@
   icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
   color: "#A9A9A9"
   price: 0
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 3
     flammable: 8
 
@@ -260,7 +260,7 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: diamond }
   color: "#80ffff"
   price: 20 # big diamond gaslit us so hard diamonds actually became extremely rare
-  properties: # FH edit
+  properties: # CorvaxGoob - Nuclear Reactor
     electrical: 3
     thermal: 3
     hard: 7
