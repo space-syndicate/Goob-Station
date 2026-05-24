@@ -589,7 +589,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
 
         var lightcomp = _lightSystem.EnsureLight(uid);
         _lightSystem.SetEnergy(uid, 0.1f, lightcomp);
-        _lightSystem.SetFalloff(uid, 2, lightcomp);
+        _lightSystem.SetSoftness(uid, 2f, lightcomp);
         _lightSystem.SetRadius(uid, (comp.ReactorGridWidth + comp.ReactorGridHeight) / 4, lightcomp);
         _lightSystem.SetColor(uid, Color.FromHex("#FFAAAAFF"), lightcomp);
 

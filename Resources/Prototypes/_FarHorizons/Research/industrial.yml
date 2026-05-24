@@ -1,15 +1,13 @@
 - type: technology
   id: NuclearPowerGeneration
   name: research-technology-nuclear-power
-  entityIcon: NuclearReactorMonitorComputerCircuitboard # Wayfarer
-  #icon:
-  #  sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
-  #  state: default_rod
-  discipline: NFEngineering # Wayfarer: Industrial<NFEngineering
+  icon:
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    state: default_rod
+  discipline: Industrial
   tier: 1
   cost: 7500
   recipeUnlocks:
-  #- NuclearFabricatorMachineCircuitboard # Wayfarer
   - NuclearReactorMonitorComputerCircuitboard
   - GasTurbineMonitorComputerCircuitboard
   - UraniumReactorFuelRod
@@ -28,19 +26,18 @@
   - BrassGasTurbineBlade
   - SilverGasTurbineStator
   technologyPrerequisites:
-  - NFPowerGeneration # Wayfarer: PowerGeneration<NFPowerGeneration
-  position: 3, 27 # Wayfarer
+  - PowerGeneration
+  position: 3, 27
 
 - type: technology
   id: NuclearPowerRecycling
   name: research-technology-nuclear-recycling
-  entityIcon: PlutoniumReactorFuelRod # Wayfarer
-  #icon:
-  #  sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
-  #  state: nuclear_waste
-  discipline: NFEngineering # Wayfarer: Industrial<NFEngineering
+  icon:
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    state: nuclear_waste
+  discipline: Industrial
   tier: 2
-  cost: 7500 # Wayfarer: 12500<7500
+  cost: 7500
   recipeUnlocks:
   - NuclearCentrifugeMachineCircuitboard
   - PlutoniumReactorFuelRod
@@ -55,5 +52,5 @@
   - GoldGasTurbineStator
   - GoldGasTurbineBlade
   technologyPrerequisites:
-  - NuclearPowerGeneration # Wayfarer: NuclearPowerGeneration<NFPowerGeneration
-  position: 4, 27 # Wayfarer
+  - NuclearPowerGeneration
+  position: 4, 27

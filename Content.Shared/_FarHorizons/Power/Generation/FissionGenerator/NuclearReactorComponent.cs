@@ -147,7 +147,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// Radio channel to send less critical but still critical alerts to
     /// </summary>
     [DataField]
-    public string ShortbandChannel = "Traffic";
+    public string ShortbandChannel = "Common";
     // Wayfarer End
 
     /// <summary>
