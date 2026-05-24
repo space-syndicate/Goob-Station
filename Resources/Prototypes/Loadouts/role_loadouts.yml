@@ -286,7 +286,6 @@
   id: JobChaplain
   groups:
   - Inventory # CorvaxGoob-loadouts
-  - ChaplainBible # CorvaxGoob-loadouts
   - GroupTankHarness
   - ChaplainHead
   - ChaplainMask
