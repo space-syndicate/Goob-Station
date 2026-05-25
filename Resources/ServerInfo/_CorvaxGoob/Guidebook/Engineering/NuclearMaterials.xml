@@ -1,57 +1,57 @@
 <Document>
-    # Reactor Rod Material Effects
-    This table lists the effects of each material within the reactor.
+    # Эффекты материалов стержней реактора
+    В этой таблице перечислены эффекты каждого материала внутри реактора.
 
-    Values for Neutron Stimulated Emmission Chance, Stimulated Emmission Chance, Neutron Decay Chance, and Decay Chance assume the material is fresh and has not undergone any interactions. These values will change as the material is used.
+    Значения шанса нейтронно-стимулированной эмиссии, шанса стимулированной эмиссии, шанса нейтронного распада и шанса распада предполагают, что материал свежий и не подвергался никаким взаимодействиям. Эти значения будут меняться по мере использования материала.
 
-    Neutron Stimulated Emmission Chance, Stimulated Emmission Chance, and Reflection Chance require that it passes the Neutron Interact Chance first.
+    Шанс нейтронно-стимулированной эмиссии, шанс стимулированной эмиссии и шанс отражения требуют, чтобы сначала был пройден шанс взаимодействия нейтрона.
 
-    (*) means the statistic is multiplied by Neutron Cross Section, which changes based on rod type. Those statistics are written assuming Neutron Cross Section = 1.
+    (*) означает, что статистика умножается на нейтронное сечение, которое изменяется в зависимости от типа стержня. Эти статистики написаны при условии, что нейтронное сечение = 1.
     <Table Columns="8">
         <ColorBox>
             <Box>
-                Material
+                Материал
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Thermal Transfer Value
+                Значение теплопередачи
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Neutron Interact Chance*
+                Шанс взаимодействия нейтрона*
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Neutron Stimulated Emmission Chance 
+                Шанс нейтронно-стимулированной эмиссии
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Stimulated Emmission Chance
+                Шанс стимулированной эмиссии
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Neutron Decay Chance*
+                Шанс нейтронного распада*
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Decay Chance*
+                Шанс распада*
             </Box>
         </ColorBox>
         <ColorBox>
             <Box>
-                Reflection Chance
+                Шанс отражения
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#bfc031">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Bananium
+                Бананий
             </Box>
         </ColorBox>
         <ColorBox>
@@ -66,7 +66,7 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                11.25% 
+                11.25%
             </Box>
         </ColorBox>
         <ColorBox>
@@ -89,10 +89,10 @@
                 20%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#566558">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Bohrum
+                Богрум
             </Box>
         </ColorBox>
         <ColorBox>
@@ -107,7 +107,7 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
- 
+
             </Box>
         </ColorBox>
         <ColorBox>
@@ -130,10 +130,10 @@
                 25%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#b18b25">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Brass
+                Латунь
             </Box>
         </ColorBox>
         <ColorBox>
@@ -171,10 +171,10 @@
                 10%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#828aa4">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Cerenkite
+                Черенкит
             </Box>
         </ColorBox>
         <ColorBox>
@@ -189,7 +189,7 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
- 
+
             </Box>
         </ColorBox>
         <ColorBox>
@@ -212,10 +212,10 @@
                 10%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#80ffff">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Diamond
+                Алмаз
             </Box>
         </ColorBox>
         <ColorBox>
@@ -253,10 +253,10 @@
                 35%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#a8ccd7">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Glass
+                Стекло
             </Box>
         </ColorBox>
         <ColorBox>
@@ -294,10 +294,10 @@
                 15%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#ffd700">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Gold
+                Золото
             </Box>
         </ColorBox>
         <ColorBox>
@@ -335,10 +335,10 @@
                 10%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#7e009e">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Plasma
+                Плазма
             </Box>
         </ColorBox>
         <ColorBox>
@@ -376,10 +376,10 @@
                 10%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#b35989">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Plasma Glass
+                Плазменное стекло
             </Box>
         </ColorBox>
         <ColorBox>
@@ -417,10 +417,10 @@
                 35%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#696969">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Plasteel
+                Пластил
             </Box>
         </ColorBox>
         <ColorBox>
@@ -458,10 +458,10 @@
                 15%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#404888">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Plutonium
+                Плутоний
             </Box>
         </ColorBox>
         <ColorBox>
@@ -476,7 +476,7 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                37.5% 
+                37.5%
             </Box>
         </ColorBox>
         <ColorBox>
@@ -499,10 +499,10 @@
                 35%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#c0c0c0">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Silver
+                Серебро
             </Box>
         </ColorBox>
         <ColorBox>
@@ -540,10 +540,10 @@
                 10%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#808080">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Steel
+                Сталь
             </Box>
         </ColorBox>
         <ColorBox>
@@ -581,10 +581,10 @@
                 15%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#32a852">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Uranium
+                Уран
             </Box>
         </ColorBox>
         <ColorBox>
@@ -622,10 +622,10 @@
                 25%
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#3cab38">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                Uranium Glass
+                Урановое стекло
             </Box>
         </ColorBox>
         <ColorBox>
@@ -640,7 +640,7 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                11.25% 
+                11.25%
             </Box>
         </ColorBox>
         <ColorBox>
@@ -665,36 +665,36 @@
         </ColorBox>
     </Table>
 
-	## Neutron Cross Sections
-	- Fuel Rod: 1
-	- Control Rod: 0-2 (depending on insertion level)
-	- Gas Channel: 0.5
-	- Heat Exhanger: 0.1
+	## Нейтронные сечения
+	- Топливный стержень: 1
+	- Управляющий стержень: 0-2 (в зависимости от уровня вставки)
+	- Газовый канал: 0.5
+	- Теплообменник: 0.1
 
-	# Turbine Part Material Effects
-	These tables list the effects of each material within the turbine.
-	
-	## Blades
+	# Эффекты материалов деталей турбины
+	В этих таблицах перечислены эффекты каждого материала внутри турбины.
+
+	## Лопасти
 	<Table Columns="3">
 		<ColorBox>
 			<Box>
-				Material
+				Материал
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box>
-				Integrity
+				Прочность
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box>
-				Inertia
+				Инерция
 			</Box>
 		</ColorBox>
 
 		<ColorBox Color="#b18b25">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Brass
+				Латунь
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -710,7 +710,7 @@
 
 		<ColorBox Color="#80ffff">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Diamond
+				Алмаз
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -726,7 +726,7 @@
 
 		<ColorBox Color="#ffd700">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Gold
+				Золото
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -742,7 +742,7 @@
 
 		<ColorBox Color="#696969">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Plasteel
+				Пластил
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -758,7 +758,7 @@
 
 		<ColorBox Color="#808080">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Steel
+				Сталь
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -773,22 +773,22 @@
 		</ColorBox>
     </Table>
 
-	## Stators
+	## Статоры
 	<Table Columns="2">
 		<ColorBox>
 			<Box>
-				Material
+				Материал
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box>
-				Efficiency
+				Эффективность
 			</Box>
 		</ColorBox>
-		
+
 		<ColorBox Color="#ffd700">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Gold
+				Золото
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -799,7 +799,7 @@
 
 		<ColorBox Color="#c0c0c0">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Silver
+				Серебро
 			</Box>
 		</ColorBox>
 		<ColorBox>
@@ -810,7 +810,7 @@
 
 		<ColorBox Color="#808080">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				Steel
+				Сталь
 			</Box>
 		</ColorBox>
 		<ColorBox>

@@ -1,163 +1,163 @@
 <Document>
-	# Nuclear Generator
+	# Ядерный генератор
 
-	The Nuclear Generator generates power by heating a gas through fission reactions in a Nuclear Reactor, which then spins a Gas Turbine.
+	Ядерный генератор вырабатывает энергию, нагревая газ через реакции деления в ядерном реакторе, который затем вращает газовую турбину.
 
-	## The Nuclear Reactor
+	## Ядерный реактор
 	<Box>
 		<GuideEntityEmbed Entity="NuclearReactorNormal"/>
 	</Box>
 
-	The Nuclear Reactor is the primary source of heat the generator uses to make power.
+	Ядерный реактор является основным источником тепла, которое генератор использует для выработки энергии.
 
-	It is represented as a grid of Reactor Rod ports, which engineers can insert different fabricated rods into.
+	Он представлен в виде сетки портов для стержней реактора, в которые инженеры могут вставлять различные изготовленные стержни.
 
-	Heat is generated through fission reactions inside fuel rods and transferred into the coolant gas by gas channels.
+	Тепло вырабатывается через реакции деления внутри топливных стержней и передаётся в охлаждающий газ через газовые каналы.
 
-	## Reactor Rods
+	## Стержни реактора
 	<Box>
 		<GuideEntityEmbed Entity="NuclearFabricator"/>
 	</Box>
 	<Box>
-		<GuideEntityEmbed Entity="CerenkiteReactorFuelRod" Caption="fuel rod"/>
-		<GuideEntityEmbed Entity="BohrumReactorControlRod" Caption="control rod"/>
-		<GuideEntityEmbed Entity="SteelReactorGasChannel" Caption="gas channel"/>
-		<GuideEntityEmbed Entity="SteelReactorHeatExchanger" Caption="heat exchanger"/>
+		<GuideEntityEmbed Entity="CerenkiteReactorFuelRod" Caption="топливный стержень"/>
+		<GuideEntityEmbed Entity="BohrumReactorControlRod" Caption="управляющий стержень"/>
+		<GuideEntityEmbed Entity="SteelReactorGasChannel" Caption="газовый канал"/>
+		<GuideEntityEmbed Entity="SteelReactorHeatExchanger" Caption="теплообменник"/>
 	</Box>
 
-	Reactor Rods are the parts that go into the Reactor grid and cause it to function.
+	Стержни реактора — это детали, которые вставляются в сетку реактора и обеспечивают его работу.
 
-	They transfer heat and interact with neutrons within the Reactor.
+	Они передают тепло и взаимодействуют с нейтронами внутри реактора.
 
-	If a Reactor Rod's [bold]Temperature[/bold] reaches 1426C (1700k), it will begin to melt.
+	Если [bold]Температура[/bold] стержня реактора достигает 1426°C (1700K), он начнёт плавиться.
 
-	Once melted it will become much more active and able to transfer heat into the Reactor, which may cause a total meltdown.
+	После расплавления он станет значительно более активным и способным передавать тепло в реактор, что может привести к полному расплавлению активной зоны.
 
-	Handling hot Reactor Rods can cause serious burns.
+	Обращение с горячими стержнями реактора может вызвать серьёзные ожоги.
 
-	If it is hotter than 80C you'll need gloves to be able to handle them. At 400C, not even gloves will protect you.
+	При температуре выше 80°C для работы с ними потребуются перчатки. При 400°C даже перчатки вас не защитят.
 
-	There are four different types of Reactor Rods that can be manufactured from a variety of [textlink="materials" link="NuclearMaterials"] and placed into the Reactor grid: Fuel Rods, Control Rods, Gas Channels, and Heat Exchangers.
+	Существует четыре типа стержней реактора, которые можно изготовить из различных [textlink="материалов" link="NuclearMaterials"] и поместить в сетку реактора: топливные стержни, управляющие стержни, газовые каналы и теплообменники.
 
-	### Fuel Rods
-	Fuel Rods are the source of neutrons and heat within the Reactor.
+	### Топливные стержни
+	Топливные стержни являются источником нейтронов и тепла внутри реактора.
 
-	They can emit neutrons through spontaneous decay or from interacting with existing neutrons, creating heat.
+	Они могут испускать нейтроны через спонтанный распад или при взаимодействии с существующими нейтронами, создавая тепло.
 
-	They have two statistics that determine their effectiveness and volatility:
-	- [bold]Neutron Radioactivity[/bold]: Creates high-energy neutrons and large amounts of heat. Decays into Radioactivity.
-	- [bold]Radioactivity[/bold]: Creates neutrons and heat. Decays into Spent Fuel.
+	Они имеют две характеристики, определяющие их эффективность и нестабильность:
+	- [bold]Нейтронная радиоактивность[/bold]: создаёт высокоэнергетические нейтроны и большое количество тепла. Распадается в Радиоактивность.
+	- [bold]Радиоактивность[/bold]: создаёт нейтроны и тепло. Распадается в Отработанное топливо.
 
-	They also keep track of how much [bold]Spent Fuel[/bold] they contain, which does not affect the Fuel Rod's performance, but can indicate when it is time to replace it.
+	Они также отслеживают количество содержащегося [bold]Отработанного топлива[/bold], которое не влияет на производительность стержня, но может указывать на необходимость его замены.
 
 	<Box>
 		<GuideEntityEmbed Entity="NuclearCentrifuge"/>
 		<GuideEntityEmbed Entity="IngotPlutonium"/>
 	</Box>
 
-	Once a Fuel Rod contains enough [bold]Spent Fuel[/bold], it can be reprocessed by a nuclear centrifuge to create plutonium, which can be used to make plutonium fuel rods.
+	Когда топливный стержень содержит достаточно [bold]Отработанного топлива[/bold], его можно переработать в ядерной центрифуге для получения плутония, из которого можно изготовить плутониевые топливные стержни.
 
-	### Control Rods
-	Control rods control the flow of neutrons within the Reactor.
+	### Управляющие стержни
+	Управляющие стержни контролируют поток нейтронов внутри реактора.
 
-	They have the unique property of being able to be adjusted, which changes how effective they are.
+	Они обладают уникальным свойством регулировки, которая изменяет их эффективность.
 
-	They can control the power output of a reactor by limiting the number of neutrons that go through them and into a Fuel Rod.
+	Они могут контролировать выходную мощность реактора, ограничивая количество нейтронов, проходящих через них в топливный стержень.
 
-	### Gas Channels
-	Gas Channels transfer heat from themselves into the coolant gas that flows through them.
+	### Газовые каналы
+	Газовые каналы передают тепло от себя в охлаждающий газ, протекающий через них.
 
-	Each Gas Channel will increase the flow rate by [bold]100 L/s[/bold], allowing the Reactor to process more gas at once.
+	Каждый газовый канал увеличивает скорость потока на [bold]100 л/с[/bold], позволяя реактору обрабатывать больше газа одновременно.
 
-	### Heat Exchangers
-	Heat Exchangers guide the spread of heat within the Reactor.
+	### Теплообменники
+	Теплообменники направляют распространение тепла внутри реактора.
 
-	They are exceptionally good at transferring heat and don't interact with neutrons, making them ideal for getting heat from a Fuel Rod into a Gas Channel without interfering with the fission process.
+	Они исключительно хорошо передают тепло и не взаимодействуют с нейтронами, что делает их идеальными для переноса тепла от топливного стержня в газовый канал без вмешательства в процесс деления.
 
-	## Controlling the Reactor
-	The Reactor is controlled and modified through its UI, which also provides information on the Reactor's status.
+	## Управление реактором
+	Реактором управляют и настраивают через его интерфейс, который также предоставляет информацию о состоянии реактора.
 
-	The Reactor UI has three major panels: Targeting, Grid View, Status Panel
+	Интерфейс реактора имеет три основные панели: Прицеливание, Вид сетки, Панель состояния.
 
-	### Targeting
-	The targeting panel has controls for inserting and removing rods into and out of the Reactor grid.
+	### Прицеливание
+	Панель прицеливания содержит элементы управления для вставки и извлечения стержней из сетки реактора.
 
-	The position of the target are adjusted through the arrow buttons buttons, with the exact coordinate shown in the center.
+	Положение цели регулируется кнопками со стрелками, точные координаты отображаются в центре.
 
-	Reactor Rods can be inserted or removed through the Insert/Remove button below the position buttons.
+	Стержни реактора можно вставлять или извлекать с помощью кнопки «Вставить/Извлечь» под кнопками положения.
 
-	If there is a Reactor Rod at the target position, it will show information on that Reactor Rod, including its:
-	- Name
-	- Temperature (T)
-	- Neutron Radioactivity (N)
-	- Radioactivity (R)
-	- Spent Fuel (S)
+	Если в целевой позиции находится стержень реактора, отображается информация о нём, включая:
+	- Название
+	- Температура (T)
+	- Нейтронная радиоактивность (N)
+	- Радиоактивность (R)
+	- Отработанное топливо (S)
 
-	The bottom of the panel displays the name of the part that in the Reactor's inventory, which is ready to be inserted into the grid or taken out of the Reactor.
+	В нижней части панели отображается название детали в инвентаре реактора, готовой к вставке в сетку или извлечению из реактора.
 
-	### Grid View
-	The grid view gives a graphic visualization of the status of the Reactor grid.
+	### Вид сетки
+	Вид сетки даёт графическую визуализацию состояния сетки реактора.
 
-	The Change View button can be used to alternate between the different views:
-	- Temperature View: shows the temperature of the components
-	- Neutron View: shows the number of neutrons at any given position
-	- Fuel View: shows the fuel level of the components
+	Кнопка «Сменить вид» позволяет переключаться между различными видами:
+	- Вид температуры: показывает температуру компонентов
+	- Вид нейтронов: показывает количество нейтронов в любой заданной позиции
+	- Вид топлива: показывает уровень топлива компонентов
 
-	### Status Panel
-	The status panel gives information on the Reactor as a whole and provides control of the control rods.
+	### Панель состояния
+	Панель состояния предоставляет информацию о реакторе в целом и управление управляющими стержнями.
 
-	The [bold]Temperature Gauge[/bold] shows the current temperature of the Reactor, in a range between -273C and 1726C (0k to 2000k).
+	[bold]Датчик температуры[/bold] показывает текущую температуру реактора в диапазоне от -273°C до 1726°C (от 0K до 2000K).
 
-	If the Reactor ever reaches 1726C (2000k), it will [color=red]meltdown[/color].
+	Если реактор достигнет 1726°C (2000K), произойдёт [color=red]расплавление[/color].
 
-	The [bold]Radiation Gauge[/bold] shows the current radiation being emitted by the Reactor, in a range between 0 and 50 rads.
+	[bold]Датчик радиации[/bold] показывает текущее излучение, испускаемое реактором, в диапазоне от 0 до 50 радов.
 
-	The [bold]Thermal Power Gauge[/bold] shows an estimation of the amount of thermal power being made by the Reactor, in a range between 0 and 10 000 000 thermal watts (Wt).
+	[bold]Датчик тепловой мощности[/bold] показывает оценку количества тепловой мощности, вырабатываемой реактором, в диапазоне от 0 до 10 000 000 тепловых ватт (Wt).
 
-	Thermal Power is a decent estimation of how much power can be extracted from the gas by the [bold]Turbine[/bold].
+	Тепловая мощность является хорошей оценкой того, сколько энергии [bold]Турбина[/bold] может извлечь из газа.
 
-	Thermal Power has a tendency to increase and decrease as the Reactor runs, rarely remaining stable.
+	Тепловая мощность имеет тенденцию увеличиваться и уменьшаться по мере работы реактора, редко оставаясь стабильной.
 
-	The [bold]Control Rod Gauges[/bold] show the actual and set insertion levels of the control rods within the Reactor, and provide buttons to change the insertion level.
+	[bold]Датчики управляющих стержней[/bold] показывают фактический и установленный уровни вставки управляющих стержней в реакторе и предоставляют кнопки для изменения уровня вставки.
 
-	100% insertion means the control rods are as effective as possible and 0% insertion means the control rods are functionally disabled.
+	100% вставка означает, что управляющие стержни максимально эффективны, 0% вставка означает, что управляющие стержни функционально отключены.
 
-	## Cooling the Reactor
-	The Reactor is cooled through the use of gasses, but some gasses have effects on the Reactor when in sufficient quantities:
+	## Охлаждение реактора
+	Реактор охлаждается с помощью газов, однако некоторые газы оказывают эффекты на реактор при достаточном количестве:
 
 	<Box>
 		<GuideEntityEmbed Entity="PlasmaCanister" Caption=""/>
 	</Box>
-	[color=#ff3300][bold]Plasma[/bold][/color] has a reactive effect, creating more neutrons and decaying into [color=#13ff4b][bold]Tritium[/bold][/color].
+	[color=#ff3300][bold]Плазма[/bold][/color] имеет реактивный эффект, создавая больше нейтронов и распадаясь в [color=#13ff4b][bold]Тритий[/bold][/color].
 
-	If there is enough plasma within the Reactor, it may end up going into a runaway reaction and [color=red]melting down[/color].
+	Если в реакторе достаточно плазмы, это может привести к неуправляемой реакции и [color=red]расплавлению[/color].
 
 	<Box>
 		<GuideEntityEmbed Entity="CarbonDioxideCanister" Caption=""/>
 	</Box>
-	[color=#4e4e4e][bold]Carbon Dioxide[/bold][/color] has a moderative effect, removing neutrons that come into contact with it.
+	[color=#4e4e4e][bold]Углекислый газ[/bold][/color] имеет умеряющий эффект, поглощая нейтроны, вступающие с ним в контакт.
 
-	This can be used to regulate a plasma reaction or slow down the Reactor.
+	Это можно использовать для регулирования плазменной реакции или замедления реактора.
 
 	<Box>
 		<GuideEntityEmbed Entity="TritiumCanister" Caption=""/>
 	</Box>
-	[color=#13ff4b][bold]Tritium[/bold][/color] transmutes within a Reactor, randomly decaying into a wide variety of gasses:
-	- [color=#2887e8][bold]Oxygen[/bold][/color]
-	- [color=#FF0000][bold]Nitrogen[/bold][/color]
-	- [color=#56941e][bold]Ammonia[/bold][/color]
-	- [color=#8f00ff][bold]Nitrous Oxide[/bold][/color]
-	- [color=#3a758c][bold]Frezon[/bold][/color]
+	[color=#13ff4b][bold]Тритий[/bold][/color] трансмутирует внутри реактора, случайным образом распадаясь в широкий спектр газов:
+	- [color=#2887e8][bold]Кислород[/bold][/color]
+	- [color=#FF0000][bold]Азот[/bold][/color]
+	- [color=#56941e][bold]Аммиак[/bold][/color]
+	- [color=#8f00ff][bold]Закись азота[/bold][/color]
+	- [color=#3a758c][bold]Фрезон[/bold][/color]
 
-	In the presence of [color=#2887e8][bold]Oxygen[/bold][/color] and at the temperatures of the Reactor, [color=#13ff4b][bold]Tritium[/bold][/color] will begin to burn, [color=red]creating large amounts of heat[/color].
+	В присутствии [color=#2887e8][bold]Кислорода[/bold][/color] и при температурах реактора [color=#13ff4b][bold]Тритий[/bold][/color] начнёт гореть, [color=red]выделяя огромное количество тепла[/color].
 
-	## Reactor Radiation
+	## Радиация реактора
 	<Box>
 		<GuideEntityEmbed Entity="SignRadiation" Caption=""/>
 	</Box>
-	The Reactor sometimes allows some radiation to leak out, which can pose a danger to unprotected crew.
+	Реактор иногда допускает утечку излучения, что может представлять опасность для незащищённого экипажа.
 
-	The radiation level of the Reactor is determined by how many neutrons are escaping the Reactor grid.
+	Уровень радиации реактора определяется количеством нейтронов, покидающих сетку реактора.
 
 	<Box>
 		<GuideEntityEmbed Entity="ClosetRadiationSuit"/>
@@ -165,105 +165,105 @@
 		<GuideEntityEmbed Entity="GeigerCounter"/>
 	</Box>
 
-	Proper protection and shielding are highly recommended when working near the Reactor.
+	При работе вблизи реактора настоятельно рекомендуется надлежащая защита и экранирование.
 
 
-	## The Gas Turbine
+	## Газовая турбина
 	<Box>
 		<GuideEntityEmbed Entity="Turbine"/>
 	</Box>
 
-	The Gas Turbine is where the power actually gets made.
+	Газовая турбина — это место, где фактически вырабатывается энергия.
 
-	It takes in hot gas from the Reactor and outputs electricity and sends colder gas back to the Reactor.
+	Она принимает горячий газ из реактора, вырабатывает электричество и отправляет более холодный газ обратно в реактор.
 
-	The amount of energy made by the Turbine is affected by its RPM, which is adjusted through Flow Rate and Stator Load.
+	Количество энергии, вырабатываемой турбиной, зависит от её об/мин, которые регулируются через Скорость потока и Нагрузку статора.
 
-	### Flow Rate
-	The Flow Rate determines how much gas goes through the Turbine every second.
+	### Скорость потока
+	Скорость потока определяет количество газа, проходящего через турбину каждую секунду.
 
-	The higher the Flow Rate, the higher the RPM of the Turbine.
+	Чем выше скорость потока, тем выше об/мин турбины.
 
-	Flow Rate is usually set to allow maximum flow through the Reactor core, which can be found by the following equation: 100 * number of gas channels + 200.
+	Скорость потока обычно устанавливается для обеспечения максимального потока через активную зону реактора, что определяется по формуле: 100 × количество газовых каналов + 200.
 
-	### Stator Load
-	The Stator Load determines how much power is made by each revolution of the Turbine.
+	### Нагрузка статора
+	Нагрузка статора определяет количество мощности, вырабатываемой при каждом обороте турбины.
 
-	The higher the Stator Load, the lower the RPM of the Turbine.
+	Чем выше нагрузка статора, тем ниже об/мин турбины.
 
-	Stator Load is usually adjusted to ensure the Turbine stays at optimal RPM.
+	Нагрузка статора обычно регулируется для обеспечения работы турбины при оптимальных об/мин.
 
-	### RPM
-	The RPM (Rotations Per Minute) represents how fast the Turbine is spinning.
+	### Об/мин
+	Об/мин (Обороты в минуту) представляют скорость вращения турбины.
 
-	The Turbine has an optimal RPM, where it will produce the most power.
+	Турбина имеет оптимальные об/мин, при которых она производит наибольшую мощность.
 
-	Going faster or slower than optimal will result in poor performance.
+	Превышение или снижение оптимальной скорости приведёт к снижению производительности.
 
-	## Turbine Status Indicators
-	The Turbine has a set of status indicators to warn operators of dangerous conditions or faults.
+	## Индикаторы состояния турбины
+	Турбина имеет набор индикаторов состояния для предупреждения операторов об опасных условиях или неисправностях.
 
-	### Overspeed
-	The Turbine RPM is too high.
+	### Превышение скорости
+	Об/мин турбины слишком высоки.
 
-	If the Turbine RPM gets too high, it will start to take damage.
+	Если об/мин турбины станут слишком высокими, она начнёт получать повреждения.
 
-	Prolonged time spent at overspeed or excessive overspeed will cause the Turbine to [color=red]tear itself apart[/color].
+	Продолжительная работа на превышении скорости или чрезмерное превышение скорости приведут к тому, что турбина [color=red]разорвётся на части[/color].
 
-	Damage to the Turbine can be repaired with a [color=yellow]welder[/color], though it will likely take multiple attempts to fully repair it.
+	Повреждения турбины можно восстановить с помощью [color=yellow]сварочного аппарата[/color], хотя, скорее всего, потребуется несколько попыток для полного восстановления.
 
-	### Overtemp
-	The gas going into the Turbine is too hot.
+	### Перегрев
+	Газ, поступающий в турбину, слишком горячий.
 
-	If the gas coming into the Turbine is hotter than 2726C (3000k), it will trigger an emergency purge valve and dump the gas into the room.
+	Если газ, поступающий в турбину, горячее 2726°C (3000K), сработает аварийный сбросной клапан и выбросит газ в помещение.
 
-	This hot gas can cause serious burns to personnel or even a fire, if the gas is flammable.
+	Этот горячий газ может вызвать серьёзные ожоги персонала или даже пожар, если газ воспламеняемый.
 
-	### Stalling
-	The gas is not hot enough for the set stator load.
+	### Остановка
+	Газ недостаточно горячий для установленной нагрузки статора.
 
-	Stalling is where the gas going into the Turbine isn't "pushing" hard enough to overcome the stator load's resistance.
+	Остановка — это когда газ, поступающий в турбину, не «давит» достаточно сильно, чтобы преодолеть сопротивление нагрузки статора.
 
-	### Undertemp
-	The gas going into the Turbine is too cold.
+	### Недогрев
+	Газ, поступающий в турбину, слишком холодный.
 
-	If the gas is at or below room temperature (20C), there is no energy for the Turbine to take out of it.
+	Если газ находится при комнатной температуре или ниже (20°C), у турбины нет энергии, которую можно из него извлечь.
 
-	## Turbine Parts
+	## Детали турбины
 	<Box>
 		<GuideEntityEmbed Entity="NuclearFabricator"/>
 	</Box>
 	<Box>
-		<GuideEntityEmbed Entity="SteelGasTurbineBlade" Caption="turbine blade"/>
-		<GuideEntityEmbed Entity="SteelGasTurbineStator" Caption="stator"/>
+		<GuideEntityEmbed Entity="SteelGasTurbineBlade" Caption="лопасть турбины"/>
+		<GuideEntityEmbed Entity="SteelGasTurbineStator" Caption="статор"/>
 	</Box>
 
-	Turbine parts are what define how well the turbine functions.
+	Детали турбины определяют, насколько хорошо функционирует турбина.
 
-	Turbine parts are made in the Nuclear Fabricator from a set of [textlink="materials" link="NuclearMaterials"].
+	Детали турбины изготавливаются на ядерном фабрикаторе из набора [textlink="материалов" link="NuclearMaterials"].
 
-	The Turbine is capable of accepting two different types of parts: Blades and Stators
+	Турбина принимает два различных типа деталей: Лопасти и Статоры.
 
-	### Turbine Blades
-	Turbine blades govern the integrity and inertia of the turbine.
+	### Лопасти турбины
+	Лопасти турбины определяют прочность и инерцию турбины.
 
-	Higher integrity means it can take more damage before failing, making it generally safer.
+	Более высокая прочность означает, что турбина выдержит больше повреждений до выхода из строя, что делает её в целом безопаснее.
 
-	Higher inertia means it will take more energy to change the RPM, which leads to smoother operation.
-	
-	### Stators
-	Stators affect the power efficiency and output of the Turbine.
+	Более высокая инерция означает, что потребуется больше энергии для изменения об/мин, что приводит к более плавной работе.
+
+	### Статоры
+	Статоры влияют на энергетическую эффективность и мощность турбины.
 
 
-	# Starting the Nuclear Generator
-	To start the Nuclear Generator, engineers must follow these steps:
-	- Fill the coolant loop with a gas.
-	- Set the Turbine's Flow Rate according to the Reactor setup.
-	- Insert the Fuel Rods into the empty spots in the Reactor grid, typically by a control rod(s) and surrounded by heat exchangers and gas channels.
-	- Retract the Control Rods to start warming up the Reactor.
-	- As the Reactor warms up, engineers will want to keep adjusting the Turbine's Stator Load to maintain optimal RPM.
-	- Once the Turbine is making enough power for the station, the Control Rods should be inserted to the point of maintaining Reactor temperature.
+	# Запуск ядерного генератора
+	Для запуска ядерного генератора инженеры должны выполнить следующие шаги:
+	- Заполнить охлаждающий контур газом.
+	- Установить скорость потока турбины в соответствии с конфигурацией реактора.
+	- Вставить топливные стержни в пустые ячейки сетки реактора — как правило, рядом с управляющим(и) стержнем(ями) и в окружении теплообменников и газовых каналов.
+	- Выдвинуть управляющие стержни для начала разогрева реактора.
+	- По мере разогрева реактора продолжать регулировать нагрузку статора турбины для поддержания оптимальных об/мин.
+	- Как только турбина вырабатывает достаточно энергии для станции, вставить управляющие стержни до уровня поддержания температуры реактора.
 
-	Over time, the Fuel Rods will lose radioactivity, meaning the Control Rods should be retracted further or the fuel rods replaced.
+	Со временем топливные стержни будут терять радиоактивность — это означает необходимость дальнейшего выдвижения управляющих стержней или замены топливных стержней.
 
 </Document>
