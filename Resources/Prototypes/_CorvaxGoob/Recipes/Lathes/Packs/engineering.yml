@@ -1,7 +1,6 @@
 - type: latheRecipePack
   id: ReactorCircuitboards
   recipes:
-  - NuclearFabricatorMachineCircuitboard
   - NuclearCentrifugeMachineCircuitboard
   - NuclearReactorMonitorComputerCircuitboard
   - GasTurbineMonitorComputerCircuitboard
@@ -72,3 +71,8 @@
   recipes:
   - SilverGasTurbineStator
   - GoldGasTurbineStator
+
+- type: latheRecipePack
+  id: NuclearSafetyTools
+  recipes:
+  - RadiationBlockingProjector

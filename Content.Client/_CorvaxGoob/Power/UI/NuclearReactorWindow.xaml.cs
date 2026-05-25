@@ -52,6 +52,8 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private byte _temperatureMode = 1 << 0;
 
+    private string EmptyText => Loc.GetString("comp-nuclear-reactor-ui-empty");
+
     private enum TemperatureModes : byte
     {
         Celcius = 1 << 0,
@@ -79,6 +81,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        Title = Loc.GetString("comp-nuclear-reactor-ui-window-title");
 
         _lock = _entityManager.System<LockSystem>();
 
@@ -121,7 +124,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         ReactorTempBar.Value = msg.ReactorTemp;
         _temperatureBar.BackgroundColor = GetColor(Atmospherics.T20C, ReactorTempBar.MaxValue * 0.75, msg.ReactorTemp);
 
-        ReactorRadsValue.Text = msg.ReactorRads <= msg.ReactorRadsMax ? Math.Round(msg.ReactorRads, 1).ToString() : "OVERLOAD";
+        ReactorRadsValue.Text = msg.ReactorRads <= msg.ReactorRadsMax ? Math.Round(msg.ReactorRads, 1).ToString() : Loc.GetString("comp-nuclear-reactor-ui-overload");
         ReactorRadsBar.Value = msg.ReactorRads;
         _radiationBar.BackgroundColor = GetColor(0, ReactorRadsBar.MaxValue * 0.5, msg.ReactorRads);
 
@@ -143,7 +146,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
         Shelf.Visible = !_isMonitor;
 
-        ItemName.Text = msg.ItemName ?? "empty";
+        ItemName.Text = msg.ItemName ?? EmptyText;
     }
 
     public void SetEntity(EntityUid reactor, EntityUid? monitor = null)
@@ -337,7 +340,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private string FormatTemperature(double temperature) => _temperatureMode switch
     {
-        (byte)TemperatureModes.Celcius => Math.Round(temperature - Atmospherics.T0C, 1).ToString() + "C",
+        (byte)TemperatureModes.Celcius => Math.Round(temperature - Atmospherics.T0C, 1).ToString() + "°C",
         (byte)TemperatureModes.Kelvin => Math.Round(temperature, 1).ToString() + "K",
         // (byte)TemperatureModes.Fahrenheit => Math.Round(((temperature - Atmospherics.T0C) * 9 / 5) + 32, 1).ToString() + "F",
         _ => "NaN",
@@ -348,7 +351,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         var vect = new Vector2i(_targetY,  _targetX);
         if(!_data.TryGetValue(vect, out var value))
         {
-            TargetName.Text = "empty";
+            TargetName.Text = EmptyText;
             TargetTemperatureGrid.Visible = TargetNRadiationGrid.Visible = TargetRadiationGrid.Visible = TargetSpentGrid.Visible = false;
             return;
         }
@@ -370,7 +373,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private void UpdateItemAction()
     {
-        if(ItemName.Text == "empty" == (TargetName.Text == "empty"))
+        if(ItemName.Text == EmptyText == (TargetName.Text == EmptyText))
         {
             ItemAction.Disabled = true;
             return;
@@ -378,7 +381,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         else
             ItemAction.Disabled = false;
 
-        ItemAction.Text = TargetName.Text != "empty"
+        ItemAction.Text = TargetName.Text != EmptyText
             ? Loc.GetString("comp-nuclear-reactor-ui-remove-button")
             : Loc.GetString("comp-nuclear-reactor-ui-insert-button");
     }
@@ -400,7 +403,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.Disabled = _targetY <= 0;
     }
 
-    public void SetItemName(string? itemName) => ItemName.Text = itemName ?? "empty";
+    public void SetItemName(string? itemName) => ItemName.Text = itemName ?? EmptyText;
 
     private static string FormatPower(float power) => Loc.GetString("comp-nuclear-reactor-ui-therm-format", ("power", power));
 

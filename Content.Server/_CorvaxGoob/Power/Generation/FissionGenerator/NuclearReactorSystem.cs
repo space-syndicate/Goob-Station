@@ -533,7 +533,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         string stationName = GetReactorLocation(uid); // Wayfarer
         //var announcement = Loc.GetString("reactor-meltdown-announcement"); // Wayfarer: Edited for the one below
         var announcement = Loc.GetString("reactor-meltdown-announcement-wf", ("station", stationName));
-        var sender = Loc.GetString("reactor-meltdown-announcement-sender");
+        var sender = Loc.GetString("reactor-meltdown-announcement-sender", ("station", stationName));
         _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);
 
         //_soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.MeltdownSound)); // Wayfarer: Commented for the one below
@@ -680,15 +680,15 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
             {
                 _adminLog.Add(LogType.Damaged, $"{ToPrettyString(ent):reactor} is at {comp.Temperature}K and may meltdown");
                 //_radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-smoke-start-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent); // Wayfarer: Edited for the one below
-                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-smoke-start-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature))), shortband, ent);
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-smoke-start-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature - Atmospherics.T0C))), shortband, ent);
                 comp.LastSendTemperature = comp.Temperature;
             }
             if (comp.Temperature >= comp.ReactorFireTemp && !comp.IsBurning)
             {
                 _adminLog.Add(LogType.Damaged, $"{ToPrettyString(ent):reactor} is at {comp.Temperature}K and is likely to meltdown");
                 //_radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-start-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent); // Wayfarer: Edited for the one below
-                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-start-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature))), engi, ent); // This one is critical, so we send it to both channels.
-                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-start-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature))), shortband, ent);
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-start-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature - Atmospherics.T0C))), engi, ent); // This one is critical, so we send it to both channels.
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-start-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature - Atmospherics.T0C))), shortband, ent);
                 comp.LastSendTemperature = comp.Temperature;
             }
             else if (comp.Temperature < comp.ReactorFireTemp && comp.IsBurning)
@@ -716,7 +716,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
             var stationUid = _station.GetStationInMap(Transform(uid).MapID);
             //var announcement = Loc.GetString("reactor-melting-announcement"); // Wayfarer: Edited for the one below
             var announcement = Loc.GetString("reactor-melting-announcement-wf", ("station", stationName));
-            var sender = Loc.GetString("reactor-melting-announcement-sender");
+            var sender = Loc.GetString("reactor-melting-announcement-sender", ("station", stationName));
             _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);
             //_soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(new SoundPathSpecifier("/Audio/Misc/delta_alt.ogg"))); // Wayfarer: Commented for the one below
             _audio.PlayGlobal(_audio.ResolveSound(new SoundPathSpecifier("/Audio/Misc/delta_alt.ogg")), Filter.Broadcast(), true);
@@ -734,19 +734,19 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         if (comp.LastSendTemperature > comp.Temperature)
         {
             //_radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-cooling-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent); // Wayfarer: Edited for the one below
-            _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-cooling-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature))), shortband, ent);
+            _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-cooling-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature - Atmospherics.T0C))), shortband, ent);
         }
         else
         {
             if (comp.Temperature >= comp.ReactorFireTemp)
             {
                 //_radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-critical-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent); // Wayfarer: Edited for the one below
-                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-critical-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature))), shortband, ent);
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-critical-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature - Atmospherics.T0C))), shortband, ent);
             }
             else if (comp.Temperature >= comp.ReactorOverheatTemp)
             {
                 //_radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-dangerous-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent); // Wayfarer: Edited for the one below
-                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-dangerous-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature))), shortband, ent);
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-dangerous-message-wf", ("owner", uid), ("station", stationName), ("temperature", Math.Round(comp.Temperature - Atmospherics.T0C))), shortband, ent);
             }
         }
 

@@ -9,22 +9,24 @@ reactor-unanchor-warning = You cannot unanchor the nuclear reactor while it's no
 reactor-anchor-warning = Invalid anchor position.
 
 ### Messages
-reactor-smoke-start-message = ALERT: The {$owner} has reached a dangerous temperature: {$temperature}K. Intervene immediately to prevent meltdown.
+reactor-smoke-start-message = ALERT: The {$owner} has reached a dangerous temperature: {$temperature}°C. Intervene immediately to prevent meltdown.
 reactor-smoke-stop-message = The {$owner} has cooled below dangerous temperature. Have a nice day.
-reactor-fire-start-message = ALERT: The {$owner} has reached CRITICAL temperature: {$temperature}K. MELTDOWN IMMINENT.
+reactor-fire-start-message = ALERT: The {$owner} has reached CRITICAL temperature: {$temperature}°C. MELTDOWN IMMINENT.
 reactor-fire-stop-message = The {$owner} has cooled below critical temperature. Meltdown averted.
 
-reactor-temperature-dangerous-message = The {$owner} is at dangerous temperature: {$temperature}K.
-reactor-temperature-critical-message = The {$owner} is at critical temperature: {$temperature}K.
-reactor-temperature-cooling-message = The {$owner} is cooling: {$temperature}K.
+reactor-temperature-dangerous-message = The {$owner} is at dangerous temperature: {$temperature}°C.
+reactor-temperature-critical-message = The {$owner} is at critical temperature: {$temperature}°C.
+reactor-temperature-cooling-message = The {$owner} is cooling: {$temperature}°C.
 
 reactor-melting-announcement = A nuclear reactor aboard the station is beginning to meltdown. Evacuation of the surrounding area is advised.
-reactor-melting-announcement-sender = Nuclear Emergency
+reactor-melting-announcement-sender = {$station}
 
 reactor-meltdown-announcement = A nuclear reactor aboard the station has catastrophically overloaded. Radioactive debris, nuclear fallout, and coolant fires are likely. Immediate evacuation of the surrounding area is strongly advised.
-reactor-meltdown-announcement-sender = Nuclear Meltdown
+reactor-meltdown-announcement-sender = {$station}
 
 ### UI
+comp-nuclear-reactor-ui-window-title = Nuclear Reactor
+comp-nuclear-reactor-ui-empty = empty
 comp-nuclear-reactor-ui-locked = Locked
 comp-nuclear-reactor-ui-insert-button = Insert
 comp-nuclear-reactor-ui-remove-button = Remove
@@ -41,20 +43,21 @@ comp-nuclear-reactor-ui-reactor-temp = Temperature
 comp-nuclear-reactor-ui-reactor-rads = Radiation
 comp-nuclear-reactor-ui-reactor-therm = Thermal Power
 comp-nuclear-reactor-ui-reactor-control = Control Rods
+comp-nuclear-reactor-ui-overload = OVERLOAD
 comp-nuclear-reactor-ui-therm-format = { POWERWATTS($power) }t
 
 comp-nuclear-reactor-ui-footer-left = Danger: high radiation.
 comp-nuclear-reactor-ui-footer-right = 0.8 REV 3
 
 ### Messages (WF)
-reactor-smoke-start-message-wf = ALERT: The {$owner} at {$station} has reached a dangerous temperature: {$temperature}K. Intervene immediately to prevent meltdown.
+reactor-smoke-start-message-wf = ALERT: The {$owner} at {$station} has reached a dangerous temperature: {$temperature}°C. Intervene immediately to prevent meltdown.
 reactor-smoke-stop-message-wf = The {$owner} at {$station} has cooled below dangerous temperature. Have a nice day.
-reactor-fire-start-message-wf = ALERT: The {$owner} at {$station} has reached CRITICAL temperature: {$temperature}K. MELTDOWN IMMINENT.
+reactor-fire-start-message-wf = ALERT: The {$owner} at {$station} has reached CRITICAL temperature: {$temperature}°C. MELTDOWN IMMINENT.
 reactor-fire-stop-message-wf = The {$owner} at {$station} has cooled below critical temperature. Meltdown averted.
 
-reactor-temperature-dangerous-message-wf = The {$owner} at {$station} is at dangerous temperature: {$temperature}K.
-reactor-temperature-critical-message-wf = The {$owner} at {$station} is at critical temperature: {$temperature}K.
-reactor-temperature-cooling-message-wf = The {$owner} at {$station} is cooling: {$temperature}K.
+reactor-temperature-dangerous-message-wf = The {$owner} at {$station} is at dangerous temperature: {$temperature}°C.
+reactor-temperature-critical-message-wf = The {$owner} at {$station} is at critical temperature: {$temperature}°C.
+reactor-temperature-cooling-message-wf = The {$owner} at {$station} is cooling: {$temperature}°C.
 
 reactor-melting-announcement-wf = A nuclear reactor aboard {$station} is beginning to meltdown. Evacuation of the surrounding area is advised.
 

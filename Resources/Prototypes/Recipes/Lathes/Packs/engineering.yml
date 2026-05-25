@@ -79,6 +79,7 @@
   id: AtmosTools
   recipes:
   - HolofanProjector
+  - RadiationBlockingProjector
 
 - type: latheRecipePack
   id: EngineeringWeapons

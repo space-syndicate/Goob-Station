@@ -27,7 +27,7 @@
   - SilverGasTurbineStator
   technologyPrerequisites:
   - PowerGeneration
-  position: 3, 27
+  position: -1, -2
 
 - type: technology
   id: NuclearPowerRecycling
@@ -53,4 +53,4 @@
   - GoldGasTurbineBlade
   technologyPrerequisites:
   - NuclearPowerGeneration
-  position: 4, 27
+  position: -1, -3

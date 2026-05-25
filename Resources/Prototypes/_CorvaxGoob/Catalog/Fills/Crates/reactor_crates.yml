@@ -2,7 +2,7 @@
   id: CrateCerenkiteFuelRod
   parent: CrateEngineeringSecure
   name: fuel rod crate
-  description: 3 cerenkite fuel rods, for fuelling a nuclear reactor.
+  description: 3 топливных стержня из церенкита для заправки ядерного реактора..
   components:
   - type: StorageFill
     contents:
@@ -13,7 +13,7 @@
   id: CrateBohrumControlRod
   parent: CrateEngineeringSecure
   name: control rod crate
-  description: 2 bohrum control rods for a nuclear reactor.
+  description: 2 регулирующих стержня для ядерного реактора.
   components:
   - type: StorageFill
     contents:
@@ -24,7 +24,7 @@
   id: CrateSteelGasChannel
   parent: CrateEngineeringSecure
   name: gas channel rod crate
-  description: 4 steel gas channel rods for a nuclear reactor.
+  description: 4 стальных стержня газового канала для ядерного реактора.
   components:
   - type: StorageFill
     contents:
@@ -35,9 +35,49 @@
   id: CrateSteelHeatExhanger
   parent: CrateEngineeringSecure
   name: heat exchanger rod crate
-  description: 4 steel heat exchanger rods for a nuclear reactor.
+  description: 4 стальных стержня теплообменника для ядерного реактора.
   components:
   - type: StorageFill
     contents:
       - id: SteelReactorHeatExchanger
         amount: 4
+
+- type: entity
+  id: CrateEngineeringNuclearReactor
+  parent: CrateEngineeringSecure
+  name: nuclear reactor flatpack crate
+  description: A flatpack for building a nuclear reactor. Parts sold separately.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NuclearReactorFlatpack
+
+- type: entity
+  id: CrateEngineeringGasTurbine
+  parent: CrateEngineeringSecure
+  name: gas turbine flatpack crate
+  description: A flatpack for building a gas turbine.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GasTurbineFlatpack
+
+- type: entity
+  id: CrateEngineeringSmallNuclearReactor
+  parent: CrateEngineeringSecure
+  name: small nuclear reactor flatpack crate
+  description: A flatpack for building a small nuclear reactor. Now in a smaller format! Parts sold separately.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SmallNuclearReactorFlatpack
+
+- type: entity
+  id: CrateEngineeringGasTurbineSmall
+  parent: CrateEngineeringSecure
+  name: small gas turbine flatpack crate
+  description: A flatpack for building a small gas turbine. Now in a smaller format!
+  components:
+  - type: StorageFill
+    contents:
+      - id: GasTurbineSmallFlatpack
