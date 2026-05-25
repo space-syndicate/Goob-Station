@@ -1089,21 +1089,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
         };
         args.Verbs.Add(fuelRodify);
-
-        var gibName = Loc.GetString("admin-smite-gib-name").ToLowerInvariant();
-        Verb gib = new()
-        {
-            Text = gibName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "heart-on"),
-            Act = () =>
-            {
-                _bodySystem.GibBody(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", gibName, Loc.GetString("admin-smite-gib-description"))
-        };
-        args.Verbs.Add(gib);
         // CorvaxGoob - End
     }
 }
