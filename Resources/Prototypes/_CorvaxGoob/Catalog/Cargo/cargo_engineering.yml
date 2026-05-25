@@ -1,8 +1,8 @@
 - type: cargoProduct
   id: NuclearReactorFlatpackPurchase
   icon:
-    sprite: Structures/Storage/Crates/engicrate_secure.rsi
-    state: icon
+    sprite: _CorvaxGoob/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    state: reactor
   product: CrateEngineeringNuclearReactor
   cost: 15000
   category: cargoproduct-category-name-engineering
@@ -11,8 +11,8 @@
 - type: cargoProduct
   id: GasTurbineFlatpackPurchase
   icon:
-    sprite: Structures/Storage/Crates/engicrate_secure.rsi
-    state: icon
+    sprite: _CorvaxGoob/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    state: turbine
   product: CrateEngineeringGasTurbine
   cost: 10000
   category: cargoproduct-category-name-engineering
@@ -61,8 +61,8 @@
 - type: cargoProduct
   id: SmallNuclearReactorFlatpackPurchase #HL
   icon:
-    sprite: Structures/Storage/Crates/engicrate_secure.rsi
-    state: icon
+    sprite: _CorvaxGoob/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    state: reactor
   product: CrateEngineeringSmallNuclearReactor
   cost: 8000
   category: cargoproduct-category-name-engineering
@@ -71,8 +71,8 @@
 - type: cargoProduct
   id: GasTurbineSmallFlatpackPurchase #HL
   icon:
-    sprite: Structures/Storage/Crates/engicrate_secure.rsi
-    state: icon
+    sprite: _CorvaxGoob/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    state: turbine
   product: CrateEngineeringGasTurbineSmall
   cost: 5000
   category: cargoproduct-category-name-engineering
