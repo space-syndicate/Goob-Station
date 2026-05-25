@@ -33,7 +33,7 @@
   #         Quantity: 10
   - type: RadiationSource
     intensity: 0.08
-    slope: 3
+    terminalDecaySlope: 3
   - type: PointLight
     radius: 1.2
     energy: 0.8

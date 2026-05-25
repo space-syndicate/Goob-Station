@@ -8,7 +8,6 @@
     state: engineering
   - type: MachineBoard
     prototype: NuclearCentrifuge
-    requirements:
-      Manipulator: 5
     stackRequirements:
+      Manipulator: 5
       Plasteel: 5

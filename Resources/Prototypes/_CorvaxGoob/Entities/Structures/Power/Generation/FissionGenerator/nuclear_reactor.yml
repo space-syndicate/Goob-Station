@@ -434,7 +434,7 @@
         graphite_damaged_4_mirrored: ""
   - type: RadiationSource
     intensity: 4 # Wayfarer: 15 to 4
-    slope: 0.25 # Wayfarer: 0.01 to 0.25
+    terminalDecaySlope: 0.25 # Wayfarer: 0.01 to 0.25
 
 # Arrows to indicate flow
 - type: entity
