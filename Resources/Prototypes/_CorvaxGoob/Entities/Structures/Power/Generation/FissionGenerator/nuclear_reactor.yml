@@ -156,7 +156,7 @@
   - type: Lock
     unlockOnClick: false
   - type: WarpPoint
-    location: Nuclear Reactor
+    location: Ядерный реактор
   - type: GuideHelp
     guides:
     - NuclearReactor

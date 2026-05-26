@@ -4,24 +4,24 @@ reactor-smoke-stop = {$owner} перестает дымиться.
 reactor-fire-start = {$owner} начинает гореть!
 reactor-fire-stop = {$owner} перестает гореть.
 
-reactor-unanchor-melted = Ядерный реактор нельзя отсоединить, он приплавился к корпусу!
-reactor-unanchor-warning = Нельзя отсоединять ядерный реактор, пока он не опустошен или его температура не опустилась ниже 80 °C!
+reactor-unanchor-melted = Ядерный реактор нельзя открепить, он приплавился к корпусу!
+reactor-unanchor-warning = Нельзя открепить ядерный реактор, пока он не опустошен или его температура не опустилась ниже 80 °C!
 reactor-anchor-warning = Неверное положение.
 
 ### Messages
-reactor-smoke-start-message = ПРЕДУПРЕЖДЕНИЕ: Температура {$owner} достигла опасного уровня: {$temperature}°C. Необходимо немедленно принять меры, чтобы предотвратить плавление.
-reactor-smoke-stop-message = Температура {$owner} опустилась ниже опасного уровня. Хорошего дня.
-reactor-fire-start-message = ПРЕДУПРЕЖДЕНИЕ: Температура {$owner} достигла критического уровня: {$temperature}°C. Плавление неизбежно.
-reactor-fire-stop-message = Температура {$owner} опустилась ниже критического уровня. Плавление предотвращено.
+reactor-smoke-start-message = ПРЕДУПРЕЖДЕНИЕ: Температура ядерного реактора достигла опасного уровня: {$temperature}°C. Необходимо немедленно принять меры, чтобы предотвратить плавление.
+reactor-smoke-stop-message = Температура ядерного реактора опустилась ниже опасного уровня. Хорошего дня.
+reactor-fire-start-message = ПРЕДУПРЕЖДЕНИЕ: Температура ядерного реактора достигла критического уровня: {$temperature}°C. Плавление неизбежно.
+reactor-fire-stop-message = Температура ядерного реактора опустилась ниже критического уровня. Плавление предотвращено.
 
-reactor-temperature-dangerous-message = Температура {$owner} достигла опасного уровня: {$temperature}°C.
-reactor-temperature-critical-message = Температура {$owner} достигла критического уровня: {$temperature}°C.
-reactor-temperature-cooling-message = {$owner} охлаждается: {$temperature}°C.
+reactor-temperature-dangerous-message = Температура ядерного реактора достигла опасного уровня: {$temperature}°C.
+reactor-temperature-critical-message = Температура ядерного реактора достигла критического уровня: {$temperature}°C.
+reactor-temperature-cooling-message = Ядерный реактор охлаждается: {$temperature}°C.
 
 reactor-melting-announcement = На борту станции начинается расплавление ядерного реактора. Рекомендуется немедленно эвакуировать весь персонал с прилегающей территории.
 reactor-melting-announcement-sender = {$station}
 
-reactor-meltdown-announcement = Ядерный реактор на борту станции подвергся катастрофической перегрузке. Возможны выброс радиоактивных обломков, радиоактивные осадки и возгорание теплоносителя. Настоятельно рекомендуется немедленно эвакуировать прилегающую территорию.
+reactor-meltdown-announcement = Ядерный реактор на борту станции подвергся катастрофической перегрузке. Возможен выброс радиоактивных обломков, радиоактивные осадки и возгорание теплоносителя. Настоятельно рекомендуется немедленно эвакуировать прилегающую территорию.
 reactor-meltdown-announcement-sender = {$station}
 
 ### UI
@@ -50,15 +50,15 @@ comp-nuclear-reactor-ui-footer-left = Опасно: высокая радиац�
 comp-nuclear-reactor-ui-footer-right = 0.8 REV 3
 
 ### Messages (WF)
-reactor-smoke-start-message-wf = ПРЕДУПРЕЖДЕНИЕ: {$owner} на станции {$station} достиг опасной температуры: {$temperature}°C. Необходимо немедленно принять меры, чтобы предотвратить расплавление.
-reactor-smoke-stop-message-wf = Температура {$owner} на станции {$station} опустилась ниже опасного уровня. Хорошего дня.
-reactor-fire-start-message-wf = ПРЕДУПРЕЖДЕНИЕ: {$owner} на станции {$station} достиг критической температуры: {$temperature}°C. Плавление неизбежно.
-reactor-fire-stop-message-wf = Температура {$owner} на станции {$station} опустилась ниже критического уровня. Плавление предотвращено.
+reactor-smoke-start-message-wf = ПРЕДУПРЕЖДЕНИЕ: ядерный реактор на станции {$station} достиг опасной температуры: {$temperature}°C. Необходимо немедленно принять меры, чтобы предотвратить расплавление.
+reactor-smoke-stop-message-wf = Температура ядерного реактора на станции {$station} опустилась ниже опасного уровня. Хорошего дня.
+reactor-fire-start-message-wf = ПРЕДУПРЕЖДЕНИЕ: ядерный реактор на станции {$station} достиг критической температуры: {$temperature}°C. Плавление неизбежно.
+reactor-fire-stop-message-wf = Температура ядерного реактора на станции {$station} опустилась ниже критического уровня. Плавление предотвращено.
 
-reactor-temperature-dangerous-message-wf = Температура {$owner} на станции {$station} достигла опасного уровня: {$temperature}°C.
-reactor-temperature-critical-message-wf = Температура {$owner} на станции {$station} достигла критического уровня: {$temperature}°C.
-reactor-temperature-cooling-message-wf = Температура {$owner} на станции {$station} опускается: {$temperature}°C.
+reactor-temperature-dangerous-message-wf = Температура ядерного реактора на станции {$station} достигла опасного уровня: {$temperature}°C.
+reactor-temperature-critical-message-wf = Температура ядерного реактора на станции {$station} достигла критического уровня: {$temperature}°C.
+reactor-temperature-cooling-message-wf = Температура ядерного реактора на станции {$station} опускается: {$temperature}°C.
 
 reactor-melting-announcement-wf = На станции {$station} начинается расплавление ядерного реактора. Рекомендуется немедленно эвакуировать весь персонал с прилегающей территории.
 
-reactor-meltdown-announcement-wf = Ядерный реактор на станции {$station} подвергся катастрофической перегрузке. Возможны выброс радиоактивных обломков, радиоактивные осадки и возгорание теплоносителя. Настоятельно рекомендуется немедленно эвакуировать весь персонал с прилегающей территории.
+reactor-meltdown-announcement-wf = Ядерный реактор на станции {$station} подвергся катастрофической перегрузке. Возможен выброс радиоактивных обломков, радиоактивные осадки и возгорание теплоносителя. Настоятельно рекомендуется немедленно эвакуировать весь персонал с прилегающей территории.

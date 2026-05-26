@@ -22,7 +22,7 @@ ent-UraniumGlassReactorFuelRod = топливный стержень из ура
     .desc = { ent-BaseReactorFuelRod.desc }
 
 ent-MeatReactorFuelRod = мясной топливный стержень
-    .suffix = Адмимим
+    .suffix = Адмеме
     .desc = Топливный стержень для... стоп, он живой?
 
 # === Контрольные стержни ===
@@ -124,11 +124,11 @@ ent-NuclearReactorNormal = { ent-BaseNuclearReactor }
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorEmpty = { ent-BaseNuclearReactor }
-    .suffix = Пуст
+    .suffix = Пустой
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorRandom = { ent-BaseNuclearReactor }
-    .suffix = Случайн.
+    .suffix = Случайный
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorMeltdown = { ent-BaseNuclearReactor }
@@ -140,26 +140,26 @@ ent-NuclearReactorMelted = { ent-BaseNuclearReactor }
     .desc = Расплавленный корпус ядерного реактора. Светится от тепла и радиации.
 
 ent-NuclearReactorNormalSalvage = { ent-BaseNuclearReactor }
-    .suffix = Трофей
+    .suffix = Salvage
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorEmptySalvage = { ent-BaseNuclearReactor }
-    .suffix = Пуст, Трофей
+    .suffix = Пустой, Salvage
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorRandomSalvage = { ent-BaseNuclearReactor }
-    .suffix = Случайн., Трофей
+    .suffix = Случайный, Salvage
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorMeltedSalvage = { ent-BaseNuclearReactor }
-    .suffix = Расплавлен, Трофей
+    .suffix = Расплавлен, Salvage
     .desc = Корпус ядерного реактора, расплавленный давным-давно. По-прежнему светится остаточным теплом и радиацией.
 
 ent-NuclearReactorSmall = малый ядерный реактор
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorSmallRandom = { ent-NuclearReactorSmall }
-    .suffix = Случайн.
+    .suffix = Случайный
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorSmallEmpty = { ent-NuclearReactorSmall }
@@ -171,15 +171,15 @@ ent-NuclearReactorSmallMelted = { ent-NuclearReactorSmall }
     .desc = Расплавленный корпус ядерного реактора. Светится от тепла и радиации.
 
 ent-NuclearReactorSmallSalvage = { ent-NuclearReactorSmall }
-    .suffix = Трофей
+    .suffix = Salvage
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorSmallRandomSalvage = { ent-NuclearReactorSmall }
-    .suffix = Случайн., Трофей
+    .suffix = Случайный, Salvage
     .desc = { ent-BaseNuclearReactor.desc }
 
 ent-NuclearReactorSmallMeltedSalvage = { ent-NuclearReactorSmall }
-    .suffix = Расплавлен, Трофей
+    .suffix = Расплавлен, Salvage
     .desc = Корпус ядерного реактора, расплавленный давным-давно. По-прежнему светится остаточным теплом и радиацией.
 
 # === Сборные наборы ===
@@ -296,7 +296,7 @@ ent-IngotPlutonium = слиток плутония
     .desc = Слиток радиоактивного плутония. Не облизывать.
 
 ent-IngotPlutonium1 = { ent-IngotPlutonium }
-    .suffix = Одиночный
+    .suffix = Один
     .desc = { ent-IngotPlutonium.desc }
 
 # === Голографические проекции ===

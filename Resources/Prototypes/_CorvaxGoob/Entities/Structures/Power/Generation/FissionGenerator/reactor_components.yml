@@ -66,18 +66,7 @@
   components:
   - type: ReactorPart
     material: Plutonium
-  #- type: GhostRole # Wayfarer: Why?
-  #  makeSentient: true
-  #  allowSpeech: true
-  #  allowMovement: false
-  #  name: ghost-role-information-plutonium-rod-name
-  #  description: ghost-role-information-plutonium-rod-description
-  #  rules: ghost-role-information-plutonium-rod-rules
-  #  mindRoles:
-  #  - MindRoleGhostRoleFreeAgentHarmless
-  #- type: GhostTakeoverAvailable
-  #- type: SentienceTarget
-  #  weight: 2
+
 
 - type: entity
   id: BananiumReactorFuelRod
