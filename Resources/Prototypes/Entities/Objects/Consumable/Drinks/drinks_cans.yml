@@ -694,9 +694,9 @@
     sprite: Objects/Consumable/Drinks/energy_drink.rsi
 
 - type: entity
-  id: DrinkCanPack
+  id: DrinkCanPackEmpty
   parent: BaseItem
-  name: 6pack
+  name: 6packEmpty
   components:
   - type: ContainerContainer
     containers:
@@ -737,10 +737,6 @@
     whitelist:
       tags:
         - Cola
-  - type: StorageFill
-    contents:
-      - id: DrinkColaCan
-        amount: 6
   - type: PickRandom
     whitelist:
       tags:
@@ -791,6 +787,14 @@
     sprite: Objects/Misc/6pack.rsi
   - type: Appearance
 
+- type: entity
+  id: DrinkCanPack
+  parent: DrinkCanPackEmpty
+  components:
+  - type: StorageFill
+    contents:
+      - id: DrinkColaCan
+        amount: 6
 
 - type: entity
   parent: DrinkCanBaseFull

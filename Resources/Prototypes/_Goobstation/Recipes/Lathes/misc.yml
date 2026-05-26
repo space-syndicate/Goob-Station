@@ -31,8 +31,8 @@
     Glass: 200
 
 - type: latheRecipe
-  id: DrinkCanPack
-  result: DrinkCanPack
+  id: DrinkCanPackEmpty
+  result: DrinkCanPackEmpty
   completetime: 2
   materials:
     Plastic: 50

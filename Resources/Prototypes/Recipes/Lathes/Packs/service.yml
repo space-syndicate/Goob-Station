@@ -45,7 +45,7 @@
   - WetFloorSign
   - WireBrush
   - PhotoCamera # CorvaxGoob-PhotoCamera
-  - DrinkCanPack # CorvaxGoob-DrinkCanPack
+  - DrinkCanPackEmpty # CorvaxGoob-DrinkCanPack
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
