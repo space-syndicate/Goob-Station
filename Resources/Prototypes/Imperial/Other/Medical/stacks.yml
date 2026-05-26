@@ -1,0 +1,26 @@
+- type: entity
+  id: RegenerativeMesh1
+  parent: RegenerativeMesh
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: RegenerativeMesh
+    count: 1
+
+- type: entity
+  id: MedicatedSuture1
+  parent: MedicatedSuture
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: MedicatedSuture
+    count: 1
+
+- type: entity
+  id: AloeCream1
+  parent: AloeCream
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: AloeCream
+    count: 1
