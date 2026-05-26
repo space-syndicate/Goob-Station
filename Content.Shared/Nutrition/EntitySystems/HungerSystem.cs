@@ -182,7 +182,10 @@ public sealed class HungerSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
-        SetHunger(uid, GetHunger(component) + amount, component);
+        var newHunger = GetHunger(component) + amount;
+        if (component.NutritionCap.HasValue)
+            newHunger = Math.Min(newHunger, component.NutritionCap.Value);
+        SetHunger(uid, newHunger, component);
     }
 
     /// <summary>
@@ -297,6 +300,28 @@ public sealed class HungerSystem : EntitySystem
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Goobstation — sets or raises the active nutrition cap for snack food.
+    /// </summary>
+    public void SetNutritionCap(EntityUid uid, float cap, HungerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        component.NutritionCap = Math.Max(component.NutritionCap ?? 0f, cap);
+        DirtyField(uid, component, nameof(HungerComponent.NutritionCap));
+    }
+
+    /// <summary>
+    /// Goobstation — clears the active nutrition cap (called when eating fully satisfying food).
+    /// </summary>
+    public void ClearNutritionCap(EntityUid uid, HungerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        component.NutritionCap = null;
+        DirtyField(uid, component, nameof(HungerComponent.NutritionCap));
     }
 
     /// <summary>
