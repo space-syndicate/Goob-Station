@@ -66,6 +66,6 @@
   conditions:
   - !type:BuyerJobCondition
     whitelist:
-  - AtmosphericTechnician
-  - StationEngineer
-  - TechnicalAssistant
+    - AtmosphericTechnician
+    - StationEngineer
+    - TechnicalAssistant
