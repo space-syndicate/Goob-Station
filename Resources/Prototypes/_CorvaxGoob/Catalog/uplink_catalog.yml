@@ -52,3 +52,20 @@
     Telecrystal: 20
   categories:
   - UplinkDeception
+  
+- type: listing
+  id: UplinkToolboxElectricalTurret
+  name: uplink-toolbox-electrical-turret-name
+  description: uplink-toolbox-electrical-turret-desc
+  icon: { sprite:  Objects/Tools/Toolboxes/toolbox_yellow.rsi, state: icon}
+  productEntity: BlueprintToolboxElectricalTurret
+  cost:
+    Telecrystal: 70
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+  - AtmosphericTechnician
+  - StationEngineer
+  - TechnicalAssistant
