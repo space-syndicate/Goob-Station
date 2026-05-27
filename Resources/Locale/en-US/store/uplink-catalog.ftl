@@ -92,6 +92,7 @@
 # SPDX-FileCopyrightText: 2025 Zachary Higgs <compgeek223@gmail.com>
 # SPDX-FileCopyrightText: 2025 keronshb <54602815+keronshb@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 tetra <169831122+Foralemes@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 minib0mper <cheg455@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -230,6 +231,9 @@ uplink-agent-id-card-desc = A modified ID card that can copy accesses from other
 
 uplink-black-jetpack-name = Black Jetpack
 uplink-black-jetpack-desc = A black jetpack. It allows you to fly around in space. Refills not included, use your fuel wisely.
+
+uplink-reinforcement-radio-syndicate-gorilla-name = Syndicate Gorilla Teleporter
+uplink-reinforcement-radio-syndicate-gorilla-desc =  Calls gorilla to assist you.
 
 uplink-reinforcement-radio-ancestor-name = Genetic Ancestor Reinforcement Teleporter
 uplink-reinforcement-radio-ancestor-desc =  Call in a trained ancestor of your choosing to assist you. Comes with a single syndicate cigarette.
