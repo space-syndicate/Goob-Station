@@ -72,7 +72,7 @@
     stealGroup: HeadCloak
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseCommandContraband, BaseBodycam]
   id: ClothingNeckCloakHos
   name: head of security's cloak
   description: An exquisite dark and red cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!

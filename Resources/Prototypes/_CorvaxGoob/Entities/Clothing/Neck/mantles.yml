@@ -10,7 +10,7 @@
       sprite: _CorvaxGoob/Clothing/Neck/Mantles/ERTmantle.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseBodycam]
   id: ClothingNeckMantleHOSShoulder
   name: head of security's shoulder mantle
   description: Shootouts with nukies are just another tuesday for this HoS. This mantle is a symbol of commitment to the station.

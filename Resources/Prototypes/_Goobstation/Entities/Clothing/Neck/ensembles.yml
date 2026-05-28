@@ -150,7 +150,7 @@
           sprite: _Goobstation/Clothing/Neck/Ensembles/cmo.rsi
           state: mantlewings-icon
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ClothingNeckBase, BaseCommandContraband, BaseBodycam]
   id: ClothingNeckEnsembleHeadOfSecurity
   name: head of security's ensemble
   description: Stained with the blood of tiders, and the tears of cadets. The word "shitsec" brings you joy, a tear to your eye.
