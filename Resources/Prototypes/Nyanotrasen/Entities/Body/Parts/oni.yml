@@ -10,6 +10,8 @@
   components:
   - type: BodyPart
     species: Oni
+  - type: Damageable
+    damageModifierSet: Oni
 
 - type: entity
   id: HeadOni
