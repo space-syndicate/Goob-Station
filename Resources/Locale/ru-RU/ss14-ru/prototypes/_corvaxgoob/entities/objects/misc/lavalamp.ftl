@@ -1,30 +1,30 @@
-ent-BaseLavaLamp = лавовая лампа
+ent-LavaLamp = лавовая лампа
   .desc =  Светоизлучающее устройство, фаворит молей.
 
-ent-RedLavaLamp = { ent-BaseLavaLamp }
+ent-RedLavaLamp = { ent-LavaLamp }
     .suffix = Красная
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }
 
-ent-BlueLavaLamp = { ent-BaseLavaLamp }
+ent-BlueLavaLamp = { ent-LavaLamp }
     .suffix = Синяя
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }
 
-ent-YellowLavaLamp = { ent-BaseLavaLamp }
+ent-YellowLavaLamp = { ent-LavaLamp }
     .suffix = Желтая
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }
 
-ent-OrangeLavaLamp = { ent-BaseLavaLamp }
+ent-OrangeLavaLamp = { ent-LavaLamp }
     .suffix = Оранжевая
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }
 
-ent-GreenLavaLamp = { ent-BaseLavaLamp }
+ent-GreenLavaLamp = { ent-LavaLamp }
     .suffix = Зеленная
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }
 
-ent-PinkLavaLamp = { ent-BaseLavaLamp }
+ent-PinkLavaLamp = { ent-LavaLamp }
     .suffix = Розовая
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }
 
-ent-RGBLavaLamp = { ent-BaseLavaLamp }
+ent-RGBLavaLamp = { ent-LavaLamp }
     .suffix = RGB
-    .desc = { ent-BaseLavaLamp.desc }
+    .desc = { ent-LavaLamp.desc }

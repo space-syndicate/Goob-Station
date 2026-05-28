@@ -1,6 +1,6 @@
 - type: entity
   name: lava lamp
-  id: BaseLavaLamp
+  id: LavaLamp
   parent: BaseItem
   description: A light emitting device, moths' favorite.
   components:
@@ -16,6 +16,7 @@
     size: Small
   - type: PointLight
     enabled: false
+    netsync: false
     radius: 3
     energy: 2
   - type: ItemToggle
@@ -87,7 +88,7 @@
 - type: entity
   id: RedLavaLamp
   suffix: Red
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
@@ -107,7 +108,7 @@
 - type: entity
   id: BlueLavaLamp
   suffix: Blue
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
@@ -127,7 +128,7 @@
 - type: entity
   id: YellowLavaLamp
   suffix: Yellow
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
@@ -147,7 +148,7 @@
 - type: entity
   id: OrangeLavaLamp
   suffix: Orange
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
@@ -167,7 +168,7 @@
 - type: entity
   id: GreenLavaLamp
   suffix: Green
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
@@ -187,7 +188,7 @@
 - type: entity
   id: PinkLavaLamp
   suffix: Pink
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
@@ -207,7 +208,7 @@
 - type: entity
   id: RGBLavaLamp
   suffix: RGB
-  parent: BaseLavaLamp
+  parent: LavaLamp
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
