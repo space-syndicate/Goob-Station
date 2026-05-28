@@ -57,7 +57,7 @@
     sprite: Clothing/Neck/mantles/hopmantle.rsi
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband, BaseBodycam]
+  parent: [ClothingNeckBase, BaseCommandContraband, BaseBodycam] #CorvaxGoob: add Bodycam
   id: ClothingNeckMantleHOS
   name: head of security's mantle
   description: Shootouts with syndicate agents are just another Tuesday for this HoS. This mantle is a symbol of commitment to the station.

@@ -21,7 +21,7 @@
 
 #Senior Security mantle
 - type: entity
-  parent: [ClothingNeckBase, BaseBodycam]
+  parent: [ClothingNeckBase, BaseBodycam] #CorvaxGoob: add Bodycam
   id: ClothingNeckMantleVeteranSecurity
   name: veteran security's mantle
   description: Personally awarded by HOS for repealing a Syndicate attack, looking at it seems to boost your morale by a bit
