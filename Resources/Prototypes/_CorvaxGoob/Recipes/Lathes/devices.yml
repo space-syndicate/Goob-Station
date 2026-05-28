@@ -1,5 +1,5 @@
 - type: latheRecipe
-  id: ToolboxElectricalTurretRecipe
+  id: ToolboxElectricalTurret
   result: ToolboxElectricalTurret
   completetime: 15
   materials:
