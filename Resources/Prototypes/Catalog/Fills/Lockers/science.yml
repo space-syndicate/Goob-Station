@@ -24,4 +24,5 @@
       - id: NodeScanner
       #- id: NetworkConfigurator
       #  prob: 0.5
-      - id: ClothingBeltUtilityEngineering #CorvaxGoob
+      #CorvaxGoob: delete because it in belt
+      - id: ClothingBeltUtilityEngineering #CorvaxGoob: add belt
