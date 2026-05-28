@@ -562,6 +562,28 @@
       !type:DepartmentTimeRequirement
       department: Medical
       time: 360000 # 100 hours
+
+- type: loadout
+  id: FoodSnackLollypopWrappedFentanyl
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 3600000 #1000hr
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 360000 # 100hr
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 360000 # 100hr
+  storage:
+    back:
+    - FoodSnackLollypopWrappedFentanyl
+  groupBy: "candy"
 # CorvaxGoob-loadouts-end.
 
 # Towels

@@ -1613,7 +1613,7 @@
         - ReagentId: Sugar
           Quantity: 5
         - ReagentId: Fentanyl # We do a little bit of trolling.
-          Quantity: 10
+          Quantity: 15 #CorvaxGoob: 10 --> 15
 
 # Phlogiston
 
