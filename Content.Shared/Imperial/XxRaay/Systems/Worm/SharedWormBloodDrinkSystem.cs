@@ -10,7 +10,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using System.Linq;
 
 namespace Content.Shared.Imperial.XxRaay.Systems;
@@ -18,7 +17,6 @@ namespace Content.Shared.Imperial.XxRaay.Systems;
 public abstract class SharedWormBloodDrinkSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
@@ -205,7 +203,43 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
         Dirty(worm, drinking);
     }
 
-    protected virtual void DrainBlood(EntityUid worm, EntityUid target, WormBloodDrinkerComponent drinker, int amount) { }
+    protected virtual void DrainBlood(EntityUid worm, EntityUid target, WormBloodDrinkerComponent drinker, FixedPoint2 amount)
+    {
+        if (!TryComp<BloodstreamComponent>(target, out var blood))
+            return;
+
+        if (!_solution.ResolveSolution(target, blood.BloodSolutionName, ref blood.BloodSolution, out var solution))
+            return;
+
+        var drain = FixedPoint2.Min(amount, solution.Volume);
+        if (drain <= 0)
+            return;
+
+        if (!TryComp<WormBloodComponent>(worm, out var wormBlood))
+            return;
+
+        var space = wormBlood.MaxBlood - wormBlood.Blood;
+        if (space <= 0)
+            return;
+
+        var maxDrainBySpace = FixedPoint2.New((int) Math.Ceiling(space / drinker.ConversionRatio));
+        drain = FixedPoint2.Min(drain, maxDrainBySpace);
+        if (drain <= 0)
+            return;
+
+        var gained = Math.Max(1, (int) (drain * drinker.ConversionRatio));
+        gained = Math.Min(gained, space);
+        if (gained <= 0)
+            return;
+
+        _solution.SplitSolution(blood.BloodSolution!.Value, drain);
+        Dirty(target, blood);
+        OnBloodDrained(worm, target, drinker, gained);
+    }
+
+    protected virtual void OnBloodDrained(EntityUid worm, EntityUid target, WormBloodDrinkerComponent drinker, int gained)
+    {
+    }
 
     public void StopDrinking(EntityUid worm, bool cancelDoAfters = true)
     {
@@ -286,16 +320,7 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
 
     private void ShowFailPopup(EntityUid worm, string message, EntityUid? popupUser)
     {
-        if (_net.IsClient)
-        {
-            _popup.PopupClient(message, worm, popupUser);
-            return;
-        }
-
-        _popup.PopupEntity(message, worm, PopupType.Small);
-
-        if (popupUser != null && _player.TryGetSessionByEntity(popupUser.Value, out var session))
-            _popup.PopupEntity(message, worm, session, PopupType.Small);
+        _popup.PopupPredicted(message, worm, popupUser, PopupType.Small);
     }
 
     private bool IsInDrinkRange(EntityUid worm, EntityUid target, float range, bool popup = false)
@@ -311,10 +336,10 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
         if (!_solution.ResolveSolution(target, blood.BloodSolutionName, ref blood.BloodSolution, out var solution))
             return false;
 
-        if (solution.Volume < FixedPoint2.New(drinker.DrainAmount))
+        if (solution.Volume < drinker.DrainAmount)
             return false;
 
-        return HasDrainableBlood(target, drinker, solution.Volume - FixedPoint2.New(drinker.DrainAmount));
+        return HasDrainableBlood(target, drinker, solution.Volume - drinker.DrainAmount);
     }
 
     protected bool HasDrainableBlood(EntityUid target, WormBloodDrinkerComponent drinker, FixedPoint2? volumeAfterNextDrain = null)

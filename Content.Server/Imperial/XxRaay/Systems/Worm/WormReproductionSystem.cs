@@ -3,6 +3,7 @@ using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Shared.Actions;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -34,27 +35,20 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly WormBloodSystem _wormBlood = default!;
     [Dependency] private readonly WormCorpsePossessionSystem _corpsePossession = default!;
-    [Dependency] private readonly VentCrawlerSystem _ventCrawler = default!;
+    [Dependency] private readonly ImperialVentCrawlerSystem _ventCrawler = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-
-    private readonly HashSet<EntityUid> _completing = new();
-
-    private static readonly Vector2[] OffspringOffsets =
-    [
-        new(0.35f, 0),
-        new(-0.35f, 0),
-        new(0, 0.35f),
-    ];
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<WormReproducerComponent, MapInitEvent>(OnReproducerMapInit);
+        SubscribeLocalEvent<WormReproducerComponent, ComponentShutdown>(OnReproducerShutdown);
         SubscribeLocalEvent<WormReproductionCocoonComponent, DestructionEventArgs>(OnCocoonDestroyed);
         SubscribeLocalEvent<WormReproductionCocoonComponent, TransformSpeakerNameEvent>(OnCocoonTransformSpeakerName);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     private void OnCocoonTransformSpeakerName(Entity<WormReproductionCocoonComponent> ent, ref TransformSpeakerNameEvent args)
@@ -79,14 +73,20 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
         }
     }
 
-    private void OnRoundRestart(RoundRestartCleanupEvent _)
+    private void OnReproducerMapInit(Entity<WormReproducerComponent> ent, ref MapInitEvent args)
     {
-        _completing.Clear();
+        _actions.AddAction(ent, ref ent.Comp.ReproductionActionEntity, ent.Comp.ReproductionAction);
+    }
+
+    private void OnReproducerShutdown(Entity<WormReproducerComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.ReproductionActionEntity != null)
+            _actions.RemoveAction(ent.Owner, ent.Comp.ReproductionActionEntity);
     }
 
     private void OnCocoonDestroyed(Entity<WormReproductionCocoonComponent> ent, ref DestructionEventArgs args)
     {
-        if (_completing.Contains(ent.Owner))
+        if (ent.Comp.Completing)
             return;
 
         FailReproduction(ent.Owner, ent.Comp);
@@ -115,6 +115,7 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
         cocoonComp.SourceProto = reproducer.SourceProto;
         cocoonComp.FailDeathDamageType = reproducer.FailDeathDamageType;
         cocoonComp.EndTime = _timing.CurTime + reproducer.ReproductionDuration;
+        cocoonComp.OffspringOffsets = reproducer.OffspringOffsets;
         Dirty(cocoon, cocoonComp);
 
         var pausedMap = _corpsePossession.EnsurePausedMap();
@@ -141,7 +142,7 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
 
     private void CompleteReproduction(EntityUid cocoonUid, WormReproductionCocoonComponent cocoon)
     {
-        if (_completing.Contains(cocoonUid))
+        if (cocoon.Completing)
             return;
 
         if (!Exists(cocoon.ParentWorm) || !TryComp(cocoon.ParentWorm, out ActiveWormReproductionComponent? active))
@@ -154,51 +155,45 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
         if (active.Cocoon != cocoonUid)
             return;
 
-        _completing.Add(cocoonUid);
+        cocoon.Completing = true;
+        Dirty(cocoonUid, cocoon);
 
-        try
+        var worm = cocoon.ParentWorm;
+        var coords = Transform(cocoonUid).Coordinates;
+        var remainingBlood = TryComp<WormBloodComponent>(worm, out var blood) ? blood.Blood : 0;
+
+        for (var i = 0; i < cocoon.OffspringCount; i++)
         {
-            var worm = cocoon.ParentWorm;
-            var coords = Transform(cocoonUid).Coordinates;
-            var remainingBlood = TryComp<WormBloodComponent>(worm, out var blood) ? blood.Blood : 0;
+            var offset = i < cocoon.OffspringOffsets.Count ? cocoon.OffspringOffsets[i] : Vector2.Zero;
+            var spawnCoords = coords.Offset(offset);
+            var offspring = Spawn(cocoon.OffspringProto, spawnCoords);
 
-            for (var i = 0; i < cocoon.OffspringCount; i++)
+            if (TryComp<HTNComponent>(offspring, out var offspringHtn))
             {
-                var offset = i < OffspringOffsets.Length ? OffspringOffsets[i] : Vector2.Zero;
-                var spawnCoords = coords.Offset(offset);
-                var offspring = Spawn(cocoon.OffspringProto, spawnCoords);
-
-                if (TryComp<HTNComponent>(offspring, out var offspringHtn))
-                {
-                    _npc.WakeNPC(offspring, offspringHtn);
-                    _htn.Replan(offspringHtn);
-                }
+                _npc.WakeNPC(offspring, offspringHtn);
+                _htn.Replan(offspringHtn);
             }
-
-            var demotedWorm = Spawn(cocoon.ParentResultProto, coords);
-
-            if (remainingBlood > 0)
-                _wormBlood.TryAddBlood(demotedWorm, remainingBlood);
-
-            if (TryTransferPlayerMind(worm, cocoonUid, demotedWorm))
-            {
-                if (TryComp<HTNComponent>(demotedWorm, out var demotedHtn))
-                    _npc.SleepNPC(demotedWorm, demotedHtn);
-            }
-
-            RemComp<ActiveWormReproductionComponent>(worm);
-            QueueDel(worm);
-            QueueDel(cocoonUid);
         }
-        finally
+
+        var demotedWorm = Spawn(cocoon.ParentResultProto, coords);
+
+        if (remainingBlood > 0)
+            _wormBlood.TryAddBlood(demotedWorm, remainingBlood);
+
+        if (TryTransferPlayerMind(worm, cocoonUid, demotedWorm))
         {
-            _completing.Remove(cocoonUid);
+            if (TryComp<HTNComponent>(demotedWorm, out var demotedHtn))
+                _npc.SleepNPC(demotedWorm, demotedHtn);
         }
+
+        RemComp<ActiveWormReproductionComponent>(worm);
+        QueueDel(worm);
+        QueueDel(cocoonUid);
     }
 
     private void FailReproduction(EntityUid cocoonUid, WormReproductionCocoonComponent cocoon)
     {
-        if (_completing.Contains(cocoonUid))
+        if (cocoon.Completing)
             return;
 
         var worm = cocoon.ParentWorm;

@@ -1,4 +1,5 @@
 using Content.Shared.Imperial.XxRaay.Systems;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,7 @@ public sealed partial class WormBloodDrinkerComponent : Component
     public TimeSpan TickDelay = TimeSpan.FromSeconds(0.5);
 
     [DataField]
-    public int DrainAmount = 4;
+    public FixedPoint2 DrainAmount = 4;
 
     [DataField]
     public float Range = 1f;

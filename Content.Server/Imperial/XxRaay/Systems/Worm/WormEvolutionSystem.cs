@@ -2,6 +2,7 @@ using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Shared.Actions;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -33,20 +34,20 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly WormBloodSystem _wormBlood = default!;
     [Dependency] private readonly WormCorpsePossessionSystem _corpsePossession = default!;
-    [Dependency] private readonly VentCrawlerSystem _ventCrawler = default!;
+    [Dependency] private readonly ImperialVentCrawlerSystem _ventCrawler = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-
-    private readonly HashSet<EntityUid> _completing = new();
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<WormEvolverComponent, MapInitEvent>(OnEvolverMapInit);
+        SubscribeLocalEvent<WormEvolverComponent, ComponentShutdown>(OnEvolverShutdown);
         SubscribeLocalEvent<WormCocoonComponent, DestructionEventArgs>(OnCocoonDestroyed);
         SubscribeLocalEvent<WormCocoonComponent, TransformSpeakerNameEvent>(OnCocoonTransformSpeakerName);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     private void OnCocoonTransformSpeakerName(Entity<WormCocoonComponent> ent, ref TransformSpeakerNameEvent args)
@@ -71,14 +72,20 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         }
     }
 
-    private void OnRoundRestart(RoundRestartCleanupEvent _)
+    private void OnEvolverMapInit(Entity<WormEvolverComponent> ent, ref MapInitEvent args)
     {
-        _completing.Clear();
+        _actions.AddAction(ent, ref ent.Comp.EvolutionActionEntity, ent.Comp.EvolutionAction);
+    }
+
+    private void OnEvolverShutdown(Entity<WormEvolverComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.EvolutionActionEntity != null)
+            _actions.RemoveAction(ent.Owner, ent.Comp.EvolutionActionEntity);
     }
 
     private void OnCocoonDestroyed(Entity<WormCocoonComponent> ent, ref DestructionEventArgs args)
     {
-        if (_completing.Contains(ent.Owner))
+        if (ent.Comp.Completing)
             return;
 
         FailEvolution(ent.Owner, ent.Comp);
@@ -131,7 +138,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
 
     private void CompleteEvolution(EntityUid cocoonUid, WormCocoonComponent cocoon)
     {
-        if (_completing.Contains(cocoonUid))
+        if (cocoon.Completing)
             return;
 
         if (!Exists(cocoon.Worm) || !TryComp(cocoon.Worm, out ActiveWormEvolutionComponent? active))
@@ -144,43 +151,37 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         if (active.Cocoon != cocoonUid)
             return;
 
-        _completing.Add(cocoonUid);
+        cocoon.Completing = true;
+        Dirty(cocoonUid, cocoon);
 
-        try
+        var worm = cocoon.Worm;
+        var coords = Transform(cocoonUid).Coordinates;
+        var remainingBlood = TryComp<WormBloodComponent>(worm, out var blood) ? blood.Blood : 0;
+
+        var newWorm = Spawn(cocoon.ResultProto, coords);
+
+        if (remainingBlood > 0)
+            _wormBlood.TryAddBlood(newWorm, remainingBlood);
+
+        if (TryTransferPlayerMind(worm, cocoonUid, newWorm))
         {
-            var worm = cocoon.Worm;
-            var coords = Transform(cocoonUid).Coordinates;
-            var remainingBlood = TryComp<WormBloodComponent>(worm, out var blood) ? blood.Blood : 0;
-
-            var newWorm = Spawn(cocoon.ResultProto, coords);
-
-            if (remainingBlood > 0)
-                _wormBlood.TryAddBlood(newWorm, remainingBlood);
-
-            if (TryTransferPlayerMind(worm, cocoonUid, newWorm))
-            {
-                if (TryComp<HTNComponent>(newWorm, out var newHtn))
-                    _npc.SleepNPC(newWorm, newHtn);
-            }
-            else if (TryComp<HTNComponent>(newWorm, out var newHtn))
-            {
-                _npc.WakeNPC(newWorm, newHtn);
-                _htn.Replan(newHtn);
-            }
-
-            RemComp<ActiveWormEvolutionComponent>(worm);
-            QueueDel(worm);
-            QueueDel(cocoonUid);
+            if (TryComp<HTNComponent>(newWorm, out var newHtn))
+                _npc.SleepNPC(newWorm, newHtn);
         }
-        finally
+        else if (TryComp<HTNComponent>(newWorm, out var newHtn))
         {
-            _completing.Remove(cocoonUid);
+            _npc.WakeNPC(newWorm, newHtn);
+            _htn.Replan(newHtn);
         }
+
+        RemComp<ActiveWormEvolutionComponent>(worm);
+        QueueDel(worm);
+        QueueDel(cocoonUid);
     }
 
     private void FailEvolution(EntityUid cocoonUid, WormCocoonComponent cocoon)
     {
-        if (_completing.Contains(cocoonUid))
+        if (cocoon.Completing)
             return;
 
         var worm = cocoon.Worm;

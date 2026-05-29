@@ -52,18 +52,6 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
     public EntityUid? PausedMap { get; private set; }
 
-    public EntityUid EnsurePausedMap()
-    {
-        if (PausedMap != null && Exists(PausedMap))
-            return PausedMap.Value;
-
-        var mapUid = _map.CreateMap();
-        _metaData.SetEntityName(mapUid, "worm-corpse-paused-map");
-        _map.SetPaused(mapUid, true);
-        PausedMap = mapUid;
-        return mapUid;
-    }
-
     public override void Initialize()
     {
         base.Initialize();
@@ -155,37 +143,49 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (!_exitingPossession.Add(worm))
             return;
 
-        try
+        corpse = active.Corpse;
+
+        if (TerminatingOrDeleted(corpse))
         {
-            corpse = active.Corpse;
-
-            if (TerminatingOrDeleted(corpse))
-            {
-                FinishExitWithoutCorpse(worm, active, forced);
-                return;
-            }
-
-            if (!TryComp(worm, out WormCorpseHostComponent? host))
-            {
-                FinishExit(worm, corpse, active, host: null, forced);
-                return;
-            }
-
-            RemoveExitAction(corpse);
-
-            _damageable.TryChangeDamage(corpse, host.ExitBleedDamage);
-            EnsureCorpseDeadAfterWormExit(corpse);
-
-            if (host.ExitSound != null)
-                _audio.PlayPvs(host.ExitSound, corpse);
-
-            FinishExit(worm, corpse, active, host, forced);
-        }
-        finally
-        {
+            FinishExitWithoutCorpse(worm, active, forced);
             _exitingPossession.Remove(worm);
+            return;
         }
+
+        if (!TryComp(worm, out WormCorpseHostComponent? host))
+        {
+            FinishExit(worm, corpse, active, host: null, forced);
+            _exitingPossession.Remove(worm);
+            return;
+        }
+
+        RemoveExitAction(corpse);
+
+        _damageable.TryChangeDamage(corpse, host.ExitBleedDamage);
+        EnsureCorpseDeadAfterWormExit(corpse);
+
+        if (host.ExitSound != null)
+            _audio.PlayPvs(host.ExitSound, corpse);
+
+        FinishExit(worm, corpse, active, host, forced);
+        _exitingPossession.Remove(worm);
     }
+
+    #region Public API
+
+    public EntityUid EnsurePausedMap()
+    {
+        if (PausedMap != null && Exists(PausedMap))
+            return PausedMap.Value;
+
+        var mapUid = _map.CreateMap();
+        _metaData.SetEntityName(mapUid, "worm-corpse-paused-map");
+        _map.SetPaused(mapUid, true);
+        PausedMap = mapUid;
+        return mapUid;
+    }
+
+    #endregion
 
     private void RemoveExitAction(EntityUid corpse)
     {

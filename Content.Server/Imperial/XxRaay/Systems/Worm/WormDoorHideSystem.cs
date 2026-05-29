@@ -7,7 +7,6 @@ using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.Eye;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Events;
 using Content.Shared.Imperial.XxRaay.Systems;
@@ -19,6 +18,7 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
+using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -43,7 +43,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly StealthSystem _stealth = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
-    [Dependency] private readonly VentCrawlerSystem _ventCrawler = default!;
+    [Dependency] private readonly ImperialVentCrawlerSystem _ventCrawler = default!;
 
     private EntityQuery<ActiveVentCrawlingComponent> _ventCrawlingQuery;
     private EntityQuery<ActiveWormCorpsePossessionComponent> _corpsePossessionQuery;
@@ -283,19 +283,13 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
         if (!TryComp(worm, out WormDoorHidingComponent? hiding) || !_exiting.Add(worm))
             return;
 
-        try
-        {
-            var door = hiding.SourceDoor;
+        var door = hiding.SourceDoor;
 
-            if (Exists(door) && TryComp(door, out WormDoorHideOccupiedComponent? occupied) && occupied.Worm == worm)
-                RemComp<WormDoorHideOccupiedComponent>(door);
+        if (Exists(door) && TryComp(door, out WormDoorHideOccupiedComponent? occupied) && occupied.Worm == worm)
+            RemComp<WormDoorHideOccupiedComponent>(door);
 
-            RemComp<WormDoorHidingComponent>(worm);
-        }
-        finally
-        {
-            _exiting.Remove(worm);
-        }
+        RemComp<WormDoorHidingComponent>(worm);
+        _exiting.Remove(worm);
     }
 
     private bool CanHideInDoor(

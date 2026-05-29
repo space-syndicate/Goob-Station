@@ -6,16 +6,11 @@ using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Events;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
-using Robust.Shared.Network;
-using Robust.Shared.Player;
 
 namespace Content.Shared.Imperial.XxRaay.Systems;
 
 public abstract class SharedWormEvolutionSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedWormBloodDrinkSystem _wormBloodDrink = default!;
@@ -42,8 +37,6 @@ public abstract class SharedWormEvolutionSystem : EntitySystem
         _reproductionQuery = GetEntityQuery<ActiveWormReproductionComponent>();
         _bloodQuery = GetEntityQuery<WormBloodComponent>();
 
-        SubscribeLocalEvent<WormEvolverComponent, MapInitEvent>(OnEvolverMapInit);
-        SubscribeLocalEvent<WormEvolverComponent, ComponentShutdown>(OnEvolverShutdown);
         SubscribeLocalEvent<WormEvolverComponent, WormEvolutionActionEvent>(OnEvolutionAction);
         SubscribeLocalEvent<WormEvolverComponent, WormEvolutionDoAfterEvent>(OnEvolutionDoAfter);
 
@@ -52,18 +45,6 @@ public abstract class SharedWormEvolutionSystem : EntitySystem
         SubscribeLocalEvent<ActiveWormEvolutionComponent, InteractionAttemptEvent>(OnInteractionAttempt);
         SubscribeLocalEvent<ActiveWormEvolutionComponent, UseAttemptEvent>(OnUseAttempt);
         SubscribeLocalEvent<ActiveWormEvolutionComponent, AttackAttemptEvent>(OnAttackAttempt);
-    }
-
-    private void OnEvolverMapInit(Entity<WormEvolverComponent> ent, ref MapInitEvent args)
-    {
-        if (_net.IsServer)
-            _actions.AddAction(ent, ref ent.Comp.EvolutionActionEntity, ent.Comp.EvolutionAction);
-    }
-
-    private void OnEvolverShutdown(Entity<WormEvolverComponent> ent, ref ComponentShutdown args)
-    {
-        if (_net.IsServer && ent.Comp.EvolutionActionEntity != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.EvolutionActionEntity);
     }
 
     private void OnEvolutionAction(Entity<WormEvolverComponent> ent, ref WormEvolutionActionEvent args)
@@ -86,13 +67,11 @@ public abstract class SharedWormEvolutionSystem : EntitySystem
             }))
             return;
 
-        if (_net.IsServer)
-        {
-            _popup.PopupCoordinates(
-                Loc.GetString("worm-evolution-weaving"),
-                Transform(ent).Coordinates,
-                PopupType.Medium);
-        }
+        _popup.PopupPredictedCoordinates(
+            Loc.GetString("worm-evolution-weaving"),
+            Transform(ent).Coordinates,
+            args.Performer,
+            PopupType.Medium);
     }
 
     private void OnEvolutionDoAfter(Entity<WormEvolverComponent> ent, ref WormEvolutionDoAfterEvent args)
@@ -106,9 +85,6 @@ public abstract class SharedWormEvolutionSystem : EntitySystem
             return;
 
         if (!CanEvolve(ent))
-            return;
-
-        if (!_net.IsServer)
             return;
 
         BeginEvolution(ent.Owner, ent.Comp);
@@ -202,19 +178,12 @@ public abstract class SharedWormEvolutionSystem : EntitySystem
     {
     }
 
-    protected abstract void BeginEvolution(EntityUid worm, WormEvolverComponent evolver);
+    protected virtual void BeginEvolution(EntityUid worm, WormEvolverComponent evolver)
+    {
+    }
 
     private void ShowFailPopup(EntityUid worm, string message, EntityUid? popupUser)
     {
-        if (_net.IsClient)
-        {
-            _popup.PopupClient(message, worm, popupUser);
-            return;
-        }
-
-        _popup.PopupEntity(message, worm, PopupType.Small);
-
-        if (popupUser != null && _player.TryGetSessionByEntity(popupUser.Value, out var session))
-            _popup.PopupEntity(message, worm, session, PopupType.Small);
+        _popup.PopupPredicted(message, worm, popupUser, PopupType.Small);
     }
 }

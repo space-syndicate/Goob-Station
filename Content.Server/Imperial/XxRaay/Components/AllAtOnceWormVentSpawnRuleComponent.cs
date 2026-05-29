@@ -14,7 +14,7 @@ public sealed partial class AllAtOnceWormVentSpawnRuleComponent : Component
     public int Count = 3;
 
     [DataField]
-    public string? StartAnnouncement = "station-event-worm-vent-spawn-start-announcement";
+    public LocId? StartAnnouncement = "station-event-worm-vent-spawn-start-announcement";
 
     [DataField]
     public Color StartAnnouncementColor = Color.Gold;

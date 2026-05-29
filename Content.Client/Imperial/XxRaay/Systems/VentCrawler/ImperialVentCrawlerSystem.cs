@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.XxRaay.Systems;
 
-public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
+public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
@@ -17,7 +17,10 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
+    private static readonly TimeSpan PipeRevealRefresh = TimeSpan.FromMilliseconds(200);
     private readonly HashSet<Entity<SubFloorHideComponent>> _inRange = new();
+    private readonly HashSet<EntityUid> _current = new();
+    private TimeSpan _nextPipeRefresh;
 
     public override void Initialize()
     {
@@ -32,11 +35,16 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
+        if (_timing.CurTime < _nextPipeRefresh)
+            return;
+
+        _nextPipeRefresh = _timing.CurTime + PipeRevealRefresh;
+
         var player = _player.LocalEntity;
 
         if (player == null ||
             !HasComp<ActiveVentCrawlingComponent>(player) ||
-            !TryComp(player, out VentCrawlerComponent? crawler) ||
+            !TryComp(player, out ImperialVentCrawlerComponent? crawler) ||
             !crawler.RevealPipeNetwork ||
             crawler.PipeRevealRange <= 0f)
         {
@@ -51,23 +59,22 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         var playerPos = _transform.GetWorldPosition(playerXform);
         _lookup.GetEntitiesInRange(playerXform.MapID, playerPos, crawler.PipeRevealRange, _inRange, flags: TrayScannerSystem.Flags);
 
-        var current = new HashSet<EntityUid>();
-
+        _current.Clear();
         foreach (var (uid, _) in _inRange)
         {
-            current.Add(uid);
-            EnsureComp<VentCrawlerRevealedComponent>(uid);
+            _current.Add(uid);
+            EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
             SetRevealed(uid, true);
         }
 
-        var revealedQuery = AllEntityQuery<VentCrawlerRevealedComponent>();
+        var revealedQuery = AllEntityQuery<ImperialVentCrawlerRevealedComponent>();
         while (revealedQuery.MoveNext(out var uid, out _))
         {
-            if (current.Contains(uid))
+            if (_current.Contains(uid))
                 continue;
 
             SetRevealed(uid, false);
-            RemCompDeferred<VentCrawlerRevealedComponent>(uid);
+            RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
         }
     }
 
@@ -78,11 +85,11 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void ClearRevealed()
     {
-        var query = AllEntityQuery<VentCrawlerRevealedComponent>();
+        var query = AllEntityQuery<ImperialVentCrawlerRevealedComponent>();
         while (query.MoveNext(out var uid, out _))
         {
             SetRevealed(uid, false);
-            RemCompDeferred<VentCrawlerRevealedComponent>(uid);
+            RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
         }
     }
 

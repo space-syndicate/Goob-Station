@@ -159,7 +159,7 @@
       types:
         Bloodloss: 200
     enterCooldown: 180
-  - type: VentCrawler
+  - type: ImperialVentCrawler
     enterDelay: 2
     exitDelay: 2
     ventSpeedMultiplier: 1.5

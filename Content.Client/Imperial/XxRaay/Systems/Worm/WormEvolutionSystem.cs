@@ -7,5 +7,6 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
 {
     protected override void BeginEvolution(EntityUid worm, WormEvolverComponent evolver)
     {
+        base.BeginEvolution(worm, evolver);
     }
 }

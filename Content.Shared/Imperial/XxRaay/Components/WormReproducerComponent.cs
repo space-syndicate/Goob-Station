@@ -2,6 +2,8 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -35,6 +37,14 @@ public sealed partial class WormReproducerComponent : Component
 
     [DataField]
     public int OffspringCount = 3;
+
+    [DataField]
+    public List<Vector2> OffspringOffsets = new()
+    {
+        new Vector2(0.35f, 0),
+        new Vector2(-0.35f, 0),
+        new Vector2(0, 0.35f),
+    };
 
     [DataField]
     public EntProtoId ParentResultProto;

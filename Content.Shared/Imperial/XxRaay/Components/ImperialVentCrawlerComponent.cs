@@ -6,7 +6,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Imperial.XxRaay.Components;
 
 [RegisterComponent]
-public sealed partial class VentCrawlerComponent : Component
+public sealed partial class ImperialVentCrawlerComponent : Component
 {
     [DataField(required: true)]
     public TimeSpan EnterDelay;

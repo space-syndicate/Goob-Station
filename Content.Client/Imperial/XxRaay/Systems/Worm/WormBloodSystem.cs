@@ -15,22 +15,12 @@ public sealed class WormBloodSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<WormBloodComponent, AfterAutoHandleStateEvent>(OnAfterState);
-        SubscribeLocalEvent<WormBloodComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<WormBloodComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<WormBloodComponent, AfterAutoHandleStateEvent>(OnSyncAlert);
+        SubscribeLocalEvent<WormBloodComponent, ComponentStartup>(OnSyncAlert);
+        SubscribeLocalEvent<WormBloodComponent, LocalPlayerAttachedEvent>(OnSyncAlert);
     }
 
-    private void OnPlayerAttached(Entity<WormBloodComponent> ent, ref LocalPlayerAttachedEvent args)
-    {
-        SyncAlert(ent.Owner, ent.Comp);
-    }
-
-    private void OnStartup(Entity<WormBloodComponent> ent, ref ComponentStartup args)
-    {
-        SyncAlert(ent.Owner, ent.Comp);
-    }
-
-    private void OnAfterState(Entity<WormBloodComponent> ent, ref AfterAutoHandleStateEvent args)
+    private void OnSyncAlert<T>(Entity<WormBloodComponent> ent, ref T args)
     {
         SyncAlert(ent.Owner, ent.Comp);
     }

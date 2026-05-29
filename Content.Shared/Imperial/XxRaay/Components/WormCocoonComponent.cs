@@ -23,4 +23,7 @@ public sealed partial class WormCocoonComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan EndTime;
+
+    [DataField]
+    public bool Completing;
 }

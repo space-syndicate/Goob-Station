@@ -1,5 +1,7 @@
 using Content.Shared.Imperial.XxRaay.Systems;
+using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -15,4 +17,7 @@ public sealed partial class WormCorpseOccupiedComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool AddedStatusIcon;
+
+    [DataField]
+    public ProtoId<FactionIconPrototype> FactionIcon = "WormFaction";
 }

@@ -7,5 +7,6 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
 {
     protected override void BeginReproduction(EntityUid worm, WormReproducerComponent reproducer)
     {
+        base.BeginReproduction(worm, reproducer);
     }
 }

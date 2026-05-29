@@ -3,7 +3,7 @@ using Content.Shared.Interaction.Events;
 
 namespace Content.Shared.Imperial.XxRaay.Systems;
 
-public abstract class SharedVentCrawlerSystem : EntitySystem
+public abstract class SharedImperialVentCrawlerSystem : EntitySystem
 {
     [Dependency] private readonly SharedWormBloodDrinkSystem _wormBloodDrink = default!;
     [Dependency] private readonly SharedWormCorpsePossessionSystem _wormCorpsePossession = default!;

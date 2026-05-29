@@ -1,26 +1,12 @@
 using Content.Server.Imperial.XxRaay.Systems;
+using Content.Server.Imperial.XxRaay.DataDefinitions;
 using Robust.Shared.GameObjects;
+using System.Collections.Generic;
 
 namespace Content.Server.Imperial.XxRaay.Components;
 
-[DataDefinition]
-public sealed partial class VentCrawlerFixtureState
-{
-    [DataField]
-    public string Id = string.Empty;
-
-    [DataField]
-    public bool Hard;
-
-    [DataField]
-    public int CollisionLayer;
-
-    [DataField]
-    public int CollisionMask;
-}
-
 [RegisterComponent]
-[Access(typeof(VentCrawlerSystem))]
+[Access(typeof(ImperialVentCrawlerSystem))]
 public sealed partial class VentCrawlingComponent : Component
 {
     [DataField]
@@ -33,7 +19,7 @@ public sealed partial class VentCrawlingComponent : Component
     public bool WasCollidable = true;
 
     [DataField]
-    public List<VentCrawlerFixtureState> FixtureStates = [];
+    public List<ImperialVentCrawlerFixtureState> FixtureStates = [];
 
     [DataField]
     public bool AddedStealth;

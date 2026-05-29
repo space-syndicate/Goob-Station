@@ -6,16 +6,11 @@ using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Events;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
-using Robust.Shared.Network;
-using Robust.Shared.Player;
 
 namespace Content.Shared.Imperial.XxRaay.Systems;
 
 public abstract class SharedWormReproductionSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedWormBloodDrinkSystem _wormBloodDrink = default!;
@@ -42,8 +37,6 @@ public abstract class SharedWormReproductionSystem : EntitySystem
         _evolutionQuery = GetEntityQuery<ActiveWormEvolutionComponent>();
         _bloodQuery = GetEntityQuery<WormBloodComponent>();
 
-        SubscribeLocalEvent<WormReproducerComponent, MapInitEvent>(OnReproducerMapInit);
-        SubscribeLocalEvent<WormReproducerComponent, ComponentShutdown>(OnReproducerShutdown);
         SubscribeLocalEvent<WormReproducerComponent, WormReproductionActionEvent>(OnReproductionAction);
         SubscribeLocalEvent<WormReproducerComponent, WormReproductionDoAfterEvent>(OnReproductionDoAfter);
 
@@ -52,18 +45,6 @@ public abstract class SharedWormReproductionSystem : EntitySystem
         SubscribeLocalEvent<ActiveWormReproductionComponent, InteractionAttemptEvent>(OnInteractionAttempt);
         SubscribeLocalEvent<ActiveWormReproductionComponent, UseAttemptEvent>(OnUseAttempt);
         SubscribeLocalEvent<ActiveWormReproductionComponent, AttackAttemptEvent>(OnAttackAttempt);
-    }
-
-    private void OnReproducerMapInit(Entity<WormReproducerComponent> ent, ref MapInitEvent args)
-    {
-        if (_net.IsServer)
-            _actions.AddAction(ent, ref ent.Comp.ReproductionActionEntity, ent.Comp.ReproductionAction);
-    }
-
-    private void OnReproducerShutdown(Entity<WormReproducerComponent> ent, ref ComponentShutdown args)
-    {
-        if (_net.IsServer && ent.Comp.ReproductionActionEntity != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.ReproductionActionEntity);
     }
 
     private void OnReproductionAction(Entity<WormReproducerComponent> ent, ref WormReproductionActionEvent args)
@@ -86,13 +67,11 @@ public abstract class SharedWormReproductionSystem : EntitySystem
             }))
             return;
 
-        if (_net.IsServer)
-        {
-            _popup.PopupCoordinates(
-                Loc.GetString("worm-reproduction-weaving"),
-                Transform(ent).Coordinates,
-                PopupType.Medium);
-        }
+        _popup.PopupPredictedCoordinates(
+            Loc.GetString("worm-reproduction-weaving"),
+            Transform(ent).Coordinates,
+            args.Performer,
+            PopupType.Medium);
     }
 
     private void OnReproductionDoAfter(Entity<WormReproducerComponent> ent, ref WormReproductionDoAfterEvent args)
@@ -106,9 +85,6 @@ public abstract class SharedWormReproductionSystem : EntitySystem
             return;
 
         if (!CanReproduce(ent))
-            return;
-
-        if (!_net.IsServer)
             return;
 
         BeginReproduction(ent.Owner, ent.Comp);
@@ -202,19 +178,12 @@ public abstract class SharedWormReproductionSystem : EntitySystem
     {
     }
 
-    protected abstract void BeginReproduction(EntityUid worm, WormReproducerComponent reproducer);
+    protected virtual void BeginReproduction(EntityUid worm, WormReproducerComponent reproducer)
+    {
+    }
 
     private void ShowFailPopup(EntityUid worm, string message, EntityUid? popupUser)
     {
-        if (_net.IsClient)
-        {
-            _popup.PopupClient(message, worm, popupUser);
-            return;
-        }
-
-        _popup.PopupEntity(message, worm, PopupType.Small);
-
-        if (popupUser != null && _player.TryGetSessionByEntity(popupUser.Value, out var session))
-            _popup.PopupEntity(message, worm, session, PopupType.Small);
+        _popup.PopupPredicted(message, worm, popupUser, PopupType.Small);
     }
 }

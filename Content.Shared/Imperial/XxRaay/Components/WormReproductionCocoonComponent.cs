@@ -2,6 +2,8 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -19,6 +21,9 @@ public sealed partial class WormReproductionCocoonComponent : Component
     public int OffspringCount = 3;
 
     [DataField]
+    public List<Vector2> OffspringOffsets = new();
+
+    [DataField]
     public EntProtoId ParentResultProto;
 
     [DataField]
@@ -29,4 +34,7 @@ public sealed partial class WormReproductionCocoonComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan EndTime;
+
+    [DataField]
+    public bool Completing;
 }

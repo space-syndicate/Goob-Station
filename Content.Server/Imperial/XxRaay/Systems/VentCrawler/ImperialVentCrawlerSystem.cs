@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Imperial.XxRaay.Components;
+using Content.Server.Imperial.XxRaay.DataDefinitions;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Stealth;
@@ -33,7 +34,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 namespace Content.Server.Imperial.XxRaay.Systems;
 
-public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
+public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
@@ -68,8 +69,8 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         _reproductionQuery = GetEntityQuery<ActiveWormReproductionComponent>();
 
         SubscribeLocalEvent<VentCrawlPointComponent, GetVerbsEvent<InteractionVerb>>(OnVentGetVerbs);
-        SubscribeLocalEvent<VentCrawlPointComponent, EnterVentCrawlerDoAfterEvent>(OnEnterDoAfter);
-        SubscribeLocalEvent<VentCrawlPointComponent, ExitVentCrawlerDoAfterEvent>(OnExitDoAfter);
+        SubscribeLocalEvent<VentCrawlPointComponent, EnterImperialVentCrawlerDoAfterEvent>(OnEnterDoAfter);
+        SubscribeLocalEvent<VentCrawlPointComponent, ExitImperialVentCrawlerDoAfterEvent>(OnExitDoAfter);
 
         SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
         SubscribeLocalEvent<VentCrawlingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMoveSpeed);
@@ -92,12 +93,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         AddVentVerbs(ent, ref args);
     }
 
-    private void OnEnterDoAfter(Entity<VentCrawlPointComponent> ent, ref EnterVentCrawlerDoAfterEvent args)
+    private void OnEnterDoAfter(Entity<VentCrawlPointComponent> ent, ref EnterImperialVentCrawlerDoAfterEvent args)
     {
         HandleEnterDoAfter(ent, ref args);
     }
 
-    private void OnExitDoAfter(Entity<VentCrawlPointComponent> ent, ref ExitVentCrawlerDoAfterEvent args)
+    private void OnExitDoAfter(Entity<VentCrawlPointComponent> ent, ref ExitImperialVentCrawlerDoAfterEvent args)
     {
         HandleExitDoAfter(ent, ref args);
     }
@@ -107,12 +108,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         if (!_actionBlocker.CanConsciouslyPerformAction(args.User) || !_interaction.InRangeUnobstructed(args.User, vent))
             return;
 
-        if (!TryComp(args.User, out VentCrawlerComponent? crawler))
+        if (!TryComp(args.User, out ImperialVentCrawlerComponent? crawler))
             return;
 
         var user = args.User;
 
-        if (CanEnterVent(user, vent, crawler))
+        if (CanEnterVent(user, vent))
         {
             args.Verbs.Add(new InteractionVerb
             {
@@ -137,15 +138,15 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         }
     }
 
-    private void StartEnterVent(EntityUid user, EntityUid vent, VentCrawlerComponent crawler)
+    private void StartEnterVent(EntityUid user, EntityUid vent, ImperialVentCrawlerComponent crawler)
     {
-        if (!CanEnterVent(user, vent, crawler, showPopup: true) || !_actionBlocker.CanConsciouslyPerformAction(user))
+        if (!CanEnterVent(user, vent, showPopup: true) || !_actionBlocker.CanConsciouslyPerformAction(user))
             return;
 
         if (!_interaction.InRangeUnobstructed(user, vent))
             return;
 
-        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentCrawlerDoAfterEvent(), vent, target: vent)
+        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterImperialVentCrawlerDoAfterEvent(), vent, target: vent)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
@@ -156,12 +157,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         _doAfter.TryStartDoAfter(args);
     }
 
-    private void HandleEnterDoAfter(EntityUid vent, ref EnterVentCrawlerDoAfterEvent args)
+    private void HandleEnterDoAfter(EntityUid vent, ref EnterImperialVentCrawlerDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!TryComp(args.User, out VentCrawlerComponent? crawler) || !CanEnterVent(args.User, vent, crawler))
+        if (!TryComp(args.User, out ImperialVentCrawlerComponent? _) || !CanEnterVent(args.User, vent))
             return;
 
         if (!_actionBlocker.CanConsciouslyPerformAction(args.User) || !_interaction.InRangeUnobstructed(args.User, vent))
@@ -172,12 +173,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         args.Handled = true;
     }
 
-    private void StartExitVent(EntityUid user, EntityUid vent, VentCrawlerComponent crawler)
+    private void StartExitVent(EntityUid user, EntityUid vent, ImperialVentCrawlerComponent crawler)
     {
         if (!TryComp(user, out VentCrawlingComponent? active) || !CanExitVent(user, vent, active, showPopup: true))
             return;
 
-        var args = new DoAfterArgs(EntityManager, user, crawler.ExitDelay, new ExitVentCrawlerDoAfterEvent(), vent, target: vent)
+        var args = new DoAfterArgs(EntityManager, user, crawler.ExitDelay, new ExitImperialVentCrawlerDoAfterEvent(), vent, target: vent)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
@@ -189,7 +190,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         _doAfter.TryStartDoAfter(args);
     }
 
-    private void HandleExitDoAfter(EntityUid vent, ref ExitVentCrawlerDoAfterEvent args)
+    private void HandleExitDoAfter(EntityUid vent, ref ExitImperialVentCrawlerDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
@@ -201,7 +202,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         args.Handled = true;
     }
 
-    private bool CanEnterVent(EntityUid user, EntityUid vent, VentCrawlerComponent crawler, bool showPopup = false)
+    private bool CanEnterVent(EntityUid user, EntityUid vent, bool showPopup = false)
     {
         if (HasComp<VentCrawlingComponent>(user))
         {
@@ -288,7 +289,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void EnterVent(EntityUid user, EntityUid vent)
     {
-        if (!TryComp(user, out VentCrawlerComponent? crawler))
+        if (!TryComp(user, out ImperialVentCrawlerComponent? crawler))
             return;
 
         var active = AddComp<VentCrawlingComponent>(user);
@@ -353,14 +354,14 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void OnGetVisMask(Entity<VentCrawlingComponent> ent, ref GetVisMaskEvent args)
     {
-        if (!TryComp(ent, out VentCrawlerComponent? crawler))
+        if (!TryComp(ent, out ImperialVentCrawlerComponent? crawler))
             return;
 
         if (crawler.EyeSeeSubfloor)
             args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
 
         if (crawler.EyeSeeCrawlVisibilityLayer)
-            args.VisibilityMask |= crawler.CrawlVisibilityLayer;
+            args.VisibilityMask |= (int) crawler.CrawlVisibilityLayer;
     }
 
     private void OnShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
@@ -374,7 +375,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
             _physics.ResetDynamics(ent, physics);
         }
 
-        if (TryComp(ent, out VentCrawlerComponent? crawler))
+        if (TryComp(ent, out ImperialVentCrawlerComponent? crawler))
         {
             if (crawler.RemoveComplexInteraction)
                 RestoreComplexInteraction(ent, ent.Comp);
@@ -397,7 +398,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void OnRefreshMoveSpeed(Entity<VentCrawlingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (!TryComp(ent, out VentCrawlerComponent? crawler))
+        if (!TryComp(ent, out ImperialVentCrawlerComponent? crawler))
             return;
 
         args.ModifySpeed(crawler.VentSpeedMultiplier, crawler.VentSpeedMultiplier);
@@ -493,7 +494,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         return firstGrid == secondGrid && firstTile == secondTile;
     }
 
-    private void ApplyStealth(EntityUid user, VentCrawlingComponent active, VentCrawlerComponent crawler)
+    private void ApplyStealth(EntityUid user, VentCrawlingComponent active, ImperialVentCrawlerComponent crawler)
     {
         var hadStealth = TryComp(user, out StealthComponent? stealth);
         if (!hadStealth)
@@ -524,7 +525,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
         _stealth.SetVisibility(user, active.PreviousStealthVisibility, stealth);
     }
 
-    private void ApplyVentVisibility(EntityUid user, VentCrawlingComponent active, VentCrawlerComponent crawler)
+    private void ApplyVentVisibility(EntityUid user, VentCrawlingComponent active, ImperialVentCrawlerComponent crawler)
     {
         var hadVisibility = TryComp(user, out VisibilityComponent? visibility);
         if (!hadVisibility)
@@ -581,12 +582,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
-            active.FixtureStates.Add(new VentCrawlerFixtureState
+            active.FixtureStates.Add(new ImperialVentCrawlerFixtureState
             {
                 Id = id,
                 Hard = fixture.Hard,
-                CollisionLayer = fixture.CollisionLayer,
-                CollisionMask = fixture.CollisionMask,
+                CollisionLayer = (CollisionGroup) fixture.CollisionLayer,
+                CollisionMask = (CollisionGroup) fixture.CollisionMask,
             });
 
             _physics.SetHard(user, fixture, false, fixtures);
@@ -606,8 +607,8 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
                 continue;
 
             _physics.SetHard(user, fixture, state.Hard, fixtures);
-            _physics.SetCollisionLayer(user, state.Id, fixture, state.CollisionLayer, fixtures, physics);
-            _physics.SetCollisionMask(user, state.Id, fixture, state.CollisionMask, fixtures, physics);
+            _physics.SetCollisionLayer(user, state.Id, fixture, (int) state.CollisionLayer, fixtures, physics);
+            _physics.SetCollisionMask(user, state.Id, fixture, (int) state.CollisionMask, fixtures, physics);
         }
 
         active.FixtureStates.Clear();
@@ -662,7 +663,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private void TryPlayVentCrawlSound(Entity<VentCrawlingComponent> ent, ref MoveEvent args)
     {
-        if (!TryComp(ent, out VentCrawlerComponent? crawler) || crawler.MoveSound == null || crawler.MoveSoundInterval <= 0f)
+        if (!TryComp(ent, out ImperialVentCrawlerComponent? crawler) || crawler.MoveSound == null || crawler.MoveSoundInterval <= 0f)
             return;
 
         if (!args.OldPosition.TryDistance(EntityManager, args.NewPosition, out var distance) || distance <= 0f)

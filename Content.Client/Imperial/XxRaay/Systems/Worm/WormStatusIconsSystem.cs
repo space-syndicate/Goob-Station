@@ -2,30 +2,37 @@ using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
-
 namespace Content.Client.Imperial.XxRaay.Systems;
 
 public sealed class WormStatusIconsSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private static readonly ProtoId<FactionIconPrototype> WormFactionIcon = "WormFaction";
-
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<WormBloodComponent, GetStatusIconsEvent>(OnGetWormStatusIcon);
-        SubscribeLocalEvent<WormCorpseOccupiedComponent, GetStatusIconsEvent>(OnGetWormStatusIcon);
+        SubscribeLocalEvent<WormCorpseOccupiedComponent, GetStatusIconsEvent>(OnGetWormCorpseStatusIcon);
     }
 
-    private void OnGetWormStatusIcon<T>(Entity<T> ent, ref GetStatusIconsEvent args)
-        where T : Component
+    private void OnGetWormStatusIcon(Entity<WormBloodComponent> ent, ref GetStatusIconsEvent args)
     {
         if (HasComp<ActiveWormDoorHidingComponent>(ent.Owner))
             return;
 
-        if (!_prototype.TryIndex(WormFactionIcon, out var iconPrototype))
+        if (!_prototype.TryIndex(ent.Comp.FactionIcon, out var iconPrototype))
+            return;
+
+        args.StatusIcons.Add(iconPrototype);
+    }
+
+    private void OnGetWormCorpseStatusIcon(Entity<WormCorpseOccupiedComponent> ent, ref GetStatusIconsEvent args)
+    {
+        if (HasComp<ActiveWormDoorHidingComponent>(ent.Owner))
+            return;
+
+        if (!_prototype.TryIndex(ent.Comp.FactionIcon, out var iconPrototype))
             return;
 
         args.StatusIcons.Add(iconPrototype);
