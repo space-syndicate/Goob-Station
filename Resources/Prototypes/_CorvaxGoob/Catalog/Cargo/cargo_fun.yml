@@ -24,6 +24,6 @@
     sprite: Objects/Economy/cash.rsi
     state: cash_1000000
   product: CrateGambling
-  cost: 2000
+  cost: 5000
   category: cargoproduct-category-name-fun
   group: market
