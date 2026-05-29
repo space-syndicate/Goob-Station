@@ -10,3 +10,16 @@
         tableId: RandomLavaLamp
         rolls: !type:ConstantNumberSelector
           value: 5
+
+- type: entity
+  id: CrateGambling
+  parent: CrateGenericSteel
+  name: gambling crate
+  description: A large crate featuring three types of lotteries and a law upload board, designed to lure cyborgs into gambling.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GambamovCircuitBoard
+      - id: SlotMachineFlatpack
+      - id: CoinFlipperFlatPack
+      - id: ClawMachineFlatPack
