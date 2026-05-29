@@ -52,3 +52,18 @@
     Telecrystal: 20
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkDiceOfFate
+  name: uplink-dice-of-fate-name
+  description: uplink-dice-of-fate-desc
+  icon: { sprite: Objects/Fun/dice.rsi, state: d20_20 }
+  productEntity: DiceOfFate
+  cost:
+    Telecrystal: 100
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
