@@ -15,5 +15,5 @@ uplink-blood-red-paper-box-desc = Коробка, наполненная кро�
 uplink-stamp-chameleon-name = Голографическая печать-хамелеон
 uplink-stamp-chameleon-desc = Универсальная печать, что может маскироваться под любой желаемый вид.
 
-uplink-dice-of-fate-name = Кости судьбы
+uplink-dice-of-fate-name = Кость судьбы
 uplink-dice-of-fate-desc = Одноразовая кость d20. Бросьте и узнайте свою судьбу.

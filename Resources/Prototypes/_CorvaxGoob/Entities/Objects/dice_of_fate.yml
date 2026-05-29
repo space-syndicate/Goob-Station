@@ -1,6 +1,6 @@
 - type: entity
   id: DiceOfFate
-  name: кости судьбы
+  name: кость судьбы
   description: Одноразовая кость d20. Всё или ничего.
   parent: d20Dice
   components:
