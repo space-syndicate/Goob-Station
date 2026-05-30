@@ -57,6 +57,9 @@
   result: RipleyHarness
   categories:
   - Ripley # Goobstation
+  materials: # CorvaxGoob-Fix
+    Steel: 1200
+    Glass: 1000
 
 - type: latheRecipe
   parent: BaseRipleyLimbRecipe

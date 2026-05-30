@@ -300,12 +300,15 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         // If we've gotten this far, fire a cancellable event that indicates someone is about to activate this.
         // This is so that stuff can require further conditions (like power).
-        var oae = new ActivatableUIOpenAttemptEvent(user);
-        var uae = new UserOpenActivatableUIAttemptEvent(user, uiEntity);
-        RaiseLocalEvent(user, uae);
-        RaiseLocalEvent(uiEntity, oae);
-        if (oae.Cancelled || uae.Cancelled)
-            return false;
+        if (ghost is null) // CorvaxGoob-GhostUIViewing : Убирает какие-либо илзишнее проверки для гостов
+        {
+            var oae = new ActivatableUIOpenAttemptEvent(user);
+            var uae = new UserOpenActivatableUIAttemptEvent(user, uiEntity);
+            RaiseLocalEvent(user, uae);
+            RaiseLocalEvent(uiEntity, oae);
+            if (oae.Cancelled || uae.Cancelled)
+                return false;
+        }
 
         // Give the UI an opportunity to prepare itself if it needs to do anything
         // before opening
