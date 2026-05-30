@@ -1,6 +1,3 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2025 LuaWorld
-// See AGPLv3.txt for details.
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
@@ -8,7 +5,7 @@ using Robust.Shared.Map.Components;
 using System.Numerics;
 using Robust.Client.ResourceManagement;
 
-namespace Content.Client._Lua.Mapping;
+namespace Content.Client._CorvaxGoob.Mapping;
 
 [UsedImplicitly]
 public sealed class DrawLineOverlay : Overlay
@@ -108,9 +105,6 @@ public sealed class DrawLineOverlay : Overlay
         var xformSys = _ent.System<SharedTransformSystem>();
         var (_, _, matrix, invMatrix) = xformSys.GetWorldPositionRotationMatrixWithInv(xform);
         var numbersMax = 1000;
-        const int microHalf = 4;
-        const int smallHalf = 10;
-        const int mediumHalf = 15;
         var gridLocalVisible = invMatrix.TransformBox(args.WorldBounds);
         void DrawNumAt(Vector2i tile, int val)
         {
@@ -129,34 +123,5 @@ public sealed class DrawLineOverlay : Overlay
             DrawNumAt(_originTile + new Vector2i(0, i), val);
             DrawNumAt(_originTile + new Vector2i(0, -i), val);
         }
-// Commented by CorvaxGoob
-    /*
-        void DrawLabelTiles(int tiles, string text)
-        {
-            var originLocal = (_originTile + Vector2Helpers.Half) * _tileSize;
-            var northLocal = originLocal + new Vector2(0, -tiles * _tileSize);
-            var southLocal = originLocal + new Vector2(0, tiles * _tileSize);
-            var westLocal = originLocal + new Vector2(-tiles * _tileSize, 0);
-            var eastLocal = originLocal + new Vector2(tiles * _tileSize, 0);
-            void DrawLabel(Vector2 local)
-            {
-                var world = Vector2.Transform(local, matrix);
-                var screen = _eye.WorldToScreen(world);
-                handle.DrawString(_font, screen + new Vector2(-18, -10), text);
-            }
-            DrawLabel(northLocal);
-            DrawLabel(southLocal);
-            DrawLabel(westLocal);
-            DrawLabel(eastLocal);
-        }
-        const int labelMicro = 4;
-        const int labelSmall = 10;
-        const int labelMedium = 15;
-        const int labelLarge = 20;
-        DrawLabelTiles(labelMicro, "\nMicro");
-        DrawLabelTiles(labelSmall, "\nSmall");
-        DrawLabelTiles(labelMedium, "\nMedium");
-        DrawLabelTiles(labelLarge, "\nLarge");
-        */
     }
-} 
+}

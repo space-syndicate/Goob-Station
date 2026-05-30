@@ -1,14 +1,11 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2025 LuaWorld
-// See AGPLv3.txt for details.
-using Content.Shared._Lua.Mapping;
+using Content.Shared._CorvaxGoob.Mapping;
 using Content.Shared.Administration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Map.Components;
 using Content.Shared.Administration.Managers;
 
-namespace Content.Server._Lua.Mapping;
+namespace Content.Server._CorvaxGoob.Mapping;
 
 public sealed class DrawLineSystem : EntitySystem
 {
@@ -20,12 +17,6 @@ public sealed class DrawLineSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeNetworkEvent<DrawLineRequestEvent>(OnDrawLineRequest);
-    }
-
-    private void OnDrawLineRequest(DrawLineRequestEvent ev, EntitySessionEventArgs args)
-    {
-        ToggleDrawForSession(args.SenderSession);
     }
 
     public void ToggleDrawForSession(ICommonSession session)

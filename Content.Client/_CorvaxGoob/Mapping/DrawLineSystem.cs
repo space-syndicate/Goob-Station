@@ -1,10 +1,7 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2025 LuaWorld
-// See AGPLv3.txt for details.
-using Content.Shared._Lua.Mapping;
+using Content.Shared._CorvaxGoob.Mapping;
 using Robust.Client.Graphics;
 
-namespace Content.Client._Lua.Mapping;
+namespace Content.Client._CorvaxGoob.Mapping;
 public sealed class DrawLineSystem : EntitySystem
 {
     [Dependency] private readonly IOverlayManager _overlay = default!;
@@ -15,7 +12,6 @@ public sealed class DrawLineSystem : EntitySystem
     {
         base.Initialize();
         SubscribeNetworkEvent<DrawLineClientEvent>(OnDrawLine);
-        SubscribeNetworkEvent<DrawLineRequestEvent>(_ => SendDrawRequest());
     }
 
     private void OnDrawLine(DrawLineClientEvent ev)
@@ -35,11 +31,6 @@ public sealed class DrawLineSystem : EntitySystem
                 _overlayInst.SetState(false, ev.Grid, ev.OriginTile, ev.TileSize);
             }
         }
-    }
-
-    public void SendDrawRequest()
-    {
-        RaiseNetworkEvent(new DrawLineRequestEvent());
     }
 }
 
