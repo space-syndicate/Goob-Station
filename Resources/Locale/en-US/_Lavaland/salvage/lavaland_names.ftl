@@ -51,3 +51,4 @@ lavaland-ruin-warehouse = Warehouse
 lavaland-ruin-syndicate_shuttle = Syndicate Shuttle
 lavaland-ruin-unathi = Unathi
 lavaland-ruin-crystal = Lava Crystal
+lavaland-ruin-jadnost = Ruins of Jadnost
