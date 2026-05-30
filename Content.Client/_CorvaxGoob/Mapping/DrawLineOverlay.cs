@@ -1,9 +1,9 @@
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
+using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Map.Components;
 using System.Numerics;
-using Robust.Client.ResourceManagement;
 
 namespace Content.Client._CorvaxGoob.Mapping;
 
@@ -14,8 +14,7 @@ public sealed class DrawLineOverlay : Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace | OverlaySpace.ScreenSpace;
 
-    private bool _show;
-    private NetEntity _grid;
+    private EntityUid _grid;
     private Vector2i _originTile;
     private ushort _tileSize;
     private readonly IEyeManager _eye;
@@ -29,9 +28,8 @@ public sealed class DrawLineOverlay : Overlay
         _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 10);
     }
 
-    public void SetState(bool show, NetEntity grid, Vector2i origin, ushort tileSize)
+    public void SetState(EntityUid grid, Vector2i origin, ushort tileSize)
     {
-        _show = show;
         _grid = grid;
         _originTile = origin;
         _tileSize = tileSize;
@@ -39,7 +37,6 @@ public sealed class DrawLineOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (!_show) return;
         switch (args.Space)
         {
             case OverlaySpace.WorldSpace: DrawWorld(args); break;
@@ -49,10 +46,8 @@ public sealed class DrawLineOverlay : Overlay
 
     private void DrawWorld(in OverlayDrawArgs args)
     {
-        if (!_ent.TryGetEntity(_grid, out var gridEnt) || gridEnt == null) return;
-        var gridUid = gridEnt.Value;
-        if (!_ent.TryGetComponent<MapGridComponent>(gridUid, out var grid)) return;
-        var xform = _ent.GetComponent<TransformComponent>(gridUid);
+        if (!_ent.TryGetComponent<MapGridComponent>(_grid, out var grid)) return;
+        var xform = _ent.GetComponent<TransformComponent>(_grid);
         var xformSys = _ent.System<SharedTransformSystem>();
         var (_, _, worldMatrix, invWorld) = xformSys.GetWorldPositionRotationMatrixWithInv(xform);
         var handle = args.WorldHandle;
@@ -89,6 +84,7 @@ public sealed class DrawLineOverlay : Overlay
             if (!gridLocalVisible.Intersects(bounds)) return;
             handle.DrawRect(Box2.CenteredAround(centreLocal, sizeLocal), color, false);
         }
+
         DrawZoneSquare(microHalf);
         DrawZoneSquare(smallHalf);
         DrawZoneSquare(mediumHalf);
@@ -98,10 +94,8 @@ public sealed class DrawLineOverlay : Overlay
     private void DrawScreen(in OverlayDrawArgs args)
     {
         var handle = args.ScreenHandle;
-        if (!_ent.TryGetEntity(_grid, out var gridEnt) || gridEnt == null) return;
-        var gridUid = gridEnt.Value;
-        if (!_ent.TryGetComponent<MapGridComponent>(gridUid, out var grid)) return;
-        var xform = _ent.GetComponent<TransformComponent>(gridUid);
+
+        var xform = _ent.GetComponent<TransformComponent>(_grid);
         var xformSys = _ent.System<SharedTransformSystem>();
         var (_, _, matrix, invMatrix) = xformSys.GetWorldPositionRotationMatrixWithInv(xform);
         var numbersMax = 1000;

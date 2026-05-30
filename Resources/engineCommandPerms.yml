@@ -112,7 +112,6 @@
   - tpgrid
   - gridtc
   - togglespritenetsync
-  - drawline # CorvaxGoob
 
 - Flags: ADMIN
   Commands:
