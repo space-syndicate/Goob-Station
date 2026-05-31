@@ -736,11 +736,10 @@
     - 0,0,2,3
     whitelist:
       tags:
-        - Cola
+        - DrinkCan
+        - Beer
+        - Wine
   - type: PickRandom
-    whitelist:
-      tags:
-        - Cola
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -762,27 +761,27 @@
     mapLayers:
       6pack1:
         whitelist:
-          tags: [Cola]
+          tags: [DrinkCan, Beer, Wine]
         minCount: 1
       6pack2:
         whitelist:
-          tags: [Cola]
+          tags: [DrinkCan, Beer, Wine]
         minCount: 2
       6pack3:
         whitelist:
-          tags: [Cola]
+          tags: [DrinkCan, Beer, Wine]
         minCount: 3
       6pack4:
         whitelist:
-          tags: [Cola]
+          tags: [DrinkCan, Beer, Wine]
         minCount: 4
       6pack5:
         whitelist:
-          tags: [Cola]
+          tags: [DrinkCan, Beer, Wine]
         minCount: 5
       6pack6:
         whitelist:
-          tags: [Cola]
+          tags: [DrinkCan, Beer, Wine]
         minCount: 6
     sprite: Objects/Misc/6pack.rsi
   - type: Appearance
