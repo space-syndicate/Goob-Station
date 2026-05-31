@@ -696,7 +696,7 @@
 - type: entity
   id: DrinkCanPackEmpty
   parent: BaseItem
-  name: 6packEmpty
+  name: empty 6pack
   components:
   - type: ContainerContainer
     containers:
