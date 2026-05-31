@@ -233,9 +233,6 @@
 
 	## Детали турбины
 	<Box>
-		<GuideEntityEmbed Entity="EngineeringTechFab"/>
-	</Box>
-	<Box>
 		<GuideEntityEmbed Entity="SteelGasTurbineBlade" Caption="лопасть турбины"/>
 		<GuideEntityEmbed Entity="SteelGasTurbineStator" Caption="статор"/>
 	</Box>
@@ -244,7 +241,7 @@
 
 	Детали турбины изготавливаются на [bold]инженерном техфабе[/bold] из набора [textlink="материалов" link="NuclearMaterials"].
 
-	[italic]Примечание: улучшенные лопасти и статоры доступны после исследования [bold]Ядерная энергетика[/bold].[/italic]
+	[bold]Базовые[/bold] стальные варианты доступны сразу. [bold]Улучшенные[/bold] варианты становятся доступны после исследования технологии [bold]Ядерная энергетика[/bold].
 
 	Турбина принимает два различных типа деталей: Лопасти и Статоры.
 

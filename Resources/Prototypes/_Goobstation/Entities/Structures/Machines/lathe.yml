@@ -58,6 +58,7 @@
     - MiscSignallersStatic
     - NailgunStatic
     - NailsStatic
+    - ReactorPartsBasic
     dynamicPacks:
     - ConstructionBagOfHolding
     - AdvancedTools
