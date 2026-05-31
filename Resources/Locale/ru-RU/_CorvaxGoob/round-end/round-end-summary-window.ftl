@@ -1,4 +1,4 @@
-round-end-summary-window-player-manifest-search = Поиск по имени, должности, c-keю
+round-end-summary-window-player-manifest-search = Поиск по имени, должности, сkey
 
 round-end-summary-window-photo-album-tab-title = Фотоальбом
 round-end-summary-album-photo-no-name = Без названия
