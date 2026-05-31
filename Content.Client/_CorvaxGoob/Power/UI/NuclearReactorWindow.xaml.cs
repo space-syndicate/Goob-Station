@@ -50,7 +50,16 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         Fuel = 1 << 3
     }
 
+    private byte _temperatureMode = 1 << 0;
+
     private string EmptyText => Loc.GetString("comp-nuclear-reactor-ui-empty");
+
+    private enum TemperatureModes : byte
+    {
+        Celcius = 1 << 0,
+        Kelvin = 1 << 1,
+        // Fahrenheit = 1 << 2
+    }
 
     private int _targetX = 0;
     private int _targetY = 0;
@@ -87,6 +96,8 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.OnPressed += _ => MoveTarget(0, -1);
         ItemAction.OnPressed += _ => ItemActionButtonPressed?.Invoke(new(_targetY, _targetX));
         EjectItem.OnPressed += _ => EjectButtonPressed?.Invoke();
+
+        TargetTemperature.OnPressed += _ => ChangeTemp();
 
         ControlRodsInsertLarge.OnPressed += _ => AdjustControlRods(0.1f);
         ControlRodsInsertLarge.OnButtonDown += _ => _repeatQueue.Add(ControlRodsInsertLarge, _repeatDelay);
@@ -321,8 +332,20 @@ public sealed partial class NuclearReactorWindow : FancyWindow
             _displayMode = 1 << 0;
     }
 
-    private static string FormatTemperature(double temperature) =>
-        Math.Round(temperature - Atmospherics.T0C, 1).ToString() + "°C";
+    private void ChangeTemp()
+    {
+        _temperatureMode <<= 1;
+        if (_temperatureMode >= 1 << Enum.GetNames<TemperatureModes>().Length)
+            _temperatureMode = 1 << 0;
+    }
+
+    private string FormatTemperature(double temperature) => _temperatureMode switch
+    {
+        (byte)TemperatureModes.Celcius => Math.Round(temperature - Atmospherics.T0C, 1).ToString() + "°C",
+        (byte)TemperatureModes.Kelvin => Math.Round(temperature, 1).ToString() + "K",
+        // (byte)TemperatureModes.Fahrenheit => Math.Round(((temperature - Atmospherics.T0C) * 9 / 5) + 32, 1).ToString() + "F",
+        _ => "NaN",
+    };
 
     private void UpdateTargetInfo()
     {
