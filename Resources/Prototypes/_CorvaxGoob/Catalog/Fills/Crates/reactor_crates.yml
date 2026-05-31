@@ -8,6 +8,8 @@
     contents:
       - id: CerenkiteReactorFuelRod
         amount: 3
+  - type: RadiationBlockingContainer
+    resistance: 10
 
 - type: entity
   id: CrateBohrumControlRod
