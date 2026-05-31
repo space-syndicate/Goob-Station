@@ -1,8 +1,6 @@
 - type: entity
   id: SlotMachineFateDice
   parent: BaseSlotMachine
-  name: однорукий бандит
-  description: Этот однорукий бандит выглядит странно.
   components:
   - type: Sprite
     sprite: _Goobstation/Structures/Machines/slotmachines/slotmachinehighroller.rsi
