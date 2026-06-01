@@ -45,7 +45,7 @@
   name: civilian
   parent: BaseMobHuman
   id: MobCivilian
-  description: A miserable pile of secrets.
+  # description: A miserable pile of secrets. # CorvaxGoob
   components:
   - type: InputMover
   - type: MobMover
@@ -78,7 +78,7 @@
   name: spirate
   parent: BaseMobHuman
   id: MobSpirate
-  description: Yarr!
+  # description: Yarr! # CorvaxGoob
   components:
   - type: NpcFactionMember
     factions:
@@ -127,7 +127,7 @@
   save: false # mobs are currently not saveable.
   id: SalvageHumanCorpse
   name: unidentified corpse
-  description: I think they're dead.
+  # description: I think they're dead. # CorvaxGoob
   components:
   - type: RandomHumanoidAppearance
     randomizeName: true # CorvaxGoob-changes: false > true
@@ -138,15 +138,15 @@
         Asphyxiation: 76
         Slash: 56
         Blunt: 19
-  - type: Inventory
-    templateId: corpse
+  # - type: Inventory # CorvaxGoob
+  #   templateId: corpse
   - type: PartialAbsorbable # Goobstation - changelings
 
 - type: entity
   parent: MobHuman
   id: MobCluwne
   name: person
-  description: A polymorphed unfortunate.
+  # description: A polymorphed unfortunate. # CorvaxGoob
   components:
   - type: Cluwne
   - type: Speech
