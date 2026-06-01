@@ -1,4 +1,4 @@
-# === Топливные стержни ===
+﻿# === Топливные стержни ===
 
 ent-BaseReactorFuelRod = топливный стержень
     .desc = Топливный стержень для ядерного реактора.
@@ -12,7 +12,7 @@ ent-UraniumReactorFuelRod = урановый топливный стержень
 ent-PlutoniumReactorFuelRod = плутониевый топливный стержень
     .desc = { ent-BaseReactorFuelRod.desc }
 
-ent-BananiumReactorFuelRod = бананиевый топливный стержень
+ent-BananiumReactorFuelRod = бананиумовый топливный стержень
     .desc = Реакторная хонк-палка. Хонк.
 
 ent-PlasmaReactorFuelRod = плазменный топливный стержень
@@ -27,34 +27,34 @@ ent-MeatReactorFuelRod = мясной топливный стержень
 
 # === Контрольные стержни ===
 
-ent-BaseReactorControlRod = контрольный стержень
-    .desc = Контрольный стержень для ядерного реактора.
+ent-BaseReactorControlRod = стержень управления
+    .desc = Стержень управления для ядерного реактора.
 
-ent-BohrumReactorControlRod = борийный контрольный стержень
+ent-BohrumReactorControlRod = борийный стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-SteelReactorControlRod = стальной контрольный стержень
+ent-SteelReactorControlRod = стальной стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-GoldReactorControlRod = золотой контрольный стержень
+ent-GoldReactorControlRod = золотой стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-SilverReactorControlRod = серебряный контрольный стержень
+ent-SilverReactorControlRod = серебряный стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-BrassReactorControlRod = латунный контрольный стержень
+ent-BrassReactorControlRod = латунный стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-PlasteelReactorControlRod = пластильный контрольный стержень
+ent-PlasteelReactorControlRod = пласталевый стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-GlassReactorControlRod = стеклянный контрольный стержень
+ent-GlassReactorControlRod = стеклянный стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-PlasmaGlassReactorControlRod = плазменностеклянный контрольный стержень
+ent-PlasmaGlassReactorControlRod = плазменностеклянный стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
-ent-DiamondReactorControlRod = алмазный контрольный стержень
+ent-DiamondReactorControlRod = алмазный стержень управления
     .desc = { ent-BaseReactorControlRod.desc }
 
 # === Стержни газового канала ===
@@ -74,7 +74,7 @@ ent-SilverReactorGasChannel = серебряный стержень газово
 ent-BrassReactorGasChannel = латунный стержень газового канала
     .desc = { ent-BaseReactorGasChannel.desc }
 
-ent-PlasteelReactorGasChannel = пластильный стержень газового канала
+ent-PlasteelReactorGasChannel = пласталевый стержень газового канала
     .desc = { ent-BaseReactorGasChannel.desc }
 
 ent-GlassReactorGasChannel = стеклянный стержень газового канала
@@ -88,31 +88,31 @@ ent-DiamondReactorGasChannel = алмазный стержень газовог�
 
 # === Стержни теплообменника ===
 
-ent-BaseReactorHeatExchanger = стержень теплообменника
+ent-BaseReactorHeatExchanger = стержень-теплообменник
     .desc = Стержень теплообменника для ядерного реактора.
 
-ent-SteelReactorHeatExchanger = стальной стержень теплообменника
+ent-SteelReactorHeatExchanger = стальной стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-GoldReactorHeatExchanger = золотой стержень теплообменника
+ent-GoldReactorHeatExchanger = золотой стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-SilverReactorHeatExchanger = серебряный стержень теплообменника
+ent-SilverReactorHeatExchanger = серебряный стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-BrassReactorHeatExchanger = латунный стержень теплообменника
+ent-BrassReactorHeatExchanger = латунный стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-PlasteelReactorHeatExchanger = пластильный стержень теплообменника
+ent-PlasteelReactorHeatExchanger = пласталевый стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-GlassReactorHeatExchanger = стеклянный стержень теплообменника
+ent-GlassReactorHeatExchanger = стеклянный стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-PlasmaGlassReactorHeatExchanger = плазменностеклянный стержень теплообменника
+ent-PlasmaGlassReactorHeatExchanger = плазменностеклянный стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
-ent-DiamondReactorHeatExchanger = алмазный стержень теплообменника
+ent-DiamondReactorHeatExchanger = алмазный стержень-теплообменник
     .desc = { ent-BaseReactorHeatExchanger.desc }
 
 # === Ядерные реакторы ===
@@ -184,65 +184,65 @@ ent-NuclearReactorSmallMeltedSalvage = { ent-NuclearReactorSmall }
 
 # === Сборные наборы ===
 
-ent-NuclearReactorFlatpack = сборный ядерный реактор
-    .desc = Набор для строительства ядерного реактора. Детали продаются отдельно.
+ent-NuclearReactorFlatpack = упаковка ядерного реактора
+    .desc = Универсально-сборная упаковка, используемая для сборки ядерного реактора. Детали продаются отдельно.
 
-ent-GasTurbineFlatpack = сборная газовая турбина
-    .desc = Набор для строительства газовой турбины.
+ent-GasTurbineFlatpack = упаковка газовой турбины
+    .desc = Универсально-сборная упаковка, используемая для сборки газовой турбины.
 
-ent-SmallNuclearReactorFlatpack = сборный малый ядерный реактор
-    .desc = Набор для строительства малого ядерного реактора. Теперь в уменьшенном формате! Детали всё ещё продаются отдельно.
+ent-SmallNuclearReactorFlatpack = упаковка малого ядерного реактора
+    .desc = Универсально-сборная упаковка, используемая для сборки малого ядерного реактора. Теперь в уменьшенном формате! Детали всё ещё продаются отдельно.
 
-ent-GasTurbineSmallFlatpack = сборная малая газовая турбина
-    .desc = Набор для строительства малой газовой турбины. Теперь в уменьшенном формате!
+ent-GasTurbineSmallFlatpack = упаковка малой газовой турбины
+    .desc = Универсально-сборная упаковка, используемая для сборки малой газовой турбины. Теперь в уменьшенном формате!
 
 # === Ящики ===
 
-ent-CrateEngineeringNuclearReactor = ящик со сборным ядерным реактором
-    .desc = Набор для строительства ядерного реактора. Детали продаются отдельно.
+ent-CrateEngineeringNuclearReactor = ящик с упакованным ядерным реактором
+    .desc = Универсально-сборная упаковка, используемая для сборки ядерного реактора. Детали продаются отдельно.
 
-ent-CrateEngineeringGasTurbine = ящик со сборной газовой турбиной
-    .desc = Набор для строительства газовой турбины.
+ent-CrateEngineeringGasTurbine = ящик с упакованной газовой турбиной
+    .desc = Универсально-сборная упаковка, используемая для сборки газовой турбины.
 
-ent-CrateEngineeringSmallNuclearReactor = ящик со сборным малым ядерным реактором
-    .desc = Набор для строительства малого ядерного реактора. Теперь в уменьшенном формате! Детали всё ещё продаются отдельно.
+ent-CrateEngineeringSmallNuclearReactor = ящик с упакованным малым ядерным реактором
+    .desc = Универсально-сборная упаковка, используемая для сборки малого ядерного реактора. Теперь в уменьшенном формате! Детали всё ещё продаются отдельно.
 
-ent-CrateEngineeringGasTurbineSmall = ящик со сборной малой газовой турбиной
-    .desc = Набор для строительства малой газовой турбины. Теперь в уменьшенном формате!
+ent-CrateEngineeringGasTurbineSmall = ящик с упакованной малой газовой турбиной
+    .desc = Универсально-сборная упаковка, используемая для сборки малой газовой турбины. Теперь в уменьшенном формате!
 
 ent-CrateCerenkiteFuelRod = ящик с топливными стержнями
-    .desc = 3 церенкитовых топливных стержня для ядерного реактора.
+    .desc = 3 церенкитовых топливных стержня для заправки ядерного реактора.
 
-ent-CrateBohrumControlRod = ящик с контрольными стержнями
-    .desc = 2 борийных контрольных стержня для ядерного реактора.
+ent-CrateBohrumControlRod = ящик со стержнями управления
+    .desc = 2 бориевых стержня управления для ядерного реактора.
 
 ent-CrateSteelGasChannel = ящик со стержнями газового канала
     .desc = 4 стальных стержня газового канала для ядерного реактора.
 
-ent-CrateSteelHeatExhanger = ящик со стержнями теплообменника
-    .desc = 4 стальных стержня теплообменника для ядерного реактора.
+ent-CrateSteelHeatExhanger = ящик со стержнями-теплообменниками
+    .desc = 4 стальных стержня-теплообменника для ядерного реактора.
 
 # === Мониторы ===
 
 ent-NuclearReactorMonitor = монитор ядерного реактора
-    .desc = Устройство мониторинга состояния подключённого ядерного реактора.
+    .desc = Устройство для отслеживания состояния подключённого ядерного реактора.
 
 ent-GasTurbineMonitor = монитор газовой турбины
-    .desc = Устройство мониторинга состояния подключённой газовой турбины.
+    .desc = Устройство для отслеживания состояния подключённой газовой турбины.
 
-ent-NuclearReactorMonitorComputerCircuitboard = плата монитора ядерного реактора
-    .desc = Компьютерная печатная плата для монитора ядерного реактора.
+ent-NuclearReactorMonitorComputerCircuitboard = монитор ядерного реактора (машинная плата)
+    .desc = Печатная плата монитора ядерного реактора.
 
-ent-GasTurbineMonitorComputerCircuitboard = плата монитора газовой турбины
-    .desc = Компьютерная печатная плата для монитора газовой турбины.
+ent-GasTurbineMonitorComputerCircuitboard = монитор газовой турбины (машинная плата)
+    .desc = Печатная плата монитора газовой турбины.
 
 # === Машины ===
 
 ent-NuclearCentrifuge = ядерная центрифуга
-    .desc = Большая машина для разделения радиоактивных изотопов из отработанного топлива.
+    .desc = Большая машина, предназначенная для отделения радиоактивных изотопов из отработанного топлива.
 
-ent-NuclearCentrifugeMachineCircuitboard = плата ядерной центрифуги
-    .desc = Машинная печатная плата для ядерной центрифуги.
+ent-NuclearCentrifugeMachineCircuitboard = ядерная центрифуга (машинная плата)
+    .desc = Печатная плата для ядерной центрифуги.
 
 ent-NuclearFabricator = ядерный фабрикатор
     .desc = Производит детали для ядерного реактора.
@@ -250,10 +250,10 @@ ent-NuclearFabricator = ядерный фабрикатор
 # === Газовые турбины (конструкции) ===
 
 ent-Turbine = газовая турбина
-    .desc = Большая турбина для генерации электроэнергии из горячего газа.
+    .desc = Большая турбина, используемая для выработки электроэнергии с помощью горячего газа.
 
 ent-TurbineSmall = малая газовая турбина
-    .desc = Небольшая турбина для генерации электроэнергии из горячего газа.
+    .desc = Небольшая турбина, используемая для выработки электроэнергии с помощью горячего газа.
 
 # === Лопасти газовой турбины ===
 
@@ -272,7 +272,7 @@ ent-DiamondGasTurbineBlade = алмазная лопасть газовой ту
 ent-GoldGasTurbineBlade = золотая лопасть газовой турбины
     .desc = { ent-BaseGasTurbineBlade.desc }
 
-ent-PlasteelGasTurbineBlade = пластильная лопасть газовой турбины
+ent-PlasteelGasTurbineBlade = пласталевая лопасть газовой турбины
     .desc = { ent-BaseGasTurbineBlade.desc }
 
 # === Статоры газовой турбины ===
@@ -302,7 +302,8 @@ ent-IngotPlutonium1 = { ent-IngotPlutonium }
 # === Голографические проекции ===
 
 ent-RadiationBlockingProjector = проектор радиационного барьера
-    .desc = Останови смертоносную радиацию от деламинации или расплавления, хотя бы ненадолго.
+    .desc = Остановите смертельную радиацию при расплавлении реактора, по крайней мере ненадолго.
 
 ent-HolosignRadiationBlocking = голографический радиационный барьер
     .desc = Барьер из твёрдого света, блокирующий свет и радиацию, но не физические объекты.
+

@@ -1,6 +1,3 @@
-signal-port-name-vitals-monitor-sender = Монитор жизненных показателей
-signal-port-description-vitals-monitor-sender = Прием информации о состоянии пациента с медицинской кровати или кровати стазиса.
-
 signal-port-name-nuclear-reactor-data-sender = Ядерный реактор
 signal-port-description-nuclear-reactor-data-sender = Отправка информации о ядерном реакторе на монитор.
 

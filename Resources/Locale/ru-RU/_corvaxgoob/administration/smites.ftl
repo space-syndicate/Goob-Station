@@ -4,4 +4,4 @@ admin-smite-become-fuelrod-name = Превратить в топливный с�
 
 ## Smite descriptions
 
-admin-smite-become-fuelrod-description =  Превращает цель в топливный стержень для ядерного реактора.
+admin-smite-become-fuelrod-description = Превращает цель в топливный стержень для ядерного реактора.
