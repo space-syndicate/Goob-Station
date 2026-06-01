@@ -307,3 +307,7 @@ ent-RadiationBlockingProjector = проектор радиационного б�
 ent-HolosignRadiationBlocking = голографический радиационный барьер
     .desc = Барьер из твёрдого света, блокирующий свет и радиацию, но не физические объекты.
 
+# === Стаки ===
+
+stack-plutonium = плутоний
+

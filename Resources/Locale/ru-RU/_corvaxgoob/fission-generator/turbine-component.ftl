@@ -1,10 +1,10 @@
-### Examine
+﻿### Examine
 
 gas-turbine-examine-stator-null = Похоже, отсутствует статор.
 gas-turbine-examine-stator = Статор присутствует.
 
-gas-turbine-examine-blade-null = Похоже, отсутствует лопатка турбины.
-gas-turbine-examine-blade = Лопатка турбины присутствует.
+gas-turbine-examine-blade-null = Похоже, отсутствует лопасть турбины.
+gas-turbine-examine-blade = лопасть турбины присутствует.
 
 turbine-spinning-0 = Лопасти не вращаются.
 turbine-spinning-1 = Лопасти медленно поворачиваются.
@@ -32,7 +32,7 @@ turbine-smoke = {$owner} начинает дымить!
 turbine-smoke-stop = {$owner} перестает дымить.
 
 # Shown during repairs
-gas-turbine-repair-fail-blade = Перед ремонтом необходимо заменить лопатку турбины.
+gas-turbine-repair-fail-blade = Перед ремонтом необходимо заменить лопасть турбины.
 gas-turbine-repair-fail-stator = Перед ремонтом необходимо заменить статор.
 turbine-repair-ruined = Вы ремонтируете корпус {$target} с помощью {$tool}.
 turbine-repair = Вы устраняете часть повреждений {$target} с помощью {$tool}.
@@ -62,7 +62,7 @@ comp-turbine-ui-undertemp = НИЗКАЯ ТЕМПЕРАТУРА
 comp-turbine-ui-flow-rate = Скорость потока
 comp-turbine-ui-stator-load = Нагрузка на статор
 
-comp-turbine-ui-blade = Лопатка турбины
+comp-turbine-ui-blade = лопасть турбины
 comp-turbine-ui-blade-integrity = Целостность
 comp-turbine-ui-blade-stress = Напряжение
 
@@ -75,3 +75,4 @@ comp-turbine-ui-power = { POWERWATTS($power) }
 comp-turbine-ui-locked-message = Управление заблокировано.
 comp-turbine-ui-footer-left = Опасность: быстро движущееся оборудование.
 comp-turbine-ui-footer-right = 2.0 REV 1
+

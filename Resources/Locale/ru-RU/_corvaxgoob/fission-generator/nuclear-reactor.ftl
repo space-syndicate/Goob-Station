@@ -42,7 +42,7 @@ comp-nuclear-reactor-ui-status-panel = Статус реактора
 comp-nuclear-reactor-ui-reactor-temp = Температура
 comp-nuclear-reactor-ui-reactor-rads = Радиация
 comp-nuclear-reactor-ui-reactor-therm = Выработка
-comp-nuclear-reactor-ui-reactor-control = Кон.Стержни
+comp-nuclear-reactor-ui-reactor-control = Стержни управления
 comp-nuclear-reactor-ui-overload = ПЕРЕГРУЗКА
 comp-nuclear-reactor-ui-therm-format = { POWERWATTS($power) }
 
@@ -62,3 +62,4 @@ reactor-temperature-cooling-message-wf = Температура ядерного
 reactor-melting-announcement-wf = На станции {$station} начинается расплавление ядерного реактора. Рекомендуется немедленно эвакуировать весь персонал с прилегающей территории.
 
 reactor-meltdown-announcement-wf = Ядерный реактор на станции {$station} подвергся катастрофической перегрузке. Возможен выброс радиоактивных обломков и осадков, а также возгорание теплоносителя. Настоятельно рекомендуется немедленно эвакуировать весь персонал с прилегающей территории.
+
