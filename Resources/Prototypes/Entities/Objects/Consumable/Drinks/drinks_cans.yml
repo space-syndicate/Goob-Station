@@ -739,7 +739,7 @@
         - DrinkCan
         - Beer
         - Wine
-  - type: PickRandom
+  - type: PickRandom # This is necessary in order to make it convenient to get cans using an alt-click.
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic

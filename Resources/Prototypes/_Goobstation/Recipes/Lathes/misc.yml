@@ -30,7 +30,7 @@
     Steel: 200
     Glass: 200
 
-- type: latheRecipe
+- type: latheRecipe # CorvaxGoob
   id: DrinkCanPackEmpty
   result: DrinkCanPackEmpty
   completetime: 2
