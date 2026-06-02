@@ -79,6 +79,10 @@
   name: fork
   description: An eating utensil, perfect for stabbing.
   components:
+  - type: Tool
+    qualities:
+    - Brushing
+    speedModifier: 0.05
   - type: Tag
     tags:
     - Hoe
