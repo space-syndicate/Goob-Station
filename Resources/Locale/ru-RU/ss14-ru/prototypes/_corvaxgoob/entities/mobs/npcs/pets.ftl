@@ -1,5 +1,5 @@
 ent-MobGorillaLargo = Ларго
     .desc = Питомец карго, участвовал в первой революции. Кажется, у него есть татуировка "Я люблю маму".
 
-ent-Mobsyndicategorilla = Лили
+ent-Mobsyndicategorilla = Галина
     .desc = Беги...
