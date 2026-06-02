@@ -60,7 +60,7 @@
   icon: { sprite: Objects/Fun/dice.rsi, state: d20_20 }
   productEntity: DiceOfFate
   cost:
-    Telecrystal: 100
+    Telecrystal: 60
   categories:
   - UplinkJob
   conditions:
