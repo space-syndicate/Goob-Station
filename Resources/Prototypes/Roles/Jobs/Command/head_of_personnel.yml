@@ -216,7 +216,7 @@
     #gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
-    eyes: ClothingEyesHudCommand
+    #eyes: ClothingEyesHudCommand CorvaxGoob
   storage:
     back:
     - Flash
