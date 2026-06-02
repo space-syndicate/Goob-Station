@@ -79,7 +79,7 @@
   name: fork
   description: An eating utensil, perfect for stabbing.
   components:
-  - type: Tool
+  - type: Tool # CorvaxGoob
     qualities:
     - Brushing
     speedModifier: 0.05
