@@ -1,3 +1,5 @@
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366)
+
 - type: entity
   id: DiceOfFate
   parent: d20Dice

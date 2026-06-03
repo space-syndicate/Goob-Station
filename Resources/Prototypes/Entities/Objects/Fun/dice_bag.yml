@@ -24,8 +24,6 @@
       - id: d12Dice
       - id: d20Dice
       - id: PercentileDie
-      - id: DiceOfFate # CorvaxGoob-DiceOfFate
-        prob: 0.00001
   - type: Sprite
     sprite: Objects/Fun/dice.rsi
     state: dicebag

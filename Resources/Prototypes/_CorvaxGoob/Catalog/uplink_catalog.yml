@@ -53,6 +53,7 @@
   categories:
   - UplinkDeception
 
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
 - type: listing
   id: UplinkDiceOfFate
   name: uplink-dice-of-fate-name
@@ -67,3 +68,4 @@
   - !type:BuyerJobCondition
     whitelist:
     - Librarian
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) end
