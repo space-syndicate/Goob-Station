@@ -8,4 +8,4 @@ uplink-blood-red-paper-box-name = A box of Syndicate paper
 uplink-blood-red-paper-box-desc = A box filled with blood-red paper with the Syndicate logo. This is a great propaganda tool if you've run out of free business cards.
 
 uplink-toolbox-electrical-turret-name = Blueprint turret in toolbox
-uplink-toolbox-electrical-turret-desc = A blueprint, that allows the autolat to print turrets in the toolbox.
+uplink-toolbox-electrical-turret-desc = A blueprint, that allows the autolathe to print toolbox-turrets.
