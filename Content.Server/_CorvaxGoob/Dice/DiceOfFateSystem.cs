@@ -1,6 +1,6 @@
 using System.Linq;
-using Content.Goobstation.Server.Disease;
 using Content.Goobstation.Shared.Disease.Components;
+using Content.Goobstation.Shared.Disease.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Systems;
 using Content.Server.Antag;
@@ -34,7 +34,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
-namespace Content.Goobstation.Server._CorvaxGoob.Dice;
+namespace Content.Server._CorvaxGoob.Dice;
 
 public sealed class DiceOfFateSystem : EntitySystem
 {
@@ -43,7 +43,7 @@ public sealed class DiceOfFateSystem : EntitySystem
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly DiseaseSystem _disease = default!;
+    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
