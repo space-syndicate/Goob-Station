@@ -235,6 +235,11 @@ public sealed partial class MeleeWeaponComponent : Component
     // Goobstation
     [DataField, AutoNetworkedField]
     public float HeavyAttackWoundMultiplier = 0.5f;
+
+    // CorvaxGoob-changes-start:
+    [DataField, AutoNetworkedField]
+    public bool BypassFlatReductions = false;
+    // CorvaxGoob-changes-end.
 }
 
 /// <summary>

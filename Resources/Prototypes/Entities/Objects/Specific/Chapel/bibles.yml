@@ -103,6 +103,12 @@
     - QuaranSet
     - TanakhSet
     - ClockworkSet
+    # Corvax-Goob-Bibles-start
+    - BibleDruidSet
+    - BibleNarsieSet
+    - BibleNanoTrasenSet
+    - BibleHonkSet
+    # Corvax-Goob-Bibles-end
     maxSelectedSets: 1
 
 - type: selectableSet

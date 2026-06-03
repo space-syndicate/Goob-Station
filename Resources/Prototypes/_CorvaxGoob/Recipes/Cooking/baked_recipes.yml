@@ -1,0 +1,21 @@
+- type: microwaveMealRecipe
+  id: RecipePyrottonPizza
+  name: pyrotton pizza recipe
+  result: FoodPizzaPyrotton
+  time: 30
+  group: Moth
+  solids:
+    FoodDoughCottonFlat: 1
+    CottonBol: 2
+    PyrottonBol: 2
+
+- type: microwaveMealRecipe
+  id: RecipeCarpttonPizza
+  name: carptton pizza recipe
+  result: FoodPizzaCarptton
+  time: 30
+  group: Moth
+  solids:
+    FoodDoughCottonFlat: 1
+    CottonBol: 2
+    PlushieCarp: 2

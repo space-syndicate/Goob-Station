@@ -1,2 +1,2 @@
-ent-SpeedLoaderMatebaAP = спидлоадер ЦентКома (.45 магнум бронебойные)
+ent-SpeedLoaderMatebaAP = спидлоадер ЦК (.45 магнум бронебойные)
     .desc = { ent-SpeedLoaderMagnumAP.desc }
