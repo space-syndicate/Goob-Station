@@ -111,7 +111,7 @@ evolutionmenu-utility-panacea-desc =
     Стоимость: 30 химикатов.
 evolutionmenu-utility-eyesight-name = Улучшенное зрение
 evolutionmenu-utility-eyesight-desc =
-    Эволюционируйте свои глаза, добавив термальное зрения и защиту от вспышек. В терморежиме вы становитесь уязвимы к светошумовому оружию.
+    Эволюционируйте свои глаза, добавив рентегеновское зрение и защиту от вспышек. В рентген-режиме вы становитесь уязвимы к светошумовому оружию.
     Не имеет затрат.
 evolutionmenu-utility-biodegrade-name = Биораспад
 evolutionmenu-utility-biodegrade-desc =
@@ -120,7 +120,7 @@ evolutionmenu-utility-biodegrade-desc =
     Стоимость: 30 химикатов.
 evolutionmenu-utility-chameleon-name = Кожа-хамелеон
 evolutionmenu-utility-chameleon-desc =
-    Изменяет пигментацию кожи под цвет окружения, делая вас невидимым.
+    Изменяет пигмент вашей кожи под окружение, делая вас невидимыми в неподвижности.
     Поддержание невидимости замедляет генерацию химикатов.
     Стоимость: 20 химикатов.
 evolutionmenu-utility-voidadapt-name = Приспособление к вакууму

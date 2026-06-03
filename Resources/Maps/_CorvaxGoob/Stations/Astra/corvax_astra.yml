@@ -114208,7 +114208,7 @@ entities:
   - uid: 16560
     components:
     - type: MetaData
-      desc: Кейс с леденцами для капитана, от центкома.
+      desc: Кейс с леденцами для капитана, от Центрально Командования.
       name: Кейс с леденцами
     - type: Transform
       pos: 7.5141673,14.962771
@@ -215206,7 +215206,7 @@ entities:
         stampFont: null
         stampLargeIcon: null
         stampedColor: '#CC0000FF'
-        stampedName: ДСБ Центком
+        stampedName: ДСБ Центрального Командования
       - hasIcon: True
         stampFont: null
         stampLargeIcon: null
@@ -215239,7 +215239,7 @@ entities:
         stampFont: null
         stampLargeIcon: null
         stampedColor: '#CC0000FF'
-        stampedName: ДСБ Центком
+        stampedName: ДСБ Центрального Командования
       - hasIcon: True
         stampFont: null
         stampLargeIcon: null
@@ -215272,7 +215272,7 @@ entities:
         stampFont: null
         stampLargeIcon: null
         stampedColor: '#CC0000FF'
-        stampedName: ДСБ Центком
+        stampedName: ДСБ Центрального Командования
       - hasIcon: True
         stampFont: null
         stampLargeIcon: null

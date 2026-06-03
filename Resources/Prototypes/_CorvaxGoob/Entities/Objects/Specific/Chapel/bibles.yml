@@ -1,0 +1,94 @@
+- type: entity
+  id: BibleDruid
+  name: druidic tablet
+  parent: Bible
+  description: "It's the mystery of the druids!"
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/mysteryofthedruids.rsi
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/mysteryofthedruids.rsi
+
+- type: entity
+  id: BibleCommunistManifesto
+  name: communist manifesto
+  parent: Bible
+  description: "Remove the mask of humanity from Capital."
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/communistmanifesto.rsi
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/communistmanifesto.rsi
+
+- type: entity
+  id: BibleNarsie
+  name: tome of nar'sie
+  parent: Bible
+  description: "What could possibly go wrong with a book covered in blood?"
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/tomeofnarsie.rsi
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/tomeofnarsie.rsi
+
+- type: entity
+  id: BibleNanoTrasen
+  name: codex nanotrasimus
+  parent: Bible
+  description: "A familiar book containing the Sacred Operating Procedures."
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/codexnanotrasimus.rsi
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/codexnanotrasimus.rsi
+
+- type: entity
+  id: BibleHonk
+  name: mirth of the honkmother
+  parent: Bible
+  description: "Oh great and glorious Mother, Mistress of Mirth, Matron of Mask and Merriments, Blessed is she amongst us jesters."
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/honk.rsi
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/honk.rsi
+
+- type: selectableSet
+  id: BibleDruidSet
+  name: Священная Скрижаль Друидов
+  description: Повелеваю построить здесь заповедник.
+  sprite:
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/mysteryofthedruids.rsi
+    state: icon
+  content:
+  - BibleDruid
+
+- type: selectableSet
+  id: BibleNarsieSet
+  name: Том Нар'Си
+  description: Покрытй неверных кровью том.
+  sprite:
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/tomeofnarsie.rsi
+    state: icon
+  content:
+  - BibleNarsie
+
+- type: selectableSet
+  id: BibleNanoTrasenSet
+  name: Кодекс Нанотрейзимус
+  description: Книга жалоб и предложений для Директората.
+  sprite:
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/codexnanotrasimus.rsi
+    state: icon
+  content:
+  - BibleNanoTrasen
+
+- type: selectableSet
+  id: BibleHonkSet
+  name: Радость Хонкоматери
+  description: Возможно это книга анекдотов.
+  sprite:
+    sprite: _CorvaxGoob/Objects/Specific/Chapel/honk.rsi
+    state: icon
+  content:
+  - BibleHonk

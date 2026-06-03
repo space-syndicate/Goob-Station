@@ -18,3 +18,5 @@ ent-ClothingBackpackDuffelContractorHardsuitBundle = комплект скафа
     .desc = Этот комплект содержит скафандр, созданный специально для членов Гильдии.
 ent-ClothingBackpackDuffelHosFilledUtility = комплект утилитарных предметов Начальника службы безопасности
     .desc = Комплект с различными утилитарными предметами начальника службы безопасности.
+ent-ClothingBackpackDuffelTennisGame = набор для тенниса
+    .desc = Содержит всё необходимое для начала теннисного матча!

@@ -25,3 +25,5 @@ contraband-examinable-verb-message = Check legality of this item.
 
 contraband-department-plural = {$department}
 contraband-job-plural = {MAKEPLURAL($job)}
+
+comp-hands-examine-and = and

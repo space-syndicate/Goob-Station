@@ -1391,6 +1391,27 @@
     borderColor: "#A32D26"
     accentHColor: "#447987"
     accentVColor: "#447987"
+# CorvaxGoob-changes-start: fix the "leader" suffix
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ert
+  - type: Icon
+    state: pda-ert
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+# CorvaxGoob-changes-end.
 
 - type: entity
   parent: BasePDA

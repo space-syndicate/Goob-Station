@@ -91,7 +91,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Станция ЦентКом
+      name: Станция Центральное Командование
     - type: Transform
       pos: -48.14583,-52
       parent: invalid
@@ -13537,7 +13537,7 @@ entities:
   - uid: 540
     components:
     - type: MetaData
-      name: имплантер центкома (Блюспейс спасатель)
+      name: имплантер ЦК (Блюспейс спасатель)
     - type: Transform
       parent: 539
     - type: Physics
@@ -13545,7 +13545,7 @@ entities:
     - type: Label
       currentLabel: Блюспейс спасатель
     - type: NameModifier
-      baseName: имплантер центкома
+      baseName: имплантер ЦК
     - type: InsideEntityStorage
 - proto: BookAurora
   entities:
@@ -28979,7 +28979,7 @@ entities:
   - uid: 541
     components:
     - type: MetaData
-      name: имплантер центкома (Свобода)
+      name: имплантер ЦК (Свобода)
     - type: Transform
       parent: 539
     - type: Physics
@@ -28987,48 +28987,48 @@ entities:
     - type: Label
       currentLabel: Свобода
     - type: NameModifier
-      baseName: имплантер центкома
+      baseName: имплантер ЦК
     - type: InsideEntityStorage
 - proto: CentcommMindShieldImplanter
   entities:
   - uid: 542
     components:
     - type: MetaData
-      name: имплантер центкома (Майндшилд)
+      name: имплантер ЦК (Щит разума)
     - type: Transform
       parent: 539
     - type: Physics
       canCollide: False
     - type: Label
-      currentLabel: Майндшилд
+      currentLabel: Щит разума
     - type: NameModifier
       baseName: имплантер центкома
     - type: InsideEntityStorage
   - uid: 543
     components:
     - type: MetaData
-      name: имплантер центкома (Майндшилд)
+      name: имплантер центкома (Щит разума)
     - type: Transform
       parent: 539
     - type: Physics
       canCollide: False
     - type: Label
-      currentLabel: Майндшилд
+      currentLabel: Щит разума
     - type: NameModifier
-      baseName: имплантер центкома
+      baseName: имплантер ЦК
     - type: InsideEntityStorage
   - uid: 544
     components:
     - type: MetaData
-      name: имплантер центкома (Майндшилд)
+      name: имплантер центкома (Щит разума)
     - type: Transform
       parent: 539
     - type: Physics
       canCollide: False
     - type: Label
-      currentLabel: Майндшилд
+      currentLabel: Щит разума
     - type: NameModifier
-      baseName: имплантер центкома
+      baseName: имплантер ЦК
     - type: InsideEntityStorage
 - proto: CentcomPDA
   entities:
@@ -33779,7 +33779,7 @@ entities:
   - uid: 545
     components:
     - type: MetaData
-      name: имплантер центкома (Трекер командования)
+      name: имплантер ЦК (Трекер командования)
     - type: Transform
       parent: 539
     - type: Physics
@@ -33787,7 +33787,7 @@ entities:
     - type: Label
       currentLabel: Трекер командования
     - type: NameModifier
-      baseName: имплантер центкома
+      baseName: имплантер ЦК
     - type: InsideEntityStorage
 - proto: ComputerAlert
   entities:
@@ -40218,9 +40218,9 @@ entities:
       pos: 86.5,73.5
       parent: 1
     - type: FaxMachine
-      name: Центком
+      name: ЦентКом
     - type: WarpPoint
-      location: Факс ЦентКома
+      location: Факс ЦК
 - proto: FaxMachineSyndie
   entities:
   - uid: 5086
@@ -63633,7 +63633,7 @@ entities:
   - uid: 3684
     components:
     - type: MetaData
-      name: зелёная одежда центком
+      name: зелёная одежда ЦК
     - type: Transform
       anchored: True
       pos: 83.5,80.5
@@ -66104,7 +66104,7 @@ entities:
 
         [bullet]Бойцы должны быть проинструктированы лидером или другим вышестоящим лицом о ситуации на станции.
 
-        [bullet] После инструктажа и вооружения отряд должен немедленно отправиться на станцию для выполнения поставленной задачи. После её выполнения прибыть на ЦентКом и доложить о результатах.
+        [bullet] После инструктажа и вооружения отряд должен немедленно отправиться на станцию для выполнения поставленной задачи. После её выполнения прибыть на Центральное Командование и доложить о результатах.
 
 
         Невыполнение данных условий повлечёт за собой штрафные санкции от Департамента Спецопераций по отношению к сотрудникам Центрального командования.
@@ -66228,7 +66228,7 @@ entities:
 
         [bullet]Бойцы должны быть проинструктированы лидером или другим вышестоящим лицом о ситуации на станции.
 
-        [bullet] После инструктажа и вооружения отряд должен немедленно отправиться на станцию для выполнения поставленной задачи. После её выполнения прибыть на ЦентКом и доложить о результатах.
+        [bullet] После инструктажа и вооружения отряд должен немедленно отправиться на станцию для выполнения поставленной задачи. После её выполнения прибыть на Центральное Командование и доложить о результатах.
 
 
         Невыполнение данных условий повлечёт за собой штрафные санкции от Департамента Спецопераций по отношению к сотрудникам Центрального командования.
@@ -88597,7 +88597,7 @@ entities:
       pos: 47.5,59.5
       parent: 1
     - type: WarpPoint
-      location: Станция ЦентКом
+      location: Станция Центральное Командование
     missingComponents:
     - WizardTeleportWarpPoint
 - proto: WaterCooler

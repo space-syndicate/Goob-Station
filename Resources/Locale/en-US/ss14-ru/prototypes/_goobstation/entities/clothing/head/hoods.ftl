@@ -14,3 +14,5 @@ ent-ClothingHeadHatHoodHereticFleshCostume = { ent-ClothingHeadHatHoodHereticCos
     .desc = { ent-ClothingHeadHatHoodHereticCostume.desc }
 ent-ClothingHeadHatHoodHereticBladeCostume = { ent-ClothingHeadHatHoodHereticCostume }
     .desc = { ent-ClothingHeadHatHoodHereticCostume.desc }
+ent-ClothingHeadHatHoodSchemaMonk = hood of a monastic vestments
+    .desc = Comfortable hood of monastic vestment.

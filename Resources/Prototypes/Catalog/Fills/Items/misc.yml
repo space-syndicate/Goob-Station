@@ -22,42 +22,49 @@
 
 - type: entity
   id: ClothingShoesBootsJackFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesBootsJack
   - ClothingShoesBootsSecFilled
 
 - type: entity
   id: ClothingShoesBootsWinterSecFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesBootsWinterSec
   - ClothingShoesBootsSecFilled
 
 - type: entity
   id: ClothingShoesBootsCowboyBlackFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesBootsCowboyBlack
   - ClothingShoesBootsSecFilled
 
 - type: entity
   id: ClothingShoesBootsCowboyBrownFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesBootsCowboyBrown
   - ClothingShoesBootsSecFilled
 
 - type: entity
   id: ClothingShoesBootsCowboyWhiteFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesBootsCowboyWhite
   - ClothingShoesBootsSecFilled
 
 - type: entity
   id: ClothingShoesBootsCowboyFancyFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesBootsCowboyFancy
   - ClothingShoesBootsSecFilled
 
 - type: entity
   id: ClothingShoesHighheelBootsFilled
+  suffix: Filled # CorvaxGoob
   parent:
   - ClothingShoesHighheelBoots
   - ClothingShoesBootsSecFilled

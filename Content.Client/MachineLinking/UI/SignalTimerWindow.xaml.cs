@@ -57,7 +57,9 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     private const int MaxTextLength = 5;
 
     public event Action<string>? OnCurrentTextChanged;
-    public event Action<TimeSpan>? OnCurrentDelayChanged; // Mono
+    // public event Action<TimeSpan>? OnCurrentDelayChanged; // Mono // CorvaxGoob-Revert
+    public event Action<string>? OnCurrentDelayMinutesChanged; // CorvaxGoob-Revert
+    public event Action<string>? OnCurrentDelaySecondsChanged; // CorvaxGoob-Revert
 
     private TimeSpan? _triggerTime;
 
@@ -71,7 +73,9 @@ public sealed partial class SignalTimerWindow : DefaultWindow
         IoCManager.InjectDependencies(this);
 
         CurrentTextEdit.OnTextChanged += e => OnCurrentTextChange(e.Text);
-        CurrentDelayEdit.OnValueChanged += e => CurrentDelayChange(TimeSpan.FromSeconds(e.Value)); // Mono
+        // CurrentDelayEdit.OnValueChanged += e => CurrentDelayChange(TimeSpan.FromSeconds(e.Value)); // Mono // CorvaxGoob-Revert
+        CurrentDelayEditMinutes.OnTextChanged += e => OnCurrentDelayMinutesChange(e.Text); // CorvaxGoob-Revert
+        CurrentDelayEditSeconds.OnTextChanged += e => OnCurrentDelaySecondsChange(e.Text); // CorvaxGoob-Revert
         StartTimer.OnPressed += _ => StartTimerWeh();
     }
 
@@ -117,22 +121,84 @@ public sealed partial class SignalTimerWindow : DefaultWindow
         OnCurrentTextChanged?.Invoke(text);
     }
 
-    // Mono
-    public void CurrentDelayChange(TimeSpan newValue)
+    // CorvaxGoob-Revert-Start
+    public void OnCurrentDelayMinutesChange(string text)
     {
-        OnCurrentDelayChanged?.Invoke(newValue);
+        List<char> toRemove = new();
+
+        foreach (var a in text)
+        {
+            if (!char.IsDigit(a))
+                toRemove.Add(a);
+        }
+
+        foreach (var a in toRemove)
+        {
+            CurrentDelayEditMinutes.Text = text.Replace(a.ToString(), "");
+        }
+
+        if (CurrentDelayEditMinutes.Text == "")
+            return;
+
+        while (CurrentDelayEditMinutes.Text[0] == '0' && CurrentDelayEditMinutes.Text.Length > 2)
+        {
+            CurrentDelayEditMinutes.Text = CurrentDelayEditMinutes.Text.Remove(0, 1);
+        }
+
+        if (CurrentDelayEditMinutes.Text.Length > 2)
+        {
+            CurrentDelayEditMinutes.Text = CurrentDelayEditMinutes.Text.Remove(2);
+        }
+        OnCurrentDelayMinutesChanged?.Invoke(CurrentDelayEditMinutes.Text);
     }
+
+    public void OnCurrentDelaySecondsChange(string text)
+    {
+        List<char> toRemove = new();
+
+        foreach (var a in text)
+        {
+            if (!char.IsDigit(a))
+                toRemove.Add(a);
+        }
+
+        foreach (var a in toRemove)
+        {
+            CurrentDelayEditSeconds.Text = text.Replace(a.ToString(), "");
+        }
+
+        if (CurrentDelayEditSeconds.Text == "")
+            return;
+
+        while (CurrentDelayEditSeconds.Text[0] == '0' && CurrentDelayEditSeconds.Text.Length > 2)
+        {
+            CurrentDelayEditSeconds.Text = CurrentDelayEditSeconds.Text.Remove(0, 1);
+        }
+
+        if (CurrentDelayEditSeconds.Text.Length > 2)
+        {
+            CurrentDelayEditSeconds.Text = CurrentDelayEditSeconds.Text.Remove(2);
+        }
+        OnCurrentDelaySecondsChanged?.Invoke(CurrentDelayEditSeconds.Text);
+    }
+    // CorvaxGoob-Revert-End
 
     public void SetCurrentText(string text)
     {
         CurrentTextEdit.Text = text;
     }
 
-    // Mono
-    public void SetCurrentDelay(TimeSpan delay)
+    // CorvaxGoob-Revert-Start
+    public void SetCurrentDelayMinutes(string delay)
     {
-        CurrentDelayEdit.Value = (float)delay.TotalSeconds;
+        CurrentDelayEditMinutes.Text = delay;
     }
+
+    public void SetCurrentDelaySeconds(string delay)
+    {
+        CurrentDelayEditSeconds.Text = delay;
+    }
+    // CorvaxGoob-Revert-End
 
     public void SetShowText(bool showTime)
     {
@@ -158,6 +224,8 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     public void SetHasAccess(bool hasAccess)
     {
         CurrentTextEdit.Editable = hasAccess;
+        CurrentDelayEditMinutes.Editable = hasAccess; // CorvaxGoob-Revert
+        CurrentDelayEditSeconds.Editable = hasAccess; // CorvaxGoob-Revert
         StartTimer.Disabled = !hasAccess;
     }
 
@@ -166,6 +234,12 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     /// </summary>
     public TimeSpan GetDelay()
     {
-        return TimeSpan.FromSeconds(CurrentDelayEdit.Value); // Mono
+        // CorvaxGoob-Revert-Start
+        if (!double.TryParse(CurrentDelayEditMinutes.Text, out var minutes))
+            minutes = 0;
+        if (!double.TryParse(CurrentDelayEditSeconds.Text, out var seconds))
+            seconds = 0;
+        return TimeSpan.FromMinutes(minutes) + TimeSpan.FromSeconds(seconds);
+        // CorvaxGoob-Revert-End
     }
 }

@@ -163,6 +163,7 @@
     sprite: Clothing/Head/Hardsuits/paramedhelm.rsi #corvaxGoob
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/paramedhelm.rsi #corvaxGoob
+    equippedState: off-equipped-head # CorvaxGoob
   - type: PointLight # goobstation
     color: "#3385cc"
   - type: TemperatureProtection
