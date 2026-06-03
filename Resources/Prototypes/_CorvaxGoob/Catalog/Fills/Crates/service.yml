@@ -15,7 +15,7 @@
   id: CrateGambling
   parent: CrateGenericSteel
   name: gambling crate
-  description: A large crate featuring three types of lotteries and a law upload board, designed to lure cyborgs into gambling.
+  description: A large box containing 3 types of lotteries and a Gamban Law board to attract Borg to gambling.
   components:
   - type: StorageFill
     contents:
