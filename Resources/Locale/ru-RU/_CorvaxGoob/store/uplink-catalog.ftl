@@ -15,5 +15,5 @@ uplink-blood-red-paper-box-desc = Коробка, наполненная кро�
 uplink-stamp-chameleon-name = Голографическая печать-хамелеон
 uplink-stamp-chameleon-desc = Универсальная печать, что может маскироваться под любой желаемый вид.
 
-uplink-toolbox-electrical-turret-name = Чертёж турели в ящике для инструментов
-uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать турели в ящике для инструментов.
+uplink-toolbox-electrical-turret-name = Чертёж ящика-турели
+uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать ящики-турели. 
