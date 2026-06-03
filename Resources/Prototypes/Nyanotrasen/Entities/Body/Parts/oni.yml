@@ -10,7 +10,7 @@
   components:
   - type: BodyPart
     species: Oni
-  - type: Damageable
+  - type: Damageable # CorvaxGoob-Fixes
     damageModifierSet: Oni
 
 - type: entity
