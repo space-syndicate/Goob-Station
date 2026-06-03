@@ -64,8 +64,6 @@
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - AtmosphericTechnician
-    - StationEngineer
-    - TechnicalAssistant
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Engineering
