@@ -68,7 +68,6 @@
 # SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 # SPDX-FileCopyrightText: 2025 Theodore Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2026 minib0mper <cheg455@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -207,21 +206,3 @@
       job: Borg
     - type: GhostRoleMobSpawner
       prototype: PlayerBorgSyndicateAssaultBattery
-
-- type: entity
-  parent: ReinforcementRadio
-  id: ReinforcementRadioSyndicateGorilla
-  name: ReinforcementRadioSyndicateGorilla
-  description: Calls gorilla to assist you.
-  components:
-  - type: GhostRole
-    name: ghost-role-information-syndicate-gorilla-reinforcement-name
-    description: ghost-role-information-syndicate-gorilla-reinforcement-description
-    rules: ghost-role-information-syndicate-reinforcement-rules
-    mindRoles:
-    - MindRoleGhostRoleFamiliar
-    - MindRoleGhostRoleSoloAntagonistGoob
-    raffle:
-      settings: default
-  - type: GhostRoleMobSpawner
-    prototype: Mobsyndicategorilla

@@ -42,7 +42,6 @@
 # SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
 # SPDX-FileCopyrightText: 2025 amogus <113782077+whateverusername0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2026 minib0mper <cheg455@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -297,9 +296,6 @@ ghost-role-information-syndicate-monkey-reinforcement-description = Someone need
 
 ghost-role-information-syndicate-kobold-reinforcement-name = Syndicate Kobold Agent
 ghost-role-information-syndicate-kobold-reinforcement-description = Someone needs reinforcements. You, a trained kobold, will help them.
-
-ghost-role-information-syndicate-gorilla-reinforcement-name = Syndicate Gorilla
-ghost-role-information-syndicate-gorilla-reinforcement-description = Someone needs reinforcements. You, a trained gorilla, will help them.
 
 ghost-role-information-syndicate-cyborg-assault-name = Syndicate Assault Cyborg
 ghost-role-information-syndicate-cyborg-saboteur-name = Syndicate Saboteur Cyborg

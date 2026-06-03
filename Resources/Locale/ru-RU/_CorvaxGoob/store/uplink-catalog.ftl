@@ -14,3 +14,6 @@ uplink-blood-red-paper-box-desc = Коробка, наполненная кро�
 
 uplink-stamp-chameleon-name = Голографическая печать-хамелеон
 uplink-stamp-chameleon-desc = Универсальная печать, что может маскироваться под любой желаемый вид.
+
+uplink-reinforcement-radio-syndicate-gorilla-name = Телепорт подкрепления гориллы синдиката
+uplink-reinforcement-radio-syndicate-gorilla-desc =  Призовите на помощь боевую гориллу синдиката.

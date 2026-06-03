@@ -6,3 +6,6 @@ uplink-cat-maid-bundle-desc = OwO UwU :3 Nyaaa~
 
 uplink-blood-red-paper-box-name = A box of Syndicate paper
 uplink-blood-red-paper-box-desc = A box filled with blood-red paper with the Syndicate logo. This is a great propaganda tool if you've run out of free business cards.
+
+uplink-reinforcement-radio-syndicate-gorilla-name = Syndicate Gorilla Teleporter
+uplink-reinforcement-radio-syndicate-gorilla-desc =  Calls gorilla to assist you.

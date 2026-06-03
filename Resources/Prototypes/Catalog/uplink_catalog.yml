@@ -183,9 +183,7 @@
 # SPDX-FileCopyrightText: 2025 robinthedragon <92946919+robinthedragon@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 terminatorbo <kovalevb059@gmail.com>
-# SPDX-FileCopyrightText: 2025 themias <89101928+themias@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2026 minib0mper <cheg455@gmail.com>
-#
+# SPDX-FileCopyrightText: 2025 themias <89101928+themias@users.noreply.github.com>#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # TODO: make more categories
 # Guns
@@ -1646,23 +1644,6 @@
     blacklist:
       tags:
       - ContravendUplink
-
-- type: listing
-  id: UplinkSyndicateGorilla
-  name: uplink-reinforcement-radio-syndicate-gorilla-name
-  description: uplink-reinforcement-radio-syndicate-gorilla-desc
-  icon: { sprite: _CorvaxGoob/Mobs/Pets/syndicategorilla.rsi, state: crawling }
-  productEntity: ReinforcementRadioSyndicateGorilla
-  cost:
-    Telecrystal: 50 # goob
-  categories:
-    - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - ContravendUplink
-
 
 # Implants
 

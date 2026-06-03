@@ -55,7 +55,6 @@
 # SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2026 minib0mper <cheg455@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -248,15 +247,6 @@
   id: Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
   coefficients:
     Cold: 1.3
-  ignoreArmorPierceFlags: All # Goobstation
-
-- type: damageModifierSet
-  id: Mobsyndicategorillaset
-  coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.5
-    Heat: 0.5
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
