@@ -12,6 +12,7 @@ ent-ClothingHeadHelmetSwatSyndicate = SWAT helmet
     .desc = An extremely robust helmet, commonly used by paramilitary forces. It is adorned in a nefarious red and black stripe pattern.
     .suffix = Syndicate
 ent-ClothingHeadHelmetSwatSyndicateUnremoveable = SWAT helmet
+    .desc = An extremely robust helmet, commonly used by paramilitary forces. It is adorned in a nefarious red and black stripe pattern.
     .suffix = Syndicate, Unremoveable
 ent-ClothingHeadHelmetRiot = light riot helmet
     .desc = It's a helmet specifically designed to protect against close range attacks.
