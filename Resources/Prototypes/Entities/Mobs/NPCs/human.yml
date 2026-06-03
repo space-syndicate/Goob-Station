@@ -115,6 +115,8 @@
       - NamesSyndicateFootsoldierRole
       - NamesSyndicateNormal
       nameFormat: name-format-nukie-generic
+    - type: AutoImplant #CorvaxGoob MRP lavaland antimunchkinism
+      implants: [ DeathAcidifierImplant ]
 
 - type: entity
   name: syndicate shuttle pilot
