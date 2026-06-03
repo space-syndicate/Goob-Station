@@ -110,7 +110,7 @@
   - type: TypingIndicator
     proto: felinid
   - type: Inventory
-    speciesId: reptilian # whyyy
+    #speciesId: reptilian # whyyy CorvaxGoob
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
