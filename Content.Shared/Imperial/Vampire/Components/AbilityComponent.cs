@@ -83,7 +83,7 @@ namespace Content.Shared.Imperial.Vampire
         /// на сколько секунд выдается меч
         /// </summary>
         [DataField]
-        public TimeSpan ClawDuration = TimeSpan.FromSeconds(10);
+        public TimeSpan ClawDuration = TimeSpan.FromSeconds(30);
 
         /// <summary>
         /// кд между призывами катаны

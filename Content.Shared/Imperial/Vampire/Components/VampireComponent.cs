@@ -74,7 +74,7 @@ namespace Content.Shared.Imperial.Vampire
         /// количество выпитой крови за 1 тик
         /// </summary>
         [DataField("bloodPerTick")]
-        public float BloodPerTick = 1000;
+        public float BloodPerTick = 3;
 
         /// <summary>
         /// сколько всего крови выпил вампир
