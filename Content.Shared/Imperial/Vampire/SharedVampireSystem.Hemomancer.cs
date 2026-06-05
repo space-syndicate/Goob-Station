@@ -22,10 +22,12 @@ public partial class SharedVampireSystem : EntitySystem
     // модифицированный OnSummonAction
     private void OnTentacles(VampireTentaclesEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -66,9 +68,11 @@ public partial class SharedVampireSystem : EntitySystem
         }
 
         // ссылаемся на VampireTentaclesAction. см VampireBaseAbilities, VampireHemomancer
-        _actions.SetCooldown(vamp.GrantedActions[4], args.CooldownTentacles);
-        DealBloodDamage(args.Performer, args.CostBlood);
-        Dirty(args.Performer, vamp);
+        if (TryComp<VampireComponent>(args.Performer, out var vampireComponent)) _actions.SetCooldown(vampireComponent.GrantedActions[5], args.CooldownTentacles);
+        else if (TryComp<GhoulComponent>(args.Performer, out var ghoulComponent)) _actions.SetCooldown(_entityManager.GetEntity(ghoulComponent.GhoulVampireTentaclesAction), args.CooldownTentacles);
+        else return;
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
+        Dirty(args.Performer, comp);
     }
 
     private void OnBloodTheft(VampireBloodTheftEvent args)
@@ -94,8 +98,8 @@ public partial class SharedVampireSystem : EntitySystem
 
             DealGhoulBloodDamage(ghoulUid, args.DamageGhoul, ghoul);
 
-            // восстанавливаем кровь вампиру (по 2 за каждого упыря)
-            recover += 2;
+            // восстанавливаем кровь вампиру (по 4 за каждого упыря)
+            recover += 4;
         }
 
         if (recover <= 0)
@@ -116,17 +120,19 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnTransformToBlood(VampireBloodTransformEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        if (vamp.BuffBlocked)
+        if (comp.BuffBlocked)
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-warning-turning-blood"),
             args.Performer, args.Performer, PopupType.Medium);
@@ -144,42 +150,45 @@ public partial class SharedVampireSystem : EntitySystem
         }
 
         VampireInvisible(args.Performer);
-        vamp.BuffBlockedUntil = _gameTiming.CurTime + args.BloodTime;
+        comp.BuffBlockedUntil = _gameTiming.CurTime + args.BloodTime;
 
-        vamp.VampireIsBlood = true;
+        comp.VampireIsBlood = true;
 
         DealBloodDamage(args.Performer, args.CostBlood);
-        Dirty(args.Performer, vamp);
+        Dirty(args.Performer, comp);
         args.Handled = true;
     }
 
     private void HemomancerUpdate()
     {
-        var bloodVamp = EntityQueryEnumerator<VampireComponent, FixturesComponent>();
-        while (bloodVamp.MoveNext(out var uid, out var vamp, out var fixtures))
+        var bloodVamp = EntityQueryEnumerator<AbilityComponent, FixturesComponent>();
+        while (bloodVamp.MoveNext(out var uid, out var comp, out var fixtures))
         {
-            if (!vamp.VampireIsBlood)
+            if (!TryComp<VampireComponent>(uid, out var vamp) && !TryComp<GhoulComponent>(uid, out var ghoul))
+                return;
+
+            if (!comp.VampireIsBlood)
                 continue;
 
-            if (_gameTiming.CurTime >= vamp.NextBloodshed)
+            if (_gameTiming.CurTime >= comp.NextBloodshed)
             {
-                SpawnBloodPuddle(uid, vamp.VampirePuddleID);
+                SpawnBloodPuddle(uid, comp.VampirePuddleID);
                 // оставляем кровавый след за вампиром
-                vamp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(0.1f);
-                Dirty(uid, vamp);
+                comp.NextBloodshed = _gameTiming.CurTime + TimeSpan.FromSeconds(0.1f);
+                Dirty(uid, comp);
             }
 
-            if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.VampireIsBlood)
+            if (_gameTiming.CurTime >= comp.BuffBlockedUntil && comp.VampireIsBlood)
             {
                 VampireInvisible(uid);
-                vamp.VampireIsBlood = false;
+                comp.VampireIsBlood = false;
 
                 foreach (var (id, fixture) in fixtures.Fixtures)
                 {
                     _physics.SetHard(uid, fixture, true, fixtures);
                 }
 
-                Dirty(uid, vamp);
+                Dirty(uid, comp);
                 continue;
             }
         }

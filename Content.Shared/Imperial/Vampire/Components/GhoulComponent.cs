@@ -85,4 +85,16 @@ public sealed partial class GhoulComponent : Component
 
     [DataField]
     public ProtoId<FactionIconPrototype> StatusIcon = "GhoulFaction";
+
+    [DataField, AutoNetworkedField]
+    public List<NetEntity?> GhoulGrantedActions = new();
+
+    [AutoNetworkedField]
+    public NetEntity? GhoulVampireSwordAction;
+
+    [AutoNetworkedField]
+    public NetEntity? GhoulVampireTentaclesAction;
+
+    [AutoNetworkedField]
+    public NetEntity? GhoulVampireBloodAnchorAction;
 }

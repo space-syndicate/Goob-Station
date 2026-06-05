@@ -31,6 +31,10 @@ using Content.Server.Body;
 using System.Linq;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio;
+using Robust.Server.GameObjects;
+using Robust.Shared.Random;
+using Content.Shared.Prayer;
+using Content.Shared.Roles.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -56,6 +60,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly AlertsSystem _alert = default!;
     [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
 
     private void VampireInitialize()
@@ -63,11 +69,14 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, GetVerbsEvent<InnateVerb>>(OnGetVerbsCombined);
         SubscribeLocalEvent<GhoulComponent, GetVerbsEvent<InnateVerb>>(OnGetDrinkingGhoul);
         SubscribeLocalEvent<GhoulComponent, InteractUsingEvent>(OnCureGhoulStart);
+        SubscribeLocalEvent<VampireComponent, InteractUsingEvent>(OnCureVampireStart);
         SubscribeLocalEvent<GhoulComponent, VampireCureGhoulDoAfterEvent>(OnCureGhoul);
+        SubscribeLocalEvent<VampireComponent, VampireCureDoAfterEvent>(OnCureVampire);
         SubscribeLocalEvent<VampireComponent, VampireEnvelopeDoAfterEvent>(OnEnvelopeCompleteVampire);
         SubscribeLocalEvent<GhoulComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteGhoul);
         SubscribeLocalEvent<VampireComponent, VampireDrinkingDoAfterEvent>(OnDrinkingCompleteVampire);
 
+        SubscribeNetworkEvent<VampireMindRemovedEvent>(OnMindRemoved);
         SubscribeLocalEvent<VampireComponent, MobStateChangedEvent>(OnDead);
     }
 
@@ -81,14 +90,15 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnGetVerbsCombined(EntityUid uid, VampireComponent vamp, GetVerbsEvent<InnateVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || vamp.InvisibleIsActive || args.Target == uid
+        var comp = EnsureComp<AbilityComponent>(uid);
+        if (!args.CanAccess || !args.CanInteract || comp.InvisibleIsActive || args.Target == uid
             || !_mobState.IsAlive(args.Target))
             return;
 
         // верб для превращения цели в упыря
         if (!HasComp<GhoulComponent>(args.Target) && !HasComp<VampireComponent>(args.Target) && HasComp<MindContainerComponent>(args.Target)
             && !HasComp<MindShieldComponent>(args.Target) && !_statusEffects.HasStatusEffect(uid, vamp.CooldownStatusEffectAppealGhouls)
-            && HasComp<ActorComponent>(args.Target))
+            && HasComp<ActorComponent>(args.Target) && HasComp<BloodstreamComponent>(args.Target))
         {
             var verbConvert = new InnateVerb
             {
@@ -114,6 +124,50 @@ public sealed partial class VampireSystem : EntitySystem
             };
             args.Verbs.Add(verbDrinkBlood);
         }
+    }
+
+    private void OnCureVampireStart(EntityUid uid, VampireComponent comp, InteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<PrayableComponent>(args.Used, out var prayable))
+            return;
+
+        if (prayable.BibleUserOnly && !TryComp<BibleUserComponent>(args.User, out _))
+            return;
+
+        if (TryComp<VampireComponent>(uid, out var vamp) && TryComp<AbilityComponent>(uid, out var abilityComponent))
+        {
+            if (abilityComponent.VampireTurned)
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-popup-vampire-turned"),
+                args.User, args.User, PopupType.Medium);
+
+                return;
+            }
+        }
+
+        _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-rite"),
+            args.User, args.User, PopupType.Medium);
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, comp.VampireCure,
+            new VampireCureDoAfterEvent(), uid, target: uid)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            BlockDuplicate = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+
+    private void OnCureVampire(Entity<VampireComponent> ent, ref VampireCureDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Target == null) return;
+
+        VampireMindRemoved(ent);
     }
 
     private void StartDrinking(EntityUid drinker, EntityUid target)
@@ -314,12 +368,13 @@ public sealed partial class VampireSystem : EntitySystem
             RemComp<GhoulComponent>(ghoul);
             RemoveMindFromGhoul(ghoul);
             _vampireSystem.SetGhoulBloodAlert(ghoul, ghoulComponent);
+            var comp = EnsureComp<AbilityComponent>(ghoul);
 
             var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(ghoul);
-            transmitter.Channels.Remove(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+            transmitter.Channels.Remove(new ProtoId<RadioChannelPrototype>(comp.VampireRadioID));
 
             var activeRadio = EnsureComp<ActiveRadioComponent>(ghoul);
-            activeRadio.Channels.Remove(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+            activeRadio.Channels.Remove(new ProtoId<RadioChannelPrototype>(comp.VampireRadioID));
 
             // обновляем данные у вампира
             if (ent.Comp.Ghouls.Remove(ghoul))
@@ -330,17 +385,19 @@ public sealed partial class VampireSystem : EntitySystem
 
             var eui = new VampireDeadEui();
             _eui.OpenEui(eui, actor.PlayerSession);
+            RemComp<AbilityComponent>(ghoul);
         }
     }
 
     // выдаем вампиру cooldown на обращение
     public void AppealGhoulsCooldown(EntityUid uid)
     {
-        if (!TryComp<VampireComponent>(uid, out var comp))
+        if (!TryComp<VampireComponent>(uid, out var vampireComponent))
             return;
+        var comp = EnsureComp<AbilityComponent>(uid);
 
         _statusEffects.TryAddStatusEffectDuration(uid,
-            comp.CooldownStatusEffectAppealGhouls,
+            vampireComponent.CooldownStatusEffectAppealGhouls,
             out _,
             comp.CooldownTimeAppealGhouls,
             null);
@@ -368,11 +425,14 @@ public sealed partial class VampireSystem : EntitySystem
 
     public void BaseUpdate(float frameTime)
     {
-        var querySearch = EntityQueryEnumerator<VampireComponent>();
+        var querySearch = EntityQueryEnumerator<AbilityComponent>();
         while (querySearch.MoveNext(out var uid, out var comp))
         {
+            if (!TryComp<VampireComponent>(uid, out var vamp) && !TryComp<GhoulComponent>(uid, out var ghoul))
+                return;
+
             comp.UpdateDelay += frameTime;
-            var priests = _lookup.GetEntitiesInRange<BibleUserComponent>(Transform(uid).Coordinates, 7).FirstOrNull();
+            var priests = _lookup.GetEntitiesInRange<BibleUserComponent>(Transform(uid).Coordinates, 5).FirstOrNull();
 
             if (priests == null || _mobState.IsDead(priests.Value))
             {
@@ -391,6 +451,61 @@ public sealed partial class VampireSystem : EntitySystem
 
             comp.UpdateDelay = 0;
         }
+    }
+
+    private void OnMindRemoved(VampireMindRemovedEvent ev, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity != null) VampireMindRemoved((EntityUid)args.SenderSession.AttachedEntity); ;
+    }
+
+    public void VampireMindRemoved(EntityUid uid)
+    {
+        if (!_mind.TryGetMind(uid, out var mindId, out var mind))
+            return;
+
+        _roleSystem.MindRemoveRole<VampireRoleComponent>((mindId, mind));
+
+        var comp = EnsureComp<AbilityComponent>(uid);
+        if (!TryComp<VampireComponent>(uid, out var vampireComponent)) return;
+
+        foreach (var ghoul in vampireComponent.Ghouls)
+        {
+            if (!TryComp<GhoulComponent>(ghoul, out var ghoulComponent)) continue;
+
+            RemoveMindFromGhoul(ghoul);
+
+            // обновляем данные у вампира
+            if (vampireComponent.Ghouls.Remove(ghoul))
+            {
+                vampireComponent.GhoulQuantity = Math.Max(0, vampireComponent.GhoulQuantity - 1);
+                Dirty(uid, vampireComponent);
+            }
+
+            if (TryComp<ActorComponent>(ghoul, out var actor))
+            {
+                var eui = new VampireDeadEui();
+                _eui.OpenEui(eui, actor.PlayerSession);
+            }
+        }
+
+        if (comp.HaloUid != null) QueueDel(comp.HaloUid);
+        if (comp.InvisibleIsActive) _vampireSystem.VampireInvisible(uid);
+        if (comp.ItemIssued) _vampireSystem.OnIssuingSword(uid);
+
+        if (vampireComponent.GrantedActions.Count > 0)
+        {
+            foreach (var action in vampireComponent.GrantedActions)
+            {
+                _actions.RemoveAction(uid, action);
+            }
+        }
+
+        RemComp<VampireComponent>(uid);
+        RemComp<AbilityComponent>(uid);
+        _alert.ClearAlert(uid, comp.AdjacentChaplainAlert);
+        _vampireSystem.SetBloodCounterAlert(uid, vampireComponent);
+        _vampireSystem.SetBloodAlert(uid, vampireComponent);
+        if (vampireComponent.SelectingSubgroupActionEntity != null) _actions.RemoveAction(uid, vampireComponent.SelectingSubgroupActionEntity);
     }
 
     private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor)

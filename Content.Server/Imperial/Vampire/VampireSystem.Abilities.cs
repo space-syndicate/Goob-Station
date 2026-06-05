@@ -13,6 +13,8 @@ using Content.Shared.DoAfter;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Flash;
+using Content.Shared.Actions.Components;
+using System.Runtime.CompilerServices;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -22,6 +24,7 @@ public partial class VampireSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
 
     private void VampireAbilitiesInitialize()
     {
@@ -32,15 +35,17 @@ public partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireSelectingSubgroupEvent>(OnSelectingSubgroup);
 
         SubscribeLocalEvent<VampireSleepEvent>(OnStartSleep);
-        SubscribeLocalEvent<VampireComponent, VampireSleepDoAfterEvent>(OnSleep);
+        SubscribeLocalEvent<AbilityComponent, VampireSleepDoAfterEvent>(OnSleep);
     }
 
     private void OnTransformToBat(VampireBatTransformEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampireComponent) && !TryComp<GhoulComponent>(args.Performer, out _))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!_vampireSystem.HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -75,7 +80,7 @@ public partial class VampireSystem : EntitySystem
         vamp.VampireIsBat = true;
         vamp.DisguiseIsActive = true;
 
-        _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
+        _vampireSystem.DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
 
         Dirty(args.Performer, vamp);
         args.Handled = true;
@@ -83,10 +88,12 @@ public partial class VampireSystem : EntitySystem
 
     private void OnTeleport(VampireTeleportEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampireComponent) && !TryComp<GhoulComponent>(args.Performer, out _))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!_vampireSystem.HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -106,16 +113,18 @@ public partial class VampireSystem : EntitySystem
 
         _transformSystem.SetCoordinates(target, toCoords.Value);
 
-        _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
+        _vampireSystem.DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 
     private void OnStartSleep(VampireSleepEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampireComponent) && !TryComp<GhoulComponent>(args.Performer, out _))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!_vampireSystem.HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -181,11 +190,14 @@ public partial class VampireSystem : EntitySystem
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
-        _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
+        _vampireSystem.DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
     }
 
-    private void OnSleep(Entity<VampireComponent> vamp, ref VampireSleepDoAfterEvent args)
+    private void OnSleep(Entity<AbilityComponent> vamp, ref VampireSleepDoAfterEvent args)
     {
+        if (!TryComp<VampireComponent>(vamp, out var vampireComponent) && !TryComp<GhoulComponent>(vamp, out var ghoul))
+            return;
+
         if (args.Cancelled || args.Handled)
         {
             vamp.Comp.SleepUid = EntityUid.Invalid;
@@ -206,13 +218,15 @@ public partial class VampireSystem : EntitySystem
 
     private void OnClone(VampireCloneEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampireComponent) && !TryComp<GhoulComponent>(args.Performer, out _))
             return;
+
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
 
         if (!_prototypeManager.TryIndex(args.Settings, out var settings))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        if (!_vampireSystem.HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -244,10 +258,10 @@ public partial class VampireSystem : EntitySystem
         vamp.BuffBlockedUntil = _gameTiming.CurTime + args.InvisibilityCloneTime;
         vamp.VampireCloneIsActive = true;
 
-        _vampireSystem.DealBloodDamage(args.Performer, args.CostBlood);
+        _vampireSystem.DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
 
         // ссылаемся на VampireInvisibleAction. см VampireBaseAbilities, VampireUmbrae
-        _actions.SetCooldown(vamp.GrantedActions[5], args.InvisibilityCloneTime * 2);
+        _actions.SetCooldown(vampireComponent!.GrantedActions[6], args.InvisibilityCloneTime * 2);
 
         Dirty(args.Performer, vamp);
         args.Handled = true;
@@ -255,59 +269,147 @@ public partial class VampireSystem : EntitySystem
 
     private void OnTurn(VampireTurnEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampireComponent))
             return;
+
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
 
         if (vamp.VampireTurned)
         {
             _popup.PopupEntity(Loc.GetString("vampire-popup-warning-vampire-turned"),
-            args.Performer, args.Performer, PopupType.Medium);
+                args.Performer, args.Performer, PopupType.Medium);
 
             return;
         }
 
-        switch (vamp.SelectedSubgroup)
+        vamp.HaloUid = Spawn(vamp.HaloEffect, Transform(args.Performer).Coordinates);
+        _transform.SetParent(vamp.HaloUid.Value, args.Performer);
+
+        foreach (var ghoul in vampireComponent.Ghouls)
+        {
+            var ghoulAbilityComp = EnsureComp<AbilityComponent>(ghoul);
+            if (!TryComp<GhoulComponent>(ghoul, out var ghoulComponent)) continue;
+
+            EnsureComp<ActionsComponent>(ghoul);
+
+            ghoulAbilityComp.HaloUid = Spawn(ghoulAbilityComp.HaloEffect, Transform(ghoul).Coordinates);
+            _transform.SetParent(ghoulAbilityComp.HaloUid.Value, ghoul);
+
+            var usedIndices = new HashSet<int>();
+            for (int i = 0; i < vamp.GhoulBaseAbility; i++)
+            {
+                int abilityNumber;
+                do
+                {
+                    abilityNumber = _random.Next(0, 3);
+                } while (usedIndices.Contains(abilityNumber) || abilityNumber == 2);
+
+                usedIndices.Add(abilityNumber);
+
+                if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                    vampireComponent.VampireAbilitiesID[VampireAbilityType.Base], out var baseAbilities))
+                {
+                    var action = _actions.AddAction(ghoul, baseAbilities.Abilities[abilityNumber]);
+                    if (action != null)
+                    {
+                        // см BaseAbilities. Ссылаемся на "Кровавая катана"
+                        if (abilityNumber == 0) ghoulComponent.GhoulVampireSwordAction = _entityManager.GetNetEntity(action);
+                        ghoulComponent.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                    }
+                }
+            }
+
+            for (int i = 0; i < vamp.GhoulGroupAbility; i++)
+            {
+                var abilityNumber = _random.Next(0, 3);
+
+                switch (vampireComponent.SelectedSubgroup)
+                {
+                    case VampireAbilityType.Hemomancer:
+                        if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                            vampireComponent.VampireAbilitiesID[VampireAbilityType.Hemomancer], out var hemomancerAbilities))
+                        {
+                            var action = _actions.AddAction(ghoul, hemomancerAbilities.Abilities[abilityNumber]);
+                            // см BaseAbilities. Ссылаемся на "Кровавые щупальца"
+                            if (abilityNumber == 5) ghoulComponent.GhoulVampireTentaclesAction = _entityManager.GetNetEntity(action);
+                            if (action != null) ghoulComponent.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                        }
+
+                        break;
+
+                    case VampireAbilityType.Umbrae:
+                        if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                            vampireComponent.VampireAbilitiesID[VampireAbilityType.Umbrae], out var umbraeAbilities))
+                        {
+                            var action = _actions.AddAction(ghoul, umbraeAbilities.Abilities[abilityNumber]);
+                            // см BaseAbilities. Ссылаемся на "Кровавый якорь"
+                            if (abilityNumber == 7) ghoulComponent.GhoulVampireBloodAnchorAction = _entityManager.GetNetEntity(action);
+                            if (action != null) ghoulComponent.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                        }
+
+                        break;
+
+                    case VampireAbilityType.Gargantua:
+                        if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                            vampireComponent.VampireAbilitiesID[VampireAbilityType.Gargantua], out var gargantuaAbilities))
+                        {
+                            var action = _actions.AddAction(ghoul, gargantuaAbilities.Abilities[abilityNumber]);
+                            if (action != null) ghoulComponent.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                        }
+
+                        break;
+                }
+            }
+
+            Dirty(ghoul, ghoulComponent);
+        }
+
+        switch (vampireComponent.SelectedSubgroup)
         {
             case VampireAbilityType.Hemomancer:
                 // см BaseAbilities, VampireAbilityLists.Hemomancer. Удаляется "Кровавая катана"
-                _actions.RemoveAction(args.Performer, vamp.GrantedActions[0]);
+                _actions.RemoveAction(args.Performer, vampireComponent.GrantedActions[0]);
 
                 if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
-                    vamp.VampireAbilitiesID[VampireAbilityType.Hemomancer], out var hemomancerAbilities))
+                    vampireComponent.VampireAbilitiesID[VampireAbilityType.Hemomancer], out var hemomancerAbilities))
                     _actions.AddAction(args.Performer, hemomancerAbilities.Upgrades[0]);
 
                 break;
 
             case VampireAbilityType.Umbrae:
                 // см BaseAbilities, VampireAbilityLists.Umbrae. Удаляется: "Переключить режим невидимости"
-                _actions.RemoveAction(args.Performer, vamp.GrantedActions[5]);
+                _actions.RemoveAction(args.Performer, vampireComponent.GrantedActions[6]);
 
                 if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
-                    vamp.VampireAbilitiesID[VampireAbilityType.Umbrae], out var umbraeAbilities))
+                    vampireComponent.VampireAbilitiesID[VampireAbilityType.Umbrae], out var umbraeAbilities))
                     _actions.AddAction(args.Performer, umbraeAbilities.Upgrades[0]);
 
                 break;
 
             case VampireAbilityType.Gargantua:
                 // см BaseAbilities, VampireAbilityLists.Gargantua. Удаляется "Гнев Носферату"
-                _actions.RemoveAction(args.Performer, vamp.GrantedActions[7]);
+                _actions.RemoveAction(args.Performer, vampireComponent.GrantedActions[8]);
 
                 if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
-                    vamp.VampireAbilitiesID[VampireAbilityType.Gargantua], out var gargantuaAbilities))
+                    vampireComponent.VampireAbilitiesID[VampireAbilityType.Gargantua], out var gargantuaAbilities))
                     _actions.AddAction(args.Performer, gargantuaAbilities.Upgrades[0]);
 
                 break;
         }
 
         vamp.VampireTurned = true;
+        Dirty(args.Performer, vamp);
         args.Handled = true;
     }
 
     public void AbilitiesUpdate()
     {
-        var queryVampBat = EntityQueryEnumerator<VampireComponent>();
+        var queryVampBat = EntityQueryEnumerator<AbilityComponent>();
         while (queryVampBat.MoveNext(out var uid, out var vamp))
         {
+            if (!TryComp<VampireComponent>(uid, out var vampireComponent) && !TryComp<GhoulComponent>(uid, out var ghoul))
+                return;
+
             if (!HasComp<PolymorphedEntityComponent>(uid) && vamp.VampireIsBat)
             {
                 foreach (var bats in vamp.BatsUid.ToList())
@@ -322,9 +424,12 @@ public partial class VampireSystem : EntitySystem
             }
         }
 
-        var queryClone = EntityQueryEnumerator<VampireComponent>();
+        var queryClone = EntityQueryEnumerator<AbilityComponent>();
         while (queryClone.MoveNext(out var uid, out var vamp))
         {
+            if (!TryComp<VampireComponent>(uid, out var vampireComponent) && !TryComp<GhoulComponent>(uid, out var ghoul))
+                return;
+
             if (_gameTiming.CurTime >= vamp.BuffBlockedUntil && vamp.VampireCloneIsActive)
             {
                 _vampireSystem.VampireInvisible(uid);

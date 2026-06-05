@@ -78,6 +78,9 @@
       },
       {
         "name": "blood_anchor"
+      },
+      {
+        "name": "recovery_ghoul"
       }
     ]
   }
