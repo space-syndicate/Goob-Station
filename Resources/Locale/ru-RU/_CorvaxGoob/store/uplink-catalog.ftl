@@ -16,4 +16,4 @@ uplink-stamp-chameleon-name = Голографическая печать-хам
 uplink-stamp-chameleon-desc = Универсальная печать, что может маскироваться под любой желаемый вид.
 
 uplink-toolbox-electrical-turret-name = Чертёж ящика-турели
-uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать ящики-турели. 
+uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать баллистическию турель под видом ящика для инструментов.
