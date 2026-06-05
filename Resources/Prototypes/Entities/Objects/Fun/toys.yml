@@ -714,6 +714,9 @@
       path: /Audio/Weapons/eblademiss.ogg
       params:
         variation: 0.125
+  - type: Tag # CorvaxGoob-Fix
+    tags:
+    - ToySword
 
 - type: entity
   parent: BasePlushie
