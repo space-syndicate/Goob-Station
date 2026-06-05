@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseItem
+  id: FaxTrackerCartridge
+  name: fax tracker cartridge
+  description: A program for command staff that binds to a fax machine and notifies its owner about incoming messages.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-y
+  - type: UIFragment
+    ui: !type:FaxTrackerUi
+  - type: Cartridge
+    programName: fax-tracker-program-name
+    icon:
+      sprite: Structures/Machines/fax_machine.rsi
+      state: icon
+  - type: FaxTrackerCartridge
+    jobFaxNames:
+      Captain: [ "Капитан", "Captain" ]
+      HeadOfPersonnel: [ "Глава Персонала", "HoP Office" ]
+      ChiefEngineer: [ "Старший Инженер", "CE Office" ]
+      ChiefMedicalOfficer: [ "Главный Врач", "CMO Office" ]
+      ResearchDirector: [ "Научный Руководитель", "RD Office" ]
+      HeadOfSecurity: [ "Глава СБ", "HOS Office" ]
+      Quartermaster: [ "Квартирмейстер", "Quartermaster Office" ]
+      Librarian: [ "Библиотека", "Library" ]

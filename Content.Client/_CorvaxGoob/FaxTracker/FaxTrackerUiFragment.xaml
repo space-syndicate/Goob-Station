@@ -1,0 +1,152 @@
+<cartridges:FaxTrackerUiFragment xmlns="https://spacestation14.io"
+                                 xmlns:cartridges="clr-namespace:Content.Client._CorvaxGoob.FaxTracker"
+                                 xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                                 Margin="1 0 2 0"
+                                 Orientation="Vertical"
+                                 HorizontalExpand="True"
+                                 VerticalExpand="True">
+    <PanelContainer StyleClasses="BackgroundDark"/>
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5,5,5,5">
+        <Button Name="NotificationButton"
+                MaxSize="32 32"
+                StyleClasses="ButtonSquare"
+                HorizontalAlignment="Left"
+                ToolTip="{Loc 'fax-tracker-ui-notification-tooltip'}">
+            <Control HorizontalExpand="True" VerticalExpand="True">
+                <TextureRect Name="BellIcon"
+                             StyleClasses="ButtonSquare"
+                             TexturePath="/Textures/_DV/Interface/VerbIcons/bell.svg.png"
+                             Stretch="KeepAspectCentered"
+                             MinSize="18 18" />
+                <TextureRect Name="BellMutedIcon"
+                             StyleClasses="ButtonSquare"
+                             TexturePath="/Textures/_DV/Interface/VerbIcons/bell_muted.png"
+                             Stretch="KeepAspectCentered"
+                             Visible="False"
+                             MinSize="18 18" />
+            </Control>
+        </Button>
+        <Button Name="BlacklistTabButton"
+                MaxSize="32 32"
+                StyleClasses="ButtonSquare"
+                Margin="3,0,0,0"
+                ToggleMode="True"
+                ToolTip="{Loc 'fax-tracker-ui-tab-tooltip'}">
+            <TextureRect StyleClasses="ButtonSquare"
+                         TexturePath="/Textures/_DV/Interface/VerbIcons/hamburger_icon.svg.png"
+                         Stretch="KeepAspectCentered"
+                         MinSize="18 18" />
+        </Button>
+        <Button Name="CopyButton"
+                MaxSize="32 32"
+                StyleClasses="ButtonSquare"
+                Margin="3,0,0,0"
+                Disabled="True"
+                ToolTip="{Loc 'fax-tracker-ui-copy-tooltip'}">
+            <TextureRect StyleClasses="ButtonSquare"
+                         TexturePath="/Textures/Interface/VerbIcons/in.svg.192dpi.png"
+                         Stretch="KeepAspectCentered"
+                         MinSize="18 18" />
+        </Button>
+        <Control HorizontalExpand="True"/>
+        <Button Name="ClearButton"
+                MaxSize="32 32"
+                StyleClasses="ButtonSquare"
+                HorizontalAlignment="Right"
+                ToolTip="{Loc 'fax-tracker-ui-clear-tooltip'}">
+            <TextureRect StyleClasses="ButtonSquare"
+                         TexturePath="/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png"
+                         Modulate="#A0A0A0"
+                         Stretch="KeepAspectCentered"
+                         MinSize="18 18" />
+        </Button>
+    </BoxContainer>
+    <controls:StripeBack>
+        <PanelContainer>
+            <Label Name="StatusLabel" Align="Center" Margin="4,2,4,2"/>
+        </PanelContainer>
+    </controls:StripeBack>
+
+    <BoxContainer Name="MessageView" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5,3,5,3">
+            <Button Name="PrevButton"
+                    MinWidth="40"
+                    StyleClasses="ButtonSquare"
+                    Disabled="True"
+                    Text="{Loc 'fax-tracker-ui-prev'}"
+                    ToolTip="{Loc 'fax-tracker-ui-prev-tooltip'}"/>
+            <Button Name="FavoriteButton"
+                    MinWidth="32"
+                    StyleClasses="ButtonSquare"
+                    Margin="3,0,0,0"
+                    Disabled="True"
+                    ToolTip="{Loc 'fax-tracker-ui-entry-favorite-tooltip'}"/>
+            <Label Name="HeaderLabel"
+                   HorizontalExpand="True"
+                   ClipText="True"
+                   Align="Left"
+                   Margin="4,0,4,0"/>
+            <Button Name="RemoveButton"
+                    MaxSize="32 32"
+                    StyleClasses="ButtonSquare"
+                    Disabled="True"
+                    ToolTip="{Loc 'fax-tracker-ui-entry-remove-tooltip'}">
+                <TextureRect StyleClasses="ButtonSquare"
+                             TexturePath="/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png"
+                             Modulate="#DA4040"
+                             Stretch="KeepAspectCentered"
+                             MinSize="18 18" />
+            </Button>
+            <Button Name="NextButton"
+                    MinWidth="40"
+                    StyleClasses="ButtonSquare"
+                    Margin="3,0,0,0"
+                    Disabled="True"
+                    Text="{Loc 'fax-tracker-ui-next'}"
+                    ToolTip="{Loc 'fax-tracker-ui-next-tooltip'}"/>
+        </BoxContainer>
+        <PanelContainer VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#80808005"/>
+            </PanelContainer.PanelOverride>
+            <ScrollContainer HScrollEnabled="False"
+                             HorizontalExpand="True"
+                             VerticalExpand="True">
+                <RichTextLabel Name="ContentLabel" Margin="8,8,8,8" VerticalAlignment="Top"/>
+            </ScrollContainer>
+        </PanelContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5,3,5,3">
+            <LineEdit Name="PositionEdit"
+                      MinWidth="40"
+                      VerticalAlignment="Center"
+                      ToolTip="{Loc 'fax-tracker-ui-position-tooltip'}"/>
+            <Label Name="PositionTotalLabel"
+                   HorizontalExpand="True"
+                   VerticalAlignment="Center"
+                   Margin="3,0,0,0"
+                   HorizontalAlignment="Left"/>
+        </BoxContainer>
+    </BoxContainer>
+
+    <BoxContainer Name="BlacklistView" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+        <Label Text="{Loc 'fax-tracker-ui-blacklist-known-header'}" Margin="5,4,5,2" StyleClasses="LabelSubText"/>
+        <PanelContainer VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#80808005"/>
+            </PanelContainer.PanelOverride>
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="KnownFaxList" Orientation="Vertical" HorizontalExpand="True" Margin="4,4,4,4"/>
+            </ScrollContainer>
+        </PanelContainer>
+        <Label Text="{Loc 'fax-tracker-ui-blacklist-blocked-header'}" Margin="5,6,5,2" StyleClasses="LabelSubText"/>
+        <PanelContainer VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#80808005"/>
+            </PanelContainer.PanelOverride>
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="BlacklistList" Orientation="Vertical" HorizontalExpand="True" Margin="4,4,4,4"/>
+            </ScrollContainer>
+        </PanelContainer>
+    </BoxContainer>
+</cartridges:FaxTrackerUiFragment>

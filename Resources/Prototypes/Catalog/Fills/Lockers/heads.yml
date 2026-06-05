@@ -302,6 +302,7 @@
     - id: ClothingEyesHudCommand
     - id: ServiceTechFabCircuitboard # Goobstation - Service Techfab
     - id: CommandMegaphone # goob - loudspeakers
+    - id: FaxTrackerCartridge # CorvaxGoob - fax tracker
 
 - type: entity
   id: LockerHeadOfPersonnelFilled

@@ -675,6 +675,7 @@
     - AstroNavCartridge
     - MailMetricsCartridge
     - NanoChatCartridge # DeltaV
+    - FaxTrackerCartridge # CorvaxGoob - fax tracker
 
 - type: entity
   parent: BasePDA
@@ -763,6 +764,14 @@
     borderColor: "#858585"
   - type: Icon
     state: pda-library
+  - type: CartridgeLoader # CorvaxGoob - fax tracker
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge
+      - FaxTrackerCartridge
 
 - type: entity
   parent: LibrarianPDA
@@ -851,6 +860,14 @@
     borderColor: "#7C5D00"
   - type: Icon
     state: pda-captain
+  - type: CartridgeLoader # CorvaxGoob - fax tracker
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge
+      - FaxTrackerCartridge
 
 - type: entity
   parent: BasePDA
@@ -876,6 +893,14 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-hop
+  - type: CartridgeLoader # CorvaxGoob - fax tracker
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge
+      - FaxTrackerCartridge
 
 - type: entity
   parent: BasePDA
@@ -895,6 +920,14 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-ce
+  - type: CartridgeLoader # CorvaxGoob - fax tracker
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge
+      - FaxTrackerCartridge
 
 - type: entity
   parent: BasePDA
@@ -934,6 +967,15 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-cmo
+  - type: CartridgeLoader # CorvaxGoob - fax tracker
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - FaxTrackerCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1025,6 +1067,14 @@
     accentVColor: "#8900c9"
   - type: Icon
     state: pda-rd
+  - type: CartridgeLoader # CorvaxGoob - fax tracker
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge
+      - FaxTrackerCartridge
 
 - type: entity
   parent: BasePDA
@@ -1072,6 +1122,7 @@
     - WantedListCartridge
     - LogProbeCartridge
     - NanoChatCartridge # DeltaV
+    - FaxTrackerCartridge # CorvaxGoob - fax tracker
 
 - type: entity
   parent: BaseSecurityPDA

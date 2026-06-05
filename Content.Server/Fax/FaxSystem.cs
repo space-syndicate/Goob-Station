@@ -111,6 +111,7 @@
 
 using Content.Goobstation.Common.Administration.Notifications; // Goobstation - Admin Notifications
 using Content.Goobstation.Shared.Fax; // Goobstation
+using Content.Shared._CorvaxGoob.FaxTracker; // CorvaxGoob - fax tracker
 using Content.Server._CorvaxGoob.Photo;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
@@ -630,7 +631,7 @@ public sealed class FaxSystem : EntitySystem
                                            paper.StampState,
                                            paper.StampedBy,
                                            paper.EditingDisabled);
-        } 
+        }
         else if (TryComp<PhotoCardComponent>(sendEntity, out var photo) )
         {
             var meta = MetaData(sendEntity.Value);
@@ -757,6 +758,11 @@ public sealed class FaxSystem : EntitySystem
 
         if (printout != null) // Goobstation
             component.PrintingQueue.Enqueue(printout);
+
+        // CorvaxGoob - fax tracker start
+        if (printout != null)
+            RaiseLocalEvent(new FaxMessageReceivedEvent(uid, printout.Name, printout.Content, printout.StampedBy, fromAddress, faxName));
+        // CorvaxGoob - fax tracker end
     }
 
     private void SpawnPaperFromQueue(EntityUid uid, FaxMachineComponent? component = null)
@@ -766,7 +772,7 @@ public sealed class FaxSystem : EntitySystem
 
         var printout = component.PrintingQueue.Dequeue();
 
-        var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;            
+        var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
         var coordinates = _transform.GetMapCoordinates(uid); // Goobstation
         var printed = Spawn(entityToSpawn, coordinates);
 
