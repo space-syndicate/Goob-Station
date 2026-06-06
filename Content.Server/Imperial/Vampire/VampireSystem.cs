@@ -454,7 +454,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnMindRemoved(VampireMindRemovedEvent ev)
     {
-        if (_entityManager.GetEntity(ev.Uid) != null) VampireMindRemoved((EntityUid)_entityManager.GetEntity(ev.Uid)!); ;
+        if (_entityManager.GetEntity(ev.Uid) != null) VampireMindRemoved((EntityUid)_entityManager.GetEntity(ev.Uid)!);
     }
 
     public void VampireMindRemoved(EntityUid uid)
