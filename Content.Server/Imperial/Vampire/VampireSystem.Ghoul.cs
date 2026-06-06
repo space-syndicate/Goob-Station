@@ -196,8 +196,10 @@ public partial class VampireSystem : EntitySystem
         }
 
         RemComp<GhoulComponent>(uid);
-        RemComp<AbilityComponent>(uid);
+
         _alert.ClearAlert(uid, comp.AdjacentChaplainAlert);
         _vampireSystem.SetGhoulBloodAlert(uid, ghoulComponent);
+
+        RemComp<AbilityComponent>(uid);
     }
 }

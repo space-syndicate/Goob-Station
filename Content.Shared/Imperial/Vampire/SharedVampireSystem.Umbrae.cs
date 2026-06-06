@@ -233,7 +233,7 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnVampireTrap(Entity<VampireTrapOnTriggerComponent> ent, ref StartCollideEvent args)
     {
-        if (!TryComp<VampireComponent>(ent, out var vamp) && !TryComp<GhoulComponent>(ent, out var ghoul))
+        if (!TryComp<VampireComponent>(args.OtherEntity, out var vamp) && !TryComp<GhoulComponent>(args.OtherEntity, out var ghoul))
             return;
 
         if (args.OurFixtureId != ent.Comp.FixtureId)
@@ -281,7 +281,7 @@ public partial class SharedVampireSystem : EntitySystem
 
             if (_gameTiming.CurTime >= comp.NextBloodDecayDisguise)
             {
-                DealBloodDamage(uid, comp.BloodLossDisguiseIsActive);
+                DealAbilityBloodDamageShared(uid, comp.BloodLossDisguiseIsActive);
                 comp.NextBloodDecayDisguise = _gameTiming.CurTime + comp.BloodDecayIntervalInvisible;
                 Dirty(uid, comp);
             }

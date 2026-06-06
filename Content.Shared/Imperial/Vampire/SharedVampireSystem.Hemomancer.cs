@@ -165,7 +165,7 @@ public partial class SharedVampireSystem : EntitySystem
         while (bloodVamp.MoveNext(out var uid, out var comp, out var fixtures))
         {
             if (!TryComp<VampireComponent>(uid, out var vamp) && !TryComp<GhoulComponent>(uid, out var ghoul))
-                return;
+                continue;
 
             if (!comp.VampireIsBlood)
                 continue;

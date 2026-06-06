@@ -384,7 +384,14 @@ namespace Content.Shared.Imperial.Vampire
 
     [Serializable, NetSerializable]
     public sealed partial class VampireMindRemovedEvent : EntityEventArgs
-    { }
+    {
+        public NetEntity? Uid;
+
+        public VampireMindRemovedEvent(NetEntity? uid)
+        {
+            Uid = uid;
+        }
+    }
 
     public sealed partial class VampireSelectingSubgroupEvent : InstantActionEvent
     { }

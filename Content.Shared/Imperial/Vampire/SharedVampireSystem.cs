@@ -776,6 +776,6 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)
     {
-        RaiseNetworkEvent(new VampireMindRemovedEvent());
+        RaiseNetworkEvent(new VampireMindRemovedEvent(_entityManager.GetNetEntity(ent)));
     }
 }

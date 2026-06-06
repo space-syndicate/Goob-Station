@@ -365,7 +365,6 @@ public sealed partial class VampireSystem : EntitySystem
             if (!TryComp<ActorComponent>(ghoul, out var actor) || !TryComp<GhoulComponent>(ghoul, out var ghoulComponent))
                 continue;
 
-            RemComp<GhoulComponent>(ghoul);
             RemoveMindFromGhoul(ghoul);
             _vampireSystem.SetGhoulBloodAlert(ghoul, ghoulComponent);
             var comp = EnsureComp<AbilityComponent>(ghoul);
@@ -429,7 +428,7 @@ public sealed partial class VampireSystem : EntitySystem
         while (querySearch.MoveNext(out var uid, out var comp))
         {
             if (!TryComp<VampireComponent>(uid, out var vamp) && !TryComp<GhoulComponent>(uid, out var ghoul))
-                return;
+                continue;
 
             comp.UpdateDelay += frameTime;
             var priests = _lookup.GetEntitiesInRange<BibleUserComponent>(Transform(uid).Coordinates, 5).FirstOrNull();
@@ -453,9 +452,9 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void OnMindRemoved(VampireMindRemovedEvent ev, EntitySessionEventArgs args)
+    private void OnMindRemoved(VampireMindRemovedEvent ev)
     {
-        if (args.SenderSession.AttachedEntity != null) VampireMindRemoved((EntityUid)args.SenderSession.AttachedEntity); ;
+        if (_entityManager.GetEntity(ev.Uid) != null) VampireMindRemoved((EntityUid)_entityManager.GetEntity(ev.Uid)!); ;
     }
 
     public void VampireMindRemoved(EntityUid uid)
@@ -501,11 +500,13 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         RemComp<VampireComponent>(uid);
-        RemComp<AbilityComponent>(uid);
+
         _alert.ClearAlert(uid, comp.AdjacentChaplainAlert);
         _vampireSystem.SetBloodCounterAlert(uid, vampireComponent);
         _vampireSystem.SetBloodAlert(uid, vampireComponent);
         if (vampireComponent.SelectingSubgroupActionEntity != null) _actions.RemoveAction(uid, vampireComponent.SelectingSubgroupActionEntity);
+
+        RemComp<AbilityComponent>(uid);
     }
 
     private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor)
