@@ -52,10 +52,10 @@ spray-painter-tab-category-decals = Декали
 
 # Groups (subtabs)
 spray-painter-tab-group-airlockstandard = Обычные
-spray-painter-tab-group-airlockglass = Стекло
+spray-painter-tab-group-airlockglass = Стеклянные
 
-spray-painter-tab-group-cratesteel = Сталь
-spray-painter-tab-group-crateplastic = Пластик
+spray-painter-tab-group-cratesteel = Стальные
+spray-painter-tab-group-crateplastic = Пластиковые
 spray-painter-tab-group-cratesecure = Безопасные
 
 spray-painter-tab-group-closet = Открытые
