@@ -202,3 +202,7 @@ spray-painter-style-canisters-deuterium = Дейтерий
 spray-painter-style-canisters-hyper-noblium = Гипер-ноблий
 spray-painter-style-canisters-anti-noblium = Анти-ноблий
 spray-painter-style-canisters-bz = BZ
+
+# Предметы
+ent-SprayPainterAmmo = сжатая краска
+    .desc = Картридж сильно сжатой краски, часто используемой в краскопультах
