@@ -71,6 +71,8 @@
   - WhiteCane
   - OffsetCane
   - OffsetCaneWood
+  - SprayBottleStypticPowderEmpty #CorvaxGoob
+  - SprayBottleSilverSulfadiazineEmpty #CorvaxGoob
 
 - type: latheRecipePack
   id: RollerBedsStatic
