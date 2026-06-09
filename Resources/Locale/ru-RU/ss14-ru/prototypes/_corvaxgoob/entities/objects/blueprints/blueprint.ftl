@@ -1,2 +1,2 @@
-ent-BlueprintToolboxElectricalTurret = чертёж ящика-турели
+ent-BlueprintToolboxElectricalTurret = чертёж разворачиваемой баллистической турели
     .desc = Чертёж со схемой разворачиваемой баллистической турели. Его можно вставить в автолат.
