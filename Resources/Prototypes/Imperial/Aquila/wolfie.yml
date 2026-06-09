@@ -1,0 +1,74 @@
+- type: entity
+  name: Wolfie
+  id: Wolfie
+  parent: SimpleMobBase
+  description: Humanoid-like wolf creature yearning for hugs!
+  components:
+  - type: CombatMode
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.00
+    baseSprintSpeed : 7.00
+  - type: InputMover
+  - type: MobMover
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Aquila/wolfie.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: wolfie
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.50
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      999: Critical
+      1000: Dead
+  - type: MeleeWeapon
+    hidden: true
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 15
+  - type: Appearance
+  - type: Respirator
+    damage:
+      types:
+        Brute: 0.5
+        Airloss: 0.0
+        Burn: 1.0
+    damageRecovery:
+      types:
+        Brute: -1.0
+        Airloss: -5.0
+        Burn: -0.5
+  - type: DamageStateVisuals
+    rotate: true
+    states:
+      Alive:
+        Base: wolfie
+      Critical:
+        Base: wolfie_dead
+      Dead:
+        Base: wolfie_dead
+  - type: Puller
+    needsHands: false
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+  - type: NoSlip
+  - type: MobPrice
+    price: 5000

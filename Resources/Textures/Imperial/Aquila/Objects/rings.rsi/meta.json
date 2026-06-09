@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Aquila",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "gem"
+      },
+      {
+        "name": "gemBig"
+      },
+      {
+        "name": "gemCrystal"
+      },
+      {
+        "name": "gemEagle"
+      },
+      {
+        "name": "gemSmall"
+      },
+      {
+        "name": "rings"
+      },
+      {
+        "name": "NewRing",
+        "directions": 4
+      }
+    ]
+  }
