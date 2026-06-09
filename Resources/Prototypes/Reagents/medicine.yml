@@ -1064,9 +1064,45 @@
         conditions:
         - !type:ReagentThreshold
           min: 15
+# CorvaxGoob start
+        - !type:MobStateCondition
+          mobstate: Alive
         damage:
           types:
             Bloodloss: 3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        - !type:MobStateCondition
+          mobstate: Critical
+        damage:
+          types:
+            Bloodloss: 3
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ModifyBleedAmount
+        amount: -1.0
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection
+          invert: true
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        ignoreBlockers: false
+        damage:
+          types:
+            Caustic: 0.1
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection
+          invert: true
+# CorvaxGoob end
 
 - type: reagent
   id: Tricordrazine
