@@ -1,2 +1,2 @@
-ent-BlueprintToolboxElectricalTurret = toolbox-turret blueprint
-    .desc = A blueprint with a schematic of a toolbox-turret. It can be inserted into an autolathe.
+ent-BlueprintToolboxElectricalTurret = deployable ballistic turret blueprint
+    .desc = A blueprint with a schematic of a deployable ballistic turret. It can be inserted into an autolathe.
