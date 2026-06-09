@@ -259,6 +259,13 @@
   #  layers:
   #    Hair: HEAD
 
+- type: entity
+  id: ClothingHeadHelmetSwatSyndicateUnremoveable #CorvaxGoob MRP lavaland antimunchkinism
+  parent: ClothingHeadHelmetSwatSyndicate
+  suffix: Syndicate, Unremoveable
+  components:
+  - type: Unremoveable
+
 #Light Riot Helmet
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband, ClothingHeadHelmetBaseFoldable] # Goob - ClothingHeadHelmetBaseFoldable

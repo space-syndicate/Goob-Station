@@ -28,6 +28,7 @@
   id: SecurityPracticeStatic
   recipes:
   - BoxShotgunPractice
+  - BoxShotgunFlare #CorvaxGoob: add box
   # - MagazineBoxLightRiflePractice # Goobstation - remove light rifle
   - MagazineBoxMagnumPractice
   - MagazineBoxPistolPractice

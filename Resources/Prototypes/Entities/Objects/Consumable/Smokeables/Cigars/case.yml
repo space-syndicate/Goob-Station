@@ -102,7 +102,7 @@
     - 0,0,3,1
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigars/case.rsi
-    size: Normal
+    size: Small #CorvaxGoob: Normal --> Small
     shape:
     - 0,0,2,1
     storedRotation: 90

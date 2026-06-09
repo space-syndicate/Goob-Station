@@ -161,6 +161,15 @@ namespace Content.Client.RoundEnd
                 Name = Loc.GetString("round-end-summary-window-player-manifest-tab-title")
             };
 
+            // CorvaxGoob Start
+            var searchBar = new LineEdit
+            {
+                PlaceHolder = Loc.GetString("round-end-summary-window-player-manifest-search"),
+                HorizontalExpand = true,
+                Margin = new Thickness(10, 6, 10, 2)
+            };
+            // CorvaxGoob End
+
             var playerInfoContainerScrollbox = new ScrollContainer
             {
                 VerticalExpand = true,
@@ -173,6 +182,8 @@ namespace Content.Client.RoundEnd
 
             //Put observers at the bottom of the list. Put antags on top.
             var sortedPlayersInfo = playersInfo.OrderBy(p => p.Observer).ThenBy(p => !p.Antag);
+
+            var playerEntries = new List<(PanelContainer, string)>(); // CorvaxGoob
 
             //Create labels for each player info.
             foreach (var playerInfo in sortedPlayersInfo)
@@ -372,9 +383,24 @@ namespace Content.Client.RoundEnd
                 hBox.AddChild(textVBox);
                 panel.AddChild(hBox);
                 playerInfoContainer.AddChild(panel);
+
+                // CorvaxGoob Start
+                var searchText = $"{playerInfo.PlayerICName} {playerInfo.PlayerOOCName} {Loc.GetString(playerInfo.Role)}".ToLower();
+                playerEntries.Add((panel, searchText));
+                // CorvaxGoob End
             }
 
+            // CorvaxGoob Start
+            searchBar.OnTextChanged += args =>
+            {
+                var query = args.Text.ToLower();
+                foreach (var (panel, searchText) in playerEntries)
+                    panel.Visible = searchText.Contains(query);
+            };
+            // CorvaxGoob End
+
             playerInfoContainerScrollbox.AddChild(playerInfoContainer);
+            playerManifestTab.AddChild(searchBar); // CorvaxGoob
             playerManifestTab.AddChild(playerInfoContainerScrollbox);
 
             return playerManifestTab;

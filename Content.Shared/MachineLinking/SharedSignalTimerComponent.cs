@@ -22,21 +22,27 @@ public enum SignalTimerUiKey : byte
 public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
 {
     public string CurrentText;
-    public TimeSpan CurrentDelay; // Mono
+    // public TimeSpan CurrentDelay; // Mono // CorvaxGoob-Revert-Start
+    public string CurrentDelayMinutes;
+    public string CurrentDelaySeconds; // CorvaxGoob-Revert-End
     public bool ShowText;
     public TimeSpan TriggerTime;
     public bool TimerStarted;
     public bool HasAccess;
 
     public SignalTimerBoundUserInterfaceState(string currentText,
-        TimeSpan currentDelay, // Mono
+        // TimeSpan currentDelay, // Mono // CorvaxGoob-Revert-Start
+        string currentDelayMinutes,
+        string currentDelaySeconds, // CorvaxGoob-Revert-End
         bool showText,
         TimeSpan triggerTime,
         bool timerStarted,
         bool hasAccess)
     {
         CurrentText = currentText;
-        CurrentDelay = currentDelay; // Mono
+        // CurrentDelay = currentDelay; // Mono // CorvaxGoob-Revert-Start
+        CurrentDelayMinutes = currentDelayMinutes;
+        CurrentDelaySeconds = currentDelaySeconds; // CorvaxGoob-Revert-End
         ShowText = showText;
         TriggerTime = triggerTime;
         TimerStarted = timerStarted;

@@ -1,7 +1,7 @@
 ent-BaseLockerTeleporter = телепорт специального снаряжения
     .desc = Устройство, позволяющее запросить доставку специального снаряжения.
-ent-BlueshieldOfficerLockerTeleporter = телепорт шкафчика офицера Синего Щита
-    .desc = Устройство, позволяющее запросить доставку шкафчика офицера Синего Щита.
+ent-BlueshieldOfficerLockerTeleporter = телепорт шкафчика офицера "Синий Щит"
+    .desc = Устройство, позволяющее запросить доставку шкафчика офицера "Синий Щит".
 ent-UniqueBlueshieldOfficerLockerTeleporter = { ent-BlueshieldOfficerLockerTeleporter }
     .suffix = Уникальный
     .desc = { ent-BlueshieldOfficerLockerTeleporter.desc }

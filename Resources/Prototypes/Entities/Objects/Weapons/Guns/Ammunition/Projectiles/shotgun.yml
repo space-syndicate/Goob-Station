@@ -140,6 +140,8 @@
     damage:
       types:
         Blunt: 10
+    soundHit: # CorvaxGoob
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageModifierOnCollide # CorvaxGoob
     staminaCoefficient: 5
   # - type: StaminaDamageOnCollide # Commented by CorvaxGoob

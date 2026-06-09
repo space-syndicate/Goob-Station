@@ -832,6 +832,11 @@
     flavors:
     - cotton
     - bread
+# CorvaxGoob-start
+  - type: Food
+    trash:
+    - FoodCottonPizzaCrust
+# CorvaxGoob-end
   - type: Sprite
     layers:
     - state: cotton-slice

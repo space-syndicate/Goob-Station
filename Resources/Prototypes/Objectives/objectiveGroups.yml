@@ -127,7 +127,7 @@
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     EnergyShotgunStealObjective: 0.5
-    StealSupermatterSliverObjective: 0.5 # Goobstation - supermatter
+    # StealSupermatterSliverObjective: 0.5 # Goobstation - supermatter # CorvaxGoob-Balance
     LawbringerStealObjective: 0.5 # Goobstation
     GeminiProjectorStealObjective: 0.5 # Goobstation
     ExecutiveBriefcaseStealObjective: 0.5 # Goobstation

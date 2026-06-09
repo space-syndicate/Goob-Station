@@ -149,7 +149,7 @@
   id: SyndicateFootsoldierGearRuin
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
+    head: ClothingHeadHelmetSwatSyndicateUnremoveable #CorvaxGoob MRP lavaland antimunchkinism
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterArmorBasic
     gloves: ClothingHandsGlovesCombat
