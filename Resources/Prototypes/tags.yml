@@ -1593,6 +1593,9 @@
 - type: Tag
   id: XenoborgModuleStealth # Cyborg module category for evil stealth xenoborg
 
+- type: Tag
+  id: GasTank
+
 ## Y ##
 ## Z ##
 # ALPHABETICAL
