@@ -33,5 +33,5 @@ fax-tracker-ui-blacklist-blocked-empty = Список пуст.
 fax-tracker-ui-blacklist-add-tooltip = Заблокировать «{ $sender }». Документы перестанут отображаться, а уведомления не будут приходить.
 fax-tracker-ui-blacklist-remove-tooltip = Разблокировать «{ $sender }».
 
-ent-FaxTrackerCartridge = картридж Факс трекер
+ent-FaxTrackerCartridge = картридж Факс-трек
     .desc = Программа для глав, которая отслеживает документы с факса и отправляет уведомления о них.
