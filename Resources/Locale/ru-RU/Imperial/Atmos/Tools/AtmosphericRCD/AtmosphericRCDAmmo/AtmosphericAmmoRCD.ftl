@@ -1,4 +1,4 @@
-ent-AtmosphericRCDAmmo = Заряд РУТ
+ent-AtmosphericRCDAmmo = заряд РУТ
     .desc = Заряд для ручного установщика труб.
 
 atmospheric-rcd-ammo-component-on-examine = Содержит {$charges} зарядов.
