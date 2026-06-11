@@ -4,7 +4,7 @@ meta:
   engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/10/2026 17:44:11
+  time: 06/11/2026 01:02:21
   entityCount: 58684
 maps:
 - 1
@@ -185894,6 +185894,8 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
+    - type: SiloUtilizer
+      silo: 24602
 - proto: ExtendedEmergencyOxygenTank
   entities:
   - uid: 43743
@@ -245805,6 +245807,9 @@ entities:
         - - MaterialSilo
           - MaterialSiloUtilizer
         24795:
+        - - MaterialSilo
+          - MaterialSiloUtilizer
+        24519:
         - - MaterialSilo
           - MaterialSiloUtilizer
 - proto: MaterialWoodPlank1
