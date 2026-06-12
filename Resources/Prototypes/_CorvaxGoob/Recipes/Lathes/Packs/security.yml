@@ -2,9 +2,3 @@
   id: SecurityCaptureDevicePack
   recipes:
   - WeaponGrapplingGunHunter
-
-- type: latheRecipePack
-  id: SecurityAmmoStaticCorvaxGoob
-  recipes:
-  - MagazineLargeCaliber
-  - MagazineBoxLargeCaliber
