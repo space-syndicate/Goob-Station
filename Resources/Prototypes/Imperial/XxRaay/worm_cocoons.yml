@@ -18,6 +18,7 @@
     state: cocoon1
   - type: InteractionOutline
   - type: Examiner
+  - type: Alerts
   - type: Eye
   - type: ContentEye
   - type: Speech

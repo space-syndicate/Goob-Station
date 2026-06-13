@@ -48,6 +48,17 @@
 
 - type: entity
   parent: BaseAction
+  id: ActionWormCocoonObserve
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: evolution
+  - type: InstantAction
+    event: !type:WormCocoonObserveActionEvent
+
+- type: entity
+  parent: BaseAction
   id: ActionWormCorpseExit
   components:
   - type: Action

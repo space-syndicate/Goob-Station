@@ -19,7 +19,6 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -45,17 +44,10 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
         _reproductionQuery = GetEntityQuery<ActiveWormReproductionComponent>();
         _occupiedQuery = GetEntityQuery<WormCorpseOccupiedComponent>();
 
-        SubscribeLocalEvent<WormCorpseHostComponent, MapInitEvent>(OnHostMapInit);
         SubscribeLocalEvent<WormCorpseHostComponent, ComponentShutdown>(OnHostShutdown);
         SubscribeLocalEvent<WormCorpseHostComponent, WormCorpseEnterActionEvent>(OnEnterAction);
         SubscribeLocalEvent<WormCorpseHostComponent, WormCorpseEnterDoAfterEvent>(OnEnterDoAfter);
         SubscribeLocalEvent<WormCorpseOccupiedComponent, WormCorpseExitActionEvent>(OnExitAction);
-    }
-
-    private void OnHostMapInit(Entity<WormCorpseHostComponent> ent, ref MapInitEvent args)
-    {
-        if (_net.IsServer)
-            _actions.AddAction(ent, ref ent.Comp.EnterActionEntity, ent.Comp.EnterAction);
     }
 
     private void OnHostShutdown(Entity<WormCorpseHostComponent> ent, ref ComponentShutdown args)
@@ -63,8 +55,11 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
         if (_possessionQuery.HasComp(ent.Owner))
             ForceExit(ent.Owner, forced: true);
 
-        if (_net.IsServer && ent.Comp.EnterActionEntity != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.EnterActionEntity);
+        OnHostShutdown(ent);
+    }
+
+    protected virtual void OnHostShutdown(Entity<WormCorpseHostComponent> ent)
+    {
     }
 
     private void OnEnterAction(Entity<WormCorpseHostComponent> ent, ref WormCorpseEnterActionEvent args)

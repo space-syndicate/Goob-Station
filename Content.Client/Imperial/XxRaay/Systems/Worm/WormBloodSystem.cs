@@ -1,6 +1,6 @@
 using Content.Shared.Alert;
 using Content.Shared.Imperial.XxRaay.Components;
-using Content.Shared.Imperial.XxRaay.Systems;
+using Content.Shared.Imperial.XxRaay.Helpers;
 using Robust.Client.Player;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
@@ -33,7 +33,7 @@ public sealed class WormBloodSystem : EntitySystem
         if (!HasComp<AlertsComponent>(uid))
             return;
 
-        var severity = SharedWormBloodSystem.GetSeverity(blood.Blood);
+        var severity = WormBloodHelper.GetSeverity(blood.Blood);
         _alerts.ShowAlert(uid, blood.BloodAlert, severity);
     }
 }

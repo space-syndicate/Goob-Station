@@ -1,3 +1,4 @@
+using Content.Shared.Alert;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
@@ -22,7 +23,13 @@ public sealed partial class WormCocoonComponent : Component
     public ProtoId<DamageTypePrototype> FailDeathDamageType;
 
     [DataField, AutoNetworkedField]
+    public TimeSpan StartTime;
+
+    [DataField, AutoNetworkedField]
     public TimeSpan EndTime;
+
+    [DataField]
+    public ProtoId<AlertPrototype> TimerAlert = "WormCocoonTimer";
 
     [DataField]
     public bool Completing;

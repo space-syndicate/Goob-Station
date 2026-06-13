@@ -1,6 +1,7 @@
 using Content.Server.Imperial.XxRaay.Systems;
 using Content.Server.Imperial.XxRaay.DataDefinitions;
 using Robust.Shared.GameObjects;
+using Robust.Shared.ViewVariables;
 using System.Collections.Generic;
 
 namespace Content.Server.Imperial.XxRaay.Components;
@@ -39,5 +40,6 @@ public sealed partial class VentCrawlingComponent : Component
     [DataField]
     public float SoundDistance;
 
+    [ViewVariables]
     public HashSet<EntityUid> DisabledActions = [];
 }

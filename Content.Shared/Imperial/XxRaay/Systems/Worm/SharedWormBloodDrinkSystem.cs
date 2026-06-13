@@ -1,4 +1,3 @@
-using Content.Shared.Actions;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
@@ -17,7 +16,6 @@ namespace Content.Shared.Imperial.XxRaay.Systems;
 public abstract class SharedWormBloodDrinkSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -30,8 +28,6 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
     private EntityQuery<ActiveWormReproductionComponent> _reproductionQuery;
     private EntityQuery<WormBloodDrinkingComponent> _drinkingQuery;
 
-    private bool _stoppingDrink;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -43,7 +39,6 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
         _reproductionQuery = GetEntityQuery<ActiveWormReproductionComponent>();
         _drinkingQuery = GetEntityQuery<WormBloodDrinkingComponent>();
 
-        SubscribeLocalEvent<WormBloodDrinkerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<WormBloodDrinkerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<WormBloodDrinkerComponent, WormBloodDrinkActionEvent>(OnDrinkAction);
         SubscribeLocalEvent<WormBloodDrinkerComponent, WormBloodDrinkAttachDoAfterEvent>(OnAttachDoAfter);
@@ -51,18 +46,14 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
         SubscribeLocalEvent<WormBloodDrinkingComponent, MoveEvent>(OnMoveWhileDrinking);
     }
 
-    private void OnMapInit(Entity<WormBloodDrinkerComponent> ent, ref MapInitEvent args)
-    {
-        if (_net.IsServer)
-            _actions.AddAction(ent, ref ent.Comp.DrinkActionEntity, ent.Comp.DrinkAction);
-    }
-
     private void OnShutdown(Entity<WormBloodDrinkerComponent> ent, ref ComponentShutdown args)
     {
         StopDrinking(ent.Owner);
+        OnDrinkerShutdown(ent);
+    }
 
-        if (_net.IsServer && ent.Comp.DrinkActionEntity != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.DrinkActionEntity);
+    protected virtual void OnDrinkerShutdown(Entity<WormBloodDrinkerComponent> ent)
+    {
     }
 
     private void OnDrinkAction(Entity<WormBloodDrinkerComponent> ent, ref WormBloodDrinkActionEvent args)
@@ -84,8 +75,13 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.InitialDelay,
-                new WormBloodDrinkAttachDoAfterEvent(), ent, target: target)
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(
+                EntityManager,
+                ent,
+                ent.Comp.InitialDelay,
+                new WormBloodDrinkAttachDoAfterEvent(),
+                ent,
+                target: target)
             {
                 BreakOnMove = true,
                 BreakOnWeightlessMove = true,
@@ -243,10 +239,14 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
 
     public void StopDrinking(EntityUid worm, bool cancelDoAfters = true)
     {
-        if (_stoppingDrink || !_drinkingQuery.HasComp(worm))
+        if (!_drinkingQuery.TryComp(worm, out var drinking))
             return;
 
-        _stoppingDrink = true;
+        if (drinking.StoppingDrink)
+            return;
+
+        drinking.StoppingDrink = true;
+        Dirty(worm, drinking);
 
         try
         {
@@ -255,9 +255,15 @@ public abstract class SharedWormBloodDrinkSystem : EntitySystem
 
             RemCompDeferred<WormBloodDrinkingComponent>(worm);
         }
-        finally
+        catch
         {
-            _stoppingDrink = false;
+            if (TryComp(worm, out WormBloodDrinkingComponent? remaining))
+            {
+                remaining.StoppingDrink = false;
+                Dirty(worm, remaining);
+            }
+
+            throw;
         }
     }
 

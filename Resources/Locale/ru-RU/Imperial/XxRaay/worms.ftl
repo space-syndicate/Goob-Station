@@ -37,6 +37,7 @@ worm-door-hide-fail-drinking = Нельзя спрятаться в шлюзе, 
 worm-door-hide-fail-occupied = В этом шлюзе уже кто-то прячется.
 worm-door-hide-fail-open = Шлюз должен быть закрыт.
 worm-door-hide-fail-welded = Нельзя спрятаться в заваренном шлюзе.
+worm-door-hide-fail-armored = Нельзя спрятаться в бронированном шлюзе.
 worm-door-hide-fail-hiding = Нельзя делать это, пока вы прячетесь в шлюзе.
 worm-door-hide-fail-evolving = Нельзя спрятаться в шлюзе во время эволюции.
 worm-door-hide-fail-reproducing = Нельзя спрятаться в шлюзе во время размножения.
@@ -85,6 +86,15 @@ worm-evolution-fail-corpse = Нельзя эволюционировать, по
 worm-evolution-fail-drinking = Нельзя эволюционировать, пока вы пьёте кровь.
 worm-evolution-fail-evolving = Вы уже эволюционируете.
 worm-evolution-fail-reproducing = Нельзя эволюционировать во время размножения.
+
+worm-cocoon-timer-name = Эволюция
+worm-cocoon-timer-desc = До завершения превращения осталось времени.
+
+ent-ActionWormCocoonObserve = Наблюдать
+    .desc = Переключиться на случайного другого червя.
+
+worm-cocoon-observe-fail-none = Нет других червей для наблюдения.
+worm-cocoon-observe-start = Вы наблюдаете за {$target}.
 
 ent-WormCocoonTier1 = Кокон червя
     .desc = Пульсирующий кокон, сотканный из крови и слизи.

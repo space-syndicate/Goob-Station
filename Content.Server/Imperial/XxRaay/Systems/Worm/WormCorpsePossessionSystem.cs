@@ -7,7 +7,9 @@ using Content.Server.NPC.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Systems;
@@ -46,9 +48,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ISharedPlayerManager _players = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly GhostSystem _ghosts = default!;
-
-    private readonly HashSet<EntityUid> _exitingPossession = new();
 
     public EntityUid? PausedMap { get; private set; }
 
@@ -56,8 +57,20 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     {
         base.Initialize();
 
+        SubscribeLocalEvent<WormCorpseHostComponent, MapInitEvent>(OnHostMapInit);
         SubscribeLocalEvent<WormCorpseOccupiedComponent, MobStateChangedEvent>(OnCorpseMobStateChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+    }
+
+    private void OnHostMapInit(Entity<WormCorpseHostComponent> ent, ref MapInitEvent args)
+    {
+        _actions.AddAction(ent, ref ent.Comp.EnterActionEntity, ent.Comp.EnterAction);
+    }
+
+    protected override void OnHostShutdown(Entity<WormCorpseHostComponent> ent)
+    {
+        if (ent.Comp.EnterActionEntity != null)
+            _actions.RemoveAction(ent.Owner, ent.Comp.EnterActionEntity);
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent _)
@@ -74,7 +87,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (args.NewMobState is not (MobState.Critical or MobState.Dead))
             return;
 
-        if (_exitingPossession.Contains(ent.Comp.Worm))
+        if (TryComp(ent.Comp.Worm, out ActiveWormCorpsePossessionComponent? active) && active.Exiting)
             return;
 
         ExitPossession(ent.Comp.Worm, ent.Owner, forced: true);
@@ -96,7 +109,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         EnsureComp<ActionsComponent>(corpse);
 
         _mobState.ChangeMobState(corpse, MobState.Alive);
-        RaiseLocalEvent(corpse, new RejuvenateEvent());
+        ApplyPossessionHealth(corpse, host);
 
         var pausedMap = EnsurePausedMap();
         _transform.SetParent(worm, Transform(worm), pausedMap);
@@ -140,22 +153,23 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (!TryComp(worm, out ActiveWormCorpsePossessionComponent? active))
             return;
 
-        if (!_exitingPossession.Add(worm))
+        if (active.Exiting)
             return;
+
+        active.Exiting = true;
+        Dirty(worm, active);
 
         corpse = active.Corpse;
 
         if (TerminatingOrDeleted(corpse))
         {
             FinishExitWithoutCorpse(worm, active, forced);
-            _exitingPossession.Remove(worm);
             return;
         }
 
         if (!TryComp(worm, out WormCorpseHostComponent? host))
         {
             FinishExit(worm, corpse, active, host: null, forced);
-            _exitingPossession.Remove(worm);
             return;
         }
 
@@ -168,7 +182,24 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
             _audio.PlayPvs(host.ExitSound, corpse);
 
         FinishExit(worm, corpse, active, host, forced);
-        _exitingPossession.Remove(worm);
+    }
+
+    private void ApplyPossessionHealth(EntityUid corpse, WormCorpseHostComponent host)
+    {
+        RaiseLocalEvent(corpse, new RejuvenateEvent());
+
+        if (!TryComp<MobThresholdsComponent>(corpse, out var thresholds)
+            || !_mobThreshold.TryGetThresholdForState(corpse, MobState.Dead, out var deadThreshold, thresholds))
+            return;
+
+        var fraction = Math.Clamp(host.PossessMinHealthFraction, 0f, 1f);
+        var targetDamage = deadThreshold.Value * FixedPoint2.New(1f - fraction);
+        if (targetDamage <= FixedPoint2.Zero)
+            return;
+
+        var damage = new DamageSpecifier();
+        damage.DamageDict[host.PossessDamageType] = targetDamage;
+        _damageable.TryChangeDamage(corpse, damage);
     }
 
     #region Public API
@@ -248,9 +279,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         if (TryComp(corpse, out WormCorpseOccupiedComponent? occupied) && occupied.AddedStatusIcon)
             RemComp<StatusIconComponent>(corpse);
 
-        RestoreVictimPlayers(corpse);
-
         RemComp<WormCorpseOccupiedComponent>(corpse);
+        RestoreVictimPlayers(corpse);
         RemComp<ActiveWormCorpsePossessionComponent>(worm);
 
         if (!forced && host?.EnterActionEntity != null)
@@ -331,7 +361,21 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
             && corpseMind.UserId != null
             && (!_mind.TryGetMind(worm, out var wormMindId, out _) || corpseMindId != wormMindId))
         {
-            _ghosts.OnGhostAttempt(corpseMindId, canReturnGlobal: false, forced: true, mind: corpseMind);
+            if (corpseMind.OwnedEntity == corpse
+                && corpseMind.VisitingEntity is { } visiting
+                && HasComp<GhostComponent>(visiting))
+            {
+                if (_players.TryGetSessionById(corpseMind.UserId.Value, out var session)
+                    && session.AttachedEntity == corpse)
+                    _players.SetAttachedEntity(session, visiting);
+
+                if (TryComp(visiting, out GhostComponent? visitingGhost))
+                    _ghosts.SetCanReturnToBody((visiting, visitingGhost), false);
+            }
+            else
+            {
+                _ghosts.OnGhostAttempt(corpseMindId, canReturnGlobal: false, forced: true, mind: corpseMind);
+            }
         }
 
         if (TryComp<ActorComponent>(corpse, out var actor)
@@ -373,7 +417,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     private void RestoreVictimPlayers(EntityUid corpse)
     {
         var netCorpse = GetNetEntity(corpse);
-        var canReturn = _mobState.IsDead(corpse) && !HasComp<WormCorpseOccupiedComponent>(corpse);
+        var canReturn = _mobState.IsDead(corpse);
 
         var query = EntityQueryEnumerator<MindComponent>();
         while (query.MoveNext(out var mindId, out var mind))
@@ -396,8 +440,11 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     /// </summary>
     private void ReestablishGhostVisit(EntityUid mindId, MindComponent mind, EntityUid corpse)
     {
-        if (!Exists(corpse) || mind.OwnedEntity != corpse || !TryGetPlayerGhost(mind, null, out var ghostUid))
+        if (!Exists(corpse) || !TryGetPlayerGhost(mind, null, out var ghostUid))
             return;
+
+        if (mind.OwnedEntity != corpse)
+            _mind.TransferTo(mindId, corpse, ghostCheckOverride: true, mind: mind);
 
         if (mind.VisitingEntity == ghostUid)
             return;

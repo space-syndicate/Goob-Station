@@ -1,6 +1,6 @@
-namespace Content.Shared.Imperial.XxRaay.Systems;
+namespace Content.Shared.Imperial.XxRaay.Helpers;
 
-public static class SharedWormBloodSystem
+public static class WormBloodHelper
 {
     public static short GetSeverity(int blood)
     {

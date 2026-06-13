@@ -40,6 +40,7 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly WormCocoonObserveSystem _cocoonObserve = default!;
 
     public override void Initialize()
     {
@@ -114,6 +115,7 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
         cocoonComp.ParentResultProto = reproducer.ParentResultProto;
         cocoonComp.SourceProto = reproducer.SourceProto;
         cocoonComp.FailDeathDamageType = reproducer.FailDeathDamageType;
+        cocoonComp.StartTime = _timing.CurTime;
         cocoonComp.EndTime = _timing.CurTime + reproducer.ReproductionDuration;
         cocoonComp.OffspringOffsets = reproducer.OffspringOffsets;
         Dirty(cocoon, cocoonComp);
@@ -133,6 +135,7 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
             _transform.SetLocalRotation(cocoon, Angle.Zero, cocoonXform);
 
             _mind.Visit(mindId, cocoon, mind);
+            _cocoonObserve.SetupPlayerCocoon(cocoon, worm, cocoonComp.StartTime, cocoonComp.EndTime, cocoonComp.TimerAlert);
         }
         else
             active.PlayerControlled = false;
@@ -157,6 +160,8 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
 
         cocoon.Completing = true;
         Dirty(cocoonUid, cocoon);
+
+        _cocoonObserve.CleanupCocoon(cocoonUid, cocoon.TimerAlert);
 
         var worm = cocoon.ParentWorm;
         var coords = Transform(cocoonUid).Coordinates;
@@ -201,6 +206,8 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
         var playerControlled = Exists(worm)
             && TryComp(worm, out ActiveWormReproductionComponent? active)
             && active.PlayerControlled;
+
+        _cocoonObserve.CleanupCocoon(cocoonUid, cocoon.TimerAlert);
 
         var corpse = SpawnDeadWorm(cocoon.SourceProto, coords, cocoon.FailDeathDamageType);
 

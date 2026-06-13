@@ -1,6 +1,7 @@
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -22,4 +23,7 @@ public sealed partial class ActiveWormCorpsePossessionComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool PlayerControlled;
+
+    [ViewVariables]
+    public bool Exiting;
 }

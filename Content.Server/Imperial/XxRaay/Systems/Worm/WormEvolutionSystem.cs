@@ -39,6 +39,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly WormCocoonObserveSystem _cocoonObserve = default!;
 
     public override void Initialize()
     {
@@ -111,6 +112,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         cocoonComp.ResultProto = evolver.ResultProto;
         cocoonComp.SourceProto = evolver.SourceProto;
         cocoonComp.FailDeathDamageType = evolver.FailDeathDamageType;
+        cocoonComp.StartTime = _timing.CurTime;
         cocoonComp.EndTime = _timing.CurTime + evolver.EvolutionDuration;
         Dirty(cocoon, cocoonComp);
 
@@ -129,6 +131,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
             _transform.SetLocalRotation(cocoon, Angle.Zero, cocoonXform);
 
             _mind.Visit(mindId, cocoon, mind);
+            _cocoonObserve.SetupPlayerCocoon(cocoon, worm, cocoonComp.StartTime, cocoonComp.EndTime, cocoonComp.TimerAlert);
         }
         else
             active.PlayerControlled = false;
@@ -153,6 +156,8 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
 
         cocoon.Completing = true;
         Dirty(cocoonUid, cocoon);
+
+        _cocoonObserve.CleanupCocoon(cocoonUid, cocoon.TimerAlert);
 
         var worm = cocoon.Worm;
         var coords = Transform(cocoonUid).Coordinates;
@@ -189,6 +194,8 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         var playerControlled = Exists(worm)
             && TryComp(worm, out ActiveWormEvolutionComponent? active)
             && active.PlayerControlled;
+
+        _cocoonObserve.CleanupCocoon(cocoonUid, cocoon.TimerAlert);
 
         var corpse = SpawnDeadWorm(cocoon.SourceProto, coords, cocoon.FailDeathDamageType);
 

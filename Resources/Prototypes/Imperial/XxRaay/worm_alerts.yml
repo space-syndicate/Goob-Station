@@ -40,3 +40,12 @@
   maxSeverity: 16
   name: worm-blood-alert-name
   description: worm-blood-alert-desc
+
+- type: alert
+  id: WormCocoonTimer
+  category: Health
+  icons:
+  - sprite: Imperial/XxRaay/worms/cocoons.rsi
+    state: cocoon1
+  name: worm-cocoon-timer-name
+  description: worm-cocoon-timer-desc

@@ -2,7 +2,7 @@ using Content.Shared.Alert;
 using Content.Shared.Eye;
 using Content.Shared.Imperial.XxRaay;
 using Content.Shared.Imperial.XxRaay.Components;
-using Content.Shared.Imperial.XxRaay.Systems;
+using Content.Shared.Imperial.XxRaay.Helpers;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
@@ -13,6 +13,8 @@ public sealed class WormBloodSystem : EntitySystem
 
     private EntityQuery<WormBloodComponent> _bloodQuery;
     private readonly Dictionary<EntityUid, short> _lastSeverity = new();
+    private TimeSpan _accumulator = TimeSpan.Zero;
+    private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(0.5);
 
     public override void Initialize()
     {
@@ -31,10 +33,16 @@ public sealed class WormBloodSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        _accumulator += TimeSpan.FromSeconds(frameTime);
+        if (_accumulator < UpdateInterval)
+            return;
+
+        _accumulator -= UpdateInterval;
+
         var query = EntityQueryEnumerator<WormBloodComponent>();
         while (query.MoveNext(out var uid, out var blood))
         {
-            var severity = SharedWormBloodSystem.GetSeverity(blood.Blood);
+            var severity = WormBloodHelper.GetSeverity(blood.Blood);
             if (_lastSeverity.TryGetValue(uid, out var last) && last == severity)
                 continue;
 
@@ -45,7 +53,7 @@ public sealed class WormBloodSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, WormBloodComponent component, ComponentStartup args)
     {
-        var severity = SharedWormBloodSystem.GetSeverity(component.Blood);
+        var severity = WormBloodHelper.GetSeverity(component.Blood);
         _lastSeverity[uid] = severity;
         UpdateBloodAlert(uid, component, severity);
 
@@ -102,7 +110,7 @@ public sealed class WormBloodSystem : EntitySystem
         component.Blood = clamped;
         Dirty(uid, component);
 
-        var severity = SharedWormBloodSystem.GetSeverity(component.Blood);
+        var severity = WormBloodHelper.GetSeverity(component.Blood);
         _lastSeverity[uid] = severity;
         UpdateBloodAlert(uid, component, severity);
     }

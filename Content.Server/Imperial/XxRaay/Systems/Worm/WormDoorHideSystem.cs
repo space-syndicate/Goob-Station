@@ -19,6 +19,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.Eye;
+using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -44,6 +45,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
     [Dependency] private readonly StealthSystem _stealth = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly ImperialVentCrawlerSystem _ventCrawler = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
     private EntityQuery<ActiveVentCrawlingComponent> _ventCrawlingQuery;
     private EntityQuery<ActiveWormCorpsePossessionComponent> _corpsePossessionQuery;
@@ -52,8 +54,6 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
     private EntityQuery<WormDoorHideOccupiedComponent> _occupiedQuery;
     private EntityQuery<ActiveWormEvolutionComponent> _evolutionQuery;
     private EntityQuery<ActiveWormReproductionComponent> _reproductionQuery;
-
-    private readonly HashSet<EntityUid> _exiting = new();
 
     public override void Initialize()
     {
@@ -189,10 +189,10 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
 
     private void OnOccupiedShutdown(Entity<WormDoorHideOccupiedComponent> ent, ref ComponentShutdown args)
     {
-        if (_exiting.Contains(ent.Comp.Worm))
+        if (!Exists(ent.Comp.Worm) || !TryComp(ent.Comp.Worm, out WormDoorHidingComponent? hiding))
             return;
 
-        if (!Exists(ent.Comp.Worm) || !HasComp<WormDoorHidingComponent>(ent.Comp.Worm))
+        if (hiding.Exiting)
             return;
 
         RemComp<WormDoorHidingComponent>(ent.Comp.Worm);
@@ -280,16 +280,16 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
 
     private void ExitDoorHide(EntityUid worm)
     {
-        if (!TryComp(worm, out WormDoorHidingComponent? hiding) || !_exiting.Add(worm))
+        if (!TryComp(worm, out WormDoorHidingComponent? hiding) || hiding.Exiting)
             return;
 
+        hiding.Exiting = true;
         var door = hiding.SourceDoor;
 
         if (Exists(door) && TryComp(door, out WormDoorHideOccupiedComponent? occupied) && occupied.Worm == worm)
             RemComp<WormDoorHideOccupiedComponent>(door);
 
         RemComp<WormDoorHidingComponent>(worm);
-        _exiting.Remove(worm);
     }
 
     private bool CanHideInDoor(
@@ -358,6 +358,13 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
         {
             if (showPopup)
                 ShowFailPopup(worm, Loc.GetString("worm-door-hide-fail-open"));
+            return false;
+        }
+
+        if (_tags.HasTag(door, "HighSecDoor"))
+        {
+            if (showPopup)
+                ShowFailPopup(worm, Loc.GetString("worm-door-hide-fail-armored"));
             return false;
         }
 

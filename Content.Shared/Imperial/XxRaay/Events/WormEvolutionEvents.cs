@@ -6,5 +6,7 @@ namespace Content.Shared.Imperial.XxRaay.Events;
 
 public sealed partial class WormEvolutionActionEvent : InstantActionEvent;
 
+public sealed partial class WormCocoonObserveActionEvent : InstantActionEvent;
+
 [Serializable, NetSerializable]
 public sealed partial class WormEvolutionDoAfterEvent : SimpleDoAfterEvent;

@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -33,4 +34,10 @@ public sealed partial class WormCorpseHostComponent : Component
 
     [DataField]
     public SoundSpecifier? ExitSound = new SoundPathSpecifier("/Audio/Magic/disintegrate.ogg");
+
+    [DataField]
+    public float PossessMinHealthFraction = 0.25f;
+
+    [DataField]
+    public ProtoId<DamageTypePrototype> PossessDamageType = "Blunt";
 }
