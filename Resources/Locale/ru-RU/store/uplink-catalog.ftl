@@ -17,8 +17,8 @@ uplink-esword-desc = Очень опасный энергомеч, способ�
 uplink-esword-double-name = Двухклинковый энергетический меч
 uplink-esword-double-desc = Гораздо более дорогая альтернатива обычному энергетическому мечу: с большим шансом отражения, большим углом атаки, более высоким уроном по конструкциям и большей скоростью замаха. Сильно шумит при включении и использовании.
 
-uplink-hypereutactic-blade-name = Hypereutactic Blade
-uplink-hypereutactic-blade-desc = A gigantic energy sword with power that matches its looks. Requires two hands. Slow and unwieldy, yet pretty adept at reflecting. Previously made infamous by an operative wearing a joy mask. You wouldn't want to see this coming at you down the hall!
+uplink-hypereutactic-blade-name = Гиперэвтактический клинок
+uplink-hypereutactic-blade-desc = Гигантский энергетический меч, мощь которого соответствует его внешнему виду. Требует двух рук. Медленный и неуклюжий, но довольно искусен в отражении ударов. Ранее прославился благодаря некому оперативнику. Не хотелось бы с таким сражаться!
 
 uplink-edagger-name = Энергокинжал
 uplink-edagger-desc = Небольшой энергитический кинжал, удобно замаскированный под ручку.

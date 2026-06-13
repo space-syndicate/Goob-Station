@@ -1,10 +1,10 @@
 ent-OrganGingerbreadArmRight = правая пряничная рука
 ent-OrganGingerbreadFootRight = правая пряничная нога
-ent-OrganGingerbreadHandRight = правая рука-пряник
+ent-OrganGingerbreadHandRight = правая пряничная рука
 ent-OrganGingerbreadArmLeft = левая пряничная рука
 ent-OrganGingerbreadFootLeft = левая пряничная нога
-ent-OrganGingerbreadHandLeft = левая рука рука-пряник
-ent-OrganGingerbreadLegLeft = левая нога-пряник
+ent-OrganGingerbreadHandLeft = левая пряничная рука
+ent-OrganGingerbreadLegLeft = левая пряничная нога
 ent-OrganGingerbreadHead = пряничная голова
 ent-OrganGingerbreadTorso = пряничное туловище
 ent-OrganGingerbreadLegRight = правая пряничная нога

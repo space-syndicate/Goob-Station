@@ -1,6 +1,6 @@
 ent-OrganArachnidTorso = туловище арахнида
     .desc = { ent-BaseItem.desc }
-    .suffix = { "" }3
+    .suffix = { "" }
 ent-OrganArachnidHead = голова арахнида
     .desc = { ent-BaseItem.desc }
     .suffix = { "" }
