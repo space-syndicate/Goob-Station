@@ -33,11 +33,14 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         if (!entity.Comp.Activated)
         {
             entity.Comp.Activated = true;
+            Dirty(entity);
+
             var ev = new SupermatterSendRadioEvent(Loc.GetString("supermatter-activated"));
             RaiseLocalEvent(entity, ref ev);
         }
 
         entity.Comp.Integrity = MathF.Min(entity.Comp.MaxIntegrity, entity.Comp.Integrity + entity.Comp.EmitterHealAmount);
+        Dirty(entity);
     }
 
     private void OnExamined(Entity<SupermatterIntegrityComponent> entity, ref ExaminedEvent args)
@@ -85,6 +88,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 
         QueueDel(args.Used);
         entity.Comp.Activated = false;
+        Dirty(entity);
 
         var ev = new SupermatterSendRadioEvent(Loc.GetString("supermatter-deactivated"));
         RaiseLocalEvent(entity, ref ev);

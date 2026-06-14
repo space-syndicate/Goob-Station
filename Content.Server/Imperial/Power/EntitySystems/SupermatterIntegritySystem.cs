@@ -189,12 +189,17 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             if (entity.Comp.NextDamageTick == TimeSpan.Zero)
                 entity.Comp.NextDamageTick = _gameTiming.CurTime + entity.Comp.DamageTickInterval;
 
+            var tookDamage = false;
             while (_gameTiming.CurTime >= entity.Comp.NextDamageTick)
             {
                 entity.Comp.NextDamageTick += entity.Comp.DamageTickInterval;
                 var tickAmount = entity.Comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
                 entity.Comp.Integrity = MathF.Max(0, entity.Comp.Integrity - tickAmount);
+                tookDamage = true;
             }
+
+            if (tookDamage)
+                Dirty(entity);
         }
         else
         {
