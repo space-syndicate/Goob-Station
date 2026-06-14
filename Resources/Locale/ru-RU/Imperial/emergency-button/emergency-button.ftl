@@ -1,6 +1,6 @@
 # Тревожная кнопка для службы безопасности
 ent-EmergencyButton = тревожная кнопка
-    .desc = Устройство экстренной связи для сотрудников службы безопасности. При активации отправляет сигнал тревоги в рацию СБ. Имеет один заряд.
+    .desc = Устройство экстренной связи для сотрудников службы безопасности. При активации отправляет сигнал тревоги в рацию СБ.
     .suffix = { "" }
 
 # Сообщения системы
@@ -10,3 +10,5 @@ alert-emergency-button-confirmation = ПОДТВЕРДИТЕ АКТИВАЦИЮ!
 alert-emergency-button-no-charges = Тревожная кнопка разряжена.
 alert-emergency-button-unknown-location = неизвестного места
 
+alert-emergency-button-yes-charges = Осталось [color=yellow]{$charges}[/color] зарядов.
+alert-emergency-button-no-charges = [color=gray]Заряды кончились.[/color]
