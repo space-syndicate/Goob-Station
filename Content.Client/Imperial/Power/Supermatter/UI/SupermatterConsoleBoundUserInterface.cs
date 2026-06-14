@@ -20,7 +20,10 @@ public sealed class SupermatterConsoleBoundUserInterface(EntityUid owner, Enum u
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
-        var castState = (SupermatterConsoleBuiState) state;
-        _menu?.Update(castState);
+        base.UpdateState(state);
+
+        if (state is not SupermatterConsoleBuiState _state)
+            return;
+        _menu?.Update(_state);
     }
 }
