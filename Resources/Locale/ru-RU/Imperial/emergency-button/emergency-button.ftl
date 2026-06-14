@@ -4,11 +4,11 @@ ent-EmergencyButton = тревожная кнопка
     .suffix = { "" }
 
 # Сообщения системы
-alert-emergency-button-message = {$officerName} требуется помощь около {$location}
-alert-emergency-button-used = Вы активировали тревожную кнопку. Сигнал отправлен в службу безопасности.
-alert-emergency-button-confirmation = ПОДТВЕРДИТЕ АКТИВАЦИЮ! Нажмите ещё раз чтобы отправить сигнал тревоги!
-alert-emergency-button-no-charges = Тревожная кнопка разряжена.
-alert-emergency-button-unknown-location = неизвестного места
+alert-emergency-button-popup-message = {$officerName} требуется помощь около {$location}
+alert-emergency-button-popup-used = Вы активировали тревожную кнопку. Сигнал отправлен в службу безопасности.
+alert-emergency-button-popup-confirmation = ПОДТВЕРДИТЕ АКТИВАЦИЮ! Нажмите ещё раз чтобы отправить сигнал тревоги!
+alert-emergency-button-popup-no-charges = Тревожная кнопка разряжена.
+alert-emergency-button-popup-unknown-location = неизвестного места
 
 alert-emergency-button-yes-charges = Осталось [color=yellow]{$charges}[/color] зарядов.
 alert-emergency-button-no-charges = [color=gray]Заряды кончились.[/color]
