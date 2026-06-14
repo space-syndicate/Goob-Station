@@ -25,11 +25,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.XxRaay.Systems;
 
 public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
 {
+    private static readonly ProtoId<TagPrototype> HighSecDoorTag = "HighSecDoor";
+
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
@@ -361,7 +364,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
             return false;
         }
 
-        if (_tags.HasTag(door, "HighSecDoor"))
+        if (_tags.HasTag(door, HighSecDoorTag))
         {
             if (showPopup)
                 ShowFailPopup(worm, Loc.GetString("worm-door-hide-fail-armored"));
