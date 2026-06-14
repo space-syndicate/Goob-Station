@@ -87,6 +87,8 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         if (!_tagSystem.HasTag(args.Used, entity.Comp.SupermatterStopTag)
             || args.Target == null)
             return;
+        if (!entity.Comp.Activated)
+            return;
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 5, new SupermatterShutdownDoAfterEvent(), entity, args.Target, args.Used)
         {
@@ -129,7 +131,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     private void ProcessSupermatterUpdate(Entity<SupermatterIntegrityComponent> entity, TransformComponent transComp, float frameTime)
     {
         if (TryComp(entity, out RadiationSourceComponent? radiation))
-            _radiationSystem.SetEnabled(entity, entity.Comp.Activated);
+            _radiationSystem.SetSourceEnabled(new Entity<RadiationSourceComponent?>(entity, radiation), entity.Comp.Activated);
 
         if (TryComp(entity, out PointLightComponent? light))
             _lightSystem.SetEnabled(entity, entity.Comp.Activated, light);
