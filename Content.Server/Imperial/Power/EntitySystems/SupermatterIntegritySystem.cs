@@ -2,26 +2,18 @@ using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Imperial.Power.Components;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
-using Content.Shared.Examine;
 using Content.Shared.Imperial.Power.Components;
 using Content.Shared.Radiation.Components;
-using Content.Shared.Tag;
-using Content.Shared.Imperial.Power;
-using Robust.Shared.Physics.Events;
 using System.Linq;
-using Content.Server.DoAfter;
 using Robust.Server.GameObjects;
 using Content.Shared.Chat;
-using Content.Shared.DoAfter;
-using Content.Shared.Interaction;
-using Robust.Server.Audio;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
+using Content.Shared.Imperial.Power.Systems;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -29,9 +21,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 {
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = null!;
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = null!;
-    [Dependency] private readonly AudioSystem _audioSystem = null!;
     [Dependency] private readonly ChatSystem _chatSystem = null!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = null!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = null!;
     [Dependency] private readonly LightningSystem _lightning = null!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = null!;
@@ -39,82 +29,18 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
     [Dependency] private readonly RadioSystem _radioSystem = null!;
     [Dependency] private readonly StationSystem _stationSystem = null!;
-    [Dependency] private readonly TagSystem _tagSystem = null!;
     [Dependency] private readonly IGameTiming _gameTiming = null!;
     [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SupermatterIntegrityComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<SupermatterIntegrityComponent, StartCollideEvent>(OnStartCollide);
-        SubscribeLocalEvent<SupermatterIntegrityComponent, AfterInteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<SupermatterIntegrityComponent, SupermatterShutdownDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<SupermatterIntegrityComponent, SupermatterSendRadioEvent>(OnSupermatterSendRadioEvent);
     }
 
-    private void OnExamined(Entity<SupermatterIntegrityComponent> entity, ref ExaminedEvent args)
+    private void OnSupermatterSendRadioEvent(Entity<SupermatterIntegrityComponent> ent, ref SupermatterSendRadioEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
-        args.PushMarkup(entity.Comp.Activated
-            ? $"[color=yellow]{Loc.GetString("supermatter-status-active")}[/color]"
-            : $"[color=gray]{Loc.GetString("supermatter-status-inactive")}[/color]");
-
-        var integrityPercent = entity.Comp.Integrity / entity.Comp.MaxIntegrity * 100;
-        var integrityLevel = entity.Comp.SupermatterIntegrity.First(entry => integrityPercent > entry.Threshold);
-
-        args.PushMarkup(Loc.GetString(integrityLevel.Description));
-    }
-
-    private void OnStartCollide(Entity<SupermatterIntegrityComponent> entity, ref StartCollideEvent args)
-    {
-        var other = args.OtherEntity;
-        if (!_tagSystem.HasTag(other, entity.Comp.HealTag))
-            return;
-
-        if (!entity.Comp.Activated)
-        {
-            entity.Comp.Activated = true;
-            SendSupermatterRadio(entity, Loc.GetString("supermatter-activated"));
-        }
-
-        entity.Comp.Integrity = MathF.Min(entity.Comp.MaxIntegrity, entity.Comp.Integrity + entity.Comp.EmitterHealAmount);
-    }
-
-    private void OnInteractUsing(Entity<SupermatterIntegrityComponent> entity, ref AfterInteractUsingEvent args)
-    {
-        if (!_tagSystem.HasTag(args.Used, entity.Comp.SupermatterStopTag)
-            || args.Target == null)
-            return;
-        if (!entity.Comp.Activated)
-            return;
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 5, new SupermatterShutdownDoAfterEvent(), entity, args.Target, args.Used)
-        {
-            BreakOnDamage = true,
-            BreakOnMove = true,
-            BreakOnHandChange = true,
-        };
-
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
-    }
-
-    private void OnDoAfter(Entity<SupermatterIntegrityComponent> entity, ref SupermatterShutdownDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled)
-            return;
-
-        if (!entity.Comp.Activated)
-            return;
-
-        _audioSystem.PlayPvs(entity.Comp.ShutdownSoundPath, entity);
-
-        QueueDel(args.Used);
-        entity.Comp.Activated = false;
-        SendSupermatterRadio(entity, Loc.GetString("supermatter-deactivated"));
-
-        args.Handled = true;
+        SendSupermatterRadio(ent, args.Message);
     }
 
     public override void Update(float frameTime)
@@ -123,8 +49,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out var comp, out var transComp))
         {
-            Entity<SupermatterIntegrityComponent> entity = new(uid, comp);
-            ProcessSupermatterUpdate(entity, transComp, frameTime);
+            ProcessSupermatterUpdate((uid, comp), transComp, frameTime);
         }
     }
 
