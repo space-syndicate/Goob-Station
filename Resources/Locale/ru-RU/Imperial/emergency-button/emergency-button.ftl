@@ -12,3 +12,5 @@ alert-emergency-button-popup-unknown-location = неизвестного мес�
 
 alert-emergency-button-yes-charges = Осталось [color=yellow]{$charges}[/color] зарядов.
 alert-emergency-button-no-charges = [color=gray]Заряды кончились.[/color]
+
+alert-emergency-button-verb = Активировать

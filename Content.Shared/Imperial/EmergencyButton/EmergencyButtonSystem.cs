@@ -2,6 +2,7 @@ using Content.Shared.Examine;
 using Content.Shared.Imperial.EmergencyButton.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
@@ -18,6 +19,7 @@ public sealed class EmergencyButtonSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<EmergencyButtonComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<EmergencyButtonComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<EmergencyButtonComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
     }
 
     public override void Update(float frameTime)
@@ -50,27 +52,24 @@ public sealed class EmergencyButtonSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var user = args.User;
+        args.Handled = TryActivate(entity, args.User);
+    }
 
-        if (entity.Comp.CurrentCharges <= 0)
-        {
-            _popup.PopupPredicted(Loc.GetString("alert-emergency-button-popup-no-charges"),
-                entity,
-                user);
-            args.Handled = true;
+    private void OnAlternativeVerb(Entity<EmergencyButtonComponent> entity, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
             return;
-        }
 
-        if (entity.Comp.NextUnprime == null)
+        var disabled = entity.Comp.CurrentCharges <= 0;
+
+        var largs = args;
+        var activateVerb = new AlternativeVerb
         {
-            Prime((entity, entity.Comp), user);
-            args.Handled = true;
-            return;
-        }
-
-        _audio.PlayPredicted(entity.Comp.UseSound, entity.Owner, user);
-        ExecuteEmergencyAction((entity, entity.Comp), user);
-        args.Handled = true;
+            Text = Loc.GetString("alert-emergency-button-verb"),
+            Act = () => TryActivate(entity, largs.User, false),
+            Disabled = disabled,
+        };
+        args.Verbs.Add(activateVerb);
     }
 
     private void ExecuteEmergencyAction(Entity<EmergencyButtonComponent> entity, EntityUid user)
@@ -104,6 +103,27 @@ public sealed class EmergencyButtonSystem : EntitySystem
     {
         entity.Comp.NextUnprime = null;
         Dirty(entity, entity.Comp);
+    }
+
+    private bool TryActivate(Entity<EmergencyButtonComponent> entity, EntityUid user, bool checkCharges = true)
+    {
+        if (checkCharges && entity.Comp.CurrentCharges <= 0)
+        {
+            _popup.PopupPredicted(Loc.GetString("alert-emergency-button-popup-no-charges"),
+                entity,
+                user);
+            return true;
+        }
+
+        if (entity.Comp.NextUnprime == null)
+        {
+            Prime((entity, entity.Comp), user);
+            return true;
+        }
+
+        _audio.PlayPredicted(entity.Comp.UseSound, entity.Owner, user);
+        ExecuteEmergencyAction((entity, entity.Comp), user);
+        return true;
     }
 }
 
