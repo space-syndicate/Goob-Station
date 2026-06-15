@@ -315,6 +315,12 @@
   description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
   categories: [ DoNotMap ]
   components:
+  ### IMPERIAL IMPROVED SALVAGE START
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  ### IMPERIAL IMPROVED SALVAGE END
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
     layers:
@@ -324,6 +330,7 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+      upgrades: !type:Container   # IMPERIAL IMPROVED SALVAGE
   - type: Destructible
     thresholds:
     - trigger:

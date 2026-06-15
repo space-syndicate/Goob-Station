@@ -1,0 +1,1 @@
+gun-upgrade-examine-text-special = [color=#9d00ff][bold]Специальное [/bold][/color]улучшение было вставлено. 
