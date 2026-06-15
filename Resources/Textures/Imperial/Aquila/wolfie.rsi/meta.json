@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "sprite by KoQdiev, 'code' by onionsenpai",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "wolfie",
+      "directions": 4
+    },
+    {
+      "name": "wolfie_dead"
+    }
+    ]
+}
