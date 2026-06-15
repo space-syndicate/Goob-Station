@@ -141,24 +141,6 @@
 
 - type: entity
   parent: BasePlushieCharacter
-  id: PlushieKainov
-  name: Alexander Kainov
-  suffix: Crook, COMMUNITY, TOY
-  description: He is one of those who will remind you that valour surpasses quantity, and loyalty to one's homeland cannot be measured by the number of current problems.
-  components:
-  - type: Item
-    size: Normal
-  - type: StaminaDamageOnHit
-    damage: 8
-  - type: Sprite
-    sprite: Imperial/Crook/Plushie/alexandrkainov.rsi
-    state: icon
-  - type: StorageFill
-    contents:
-      - id: CartridgePistol
-
-- type: entity
-  parent: BasePlushieCharacter
   id: PlushieKarner
   name: Anastasia Karner
   suffix: Crook, COMMUNITY, TOY
