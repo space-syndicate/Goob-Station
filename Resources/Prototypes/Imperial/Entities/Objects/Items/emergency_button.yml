@@ -2,7 +2,7 @@
   parent: BaseItem
   id: EmergencyButton
   name: emergency button
-  description: An emergency communication device for security personnel. When activated, it emits an audible signal in security mode.
+  description: An emergency communication device for security personnel. When activated, it emits an audible signal in the security radio channel.
   components:
   - type: Item
     size: Small
