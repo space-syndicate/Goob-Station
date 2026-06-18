@@ -9,7 +9,3 @@
 
 - type: cargoMarket
   id: SalvageJobRewardMAX
-
-# Imperial Waeponry Accessability Rework
-- type: cargoMarket
-  id: weaponry

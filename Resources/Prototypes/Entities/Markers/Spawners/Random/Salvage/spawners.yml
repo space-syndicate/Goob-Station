@@ -548,4 +548,4 @@
         weight: 25 # IMPROVED SALVAGE: weight 30 => 25
         # Imperial Space: A new Phantomor mob has been added. End
       - id: MobUrs # Imperial New mob Urs
-        weight: 25 # Imperial New mob Urs IMPROVED SALVAGE: weight 45 => 2
+        weight: 25 # Imperial New mob Urs IMPROVED SALVAGE: weight 45 => 25

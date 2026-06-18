@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Weapons.Ranged.Upgrades.Components;
 
@@ -13,5 +14,5 @@ public sealed partial class GunUpgradeProjectileComponent : Component
     /// На какой прототип меняеееем
     /// </summary>
     [DataField]
-    public string Proto;
+    public EntProtoId Proto;
 }
