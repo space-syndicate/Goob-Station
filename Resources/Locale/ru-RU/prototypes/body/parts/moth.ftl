@@ -1,32 +1,20 @@
-ent-PartMoth = часть тела мотылька
+ent-OrganMothTorso = торс мотылька
   .desc = { ent-BaseItem.desc }
-
-ent-TorsoMoth = торс мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-HeadMoth = голова мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-LeftArmMoth = левая рука мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-RightArmMoth = правая рука мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-LeftHandMoth = левая кисть мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-RightHandMoth = правая кисть мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-LeftLegMoth = левая нога мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-RightLegMoth = правая нога мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-LeftFootMoth = левая стопа мотылька
-  .desc = { ent-PartMoth.desc }
-
-ent-RightFootMoth = правая стопа мотылька
-  .desc = { ent-PartMoth.desc }
+ent-OrganMothHead = голова мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothArmLeft = левая рука мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothArmRight = правая рука мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothHandLeft = левая кисть мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothHandRight = правая кисть мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothLegLeft = левая нога мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothLegRight = правая нога мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothFootLeft = левая стопа мотылька
+  .desc = { ent-BaseItem.desc }
+ent-OrganMothFootRight = правая стопа мотылька
+  .desc = { ent-BaseItem.desc }
