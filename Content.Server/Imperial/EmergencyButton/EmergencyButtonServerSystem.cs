@@ -3,6 +3,7 @@ using Content.Server.Radio.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.EmergencyButton;
 using Content.Shared.Imperial.EmergencyButton.Components;
+using Content.Shared.Imperial.EmergencyButton.Events;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.EmergencyButton;

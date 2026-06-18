@@ -10,7 +10,7 @@ namespace Content.Shared.Imperial.EmergencyButton.Components;
 /// Компонент для тревожной кнопки СБ.
 /// При использовании отправляет сообщение в рацию СБ с информацией о местоположении.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 [AutoGenerateComponentPause]
 public sealed partial class EmergencyButtonComponent : Component
 {
@@ -36,7 +36,7 @@ public sealed partial class EmergencyButtonComponent : Component
     /// Время сброса состояния кнопки
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoNetworkedField, AutoPausedField]
+    [AutoPausedField]
     public TimeSpan? NextUnprime;
 
     /// <summary>

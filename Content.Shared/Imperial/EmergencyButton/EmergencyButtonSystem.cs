@@ -1,5 +1,6 @@
 using Content.Shared.Examine;
 using Content.Shared.Imperial.EmergencyButton.Components;
+using Content.Shared.Imperial.EmergencyButton.Events;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -77,7 +78,7 @@ public sealed class EmergencyButtonSystem : EntitySystem
         Unprime(entity);
 
         entity.Comp.CurrentCharges--;
-        Dirty(entity, entity.Comp);
+        DirtyField(entity.Owner, entity.Comp, nameof(EmergencyButtonComponent.CurrentCharges));
 
         _popup.PopupPredicted(Loc.GetString("alert-emergency-button-popup-used"),
             entity,
@@ -91,7 +92,6 @@ public sealed class EmergencyButtonSystem : EntitySystem
     private void Prime(Entity<EmergencyButtonComponent> entity, EntityUid user)
     {
         entity.Comp.NextUnprime = _timing.CurTime + entity.Comp.PrimeTime;
-        Dirty(entity, entity.Comp);
 
         _popup.PopupPredicted(Loc.GetString("alert-emergency-button-popup-confirmation"),
             entity,
@@ -99,10 +99,9 @@ public sealed class EmergencyButtonSystem : EntitySystem
             PopupType.LargeCaution);
     }
 
-    private void Unprime(Entity<EmergencyButtonComponent> entity)
+    private static void Unprime(Entity<EmergencyButtonComponent> entity)
     {
         entity.Comp.NextUnprime = null;
-        Dirty(entity, entity.Comp);
     }
 
     private bool TryActivate(Entity<EmergencyButtonComponent> entity, EntityUid user, bool checkCharges = true)
@@ -126,6 +125,3 @@ public sealed class EmergencyButtonSystem : EntitySystem
         return true;
     }
 }
-
-[ByRefEvent]
-public readonly record struct EmergencyButtonPressedEvent(EntityUid User);
