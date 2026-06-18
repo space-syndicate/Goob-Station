@@ -15,15 +15,14 @@ public sealed class SupermatterConsoleBoundUserInterface(EntityUid owner, Enum u
         base.Open();
 
         _menu = this.CreateWindow<SupermatterConsoleWindow>();
-        _menu.SetEntity(Owner);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
 
-        if (state is not SupermatterConsoleBuiState _state)
+        if (state is not SupermatterConsoleBuiState smState)
             return;
-        _menu?.Update(_state);
+        _menu?.Update(smState);
     }
 }

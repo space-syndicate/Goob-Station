@@ -16,9 +16,9 @@ public sealed partial class SupermatterConsoleWindow : FancyWindow
     private StyleBoxFlat[] _pressureBoxes = null!;
     private StyleBoxFlat[] _temperatureBoxes = null!;
 
-    private static readonly Color ColorSafe = StyleNano.GoodGreenFore;
-    private static readonly Color ColorWarn = StyleNano.ConcerningOrangeFore;
-    private static readonly Color ColorDanger = StyleNano.DangerousRedFore;
+    private static readonly Color ColorSafe = Color.FromHex("#31843E");
+    private static readonly Color ColorWarn = Color.FromHex("#A5762F");
+    private static readonly Color ColorDanger = Color.FromHex("#BB3232");
     private static readonly Color DimBackgroundColor = Color.FromHex("#333333");
     private static readonly Color ColorInactive = Color.FromHex("#666666");
 
@@ -28,10 +28,6 @@ public sealed partial class SupermatterConsoleWindow : FancyWindow
         IoCManager.InjectDependencies(this);
 
         InitMeters();
-    }
-
-    public void SetEntity(EntityUid entity)
-    {
     }
 
     private void InitMeters()
@@ -91,31 +87,29 @@ public sealed partial class SupermatterConsoleWindow : FancyWindow
                 _pressureBoxes[i].BackgroundColor = i < activePressureBars ? barColor : DimBackgroundColor;
                 _temperatureBoxes[i].BackgroundColor = i < activeTempBars ? barColor : DimBackgroundColor;
             }
-        }
-        else
-        {
-            TemperatureValue.Text = Loc.GetString("supermatter-console-temp-value", ("value", 0f));
-            PressureValue.Text = Loc.GetString("supermatter-console-pressure-value", ("value", 0f));
-            IntegrityValue.Text = "—";
-            ActiveEventValue.Text = "—";
 
-            TemperatureValue.FontColorOverride = ColorInactive;
-            PressureValue.FontColorOverride = ColorInactive;
-            ActiveEventValue.FontColorOverride = ColorInactive;
-            IntegrityValue.FontColorOverride = ColorInactive;
-
-            foreach (var box in _pressureBoxes)
-            {
-                box.BackgroundColor = DimBackgroundColor;
-            }
-            foreach (var box in _temperatureBoxes)
-            {
-                box.BackgroundColor = DimBackgroundColor;
-            }
+            return;
         }
+
+        TemperatureValue.Text = Loc.GetString("supermatter-console-temp-value", ("value", 0f));
+        PressureValue.Text = Loc.GetString("supermatter-console-pressure-value", ("value", 0f));
+        IntegrityValue.Text = "—";
+        ActiveEventValue.Text = "—";
+
+        TemperatureValue.FontColorOverride = ColorInactive;
+        PressureValue.FontColorOverride = ColorInactive;
+        ActiveEventValue.FontColorOverride = ColorInactive;
+        IntegrityValue.FontColorOverride = ColorInactive;
+
+        foreach (var box in _pressureBoxes)
+            box.BackgroundColor = DimBackgroundColor;
+
+        foreach (var box in _temperatureBoxes)
+            box.BackgroundColor = DimBackgroundColor;
+
     }
 
-    private int CalculateActiveBars(float? value, float? lower, float? upper)
+    private static int CalculateActiveBars(float? value, float? lower, float? upper)
     {
         if (value <= 1f)
             return 1;
@@ -140,7 +134,7 @@ public sealed partial class SupermatterConsoleWindow : FancyWindow
         return (int)Math.Round(8f + overFraction * 2f);
     }
 
-    private Color GetBarColor(int barIndex)
+    private static Color GetBarColor(int barIndex)
     {
         return barIndex switch
         {
