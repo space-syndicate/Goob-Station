@@ -37,6 +37,7 @@
       drawRate: 10
       voltage: 120
     - type: SupermatterConsole
+    - type: DeviceLinkSink
     - type: UserInterface
       interfaces:
         enum.SupermatterConsoleUiKey.Key:

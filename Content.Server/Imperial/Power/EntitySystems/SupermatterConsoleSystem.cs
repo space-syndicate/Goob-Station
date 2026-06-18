@@ -1,5 +1,8 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.DeviceLinking.Systems;
 using Content.Server.Imperial.Power.Components;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Imperial.Power;
 using Content.Shared.Imperial.Power.Components;
 using Robust.Server.GameObjects;
@@ -14,6 +17,59 @@ public sealed class SupermatterConsoleSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = null!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
+    [Dependency] private readonly DeviceLinkSystem _signalSystem = null!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<SupermatterConsoleComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<SupermatterConsoleComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SupermatterConsoleComponent, LinkAttemptEvent>(OnLinkAttempt);
+        SubscribeLocalEvent<SupermatterConsoleComponent, NewLinkEvent>(OnNewLink);
+        SubscribeLocalEvent<SupermatterConsoleComponent, PortDisconnectedEvent>(OnPortDisconnected);
+    }
+
+    private void OnInit(Entity<SupermatterConsoleComponent> entity, ref ComponentInit args)
+    {
+        _signalSystem.EnsureSinkPorts(entity, entity.Comp.InputPort);
+    }
+
+    private void OnMapInit(Entity<SupermatterConsoleComponent> entity, ref MapInitEvent args)
+    {
+        if (TryComp<DeviceLinkSinkComponent>(entity, out var sink))
+        {
+            foreach (var sourceUid in sink.LinkedSources.Where(HasComp<SupermatterIntegrityComponent>))
+            {
+                entity.Comp.ConnectedSupermatter = sourceUid;
+                _signalSystem.LinkDefaults(null, sourceUid, entity.Owner);
+                return;
+            }
+        }
+
+        entity.Comp.ConnectedSupermatter ??= FindNearestSupermatter(entity);
+    }
+
+    private void OnLinkAttempt(Entity<SupermatterConsoleComponent> entity, ref LinkAttemptEvent args)
+    {
+        if (args.SinkPort != entity.Comp.InputPort || HasComp<SupermatterIntegrityComponent>(args.Source))
+            return;
+
+        args.Cancel();
+    }
+
+    private void OnNewLink(Entity<SupermatterConsoleComponent> entity, ref NewLinkEvent args)
+    {
+        entity.Comp.ConnectedSupermatter = args.Source;
+    }
+
+    private void OnPortDisconnected(Entity<SupermatterConsoleComponent> entity, ref PortDisconnectedEvent args)
+    {
+        if (args.Port != entity.Comp.InputPort)
+            return;
+        entity.Comp.ConnectedSupermatter = null;
+        ResetConsoleUi(entity, 0f);
+    }
 
     private EntityUid? FindNearestSupermatter(EntityUid consoleUid)
     {
@@ -38,6 +94,10 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             minDist = dist;
             nearest = smUid;
         }
+
+        if (nearest != null)
+            _signalSystem.LinkDefaults(null, nearest.Value, consoleUid);
+
         return nearest;
     }
 
@@ -45,31 +105,27 @@ public sealed class SupermatterConsoleSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<SupermatterConsoleComponent, TransformComponent>();
-        while (enumerator.MoveNext(out var uid, out var console, out _))
+        var enumerator = EntityQueryEnumerator<SupermatterConsoleComponent>();
+        while (enumerator.MoveNext(out var consUid, out var console))
         {
-            var nearestUid = FindNearestSupermatter(uid);
-            if (nearestUid == null || !TryComp<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
+            if (console.ConnectedSupermatter == null)
             {
-                console.BeepCooldownTimer = TimeSpan.Zero;
+                ResetConsoleUi((consUid, console), frameTime);
+                continue;
+            }
 
-                console.UiUpdateTimer -= TimeSpan.FromSeconds(frameTime);
-                if (console.UiUpdateTimer <= TimeSpan.Zero)
-                {
-                    console.UiUpdateTimer = console.UiUpdateInterval;
-                    if (_uiSystem.IsUiOpen(uid, SupermatterConsoleUiKey.Key))
-                    {
-                        var emptyState = new SupermatterConsoleBuiState(
-                            activated: false
-                        );
-                        _uiSystem.SetUiState(uid, SupermatterConsoleUiKey.Key, emptyState);
-                    }
-                }
+            var smUid = console.ConnectedSupermatter.Value;
+
+            if (!TryComp<SupermatterIntegrityComponent>(smUid, out var nearest))
+            {
+                console.ConnectedSupermatter = null;
+                _signalSystem.RemoveSinkFromSource(smUid, consUid);
+                ResetConsoleUi((consUid, console), frameTime);
                 continue;
             }
 
             var supermatterEv = "—";
-            if (TryComp<SupermatterEventComponent>(nearestUid.Value, out var eventComponent))
+            if (TryComp<SupermatterEventComponent>(smUid, out var eventComponent))
                 supermatterEv = Loc.GetString($"supermatter-event-{eventComponent.CurrentEvent.ToString().ToLowerInvariant()}-name");
 
             var (integrityPercent, level) = CalculateIntegrity(nearest);
@@ -80,10 +136,10 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             {
                 console.UiUpdateTimer = console.UiUpdateInterval;
 
-                if (_uiSystem.IsUiOpen(uid, SupermatterConsoleUiKey.Key))
+                if (_uiSystem.IsUiOpen(consUid, SupermatterConsoleUiKey.Key))
                 {
-                    var transComp = Transform(nearestUid.Value);
-                    var gas = _atmosSystem.GetContainingMixture((nearestUid.Value, transComp));
+                    var transComp = Transform(smUid);
+                    var gas = _atmosSystem.GetContainingMixture((smUid, transComp));
 
                     var pressure = gas?.Pressure ?? 0f;
                     var temperature = gas?.Temperature ?? 0f;
@@ -101,7 +157,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
                         currentEvent: supermatterEv
                     );
 
-                    _uiSystem.SetUiState(uid, SupermatterConsoleUiKey.Key, state);
+                    _uiSystem.SetUiState(consUid, SupermatterConsoleUiKey.Key, state);
                 }
             }
 
@@ -114,10 +170,26 @@ public sealed class SupermatterConsoleSystem : EntitySystem
                 console.BeepCooldownTimer -= TimeSpan.FromSeconds(frameTime);
                 if (console.BeepCooldownTimer > TimeSpan.Zero)
                     continue;
-                _audioSystem.PlayPvs(console.BeepSound, uid);
+                _audioSystem.PlayPvs(console.BeepSound, consUid);
                 console.BeepCooldownTimer = console.BeepCooldown;
             }
         }
+    }
+
+    private void ResetConsoleUi(Entity<SupermatterConsoleComponent> entity, float frameTime)
+    {
+        entity.Comp.BeepCooldownTimer = TimeSpan.Zero;
+        entity.Comp.UiUpdateTimer -= TimeSpan.FromSeconds(frameTime);
+
+        if (frameTime != 0f && entity.Comp.UiUpdateTimer > TimeSpan.Zero)
+            return;
+
+        entity.Comp.UiUpdateTimer = entity.Comp.UiUpdateInterval;
+        if (!_uiSystem.IsUiOpen(entity.Owner, SupermatterConsoleUiKey.Key))
+            return;
+
+        var emptyState = new SupermatterConsoleBuiState(activated: false);
+        _uiSystem.SetUiState(entity.Owner, SupermatterConsoleUiKey.Key, emptyState);
     }
 
     private static (float integrity, SupermatterIntegrityLevel integrityLevel)
