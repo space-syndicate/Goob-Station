@@ -5,7 +5,7 @@
   description: Самый подлый адвокат из всех, возможно в себе он хранит тайны закона...
   components:
   - type: Sprite
-    sprite: Imperial/Other/Moysha/moysha.rsi
+    sprite: Imperial/Crook/Plushie/moysha.rsi
     state: icon
   - type: EmitSoundOnUse
     sound:
