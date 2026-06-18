@@ -8,6 +8,8 @@ using Content.Shared.Imperial.Power.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
+using Content.Shared.Imperial.Power.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -18,6 +20,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = null!;
+    [Dependency] private readonly IGameTiming _timing = null!;
 
     public override void Initialize()
     {
@@ -25,9 +28,30 @@ public sealed class SupermatterConsoleSystem : EntitySystem
 
         SubscribeLocalEvent<SupermatterConsoleComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<SupermatterConsoleComponent, MapInitEvent>(OnMapInit);
+
         SubscribeLocalEvent<SupermatterConsoleComponent, LinkAttemptEvent>(OnLinkAttempt);
         SubscribeLocalEvent<SupermatterConsoleComponent, NewLinkEvent>(OnNewLink);
         SubscribeLocalEvent<SupermatterConsoleComponent, PortDisconnectedEvent>(OnPortDisconnected);
+
+        SubscribeLocalEvent<SupermatterConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
+        SubscribeLocalEvent<SupermatterConsoleComponent, BoundUIClosedEvent>(OnUiClosed);
+    }
+
+    private static void OnUiOpened(Entity<SupermatterConsoleComponent> entity, ref BoundUIOpenedEvent args)
+    {
+        if (!args.UiKey.Equals(SupermatterConsoleUiKey.Key))
+            return;
+
+        entity.Comp.Users++;
+        entity.Comp.NextUiUpdate = TimeSpan.Zero;
+    }
+
+    private static void OnUiClosed(Entity<SupermatterConsoleComponent> entity, ref BoundUIClosedEvent args)
+    {
+        if (!args.UiKey.Equals(SupermatterConsoleUiKey.Key))
+            return;
+
+        entity.Comp.Users = Math.Max(0, entity.Comp.Users - 1);
     }
 
     private void OnInit(Entity<SupermatterConsoleComponent> entity, ref ComponentInit args)
@@ -58,9 +82,10 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         args.Cancel();
     }
 
-    private void OnNewLink(Entity<SupermatterConsoleComponent> entity, ref NewLinkEvent args)
+    private static void OnNewLink(Entity<SupermatterConsoleComponent> entity, ref NewLinkEvent args)
     {
         entity.Comp.ConnectedSupermatter = args.Source;
+        entity.Comp.NextUiUpdate = TimeSpan.Zero;
     }
 
     private void OnPortDisconnected(Entity<SupermatterConsoleComponent> entity, ref PortDisconnectedEvent args)
@@ -68,7 +93,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         if (args.Port != entity.Comp.InputPort)
             return;
         entity.Comp.ConnectedSupermatter = null;
-        ResetConsoleUi(entity, 0f);
+        UpdateUi(entity, true);
     }
 
     private EntityUid? FindNearestSupermatter(EntityUid consoleUid)
@@ -110,7 +135,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         {
             if (console.ConnectedSupermatter == null)
             {
-                ResetConsoleUi((consUid, console), frameTime);
+                UpdateUi((consUid, console));
                 continue;
             }
 
@@ -119,77 +144,72 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             if (!TryComp<SupermatterIntegrityComponent>(smUid, out var nearest))
             {
                 console.ConnectedSupermatter = null;
-                _signalSystem.RemoveSinkFromSource(smUid, consUid);
-                ResetConsoleUi((consUid, console), frameTime);
+                if (Exists(smUid))
+                    _signalSystem.RemoveSinkFromSource(smUid, consUid);
+
+                UpdateUi((consUid, console));
                 continue;
             }
-
-            var supermatterEv = "—";
-            if (TryComp<SupermatterEventComponent>(smUid, out var eventComponent))
-                supermatterEv = Loc.GetString($"supermatter-event-{eventComponent.CurrentEvent.ToString().ToLowerInvariant()}-name");
 
             var (integrityPercent, level) = CalculateIntegrity(nearest);
             var integrity = (int)Math.Round(integrityPercent);
 
-            console.UiUpdateTimer -= TimeSpan.FromSeconds(frameTime);
-            if (console.UiUpdateTimer <= TimeSpan.Zero)
+            if (console.Users > 0 && _timing.CurTime >= console.NextUiUpdate)
             {
-                console.UiUpdateTimer = console.UiUpdateInterval;
+                console.NextUiUpdate = _timing.CurTime + console.UiUpdateInterval;
 
-                if (_uiSystem.IsUiOpen(consUid, SupermatterConsoleUiKey.Key))
-                {
-                    var transComp = Transform(smUid);
-                    var gas = _atmosSystem.GetContainingMixture((smUid, transComp));
+                var supermatterEv = "—";
+                if (TryComp<SupermatterEventComponent>(smUid, out var eventComponent))
+                    supermatterEv = Loc.GetString($"supermatter-event-{eventComponent.CurrentEvent.ToString().ToLowerInvariant()}-name");
 
-                    var pressure = gas?.Pressure ?? 0f;
-                    var temperature = gas?.Temperature ?? 0f;
+                var transComp = Transform(smUid);
+                var gas = _atmosSystem.GetContainingMixture((smUid, transComp));
 
-                    var state = new SupermatterConsoleBuiState(
-                        activated: nearest.Activated,
-                        temperature: temperature,
-                        lowerTemperature: nearest.LowerTempThreshold,
-                        upperTemperature: nearest.UpperTempThreshold,
-                        pressure: pressure,
-                        lowerPressure: nearest.LowerPressureThreshold,
-                        upperPressure: nearest.UpperPressureThreshold,
-                        integrity: integrityPercent,
-                        integrityColor: level.Color,
-                        currentEvent: supermatterEv
-                    );
+                var pressure = gas?.Pressure ?? 0f;
+                var temperature = gas?.Temperature ?? 0f;
 
-                    _uiSystem.SetUiState(consUid, SupermatterConsoleUiKey.Key, state);
-                }
+                var state = new SupermatterConsoleBuiState(
+                    activated: nearest.Activated,
+                    temperature: temperature,
+                    lowerTemperature: nearest.LowerTempThreshold,
+                    upperTemperature: nearest.UpperTempThreshold,
+                    pressure: pressure,
+                    lowerPressure: nearest.LowerPressureThreshold,
+                    upperPressure: nearest.UpperPressureThreshold,
+                    integrity: integrityPercent,
+                    integrityColor: level.Color,
+                    currentEvent: supermatterEv
+                );
+
+                _uiSystem.SetUiState(consUid, SupermatterConsoleUiKey.Key, state);
             }
 
             var highestLevel = nearest.SupermatterIntegrity.MaxBy(e => e.Threshold);
 
             if (highestLevel == null || integrity >= highestLevel.Threshold)
-                console.BeepCooldownTimer = TimeSpan.Zero;
-            else if (nearest.Activated)
+                console.NextBeep = _timing.CurTime + console.BeepInterval;
+            else if (nearest.Activated && _timing.CurTime >= console.NextBeep)
             {
-                console.BeepCooldownTimer -= TimeSpan.FromSeconds(frameTime);
-                if (console.BeepCooldownTimer > TimeSpan.Zero)
-                    continue;
                 _audioSystem.PlayPvs(console.BeepSound, consUid);
-                console.BeepCooldownTimer = console.BeepCooldown;
+                console.NextBeep = _timing.CurTime + console.BeepInterval;
             }
         }
     }
 
-    private void ResetConsoleUi(Entity<SupermatterConsoleComponent> entity, float frameTime)
+    private void UpdateUi(Entity<SupermatterConsoleComponent> entity, bool force = false)
     {
-        entity.Comp.BeepCooldownTimer = TimeSpan.Zero;
-        entity.Comp.UiUpdateTimer -= TimeSpan.FromSeconds(frameTime);
-
-        if (frameTime != 0f && entity.Comp.UiUpdateTimer > TimeSpan.Zero)
+        if (!force && _timing.CurTime < entity.Comp.NextUiUpdate)
             return;
 
-        entity.Comp.UiUpdateTimer = entity.Comp.UiUpdateInterval;
-        if (!_uiSystem.IsUiOpen(entity.Owner, SupermatterConsoleUiKey.Key))
+        entity.Comp.NextUiUpdate = _timing.CurTime + entity.Comp.UiUpdateInterval;
+
+        if (entity.Comp.Users <= 0)
             return;
 
-        var emptyState = new SupermatterConsoleBuiState(activated: false);
-        _uiSystem.SetUiState(entity.Owner, SupermatterConsoleUiKey.Key, emptyState);
+        _uiSystem.SetUiState(
+            entity.Owner,
+            SupermatterConsoleUiKey.Key,
+            new SupermatterConsoleBuiState(activated: false));
     }
 
     private static (float integrity, SupermatterIntegrityLevel integrityLevel)
@@ -197,13 +217,9 @@ public sealed class SupermatterConsoleSystem : EntitySystem
     {
         var integrity = component.Integrity / component.MaxIntegrity * 100f;
 
-        var ordered = component.SupermatterIntegrity.OrderByDescending(e => e.Threshold).ToList();
-        var idx = ordered.FindIndex(entry => integrity >= entry.Threshold);
+        foreach (var level in component.SupermatterIntegrity.Where(level => integrity >= level.Threshold))
+            return (integrity, level);
 
-        var level = idx >= 0
-            ? ordered[idx]
-            : component.SupermatterIntegrity.MinBy(e => e.Threshold) ?? new SupermatterIntegrityLevel();
-
-        return (integrity, level);
+        return (integrity, component.SupermatterIntegrity[^1]);
     }
 }

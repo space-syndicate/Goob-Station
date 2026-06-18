@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Power.Components;
+using Content.Shared.Imperial.Power.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
@@ -95,6 +96,3 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         args.Handled = true;
     }
 }
-
-[ByRefEvent]
-public readonly record struct SupermatterSendRadioEvent(string Message);

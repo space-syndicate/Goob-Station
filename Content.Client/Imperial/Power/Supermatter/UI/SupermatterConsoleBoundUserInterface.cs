@@ -1,4 +1,4 @@
-using Content.Shared.Imperial.Power;
+using Content.Shared.Imperial.Power.Events;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 

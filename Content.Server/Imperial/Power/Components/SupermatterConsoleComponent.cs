@@ -20,21 +20,38 @@ public sealed partial class SupermatterConsoleComponent : Component
     public ProtoId<SinkPortPrototype> InputPort = "Input";
 
     /// <summary>
-    /// Таймер до следующего пиликанья
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan BeepCooldownTimer = TimeSpan.Zero;
-    [DataField]
-    public TimeSpan BeepCooldown = TimeSpan.FromSeconds(2f);
-
-    /// <summary>
     /// Звук пиликанья при низкой целостности
     /// </summary>
     [DataField]
     public SoundPathSpecifier BeepSound = new("/Audio/Machines/beep.ogg");
 
+    /// <summary>
+    /// Время следующего пиликанья
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan UiUpdateTimer = TimeSpan.Zero;
+    public TimeSpan NextBeep = TimeSpan.Zero;
+
+    /// <summary>
+    /// Интервал пиликанья
+    /// </summary>
     [DataField]
-    public TimeSpan UiUpdateInterval = TimeSpan.FromSeconds(0.5);
+    public TimeSpan BeepInterval = TimeSpan.FromSeconds(2f);
+
+    /// <summary>
+    /// Время следующего обновления UI
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextUiUpdate = TimeSpan.Zero;
+
+    /// <summary>
+    /// Интервал обновления UI
+    /// </summary>
+    [DataField]
+    public TimeSpan UiUpdateInterval = TimeSpan.FromSeconds(0.5f);
+
+    /// <summary>
+    /// Количество игроков с открытым интерфейсом консоли
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Users = 0;
 }

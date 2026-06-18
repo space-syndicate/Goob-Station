@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.Power;
+namespace Content.Shared.Imperial.Power.Events;
 
 [Serializable, NetSerializable]
 public sealed class SupermatterConsoleBuiState(

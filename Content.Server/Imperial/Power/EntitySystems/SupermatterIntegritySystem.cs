@@ -13,7 +13,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Chat;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
-using Content.Shared.Imperial.Power.Systems;
+using Content.Shared.Imperial.Power.Events;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
