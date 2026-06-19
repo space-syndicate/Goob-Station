@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Armor;
+using Content.Shared.Interaction.Events; // imperial space
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
@@ -16,6 +17,7 @@ public abstract class SharedZombieSystem : EntitySystem
         SubscribeLocalEvent<ZombieComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
         SubscribeLocalEvent<ZombificationResistanceComponent, ArmorExamineEvent>(OnArmorExamine);
         SubscribeLocalEvent<ZombificationResistanceComponent, InventoryRelayedEvent<ZombificationResistanceQueryEvent>>(OnResistanceQuery);
+        SubscribeLocalEvent<ZombieComponent, AttackAttemptEvent>(OnZombieAttackAttempt); // imperial space
     }
 
     private void OnResistanceQuery(Entity<ZombificationResistanceComponent> ent, ref InventoryRelayedEvent<ZombificationResistanceQueryEvent> query)
@@ -44,4 +46,6 @@ public abstract class SharedZombieSystem : EntitySystem
     {
         args.AddModifier("zombie-name-prefix");
     }
+
+    private void OnZombieAttackAttempt(Entity<ZombieComponent> ent, ref AttackAttemptEvent args) { if (args.Target != null && HasComp<ZombieAttackImmuneComponent>(args.Target.Value)) args.Cancel(); } // imperial space
 }
