@@ -2,9 +2,16 @@
 # Main loot table for random spawns
 - type: salvageLoot
   id: SalvageLoot
-  loots:
+  loots: 
     - !type:RandomSpawnsLoot
       entries:
+          ### IMPERIAL IMPROVED SALVAGE START
+        - proto: BorgModuleFaunaPesting 
+          prob: 0.5
+          cost: 1
+        - proto: MiningBorgChassisDerelictExpedition 
+          cost: 12
+          ### IMPERIAL IMPROVED SALVAGE END
         - proto: AdvMopItem
           prob: 0.5
         - proto: AmmoTechFabCircuitboard
