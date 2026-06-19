@@ -11,6 +11,7 @@ using Content.Server.Bible.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio;
+using Content.Shared.Actions.Components;
 
 namespace Content.Server.Imperial.Vampire;
 
@@ -162,6 +163,83 @@ public partial class VampireSystem : EntitySystem
 
             if (_player.TryGetSessionById(mind.UserId, out var session))
                 _chatMan.DispatchServerMessage(session, Loc.GetString("vampire-verb-envelope-ghoul-greeting"));
+        }
+
+        if (abilityComponent.VampireTurned)
+        {
+            var ghoulAbilityComp = EnsureComp<AbilityComponent>(target);
+            EnsureComp<ActionsComponent>(target);
+
+            ghoulAbilityComp.HaloUid = Spawn(ghoulAbilityComp.HaloEffect, Transform(target).Coordinates);
+            _transform.SetParent(ghoulAbilityComp.HaloUid.Value, target);
+
+            var usedIndices = new HashSet<int>();
+            for (int i = 0; i < abilityComponent.GhoulBaseAbility; i++)
+            {
+                int abilityNumber;
+                do
+                {
+                    abilityNumber = _random.Next(0, 3);
+                } while (usedIndices.Contains(abilityNumber) || abilityNumber == 2);
+
+                usedIndices.Add(abilityNumber);
+
+                if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                    masterThralls.VampireAbilitiesID[VampireAbilityType.Base], out var baseAbilities))
+                {
+                    var action = _actions.AddAction(target, baseAbilities.Abilities[abilityNumber]);
+                    if (action != null)
+                    {
+                        // см BaseAbilities. Ссылаемся на "Кровавая катана"
+                        if (abilityNumber == 0) ghoulComp.GhoulVampireSwordAction = _entityManager.GetNetEntity(action);
+                        ghoulComp.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                    }
+                }
+            }
+
+            for (int i = 0; i < abilityComponent.GhoulGroupAbility; i++)
+            {
+                var abilityNumber = _random.Next(0, 3);
+
+                switch (masterThralls.SelectedSubgroup)
+                {
+                    case VampireAbilityType.Hemomancer:
+                        if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                            masterThralls.VampireAbilitiesID[VampireAbilityType.Hemomancer], out var hemomancerAbilities))
+                        {
+                            var action = _actions.AddAction(target, hemomancerAbilities.Abilities[abilityNumber]);
+                            // см BaseAbilities. Ссылаемся на "Кровавые щупальца"
+                            if (abilityNumber == 5) ghoulComp.GhoulVampireTentaclesAction = _entityManager.GetNetEntity(action);
+                            if (action != null) ghoulComp.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                        }
+
+                        break;
+
+                    case VampireAbilityType.Umbrae:
+                        if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                            masterThralls.VampireAbilitiesID[VampireAbilityType.Umbrae], out var umbraeAbilities))
+                        {
+                            var action = _actions.AddAction(target, umbraeAbilities.Abilities[abilityNumber]);
+                            // см BaseAbilities. Ссылаемся на "Кровавый якорь"
+                            if (abilityNumber == 7) ghoulComp.GhoulVampireBloodAnchorAction = _entityManager.GetNetEntity(action);
+                            if (action != null) ghoulComp.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                        }
+
+                        break;
+
+                    case VampireAbilityType.Gargantua:
+                        if (_prototypeManager.TryIndex<VampireAbilityListPrototype>(
+                            masterThralls.VampireAbilitiesID[VampireAbilityType.Gargantua], out var gargantuaAbilities))
+                        {
+                            var action = _actions.AddAction(target, gargantuaAbilities.Abilities[abilityNumber]);
+                            if (action != null) ghoulComp.GhoulGrantedActions.Add(_entityManager.GetNetEntity(action.Value));
+                        }
+
+                        break;
+                }
+            }
+
+            Dirty(target, ghoulComp);
         }
 
         _vampireSystem.SetGhoulBloodAlert(target, ghoulComp);
