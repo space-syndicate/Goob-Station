@@ -4,17 +4,18 @@
   name: bluespace T.R.A.N.S.I.T.O.R.
   components:
   - type: Battery
-    maxCharge: 5000000000
-    startingCharge: 2500000
+    maxCharge: 14400000000
+    startingCharge: 0
+    pricePerJoule: 0.000000292535
   - type: PowerNetworkBattery
-    maxSupply: 3000000000
-    maxChargeRate: 5000000000
+    maxSupply: 500000000
+    maxChargeRate: 5000
     supplyRampTolerance: 1000
     supplyRampRate: 1000000000
     efficiency: 1
   - type: BatteryInterface
-    maxChargeRate: 5000000000
-    maxSupply: 3000000000
+    maxChargeRate: 1000000000
+    maxSupply: 500000000
   - type: Machine
     board: MachineBluespaceTransitorCircuitboard
   - type: Explosive
