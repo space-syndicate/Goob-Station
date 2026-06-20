@@ -144,10 +144,9 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
         component.HalflifeMaxCap = 20;
 
         if (TryComp<StationAiWhitelistComponent>(uid, out var aiAccess))
-        {
-            var entComp = new Entity<StationAiWhitelistComponent>(uid, aiAccess);
-            _ai.SetWhitelistEnabled(entComp, false, false);
-        }
+            _ai.SetWhitelistEnabled((uid, aiAccess), false, false);
+
+        _userInterfaceSystem.CloseUi(uid, CoreTerminalUiKey.Key);
 
         args.Repeatable = false;
         args.Handled = true;
