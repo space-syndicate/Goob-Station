@@ -1,12 +1,9 @@
-using JetBrains.Annotations;
-using Robust.Shared.Prototypes;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
-using Content.Shared.Power.Components;
-using Content.Shared.GameTicking;
-using Content.Shared.Audio;
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Emag.Components;
 using Content.Shared.Imperial.EnergyCore.Components;
 
 namespace Content.Shared.Imperial.EnergyCore;
@@ -16,11 +13,13 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private readonly SharedStationAiSystem _ai = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CoreAccessComputerComponent, UiButtonPressedMessage>(OnUiButtonPressed);
+        SubscribeLocalEvent<CoreAccessComputerComponent, GotEmaggedEvent>(OnEmagged);
     }
     #region UI
     private void OnUiButtonPressed(EntityUid uid, CoreAccessComputerComponent component, UiButtonPressedMessage msg)
@@ -103,7 +102,7 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
     }
     private void MakeReactivityUp(EntityUid uid, CoreAccessComputerComponent component)
     {
-        if (component.Reactivity >= 100)
+        if (component.Reactivity >= component.ReactivityMaxCap)
         {
             _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
             return;
@@ -112,7 +111,7 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
     }
     private void MakeHalflifeUp(EntityUid uid, CoreAccessComputerComponent component)
     {
-        if (component.Halflife >= 10)
+        if (component.Halflife >= component.HalflifeMaxCap)
         {
             _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
             return;
@@ -121,7 +120,7 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
     }
     private void MakeReactivityDown(EntityUid uid, CoreAccessComputerComponent component)
     {
-        if (component.Reactivity <= 30)
+        if (component.Reactivity <= component.ReactivityMinCap)
         {
             _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
             return;
@@ -130,12 +129,28 @@ public abstract class SharedCoreAccessComputerSystem : EntitySystem
     }
     private void MakeHalflifeDown(EntityUid uid, CoreAccessComputerComponent component)
     {
-        if (component.Halflife <= 5)
+        if (component.Halflife <= component.HalflifeMinCap)
         {
             _audio.PlayPvs(component.CantSound, uid, AudioParams.Default.WithVolume(-2f));
             return;
         }
         component.Halflife = component.Halflife - 1;
+    }
+    private void OnEmagged(EntityUid uid, CoreAccessComputerComponent component, ref GotEmaggedEvent args)
+    {
+        if (HasComp<EmaggedComponent>(uid)) return;
+
+        component.ReactivityMaxCap = 150f;
+        component.HalflifeMaxCap = 20;
+
+        if (TryComp<StationAiWhitelistComponent>(uid, out var aiAccess))
+        {
+            var entComp = new Entity<StationAiWhitelistComponent>(uid, aiAccess);
+            _ai.SetWhitelistEnabled(entComp, false, false);
+        }
+
+        args.Repeatable = false;
+        args.Handled = true;
     }
     public override void Update(float frameTime)
     {
