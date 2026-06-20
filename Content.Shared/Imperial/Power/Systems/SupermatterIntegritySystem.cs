@@ -54,7 +54,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             : $"[color=gray]{Loc.GetString("supermatter-status-inactive")}[/color]");
 
         var integrityPercent = entity.Comp.Integrity / entity.Comp.MaxIntegrity * 100;
-        var integrityLevel = entity.Comp.SupermatterIntegrity.First(entry => integrityPercent > entry.Threshold);
+        var integrityLevel = entity.Comp.SupermatterIntegrity.First(entry => integrityPercent >= entry.Threshold);
 
         args.PushMarkup(Loc.GetString(integrityLevel.Description));
     }
