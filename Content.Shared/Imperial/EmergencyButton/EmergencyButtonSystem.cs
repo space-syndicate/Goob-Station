@@ -12,7 +12,6 @@ namespace Content.Shared.Imperial.EmergencyButton;
 public sealed class EmergencyButtonSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = null!;
-    [Dependency] private readonly SharedAudioSystem _audio = null!;
     [Dependency] private readonly IGameTiming _timing = null!;
 
     public override void Initialize()
@@ -120,7 +119,6 @@ public sealed class EmergencyButtonSystem : EntitySystem
             return true;
         }
 
-        _audio.PlayPredicted(entity.Comp.UseSound, entity.Owner, user);
         ExecuteEmergencyAction((entity, entity.Comp), user);
         return true;
     }
