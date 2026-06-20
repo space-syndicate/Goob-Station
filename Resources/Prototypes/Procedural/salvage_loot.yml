@@ -14,31 +14,31 @@
           prob: 0.3
         - proto: MiningBorgChassisDerelictExpedition 
           cost: 3 
-        - proto: ClothingControlModsuitPMCSealed # ОНЛИ ДУМ И СУИСАЙДЛ КОНТЕНТ
-          cost: 110
-          prob: 0.05
+        - proto: ClothingControlModsuitPMCSealed # НЕ ДОЛЖЕН ВСТРЕЧАТЬСЯ НИЖЕ ДУМА И СУИСАЙДАЛА
+          cost: 20
+          prob: 0.005
         - proto: ClothingControlModsuitRNDSealed 
-          cost: 12
+          cost: 22
         - proto: ClothingControlModsuitMinerSealed 
           cost: 22
         - proto: ClothingControlModsuitSecuritySealed
-          cost: 30
-          prob: 0.5
+          cost: 12
+          prob: 0.25
         - proto: ClothingControlModsuitCESealed
-          cost: 30
-          prob: 0.5
+          cost: 12
+          prob: 0.25
         - proto: CrateArmorySMG
-          cost: 40
-          prob: 0.5
+          cost: 20
+          prob: 0.25
         - proto: ArmoryRifle
-          cost: 40
-          prob: 0.5
+          cost: 20
+          prob: 0.25
         - proto: ArmoryShotgun
-          cost: 40
-          prob: 0.5
+          cost: 20
+          prob: 0.25
           ### IMPERIAL IMPROVED SALVAGE END
-        - proto: AdvMopItem
-          prob: 0.5
+        #- proto: AdvMopItem # IMPERIAL IMPROVED SALVAGE
+        #  prob: 0.5
         - proto: AmmoTechFabCircuitboard
           cost: 2
           prob: 0.5 # IMPERIAL IMPROVED SALVAGE
@@ -71,21 +71,22 @@
           prob: 0.5
         #- proto: GasRecycler IMPERIAL IMPROVED SALVAGE
         #  cost: 2
-        - proto: GeneratorRTG
-          cost: 5
+        #- proto: GeneratorRTG # IMPERIAL IMPROVED SALVAGE | И так появляется при генерации
+        #  cost: 5
         - proto: GravityGeneratorMini
           cost: 2
-        - proto: GyroscopeUnanchored
-          cost: 2
+        #- proto: GyroscopeUnanchored # IMPERIAL IMPROVED SALVAGE
+        #  cost: 2
         - proto: MedicalScannerMachineCircuitboard
           cost: 2
+          prob: 0.3 # IMPERIAL IMPROVED SALVAGE
         - proto: NuclearBombKeg
           cost: 12
           prob: 1.1 # IMPERIAL IMPROVED SALVAGE
         - proto: ChemistryBottleOmnizine
           prob: 0.5
-        - proto: PortableGeneratorPacman
-          cost: 2
+        #- proto: PortableGeneratorPacman # IMPERIAL IMPROVED SALVAGE | Мусорный лут
+        #  cost: 2
         - proto: PortableGeneratorSuperPacman
           cost: 3
         - proto: PowerCellAntiqueProto
@@ -127,12 +128,12 @@
           cost: 5
           prob: 0.5
         - proto: ThrusterUnanchored
-        - proto: WaterTankHighCapacity
+        #- proto: WaterTankHighCapacity # IMPERIAL IMPROVED SALVAGE
         - proto: WeldingFuelTankHighCapacity
           cost: 3
         - proto: WeaponTeslaGun
           prob: 0.01 # IMPERIAL IMPROVED SALVAGE
-          cost: 25 # IMPERIAL IMPROVED SALVAGE
+          cost: 10 # IMPERIAL IMPROVED SALVAGE
 
 # Mob loot table
 
