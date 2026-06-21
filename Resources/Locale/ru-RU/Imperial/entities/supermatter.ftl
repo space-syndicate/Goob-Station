@@ -10,10 +10,32 @@ ent-SupermatterShutdownCrystal = кристалл деактивации суп�
 ent-CrateSupermatterShutdownCrystal = ящик кристалла деактивации суперматерии
     .desc = Ящик с кристаллом, способным деактивировать станционную суперматерию.
 
+supermatter-console-title = Консоль мониторинга суперматерии
+supermatter-console-core-status = Статус
+supermatter-console-integrity = Прочность
+supermatter-console-event = Событие
+supermatter-console-thermodynamics = Сенсор температуры
+supermatter-console-temperature = Температура
+supermatter-console-atmosphere = Сенсор атмосферы
+supermatter-console-pressure = Давление
+
+supermatter-console-temp-value = {$value} К
+supermatter-console-pressure-value = {$value} кПа
+
+supermatter-event-none-name = —
 supermatter-event-none = Суперматерия стабилизирована.
+
+supermatter-event-lightning-name = Молнии
 supermatter-event-lightning = Внимание: Зафиксирован энергетический всплеск! Кристалл выпускает молнии!
+
+supermatter-event-radiation-name = Радиация
 supermatter-event-radiation = Внимание: Зафиксирован рост радиационного излучения кристалла!
+
+supermatter-event-plasma-name = Плазма
 supermatter-event-plasma = Внимание: Зафиксирован выброс горящей плазмы вокруг кристалла!
+
+supermatter-console-flavor-left = Следите за температурой!
+supermatter-console-flavor-right = v0.3
 
 supermatter-desc-pristine = Он выглядит целым.
 supermatter-desc-scratched = На нём видны небольшие царапины.
@@ -32,15 +54,5 @@ supermatter-warn-50 = Внимание! Суперматерия сильно п
 supermatter-warn-75 = Внимание! Суперматерия получила повреждения.
 supermatter-warn-95 = Зарегистрированы незначительные повреждения суперматерии.
 supermatter-station-critical = Внимание! Суперматерия станции на грани разрушения! Немедленно стабилизируйте кристалл!
-
-supermatter-monitor-none-nearby = Кристалл суперматерии не обнаружен.
-supermatter-monitor-integrity = [color={$color}]Целостность суперматерии: {$integrity}%[/color]
-supermatter-monitor-atmospherics = Атмосфера: {$pressure} кПа, {$temperature} К
-supermatter-monitor-next-event = Следующий импульс через: { $minutes ->
-    [one] {$minutes} минуту
-    [few] {$minutes} минуты
-    *[other] {$minutes} минут
-}
-supermatter-monitor-inactive = Кристалл суперматерии неактивен.
 
 supermatter-station-catastrophe = Внимание! Датчики фиксируют критическое излучение энергии из кристалла суперматерии! Немедленно эвакуируйтесь с инженерного отдела и удалите персонал от кристалла!

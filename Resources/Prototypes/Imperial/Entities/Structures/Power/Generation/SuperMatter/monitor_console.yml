@@ -36,4 +36,12 @@
     - type: PowerConsumer
       drawRate: 10
       voltage: 120
-    - type: SupermatterMonitorConsole
+    - type: SupermatterConsole
+    - type: DeviceLinkSink
+    - type: UserInterface
+      interfaces:
+        enum.SupermatterConsoleUiKey.Key:
+          type: SupermatterConsoleBoundUserInterface
+    - type: ActivatableUI
+      requiresComplex: true
+      key: enum.SupermatterConsoleUiKey.Key

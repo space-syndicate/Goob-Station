@@ -246,7 +246,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         else
         {
             var minDist = float.MaxValue;
-            var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
+            var enumerator = EntityQueryEnumerator<SupermatterConsoleComponent, TransformComponent>();
             while (enumerator.MoveNext(out var consoleUid, out _, out var transformComp))
             {
                 if (transformComp.MapID != mapId)
@@ -273,13 +273,8 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     public void SetRadiation(EntityUid uid, float intensity)
     {
-        if (TryComp<RadiationSourceComponent>(uid, out var radComponent))
-            _radiationSystem.SetIntensity(uid, intensity);
-        else
-        {
-            EnsureComp<RadiationSourceComponent>(uid);
-            _radiationSystem.SetIntensity(uid, intensity);
-        }
+        EnsureComp<RadiationSourceComponent>(uid);
+        _radiationSystem.SetIntensity(uid, intensity);
     }
 
     public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
