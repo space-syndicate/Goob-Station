@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: GreyKingWeapons
+  icon:
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
+    state: icon
+  product: CrateGreykingHomebrewRevolutionaryCrate
+  cost: 7000
+  category: cargoproduct-category-name-cargo
+  group: market

@@ -1027,6 +1027,14 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: CargoOrderConsole
+    # Imperial Waeponry Accessability Rework start
+    allowedGroups:
+    - market
+    - SalvageJobReward2
+    - SalvageJobReward3
+    - SalvageJobRewardMAX
+    - weaponry
+    # Imperial Waeponry Accessability Rework end
     account: Security
     announcementChannel: Security
     removeLimitAccess: [ "HeadOfSecurity" ]
