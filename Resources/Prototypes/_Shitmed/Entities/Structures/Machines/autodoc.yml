@@ -98,9 +98,10 @@
     grid:
     - 0,0,3,3
   - type: SurgerySpeedModifier
-    speedModifier: 10 # CorvaxGoob-Skills-another-autodoc-fix
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-skills
   - type: GuideHelp
     guides: [ Autodoc ]
+  - type: IgnoreSkills # CorvaxGoob-Skills-autodoc-skills
 
 - type: entity
   parent: Autodoc
@@ -111,7 +112,7 @@
   - type: Machine
     board: AutodocSyndieCircuitboard
   - type: SurgerySpeedModifier
-    speedModifier: 10 # CorvaxGoob-Skills-another-autodoc-fix
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-skills
 
 # Autodoc tools
 
