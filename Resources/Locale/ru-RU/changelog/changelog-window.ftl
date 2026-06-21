@@ -14,6 +14,7 @@ changelog-button-new-entries = Обновление (!)
 changelog-tab-title-Changelog = Обновление
 changelog-tab-title-Admin = Админ
 changelog-tab-title-Maps = Карты
+changelog-tab-title-Rules = Правила
 
 cmd-changelog-desc = Открывает ченджлог.
 cmd-changelog-help = Использование: ченджлог
