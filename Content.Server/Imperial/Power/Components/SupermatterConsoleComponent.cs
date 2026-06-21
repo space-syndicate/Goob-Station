@@ -48,10 +48,4 @@ public sealed partial class SupermatterConsoleComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan UiUpdateInterval = TimeSpan.FromSeconds(0.5f);
-
-    /// <summary>
-    /// Количество игроков с открытым интерфейсом консоли
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public int Users = 0;
 }

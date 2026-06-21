@@ -34,7 +34,6 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         SubscribeLocalEvent<SupermatterConsoleComponent, PortDisconnectedEvent>(OnPortDisconnected);
 
         SubscribeLocalEvent<SupermatterConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
-        SubscribeLocalEvent<SupermatterConsoleComponent, BoundUIClosedEvent>(OnUiClosed);
     }
 
     private static void OnUiOpened(Entity<SupermatterConsoleComponent> entity, ref BoundUIOpenedEvent args)
@@ -42,16 +41,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         if (!args.UiKey.Equals(SupermatterConsoleUiKey.Key))
             return;
 
-        entity.Comp.Users++;
         entity.Comp.NextUiUpdate = TimeSpan.Zero;
-    }
-
-    private static void OnUiClosed(Entity<SupermatterConsoleComponent> entity, ref BoundUIClosedEvent args)
-    {
-        if (!args.UiKey.Equals(SupermatterConsoleUiKey.Key))
-            return;
-
-        entity.Comp.Users = Math.Max(0, entity.Comp.Users - 1);
     }
 
     private void OnInit(Entity<SupermatterConsoleComponent> entity, ref ComponentInit args)
@@ -133,6 +123,9 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         var enumerator = EntityQueryEnumerator<SupermatterConsoleComponent>();
         while (enumerator.MoveNext(out var consUid, out var console))
         {
+            if (!_uiSystem.IsUiOpen(consUid, SupermatterConsoleUiKey.Key))
+                return;
+
             if (console.ConnectedSupermatter == null)
             {
                 UpdateUi((consUid, console));
@@ -154,7 +147,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             var (integrityPercent, level) = CalculateIntegrity(nearest);
             var integrity = (int)Math.Round(integrityPercent);
 
-            if (console.Users > 0 && _timing.CurTime >= console.NextUiUpdate)
+            if (_timing.CurTime >= console.NextUiUpdate)
             {
                 console.NextUiUpdate = _timing.CurTime + console.UiUpdateInterval;
 
@@ -203,7 +196,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
 
         entity.Comp.NextUiUpdate = _timing.CurTime + entity.Comp.UiUpdateInterval;
 
-        if (entity.Comp.Users <= 0)
+        if (!_uiSystem.IsUiOpen(entity.Owner, SupermatterConsoleUiKey.Key))
             return;
 
         _uiSystem.SetUiState(
