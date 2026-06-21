@@ -96,8 +96,6 @@
     openOnActivate: false # use the verb, UI is higher priority
     grid:
     - 0,0,3,3
-  - type: SurgerySpeedModifier
-    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: GuideHelp
     guides: [ Autodoc ]
   - type: IgnoreSkills # CorvaxGoob-Skills-autodoc-skills
