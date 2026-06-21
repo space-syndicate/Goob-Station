@@ -12,7 +12,6 @@ public sealed class WormBloodSystem : EntitySystem
     [Dependency] private readonly SharedEyeSystem _eye = default!;
 
     private EntityQuery<WormBloodComponent> _bloodQuery;
-    private readonly Dictionary<EntityUid, short> _lastSeverity = new();
     private TimeSpan _accumulator = TimeSpan.Zero;
     private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(0.5);
 
@@ -43,10 +42,10 @@ public sealed class WormBloodSystem : EntitySystem
         while (query.MoveNext(out var uid, out var blood))
         {
             var severity = WormBloodHelper.GetSeverity(blood.Blood);
-            if (_lastSeverity.TryGetValue(uid, out var last) && last == severity)
+            if (blood.LastAlertSeverity == severity)
                 continue;
 
-            _lastSeverity[uid] = severity;
+            blood.LastAlertSeverity = severity;
             UpdateBloodAlert(uid, blood, severity);
         }
     }
@@ -54,7 +53,7 @@ public sealed class WormBloodSystem : EntitySystem
     private void OnStartup(EntityUid uid, WormBloodComponent component, ComponentStartup args)
     {
         var severity = WormBloodHelper.GetSeverity(component.Blood);
-        _lastSeverity[uid] = severity;
+        component.LastAlertSeverity = severity;
         UpdateBloodAlert(uid, component, severity);
 
         if (TryComp(uid, out EyeComponent? eye))
@@ -63,7 +62,6 @@ public sealed class WormBloodSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, WormBloodComponent component, ComponentShutdown args)
     {
-        _lastSeverity.Remove(uid);
         _alerts.ClearAlert(uid, component.BloodAlert);
 
         if (TryComp(uid, out EyeComponent? eye))
@@ -111,7 +109,7 @@ public sealed class WormBloodSystem : EntitySystem
         Dirty(uid, component);
 
         var severity = WormBloodHelper.GetSeverity(component.Blood);
-        _lastSeverity[uid] = severity;
+        component.LastAlertSeverity = severity;
         UpdateBloodAlert(uid, component, severity);
     }
 

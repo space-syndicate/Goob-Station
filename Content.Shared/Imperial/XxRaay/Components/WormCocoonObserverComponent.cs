@@ -5,7 +5,7 @@ using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 [Access(typeof(SharedWormCocoonObserveSystem))]
 public sealed partial class WormCocoonObserverComponent : Component
 {

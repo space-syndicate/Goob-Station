@@ -58,7 +58,7 @@
     event: !type:WormCocoonObserveActionEvent
 
 - type: entity
-  parent: BaseAction
+  parent: BaseMentalAction
   id: ActionWormCorpseExit
   components:
   - type: Action

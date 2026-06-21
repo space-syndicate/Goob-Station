@@ -74,7 +74,7 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.EnterDelay,
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.EnterDelay,
                 new WormCorpseEnterDoAfterEvent(), ent, target: target)
             {
                 BreakOnMove = true,
@@ -82,8 +82,7 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
                 BreakOnDamage = true,
                 NeedHand = false,
                 DistanceThreshold = ent.Comp.Range,
-            }))
-            return;
+            });
     }
 
     private void OnEnterDoAfter(Entity<WormCorpseHostComponent> ent, ref WormCorpseEnterDoAfterEvent args)

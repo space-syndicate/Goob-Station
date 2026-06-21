@@ -120,8 +120,7 @@ public sealed class WormReproductionSystem : SharedWormReproductionSystem
         cocoonComp.OffspringOffsets = reproducer.OffspringOffsets;
         Dirty(cocoon, cocoonComp);
 
-        var pausedMap = _corpsePossession.EnsurePausedMap();
-        _transform.SetParent(worm, Transform(worm), pausedMap);
+        _corpsePossession.HideWormBody(worm);
 
         var active = EnsureComp<ActiveWormReproductionComponent>(worm);
         active.Cocoon = cocoon;

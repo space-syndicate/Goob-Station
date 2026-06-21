@@ -116,8 +116,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
         cocoonComp.EndTime = _timing.CurTime + evolver.EvolutionDuration;
         Dirty(cocoon, cocoonComp);
 
-        var pausedMap = _corpsePossession.EnsurePausedMap();
-        _transform.SetParent(worm, Transform(worm), pausedMap);
+        _corpsePossession.HideWormBody(worm);
 
         var active = EnsureComp<ActiveWormEvolutionComponent>(worm);
         active.Cocoon = cocoon;
@@ -204,9 +203,7 @@ public sealed class WormEvolutionSystem : SharedWormEvolutionSystem
 
         if (Exists(worm))
         {
-            if (HasComp<ActiveWormEvolutionComponent>(worm))
-                RemComp<ActiveWormEvolutionComponent>(worm);
-
+            RemComp<ActiveWormEvolutionComponent>(worm);
             QueueDel(worm);
         }
 

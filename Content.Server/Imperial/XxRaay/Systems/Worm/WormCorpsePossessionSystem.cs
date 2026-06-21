@@ -6,11 +6,11 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.GameTicking;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Content.Shared.Maps;
@@ -22,7 +22,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusIcon.Components;
 using System.Numerics;
 using Content.Shared.Ghost;
-using Content.Shared.Rejuvenate;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
@@ -40,8 +39,6 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedMindSystem _sharedMind = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly WormBloodDrinkSystem _wormBloodDrink = default!;
@@ -50,8 +47,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly ISharedPlayerManager _players = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly GhostSystem _ghosts = default!;
-
-    public EntityUid? PausedMap { get; private set; }
+    [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
 
     public override void Initialize()
     {
@@ -59,7 +55,6 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
         SubscribeLocalEvent<WormCorpseHostComponent, MapInitEvent>(OnHostMapInit);
         SubscribeLocalEvent<WormCorpseOccupiedComponent, MobStateChangedEvent>(OnCorpseMobStateChanged);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     private void OnHostMapInit(Entity<WormCorpseHostComponent> ent, ref MapInitEvent args)
@@ -71,15 +66,6 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     {
         if (ent.Comp.EnterActionEntity != null)
             _actions.RemoveAction(ent.Owner, ent.Comp.EnterActionEntity);
-    }
-
-    private void OnRoundRestart(RoundRestartCleanupEvent _)
-    {
-        if (PausedMap == null || !Exists(PausedMap))
-            return;
-
-        Del(PausedMap.Value);
-        PausedMap = null;
     }
 
     private void OnCorpseMobStateChanged(Entity<WormCorpseOccupiedComponent> ent, ref MobStateChangedEvent args)
@@ -111,8 +97,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
         _mobState.ChangeMobState(corpse, MobState.Alive);
         ApplyPossessionHealth(corpse, host);
 
-        var pausedMap = EnsurePausedMap();
-        _transform.SetParent(worm, Transform(worm), pausedMap);
+        HideWormBody(worm);
 
         var active = EnsureComp<ActiveWormCorpsePossessionComponent>(worm);
         active.Corpse = corpse;
@@ -186,37 +171,43 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
     private void ApplyPossessionHealth(EntityUid corpse, WormCorpseHostComponent host)
     {
-        RaiseLocalEvent(corpse, new RejuvenateEvent());
+        _rejuvenate.PerformRejuvenate(corpse);
 
         if (!TryComp<MobThresholdsComponent>(corpse, out var thresholds)
             || !_mobThreshold.TryGetThresholdForState(corpse, MobState.Dead, out var deadThreshold, thresholds))
+        {
+            _mobState.ChangeMobState(corpse, MobState.Alive);
             return;
+        }
 
         var fraction = Math.Clamp(host.PossessMinHealthFraction, 0f, 1f);
         var targetDamage = deadThreshold.Value * FixedPoint2.New(1f - fraction);
-        if (targetDamage <= FixedPoint2.Zero)
-            return;
 
-        var damage = new DamageSpecifier();
-        damage.DamageDict[host.PossessDamageType] = targetDamage;
-        _damageable.TryChangeDamage(corpse, damage);
+        if (_mobThreshold.TryGetThresholdForState(corpse, MobState.Critical, out var criticalThreshold, thresholds)
+            && targetDamage >= criticalThreshold.Value)
+        {
+            targetDamage = criticalThreshold.Value - FixedPoint2.New(0.01);
+        }
+
+        if (targetDamage > FixedPoint2.Zero)
+        {
+            var damage = new DamageSpecifier();
+            damage.DamageDict[host.PossessDamageType] = targetDamage;
+            _damageable.TryChangeDamage(corpse, damage);
+        }
+
+        _mobState.ChangeMobState(corpse, MobState.Alive);
     }
 
-    #region Public API
-
-    public EntityUid EnsurePausedMap()
+    /// <summary>
+    /// Sends the worm body to nullspace and pauses it.
+    /// Nullspace itself is not paused, so the entity must be paused explicitly.
+    /// </summary>
+    public void HideWormBody(EntityUid worm)
     {
-        if (PausedMap != null && Exists(PausedMap))
-            return PausedMap.Value;
-
-        var mapUid = _map.CreateMap();
-        _metaData.SetEntityName(mapUid, "worm-corpse-paused-map");
-        _map.SetPaused(mapUid, true);
-        PausedMap = mapUid;
-        return mapUid;
+        _transform.DetachEntity(worm, Transform(worm));
+        SetPaused(worm, true);
     }
-
-    #endregion
 
     private void RemoveExitAction(EntityUid corpse)
     {
@@ -341,6 +332,8 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
 
     private void PlaceWormAtStoredCoordinates(EntityUid worm, EntityCoordinates coordinates)
     {
+        SetPaused(worm, false);
+
         var wormXform = Transform(worm);
 
         _transform.SetParent(worm, wormXform, coordinates.EntityId);

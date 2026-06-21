@@ -39,10 +39,10 @@ public sealed class WormCocoonObserveSystem : SharedWormCocoonObserveSystem
     {
         var observer = EnsureComp<WormCocoonObserverComponent>(cocoon);
         observer.SourceWorm = worm;
-        Dirty(cocoon, observer);
+        DirtyField(cocoon, observer, nameof(WormCocoonObserverComponent.SourceWorm));
 
         _actions.AddAction(cocoon, ref observer.ObserveActionEntity, observer.ObserveAction);
-        Dirty(cocoon, observer);
+        DirtyField(cocoon, observer, nameof(WormCocoonObserverComponent.ObserveActionEntity));
 
         if (HasComp<AlertsComponent>(cocoon))
             _alerts.ShowAlert(cocoon, timerAlert, cooldown: (startTime, endTime), autoRemove: true, showCooldown: true);
@@ -110,7 +110,6 @@ public sealed class WormCocoonObserveSystem : SharedWormCocoonObserveSystem
     private void SetObservationTarget(Entity<WormCocoonObserverComponent> cocoon, EntityUid target)
     {
         cocoon.Comp.ObservedEntity = target;
-        Dirty(cocoon, cocoon.Comp);
 
         if (TryComp(cocoon, out EyeComponent? eye))
             _eye.SetTarget(cocoon, target, eye);
@@ -122,7 +121,6 @@ public sealed class WormCocoonObserveSystem : SharedWormCocoonObserveSystem
             return;
 
         observer.ObservedEntity = null;
-        Dirty(cocoon, observer);
 
         if (TryComp(cocoon, out EyeComponent? eye))
             _eye.SetTarget(cocoon, null, eye);

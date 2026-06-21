@@ -57,15 +57,14 @@ public abstract class SharedWormReproductionSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.WeaveDelay,
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.WeaveDelay,
                 new WormReproductionDoAfterEvent(), ent)
             {
                 BreakOnMove = true,
                 BreakOnWeightlessMove = true,
                 BreakOnDamage = true,
                 NeedHand = false,
-            }))
-            return;
+            });
 
         _popup.PopupPredictedCoordinates(
             Loc.GetString("worm-reproduction-weaving"),
