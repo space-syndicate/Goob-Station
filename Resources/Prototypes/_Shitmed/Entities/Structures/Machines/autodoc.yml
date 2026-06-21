@@ -98,6 +98,8 @@
     - 0,0,3,3
   - type: GuideHelp
     guides: [ Autodoc ]
+  - type: SurgerySpeedModifier
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: IgnoreSkills # CorvaxGoob-Skills-autodoc-skills
 
 - type: entity
