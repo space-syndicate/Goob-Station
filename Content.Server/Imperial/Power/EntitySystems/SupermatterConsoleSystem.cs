@@ -123,81 +123,79 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         var enumerator = EntityQueryEnumerator<SupermatterConsoleComponent>();
         while (enumerator.MoveNext(out var consUid, out var console))
         {
-            if (!_uiSystem.IsUiOpen(consUid, SupermatterConsoleUiKey.Key))
-                return;
+            var uiOpen = _uiSystem.IsUiOpen(consUid, SupermatterConsoleUiKey.Key);
 
             if (console.ConnectedSupermatter == null)
             {
-                UpdateUi((consUid, console));
+                if (uiOpen)
+                    UpdateUi((consUid, console));
                 continue;
             }
 
             var smUid = console.ConnectedSupermatter.Value;
-
-            if (!TryComp<SupermatterIntegrityComponent>(smUid, out var nearest))
+            if (!TryComp<SupermatterIntegrityComponent>(smUid, out var integrityComponent))
             {
                 console.ConnectedSupermatter = null;
                 if (Exists(smUid))
                     _signalSystem.RemoveSinkFromSource(smUid, consUid);
 
-                UpdateUi((consUid, console));
+                if (uiOpen)
+                    UpdateUi((consUid, console));
                 continue;
             }
 
-            var (integrityPercent, level) = CalculateIntegrity(nearest);
+            var (integrityPercent, level) = CalculateIntegrity(integrityComponent);
             var integrity = (int)Math.Round(integrityPercent);
-
-            if (_timing.CurTime >= console.NextUiUpdate)
-            {
-                console.NextUiUpdate = _timing.CurTime + console.UiUpdateInterval;
-
-                var supermatterEv = "—";
-                if (TryComp<SupermatterEventComponent>(smUid, out var eventComponent))
-                    supermatterEv = Loc.GetString($"supermatter-event-{eventComponent.CurrentEvent.ToString().ToLowerInvariant()}-name");
-
-                var transComp = Transform(smUid);
-                var gas = _atmosSystem.GetContainingMixture((smUid, transComp));
-
-                var pressure = gas?.Pressure ?? 0f;
-                var temperature = gas?.Temperature ?? 0f;
-
-                var state = new SupermatterConsoleBuiState(
-                    activated: nearest.Activated,
-                    temperature: temperature,
-                    lowerTemperature: nearest.LowerTempThreshold,
-                    upperTemperature: nearest.UpperTempThreshold,
-                    pressure: pressure,
-                    lowerPressure: nearest.LowerPressureThreshold,
-                    upperPressure: nearest.UpperPressureThreshold,
-                    integrity: integrityPercent,
-                    integrityColor: level.Color,
-                    currentEvent: supermatterEv
-                );
-
-                _uiSystem.SetUiState(consUid, SupermatterConsoleUiKey.Key, state);
-            }
-
-            var highestLevel = nearest.SupermatterIntegrity.MaxBy(e => e.Threshold);
+            var highestLevel = integrityComponent.SupermatterIntegrity.MaxBy(e => e.Threshold);
 
             if (highestLevel == null || integrity >= highestLevel.Threshold)
                 console.NextBeep = _timing.CurTime + console.BeepInterval;
-            else if (nearest.Activated && _timing.CurTime >= console.NextBeep)
+            else if (integrityComponent.Activated && _timing.CurTime >= console.NextBeep)
             {
                 _audioSystem.PlayPvs(console.BeepSound, consUid);
                 console.NextBeep = _timing.CurTime + console.BeepInterval;
             }
+
+            if (!uiOpen || _timing.CurTime < console.NextUiUpdate)
+                continue;
+
+            console.NextUiUpdate = _timing.CurTime + console.UiUpdateInterval;
+
+            var supermatterEv = "—";
+            if (TryComp<SupermatterEventComponent>(smUid, out var eventComponent))
+                supermatterEv = Loc.GetString($"supermatter-event-{eventComponent.CurrentEvent.ToString().ToLowerInvariant()}-name");
+
+            var transComp = Transform(smUid);
+            var gas = _atmosSystem.GetContainingMixture((smUid, transComp));
+
+            var pressure = gas?.Pressure ?? 0f;
+            var temperature = gas?.Temperature ?? 0f;
+
+            var state = new SupermatterConsoleBuiState(
+                activated: integrityComponent.Activated,
+                temperature: temperature,
+                lowerTemperature: integrityComponent.LowerTempThreshold,
+                upperTemperature: integrityComponent.UpperTempThreshold,
+                pressure: pressure,
+                lowerPressure: integrityComponent.LowerPressureThreshold,
+                upperPressure: integrityComponent.UpperPressureThreshold,
+                integrity: integrityPercent,
+                integrityColor: level.Color,
+                currentEvent: supermatterEv
+            );
+
+            _uiSystem.SetUiState(consUid, SupermatterConsoleUiKey.Key, state);
         }
     }
 
     private void UpdateUi(Entity<SupermatterConsoleComponent> entity, bool force = false)
     {
+        if (!_uiSystem.IsUiOpen(entity.Owner, SupermatterConsoleUiKey.Key))
+            return;
         if (!force && _timing.CurTime < entity.Comp.NextUiUpdate)
             return;
 
         entity.Comp.NextUiUpdate = _timing.CurTime + entity.Comp.UiUpdateInterval;
-
-        if (!_uiSystem.IsUiOpen(entity.Owner, SupermatterConsoleUiKey.Key))
-            return;
 
         _uiSystem.SetUiState(
             entity.Owner,
