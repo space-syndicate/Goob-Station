@@ -64,6 +64,18 @@ namespace Content.Shared.Imperial.EnergyCore.Components
         public float Halflife = 5f;
 
         [ViewVariables(VVAccess.ReadOnly)]
+        public float ReactivityMaxCap = 100f;
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public float HalflifeMaxCap = 10f;
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public float ReactivityMinCap = 30f;
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public float HalflifeMinCap = 5f;
+
+        [ViewVariables(VVAccess.ReadOnly)]
         public float FinalTempChangeCoef;
 
         [ViewVariables(VVAccess.ReadOnly)]
