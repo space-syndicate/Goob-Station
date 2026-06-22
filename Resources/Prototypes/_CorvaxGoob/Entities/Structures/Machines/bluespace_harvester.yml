@@ -87,6 +87,7 @@
         nodeGroupID: MVPower
   - type: PowerConsumer
     voltage: Medium
+    showInMonitor: false
   - type: AmbientSound
     enabled: false
     volume: -1
@@ -106,4 +107,4 @@
   - type: AccessReader
     access: [["Engineering"], ["Research"]]
   - type: GuideHelp
-    guides: [ Power ] # TODO: Add BH guide
+    guides: [ Power ] # TODO: Add harvester guide to the guidebook.
