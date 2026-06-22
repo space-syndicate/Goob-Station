@@ -84,6 +84,7 @@ namespace Content.Client.Construction
             WarmupRecipesCache();
 
             UpdatesOutsidePrediction = true;
+            SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
             SubscribeLocalEvent<LocalPlayerAttachedEvent>(HandlePlayerAttached);
             SubscribeNetworkEvent<AckStructureConstructionMessage>(HandleAckStructure);
             SubscribeNetworkEvent<ResponseConstructionGuide>(OnConstructionGuideReceived);
@@ -115,8 +116,16 @@ namespace Content.Client.Construction
             return false;
         }
 
+        private void OnPrototypeReload(PrototypesReloadedEventArgs obj)
+        {
+            if (obj.WasModified<ConstructionPrototype>())
+                WarmupRecipesCache();
+        }
+
         private void WarmupRecipesCache()
         {
+            _recipesMetadataCache.Clear();
+
             foreach (var constructionProto in PrototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
                 if (!PrototypeManager.TryIndex(constructionProto.Graph, out var graphProto))
