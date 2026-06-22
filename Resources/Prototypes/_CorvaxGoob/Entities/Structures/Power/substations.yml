@@ -24,6 +24,7 @@
     intensitySlope: 20
     maxIntensity: 2500
   - type: PowerMonitoringDevice
+    sourceNode: harvester
     sprite: _CorvaxGoob/Objects/Structures/Power/bluespace_transitor.rsi
     state: display
   - type: Sprite

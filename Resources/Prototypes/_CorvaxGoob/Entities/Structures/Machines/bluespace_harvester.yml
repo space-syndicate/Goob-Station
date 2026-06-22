@@ -87,7 +87,6 @@
         nodeGroupID: MVPower
   - type: PowerConsumer
     voltage: Medium
-    showInMonitor: false
   - type: AmbientSound
     enabled: false
     volume: -1
@@ -108,3 +107,8 @@
     access: [["Engineering"], ["Research"]]
   - type: GuideHelp
     guides: [ Power ] # TODO: Add harvester guide to the guidebook.
+  - type: PowerMonitoringDevice
+    sprite: _CorvaxGoob/Bluespace/Crates/technological_secure.rsi
+    state: icon
+    group: APC
+    loadNode: harvester
