@@ -143,7 +143,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
         var mindmg = comp.MinDamage.ToString();
         var maxdmg = comp.MaxDamage.ToString();
 
-        if (_prototype.TryIndex(comp.DamageType, out var damageTypeProto))
+        if (!_prototype.TryIndex(comp.DamageType, out var damageTypeProto))
             return "error";
 
         var type = damageTypeProto?.LocalizedName ?? comp.DamageType.Value;

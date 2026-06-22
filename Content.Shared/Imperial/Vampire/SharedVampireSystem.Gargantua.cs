@@ -29,7 +29,7 @@ public partial class SharedVampireSystem : EntitySystem
         SubscribeLocalEvent<VampireJerkOnContactComponent, StartCollideEvent>(OnLeaperCollide);
 
         SubscribeLocalEvent<VampireReconciliationEvent>(OnStartReconciliation);
-        SubscribeLocalEvent<VampireComponent, VampireReconciliationDoAfterEvent>(OnReconciliation);
+        SubscribeLocalEvent<AbilityComponent, VampireReconciliationDoAfterEvent>(OnReconciliation);
     }
 
     private void OnRushBlood(VampireRushBloodEvent args)
@@ -37,15 +37,17 @@ public partial class SharedVampireSystem : EntitySystem
         if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
             return;
 
-        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampire) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
+
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
 
         if (comp.BuffBlocked)
         {
@@ -67,21 +69,21 @@ public partial class SharedVampireSystem : EntitySystem
         if (_net.IsServer)
             _jitterSystem.DoJitter(args.Performer, args.RushBloodTime, refresh: false, amplitude: 2, frequency: 2);
 
-        DealBloodDamage(args.Performer, args.CostBlood);
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
         Dirty(args.Performer, comp);
         args.Handled = true;
     }
 
-    public void SpawnSmokeEffect(VampireComponent ent, EntityCoordinates coords)
+    public void SpawnSmokeEffect(AbilityComponent comp, EntityCoordinates coords)
     {
         if (!coords.IsValid(EntityManager))
             return;
 
-        var smoke = Spawn(ent.SmokePrototype, coords);
+        var smoke = Spawn(comp.SmokePrototype, coords);
 
         if (TryComp<SmokeComponent>(smoke, out var smokeComp))
         {
-            smokeComp.SpreadAmount = ent.SmokeRadius;
+            smokeComp.SpreadAmount = comp.SmokeRadius;
         }
 
         var ev = new TriggerEvent();
@@ -131,10 +133,9 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnStartReconciliation(VampireReconciliationEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
-            return;
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul)) return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -160,30 +161,33 @@ public partial class SharedVampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnReconciliation(Entity<VampireComponent> vamp, ref VampireReconciliationDoAfterEvent args)
+    private void OnReconciliation(Entity<AbilityComponent> ent, ref VampireReconciliationDoAfterEvent args)
     {
+        if (!TryComp<VampireComponent>(ent, out var vamp) && !TryComp<GhoulComponent>(ent, out var ghoul))
+            return;
+
         if (args.Cancelled || args.Handled)
             return;
 
         // получаем все сущности перед игроком
-        var transform = Transform(vamp.Owner);
+        var transform = Transform(ent);
         var direction = transform.LocalRotation.GetCardinalDir();
         var frontPos = transform.Coordinates.Offset(direction.ToVec());
         var entities = _lookup.GetEntitiesInRange(frontPos, 2);
 
-        if (!entities.Any(x => x != vamp.Owner))
+        if (!entities.Any(x => x != ent.Owner))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-no-one-around"),
-                vamp.Owner, vamp.Owner, PopupType.Medium);
+                ent, ent, PopupType.Medium);
 
             return;
         }
 
-        Spawn(args.VampireFlashEffectID, Transform(vamp).Coordinates);
+        Spawn(args.VampireFlashEffectID, Transform(ent).Coordinates);
 
         foreach (var entity in entities)
         {
-            if (entity == vamp.Owner)
+            if (entity == ent.Owner)
                 continue;
 
             if (TryComp<StaminaComponent>(entity, out var stamina))
@@ -192,7 +196,7 @@ public partial class SharedVampireSystem : EntitySystem
                     continue;
 
                 // вампир не может оглушить людей с маской/солнцезащитными очками
-                var flashAttempt = new FlashAttemptEvent(entity, vamp.Owner, null);
+                var flashAttempt = new FlashAttemptEvent(entity, ent, null);
                 RaiseLocalEvent(entity, ref flashAttempt, true);
 
                 if (flashAttempt.Cancelled)
@@ -219,10 +223,10 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnJerk(Entity<VampireJerkComponent> ent, ref VampireJerkEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -250,7 +254,7 @@ public partial class SharedVampireSystem : EntitySystem
         _throwing.TryThrow(args.Performer, direction, ent.Comp.JumpThrowSpeed);
         _audio.PlayPredicted(ent.Comp.JumpSound, args.Performer, args.Performer);
 
-        DealBloodDamage(args.Performer, args.CostBlood);
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 

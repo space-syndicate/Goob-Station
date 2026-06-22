@@ -1013,12 +1013,13 @@
   id: FederationAccessManipulator
   components:
     - type: Sprite
-      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+      sprite: Objects/Tools/access_configurator.rsi
+      state: icon
     - type: Icon
-      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+      sprite: Objects/Tools/access_configurator.rsi
       state: icon
     - type: Item
-      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+      sprite: Objects/Tools/access_configurator.rsi
     - type: AccessOverrider
       accessLevels: 
       - Federationadmin

@@ -48,6 +48,7 @@
   - type: DeviceNetworkRequiresPower
   - type: Transform
     anchored: true
+  - type: ZombieAttackImmune # imperial space
   - type: WiresPanel
   - type: Wires
     alwaysRandomize: true

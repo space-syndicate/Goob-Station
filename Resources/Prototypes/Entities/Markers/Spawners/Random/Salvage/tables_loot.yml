@@ -247,6 +247,16 @@
       weight: 0.5
     - id: WeaponCrusher
       weight: 0.5
+### IMPERIAL IMPROVED SALVAGE START
+    - id: ClothingControlModsuitEngineerSealed 
+      weight: 0.5
+    - id: ClothingControlModsuitMedicalSealed 
+      weight: 0.5
+    - id: ClothingControlModsuitCivillianSealed 
+      weight: 0.5
+    - id: ClothingControlModsuitMinerSealed 
+      weight: 0.01
+### IMPERIAL IMPROVED SALVAGE END
     - !type:GroupSelector
       children:
       - id: JetpackBlue

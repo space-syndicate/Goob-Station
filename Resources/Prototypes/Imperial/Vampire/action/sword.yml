@@ -26,7 +26,7 @@
       sprite: Imperial/Stellark/Vampire/actions.rsi
       state: sword_plus
   - type: InstantAction
-    event: !type:VampireSwordEvent
+    event: !type:VampireSwordPlusEvent
       cooldownSword: 0
 
 - type: entity
@@ -46,7 +46,7 @@
     attackRate: 1.25
     damage:
       types:
-        Blunt: 15
+        Blunt: 25
   - type: Reflect
     reflectProb: .1
     spread: 90

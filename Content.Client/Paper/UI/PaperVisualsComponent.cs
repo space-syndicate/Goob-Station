@@ -117,4 +117,11 @@ public sealed partial class PaperVisualsComponent : Component
     /// </summary>
     [DataField("maxWritableArea")]
     public Vector2? MaxWritableArea = null;
+
+    // imperial space: fix bug. start
+    public static List<string> BlackListRsi = new List<string>
+    {
+        "Imperial/Abductors/Misc/paper.rsi"
+    };
+    // imperial space: fix bug. end
 }

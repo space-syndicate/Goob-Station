@@ -1,0 +1,61 @@
+- type: entity
+  id: BorgModuleFaunaPesting
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: fauna pesting cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/ImprovedSalvage/borgmodule.rsi
+    layers:
+    - state: salvage
+    - state: icon-fauna
+  - type: ItemBorgModule
+    hands:
+    - item: SurvivalKnife
+    - item: WeaponProtoKineticAccelerator
+      hand:
+        emptyRepresentative: WeaponProtoKineticAccelerator
+        emptyLabel: borg-slot-pka-empty
+        whitelist:
+          tags:
+          - PKA
+    - hand:
+        emptyRepresentative: PKAUpgradeMining
+        emptyLabel: borg-slot-pka-upgrades-empty
+        whitelist:
+          tags:
+          - PKAUpgrade
+    - item: RadioHandheld
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/ImprovedSalvage/actions_borg.rsi, state: icon-fauna }
+
+- type: entity
+  id: BorgModuleScrapSalvage
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: collector cyborg module
+  components:
+  - type: Sprite
+    sprite: Imperial/ImprovedSalvage/borgmodule.rsi
+    layers:
+    - state: salvage
+    - state: icon-wrecks
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyRepresentative: ScrapAirlock1
+        emptyLabel: borg-slot-scrap-empty
+        whitelist:
+          tags:
+          - SalvageScrap
+    - hand:
+        emptyRepresentative: MaterialToothSpaceCarp
+        emptyLabel: borg-slot-scrap-empty
+        whitelist:
+          tags:
+          - ToothSpaceCarp
+          - ToothSharkminnow
+    - item: SurvivalKnife
+    - item: WeaponGrapplingGun
+    - item: HandHeldMassScannerBorg
+    - item: ClothingBackpackDuffelSalvage
+  - type: BorgModuleIcon
+    icon: { sprite: Imperial/ImprovedSalvage/actions_borg.rsi, state: icon-wrecks }

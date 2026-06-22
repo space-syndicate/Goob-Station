@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
 using Content.Server.Radiation.Systems;
 using Content.Shared.Atmos;
@@ -20,11 +16,11 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 /// </summary>
 public sealed class SupermatterGasSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly RadiationSystem _radiationSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = null!;
+    [Dependency] private readonly IPrototypeManager _protoMan = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
-    private readonly List<(int gasId, SupermatterGasReactionPrototype proto)> _reactions = new();
+    private readonly List<(int gasId, SupermatterGasReactionPrototype proto)> _reactions = [];
 
     public override void Initialize()
     {
@@ -120,7 +116,7 @@ public sealed class SupermatterGasSystem : EntitySystem
 
         if (TryComp(integrity, out RadiationSourceComponent? radiation))
         {
-            float baseIntensity = radiation.Intensity;
+            var baseIntensity = radiation.Intensity;
 
             if (TryComp<SupermatterEventComponent>(integrity, out var eventComp))
             {

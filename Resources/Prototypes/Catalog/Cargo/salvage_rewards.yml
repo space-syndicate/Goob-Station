@@ -32,10 +32,10 @@
 - type: cargoProduct
   id: CargoSalvageHardsuit
   icon:
-    sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/miner.rsi # IMPERIAL IMPROVED SALVAGE
     state: icon
   product: CrateSalvageHardsuit
-  cost: 7500
+  cost: 35000 # IMPERIAL IMPROVED SALVAGE
   category: cargoproduct-category-name-cargo
   group: SalvageJobReward2
 
@@ -87,6 +87,6 @@
   container:
     entity: WrappedParcel
     containerId: contents
-  cost: 25000
+  cost: 250  # IMPERIAL IMPROVED SALVAGE
   category: cargoproduct-category-name-cargo
   group: SalvageJobRewardMAX

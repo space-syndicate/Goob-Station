@@ -96,6 +96,7 @@
   - BorgModuleMining
   - BorgModuleTraversal
   - BorgModuleAppraisal
+  - BorgModuleScrapSalvage ### IMPERIAL IMPROVED SALVAGE
 
   radioChannels:
   - Supply

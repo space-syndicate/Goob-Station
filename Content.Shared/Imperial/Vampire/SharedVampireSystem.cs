@@ -45,6 +45,12 @@ using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.IdentityManagement;
 using Content.Shared.StatusEffect;
+using System.Runtime.CompilerServices;
+using Content.Shared.EntityEffects.Effects.EntitySpawning;
+using System.Linq;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mind;
+using Robust.Shared.Player;
 
 namespace Content.Shared.Imperial.Vampire;
 
@@ -75,6 +81,7 @@ public partial class SharedVampireSystem : EntitySystem
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
@@ -82,17 +89,20 @@ public partial class SharedVampireSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
 
 
     private void BaseInitialize()
     {
         SubscribeLocalEvent<VampireRecoveryEvent>(OnRecovery);
+        SubscribeLocalEvent<VampireRecoveryGhoulEvent>(OnRecoveryGhoul);
         SubscribeLocalEvent<VampireSwordEvent>(OnSword);
+        SubscribeLocalEvent<VampireSwordPlusEvent>(OnSwordPlus);
         SubscribeLocalEvent<VampireNosferatyEvent>(OnNosferaty); // общий
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
 
-        SubscribeLocalEvent<VampireComponent, MeleeAttackEvent>(OnAttemptMelee);
-        SubscribeLocalEvent<VampireComponent, AttackedEvent>(OnDamaged);
+        SubscribeLocalEvent<AbilityComponent, MeleeAttackEvent>(OnAttemptMelee);
+        SubscribeLocalEvent<AbilityComponent, AttackedEvent>(OnDamaged);
 
         SubscribeLocalEvent<VampireBuffComponent, GetMeleeAttackRateEvent>(OnGetMeleeAttackRate);
         SubscribeLocalEvent<VampireBuffComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
@@ -113,6 +123,30 @@ public partial class SharedVampireSystem : EntitySystem
         HemomancerInitialize();
         UmbraeInitialize();
         GargantuaInitialize();
+    }
+
+
+    public bool HasEnoughBloodShared(EntityUid entity, float costBlood)
+    {
+        if (TryComp<VampireComponent>(entity, out var vamp))
+            return vamp.BloodDamage + costBlood < vamp.CritThreshold;
+
+        if (TryComp<GhoulComponent>(entity, out var ghoul))
+            return ghoul.BloodDamage + costBlood < ghoul.CritThreshold;
+
+        return false;
+    }
+
+    public void DealAbilityBloodDamageShared(EntityUid entity, float damage)
+    {
+        if (TryComp<VampireComponent>(entity, out var vamp))
+        {
+            DealBloodDamage(entity, damage);
+        }
+        else if (TryComp<GhoulComponent>(entity, out var ghoul))
+        {
+            DealGhoulBloodDamage(entity, damage, ghoul);
+        }
     }
 
     private void OnGetMeleeAttackRate(EntityUid uid, VampireBuffComponent comp, ref GetMeleeAttackRateEvent args)
@@ -148,10 +182,10 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnRecovery(VampireRecoveryEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -180,14 +214,69 @@ public partial class SharedVampireSystem : EntitySystem
             _statusEffects.TryRemoveStatusEffect(args.Performer, "SlowedDown");
         }
 
-        DealBloodDamage(args.Performer, args.CostBlood);
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
+        args.Handled = true;
+    }
+
+    private void OnRecoveryGhoul(VampireRecoveryGhoulEvent args)
+    {
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
+            return;
+
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        var userPos = Transform(args.Performer).Coordinates;
+        var targetPos = args.Target;
+
+        if (!userPos.TryDistance(EntityManager, targetPos, out var distance) || distance > args.Radius)
+        {
+            _popup.PopupClient(Loc.GetString("vampire-popup-far-away"),
+                args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
+
+        var target = _lookup.GetEntitiesInRange(args.Target, 0.1f, LookupFlags.Uncontained | LookupFlags.Dynamic)
+        .FirstOrDefault(el => el != args.Performer && HasComp<MobStateComponent>(el));
+
+        if (!HasComp<GhoulComponent>(target)) return;
+
+        if (_solutionSystem.TryGetInjectableSolution(target, out var solution, out _))
+        {
+            // лечим упыря, вводя ему Omnizine
+            var toInject = new Solution();
+            toInject.AddReagent(args.ReagentID, args.Dose);
+
+            _solutionSystem.TryAddSolution(solution.Value, toInject);
+        }
+
+        if (TryComp<StaminaComponent>(target, out var stamina))
+        {
+            stamina.StaminaDamage = 0f;
+            Dirty(target, stamina);
+        }
+
+        if (TryComp<StatusEffectsComponent>(target, out var status))
+        {
+            _statusEffects.TryRemoveStatusEffect(target, "Stun");
+            _statusEffects.TryRemoveStatusEffect(target, "KnockedDown");
+            _statusEffects.TryRemoveStatusEffect(target, "SlowedDown");
+        }
+
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
         args.Handled = true;
     }
 
     private void OnSword(VampireSwordEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!_net.IsServer)
             return;
+
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
 
         if (vamp.ItemIssued)
         {
@@ -197,25 +286,50 @@ public partial class SharedVampireSystem : EntitySystem
             vamp.CooldownSword = args.CooldownSword;
 
             // ссылаемся на VampireSwordAction. см VampireBaseAbilities
-            _actions.SetCooldown(vamp.GrantedActions[0], vamp.CooldownSword);
+            if (TryComp<VampireComponent>(args.Performer, out var vampire)) _actions.SetCooldown(vampire.GrantedActions[0], vamp.CooldownSword);
+            else if (TryComp<GhoulComponent>(args.Performer, out var ghoul)) _actions.SetCooldown(_entityManager.GetEntity(ghoul.GhoulVampireSwordAction), vamp.CooldownSword);
+            else return;
             Dirty(args.Performer, vamp);
         }
         else
         {
             OnIssuingSword(args.Performer);
+            vamp.ClawDurationActive = _gameTiming.CurTime + vamp.ClawDuration;
+            Dirty(args.Performer, vamp);
+        }
+    }
 
-            if (!vamp.VampireTurned)
-                vamp.ClawDurationActive = _gameTiming.CurTime + vamp.ClawDuration;
+    private void OnSwordPlus(VampireSwordPlusEvent args)
+    {
+        if (!_net.IsServer)
+            return;
+
+        if (!TryComp<VampireComponent>(args.Performer, out var vampire) && !TryComp<GhoulComponent>(args.Performer, out var ghoul)) return;
+        var vamp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (vamp.ItemIssued)
+        {
+            OnIssuingSword(args.Performer);
+            vamp.ClawDurationActive = TimeSpan.Zero;
+            vamp.CooldownSword = args.CooldownSword;
+            Dirty(args.Performer, vamp);
+        }
+        else
+        {
+            OnIssuingSword(args.Performer);
+            Dirty(args.Performer, vamp);
         }
     }
 
     /// <summary>
     /// добавляет катану в руки
     /// </summary>
-    private void OnIssuingSword(EntityUid uid)
+    public void OnIssuingSword(EntityUid uid)
     {
-        if (!TryComp<VampireComponent>(uid, out var vamp))
+        if (!TryComp<VampireComponent>(uid, out var vampire) && !TryComp<GhoulComponent>(uid, out var ghoul))
             return;
+
+        var vamp = EnsureComp<AbilityComponent>(uid);
 
         if (!_net.IsServer)
             return;
@@ -267,15 +381,10 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnNosferaty(VampireNosferatyEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vampire) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
-        {
-            _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
-                args.Performer, args.Performer, PopupType.Medium);
-            return;
-        }
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
 
         if (!TryComp<MeleeWeaponComponent>(args.Performer, out var melee)
         || !TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
@@ -299,7 +408,7 @@ public partial class SharedVampireSystem : EntitySystem
         _speedSystem.RefreshMovementSpeedModifiers(args.Performer);
 
         comp.BuffBlocked = true;
-        DealBloodDamage(args.Performer, args.CostBlood);
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
         comp.BuffBlockedUntil = _gameTiming.CurTime + args.NosferatyTime;
 
         if (_net.IsServer)
@@ -322,31 +431,37 @@ public partial class SharedVampireSystem : EntitySystem
     /// <summary>
     /// при попытке атаковать в инвизе - инвиз слетает
     /// </summary>
-    private void OnAttemptMelee(Entity<VampireComponent> vamp, ref MeleeAttackEvent args)
+    private void OnAttemptMelee(Entity<AbilityComponent> comp, ref MeleeAttackEvent args)
     {
-        if (!vamp.Comp.InvisibleIsActive)
+        if (!TryComp<VampireComponent>(comp, out var vamp) && !TryComp<GhoulComponent>(comp, out var ghoul))
             return;
 
-        VampireInvisible(vamp);
+        if (!comp.Comp.InvisibleIsActive)
+            return;
+
+        VampireInvisible(comp);
 
         // для VampireInvisibleAction
-        vamp.Comp.InvisibilityAbilityActive = false;
-        Dirty(vamp, vamp.Comp);
+        comp.Comp.InvisibilityAbilityActive = false;
+        Dirty(comp, comp.Comp);
     }
 
     /// <summary>
     /// при получения урона в инвизе - инвиз слетает
     /// </summary>
-    private void OnDamaged(Entity<VampireComponent> vamp, ref AttackedEvent args)
+    private void OnDamaged(Entity<AbilityComponent> comp, ref AttackedEvent args)
     {
-        if (!vamp.Comp.InvisibleIsActive)
+        if (!TryComp<VampireComponent>(comp, out var vamp) && !TryComp<GhoulComponent>(comp, out var ghoul))
             return;
 
-        VampireInvisible(vamp);
+        if (!comp.Comp.InvisibleIsActive)
+            return;
+
+        VampireInvisible(comp);
 
         // для VampireInvisibleAction
-        vamp.Comp.InvisibilityAbilityActive = false;
-        Dirty(vamp, vamp.Comp);
+        comp.Comp.InvisibilityAbilityActive = false;
+        Dirty(comp, comp.Comp);
     }
 
     /// <summary>
@@ -354,36 +469,42 @@ public partial class SharedVampireSystem : EntitySystem
     /// </summary>
     public void VampireInvisible(EntityUid uid)
     {
-        if (!TryComp<VampireComponent>(uid, out var vamp))
-            return;
+        if (!TryComp<VampireComponent>(uid, out var vampire) && !TryComp<GhoulComponent>(uid, out var ghoul)) return;
+        if (!_net.IsServer) return;
 
         var stealth = EnsureComp<StealthComponent>(uid);
+        var comp = EnsureComp<AbilityComponent>(uid);
 
-        if (!vamp.InvisibleIsActive)
+        if (!comp.InvisibleIsActive)
         {
-            if (vamp.DisguiseIsActive)
+            if (comp.DisguiseIsActive)
             {
                 _popup.PopupClient(Loc.GetString("vampire-popup-disguise-on"),
                 uid, uid, PopupType.Medium);
                 return;
             }
 
+            if (comp.HaloUid != null) QueueDel(comp.HaloUid);
+
             _stealth.SetVisibility(uid, -2f, stealth);
             _stealth.SetEnabled(uid, true, stealth);
 
-            vamp.DisguiseIsActive = true;
-            vamp.InvisibleIsActive = true;
+            comp.DisguiseIsActive = true;
+            comp.InvisibleIsActive = true;
 
-            Dirty(uid, vamp);
+            Dirty(uid, comp);
             return;
         }
+
+        comp.HaloUid = Spawn(comp.HaloEffect, Transform(uid).Coordinates);
+        _transform.SetParent(comp.HaloUid.Value, uid);
 
         _stealth.SetVisibility(uid, 1f, stealth);
         _stealth.SetEnabled(uid, false, stealth);
 
-        vamp.InvisibleIsActive = false;
-        vamp.DisguiseIsActive = false;
-        Dirty(uid, vamp);
+        comp.InvisibleIsActive = false;
+        comp.DisguiseIsActive = false;
+        Dirty(uid, comp);
     }
 
     /// <summary>
@@ -420,9 +541,12 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void BaseUpdate()
     {
-        var query = EntityQueryEnumerator<VampireComponent>();
+        var query = EntityQueryEnumerator<AbilityComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (!TryComp<VampireComponent>(uid, out var vampire) && !TryComp<GhoulComponent>(uid, out var ghoul))
+                continue;
+
             if (!comp.BuffBlocked)
                 continue;
 
@@ -436,9 +560,12 @@ public partial class SharedVampireSystem : EntitySystem
             }
         }
 
-        var vampirelQuery = EntityQueryEnumerator<VampireComponent>();
+        var vampirelQuery = EntityQueryEnumerator<AbilityComponent>();
         while (vampirelQuery.MoveNext(out var uid, out var comp))
         {
+            if (!TryComp<VampireComponent>(uid, out var vampire))
+                continue;
+
             if (_mobStateSystem.IsDead(uid))
                 continue;
 
@@ -451,12 +578,12 @@ public partial class SharedVampireSystem : EntitySystem
             if (_gameTiming.CurTime >= comp.NextBloodDecay)
             {
                 // наносим урон каждые BloodDecayInterval секунд
-                DealBloodDamage(uid, comp.BloodDecayAmount, comp);
+                DealAbilityBloodDamageShared(uid, comp.BloodDecayAmount);
                 comp.NextBloodDecay = _gameTiming.CurTime + comp.BloodDecayInterval;
                 Dirty(uid, comp);
 
                 // если урон больше количества крови, то применяем дебафы
-                if (comp.BloodDamage >= comp.CritThreshold)
+                if (vampire.BloodDamage >= vampire.CritThreshold)
                 {
                     if (TryComp<StaminaComponent>(uid, out var stamina))
                     {
@@ -513,7 +640,7 @@ public partial class SharedVampireSystem : EntitySystem
             }
         }
 
-        var vampClaw = EntityQueryEnumerator<VampireComponent>();
+        var vampClaw = EntityQueryEnumerator<AbilityComponent>();
         while (vampClaw.MoveNext(out var uid, out var vamp))
         {
             if (!_net.IsServer)
@@ -524,7 +651,8 @@ public partial class SharedVampireSystem : EntitySystem
                 OnIssuingSword(uid);
 
                 // ссылаемся на VampireSwordAction. см VampireBaseAbilities
-                _actions.SetCooldown(vamp.GrantedActions[0], vamp.CooldownSword);
+                if (TryComp<VampireComponent>(uid, out var vampire)) _actions.SetCooldown(vampire.GrantedActions[0], vamp.CooldownSword);
+                else if (TryComp<GhoulComponent>(uid, out var ghoul)) _actions.SetCooldown(_entityManager.GetEntity(ghoul.GhoulVampireSwordAction), vamp.CooldownSword);
                 vamp.ClawDurationActive = TimeSpan.Zero;
                 Dirty(uid, vamp);
             }
@@ -553,23 +681,37 @@ public partial class SharedVampireSystem : EntitySystem
 
     public void SetBloodAlert(EntityUid uid, VampireComponent? component = null)
     {
+        var comp = EnsureComp<AbilityComponent>(uid);
+        if (!HasComp<VampireComponent>(uid))
+        {
+            _alerts.ClearAlert(uid, comp.BloodAlert);
+            return;
+        }
+
         if (!Resolve(uid, ref component, false) || component.Deleted)
             return;
 
         // вычисляем, какой должен быть спрайт в зависимости от количества крови у вампира
         var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.CritThreshold - component.BloodDamage),
-        component.CritThreshold, component.NumberBloodSections);
-        _alerts.ShowAlert(uid, component.BloodAlert, (short)severity);
+        component.CritThreshold, comp.NumberBloodSections);
+        _alerts.ShowAlert(uid, comp.BloodAlert, (short)severity);
     }
 
     public void SetBloodCounterAlert(EntityUid uid, VampireComponent? component = null)
     {
+        var comp = EnsureComp<AbilityComponent>(uid);
+        if (!HasComp<VampireComponent>(uid))
+        {
+            _alerts.ClearAlert(uid, comp.BloodCounterAlert);
+            return;
+        }
+
         if (!Resolve(uid, ref component, false) || component.Deleted)
             return;
 
         // вычисляем, какой должен быть спрайт в зависимости от количества выпитой крови вампиром
-        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.TotalDrunk), component.MaxDrink, component.NumberSections);
-        _alerts.ShowAlert(uid, component.BloodCounterAlert, (short)severity);
+        var severity = ContentHelpers.RoundToLevels(MathF.Max(0f, component.TotalDrunk), comp.MaxDrink, comp.NumberSections);
+        _alerts.ShowAlert(uid, comp.BloodCounterAlert, (short)severity);
     }
 
     public void DealBloodDamage(EntityUid uid, float damage, VampireComponent? component = null)
@@ -584,20 +726,21 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnVampireStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
     {
+        var comp = EnsureComp<AbilityComponent>(ent);
         if (ent.Comp.SelectingSubgroupActionEntity == null)
         {
-            _actions.AddAction(ent.Owner, ref ent.Comp.SelectingSubgroupActionEntity, ent.Comp.SelectingSubgroupAction);
+            _actions.AddAction(ent.Owner, ref ent.Comp.SelectingSubgroupActionEntity, comp.SelectingSubgroupAction);
             Dirty(ent.Owner, ent.Comp);
         }
 
         // добавляем рацию
         var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(ent.Owner);
         transmitter.Channels ??= new HashSet<ProtoId<RadioChannelPrototype>>();
-        transmitter.Channels.Add(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+        transmitter.Channels.Add(new ProtoId<RadioChannelPrototype>(comp.VampireRadioID));
 
         var activeRadio = EnsureComp<ActiveRadioComponent>(ent.Owner);
         activeRadio.Channels ??= new HashSet<ProtoId<RadioChannelPrototype>>();
-        activeRadio.Channels.Add(new ProtoId<RadioChannelPrototype>(ent.Comp.VampireRadioID));
+        activeRadio.Channels.Add(new ProtoId<RadioChannelPrototype>(comp.VampireRadioID));
 
         EnsureComp<IntrinsicRadioReceiverComponent>(ent.Owner);
 
@@ -627,11 +770,12 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnMindAdded(Entity<VampireComponent> ent, ref MindAddedMessage args)
     {
-        _roleSystem.MindAddRole(args.Mind, ent.Comp.MindRoleVampireID, mind: args.Mind.Comp);
+        var comp = EnsureComp<AbilityComponent>(ent);
+        _roleSystem.MindAddRole(args.Mind, comp.MindRoleVampireID, mind: args.Mind.Comp);
     }
 
     private void OnMindRemoved(Entity<VampireComponent> ent, ref MindRemovedMessage args)
     {
-        _roleSystem.MindRemoveRole<VampireRoleComponent>((args.Mind.Owner, args.Mind.Comp));
+        RaiseNetworkEvent(new VampireMindRemovedEvent(_entityManager.GetNetEntity(ent)));
     }
 }

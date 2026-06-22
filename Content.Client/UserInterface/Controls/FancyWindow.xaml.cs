@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Client.Imperial.UI.WindowPopOut;
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Components;
 using Content.Client.Stylesheets;
@@ -29,6 +30,7 @@ namespace Content.Client.UserInterface.Controls
 
             CloseButton.OnPressed += _ => Close();
             HelpButton.OnPressed += _ => Help();
+            ImperialWindowPopOut.Enable(this, () => Title, PopOutButton); // Imperial Space
             XamlChildren = ContentsContainer.Children;
         }
 

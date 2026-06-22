@@ -16,7 +16,7 @@
         whitelist:
           components:
             - GasTank
-      gasMixture:
+      air:
         volume: 1500
         moles:
           Hydrogen: 2769.36 # Hydrogen

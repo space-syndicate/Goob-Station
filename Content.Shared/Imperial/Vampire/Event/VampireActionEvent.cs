@@ -3,6 +3,7 @@ using Content.Shared.Cloning;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Vampire
 {
@@ -249,6 +250,27 @@ namespace Content.Shared.Imperial.Vampire
         public float Dose = 25;
     }
 
+    public sealed partial class VampireRecoveryGhoulEvent : WorldTargetActionEvent
+    {
+        [DataField("costBlood")]
+        public float CostBlood = 30;
+
+        /// <summary>
+        /// реагент для лечения
+        /// </summary>
+        [DataField("reagent")]
+        public string ReagentID = "Omnizine";
+
+        [DataField("radius")]
+        public float Radius = 2;
+
+        /// <summary>
+        /// количество реагента
+        /// </summary>
+        [DataField("dose")]
+        public float Dose = 25;
+    }
+
     public sealed partial class VampireBloodAnchorEvent : InstantActionEvent
     {
         [DataField("costBlood")]
@@ -351,8 +373,25 @@ namespace Content.Shared.Imperial.Vampire
         public TimeSpan CooldownSword = TimeSpan.FromSeconds(0);
     }
 
+    public sealed partial class VampireSwordPlusEvent : InstantActionEvent
+    {
+        [DataField("cooldownSword")]
+        public TimeSpan CooldownSword = TimeSpan.FromSeconds(0);
+    }
+
     public sealed partial class VampireGrimoireEvent : InstantActionEvent
     { }
+
+    [Serializable, NetSerializable]
+    public sealed partial class VampireMindRemovedEvent : EntityEventArgs
+    {
+        public NetEntity? Uid;
+
+        public VampireMindRemovedEvent(NetEntity? uid)
+        {
+            Uid = uid;
+        }
+    }
 
     public sealed partial class VampireSelectingSubgroupEvent : InstantActionEvent
     { }
