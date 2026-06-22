@@ -29,3 +29,10 @@
   materials:
     Steel: 200
     Glass: 200
+
+- type: latheRecipe # CorvaxGoob
+  id: DrinkCanPackEmpty
+  result: DrinkCanPackEmpty
+  completetime: 2
+  materials:
+    Plastic: 50

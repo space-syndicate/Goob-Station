@@ -694,10 +694,19 @@
     sprite: Objects/Consumable/Drinks/energy_drink.rsi
 
 - type: entity
-  id: DrinkCanPack
-  parent: BaseStorageItem
-  name: 6pack
+  id: DrinkCanPackEmpty
+  parent: BaseItem
+  name: empty 6pack
   components:
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
   - type: Sprite
     sprite: Objects/Misc/6pack.rsi
     layers:
@@ -727,24 +736,64 @@
     - 0,0,2,3
     whitelist:
       tags:
-        - Cola
-    hideStackVisualsWhenClosed: false
+        - DrinkCan
+        - Beer
+        - Wine
+  - type: PickRandom # This is necessary in order to make it convenient to get cans using an alt-click.
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - storagebase
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: ItemMapper
+    mapLayers:
+      6pack1:
+        whitelist:
+          tags: [DrinkCan, Beer, Wine]
+        minCount: 1
+      6pack2:
+        whitelist:
+          tags: [DrinkCan, Beer, Wine]
+        minCount: 2
+      6pack3:
+        whitelist:
+          tags: [DrinkCan, Beer, Wine]
+        minCount: 3
+      6pack4:
+        whitelist:
+          tags: [DrinkCan, Beer, Wine]
+        minCount: 4
+      6pack5:
+        whitelist:
+          tags: [DrinkCan, Beer, Wine]
+        minCount: 5
+      6pack6:
+        whitelist:
+          tags: [DrinkCan, Beer, Wine]
+        minCount: 6
+    sprite: Objects/Misc/6pack.rsi
+  - type: Appearance
+
+- type: entity
+  id: DrinkCanPack
+  parent: DrinkCanPackEmpty
+  components:
   - type: StorageFill
     contents:
       - id: DrinkColaCan
         amount: 6
-  - type: ItemCounter
-    count:
-      tags: [Cola]
-    composite: true
-    layerStates:
-    - 6pack1
-    - 6pack2
-    - 6pack3
-    - 6pack4
-    - 6pack5
-    - 6pack6
-  - type: Appearance
 
 - type: entity
   parent: DrinkCanBaseFull
