@@ -1,8 +1,5 @@
-# 1localizedDataset
-# 2bottle
-# 3Plushe
 ###############################################################################
-### 1localizedDataset
+### localizedDataset
 
 - type: localizedDataset
   id: KolontarevStefanKolontarevWords
@@ -34,11 +31,12 @@
   values:
     prefix: plushie-KolontarevSashaProbkin-
     count: 4
+    
 ###############################################################################
-### 2bottle
+### Custom Item
 
 - type: entity
-  hideSpawnMenu: true # <--- помоему эта хуйня не работает
+  hideSpawnMenu: true # <--- помоему она не работает или я ебло
   id: KolontarevChemistryBottleChlorine
   suffix: Kolontarev
   name: bottle
@@ -70,7 +68,7 @@
           Quantity: 30
           
 ###############################################################################
-### 3Plushe
+### Plushe
 
 - type: entity
   parent: PlushieFumoJunko
@@ -95,12 +93,10 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  - type: StaminaDamageOnHit
-    damage: 8
   - type: UseDelay
     delay: 6
   - type: MeleeWeapon 
-    attackRate: 1 # <--- нормальный атакрейт а не хуйня с парента
+    attackRate: 1 # <--- нормальный атакрейт 
   - type: StaticPrice
     price: 0
   
@@ -137,11 +133,9 @@
   - type: SpeakOnTrigger
     pack: KolontarevAnnaYusupovaWords
 
-
-#огромный хуй --->
 - type: entity
   parent: BasePlushieKolontarev
-  id: KolontarevStefanKolontarev
+  id: KolontarevStefanKolontarev #Стефан
   name: Stefan Kolontarev 
   description: "I'll weld it, . . maybe."
   suffix: Kolontarev, COMMUNITY, TOY
@@ -155,8 +149,6 @@
     - id: KolontarevChemistryBottleChlorine
   - type: SpeakOnTrigger
     pack: KolontarevStefanKolontarevWords
-# <--- огромный хуй
-
 
 - type: entity
   parent: BasePlushieKolontarev
@@ -201,6 +193,5 @@
     sprite: Imperial/Kolontarev/keiko.rsi
     state: icon 
   - type: SpeakOnTrigger
-    pack: KolontarevKeikoMilletWords
-    
-#"Воу чувак, если я чернокожая, это не значит что я не умею водить. . . Да я не умею водить, но не потомучто я черная!!1!" - Кажется, она не справится даже с автопилотом.
+    pack: KolontarevKeikoMilletWords 
+# у кейко нету ничего внутри по просьбе
