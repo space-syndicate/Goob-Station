@@ -45,7 +45,7 @@ plushie-KolontarevGennadyPetrov-2 = "Валяй"
 plushie-KolontarevGennadyPetrov-3 = "ГСБ, будь добр уволиться"
 plushie-KolontarevGennadyPetrov-4 = "В бар и по пиву!"
 
-plushie-KolontarevEvgenyFedotov-1 = Вы будете ликвидированы за нарушение 104 Копоративного Закона!
+plushie-KolontarevEvgenyFedotov-1 = Вы будете ликвидированы за нарушение 104 Корпоративного Закона!
 plushie-KolontarevEvgenyFedotov-2 = Летал в зелёный код!!!
 plushie-KolontarevEvgenyFedotov-3 = Кадет, пьёте и без меня!
 plushie-KolontarevEvgenyFedotov-4 = Кадет, почему вы избиваете клоуна без офицера! 
