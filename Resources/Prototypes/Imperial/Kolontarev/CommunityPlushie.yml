@@ -36,8 +36,8 @@
 ### Custom Item
 
 - type: entity
-  hideSpawnMenu: true # <--- помоему она не работает
   id: KolontarevChemistryBottleChlorine
+  categories: [ HideSpawnMenu ]
   suffix: Kolontarev
   name: bottle
   parent: BaseChemistryBottleFilled
@@ -53,8 +53,8 @@
           Quantity: 15 
 
 - type: entity
-  hideSpawnMenu: true
   id: KolontarevChemistryBottleFluorine
+  categories: [ HideSpawnMenu ]
   suffix: Kolontarev
   name: bottle
   parent: BaseChemistryBottleFilled
