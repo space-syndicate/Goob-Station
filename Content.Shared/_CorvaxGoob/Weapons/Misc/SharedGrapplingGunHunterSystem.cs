@@ -13,7 +13,7 @@ using Content.Shared.Weapons.Misc;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
-using Content.Shared.Teleportation.Components;
+using Content.Goobstation.Common.BlockTeleport;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
@@ -22,7 +22,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics.Joints;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
@@ -61,30 +60,21 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
 
         SubscribeAllEvent<RequestGrapplingHunterReelMessage>(OnGrapplingReel);
 
-        SubscribeLocalEvent<GrapplingHookHunterComponent, StartCollideEvent>(OnHookPortalCollide);
-        SubscribeLocalEvent<GrapplingHookedHunterComponent, StartCollideEvent>(OnHookedPortalCollide);
+        SubscribeLocalEvent<HandsComponent, TeleportAttemptEvent>(OnHandsTeleport);
+        SubscribeLocalEvent<GrapplingHookHunterComponent, TeleportAttemptEvent>(OnHookTeleport);
+        SubscribeLocalEvent<GrapplingHookedHunterComponent, TeleportAttemptEvent>(OnHookedTeleport);
 
         SubscribeLocalEvent<GrapplingGunHunterComponent, AfterAutoHandleStateEvent>(OnGunHandleState);
     }
 
-    private const string PortalFixtureId = "portalFixture";
+    private void OnHandsTeleport(Entity<HandsComponent> ent, ref TeleportAttemptEvent args)
+        => HandleEntityEnteredPortal(ent.Owner);
 
-    private void OnHookPortalCollide(Entity<GrapplingHookHunterComponent> ent, ref StartCollideEvent args)
-        => HandlePortalCollide(ent.Owner, ref args);
+    private void OnHookTeleport(Entity<GrapplingHookHunterComponent> ent, ref TeleportAttemptEvent args)
+        => HandleEntityEnteredPortal(ent.Owner);
 
-    private void OnHookedPortalCollide(Entity<GrapplingHookedHunterComponent> ent, ref StartCollideEvent args)
-        => HandlePortalCollide(ent.Owner, ref args);
-
-    private void HandlePortalCollide(EntityUid uid, ref StartCollideEvent args)
-    {
-        if (!args.OtherEntity.Valid || !HasComp<PortalComponent>(args.OtherEntity))
-            return;
-
-        if (args.OtherFixtureId != PortalFixtureId)
-            return;
-
-        HandleEntityEnteredPortal(uid);
-    }
+    private void OnHookedTeleport(Entity<GrapplingHookedHunterComponent> ent, ref TeleportAttemptEvent args)
+        => HandleEntityEnteredPortal(ent.Owner);
 
     private void OnGunHandleState(Entity<GrapplingGunHunterComponent> ent, ref AfterAutoHandleStateEvent args)
     {
