@@ -36,7 +36,7 @@
 ### Custom Item
 
 - type: entity
-  hideSpawnMenu: true # <--- помоему она не работает или я ебло
+  hideSpawnMenu: true # <--- помоему она не работает
   id: KolontarevChemistryBottleChlorine
   suffix: Kolontarev
   name: bottle
