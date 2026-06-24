@@ -71,9 +71,9 @@
 ### Plushe
 
 - type: entity
-  parent: PlushieFumoJunko
-  hideSpawnMenu: true
+  parent: PlushieFumoJunko
   id: BasePlushieKolontarev
+  categories: [ HideSpawnMenu ]
   name: BasePlushieCharacter
   suffix: Kolontarev, COMMUNITY, TOY
   components:
