@@ -111,4 +111,4 @@
     sprite: _CorvaxGoob/Bluespace/Crates/technological_secure.rsi
     state: icon
     group: APC
-    loadNode: harvester
+    sourceNode: input
