@@ -84,7 +84,7 @@ namespace Content.Client.Construction
             WarmupRecipesCache();
 
             UpdatesOutsidePrediction = true;
-            SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
+            SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload); //CorvaxGoob-wizden-port
             SubscribeLocalEvent<LocalPlayerAttachedEvent>(HandlePlayerAttached);
             SubscribeNetworkEvent<AckStructureConstructionMessage>(HandleAckStructure);
             SubscribeNetworkEvent<ResponseConstructionGuide>(OnConstructionGuideReceived);
@@ -115,8 +115,8 @@ namespace Content.Client.Construction
             targetProtoId = null;
             return false;
         }
-
-        private void OnPrototypeReload(PrototypesReloadedEventArgs obj)
+        
+        private void OnPrototypeReload(PrototypesReloadedEventArgs obj) //CorvaxGoob-wizden-port
         {
             if (obj.WasModified<ConstructionPrototype>())
                 WarmupRecipesCache();
@@ -124,7 +124,7 @@ namespace Content.Client.Construction
 
         private void WarmupRecipesCache()
         {
-            _recipesMetadataCache.Clear();
+            _recipesMetadataCache.Clear();//CorvaxGoob-wizden-port
 
             foreach (var constructionProto in PrototypeManager.EnumeratePrototypes<ConstructionPrototype>())
             {
