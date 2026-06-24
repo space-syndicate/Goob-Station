@@ -51,6 +51,8 @@
         Structural: 1.25
   - type: Body
     prototype: Oni
+  - type: Damageable # CorvaxGoob-Fixes
+    damageModifierSet: Oni
   - type: LightweightDrunk
     boozeStrengthMultiplier: 0.5 # REAL hard to get drunk
   - type: Fixtures

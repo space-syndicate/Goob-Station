@@ -78,20 +78,24 @@
   id: MobHellspawn
   description: An unstoppable force of carnage.
   components:
-  - type: GhostRole
-    allowMovement: true
-    makeSentient: true
-    name: ghost-role-information-hellspawn-name
-    description: ghost-role-information-hellspawn-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
+# CorvaxGoob start
+#  - type: GhostRole
+#    allowMovement: true
+#    makeSentient: true
+#    name: ghost-role-information-hellspawn-name
+#    description: ghost-role-information-hellspawn-description
+#    rules: ghost-role-information-antagonist-rules
+#    mindRoles:
+#    - MindRoleGhostRoleSoloAntagonist
+#    raffle:
+#      settings: default
+# CorvaxGoob end
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: GhostTakeoverAvailable
+# CorvaxGoob start
+#  - type: GhostTakeoverAvailable
+# CorvaxGoob end
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

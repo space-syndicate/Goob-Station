@@ -126,3 +126,4 @@ ent-WallFeatherZoneShuttle1 = strange shuttle wall
     .desc = { ent-WallFlockBase.desc }
 ent-WallFeatherZoneShuttle2 = strange shuttle wall
     .desc = { ent-WallFlockBase.desc }
+    .suffix = Alt.

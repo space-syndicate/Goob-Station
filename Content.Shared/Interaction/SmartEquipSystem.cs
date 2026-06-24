@@ -154,34 +154,42 @@ public sealed class SmartEquipSystem : EntitySystem
 
                 if (toEjectFrom == null)
                 {
-                    _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
+                    if (!HasComp<StorageComponent>(slotItem))
+                    {
+                        _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
+                        return;
+                    }
+                }
+                else if (_slots.TryEjectToHands(slotItem, toEjectFrom, uid, excludeUserAudio: true))
+                    return;
+            }
+
+            if (handItem != null)
+            {
+                ItemSlot? toInsertTo = null;
+
+                foreach (var slot in slots.Slots.Values)
+                {
+                    if (!slot.HasItem
+                        && _whitelistSystem.IsWhitelistPassOrNull(slot.Whitelist, handItem.Value)
+                        && slot.Priority > (toInsertTo?.Priority ?? int.MinValue))
+                    {
+                        toInsertTo = slot;
+                    }
+                }
+
+                if (toInsertTo != null)
+                {
+                    _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
                     return;
                 }
 
-                _slots.TryEjectToHands(slotItem, toEjectFrom, uid, excludeUserAudio: true);
-                return;
-            }
-
-            ItemSlot? toInsertTo = null;
-
-            foreach (var slot in slots.Slots.Values)
-            {
-                if (!slot.HasItem
-                    && _whitelistSystem.IsWhitelistPassOrNull(slot.Whitelist, handItem.Value)
-                    && slot.Priority > (toInsertTo?.Priority ?? int.MinValue))
+                if (!HasComp<StorageComponent>(slotItem))
                 {
-                    toInsertTo = slot;
+                    _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
+                    return;
                 }
             }
-
-            if (toInsertTo == null)
-            {
-                _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
-                return;
-            }
-
-            _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
-            return;
         }
 
         // case 3 (storage item):

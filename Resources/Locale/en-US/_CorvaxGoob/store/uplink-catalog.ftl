@@ -9,3 +9,5 @@ uplink-blood-red-paper-box-desc = A box filled with blood-red paper with the Syn
 
 uplink-dice-of-fate-name = Dice of Fate
 uplink-dice-of-fate-desc = A one-use d20. Roll it and find out your fate.
+uplink-toolbox-electrical-turret-name = Blueprint deployable ballistic turret
+uplink-toolbox-electrical-turret-desc = A blueprint, that allows the autolathe to print deployable ballistic turret.

@@ -1,0 +1,25 @@
+- type: entity
+  id: CrateLavaLamps
+  parent: CratePlastic
+  name: lava lamp crate
+  description: Contains 5 lava lamp for your station moth.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: RandomLavaLamp
+        rolls: !type:ConstantNumberSelector
+          value: 5
+
+- type: entity
+  id: CrateGambling
+  parent: CrateGenericSteel
+  name: gambling crate
+  description: A large box containing 3 types of lotteries and a Gamban Law board to attract Borg to gambling.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GambamovCircuitBoard
+      - id: SlotMachineFlatpack
+      - id: CoinFlipperFlatPack
+      - id: ClawMachineFlatPack

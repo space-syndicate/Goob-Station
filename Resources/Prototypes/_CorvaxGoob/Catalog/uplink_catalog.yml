@@ -69,3 +69,18 @@
     whitelist:
     - Librarian
 # CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) end
+  
+- type: listing
+  id: UplinkToolboxElectricalTurret
+  name: uplink-toolbox-electrical-turret-name
+  description: uplink-toolbox-electrical-turret-desc
+  icon: { sprite:  Objects/Tools/Toolboxes/toolbox_yellow.rsi, state: icon}
+  productEntity: BlueprintToolboxElectricalTurret
+  cost:
+    Telecrystal: 70
+  categories:
+  - UplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Engineering

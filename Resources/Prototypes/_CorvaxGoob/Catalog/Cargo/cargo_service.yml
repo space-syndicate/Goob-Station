@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: LavaLamps
+  icon:
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    state: lavalamp
+  product: CrateLavaLamps
+  cost: 2000
+  category: cargoproduct-category-name-service
+  group: market

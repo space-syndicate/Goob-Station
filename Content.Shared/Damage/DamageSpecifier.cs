@@ -76,6 +76,10 @@ namespace Content.Shared.Damage
         // Goobstation
         [DataField(customTypeSerializer: typeof(PrototypeIdDictionarySerializer<FixedPoint2, DamageTypePrototype>))]
         public Dictionary<string, FixedPoint2> WoundSeverityMultipliers { get; set; } = new();
+		
+        // CorvaxGoob
+        [DataField]
+        public bool BypassFlatReductions { get; set; }
 
         /// <summary>
         ///     Returns a sum of the damage values.
@@ -146,6 +150,7 @@ namespace Content.Shared.Damage
             ArmorPenetration = damageSpec.ArmorPenetration; // Goobstation
             PartDamageVariation = damageSpec.PartDamageVariation; // Goobstation
             WoundSeverityMultipliers = new(damageSpec.WoundSeverityMultipliers);
+			BypassFlatReductions = damageSpec.BypassFlatReductions; // CorvaxGoob
         }
 
         /// <summary>
@@ -182,7 +187,7 @@ namespace Content.Shared.Damage
         ///     Only applies resistance to a damage type if it is dealing damage, not healing.
         ///     This will never convert damage into healing.
         /// </remarks>
-        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet)
+        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, bool bypassFlatReductions = false) // CorvaxGoob : bypassFlatReductions
         {
             // Make a copy of the given data. Don't modify the one passed to this function. I did this before, and weapons became
             // duller as you hit walls. Neat, but not FixedPoint2ended. And confusing, when you realize your fists don't work no
@@ -203,7 +208,7 @@ namespace Content.Shared.Damage
 
                 float newValue = value.Float();
 
-                if (modifierSet.FlatReduction.TryGetValue(key, out var reduction))
+                if (!bypassFlatReductions && modifierSet.FlatReduction.TryGetValue(key, out var reduction)) // CorvaxGoob : bypassFlatReductions
                     newValue = Math.Max(0f, newValue - reduction); // flat reductions can't heal you
 
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))

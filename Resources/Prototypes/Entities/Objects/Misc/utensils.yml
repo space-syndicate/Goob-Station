@@ -89,12 +89,14 @@
     types:
     - Fork
   - type: MeleeWeapon
+    bypassFlatReductions: true # CorvaxGoob
     animationRotation: 180 # WWDP
     wideAnimationRotation: 180
-    attackRate: 1.5
+    attackRate: 1 # CorvaxGoob-changes: 1.5 > 1
     damage:
       types:
-        Piercing: 5
+        Piercing: 2 # CorvaxGoob-changes: 5 > 2
+        Structural: 0.1 # CorvaxGoob
   - type: Tweezers # Shitmed: Forks are better than spoons
     speed: 0.35
 
@@ -157,7 +159,7 @@
     types:
     - Spoon
   - type: Shovel
-    speedModifier: 0.1 # you can try
+    speedModifier: 0.03 # you can try # CorvaxGoob-changes: 0.1 > 0.03
   - type: ReactionMixer
     mixMessage: "spoon-mixing-success"
     timeToMix: 0.5

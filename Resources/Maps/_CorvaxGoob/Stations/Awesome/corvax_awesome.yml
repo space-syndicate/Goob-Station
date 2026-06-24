@@ -76461,16 +76461,16 @@ entities:
       pos: 18.5,-26.5
       parent: 2
     - type: FaxMachine
-      name: Представитель НТ
-      destinationAddress: Представитель НТ
+      name: Представитель NT
+      destinationAddress: Представитель NT
   - uid: 9702
     components:
     - type: Transform
       pos: 18.5,-32.5
       parent: 2
     - type: FaxMachine
-      name: Офицер Синего Щита
-      destinationAddress: Офицер Синего Щита
+      name: Офицер "Синий Щит"
+      destinationAddress: Офицер "Синий Щит"
   - uid: 24887
     components:
     - type: Transform

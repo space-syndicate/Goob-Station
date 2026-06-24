@@ -17,3 +17,5 @@ uplink-stamp-chameleon-desc = Универсальная печать, что м
 
 uplink-dice-of-fate-name = Кость судьбы
 uplink-dice-of-fate-desc = Одноразовая кость d20. Бросьте и узнайте свою судьбу.
+uplink-toolbox-electrical-turret-name = Чертёж разворачиваемой баллистической турели
+uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать разворачиваемую баллистическую турель.

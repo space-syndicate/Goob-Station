@@ -1,9 +1,9 @@
 ent-ClothingUniformJumpskirtWhiteCaptain = белая юбка-комбинезон капитана
     .desc = Белая юбка-комбинезон капитана символизирующая, что ваша зарплата явно превышает нормы.
-ent-ClothingUniformJumpskirtCentcomOfficial = юбка-костюм офицера Центком
-    .desc = Это костюм с юбкой, который носят офицеры Центком высшего звена.
-ent-ClothingUniformJumpskirtCentcomOfficer = водолазка с юбкой Центком
-    .desc = Версия водолазки Центком с юбкой, более редкая и востребованная, чем оригинал.
+ent-ClothingUniformJumpskirtCentcomOfficial = юбка-костюм офицера ЦК
+    .desc = Это костюм с юбкой, который носят офицеры Центрального Командования высшего звена.
+ent-ClothingUniformJumpskirtCentcomOfficer = водолазка с юбкой ЦК
+    .desc = Версия водолазки Центрального Командования с юбкой, более редкая и востребованная, чем оригинал.
 ent-ClothingUniformJumpskirtElegantMaid = элегантная форма горничной
     .desc = Назови меня хозяином и принеси пивчански.
 ent-ClothingUniformColorJumpskirtRainbow = радужная юбка-комбинезон

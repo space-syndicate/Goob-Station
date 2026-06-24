@@ -189,7 +189,7 @@
   loadouts:
   - MusicianHelmetGolden
   - MusicianHelmetSilver
-  
+
 # Engineering
 - type: loadoutGroup
   id: EngineeringWelder
