@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Content.Shared.Salvage.Expeditions.Modifiers; /// IMPERIAL IMPROVED SALVAGE
 
 namespace Content.Shared.Salvage.Expeditions;
 
@@ -17,4 +18,12 @@ public sealed partial class SalvageFactionPrototype : IPrototype
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("configs")]
     public Dictionary<string, string> Configs = new();
+
+    /// IMPERIAL IMPROVED SALVAGE START
+    /// <summary>
+    /// Некоторые фракции должны появляться только на спец биомах.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
+    /// IMPERIAL IMPROVED SALVAGE END
 }

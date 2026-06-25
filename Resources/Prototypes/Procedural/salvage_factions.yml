@@ -29,7 +29,10 @@
   entries:
     - proto: MobCarpDungeon
     # These do too much damage for salvage, need nerfs
-    # IMPERIAL IMPROVED SALVAGE START
+    # IMPERIAL IMPROVED SALVAGE START 
+    - proto: MobShark
+      cost: 5
+      prob: 0.1 
     - proto: MobCarpHolo
       cost: 5
       prob: 0.1 
