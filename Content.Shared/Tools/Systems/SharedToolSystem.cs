@@ -130,7 +130,11 @@ public abstract partial class SharedToolSystem : EntitySystem
 
     private void OnDoAfter(EntityUid uid, ToolComponent tool, ToolDoAfterEvent args)
     {
-        if (!args.Cancelled)
+        // Stop looping sound if any
+        if (tool.Stream != null)
+            tool.Stream = _audioSystem.Stop(tool.Stream);
+
+        if (!args.Cancelled && tool.SoundTiming != UseSoundTiming.Loop)
             PlayToolSound(uid, tool, args.User);
 
         var ev = args.WrappedEvent;
@@ -266,6 +270,24 @@ public abstract partial class SharedToolSystem : EntitySystem
         // Goobstation - Moved `TryStartDoAfter` into a check and added `UseToolEvent`.
         if (_doAfterSystem.TryStartDoAfter(doAfterArgs, out id))
         {
+            // Stop any existing looping sound before starting a new one
+            if (toolComponent.Stream != null)
+                toolComponent.Stream = _audioSystem.Stop(toolComponent.Stream);
+
+            // Play sound at start if needed (AtStart plays at both start and end, Loop plays during entire DoAfter)
+            if (toolComponent.UseSound != null && toolComponent.SoundTiming != UseSoundTiming.AtEnd)
+            {
+                if (toolComponent.SoundTiming == UseSoundTiming.Loop)
+                {
+                    var loopParams = AudioParams.Default.WithLoop(true);
+                    toolComponent.Stream = _audioSystem.PlayPvs(toolComponent.UseSound, tool, loopParams)?.Entity;
+                }
+                else // AtStart
+                {
+                    PlayToolSound(tool, toolComponent, user);
+                }
+            }
+
             RaiseLocalEvent(tool, new UseToolEvent(user, target, id.Value.Index, doAfterLength));
         }
         return true;

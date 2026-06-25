@@ -45,6 +45,27 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Tools.Components;
 
+/// <summary>
+///     Determines when the tool's UseSound is played.
+/// </summary>
+public enum UseSoundTiming
+{
+    /// <summary>
+    ///     Play sound only after the DoAfter completes (default behavior).
+    /// </summary>
+    AtEnd,
+
+    /// <summary>
+    ///     Play sound at the start of the DoAfter and again at the end.
+    /// </summary>
+    AtStart,
+
+    /// <summary>
+    ///     Play a looping sound during the entire DoAfter, stopping on completion/cancellation.
+    /// </summary>
+    Loop
+}
+
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(SharedToolSystem))]
 public sealed partial class ToolComponent : Component
@@ -61,12 +82,24 @@ public sealed partial class ToolComponent : Component
     [DataField]
     public SoundSpecifier? UseSound;
 
+    /// <summary>
+    ///     When to play the UseSound. Defaults to AtEnd.
+    /// </summary>
+    [DataField]
+    public UseSoundTiming SoundTiming = UseSoundTiming.AtEnd;
+
     // Goobstation
     /// <summary>
     ///     Whether to check doafter validity every tick even if we don't satisfy the usual conditions.
     /// </summary>
     [DataField]
     public bool AlwaysCheckDoAfter = false;
+
+    /// <summary>
+    ///     Stream entity for looping sounds. Not serialized, managed at runtime.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? Stream;
 }
 
 /// <summary>

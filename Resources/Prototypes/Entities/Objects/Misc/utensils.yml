@@ -82,7 +82,10 @@
   - type: Tool # CorvaxGoob
     qualities:
     - Brushing
-    speedModifier: 0.05
+    speedModifier: 0.2
+    useSound:
+      path: /Audio/Items/Forkbrushing.ogg
+    soundTiming: Loop
   - type: Tag
     tags:
     - Hoe
