@@ -83,9 +83,9 @@
     qualities:
     - Brushing
     speedModifier: 0.2
-    useSound:
+    useSound: # CorvaxGoob
       path: /Audio/Items/Forkbrushing.ogg
-    soundTiming: Loop
+    soundTiming: Loop # CorvaxGoob
   - type: Tag
     tags:
     - Hoe

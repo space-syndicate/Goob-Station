@@ -45,6 +45,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Tools.Components;
 
+// CorvaxGoob - UseSoundTiming
 /// <summary>
 ///     Determines when the tool's UseSound is played.
 /// </summary>
@@ -82,6 +83,7 @@ public sealed partial class ToolComponent : Component
     [DataField]
     public SoundSpecifier? UseSound;
 
+    // CorvaxGoob
     /// <summary>
     ///     When to play the UseSound. Defaults to AtEnd.
     /// </summary>
@@ -95,6 +97,7 @@ public sealed partial class ToolComponent : Component
     [DataField]
     public bool AlwaysCheckDoAfter = false;
 
+    // CorvaxGoob
     /// <summary>
     ///     Stream entity for looping sounds. Not serialized, managed at runtime.
     /// </summary>
