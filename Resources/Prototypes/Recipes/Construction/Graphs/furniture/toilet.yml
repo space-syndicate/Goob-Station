@@ -40,3 +40,22 @@
           steps:
             - tool: Welding
               doAfter: 2
+# CorvaxGoob start
+        - to: dirty
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tag: Trash
+              name: construction-graph-tag-trash
+              doAfter: 2
+
+    - node: dirty
+      entity: ToiletDirty
+      edges:
+        - to: toilet
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Brushing
+              doAfter: 5
+# CorvaxGoob end

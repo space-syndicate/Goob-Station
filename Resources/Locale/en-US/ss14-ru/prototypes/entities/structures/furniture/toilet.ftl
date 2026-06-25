@@ -3,6 +3,10 @@ ent-BaseToilet = toilet
 ent-ToiletEmpty = toilet
     .desc = The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean.
     .suffix = Empty
+ent-ToiletDirty = dirty toilet
+    .desc = The HT-451, a torque rotation-based, waste disposal unit for small matter. This one looks disgustingly dirty.
+    .suffix = Dirty
+
 ent-ToiletDirtyWater = { ent-ToiletEmpty }
     .suffix = Dirty Water
     .desc = { ent-ToiletEmpty.desc }
