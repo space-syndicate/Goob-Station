@@ -85,6 +85,9 @@
     speedModifier: 0.2
     useSound: # CorvaxGoob
       path: /Audio/Items/Forkbrushing.ogg
+    #       params:
+    #    loop: true
+    #    this don't work properly, so i use a custom system to handle this
     soundTiming: Loop # CorvaxGoob
   - type: Tag
     tags:
