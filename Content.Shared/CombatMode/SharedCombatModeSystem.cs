@@ -34,6 +34,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Chat;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
@@ -44,6 +45,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
+    [Dependency] private readonly SharedChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -91,6 +93,14 @@ public abstract class SharedCombatModeSystem : EntitySystem
 
         var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
         _popup.PopupClient(Loc.GetString(msg), args.Performer, args.Performer);
+
+        // Corvax-Goob start
+        if (component.IsInCombatMode == true)
+        {
+            var message = Loc.GetString("combat-mode-emote");
+            _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Emote, hideChat: false);
+        }
+        // Corvax-Goob end
     }
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
