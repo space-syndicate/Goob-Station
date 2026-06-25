@@ -28,7 +28,7 @@
   recommendedPlayers: 4
 
 - type: salvageDifficulty
-  id: Suicidle
+  id: Suicidal
   lootBudget: 220
   mobBudget: 140
   modifierBudget: 10

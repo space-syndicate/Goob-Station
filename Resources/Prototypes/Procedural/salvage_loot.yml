@@ -3,9 +3,15 @@
 - type: salvageLoot
   id: SalvageLoot
   loots: 
-    - !type:RandomSpawnsLoot
+    - !type:RandomSpawnsLoot 
       entries:
           ### IMPERIAL IMPROVED SALVAGE START
+        - proto: FirstAidMedkitImperial 
+          cost: 3
+        - proto: MedkitCobmatImperialFilled 
+          cost: 6
+        - proto: CombatMedipen 
+          cost: 6
         - proto: BorgModuleFaunaPesting 
           prob: 0.5 
           cost: 1
@@ -28,6 +34,9 @@
         - proto: CrateArmorySMG
           cost: 20
           prob: 0.25
+        - proto: WeaponLaserGun 
+          cost: 12
+          prob: 0.5
         - proto: ArmoryRifle
           cost: 20
           prob: 0.25
