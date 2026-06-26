@@ -3,3 +3,7 @@ ent-PrisonToiletEmpty = тюремная параша
 ent-PrisonToiletWater = { ent-PrisonToiletEmpty }
     .suffix = Вода
     .desc = { ent-PrisonToiletEmpty.desc }
+
+ent-ToiletDirty = грязный унитаз
+    .desc = НТ-451 — устройство для удаления мелких отходов, основанное на вращательном моменте. Этот выглядит ужасно грязным.
+    .suffix = Грязный
