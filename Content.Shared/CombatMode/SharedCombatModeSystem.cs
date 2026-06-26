@@ -45,7 +45,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
-    [Dependency] private readonly SharedChatSystem _chat = default!;
+    [Dependency] private readonly SharedChatSystem _chat = default!; // CorvaxGoob
 
     public override void Initialize()
     {
