@@ -203,6 +203,10 @@
     tags:
     - DrinkCan
   - type: DnaSubstanceTrace
+  - type: Catchable #CorvaxGoob changes
+    catchChance: 0.90
+    catchSuccessSound:
+      path: /Audio/Effects/Footsteps/bounce.ogg
 
 - type: entity
   parent: DrinkCanBaseFull
@@ -368,6 +372,8 @@
       types:
         Blunt: 1
         Cold: 2 # Refreshing
+  - type: Catchable #CorvaxGoob changes
+    catchChance: 0 # need zero cuz already have interact on throwing
 
 - type: entity
   parent: DrinkCanBaseFull
