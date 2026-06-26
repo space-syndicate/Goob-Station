@@ -34,7 +34,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Content.Shared._Shitmed.Targeting;
-using Content.Shared.Chat;
+using Content.Shared.Chat; // CorvaxGoob
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
