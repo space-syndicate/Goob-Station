@@ -3,32 +3,11 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/Imperial/StationsContent/Polus/Parallax/rock-25.png"
+        path: "/Textures/Imperial/StationsContent/Polus/Parallax/lava.png"
       slowness: 0.996
-      scale: "1, 1"
+      scale: "0.8, 0.8"
       tiled: true
-      shader: "shaded"
-    - texture:
-        !type:ImageParallaxTextureSource
-        path: "/Textures/Imperial/StationsContent/Polus/Parallax/rock-3.png"
-      slowness: 0.995
-      shader: "shaded"
-      scale: "1, 1"
-      tiled: true
-    - texture:
-        !type:ImageParallaxTextureSource
-        path: "/Textures/Imperial/StationsContent/Polus/Parallax/rock-2.png"
-      slowness: 0.996
-      scale: "1, 1"
-      tiled: true
-      shader: "shaded"
-    - texture:
-        !type:ImageParallaxTextureSource
-        path: "/Textures/Imperial/StationsContent/Polus/Parallax/rock-1.png"
-      slowness: 1
-      scale: "1, 1"
-      tiled: true
-      shader: "shaded"
+      shader: "unshaded"
   layersLQ:
     - texture:
         !type:GeneratedParallaxTextureSource
