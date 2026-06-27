@@ -6,7 +6,7 @@ namespace Content.Goobstation.Shared.EatToGrow;
 public sealed partial class EatToGrowComponent : Component
 {
     [DataField]
-    public float Growth = 0.001f; // percentage growth
+    public float Growth = 0.1f; // percentage growth
 
     [DataField]
     public float MaxGrowth = 500.0f; // max allowed scale multiplier
