@@ -9,7 +9,7 @@ public sealed partial class EatToGrowComponent : Component
     public float Growth = 0.1f; // percentage growth
 
     [DataField]
-    public float MaxGrowth = 500.0f; // max allowed scale multiplier
+    public float MaxGrowth = 500.0f; // max allowed scale multiplier|CorvaxGoob: 5--->500
 
     [DataField]
     public float CurrentScale = 1.0f; // current scale
