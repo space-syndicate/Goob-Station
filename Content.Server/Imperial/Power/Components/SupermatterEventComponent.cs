@@ -77,17 +77,6 @@ public sealed partial class SupermatterEventComponent : Component
     public TimeSpan? PlasmaTickAccumulator = null;
 
     /// <summary>
-    /// Радио каналы для оповещений о событиях.
-    /// </summary>
-    [DataField]
-    public ProtoId<RadioChannelPrototype>[] RadioChannels = ["Engineering"];
-
-    /// <summary>
-    /// Время жизни кэша консоли (в секундах).
-    /// </summary>
-    public readonly TimeSpan ConsoleCacheLifetime = TimeSpan.FromSeconds(10);
-
-    /// <summary>
     /// Длительность события None (в секундах).
     /// </summary>
     [DataField]
@@ -187,7 +176,6 @@ public sealed partial class SupermatterEventComponent : Component
     [DataField]
     public float DefaultRadiationIntensity = Random.Shared.NextFloat(4, 5);
 
-    public TimeSpan LastConsoleCacheUpdate = TimeSpan.Zero;
     public TimeSpan LastEventEndTimeUpdate = TimeSpan.Zero;
     public TimeSpan LastNextEventTimerUpdate = TimeSpan.Zero;
     public TimeSpan LastLightningCooldownUpdate = TimeSpan.Zero;

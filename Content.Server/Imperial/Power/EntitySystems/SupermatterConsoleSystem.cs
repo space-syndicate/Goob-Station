@@ -1,13 +1,16 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Imperial.Power.Components;
-using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Imperial.Power;
 using Content.Shared.Imperial.Power.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
+using Content.Server.Chat.Systems;
+using Content.Server.Radio.EntitySystems;
+using Content.Shared.Chat;
+using Content.Shared.DeviceLinking;
 using Content.Shared.Imperial.Power.Events;
 using Robust.Shared.Timing;
 
@@ -16,11 +19,12 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 public sealed class SupermatterConsoleSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosSystem = null!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = null!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
+    [Dependency] private readonly ChatSystem _chatSystem = null!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = null!;
     [Dependency] private readonly IGameTiming _timing = null!;
+    [Dependency] private readonly RadioSystem _radioSystem = null!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = null!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
 
     public override void Initialize()
     {
@@ -34,14 +38,9 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         SubscribeLocalEvent<SupermatterConsoleComponent, PortDisconnectedEvent>(OnPortDisconnected);
 
         SubscribeLocalEvent<SupermatterConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
-    }
 
-    private static void OnUiOpened(Entity<SupermatterConsoleComponent> entity, ref BoundUIOpenedEvent args)
-    {
-        if (!args.UiKey.Equals(SupermatterConsoleUiKey.Key))
-            return;
-
-        entity.Comp.NextUiUpdate = TimeSpan.Zero;
+        SubscribeLocalEvent<SupermatterIntegrityComponent, SupermatterStartupEvent>(OnSupermatterStartup);
+        SubscribeLocalEvent<SupermatterIntegrityComponent, SupermatterSendRadioEvent>(OnSendRadioEvent);
     }
 
     private void OnInit(Entity<SupermatterConsoleComponent> entity, ref ComponentInit args)
@@ -86,24 +85,67 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         UpdateUi(entity, true);
     }
 
-    private EntityUid? FindNearestSupermatter(EntityUid consoleUid)
+    private static void OnUiOpened(Entity<SupermatterConsoleComponent> entity, ref BoundUIOpenedEvent args)
     {
-        var transformCompConsole = Transform(consoleUid);
-        var mapId = transformCompConsole.MapID;
-        var pos = _transformSystem.GetMapCoordinates(transformCompConsole).Position;
+        if (!args.UiKey.Equals(SupermatterConsoleUiKey.Key))
+            return;
 
-        EntityUid? nearest = null;
-        var minDist = float.MaxValue;
+        entity.Comp.NextUiUpdate = TimeSpan.Zero;
+    }
 
-        var smEnumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
-        while (smEnumerator.MoveNext(out var smUid, out _, out var transComp))
+    private void OnSupermatterStartup(Entity<SupermatterIntegrityComponent> supermatter, ref SupermatterStartupEvent args)
+    {
+        var query = EntityQueryEnumerator<SupermatterConsoleComponent, TransformComponent>();
+        var smTrans = Transform(supermatter.Owner);
+
+        while (query.MoveNext(out var consoleUid, out var consoleComp, out var consoleTrans))
         {
-            if (transComp.MapID != mapId)
+            if (consoleComp.ConnectedSupermatter != null)
+                continue;
+            var maxRange = consoleComp.MaxRange;
+
+            if (!smTrans.Coordinates.TryDistance(EntityManager, consoleTrans.Coordinates, out var distance)
+                || distance > maxRange)
                 continue;
 
-            var smPos = _transformSystem.GetMapCoordinates(smUid).Position;
-            var dist = (smPos - pos).LengthSquared();
-            if (dist > minDist)
+            _signalSystem.LinkDefaults(null, supermatter.Owner, consoleUid);
+            consoleComp.ConnectedSupermatter = supermatter.Owner;
+        }
+    }
+
+    private void OnSendRadioEvent(Entity<SupermatterIntegrityComponent> entity, ref SupermatterSendRadioEvent args)
+    {
+        var query = EntityQueryEnumerator<SupermatterConsoleComponent>();
+        var radioSent = false;
+
+        while (query.MoveNext(out var consoleUid, out var consoleComp))
+        {
+            if (consoleComp.ConnectedSupermatter != entity)
+                continue;
+
+            _chatSystem.TrySendInGameICMessage(consoleUid, args.Message, InGameICChatType.Speak, ChatTransmitRange.Normal);
+
+            if (radioSent)
+                continue;
+
+            foreach (var channel in entity.Comp.RadioChannels)
+                _radioSystem.SendRadioMessage(consoleUid, args.Message, channel, consoleUid);
+
+            radioSent = true;
+        }
+    }
+
+    private EntityUid? FindNearestSupermatter(Entity<SupermatterConsoleComponent> console)
+    {
+        var pos = Transform(console).Coordinates;
+        EntityUid? nearest = null;
+        var minDist = console.Comp.MaxRange;
+
+        var smEnumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
+        while (smEnumerator.MoveNext(out var smUid, out _, out var smTrans))
+        {
+            if (!pos.TryDistance(EntityManager, smTrans.Coordinates, out var dist)
+                || dist > minDist)
                 continue;
 
             minDist = dist;
@@ -111,7 +153,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
         }
 
         if (nearest != null)
-            _signalSystem.LinkDefaults(null, nearest.Value, consoleUid);
+            _signalSystem.LinkDefaults(null, nearest.Value, console);
 
         return nearest;
     }

@@ -47,7 +47,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public float CatastropheThreshold;
 
     [DataField]
-    public ProtoId<RadioChannelPrototype> RadioChannel = "Engineering";
+    public ProtoId<RadioChannelPrototype>[] RadioChannels = ["Engineering"];
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool CatastropheActive;
