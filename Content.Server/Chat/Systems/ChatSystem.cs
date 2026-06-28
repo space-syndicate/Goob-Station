@@ -129,6 +129,7 @@ using Content.Shared._Starlight.CollectiveMind; // Goobstation - Starlight colle
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared._CorvaxGoob.CCCVars; // CorvaxGoob-ChatMessageCooldown
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -151,6 +152,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Robust.Shared.Timing; // CorvaxGoob-ChatMessageCooldown
 using System.Collections.Immutable; // Goobstation - Starlight collective mind port
 using System.Collections.Immutable; // Goobstation - Starlight collective mind port
 using System.Globalization;
@@ -192,7 +194,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ScryingOrbSystem _scrying = default!; // Goobstation Change
     [Dependency] private readonly CollectiveMindUpdateSystem _collectiveMind = default!; // Goobstation - Starlight collective mind port
     [Dependency] private readonly LanguageSystem _language = default!; // Einstein Engines - Language
-
+    [Dependency] private readonly IGameTiming _timing = default!; // CorvaxGoob-ChatMessageCooldown
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
@@ -213,6 +215,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     private bool _critLoocEnabled;
     private bool _DeadchatEnabled; // RMC14
     private readonly bool _adminLoocEnabled = true;
+    private readonly Dictionary<NetUserId, TimeSpan> _lastMessageTime = new(); // CorvaxGoob-ChatMessageCooldown
+    private float _chatMessageCooldown; // CorvaxGoob-ChatMessageCooldown
 
     public override void Initialize()
     {
@@ -222,10 +226,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, RMCCVars.RMCDeadChatEnabled, OnDeadChatEnabledChanged, true); // RMC14
+        Subs.CVar(_configurationManager, CCCVars.ChatMessageCooldown, OnChatMessageCooldownChanged, true); // CorvaxGoob-ChatMessageCooldown
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
     }
-
+    private void OnChatMessageCooldownChanged(float value) => _chatMessageCooldown = value; // CorvaxGoob-ChatMessageCooldown
     private void OnLoocEnabledChanged(bool val)
     {
         if (_loocEnabled == val) return;
@@ -348,6 +353,37 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
 
+        // CorvaxGoob-ChatMessageCooldown - start
+        if (player != null &&
+            (desiredType == InGameICChatType.Speak ||
+            desiredType == InGameICChatType.Emote ||
+            desiredType == InGameICChatType.Whisper) &&
+            _chatMessageCooldown > 0f)
+        {
+            var now = _timing.CurTime;
+
+            if (_lastMessageTime.TryGetValue(player.UserId, out var last))
+            {
+                var remaining = TimeSpan.FromSeconds(_chatMessageCooldown) - (now - last);
+
+                if (remaining > TimeSpan.Zero)
+                {
+                    if (player.AttachedEntity is { Valid: true } attached)
+                    {
+                        _popupSystem.PopupEntity(
+                            Loc.GetString("chat-message-cooldown",
+                                ("seconds", remaining.TotalSeconds.ToString("0.0"))),
+                            attached,
+                            player);
+                    }
+
+                    return;
+                }
+            }
+
+            _lastMessageTime[player.UserId] = now;
+        }
+        // CorvaxGoob-ChatMessageCooldown - end
         // Sus
         if (player?.AttachedEntity is { Valid: true } entity && source != entity)
         {
