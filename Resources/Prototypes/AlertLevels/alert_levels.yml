@@ -199,7 +199,11 @@
       shuttleTime: 600
     amber:
       announcement: alert-level-amber-announcement
-      sound: /Audio/_CorvaxGoob/Announcements/amberalarm.ogg # CorvaxGoob-Change-Sound
+       # CorvaxGoob-Change-Sound-Start
+      sound: /Audio/_CorvaxGoob/Announcements/amberalarm.ogg
+      selectable: false
+      emagSelectable: true
+       # CorvaxGoob-Change-Sound-End
       color: "#8A3324"
       emergencyLightColor: "#8A3324"
       forceEnableEmergencyLights: true
