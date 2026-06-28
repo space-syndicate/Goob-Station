@@ -15,7 +15,7 @@ public sealed partial class EatToGrowComponent : Component
     public float CurrentScale = 1.0f; // current scale
 
     [DataField]
-    public bool ShrinkOnDeath = false; // Revert to original size on death?
+    public bool ShrinkOnDeath = false; // Revert to original size on death?|CorvaxGoob: true--->false
 
     [DataField]
     public int TimesGrown = 0; // how many times have they grown?
