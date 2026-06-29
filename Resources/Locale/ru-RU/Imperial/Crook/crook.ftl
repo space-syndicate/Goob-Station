@@ -114,3 +114,10 @@ ent-LargeBox = большой ящик
 ent-AlwaysPoweredWallLightAmbient = странный светильник
     .desc = Издаёт ужасный звук, это сводит с ума.
     .suffix = Crook
+
+plushie-moisha-1 = Ой вей!
+plushie-moisha-2 = Таки да!
+plushie-moisha-3 = Ну, я же говорил!
+plushie-moisha-4 = Где мои деньги?
+plushie-moisha-5 = Это всё интриги!
+plushie-moisha-6 = Шлемазл!
