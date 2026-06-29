@@ -640,7 +640,7 @@
   parent: BasePlushieCharacter
   id: PlushieMoishaElkin
   name: ent-PlushieMoishaElkin
-  description: ent-PlushieMoishaElkin-desc
+  description: Самый подлый адвокат из всех, возможно в себе он хранит тайны закона...
   components:
   - type: Sprite
     sprite: Imperial/Crook/Plushie/moysha.rsi
