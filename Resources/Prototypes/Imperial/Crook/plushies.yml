@@ -639,8 +639,8 @@
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieMoishaElkin
-  name: ent-PlushieMoishaElkin
-  description: ent-PlushieMoishaElkin.desc
+  name: Moisha Elkin
+  description: The sneakiest lawyer of them all, perhaps he hides the secrets of the law within himself...
   components:
   - type: Sprite
     sprite: Imperial/Crook/Plushie/moysha.rsi
