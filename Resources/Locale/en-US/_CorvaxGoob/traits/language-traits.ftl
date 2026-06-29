@@ -1,0 +1,4 @@
+trait-language-nobilis-name = Nobilis
+trait-language-nobilis-desc =
+    The language of the ancient dynasties of Old Earth. Despite the disappearance of most of the old states, it has endured among influential families and the corporate aristocracy as a symbol of lineage and status.
+    To most inhabitants of the frontier, it sounds haughty and old-fashioned, yet fluency in Nobilis still opens doors to the highest circles of society.
