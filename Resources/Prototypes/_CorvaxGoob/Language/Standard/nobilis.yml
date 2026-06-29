@@ -3,7 +3,7 @@
   isVisibleLanguage: true
   speech:
     color: "#D4AF37AA"
-    fontId: NotoSans #исправить
+    fontId: NotoSans 
     boldFontId: NotoSansBold
   obfuscation:
     !type:SyllableObfuscation

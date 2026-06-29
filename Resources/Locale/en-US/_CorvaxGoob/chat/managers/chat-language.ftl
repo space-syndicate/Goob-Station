@@ -1,0 +1,1 @@
+chat-language-Nobilis-name = Nobilis

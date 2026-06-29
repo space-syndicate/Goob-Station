@@ -6,74 +6,85 @@
 
 # Translators
 - type: latheRecipe
-  id: CanilunztTranslator
-  result: CanilunztTranslator
+  abstract: true
+  id: BaseTranslator
   completetime: 2
   materials:
     Steel: 500
-    Glass: 100
-    Plastic: 50
+    Glass: 500
+    Plastic: 100
     Gold: 50
+    Silver: 50
+
+- type: latheRecipe
+  id: CanilunztTranslator
+  parent: BaseTranslator
+  result: CanilunztTranslator
 
 - type: latheRecipe
   id: BubblishTranslator
+  parent: BaseTranslator
   result: BubblishTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
 
 - type: latheRecipe
   id: NekomimeticTranslator
+  parent: BaseTranslator
   result: NekomimeticTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
 
 - type: latheRecipe
   id: DraconicTranslator
+  parent: BaseTranslator
   result: DraconicTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
 
 - type: latheRecipe
   id: SolCommonTranslator
+  parent: BaseTranslator
   result: SolCommonTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
 
 - type: latheRecipe
   id: RootSpeakTranslator
+  parent: BaseTranslator
   result: RootSpeakTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
 
 - type: latheRecipe
   id: MofficTranslator
+  parent: BaseTranslator
   result: MofficTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
+
+- type: latheRecipe
+  id: ValyrianStandardTranslator
+  parent: BaseTranslator
+  result: ValyrianStandardTranslator
+
+- type: latheRecipe
+  id: ChittinTranslator
+  parent: BaseTranslator
+  result: ChittinTranslator
+
+- type: latheRecipe
+  id: SiikMaasTranslator
+  parent: BaseTranslator
+  result: SiikMaasTranslator
+
+- type: latheRecipe
+  id: MarishTranslator
+  parent: BaseTranslator
+  result: MarishTranslator
+
+- type: latheRecipe
+  id: SchechiTranslator
+  parent: BaseTranslator
+  result: SchechiTranslator
+
+- type: latheRecipe
+  id: NewKinPidginTranslator
+  parent: BaseTranslator
+  result: NewKinPidginTranslator
+
+- type: latheRecipe
+  id: GruntishTranslator
+  parent: BaseTranslator
+  result: GruntishTranslator
 
 - type: latheRecipe
   id: XenoTranslator
@@ -97,76 +108,6 @@
     Plasma: 50
     Silver: 5
 
-- type: latheRecipe
-  id: ValyrianStandardTranslator
-  result: ValyrianStandardTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
-
-- type: latheRecipe
-  id: ChittinTranslator
-  result: ChittinTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
-
-- type: latheRecipe
-  id: SiikMaasTranslator
-  result: SiikMaasTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
-
-- type: latheRecipe
-  id: MarishTranslator
-  result: MarishTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
-
-- type: latheRecipe
-  id: SchechiTranslator
-  result: SchechiTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
-
-- type: latheRecipe
-  id: NewKinPidginTranslator
-  result: NewKinPidginTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 100
-    Plastic: 50
-    Gold: 50
-
-- type: latheRecipe
-  id: GruntishTranslator
-  result: GruntishTranslator
-  completetime: 2
-  materials:
-    Steel: 500
-    Glass: 500
-    Plastic: 100
-    Gold: 50
-    Silver: 50
 
 # Implanters
 - type: latheRecipe

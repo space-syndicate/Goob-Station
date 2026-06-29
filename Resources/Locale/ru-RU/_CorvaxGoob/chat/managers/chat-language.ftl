@@ -1,1 +1,1 @@
-chat-language-SolCommon-name = Сол-Коммон
+chat-language-Nobilis-name = Нобилис

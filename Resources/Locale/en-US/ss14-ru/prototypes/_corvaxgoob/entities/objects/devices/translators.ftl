@@ -3,3 +3,6 @@ ent-EmptyXeeplianTranslator = Xeeplian translator
     .suffix = Empty
 ent-XeeplianTranslator = Xeeplian translator
     .desc = Translates speech between Xeeplian and TauCetiBasic Common.
+
+ent-NobilisTranslator = Nobilis translator
+    .desc = Translates speech between Nobilis and TauCetiBasic Common.
