@@ -115,9 +115,9 @@ ent-AlwaysPoweredWallLightAmbient = странный светильник
     .desc = Издаёт ужасный звук, это сводит с ума.
     .suffix = Crook
 
-plushie-moisha-1 = Ой вей!
-plushie-moisha-2 = Таки да!
-plushie-moisha-3 = Ну, я же говорил!
-plushie-moisha-4 = Где мои деньги?
-plushie-moisha-5 = Это всё интриги!
-plushie-moisha-6 = Шлемазл!
+plushie-moisha-1 = Я обжалую это решение!
+plushie-moisha-2 = У меня есть доказательства!
+plushie-moisha-3 = Это нарушение процессуальных норм!
+plushie-moisha-4 = Судья, я протестую!
+plushie-moisha-5 = Мой клиент невиновен!
+plushie-moisha-6 = Закон есть закон!

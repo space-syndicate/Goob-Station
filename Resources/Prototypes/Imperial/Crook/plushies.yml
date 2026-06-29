@@ -661,7 +661,7 @@
       params:
         volume: -8
   - type: MeleeWeapon
-    attackRate: 5
+    attackRate: 10
     soundHit:
       path: /Audio/Items/Toys/weh.ogg
   - type: StorageFill
@@ -676,4 +676,4 @@
       params:
         volume: -8
   - type: UseDelay
-    delay: 0.5
+    delay: 0.05
