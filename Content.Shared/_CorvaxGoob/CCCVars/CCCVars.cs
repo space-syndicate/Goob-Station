@@ -1,5 +1,3 @@
-using Content.Shared.Administration;
-using Content.Shared.CCVar.CVarAccess;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared._CorvaxGoob.CCCVars;
@@ -125,8 +123,4 @@ public sealed class CCCVars
 
     public static readonly CVarDef<float> PhotoPlayTimeHours =
         CVarDef.Create("photo.playtime_require_time", 20f, CVar.SERVERONLY);
-
-    [CVarControl(AdminFlags.VarEdit)]
-    public static readonly CVarDef<float> ChatMessageCooldown =
-        CVarDef.Create("chat.message_cooldown", 1.0f, CVar.SERVERONLY | CVar.ARCHIVE);
 }
