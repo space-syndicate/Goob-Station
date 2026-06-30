@@ -71,7 +71,7 @@
 ### Plushe
 
 - type: entity
-  parent: PlushieFumoJunko
+  parent: PlushieFumoJunko
   id: BasePlushieKolontarev
   categories: [ HideSpawnMenu ]
   name: BasePlushieCharacter
