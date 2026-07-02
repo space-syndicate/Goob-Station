@@ -1061,14 +1061,16 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
-
                     // Corvax-TTS-Start
-                    b.Property<string>("Voice")
+                    b.Property<string>("TTSVoice")
                         .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("ttsvoice");
+
+                    b.Property<string>("Voice")
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
                     // Corvax-TTS-End
-
                     b.HasKey("Id")
                         .HasName("PK_profile");
 

@@ -72,7 +72,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
             return;
         }
 
-        _window.UpdateState(cast.Name, cast.Voice, cast.Verb); // CorvaxGoob-TTS
+        _window.UpdateState(cast.Name, cast.TTSVoice, cast.Verb); // CorvaxGoob-TTS
         _window.SetCurrentJobIcon(cast.JobIcon); // GabyStation -> Radio icons
     }
 
