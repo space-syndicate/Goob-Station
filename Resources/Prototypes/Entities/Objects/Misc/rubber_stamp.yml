@@ -148,7 +148,6 @@
     stampedName: stamp-component-stamped-name-captain
     stampedColor: "#3681bb"
     stampState: "paper_stamp-cap"
-    stampLargeIcon: "large_stamp-cap" # Goob
   - type: Sprite
     state: stamp-cap
 
@@ -162,7 +161,6 @@
     stampedName: stamp-component-stamped-name-centcom
     stampedColor: "#006600"
     stampState: "paper_stamp-centcom"
-    stampLargeIcon: "large_stamp-centcom" # Goob
   - type: Sprite
     state: stamp-centcom
 
@@ -176,7 +174,6 @@
     stampedName: stamp-component-stamped-name-chaplain
     stampedColor: "#d70601"
     stampState: "paper_stamp-chaplain"
-    stampLargeIcon: "large_stamp-chap" # Goob
   - type: Sprite
     state: stamp-chaplain
 
@@ -190,7 +187,6 @@
     stampedName: stamp-component-stamped-name-lawyer
     stampedColor: "#233D57"
     stampState: "paper_stamp-lawyer"
-    stampLargeIcon: "large_stamp-law" # Goob
   - type: Sprite
     state: stamp-lawyer
 
@@ -204,7 +200,6 @@
     stampedName: stamp-component-stamped-name-clown
     stampedColor: "#ff33cc"
     stampState: "paper_stamp-clown"
-    stampLargeIcon: "large_stamp-clown" # Goob
   - type: Sprite
     state: stamp-clown
   - type: Tag
@@ -221,7 +216,6 @@
     stampedName: stamp-component-stamped-name-ce
     stampedColor: "#c69b17"
     stampState: "paper_stamp-ce"
-    stampLargeIcon: "large_stamp-ce" # Goob
   - type: Sprite
     state: stamp-ce
 
@@ -235,7 +229,6 @@
     stampedName: stamp-component-stamped-name-cmo
     stampedColor: "#33ccff"
     stampState: "paper_stamp-cmo"
-    stampLargeIcon: "large_stamp-cmo" # Goob
   - type: Sprite
     state: stamp-cmo
 
@@ -249,7 +242,6 @@
     stampedName: stamp-component-stamped-name-hop
     stampedColor: "#6ec0ea"
     stampState: "paper_stamp-hop"
-    stampLargeIcon: "large_stamp-hop" # Goob
   - type: Sprite
     state: stamp-hop
 
@@ -263,7 +255,6 @@
     stampedName: stamp-component-stamped-name-hos
     stampedColor: "#cc0000"
     stampState: "paper_stamp-hos"
-    stampLargeIcon: "large_stamp-hos" # Goob
   - type: Sprite
     state: stamp-hos
 
@@ -277,7 +268,6 @@
     stampedName: stamp-component-stamped-name-mime
     stampedColor: "#777777"
     stampState: "paper_stamp-mime"
-    stampLargeIcon: "large_stamp-mime" # Goob
     sound: null
   - type: Sprite
     state: stamp-mime
@@ -292,7 +282,6 @@
     stampedName: stamp-component-stamped-name-qm
     stampedColor: "#a23e3e"
     stampState: "paper_stamp-qm"
-    stampLargeIcon: "large_stamp-qm" # Goob
   - type: Sprite
     state: stamp-qm
 
@@ -306,7 +295,6 @@
     stampedName: stamp-component-stamped-name-rd
     stampedColor: "#1f66a0"
     stampState: "paper_stamp-rd"
-    stampLargeIcon: "large_stamp-rd" # Goob
   - type: Sprite
     state: stamp-rd
 
@@ -332,7 +320,6 @@
     stampedName: stamp-component-stamped-name-syndicate
     stampedColor: "#850000"
     stampState: "paper_stamp-syndicate"
-    stampLargeIcon: "large_stamp-syndicate" # Goob
   - type: Sprite
     state: stamp-syndicate
   - type: StaticPrice
@@ -360,7 +347,6 @@
     stampedName: stamp-component-stamped-name-approved
     stampedColor: "#00be00"
     stampState: "paper_stamp-ok"
-    stampLargeIcon: "large_stamp-ok" # goob
   - type: Sprite
     state: stamp-ok
 
@@ -373,7 +359,6 @@
     stampedName: stamp-component-stamped-name-denied
     stampedColor: "#a23e3e"
     stampState: "paper_stamp-deny"
-    stampLargeIcon: "large_stamp-deny" # goob
   - type: Sprite
     state: stamp-deny
 
