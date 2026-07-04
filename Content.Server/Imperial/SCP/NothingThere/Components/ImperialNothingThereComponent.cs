@@ -15,6 +15,7 @@ namespace Content.Server.Imperial.SCP.NothingThere.Components;
 [RegisterComponent]
 public sealed partial class ImperialNothingThereComponent : Component
 {
+    [DataField]
     public SoundSpecifier ChaseSound = new SoundPathSpecifier("/Audio/Imperial/SCP/nothingthere_idle.ogg");
 
     [ViewVariables]
