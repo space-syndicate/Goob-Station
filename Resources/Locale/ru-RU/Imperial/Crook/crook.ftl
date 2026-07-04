@@ -114,3 +114,12 @@ ent-LargeBox = большой ящик
 ent-AlwaysPoweredWallLightAmbient = странный светильник
     .desc = Издаёт ужасный звук, это сводит с ума.
     .suffix = Crook
+
+ent-PlushieMoishaElkin = Мойша Элькин
+ent-PlushieMoishaElkin-desc = Самый подлый адвокат из всех, возможно в себе он хранит тайны закона...
+plushie-moisha-1 = Я обжалую это решение!
+plushie-moisha-2 = У меня есть доказательства!
+plushie-moisha-3 = Это нарушение процессуальных норм!
+plushie-moisha-4 = Судья, я протестую!
+plushie-moisha-5 = Мой клиент невиновен!
+plushie-moisha-6 = Закон есть закон!

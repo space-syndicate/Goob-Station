@@ -6,6 +6,7 @@ holopad-window-options = [color=darkgray][font size=10][italic]Пожалуйс�
 # Call status
 holopad-window-no-calls-in-progress = Голо-звонки не выполняются
 holopad-window-incoming-call = Входящий голо-звонок от:
+holopad-window-relay-label = Происходит из:
 holopad-window-outgoing-call = Попытка установить соединение...
 holopad-window-call-in-progress = Выполняется голо-звонок
 holopad-window-call-ending = Отключение...
@@ -28,6 +29,7 @@ holopad-window-access-denied = Доступ отклонен
 holopad-window-select-contact-from-list = Выберите контакт для голо-звонка
 holopad-window-fetching-contacts-list = В настоящее время нет доступных голопадов
 holopad-window-contact-label = {CAPITALIZE($label)}
+holopad-window-filter-line-placeholder = Поиск контактов
 
 # Flavor
 holopad-window-flavor-left = ⚠ Не входите, пока голо-проектор активен
@@ -37,7 +39,9 @@ holopad-window-flavor-right = v3.0.9
 holopad-hologram-name = голограмма {THE($name)}
 
 # Holopad actions
-activate-holopad-projector-verb = Активировать голо-проектор
+holopad-activate-projector-verb = Активировать голо-проектор
+holopad-ai-is-unable-to-reach-holopad = Вы не можете связаться с источником вызова, он находится слишком далеко от вашей ядра.
+holopad-ai-is-unable-to-activate-projector = Вы не можете активировать проектор голопада, он находится слишком далеко от вашего ядра.
 
 # Mapping prototypes
 # General
@@ -68,6 +72,8 @@ holopad-command-hos = Командование - ГСБ
 # Science
 holopad-science-anomaly = Научный отдел - Аномалистика
 holopad-science-artifact = Научный отдел - Ксеноархеология
+holopad-science-artifact-north = Научный - Ксеноархеология-Север
+holopad-science-artifact-south = Научный - Ксеноархеология-Юг
 holopad-science-robotics = Научный отдел - Робототехника
 holopad-science-rnd = Научный отдел
 holopad-science-front = Научный отдел - Главный зал
@@ -83,6 +89,7 @@ holopad-medical-paramedic = Медицинский отдел - Парамеди
 holopad-medical-virology = Медицинский отдел - Вирусология
 holopad-medical-front = Медицинский отдел - Главный зал
 holopad-medical-breakroom = Медицинский отдел - Комната отдыха
+holopad-medical-clinic = Медицинский - Клиника
 
 # Cargo
 holopad-cargo-front = Отдел Снабжения - Главный зал
@@ -91,6 +98,7 @@ holopad-cargo-salvage-bay = Отдел Снабжения - Утилизатор
 holopad-cargo-breakroom  = Отдел Снабжения - Комната отдыха
 holopad-cargo-ats = Отдел Снабжения - Торговый аванпост
 holopad-cargo-shuttle = Отдел Снабжения - Шаттл
+holopad-cargo-mailroom = Отдел снабжение - Почтовое отделение
 
 # Engineering
 holopad-engineering-atmos-front = Атмосферный отсек - Главный зал
@@ -103,6 +111,7 @@ holopad-engineering-telecoms = Инженерный отдел - Телеком�
 holopad-engineering-tech-vault = Инженерный отдел - Техническое хранилище
 holopad-engineering-ame = Инженерный отдел - ДАМ
 holopad-engineering-power = Инженерный отдел - Энергоснабжение
+holopad-engineering-main = Инженерия - Главная
 
 # Security
 holopad-security-front = Служба Безопасности - Главный зал
@@ -117,6 +126,8 @@ holopad-security-lawyer = Служба Безопасности - Юрист
 holopad-security-armory = Служба Безопасности - Оружейная
 holopad-security-locker-room = Служба Безопасности - Раздевалка
 holopad-security-brig-med = Служба Безопасности - Бригмед
+holopad-security-evac-checkpoint = Безопасность - Пункт эвакуации
+holopad-security-arrivals-checkpoint = Безопасность -  Пункт прибытия
 
 # Service
 holopad-service-janitor = Сервисный отдел - Уборщик
@@ -148,15 +159,3 @@ holopad-station-cargo-bay = Станция - Отдел Снабжения
 
 # CentComm
 holopad-centcomm-evac = ЦентКом - Эвакуационный шаттл
-holopad-window-relay-label = Происходит из:
-holopad-window-filter-line-placeholder = Поиск контактов
-holopad-activate-projector-verb = Активировать проектор голопада
-holopad-ai-is-unable-to-reach-holopad = Вы не можете связаться с источником вызова, он находится слишком далеко от вашей ядра.
-holopad-ai-is-unable-to-activate-projector = Вы не можете активировать проектор голопада, он находится слишком далеко от вашего ядра.
-holopad-science-artifact-north = Научный  - Ксеноархеология-Север
-holopad-science-artifact-south = Научный - Ксеноархеология-Юг
-holopad-medical-clinic = Медицинский - Клиника
-holopad-cargo-mailroom = Отдел снабжение - Почтовое отделение
-holopad-engineering-main = Инженерия - Главная
-holopad-security-evac-checkpoint = Безопасность - Пункт эвакуации
-holopad-security-arrivals-checkpoint = Безопасность -  Пункт прибытия

@@ -22,6 +22,12 @@ vv-sound-pitch = Высота тона
 vv-sound-max-distance = Максимальное расстояние
 vv-sound-rolloff-factor = Коэффициент свертывания
 vv-sound-reference-distance = Базовое расстояние
-vv-sound-loop =Зациклить
+vv-sound-loop = Зациклить
 vv-sound-play-offset = Смещение воспроизведения
 vv-sound-variation = Изменение высоты тона
+
+
+## ProtoId
+vv-protoid-id-placeholder = ID прототипа
+vv-protoid-select-button-label = Выбрать
+vv-protoid-addwindow-title = Установить Прототип

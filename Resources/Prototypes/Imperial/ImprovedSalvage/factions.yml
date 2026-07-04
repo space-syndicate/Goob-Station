@@ -1,0 +1,19 @@
+- type: salvageFaction
+  id: Megafauna
+  desc: salvage-faction-megafauna
+  entries:
+    - proto: MobWatcherLavaland
+    - proto: MobGoliath
+      cost: 6
+      prob: 0.5
+    - proto: MobHivelord 
+      cost: 6
+      prob: 0.3
+    - proto: MobPhantomor
+      cost: 6
+      prob: 0.1 
+  configs:
+    DefenseStructure: CarpStatue
+    Megafauna: MobDragonDungeon4
+  biomes:
+    - ImperialVGroid

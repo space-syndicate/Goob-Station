@@ -5,6 +5,9 @@
   modifierBudget: 2
   color: "#52B4E996"
   recommendedPlayers: 2
+  factionsAllowed: # IMPERIAL IMPROVED SALVAGE
+    - Carps
+    - Xenos
 
     #9FED5896
     #EFB34196

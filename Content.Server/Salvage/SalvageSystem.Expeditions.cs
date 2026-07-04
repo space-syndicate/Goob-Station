@@ -20,7 +20,7 @@ public sealed partial class SalvageSystem
 
     private const int MissionLimit = 5; // IMPERIAL IMPROVED SALVAGE
 
-    private readonly string[] MissionsDiff = ["Doomed", "Cakewalk", "Hard", "Infestation", "Suicidle", "Moderate"]; // Imperial Improved Salvage
+    private readonly string[] MissionsDiff = ["Doomed", "Cakewalk", "Hard", "Infestation", "Suicidal", "Moderate"]; // Imperial Improved Salvage
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
