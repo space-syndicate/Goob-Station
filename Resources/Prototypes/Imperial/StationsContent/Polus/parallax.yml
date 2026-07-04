@@ -1,0 +1,17 @@
+- type: parallax
+  id: ImperialPolus
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/StationsContent/Polus/Parallax/lava.png"
+      slowness: 0.996
+      scale: "0.8, 0.8"
+      tiled: true
+      shader: "unshaded"
+  layersLQ:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.89
+  layersLQUseHQ: false

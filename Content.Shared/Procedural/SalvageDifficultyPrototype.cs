@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Content.Shared.Salvage.Expeditions; /// IMPERIAL IMPROVED SALVAGE
 
 namespace Content.Shared.Procedural;
 
@@ -33,4 +34,12 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
 
     [DataField("recommendedPlayers", required: true)]
     public int RecommendedPlayers;
+
+    /// IMPERIAL IMPROVED SALVAGE START
+    /// <summary>
+    /// Некоторые фракции должны появляться только на выоских сложностях.
+    /// </summary>
+    [DataField("factionsAllowed")]
+    public List<ProtoId<SalvageFactionPrototype>>? Factions { get; private set; } = null;
+    /// IMPERIAL IMPROVED SALVAGE END
 }
