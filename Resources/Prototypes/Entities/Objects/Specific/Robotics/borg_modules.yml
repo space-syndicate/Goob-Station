@@ -764,6 +764,7 @@
     items:
     - RCDRecharging
     - RPDRecharging # Goobstation
+    - BorgSprayPainterRecharging # CorvaxGoob
     - BorgFireExtinguisher
     - BorgHandheldGPSBasic
     - GasAnalyzer
