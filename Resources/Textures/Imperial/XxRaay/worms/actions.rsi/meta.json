@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "crookielv (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bite"
+    },
+    {
+      "name": "evolution"
+    },
+    {
+      "name": "in"
+    },
+    {
+      "name": "out"
+    },
+    {
+      "name": "reproduct"
+    }
+  ]
+}

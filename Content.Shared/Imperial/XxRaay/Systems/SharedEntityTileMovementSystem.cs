@@ -5,6 +5,7 @@ using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Imperial.XxRaay.Components;
+using Content.Shared.Imperial.XxRaay.Events;
 using Content.Shared.Imperial.XxRaay.Types;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
@@ -35,9 +36,12 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     [Dependency] private readonly SharedCombatModeSystem _combatModeSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
 
+    private EntityQuery<ActiveVentCrawlingComponent> _ventCrawlingQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+        _ventCrawlingQuery = GetEntityQuery<ActiveVentCrawlingComponent>();
         UpdatesBefore.Add(typeof(SharedMoverController));
         SubscribeLocalEvent<EntityTileMovementComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EntityTileMovementComponent, ComponentHandleState>(OnHandleState);
@@ -208,9 +212,12 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
         if (!_mapSystem.TryGetTileRef(xform.GridUid.Value, grid, targetTile, out _))
             return new MoveResult(false, false);
 
-        var currentTileDoorResult = CheckDoorsOnTile(uid, xform.GridUid.Value, grid, currentTile);
-        if (currentTileDoorResult.HasValue && !currentTileDoorResult.Value.CanMove)
-            return new MoveResult(false, false, currentTileDoorResult.Value.DoorOpening);
+        if (!_ventCrawlingQuery.HasComp(uid))
+        {
+            var currentTileDoorResult = CheckDoorsOnTile(uid, xform.GridUid.Value, grid, currentTile);
+            if (currentTileDoorResult.HasValue && !currentTileDoorResult.Value.CanMove)
+                return new MoveResult(false, false, currentTileDoorResult.Value.DoorOpening);
+        }
 
         var canMoveResult = CanMoveToTile(uid, xform.GridUid.Value, grid, targetTile, direction, wishDir);
         if (!canMoveResult.CanMove)
@@ -272,8 +279,22 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
 
     private CanMoveResult CanMoveToTile(EntityUid uid, EntityUid gridUid, MapGridComponent grid, Vector2i tilePos, Vector2i? moveDirection = null, Vector2? wishDir = null)
     {
-        if (!TryComp<PhysicsComponent>(uid, out var physics) ||
-            !_mapSystem.TryGetTileRef(gridUid, grid, tilePos, out var tileRef))
+        if (!_mapSystem.TryGetTileRef(gridUid, grid, tilePos, out var tileRef))
+        {
+            if (_ventCrawlingQuery.HasComp(uid))
+                return new CanMoveResult(false, false, false);
+
+            return new CanMoveResult(true, false, false);
+        }
+
+        if (_ventCrawlingQuery.HasComp(uid))
+        {
+            var ev = new VentCrawlTileMoveAttemptEvent(gridUid, tilePos, false);
+            RaiseLocalEvent(uid, ref ev);
+            return new CanMoveResult(ev.CanMove, false, false);
+        }
+
+        if (!TryComp<PhysicsComponent>(uid, out var physics))
             return new CanMoveResult(true, false, false);
 
         var entities = new HashSet<EntityUid>();

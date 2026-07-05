@@ -353,7 +353,12 @@
 
 - type: entity
   name: cockroach
-  parent: SimpleMobBase
+  # Imperial Space VentCrawler; Start
+  # parent: SimpleMobBase
+  parent:
+  - SimpleMobBase
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   id: MobCockroach
   description: This station is just crawling with bugs.
   components:
@@ -1732,6 +1737,9 @@
   parent:
   - SimpleMobBase
   - BaseMobAnimal
+  # Imperial Space VentCrawler; Start
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   id: MobMouse
   description: Squeak!
   components:
@@ -2625,7 +2633,12 @@
 
 - type: entity
   name: tarantula
-  parent: MobSpiderBase
+  # Imperial Space VentCrawler; Start
+  # parent: MobSpiderBase
+  parent:
+  - MobSpiderBase
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.
   components:

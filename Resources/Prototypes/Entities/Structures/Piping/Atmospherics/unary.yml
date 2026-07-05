@@ -60,6 +60,9 @@
             Welded: { state: vent_welded }
             Lockout: { state: vent_lockout }
     - type: GasVentPump
+    # Imperial Worms start
+    - type: VentCrawlPoint
+    # Imperial Worms end
     - type: Construction
       graph: GasUnary
       node: ventpump
@@ -101,6 +104,9 @@
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPassiveVent
+    # Imperial Worms start
+    - type: VentCrawlPoint
+    # Imperial Worms end
     - type: Construction
       graph: GasUnary
       node: passivevent
@@ -151,6 +157,9 @@
             Welded: { state: scrub_welded }
     - type: AtmosDevice
     - type: GasVentScrubber
+    # Imperial Worms start
+    - type: VentCrawlPoint
+    # Imperial Worms end
     - type: Construction
       graph: GasUnary
       node: ventscrubber

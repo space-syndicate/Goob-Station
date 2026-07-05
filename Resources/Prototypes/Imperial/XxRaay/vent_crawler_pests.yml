@@ -1,0 +1,29 @@
+- type: entity
+  id: VentCrawlerPestMixin
+  abstract: true
+  suffix: XxRaay
+  components:
+  - type: Visibility
+  - type: ImperialVentCrawler
+    enterDelay: 2
+    exitDelay: 2
+    ventSpeedMultiplier: 1.5
+    moveSound:
+      collection: FootstepSCPMTF
+    moveSoundInterval: 1.5
+    enterVerb: vent-crawler-verb-enter
+    exitVerb: vent-crawler-verb-exit
+    enterVerbIcon: /Textures/Interface/VerbIcons/open.svg.192dpi.png
+    exitVerbIcon: /Textures/Interface/VerbIcons/eject.svg.192dpi.png
+    enterVerbPriority: 1
+    exitVerbPriority: 2
+    useStealth: true
+    stealthVisibility: -1
+    disableActions: true
+    removeComplexInteraction: true
+    revealPipeNetwork: true
+    pipeRevealRange: 24
+    hiddenVisibilityLayer: 1
+    crawlVisibilityLayer: 16
+    eyeSeeSubfloor: true
+    eyeSeeCrawlVisibilityLayer: true

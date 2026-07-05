@@ -1,0 +1,337 @@
+- type: entity
+  parent:
+  - SimpleSpaceMobBase
+  - MobCombat
+  id: MobWormBase
+  abstract: true
+  suffix: XxRaay
+  name: blood worm
+  description: A rapidly mutating hostile worm.
+  components:
+  - type: Actions
+  - type: Alerts
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-blood-worm-name
+    description: ghost-role-information-blood-worm-description
+    rules: ghost-role-information-blood-worm-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: WormBlood
+  - type: WormBloodDrinker
+    range: 1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      sprite: Imperial/XxRaay/worms/worms.rsi
+      state: tier1
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 60
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tier1
+      Critical:
+        Base: tier1_dead
+      Dead:
+        Base: tier1_dead
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NPCRetaliation
+  - type: FactionException
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: StatusEffects
+    allowed:
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - Flashed
+    - Adrenaline
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 150
+  - type: MobPrice
+    price: 150
+  - type: FloatingVisuals
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Critical
+      60: Dead
+- type: entity
+  parent:
+  - MobWormBase
+  - MobAtmosStandard
+  - MobRespirator
+  id: MobWormTier1
+  suffix: XxRaay, Кровавый червь I
+  name: Blood Worm
+  description: A small blood-red worm that twitches nervously and darts around your feet.
+  components:
+  - type: Speech
+    speechVerb: SmallMob
+  - type: Sprite
+    drawdepth: SmallMobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      sprite: Imperial/XxRaay/worms/worms.rsi
+      state: tier1
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: tier1-moving
+    noMovementLayers:
+      movement:
+        state: tier1
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tier1
+      Critical:
+        Base: tier1_dead
+      Dead:
+        Base: tier1_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 60
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Critical
+      60: Dead
+  - type: Visibility
+  - type: WormBloodDrinker
+    conversionRatio: 0.4
+  - type: WormCorpseHost
+    enterDelay: 10
+    exitBleedDamage:
+      types:
+        Bloodloss: 200
+    enterCooldown: 180
+  - type: ImperialVentCrawler
+    enterDelay: 2
+    exitDelay: 2
+    ventSpeedMultiplier: 1.5
+    moveSound:
+      collection: FootstepSCPMTF
+    moveSoundInterval: 1.5
+    enterVerb: vent-crawler-verb-enter
+    exitVerb: vent-crawler-verb-exit
+    enterVerbIcon: /Textures/Interface/VerbIcons/open.svg.192dpi.png
+    exitVerbIcon: /Textures/Interface/VerbIcons/eject.svg.192dpi.png
+    enterVerbPriority: 1
+    exitVerbPriority: 2
+    useStealth: true
+    stealthVisibility: -1
+    disableActions: true
+    removeComplexInteraction: true
+    revealPipeNetwork: true
+    pipeRevealRange: 24
+    hiddenVisibilityLayer: 1
+    crawlVisibilityLayer: 16
+    eyeSeeSubfloor: true
+    eyeSeeCrawlVisibilityLayer: true
+  - type: WormDoorHider
+    enterDelay: 2
+    useStealth: true
+    stealthVisibility: -1
+    hiddenVisibilityLayer: 1
+    doorHideVisibilityLayer: 32
+    eyeSeeDoorHideLayer: true
+    enterVerb: worm-door-hide-verb-enter
+    exitVerb: worm-door-hide-verb-exit
+    enterVerbIcon: /Textures/Interface/VerbIcons/open.svg.192dpi.png
+    exitVerbIcon: /Textures/Interface/VerbIcons/eject.svg.192dpi.png
+    enterVerbPriority: 1
+    exitVerbPriority: 2
+  - type: WormEvolver
+    bloodCost: 100
+    weaveDelay: 3
+    evolutionDuration: 90
+    cocoonProto: WormCocoonTier1
+    resultProto: MobWormTier2
+    sourceProto: MobWormTier1
+
+- type: entity
+  parent: MobWormBase
+  id: MobWormTier2
+  suffix: XxRaay, Кровавый червь II
+  name: Blood Worm
+  description: A thick, muscled blood worm with a heavy jaw and fresh scars along its body.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      sprite: Imperial/XxRaay/worms/worms.rsi
+      state: tier2
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: tier2-moving
+    noMovementLayers:
+      movement:
+        state: tier2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tier2
+      Critical:
+        Base: tier2_dead
+      Dead:
+        Base: tier2_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 5.4
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 16
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      110: Dead
+  - type: Visibility
+  - type: PressureImmunity
+  - type: WormBloodDrinker
+    conversionRatio: 0.45
+    minVictimBloodFraction: 0.25
+  - type: WormCorpseHost
+    enterDelay: 10
+    exitBleedDamage:
+      types:
+        Bloodloss: 200
+    enterCooldown: 180
+  - type: WormDoorHider
+    enterDelay: 2
+    useStealth: true
+    stealthVisibility: -1
+    hiddenVisibilityLayer: 1
+    doorHideVisibilityLayer: 32
+    eyeSeeDoorHideLayer: true
+    enterVerb: worm-door-hide-verb-enter
+    exitVerb: worm-door-hide-verb-exit
+    enterVerbIcon: /Textures/Interface/VerbIcons/open.svg.192dpi.png
+    exitVerbIcon: /Textures/Interface/VerbIcons/eject.svg.192dpi.png
+    enterVerbPriority: 1
+    exitVerbPriority: 2
+  - type: WormEvolver
+    bloodCost: 250
+    weaveDelay: 3
+    evolutionDuration: 90
+    cocoonProto: WormCocoonTier2
+    resultProto: MobWormTier3
+    sourceProto: MobWormTier2
+
+- type: entity
+  parent: MobWormBase
+  id: MobWormTier3
+  suffix: XxRaay, Кровавый червь III
+  name: Blood Worm
+  description: An enormous blood worm covered in hardened plates, moving with slow and grim certainty.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      sprite: Imperial/XxRaay/worms/worms.rsi
+      state: tier3
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: tier3-moving
+    noMovementLayers:
+      movement:
+        state: tier3
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tier3
+      Critical:
+        Base: tier3_dead
+      Dead:
+        Base: tier3_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.3
+    baseSprintSpeed: 5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 18
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      150: Dead
+  - type: Visibility
+  - type: PressureImmunity
+  - type: WormBloodDrinker
+    conversionRatio: 0.5
+    minVictimBloodFraction: 0
+  - type: WormReproducer
+    bloodCost: 300
+    weaveDelay: 3
+    reproductionDuration: 120
+    cocoonProto: WormCocoonReproduction
+    offspringProto: MobWormTier1
+    offspringCount: 3
+    parentResultProto: MobWormTier1
+    sourceProto: MobWormTier3

@@ -395,6 +395,9 @@
   parent:
   - SimpleSpaceMobBase
   - BaseMobAnimal
+  # Imperial Space VentCrawler; Start
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   id: MobSnail
   name: snail
   description: Revolting unless you're french.
