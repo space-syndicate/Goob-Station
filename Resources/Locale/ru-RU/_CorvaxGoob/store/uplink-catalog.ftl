@@ -17,3 +17,6 @@ uplink-stamp-chameleon-desc = Универсальная печать, что м
 
 uplink-toolbox-electrical-turret-name = Чертёж разворачиваемой баллистической турели
 uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать разворачиваемую баллистическую турель.
+
+uplink-super-duper-surplus-bundle-name = Супер-дупер ящик припасов синдиката
+uplink-super-duper-surplus-bundle-desc = Ящик содержащий любые предметы из аплинка Синдиката, общей стоимостью в 3000 телекристаллов. Только для ядерных оперативников

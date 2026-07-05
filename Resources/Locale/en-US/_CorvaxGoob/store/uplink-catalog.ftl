@@ -9,3 +9,6 @@ uplink-blood-red-paper-box-desc = A box filled with blood-red paper with the Syn
 
 uplink-toolbox-electrical-turret-name = Blueprint deployable ballistic turret
 uplink-toolbox-electrical-turret-desc = A blueprint, that allows the autolathe to print deployable ballistic turret.
+
+uplink-super-duper-surplus-bundle-name = Super duper surplus crate
+uplink-super-duper-surplus-bundle-desc = A crate containing 3000 telecrystals worth of completely random syndicate items.
