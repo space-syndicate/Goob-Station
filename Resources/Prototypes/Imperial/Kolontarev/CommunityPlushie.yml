@@ -129,7 +129,7 @@
     state: icon
   - type: StorageFill
     contents: 
-    - id: HardTraumapack #10 продвинок от мех
+    - id: RegenerativeMesh #10 реген сетки
   - type: SpeakOnTrigger
     pack: KolontarevAnnaYusupovaWords
 
