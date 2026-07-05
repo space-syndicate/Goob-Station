@@ -10,6 +10,7 @@ public sealed class WormBloodSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
 
     private EntityQuery<WormBloodComponent> _bloodQuery;
     private TimeSpan _accumulator = TimeSpan.Zero;
@@ -32,11 +33,10 @@ public sealed class WormBloodSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _accumulator += TimeSpan.FromSeconds(frameTime);
-        if (_accumulator < UpdateInterval)
+        if (_timing.CurTime < _accumulator)
             return;
 
-        _accumulator -= UpdateInterval;
+        _accumulator = _timing.CurTime + UpdateInterval;
 
         var query = EntityQueryEnumerator<WormBloodComponent>();
         while (query.MoveNext(out var uid, out var blood))

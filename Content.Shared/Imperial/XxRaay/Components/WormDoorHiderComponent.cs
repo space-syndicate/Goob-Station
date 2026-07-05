@@ -1,4 +1,6 @@
 using Content.Shared.Imperial.XxRaay;
+using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
@@ -6,6 +8,9 @@ namespace Content.Shared.Imperial.XxRaay.Components;
 [RegisterComponent]
 public sealed partial class WormDoorHiderComponent : Component
 {
+    [DataField]
+    public ProtoId<TagPrototype> HighSecDoorTag = "HighSecDoor";
+
     [DataField]
     public TimeSpan EnterDelay = TimeSpan.FromSeconds(2);
 

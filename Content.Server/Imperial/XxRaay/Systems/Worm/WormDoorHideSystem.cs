@@ -31,8 +31,6 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 
 public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
 {
-    private static readonly ProtoId<TagPrototype> HighSecDoorTag = "HighSecDoor";
-
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
@@ -364,7 +362,7 @@ public sealed class WormDoorHideSystem : SharedWormDoorHideSystem
             return false;
         }
 
-        if (_tags.HasTag(door, HighSecDoorTag))
+        if (_tags.HasTag(door, hider.HighSecDoorTag))
         {
             if (showPopup)
                 ShowFailPopup(worm, Loc.GetString("worm-door-hide-fail-armored"));

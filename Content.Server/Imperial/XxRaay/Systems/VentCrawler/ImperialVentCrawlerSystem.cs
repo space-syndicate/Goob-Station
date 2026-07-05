@@ -651,8 +651,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
 
     private void DisableTileMovement(EntityUid user)
     {
-        if (HasComp<EntityTileMovementComponent>(user))
-            RemComp<EntityTileMovementComponent>(user);
+        RemComp<EntityTileMovementComponent>(user);
 
         if (!TryComp(user, out PhysicsComponent? physics))
             return;
