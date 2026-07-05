@@ -233,6 +233,7 @@
   biomes:
     #- LowDesert
     - Grasslands
+    - ImperialVGroid # IMPERIAL IMPROVED SALVAGE
 
 - type: salvageDungeonMod
   id: LavaBrig
@@ -260,5 +261,5 @@
   id: Haunted
   desc: salvage-dungeon-mod-haunted
   proto: Haunted
-  #biomes: IMPERIAL IMPROVED SALVAGE удалено для разнообразия
-  #  - Caves
+  biomes: 
+    - Caves

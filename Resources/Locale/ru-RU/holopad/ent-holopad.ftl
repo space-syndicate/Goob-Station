@@ -1,6 +1,8 @@
 ent-Holopad = голопад
     .desc = Напольное устройство для проецирования голографических изображений.
 
+ent-HolopadHologram = голограмма
+
 ent-HolopadLongRange = голопад дальнего действия
     .suffix = Для звонков между картами
     .desc = Напольное устройство дальнего действия для проецирования голографических изображений.
@@ -36,6 +38,7 @@ ent-HolopadGeneralEvac = голопад
 ent-HolopadGeneralArrivals = голопад
     .suffix = Общий - Прибытие
     .desc = { ent-Holopad.desc }
+
 ent-HolopadCommandBridge = голопад
     .suffix = Командование - Мостик
     .desc = { ent-Holopad.desc }
@@ -72,11 +75,18 @@ ent-HolopadCommandRd = голопад
 ent-HolopadCommandHos = голопад
     .suffix = Командование - ГСБ
     .desc = { ent-Holopad.desc }
+
 ent-HolopadScienceAnomaly = голопад
     .suffix = Научный отдел - Аномалистика
     .desc = { ent-Holopad.desc }
 ent-HolopadScienceArtifact = голопад
     .suffix = Научный отдел - Ксеноархеология
+    .desc = { ent-Holopad.desc }
+ent-HolopadScienceArtifactNorth = голопад
+    .suffix = Научный - Ксеноархеология-Север
+    .desc = { ent-Holopad.desc }
+ent-HolopadScienceArtifactSouth = голопад
+    .suffix = Научный - Ксеноархеология-Север
     .desc = { ent-Holopad.desc }
 ent-HolopadScienceRobotics = голопад
     .suffix = Научный отдел - Робототехника
@@ -90,6 +100,7 @@ ent-HolopadScienceFront = голопад
 ent-HolopadScienceBreakroom = голопад
     .suffix = Научный отдел - Комната отдыха
     .desc = { ent-Holopad.desc }
+
 ent-HolopadMedicalMedbay = голопад
     .suffix = Медицинский отдел
     .desc = { ent-Holopad.desc }
@@ -117,6 +128,10 @@ ent-HolopadMedicalFront = голопад
 ent-HolopadMedicalBreakroom = голопад
     .suffix = Медицинский отдел - Комната отдыха
     .desc = { ent-Holopad.desc }
+ent-HolopadMedicalClinic = голопад
+    .suffix = Медицинский - Клиника
+    .desc = { ent-Holopad.desc }
+
 ent-HolopadCargoFront = голопад
     .suffix = Отдел Снабжения - Главный зал
     .desc = { ent-Holopad.desc }
@@ -129,6 +144,10 @@ ent-HolopadCargoSalvageBay = голопад
 ent-HolopadCargoBreakroom = голопад
     .suffix = Отдел Снабжения - Комната отдыха
     .desc = { ent-Holopad.desc }
+ent-HolopadCargoMailroom = голопад
+    .suffix = Отдел Снабжения - Почтовое отделение
+    .desc = { ent-Holopad.desc }
+
 ent-HolopadEngineeringAtmosFront = голопад
     .suffix = Атмосферный отсек - Главный зал
     .desc = { ent-Holopad.desc }
@@ -159,6 +178,10 @@ ent-HolopadEngineeringAME = голопад
 ent-HolopadEngineeringPower = голопад
     .suffix = Инженерный отдел - Энергоснабжение
     .desc = { ent-Holopad.desc }
+ent-HolopadEngineeringMain = голопад
+    .suffix = Инженерия - Главная
+    .desc = { ent-Holopad.desc }
+
 ent-HolopadSecurityFront = голопад
     .suffix = Служба Безопасности - Главный зал
     .desc = { ent-Holopad.desc }
@@ -195,6 +218,13 @@ ent-HolopadSecurityLockerRoom = голопад
 ent-HolopadSecurityBrigMed = голопад
     .suffix = Служба Безопасности - Бригмед
     .desc = { ent-Holopad.desc }
+ent-HolopadSecurityEvacCheckpoint = голопад
+    .suffix = Безопасность - Пункт эвакуации
+    .desc = { ent-Holopad.desc }
+ent-HolopadSecurityArrivalsCheckpoint = голопад
+    .suffix = Безопасность -  Пункт прибытия
+    .desc = { ent-Holopad.desc }
+
 ent-HolopadServiceJanitor = голопад
     .suffix = Сервисный отдел - Уборщик
     .desc = { ent-Holopad.desc }
@@ -237,6 +267,7 @@ ent-HolopadServiceMime = голопад
 ent-HolopadServiceClownMime = голопад
     .suffix = Сервисный отдел - Клоун/Мим
     .desc = { ent-Holopad.desc }
+
 ent-HolopadAiCore = голопад
     .suffix = ИИ - Ядро
     .desc = { ent-Holopad.desc }
@@ -255,18 +286,22 @@ ent-HolopadAiEntrance = голопад
 ent-HolopadAiChute = голопад
     .suffix = ИИ - Chute
     .desc = { ent-Holopad.desc }
+
 ent-HolopadCargoAts = голопад дальнего действия
     .suffix = Торговый аванпост
     .desc = { ent-HolopadLongRange.desc }
+
 ent-HolopadCommandBridgeLongRange = голопад дальнего действия
     .suffix = Станция - Мостик
     .desc = { ent-HolopadLongRange.desc }
 ent-HolopadCargoBayLongRange = голопад дальнего действия
     .suffix = Станция - Отдел Снабжения
     .desc = { ent-HolopadLongRange.desc }
+
 ent-HolopadCargoShuttle = голопад дальнего действия
     .suffix = Шаттл снабжения
     .desc = { ent-HolopadLongRange.desc }
+
 ent-HolopadCentCommEvacShuttle = голопад дальнего действия
     .suffix = ЦентКом - Эвакуационный Шаттл
     .desc = { ent-HolopadLongRange.desc }

@@ -1,0 +1,4 @@
+- type: salvageBiomeMod
+  id: ImperialVGroid
+  desc: salvage-biome-mod-vgroid
+  biome: ImperialVGroid

@@ -30,6 +30,12 @@ network-configurator-ui-count-label = {$count} {$count ->
 *[other] устройств
     }
 
+network-configurator-text-set = Установить
+network-configurator-text-add = Добавить
+network-configurator-text-clear = Очистить
+network-configurator-text-copy = Скопировать
+network-configurator-text-show = Показать
+
 # tooltips
 network-configurator-tooltip-set = Задать список целевых устройств
 network-configurator-tooltip-add = Добавить в список целевых устройств

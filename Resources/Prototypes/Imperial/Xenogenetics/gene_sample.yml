@@ -198,10 +198,10 @@
     - type: AddDamageResistanceGene
       modifiers:
         coefficients:
-          Blunt: 0.3
-          Slash: 0.2
-          Piercing: 0.1
-          Heat: 0.2
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.9
+          Heat: 0.8
   - type: XenoGene
   - type: Sprite
     state: red
