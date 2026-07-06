@@ -592,7 +592,7 @@
   -  UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    whitelist:000
       tags:
       - NukeOpsUplink
 
@@ -754,10 +754,10 @@
     - HijackShuttleObjective
     - NukeDiskStealObjective
   - !type:StoreWhitelistCondition
-  saleLimit: 1
     blacklist: # Corvaxgoob
       components:
       - SurplusBundle
+  saleLimit: 1
 
 - type: listing
   id: UplinkLubeGrenade
