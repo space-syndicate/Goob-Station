@@ -753,8 +753,8 @@
     whitelist:
     - HijackShuttleObjective
     - NukeDiskStealObjective
-  saleLimit: 1
   - !type:StoreWhitelistCondition
+  saleLimit: 1
     blacklist: # Corvaxgoob
       components:
       - SurplusBundle
