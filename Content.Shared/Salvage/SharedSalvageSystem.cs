@@ -47,8 +47,27 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
         var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
         var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
+
+        /// IMPERIAL IMPROVED SALVAGE START
+        if (difficulty.Factions != null)
+        {
+            factionProtos.Clear();
+            foreach (var factionProto in difficulty.Factions)
+            {
+                factionProtos.Add(_proto.Index<SalvageFactionPrototype>(factionProto));
+            }
+        }
+        /// IMPERIAL IMPROVED SALVAGE END
+
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
+
+        /// IMPERIAL IMPROVED SALVAGE START
+        if (faction.Biomes != null)
+        {
+            biome =  _proto.Index<SalvageBiomeModPrototype>(faction.Biomes[rand.Next(faction.Biomes.Count)]);
+        }
+        /// IMPERIAL IMPROVED SALVAGE END
 
         var mods = new List<string>();
 

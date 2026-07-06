@@ -78,7 +78,8 @@
             Shock: -1.75
       - !type:HealthChange
         conditions:
-          - !type:TotalDamageCondition
+          - !type:ReagentCondition
+            reagent: SynclotidicAcid
             min: 18
         damage:
           types:
@@ -107,7 +108,8 @@
             Poison: -0.75
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Alosethasone
           min: 16
         damage:
           types:
@@ -122,7 +124,8 @@
             Radiation: -3.25
       - !type:GenericStatusEffect
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Alosethasone
           min: 16
         key: Stutter
         component: ScrambledAccent
@@ -157,7 +160,8 @@
             Radiation: -1.25
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Acenazone
           min: 22
         damage:
           types:
@@ -165,11 +169,13 @@
             Piercing: 1.75
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Acenazone
           min: 22
       - !type:Vomit
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Acenazone
           min: 22
         probability: 0.7
       - !type:AdjustReagent
@@ -177,7 +183,7 @@
         amount: -2
       - !type:AdjustReagent
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
           reagent: Ketopiride
           min: 1
         reagent: Acenazone
@@ -185,7 +191,7 @@
       - !type:AdjustReagent
         probability: 0.05
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
           reagent: Ketopiride
           min: 1
         reagent: Lexorin
@@ -211,7 +217,8 @@
             Slash: -0.5
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Flexitaine
           min: 19
         damage:
           types:
@@ -219,12 +226,14 @@
             Piercing: 0.5
       - !type:Vomit
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Flexitaine
           min: 26
         probability: 0.5
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Flexitaine
           min: 19
       - !type:EvenHealthChange
         conditions:
@@ -271,7 +280,8 @@
             Slash: -1.25
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Retropine
           min: 15
         damage:
           types:
@@ -279,12 +289,14 @@
             Cellular: 1
       - !type:Vomit
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Retropine
           min: 30
         probability: 0.05
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Retropine
           min: 15
       - !type:Drunk
 
@@ -322,7 +334,8 @@
             Caustic: -0.75
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Tessine
           min: 16
         damage:
           types:
@@ -330,12 +343,14 @@
             Cellular: 2
       - !type:Vomit
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Tessine
           min: 21
         probability: 0.7
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Tessine
           min: 17
 
 - type: reagent
@@ -573,7 +588,8 @@
           Burn: -0.35
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: SalineGlucose
           min: 40
         damage:
           types:
@@ -611,7 +627,8 @@
             Radiation: 0.05
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: SilverSulfadiazine
           min: 35
         damage:
           types:
@@ -633,7 +650,8 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: Antihol
           min: 15
         damage:
           types:

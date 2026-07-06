@@ -183,11 +183,12 @@
   components:
   - type: GrantActionsGene
     basicModifier: 3.5
-    threshold: 0.4
+    threshold: 0.8
     actionsList:
     - ActionGoliathTentacle
   - type: SpeedModifierGene
-    speedModifier: 0.2
+    randomizeModifier: false
+    speedModifier: 0.4
   - type: AddComponentsNoRandomGene
     components:
     - type: AddSpriteGene
@@ -197,10 +198,10 @@
     - type: AddDamageResistanceGene
       modifiers:
         coefficients:
-          Blunt: 0.35
-          Slash: 0.35
-          Piercing: 0.35
-          Heat: 0.35
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.9
+          Heat: 0.8
   - type: XenoGene
   - type: Sprite
     state: red

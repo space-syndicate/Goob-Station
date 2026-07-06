@@ -3,12 +3,14 @@ using Content.Shared.Explosion;
 using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Imperial.Power.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class SupermatterIntegrityComponent : Component
 {
     [DataField]
@@ -22,13 +24,13 @@ public sealed partial class SupermatterIntegrityComponent : Component
         new() { Threshold = 0f, Color = Color.Red, Description = "", Warning = "" },
     };
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Activated;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float Integrity = 100f;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float MaxIntegrity = 100f;
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
@@ -37,8 +39,8 @@ public sealed partial class SupermatterIntegrityComponent : Component
     [DataField]
     public TimeSpan DamageTickInterval = TimeSpan.FromSeconds(1);
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextDamageTick;
 
     [DataField]
@@ -62,7 +64,8 @@ public sealed partial class SupermatterIntegrityComponent : Component
     [DataField]
     public float LowerPressureThreshold = 10f;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [AutoPausedField]
     public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
     [DataField]
@@ -96,6 +99,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
 
     [DataField]
+    [AutoPausedField]
     public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
 
     [DataField]
@@ -140,4 +144,3 @@ public sealed partial class SupermatterAmbientSoundEntry
     [DataField]
     public float Range;
 }
-

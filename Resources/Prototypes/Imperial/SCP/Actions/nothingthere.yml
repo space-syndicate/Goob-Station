@@ -1,0 +1,68 @@
+- type: entity
+  id: ImperialNothingThereEnterBodyAction
+  name: Control body
+  description: cubism
+  components:
+  - type: Action
+    icon: { sprite : Mobs/Species/Human/organs.rsi, state: "brain" }
+    iconOn: { sprite : Mobs/Species/Human/organs.rsi, state: "brain" }
+    priority: 1
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ImperialNothingThereEnterBodyEvent
+
+- type: entity
+  parent: BaseAction
+  id: ImperialNothingThereGibBodyAction
+  name: Gib body
+  description: ezz
+  components:
+  - type: Action
+    icon: { sprite : Mobs/Species/Human/organs.rsi, state: "eyeball-r" }
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ImperialNothingThereGibBodyEvent
+
+- type: entity
+  parent: BaseAction
+  id: ImperialNothingThereEggAction
+  name: Transform
+  description: LIAR DANCER
+  components:
+  - type: Action
+    icon: { sprite : Imperial/SCP/nothingthereegg.rsi, state: "icon" }
+    state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ImperialNothingThereEggEvent
+
+- type: entity
+  parent: BaseAction
+  id: ImperialNothingThereHelloAction
+  name: Empower attack
+  description: LIAR DANCER
+  components:
+  - type: Action
+    icon: { sprite : Imperial/SCP/nothingtherewpn2.rsi, state: "icon" }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ImperialNothingThereGoodbyeEvent
+
+- type: entity
+  id: ImperialNothingThereProjectileAction
+  name: Throw bone shard
+  description: yeah.
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/SCP/nothingthere_hello.ogg
+    icon: { sprite : Objects/Materials/materials.rsi, state: "bones" }
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ImperialProjectileBoneShard

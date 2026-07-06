@@ -2,109 +2,145 @@
 # Main loot table for random spawns
 - type: salvageLoot
   id: SalvageLoot
-  loots:
-    - !type:RandomSpawnsLoot
+  loots: 
+    - !type:RandomSpawnsLoot 
       entries:
-        - proto: AdvMopItem
+          ### IMPERIAL IMPROVED SALVAGE START
+        - proto: FirstAidMedkitImperial 
+          cost: 3
+        - proto: MedkitCobmatImperialFilled 
+          cost: 6
+        - proto: CombatMedipen 
+          cost: 6
+        - proto: BorgModuleFaunaPesting 
+          prob: 0.5 
+          cost: 1
+        - proto: MiningBorgChassisDerelictExpedition 
+          cost: 12
+          prob: 0.3
+        - proto: MiningBorgChassisDerelictExpedition 
+          cost: 3 
+          prob: 0.3
+        - proto: ClothingControlModsuitRNDSealed 
+          cost: 22
+        - proto: ClothingControlModsuitMinerSealed 
+          cost: 22
+        - proto: ClothingControlModsuitSecuritySealed
+          cost: 12
+          prob: 0.25
+        - proto: ClothingControlModsuitCESealed
+          cost: 12
+          prob: 0.25
+        - proto: CrateArmorySMG
+          cost: 20
+          prob: 0.25
+        - proto: WeaponLaserGun 
+          cost: 12
           prob: 0.5
+        - proto: ArmoryRifle
+          cost: 20
+          prob: 0.25
+        - proto: ArmoryShotgun
+          cost: 20
+          prob: 0.25
+          ### IMPERIAL IMPROVED SALVAGE END
+        #- proto: AdvMopItem # IMPERIAL IMPROVED SALVAGE
+        #  prob: 0.5
         - proto: AmmoTechFabCircuitboard
           cost: 2
+          prob: 0.5 # IMPERIAL IMPROVED SALVAGE
         - proto: AutolatheMachineCircuitboard
           cost: 2
+          prob: 0.5 # IMPERIAL IMPROVED SALVAGE
         - proto: BiomassReclaimerMachineCircuitboard
           cost: 2
+          prob: 0.5 # IMPERIAL IMPROVED SALVAGE
         - proto: BluespaceBeaker
           cost: 2
-        - proto: CyborgEndoskeleton
-          cost: 3
-          prob: 0.5
+        #- proto: CyborgEndoskeleton IMPERIAL IMPROVED SALVAGE
+        #  cost: 3
+        #  prob: 0.5
         - proto: ChemDispenserMachineCircuitboard
           cost: 2
+          prob: 0.5 # IMPERIAL IMPROVED SALVAGE
         - proto: CircuitImprinter
           cost: 2
+          prob: 0.1 # IMPERIAL IMPROVED SALVAGE
         - proto: CloningConsoleComputerCircuitboard
           cost: 2
         - proto: CloningPodMachineCircuitboard
           cost: 2
         - proto: ChemistryBottleCognizine
-        - proto: FoodBoxDonkpocketCarp
-          prob: 0.5
+        #- proto: FoodBoxDonkpocketCarp IMPERIAL IMPROVED SALVAGE
+        #  prob: 0.5
         - proto: CrateSalvageEquipment
           cost: 3
           prob: 0.5
-        - proto: GasRecycler
-          cost: 2
-        - proto: GeneratorRTG
-          cost: 5
-        - proto: GravityGeneratorMini
-          cost: 2
-        - proto: GyroscopeUnanchored
-          cost: 2
-          prob: 0.1
+        #- proto: GasRecycler IMPERIAL IMPROVED SALVAGE
+        #  cost: 2
+        #- proto: GeneratorRTG # IMPERIAL IMPROVED SALVAGE | И так появляется при генерации
+        #  cost: 5
+        #- proto: GravityGeneratorMini IMPERIAL IMPROVED SALVAGE
+        #  cost: 2
+        #- proto: GyroscopeUnanchored # IMPERIAL IMPROVED SALVAGE
+        #  cost: 2
         - proto: MedicalScannerMachineCircuitboard
           cost: 2
+          prob: 0.3 # IMPERIAL IMPROVED SALVAGE
         - proto: NuclearBombKeg
-          cost: 5
+          cost: 12
+          prob: 1.1 # IMPERIAL IMPROVED SALVAGE
         - proto: ChemistryBottleOmnizine
           prob: 0.5
-        - proto: PortableGeneratorPacman
-          cost: 2
+        #- proto: PortableGeneratorPacman # IMPERIAL IMPROVED SALVAGE | Мусорный лут
+        #  cost: 2
         - proto: PortableGeneratorSuperPacman
           cost: 3
         - proto: PowerCellAntiqueProto
           cost: 5
-          prob: 0.5
         - proto: ProtolatheMachineCircuitboard
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: RandomCargoCorpseSpawner
           cost: 2
-          prob: 0.5
         - proto: RandomCommandCorpseSpawner
           cost: 5
-          prob: 0.5
         - proto: RandomEngineerCorpseSpawner
           cost: 2
-          prob: 0.5
         - proto: RandomMedicCorpseSpawner
           cost: 2
-          prob: 0.5
         - proto: RandomScienceCorpseSpawner
           cost: 2
-          prob: 0.5
         - proto: RandomSecurityCorpseSpawner
           cost: 2
-          prob: 0.5
         - proto: RandomServiceCorpseSpawner
           cost: 2
-          prob: 0.5
         - proto: ResearchAndDevelopmentServerMachineCircuitboard
           cost: 5
-          prob: 0.5
         - proto: ResearchDisk10000
-          prob: 0.5
-        - proto: ResearchDisk5000
-          prob: 0.5
-        - proto: RipleyHarness
-          cost: 3
-          prob: 0.5
-        - proto: SpaceCash1000
+          prob: 0.7 # IMPERIAL IMPROVED SALVAGE
+        #- proto: ResearchDisk5000 IMPERIAL IMPROVED SALVAGE
+        #  prob: 1 
+        #- proto: RipleyHarness  IMPERIAL IMPROVED SALVAGE
+        #  cost: 3
+        #  prob: 0.5
+        #- proto: SpaceCash1000 IMPERIAL IMPROVED SALVAGE
         - proto: SpaceCash10000
           cost: 10
         - proto: SpaceCash2500
           cost: 3
         - proto: SpaceCash5000
           cost: 5
-        - proto: TechnologyDiskRare
-          cost: 5
-          prob: 0.5
+        #- proto: TechnologyDiskRare IMPERIAL IMPROVED SALVAGE
+        #  cost: 5
+        #  prob: 0.5
         - proto: ThrusterUnanchored
-        - proto: WaterTankHighCapacity
+        #- proto: WaterTankHighCapacity # IMPERIAL IMPROVED SALVAGE
         - proto: WeldingFuelTankHighCapacity
           cost: 3
         - proto: WeaponTeslaGun
-          prob: 0.1
-          cost: 2
+          prob: 0.01 # IMPERIAL IMPROVED SALVAGE
+          cost: 10 # IMPERIAL IMPROVED SALVAGE
 
 # Mob loot table
 

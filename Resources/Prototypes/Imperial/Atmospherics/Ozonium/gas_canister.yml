@@ -39,7 +39,7 @@
         whitelist:
           components:
             - GasTank
-      gasMixture:
+      air:
         volume: 1500
         moles:
           Ozonium: 2769.36 # Ozonium

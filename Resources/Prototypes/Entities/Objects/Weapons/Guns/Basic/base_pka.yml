@@ -50,3 +50,8 @@
     - Belt
   - type: UseDelay
     delay: 1
+### IMPERIAL IMPROVED SALVAGE START
+  - type: Tag
+    tags:
+    - PKA
+### IMPERIAL IMPROVED SALVAGE END

@@ -1,0 +1,87 @@
+- type: entity
+  id: BulletKineticShotgun
+  name: kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 12
+        Structural: 12
+  - type: TimedDespawn
+    lifetime: 0.17
+
+- type: entity
+  name: lethal laser barrage
+  id: PKASpreadNarrow
+  categories: [ HideSpawnMenu ]
+  parent: BulletKineticShotgun
+  components:
+  - type: ProjectileSpread
+    proto: BulletKineticShotgun
+    count: 3
+    spread: 30
+
+- type: entity
+  id: PKAUpgradeShotgun
+  parent: BasePKAUpgrade
+  name: PKA modkit (shotgun)
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#ff7438"
+    - state: overlay-1
+      color: "#9d00ff"
+    - state: overlay-2
+      color: "#9d00ff"
+    - state: overlay-3
+      color: "#9d00ff"
+  - type: GunUpgrade
+    tags: [ GunUpgradeSpecial ]
+    examineText: gun-upgrade-examine-text-special
+  - type: GunUpgradeProjectile
+    proto: PKASpreadNarrow
+
+- type: entity
+  id: BulletKineticMining
+  name: kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: GatheringProjectile
+    amount: 5
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 10
+        Structural: 35
+
+- type: entity
+  id: PKAUpgradeMining
+  parent: BasePKAUpgrade
+  name: PKA modkit (mining)
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#ff7438"
+    - state: overlay-1
+      color: "#9d00ff"
+    - state: overlay-2
+      color: "#9d00ff"
+    - state: overlay-3
+      color: "#9d00ff"
+  - type: GunUpgrade
+    tags: [ GunUpgradeSpecial ]
+    examineText: gun-upgrade-examine-text-special
+  - type: GunUpgradeProjectile
+    proto: BulletKineticMining

@@ -1,0 +1,11 @@
+- type: entity
+  id: VampireHaloEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Stellark/Vampire/halo
+    state: halo1
+    drawdepth: Effects
+    noRot: true
+    offset: "0, 0.5"
+  - type: Transform

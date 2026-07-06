@@ -1,0 +1,49 @@
+- type: salvageDifficulty
+  id: Cakewalk
+  lootBudget: 12
+  mobBudget: 5
+  modifierBudget: 1
+  color: "#ffa1f6"
+  recommendedPlayers: 1
+  factionsAllowed:
+    - Carps
+
+- type: salvageDifficulty
+  id: Hard
+  lootBudget: 50
+  mobBudget: 32
+  modifierBudget: 6
+  color: "#ff6a00"
+  recommendedPlayers: 3
+  factionsAllowed:
+    - Carps
+    - Xenos
+
+- type: salvageDifficulty
+  id: Infestation
+  lootBudget: 140
+  mobBudget: 80
+  modifierBudget: 0
+  color: "#22738c"
+  recommendedPlayers: 4
+
+- type: salvageDifficulty
+  id: Suicidal
+  lootBudget: 220
+  mobBudget: 140
+  modifierBudget: 10
+  color: "#f00"
+  recommendedPlayers: 6
+  factionsAllowed:
+    - Megafauna
+    - Xenos
+
+- type: salvageDifficulty
+  id: Doomed
+  lootBudget: 480
+  mobBudget: 260
+  modifierBudget: 15
+  color: "#314a5c"
+  recommendedPlayers: 12
+  factionsAllowed:
+    - Megafauna

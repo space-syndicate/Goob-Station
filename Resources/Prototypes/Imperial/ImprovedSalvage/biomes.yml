@@ -1,0 +1,33 @@
+# VGroid like
+- type: biomeTemplate
+  id: ImperialVGroid
+  layers:
+    - !type:BiomeEntityLayer
+      threshold: 0.95
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 1
+      allowedTiles:
+      - FloorAsteroidSand
+      entities:
+      - FloraStalagmite
+    - !type:BiomeEntityLayer
+      threshold: -0.5
+      invert: true
+      noise:
+        seed: 0
+        noiseType: Perlin
+        fractalType: Ridged
+        octaves: 1
+        frequency: 0.1
+        gain: 0.1
+      allowedTiles:
+        - FloorAsteroidSand
+      entities:
+        - IronRock
+    - !type:BiomeDummyLayer
+      id: Loot
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorAsteroidSand

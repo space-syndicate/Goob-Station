@@ -39,7 +39,7 @@
         whitelist:
           components:
             - GasTank
-      gasMixture:
+      air:
         volume: 1500
         moles:
           BZ: 2769.36

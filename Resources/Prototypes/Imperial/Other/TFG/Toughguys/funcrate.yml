@@ -30,13 +30,13 @@
       - id: PlushieSylvester
       - id: PlushieErika
       - id: PlushieAiden
-      - id: PlushieKainov
       - id: PlushieYesenia
       - id: PlushieCSCC
       - id: PlushieCrookie
       - id: PlushieKarner
       - id: PlushieAid
       - id: PlushieZevs
+      - id: PlushieMoishaElkin
 
 - type: cargoProduct
   id: FunPlushieCommunity

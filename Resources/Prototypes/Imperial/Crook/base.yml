@@ -11,7 +11,8 @@
       effects:
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: AndroidBlood
           min: 5
         - !type:MetabolizerTypeCondition
           type: Android

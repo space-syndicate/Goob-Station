@@ -8,4 +8,5 @@ nothingthere-hammaggotson-windup-others = Сущность начинает пр
 nothingthere-hammaggotson-notalive = Вы можете вселяться только в трупы живых существ.
 nothingthere-hammaggotson-notdead = Вы не можете вселяться в живых существ.
 nothingthere-hammaggotson-rotting = Вы не можете вселяться в гниющие трупы.
-nothingthere-hammaggotson-morekills = Вы неготовы принять свой истинный обличий.
+nothingthere-hammaggotson-morekills = Вы не готовы принять свой истинный облик.
+nothingthere-hammaggotson-nonhuman = Вы можете вселяться только в людей.
