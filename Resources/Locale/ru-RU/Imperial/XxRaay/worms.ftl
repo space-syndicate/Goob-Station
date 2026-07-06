@@ -1,13 +1,13 @@
-ent-MobWormTier1 = Кровавый червь
+ent-MobWormTier1 = кровавый червь
     .desc = Маленький кроваво-красный червяк.
 
-ent-MobWormTier2 = Кровавый червь
+ent-MobWormTier2 = кровавый червь
     .desc = Толстый, жилистый червь с тяжёлой челюстью и свежими шрамами по телу.
 
-ent-MobWormTier3 = Кровавый червь
+ent-MobWormTier3 = кровавый червь
     .desc = Огромный кровавый червь в плотных пластинах.
 
-ghost-role-information-blood-worm-name = Кровавый червь
+ghost-role-information-blood-worm-name = кровавый червь
 ghost-role-information-blood-worm-description = Проберитесь через вентиляцию, пейте кровь экипажа, эволюционируйте и размножайтесь.
 ghost-role-information-blood-worm-rules = Вы являетесь [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] вместе со всеми другими кровавыми червями.
 
@@ -96,10 +96,10 @@ ent-ActionWormCocoonObserve = Наблюдать
 worm-cocoon-observe-fail-none = Нет других червей для наблюдения.
 worm-cocoon-observe-start = Вы наблюдаете за {$target}.
 
-ent-WormCocoonTier1 = Кокон червя
+ent-WormCocoonTier1 = кокон червя
     .desc = Пульсирующий кокон, сотканный из крови и слизи.
 
-ent-WormCocoonTier2 = Кокон червя
+ent-WormCocoonTier2 = кокон червя
     .desc = Плотный кокон с твёрдой оболочкой, внутри что-то перерождается.
 
 ent-ActionWormReproduction = Размножение
@@ -115,5 +115,5 @@ worm-reproduction-fail-drinking = Нельзя размножаться, пок�
 worm-reproduction-fail-reproducing = Вы уже размножаетесь.
 worm-reproduction-fail-evolving = Нельзя размножаться во время эволюции.
 
-ent-WormCocoonReproduction = Кокон размножения
+ent-WormCocoonReproduction = кокон размножения
     .desc = Пульсирующий кокон, внутри созревают новые черви.
