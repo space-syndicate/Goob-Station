@@ -35,46 +35,49 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (_timing.CurTime < _nextPipeRefresh)
-            return;
-
-        _nextPipeRefresh = _timing.CurTime + PipeRevealRefresh;
-
         var player = _player.LocalEntity;
+        var active = player != null &&
+            HasComp<ActiveVentCrawlingComponent>(player) &&
+            TryComp(player, out ImperialVentCrawlerComponent? crawler) &&
+            crawler.RevealPipeNetwork &&
+            crawler.PipeRevealRange > 0f;
 
-        if (player == null ||
-            !HasComp<ActiveVentCrawlingComponent>(player) ||
-            !TryComp(player, out ImperialVentCrawlerComponent? crawler) ||
-            !crawler.RevealPipeNetwork ||
-            crawler.PipeRevealRange <= 0f)
+        if (_timing.CurTime >= _nextPipeRefresh)
         {
-            ClearRevealed();
-            return;
-        }
+            _nextPipeRefresh = _timing.CurTime + PipeRevealRefresh;
 
-        if (!TryComp(player, out TransformComponent? playerXform))
-            return;
+            if (active && TryComp(player, out TransformComponent? playerXform))
+            {
+                var comp = Comp<ImperialVentCrawlerComponent>(player.Value);
+                _inRange.Clear();
+                var playerPos = _transform.GetWorldPosition(playerXform);
+                _lookup.GetEntitiesInRange(playerXform.MapID, playerPos, comp.PipeRevealRange, _inRange, flags: TrayScannerSystem.Flags);
 
-        _inRange.Clear();
-        var playerPos = _transform.GetWorldPosition(playerXform);
-        _lookup.GetEntitiesInRange(playerXform.MapID, playerPos, crawler.PipeRevealRange, _inRange, flags: TrayScannerSystem.Flags);
-
-        _current.Clear();
-        foreach (var (uid, _) in _inRange)
-        {
-            _current.Add(uid);
-            EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
-            SetRevealed(uid, true);
+                _current.Clear();
+                foreach (var (uid, _) in _inRange)
+                {
+                    _current.Add(uid);
+                    EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
+                }
+            }
+            else
+            {
+                _current.Clear();
+            }
         }
 
         var revealedQuery = AllEntityQuery<ImperialVentCrawlerRevealedComponent>();
         while (revealedQuery.MoveNext(out var uid, out _))
         {
-            if (_current.Contains(uid))
-                continue;
-
-            SetRevealed(uid, false);
-            RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
+            if (active && _current.Contains(uid))
+            {
+                SetRevealed(uid, true);
+            }
+            else
+            {
+                SetRevealed(uid, false);
+                RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
+            }
         }
     }
 
@@ -85,6 +88,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
 
     private void ClearRevealed()
     {
+        _current.Clear();
         var query = AllEntityQuery<ImperialVentCrawlerRevealedComponent>();
         while (query.MoveNext(out var uid, out _))
         {
