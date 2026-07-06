@@ -592,7 +592,7 @@
   -  UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:000
+    whitelist:
       tags:
       - NukeOpsUplink
 

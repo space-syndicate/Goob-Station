@@ -69,10 +69,10 @@
       - Engineering
 
 - type: listing
-  id: SuperDuperSurplusBundleUplink
+  id: UplinkSuperDuperSurplusBundle
   name: uplink-super-duper-surplus-bundle-name
   description: uplink-super-duper-surplus-bundle-desc
-  productEntity: UplinkSuperDuperSurplusBundle
+  productEntity: CrateSyndicateSuperDuperSurplusBundle
   cost:
     Telecrystal: 1350
   categories:
