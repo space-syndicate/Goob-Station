@@ -129,7 +129,7 @@
     state: icon
   - type: StorageFill
     contents: 
-    - id: RegenerativeMesh #10 реген сетки
+    - id: Brutepack #10 наборов от ушибов
   - type: SpeakOnTrigger
     pack: KolontarevAnnaYusupovaWords
 
