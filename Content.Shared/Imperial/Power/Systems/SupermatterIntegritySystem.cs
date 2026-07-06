@@ -20,9 +20,16 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SupermatterIntegrityComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<SupermatterIntegrityComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<SupermatterIntegrityComponent, AfterInteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SupermatterIntegrityComponent, SupermatterShutdownDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<SupermatterIntegrityComponent, StartCollideEvent>(OnStartCollide);
+    }
+
+    private void OnInit(Entity<SupermatterIntegrityComponent> ent, ref ComponentInit args)
+    {
+        var ev = new SupermatterStartupEvent();
+        RaiseLocalEvent(ent, ref ev);
     }
 
     private void OnStartCollide(Entity<SupermatterIntegrityComponent> entity, ref StartCollideEvent args)

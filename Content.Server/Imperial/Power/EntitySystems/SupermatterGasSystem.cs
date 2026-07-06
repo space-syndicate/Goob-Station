@@ -57,7 +57,6 @@ public sealed class SupermatterGasSystem : EntitySystem
 
     private void OnAtmosExposedUpdate(EntityUid uid, SupermatterGasComponent component, ref AtmosExposedUpdateEvent args)
     {
-        component.CachedGasMixture = args.GasMixture;
         if (!TryComp(uid, out SupermatterIntegrityComponent? integrity))
             return;
 

@@ -1,13 +1,12 @@
 using Content.Server.Effects;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Atmos;
 using Content.Shared.Imperial.Power.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
-using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.EntitySystems.Events;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -25,7 +24,7 @@ public sealed class SupermatterTouchSystem : EntitySystem
     private void OnStartCollide(Entity<SupermatterTouchComponent> supermatter, ref StartCollideEvent args)
     {
         var other = args.OtherEntity;
-        if (!HasComp<MobStateComponent>(other))
+        if (!HasComp<MobStateComponent>(other) || HasComp<GodmodeComponent>(other))
             return;
 
         var touchEvent = new SupermatterTouchedEvent();
@@ -34,13 +33,11 @@ public sealed class SupermatterTouchSystem : EntitySystem
             return;
 
         var transformComp = Transform(other);
-
-        Entity<TransformComponent> entity = new(other, transformComp);
-        GibCollidedEntity(supermatter, entity);
+        GibCollidedEntity(supermatter, (other, transformComp));
 
     }
 
-    private void OnTouched(Entity<SupermatterGasComponent> supermatter, ref SupermatterTouchedEvent args)
+    private static void OnTouched(Entity<SupermatterGasComponent> supermatter, ref SupermatterTouchedEvent args)
     {
         if (args.Cancelled)
             return;

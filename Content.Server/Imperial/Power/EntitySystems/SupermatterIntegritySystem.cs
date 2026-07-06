@@ -27,21 +27,9 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = null!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = null!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
-    [Dependency] private readonly RadioSystem _radioSystem = null!;
     [Dependency] private readonly StationSystem _stationSystem = null!;
     [Dependency] private readonly IGameTiming _gameTiming = null!;
     [Dependency] private readonly RadiationSystem _radiationSystem = null!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SupermatterIntegrityComponent, SupermatterSendRadioEvent>(OnSupermatterSendRadioEvent);
-    }
-
-    private void OnSupermatterSendRadioEvent(Entity<SupermatterIntegrityComponent> ent, ref SupermatterSendRadioEvent args)
-    {
-        SendSupermatterRadio(ent, args.Message);
-    }
 
     public override void Update(float frameTime)
     {
@@ -108,7 +96,8 @@ public sealed class SupermatterIntegritySystem : EntitySystem
                 continue;
 
             var integrityWarning = Loc.GetString(level.Warning);
-            SendSupermatterRadio(entity, integrityWarning);
+            var ev = new SupermatterSendRadioEvent(integrityWarning);
+            RaiseLocalEvent(entity, ref ev);
 
             // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
             // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
@@ -205,12 +194,5 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         {
             entity.Comp.NextDamageTick = TimeSpan.Zero;
         }
-    }
-
-    // Отправка сообщения в общую рацию от имени суперматерии
-    private void SendSupermatterRadio(Entity<SupermatterIntegrityComponent> entity, string message)
-    {
-        _chatSystem.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, ChatTransmitRange.Normal);
-        _radioSystem.SendRadioMessage(entity, message, entity.Comp.RadioChannel, entity);
     }
 }
