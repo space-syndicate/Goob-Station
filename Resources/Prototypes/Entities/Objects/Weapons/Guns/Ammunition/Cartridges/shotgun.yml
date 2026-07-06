@@ -114,6 +114,7 @@
     tags:
     - Cartridge
     - ShellShotgun
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject

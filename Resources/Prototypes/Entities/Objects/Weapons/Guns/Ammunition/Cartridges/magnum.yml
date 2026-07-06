@@ -42,6 +42,7 @@
     tags:
       - Cartridge
       - CartridgeMagnum
+      - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletMagnum
   - type: Sprite

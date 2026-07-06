@@ -43,6 +43,7 @@
     tags:
       - Cartridge
       - CartridgePistol
+      - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletPistol
   - type: Sprite

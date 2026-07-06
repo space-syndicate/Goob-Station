@@ -29,6 +29,7 @@
     tags:
       - Cartridge
       - CartridgeCaselessRifle
+      - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     deleteOnSpawn: true
   - type: Sprite

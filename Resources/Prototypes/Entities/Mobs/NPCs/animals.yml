@@ -365,6 +365,7 @@
   - type: Tag
     tags:
     - VimPilot
+    - IgnorGrab # CorvaxGoob
   - type: NightVision # Goobstation - Nigthvision
     color: "#808080"
     activateSound: null
@@ -711,6 +712,7 @@
     tags:
     - Trash
     - VimPilot
+    - IgnorGrab # CorvaxGoob
   - type: Destructible
     thresholds:
     - trigger:
@@ -890,6 +892,7 @@
     - Trash
     - CannotSuicide
     - VimPilot
+    - IgnorGrab # CorvaxGoob
   - type: CanEscapeInventory
   - type: NpcFactionMember
     factions:
@@ -2200,6 +2203,7 @@
     - ChefPilot
     - Mouse
     - Meat
+    - IgnorGrab # CorvaxGoob
   - type: Respirator
     damage:
       types:

@@ -29,6 +29,7 @@
     tags:
     - Cartridge
     - CartridgeLightRifle
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletLightRifle
   - type: Sprite

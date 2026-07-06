@@ -17,18 +17,25 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics;
+using Content.Shared.CombatMode; // CorvaxGoob-IgnorGrab
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item;
+using Content.Shared.Tag; // CorvaxGoob-IgnorGrab
 using Robust.Shared.Containers;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes; // CorvaxGoob-IgnorGrab
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!; // CorvaxGoob-IgnorGrab
+
+    private static readonly ProtoId<TagPrototype> IgnorGrab = "IgnorGrab"; // CorvaxGoob-IgnorGrab
+
     private void InitializePickup()
     {
         SubscribeLocalEvent<HandsComponent, EntInsertedIntoContainerMessage>(HandleEntityInserted);
@@ -196,6 +203,15 @@ public abstract partial class SharedHandsSystem
 
         if (!Resolve(entity, ref item, false))
             return false;
+
+        // CorvaxGoob-IgnorGrab-start
+        if (_tagSystem.HasTag(entity, IgnorGrab)
+             && _combatMode.IsInCombatMode(uid)
+            && ActiveHandIsEmpty((uid, handsComp)))
+        {
+            return false;
+        }
+        // CorvaxGoob-IgnorGrab-end
 
         if (TryComp(entity, out PhysicsComponent? physics) && physics.BodyType == BodyType.Static)
             return false;
