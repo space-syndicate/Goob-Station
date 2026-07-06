@@ -79,10 +79,10 @@
   - UplinkDisruption
   conditions:
   - !type:StoreWhitelistCondition
-  - !type:BuyerWhitelistCondition
     whitelist:
       tags:
       - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
     blacklist:
       components:
       - SurplusBundle
