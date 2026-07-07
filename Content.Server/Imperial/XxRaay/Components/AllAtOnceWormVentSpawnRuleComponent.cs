@@ -11,7 +11,7 @@ public sealed partial class AllAtOnceWormVentSpawnRuleComponent : Component
     public EntProtoId Prototype = "MobWormTier1";
 
     [DataField]
-    public int Count = 3;
+    public int Count = 6;
 
     [DataField]
     public LocId? StartAnnouncement = "station-event-worm-vent-spawn-start-announcement";
