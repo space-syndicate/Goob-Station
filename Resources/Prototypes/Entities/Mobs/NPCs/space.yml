@@ -195,7 +195,12 @@
 - type: entity
   name: space spider
   id: MobSpiderSpace
-  parent: MobSpaceBasic
+  # Imperial Space VentCrawler; Start
+  # parent: MobSpaceBasic
+  parent:
+  - MobSpaceBasic
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   description: It's so glowing, it looks dangerous.
   components:
   - type: Sprite
