@@ -234,7 +234,7 @@ ui-options-function-inspect-entity-tooltip = Открыть Просмотр к�
 ui-options-function-inspect-server-component = Изучить компоненты Сервера
 ui-options-function-inspect-server-component-tooltip = Открыть Просмотр компонентов на странице Серверных компонентов для сущности, на которую наведена мышка.
 ui-options-function-inspect-client-component = Изучить компоненты Клиента
-ui-options-function-inspect-client-component-tooltip = Открыть Просмотр компонентов на странице Клиенстких компонентов для сущности, на которую наведена мышка.
+ui-options-function-inspect-client-component-tooltip = Открыть Просмотр компонентов на странице Клиентских компонентов для сущности, на которую наведена мышка.
 ui-options-function-hide-ui = Спрятать интерфейс
 
 ui-options-function-hotbar1 = 1 слот хотбара
@@ -296,7 +296,7 @@ ui-options-function-text-cursor-begin = Сдвинуть курсор к нач�
 ui-options-function-text-cursor-end = Сдвинуть курсор к концу
 ui-options-function-text-cursor-select = Выделить текст
 ui-options-function-text-cursor-select-left = Расширить выделение налево
-ui-options-function-text-cursor-select-right = Расширить выделение налево
+ui-options-function-text-cursor-select-right = Расширить выделение направо
 ui-options-function-text-cursor-select-up = Расширить выделение наверх
 ui-options-function-text-cursor-select-down = Расширить выделение вниз
 ui-options-function-text-cursor-select-word-left = Расширить выделение налево на одно слово
