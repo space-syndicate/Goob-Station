@@ -316,6 +316,7 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 20
     autoRecharge: True
+  - type: Pacified
     #CorvaxGoob-Edit-End
   - type: DroneVision
   - type: ZombieImmune
