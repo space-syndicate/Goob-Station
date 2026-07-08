@@ -9,7 +9,7 @@
 # Autodocs
 
 - type: entity
-  parent: [ConstructibleMachine, BaseMachinePowered]
+  parent: [ ConstructibleMachine, BaseMachinePowered, BaseAutomatedMachine ] # Goob: Automation
   id: Autodoc
   name: Autodoc Mk.XIV
   description: A programmable robotic surgeon capable of automatically operating on patients.
@@ -98,9 +98,10 @@
     grid:
     - 0,0,3,3
   - type: SurgerySpeedModifier
-    speedModifier: 10 # CorvaxGoob-Skills-another-autodoc-fix
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-skills
   - type: GuideHelp
     guides: [ Autodoc ]
+  - type: IgnoreSkills # CorvaxGoob-Skills-autodoc-skills
 
 - type: entity
   parent: Autodoc
@@ -111,7 +112,7 @@
   - type: Machine
     board: AutodocSyndieCircuitboard
   - type: SurgerySpeedModifier
-    speedModifier: 10 # CorvaxGoob-Skills-another-autodoc-fix
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-skills
 
 # Autodoc tools
 

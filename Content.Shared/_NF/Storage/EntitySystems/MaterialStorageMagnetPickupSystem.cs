@@ -97,7 +97,7 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
-            if (comp.NextScan < currentTime)
+            if (comp.NextScan > currentTime) // CorvaxGoob
                 continue;
 
             comp.NextScan += ScanDelay;

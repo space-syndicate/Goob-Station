@@ -10,6 +10,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Maps;
@@ -34,7 +35,7 @@ public abstract class SharedBiomeSystem : EntitySystem
 
     /* CorvaxGoob-Reverts : Вызывает краши. Требует фикса
     // Goob - Cache Noise
-    private readonly Dictionary<(FastNoiseLite, int), FastNoiseLite> _noiseCache = new();
+    private readonly ConcurrentDictionary<(FastNoiseLite, int), FastNoiseLite> _noiseCache = new();
 
     protected void ClearNoiseCache()
     {

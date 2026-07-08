@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._CorvaxGoob.Weapons.Ranged.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class GrapplingGunHunterComponent : Component
 {
     /// <summary>

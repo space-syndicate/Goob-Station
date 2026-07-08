@@ -26,6 +26,8 @@
 
 - type: lavalandRuinPool
   id: LavalandRuins
+  ruinDistance: 14
+  maxDistance: 172
   gridRuins:
     # Corvax-Goob-start
     #SyndicateBase: 1
@@ -40,6 +42,7 @@
     CorvaxSyndicateShuttle: 1
     CorvaxUnathi: 1
     CorvaxCrystal: 3
+    CorvaxJadnostRuin: 1
     # Corvax-Goob-end
     HierophantArena: 1
     RougeAI: 1
@@ -61,6 +64,7 @@
     CultBase: 1
     Hunter: 1
     XenoNest: 1
+    Reclaimer: 1
 #WIZDEN RUINS (only peak ones, rest are trash) man
     CargoWreck: 1
     Murder: 1
@@ -69,5 +73,5 @@
     Generator: 3
     Mug: 1
     Temple: 1
-  dungeonRuins:
-    CommonRuin5x5: 60
+  markerRuins:
+    CommonRuin5x5: 50

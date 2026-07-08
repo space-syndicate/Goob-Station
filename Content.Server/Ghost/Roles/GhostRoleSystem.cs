@@ -774,6 +774,20 @@ public sealed class GhostRoleSystem : EntitySystem
         return roles.ToArray();
     }
 
+    /// <summary>
+    /// Goobstation - Add requirement to the ghost role
+    /// </summary>
+    /// <param name="ghostRole">The entity</param>
+    /// <param name="job">The job requirement</param>
+    public void AddRoleRequirements(Entity<GhostRoleComponent>? ghostRole, JobRequirement job)
+    {
+        if (ghostRole is not {} ghost)
+            return;
+
+        //ghost.Comp.Requirements ??= []; // CorvaxGoob-NO
+        //ghost.Comp.Requirements.Add(job); // CorvaxGoob-NO Ограничение роли через хардкод?! Вы нормальные? Вам может лечиться надо? Нахрен такое дерьмо.
+
+    }
     private void OnPlayerAttached(PlayerAttachedEvent message)
     {
         // Close the session of any player that has a ghost roles window open and isn't a ghost anymore.

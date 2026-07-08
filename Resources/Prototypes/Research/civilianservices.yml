@@ -128,6 +128,7 @@
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
     - BorgModuleLollypop # Goobstation
+    - CrayonRainbowLarge # Goobstation
   position: 0,3 # CorvaxGoob-WorkBelts-Techfab
 
 - type: technology
@@ -188,6 +189,7 @@
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
+  - CryostasisCigarette # goob cryo cigarette
   # Goobstation R&D Console rework start
   - NTBodyBag # Corvax-Goob-AdvancedBodyBags-end
   - PrisonerBodyBag
@@ -317,6 +319,22 @@
   - CritterMechs
   # Goobstation R&D Console rework end
 
+- type: technology  # Goobstation
+  id: ServiceBluespaceChemistry
+  name: research-technology-service-energy-chem
+  icon:
+    sprite: _Goobstation/Structures/Machines/service_dispenser.rsi
+    state: industrial
+  discipline: CivilianServices
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - ServiceEnergyChemMachineCircuitboard
+  position: -4,7
+  technologyPrerequisites:
+  - MeatManipulation
+
+
 # Tier 3
 
 #- type: technology
@@ -352,8 +370,10 @@
   - BluespaceBodyBag # Corvax-Goob-AdvancedBodyBags
   - MedkitCombat # Goobstation - remove medkitcombat from static to research
   - VialBluespace # goob edit - bluespace vials
+  - DrinkShakerBluespace # goob
   # Goobstation R&D Console rework start
   position: 4,5
   technologyPrerequisites:
   - BiochemicalStasis
   # Goobstation R&D Console rework end
+

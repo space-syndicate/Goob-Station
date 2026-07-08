@@ -4,7 +4,7 @@ meta:
   engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/14/2026 08:39:45
+  time: 06/11/2026 01:02:21
   entityCount: 58684
 maps:
 - 1
@@ -185881,6 +185881,21 @@ entities:
     - type: Transform
       pos: -65.95417,-1.9873205
       parent: 2
+- proto: ExosuitFabricator
+  entities:
+  - uid: 24519
+    components:
+    - type: Transform
+      pos: 22.5,-32.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+    - type: SiloUtilizer
+      silo: 24602
 - proto: ExtendedEmergencyOxygenTank
   entities:
   - uid: 43743
@@ -244327,11 +244342,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 33.5,-43.5
       parent: 2
-  - uid: 24519
-    components:
-    - type: Transform
-      pos: 22.5,-32.5
-      parent: 2
   - uid: 24520
     components:
     - type: Transform
@@ -245797,6 +245807,9 @@ entities:
         - - MaterialSilo
           - MaterialSiloUtilizer
         24795:
+        - - MaterialSilo
+          - MaterialSiloUtilizer
+        24519:
         - - MaterialSilo
           - MaterialSiloUtilizer
 - proto: MaterialWoodPlank1
