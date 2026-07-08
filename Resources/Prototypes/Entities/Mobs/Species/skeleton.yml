@@ -52,8 +52,6 @@
   id: BaseMobSkeletonPerson
   abstract: true
   components:
-  - type: GrabIntent # CorvaxGoob
-  - type: Grabbable # CorvaxGoob
   - type: Carriable # Goobstation
   - type: HumanoidAppearance
     species: Skeleton
