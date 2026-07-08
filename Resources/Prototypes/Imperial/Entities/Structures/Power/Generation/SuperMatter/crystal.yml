@@ -26,6 +26,8 @@
           - MachineLayer
     - type: Transform
       anchored: true
+    - type: Physics
+      bodyType: Static
     - type: Sprite
       drawdepth: WallMountedItems
       sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
