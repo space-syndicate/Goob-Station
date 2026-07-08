@@ -97,7 +97,7 @@
   - type: ProtectedFromStepTriggers
   - type: Targeting # Shitmed Change
   # <Goobstation>
-  - type: FlashVulnerable
+  # - type: FlashVulnerable CorvaxGoob-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -312,6 +312,7 @@
   - type: MovementIgnoreGravity
   - type: FlashImmunity
   - type: CombatMode
+    combatToggleAction: ActionCombatModeToggle
   - type: BatterySelfRecharger
     autoRechargeRate: 20
     autoRecharge: True
