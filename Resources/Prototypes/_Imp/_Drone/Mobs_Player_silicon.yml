@@ -316,7 +316,6 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 20
     autoRecharge: True
-    combatToggleAction: ActionCombatModeToggle
     #CorvaxGoob-Edit-End
   - type: DroneVision
   - type: ZombieImmune
