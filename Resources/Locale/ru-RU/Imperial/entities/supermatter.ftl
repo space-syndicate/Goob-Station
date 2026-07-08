@@ -10,6 +10,8 @@ ent-SupermatterShutdownCrystal = кристалл деактивации суп�
 ent-CrateSupermatterShutdownCrystal = ящик кристалла деактивации суперматерии
     .desc = Ящик с кристаллом, способным деактивировать станционную суперматерию.
 
+station-beacon-supermatter = Суперматерия
+
 supermatter-console-title = Консоль мониторинга суперматерии
 supermatter-console-core-status = Статус
 supermatter-console-integrity = Прочность
