@@ -14,7 +14,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Военный СССП
+    jobTitle: ussp-role-battle-name
   - type: Access
     tags:
     - Security
@@ -34,7 +34,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Офицер СССП
+    jobTitle: ussp-role-officer-name
   - type: Access
     tags:
     - Security
@@ -54,7 +54,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Комиссар СССП
+    jobTitle: ussp-role-comissar-name
   - type: Access
     tags:
     - Command
@@ -75,7 +75,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Cержант СССП
+    jobTitle: ussp-role-sergeant-name
   - type: Access
     tags:
     - Command
@@ -96,7 +96,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Майор СССП
+    jobTitle: ussp-role-major-name
   - type: Access
     tags:
     - Command
@@ -118,7 +118,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Генерал-лейтенант СССП
+    jobTitle: ussp-role-general-name
   - type: Access
     tags:
     - Command
@@ -140,7 +140,7 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Работник обслуживания
+    jobTitle: ussp-role-service-name
   - type: Access
     tags:
     - Service
@@ -149,7 +149,7 @@
   parent: IDCardStandard
   id: USSPTouristIDcard
   name: Tourist ID
-  description: It looks unusual. 
+  description: It looks unusual.
   components:
   - type: Sprite
     sprite: Imperial/ussp/idcard.rsi
@@ -160,4 +160,4 @@
     - idcard
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
-    jobTitle: Турист
+    jobTitle: ussp-role-tourist-name
