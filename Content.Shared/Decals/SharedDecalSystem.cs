@@ -131,8 +131,8 @@ namespace Content.Shared.Decals
         public virtual HashSet<(uint Index, Decal Decal)> GetDecalsInRange(EntityUid gridId, Vector2 position, float distance = 0.75f, Func<Decal, bool>? validDelegate = null)
         {
             // NOOP on client atm.
-//            return new HashSet<(uint Index, Decal Decal)>(); // Commented by Erida
-// Erida-changes-start:
+//            return new HashSet<(uint Index, Decal Decal)>(); // Commented by CorvaxGoob
+// CorvaxGoob-changes-start:
             var decalIds = new HashSet<(uint, Decal)>();
             var chunkCollection = ChunkCollection(gridId);
             var chunkIndices = GetChunkIndices(position);
@@ -151,7 +151,7 @@ namespace Content.Shared.Decals
             }
 
             return decalIds;
-// Erida-changes-end.
+// CorvaxGoob-changes-end.
         }
 
         public virtual bool RemoveDecal(EntityUid gridId, uint decalId, DecalGridComponent? component = null)

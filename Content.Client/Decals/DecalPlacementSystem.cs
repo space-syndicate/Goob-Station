@@ -207,10 +207,10 @@ public sealed class DecalPlacementSystem : EntitySystem
             _inputSystem.SetEntityContextActive();
     }
 
-// Erida-changes-start:
+    // CorvaxGoob-changes-start:
     public bool GetCurrentSnap()
     {
         return _snap;
     }
-// Erida-changes-end.
+    // CorvaxGoob-changes-end.
 }

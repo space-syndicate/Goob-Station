@@ -122,10 +122,10 @@ namespace Content.Client.Input
             // Not in engine so that the RCD can rotate objects
             common.AddFunction(EngineKeyFunctions.EditorRotateObject);
 
-// Erida-changes-start:
+            // CorvaxGoob-changes-start:
             common.AddFunction(ContentKeyFunctions.EditorNextObject);
             common.AddFunction(ContentKeyFunctions.EditorPreviousObject);
-// Erida-changes-end.
+            // CorvaxGoob-changes-end.
 
             var human = contexts.GetContext("human");
             human.AddFunction(EngineKeyFunctions.MoveUp);
