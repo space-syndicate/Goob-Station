@@ -308,5 +308,14 @@
     - Maintenance
     - Atmospherics # Goobstation
   - type: ContributorName # Goobstation - Maint drones get up to date contributor names
+    #CorvaxGoob-Edit-Start
+  - type: MovementIgnoreGravity
+  - type: FlashImmunity
+  - type: CombatMode
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+    autoRecharge: True
+    combatToggleAction: ActionCombatModeToggle
+    #CorvaxGoob-Edit-End
   - type: DroneVision
   - type: ZombieImmune

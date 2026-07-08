@@ -66,6 +66,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
+using Content.Shared.Flash.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Timing;
 
@@ -149,6 +150,10 @@ public sealed class PacificationSystem : EntitySystem
 
         // Goobstation - can attack self while pacified
         if (uid == args.Target)
+            return;
+
+        // CorvaxGoob-Edit
+        if (args.Weapon != null && HasComp<FlashComponent>(args.Weapon))
             return;
 
         // If we would do zero damage, it should be fine.
