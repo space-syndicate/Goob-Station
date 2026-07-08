@@ -66,7 +66,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
-using Content.Shared.Flash.Components;
+using Content.Shared.Flash.Components; // CorvaxGoob-Edit
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Timing;
 
