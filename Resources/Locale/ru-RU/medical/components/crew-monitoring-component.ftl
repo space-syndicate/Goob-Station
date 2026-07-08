@@ -1,21 +1,14 @@
 ﻿## UI
 
-crew-monitoring-user-interface-title = Мониторинг экипажа
+crew-monitoring-ui-title = Мониторинг экипажа
 
-crew-monitoring-user-interface-name = Имя
-crew-monitoring-user-interface-job = Должность
-crew-monitoring-user-interface-status = Статус
-crew-monitoring-user-interface-location = Местоположение
+crew-monitoring-ui-filter-line-placeholder = Поиск
 
-crew-monitoring-user-interface-alive = Жив
-crew-monitoring-user-interface-dead = Мёртв
-crew-monitoring-user-interface-no-info = Н/Д
+crew-monitoring-ui-job-label = Должность:
+crew-monitoring-ui-no-server-label = Сервер не найден
 
-crew-monitoring-user-interface-no-server = Сервер не найден
+crew-monitoring-ui-no-department-label = Неизвестно
+crew-monitoring-ui-no-station-label = Неизвестная станция
 
-crew-monitoring-user-interface-no-department = Вне отделов
-
-crew-monitoring-user-interface-flavor-left = В экстренной ситуации немедленно свяжитесь с станционными медиками
-crew-monitoring-user-interface-flavor-right = v1.7
-
-crew-monitor-filter-line-placeholder = Фильтр
+crew-monitoring-ui-flavor-left-label = В экстренной ситуации немедленно свяжитесь с станционными медиками
+crew-monitoring-ui-flavor-right-label = v1.7
