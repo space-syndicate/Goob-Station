@@ -197,9 +197,7 @@
   id: MobSpiderSpace
   # Imperial Space VentCrawler; Start
   # parent: MobSpaceBasic
-  parent:
-  - MobSpaceBasic
-  - VentCrawlerPestMixin
+  parent: [ MobSpaceBasic, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   description: It's so glowing, it looks dangerous.
   components:
@@ -397,11 +395,8 @@
     - type: SalvageMobRestrictions
 
 - type: entity
-  parent:
-  - SimpleSpaceMobBase
-  - BaseMobAnimal
   # Imperial Space VentCrawler; Start
-  - VentCrawlerPestMixin
+  parent: [ SimpleSpaceMobBase, BaseMobAnimal, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   id: MobSnail
   name: snail

@@ -788,10 +788,7 @@
   id: MobSlimesPet
   # Imperial Space VentCrawler; Start
   # parent: [MobAdultSlimes, StripableInventoryBase]
-  parent:
-  - MobAdultSlimes
-  - StripableInventoryBase
-  - VentCrawlerPestMixin
+  parent: [ MobAdultSlimes, StripableInventoryBase, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   description: This masterpiece has gone through thousands of experiments. But it is the sweetest creature in the world. Smile Slime!
   components:
