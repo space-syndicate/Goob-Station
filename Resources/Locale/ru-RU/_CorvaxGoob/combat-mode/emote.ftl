@@ -1,0 +1,1 @@
+combat-mode-emote = краснеет от злости
