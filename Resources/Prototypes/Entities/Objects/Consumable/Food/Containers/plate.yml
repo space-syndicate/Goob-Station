@@ -40,7 +40,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/plates.rsi
-    state: plate
+    layers: # CorvaxGoob
+    - state: plate
+    - map: ["food"]
   - type: Item
     shape:
     - 0,0,1,0
@@ -90,6 +92,26 @@
     damage:
       types:
         Blunt: 5
+# CorvaxGoob start
+  - type: ItemSlots
+    slots:
+      food_slot:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - Food
+          - Edible
+        insertSound:
+          collection: desecration
+        ejectSound:
+          collection: desecration
+  - type: ItemSlotRenderer
+    mapping:
+      food_slot: food
+  - type: ContainerContainer
+    containers:
+      food_slot: !type:ContainerSlot {}
+# CorvaxGoob end
 
 - type: entity
   name: broken plate
@@ -119,7 +141,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/plates.rsi
-    state: plate-small
+    layers: # CorvaxGoob
+    - state: plate-small
+    - map: ["food"]
   - type: Item
     storedOffset: 0,-3
     inhandVisuals:
@@ -149,6 +173,32 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 30
+# CorvaxGoob start
+  - type: ItemSlots
+    slots:
+      food_slot:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - Food
+          - Edible
+        blacklist:
+          sizes:
+          - Normal
+          - Large
+          - Huge
+          - Ginormous
+        insertSound:
+          collection: desecration
+        ejectSound:
+          collection: desecration
+  - type: ItemSlotRenderer
+    mapping:
+      food_slot: food
+  - type: ContainerContainer
+    containers:
+      food_slot: !type:ContainerSlot {}
+# CorvaxGoob end
 
 - type: entity
   parent: FoodPlateTrash
@@ -170,7 +220,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/plates.rsi
-    state: plate-plastic
+    layers: # CorvaxGoob
+    - state: plate-plastic
+    - map: ["food"]
   - type: Item
     shape:
     - 0,0,1,0
@@ -183,6 +235,26 @@
   - type: Tag
     tags:
     - Trash
+# CorvaxGoob start
+  - type: ItemSlots
+    slots:
+      food_slot:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - Food
+          - Edible
+        insertSound:
+          collection: desecration
+        ejectSound:
+          collection: desecration
+  - type: ItemSlotRenderer
+    mapping:
+      food_slot: food
+  - type: ContainerContainer
+    containers:
+      food_slot: !type:ContainerSlot {}
+# CorvaxGoob end
 
 - type: entity
   name: plastic plate
@@ -192,7 +264,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/plates.rsi
-    state: plate-small-plastic
+    layers: # CorvaxGoob
+    - state: plate-small-plastic
+    - map: ["food"]
   - type: Item
     shape:
     - 0,0,1,0
@@ -205,6 +279,32 @@
   - type: Tag
     tags:
     - Trash
+# CorvaxGoob start
+  - type: ItemSlots
+    slots:
+      food_slot:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - Food
+          - Edible
+        blacklist:
+          sizes:
+          - Normal
+          - Large
+          - Huge
+          - Ginormous
+        insertSound:
+          collection: desecration
+        ejectSound:
+          collection: desecration
+  - type: ItemSlotRenderer
+    mapping:
+      food_slot: food
+  - type: ContainerContainer
+    containers:
+      food_slot: !type:ContainerSlot {}
+# CorvaxGoob end
 
 # Pie Tin
 

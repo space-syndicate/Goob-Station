@@ -303,6 +303,10 @@ public sealed class FoodSystem : EntitySystem
             return;
         }
 
+        // CorvaxGoob-Fix start
+        if (HasComp<StackComponent>(entity))
+            return;
+        // CorvaxGoob-Fix end
         // Food is always destroyed...
         args.Destroy = true;
     }

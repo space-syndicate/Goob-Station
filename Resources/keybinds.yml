@@ -778,3 +778,11 @@ binds:
 - function: OfferItem # CorvaxGoob-Offer
   type: State
   key: H
+# CorvaxGoob-changes-start:
+- function: EditorNextObject
+  type: State
+  key: Num9
+- function: EditorPreviousObject
+  type: State
+  key: Num3
+# CorvaxGoob-changes-end.

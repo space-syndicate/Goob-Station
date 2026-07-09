@@ -69,7 +69,7 @@
 
 - type: entity
   name: BaseWeaponSniper
-  parent: BaseItem
+  parent: [BaseItem, BaseButtStroke] #CorvaxGoob: add ButtStroke parent
   id: BaseWeaponSniper
   description: A rooty tooty point and shooty.
   abstract: true
@@ -119,14 +119,6 @@
     sound:
       collection: SnipersDrop
   # Goobstation edit end
-  - type: MeleeWeapon # Goobstation V
-    damage:
-      types:
-       Blunt: 12
-    angle: 0
-    wideAnimationRotation: 90 # -90 if it takes bayonets (hits with muzzle) 90 if not (hits with butt)
-    soundHit:
-      collection: MetalThud # Goobstation ^
 
 # Goobstation - Start - I decided to put it here, because it changes Hristov.
 - type: entity
@@ -324,6 +316,17 @@
   # soundHit:
   #   path: /Audio/Weapons/bladeslice.ogg
   - type: GunRequiresWield
+  #CorvaxGoob: commit, because already have parent
+  #- type: AltFireMelee # Goobstation V
+  # attackType: Heavy
+  #- type: MeleeWeapon
+  #  damage:
+  #    types:
+  #     Blunt: 12
+  #  angle: 0
+  #  wideAnimationRotation: 90 # -90 if it takes bayonets (hits with muzzle) 90 if not (hits with butt)
+  #  soundHit:
+  #   collection: MetalThud # Goobstation ^
 
 - type: entity
   name: flintlock pistol

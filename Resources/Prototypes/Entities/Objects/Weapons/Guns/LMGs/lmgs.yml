@@ -51,7 +51,7 @@
 
 - type: entity
   name: BaseWeaponLightMachineGun
-  parent: BaseItem
+  parent: [BaseItem, BaseButtStroke] #CorvaxGoob: add ButtStroke parent
   id: BaseWeaponLightMachineGun
   description: A rooty tooty point and shooty.
   abstract: true

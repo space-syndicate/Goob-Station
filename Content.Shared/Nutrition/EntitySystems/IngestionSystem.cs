@@ -18,6 +18,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Stacks; // CorvaxGoob-Fix
 using Content.Shared.Tools.EntitySystems;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
@@ -504,6 +505,10 @@ public sealed partial class IngestionSystem : EntitySystem
             return;
         }
 
+        // CorvaxGoob-Fix start
+        if (HasComp<StackComponent>(entity))
+            return;
+        // CorvaxGoob-Fix end
         args.Destroy = entity.Comp.DestroyOnEmpty;
     }
 
