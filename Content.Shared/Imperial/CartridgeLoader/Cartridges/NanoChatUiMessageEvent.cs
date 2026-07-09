@@ -22,7 +22,7 @@ public sealed class NanoChatSendTextMessage(string text) : CartridgeMessageEvent
 }
 
 [Serializable, NetSerializable]
-public sealed class NanoChatSelectContactMessage(string contactName) : CartridgeMessageEvent
+public sealed class NanoChatSelectContactMessage(NanoChatContact contact) : CartridgeMessageEvent
 {
-    public readonly string ContactName = contactName;
+    public readonly NanoChatContact Contact = contact;
 }

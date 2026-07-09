@@ -9,3 +9,10 @@ nano-chat-ui-message-box-text = Введите сообщение...
 
 nano-chat-ui-you-text = Вы
 nano-chat-ui-unknown-sender = Неизвестный
+
+nano-chat-ui-contact-name-job =
+    { $name }
+    ({ $job })
+nano-chat-ui-contact-name-job-inline = { $name } ({ $job })
+
+nano-chat-ui-contact-job-unknown = Неизвестно

@@ -9,7 +9,7 @@ public sealed partial class NanoChatCartridgeComponent : Component
     public string? PdaCardName;
 
     [DataField]
-    public string? SelectedContact;
+    public NanoChatContact? SelectedContact;
 
     [DataField]
     public bool NotificationsOn = true;
