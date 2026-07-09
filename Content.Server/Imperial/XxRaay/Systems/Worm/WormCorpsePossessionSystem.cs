@@ -173,21 +173,24 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     {
         _rejuvenate.PerformRejuvenate(corpse);
 
-        if (!TryComp<MobThresholdsComponent>(corpse, out var thresholds)
-            || !_mobThreshold.TryGetThresholdForState(corpse, MobState.Dead, out var deadThreshold, thresholds))
+        if (!TryComp<MobThresholdsComponent>(corpse, out var thresholds))
         {
             _mobState.ChangeMobState(corpse, MobState.Alive);
             return;
         }
 
-        var fraction = Math.Clamp(host.PossessMinHealthFraction, 0f, 1f);
-        var targetDamage = deadThreshold.Value * FixedPoint2.New(1f - fraction);
-
-        if (_mobThreshold.TryGetThresholdForState(corpse, MobState.Critical, out var criticalThreshold, thresholds)
-            && targetDamage >= criticalThreshold.Value)
+        if (!_mobThreshold.TryGetThresholdForState(corpse, MobState.Critical, out var criticalThreshold, thresholds))
         {
-            targetDamage = criticalThreshold.Value - FixedPoint2.New(0.01);
+            if (!_mobThreshold.TryGetThresholdForState(corpse, MobState.Dead, out var deadThreshold, thresholds))
+            {
+                _mobState.ChangeMobState(corpse, MobState.Alive);
+                return;
+            }
+            criticalThreshold = deadThreshold;
         }
+
+        var fraction = Math.Clamp(host.PossessMinHealthFraction, 0f, 1f);
+        var targetDamage = criticalThreshold.Value * FixedPoint2.New(1f - fraction);
 
         if (targetDamage > FixedPoint2.Zero)
         {

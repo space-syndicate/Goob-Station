@@ -166,7 +166,7 @@ public abstract class SharedWormReproductionSystem : EntitySystem
         if (!_bloodQuery.TryComp(worm, out var blood) || blood.Blood < worm.Comp.BloodCost)
         {
             if (showPopup)
-                ShowFailPopup(worm.Owner, Loc.GetString("worm-reproduction-fail-blood"), popupUser);
+                ShowFailPopup(worm.Owner, Loc.GetString("worm-reproduction-fail-blood", ("cost", worm.Comp.BloodCost)), popupUser);
             return false;
         }
 
@@ -186,3 +186,5 @@ public abstract class SharedWormReproductionSystem : EntitySystem
         _popup.PopupPredicted(message, worm, popupUser, PopupType.Small);
     }
 }
+
+

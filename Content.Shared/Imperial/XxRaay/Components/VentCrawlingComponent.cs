@@ -1,45 +1,47 @@
-using Content.Server.Imperial.XxRaay.Systems;
-using Content.Server.Imperial.XxRaay.DataDefinitions;
 using Robust.Shared.GameObjects;
 using Robust.Shared.ViewVariables;
 using System.Collections.Generic;
 
-namespace Content.Server.Imperial.XxRaay.Components;
+using Robust.Shared.GameStates;
+using Content.Shared.Imperial.XxRaay.DataDefinitions;
 
-[RegisterComponent]
-[Access(typeof(ImperialVentCrawlerSystem))]
+namespace Content.Shared.Imperial.XxRaay.Components;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+
 public sealed partial class VentCrawlingComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntityUid SourceVent;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool RemovedComplexInteraction;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool WasCollidable = true;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public List<ImperialVentCrawlerFixtureState> FixtureStates = [];
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool AddedStealth;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool AddedVisibility;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool PreviousStealthEnabled;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float PreviousStealthVisibility = 1f;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public ushort PreviousVisibilityLayer;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float SoundDistance;
 
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public HashSet<EntityUid> DisabledActions = [];
 }
+
