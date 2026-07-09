@@ -16,9 +16,11 @@
   abstract: true
   components:
   - type: Hunger
+    baseDecayRate: 0.02
   - type: Thirst
+    baseDecayRate: 0.15
   - type: Sprite # smaller size
-    # scale: 0.8, 0.8 # Goobstation: port EE height/width sliders
+    scale: 0.8, 0.8 # Goobstation: port EE height/width sliders
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -69,6 +71,7 @@
   - type: Speech
     speechVerb: Felinid
     speechSounds: Alto
+    AllowedEmtoes: ['Purr']
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic
@@ -94,18 +97,24 @@
         probability: 0.2
   - type: MeleeWeapon
     soundHit:
-      collection: Punch
+      collection: AlienClaw
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 4
-        Piercing: 1
+        Slash: 7
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2.0
+    damageRecovery:
+      types:
+        Asphyxiation: -2.0
   - type: DamageOnHighSpeedImpact # Landing on all fours!
     damage:
       types:
         Blunt: 1
   - type: Stamina
-    critThreshold: 75 # Goobstation - Siouxcide, felinids take 3 disabler shots to down
+    critThreshold: 100 # Corvaxgoob taja buff
     animationThreshold: 40 # Goob edit
   - type: TypingIndicator
     proto: felinid
@@ -142,9 +151,9 @@
   - type: Vocal
     wilhelm: "/Audio/Nyanotrasen/Voice/Felinid/cat_wilhelm.ogg"
     sounds:
-      Male: MaleFelinid
-      Female: FemaleFelinid
-      Unsexed: MaleFelinid
+      Male: MaleTajaran
+      Female: FemaleTajaran
+      Unsexed: MaleTajaran
   - type: NoShoesSilentFootsteps
   - type: Tag
     tags:

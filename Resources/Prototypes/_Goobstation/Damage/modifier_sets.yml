@@ -63,12 +63,9 @@
 
 - type: damageModifierSet
   id: Tajaran
-  coefficients: # Literally the same as felinids, but heat and cold cuz fur
-    Blunt: 1.15
-    Slash: 1.15
-    Piercing: 1.15
-    Heat: 1.20
-    Cold: 0.80
+  coefficients: # Corvaxgoob port taja from corvaxnext
+    Cold: 0.6
+    Heat: 1.4
   ignoreArmorPierceFlags: All
 
 - type: damageModifierSet
@@ -358,3 +355,4 @@
     Piercing: 5
     Heat: 3
     Structural: 3
+
