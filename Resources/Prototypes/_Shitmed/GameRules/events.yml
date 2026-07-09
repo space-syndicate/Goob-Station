@@ -88,6 +88,11 @@
       - type: Sanitized
       - type: SurgerySpeedModifier
         speedModifier: 1.5
+      #CorvaxGoob-AbductorFixImmunity start
+      - type: PressureImmunity
+      - type: SpecialHighTempImmunity
+      - type: SpecialLowTempImmunity
+      #CorvaxGoob-AbductorFixImmunity end
       mindRoles:
       - MindRoleLoneAbductor
 
@@ -182,6 +187,11 @@
       - type: Sanitized
       - type: SurgerySpeedModifier
         speedModifier: 1.5
+      #CorvaxGoob-AbductorFixImmunity start
+      - type: PressureImmunity
+      - type: SpecialHighTempImmunity
+      - type: SpecialLowTempImmunity
+      #CorvaxGoob-AbductorFixImmunity end
       mindRoles:
       - MindRoleAbductorScientist
     - spawnerPrototype: AbductorAgentSpawner
@@ -224,5 +234,10 @@
           - FootstepSound
           - DoorBumpOpener
       - type: AbductorScientist # Should be removed when we have proper teleportation system
+      #CorvaxGoob-AbductorFixImmunity start
+      - type: PressureImmunity
+      - type: SpecialHighTempImmunity
+      - type: SpecialLowTempImmunity
+      #CorvaxGoob-AbductorFixImmunity end
       mindRoles:
       - MindRoleAbductorAgent

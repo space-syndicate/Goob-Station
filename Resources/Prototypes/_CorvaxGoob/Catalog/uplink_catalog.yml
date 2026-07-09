@@ -52,6 +52,39 @@
     Telecrystal: 20
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkSyndicateGorilla
+  name: uplink-reinforcement-radio-syndicate-gorilla-name
+  description: uplink-reinforcement-radio-syndicate-gorilla-desc
+  icon: { sprite: _CorvaxGoob/Mobs/Pets/syndicategorilla.rsi, state: crawling }
+  productEntity: ReinforcementRadioSyndicateGorilla
+  cost:
+    Telecrystal: 50 
+  categories:
+    - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - ContravendUplink
+      
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
+- type: listing
+  id: UplinkDiceOfFate
+  name: uplink-dice-of-fate-name
+  description: uplink-dice-of-fate-desc
+  icon: { sprite: Objects/Fun/dice.rsi, state: d20_20 }
+  productEntity: DiceOfFate
+  cost:
+    Telecrystal: 60
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) end
   
 - type: listing
   id: UplinkToolboxElectricalTurret

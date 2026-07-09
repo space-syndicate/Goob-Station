@@ -48,3 +48,123 @@
     - type: Tag
       tags:
         - CannotSuicide
+
+- type: entity
+  parent: SimpleMobBase
+  id: Mobsyndicategorilla
+  name: Lily
+  description: run...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: crawling
+          sprite: _CorvaxGoob/Mobs/Pets/syndicategorilla.rsi
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.48
+          density: 200
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: crawling
+        Dead:
+          Base: dead
+    - type: Butcherable
+      spawned:
+        - id: FoodMeat
+          amount: 4
+    - type: Bloodstream
+      bloodMaxVolume: 300
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        200: Critical
+        300: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 5
+      baseSprintSpeed : 6
+    - type: Puller
+      needsHands: false
+    - type: MeleeWeapon
+      soundHit: /Audio/Weapons/smash.ogg
+      angle: 30
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Blunt: 25
+          Slash: 5
+          Structural: 25
+    - type: MeleeThrowOnHit
+      distance: 1
+      speed: 2
+    - type: StaminaDamageOnHit 
+      damage: 6
+    - type: CombatPower
+      factor: 4
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.2
+    - type: FlashImmunity
+    - type: Damageable
+      damageContainer: Biological
+      damageModifierSet: Mobsyndicategorillaset
+    - type: PassiveDamage
+      allowedStates:
+       - Alive
+      damageCap: 0
+      damage:
+        types:
+          Heat: -0.1
+        groups:
+          Brute: -0.2
+    - type: Reactive
+      groups:
+        Flammable: [ Touch ]
+        Extinguish: [ Touch ]
+        Acidic: [ Touch, Ingestion ]
+      reactions:
+      - reagents: [ UnstableMutagen ]
+        methods: [ Touch ]
+        effects:
+        - !type:HealthChange
+          scaleByQuantity: true 
+          ignoreBlockers: true 
+          splitDamage: SplitEnsureAll
+          damage:
+            groups:
+              Burn: -2
+              Brute: -2 
+    - type: InteractionPopup
+      successChance: 1
+      interactSuccessString: petting-success-gorilla
+      interactFailureString: petting-failure-gorilla
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        path: /Audio/Animals/ferret_happy.ogg
+    - type: LanguageKnowledge
+      speaks:
+      - Monkey
+      - TauCetiBasic
+      understands:
+      - Monkey
+      - TauCetiBasic
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+        - StunImmune
+        - FootstepSound

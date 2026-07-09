@@ -71,7 +71,7 @@
 
 - type: entity
   name: BaseWeaponShotgun
-  parent: BaseItem
+  parent: [BaseItem, BaseButtStroke] #CorvaxGoob: add ButtStroke parent
   id: BaseWeaponShotgun
   description: A rooty tooty point and shooty.
   abstract: true
@@ -135,16 +135,17 @@
     - oni-cannot-shoot-guns-2
     - oni-cannot-shoot-guns-3
   # Goobstation edit end
-  - type: AltFireMelee # Goobstation V
-    attackType: Heavy
-  - type: MeleeWeapon
-    damage:
-      types:
-       Blunt: 12
-    angle: 0
-    wideAnimationRotation: 90 # -90 if it takes bayonets (hits with muzzle) 90 if not (hits with butt)
-    soundHit:
-      collection: MetalThud # Goobstation ^
+  #CorvaxGoob: commit, because already have parent
+  #- type: AltFireMelee # Goobstation V
+  # attackType: Heavy
+  #- type: MeleeWeapon
+  #  damage:
+  #    types:
+  #     Blunt: 12
+  #  angle: 0
+  #  wideAnimationRotation: 90 # -90 if it takes bayonets (hits with muzzle) 90 if not (hits with butt)
+  #  soundHit:
+  #   collection: MetalThud # Goobstation ^
 
 - type: entity
   name: Bulldog

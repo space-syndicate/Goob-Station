@@ -822,7 +822,17 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             || !TryComp<MindComponent>(mindId, out var mindComp))
             return;
 
-        _mind.ClearObjectives(mindId, mindComp);
+        // CorvaxGoob-Fix start
+        //_mind.ClearObjectives(mindId, mindComp);
+        for (var i = mindComp.Objectives.Count - 1; i >= 0; i--)
+        {
+            var objective = mindComp.Objectives[i];
+            if (HasComp<CosmicVictoryConditionComponent>(objective)
+                || HasComp<CosmicTierConditionComponent>(objective)
+                || HasComp<CosmicEntropyConditionComponent>(objective))
+                _mind.TryRemoveObjective(mindId, mindComp, i);
+        }
+         // CorvaxGoob-Fix end
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);
 

@@ -133,6 +133,7 @@
   id: BaseMobVox
   abstract: true
   components:
+  - type: OfferItem # CorvaxGoob-Fix
   - type: Disgust # Vox are better at handling disgust
     accumulationMultiplier: 0.75
     reductionRate: 3

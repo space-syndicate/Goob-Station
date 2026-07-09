@@ -272,5 +272,9 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction MappingRemoveDecal = "MappingRemoveDecal";
         public static readonly BoundKeyFunction MappingCancelEraseDecal = "MappingCancelEraseDecal";
         public static readonly BoundKeyFunction MappingOpenContextMenu = "MappingOpenContextMenu";
+        // CorvaxGoob-changes-start:
+        public static readonly BoundKeyFunction EditorNextObject = "EditorNextObject";
+        public static readonly BoundKeyFunction EditorPreviousObject = "EditorPreviousObject";
+        // CorvaxGoob-changes-end.
     }
 }
