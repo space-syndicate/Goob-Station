@@ -1,37 +1,19 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class NanoChatCartridgeComponent : Component
 {
+    [DataField]
     public string? PdaCardName;
 
-    public List<string> Contacts = new()
-    {
-        "Captain",
-        "Chief Engineer",
-        "Station AI",
-        "Honkbot",
-    };
-
-    public Dictionary<string, List<NanoChatMessage>> ChatHistories = new()
-    {
-        {
-            "Captain",
-            new List<NanoChatMessage>
-            {
-                new("Captain", "Get to the bridge immediately!"),
-                new("You", "On my way."),
-            }
-        },
-        {
-            "Station AI",
-            new List<NanoChatMessage>
-            {
-                new("Station AI", "Atmospherics status: Nominal."),
-            }
-        },
-    };
-
+    [DataField]
     public string? SelectedContact;
+
+    [DataField]
     public bool NotificationsOn = true;
+
+    [DataField]
+    public Dictionary<string, List<NanoChatMessage>> ChatHistories = new();
 }
