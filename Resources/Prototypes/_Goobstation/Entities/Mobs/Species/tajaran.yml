@@ -71,7 +71,7 @@
   - type: Speech
     speechVerb: Felinid
     speechSounds: Alto
-    AllowedEmtoes: ['Purr']
+    AllowedEmotes: ['Purr']
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic
