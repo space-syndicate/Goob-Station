@@ -1,0 +1,64 @@
+# species
+- type: emoteSounds
+  id: MaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/scream.ogg
+    Laugh:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/laugh.ogg
+    Sneeze:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/sneeze.ogg
+    Purr:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/purr.ogg
+    Cough:
+      collection: MaleCoughs
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Sigh:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/sigh.ogg
+    Crying:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/cry.ogg
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Gasp:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/gasp.ogg
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+
+- type: emoteSounds
+  id: FemaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/scream.ogg
+    Laugh:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/laugh.ogg
+    Sneeze:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/sneeze.ogg
+    Purr:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/purr.ogg
+    Cough:
+      collection: FemaleCoughs
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Sigh:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/sigh.ogg
+    Crying:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/cry.ogg
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Gasp:
+      path: /Audio/_CorvaxGoob/Effects/Tajaran/gasp.ogg
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp

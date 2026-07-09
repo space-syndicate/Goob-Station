@@ -12,6 +12,13 @@
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+  - type: Organ
+    onAdd:
+    - type: NightVision # Goobstation - Nightvision
+      color: Gray
+      activateSound: null
+      deactivateSound: null
+    - type: FlashVulnerable # There are downsides.
 
 - type: entity
   parent: OrganAnimalHeart

@@ -467,7 +467,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
-
+      
 - type: listing
   id: UplinkDualettaBundle
   name: uplink-dualetta-bundle-name
@@ -751,8 +751,6 @@
     whitelist:
     - HijackShuttleObjective
     - NukeDiskStealObjective
-  saleLimit: 1
-
 
 - type: listing
   id: UplinkLubeGrenade
@@ -1143,7 +1141,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
-
+      
 - type: listing
   id: NukieUplinkAutosurgeonSandevistan
   name: uplink-autosurgeon-sandevistan-name
