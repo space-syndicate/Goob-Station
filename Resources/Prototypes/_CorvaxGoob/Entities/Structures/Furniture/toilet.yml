@@ -65,6 +65,7 @@
     layers:
     - state: condisposal
       map: [ "enum.DisposalUnitVisualLayers.Unanchored" ]
+      color: "#8B7355"   # if Unanchored, it will be still dirty
     - state: disposal
       map: [ "enum.DisposalUnitVisualLayers.Base" ]
       color: "#8B7355" #dirty tint - "говно"

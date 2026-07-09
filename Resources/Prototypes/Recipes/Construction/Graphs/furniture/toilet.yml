@@ -47,8 +47,6 @@
           steps:
             - tag: Trash
               name: construction-graph-tag-trash
-              doAfter: 2
-
     - node: dirty
       entity: ToiletDirty
       edges:
