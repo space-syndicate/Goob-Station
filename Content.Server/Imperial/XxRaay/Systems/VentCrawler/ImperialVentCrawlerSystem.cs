@@ -287,7 +287,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
         return IsOnSameTile(user, vent) && SharesPipeNetwork(vent, active.SourceVent);
     }
 
-    private void EnterVent(EntityUid user, EntityUid vent)
+    public void EnterVent(EntityUid user, EntityUid vent)
     {
         if (!TryComp(user, out ImperialVentCrawlerComponent? crawler))
             return;

@@ -1482,7 +1482,12 @@
 - type: entity
   name: monkey
   id: MobMonkey
-  parent: MobBaseAncestor
+  # Imperial Space VentCrawler; Start
+  # parent: MobBaseAncestor
+  parent:
+  - MobBaseAncestor
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
   - type: NameIdentifier
@@ -2465,7 +2470,12 @@
   # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity
   name: snake
-  parent: SimpleMobBase
+  # Imperial Space VentCrawler; Start
+  # parent: SimpleMobBase
+  parent:
+  - SimpleMobBase
+  - VentCrawlerPestMixin
+  # Imperial Space VentCrawler; End
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
   components:
