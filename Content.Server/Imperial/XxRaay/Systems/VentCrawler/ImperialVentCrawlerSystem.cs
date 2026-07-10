@@ -10,7 +10,6 @@ using Content.Shared.CombatMode;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
-using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Events;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Content.Shared.Interaction;
