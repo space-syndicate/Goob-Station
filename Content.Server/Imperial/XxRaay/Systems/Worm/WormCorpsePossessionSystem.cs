@@ -22,6 +22,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusIcon.Components;
 using System.Numerics;
 using Content.Shared.Ghost;
+using Content.Shared.Follower;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
@@ -48,6 +49,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly GhostSystem _ghosts = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
+    [Dependency] private readonly FollowerSystem _follower = default!;
 
     public override void Initialize()
     {
@@ -208,6 +210,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     /// </summary>
     public void HideWormBody(EntityUid worm)
     {
+        _follower.StopAllFollowers(worm);
         _transform.DetachEntity(worm, Transform(worm));
         SetPaused(worm, true);
     }
