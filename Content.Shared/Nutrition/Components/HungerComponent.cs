@@ -84,6 +84,16 @@ public sealed partial class HungerComponent : Component
     public float? StartingHunger = null;
 
     /// <summary>
+    /// Goobstation
+    /// Active hunger cap set when eating snack food (food with EdibleComponent.MaxNutrition).
+    /// Hunger cannot be raised above this value while the cap is active.
+    /// Cleared to null when eating fully satisfying (cooked) food.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public float? NutritionCap = null;
+
+    /// <summary>
     /// A dictionary relating HungerThreshold to the amount of <see cref="HungerSystem.GetHunger">current hunger</see> needed for each one
     /// </summary>
     [DataField("thresholds", customTypeSerializer: typeof(DictionarySerializer<HungerThreshold, float>))]

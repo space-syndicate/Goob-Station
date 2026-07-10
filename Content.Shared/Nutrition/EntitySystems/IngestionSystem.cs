@@ -61,6 +61,7 @@ public sealed partial class IngestionSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly ReactiveSystem _reaction = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
+    [Dependency] private readonly HungerSystem _hungerSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -368,6 +369,15 @@ public sealed partial class IngestionSystem : EntitySystem
         RaiseLocalEvent(entity, ref ingestEv);
 
         _reaction.DoEntityReaction(entity, split, ReactionMethod.Ingestion);
+
+        // Goobstation — update NutritionCap based on whether this food is a snack
+        if (TryComp(food, out EdibleComponent? edibleComp))
+        {
+            if (edibleComp.MaxNutrition.HasValue)
+                _hungerSystem.SetNutritionCap(entity, edibleComp.MaxNutrition.Value);
+            else
+                _hungerSystem.ClearNutritionCap(entity);
+        }
 
         // Everything is good to go item has been successfuly eaten
         var afterEv = new IngestedEvent(args.User, entity, split, forceFed);

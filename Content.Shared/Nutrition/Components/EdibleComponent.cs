@@ -79,6 +79,14 @@ public sealed partial class EdibleComponent : Component
     public bool RequireDead = true;
 
     /// <summary>
+    /// Maximum hunger value this food can bring the eater to.
+    /// If null, there is no cap (fully satisfying food, e.g. cooked meals).
+    /// If set, food acts as a snack and cannot push hunger above this value.
+    /// </summary>
+    [DataField]
+    public float? MaxNutrition = null;
+
+    /// <summary>
     /// Verb, icon, and sound data for our edible.
     /// </summary>
     [DataField]

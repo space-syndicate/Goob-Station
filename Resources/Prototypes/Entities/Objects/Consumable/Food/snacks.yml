@@ -131,6 +131,8 @@
   - type: Tag
     tags:
       - FoodSnack
+  - type: Edible
+    maxNutrition: 100.0
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
   - type: SolutionContainerManager
