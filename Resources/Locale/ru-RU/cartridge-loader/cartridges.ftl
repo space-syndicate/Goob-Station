@@ -7,6 +7,7 @@ news-read-program-name = Новости станции
 
 crew-manifest-program-name = Манифест экипажа
 crew-manifest-cartridge-loading = Загрузка...
+crew-manifest-cartridge-loading-failed = Ошибка при загрузке манифеста!
 
 net-probe-program-name = ЛогСеть
 net-probe-scan = Просканировать {$device}!
@@ -71,7 +72,7 @@ nano-task-printed-medium-priority = [bold]Приоритет[/bold]: Средн�
 nano-task-printed-low-priority = [bold]Приоритет[/bold]: Низкий
 
 # Список разыскиваемых
-wanted-list-program-name = Список разыскиваемых
+wanted-list-program-name = В розыске
 wanted-list-label-no-records = Всё в порядке, ковбой
 wanted-list-search-placeholder = Поиск по имени и статусу
 
@@ -88,10 +89,12 @@ wanted-list-unknown-initiator-label = неизвестный инициатор
 
 wanted-list-status-label = [color=darkgray]Статус:[/color] {$status ->
         [suspected] [color=yellow]подозреваемый[/color]
-        [wanted] [color=red]разыскиваемый[/color]
-        [detained] [color=#b18644]задержанный[/color]
-        [paroled] [color=green]условно освобожденный[/color]
-        [discharged] [color=green]освобожденный[/color]
+        [wanted] [color=red]разыскивается[/color]
+        [detained] [color=#b18644]под арестом[/color]
+        [paroled] [color=green]условно-досрочно освобожден[/color]
+        [discharged] [color=green]выписан[/color]
+        [hostile] [color=darkred]враг NT[/color]
+        [eliminated] [color=gray]ликвидирован[/color]
         *[other] другое
     }
 

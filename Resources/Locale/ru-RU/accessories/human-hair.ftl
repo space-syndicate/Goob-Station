@@ -62,7 +62,6 @@ marking-HumanHairEmofringe = Эмо (Чёлка)
 marking-HumanHairNofade = Фэйд (Отсутствует)
 marking-HumanHairHighfade = Фэйд (Высокий)
 marking-HumanHairCube = Кубом
-marking-HumanHairCurls = Кудри
 marking-HumanHairMedfade = Фэйд (Средний)
 marking-HumanHairLowfade = Фэйд (Низкий)
 marking-HumanHairBaldfade = Фэйд (Лысый)
