@@ -1,5 +1,4 @@
 using Content.Shared.Damage;
-using Content.Shared.Explosion;
 using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
@@ -78,22 +77,10 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public ProtoId<TagPrototype> SupermatterStopTag = "SupermatterStop";
 
     [DataField]
-    public SoundPathSpecifier ShutdownSoundPath = new("/Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg");
+    public SoundSpecifier ShutdownSoundPath = new SoundCollectionSpecifier("Supermatter");
 
     [DataField]
     public float EmitterHealAmount = 0.1f;
-
-    [DataField]
-    public ProtoId<ExplosionPrototype> ExplosionPrototypeId = "Supermatter";
-
-    [DataField]
-    public float CatastropheTotalIntensity = 2500f;
-
-    [DataField]
-    public float CatastropheSlope = 1f;
-
-    [DataField]
-    public float CatastropheMaxTileIntensity = 35f;
 
     [DataField]
     public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);

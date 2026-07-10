@@ -3,16 +3,15 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
-using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Imperial.Power.Components;
 using Content.Shared.Radiation.Components;
 using System.Linq;
 using Robust.Server.GameObjects;
-using Content.Shared.Chat;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
+using Content.Shared.Explosion.Components;
 using Content.Shared.Imperial.Power.Events;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
@@ -26,7 +25,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     [Dependency] private readonly LightningSystem _lightning = null!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = null!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = null!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = null!;
     [Dependency] private readonly StationSystem _stationSystem = null!;
     [Dependency] private readonly IGameTiming _gameTiming = null!;
     [Dependency] private readonly RadiationSystem _radiationSystem = null!;
@@ -155,19 +153,10 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 
             if (entity.Comp.CatastropheTimer >= entity.Comp.CatastropheDuration)
             {
-                if (TryComp(entity, out TransformComponent? xformCat))
-                {
-                    var coords = _transformSystem.ToMapCoordinates(xformCat.Coordinates);
-                    _explosionSystem.QueueExplosion(
-                        coords,
-                        entity.Comp.ExplosionPrototypeId,
-                        entity.Comp.CatastropheTotalIntensity,
-                        entity.Comp.CatastropheSlope,
-                        entity.Comp.CatastropheMaxTileIntensity,
-                        cause: entity
-                    );
-                }
-                QueueDel(entity);
+                if (TryComp<ExplosiveComponent>(entity, out var explosive))
+                    _explosionSystem.TriggerExplosive(entity, explosive);
+                else
+                    QueueDel(entity);
                 return;
             }
         }
@@ -191,8 +180,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
                 Dirty(entity);
         }
         else
-        {
             entity.Comp.NextDamageTick = TimeSpan.Zero;
-        }
     }
 }

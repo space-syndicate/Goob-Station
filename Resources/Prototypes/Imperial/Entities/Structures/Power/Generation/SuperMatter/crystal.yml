@@ -1,9 +1,8 @@
 - type: entity
+  parent: BaseMachine
   id: Supermatter
   name: supermatter crystal
   description: A strangely translucent and iridescent crystal.
-  placement:
-    mode: SnapgridCenter
   components:
     - type: RadiationSource
       intensity: 5
@@ -12,8 +11,6 @@
       volume: 0
       sound:
         path: /Audio/Ambience/Objects/engine_hum.ogg
-    - type: Physics
-      bodyType: Static
     - type: Speech
       speechSounds: Pai
     - type: Fixtures
@@ -29,15 +26,13 @@
           - MachineLayer
     - type: Transform
       anchored: true
-      noRot: true
-    - type: CollisionWake
-      enabled: false
-    - type: Clickable
-    - type: InteractionOutline
+    - type: Physics
+      bodyType: Static
     - type: Sprite
       drawdepth: WallMountedItems
       sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
       state: supermatter
+      offset: 0,0.25
     - type: Icon
       sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
       state: supermatter
@@ -47,16 +42,15 @@
       energy: 5
       color: "#ffe000"
     - type: Explosive
-      explosionType: Radioactive
-      maxIntensity: 10000
-      intensitySlope: 5
-      totalIntensity: 10000
+      explosionType: Supermatter
+      maxIntensity: 35
+      intensitySlope: 1
+      totalIntensity: 2500
+      deleteAfterExplosion: true
     - type: DeviceLinkSource
       ports:
         - Output
     - type: WarpPoint
-      follow: true
-      location: supermatter
     - type: SupermatterTouch
     - type: SupermatterIntegrity
       tickDamage:
@@ -68,6 +62,11 @@
       guides:
       - SupermatterEngine
       - Power
+
+- type: soundCollection
+  id: Supermatter
+  files:
+  - /Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg
 
 - type: entity
   id: SupermatterShutdownCrystal
