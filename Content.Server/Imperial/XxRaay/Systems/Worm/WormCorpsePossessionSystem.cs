@@ -50,6 +50,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     [Dependency] private readonly GhostSystem _ghosts = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
     [Dependency] private readonly FollowerSystem _follower = default!;
+    [Dependency] private readonly WormCocoonObserveSystem _cocoonObserve = default!;
 
     public override void Initialize()
     {
@@ -211,6 +212,7 @@ public sealed class WormCorpsePossessionSystem : SharedWormCorpsePossessionSyste
     public void HideWormBody(EntityUid worm)
     {
         _follower.StopAllFollowers(worm);
+        _cocoonObserve.ClearTargetFromAllObservers(worm);
         _transform.DetachEntity(worm, Transform(worm));
         SetPaused(worm, true);
     }
