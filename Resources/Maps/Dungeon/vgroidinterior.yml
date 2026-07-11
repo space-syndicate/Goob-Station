@@ -310,7 +310,7 @@ entities:
     - type: Transform
       pos: 20.392515,14.427257
       parent: 1
-- proto: ClothingOuterHardsuitMaxim
+- proto: ClothingOuterHardsuitGoliath # CorvaxGoob Edit
   entities:
   - uid: 16
     components:
