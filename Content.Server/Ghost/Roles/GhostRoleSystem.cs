@@ -1,52 +1,9 @@
-// SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <zddm@outlook.es>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
-// SPDX-FileCopyrightText: 2022 ike709 <ike709@github.com>
-// SPDX-FileCopyrightText: 2022 ike709 <ike709@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2023 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2023 Ray <vigersray@gmail.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 MFMessage <22904993+MFMessage@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mota <belochuc@gmail.com>
-// SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 Vasilis <vascreeper@yahoo.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 no <165581243+pissdemon@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2024 poeMota <142114334+poeMota@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server._CorvaxGoob.Skills;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
@@ -80,6 +37,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server.Popups;
+using Content.Shared.Verbs;
+using Robust.Shared.Collections;
+using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Roles.Components;
+using Content.Server.GameTicking;
 using System.Linq;
 
 namespace Content.Server.Ghost.Roles;
@@ -534,6 +497,20 @@ public sealed class GhostRoleSystem : EntitySystem
             return;
         }
 
+        // Decide to do a raffle or not
+        if (roleEnt.Comp.RaffleConfig is not null)
+        {
+            Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed ban?");
+            return;
+        }
+
+        // Check role requirements
+        if (!IsRoleAllowed(player, jobs, antags))
+        {
+            Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed requirement check?");
+            return;
+        }
+
         if (HasComp<GhostBarPlayerComponent>(player.AttachedEntity) // CorvaxGoob-GhostBar
             || EntityManager.TryGetComponent<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles)
         {
@@ -568,7 +545,7 @@ public sealed class GhostRoleSystem : EntitySystem
         if (TryComp<MindContainerComponent>(roleEnt, out var mindCont)
             && TryComp<MindComponent>(mindCont.Mind, out var mind))
         {
-            foreach (var role in mind.MindRoles)
+            foreach (var role in mind.MindRoleContainer.ContainedEntities)
             {
                 if(!TryComp<MindRoleComponent>(role, out var comp))
                     continue;
@@ -703,9 +680,6 @@ public sealed class GhostRoleSystem : EntitySystem
         _mindSystem.TransferTo(newMind, mob);
 
         _roleSystem.MindAddRoles(newMind.Owner, role.MindRoles, newMind.Comp);
-
-        if (_roleSystem.MindHasRole<GhostRoleMarkerRoleComponent>(newMind!, out var markerRole))
-            markerRole.Value.Comp2.Name = role.RoleName;
     }
 
     /// <summary>
@@ -774,20 +748,6 @@ public sealed class GhostRoleSystem : EntitySystem
         return roles.ToArray();
     }
 
-    /// <summary>
-    /// Goobstation - Add requirement to the ghost role
-    /// </summary>
-    /// <param name="ghostRole">The entity</param>
-    /// <param name="job">The job requirement</param>
-    public void AddRoleRequirements(Entity<GhostRoleComponent>? ghostRole, JobRequirement job)
-    {
-        if (ghostRole is not {} ghost)
-            return;
-
-        //ghost.Comp.Requirements ??= []; // CorvaxGoob-NO
-        //ghost.Comp.Requirements.Add(job); // CorvaxGoob-NO Ограничение роли через хардкод?! Вы нормальные? Вам может лечиться надо? Нахрен такое дерьмо.
-
-    }
     private void OnPlayerAttached(PlayerAttachedEvent message)
     {
         // Close the session of any player that has a ghost roles window open and isn't a ghost anymore.
@@ -1011,7 +971,7 @@ public sealed class GhostRoleSystem : EntitySystem
 
     public void OnGhostRoleRadioMessage(Entity<GhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
     {
-        if (!_prototype.TryIndex(args.ProtoId, out var ghostRoleProto))
+        if (!_prototype.Resolve(args.ProtoId, out var ghostRoleProto))
             return;
 
         // if the prototype chosen isn't actually part of the selectable options, ignore it
