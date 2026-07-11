@@ -1,11 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2023 coolmankid12345 <55817627+coolmankid12345@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
@@ -45,6 +38,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <GuideEntityEmbed Entity="ClothingHeadHatWelding"/>
   </Box>
 
+  Assume all of [color=#cb0000]Security[/color] and [color=#1b67a5]Command[/color] are implanted with mindshields already, [bold]however they can be removed using an implant extractor, obtainable from the Medical department's MedFab.[/bold]
   Еще одним препятствием на вашем пути являются эти надоедливые [color=cyan]импланты защиты разума[/color]. Они:
   - Предотвращают обращение человека в [color=red]Революционера[/color]
   - Де-конвертируют Революционеров, делая их больше не лояльными вашей цели

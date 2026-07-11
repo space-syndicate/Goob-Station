@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 using System.Collections.Immutable;
 using Content.Shared.Database;
 using Robust.Shared.Network;

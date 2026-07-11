@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: OniCube
+  result: OniCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250

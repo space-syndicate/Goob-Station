@@ -1,0 +1,17 @@
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateGorilla
+  name: ReinforcementRadioSyndicateGorilla
+  description: Calls gorilla to assist you.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-syndicate-gorilla-reinforcement-name
+    description: ghost-role-information-syndicate-gorilla-reinforcement-description
+    rules: ghost-role-information-syndicate-reinforcement-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRoleSoloAntagonistGoob
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: Mobsyndicategorilla
