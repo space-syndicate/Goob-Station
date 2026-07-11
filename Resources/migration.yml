@@ -1118,3 +1118,6 @@ ClothingBeltAssaultFilled: null
 ClothingBackpackMessengerMailman: null
 SoapBorg: null
 ZookeeperIDCard: null
+
+#2026-07-11 CorvaxGoob
+ClothingShoesHighheelBootsFilled: ClothingShoesHighheelBoots
