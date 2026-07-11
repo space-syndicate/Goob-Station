@@ -22,7 +22,6 @@ namespace Content.Server.Database.Migrations.Postgres
                 nullable: true);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
