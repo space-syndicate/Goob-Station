@@ -50,3 +50,5 @@ ent-ClothingOuterArmorDragon = dragon suit
     .desc = The scales were ethically sourced, promise.
 ent-ClothingOuterArmorInquisitor = inquisitor armor
     .desc = Bulky armor adorned with golden chains and patterns. Show heresy your might!
+ent-ClothingOuterArmorVeteranSecurity = veteran security's old armor
+    .desc = An old version of the standard NanoTrasen bulletproof vest, its design provides better protection against surprise attacks by clowns, it still meets NT's protection standards

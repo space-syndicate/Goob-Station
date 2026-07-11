@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ToggleNightVisionMental
+  name: Toggle Night Vision
+  description: Toggles night vision.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 1
+    icon:
+      sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ToggleNightVisionEvent

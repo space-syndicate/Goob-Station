@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -296,6 +298,117 @@ namespace Content.Server.Database
                 .HasDefaultValue(HwidType.Legacy);
 
             ModelBan.OnModelCreating(modelBuilder);
+
+            // Corvax-Goob нам такое не надо
+            /*
+            // RMC14
+            modelBuilder.Entity<RMCLinkedAccount>()
+                .HasOne(l => l.Player)
+                .WithOne(p => p.LinkedAccount)
+                .HasForeignKey<RMCLinkedAccount>(l => l.PlayerId)
+                .HasPrincipalKey<Player>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCLinkedAccount>()
+                .HasOne(l => l.Discord)
+                .WithOne(d => d.LinkedAccount)
+                .HasForeignKey<RMCLinkedAccount>(l => l.DiscordId)
+                .HasPrincipalKey<RMCDiscordAccount>(d => d.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCPatron>()
+                .HasOne(p => p.Player)
+                .WithOne(p => p.Patron)
+                .HasForeignKey<RMCPatron>(p => p.PlayerId)
+                .HasPrincipalKey<Player>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCPatron>()
+                .HasOne(p => p.Tier)
+                .WithMany(t => t.Patrons)
+                .HasForeignKey(p => p.TierId)
+                .HasPrincipalKey(p => p.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCPatronTier>()
+                .HasIndex(t => t.DiscordRole)
+                .IsUnique();
+
+            modelBuilder.Entity<RMCLinkingCodes>()
+                .HasOne(l => l.Player)
+                .WithOne(p => p.LinkingCodes)
+                .HasForeignKey<RMCLinkingCodes>(l => l.PlayerId)
+                .HasPrincipalKey<Player>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCLinkedAccountLogs>()
+                .HasOne(l => l.Player)
+                .WithMany(p => p.LinkedAccountLogs)
+                .HasForeignKey(l => l.PlayerId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCLinkedAccountLogs>()
+                .HasOne(l => l.Discord)
+                .WithMany(p => p.LinkedAccountLogs)
+                .HasForeignKey(l => l.DiscordId)
+                .HasPrincipalKey(p => p.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Goobstation Polls
+            modelBuilder.Entity<Poll>()
+                .HasOne(p => p.CreatedBy)
+                .WithMany()
+                .HasForeignKey(p => p.CreatedById)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<PollOption>()
+                .HasOne(o => o.Poll)
+                .WithMany(p => p.Options)
+                .HasForeignKey(o => o.PollId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollVote>()
+                .HasOne(v => v.Poll)
+                .WithMany(p => p.Votes)
+                .HasForeignKey(v => v.PollId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollVote>()
+                .HasOne(v => v.PollOption)
+                .WithMany(o => o.Votes)
+                .HasForeignKey(v => v.PollOptionId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollVote>()
+                .HasOne(v => v.Player)
+                .WithMany()
+                .HasForeignKey(v => v.PlayerUserId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollVote>()
+                .HasIndex(v => new { v.PollId, v.PlayerUserId, v.PollOptionId })
+                .IsUnique();
+
+            modelBuilder.Entity<PollSeen>()
+                .HasOne(s => s.Poll)
+                .WithMany()
+                .HasForeignKey(s => s.PollId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollSeen>()
+                .HasOne(s => s.Player)
+                .WithMany()
+                .HasForeignKey(s => s.PlayerUserId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollSeen>()
+                .HasIndex(s => new { s.PollId, s.PlayerUserId })
+                .IsUnique();
+                */
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)

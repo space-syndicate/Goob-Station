@@ -83,6 +83,10 @@ wanted-list-status-label = [color=darkgray]статус:[/color] { $status ->
         [wanted] [color=red]разыскивается[/color]
         [detained] [color=#b18644]под арестом[/color]
         [paroled] [color=green]освобождён по УДО[/color]
+        [search] [color=#33cccc]пропал[/color]
+        [perma] [color=#343434]отправлен в пермабриг[/color]
+        [dangerous] [color=red]особо-опасен[/color]
+        [demote] [color=red]уволить[/color]
         [discharged] [color=green]освобождён[/color]
        *[other] нет
     }

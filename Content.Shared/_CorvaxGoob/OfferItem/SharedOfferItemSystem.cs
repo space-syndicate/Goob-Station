@@ -122,11 +122,12 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
     private void OnMove(EntityUid uid, OfferItemComponent component, MoveEvent args)
     {
-        if (component.Target is null ||
-            _transform.InRange(args.NewPosition,
-                Transform(component.Target.Value).Coordinates,
-                component.MaxOfferDistance)
-            )
+        if (component.Target is not { Valid: true } target)
+            return;
+
+        var targetCoords = Transform(target).Coordinates;
+
+        if (_transform.InRange(args.NewPosition, targetCoords, component.MaxOfferDistance))
             return;
 
         UnOffer(uid, component);
@@ -140,11 +141,11 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHandId is null)
             return;
 
-        if (TryComp<OfferItemComponent>(component.Target, out var offerItem) && component.Target is not null)
+        if (component.Target is { Valid: true } && TryComp<OfferItemComponent>(component.Target, out var offerItem))
         {
             if (component.Item is not null)
             {
-                if (!_timing.IsFirstTimePredicted)
+                if (_timing.IsFirstTimePredicted)
                 {
                     _popup.PopupClient(Loc.GetString("offer-item-no-give",
                         ("item", Identity.Entity(component.Item.Value, EntityManager)),
@@ -157,7 +158,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
             }
             else if (offerItem.Item is not null)
             {
-                if (!_timing.IsFirstTimePredicted)
+                if (_timing.IsFirstTimePredicted)
                 {
                     _popup.PopupClient(Loc.GetString("offer-item-no-give",
                         ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
@@ -202,7 +203,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
             component.Target is null)
             return;
 
-        if (offerItem.Item is not null)
+        if (offerItem.Item is not null && _timing.IsFirstTimePredicted)
         {
             _popup.PopupClient(Loc.GetString("offer-item-no-give",
                 ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),

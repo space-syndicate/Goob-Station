@@ -1,0 +1,10 @@
+- type: latheRecipe
+  id: ToolboxElectricalTurret
+  result: ToolboxElectricalTurret
+  completetime: 15
+  materials:
+    Steel: 3000
+    Glass: 1000
+    Gold: 1000
+    Silver: 1000
+    Plasteel: 4000

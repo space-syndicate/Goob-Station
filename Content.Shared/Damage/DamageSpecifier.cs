@@ -1,27 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Moony <moony@hellomouse.net>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2022 Sam Weaver <weaversam8@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 moonheart08 <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Darkie <darksaiyanis@gmail.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -46,6 +22,11 @@ namespace Content.Shared.Damage
     [DataDefinition, Serializable, NetSerializable]
     public sealed partial class DamageSpecifier : IEquatable<DamageSpecifier>
     {
+        // For the record I regret so many of the decisions i made when rewriting damageable
+        // Why is it just shitting out dictionaries left and right
+        // One day Arrays, stackalloc spans, and SIMD will save the day.
+        // TODO DAMAGEABLE REFACTOR
+
         // These exist solely so the wiki works. Please do not touch them or use them.
         [JsonPropertyName("types")]
         [DataField("types", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<FixedPoint2, DamageTypePrototype>))]
@@ -76,6 +57,10 @@ namespace Content.Shared.Damage
         // Goobstation
         [DataField(customTypeSerializer: typeof(PrototypeIdDictionarySerializer<FixedPoint2, DamageTypePrototype>))]
         public Dictionary<string, FixedPoint2> WoundSeverityMultipliers { get; set; } = new();
+		
+        // CorvaxGoob
+        [DataField]
+        public bool BypassFlatReductions { get; set; }
 
         /// <summary>
         ///     Returns a sum of the damage values.
@@ -146,6 +131,7 @@ namespace Content.Shared.Damage
             ArmorPenetration = damageSpec.ArmorPenetration; // Goobstation
             PartDamageVariation = damageSpec.PartDamageVariation; // Goobstation
             WoundSeverityMultipliers = new(damageSpec.WoundSeverityMultipliers);
+			BypassFlatReductions = damageSpec.BypassFlatReductions; // CorvaxGoob
         }
 
         /// <summary>
@@ -182,7 +168,7 @@ namespace Content.Shared.Damage
         ///     Only applies resistance to a damage type if it is dealing damage, not healing.
         ///     This will never convert damage into healing.
         /// </remarks>
-        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet)
+        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, bool bypassFlatReductions = false) // CorvaxGoob : bypassFlatReductions
         {
             // Make a copy of the given data. Don't modify the one passed to this function. I did this before, and weapons became
             // duller as you hit walls. Neat, but not FixedPoint2ended. And confusing, when you realize your fists don't work no
@@ -203,7 +189,7 @@ namespace Content.Shared.Damage
 
                 float newValue = value.Float();
 
-                if (modifierSet.FlatReduction.TryGetValue(key, out var reduction))
+                if (!bypassFlatReductions && modifierSet.FlatReduction.TryGetValue(key, out var reduction)) // CorvaxGoob : bypassFlatReductions
                     newValue = Math.Max(0f, newValue - reduction); // flat reductions can't heal you
 
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))

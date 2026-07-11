@@ -1,16 +1,23 @@
-#region Structures
 - type: damageModifierSet
-  id: StructuralReactorCasing # StructuralMetallicStrong(er), it's going to take more than a mere baseball bat to do any real damage
+  id: Mobsyndicategorillaset
   coefficients:
-    Blunt: 0.1          # you
-    Slash: 0.1          # aint
-    Piercing: 0.1       # gonna
-    Shock: 0.2          # do
-    Heat: 0.1           # shit
-    Structural: 0.25
-  flatReductions:
-    Blunt: 10
-    Slash: 10
-    Piercing: 10
-    Heat: 10
-    Structural: 10
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5
+  ignoreArmorPierceFlags: All
+
+- type: damageModifierSet
+  id: DiceOfFateMod
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5
+    Cold: 0.5
+    Shock: 0.5
+    Radiation: 0.5
+    Asphyxiation: 0.5
+    Bloodloss: 0.5
+    Cellular: 0.5
+    Caustic: 0.5
