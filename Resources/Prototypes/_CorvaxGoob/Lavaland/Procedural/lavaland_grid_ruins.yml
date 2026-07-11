@@ -65,3 +65,10 @@
   name: lavaland-ruin-crystal
   path: /Maps/_CorvaxGoob/Lavaland/Lavaland/ruin_crystal.yml
   priority: 9
+
+- type: lavalandGridRuin
+  id: CorvaxJadnostRuin
+  name: lavaland-ruin-jadnost
+  path: /Maps/_CorvaxGoob/Lavaland/ruin_jadnost.yml
+  priority: 10
+  patchToPlanet: false

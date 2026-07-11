@@ -6,6 +6,7 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Maps;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;

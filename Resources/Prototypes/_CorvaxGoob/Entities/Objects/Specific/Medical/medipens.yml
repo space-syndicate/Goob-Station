@@ -39,7 +39,6 @@
     solutionName: pen
     fillBaseName: medipen_solution-
     changeColor: true
-  - type: Medipen
   - type: Item
     sprite: _CorvaxGoob/Objects/Specific/Medical/medipen.rsi
     inhandVisuals:
@@ -54,13 +53,12 @@
     size: Tiny
   - type: ExaminableSolution
     solution: pen
-  - type: Hypospray
-    selfDelay: 1
-    otherDelay: 2
+  - type: Injector
     solutionName: pen
-    transferAmount: 15 # recommend to use same value of transfer amount and maximum solution volume
-    onlyAffectsMobs: true
-    injectOnly: true
+    currentTransferAmount: 15
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: Appearance
   - type: PhysicalComposition
     materialComposition:
@@ -68,11 +66,11 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 150
-  - type: SolutionContainerManager # using for containing mixture and definition medipen's max volume
+  - type: SolutionContainerManager
     solutions:
       pen:
         maxVol: 15
-  - type: Tag # CorvaxGoob
+  - type: Tag
     tags:
     - Medipen
 
@@ -97,8 +95,6 @@
     - state: microstimpen_empty_visual
       map: ["enum.MedipenColorLayer.Empty"]
       visible: false
-  - type: Medipen
-    label: component-microstimpen-default-label
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     solutionName: pen
@@ -106,11 +102,12 @@
     changeColor: true
   - type: ExaminableSolution
     solution: pen
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 10
-    onlyAffectsMobs: true
-    injectOnly: true
+    currentTransferAmount: 10
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: SolutionContainerManager
     solutions:
       pen:

@@ -4,10 +4,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._CorvaxGoob.Announcer;
 
 [Prototype("announcer")]
-public sealed class AnnouncerPrototype : IPrototype
+public sealed partial class AnnouncerPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; private init; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Will generate unique calendar for announcer that will apply for entire day if it's coincidence.

@@ -15,7 +15,7 @@
     sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
     layers:
     - state: pyrotton-pizza
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SliceableFood
     slice: FoodPizzaPyrottonSlice
@@ -48,7 +48,7 @@
     - cotton
     - pyrotton
     - bread
-  - type: Food
+  - type: Edible
     trash:
     - FoodCottonPizzaCrust
   - type: Sprite
@@ -91,7 +91,7 @@
     sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
     layers:
     - state: carptton-pizza
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SliceableFood
     slice: FoodPizzaCarpttonSlice
@@ -124,7 +124,7 @@
     - cotton
     - fishops
     - bread
-  - type: Food
+  - type: Edible
     trash:
     - FoodCottonPizzaCrust
   - type: Sprite
@@ -163,7 +163,7 @@
   - type: FlavorProfile
     flavors:
       - bread
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
     layers:
@@ -193,7 +193,7 @@
     flavors:
       - bread
       - cotton
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
     layers:

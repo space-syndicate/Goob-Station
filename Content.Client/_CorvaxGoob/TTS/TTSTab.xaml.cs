@@ -126,7 +126,7 @@ public sealed partial class TTSTab : Control
 
             if (voice.ID == _selectedVoiceId)
             {
-                selectButton.AddStyleClass(StyleBase.ButtonCaution);
+                selectButton.AddStyleClass(StyleClass.Negative);
             }
 
             selectButton.OnPressed += _ =>

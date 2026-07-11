@@ -1,15 +1,7 @@
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Vasilis <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics;
 using System.IO.Compression;
-using Content.ModuleManager;
 using Robust.Packaging;
 using Robust.Packaging.AssetProcessing;
 using Robust.Packaging.AssetProcessing.Passes;
@@ -20,7 +12,7 @@ namespace Content.Packaging;
 
 public static class ClientPackaging
 {
-    private static readonly bool UseSecrets = File.Exists(Path.Combine("Secrets", "CorvaxSecrets.sln")); // CorvaxGoob-Secrets
+    private static readonly bool UseSecrets = File.Exists(Path.Combine("Secrets", "CorvaxSecrets.sln")); // CorvaxGoob-Secret
 
     /// <summary>
     /// Be advised this can be called from server packaging during a HybridACZ build.
@@ -29,48 +21,44 @@ public static class ClientPackaging
     public static async Task PackageClient(bool skipBuild, string configuration, IPackageLogger logger, string path = ".")
     {
         logger.Info("Building client...");
-
-        if (!skipBuild)
+        // CorvaxGoob-Secret-Start
+        var startInfo = new ProcessStartInfo
         {
-            var clientProjects = GetClientModules(path);
-
-            foreach (var project in clientProjects)
-            {
-                await ProcessHelpers.RunCheck(new ProcessStartInfo
+            FileName = "dotnet",
+            ArgumentList =
                 {
-                    FileName = "dotnet",
-                    ArgumentList =
+                    "build",
+                    Path.Combine("Content.Goobstation.Client", "Content.Goobstation.Client.csproj"), // Goob
+                    "-c", configuration,
+                    "--nologo",
+                    "/v:m",
+                    "/t:Rebuild",
+                    "/p:FullRelease=true",
+                    "/m"
+                }
+        };
+
+        if (UseSecrets)
+        {
+            await ProcessHelpers.RunCheck(new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                ArgumentList =
                     {
                         "build",
-                        project,
-                        "-c", configuration,
+                        Path.Combine("Secrets","Content.Corvax.Client", "Content.Corvax.Client.csproj"),
+                        "-c", "Release",
                         "--nologo",
                         "/v:m",
                         "/t:Rebuild",
                         "/p:FullRelease=true",
                         "/m"
                     }
-                });
-                if (UseSecrets)
-                {
-                    await ProcessHelpers.RunCheck(new ProcessStartInfo
-                            {
-                            FileName = "dotnet",
-                            ArgumentList =
-                            {
-                            "build",
-                            Path.Combine("Secrets","Content.Corvax.Client", "Content.Corvax.Client.csproj"),
-                            "-c", "Release",
-                            "--nologo",
-                            "/v:m",
-                            "/t:Rebuild",
-                            "/p:FullRelease=true",
-                            "/m"
-                            }
-                            });
-                }
-            }
+            });
         }
+
+        await ProcessHelpers.RunCheck(startInfo);
+        // CorvaxGoob-Secret-End
 
         logger.Info("Packaging client...");
 
@@ -86,65 +74,6 @@ public static class ClientPackaging
         }
 
         logger.Info($"Finished packaging client in {sw.Elapsed}");
-    }
-
-    private static List<string> GetClientModules(string path)
-    {
-        var clientProjects = new List<string> { Path.Combine("Content.Client", "Content.Client.csproj") };
-
-        var directories = Directory.GetDirectories(path, "Content.*");
-
-        foreach (var dir in directories)
-        {
-            var dirName = Path.GetFileName(dir);
-
-            if (dirName != "Content.Client" && dirName.EndsWith(".Client"))
-            {
-                var projectPath = Path.Combine(dir, $"{dirName}.csproj");
-                if (File.Exists(projectPath))
-                {
-                    clientProjects.Add(projectPath);
-                }
-            }
-        }
-
-        return clientProjects;
-    }
-
-    private static List<string> FindAllModules(string path = ".")
-    {
-        // Correct pathing to be in local folder if contentDir is empty.
-        if (string.IsNullOrEmpty(path))
-            path = ".";
-
-        var modules = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.ModuleManager", "Content.Corvax.Interfaces.Client", "Content.Corvax.Interfaces.Shared" }; // CorvaxGoob-Packaging
-        if (UseSecrets) {
-            modules.AddRange(new [] { "Content.Corvax.Shared", "Content.Corvax.Client" });
-        }
-
-        // Goobstation - Modular Packaging
-        modules.AddRange(ModuleDiscovery.DiscoverModules(path)
-            .Where(m => m.Type is not ModuleType.Server)
-            .Select(m => m.Name)
-            .Distinct()
-        );
-
-        // Basic Directory Scanning
-        var directories = Directory.GetDirectories(path, "Content.*");
-        foreach (var dir in directories)
-        {
-            var dirName = Path.GetFileName(dir);
-
-            // Throw out anything that does not end with ".Client" or ".Shared"
-            if (!dirName.EndsWith(".Client") && !dirName.EndsWith(".Shared") || modules.Contains(dirName))
-                continue;
-
-            var projectPath = Path.Combine(dir, $"{dirName}.csproj");
-            if (File.Exists(projectPath))
-                modules.Add(dirName);
-        }
-
-        return modules;
     }
 
     public static async Task WriteResources(
@@ -166,35 +95,53 @@ public static class ClientPackaging
 
         var inputPass = graph.Input;
 
-        var modules = FindAllModules(contentDir);
+        // CorvaxGoob-Secret-Start: Add Corvax interfaces to Magic ACZ
+        var assemblies = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.Corvax.Interfaces.Client", "Content.Corvax.Interfaces.Shared" };
+        if (UseSecrets)
+            assemblies.AddRange(new[] { "Content.Corvax.Shared", "Content.Corvax.Client" });
+        // CorvaxGoob-Secret-End
+
+        // Goob edit start
+        // thanks 'dletandas'
+        var sourcePath = Path.Combine(contentDir, "bin", "Content.Client");
+        var deps = DepsHandler.Load(Path.Combine(sourcePath, "Content.Goobstation.Client.deps.json"));
+        var contentAssemblies = ServerPackaging.GetContentAssemblyNamesToCopy(deps, "Client");
+        assemblies.AddRange(contentAssemblies); //Corvax-Secret
+        // Good edit end
 
         await RobustSharedPackaging.WriteContentAssemblies(
             inputPass,
             contentDir,
             "Content.Client",
-            modules.ToArray(),
+            assemblies.Distinct(), // Goob + Corvax-Secret
             cancel: cancel);
 
-        await WriteClientResources(contentDir, inputPass, cancel);
+        await RobustClientPackaging.WriteClientResources(
+            contentDir,
+            inputPass,
+            SharedPackaging.AdditionalIgnoredResources,
+            cancel);
 
         inputPass.InjectFinished();
     }
-    // CorvaxGoob-Secrets-Start
+
+    // CorvaxGoob-Secret-Start
     public static IReadOnlySet<string> ContentClientIgnoredResources { get; } = new HashSet<string>
     {
         "CorvaxSecretsServer"
     };
 
     private static async Task WriteClientResources(
-            string contentDir,
-            AssetPass pass,
-            CancellationToken cancel = default)
+        string contentDir,
+        AssetPass pass,
+        IReadOnlySet<string> additionalIgnoredResources,
+        CancellationToken cancel = default)
     {
         var ignoreSet = RobustClientPackaging.ClientIgnoredResources
             .Union(RobustSharedPackaging.SharedIgnoredResources)
-            .Union(ContentClientIgnoredResources).ToHashSet();
+            .Union(ContentClientIgnoredResources).Union(additionalIgnoredResources).ToHashSet();
 
         await RobustSharedPackaging.DoResourceCopy(Path.Combine(contentDir, "Resources"), pass, ignoreSet, cancel: cancel);
     }
-    // CorvaxGoob-Secrets-End
+    // CorvaxGoob-Secret-End
 }
