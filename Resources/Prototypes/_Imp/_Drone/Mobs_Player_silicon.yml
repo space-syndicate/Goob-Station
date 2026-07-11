@@ -314,7 +314,7 @@
   - type: CombatMode
     combatToggleAction: ActionCombatModeToggle
   - type: BatterySelfRecharger
-    autoRechargeRate: 20
+    autoRechargeRate: 200
     autoRecharge: True
   - type: Pacified
     #CorvaxGoob-Edit-End
