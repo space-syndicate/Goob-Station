@@ -1,11 +1,15 @@
 using System.Linq;
+using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.GPS.Components;
 using Content.Shared.Imperial.CartridgeLoader.Cartridges;
 using Content.Shared.PDA;
 using Content.Shared.Power;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 
@@ -13,6 +17,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = null!;
     [Dependency] private readonly SharedAudioSystem _audio = null!;
+    [Dependency] private readonly TransformSystem _transform = null!;
+    [Dependency] private GameTicker _gameTicker = null!;
 
     public override void Initialize()
     {
@@ -22,6 +28,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         SubscribeLocalEvent<NanoChatCartridgeComponent, ComponentRemove>(OnCartridgeRemoved);
 
         SubscribeLocalEvent<NanoChatServerComponent, PowerChangedEvent>(OnPowerChanged);
+
+        SubscribeLocalEvent<NanoChatServerComponent, NanoChatServerStartupEvent>(OnServerStartup);
         SubscribeLocalEvent<NanoChatServerComponent, NanoChatServerShutdownEvent>(OnServerShutdown);
     }
 
@@ -31,6 +39,10 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     }
 
     private void OnServerShutdown(Entity<NanoChatServerComponent> ent, ref NanoChatServerShutdownEvent args)
+    {
+        UpdateAllClients(ent);
+    }
+    private void OnServerStartup(Entity<NanoChatServerComponent> ent, ref NanoChatServerStartupEvent args)
     {
         UpdateAllClients(ent);
     }
@@ -88,19 +100,37 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             case NanoChatSendEvent send:
                 HandleSendText(ent, send.Text);
                 break;
+
+            case NanoChatSendLocationEvent:
+                var parent = Transform(ent).ParentUid;
+                if (!HasComp<HandheldGPSComponent>(parent))
+                    return;
+
+                var posText = Loc.GetString("nano-chat-ui-chat-windows-message-error");
+                var pos = _transform.GetMapCoordinates(ent);
+
+                if (pos.MapId != MapId.Nullspace)
+                {
+                    var x = (int) pos.Position.X;
+                    var y = (int) pos.Position.Y;
+                    posText = $"({x}, {y})";
+                }
+
+                HandleSendText(ent, Loc.GetString("handheld-gps-coordinates-title", ("coordinates", posText)));
+                break;
         }
     }
 
     private void HandleAddMembers(Entity<NanoChatCartridgeComponent> ent, NanoChatAddMembersEvent args)
     {
         var server = GetServerForCartridge(ent.Owner);
-        if (server == null || ent.Comp.CurrentUserId == null)
+        if (server == null || ent.Comp.UserId == null)
             return;
 
         if (!server.Value.Comp.Chats.TryGetValue(args.ChatId, out var chat))
             return;
 
-        if (!chat.Members.Contains(ent.Comp.CurrentUserId.Value))
+        if (!chat.Members.Contains(ent.Comp.UserId.Value))
             return;
 
         var addedAny = false;
@@ -130,7 +160,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
     private void HandleCreateChat(Entity<NanoChatCartridgeComponent> creator, string chatName)
     {
-        if (string.IsNullOrWhiteSpace(chatName) || creator.Comp.CurrentUserId == null)
+        if (string.IsNullOrWhiteSpace(chatName) || creator.Comp.UserId == null)
             return;
 
         var server = GetServerForCartridge(creator.Owner);
@@ -138,7 +168,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var newChatId = server.Value.Comp.NextChatId++;
-        var newChat = new NanoChatChat(newChatId, chatName, new List<NetEntity> { creator.Comp.CurrentUserId.Value });
+        var newChat = new NanoChatChat(newChatId, chatName, new List<NetEntity> { creator.Comp.UserId.Value }, false);
         server.Value.Comp.Chats[newChatId] = newChat;
         creator.Comp.SelectedChat = newChatId;
 
@@ -147,14 +177,14 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
     private void HandleSendText(Entity<NanoChatCartridgeComponent> sender, string text)
     {
-        if (string.IsNullOrWhiteSpace(text) || sender.Comp.SelectedChat == null || sender.Comp.CurrentUserId == null)
+        if (string.IsNullOrWhiteSpace(text) || sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
             return;
 
         var server = GetServerForCartridge(sender.Owner);
         if (server == null)
             return;
 
-        var senderId = sender.Comp.CurrentUserId.Value;
+        var senderId = sender.Comp.UserId.Value;
         var chatId = sender.Comp.SelectedChat.Value;
 
         if (!server.Value.Comp.Chats.TryGetValue(chatId, out var chat))
@@ -165,7 +195,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             chatId,
             senderId,
             senderName,
-            text
+            text,
+            _gameTicker.RoundDuration()
         );
 
         server.Value.Comp.Messages.Add(message);
@@ -174,13 +205,13 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         foreach (var clientUid in server.Value.Comp.ConnectedClients)
         {
             if (!TryComp<NanoChatCartridgeComponent>(clientUid, out var targetComp)
-                || targetComp.CurrentUserId == null)
+                || targetComp.UserId == null)
                 continue;
 
-            if (!chat.Members.Contains(targetComp.CurrentUserId.Value))
+            if (!chat.Members.Contains(targetComp.UserId.Value))
                 continue;
 
-            if (targetComp.CurrentUserId == senderId)
+            if (targetComp.UserId == senderId)
                 continue;
 
             if (targetComp.SelectedChat != chatId)
@@ -204,7 +235,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (pdaData.Id == null)
             return;
 
-        ent.Comp.CurrentUserId = pdaData.Id.Value;
+        ent.Comp.UserId = pdaData.Id.Value;
         ent.Comp.PdaCardName = pdaData.Name;
 
         var server = GetServerForCartridge(ent.Owner);
@@ -256,13 +287,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
     private Entity<NanoChatServerComponent>? GetServerForCartridge(EntityUid cartridgeUid)
     {
-        if (!TryComp(cartridgeUid, out TransformComponent? transform))
-            return null;
+        var cartTrans = Transform(cartridgeUid);
 
         var serverQuery = EntityQueryEnumerator<NanoChatServerComponent, TransformComponent, ApcPowerReceiverComponent>();
         while (serverQuery.MoveNext(out var serverUid, out var serverComponent, out var serverTransform, out var power))
         {
-            if (serverTransform.MapID == transform.MapID && power.Powered)
+            if (serverTransform.MapID == cartTrans.MapID && power.Powered)
                 return (serverUid, serverComponent);
         }
         return null;
@@ -286,13 +316,14 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         var chats = new List<NanoChatChat>();
         var history = new List<NanoChatMessage>();
         NanoChatChat? currentChat = null;
+        var canSendLocation = HasComp<HandheldGPSComponent>(loaderUid);
 
-        if (isServerOnline && server != null && comp.CurrentUserId != null)
+        if (isServerOnline && server != null && comp.UserId != null)
         {
             contacts = server.Value.Comp.Users.Values.ToList();
 
             chats = server.Value.Comp.Chats.Values
-                .Where(c => c.Members.Contains(comp.CurrentUserId.Value))
+                .Where(c => c.Members.Contains(comp.UserId.Value))
                 .OrderBy(c => c.Name)
                 .ToList();
 
@@ -304,22 +335,22 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
                 isContactReachable = server.Value.Comp.ConnectedClients.Any(uid =>
                     TryComp<NanoChatCartridgeComponent>(uid, out var c) &&
-                    c.CurrentUserId != comp.CurrentUserId &&
-                    c.CurrentUserId != null &&
-                    currentChat.Members.Contains(c.CurrentUserId.Value));
+                    c.UserId != comp.UserId &&
+                    c.UserId != null &&
+                    currentChat.Members.Contains(c.UserId.Value));
             }
         }
 
         var state = new NanoChatBoundUserInterfaceState(
             comp.NotificationsOn,
-            comp.CurrentUserId,
+            comp.UserId,
             currentChat,
-            comp.PdaCardName,
             chats,
             contacts,
             history,
             isServerOnline,
             isContactReachable,
+            canSendLocation,
             comp.UnreadMessages
         );
 

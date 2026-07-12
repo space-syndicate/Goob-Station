@@ -47,6 +47,11 @@ public sealed partial class NanoChatUi : UIFragment
         {
             SendChatMessage(new NanoChatAddMembersEvent(chatId, members), userInterface);
         };
+
+        _fragment.OnSendLocation += () =>
+        {
+            SendChatMessage(new NanoChatSendLocationEvent(), userInterface);
+        };
     }
 
     public override void UpdateState(BoundUserInterfaceState state)

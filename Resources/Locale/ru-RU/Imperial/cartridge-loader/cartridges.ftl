@@ -27,6 +27,7 @@ nano-chat-ui-chat-window-message-box-text = Введите сообщение...
 nano-chat-ui-chat-window-button-send = ➤
 nano-chat-ui-chat-window-button-send-tooltip = Отправить
 nano-chat-ui-chat-window-message = [bold]{ $sender }:[/bold] { $content }
+nano-chat-ui-chat-window-message-tooltip = Отправлено: { $time }
 
 nano-chat-ui-chat-window-contact-name-job = { $name } ({ $job })
 nano-chat-ui-chat-window-no-chat-selected = Контакт не выбран
@@ -40,3 +41,5 @@ nano-chat-ui-chat-window-sender-server = Сервер
 
 nano-chat-ui-chat-window-message-server-unreachable = Сервер недоступен
 nano-chat-ui-chat-window-message-loading = Загрузка...
+
+nano-chat-ui-chat-windows-message-error = Ошибка

@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 public sealed partial class NanoChatCartridgeComponent : Component
 {
     [DataField]
-    public NetEntity? CurrentUserId;
+    public NetEntity? UserId;
 
     [DataField]
     public string? PdaCardName;

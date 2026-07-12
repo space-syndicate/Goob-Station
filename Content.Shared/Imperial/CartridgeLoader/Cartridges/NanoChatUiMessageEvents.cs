@@ -38,6 +38,9 @@ public sealed class NanoChatAddMembersEvent(int chatId, List<NetEntity> addedMem
 }
 
 [Serializable, NetSerializable]
-public sealed class NanoChatTypingEvent() : CartridgeMessageEvent;
+public sealed class NanoChatTypingEvent : CartridgeMessageEvent;
+
+[Serializable, NetSerializable]
+public sealed class NanoChatSendLocationEvent : CartridgeMessageEvent;
 
 

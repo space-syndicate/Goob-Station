@@ -111,6 +111,15 @@
                     <system:String>OpenRight</system:String>
                 </Control.StyleClasses>
             </Button>
+            <Button Name="SendLocationButton"
+                    Text="@"
+                    ToolTip="Отправить своё местоположение"
+                    Visible="False"
+                    Disabled="True">
+                <Control.StyleClasses>
+                    <system:String>OpenBoth</system:String>
+                </Control.StyleClasses>
+            </Button>
 
             <LineEdit
                 Name="TextInput"

@@ -22,12 +22,12 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     public event Action<int>? OnChatSelected;
     public event Action<string>? OnCreateChat;
     public event Action? OnTypingMessage;
+    public event Action? OnSendLocation;
 
     private readonly SpriteSystem _spriteSystem;
     private readonly IPrototypeManager _prototypeManager;
     private readonly IGameTiming _gameTiming;
 
-    private string? _pdaCardName;
     private NetEntity? _myId;
     private readonly TimeSpan _typingCooldown = TimeSpan.FromSeconds(5);
     private TimeSpan _lastTyping;
@@ -103,6 +103,8 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
         TextInput.OnTextChanged += OnTextInputTextChanged;
 
+        SendLocationButton.OnPressed += _ => OnSendLocation?.Invoke();
+
         SendButton.OnPressed += _ => SendMessage();
         TextInput.OnTextEntered += _ => SendMessage();
 
@@ -149,16 +151,17 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             : jobTitle;
     }
 
-    private void SendMessage()
+    private void SendMessage(string? message = null)
     {
-        var text = TextInput.Text;
+        var text = message ?? TextInput.Text;
         if (SendButton.Disabled || string.IsNullOrWhiteSpace(text))
             return;
 
         ChatScroll.SetScrollValue(new Vector2(0f, float.MaxValue));
 
         OnSendMessage?.Invoke(text);
-        TextInput.Text = string.Empty;
+        if (message is null)
+            TextInput.Text = string.Empty;
     }
 
     private void UpdateCurrentChatDisplay(NanoChatChat? chat, bool isServerOnline, List<NanoChatContact> contacts)
@@ -233,7 +236,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     public void UpdateState(NanoChatBoundUserInterfaceState state)
     {
         _lastState = state;
-        _pdaCardName = state.PdaCardName;
         _myId = state.CurrentUserId;
 
         NotificationSwitch.Text = Loc.GetString(
@@ -245,11 +247,13 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
         var canSend = state is { IsServerOnline: true, CurrentChat: not null, IsContactReachable: true };
         SendButton.Disabled = !canSend;
+        SendLocationButton.Disabled = !canSend;
 
         ContactsListContainer.DisposeAllChildren();
         MessageContainer.DisposeAllChildren();
 
         AddMembersButton.Visible = state.CurrentChat != null;
+        SendLocationButton.Visible = state.CanSendLocation;
 
         if (!state.IsServerOnline)
         {
@@ -277,8 +281,8 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         {
             0 => sortedChats.Where(c =>
                 (state.UnreadMessages.TryGetValue(c.Id, out var unread) && unread > 0) ||
-                (c.Members.Count <= 2 && MatchesSearch(c, state.Contacts, _searchQuery))),
-            1 => sortedChats.Where(c => c.Members.Count is > 2 or <= 1),
+                (c.Automated && MatchesSearch(c, state.Contacts, _searchQuery))),
+            1 => sortedChats.Where(c => !c.Automated),
             _ => sortedChats,
         };
 
@@ -449,18 +453,18 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         else
         {
             foreach (var msg in state.Messages)
-                AddMessageBubble(msg.SenderName, msg.Content);
+                AddMessageBubble(msg);
         }
     }
 
-    private void AddMessageBubble(string? senderName, string content)
+    private void AddMessageBubble(NanoChatMessage msg)
     {
-        var displaySender = senderName;
+        var displaySender = msg.SenderName;
 
-        if (string.IsNullOrEmpty(senderName))
-            displaySender = Loc.GetString("nano-chat-ui-chat-window-sender-unknown");
-        else if (senderName == _pdaCardName)
+        if (msg.SenderId == _myId)
             displaySender = Loc.GetString("nano-chat-ui-chat-window-sender-you");
+        else if (string.IsNullOrEmpty(displaySender))
+            displaySender = Loc.GetString("nano-chat-ui-chat-window-sender-unknown");
 
         var wrapper = new BoxContainer
         {
@@ -474,7 +478,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             HorizontalExpand = false,
         };
 
-        if (senderName == _pdaCardName)
+        if (msg.SenderId == _myId)
         {
             wrapper.AddChild(new Control { HorizontalExpand = true });
             wrapper.AddChild(panel);
@@ -485,11 +489,14 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             wrapper.AddChild(new Control { HorizontalExpand = true });
         }
 
-        var label = new RichTextLabel();
+        var label = new RichTextLabel()
+        {
+            ToolTip = Loc.GetString("nano-chat-ui-chat-window-message-tooltip", ("time", msg.SendTime.ToString(@"hh\:mm\:ss"))),
+        };
         label.SetMessage(FormattedMessage.FromMarkupPermissive(
             Loc.GetString("nano-chat-ui-chat-window-message",
                 ("sender", displaySender)!,
-                ("content", content))));
+                ("content", msg.Content))));
 
         panel.AddChild(label);
         MessageContainer.AddChild(wrapper);
