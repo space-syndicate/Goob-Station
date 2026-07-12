@@ -32,7 +32,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     private readonly TimeSpan _typingCooldown = TimeSpan.FromSeconds(5);
     private TimeSpan _lastTyping;
 
-
     public event Action<int, List<NetEntity>>? OnAddMembers;
 
     private bool _isSelectingContacts;
@@ -40,6 +39,14 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     private NanoChatBoundUserInterfaceState? _lastState;
     private Button? _selectedChat;
 
+    private int _currentMenuMode;
+    private string _searchQuery = string.Empty;
+
+    private readonly Dictionary<int, LocId> _options = new()
+    {
+        { 0, "nano-chat-ui-menu-options-contacts" },
+        { 1, "nano-chat-ui-menu-options-group-chats" },
+    };
 
     public NanoChatUiFragment()
     {
@@ -50,7 +57,19 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
         _gameTiming = IoCManager.Resolve<IGameTiming>();
 
-        ContactsButton.OnPressed += _ =>
+        foreach (var (id, name) in _options)
+            OptionsMenu.AddItem(Loc.GetString(name), id);
+
+        OptionsMenu.OnItemSelected += args =>
+        {
+            OptionsMenu.SelectId(args.Id);
+            _currentMenuMode = args.Id;
+
+            if (_lastState != null)
+                UpdateState(_lastState);
+        };
+
+        MenuButton.OnPressed += _ =>
         {
             ContactsPanel.Visible = !ContactsPanel.Visible;
         };
@@ -71,6 +90,13 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             OnCreateChat?.Invoke(NewChatNameInput.Text);
             NewChatNameInput.Text = string.Empty;
             NewChatButton.Disabled = true;
+        };
+
+        SearchInput.OnTextChanged += args =>
+        {
+            _searchQuery = args.Text;
+            if (_lastState != null)
+                UpdateState(_lastState);
         };
 
         NotificationSwitch.OnPressed += _ => OnNotificationSwitchPressed?.Invoke();
@@ -140,29 +166,34 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         if (!isServerOnline || chat == null)
         {
             CurrentContactIcon.Visible = false;
-            CurrentContactLabel.Text = Loc.GetString("nano-chat-ui-no-chat-selected");
+            CurrentContactLabel.Text = Loc.GetString("nano-chat-ui-chat-window-no-chat-selected");
             return;
         }
 
         NanoChatContact? singleContact = null;
-        if (chat.Members.Count == 2 && _myId != null)
+
+        if (string.IsNullOrEmpty(chat.Name))
         {
-            var otherId = chat.Members.FirstOrDefault(m => m != _myId.Value);
-            foreach (var c in contacts.Where(c => c.Id == otherId))
+            if (chat.Members.Count == 2 && _myId != null)
             {
-                singleContact = c;
-                break;
+                var otherId = chat.Members.FirstOrDefault(m => m != _myId.Value);
+                foreach (var c in contacts.Where(c => c.Id == otherId))
+                {
+                    singleContact = c;
+                    break;
+                }
             }
         }
 
         if (singleContact != null)
         {
             CurrentContactLabel.Text = Loc.GetString(
-                "nano-chat-ui-contact-name-job-inline",
+                "nano-chat-ui-chat-window-contact-name-job",
                 ("name", singleContact.Value.Name),
                 ("job", GetJobTitle(singleContact.Value.JobTitle)));
 
-            if (singleContact.Value.JobIconId != null && _prototypeManager.TryIndex<JobIconPrototype>(singleContact.Value.JobIconId, out var jobIconProto))
+            if (singleContact.Value.JobIconId != null
+                && _prototypeManager.TryIndex<JobIconPrototype>(singleContact.Value.JobIconId, out var jobIconProto))
             {
                 CurrentContactIcon.Texture = _spriteSystem.Frame0(jobIconProto.Icon);
                 CurrentContactIcon.Visible = true;
@@ -175,6 +206,28 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             CurrentContactLabel.Text = chat.Name;
             CurrentContactIcon.Visible = false;
         }
+    }
+
+    private bool MatchesSearch(NanoChatChat chat, List<NanoChatContact> contacts, string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+            return true;
+
+        if (!string.IsNullOrEmpty(chat.Name) && chat.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (chat.Members.Count > 2 || _myId == null)
+            return false;
+
+        var otherId = chat.Members.FirstOrDefault(m => m != _myId.Value);
+        var contact = contacts.FirstOrDefault(c => c.Id == otherId);
+
+        if (contact.Name != null && contact.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        var jobTitle = GetJobTitle(contact.JobTitle);
+
+        return jobTitle.Contains(query, StringComparison.OrdinalIgnoreCase);
     }
 
     public void UpdateState(NanoChatBoundUserInterfaceState state)
@@ -202,17 +255,34 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         {
             var noServerLabel = new Label()
             {
-                Text = Loc.GetString("nano-chat-ui-message-server-unreachable"),
+                Text = Loc.GetString("nano-chat-ui-chat-window-message-server-unreachable"),
                 Align = Label.AlignMode.Center,
             };
             MessageContainer.AddChild(noServerLabel);
             return;
         }
 
+        CreateChatContainer.Visible = _currentMenuMode == 1;
+        SearchContainer.Visible = _currentMenuMode == 0;
+
         var sortedChats = state.Chats.OrderByDescending(c =>
             state.UnreadMessages.TryGetValue(c.Id, out var unreadCount) && unreadCount > 0);
 
-        foreach (var chat in sortedChats)
+        var allUnreadCount = state.UnreadMessages.Values.Sum();
+        MenuButton.Text = allUnreadCount > 0
+            ? Loc.GetString("nano-chat-ui-menu-open-button-unread", ("unread", allUnreadCount))
+            : Loc.GetString("nano-chat-ui-menu-open-button");
+
+        var filteredChats = _currentMenuMode switch
+        {
+            0 => sortedChats.Where(c =>
+                (state.UnreadMessages.TryGetValue(c.Id, out var unread) && unread > 0) ||
+                (c.Members.Count <= 2 && MatchesSearch(c, state.Contacts, _searchQuery))),
+            1 => sortedChats.Where(c => c.Members.Count is > 2 or <= 1),
+            _ => sortedChats,
+        };
+
+        foreach (var chat in filteredChats)
         {
             var isCurrentChat = state.CurrentChat?.Id == chat.Id;
 
@@ -234,13 +304,17 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             };
 
             NanoChatContact? singleContact = null;
-            if (chat.Members.Count == 2 && _myId != null)
+
+            if (string.IsNullOrEmpty(chat.Name))
             {
-                var otherId = chat.Members.FirstOrDefault(m => m != _myId.Value);
-                foreach (var c in state.Contacts.Where(c => c.Id == otherId))
+                if (chat.Members.Count == 2 && _myId != null)
                 {
-                    singleContact = c;
-                    break;
+                    var otherId = chat.Members.FirstOrDefault(m => m != _myId.Value);
+                    foreach (var c in state.Contacts.Where(c => c.Id == otherId))
+                    {
+                        singleContact = c;
+                        break;
+                    }
                 }
             }
 
@@ -259,7 +333,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
                     row.AddChild(icon);
                 }
                 text = Loc.GetString(
-                    "nano-chat-ui-contact-name-job",
+                    "nano-chat-ui-contacts-contact-name-job",
                     ("name", singleContact.Value.Name),
                     ("job", GetJobTitle(singleContact.Value.JobTitle)));
             }
@@ -267,7 +341,11 @@ public sealed partial class NanoChatUiFragment : BoxContainer
                 text = chat.Name;
 
             if (state.UnreadMessages.TryGetValue(chat.Id, out var unreadCount) && unreadCount > 0)
-                text = Loc.GetString("nano-chat-ui-contact-name-job-with-unread", ("name-job", text), ("unread", unreadCount));
+            {
+                text = Loc.GetString("nano-chat-ui-contacts-contact-name-job-unread",
+                    ("name-job", text),
+                    ("unread", unreadCount));
+            }
 
             var label = new RichTextLabel() { Text = text, HorizontalExpand = true, VerticalAlignment = VAlignment.Center };
             row.AddChild(label);
@@ -281,31 +359,33 @@ public sealed partial class NanoChatUiFragment : BoxContainer
                     return;
                 }
 
-                _selectedChat?.Pressed = false;
-
-                _selectedChat = btn;
-                _selectedChat.Pressed = true;
-
-                ContactsPanel.Visible = false;
-                ContactsButton.Pressed = false;
-
-                if (_isSelectingContacts)
+                if (chat.Members.Count > 2 && _currentMenuMode != 1)
                 {
-                    _isSelectingContacts = false;
-                    _selectedNewMembers.Clear();
-                    AddMembersButton.Pressed = false;
+                    _currentMenuMode = 1;
+                    OptionsMenu.SelectId(_currentMenuMode);
+
+                    ContactsPanel.Visible = false;
+                    MenuButton.Pressed = false;
+
+                    if (_isSelectingContacts)
+                    {
+                        _isSelectingContacts = false;
+                        _selectedNewMembers.Clear();
+                        AddMembersButton.Pressed = false;
+                    }
+
+                    MessageContainer.DisposeAllChildren();
+                    MessageContainer.AddChild(new RichTextLabel
+                    {
+                        Margin = new Thickness(0, 0, 0, 5),
+                        Text = Loc.GetString("nano-chat-ui-chat-window-message-loading"),
+                    });
+
+                    OnChatSelected?.Invoke(chat.Id);
+                    return;
                 }
 
-                UpdateCurrentChatDisplay(chat, true, state.Contacts);
-
-                MessageContainer.DisposeAllChildren();
-                MessageContainer.AddChild(new RichTextLabel
-                {
-                    Margin = new Thickness(0, 0, 0, 5),
-                    Text = "Загрузка...",
-                });
-
-                OnChatSelected?.Invoke(chat.Id);
+                SelectChat(btn, chat, state);
             };
 
             ContactsListContainer.AddChild(btn);
@@ -315,7 +395,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         {
             var instruction = new Label
             {
-                Text = "Добавить контакты:",
+                Text = Loc.GetString("nano-chat-ui-chat-window-add-contacts"),
                 Margin = new Thickness(0, 0, 0, 10),
             };
             MessageContainer.AddChild(instruction);
@@ -325,7 +405,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             foreach (var contact in state.Contacts.Where(contact => !state.CurrentChat.Members.Contains(contact.Id)))
             {
                 var btnText = Loc.GetString(
-                    "nano-chat-ui-contact-name-job-inline",
+                    "nano-chat-ui-chat-window-contact-name-job",
                     ("name", contact.Name),
                     ("job", GetJobTitle(contact.JobTitle)));
 
@@ -361,7 +441,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             {
                 MessageContainer.AddChild(new Label
                 {
-                    Text = "Все контакты уже в чате.",
+                    Text = Loc.GetString("nano-chat-ui-chat-window-no-available-contact"),
                     FontColorOverride = Color.Gray,
                 });
             }
@@ -378,9 +458,9 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         var displaySender = senderName;
 
         if (string.IsNullOrEmpty(senderName))
-            displaySender = Loc.GetString("nano-chat-ui-unknown-sender");
+            displaySender = Loc.GetString("nano-chat-ui-chat-window-sender-unknown");
         else if (senderName == _pdaCardName)
-            displaySender = Loc.GetString("nano-chat-ui-you-text");
+            displaySender = Loc.GetString("nano-chat-ui-chat-window-sender-you");
 
         var wrapper = new BoxContainer
         {
@@ -407,9 +487,40 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
         var label = new RichTextLabel();
         label.SetMessage(FormattedMessage.FromMarkupPermissive(
-            $"[bold]{displaySender}:[/bold] {content}"));
+            Loc.GetString("nano-chat-ui-chat-window-message",
+                ("sender", displaySender)!,
+                ("content", content))));
 
         panel.AddChild(label);
         MessageContainer.AddChild(wrapper);
+    }
+
+    private void SelectChat(Button btn, NanoChatChat chat, NanoChatBoundUserInterfaceState state)
+    {
+        _selectedChat?.Pressed = false;
+
+        _selectedChat = btn;
+        _selectedChat.Pressed = true;
+
+        ContactsPanel.Visible = false;
+        MenuButton.Pressed = false;
+
+        if (_isSelectingContacts)
+        {
+            _isSelectingContacts = false;
+            _selectedNewMembers.Clear();
+            AddMembersButton.Pressed = false;
+        }
+
+        UpdateCurrentChatDisplay(chat, true, state.Contacts);
+
+        MessageContainer.DisposeAllChildren();
+        MessageContainer.AddChild(new RichTextLabel
+        {
+            Margin = new Thickness(0, 0, 0, 5),
+            Text = Loc.GetString("nano-chat-ui-chat-window-message-loading"),
+        });
+
+        OnChatSelected?.Invoke(chat.Id);
     }
 }

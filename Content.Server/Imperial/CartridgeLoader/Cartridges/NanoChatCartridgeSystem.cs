@@ -22,9 +22,15 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         SubscribeLocalEvent<NanoChatCartridgeComponent, ComponentRemove>(OnCartridgeRemoved);
 
         SubscribeLocalEvent<NanoChatServerComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<NanoChatServerComponent, NanoChatServerShutdownEvent>(OnServerShutdown);
     }
 
     private void OnPowerChanged(Entity<NanoChatServerComponent> ent, ref PowerChangedEvent args)
+    {
+        UpdateAllClients(ent);
+    }
+
+    private void OnServerShutdown(Entity<NanoChatServerComponent> ent, ref NanoChatServerShutdownEvent args)
     {
         UpdateAllClients(ent);
     }
@@ -107,6 +113,17 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!addedAny)
             return;
 
+        if (string.IsNullOrEmpty(chat.Name))
+        {
+            var memberNames = chat.Members
+                .Select(id => server.Value.Comp.Users.TryGetValue(id, out var user)
+                    ? user.Name
+                    : Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
+                .ToList();
+
+            chat.Name = string.Join(", ", memberNames);
+        }
+
         Dirty(server.Value.Owner, server.Value.Comp);
         UpdateAllClients(server.Value);
     }
@@ -143,7 +160,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!server.Value.Comp.Chats.TryGetValue(chatId, out var chat))
             return;
 
-        var senderName = sender.Comp.PdaCardName ?? Loc.GetString("nano-chat-ui-unknown-sender");
+        var senderName = sender.Comp.PdaCardName ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown");
         var message = new NanoChatMessage(
             chatId,
             senderId,
@@ -203,7 +220,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         server.Value.Comp.ConnectedClients.Add(ent.Owner);
 
-        var contact = new NanoChatContact(pdaData.Id.Value, pdaData.Name ?? Loc.GetString("nano-chat-ui-unknown-sender"), pdaData.Job, pdaData.Icon);
+        var contact = new NanoChatContact(pdaData.Id.Value, pdaData.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"), pdaData.Job, pdaData.Icon);
         server.Value.Comp.Users[pdaData.Id.Value] = contact;
 
         foreach (var otherId in server.Value.Comp.Users.Keys)
@@ -218,7 +235,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 continue;
 
             var newChatId = server.Value.Comp.NextChatId++;
-            server.Value.Comp.Chats[newChatId] = new NanoChatChat(newChatId, "REMVEEASD", new List<NetEntity> { pdaData.Id.Value, otherId });
+            server.Value.Comp.Chats[newChatId] = new NanoChatChat(newChatId, string.Empty, new List<NetEntity> { pdaData.Id.Value, otherId });
         }
 
         Dirty(server.Value.Owner, server.Value.Comp);
