@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 
 [Serializable, NetSerializable]
-public enum NanoChatUiAction { NotificationSwitch }
+public enum NanoChatUiAction { NotificationSwitch, SendLocation }
 
 [Serializable, NetSerializable]
 public sealed class NanoChatUiActionEvent(NanoChatUiAction action) : CartridgeMessageEvent
@@ -39,8 +39,4 @@ public sealed class NanoChatAddMembersEvent(int chatId, List<NetEntity> addedMem
 
 [Serializable, NetSerializable]
 public sealed class NanoChatTypingEvent : CartridgeMessageEvent;
-
-[Serializable, NetSerializable]
-public sealed class NanoChatSendLocationEvent : CartridgeMessageEvent;
-
 

@@ -23,6 +23,11 @@ public sealed partial class NanoChatUi : UIFragment
             SendChatMessage(new NanoChatUiActionEvent(NanoChatUiAction.NotificationSwitch), userInterface);
         };
 
+        _fragment.OnSendLocation += () =>
+        {
+            SendChatMessage(new NanoChatUiActionEvent(NanoChatUiAction.SendLocation), userInterface);
+        };
+
         _fragment.OnSendMessage += (text) =>
         {
             SendChatMessage(new NanoChatSendEvent(text), userInterface);
@@ -46,11 +51,6 @@ public sealed partial class NanoChatUi : UIFragment
         _fragment.OnAddMembers += (chatId, members) =>
         {
             SendChatMessage(new NanoChatAddMembersEvent(chatId, members), userInterface);
-        };
-
-        _fragment.OnSendLocation += () =>
-        {
-            SendChatMessage(new NanoChatSendLocationEvent(), userInterface);
         };
     }
 

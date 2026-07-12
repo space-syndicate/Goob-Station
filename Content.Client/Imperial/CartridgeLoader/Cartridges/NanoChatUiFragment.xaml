@@ -100,6 +100,13 @@
             </ScrollContainer>
         </PanelContainer>
 
+        <Label
+            Name="TypingIndicatorLabel"
+            Visible="False"
+            Margin="5,0,5,0"
+            FontColorOverride="#AAAAAA"
+            Text="Someone is typing..." />
+
         <BoxContainer Orientation="Horizontal"
                       HorizontalExpand="True"
                       SeparationOverride="0"

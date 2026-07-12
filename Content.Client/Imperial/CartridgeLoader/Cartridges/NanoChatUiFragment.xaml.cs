@@ -31,6 +31,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     private NetEntity? _myId;
     private readonly TimeSpan _typingCooldown = TimeSpan.FromSeconds(5);
     private TimeSpan _lastTyping;
+    private TimeSpan _typingIndicatorTimeout;
 
     public event Action<int, List<NetEntity>>? OnAddMembers;
 
@@ -286,6 +287,20 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             _ => sortedChats,
         };
 
+        if (state is { CurrentChat: not null, TypingUsers.Count: > 0 })
+        {
+            var typingNames = string.Join(", ", state.TypingUsers.Values);
+
+            TypingIndicatorLabel.Text = Loc.GetString("nano-chat-ui-typing-indicator",
+                ("names", typingNames),
+                ("count", state.TypingUsers.Count));
+
+            TypingIndicatorLabel.Visible = true;
+            _typingIndicatorTimeout = _gameTiming.CurTime + _typingCooldown;
+        }
+        else
+            TypingIndicatorLabel.Visible = false;
+
         foreach (var chat in filteredChats)
         {
             var isCurrentChat = state.CurrentChat?.Id == chat.Id;
@@ -452,7 +467,10 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         }
         else
         {
-            foreach (var msg in state.Messages)
+            if (state.CurrentChat?.Messages == null)
+                return;
+
+            foreach (var msg in state.CurrentChat.Messages)
                 AddMessageBubble(msg);
         }
     }
@@ -476,6 +494,8 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         {
             StyleClasses = { StyleClass.BackgroundPanelDark },
             HorizontalExpand = false,
+            MouseFilter = MouseFilterMode.Pass,
+            ToolTip = Loc.GetString("nano-chat-ui-chat-window-message-tooltip", ("time", msg.SendTime.ToString(@"hh\:mm\:ss"))),
         };
 
         if (msg.SenderId == _myId)
@@ -489,13 +509,10 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             wrapper.AddChild(new Control { HorizontalExpand = true });
         }
 
-        var label = new RichTextLabel()
-        {
-            ToolTip = Loc.GetString("nano-chat-ui-chat-window-message-tooltip", ("time", msg.SendTime.ToString(@"hh\:mm\:ss"))),
-        };
+        var label = new RichTextLabel();
         label.SetMessage(FormattedMessage.FromMarkupPermissive(
             Loc.GetString("nano-chat-ui-chat-window-message",
-                ("sender", displaySender)!,
+                ("sender", displaySender),
                 ("content", msg.Content))));
 
         panel.AddChild(label);
@@ -529,5 +546,13 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         });
 
         OnChatSelected?.Invoke(chat.Id);
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        if (TypingIndicatorLabel.Visible && _gameTiming.CurTime > _typingIndicatorTimeout)
+            TypingIndicatorLabel.Visible = false;
     }
 }

@@ -29,6 +29,12 @@ nano-chat-ui-chat-window-button-send-tooltip = Отправить
 nano-chat-ui-chat-window-message = [bold]{ $sender }:[/bold] { $content }
 nano-chat-ui-chat-window-message-tooltip = Отправлено: { $time }
 
+nano-chat-ui-typing-indicator = { $names } {$count ->
+                                                    [one] печатает
+                                                    [few] печатают
+                                                   *[other] печатают
+                                                }...
+
 nano-chat-ui-chat-window-contact-name-job = { $name } ({ $job })
 nano-chat-ui-chat-window-no-chat-selected = Контакт не выбран
 nano-chat-ui-chat-window-button-add-to-chat-tooltip = Добавить в чат

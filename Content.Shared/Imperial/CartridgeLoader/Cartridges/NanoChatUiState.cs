@@ -6,9 +6,8 @@ namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 public readonly record struct NanoChatContact(NetEntity Id, string Name, string? JobTitle, string? JobIconId);
 
 [Serializable, NetSerializable]
-public sealed class NanoChatMessage(int chatId, NetEntity senderId, string senderName, string content, TimeSpan sendTime)
+public sealed class NanoChatMessage(NetEntity senderId, string senderName, string content, TimeSpan sendTime)
 {
-    public int ChatId = chatId;
     public NetEntity SenderId = senderId;
     public string SenderName = senderName;
     public string Content = content;
@@ -16,11 +15,12 @@ public sealed class NanoChatMessage(int chatId, NetEntity senderId, string sende
 }
 
 [Serializable, NetSerializable]
-public sealed class NanoChatChat(int id, string name, List<NetEntity> members, bool automated = true)
+public sealed class NanoChatChat(int id, string name, List<NetEntity> members, List<NanoChatMessage> messages, bool automated = true)
 {
     public int Id = id;
     public string Name = name;
     public List<NetEntity> Members = members;
+    public List<NanoChatMessage> Messages = messages;
     public bool Automated = automated;
 }
 
@@ -31,11 +31,11 @@ public sealed class NanoChatBoundUserInterfaceState(
     NanoChatChat? currentChat,
     List<NanoChatChat> chats,
     List<NanoChatContact> contacts,
-    List<NanoChatMessage> messages,
     bool isServerOnline,
     bool isContactReachable,
     bool canSendLocation,
-    Dictionary<int, int> unreadMessages)
+    Dictionary<int, int> unreadMessages,
+    Dictionary<NetEntity, string> typingUsers)
     : BoundUserInterfaceState
 {
     public bool NotificationOn = notificationOn;
@@ -43,9 +43,9 @@ public sealed class NanoChatBoundUserInterfaceState(
     public NanoChatChat? CurrentChat = currentChat;
     public List<NanoChatChat> Chats = chats;
     public List<NanoChatContact> Contacts = contacts;
-    public List<NanoChatMessage> Messages = messages;
     public bool IsServerOnline = isServerOnline;
     public bool IsContactReachable = isContactReachable;
     public bool CanSendLocation = canSendLocation;
     public Dictionary<int, int> UnreadMessages = unreadMessages;
+    public Dictionary<NetEntity, string> TypingUsers = typingUsers;
 }
