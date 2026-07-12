@@ -16,3 +16,7 @@ ent-ClothingOuterCoatHoPLong = hop's longcoat
     .desc = A smart longcoat for the Head of Personnel.
 ent-ClothingOuterArmoredJacketOuterCommand = outer command jacket
     .desc = A purple jacket with very fancy elements. There is a Terra-Gov insignia on the back.
+ent-ClothingOuterArmoredJacketCentralCommand = central command jacket
+    .desc = A formal green coat-like jacket accented with gilded shoulder armor and a high collar.
+ent-ClothingOuterJacketCentralCommandIke = central command ike jacket
+    .desc = A utilitarian green-and-black jacket featuring a sharp, military-inspired design, worn within Central Command.

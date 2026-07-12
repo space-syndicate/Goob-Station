@@ -1,6 +1,8 @@
 ent-ClothingNeckMantleCap = captain's mantle
     .desc = A comfortable and chique mantle befitting of only the most experienced captain.
-ent-ClothingNeckMantleCE = chief engineer's mantle
+ent-ClothingNeckMantleWhiteCE = chief engineer's white mantle
+    .desc = High visibility, check. RIG system, check. High capacity cell, check. Everything a chief engineer could need in a stylish mantle.
+ent-ClothingNeckMantleOrangeCE = chief engineer's orange mantle
     .desc = High visibility, check. RIG system, check. High capacity cell, check. Everything a chief engineer could need in a stylish mantle.
 ent-ClothingNeckMantleCMO = chief medical officer's mantle
     .desc = For a CMO that has been in enough medbays to know that more PPE means less central command dry cleaning visits when the shift is over.

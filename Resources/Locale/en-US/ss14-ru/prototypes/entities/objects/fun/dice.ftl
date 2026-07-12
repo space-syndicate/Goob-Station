@@ -14,3 +14,7 @@ ent-d6Dice = d6
     .desc = A die with six sides. Basic and serviceable.
 ent-d4Dice = d4
     .desc = A die with four sides. The nerd's caltrop.
+ent-DiceBag = bag of dice
+    .desc = Contains all the luck you'll ever need.
+ent-MagicDiceBag = bag of dice
+    .desc = { ent-DiceBag.desc }

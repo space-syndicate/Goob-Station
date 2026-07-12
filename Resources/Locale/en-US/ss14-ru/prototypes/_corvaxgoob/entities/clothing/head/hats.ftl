@@ -30,3 +30,5 @@ ent-ClothingHeadHelmetGoldenMusician = golden DJ helmet
     .desc = An old golden helmet belonging to the member of famous musical duo. Harder, better, faster, stronger.
 ent-ClothingHeadHatPwigFancy = fancy pwig
     .desc = To be honest, those look ridiculous.
+ent-ClothingHeadHatUshankaSecurity = security's armored ushanka
+    .desc = Perfect for saving heads in Siberia, da?
