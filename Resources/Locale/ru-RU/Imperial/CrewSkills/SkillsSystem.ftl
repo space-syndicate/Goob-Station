@@ -1,6 +1,6 @@
 skills-blockui-you-havent-skills = У вас не хватает навыков для работы с этим
 skills-fail-skill-check-message = Вам не хватает навыка { $skill } для этого
-skills-identity-standart-name-replace = Таблетка
+s-identity-standart-name-replace = Таблетка
 skills-identity-standart-desc-replace = ???
 skills-cant-reed-book-message-borg = Ваша программа не предусматривает самообучение
 skills-cant-teachTarget-book-message-borg = Борга нельзя научить чему либо

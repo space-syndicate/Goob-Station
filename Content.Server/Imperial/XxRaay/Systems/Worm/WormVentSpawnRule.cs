@@ -9,6 +9,7 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 
 public sealed class WormVentSpawnRule : StationEventSystem<WormVentSpawnRuleComponent>
 {
+    [Dependency] private readonly ImperialVentCrawlerSystem _ventCrawler = default!;
     protected override void Started(EntityUid uid, WormVentSpawnRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
@@ -34,9 +35,11 @@ public sealed class WormVentSpawnRule : StationEventSystem<WormVentSpawnRuleComp
         var spawnCount = Math.Min(count, vents.Count);
         for (var i = 0; i < spawnCount; i++)
         {
-            var coords = Transform(vents[i]).Coordinates;
+            var vent = vents[i];
+            var coords = Transform(vent).Coordinates;
             Sawmill.Info($"Spawning {prototype} at {coords}");
-            Spawn(prototype, coords);
+            var worm = Spawn(prototype, coords);
+            _ventCrawler.EnterVent(worm, vent);
         }
 
         return true;

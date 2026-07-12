@@ -1,8 +1,11 @@
 ghost-gui-return-to-body-button = Вернуться в тело
 ghost-gui-ghost-warp-button = Телепорт призрака
 ghost-gui-ghost-roles-button = Роли призраков {$count}
-ghost-gui-toggle-ghost-visibility-popup = Видимость других призраков была изменена.
-ghost-gui-toggle-lighting-manager-popup = Рендеринг света был переключён.
+ghost-gui-toggle-ghost-visibility-popup-on = Теперь вы видите других призраков.
+ghost-gui-toggle-ghost-visibility-popup-off = Теперь вы не видите других призраков.
+ghost-gui-toggle-lighting-manager-popup-normal = Обычное освещение.
+ghost-gui-toggle-lighting-manager-popup-personal-light = Включено персональное освещение.
+ghost-gui-toggle-lighting-manager-popup-fullbright = Освещение отключено.
 ghost-gui-toggle-fov-popup = Поле зрения было переключено.
 
 ghost-gui-toggle-hearing-popup-on = Теперь вы можете прослушивать все сообщения.
@@ -35,5 +38,3 @@ ghost-roles-window-rules-footer = Кнопка станет доступна ч�
 
 ghost-return-to-body-title = Вернуться в тело
 ghost-return-to-body-text = Вы возрождаетесь! Вернуться в свое тело?
-ghost-gui-toggle-ghost-visibility-popup-on = Включение видимости призраков.
-ghost-gui-toggle-ghost-visibility-popup-off = Отключение видимости призраков.

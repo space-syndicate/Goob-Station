@@ -10,5 +10,5 @@ public sealed partial class WormVentSpawnRuleComponent : Component
     public EntProtoId Prototype = "MobWormTier1";
 
     [DataField]
-    public int Count = 3;
+    public int Count = 6;
 }
