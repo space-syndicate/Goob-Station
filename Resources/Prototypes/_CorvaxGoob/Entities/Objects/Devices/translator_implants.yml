@@ -26,3 +26,18 @@
       - Deer
       - Bingle
       - Cheval
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: NobilisTranslatorImplant
+  name: nobilis translator implant
+  description: An implant giving the ability to understand and speak Nobilis.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Nobilis
+    spoken:
+    - Nobilis
+    requires:
+    - TauCetiBasic

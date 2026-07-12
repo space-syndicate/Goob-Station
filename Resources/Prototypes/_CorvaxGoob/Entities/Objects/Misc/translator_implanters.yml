@@ -5,3 +5,11 @@
   components:
   - type: Implanter
     implant: ZookeeperTranslatorImplant
+ 
+- type: entity
+  id: NobilisTranslatorImplanter
+  parent: BaseTranslatorImplanter
+  suffix: Nobilis
+  components:
+  - type: Implanter
+    implant: NobilisTranslatorImplant

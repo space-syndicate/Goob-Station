@@ -1,0 +1,12 @@
+# Translators
+- type: latheRecipe
+  id: NobilisTranslator
+  parent: BaseTranslator
+  result: NobilisTranslator
+
+# Implanters
+- type: latheRecipe
+  parent: BaseTranslatorImplanter
+  id: NobilisTranslatorImplanter
+  subname: lathe-recipe-NobilisTranslatorImplanter-subname
+  result: NobilisTranslatorImplanter

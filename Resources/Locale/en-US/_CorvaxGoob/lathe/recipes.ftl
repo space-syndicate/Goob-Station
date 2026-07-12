@@ -1,0 +1,1 @@
+lathe-recipe-NobilisTranslatorImplanter-subname = nobilis translator implant

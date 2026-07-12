@@ -8,6 +8,7 @@
   - NekomimeticTranslator
   - DraconicTranslator
   - SolCommonTranslator
+  - NobilisTranslator #CorvaxGoob: add new language
   - RootSpeakTranslator
   - MofficTranslator
   - XenoTranslator
@@ -32,6 +33,7 @@
   - NekomimeticTranslatorImplanter
   - DraconicTranslatorImplanter
   - SolCommonTranslatorImplanter
+  - NobilisTranslatorImplanter #CorvaxGoob: add new language
   - RootSpeakTranslatorImplanter
   - MofficTranslatorImplanter
   - ValyrianStandardTranslatorImplanter

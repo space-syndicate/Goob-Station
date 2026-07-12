@@ -21,3 +21,20 @@
   parent: [ PowerCellSlotHighItem, EmptyXeeplianTranslator ]
   name: Xeeplian translator
   description: Translates speech between Xeeplian and TauCetiBasic Common.
+
+- type: entity
+  id: NobilisTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Nobilis translator
+  description: Translates speech between Nobilis and TauCetiBasic Common.
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Nobilis
+    understood:
+    - TauCetiBasic
+    - Nobilis
+    requires:
+    - TauCetiBasic
+    - Nobilis

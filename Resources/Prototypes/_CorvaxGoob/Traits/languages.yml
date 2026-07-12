@@ -1,0 +1,14 @@
+- type: trait
+  id: Nobilis
+  name: trait-language-nobilis-name
+  description: trait-language-nobilis-desc
+  category: LanguageTraits
+  cost: 1
+  whitelist:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+   - Human
+  components:
+  - type: LanguageSpeaker
+  languagesSpoken:
+    - Nobilis
+  languagesUnderstood:
+    - Nobilis
