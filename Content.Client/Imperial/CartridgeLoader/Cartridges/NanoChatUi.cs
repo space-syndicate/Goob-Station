@@ -20,29 +20,42 @@ public sealed partial class NanoChatUi : UIFragment
 
         _fragment.OnNotificationSwitchPressed += () =>
         {
-            SendChatMessage(new NanoChatUiActionMessage(NanoChatUiAction.NotificationSwitch), userInterface);
+            SendChatMessage(new NanoChatUiActionEvent(NanoChatUiAction.NotificationSwitch), userInterface);
         };
 
         _fragment.OnSendMessage += (text) =>
         {
-            SendChatMessage(new NanoChatSendTextMessage(text), userInterface);
+            SendChatMessage(new NanoChatSendEvent(text), userInterface);
         };
 
-        _fragment.OnContactSelected += (contactName) =>
+        _fragment.OnChatSelected += (chatId) =>
         {
-            SendChatMessage(new NanoChatSelectContactMessage(contactName), userInterface);
+            SendChatMessage(new NanoChatSelectChatEvent(chatId), userInterface);
+        };
+
+        _fragment.OnCreateChat += (chatName) =>
+        {
+            SendChatMessage(new NanoChatCreateChatEvent(chatName), userInterface);
+        };
+
+        _fragment.OnTypingMessage += () =>
+        {
+            SendChatMessage(new NanoChatTypingEvent(), userInterface);
+        };
+
+        _fragment.OnAddMembers += (chatId, members) =>
+        {
+            SendChatMessage(new NanoChatAddMembersEvent(chatId, members), userInterface);
         };
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
     {
         if (state is NanoChatBoundUserInterfaceState chatState)
-        {
             _fragment?.UpdateState(chatState);
-        }
     }
 
-    private void SendChatMessage(CartridgeMessageEvent messageEvent, BoundUserInterface userInterface)
+    private static void SendChatMessage(CartridgeMessageEvent messageEvent, BoundUserInterface userInterface)
     {
         var message = new CartridgeUiMessage(messageEvent);
         userInterface.SendMessage(message);

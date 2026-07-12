@@ -14,3 +14,16 @@
       sprite: Interface/Misc/program_icons.rsi # asdasdasdasdasdasdasdas
       state: news_read
   - type: NanoChatCartridge
+
+- type: entity
+  parent: BaseMachinePowered
+  id: NanoChatServer
+  name: NanoChat server
+  description: The central routing server for the station's NanoChat network. Keeps your DMs flowing.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/server.rsi
+    state: server
+  - type: NanoChatServer
+  - type: ApcPowerReceiver
+    powerLoad: 250

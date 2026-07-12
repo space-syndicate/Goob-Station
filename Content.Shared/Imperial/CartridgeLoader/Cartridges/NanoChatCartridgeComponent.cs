@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
@@ -6,14 +7,23 @@ namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 public sealed partial class NanoChatCartridgeComponent : Component
 {
     [DataField]
+    public NetEntity? CurrentUserId;
+
+    [DataField]
     public string? PdaCardName;
 
     [DataField]
-    public NanoChatContact? SelectedContact;
+    public int? SelectedChat;
 
     [DataField]
     public bool NotificationsOn = true;
 
     [DataField]
-    public Dictionary<string, List<NanoChatMessage>> ChatHistories = new();
+    public SoundSpecifier NotificationSound = new SoundPathSpecifier("/Audio/Effects/beep1.ogg");
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? ConnectedServer;
+
+    [DataField]
+    public Dictionary<int, int> UnreadMessages = new();
 }
