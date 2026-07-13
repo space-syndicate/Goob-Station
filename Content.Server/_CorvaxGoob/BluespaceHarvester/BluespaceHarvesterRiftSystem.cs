@@ -6,9 +6,19 @@ public sealed class BluespaceHarvesterRiftSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
 
+    private float _updateTimer;
+    private const float UpdateTime = 1.0f;
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        _updateTimer += frameTime;
+        if (_updateTimer < UpdateTime)
+            return;
+
+        var delta = _updateTimer;
+        _updateTimer = 0f;
 
         var query = EntityQueryEnumerator<BluespaceHarvesterRiftComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
