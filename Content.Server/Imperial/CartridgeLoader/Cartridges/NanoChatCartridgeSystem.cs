@@ -1,14 +1,15 @@
-using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.Database;
 using Content.Shared.GPS.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.CartridgeLoader.Cartridges;
-using Content.Shared.Paper;
 using Content.Shared.PDA;
+using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.StatusIcon;
 using Robust.Server.GameObjects;
@@ -17,6 +18,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 
@@ -24,12 +26,16 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _loaderSystem = null!;
     [Dependency] private readonly GameTicker _gameTicker = null!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = null!;
+    [Dependency] private readonly IComponentFactory _componentFactory = null!;
     [Dependency] private readonly IGameTiming _timing = null!;
+    [Dependency] private readonly IPrototypeManager _prototype = null!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = null!;
+    [Dependency] private readonly PaperSystem _paper = null!;
     [Dependency] private readonly SharedAudioSystem _audio = null!;
+    [Dependency] private readonly SharedHandsSystem _hands = null!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = null!;
     [Dependency] private readonly TransformSystem _transform = null!;
-    [Dependency] private readonly PaperSystem _paper = null!;
-    [Dependency] private readonly SharedHandsSystem _hands = null!;
 
     public override void Initialize()
     {
@@ -95,23 +101,36 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     {
         switch (args)
         {
+            case NanoChatCreateChatEvent create:
+                HandleCreateChat(ent, create.ChatName, create.Actor);
+                break;
+            case NanoChatEditChatEvent edit:
+                HandleEditChat(ent, edit);
+                break;
+
+            case NanoChatAddMembersEvent addMembers:
+                HandleAddMembers(ent, addMembers);
+                break;
+            case NanoChatRemoveMembersEvent removeMembers:
+                HandleRemoveMembers(ent, removeMembers);
+                break;
+
             case NanoChatSelectChatEvent select:
                 ent.Comp.SelectedChat = select.ChatId;
                 ent.Comp.UnreadMessages.Remove(select.ChatId);
                 UpdateUi(ent);
                 break;
 
-            case NanoChatAddMembersEvent addMembers:
-                HandleAddMembers(ent, addMembers);
+            case NanoChatSendEvent send:
+                HandleSendText(ent, send.Text, args.Actor);
+                break;
+            case NanoChatTypingEvent:
+                HandleTyping(ent);
+                break;
+            case NanoChatPrintEvent print:
+                HandlePrintChat(ent, print);
                 break;
 
-            case NanoChatRemoveMembersEvent removeMembers:
-                HandleRemoveMembers(ent, removeMembers);
-                break;
-
-            case NanoChatCreateChatEvent create:
-                HandleCreateChat(ent, create.ChatName);
-                break;
 
             case NanoChatUiActionEvent action:
                 switch (action.Action)
@@ -135,27 +154,11 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                             posText = $"({x}, {y})";
                         }
 
-                        HandleSendText(ent, Loc.GetString("handheld-gps-coordinates-title", ("coordinates", posText)));
+                        HandleSendText(ent, Loc.GetString("handheld-gps-coordinates-title", ("coordinates", posText)), args.Actor);
                         break;
                     default:
                         return;
                 }
-                break;
-
-            case NanoChatSendEvent send:
-                HandleSendText(ent, send.Text);
-                break;
-
-            case NanoChatTypingEvent:
-                HandleTyping(ent);
-                break;
-
-            case NanoChatEditChatEvent edit:
-                HandleEditChat(ent, edit);
-                break;
-
-            case NanoChatPrintEvent print:
-                HandlePrintChat(ent, print);
                 break;
         }
     }
@@ -187,6 +190,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!TryComp<PaperComponent>(printed, out var paper))
             return;
 
+        _metaDataSystem.SetEntityName(printed,
+            Loc.GetString("nano-chat-print-name",
+            ("name", Name(printed)),
+            ("id", chat.Id)));
+
+
         var msg = new FormattedMessage();
         var chatName = string.IsNullOrEmpty(chat.Name)
             ? Loc.GetString("nano-chat-print-default-title")
@@ -195,6 +204,20 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         // отступ для центрирования имени чата
         var spacesCount = Math.Max(0, 19 - (chatName.Length / 2));
         var padding = new string(' ', spacesCount);
+
+        if (!_prototype.TryIndex(ent.Comp.StampId, out var stampProto))
+            return;
+
+        if (!stampProto.TryGetComponent<StampComponent>(out var stamp, _componentFactory))
+            return;
+
+        var stampInfo = new StampDisplayInfo
+        {
+            StampedName = stamp.StampedName,
+            StampedColor = stamp.StampedColor,
+        };
+
+        _paper.TryStamp((printed, paper), stampInfo, stamp.StampState);
 
         msg.AddMarkupOrThrow($"[head=3]{padding}{FormattedMessage.EscapeText(chatName)}");
         msg.PushNewline();
@@ -209,6 +232,10 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             msg.PushNewline();
             msg.PushNewline();
         }
+
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"НаноЧат: {ToPrettyString(args.Actor):user} распечатал чат \"{chat.Name}\" ({chat.Id})");
 
         _paper.SetContent((printed, paper), msg.ToMarkup());
         UpdateUi(ent);
@@ -236,8 +263,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             if (!TryComp<NanoChatServerComponent>(serverUid, out var serverComp))
                 continue;
 
-            var removedUsers = serverComp.Users.Keys
-                .Where(id => !activeUsers.Contains(id))
+            var removedUsers = serverComp.Users
+                .Where(id => !activeUsers.Contains(id.Id))
                 .ToList();
 
             foreach (var user in removedUsers)
@@ -245,7 +272,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 serverComp.Users.Remove(user);
 
                 serverComp.Chats.RemoveAll(chat =>
-                    chat.Members.Contains(user));
+                    chat.Members.Contains(user.Id));
             }
 
             if (removedUsers.Count > 0)
@@ -265,7 +292,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (server == null || chat == null)
             return;
 
+        var oldName = chat.Name;
         chat.Name = args.NewName;
+
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"НаноЧат: {ToPrettyString(args.Actor):user} переименовал чат ({chat.Id}) \"{oldName}\" в \"{args.NewName}\"");
 
         Dirty(server.Value);
         UpdateAllClients(server.Value);
@@ -306,21 +338,31 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var addedAny = false;
+        var newMembers = new List<NetEntity>();
         foreach (var newMember in args.AddedMembers.Where(newMember => !chat.Members.Contains(newMember)))
         {
-            chat.Members.Add(newMember);
+            newMembers.Add(newMember);
             addedAny = true;
         }
 
         if (!addedAny)
             return;
+        chat.Members.AddRange(newMembers);
+
+        var addedString = newMembers.Aggregate("",
+            (current, member) =>
+            current + $"{ToPrettyString(member)}, ");
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"НаноЧат: {ToPrettyString(args.Actor):user} добавил [ {addedString} ] в чат \"{chat.Name}\"({chat.Id})");
 
         if (string.IsNullOrEmpty(chat.Name))
         {
             var memberNames = chat.Members
-                .Select(id => server.Value.Comp.Users.TryGetValue(id, out var user)
-                    ? user.Name
-                    : Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
+                .Select(id =>
+                    server.Value.Comp.Users
+                        .FirstOrDefault(user => user.Id == id)
+                        .Name
+                    ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
                 .ToList();
 
             chat.Name = string.Join(", ", memberNames);
@@ -343,25 +385,28 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!chat.Members.Contains(ent.Comp.UserId.Value))
             return;
 
-        foreach (var remMember in args.RemovedMembers.Where(newMember => chat.Members.Contains(newMember)))
-            chat.Members.Remove(remMember);
+        var removed = args.RemovedMembers
+            .Where(member => chat.Members.Contains(member))
+            .ToList();
 
-        if (string.IsNullOrEmpty(chat.Name))
+        foreach (var member in removed)
+            chat.Members.Remove(member);
+
+        if (removed.Count > 0)
         {
-            var memberNames = chat.Members
-                .Select(id => server.Value.Comp.Users.TryGetValue(id, out var user)
-                    ? user.Name
-                    : Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
-                .ToList();
+            var removedString = string.Join(", ",
+                removed.Select(ToPrettyString));
 
-            chat.Name = string.Join(", ", memberNames);
+            _adminLogger.Add(LogType.Chat,
+                LogImpact.Low,
+                $"НаноЧат: {ToPrettyString(args.Actor):user} удалил [ {removedString} ] из чата \"{chat.Name}\" ({chat.Id})");
         }
 
         Dirty(server.Value);
         UpdateAllClients(server.Value);
     }
 
-    private void HandleCreateChat(Entity<NanoChatCartridgeComponent> creator, string chatName)
+    private void HandleCreateChat(Entity<NanoChatCartridgeComponent> creator, string chatName, EntityUid actor)
     {
         if (string.IsNullOrWhiteSpace(chatName) || creator.Comp.UserId == null)
             return;
@@ -371,14 +416,17 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var newChatId = server.Value.Comp.NextChatId++;
-        var newChat = new NanoChatChat(newChatId, chatName, creator.Comp.UserId.Value, new List<NetEntity> { creator.Comp.UserId.Value }, new List<NanoChatMessage>(), false);
+        var newChat = new NanoChatChat(newChatId, chatName, creator.Comp.UserId.Value, [creator.Comp.UserId.Value], [], false);
         server.Value.Comp.Chats.Add(newChat);
         creator.Comp.SelectedChat = newChatId;
 
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"НаноЧат: {ToPrettyString(actor):user} создал чат \"{chatName}\" ({newChatId})");
         UpdateAllClients(server.Value);
     }
 
-    private void HandleSendText(Entity<NanoChatCartridgeComponent> sender, string text)
+    private void HandleSendText(Entity<NanoChatCartridgeComponent> sender, string text, EntityUid actor)
     {
         if (string.IsNullOrWhiteSpace(text) || sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
             return;
@@ -409,6 +457,10 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         Dirty(server.Value);
 
         var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
+
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"НаноЧат{(chat.Name is not "" ? $" {chat.Name} " : "")} ({chat.Id}) {ToPrettyString(actor):user}: {text}");
 
         while (query.MoveNext(out var clientUid, out var targetComp))
         {
@@ -487,17 +539,19 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             pdaData.Job ?? Loc.GetString("nano-chat-ui-contact-job-unknown"),
             pdaData.Icon);
 
-        server.Value.Comp.Users[pdaData.Id.Value] = contact;
+        var index = server.Value.Comp.Users.FindIndex(u => u.Id == pdaData.Id.Value);
 
-        foreach (var otherId in server.Value.Comp.Users.Keys)
+        if (index >= 0)
+            server.Value.Comp.Users[index] = contact;
+        else
+            server.Value.Comp.Users.Add(contact);
+
+        foreach (var otherUser in server.Value.Comp.Users.Where(otherUser => otherUser.Id != pdaData.Id.Value))
         {
-            if (otherId == pdaData.Id.Value)
-                continue;
-
             var exists = server.Value.Comp.Chats.Any(c =>
                 c.Members.Count == 2 &&
                 c.Members.Contains(pdaData.Id.Value) &&
-                c.Members.Contains(otherId));
+                c.Members.Contains(otherUser.Id));
 
             if (exists)
                 continue;
@@ -507,12 +561,11 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                     server.Value.Comp.NextChatId++,
                     string.Empty,
                     null,
-                    new List<NetEntity>
-                    {
+                    [
                         pdaData.Id.Value,
-                        otherId
-                    },
-                    new List<NanoChatMessage>()));
+                        otherUser.Id,
+                    ],
+                    []));
         }
 
         Dirty(server.Value);
@@ -570,7 +623,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         if (isServerOnline && server != null && comp.UserId != null)
         {
-            contacts = server.Value.Comp.Users.Values.ToList();
+            contacts = server.Value.Comp.Users;
 
             chats = server.Value.Comp.Chats
                 .Where(c => c.Members.Contains(comp.UserId.Value))
@@ -619,8 +672,10 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 if (typistId == comp.UserId)
                     continue;
 
-                if (server.Value.Comp.Users.TryGetValue(typistId, out var contact))
-                    typingUsers[typistId] = contact.Name;
+                if (server.Value.Comp.Users.All(user => user.Id != typistId))
+                    continue;
+                var contact = server.Value.Comp.Users.First(user => user.Id == typistId);
+                typingUsers[typistId] = contact.Name;
             }
 
             foreach (var expired in expiredUsers)
@@ -641,7 +696,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             typingUsers
         );
 
-        if (TryComp<CartridgeLoaderComponent>(loaderUid, out var loader) && _userInterfaceSystem.HasUi(loaderUid, loader.UiKey))
+        if (TryComp<CartridgeLoaderComponent>(loaderUid, out var loader) && _userInterfaceSystem.IsUiOpen(loaderUid, loader.UiKey))
             _userInterfaceSystem.SetUiState(loaderUid, loader.UiKey, state);
     }
 

@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 public sealed partial class NanoChatCartridgeComponent : Component
 {
     /// <summary>
-    /// ID пользователя в системе чата
+    /// ID пользователя (картриджа) в системе чата
     /// </summary>
     [DataField]
     public NetEntity? UserId;
@@ -63,10 +63,16 @@ public sealed partial class NanoChatCartridgeComponent : Component
     public TimeSpan PrintDelay = TimeSpan.FromSeconds(5);
 
     /// <summary>
-    /// Прототип бумаги для печати.
+    /// Прототип бумаги для печати
     /// </summary>
     [DataField]
     public EntProtoId PaperId = "PaperNanoChatItem";
+
+    /// <summary>
+    /// Прототип штампа для печати
+    /// </summary>
+    [DataField]
+    public EntProtoId StampId = "RubberStampNanoChat";
 
     /// <summary>
     /// Звук уведомления

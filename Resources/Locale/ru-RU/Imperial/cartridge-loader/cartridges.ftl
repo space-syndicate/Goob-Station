@@ -57,8 +57,12 @@ nano-chat-ui-chat-window-message-loading = Загрузка...
 
 nano-chat-ui-chat-windows-message-error = Ошибка
 
-nano-chat-print-default-title = Переписка
-
 nano-chat-pda-notification-header = НаноЧат
 nano-chat-pda-notification-message = Новое сообщение от { $sender }
 nano-chat-pda-notification-message-group = Новое сообщение в { $sender }
+
+nano-chat-print-default-title = Переписка
+
+stamp-component-stamped-name-nano-chat = НаноЧат
+
+nano-chat-print-name = { $name } ({ $id })
