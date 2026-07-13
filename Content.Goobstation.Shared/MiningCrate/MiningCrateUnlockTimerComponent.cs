@@ -11,7 +11,7 @@ namespace Content.Goobstation.Shared.MiningCrate;
 /// Without this component the crate cannot start a unlock countdown (only startUnlocked / emag / etc.).
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(MiningCrateSystem), typeof(MiningCrateUnlockTimerSystem), typeof(MiningCratePointsUnlockSystem))]
+[Access(typeof(MiningCrateSystem))]
 public sealed partial class MiningCrateUnlockTimerComponent : Component
 {
     /// <summary>

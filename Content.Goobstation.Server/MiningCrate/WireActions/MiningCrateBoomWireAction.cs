@@ -11,7 +11,7 @@ public sealed partial class MiningCrateBoomWireAction : ComponentWireAction<Mini
     public override Color Color { get; set; } = Color.Red;
     public override string Name { get; set; } = "wire-name-mining-crate-boom";
     public override bool LightRequiresPower { get; set; } = false;
-    public override object StatusKey { get; } = MiningCrateSecurityWireStatus.BoomIndicator;
+    public override object StatusKey { get; } = MiningCrateWireStatus.BoomIndicator;
 
     public override StatusLightState? GetLightState(Wire wire, MiningCrateSecurityComponent comp) => null;
 

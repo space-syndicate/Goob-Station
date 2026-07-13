@@ -12,7 +12,7 @@ public sealed partial class MiningCrateSirenWireAction : ComponentWireAction<Min
     public override Color Color { get; set; } = Color.Orange;
     public override string Name { get; set; } = "wire-name-mining-crate-siren";
     public override bool LightRequiresPower { get; set; } = false;
-    public override object StatusKey { get; } = MiningCrateSecurityWireStatus.SirenIndicator;
+    public override object StatusKey { get; } = MiningCrateWireStatus.SirenIndicator;
 
     public override StatusLightState? GetLightState(Wire wire, MiningCrateSecurityComponent comp)
     {

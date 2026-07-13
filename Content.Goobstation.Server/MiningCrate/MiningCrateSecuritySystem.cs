@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Server._CorvaxGoob.PowerToggle;
 using Content.Server.Construction.Components;
 using Content.Server.Destructible;
 using Content.Server.Explosion.EntitySystems;
@@ -30,6 +31,7 @@ public sealed class MiningCrateSecuritySystem : SharedMiningCrateSecuritySystem
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TogglePowerSystem _togglePower = default!;
 
     public override void Initialize()
     {
@@ -37,6 +39,16 @@ public sealed class MiningCrateSecuritySystem : SharedMiningCrateSecuritySystem
         SubscribeLocalEvent<MiningCrateSecurityComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MiningCrateSecurityComponent, DamageThresholdReached>(OnDamageThreshold);
         SubscribeLocalEvent<MiningCrateSecurityComponent, AttemptChangePanelEvent>(OnAttemptChangePanel);
+        SubscribeLocalEvent<TogglePowerComponent, MiningCrateForcePowerOffEvent>(OnForcePowerOff);
+    }
+
+    private void OnForcePowerOff(Entity<TogglePowerComponent> ent, ref MiningCrateForcePowerOffEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        _togglePower.SetPower(ent, powered: false, playSound: true);
+        args.Handled = true;
     }
 
     private void OnMapInit(Entity<MiningCrateSecurityComponent> ent, ref MapInitEvent args)

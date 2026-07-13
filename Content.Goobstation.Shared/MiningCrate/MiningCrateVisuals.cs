@@ -24,3 +24,12 @@ public enum MiningCrateState : byte
     Unlocked = 2,
     Open = 3,
 }
+
+[Serializable, NetSerializable]
+public enum MiningCrateWireStatus : byte
+{
+    SecurityIndicator,
+    LockIndicator,
+    SirenIndicator,
+    BoomIndicator,
+}

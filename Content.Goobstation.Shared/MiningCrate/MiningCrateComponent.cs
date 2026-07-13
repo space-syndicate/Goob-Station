@@ -13,7 +13,7 @@ namespace Content.Goobstation.Shared.MiningCrate;
 /// Unlock methods are separate optional components (points, free timer, ...).
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(MiningCrateSystem), typeof(MiningCrateUnlockTimerSystem), typeof(MiningCratePointsUnlockSystem))]
+[Access(typeof(MiningCrateSystem))]
 public sealed partial class MiningCrateComponent : Component
 {
     [DataField, AutoNetworkedField]

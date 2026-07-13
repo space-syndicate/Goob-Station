@@ -10,7 +10,7 @@ namespace Content.Goobstation.Shared.MiningCrate;
 /// Add other payment modules later the same way (currency, access card, …).
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(MiningCratePointsUnlockSystem))]
+[Access(typeof(MiningCrateSystem))]
 public sealed partial class MiningCratePointsUnlockComponent : Component
 {
     [DataField, AutoNetworkedField]

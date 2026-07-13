@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using Content.Shared._DV.Salvage.Systems;
+using Content.Shared.Electrocution;
 using Content.Shared.Emag.Systems;
 using Content.Shared.EntityTable;
 using Content.Shared.Examine;
@@ -19,13 +21,14 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
-/// Core mining crate: power, open gate, visuals, loot, access breaker, unlock completion.
-/// Unlock methods subscribe to <see cref="MiningCrateTryUnlockEvent"/>.
+/// Mining crate: power, unlock (points / free timer), visuals, loot, access breaker.
+/// Security is handled by <see cref="SharedMiningCrateSecuritySystem"/>.
 /// </summary>
 public sealed class MiningCrateSystem : EntitySystem
 {
@@ -34,10 +37,13 @@ public sealed class MiningCrateSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly LockSystem _lock = default!;
+    [Dependency] private readonly MiningPointsSystem _miningPoints = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
@@ -59,6 +65,10 @@ public sealed class MiningCrateSystem : EntitySystem
         SubscribeLocalEvent<MiningCrateComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<MiningCrateComponent, GotEmaggedEvent>(OnEmagged,
             before: [typeof(LockSystem)]);
+
+        // Points first so free timer only runs when no payment component.
+        SubscribeLocalEvent<MiningCratePointsUnlockComponent, MiningCrateTryUnlockEvent>(OnPointsTryUnlock);
+        SubscribeLocalEvent<MiningCrateUnlockTimerComponent, MiningCrateTryUnlockEvent>(OnTimerTryUnlock);
     }
 
     private void OnMapInit(Entity<MiningCrateComponent> ent, ref MapInitEvent args)
@@ -98,6 +108,54 @@ public sealed class MiningCrateSystem : EntitySystem
         if (_net.IsClient)
             return;
 
+        UpdateDenyLockouts();
+        UpdateUnlockTimers();
+        UpdateTamperBlink();
+    }
+
+    private void UpdateDenyLockouts()
+    {
+        var query = EntityQueryEnumerator<MiningCratePointsUnlockComponent, MiningCrateComponent>();
+        while (query.MoveNext(out var uid, out var points, out _))
+        {
+            if (points.DeniedUntil == TimeSpan.Zero || _timing.CurTime < points.DeniedUntil)
+                continue;
+
+            points.DeniedUntil = TimeSpan.Zero;
+            Dirty(uid, points);
+            SetDenySiren(uid, false);
+            if (TryComp<MiningCrateComponent>(uid, out var crate))
+                _audio.PlayPvs(crate.UnlockSound, uid);
+        }
+    }
+
+    private void UpdateUnlockTimers()
+    {
+        var query = EntityQueryEnumerator<MiningCrateUnlockTimerComponent, MiningCrateComponent, LockComponent>();
+        while (query.MoveNext(out var uid, out var timer, out var crate, out var lockComp))
+        {
+            if (crate.Unlocked || !timer.Started || timer.UnlockAt == TimeSpan.Zero)
+                continue;
+
+            if (_timing.CurTime < timer.UnlockAt)
+            {
+                if (IsDevicePowered(uid) && _timing.CurTime >= timer.NextUnlockBlink)
+                {
+                    timer.NextUnlockBlink = _timing.CurTime + timer.UnlockBlinkInterval;
+                    timer.UnlockBlinkShowUnlocked = !timer.UnlockBlinkShowUnlocked;
+                    Dirty(uid, timer);
+                    UpdateCrateVisuals(uid);
+                }
+
+                continue;
+            }
+
+            CompleteUnlock((uid, crate), lockComp);
+        }
+    }
+
+    private void UpdateTamperBlink()
+    {
         var query = EntityQueryEnumerator<MiningCrateComponent>();
         while (query.MoveNext(out var uid, out var crate))
         {
@@ -170,7 +228,6 @@ public sealed class MiningCrateSystem : EntitySystem
         // Powered-off status is already examined by TogglePower (power-toggle-status-off).
         if (!IsCrateUsable(ent))
             return;
-
 
         if (ent.Comp.Unlocked)
         {
@@ -276,9 +333,6 @@ public sealed class MiningCrateSystem : EntitySystem
         DenyFeedback(ent, args.User, GetStatusMessage(ent));
     }
 
-    /// <summary>
-    /// Entry point for unlock attempts. Raises <see cref="MiningCrateTryUnlockEvent"/> for modules.
-    /// </summary>
     public void RequestUnlock(Entity<MiningCrateComponent> ent, EntityUid user)
     {
         if (ent.Comp.Unlocked)
@@ -311,9 +365,187 @@ public sealed class MiningCrateSystem : EntitySystem
         DenyFeedback(ent, user, GetStatusMessage(ent));
     }
 
-    /// <summary>
-    /// Finishes unlock: loot, open lock, disarm security. Used by timer completion, emag, startUnlocked.
-    /// </summary>
+    private void OnPointsTryUnlock(Entity<MiningCratePointsUnlockComponent> ent, ref MiningCrateTryUnlockEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<MiningCrateComponent>(ent, out var crate) || crate.Unlocked)
+            return;
+
+        if (!TryComp<MiningCrateUnlockTimerComponent>(ent, out var timer))
+        {
+            args.Handled = true;
+            DenyFeedback(ent, args.User, Loc.GetString("lavaland-mining-crate-locked"));
+            return;
+        }
+
+        if (timer.Started)
+        {
+            args.Handled = true;
+            DenyFeedback(ent, args.User, GetStatusMessage(ent));
+            return;
+        }
+
+        if (IsDenyLockedOut(ent.Comp))
+        {
+            args.Handled = true;
+            DenyFeedback(ent, args.User, GetStatusMessage(ent));
+            return;
+        }
+
+        args.Handled = true;
+
+        if (_net.IsClient)
+            return;
+
+        if (_miningPoints.GetPointComp(args.User) is not { } pointsHolder)
+        {
+            StartDenyLockout(ent, crate, args.User, Loc.GetString("lavaland-mining-crate-no-id"));
+            TryShockOnFail(ent, crate, args.User);
+            return;
+        }
+
+        var available = pointsHolder.Comp?.Points ?? 0;
+        if (available < ent.Comp.Cost || !_miningPoints.RemovePoints(pointsHolder, ent.Comp.Cost))
+        {
+            StartDenyLockout(ent,
+                crate,
+                args.User,
+                Loc.GetString("lavaland-mining-crate-not-enough-points", ("cost", ent.Comp.Cost)));
+            TryShockOnFail(ent, crate, args.User);
+            return;
+        }
+
+        ent.Comp.DeniedUntil = TimeSpan.Zero;
+        Dirty(ent);
+        StartTimer(ent.Owner, timer, args.User, purchased: true);
+    }
+
+    private void OnTimerTryUnlock(Entity<MiningCrateUnlockTimerComponent> ent, ref MiningCrateTryUnlockEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        // Points payment handles TryUnlock itself and calls StartTimer.
+        if (HasComp<MiningCratePointsUnlockComponent>(ent))
+            return;
+
+        if (!TryComp<MiningCrateComponent>(ent, out var crate) || crate.Unlocked)
+            return;
+
+        if (ent.Comp.Started)
+        {
+            args.Handled = true;
+            DenyFeedback(ent, args.User, GetStatusMessage(ent));
+            return;
+        }
+
+        args.Handled = true;
+
+        if (_net.IsClient)
+            return;
+
+        StartTimer(ent, ent.Comp, args.User, purchased: false);
+    }
+
+    public void StartTimer(
+        EntityUid uid,
+        MiningCrateUnlockTimerComponent timer,
+        EntityUid user,
+        bool purchased)
+    {
+        if (!TryComp<MiningCrateComponent>(uid, out var crate) || crate.Unlocked)
+            return;
+
+        timer.Started = true;
+        timer.UnlockAt = _timing.CurTime + timer.UnlockDelay;
+        timer.UnlockBlinkShowUnlocked = true;
+        timer.NextUnlockBlink = _timing.CurTime + timer.UnlockBlinkInterval;
+        Dirty(uid, timer);
+
+        SetDenySiren(uid, false);
+        EnsurePhysicallyLocked(uid, user);
+        UpdateCrateVisuals(uid);
+
+        _audio.PlayPvs(crate.PurchaseSound, uid);
+        _audio.PlayPvs(crate.LockSound, uid);
+
+        var seconds = timer.UnlockDelay.TotalSeconds.ToString("0");
+        var msg = purchased
+            ? Loc.GetString("lavaland-mining-crate-purchased", ("seconds", seconds))
+            : Loc.GetString("lavaland-mining-crate-unlock-started", ("seconds", seconds));
+        _popup.PopupEntity(msg, uid, user);
+    }
+
+    private void StartDenyLockout(
+        Entity<MiningCratePointsUnlockComponent> ent,
+        MiningCrateComponent crate,
+        EntityUid user,
+        string reasonMessage)
+    {
+        EnsurePhysicallyLocked(ent, user);
+
+        if (ent.Comp.EnableDenyLockout)
+        {
+            ent.Comp.DeniedUntil = _timing.CurTime + ent.Comp.DenyLockoutDuration;
+            Dirty(ent);
+
+            if (IsDevicePowered(ent))
+                SetDenySiren(ent, true);
+
+            _audio.PlayPvs(crate.DenySound, ent);
+            _audio.PlayPvs(crate.LockSound, ent);
+
+            var remaining = ent.Comp.DenyLockoutDuration.TotalSeconds.ToString("0");
+            _popup.PopupEntity(reasonMessage, ent, user);
+            _popup.PopupEntity(
+                Loc.GetString("lavaland-mining-crate-denied-lockout", ("seconds", remaining)),
+                ent,
+                user);
+            return;
+        }
+
+        DenyFeedback(ent, user, reasonMessage);
+    }
+
+    private void TryShockOnFail(
+        Entity<MiningCratePointsUnlockComponent> ent,
+        MiningCrateComponent crate,
+        EntityUid user)
+    {
+        if (ent.Comp.ShockOnFailChance <= 0f)
+            return;
+
+        if (!_random.Prob(ent.Comp.ShockOnFailChance))
+            return;
+
+        _electrocution.TryDoElectrocution(
+            user,
+            ent,
+            ent.Comp.ShockDamage,
+            ent.Comp.ShockDuration,
+            refresh: true,
+            siemensCoefficient: 1f,
+            ignoreInsulation: false);
+
+        _audio.PlayPvs(crate.ShockSound, ent);
+        _popup.PopupEntity(Loc.GetString("lavaland-mining-crate-shocked"), ent, user);
+
+        var ev = new MiningCrateForcePowerOffEvent();
+        RaiseLocalEvent(ent, ref ev);
+        if (!ev.Handled)
+            _power.SetPowerDisabled(ent, true);
+
+        SetDenySiren(ent, false);
+        UpdateCrateVisuals(ent);
+    }
+
+    private bool IsDenyLockedOut(MiningCratePointsUnlockComponent points)
+    {
+        return points.DeniedUntil != TimeSpan.Zero && _timing.CurTime < points.DeniedUntil;
+    }
+
     public void CompleteUnlock(
         Entity<MiningCrateComponent> ent,
         LockComponent lockComp,
