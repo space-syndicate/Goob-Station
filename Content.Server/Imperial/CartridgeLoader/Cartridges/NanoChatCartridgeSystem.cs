@@ -174,7 +174,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     /// <summary>
     /// Обновляет UI картриджа для клиента.
     /// </summary>
-    private void UpdateUi(Entity<NanoChatCartridgeComponent> ent)
+    private void UpdateUi(Entity<NanoChatCartridgeComponent> ent, Entity<NanoChatServerComponent>? server = null)
     {
         var comp = ent.Comp;
         var loaderUid = Transform(ent).ParentUid;
@@ -185,10 +185,13 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!loaderUid.IsValid())
             return;
 
-        SyncUsers();
-        SyncUserToServer(ent, out var server);
+        if (server != null)
+            SyncUserToServer(ent, out server);
 
-        var isServerOnline = server != null && TryComp<ApcPowerReceiverComponent>(server.Value, out var receiverComponent) && receiverComponent.Powered;
+        var isServerOnline =
+            server != null &&
+            TryComp<ApcPowerReceiverComponent>(server.Value, out var receiverComponent) &&
+            receiverComponent.Powered;
 
         var isContactReachable = false;
         var contacts = new List<NanoChatContact>();
@@ -205,12 +208,15 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 .OrderBy(c => c.Name)
                 .ToList();
 
-            currentChat = server.Value.Comp.Chats.FirstOrDefault(c => comp.SelectedChat != null
-                                                                      && c.Id == comp.SelectedChat.Value);
+            currentChat = server.Value.Comp.Chats.FirstOrDefault(c =>
+                comp.SelectedChat != null &&
+                c.Id == comp.SelectedChat.Value);
+
             if (comp.SelectedChat != null && currentChat != null)
             {
-                var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
                 canSendLocation = HasComp<HandheldGPSComponent>(loaderUid);
+
+                var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
 
                 while (query.MoveNext(out _, out var other))
                 {
@@ -229,7 +235,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             }
         }
 
-        if (currentChat != null && server != null && server.Value.Comp.TypingTimeouts.TryGetValue(currentChat.Id, out var chatTyping))
+        if (currentChat != null &&
+            server != null &&
+            server.Value.Comp.TypingTimeouts.TryGetValue(currentChat.Id, out var chatTyping))
         {
             var expiredUsers = new List<NetEntity>();
 
@@ -246,6 +254,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
                 if (server.Value.Comp.Users.All(user => user.Id != typistId))
                     continue;
+
                 var contact = server.Value.Comp.Users.First(user => user.Id == typistId);
                 typingUsers[typistId] = contact.Name;
             }
@@ -268,8 +277,11 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             typingUsers
         );
 
-        if (TryComp<CartridgeLoaderComponent>(loaderUid, out var loader) && _userInterfaceSystem.IsUiOpen(loaderUid, loader.UiKey))
+        if (TryComp<CartridgeLoaderComponent>(loaderUid, out var loader) &&
+            _userInterfaceSystem.IsUiOpen(loaderUid, loader.UiKey))
+        {
             _userInterfaceSystem.SetUiState(loaderUid, loader.UiKey, state);
+        }
     }
 
 
@@ -737,7 +749,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     }
 
     /// <summary>
-    /// Обновляет UI всех клиентов
+    /// Обновляет UI всех клиентов.
     /// </summary>
     private void UpdateAllClients(Entity<NanoChatServerComponent> server)
     {
@@ -747,10 +759,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.ConnectedServer != server.Owner)
+            SyncUserToServer((uid, comp), out var connectedServer);
+
+            if (connectedServer?.Owner != server.Owner)
                 continue;
 
-            UpdateUi((uid, comp));
+            UpdateUi((uid, comp), connectedServer);
         }
     }
 
