@@ -2,6 +2,9 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 
+/// <summary>
+/// Компонент сервера НаноЧата, поддерживающего работу мессенджера.
+/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class NanoChatServerComponent : Component
 {

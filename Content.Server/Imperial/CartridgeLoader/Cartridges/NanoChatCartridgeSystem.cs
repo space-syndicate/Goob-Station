@@ -22,6 +22,12 @@ using System.Linq;
 
 namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 
+/// <summary>
+/// Система, отвечающая за работу функционала картриджей НаноЧата.
+/// Управляет связью с серверами, обработкой сообщений, синхронизацией пользователей и интерфейсом.
+/// </summary>
+/// <seealso cref="NanoChatCartridgeComponent"/>
+/// <seealso cref="NanoChatServerComponent"/>
 public sealed class NanoChatCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _loaderSystem = null!;
@@ -163,6 +169,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Распечатывает историю чата на бумаге с использованием штампа.
+    /// </summary>
     private void HandlePrintChat(Entity<NanoChatCartridgeComponent> ent, NanoChatPrintEvent args)
     {
         if (ent.Comp.SelectedChat == null || ent.Comp.UserId == null)
@@ -201,7 +210,6 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             ? Loc.GetString("nano-chat-print-default-title")
             : chat.Name;
 
-        // отступ для центрирования имени чата
         var spacesCount = Math.Max(0, 19 - (chatName.Length / 2));
         var padding = new string(' ', spacesCount);
 
@@ -241,6 +249,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateUi(ent);
     }
 
+    /// <summary>
+    /// Синхронизирует активных пользователей на всех серверах, удаляя тех, кто отключился.
+    /// </summary>
     private void SyncUsers()
     {
         var activeUsersByServer = new Dictionary<EntityUid, HashSet<NetEntity>>();
@@ -280,6 +291,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Обрабатывает изменение названия существующего чата.
+    /// </summary>
     private void HandleEditChat(Entity<NanoChatCartridgeComponent> sender, NanoChatEditChatEvent args)
     {
         if (sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
@@ -303,6 +317,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(server.Value);
     }
 
+    /// <summary>
+    /// Регистрирует статус набора текста для текущего пользователя.
+    /// </summary>
     private void HandleTyping(Entity<NanoChatCartridgeComponent> sender)
     {
         if (sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
@@ -324,6 +341,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(server.Value);
     }
 
+    /// <summary>
+    /// Добавляет новых участников в указанный чат.
+    /// </summary>
     private void HandleAddMembers(Entity<NanoChatCartridgeComponent> ent, NanoChatAddMembersEvent args)
     {
         var server = GetServerForCartridge(ent);
@@ -372,6 +392,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(server.Value);
     }
 
+    /// <summary>
+    /// Удаляет участников из указанного чата.
+    /// </summary>
     private void HandleRemoveMembers(Entity<NanoChatCartridgeComponent> ent, NanoChatRemoveMembersEvent args)
     {
         var server = GetServerForCartridge(ent);
@@ -406,6 +429,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(server.Value);
     }
 
+    /// <summary>
+    /// Создает новый чат на сервере.
+    /// </summary>
     private void HandleCreateChat(Entity<NanoChatCartridgeComponent> creator, string chatName, EntityUid actor)
     {
         if (string.IsNullOrWhiteSpace(chatName) || creator.Comp.UserId == null)
@@ -426,6 +452,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(server.Value);
     }
 
+    /// <summary>
+    /// Отправляет текстовое сообщение в выбранный чат и рассылает уведомления участникам.
+    /// </summary>
     private void HandleSendText(Entity<NanoChatCartridgeComponent> sender, string text, EntityUid actor)
     {
         if (string.IsNullOrWhiteSpace(text) || sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
@@ -512,6 +541,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(server.Value);
     }
 
+    /// <summary>
+    /// Синхронизирует данные текущего картриджа с сервером.
+    /// </summary>
     private void SyncUserToServer(Entity<NanoChatCartridgeComponent> ent, out Entity<NanoChatServerComponent>? server)
     {
         var loaderUid = Transform(ent).ParentUid;
@@ -586,6 +618,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Находит активный сервер НаноЧата на той же карте.
+    /// </summary>
     private Entity<NanoChatServerComponent>? GetServerForCartridge(EntityUid cartridgeUid)
     {
         var cartTrans = Transform(cartridgeUid);
@@ -599,6 +634,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         return null;
     }
 
+    /// <summary>
+    /// Обновляет UI картриджа для клиента.
+    /// </summary>
     private void UpdateUi(Entity<NanoChatCartridgeComponent> ent)
     {
         var comp = ent.Comp;
@@ -700,6 +738,9 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             _userInterfaceSystem.SetUiState(loaderUid, loader.UiKey, state);
     }
 
+    /// <summary>
+    /// Извлекает данные пользователя из ID-карты, установленной в КПК.
+    /// </summary>
     private (NetEntity? Id, string? Name, string? Job, ProtoId<JobIconPrototype>? Icon) GetPdaData(EntityUid pdaUid)
     {
         if (!TryComp<PdaComponent>(pdaUid, out var pda))

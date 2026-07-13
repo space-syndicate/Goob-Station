@@ -17,7 +17,7 @@
   - type: NanoChatCartridge
 
 - type: entity
-  parent: BaseMachinePowered
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: NanoChatServer
   name: NanoChat server
   description: The central routing server for the station's NanoChat network.
@@ -28,6 +28,53 @@
   - type: NanoChatServer
   - type: ApcPowerReceiver
     powerLoad: 250
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    energy: 3.0
+    color: "#39b8ee"
+  - type: LitOnPowered
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: Machine
+    board: NanoChatServerCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: NanoChatServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NanoChat server machine board
+  description: A machine printed circuit board for a NanoChat server.
+  components:
+  - type: MachineBoard
+    prototype: NanoChatServer
+    stackRequirements:
+      Steel: 2
+      Cable: 3
+      Glass: 4
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: NanoChatServerCircuitboard
+  result: NanoChatServerCircuitboard
 
 - type: entity
   id: PaperNanoChatItem

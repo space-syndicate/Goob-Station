@@ -244,6 +244,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             {
                 Text = Loc.GetString("nano-chat-ui-chat-window-message-server-unreachable"),
                 Align = Label.AlignMode.Center,
+                FontColorOverride = Color.Red,
             };
             MessageContainer.AddChild(noServerLabel);
             return;
@@ -322,6 +323,9 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         _lastState = state;
         _userId = state.CurrentUserId;
 
+        ContactsListContainer.DisposeAllChildren();
+        MessageContainer.DisposeAllChildren();
+
         UpdateCurrentChatDisplay(state.CurrentChat, state.IsServerOnline, state.Contacts);
 
         AddMembersButton.Visible = state.CurrentChat != null;
@@ -347,9 +351,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
                 ? "news-read-ui-notification-on"
                 : "news-read-ui-notification-off");
 
-
-        ContactsListContainer.DisposeAllChildren();
-        MessageContainer.DisposeAllChildren();
 
         var sortedChats = state.Chats.OrderByDescending(c =>
             state.UnreadMessages.TryGetValue(c.Id, out var chatUnreadCount) && chatUnreadCount > 0);

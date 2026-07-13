@@ -4,6 +4,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 
+/// <summary>
+/// Компонент картриджа НаноЧата, вставляемого в КПК.
+/// </summary>
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentPause]
 public sealed partial class NanoChatCartridgeComponent : Component
