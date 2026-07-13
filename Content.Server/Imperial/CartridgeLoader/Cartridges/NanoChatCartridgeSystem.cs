@@ -408,7 +408,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (chat == null)
             return;
 
-        if (!chat.Members.Contains(ent.Comp.UserId.Value))
+        if (!chat.Members.Contains(ent.Comp.UserId.Value) || chat.Owner != ent.Comp.UserId.Value)
             return;
 
         var removed = args.RemovedMembers
@@ -660,9 +660,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             {
                 serverComp.Users.Remove(user);
 
-                serverComp.Chats.RemoveAll(chat =>
-                    chat.Members.Contains(user.Id));
+                foreach (var chat in serverComp.Chats.Where(chat => chat.Members.Contains(user.Id)))
+                    chat.Members.Remove(user.Id);
             }
+
+            serverComp.Chats.RemoveAll(chat =>
+                chat.Members.Count == 0);
 
             if (removedUsers.Count > 0)
                 Dirty(serverUid, serverComp);
