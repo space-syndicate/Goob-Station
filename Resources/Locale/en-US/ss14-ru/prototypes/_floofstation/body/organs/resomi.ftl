@@ -1,2 +1,14 @@
 ent-OrganResomiStomach = { ent-OrganAnimalStomach }
     .desc = { ent-OrganAnimalStomach.desc }
+ent-OrganResomiBrain = { ent-OrganHumanBrain }
+    .desc = { ent-OrganHumanBrain.desc }
+ent-OrganResomiEyes = { ent-OrganHumanEyes }
+    .desc = { ent-OrganHumanEyes.desc }
+ent-OrganResomiHeart = { ent-OrganHumanHeart }
+    .desc = { ent-OrganHumanHeart.desc }
+ent-OrganResomiLungs = { ent-OrganHumanLungs }
+    .desc = { ent-OrganHumanLungs.desc }
+ent-OrganResomiLiver = { ent-OrganHumanLiver }
+    .desc = { ent-OrganHumanLiver.desc }
+ent-OrganResomiKidneys = { ent-OrganHumanKidneys }
+    .desc = { ent-OrganHumanKidneys.desc }

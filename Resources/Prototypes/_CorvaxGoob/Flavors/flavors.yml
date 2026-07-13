@@ -16,8 +16,3 @@
 - type: flavor
   id: snow
   description: flavor-base-snow
-
-- type: flavor
-  id: alkaline
-  flavorType: Base
-  description: flavor-base-alkaline

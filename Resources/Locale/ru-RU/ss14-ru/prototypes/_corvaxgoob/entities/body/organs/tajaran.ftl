@@ -1,17 +1,12 @@
 ent-OrganTajaranBrain = { ent-OrganHumanBrain }
-  .desc = { ent-OrganHumanBrain.desc }
-
+    .desc = { ent-OrganHumanBrain.desc }
 ent-OrganTajaranEyes = { ent-OrganHumanEyes }
-  .desc = { ent-OrganHumanEyes.desc }
-
+    .desc = { ent-OrganHumanEyes.desc }
 ent-OrganTajaranHeart = { ent-OrganAnimalHeart }
-  .desc = { ent-OrganAnimalHeart.desc }
-
+    .desc = { ent-OrganAnimalHeart.desc }
 ent-OrganTajaranLungs = { ent-OrganHumanLungs }
-  .desc = { ent-OrganHumanLungs.desc }
-
+    .desc = { ent-OrganHumanLungs.desc }
 ent-OrganTajaranLiver = { ent-OrganAnimalLiver }
-  .desc = { ent-OrganAnimalLiver.desc }
-
+    .desc = { ent-OrganAnimalLiver.desc }
 ent-OrganTajaranKidneys = { ent-OrganHumanKidneys }
-  .desc = { ent-OrganHumanKidneys.desc }
+    .desc = { ent-OrganHumanKidneys.desc }

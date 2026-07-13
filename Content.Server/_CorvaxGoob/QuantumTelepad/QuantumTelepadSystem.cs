@@ -114,9 +114,9 @@ public sealed partial class QuantumTelepadSystem : EntitySystem
             if (sendedEnts > entity.Comp.MaxEntitiesToTeleportAtOnce)
                 break;
 
-            if (entity.Comp.Blacklist is not null && _whitelist.IsBlacklistPass(entity.Comp.Blacklist, lookupEntity))
+            if (_whitelist.IsWhitelistPass(entity.Comp.Blacklist, lookupEntity))
                 continue;
-            if (entity.Comp.Whitelist is not null && _whitelist.IsWhitelistFail(entity.Comp.Whitelist, lookupEntity))
+            if (_whitelist.IsWhitelistFail(entity.Comp.Whitelist, lookupEntity))
                 continue;
 
             _pullingSystem.StopAllPulls(lookupEntity);

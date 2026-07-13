@@ -1,3 +1,4 @@
+using Content.Shared.Damage; // CorvaxGoob-DiceOfFate
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -54,6 +55,16 @@ public sealed partial class SlotMachineComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntProtoId GodPotPrize = "WeaponShotgunHeavy";
+
+    // CorvaxGoob-DiceOfFate Start
+
+    [DataField, AutoNetworkedField]
+    public bool DeleteGodPot;
+
+    [DataField]
+    public DamageSpecifier? SpinDamage;
+
+    // CorvaxGoob-DiceOfFat End
 
     [DataField, AutoNetworkedField]
     public bool Emagged;
