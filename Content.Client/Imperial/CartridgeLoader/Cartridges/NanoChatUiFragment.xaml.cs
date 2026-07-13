@@ -319,10 +319,10 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     /// </summary>
     public void UpdateState(NanoChatBoundUserInterfaceState state)
     {
-        UpdateCurrentChatDisplay(state.CurrentChat, state.IsServerOnline, state.Contacts);
-
         _lastState = state;
         _userId = state.CurrentUserId;
+
+        UpdateCurrentChatDisplay(state.CurrentChat, state.IsServerOnline, state.Contacts);
 
         AddMembersButton.Visible = state.CurrentChat != null;
         SendLocationButton.Visible = state.CanSendLocation;
