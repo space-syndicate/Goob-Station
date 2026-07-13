@@ -639,7 +639,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
         if (!PrintChatButton.Disabled && isPrintOnCooldown)
             PrintChatButton.Disabled = true;
-        else
+        else if (!isPrintOnCooldown)
             PrintChatButton.Disabled = false;
     }
 }
