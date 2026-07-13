@@ -1,0 +1,266 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+#
+# Core: LavalandMiningCrate (+ MiningCrateSecurity on base).
+# Unlock modules (optional):
+#   MiningCrateUnlockTimer  - countdown after free use / payment
+#   MiningCratePointsUnlock - pay mining points, then starts timer
+# Future modules subscribe to MiningCrateTryUnlockEvent the same way.
+
+- type: entity
+  parent: CrateGenericSteel
+  id: LavalandMiningCrateBase
+  abstract: true
+  name: mining crate
+  description: A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+  components:
+  - type: Icon
+    sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    scale: 0.4, 0.4
+    sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
+    layers:
+    - state: off
+      map: ["enum.LavalandMiningCrateVisualLayers.Main"]
+    - state: closed
+      visible: false
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      visible: false
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.LavalandMiningCrateVisuals.Display:
+        enum.LavalandMiningCrateVisualLayers.Main:
+          Off: { state: off }
+          Locked: { state: lock }
+          Unlocked: { state: unlock }
+          Open: { state: open }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.52,-0.40,0.52,0.72"
+        density: 1500
+        mask:
+        - CrateMask
+        layer:
+        - MachineLayer
+  - type: EntityStorage
+    capacity: 80
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+    lockOnClick: false
+    showLockVerbs: false
+    useAccess: false
+    breakOnAccessBreaker: false
+  - type: LockVisuals
+  - type: Construction
+    graph: LavalandMiningCrate
+    node: miningCrate
+    deconstructionTarget: start
+    containers:
+    - entity_storage
+  - type: MiningCrateSecurity
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-mining-crate
+    layoutId: MiningCrate
+    alwaysRandomize: true
+  - type: WiresVisuals
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: ApcPowerReceiver
+    powerLoad: 50
+    needsPower: false
+    powerDisabled: true
+  - type: TogglePower
+    isTurnedOn: false
+    applyPowerOnSpawn: true
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    enabled: false
+    volume: -10
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: SpamEmitSound
+    minInterval: 45
+    maxInterval: 120
+    sound:
+      collection: MonoComputerSFX
+      params:
+        volume: -12
+        maxDistance: 10
+        variation: 0.05
+  - type: SpamEmitSoundRequirePower
+  - type: PointLight
+    enabled: false
+    radius: 5
+    energy: 3.5
+    color: "#FF3030"
+    softness: 1
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 140
+    enabled: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        offset: 0.5
+        spawn:
+          ScrapSteel:
+            min: 1
+            max: 2
+          SheetSteel1:
+            min: 6
+            max: 10
+          ScrapGlass:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        offset: 0.5
+        spawn:
+          ScrapSteel:
+            min: 1
+            max: 2
+          SheetSteel1:
+            min: 6
+            max: 10
+          ScrapGlass:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 3
+    maxIntensity: 15
+    canCreateVacuum: false
+  - type: PacifismDangerousAttack
+
+- type: entity
+  parent: LavalandMiningCrateBase
+  id: LavalandMiningCrateCommon
+  name: mining crate
+  description: A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+  suffix: Common
+  categories: [ ]
+  components:
+  - type: LavalandMiningCrate
+    lootTable: LavalandMiningCrateCommonLoot
+  - type: MiningCrateUnlockTimer
+    unlockDelay: 5s
+  - type: MiningCratePointsUnlock
+    cost: 800
+    denyLockoutDuration: 20s
+    shockOnFailChance: 0.12
+
+- type: entity
+  parent: LavalandMiningCrateBase
+  id: LavalandMiningCrateMedium
+  name: mining crate
+  description: A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+  suffix: Medium
+  categories: [ ]
+  components:
+  - type: LavalandMiningCrate
+    lootTable: LavalandMiningCrateMediumLoot
+  - type: MiningCrateUnlockTimer
+    unlockDelay: 5s
+  - type: MiningCratePointsUnlock
+    cost: 4000
+    denyLockoutDuration: 20s
+    shockOnFailChance: 0.12
+
+- type: entity
+  parent: LavalandMiningCrateBase
+  id: LavalandMiningCrateLegendary
+  name: mining crate
+  description: A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+  suffix: Legendary
+  categories: [ ]
+  components:
+  - type: LavalandMiningCrate
+    lootTable: LavalandMiningCrateLegendaryLoot
+  - type: MiningCrateUnlockTimer
+    unlockDelay: 5s
+  - type: MiningCratePointsUnlock
+    cost: 11000
+    denyLockoutDuration: 20s
+    shockOnFailChance: 0.15
+
+# Core only + startUnlocked (no payment modules).
+- type: entity
+  parent: LavalandMiningCrateBase
+  id: LavalandMiningCrateEmpty
+  name: mining crate
+  description: A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+  suffix: Empty
+  categories: [ ]
+  components:
+  - type: Lock
+    locked: false
+    unlockOnClick: false
+    lockOnClick: false
+    showLockVerbs: false
+    useAccess: false
+  - type: LavalandMiningCrate
+    startUnlocked: true
+    spawnLoot: false
+
+# Free timed unlock (timer only, no points).
+- type: entity
+  parent: LavalandMiningCrateBase
+  id: LavalandMiningCrateEmptyLocked
+  name: mining crate
+  description: A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+  suffix: Empty, Locked
+  categories: [ ]
+  components:
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+    lockOnClick: false
+    showLockVerbs: false
+    useAccess: false
+  - type: LavalandMiningCrate
+    spawnLoot: false
+  - type: MiningCrateUnlockTimer
+    unlockDelay: 5s
+
+

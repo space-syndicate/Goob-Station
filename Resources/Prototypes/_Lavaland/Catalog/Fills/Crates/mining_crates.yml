@@ -1,0 +1,1053 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Lavaland mining crate loot tables.
+
+- type: entityTable
+  id: LavalandMiningCrateCigPackPool
+  table: !type:GroupSelector
+    children:
+    - id: CigPackGreen
+    - id: CigPackRed
+    - id: CigPackBlue
+    - id: CigPackBlack
+
+# Premium smokes (rarer)
+- type: entityTable
+  id: LavalandMiningCrateCigPremiumPool
+  table: !type:GroupSelector
+    children:
+    - id: CigPackSyndicate
+      weight: 2
+    - id: CigarCase
+      weight: 2
+    - id: CigarGoldCase
+      weight: 1
+    - id: CigCartonGreen
+      weight: 1.5
+    - id: CigCartonRed
+      weight: 1.5
+    - id: CigCartonBlue
+      weight: 1
+    - id: CigCartonBlack
+      weight: 1
+
+# 3–4 random cigarette packs at once
+- type: entityTable
+  id: LavalandMiningCrateCigPackBundle
+  table: !type:NestedSelector
+    rolls: 3, 4
+    tableId: LavalandMiningCrateCigPackPool
+
+- type: entityTable
+  id: LavalandMiningCrateFoodPool
+  table: !type:GroupSelector
+    children:
+    - id: BoxMRE
+      weight: 3
+    - id: FoodTinMRE
+      weight: 2
+    - id: FoodTinBeans
+      weight: 2
+    - id: FoodSnackNutribrick
+      weight: 2
+    - id: FoodSnackMREBrownie
+      weight: 1.5
+    - id: FoodSnackChips
+      weight: 1
+    - id: FoodSnackChocolate
+      weight: 1.2
+    - id: FoodSnackEnergy
+      weight: 1
+    - id: FoodSnackPistachios
+      weight: 1
+    - id: FoodCabbage
+      weight: 1.2
+    - id: DrinkWaterBottleFull
+      weight: 2
+
+# Beer: loose cans only (no 6-pack). Cola keeps DrinkCanPack.
+- type: entityTable
+  id: LavalandMiningCrateBeerCans
+  table: !type:GroupSelector
+    rolls: 3, 6
+    children:
+    - id: DrinkBeerCan
+
+- type: entityTable
+  id: LavalandMiningCrateDrinkPool
+  table: !type:GroupSelector
+    children:
+    - id: DrinkCanPack
+      weight: 3
+    - !type:NestedSelector
+      weight: 3
+      tableId: LavalandMiningCrateBeerCans
+    - id: DrinkColaCan
+      weight: 1
+    - id: DrinkBeerCan
+      weight: 1.5
+    - id: DrinkRootBeerCan
+      weight: 1
+    # Tunnel whiskey / absinthe bottles
+    - id: DrinkWhiskeyBottleFull
+      weight: 1.2
+    - id: DrinkAbsintheBottleFull
+      weight: 1.2
+
+# Salvage staples: fultons, seismic, cells, tanks, boots, kinetic blades, capsules
+- type: entityTable
+  id: LavalandMiningCrateSeismicBundle
+  table: !type:GroupSelector
+    children:
+    - id: SeismicCharge
+      amount: 1, 10
+
+- type: entityTable
+  id: LavalandMiningCrateFultonBundle
+  table: !type:GroupSelector
+    children:
+    - id: Fulton1
+      amount: 1, 30
+
+- type: entityTable
+  id: LavalandMiningCratePowerCellHighBundle
+  table: !type:GroupSelector
+    children:
+    - id: PowerCellHigh
+      amount: 1, 3
+
+- type: entityTable
+  id: LavalandMiningCrateSalvageGearPool
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateSeismicBundle
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateFultonBundle
+    - id: FultonBeacon
+      weight: 1.8
+    - !type:NestedSelector
+      weight: 1.8
+      tableId: LavalandMiningCratePowerCellHighBundle
+    - id: ClothingShoesBootsJack
+      weight: 1.5
+    - id: DoubleEmergencyOxygenTankFilled
+      weight: 1.5
+    - id: DoubleEmergencyNitrogenTankFilled
+      weight: 1.5
+    - id: LavalandWeaponKineticMachete
+      weight: 1.5
+    - id: WeaponCrusherDagger
+      weight: 1.5
+    - id: ClothingShoesBootsMoon
+      weight: 1.2
+    - id: ClothingShoesBootsJump
+      weight: 1.2
+    - id: ShelterCapsuleLuxury
+      weight: 1
+    - id: ShelterCapsule
+      weight: 1.2
+    - id: Fulton
+      weight: 1
+    - id: SeismicCharge
+      weight: 1
+    - id: PowerCellHigh
+      weight: 1
+
+# One "supply drop" roll: food / drinks / smokes / lighter
+- type: entityTable
+  id: LavalandMiningCrateSupplyPool
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 3
+      tableId: LavalandMiningCrateFoodPool
+    - !type:NestedSelector
+      weight: 3
+      tableId: LavalandMiningCrateDrinkPool
+    - !type:NestedSelector
+      weight: 2.5
+      tableId: LavalandMiningCrateCigPackBundle
+    - !type:NestedSelector
+      weight: 0.8
+      tableId: LavalandMiningCrateCigPremiumPool
+    - id: Lighter
+      weight: 1
+    - id: CheapLighter
+      weight: 1.2
+
+# Guaranteed supplies block for every crate
+- type: entityTable
+  id: LavalandMiningCrateSuppliesAlways
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      rolls: 2, 3
+      tableId: LavalandMiningCrateSupplyPool
+    # Extra smokes often
+    - !type:NestedSelector
+      prob: 0.55
+      tableId: LavalandMiningCrateCigPackBundle
+    # Extra drinks often
+    - !type:GroupSelector
+      prob: 0.6
+      children:
+      - id: DrinkCanPack
+      - !type:NestedSelector
+        tableId: LavalandMiningCrateBeerCans
+    # Extra ration pack often
+    - !type:GroupSelector
+      prob: 0.5
+      children:
+      - id: BoxMRE
+      - id: FoodTinMRE
+      - id: FoodTinBeans
+    # Medipens: often 3–4 pens
+    - !type:NestedSelector
+      prob: 0.55
+      tableId: LavalandMiningCrateMedipenBundle
+    # Salvage staples sometimes
+    - !type:NestedSelector
+      prob: 0.4
+      tableId: LavalandMiningCrateSalvageGearPool
+
+# Miner gear
+
+# Mining drill: regular or diamond 50/50
+- type: entityTable
+  id: LavalandMiningCrateDrillPool
+  table: !type:GroupSelector
+    children:
+    - id: MiningDrill
+    - id: MiningDrillDiamond
+
+# Conscription kit + drill
+- type: entityTable
+  id: LavalandMiningCrateMinerKit
+  table: !type:AllSelector
+    children:
+    - id: ClothingBackpackDuffelSalvageConscription
+    - !type:NestedSelector
+      tableId: LavalandMiningCrateDrillPool
+
+- type: entityTable
+  id: LavalandMiningCrateCommonGearPool
+  table: !type:GroupSelector
+    children:
+    - id: Flare
+      weight: 1.5
+    - id: OreBag
+      weight: 2
+    - id: Pickaxe
+      weight: 1.2
+    - id: MiningDrill
+      weight: 1.5
+    - id: MineralScanner
+      weight: 1.5
+    - id: SurvivalMedipen
+      weight: 1.5
+    - id: SurvivalKnife
+      weight: 1.2
+    - id: MedkitBruteFilled
+      weight: 1
+    - id: MedkitBurnFilled
+      weight: 1
+    - id: Fulton
+      weight: 1
+    - id: FultonBeacon
+      weight: 0.9
+    - id: LavalandJaunter
+      weight: 1.2
+    - id: ShelterCapsule
+      weight: 1
+    - id: ShelterCapsuleLuxury
+      weight: 0.5
+    - id: PowerCellHigh
+      weight: 1.2
+    - id: SeismicCharge
+      weight: 0.8
+    - id: BoxMarkerBeacons
+      weight: 1
+    - id: FlashlightSeclite
+      weight: 1
+    - id: ClothingEyesGlassesMeson
+      weight: 1
+    - id: ClothingShoesBootsJack
+      weight: 1
+    - id: ClothingShoesBootsMoon
+      weight: 0.7
+    - id: ClothingShoesBootsJump
+      weight: 0.7
+    - id: DoubleEmergencyOxygenTankFilled
+      weight: 1
+    - id: DoubleEmergencyNitrogenTankFilled
+      weight: 1
+    - id: LavalandWeaponKineticMachete
+      weight: 1
+    - id: WeaponCrusherDagger
+      weight: 1
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateSalvageGearPool
+    - !type:NestedSelector
+      weight: 0.8
+      tableId: LavalandMiningCratePKAUpgradePool
+    - !type:NestedSelector
+      weight: 0.5
+      tableId: LavalandMiningCrateCrusherUpgradePool
+    - !type:NestedSelector
+      weight: 1.2
+      tableId: LavalandMiningCrateMinerKit
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateDrillPool
+
+# PKA modkits / crusher weapons & upgrades
+
+# All proto-kinetic modkits (pressure rarer — syndicate-tier)
+- type: entityTable
+  id: LavalandMiningCratePKAUpgradePool
+  table: !type:GroupSelector
+    children:
+    - id: PKAUpgradeDamage
+      weight: 2
+    - id: PKAUpgradeRange
+      weight: 2
+    - id: PKAUpgradeFireRate
+      weight: 2
+    - id: PKAUpgradeSpace
+      weight: 1.2
+    - id: PKAUpgradePressure
+      weight: 0.7
+
+# 1 modkit (rarely 2) — keep crate loot lean
+- type: entityTable
+  id: LavalandMiningCratePKAUpgradeBundle
+  table: !type:NestedSelector
+    rolls: 1, 2
+    tableId: LavalandMiningCratePKAUpgradePool
+
+# Crusher slot upgrades (main / blade / handle)
+- type: entityTable
+  id: LavalandMiningCrateCrusherUpgradePool
+  table: !type:NestedSelector
+    tableId: CrusherUpgrades
+
+# Single crusher upgrade
+- type: entityTable
+  id: LavalandMiningCrateCrusherUpgradeBundle
+  table: !type:NestedSelector
+    tableId: CrusherUpgrades
+
+# Melee crushers: axe, glaive, hammer, halberd + secondaries
+- type: entityTable
+  id: LavalandMiningCrateCrusherWeaponPool
+  table: !type:GroupSelector
+    children:
+    - id: WeaponCrusher
+      weight: 2
+    - id: WeaponCrusherGlaive
+      weight: 2
+    - id: WeaponCrusherHammer
+      weight: 1.5
+    - id: WeaponCrusherHalberd
+      weight: 1.5
+    - id: WeaponCrusherDagger
+      weight: 1.5
+    - id: LavalandWeaponKineticMachete
+      weight: 1.2
+    - id: LavalandWeaponKineticClaws
+      weight: 1.2
+    # Pre-modded crushers (very rare — already count as several upgrades)
+    - id: WeaponCrusherFilledRandom
+      weight: 0.15
+    - id: WeaponCrusherGlaiveFilledRandom
+      weight: 0.15
+    - id: WeaponCrusherHammerFilledRandom
+      weight: 0.1
+    - id: WeaponCrusherHalberdFilledRandom
+      weight: 0.1
+
+# Proto-kinetic guns family
+- type: entityTable
+  id: LavalandMiningCratePKAWeaponPool
+  table: !type:GroupSelector
+    children:
+    - id: WeaponProtoKineticAccelerator
+      weight: 2.5
+    - id: WeaponProtoKineticShotgun
+      weight: 2
+    - id: WeaponProtoKineticRepeater
+      weight: 1.5
+    - id: WeaponProtoKineticPistol
+      weight: 1.5
+
+# Mixed kinetic prize: gun OR crusher (+ small chance of one upgrade)
+- type: entityTable
+  id: LavalandMiningCrateKineticPrize
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        weight: 2
+        tableId: LavalandMiningCratePKAWeaponPool
+      - !type:NestedSelector
+        weight: 2
+        tableId: LavalandMiningCrateCrusherWeaponPool
+    - !type:GroupSelector
+      prob: 0.35
+      children:
+      - !type:NestedSelector
+        tableId: LavalandMiningCratePKAUpgradePool
+      - !type:NestedSelector
+        tableId: CrusherUpgrades
+
+- type: entityTable
+  id: LavalandMiningCrateMediumGearPool
+  table: !type:GroupSelector
+    children:
+    - id: OreBagMagnetic
+      weight: 2
+    - id: OreBagOfHolding
+      weight: 1.5
+    - id: MiningDrillDiamond
+      weight: 2
+    - id: AdvancedMineralScanner
+      weight: 2
+    - id: ShelterCapsuleLuxury
+      weight: 1.2
+    - id: WeaponPlasmaCutter
+      weight: 1.2
+    - id: LuxuryMedipen
+      weight: 1.5
+    - id: ClothingBackpackDuffelSalvageConscription
+      weight: 1.5
+    - id: ClothingHandsGlovesCombat
+      weight: 1
+    - id: MedkitCombatFilled
+      weight: 1.2
+    - id: ClothingEyesNightVisionGoggles
+      weight: 1
+    - !type:NestedSelector
+      weight: 1
+      tableId: LavalandMiningCratePKAUpgradePool
+    - !type:NestedSelector
+      weight: 0.8
+      tableId: LavalandMiningCrateCrusherUpgradePool
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCratePKAWeaponPool
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateCrusherWeaponPool
+    - id: LavalandEquipmentExplorerSuit
+      weight: 1
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateMinerKit
+
+# Hardsuits: mining common, luxury elite rare
+- type: entityTable
+  id: LavalandMiningCrateHardsuitPool
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterHardsuitSalvage
+      weight: 6
+    - id: ClothingOuterHardsuitSpatio
+      weight: 3
+    - id: ClothingOuterHardsuitLuxury
+      weight: 1
+
+# Weapons (legendary focus; multiple rolls on elite crates)
+
+# Medkits (all tiers)
+- type: entityTable
+  id: LavalandMiningCrateMedkitPool
+  table: !type:GroupSelector
+    children:
+    - id: MedkitFilled
+      weight: 2
+    - id: MedkitBruteFilled
+      weight: 2
+    - id: MedkitBurnFilled
+      weight: 2
+    - id: MedkitToxinFilled
+      weight: 1.2
+    - id: MedkitOxygenFilled
+      weight: 1.5
+    - id: MedkitRadiationFilled
+      weight: 1
+    - id: MedkitAdvancedFilled
+      weight: 0.8
+    - id: MedkitCombatFilled
+      weight: 0.7
+
+# Survival / emergency boxes
+- type: entityTable
+  id: LavalandMiningCrateEmergencyPool
+  table: !type:GroupSelector
+    children:
+    - id: BoxSurvival
+      weight: 2.5
+    - id: BoxSurvivalEngineering
+      weight: 1.5
+    - id: BoxSurvivalMedical
+      weight: 1.5
+    - id: BoxSurvivalSecurity
+      weight: 1
+    - id: EmergencyMedipen
+      weight: 2
+    - id: SpaceMedipen
+      weight: 1
+    - id: SurvivalMedipen
+      weight: 1.5
+
+# Medipens: combat, brute, burn, emergency, etc.
+- type: entityTable
+  id: LavalandMiningCrateMedipenPool
+  table: !type:GroupSelector
+    children:
+    - id: CombatMedipen
+      weight: 2.5
+    - id: BruteAutoInjector
+      weight: 2.2
+    - id: BurnAutoInjector
+      weight: 2.2
+    - id: EmergencyMedipen
+      weight: 1.5
+    - id: SurvivalMedipen
+      weight: 1.5
+    - id: LuxuryMedipen
+      weight: 1.2
+    - id: SpaceMedipen
+      weight: 1
+    - id: AntiPoisonMedipen
+      weight: 1
+    - id: RadAutoInjector
+      weight: 0.9
+    - id: AirlossAutoInjector
+      weight: 0.9
+
+# Drop 3–4 different medipens at once
+- type: entityTable
+  id: LavalandMiningCrateMedipenBundle
+  table: !type:NestedSelector
+    rolls: 3, 4
+    tableId: LavalandMiningCrateMedipenPool
+
+
+# Lights / projectors
+- type: entityTable
+  id: LavalandMiningCrateLightPool
+  table: !type:GroupSelector
+    children:
+    - id: FlashlightLantern
+      weight: 3
+    - id: FlashlightSeclite
+      weight: 2
+    - id: Lantern
+      weight: 2
+    - id: Floodlight
+      weight: 1.2
+    - id: FloodlightBroken
+      weight: 0.8
+
+# Misc junk / tools that feel like supply crates
+- type: entityTable
+  id: LavalandMiningCrateMiscPool
+  table: !type:GroupSelector
+    children:
+    - id: FoodCabbage
+      weight: 1.5
+    - id: HandHeldMassScannerEmpty
+      weight: 1.5
+    - id: HandHeldMassScanner
+      weight: 0.8
+    - id: HandheldGPSBasic
+      weight: 1
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateLightPool
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateMedkitPool
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateEmergencyPool
+
+# Stowaway corpse leftovers (rare easter egg)
+- type: entityTable
+  id: LavalandMiningCrateStowawayLoot
+  table: !type:AllSelector
+    children:
+    - id: HeadSkeleton
+    - id: MaterialBones1
+      amount: 3
+    - id: PaperMiningCrateStowawayNote
+    - id: Pen
+    - id: Gauze1
+    - id: FoodPacketChocolateTrash
+      amount: 15
+
+# ── Guns: regular + security (can drop outside legendary) ──
+
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitMk58
+  table: !type:AllSelector
+    children:
+    - id: WeaponPistolMk58
+    - id: MagazinePistol
+    - id: MagazinePistol
+
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitLecter
+  table: !type:AllSelector
+    children:
+    - id: WeaponRifleLecter
+    - id: MagazineRifle
+    - id: MagazineRifle
+
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitLaser
+  table: !type:AllSelector
+    children:
+    - id: WeaponLaserCarbine
+
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitSawn
+  table: !type:AllSelector
+    children:
+    - id: WeaponShotgunSawn
+    - id: ShellShotgun
+      amount: 4
+
+# Enforcer shotgun ("силовик") + shells
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitEnforcer
+  table: !type:AllSelector
+    children:
+    - id: WeaponShotgunEnforcer
+    - id: ShellShotgun
+      amount: 6
+
+# Gun + optional single modkit
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitPKA
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LavalandMiningCratePKAWeaponPool
+    - !type:NestedSelector
+      prob: 0.5
+      tableId: LavalandMiningCratePKAUpgradePool
+
+# Crusher + optional single upgrade
+- type: entityTable
+  id: LavalandMiningCrateWeaponKitCrusher
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LavalandMiningCrateCrusherWeaponPool
+    - !type:NestedSelector
+      prob: 0.5
+      tableId: CrusherUpgrades
+
+- type: entityTable
+  id: LavalandMiningCrateGunPool
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 2.5
+      tableId: LavalandMiningCrateWeaponKitMk58
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateWeaponKitLaser
+    - !type:NestedSelector
+      weight: 1.2
+      tableId: LavalandMiningCrateWeaponKitLecter
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateWeaponKitSawn
+    - !type:NestedSelector
+      weight: 1.8
+      tableId: LavalandMiningCrateWeaponKitEnforcer
+    - id: WeaponShotgunSawn
+      weight: 1.2
+    - id: WeaponShotgunSawnEmpty
+      weight: 0.8
+    - id: WeaponShotgunEnforcer
+      weight: 1.2
+    - id: WeaponShotgunKammerer
+      weight: 1
+    - id: WeaponLaserGun
+      weight: 1
+
+- type: entityTable
+  id: LavalandMiningCrateWeaponKits
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateWeaponKitMk58
+    - !type:NestedSelector
+      weight: 1.2
+      tableId: LavalandMiningCrateWeaponKitLecter
+    - !type:NestedSelector
+      weight: 1.2
+      tableId: LavalandMiningCrateWeaponKitLaser
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateWeaponKitSawn
+    - !type:NestedSelector
+      weight: 1.8
+      tableId: LavalandMiningCrateWeaponKitEnforcer
+    - !type:NestedSelector
+      weight: 2.2
+      tableId: LavalandMiningCrateWeaponKitPKA
+    - !type:NestedSelector
+      weight: 2.2
+      tableId: LavalandMiningCrateWeaponKitCrusher
+    - !type:NestedSelector
+      weight: 1.5
+      tableId: LavalandMiningCrateKineticPrize
+
+- type: entityTable
+  id: LavalandMiningCrateArmorLoot
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterArmorBasic
+      weight: 2
+    - !type:NestedSelector
+      weight: 4
+      tableId: LavalandMiningCrateHardsuitPool
+    - id: LavalandEquipmentExplorerSuit
+      weight: 2
+    - id: ClothingEyesNightVisionGoggles
+      weight: 1.5
+    - id: ClothingHandsGlovesCombat
+      weight: 1.5
+
+- type: entityTable
+  id: LavalandMiningCrateJackpotPool
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 3
+      tableId: LavalandMiningCrateWeaponKits
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateArmorLoot
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateMediumGearPool
+    - !type:NestedSelector
+      weight: 2
+      tableId: LavalandMiningCrateKineticPrize
+    - !type:NestedSelector
+      weight: 0.6
+      tableId: LavalandMiningCratePKAUpgradePool
+    - !type:NestedSelector
+      weight: 0.5
+      tableId: CrusherUpgrades
+    - id: BorgChassisMining
+      weight: 1.2
+    - id: ClothingOuterHardsuitLuxury
+      weight: 0.8
+    - id: ClothingBeltMilitaryWebbingMedFilled
+      weight: 1
+
+
+- type: entityTable
+  id: LavalandMiningCrateCommonLoot
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LavalandMiningCrateSuppliesAlways
+    - !type:NestedSelector
+      rolls: 2, 3
+      tableId: LavalandMiningCrateCommonGearPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMiscPool
+    - !type:NestedSelector
+      prob: 0.45
+      tableId: LavalandMiningCrateMedkitPool
+    - !type:NestedSelector
+      prob: 0.4
+      tableId: LavalandMiningCrateEmergencyPool
+    - !type:NestedSelector
+      prob: 0.45
+      tableId: LavalandMiningCrateMedipenBundle
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateLightPool
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateMinerKit
+    - id: FoodCabbage
+      prob: 0.2
+    - id: HandHeldMassScannerEmpty
+      prob: 0.12
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateSalvageGearPool
+    - !type:NestedSelector
+      prob: 0.2
+      tableId: LavalandMiningCrateFultonBundle
+    - !type:NestedSelector
+      prob: 0.18
+      tableId: LavalandMiningCrateSeismicBundle
+    - !type:NestedSelector
+      prob: 0.2
+      tableId: LavalandMiningCratePowerCellHighBundle
+    - id: FultonBeacon
+      prob: 0.15
+    - id: DrinkWhiskeyBottleFull
+      prob: 0.12
+    - id: DrinkAbsintheBottleFull
+      prob: 0.12
+    # Sawed-off: very rare in common
+    - id: WeaponShotgunSawn
+      prob: 0.025
+    - id: WeaponShotgunSawnEmpty
+      prob: 0.02
+    - id: LavaKatana
+      prob: 0.0001
+    # Regular guns can drop outside legendary
+    - !type:NestedSelector
+      prob: 0.08
+      tableId: LavalandMiningCrateGunPool
+    - !type:NestedSelector
+      prob: 0.12
+      tableId: LavalandMiningCratePKAUpgradePool
+    - !type:NestedSelector
+      prob: 0.08
+      tableId: CrusherUpgrades
+    - !type:NestedSelector
+      prob: 0.1
+      tableId: LavalandMiningCratePKAWeaponPool
+    - !type:NestedSelector
+      prob: 0.08
+      tableId: LavalandMiningCrateCrusherWeaponPool
+    - !type:NestedSelector
+      prob: 0.12
+      tableId: LavalandMiningCrateMediumGearPool
+    - !type:NestedSelector
+      prob: 0.06
+      tableId: LavalandMiningCrateHardsuitPool
+    - !type:NestedSelector
+      prob: 0.03
+      tableId: LavalandMiningCrateCigPremiumPool
+    - !type:NestedSelector
+      prob: 0.015
+      tableId: LavalandMiningCrateStowawayLoot
+    - !type:NestedSelector
+      prob: 0.01
+      tableId: LavalandMiningCrateJackpotPool
+
+- type: entityTable
+  id: LavalandMiningCrateMediumLoot
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LavalandMiningCrateSuppliesAlways
+    - !type:NestedSelector
+      rolls: 2, 3
+      tableId: LavalandMiningCrateMediumGearPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateCommonGearPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMiscPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMedkitPool
+    - !type:NestedSelector
+      prob: 0.5
+      tableId: LavalandMiningCrateEmergencyPool
+    - !type:NestedSelector
+      prob: 0.65
+      tableId: LavalandMiningCrateMedipenBundle
+    - !type:NestedSelector
+      prob: 0.4
+      tableId: LavalandMiningCrateLightPool
+    - !type:NestedSelector
+      prob: 0.55
+      tableId: LavalandMiningCrateMinerKit
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateHardsuitPool
+    # Clarke frame crate — rare on medium
+    - id: CrateCargoClarkeAssembly
+      prob: 0.04
+    - !type:NestedSelector
+      prob: 0.55
+      tableId: LavalandMiningCrateSalvageGearPool
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateFultonBundle
+    - !type:NestedSelector
+      prob: 0.3
+      tableId: LavalandMiningCrateSeismicBundle
+    - !type:NestedSelector
+      prob: 0.3
+      tableId: LavalandMiningCratePowerCellHighBundle
+    - id: FoodCabbage
+      prob: 0.15
+    - id: HandHeldMassScannerEmpty
+      prob: 0.22
+    - id: HandHeldMassScanner
+      prob: 0.1
+    - id: WeaponShotgunSawn
+      prob: 0.08
+    - id: LavaKatana
+      prob: 0.005
+    - !type:NestedSelector
+      prob: 0.22
+      tableId: LavalandMiningCrateGunPool
+    - !type:NestedSelector
+      prob: 0.12
+      tableId: LavalandMiningCrateWeaponKitEnforcer
+    # Kinetic gear — few upgrades, not piles
+    - !type:NestedSelector
+      prob: 0.3
+      tableId: LavalandMiningCratePKAUpgradePool
+    - !type:NestedSelector
+      prob: 0.22
+      tableId: CrusherUpgrades
+    - !type:NestedSelector
+      prob: 0.4
+      tableId: LavalandMiningCrateKineticPrize
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCratePKAWeaponPool
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateCrusherWeaponPool
+    - id: BorgChassisMining
+      prob: 0.08
+    - !type:NestedSelector
+      prob: 0.12
+      tableId: LavalandMiningCrateCigPremiumPool
+    - !type:NestedSelector
+      prob: 0.025
+      tableId: LavalandMiningCrateStowawayLoot
+    - !type:NestedSelector
+      prob: 0.1
+      tableId: LavalandMiningCrateJackpotPool
+    - !type:NestedSelector
+      prob: 0.15
+      tableId: LavalandMiningCrateWeaponKits
+
+- type: entityTable
+  id: LavalandMiningCrateLegendaryLoot
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LavalandMiningCrateSuppliesAlways
+    # 2–3 weapon kits (guns + security + kinetic)
+    - !type:NestedSelector
+      rolls: 2, 3
+      tableId: LavalandMiningCrateWeaponKits
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateGunPool
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateWeaponKitEnforcer
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateArmorLoot
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMediumGearPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMiscPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMedkitPool
+    - !type:NestedSelector
+      prob: 0.55
+      tableId: LavalandMiningCrateEmergencyPool
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateMedipenBundle
+    - !type:NestedSelector
+      prob: 0.4
+      tableId: LavalandMiningCrateLightPool
+    - !type:NestedSelector
+      prob: 0.7
+      tableId: LavalandMiningCrateMinerKit
+    - !type:NestedSelector
+      prob: 0.55
+      tableId: LavalandMiningCrateHardsuitPool
+    # Clarke frame crate
+    - id: CrateCargoClarkeAssembly
+      prob: 0.12
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateSalvageGearPool
+    - !type:NestedSelector
+      prob: 0.5
+      tableId: LavalandMiningCrateFultonBundle
+    - !type:NestedSelector
+      prob: 0.45
+      tableId: LavalandMiningCrateSeismicBundle
+    - !type:NestedSelector
+      prob: 0.4
+      tableId: LavalandMiningCratePowerCellHighBundle
+    - id: ShelterCapsuleLuxury
+      prob: 0.35
+    - id: ClothingShoesBootsMoon
+      prob: 0.25
+    - id: ClothingShoesBootsJump
+      prob: 0.25
+    # Military medic webbing (elite)
+    - id: ClothingBeltMilitaryWebbingMedFilled
+      prob: 0.28
+    - id: WeaponShotgunSawn
+      prob: 0.2
+    - id: LavaKatana
+      prob: 0.02
+    - id: HandHeldMassScanner
+      prob: 0.25
+    # Kinetic mods — small chance of a couple, not a crate full
+    - !type:NestedSelector
+      prob: 0.4
+      rolls: 1, 2
+      tableId: LavalandMiningCratePKAUpgradePool
+    - !type:NestedSelector
+      prob: 0.3
+      rolls: 1, 2
+      tableId: CrusherUpgrades
+    - !type:NestedSelector
+      prob: 0.45
+      tableId: LavalandMiningCrateKineticPrize
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCratePKAWeaponPool
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateCrusherWeaponPool
+    - id: BorgChassisMining
+      prob: 0.28
+    - id: ClothingOuterHardsuitLuxury
+      prob: 0.2
+    # Maxim salvage hardsuit ("максимальный утилизатора") — rare; on proc drops 1–2
+    - id: ClothingOuterHardsuitMaxim
+      prob: 0.08
+      amount: 1, 2
+    - !type:NestedSelector
+      prob: 0.35
+      tableId: LavalandMiningCrateCigPremiumPool
+    - !type:NestedSelector
+      prob: 0.04
+      tableId: LavalandMiningCrateStowawayLoot
+    - !type:NestedSelector
+      rolls: 1, 2
+      tableId: LavalandMiningCrateCommonGearPool

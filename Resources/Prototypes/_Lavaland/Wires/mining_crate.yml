@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# SECU x1, POWR x3, LOCK x2, SIRE x1, LIVE x13 (alwaysRandomize on entity).
+- type: wireLayout
+  id: MiningCrate
+  wires:
+  - !type:MiningCrateSecurityWireAction
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+  - !type:MiningCrateLockWireAction
+  - !type:MiningCrateLockWireAction
+  - !type:MiningCrateSirenWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction
+  - !type:MiningCrateBoomWireAction

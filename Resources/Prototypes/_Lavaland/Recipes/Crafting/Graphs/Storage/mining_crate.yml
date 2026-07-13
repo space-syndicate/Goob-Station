@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: LavalandMiningCrate
+  start: start
+  graph:
+  - node: start
+    edges: []
+
+  - node: miningCrate
+    edges:
+    - to: start
+      conditions:
+      - !type:StorageWelded
+        welded: false
+      steps:
+      - tool: Prying
+        doAfter: 2
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Screwing
+        doAfter: 1
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Screwing
+        doAfter: 1
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Screwing
+        doAfter: 1
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Screwing
+        doAfter: 1
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Anchoring
+        doAfter: 2
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Welding
+        doAfter: 5
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Screwing
+        doAfter: 1
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      - tool: Prying
+        doAfter: 2
+        completed:
+        - !type:MiningCrateDeconstructSecurityCheck
+      completed:
+      - !type:EmptyMiningCrateContainers
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:SpawnPrototype
+        prototype: ScrapSteel
+        amount: 2
+      - !type:DeleteEntity

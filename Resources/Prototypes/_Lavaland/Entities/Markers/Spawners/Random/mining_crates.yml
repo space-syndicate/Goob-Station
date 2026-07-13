@@ -1,0 +1,203 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+#
+# Mapper markers for mining crates.
+# Suffix = spawn chance. EntityTableSpawner NestedSelector.prob is the chance to spawn.
+# RandomAny: picks one of three tiers when it does spawn.
+
+# --- Common ---
+
+- type: entity
+  parent: MarkerBase
+  id: LavalandMiningCrateSpawnerCommon20
+  name: mining crate spawner
+  suffix: Common, 20%
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
+      state: icon
+      scale: 0.25, 0.25
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerCommonTable
+      prob: 0.2
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerCommon20
+  id: LavalandMiningCrateSpawnerCommon50
+  suffix: Common, 50%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerCommonTable
+      prob: 0.5
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerCommon20
+  id: LavalandMiningCrateSpawnerCommon100
+  suffix: Common, 100%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerCommonTable
+      prob: 1
+
+- type: entityTable
+  id: LavalandMiningCrateSpawnerCommonTable
+  table: !type:GroupSelector
+    children:
+    - id: LavalandMiningCrateCommon
+
+# --- Medium ---
+
+- type: entity
+  parent: MarkerBase
+  id: LavalandMiningCrateSpawnerMedium20
+  name: mining crate spawner
+  suffix: Medium, 20%
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
+      state: icon
+      scale: 0.25, 0.25
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerMediumTable
+      prob: 0.2
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerMedium20
+  id: LavalandMiningCrateSpawnerMedium50
+  suffix: Medium, 50%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerMediumTable
+      prob: 0.5
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerMedium20
+  id: LavalandMiningCrateSpawnerMedium100
+  suffix: Medium, 100%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerMediumTable
+      prob: 1
+
+- type: entityTable
+  id: LavalandMiningCrateSpawnerMediumTable
+  table: !type:GroupSelector
+    children:
+    - id: LavalandMiningCrateMedium
+
+# --- Legendary ---
+
+- type: entity
+  parent: MarkerBase
+  id: LavalandMiningCrateSpawnerLegendary20
+  name: mining crate spawner
+  suffix: Legendary, 20%
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
+      state: icon
+      scale: 0.25, 0.25
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerLegendaryTable
+      prob: 0.2
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerLegendary20
+  id: LavalandMiningCrateSpawnerLegendary50
+  suffix: Legendary, 50%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerLegendaryTable
+      prob: 0.5
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerLegendary20
+  id: LavalandMiningCrateSpawnerLegendary100
+  suffix: Legendary, 100%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerLegendaryTable
+      prob: 1
+
+- type: entityTable
+  id: LavalandMiningCrateSpawnerLegendaryTable
+  table: !type:GroupSelector
+    children:
+    - id: LavalandMiningCrateLegendary
+
+# --- Random tier (common / medium / legendary) ---
+# Equal weight between tiers when spawn succeeds; outer prob = chance nothing spawns.
+
+- type: entityTable
+  id: LavalandMiningCrateSpawnerRandomAnyTable
+  table: !type:GroupSelector
+    children:
+    - id: LavalandMiningCrateCommon
+      weight: 1
+    - id: LavalandMiningCrateMedium
+      weight: 1
+    - id: LavalandMiningCrateLegendary
+      weight: 1
+
+- type: entity
+  parent: MarkerBase
+  id: LavalandMiningCrateSpawnerRandomAny20
+  name: mining crate spawner
+  suffix: Random, 20%
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
+      state: icon
+      scale: 0.25, 0.25
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerRandomAnyTable
+      prob: 0.2
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerRandomAny20
+  id: LavalandMiningCrateSpawnerRandomAny50
+  suffix: Random, 50%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerRandomAnyTable
+      prob: 0.5
+
+- type: entity
+  parent: LavalandMiningCrateSpawnerRandomAny20
+  id: LavalandMiningCrateSpawnerRandomAny100
+  suffix: Random, 100%
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: LavalandMiningCrateSpawnerRandomAnyTable
+      prob: 1

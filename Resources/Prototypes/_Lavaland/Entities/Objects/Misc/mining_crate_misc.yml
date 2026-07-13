@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: Paper
+  id: PaperMiningCrateStowawayNote
+  name: crumpled note
+  description: A greasy scrap of paper. The handwriting gets shakier toward the end.
+  components:
+  - type: Paper
+    content: lavaland-mining-crate-stowaway-note

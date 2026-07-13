@@ -1,0 +1,17 @@
+ent-LavalandMiningCrateBase = mining crate
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+ent-LavalandMiningCrateCommon = mining crate
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .suffix = Common
+ent-LavalandMiningCrateMedium = mining crate
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .suffix = Medium
+ent-LavalandMiningCrateLegendary = mining crate
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .suffix = Legendary
+ent-LavalandMiningCrateEmpty = mining crate
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .suffix = Empty
+ent-LavalandMiningCrateEmptyLocked = mining crate
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .suffix = Empty, Locked
