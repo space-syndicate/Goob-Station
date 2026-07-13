@@ -21,13 +21,13 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Core mining crate: power, open gate, visuals, loot, access breaker, unlock completion.
 /// Unlock methods subscribe to <see cref="MiningCrateTryUnlockEvent"/>.
 /// </summary>
-public sealed class LavalandMiningCrateSystem : EntitySystem
+public sealed class MiningCrateSystem : EntitySystem
 {
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
@@ -47,21 +47,21 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<LavalandMiningCrateComponent, ActivateInWorldEvent>(OnActivate,
+        SubscribeLocalEvent<MiningCrateComponent, ActivateInWorldEvent>(OnActivate,
             before: [typeof(LockSystem), typeof(SharedEntityStorageSystem)]);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, StorageAfterOpenEvent>(OnStorageAfterOpen);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, StorageAfterCloseEvent>(OnStorageAfterClose);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<LavalandMiningCrateComponent, GotEmaggedEvent>(OnEmagged,
+        SubscribeLocalEvent<MiningCrateComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<MiningCrateComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<MiningCrateComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<MiningCrateComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
+        SubscribeLocalEvent<MiningCrateComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt);
+        SubscribeLocalEvent<MiningCrateComponent, StorageAfterOpenEvent>(OnStorageAfterOpen);
+        SubscribeLocalEvent<MiningCrateComponent, StorageAfterCloseEvent>(OnStorageAfterClose);
+        SubscribeLocalEvent<MiningCrateComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<MiningCrateComponent, GotEmaggedEvent>(OnEmagged,
             before: [typeof(LockSystem)]);
     }
 
-    private void OnMapInit(Entity<LavalandMiningCrateComponent> ent, ref MapInitEvent args)
+    private void OnMapInit(Entity<MiningCrateComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.StartUnlocked)
             ApplyStartUnlocked(ent);
@@ -69,7 +69,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         UpdateCrateVisuals(ent);
     }
 
-    private void ApplyStartUnlocked(Entity<LavalandMiningCrateComponent> ent)
+    private void ApplyStartUnlocked(Entity<MiningCrateComponent> ent)
     {
         if (!TryComp<LockComponent>(ent, out var lockComp))
             return;
@@ -77,17 +77,17 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         CompleteUnlock(ent, lockComp, user: null, playFeedback: false);
     }
 
-    private void OnStorageAfterOpen(Entity<LavalandMiningCrateComponent> ent, ref StorageAfterOpenEvent args)
+    private void OnStorageAfterOpen(Entity<MiningCrateComponent> ent, ref StorageAfterOpenEvent args)
     {
         UpdateCrateVisuals(ent);
     }
 
-    private void OnStorageAfterClose(Entity<LavalandMiningCrateComponent> ent, ref StorageAfterCloseEvent args)
+    private void OnStorageAfterClose(Entity<MiningCrateComponent> ent, ref StorageAfterCloseEvent args)
     {
         UpdateCrateVisuals(ent);
     }
 
-    private void OnPowerChanged(Entity<LavalandMiningCrateComponent> ent, ref PowerChangedEvent args)
+    private void OnPowerChanged(Entity<MiningCrateComponent> ent, ref PowerChangedEvent args)
     {
         SyncPhysicalSiren(ent.Owner);
         UpdateCrateVisuals(ent);
@@ -98,7 +98,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var query = EntityQueryEnumerator<LavalandMiningCrateComponent>();
+        var query = EntityQueryEnumerator<MiningCrateComponent>();
         while (query.MoveNext(out var uid, out var crate))
         {
             var ent = (uid, crate);
@@ -124,7 +124,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         }
     }
 
-    private void OnActivate(Entity<LavalandMiningCrateComponent> ent, ref ActivateInWorldEvent args)
+    private void OnActivate(Entity<MiningCrateComponent> ent, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
             return;
@@ -143,7 +143,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         RequestUnlock(ent, args.User);
     }
 
-    private void OnGetVerbs(Entity<LavalandMiningCrateComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
+    private void OnGetVerbs(Entity<MiningCrateComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract || ent.Comp.Unlocked)
             return;
@@ -159,7 +159,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         });
     }
 
-    private void OnExamined(Entity<LavalandMiningCrateComponent> ent, ref ExaminedEvent args)
+    private void OnExamined(Entity<MiningCrateComponent> ent, ref ExaminedEvent args)
     {
         if (TryComp<MiningCrateSecurityComponent>(ent, out var secExam) && secExam.Detonating)
         {
@@ -211,13 +211,13 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         args.PushMarkup(Loc.GetString("lavaland-mining-crate-locked"));
     }
 
-    private void OnLockToggleAttempt(Entity<LavalandMiningCrateComponent> ent, ref LockToggleAttemptEvent args)
+    private void OnLockToggleAttempt(Entity<MiningCrateComponent> ent, ref LockToggleAttemptEvent args)
     {
         if (!ent.Comp.Unlocked)
             args.Cancelled = true;
     }
 
-    private void OnEmagged(Entity<LavalandMiningCrateComponent> ent, ref GotEmaggedEvent args)
+    private void OnEmagged(Entity<MiningCrateComponent> ent, ref GotEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Access))
             return;
@@ -255,7 +255,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         CompleteUnlock(ent, lockComp, args.UserUid);
     }
 
-    private void OnStorageOpenAttempt(Entity<LavalandMiningCrateComponent> ent, ref StorageOpenAttemptEvent args)
+    private void OnStorageOpenAttempt(Entity<MiningCrateComponent> ent, ref StorageOpenAttemptEvent args)
     {
         if (!IsCrateUsable(ent))
         {
@@ -279,7 +279,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
     /// <summary>
     /// Entry point for unlock attempts. Raises <see cref="MiningCrateTryUnlockEvent"/> for modules.
     /// </summary>
-    public void RequestUnlock(Entity<LavalandMiningCrateComponent> ent, EntityUid user)
+    public void RequestUnlock(Entity<MiningCrateComponent> ent, EntityUid user)
     {
         if (ent.Comp.Unlocked)
             return;
@@ -315,7 +315,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
     /// Finishes unlock: loot, open lock, disarm security. Used by timer completion, emag, startUnlocked.
     /// </summary>
     public void CompleteUnlock(
-        Entity<LavalandMiningCrateComponent> ent,
+        Entity<MiningCrateComponent> ent,
         LockComponent lockComp,
         EntityUid? user = null,
         bool playFeedback = true)
@@ -364,7 +364,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public void DenyFeedback(EntityUid uid, EntityUid user, string message)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return;
 
         PopupWithSound((uid, crate), user, message, crate.DenySound);
@@ -372,7 +372,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public void PowerOffFeedback(EntityUid uid, EntityUid user)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return;
 
         PopupWithSound((uid, crate), user, Loc.GetString("lavaland-mining-crate-powered-off"), crate.PowerOffSound);
@@ -380,7 +380,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public void SetDenySiren(EntityUid uid, bool enabled)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return;
 
         SetDenySiren((uid, crate), enabled);
@@ -388,7 +388,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public void SyncPhysicalSiren(EntityUid uid)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return;
 
         var wantOn = false;
@@ -414,7 +414,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public void UpdateCrateVisuals(EntityUid uid)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return;
 
         UpdateCrateVisuals((uid, crate));
@@ -422,7 +422,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public bool IsCrateUsable(EntityUid uid)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return false;
 
         return IsCrateUsable((uid, crate));
@@ -439,13 +439,13 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
 
     public string GetStatusMessage(EntityUid uid)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+        if (!TryComp<MiningCrateComponent>(uid, out var crate))
             return Loc.GetString("lavaland-mining-crate-locked");
 
         return GetStatusMessage((uid, crate));
     }
 
-    private void SetDenySiren(Entity<LavalandMiningCrateComponent> ent, bool enabled)
+    private void SetDenySiren(Entity<MiningCrateComponent> ent, bool enabled)
     {
         if (enabled && !ent.Comp.EnableDenySiren)
             return;
@@ -467,27 +467,27 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         _lights.SetEnabled(uid, enabled, light);
     }
 
-    private void UpdateCrateVisuals(Entity<LavalandMiningCrateComponent> ent)
+    private void UpdateCrateVisuals(Entity<MiningCrateComponent> ent)
     {
-        LavalandMiningCrateDisplayState display;
+        MiningCrateState display;
 
         if (TryComp<MiningCrateSecurityComponent>(ent, out var secVis) && secVis.Detonating)
         {
             display = ent.Comp.TamperShowLock
-                ? LavalandMiningCrateDisplayState.Locked
-                : LavalandMiningCrateDisplayState.Unlocked;
+                ? MiningCrateState.Locked
+                : MiningCrateState.Unlocked;
         }
         else if (!IsDevicePowered(ent))
         {
-            display = LavalandMiningCrateDisplayState.Off;
+            display = MiningCrateState.Off;
         }
         else if (TryComp<EntityStorageComponent>(ent, out var storage) && storage.Open)
         {
-            display = LavalandMiningCrateDisplayState.Open;
+            display = MiningCrateState.Open;
         }
         else if (ent.Comp.Unlocked)
         {
-            display = LavalandMiningCrateDisplayState.Unlocked;
+            display = MiningCrateState.Unlocked;
         }
         else if (TryComp<MiningCrateUnlockTimerComponent>(ent, out var timer)
                  && timer.Started
@@ -495,15 +495,15 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
                  && _timing.CurTime < timer.UnlockAt)
         {
             display = timer.UnlockBlinkShowUnlocked
-                ? LavalandMiningCrateDisplayState.Unlocked
-                : LavalandMiningCrateDisplayState.Locked;
+                ? MiningCrateState.Unlocked
+                : MiningCrateState.Locked;
         }
         else
         {
-            display = LavalandMiningCrateDisplayState.Locked;
+            display = MiningCrateState.Locked;
         }
 
-        _appearance.SetData(ent.Owner, LavalandMiningCrateVisuals.Display, display);
+        _appearance.SetData(ent.Owner, MiningCrateVisuals.Display, display);
     }
 
     private void DisarmSecurity(EntityUid uid)
@@ -518,7 +518,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         Dirty(uid, security);
     }
 
-    private void FillLoot(Entity<LavalandMiningCrateComponent> ent)
+    private void FillLoot(Entity<MiningCrateComponent> ent)
     {
         if (!ent.Comp.SpawnLoot)
             return;
@@ -554,7 +554,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         }
     }
 
-    private bool IsCrateUsable(Entity<LavalandMiningCrateComponent> ent)
+    private bool IsCrateUsable(Entity<MiningCrateComponent> ent)
     {
         if (!ent.Comp.RequirePower)
             return true;
@@ -562,7 +562,7 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         return IsDevicePowered(ent);
     }
 
-    private string GetStatusMessage(Entity<LavalandMiningCrateComponent> ent)
+    private string GetStatusMessage(Entity<MiningCrateComponent> ent)
     {
         if (TryComp<MiningCrateUnlockTimerComponent>(ent, out var timer)
             && timer.Started
@@ -589,18 +589,18 @@ public sealed class LavalandMiningCrateSystem : EntitySystem
         return Loc.GetString("lavaland-mining-crate-locked");
     }
 
-    private void PowerOffFeedback(Entity<LavalandMiningCrateComponent> ent, EntityUid user)
+    private void PowerOffFeedback(Entity<MiningCrateComponent> ent, EntityUid user)
     {
         PopupWithSound(ent, user, Loc.GetString("lavaland-mining-crate-powered-off"), ent.Comp.PowerOffSound);
     }
 
-    private void DenyFeedback(Entity<LavalandMiningCrateComponent> ent, EntityUid user, string message)
+    private void DenyFeedback(Entity<MiningCrateComponent> ent, EntityUid user, string message)
     {
         PopupWithSound(ent, user, message, ent.Comp.DenySound);
     }
 
     private void PopupWithSound(
-        Entity<LavalandMiningCrateComponent> ent,
+        Entity<MiningCrateComponent> ent,
         EntityUid user,
         string message,
         SoundSpecifier sound)

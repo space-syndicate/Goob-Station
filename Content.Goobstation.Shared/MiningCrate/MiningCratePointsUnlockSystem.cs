@@ -9,7 +9,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Unlocks a mining crate by spending mining points, then starts <see cref="MiningCrateUnlockTimerComponent"/>.
@@ -19,7 +19,7 @@ public sealed class MiningCratePointsUnlockSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly LavalandMiningCrateSystem _crate = default!;
+    [Dependency] private readonly MiningCrateSystem _crate = default!;
     [Dependency] private readonly MiningCrateUnlockTimerSystem _timer = default!;
     [Dependency] private readonly MiningPointsSystem _miningPoints = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -38,7 +38,7 @@ public sealed class MiningCratePointsUnlockSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var query = EntityQueryEnumerator<MiningCratePointsUnlockComponent, LavalandMiningCrateComponent>();
+        var query = EntityQueryEnumerator<MiningCratePointsUnlockComponent, MiningCrateComponent>();
         while (query.MoveNext(out var uid, out var points, out _))
         {
             if (points.DeniedUntil == TimeSpan.Zero || _timing.CurTime < points.DeniedUntil)
@@ -47,7 +47,7 @@ public sealed class MiningCratePointsUnlockSystem : EntitySystem
             points.DeniedUntil = TimeSpan.Zero;
             Dirty(uid, points);
             _crate.SetDenySiren(uid, false);
-            if (TryComp<LavalandMiningCrateComponent>(uid, out var crate))
+            if (TryComp<MiningCrateComponent>(uid, out var crate))
                 _audio.PlayPvs(crate.UnlockSound, uid);
         }
     }
@@ -57,7 +57,7 @@ public sealed class MiningCratePointsUnlockSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!TryComp<LavalandMiningCrateComponent>(ent, out var crate) || crate.Unlocked)
+        if (!TryComp<MiningCrateComponent>(ent, out var crate) || crate.Unlocked)
             return;
 
         if (!TryComp<MiningCrateUnlockTimerComponent>(ent, out var timer))
@@ -112,7 +112,7 @@ public sealed class MiningCratePointsUnlockSystem : EntitySystem
 
     private void StartDenyLockout(
         Entity<MiningCratePointsUnlockComponent> ent,
-        LavalandMiningCrateComponent crate,
+        MiningCrateComponent crate,
         EntityUid user,
         string reasonMessage)
     {
@@ -143,7 +143,7 @@ public sealed class MiningCratePointsUnlockSystem : EntitySystem
 
     private void TryShockOnFail(
         Entity<MiningCratePointsUnlockComponent> ent,
-        LavalandMiningCrateComponent crate,
+        MiningCrateComponent crate,
         EntityUid user)
     {
         if (ent.Comp.ShockOnFailChance <= 0f)

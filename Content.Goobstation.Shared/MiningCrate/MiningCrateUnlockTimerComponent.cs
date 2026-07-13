@@ -3,7 +3,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Timed unlock progress for a mining crate.
@@ -11,7 +11,7 @@ namespace Content.Shared._Lavaland.MiningCrate;
 /// Without this component the crate cannot start a unlock countdown (only startUnlocked / emag / etc.).
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(LavalandMiningCrateSystem), typeof(MiningCrateUnlockTimerSystem), typeof(MiningCratePointsUnlockSystem))]
+[Access(typeof(MiningCrateSystem), typeof(MiningCrateUnlockTimerSystem), typeof(MiningCratePointsUnlockSystem))]
 public sealed partial class MiningCrateUnlockTimerComponent : Component
 {
     /// <summary>

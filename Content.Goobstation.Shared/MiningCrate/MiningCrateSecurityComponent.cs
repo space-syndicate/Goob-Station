@@ -3,7 +3,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Wire panel security for mining crates. While armed, damage and wrong wires can self-destruct.

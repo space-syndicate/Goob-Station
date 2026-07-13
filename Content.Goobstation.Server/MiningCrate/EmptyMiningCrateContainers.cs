@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 
-namespace Content.Server._Lavaland.MiningCrate;
+namespace Content.Goobstation.Server.MiningCrate;
 
 /// <summary>
 /// Dumps storage contents when the crate is deconstructed.

@@ -2,22 +2,22 @@
 
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 [Serializable, NetSerializable]
-public enum LavalandMiningCrateVisuals : byte
+public enum MiningCrateVisuals : byte
 {
     Display,
 }
 
 [Serializable, NetSerializable]
-public enum LavalandMiningCrateVisualLayers : byte
+public enum MiningCrateLayers : byte
 {
     Main,
 }
 
 [Serializable, NetSerializable]
-public enum LavalandMiningCrateDisplayState : byte
+public enum MiningCrateState : byte
 {
     Off = 0,
     Locked = 1,

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Construction;
-using Content.Shared._Lavaland.MiningCrate;
+using Content.Goobstation.Shared.MiningCrate;
 using Content.Shared.Construction;
 using JetBrains.Annotations;
 
-namespace Content.Server._Lavaland.MiningCrate;
+namespace Content.Goobstation.Server.MiningCrate;
 
 /// <summary>
 /// After a deconstruction step finishes, start self-destruct if security is still armed.

@@ -3,7 +3,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Unlock by spending mining points. Requires <see cref="MiningCrateUnlockTimerComponent"/> for the countdown.

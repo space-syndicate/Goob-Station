@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server._CorvaxGoob.PowerToggle;
-using Content.Shared._Lavaland.MiningCrate;
+using Content.Goobstation.Shared.MiningCrate;
 
-namespace Content.Server._Lavaland.MiningCrate;
+namespace Content.Goobstation.Server.MiningCrate;
 
-public sealed class LavalandMiningCratePowerSystem : EntitySystem
+public sealed class MiningCratePowerSystem : EntitySystem
 {
     [Dependency] private readonly TogglePowerSystem _togglePower = default!;
 

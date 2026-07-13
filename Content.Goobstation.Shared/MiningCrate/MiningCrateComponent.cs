@@ -6,15 +6,15 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Core mining crate: power gate, open state, loot, shared visuals/sounds.
-/// Unlock methods are separate optional components (points, free timer, …).
+/// Unlock methods are separate optional components (points, free timer, ...).
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(LavalandMiningCrateSystem), typeof(MiningCrateUnlockTimerSystem), typeof(MiningCratePointsUnlockSystem))]
-public sealed partial class LavalandMiningCrateComponent : Component
+[Access(typeof(MiningCrateSystem), typeof(MiningCrateUnlockTimerSystem), typeof(MiningCratePointsUnlockSystem))]
+public sealed partial class MiningCrateComponent : Component
 {
     [DataField, AutoNetworkedField]
     public bool RequirePower = true;

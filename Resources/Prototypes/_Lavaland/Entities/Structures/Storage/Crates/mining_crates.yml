@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 #
-# Core: LavalandMiningCrate (+ MiningCrateSecurity on base).
+# Core: MiningCrate (+ MiningCrateSecurity on base).
 # Unlock modules (optional):
 #   MiningCrateUnlockTimer  - countdown after free use / payment
 #   MiningCratePointsUnlock - pay mining points, then starts timer
@@ -22,7 +22,7 @@
     sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
     layers:
     - state: off
-      map: ["enum.LavalandMiningCrateVisualLayers.Main"]
+      map: ["enum.MiningCrateLayers.Main"]
     - state: closed
       visible: false
       map: ["enum.StorageVisualLayers.Door"]
@@ -35,8 +35,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.LavalandMiningCrateVisuals.Display:
-        enum.LavalandMiningCrateVisualLayers.Main:
+      enum.MiningCrateVisuals.Display:
+        enum.MiningCrateLayers.Main:
           Off: { state: off }
           Locked: { state: lock }
           Unlocked: { state: unlock }
@@ -181,7 +181,7 @@
   suffix: Common
   categories: [ ]
   components:
-  - type: LavalandMiningCrate
+  - type: MiningCrate
     lootTable: LavalandMiningCrateCommonLoot
   - type: MiningCrateUnlockTimer
     unlockDelay: 5s
@@ -198,7 +198,7 @@
   suffix: Medium
   categories: [ ]
   components:
-  - type: LavalandMiningCrate
+  - type: MiningCrate
     lootTable: LavalandMiningCrateMediumLoot
   - type: MiningCrateUnlockTimer
     unlockDelay: 5s
@@ -215,7 +215,7 @@
   suffix: Legendary
   categories: [ ]
   components:
-  - type: LavalandMiningCrate
+  - type: MiningCrate
     lootTable: LavalandMiningCrateLegendaryLoot
   - type: MiningCrateUnlockTimer
     unlockDelay: 5s
@@ -239,7 +239,7 @@
     lockOnClick: false
     showLockVerbs: false
     useAccess: false
-  - type: LavalandMiningCrate
+  - type: MiningCrate
     startUnlocked: true
     spawnLoot: false
 
@@ -258,7 +258,7 @@
     lockOnClick: false
     showLockVerbs: false
     useAccess: false
-  - type: LavalandMiningCrate
+  - type: MiningCrate
     spawnLoot: false
   - type: MiningCrateUnlockTimer
     unlockDelay: 5s

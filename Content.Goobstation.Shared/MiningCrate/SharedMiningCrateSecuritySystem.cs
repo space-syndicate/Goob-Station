@@ -4,7 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.Lock;
 using Content.Shared.Popups;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 public abstract class SharedMiningCrateSecuritySystem : EntitySystem
 {

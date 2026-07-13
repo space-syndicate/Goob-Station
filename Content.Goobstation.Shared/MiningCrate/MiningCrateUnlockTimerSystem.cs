@@ -6,7 +6,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Lavaland.MiningCrate;
+namespace Content.Goobstation.Shared.MiningCrate;
 
 /// <summary>
 /// Countdown unlock + green lock sprite blink.
@@ -17,7 +17,7 @@ public sealed class MiningCrateUnlockTimerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly LavalandMiningCrateSystem _crate = default!;
+    [Dependency] private readonly MiningCrateSystem _crate = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
@@ -33,7 +33,7 @@ public sealed class MiningCrateUnlockTimerSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var query = EntityQueryEnumerator<MiningCrateUnlockTimerComponent, LavalandMiningCrateComponent, LockComponent>();
+        var query = EntityQueryEnumerator<MiningCrateUnlockTimerComponent, MiningCrateComponent, LockComponent>();
         while (query.MoveNext(out var uid, out var timer, out var crate, out var lockComp))
         {
             if (crate.Unlocked || !timer.Started || timer.UnlockAt == TimeSpan.Zero)
@@ -65,7 +65,7 @@ public sealed class MiningCrateUnlockTimerSystem : EntitySystem
         if (HasComp<MiningCratePointsUnlockComponent>(ent))
             return;
 
-        if (!TryComp<LavalandMiningCrateComponent>(ent, out var crate) || crate.Unlocked)
+        if (!TryComp<MiningCrateComponent>(ent, out var crate) || crate.Unlocked)
             return;
 
         if (ent.Comp.Started)
@@ -92,7 +92,7 @@ public sealed class MiningCrateUnlockTimerSystem : EntitySystem
         EntityUid user,
         bool purchased)
     {
-        if (!TryComp<LavalandMiningCrateComponent>(uid, out var crate) || crate.Unlocked)
+        if (!TryComp<MiningCrateComponent>(uid, out var crate) || crate.Unlocked)
             return;
 
         timer.Started = true;

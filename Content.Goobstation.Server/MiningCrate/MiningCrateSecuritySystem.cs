@@ -4,7 +4,7 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Construction.Components;
 using Content.Server.Destructible;
 using Content.Server.Explosion.EntitySystems;
-using Content.Shared._Lavaland.MiningCrate;
+using Content.Goobstation.Shared.MiningCrate;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -16,7 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Lavaland.MiningCrate;
+namespace Content.Goobstation.Server.MiningCrate;
 
 public sealed class MiningCrateSecuritySystem : SharedMiningCrateSecuritySystem
 {
@@ -26,7 +26,7 @@ public sealed class MiningCrateSecuritySystem : SharedMiningCrateSecuritySystem
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly LavalandMiningCrateSystem _crate = default!;
+    [Dependency] private readonly MiningCrateSystem _crate = default!;
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
