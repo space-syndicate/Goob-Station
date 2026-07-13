@@ -205,29 +205,26 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 .OrderBy(c => c.Name)
                 .ToList();
 
-            if (comp.SelectedChat != null)
+            currentChat = server.Value.Comp.Chats.FirstOrDefault(c => comp.SelectedChat != null
+                                                                      && c.Id == comp.SelectedChat.Value);
+            if (comp.SelectedChat != null && currentChat != null)
             {
-                currentChat = server.Value.Comp.Chats.FirstOrDefault(c => c.Id == comp.SelectedChat.Value);
+                var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
+                canSendLocation = HasComp<HandheldGPSComponent>(loaderUid);
 
-                if (currentChat != null)
+                while (query.MoveNext(out _, out var other))
                 {
-                    var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
-                    canSendLocation = HasComp<HandheldGPSComponent>(loaderUid);
+                    if (other.ConnectedServer != server.Value.Owner)
+                        continue;
 
-                    while (query.MoveNext(out _, out var other))
-                    {
-                        if (other.ConnectedServer != server.Value.Owner)
-                            continue;
+                    if (other.UserId == null || other.UserId == comp.UserId)
+                        continue;
 
-                        if (other.UserId == null || other.UserId == comp.UserId)
-                            continue;
+                    if (!currentChat.Members.Contains(other.UserId.Value))
+                        continue;
 
-                        if (!currentChat.Members.Contains(other.UserId.Value))
-                            continue;
-
-                        isContactReachable = true;
-                        break;
-                    }
+                    isContactReachable = true;
+                    break;
                 }
             }
         }

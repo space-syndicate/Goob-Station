@@ -129,6 +129,124 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     }
 
     /// <summary>
+    /// Обновление состояния UI.
+    /// </summary>
+    public void UpdateState(NanoChatBoundUserInterfaceState state)
+    {
+        _lastState = state;
+        _userId = state.CurrentUserId;
+
+        ContactsListContainer.DisposeAllChildren();
+        MessageContainer.DisposeAllChildren();
+
+        UpdateCurrentChatDisplay(state.CurrentChat, state.IsServerOnline, state.Contacts);
+
+        AddMembersButton.Visible = state.CurrentChat != null;
+        SendLocationButton.Visible = state.CanSendLocation;
+        EditChatButton.Visible = state.CurrentChat?.Owner == _userId ;
+        CreateChatContainer.Visible = OptionsMenu.SelectedId == (int)NanoChatMode.GroupChats;
+        SearchContainer.Visible = OptionsMenu.SelectedId == (int) NanoChatMode.Contacts;
+
+        AddMembersButton.Pressed = _currentMode == NanoChatMode.AddingMembers;
+        EditChatButton.Pressed = _currentMode == NanoChatMode.EditingChat;
+        EditChatNameInput.Visible = EditChatButton.Pressed;
+        CurrentContactLabel.Visible = !EditChatButton.Pressed;
+
+        var canSend = state is { IsServerOnline: true, CurrentChat: not null, IsContactReachable: true };
+        SendButton.Disabled = !canSend;
+        SendLocationButton.Disabled = !canSend;
+
+        var isPrintOnCooldown = _gameTiming.CurTime - _lastPrint <= _cooldown;
+        PrintChatButton.Disabled = !canSend || !state.CanPrint || isPrintOnCooldown;
+
+        NotificationSwitch.Text = Loc.GetString(
+            state.NotificationOn
+                ? "news-read-ui-notification-on"
+                : "news-read-ui-notification-off");
+
+
+        var sortedChats = state.Chats.OrderByDescending(c =>
+            state.UnreadMessages.TryGetValue(c.Id, out var chatUnreadCount) && chatUnreadCount > 0);
+
+        var allUnreadCount = state.UnreadMessages.Values.Sum();
+        MenuButton.Text = allUnreadCount > 0
+            ? Loc.GetString("nano-chat-ui-menu-open-button-unread", ("unread", allUnreadCount))
+            : Loc.GetString("nano-chat-ui-menu-open-button");
+
+        var filteredChats = _currentMode switch
+        {
+            NanoChatMode.Contacts => sortedChats.Where(c =>
+                (state.UnreadMessages.TryGetValue(c.Id, out var unread) && unread > 0) ||
+                (c.Automated && MatchesSearch(c, state.Contacts, _searchQuery))),
+            NanoChatMode.GroupChats => sortedChats.Where(c => !c.Automated),
+            _ => sortedChats,
+        };
+
+        if (state is { CurrentChat: not null, TypingUsers.Count: > 0 })
+        {
+            var typingNames = string.Join(", ", state.TypingUsers.Values);
+
+            TypingIndicatorLabel.Text = Loc.GetString("nano-chat-ui-typing-indicator",
+                ("names", typingNames),
+                ("count", state.TypingUsers.Count));
+
+            TypingIndicatorLabel.Visible = true;
+            _typingIndicatorTimeout = _gameTiming.CurTime + _cooldown;
+        }
+        else
+            TypingIndicatorLabel.Visible = false;
+
+        foreach (var chat in filteredChats)
+            AddAContact(chat, state);
+
+        HandleNanoChatMode(state);
+    }
+
+
+    /// <summary>
+    /// Отправляет сообщение о печатании в текущем чате.
+    /// </summary>
+    private void OnTextInputTextChanged(LineEdit.LineEditEventArgs args)
+    {
+        var curTime = _gameTiming.CurTime;
+        if (curTime - _lastTyping <= _cooldown)
+            return;
+
+        _lastTyping = curTime;
+        OnTypingMessage?.Invoke();
+    }
+
+    /// <summary>
+    /// Отправляет сообщение о печати истории чата.
+    /// </summary>
+    private void OnPrintButtonPressed()
+    {
+        var curTime = _gameTiming.CurTime;
+        if (curTime - _lastPrint <= _cooldown)
+            return;
+
+        _lastPrint = curTime;
+        PrintChatButton.Disabled = true;
+        OnPrint?.Invoke();
+    }
+
+    /// <summary>
+    /// Отправляет сообщение в текущий чат.
+    /// </summary>
+    private void SendMessage(string? message = null)
+    {
+        var text = message ?? MessageTextInput.Text;
+        if (SendButton.Disabled || string.IsNullOrWhiteSpace(text))
+            return;
+
+        ChatScroll.SetScrollValue(new Vector2(0f, float.MaxValue));
+
+        OnSendMessage?.Invoke(text);
+        if (message is null)
+            MessageTextInput.Text = string.Empty;
+    }
+
+    /// <summary>
     /// Установка режима добавления пользователей в чат, отправка сообщений о добавлении пользователей.
     /// </summary>
     private void OnAddMembersButtonPressed()
@@ -184,49 +302,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             UpdateState(_lastState);
     }
 
-
-    /// <summary>
-    /// Отправляет сообщение о печатании в текущем чате.
-    /// </summary>
-    private void OnTextInputTextChanged(LineEdit.LineEditEventArgs args)
-    {
-        var curTime = _gameTiming.CurTime;
-        if (curTime - _lastTyping <= _cooldown)
-            return;
-
-        _lastTyping = curTime;
-        OnTypingMessage?.Invoke();
-    }
-
-    /// <summary>
-    /// Отправляет сообщение о печати истории чата.
-    /// </summary>
-    private void OnPrintButtonPressed()
-    {
-        var curTime = _gameTiming.CurTime;
-        if (curTime - _lastPrint <= _cooldown)
-            return;
-
-        _lastPrint = curTime;
-        PrintChatButton.Disabled = true;
-        OnPrint?.Invoke();
-    }
-
-    /// <summary>
-    /// Отправляет сообщение в текущий чат.
-    /// </summary>
-    private void SendMessage(string? message = null)
-    {
-        var text = message ?? MessageTextInput.Text;
-        if (SendButton.Disabled || string.IsNullOrWhiteSpace(text))
-            return;
-
-        ChatScroll.SetScrollValue(new Vector2(0f, float.MaxValue));
-
-        OnSendMessage?.Invoke(text);
-        if (message is null)
-            MessageTextInput.Text = string.Empty;
-    }
 
     /// <summary>
     /// Обновление имени чата и его состояния.
@@ -311,80 +386,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
 
         return jobTitle.Contains(query, StringComparison.OrdinalIgnoreCase); // || chat.Messages.Any(m => m.Content.Contains(query));
-    }
-
-    /// <summary>
-    /// Обновление состояния UI.
-    /// </summary>
-    public void UpdateState(NanoChatBoundUserInterfaceState state)
-    {
-        _lastState = state;
-        _userId = state.CurrentUserId;
-
-        ContactsListContainer.DisposeAllChildren();
-        MessageContainer.DisposeAllChildren();
-
-        UpdateCurrentChatDisplay(state.CurrentChat, state.IsServerOnline, state.Contacts);
-
-        AddMembersButton.Visible = state.CurrentChat != null;
-        SendLocationButton.Visible = state.CanSendLocation;
-        EditChatButton.Visible = state.CurrentChat?.Owner == _userId ;
-        CreateChatContainer.Visible = OptionsMenu.SelectedId == (int)NanoChatMode.GroupChats;
-        SearchContainer.Visible = OptionsMenu.SelectedId == (int) NanoChatMode.Contacts;
-
-        AddMembersButton.Pressed = _currentMode == NanoChatMode.AddingMembers;
-        EditChatButton.Pressed = _currentMode == NanoChatMode.EditingChat;
-        EditChatNameInput.Visible = EditChatButton.Pressed;
-        CurrentContactLabel.Visible = !EditChatButton.Pressed;
-
-        var canSend = state is { IsServerOnline: true, CurrentChat: not null, IsContactReachable: true };
-        SendButton.Disabled = !canSend;
-        SendLocationButton.Disabled = !canSend;
-
-        var isPrintOnCooldown = _gameTiming.CurTime - _lastPrint <= _cooldown;
-        PrintChatButton.Disabled = !canSend || !state.CanPrint || isPrintOnCooldown;
-
-        NotificationSwitch.Text = Loc.GetString(
-            state.NotificationOn
-                ? "news-read-ui-notification-on"
-                : "news-read-ui-notification-off");
-
-
-        var sortedChats = state.Chats.OrderByDescending(c =>
-            state.UnreadMessages.TryGetValue(c.Id, out var chatUnreadCount) && chatUnreadCount > 0);
-
-        var allUnreadCount = state.UnreadMessages.Values.Sum();
-        MenuButton.Text = allUnreadCount > 0
-            ? Loc.GetString("nano-chat-ui-menu-open-button-unread", ("unread", allUnreadCount))
-            : Loc.GetString("nano-chat-ui-menu-open-button");
-
-        var filteredChats = _currentMode switch
-        {
-            NanoChatMode.Contacts => sortedChats.Where(c =>
-                (state.UnreadMessages.TryGetValue(c.Id, out var unread) && unread > 0) ||
-                (c.Automated && MatchesSearch(c, state.Contacts, _searchQuery))),
-            NanoChatMode.GroupChats => sortedChats.Where(c => !c.Automated),
-            _ => sortedChats,
-        };
-
-        if (state is { CurrentChat: not null, TypingUsers.Count: > 0 })
-        {
-            var typingNames = string.Join(", ", state.TypingUsers.Values);
-
-            TypingIndicatorLabel.Text = Loc.GetString("nano-chat-ui-typing-indicator",
-                ("names", typingNames),
-                ("count", state.TypingUsers.Count));
-
-            TypingIndicatorLabel.Visible = true;
-            _typingIndicatorTimeout = _gameTiming.CurTime + _cooldown;
-        }
-        else
-            TypingIndicatorLabel.Visible = false;
-
-        foreach (var chat in filteredChats)
-            AddAContact(chat, state);
-
-        HandleNanoChatMode(state);
     }
 
     /// <summary>
@@ -537,7 +538,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     }
 
     /// <summary>
-    /// Добавляет облочко текста в окно с сообщениями.
+    /// Добавляет облачко текста в окно с сообщениями.
     /// </summary>
     private void AddMessageBubble(NanoChatMessage msg)
     {
