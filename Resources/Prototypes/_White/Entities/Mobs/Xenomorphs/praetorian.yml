@@ -15,12 +15,18 @@
     - map: [ "pocket2" ]
   - type: Xenomorph
     caste: Praetorian
+    weedHeal: # CorvaxGoob - xeno buff
+      groups:
+        Burn: -6
+        Toxin: -6
+        Airloss: -12
+        Brute: -9
   - type: TailLash
     tailDamage:
       groups:
-        Brute: 5
+        Brute: 15 # CorvaxGoob - xeno buff
     inject:
-      ChloralHydrate: 5 # Goobstation - new chemical
+      ChloralHydrate: 7 # CorvaxGoob - xeno buff
   #- type: ActionGrant # Goobstation - moved to organs
   #  actions:
   #  - ActionTransferPlasma
@@ -57,6 +63,8 @@
     damage:
       groups:
         Brute: 30
+      types:
+        Structural: 70  # CorvaxGoob - xeno buff
   # - type: GuideHelp
   #   guides:
   #   - XenomorphPraetorian
