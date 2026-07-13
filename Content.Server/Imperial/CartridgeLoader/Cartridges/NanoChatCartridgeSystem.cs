@@ -43,6 +43,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = null!;
     [Dependency] private readonly TransformSystem _transform = null!;
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();

@@ -1,8 +1,11 @@
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 
 /// <summary>
-/// This handles...
+/// Система, отвечающая за сервера НаноЧата.
+/// Объявляет события появления и удаления серверов.
 /// </summary>
+/// <seealso cref="NanoChatCartridgeComponent"/>
+/// <seealso cref="NanoChatServerComponent"/>
 public sealed class NanoChatServerSystem : EntitySystem
 {
     /// <inheritdoc/>
