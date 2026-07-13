@@ -11,7 +11,7 @@
 - type: selectableSet
   id: BibleNarsieSet
   name: Том Нар'Си
-  description: Покрытй неверных кровью том.
+  description: Том, покрытый кровью неверных.
   sprite:
     sprite: Objects/Specific/Chapel/tomeofnarsie.rsi
     state: icon
