@@ -192,8 +192,11 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             ? Loc.GetString("nano-chat-print-default-title")
             : chat.Name;
 
-        msg.AddMarkupOrThrow($"[head=3]             {FormattedMessage.EscapeText(chatName)}");
-        msg.PushNewline();
+        // отступ для центрирования имени чата
+        var spacesCount = Math.Max(0, 19 - (chatName.Length / 2));
+        var padding = new string(' ', spacesCount);
+
+        msg.AddMarkupOrThrow($"[head=3]{padding}{FormattedMessage.EscapeText(chatName)}");
         msg.PushNewline();
 
         foreach (var message in chat.Messages)
@@ -203,6 +206,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             msg.AddMarkupOrThrow($@"[bold]{FormattedMessage.EscapeText(message.SenderName)}[/bold] [color=#888888]\[{timeString}\][/color]:");
             msg.PushNewline();
             msg.AddMarkupOrThrow(FormattedMessage.EscapeText(message.Content));
+            msg.PushNewline();
             msg.PushNewline();
         }
 
@@ -429,12 +433,28 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             if (!targetComp.NotificationsOn)
                 continue;
 
-            _audio.PlayPvs(targetComp.NotificationSound, clientUid);
+            var pda = Transform(clientUid).ParentUid;
 
-            _loaderSystem.SendNotification(
-                clientUid,
-                Loc.GetString("nano-chat-pda-notification-header"),
-                sender.Comp.PdaCardName ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"));
+            if (TryComp<CartridgeLoaderComponent>(pda, out var loader) &&
+                !_userInterfaceSystem.IsUiOpen(pda, loader.UiKey))
+            {
+                var notifSender = chat.Automated
+                    ? (sender.Comp.PdaCardName ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
+                    : chat.Name;
+                var notifMessage = chat.Automated
+                        ? Loc.GetString("nano-chat-pda-notification-message",
+                            ("sender", notifSender))
+                        : Loc.GetString("nano-chat-pda-notification-message-group",
+                            ("sender", notifSender));
+
+                _loaderSystem.SendNotification(
+                    pda,
+                    Loc.GetString("nano-chat-pda-notification-header"),
+                    notifMessage,
+                    loader);
+            }
+            else
+                _audio.PlayPvs(targetComp.NotificationSound, pda);
         }
 
         UpdateAllClients(server.Value);

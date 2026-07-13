@@ -635,14 +635,11 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         if (TypingIndicatorLabel.Visible && _gameTiming.CurTime > _typingIndicatorTimeout)
             TypingIndicatorLabel.Visible = false;
 
-        if (!PrintChatButton.Disabled || _gameTiming.CurTime - _lastPrint <= _cooldown)
-            return;
-        if (_lastState == null)
-            return;
+        var isPrintOnCooldown = _gameTiming.CurTime - _lastPrint <= _cooldown;
 
-        var canSend = _lastState is { IsServerOnline: true, CurrentChat: not null, IsContactReachable: true };
-
-        if (canSend && _lastState.CanPrint)
+        if (!PrintChatButton.Disabled && isPrintOnCooldown)
+            PrintChatButton.Disabled = true;
+        else
             PrintChatButton.Disabled = false;
     }
 }
