@@ -352,29 +352,48 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var chat = server.Value.Comp.Chats.FirstOrDefault(c => c.Id == args.ChatId);
-        if (chat == null)
+        if (chat == null || !chat.Members.Contains(ent.Comp.UserId.Value))
             return;
 
-        if (!chat.Members.Contains(ent.Comp.UserId.Value))
+        if (chat.Automated)
+        {
+            var newMembers = chat.Members.ToList();
+            var addedAnyNew = false;
+
+            foreach (var newMember in args.AddedMembers.Where(newMember => !newMembers.Contains(newMember)))
+            {
+                newMembers.Add(newMember);
+                addedAnyNew = true;
+            }
+
+            if (!addedAnyNew)
+                return;
+
+            var memberNames = newMembers
+                .Select(id => server.Value.Comp.Users.FirstOrDefault(user => user.Id == id).Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
+                .ToList();
+
+            var newChatName = string.Join(", ", memberNames);
+
+            HandleCreateChat(ent, newChatName, args.Actor, newMembers);
             return;
+        }
 
         var addedAny = false;
-        var newMembers = new List<NetEntity>();
+        var newGroupMembers = new List<NetEntity>();
         foreach (var newMember in args.AddedMembers.Where(newMember => !chat.Members.Contains(newMember)))
         {
-            newMembers.Add(newMember);
+            newGroupMembers.Add(newMember);
             addedAny = true;
         }
 
         if (!addedAny)
             return;
-        chat.Members.AddRange(newMembers);
 
-        var addedString = newMembers.Aggregate("",
-            (current, member) =>
-            current + $"{ToPrettyString(member)}, ");
+        chat.Members.AddRange(newGroupMembers);
 
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"НаноЧат: {ToPrettyString(args.Actor):user} добавил [ {addedString} ] в чат \"{chat.Name}\"({chat.Id})");
+        var groupAddedString = newGroupMembers.Aggregate("", (current, member) => current + $"{ToPrettyString(member)}, ");
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"НаноЧат: {ToPrettyString(args.Actor):user} добавил [ {groupAddedString} ] в чат \"{chat.Name}\"({chat.Id})");
 
         if (string.IsNullOrEmpty(chat.Name))
         {
@@ -433,7 +452,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     /// <summary>
     /// Создает новый чат на сервере.
     /// </summary>
-    private void HandleCreateChat(Entity<NanoChatCartridgeComponent> creator, string chatName, EntityUid actor)
+    private void HandleCreateChat(Entity<NanoChatCartridgeComponent> creator, string chatName, EntityUid actor, List<NetEntity>? initialMembers = null)
     {
         if (string.IsNullOrWhiteSpace(chatName) || creator.Comp.UserId == null)
             return;
@@ -442,8 +461,10 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (server == null)
             return;
 
+        var members = initialMembers ?? [creator.Comp.UserId.Value];
+
         var newChatId = server.Value.Comp.NextChatId++;
-        var newChat = new NanoChatChat(newChatId, chatName, creator.Comp.UserId.Value, [creator.Comp.UserId.Value], [], false);
+        var newChat = new NanoChatChat(newChatId, chatName, creator.Comp.UserId.Value, members, [], false);
         server.Value.Comp.Chats.Add(newChat);
         creator.Comp.SelectedChat = newChatId;
 

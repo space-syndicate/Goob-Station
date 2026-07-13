@@ -143,9 +143,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             if (_selectedMembers.Count > 0)
                 OnAddMembers?.Invoke(_lastState.CurrentChat.Id, _selectedMembers.ToList());
 
-            _currentMode = _lastState.CurrentChat.Automated
-                ? NanoChatMode.Contacts
-                : NanoChatMode.GroupChats;
+            _currentMode = NanoChatMode.GroupChats;
         }
 
         _selectedMembers.Clear();
