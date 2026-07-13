@@ -157,6 +157,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -171,6 +172,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -418,6 +420,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NewsReaderCartridge
+    - NanoChatCartridge
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -484,6 +487,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -529,6 +533,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -879,6 +884,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -951,6 +957,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: CentcomPDA
@@ -977,6 +984,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1095,6 +1103,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1133,6 +1142,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1181,6 +1191,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1350,6 +1361,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1378,6 +1390,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: ClownPDA
