@@ -15,10 +15,11 @@ public sealed class NanoChatMessage(NetEntity senderId, string senderName, strin
 }
 
 [Serializable, NetSerializable]
-public sealed class NanoChatChat(int id, string name, List<NetEntity> members, List<NanoChatMessage> messages, bool automated = true)
+public sealed class NanoChatChat(int id, string name, NetEntity? owner, List<NetEntity> members, List<NanoChatMessage> messages, bool automated = true)
 {
     public int Id = id;
     public string Name = name;
+    public NetEntity? Owner = owner;
     public List<NetEntity> Members = members;
     public List<NanoChatMessage> Messages = messages;
     public bool Automated = automated;

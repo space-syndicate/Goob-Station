@@ -1,25 +1,26 @@
 - type: entity
   parent: BasePDACartridge
   id: NanoChatCartridge
-  name: news cartridge
-  description: A program for reading news.
+  name: NanoChat cartridge
+  description: A "private" messaging app.
   components:
   - type: Sprite
-    state: cart-y
+    sprite: Imperial/Objects/Devices/cartridge.rsi
+    state: cart-nchat
   - type: UIFragment
     ui: !type:NanoChatUi
   - type: Cartridge
     programName: nano-chat-program-name
     icon:
-      sprite: Interface/Misc/program_icons.rsi # asdasdasdasdasdasdasdas
-      state: news_read
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: nano_chat
   - type: NanoChatCartridge
 
 - type: entity
   parent: BaseMachinePowered
   id: NanoChatServer
   name: NanoChat server
-  description: The central routing server for the station's NanoChat network. Keeps your DMs flowing.
+  description: The central routing server for the station's NanoChat network.
   components:
   - type: Sprite
     sprite: Structures/Machines/server.rsi

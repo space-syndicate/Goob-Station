@@ -36,6 +36,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
     public event Action<int, List<NetEntity>>? OnAddMembers;
 
     private bool _isSelectingContacts;
+    private bool _isEditingChat;
     private readonly HashSet<NetEntity> _selectedNewMembers = new();
     private NanoChatBoundUserInterfaceState? _lastState;
     private Button? _selectedChat;
@@ -117,6 +118,31 @@ public sealed partial class NanoChatUiFragment : BoxContainer
             if (!_isSelectingContacts)
             {
                 _isSelectingContacts = true;
+                _selectedNewMembers.Clear();
+                AddMembersButton.Pressed = true;
+            }
+            else
+            {
+                if (_selectedNewMembers.Count > 0)
+                    OnAddMembers?.Invoke(_lastState.CurrentChat.Id, _selectedNewMembers.ToList());
+                _isSelectingContacts = false;
+                _selectedNewMembers.Clear();
+
+                AddMembersButton.Pressed = false;
+            }
+
+            if (_lastState != null)
+                UpdateState(_lastState);
+        };
+
+        EditChatButton.OnPressed += _ =>
+        {
+            if (_lastState?.CurrentChat == null)
+                return;
+
+            if (!_isEditingChat)
+            {
+                _isEditingChat = true;
                 _selectedNewMembers.Clear();
                 AddMembersButton.Pressed = true;
             }
@@ -255,6 +281,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
 
         AddMembersButton.Visible = state.CurrentChat != null;
         SendLocationButton.Visible = state.CanSendLocation;
+        EditChatButton.Visible = state.CurrentChat?.Owner == _myId;
 
         if (!state.IsServerOnline)
         {

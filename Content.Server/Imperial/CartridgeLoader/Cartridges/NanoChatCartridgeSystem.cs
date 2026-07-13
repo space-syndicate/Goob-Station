@@ -11,7 +11,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 
@@ -159,7 +158,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (server == null || ent.Comp.UserId == null)
             return;
 
-        if (!server.Value.Comp.Chats.TryGetValue(args.ChatId, out var chat))
+        var chat = server.Value.Comp.Chats.FirstOrDefault(c => c.Id == args.ChatId);
+        if (chat == null)
             return;
 
         if (!chat.Members.Contains(ent.Comp.UserId.Value))
@@ -200,7 +200,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var newChatId = server.Value.Comp.NextChatId++;
-        var newChat = new NanoChatChat(newChatId, chatName, new List<NetEntity> { creator.Comp.UserId.Value }, new List<NanoChatMessage>(), false);
+        var newChat = new NanoChatChat(newChatId, chatName, creator.Comp.UserId.Value, new List<NetEntity> { creator.Comp.UserId.Value }, new List<NanoChatMessage>(), false);
         server.Value.Comp.Chats.Add(newChat);
         creator.Comp.SelectedChat = newChatId;
 
@@ -219,7 +219,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         var senderId = sender.Comp.UserId.Value;
         var chatId = sender.Comp.SelectedChat.Value;
 
-        if (!server.Value.Comp.Chats.TryGetValue(chatId, out var chat))
+        var chat = server.Value.Comp.Chats.FirstOrDefault(c => c.Id == chatId);
+        if (chat == null)
             return;
 
         if (server.Value.Comp.TypingTimeouts.TryGetValue(chatId, out var chatTyping))
@@ -233,7 +234,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             _gameTicker.RoundDuration()
         );
 
-        server.Value.Comp.Chats[chatId].Messages.Add(message);
+        chat.Messages.Add(message);
         Dirty(server.Value.Owner, server.Value.Comp);
 
         foreach (var clientUid in server.Value.Comp.ConnectedClients)
@@ -299,7 +300,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             if (chatExists)
                 continue;
 
-            var newChat = new NanoChatChat(server.Value.Comp.NextChatId++, string.Empty, new List<NetEntity> { pdaData.Id.Value, otherId }, new List<NanoChatMessage>());
+            var newChat = new NanoChatChat(server.Value.Comp.NextChatId++, string.Empty, null, new List<NetEntity> { pdaData.Id.Value, otherId }, new List<NanoChatMessage>());
             server.Value.Comp.Chats.Add(newChat);
         }
 
@@ -363,13 +364,18 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 .OrderBy(c => c.Name)
                 .ToList();
 
-            if (comp.SelectedChat != null && server.Value.Comp.Chats.TryGetValue(comp.SelectedChat.Value, out currentChat))
+            if (comp.SelectedChat != null)
             {
-                isContactReachable = server.Value.Comp.ConnectedClients.Any(uid =>
-                    TryComp<NanoChatCartridgeComponent>(uid, out var c) &&
-                    c.UserId != comp.UserId &&
-                    c.UserId != null &&
-                    currentChat.Members.Contains(c.UserId.Value));
+                currentChat = server.Value.Comp.Chats.FirstOrDefault(c => c.Id == comp.SelectedChat.Value);
+
+                if (currentChat != null)
+                {
+                    isContactReachable = server.Value.Comp.ConnectedClients.Any(uid =>
+                        TryComp<NanoChatCartridgeComponent>(uid, out var c) &&
+                        c.UserId != comp.UserId &&
+                        c.UserId != null &&
+                        currentChat.Members.Contains(c.UserId.Value));
+                }
             }
         }
 

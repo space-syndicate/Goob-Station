@@ -68,16 +68,43 @@
             <Label
                 Name="CurrentContactLabel"
                 Text="{Loc nano-chat-ui-chat-window-no-chat-selected}"
+                Visible="False"
+                FontColorOverride="#AAAAAA"
                 HorizontalExpand="True"
-                VerticalAlignment="Center"
-                FontColorOverride="#AAAAAA" />
+                ClipText="True"
+                VerticalAlignment="Center" />
+
+            <TextEdit
+                Name="EditChatNameInput"
+                Visible="True"
+                Placeholder="{Loc nano-chat-ui-chat-window-no-chat-selected}"
+                HorizontalExpand="True"
+                VerticalAlignment="Center"/>
 
             <Button
                 Name="AddMembersButton"
                 Text="{Loc nano-chat-ui-group-chats-button-create-chat}"
                 ToolTip="{Loc nano-chat-ui-chat-window-button-add-to-chat-tooltip}"
                 Visible="False"
-                ToggleMode="True"/>
+                ToggleMode="True"
+                MinWidth="50"
+                TextAlign="Center">
+                <Control.StyleClasses>
+                    <system:String>OpenRight</system:String>
+                </Control.StyleClasses>
+            </Button>
+            <Button
+                Name="EditChatButton"
+                Text="И"
+                ToolTip="{Loc nano-chat-ui-chat-window-button-add-to-chat-tooltip}"
+                Visible="False"
+                ToggleMode="True"
+                MinWidth="50"
+                TextAlign="Center">
+                <Control.StyleClasses>
+                    <system:String>OpenLeft</system:String>
+                </Control.StyleClasses>
+            </Button>
         </BoxContainer>
 
         <PanelContainer VerticalExpand="True" HorizontalExpand="True">
