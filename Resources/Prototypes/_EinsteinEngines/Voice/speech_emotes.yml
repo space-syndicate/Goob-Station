@@ -60,8 +60,8 @@
   sounds:
     Scream:
       collection: PlasmamanUnisexScreams
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+    #  collection: Belch # Frontier
   sound:
     path: /Audio/Voice/Skeleton/skeleton_scream.ogg
 

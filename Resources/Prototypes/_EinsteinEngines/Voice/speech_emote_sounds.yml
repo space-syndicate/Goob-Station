@@ -73,8 +73,8 @@
       # path: /Audio/_Goobstation/Voice/surprised.ogg
       # params:
         # variation: 0
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+    #  collection: Belch # Frontier
 
 - type: emoteSounds
   id: MaleShadowkin
@@ -121,8 +121,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     # Surprised: # Goob Commented by CorvaxGoob
       # path: /Audio/_Goobstation/Voice/surprised.ogg
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+    #  collection: Belch # Frontier
 
 - type: emoteSounds
   id: FemaleShadowkin
@@ -169,5 +169,5 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     # Surprised: # Goob Commented by CorvaxGoob
       # path: /Audio/_Goobstation/Voice/surprised.ogg
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+    #  collection: Belch # Frontier

@@ -26,8 +26,8 @@
       collection: HydrakinWhistle
     DefaultDeathgasp:
       collection: HydrakinDeathgasp
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+    #  collection: Belch # Frontier
 
 - type: speechSounds
   id: Hydrakin

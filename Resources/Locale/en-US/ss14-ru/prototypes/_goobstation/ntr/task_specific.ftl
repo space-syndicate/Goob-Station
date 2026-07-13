@@ -1,4 +1,4 @@
-ent-TaskVial = { ent-BaseChemistryEmptyVial }
+ent-TaskVial = { ent-ChemistryEmptyVial }
     .desc = A special vial, that could be inserted inside a NTRs task console.
 ent-TaskBottle = { ent-DrinkGlass }
     .desc = A normal bottle, that could be inserted inside a NTRs task console.

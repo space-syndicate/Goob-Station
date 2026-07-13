@@ -174,7 +174,6 @@ namespace Content.IntegrationTests.Tests
             "CorvaxSilly",
             "CorvaxCluster",
             "CorvaxAvrite",
-            "Box_CS",
             "CorvaxAwesome"
             // Corvax-Goob-Maps-end
         };
