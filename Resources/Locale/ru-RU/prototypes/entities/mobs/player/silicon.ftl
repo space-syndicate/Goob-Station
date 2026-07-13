@@ -47,13 +47,6 @@ ent-PlayerMiningBorgDerelictGhostRole = { ent-MiningBorgChassisDerelict }
     .desc = { ent-MiningBorgChassisDerelict.desc }
     .suffix = Гост роль
 
-ent-PlayerMiningBorgDerelict = { ent-MiningBorgChassisDerelict }
-    .desc = { ent-MiningBorgChassisDerelict.desc }
-    .suffix = Батарея, Модули
-ent-PlayerMiningBorgDerelictGhostRole = { ent-MiningBorgChassisDerelict }
-    .desc = { ent-MiningBorgChassisDerelict.desc }
-    .suffix = Гост роль
-
 ent-PlayerSyndicateAssaultBorgDerelict = { ent-SyndicateAssaultBorgChassisDerelict }
     .desc = { ent-SyndicateAssaultBorgChassisDerelict.desc }
     .suffix = Батарея, Модули
