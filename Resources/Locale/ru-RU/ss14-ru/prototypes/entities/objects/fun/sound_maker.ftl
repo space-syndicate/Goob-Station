@@ -1,23 +1,23 @@
 
 
-ent-BaseWhistle = whistle
-    .desc = Someone forgot to turn off a kettle?
+ent-BaseWhistle = свисток
+    .desc = Кто-то забыл выключить чайник?
 ent-Whistle = { ent-BaseWhistle }
     .desc = { ent-BaseWhistle.desc }
 ent-SecurityWhistle = { ent-BaseWhistle }
-    .desc = The sound of it brings fear.
-ent-SyndicateWhistle = trench whistle
-    .desc = A whistle used by Syndicate commanders to draw attention. Avanti!
+    .desc = Его звук внушает вам ужас.
+ent-SyndicateWhistle = траншейный свисток
+    .desc = Свисток, используемый командирами Синдиката для привлечения внимания. Avanti!
 ent-BaseRubberToy = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-ToyRubberDuck = rubber ducky
-    .desc = Not carried here by ocean currents.
-ent-RubberChicken = rubber chicken
-    .desc = A stress inducing parody of nature's most delectable avian.
-ent-NewtonCradle = newton cradle
-    .desc = A device bored paper pushers use to remind themselves that time did not stop yet. Contains gravity.
-ent-ClownRecorder = clown recorder
-    .desc = When you just can't get those laughs coming the natural way!
-ent-WhoopieCushion = whoopie cushion
-    .desc = A practical joke device involving flatulence humour.
+ent-ToyRubberDuck = резиновая уточка
+    .desc = Не занесена сюда океанскими течениями.
+ent-RubberChicken = резиновая курочка
+    .desc = Вызывающая стресс пародия на самое аппетитное пернатое в природе.
+ent-NewtonCradle = колыбель Ньютона
+    .desc = Устройство, которое скучающие бумагомаратели используют, дабы напомнить себе, что время ещё не остановилось. Содержит гравитацию.
+ent-ClownRecorder = клоунский диктофон
+    .desc = Когда не удаётся рассмешить окружающих естественным способом!
+ent-WhoopieCushion = подушка-пердушка
+    .desc = Устройство для розыгрышей, связанных с метеоризмом.
 

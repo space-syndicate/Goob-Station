@@ -1,6 +1,6 @@
 
-ent-DrinkJar = jar
-    .desc = The hipster's cup.
+ent-DrinkJar = банка
+    .desc = Стакан хипстера.
 
 ent-DrinkIrishSlammer = { ent-DrinkGlass }
     .suffix = grenade penguin

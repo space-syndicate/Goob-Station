@@ -1,2 +1,2 @@
-ent-SlotMachineFateDice = { ent-BaseSlotMachine }
-    .desc = { ent-BaseSlotMachine.desc }
+ent-SlotMachineFateDice = слот-машина «однорукий бандит»
+    .desc = Почему же эти слоты прозвали так? Странно.

@@ -1,2 +1,2 @@
-ent-SpeedLoaderPistolRubber = speed loader (.35 auto rubber)
+ent-SpeedLoaderPistolRubber = спидлоадер (.35 авто травматические)
     .desc = { ent-BaseSpeedLoaderPistol.desc }

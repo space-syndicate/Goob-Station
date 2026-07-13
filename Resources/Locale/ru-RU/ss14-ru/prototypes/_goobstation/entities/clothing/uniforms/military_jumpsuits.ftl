@@ -1,5 +1,5 @@
-ent-ClothingUniformJumpsuitMilitarySalvageSpecialist = salvage specialist's jumpsuit
-    .suffix = Military
+ent-ClothingUniformJumpsuitMilitarySalvageSpecialist = { ent-ClothingUniformJumpsuitSalvageSpecialist }
+    .suffix = Военный
     .desc = { ent-ClothingUniformJumpsuitSalvageSpecialist.desc }
 ent-ClothingUniformJumpsuitMilitaryColorBlackAlt = black jumpsuit
     .desc = A generic black jumpsuit with no rank markings.

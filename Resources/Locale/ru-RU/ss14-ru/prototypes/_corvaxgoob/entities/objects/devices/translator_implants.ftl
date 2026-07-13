@@ -1,2 +1,2 @@
-ent-ZookeeperTranslatorImplant = zookeeper translator implant
-    .desc = An implant giving the ability to understand animals.
+ent-ZookeeperTranslatorImplant = имплант "зоотехнический переводчик"
+    .desc = Позволяет понимать животных.

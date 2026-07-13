@@ -1,2 +1,2 @@
-ent-OniCube = oni cube
+ent-OniCube = кубик Они
     .desc = { ent-MonkeyCube.desc }

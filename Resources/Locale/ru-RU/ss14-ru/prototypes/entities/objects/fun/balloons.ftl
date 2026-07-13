@@ -1,8 +1,8 @@
-ent-BaseBalloon = { ent-BaseItem }
-    .desc = { ent-BaseItem.desc }
-ent-BalloonSyn = syndie balloon
-    .desc = Handed out to the bravest souls who survived the "atomic twister" ride at Syndieland.
-ent-BalloonNT = nanotrasen balloon
-    .desc = Specially designed to inflict maximum psychological damage to Syndicate operatives.
-ent-BalloonCorgi = corgi balloon
-    .desc = Just like owning a real dog - but a lot floatier.
+ent-BaseBalloon = базовый шарик
+    .desc = { ent-BaseStructureDynamic.desc }
+ent-BalloonSyn = воздушный шарик Синдиката
+    .desc = Вручается смелейшим из смелейших, пережившим аттракцион "Атомный смерч" в Синдиленде.
+ent-BalloonNT = воздушный шарик Nanotrasen
+    .desc = Разработан специально для причинения максимального психологического вреда оперативникам Синдиката.
+ent-BalloonCorgi = воздушный шарик корги
+    .desc = То же, что и владеть настоящей собакой — только гораздо более летучей.

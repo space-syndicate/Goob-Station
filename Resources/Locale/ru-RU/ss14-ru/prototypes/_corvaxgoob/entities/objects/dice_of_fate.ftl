@@ -1,5 +1,5 @@
-ent-DiceOfFate = { ent-d20Dice }
-    .desc = { ent-d20Dice.desc }
+ent-DiceOfFate = кость судьбы
+    .desc = Одноразовая d20. Всё или ничего.
 ent-RandomDiceImplanter = random dice implanter
     .desc = { ent-MarkerBase.desc }
 ent-RandomAggressiveAnimal = random aggressive animal

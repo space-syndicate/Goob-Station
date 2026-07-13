@@ -1,3 +1,3 @@
-ent-ZookeeperTranslatorImplanter = { ent-BaseTranslatorImplanter }
-    .suffix = Zookeeper
+ent-ZookeeperTranslatorImplanter = имплантер
+    .suffix = Зоотехнический переводчик
     .desc = { ent-BaseTranslatorImplanter.desc }

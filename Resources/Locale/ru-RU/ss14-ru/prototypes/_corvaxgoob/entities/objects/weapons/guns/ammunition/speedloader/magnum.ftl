@@ -1,2 +1,2 @@
-ent-SpeedLoaderMagnumRubber = speed loader (.45 magnum rubber)
-    .desc = { ent-BaseSpeedLoaderMagnum.desc }
+ent-SpeedLoaderMagnumRubber = спидлоадер (.45 магнум травматические)
+    .desc = { ent-SpeedLoaderMagnum.desc }

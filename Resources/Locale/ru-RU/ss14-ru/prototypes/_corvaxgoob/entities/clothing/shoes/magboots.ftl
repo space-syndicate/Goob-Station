@@ -1,2 +1,2 @@
-ent-ClothingShoesBootsMagAtmos = { ent-ClothingShoesBootsMag }
-    .desc = { ent-ClothingShoesBootsMag.desc }
+ent-ClothingShoesBootsMagAtmos = атмосферные магнитные ботинки
+    .desc = Как обычные магнитные ботинки, но лучше, потому что из отдела атмосферных систем.
