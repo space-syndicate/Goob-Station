@@ -19,6 +19,8 @@ nano-chat-ui-contacts-contact-name-job-unread = { $name-job } ({ $unread })
 
 nano-chat-ui-group-chats-button-create-chat = +
 nano-chat-ui-group-chats-button-create-chat-tooltip = Создать чат
+nano-chat-ui-group-chats-button-edit-chat = И
+nano-chat-ui-group-chats-button-edit-chat-tooltip = Изменить чат
 nano-chat-ui-group-chats-input-create-chat = Новый чат...
 
 
@@ -26,6 +28,10 @@ nano-chat-ui-chat-window-notification-tooltip = Переключить увед�
 nano-chat-ui-chat-window-message-box-text = Введите сообщение...
 nano-chat-ui-chat-window-button-send = ➤
 nano-chat-ui-chat-window-button-send-tooltip = Отправить
+nano-chat-ui-chat-window-button-send-location = @
+nano-chat-ui-chat-window-button-send-location-tooltip = Отправить свои координаты
+nano-chat-ui-chat-window-button-print = P
+nano-chat-ui-chat-window-button-print-tooltip = Распечатать историю чата
 nano-chat-ui-chat-window-message = [bold]{ $sender }:[/bold] { $content }
 nano-chat-ui-chat-window-message-tooltip = Отправлено: { $time }
 
@@ -39,7 +45,8 @@ nano-chat-ui-chat-window-contact-name-job = { $name } ({ $job })
 nano-chat-ui-chat-window-no-chat-selected = Контакт не выбран
 nano-chat-ui-chat-window-button-add-to-chat-tooltip = Добавить в чат
 nano-chat-ui-chat-window-add-contacts = Добавить контакты:
-nano-chat-ui-chat-window-no-available-contact = Все контакты уже в чате.
+nano-chat-ui-chat-window-editing-contacts = Удалить участников:
+nano-chat-ui-chat-window-no-available-contacts = Нет контактов для выбора.
 
 nano-chat-ui-chat-window-sender-unknown = Неизвестный
 nano-chat-ui-chat-window-sender-you = Вы
@@ -49,3 +56,5 @@ nano-chat-ui-chat-window-message-server-unreachable = Сервер недост�
 nano-chat-ui-chat-window-message-loading = Загрузка...
 
 nano-chat-ui-chat-windows-message-error = Ошибка
+
+nano-chat-print-default-title = Переписка

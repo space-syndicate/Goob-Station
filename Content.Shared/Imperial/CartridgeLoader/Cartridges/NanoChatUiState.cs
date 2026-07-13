@@ -1,9 +1,11 @@
+using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 
 [Serializable, NetSerializable]
-public readonly record struct NanoChatContact(NetEntity Id, string Name, string? JobTitle, string? JobIconId);
+public readonly record struct NanoChatContact(NetEntity Id, string Name, string? JobTitle, ProtoId<JobIconPrototype>? JobIconId);
 
 [Serializable, NetSerializable]
 public sealed class NanoChatMessage(NetEntity senderId, string senderName, string content, TimeSpan sendTime)
@@ -35,6 +37,7 @@ public sealed class NanoChatBoundUserInterfaceState(
     bool isServerOnline,
     bool isContactReachable,
     bool canSendLocation,
+    bool canPrint,
     Dictionary<int, int> unreadMessages,
     Dictionary<NetEntity, string> typingUsers)
     : BoundUserInterfaceState
@@ -47,6 +50,7 @@ public sealed class NanoChatBoundUserInterfaceState(
     public bool IsServerOnline = isServerOnline;
     public bool IsContactReachable = isContactReachable;
     public bool CanSendLocation = canSendLocation;
+    public bool CanPrint = canPrint;
     public Dictionary<int, int> UnreadMessages = unreadMessages;
     public Dictionary<NetEntity, string> TypingUsers = typingUsers;
 }

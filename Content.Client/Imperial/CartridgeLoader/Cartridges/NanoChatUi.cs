@@ -52,6 +52,21 @@ public sealed partial class NanoChatUi : UIFragment
         {
             SendChatMessage(new NanoChatAddMembersEvent(chatId, members), userInterface);
         };
+
+        _fragment.OnRemoveMembers += (chatId, members) =>
+        {
+            SendChatMessage(new NanoChatRemoveMembersEvent(chatId, members), userInterface);
+        };
+
+        _fragment.OnEditChat += (chatId, newName) =>
+        {
+            SendChatMessage(new NanoChatEditChatEvent(chatId, newName), userInterface);
+        };
+
+        _fragment.OnPrint += () =>
+        {
+            SendChatMessage(new NanoChatPrintEvent(), userInterface);
+        };
     }
 
     public override void UpdateState(BoundUserInterfaceState state)

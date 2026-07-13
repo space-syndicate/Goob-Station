@@ -1,33 +1,45 @@
 using System.Linq;
+using Content.Server.CartridgeLoader;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.GPS.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.CartridgeLoader.Cartridges;
+using Content.Shared.Paper;
 using Content.Shared.PDA;
 using Content.Shared.Power;
+using Content.Shared.StatusIcon;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 
 public sealed class NanoChatCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = null!;
-    [Dependency] private readonly SharedAudioSystem _audio = null!;
-    [Dependency] private readonly TransformSystem _transform = null!;
+    [Dependency] private readonly CartridgeLoaderSystem _loaderSystem = null!;
     [Dependency] private readonly GameTicker _gameTicker = null!;
     [Dependency] private readonly IGameTiming _timing = null!;
+    [Dependency] private readonly SharedAudioSystem _audio = null!;
+    [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = null!;
+    [Dependency] private readonly TransformSystem _transform = null!;
+    [Dependency] private readonly PaperSystem _paper = null!;
+    [Dependency] private readonly SharedHandsSystem _hands = null!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
-        SubscribeLocalEvent<NanoChatCartridgeComponent, ComponentRemove>(OnCartridgeRemoved);
+
+        SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeAddedEvent>(OnCartridgeAdded);
+        SubscribeLocalEvent<NanoChatCartridgeComponent, ComponentRemove>(OnComponentCartridgeRemoved);
 
         SubscribeLocalEvent<NanoChatServerComponent, PowerChangedEvent>(OnPowerChanged);
 
@@ -50,23 +62,28 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         UpdateAllClients(ent);
     }
 
-    private void OnCartridgeRemoved(Entity<NanoChatCartridgeComponent> ent, ref ComponentRemove args)
+    private void OnCartridgeAdded(Entity<NanoChatCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
-        if (ent.Comp.ConnectedServer == null ||
-            !TryComp<NanoChatServerComponent>(ent.Comp.ConnectedServer.Value, out var serverComp))
+        SyncUserToServer(ent, out var server);
+        if (server != null)
+            UpdateAllClients(server.Value);
+    }
+
+    private void OnComponentCartridgeRemoved(Entity<NanoChatCartridgeComponent> ent, ref ComponentRemove args)
+    {
+        if (ent.Comp.ConnectedServer is not { } serverUid ||
+            !TryComp(serverUid, out NanoChatServerComponent? server))
             return;
 
-        serverComp.ConnectedClients.Remove(ent.Owner);
-        UpdateAllClients((ent.Comp.ConnectedServer.Value, serverComp));
+        UpdateAllClients((serverUid, server));
     }
 
     private void OnUiReady(Entity<NanoChatCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        SyncUserToServer(ent);
+        SyncUserToServer(ent, out var server);
         if (ent.Comp.SelectedChat != null)
             ent.Comp.UnreadMessages.Remove(ent.Comp.SelectedChat.Value);
 
-        var server = GetServerForCartridge(ent.Owner);
 
         if (server != null)
             UpdateAllClients(server.Value);
@@ -86,6 +103,10 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
             case NanoChatAddMembersEvent addMembers:
                 HandleAddMembers(ent, addMembers);
+                break;
+
+            case NanoChatRemoveMembersEvent removeMembers:
+                HandleRemoveMembers(ent, removeMembers);
                 break;
 
             case NanoChatCreateChatEvent create:
@@ -128,7 +149,122 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             case NanoChatTypingEvent:
                 HandleTyping(ent);
                 break;
+
+            case NanoChatEditChatEvent edit:
+                HandleEditChat(ent, edit);
+                break;
+
+            case NanoChatPrintEvent print:
+                HandlePrintChat(ent, print);
+                break;
         }
+    }
+
+    private void HandlePrintChat(Entity<NanoChatCartridgeComponent> ent, NanoChatPrintEvent args)
+    {
+        if (ent.Comp.SelectedChat == null || ent.Comp.UserId == null)
+            return;
+
+        if (_timing.CurTime < ent.Comp.NextPrintAllowedAfter)
+            return;
+
+        var server = GetServerForCartridge(ent);
+
+        var chat = server?.Comp.Chats.FirstOrDefault(c => c.Id == ent.Comp.SelectedChat.Value);
+        if (chat == null)
+            return;
+
+        ent.Comp.NextPrintAllowedAfter = _timing.CurTime + ent.Comp.PrintDelay;
+
+        var loaderUid = Transform(ent).ParentUid;
+        var coordinates = Transform(loaderUid).Coordinates;
+
+        var printed = Spawn(ent.Comp.PaperId, coordinates);
+        _hands.PickupOrDrop(args.Actor, printed);
+
+        _audio.PlayPvs(ent.Comp.PrintingSound, loaderUid);
+
+        if (!TryComp<PaperComponent>(printed, out var paper))
+            return;
+
+        var msg = new FormattedMessage();
+        var chatName = string.IsNullOrEmpty(chat.Name)
+            ? Loc.GetString("nano-chat-print-default-title")
+            : chat.Name;
+
+        msg.AddMarkupOrThrow($"[head=3]             {FormattedMessage.EscapeText(chatName)}");
+        msg.PushNewline();
+        msg.PushNewline();
+
+        foreach (var message in chat.Messages)
+        {
+            var timeString = message.SendTime.ToString(@"hh\:mm\:ss");
+
+            msg.AddMarkupOrThrow($@"[bold]{FormattedMessage.EscapeText(message.SenderName)}[/bold] [color=#888888]\[{timeString}\][/color]:");
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(FormattedMessage.EscapeText(message.Content));
+            msg.PushNewline();
+        }
+
+        _paper.SetContent((printed, paper), msg.ToMarkup());
+        UpdateUi(ent);
+    }
+
+    private void SyncUsers()
+    {
+        var activeUsersByServer = new Dictionary<EntityUid, HashSet<NetEntity>>();
+
+        var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
+
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            SyncUserToServer((uid, comp), out var server);
+
+            if (server == null || comp.UserId == null)
+                continue;
+
+            activeUsersByServer.TryAdd(server.Value.Owner, new HashSet<NetEntity>());
+            activeUsersByServer[server.Value.Owner].Add(comp.UserId.Value);
+        }
+
+        foreach (var (serverUid, activeUsers) in activeUsersByServer)
+        {
+            if (!TryComp<NanoChatServerComponent>(serverUid, out var serverComp))
+                continue;
+
+            var removedUsers = serverComp.Users.Keys
+                .Where(id => !activeUsers.Contains(id))
+                .ToList();
+
+            foreach (var user in removedUsers)
+            {
+                serverComp.Users.Remove(user);
+
+                serverComp.Chats.RemoveAll(chat =>
+                    chat.Members.Contains(user));
+            }
+
+            if (removedUsers.Count > 0)
+                Dirty(serverUid, serverComp);
+        }
+    }
+
+    private void HandleEditChat(Entity<NanoChatCartridgeComponent> sender, NanoChatEditChatEvent args)
+    {
+        if (sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
+            return;
+
+        var server = GetServerForCartridge(sender);
+
+        var chat = server?.Comp.Chats.FirstOrDefault(c => c.Id == args.ChatId
+                                                          && c.Owner == sender.Comp.UserId.Value);
+        if (server == null || chat == null)
+            return;
+
+        chat.Name = args.NewName;
+
+        Dirty(server.Value);
+        UpdateAllClients(server.Value);
     }
 
     private void HandleTyping(Entity<NanoChatCartridgeComponent> sender)
@@ -136,7 +272,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
             return;
 
-        var server = GetServerForCartridge(sender.Owner);
+        var server = GetServerForCartridge(sender);
         if (server == null)
             return;
 
@@ -148,13 +284,13 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         server.Value.Comp.TypingTimeouts[chatId][userId] = _timing.CurTime + server.Value.Comp.TypingTimeout;
 
-        Dirty(server.Value.Owner, server.Value.Comp);
+        Dirty(server.Value);
         UpdateAllClients(server.Value);
     }
 
     private void HandleAddMembers(Entity<NanoChatCartridgeComponent> ent, NanoChatAddMembersEvent args)
     {
-        var server = GetServerForCartridge(ent.Owner);
+        var server = GetServerForCartridge(ent);
         if (server == null || ent.Comp.UserId == null)
             return;
 
@@ -186,7 +322,38 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             chat.Name = string.Join(", ", memberNames);
         }
 
-        Dirty(server.Value.Owner, server.Value.Comp);
+        Dirty(server.Value);
+        UpdateAllClients(server.Value);
+    }
+
+    private void HandleRemoveMembers(Entity<NanoChatCartridgeComponent> ent, NanoChatRemoveMembersEvent args)
+    {
+        var server = GetServerForCartridge(ent);
+        if (server == null || ent.Comp.UserId == null)
+            return;
+
+        var chat = server.Value.Comp.Chats.FirstOrDefault(c => c.Id == args.ChatId);
+        if (chat == null)
+            return;
+
+        if (!chat.Members.Contains(ent.Comp.UserId.Value))
+            return;
+
+        foreach (var remMember in args.RemovedMembers.Where(newMember => chat.Members.Contains(newMember)))
+            chat.Members.Remove(remMember);
+
+        if (string.IsNullOrEmpty(chat.Name))
+        {
+            var memberNames = chat.Members
+                .Select(id => server.Value.Comp.Users.TryGetValue(id, out var user)
+                    ? user.Name
+                    : Loc.GetString("nano-chat-ui-chat-window-sender-unknown"))
+                .ToList();
+
+            chat.Name = string.Join(", ", memberNames);
+        }
+
+        Dirty(server.Value);
         UpdateAllClients(server.Value);
     }
 
@@ -195,7 +362,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(chatName) || creator.Comp.UserId == null)
             return;
 
-        var server = GetServerForCartridge(creator.Owner);
+        var server = GetServerForCartridge(creator);
         if (server == null)
             return;
 
@@ -212,7 +379,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(text) || sender.Comp.SelectedChat == null || sender.Comp.UserId == null)
             return;
 
-        var server = GetServerForCartridge(sender.Owner);
+        var server = GetServerForCartridge(sender);
         if (server == null)
             return;
 
@@ -235,12 +402,16 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         );
 
         chat.Messages.Add(message);
-        Dirty(server.Value.Owner, server.Value.Comp);
+        Dirty(server.Value);
 
-        foreach (var clientUid in server.Value.Comp.ConnectedClients)
+        var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
+
+        while (query.MoveNext(out var clientUid, out var targetComp))
         {
-            if (!TryComp<NanoChatCartridgeComponent>(clientUid, out var targetComp)
-                || targetComp.UserId == null)
+            if (targetComp.ConnectedServer != server.Value.Owner)
+                continue;
+
+            if (targetComp.UserId == null)
                 continue;
 
             if (!chat.Members.Contains(targetComp.UserId.Value))
@@ -255,38 +426,47 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 targetComp.UnreadMessages[chatId]++;
             }
 
-            if (targetComp.NotificationsOn)
-                _audio.PlayPvs(targetComp.NotificationSound, clientUid);
+            if (!targetComp.NotificationsOn)
+                continue;
+
+            _audio.PlayPvs(targetComp.NotificationSound, clientUid);
+
+            _loaderSystem.SendNotification(
+                clientUid,
+                Loc.GetString("nano-chat-pda-notification-header"),
+                sender.Comp.PdaCardName ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"));
         }
 
         UpdateAllClients(server.Value);
     }
 
-    private void SyncUserToServer(Entity<NanoChatCartridgeComponent> ent)
+    private void SyncUserToServer(Entity<NanoChatCartridgeComponent> ent, out Entity<NanoChatServerComponent>? server)
     {
         var loaderUid = Transform(ent).ParentUid;
         var pdaData = GetPdaData(loaderUid);
 
         if (pdaData.Id == null)
+        {
+            server = null;
             return;
+        }
 
         ent.Comp.UserId = pdaData.Id.Value;
         ent.Comp.PdaCardName = pdaData.Name;
 
-        var server = GetServerForCartridge(ent.Owner);
+        server = GetServerForCartridge(ent);
+
         if (server == null)
             return;
 
-        if (ent.Comp.ConnectedServer != server.Value.Owner)
-        {
-            if (ent.Comp.ConnectedServer != null && TryComp<NanoChatServerComponent>(ent.Comp.ConnectedServer.Value, out var oldServer))
-                oldServer.ConnectedClients.Remove(ent.Owner);
-            ent.Comp.ConnectedServer = server.Value.Owner;
-        }
+        ent.Comp.ConnectedServer = server.Value.Owner;
 
-        server.Value.Comp.ConnectedClients.Add(ent.Owner);
+        var contact = new NanoChatContact(
+            pdaData.Id.Value,
+            pdaData.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"),
+            pdaData.Job ?? Loc.GetString("nano-chat-ui-contact-job-unknown"),
+            pdaData.Icon);
 
-        var contact = new NanoChatContact(pdaData.Id.Value, pdaData.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"), pdaData.Job, pdaData.Icon);
         server.Value.Comp.Users[pdaData.Id.Value] = contact;
 
         foreach (var otherId in server.Value.Comp.Users.Keys)
@@ -294,29 +474,42 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             if (otherId == pdaData.Id.Value)
                 continue;
 
-            var chatExists = server.Value.Comp.Chats.Any(c =>
-                c.Members.Count == 2 && c.Members.Contains(pdaData.Id.Value) && c.Members.Contains(otherId));
+            var exists = server.Value.Comp.Chats.Any(c =>
+                c.Members.Count == 2 &&
+                c.Members.Contains(pdaData.Id.Value) &&
+                c.Members.Contains(otherId));
 
-            if (chatExists)
+            if (exists)
                 continue;
 
-            var newChat = new NanoChatChat(server.Value.Comp.NextChatId++, string.Empty, null, new List<NetEntity> { pdaData.Id.Value, otherId }, new List<NanoChatMessage>());
-            server.Value.Comp.Chats.Add(newChat);
+            server.Value.Comp.Chats.Add(
+                new NanoChatChat(
+                    server.Value.Comp.NextChatId++,
+                    string.Empty,
+                    null,
+                    new List<NetEntity>
+                    {
+                        pdaData.Id.Value,
+                        otherId
+                    },
+                    new List<NanoChatMessage>()));
         }
 
-        Dirty(server.Value.Owner, server.Value.Comp);
+        Dirty(server.Value);
     }
 
     private void UpdateAllClients(Entity<NanoChatServerComponent> server)
     {
-        server.Comp.ConnectedClients.RemoveWhere(uid => !Exists(uid));
+        SyncUsers();
 
-        var clients = server.Comp.ConnectedClients.ToList();
+        var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
 
-        foreach (var clientUid in clients)
+        while (query.MoveNext(out var uid, out var comp))
         {
-            if (TryComp<NanoChatCartridgeComponent>(clientUid, out var comp))
-                UpdateUi((clientUid, comp));
+            if (comp.ConnectedServer != server.Owner)
+                continue;
+
+            UpdateUi((uid, comp));
         }
     }
 
@@ -344,16 +537,16 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!loaderUid.IsValid())
             return;
 
-        SyncUserToServer(ent);
+        SyncUsers();
+        SyncUserToServer(ent, out var server);
 
-        var server = GetServerForCartridge(ent);
-        var isServerOnline = server != null && TryComp<ApcPowerReceiverComponent>(server.Value.Owner, out var receiverComponent) && receiverComponent.Powered;
+        var isServerOnline = server != null && TryComp<ApcPowerReceiverComponent>(server.Value, out var receiverComponent) && receiverComponent.Powered;
 
         var isContactReachable = false;
         var contacts = new List<NanoChatContact>();
         var chats = new List<NanoChatChat>();
         NanoChatChat? currentChat = null;
-        var canSendLocation = HasComp<HandheldGPSComponent>(loaderUid);
+        var canSendLocation = false;
 
         if (isServerOnline && server != null && comp.UserId != null)
         {
@@ -370,11 +563,23 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
                 if (currentChat != null)
                 {
-                    isContactReachable = server.Value.Comp.ConnectedClients.Any(uid =>
-                        TryComp<NanoChatCartridgeComponent>(uid, out var c) &&
-                        c.UserId != comp.UserId &&
-                        c.UserId != null &&
-                        currentChat.Members.Contains(c.UserId.Value));
+                    var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
+                    canSendLocation = HasComp<HandheldGPSComponent>(loaderUid);
+
+                    while (query.MoveNext(out _, out var other))
+                    {
+                        if (other.ConnectedServer != server.Value.Owner)
+                            continue;
+
+                        if (other.UserId == null || other.UserId == comp.UserId)
+                            continue;
+
+                        if (!currentChat.Members.Contains(other.UserId.Value))
+                            continue;
+
+                        isContactReachable = true;
+                        break;
+                    }
                 }
             }
         }
@@ -411,6 +616,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             isServerOnline,
             isContactReachable,
             canSendLocation,
+            _timing.CurTime >= comp.NextPrintAllowedAfter,
             comp.UnreadMessages,
             typingUsers
         );
@@ -419,23 +625,18 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             _userInterfaceSystem.SetUiState(loaderUid, loader.UiKey, state);
     }
 
-    private (NetEntity? Id, string? Name, string? Job, string? Icon) GetPdaData(EntityUid pdaUid)
+    private (NetEntity? Id, string? Name, string? Job, ProtoId<JobIconPrototype>? Icon) GetPdaData(EntityUid pdaUid)
     {
         if (!TryComp<PdaComponent>(pdaUid, out var pda))
             return (null, null, null, null);
 
-        var name = pda.OwnerName;
-        string? job = null;
-        string? icon = null;
-        NetEntity? id = null;
+        var idCardUid = pda.ContainedId;
+        if (idCardUid == null || !TryComp<IdCardComponent>(idCardUid, out var idCard))
+            return (null, null, null, null);
 
-        if (!pda.ContainedId.HasValue || !TryComp<IdCardComponent>(pda.ContainedId.Value, out var idCard))
-            return (id, name, job, icon);
-
-        id = GetNetEntity(pda.ContainedId.Value);
-        job = idCard.LocalizedJobTitle;
-        icon = idCard.JobIcon;
-
-        return (id, name, job, icon);
+        var fullName = string.IsNullOrEmpty(idCard.FullName) ? Loc.GetString("generic-unknown") : idCard.FullName;
+        var jobTitle = string.IsNullOrEmpty(idCard.LocalizedJobTitle) ? Loc.GetString("job-name-unknown") : idCard.LocalizedJobTitle;
+        var id = GetNetEntity(idCardUid.Value);
+        return (id, fullName, jobTitle, idCard.JobIcon);
     }
 }

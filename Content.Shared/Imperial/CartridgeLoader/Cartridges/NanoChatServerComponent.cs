@@ -14,9 +14,6 @@ public sealed partial class NanoChatServerComponent : Component
     [ViewVariables]
     public int NextChatId = 1;
 
-    [ViewVariables]
-    public readonly HashSet<EntityUid> ConnectedClients = new();
-
     [DataField]
     public Dictionary<int, Dictionary<NetEntity, TimeSpan>> TypingTimeouts = new();
 

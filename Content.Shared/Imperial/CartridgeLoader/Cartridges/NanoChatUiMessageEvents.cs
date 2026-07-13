@@ -38,5 +38,22 @@ public sealed class NanoChatAddMembersEvent(int chatId, List<NetEntity> addedMem
 }
 
 [Serializable, NetSerializable]
+public sealed class NanoChatRemoveMembersEvent(int chatId, List<NetEntity> removedMembers) : CartridgeMessageEvent
+{
+    public int ChatId = chatId;
+    public List<NetEntity> RemovedMembers = removedMembers;
+}
+
+[Serializable, NetSerializable]
+public sealed class NanoChatEditChatEvent(int chatId, string newName) : CartridgeMessageEvent
+{
+    public int ChatId = chatId;
+    public string NewName = newName;
+}
+
+[Serializable, NetSerializable]
 public sealed class NanoChatTypingEvent : CartridgeMessageEvent;
+
+[Serializable, NetSerializable]
+public sealed class NanoChatPrintEvent : CartridgeMessageEvent;
 

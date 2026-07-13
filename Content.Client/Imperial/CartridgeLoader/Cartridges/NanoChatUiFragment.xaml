@@ -8,7 +8,7 @@
                                HorizontalExpand="True"
                                VerticalExpand="True">
     <PanelContainer
-        Name="ContactsPanel"
+        Name="MenuPanel"
         Visible="False"
         MinWidth="200"
         VerticalExpand="True"
@@ -18,19 +18,24 @@
         </PanelContainer.PanelOverride>
 
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
-            <OptionButton Name="OptionsMenu" ToolTip="{Loc nano-chat-ui-menu-options-tooltip}" Margin="5" HorizontalExpand="True"/>
+            <OptionButton Name="OptionsMenu" ToolTip="{Loc nano-chat-ui-menu-options-tooltip}" Margin="5"
+                          HorizontalExpand="True" />
 
             <BoxContainer Name="CreateChatContainer" Orientation="Horizontal" Margin="5" HorizontalExpand="True">
-                <LineEdit Name="NewChatNameInput" HorizontalExpand="True" Margin="0" PlaceHolder="{Loc nano-chat-ui-group-chats-input-create-chat}" />
-                <Button Name="NewChatButton" Text="{Loc nano-chat-ui-group-chats-button-create-chat}" Margin="0" Disabled="True" ToolTip="{Loc nano-chat-ui-group-chats-button-create-chat-tooltip}">
+                <LineEdit Name="NewChatNameInput" HorizontalExpand="True" Margin="0"
+                          PlaceHolder="{Loc nano-chat-ui-group-chats-input-create-chat}" />
+                <Button Name="NewChatButton" Text="{Loc nano-chat-ui-group-chats-button-create-chat}" Margin="0"
+                        Disabled="True" ToolTip="{Loc nano-chat-ui-group-chats-button-create-chat-tooltip}">
                     <Control.StyleClasses>
                         <system:String>OpenLeft</system:String>
                     </Control.StyleClasses>
                 </Button>
             </BoxContainer>
 
-            <BoxContainer Name="SearchContainer" Orientation="Horizontal" Margin="5" HorizontalExpand="True" Visible="False">
-                <LineEdit Name="SearchInput" HorizontalExpand="True" Margin="0" PlaceHolder="{Loc nano-chat-ui-contacts-input-search-field}" />
+            <BoxContainer Name="SearchContainer" Orientation="Horizontal" Margin="5" HorizontalExpand="True"
+                          Visible="False">
+                <LineEdit Name="SearchInput" HorizontalExpand="True" Margin="0"
+                          PlaceHolder="{Loc nano-chat-ui-contacts-input-search-field}" />
             </BoxContainer>
 
             <customControls:HSeparator Margin="0,2,0,5" />
@@ -54,7 +59,7 @@
                 Name="MenuButton"
                 Text="{Loc nano-chat-ui-menu-open-button}"
                 ToolTip="{Loc nano-chat-ui-menu-open-button-tooltip}"
-                ToggleMode="True"/>
+                ToggleMode="True" />
 
             <Control MinWidth="10" />
 
@@ -68,18 +73,18 @@
             <Label
                 Name="CurrentContactLabel"
                 Text="{Loc nano-chat-ui-chat-window-no-chat-selected}"
-                Visible="False"
+                Visible="True"
                 FontColorOverride="#AAAAAA"
                 HorizontalExpand="True"
                 ClipText="True"
                 VerticalAlignment="Center" />
 
-            <TextEdit
+            <LineEdit
                 Name="EditChatNameInput"
-                Visible="True"
-                Placeholder="{Loc nano-chat-ui-chat-window-no-chat-selected}"
+                Visible="False"
+                Text="{Loc nano-chat-ui-chat-window-no-chat-selected}"
                 HorizontalExpand="True"
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center" />
 
             <Button
                 Name="AddMembersButton"
@@ -95,8 +100,8 @@
             </Button>
             <Button
                 Name="EditChatButton"
-                Text="И"
-                ToolTip="{Loc nano-chat-ui-chat-window-button-add-to-chat-tooltip}"
+                Text="{Loc nano-chat-ui-group-chats-button-edit-chat}"
+                ToolTip="{Loc nano-chat-ui-group-chats-button-edit-chat-tooltip}"
                 Visible="False"
                 ToggleMode="True"
                 MinWidth="50"
@@ -131,13 +136,13 @@
             Name="TypingIndicatorLabel"
             Visible="False"
             Margin="5,0,5,0"
-            FontColorOverride="#AAAAAA"
-            Text="Someone is typing..." />
+            FontColorOverride="#AAAAAA"/>
 
         <BoxContainer Orientation="Horizontal"
                       HorizontalExpand="True"
                       SeparationOverride="0"
                       Margin="5">
+
             <Button Name="NotificationSwitch"
                     Text="{Loc news-read-ui-notification-on}"
                     ToolTip="{Loc nano-chat-ui-chat-window-notification-tooltip}">
@@ -145,9 +150,10 @@
                     <system:String>OpenRight</system:String>
                 </Control.StyleClasses>
             </Button>
+
             <Button Name="SendLocationButton"
-                    Text="@"
-                    ToolTip="Отправить своё местоположение"
+                    Text="{Loc nano-chat-ui-chat-window-button-send-location}"
+                    ToolTip="{Loc nano-chat-ui-chat-window-button-send-location-tooltip}"
                     Visible="False"
                     Disabled="True">
                 <Control.StyleClasses>
@@ -155,8 +161,18 @@
                 </Control.StyleClasses>
             </Button>
 
+            <Button Name="PrintChatButton"
+                    Text="{Loc nano-chat-ui-chat-window-button-print}"
+                    ToolTip="{Loc nano-chat-ui-chat-window-button-print-tooltip}"
+                    Disabled="True"
+                    >
+                <Control.StyleClasses>
+                    <system:String>OpenBoth</system:String>
+                </Control.StyleClasses>
+            </Button>
+
             <LineEdit
-                Name="TextInput"
+                Name="MessageTextInput"
                 HorizontalExpand="True"
                 Margin="0"
                 PlaceHolder="{Loc nano-chat-ui-chat-window-message-box-text}" />
@@ -170,6 +186,7 @@
                     <system:String>OpenLeft</system:String>
                 </Control.StyleClasses>
             </Button>
+
         </BoxContainer>
     </BoxContainer>
 </cartridges:NanoChatUiFragment>
