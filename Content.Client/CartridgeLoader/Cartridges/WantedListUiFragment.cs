@@ -108,7 +108,7 @@ public sealed partial class WantedListUiFragment : BoxContainer
         ));
         TargetGender.SetMessage(GetLoc(
             "wanted-list-gender-label",
-            ("gender", Loc.GetString($"humanoid-profile-editor-sex-{record.TargetInfo.Sex.ToString().ToLower()}-text")) // CorvaxGoob-Locale
+            ("gender", Loc.GetString($"humanoid-profile-editor-sex-{record.TargetInfo.Sex.ToString().ToLower()}-text").ToLower()) // CorvaxGoob-Locale
         ));
 
         // Set reason
