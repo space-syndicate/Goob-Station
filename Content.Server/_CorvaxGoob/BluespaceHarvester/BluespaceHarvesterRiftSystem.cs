@@ -23,8 +23,8 @@ public sealed class BluespaceHarvesterRiftSystem : EntitySystem
         var query = EntityQueryEnumerator<BluespaceHarvesterRiftComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
-            comp.PassiveSpawnAccumulator += frameTime;
-          if (comp.PassiveSpawnAccumulator >= comp.PassiveSpawnCooldown)
+            comp.PassiveSpawnAccumulator += delta;
+            if (comp.PassiveSpawnAccumulator >= comp.PassiveSpawnCooldown)
             {
                 comp.PassiveSpawnAccumulator -= comp.PassiveSpawnCooldown;
                 comp.PassiveSpawnAccumulator += _random.NextFloat(comp.PassiveSpawnCooldown / 2f);
@@ -33,7 +33,7 @@ public sealed class BluespaceHarvesterRiftSystem : EntitySystem
                 Spawn(_random.Pick(comp.PassiveSpawn), xform.Coordinates);
             }
 
-            comp.SpawnAccumulator += frameTime;
+            comp.SpawnAccumulator += delta;
 
             if (comp.SpawnAccumulator < comp.SpawnCooldown)
                 continue;
