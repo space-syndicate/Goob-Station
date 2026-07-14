@@ -13,5 +13,5 @@ ent-LavalandMiningCrateEmpty = mining crate
     .desc = A heavily secured mining crate. Careful, it might be more dangerous than it looks.
     .suffix = Empty
 ent-LavalandMiningCrateEmptyLocked = mining crate
-    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it looks.
     .suffix = Empty, Locked
