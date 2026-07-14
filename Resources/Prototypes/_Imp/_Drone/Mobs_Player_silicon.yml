@@ -309,8 +309,7 @@
   - type: CombatMode
     combatToggleAction: ActionCombatModeToggle
   - type: BatterySelfRecharger
-    autoRechargeRate: 200
-    autoRecharge: True
+    autoRechargeRate: 99
   - type: Pacified
     #CorvaxGoob-Edit-End
   - type: DroneVision
