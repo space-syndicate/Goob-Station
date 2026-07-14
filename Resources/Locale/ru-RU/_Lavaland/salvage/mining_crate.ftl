@@ -45,6 +45,6 @@ lavaland-mining-crate-security-pulse-lock = Цепь замка отзывает
 lavaland-mining-crate-security-pulse-siren = Цепь сирены отзывается.
 wire-name-mining-crate-security = ЗЩТ
 wire-name-mining-crate-lock = ЗМК
-wire-name-mining-crate-siren = SIRE
+wire-name-mining-crate-siren = ТРВГ
 wire-name-mining-crate-boom = БУМ
 wires-board-name-mining-crate = Шахтёрский ящик
