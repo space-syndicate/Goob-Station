@@ -21,11 +21,10 @@
     scale: 0.4, 0.4
     sprite: _Lavaland/Structures/Storage/Crates/mining_crate.rsi
     layers:
+    # Full-frame states (off/lock/unlock/opened) — do NOT use Storage door layer,
+    # parent EntityStorageVisuals would draw closed.png (red panel) on top of Main.
     - state: off
       map: ["enum.MiningCrateLayers.Main"]
-    - state: closed
-      visible: false
-      map: ["enum.StorageVisualLayers.Door"]
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
@@ -33,6 +32,12 @@
       visible: false
       map: ["enum.LockVisualLayers.Lock"]
   - type: Appearance
+  # Disable parent door open/closed sprites; open is handled via MiningCrateVisuals.
+  - type: EntityStorageVisuals
+    stateDoorOpen: null
+    stateDoorClosed: null
+    stateBaseOpen: null
+    stateBaseClosed: null
   - type: GenericVisualizer
     visuals:
       enum.MiningCrateVisuals.Display:
@@ -40,7 +45,7 @@
           Off: { state: off }
           Locked: { state: lock }
           Unlocked: { state: unlock }
-          Open: { state: open }
+          Open: { state: opened }
   - type: Fixtures
     fixtures:
       fix1:

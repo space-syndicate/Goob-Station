@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Custom mining crate sprites for Goobstation Lavaland (lock/unlock/open/off)",
+  "copyright": "Custom mining crate sprites for Goobstation Lavaland",
   "size": {
     "x": 128,
     "y": 128
@@ -9,10 +9,11 @@
   "states": [
     { "name": "icon" },
     { "name": "base" },
+    { "name": "off" },
     { "name": "lock" },
     { "name": "unlock" },
     { "name": "open" },
-    { "name": "off" },
+    { "name": "opened" },
     { "name": "closed" },
     { "name": "welded" },
     { "name": "sparking" },
