@@ -1,7 +1,7 @@
 ent-LavalandMiningCrateBase = mining crate
     .desc = A heavily secured mining crate. Careful, it might be more dangerous than it looks.
 ent-LavalandMiningCrateCommon = mining crate
-    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
+    .desc = A heavily secured mining crate. Careful, it might be more dangerous than it looks.
     .suffix = Common
 ent-LavalandMiningCrateMedium = mining crate
     .desc = A heavily secured mining crate. Careful, it might be more dangerous than it first appears.
