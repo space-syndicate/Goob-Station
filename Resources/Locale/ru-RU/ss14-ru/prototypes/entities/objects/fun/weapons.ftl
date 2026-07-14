@@ -4,8 +4,7 @@ ent-BaseToyGun = { "" }
 ent-WeaponRifleFoam = Астро-Ас Сила Пенопласта
     .desc = Первоклассная пенопластовая винтовка высочайшего качества. Её пластик прочен на ощупь, а механизмы надёжены.
 
-ent-WeaponStickyHand = sticky hand
-    .desc = They're saying you're reaching. They're saying it's a stretch. You'll show them all, and you'll stick it to them.
+ent-WeaponStickyHand = рука липучка
+    .desc = Они говорят, что ты тянешься. Они говорят, что это растяжка. Ты покажешь им и ты прилипнешь к ним.
 ent-BaseToySword = { "" }
     .desc = { "" }
-

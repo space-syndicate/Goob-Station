@@ -3,10 +3,9 @@ ent-DrinkJar = банка
     .desc = Стакан хипстера.
 
 ent-DrinkIrishSlammer = { ent-DrinkGlass }
-    .suffix = grenade penguin
+    .suffix = Пингвин-гренадёр
     .desc = { ent-DrinkGlass.desc }
 
 ent-DrinkOrangeLimeSodaGlass = { ent-DrinkGlass }
-    .suffix = citrus bikeshed
+    .suffix = цитрусовый трёп
     .desc = { ent-DrinkGlass.desc }
-

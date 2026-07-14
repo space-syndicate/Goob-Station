@@ -1,2 +1,2 @@
-ent-MailCart = mail cart
-    .desc = Deliver packages with style and efficiency.
+ent-MailCart = почтовая тележка
+    .desc = Доставляйте посылки стильно и эффективно.

@@ -1,6 +1,6 @@
 
 ent-DrinkBaseEmptyTrash = { "" }
-    .suffix = Empty
+    .suffix = Пустой
     .desc = { "" }
 ent-DrinkBaseOpenable = { "" }
     .desc = { "" }

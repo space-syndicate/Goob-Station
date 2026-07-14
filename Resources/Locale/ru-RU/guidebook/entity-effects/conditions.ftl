@@ -88,10 +88,11 @@ entity-condition-guidebook-blood-reagent-threshold =
 # Goobstation?
 
 entity-condition-guidebook-breathing =
-    the metabolizer is { $isBreathing ->
-        [true] breathing normally
-       *[false] suffocating
+    цель { $isBreathing ->
+        [true] дышит нормально
+        *[false] задыхается
     }
+
 entity-condition-guidebook-internals =
     the metabolizer is { $usingInternals ->
         [true] using internals

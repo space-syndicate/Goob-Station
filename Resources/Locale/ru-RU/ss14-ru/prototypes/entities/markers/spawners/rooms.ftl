@@ -1,4 +1,4 @@
-ent-SpawnPointHeadOfSecurityWeapon = head of security weapon spawner
+ent-SpawnPointHeadOfSecurityWeapon = спавнер оружие глава службы безопасности
     .desc = { ent-MarkerBase.desc }
-ent-SpawnPointWardenWeapon = warden weapon spawner
+ent-SpawnPointWardenWeapon = спавнер оружие смотритель
     .desc = { ent-MarkerBase.desc }

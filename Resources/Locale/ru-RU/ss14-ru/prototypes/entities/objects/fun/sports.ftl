@@ -9,5 +9,5 @@ ent-TennisBall = теннисный мяч
 ent-BeachBall = пляжный мяч
     .desc = Простой пляжный мяч — один из самых популярных продуктов компании Nanotrasen. 'Почему мы делаем пляжные мячи? Потому что мы можем! (TM)' — Nanotrasen.
 ent-EvilBeachBall = { ent-BeachBall }
-    .desc = Someone's drawn ">:3c" on the side of this beach ball in indelible ink.
-    .suffix = EVIL/ADMEME
+    .desc = Кто-то нарисовал ">:3c" несмываемыми чернилами на стороне этого мяча.
+    .suffix = ЗЛОЙ/АДМЕМЫ

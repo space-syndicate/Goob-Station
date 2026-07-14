@@ -1,21 +1,20 @@
 
 
 ent-BeakerSmallArith = { ent-Beaker }
-    .suffix = arithrazine
+    .suffix = аритразин
     .desc = { ent-Beaker.desc }
 ent-BeakerSmallSigy = { ent-Beaker }
-    .suffix = sigynate
+    .suffix = сигинат
     .desc = { ent-Beaker.desc }
 ent-BeakerSmallPhal = { ent-Beaker }
-    .suffix = phalanximine
+    .suffix = фалангимин
     .desc = { ent-Beaker.desc }
 ent-BeakerSmallDiph = { ent-Beaker }
-    .suffix = diphenhydramine
+    .suffix = дифенгидрамин
     .desc = { ent-Beaker.desc }
 ent-BeakerSmallBruiz = { ent-Beaker }
-    .suffix = bruizine
+    .suffix = бруизин
     .desc = { ent-Beaker.desc }
 ent-BeakerSmallLace = { ent-Beaker }
-    .suffix = lacerinol
+    .suffix = лацеринол
     .desc = { ent-Beaker.desc }
-

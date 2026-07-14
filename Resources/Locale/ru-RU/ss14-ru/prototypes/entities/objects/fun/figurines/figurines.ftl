@@ -1,9 +1,8 @@
 
 
-ent-ToyFigurineGriffin = griffin figure
-    .desc = A figurine depicting 'The Griffin', criminal mastermind.
-ent-ToyFigurineOwlman = owlman figure
-    .desc = A figurine depicting 'Owlman', the defender of justice.
-ent-ToyFigurineSkeleton = skeleton figure
-    .desc = A figurine depicting a spooky scary skeleton.
-
+ent-ToyFigurineGriffin = фигурка грифона
+    .desc = Фигурка, изображающая «Грифона», преступного гения.
+ent-ToyFigurineOwlman = фигурка филина
+    .desc = Фигурка, изображающая «Филина», защитника справедливости.
+ent-ToyFigurineSkeleton = фигурка скелета
+    .desc = Фигурка, изображающая жуткого страшного скелета.
