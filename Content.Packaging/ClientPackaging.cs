@@ -106,7 +106,7 @@ public static class ClientPackaging
         var sourcePath = Path.Combine(contentDir, "bin", "Content.Client");
         var deps = DepsHandler.Load(Path.Combine(sourcePath, "Content.Goobstation.Client.deps.json"));
         var contentAssemblies = ServerPackaging.GetContentAssemblyNamesToCopy(deps, "Client");
-        assemblies.AddRange(contentAssemblies); //Corvax-Secret
+        assemblies.AddRange(contentAssemblies.Where(a => !a.Contains("Server"))); //Corvax-Secret
         // Good edit end
 
         await RobustSharedPackaging.WriteContentAssemblies(
