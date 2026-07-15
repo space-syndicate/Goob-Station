@@ -99,4 +99,4 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
         Logger.Info($"[ArtifactTransform] Превращено предметов: {transformedCount}");
     }
 }
-// тест
+// тес

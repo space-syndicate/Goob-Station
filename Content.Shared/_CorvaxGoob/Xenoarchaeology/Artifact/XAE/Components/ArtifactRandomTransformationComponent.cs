@@ -16,4 +16,4 @@ public sealed partial class ArtifactRandomTransformationComponent : Component
     [DataField("prototypeIdBlacklistSubstrings")]
     public List<string> PrototypeIdBlacklistSubstrings = new();
 }
-// тест
+// тес

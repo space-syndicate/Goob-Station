@@ -16,7 +16,7 @@
     - id: XenoArtifactGhost
       weight: 2.0
     - id: XenoArtifactRandomTransformation
-      weight: 1.0
+      weight: 1.5
     - id: XenoArtifactEffectBadFeeling
       weight: 10.0
     - id: XenoArtifactEffectGoodFeeling
