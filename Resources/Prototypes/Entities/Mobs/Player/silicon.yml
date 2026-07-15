@@ -342,6 +342,7 @@
       station_ai_brain_slot: !type:Container
       station_ai_mind_slot: !type:ContainerSlot
         showEnts: true
+      station_ai_pda: !type:ContainerSlot
   - type: ContainerFill
     containers:
       board:

@@ -244,10 +244,17 @@ public abstract partial class SharedGunSystem
             EntityUid? ammoEntity = null;
             if (ent.Comp.Entities.Count > 0)
             {
-                if (!ent.Comp.AutoCycle) //  Goobstation - do not remove spent ammo from the gun it doesn't autocycle
-                    break;
-
+                //CorvaxGoob ammo-fix-start
                 var existingEnt = ent.Comp.Entities[^1];
+
+                // A non-autocycling gun keeps the spent cartridge until it is manually cycled.
+                // Live cartridges inserted by hand must still be allowed to fire.
+                if (!ent.Comp.AutoCycle &&
+                    TryComp<CartridgeAmmoComponent>(existingEnt, out var cartridge) &&
+                    cartridge.Spent)
+                    break;
+                //CorvaxGoob ammo-fix-end
+
                 ent.Comp.Entities.RemoveAt(ent.Comp.Entities.Count - 1);
                 DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.Entities));
                 Containers.Remove(existingEnt, ent.Comp.Container);
@@ -271,8 +278,8 @@ public abstract partial class SharedGunSystem
             // Goobstation - put spent ammo back in the gun if it doesn't autocycle
             if (!ent.Comp.AutoCycle)
             {
-                ent.Comp.Entities.Add(ent);
-                Containers.Insert(ent.Owner, ent.Comp.Container);
+                ent.Comp.Entities.Add(ammoEnt); //CorvaxGoob ammo-fix
+                Containers.Insert(ammoEnt, ent.Comp.Container); //CorvaxGoob ammo-fix
                 DirtyField(ent.Owner, ent.Comp, nameof(BallisticAmmoProviderComponent.Entities));
             }
             // Goobstation - end
