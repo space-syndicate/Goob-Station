@@ -515,6 +515,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -536,6 +537,7 @@
     - Sign
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
   - type: TTS # CorvaxGoob-TTS
     voice: Glados
   # CorvaxGoob-Revert : DB conflicts

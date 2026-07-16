@@ -20,6 +20,7 @@
   - ChitinidCube
   - FeroxiCube
   - OniCube # CorvaxGoob
+  - HydrakinCube # CorvaxGoob
 
 - type: latheRecipePack
   id: EmagCubesStatic

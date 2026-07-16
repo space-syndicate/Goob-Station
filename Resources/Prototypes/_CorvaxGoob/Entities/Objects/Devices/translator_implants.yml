@@ -26,3 +26,18 @@
       - Deer
       - Bingle
       - Cheval
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: HydraspeakTranslatorImplant
+  name: hydraspeak translator implant
+  description: A translator implant giving the ability to speak with Hydrakin.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Hydraspeak
+    spoken:
+    - Hydraspeak
+    requires:
+    - TauCetiBasic

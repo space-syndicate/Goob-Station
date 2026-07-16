@@ -23,4 +23,18 @@ public sealed partial class HydrakinComponent : Component
 
     [DataField]
     public EntityUid? CoolOffAction;
+
+    // CorvaxGoob start
+    /// <summary>
+    /// How much does a hug cool you down
+    /// </summary>
+    [DataField]
+    public float HugCoolingAmount = -30.0f;
+
+    /// <summary>
+    /// How much does a hug warm you up
+    /// </summary>
+    [DataField]
+    public float HugHeatingAmount = 20.0f;
+    // CorvaxGoob end
 }
