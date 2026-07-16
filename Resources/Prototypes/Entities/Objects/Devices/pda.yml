@@ -1103,6 +1103,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - SyndiChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1141,6 +1142,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - SyndiChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]

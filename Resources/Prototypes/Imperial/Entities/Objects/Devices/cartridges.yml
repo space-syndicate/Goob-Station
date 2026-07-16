@@ -1,3 +1,8 @@
+- type: Tag
+  id: SyndiChatCartridge
+- type: Tag
+  id: NanoChatCartridge
+
 - type: entity
   parent: BasePDACartridge
   id: NanoChatCartridge
@@ -15,6 +20,9 @@
       sprite: Imperial/Interface/Misc/program_icons.rsi
       state: nano_chat
   - type: NanoChatCartridge
+  - type: Tag
+    tags:
+    - NanoChatCartridge
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -26,6 +34,9 @@
     sprite: Structures/Machines/server.rsi
     state: server
   - type: NanoChatServer
+    cartridgeWhitelist:
+      tags:
+      - NanoChatCartridge
   - type: ApcPowerReceiver
     powerLoad: 250
   - type: PointLight
@@ -117,6 +128,70 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-nano-chat
+    stampedColor: "#384573"
+    stampState: "paper_stamp-lawyer"
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/RubberStamp.rsi
+    state: stamp-ERT-Leader
+
+# SyndiChat
+
+- type: entity
+  parent: NanoChatServer
+  id: SyndiChatServer
+  name: SyndiChat routing server
+  description: A routing server for the illegal SyndiChat network.
+  components:
+  - type: NanoChatServer
+    cartridgeWhitelist:
+      tags:
+      - SyndiChatCartridge
+
+- type: entity
+  parent: NanoChatCartridge
+  id: SyndiChatCartridge
+  name: SyndiChat cartridge
+  description: A private messaging app.
+  components:
+  - type: Sprite
+    sprite: Imperial/Objects/Devices/cartridge.rsi
+    state: cart-schat
+  - type: Cartridge
+    programName: syndi-chat-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: syndi_chat
+  - type: NanoChatCartridge
+    paperId: PaperSyndiChatItem
+    stampId: RubberStampSyndiChat
+  - type: Tag
+    tags:
+    - SyndiChatCartridge
+
+- type: entity
+  id: PaperSyndiChatItem
+  parent: PaperNanoChatItem
+  name: SyndiChat chat
+  description: A printed SyndiChat chat.
+  components:
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
+    headerImagePath: "/Textures/Imperial/Interface/Paper/paper_heading_syndichat.png"
+    headerMargin: 0.0, 0.0, 0.0, 6.0
+    backgroundImageTile: true
+    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
+    contentMargin: 12.0, 0.0, 12.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 290.0, 0.0
+
+- type: entity
+  name: SyndiChat rubber stamp
+  parent: [RubberStampBase, BaseCentcommContraband]
+  id: RubberStampSyndiChat
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-syndi-chat
     stampedColor: "#384573"
     stampState: "paper_stamp-lawyer"
   - type: Sprite

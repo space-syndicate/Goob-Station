@@ -1,3 +1,4 @@
+using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
@@ -8,6 +9,18 @@ namespace Content.Shared.Imperial.CartridgeLoader.Cartridges;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class NanoChatServerComponent : Component
 {
+    /// <summary>
+    /// Если установлен, сервер будет принимать подключения только от картриджей подходящих под белый список.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? CartridgeWhitelist;
+
+    /// <summary>
+    /// If set, the cartridge will ignore servers matching this blacklist.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? ServerBlacklist;
+
     /// <summary>
     /// Список пользователей сервера
     /// </summary>
