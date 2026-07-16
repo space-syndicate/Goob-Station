@@ -1,0 +1,192 @@
+<cartridges:NanoChatUiFragment xmlns:cartridges="clr-namespace:Content.Client.Imperial.CartridgeLoader.Cartridges"
+                               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                               xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                               xmlns="https://spacestation14.io"
+                               xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                               Margin="1 0 2 0"
+                               Orientation="Horizontal"
+                               HorizontalExpand="True"
+                               VerticalExpand="True">
+    <PanelContainer
+        Name="MenuPanel"
+        Visible="False"
+        MinWidth="200"
+        VerticalExpand="True"
+        Margin="0,0,5,0">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#222222" />
+        </PanelContainer.PanelOverride>
+
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+            <OptionButton Name="OptionsMenu" ToolTip="{Loc nano-chat-ui-menu-options-tooltip}" Margin="5"
+                          HorizontalExpand="True" />
+
+            <BoxContainer Name="CreateChatContainer" Orientation="Horizontal" Margin="5" HorizontalExpand="True">
+                <LineEdit Name="NewChatNameInput" HorizontalExpand="True" Margin="0"
+                          PlaceHolder="{Loc nano-chat-ui-group-chats-input-create-chat}" />
+                <Button Name="NewChatButton" Text="{Loc nano-chat-ui-group-chats-button-create-chat}" Margin="0"
+                        Disabled="True" ToolTip="{Loc nano-chat-ui-group-chats-button-create-chat-tooltip}">
+                    <Control.StyleClasses>
+                        <system:String>OpenLeft</system:String>
+                    </Control.StyleClasses>
+                </Button>
+            </BoxContainer>
+
+            <BoxContainer Name="SearchContainer" Orientation="Horizontal" Margin="5" HorizontalExpand="True"
+                          Visible="False">
+                <LineEdit Name="SearchInput" HorizontalExpand="True" Margin="0"
+                          PlaceHolder="{Loc nano-chat-ui-contacts-input-search-field}" />
+            </BoxContainer>
+
+            <customControls:HSeparator Margin="0,2,0,5" />
+
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                <BoxContainer
+                    Name="ContactsListContainer"
+                    Orientation="Vertical"
+                    HorizontalExpand="True" />
+            </ScrollContainer>
+        </BoxContainer>
+    </PanelContainer>
+
+    <BoxContainer
+        Orientation="Vertical"
+        HorizontalExpand="True"
+        VerticalExpand="True">
+
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5,0,5,5">
+            <Button
+                Name="MenuButton"
+                Text="{Loc nano-chat-ui-menu-open-button}"
+                ToolTip="{Loc nano-chat-ui-menu-open-button-tooltip}"
+                ToggleMode="True" />
+
+            <Control MinWidth="10" />
+
+            <TextureRect
+                Name="CurrentContactIcon"
+                Visible="False"
+                TextureScale="2,2"
+                VerticalAlignment="Center"
+                Margin="0,0,4,0" />
+
+            <Label
+                Name="CurrentContactLabel"
+                Text="{Loc nano-chat-ui-chat-window-no-chat-selected}"
+                Visible="True"
+                FontColorOverride="#AAAAAA"
+                HorizontalExpand="True"
+                ClipText="True"
+                VerticalAlignment="Center" />
+
+            <LineEdit
+                Name="EditChatNameInput"
+                Visible="False"
+                Text="{Loc nano-chat-ui-chat-window-no-chat-selected}"
+                HorizontalExpand="True"
+                VerticalAlignment="Center" />
+
+            <Button
+                Name="AddMembersButton"
+                Text="{Loc nano-chat-ui-group-chats-button-create-chat}"
+                ToolTip="{Loc nano-chat-ui-chat-window-button-add-to-chat-tooltip}"
+                Visible="False"
+                ToggleMode="True"
+                MinWidth="50"
+                TextAlign="Center">
+                <Control.StyleClasses>
+                    <system:String>OpenRight</system:String>
+                </Control.StyleClasses>
+            </Button>
+            <Button
+                Name="EditChatButton"
+                Text="{Loc nano-chat-ui-group-chats-button-edit-chat}"
+                ToolTip="{Loc nano-chat-ui-group-chats-button-edit-chat-tooltip}"
+                Visible="False"
+                ToggleMode="True"
+                MinWidth="50"
+                TextAlign="Center">
+                <Control.StyleClasses>
+                    <system:String>OpenLeft</system:String>
+                </Control.StyleClasses>
+            </Button>
+        </BoxContainer>
+
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#80808005" />
+            </PanelContainer.PanelOverride>
+
+            <ScrollContainer
+                Name="ChatScroll"
+                HScrollEnabled="False"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+
+                <BoxContainer
+                    Name="MessageContainer"
+                    Orientation="Vertical"
+                    HorizontalExpand="True"
+                    VerticalExpand="True" />
+
+            </ScrollContainer>
+        </PanelContainer>
+
+        <Label
+            Name="TypingIndicatorLabel"
+            Visible="False"
+            Margin="5,0,5,0"
+            FontColorOverride="#AAAAAA"/>
+
+        <BoxContainer Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      SeparationOverride="0"
+                      Margin="5">
+
+            <Button Name="NotificationSwitch"
+                    Text="{Loc news-read-ui-notification-on}"
+                    ToolTip="{Loc nano-chat-ui-chat-window-notification-tooltip}">
+                <Control.StyleClasses>
+                    <system:String>OpenRight</system:String>
+                </Control.StyleClasses>
+            </Button>
+
+            <Button Name="SendLocationButton"
+                    Text="{Loc nano-chat-ui-chat-window-button-send-location}"
+                    ToolTip="{Loc nano-chat-ui-chat-window-button-send-location-tooltip}"
+                    Visible="False"
+                    Disabled="True">
+                <Control.StyleClasses>
+                    <system:String>OpenBoth</system:String>
+                </Control.StyleClasses>
+            </Button>
+
+            <Button Name="PrintChatButton"
+                    Text="{Loc nano-chat-ui-chat-window-button-print}"
+                    ToolTip="{Loc nano-chat-ui-chat-window-button-print-tooltip}"
+                    Disabled="True"
+                    >
+                <Control.StyleClasses>
+                    <system:String>OpenBoth</system:String>
+                </Control.StyleClasses>
+            </Button>
+
+            <LineEdit
+                Name="MessageTextInput"
+                HorizontalExpand="True"
+                Margin="0"
+                PlaceHolder="{Loc nano-chat-ui-chat-window-message-box-text}" />
+
+            <Button Name="SendButton"
+                    Text="{Loc nano-chat-ui-chat-window-button-send}"
+                    ToolTip="{Loc nano-chat-ui-chat-window-button-send-tooltip}"
+                    Margin="0"
+                    Disabled="True">
+                <Control.StyleClasses>
+                    <system:String>OpenLeft</system:String>
+                </Control.StyleClasses>
+            </Button>
+
+        </BoxContainer>
+    </BoxContainer>
+</cartridges:NanoChatUiFragment>
