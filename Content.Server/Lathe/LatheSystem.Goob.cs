@@ -28,6 +28,8 @@ public sealed partial class LatheSystem
             var count = comp.Queue.Count;
             for (int i = 0; i < count + 1; i++)
             {
+                if (comp.CurrentRecipe == null)
+                    break;
                 // Modified FinishProducing method
                 var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
                 if (currentRecipe.Result is { } resultProto)
