@@ -70,9 +70,10 @@ public sealed class ChargerSystem : EntitySystem
                 {
                     if (!_powerCell.TryGetBatteryFromEntityOrSlot(contained, out var battery))
                         continue;
-
-                    var chargePercent = _battery.GetChargeLevel(battery.Value.AsNullable()) * 100;
-                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercent", (int)chargePercent)));
+                    //CorvaxGoob-Edit-start
+                    var chargePercentage = _battery.GetChargeLevel(battery.Value.AsNullable()) * 100;
+                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int)chargePercentage)));
+                    //CorvaxGoob-Edit-end
                 }
             }
         }
