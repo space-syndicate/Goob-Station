@@ -355,9 +355,7 @@
   name: cockroach
   # Imperial Space VentCrawler; Start
   # parent: SimpleMobBase
-  parent:
-  - SimpleMobBase
-  - VentCrawlerPestMixin
+  parent: [ SimpleMobBase, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   id: MobCockroach
   description: This station is just crawling with bugs.
@@ -1484,9 +1482,7 @@
   id: MobMonkey
   # Imperial Space VentCrawler; Start
   # parent: MobBaseAncestor
-  parent:
-  - MobBaseAncestor
-  - VentCrawlerPestMixin
+  parent: [ MobBaseAncestor, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
@@ -1739,11 +1735,8 @@
 
 - type: entity
   name: mouse
-  parent:
-  - SimpleMobBase
-  - BaseMobAnimal
   # Imperial Space VentCrawler; Start
-  - VentCrawlerPestMixin
+  parent: [ SimpleMobBase, BaseMobAnimal, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   id: MobMouse
   description: Squeak!
@@ -2472,9 +2465,7 @@
   name: snake
   # Imperial Space VentCrawler; Start
   # parent: SimpleMobBase
-  parent:
-  - SimpleMobBase
-  - VentCrawlerPestMixin
+  parent: [ SimpleMobBase, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
@@ -2645,9 +2636,7 @@
   name: tarantula
   # Imperial Space VentCrawler; Start
   # parent: MobSpiderBase
-  parent:
-  - MobSpiderBase
-  - VentCrawlerPestMixin
+  parent: [ MobSpiderBase, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.

@@ -1,6 +1,6 @@
 using System.Numerics;
-using Content.Server.Imperial.XxRaay.Components;
-using Content.Server.Imperial.XxRaay.DataDefinitions;
+using Content.Shared.Imperial.XxRaay.Components;
+using Content.Shared.Imperial.XxRaay.DataDefinitions;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Stealth;
@@ -10,7 +10,6 @@ using Content.Shared.CombatMode;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
-using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Events;
 using Content.Shared.Imperial.XxRaay.Systems;
 using Content.Shared.Interaction;
@@ -681,3 +680,4 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
         _audio.PlayPvs(crawler.MoveSound, ent);
     }
 }
+

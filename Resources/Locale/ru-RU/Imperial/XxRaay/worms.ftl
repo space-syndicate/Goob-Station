@@ -1,4 +1,4 @@
-ent-MobWormTier1 = кровавый червь
+﻿ent-MobWormTier1 = кровавый червь
     .desc = Маленький кроваво-красный червяк.
 
 ent-MobWormTier2 = кровавый червь
@@ -79,7 +79,7 @@ ent-ActionWormEvolution = Эволюция
 
 worm-evolution-weaving = Вьёт кокон
 
-worm-evolution-fail-blood = Недостаточно крови для эволюции.
+worm-evolution-fail-blood = Недостаточно крови для эволюции. (Требуется: {$cost})
 worm-evolution-fail-vent = Нельзя эволюционировать, находясь в вентиляции.
 worm-evolution-fail-door = Нельзя эволюционировать, пока вы прячетесь в шлюзе.
 worm-evolution-fail-corpse = Нельзя эволюционировать, пока вы вселены в труп.
@@ -107,7 +107,7 @@ ent-ActionWormReproduction = Размножение
 
 worm-reproduction-weaving = Вьёт кокон
 
-worm-reproduction-fail-blood = Недостаточно крови для размножения.
+worm-reproduction-fail-blood = Недостаточно крови для размножения. (Требуется: {$cost})
 worm-reproduction-fail-vent = Нельзя размножаться, находясь в вентиляции.
 worm-reproduction-fail-door = Нельзя размножаться, пока вы прячетесь в шлюзе.
 worm-reproduction-fail-corpse = Нельзя размножаться, пока вы вселены в труп.
