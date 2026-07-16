@@ -68,6 +68,8 @@ public sealed partial class LatheSystem
                         _puddle.TrySpillAt(uid, toAdd, out _);
                     }
                 }
+                if (comp.Queue.Count == 0)
+                    break;
 
                 // Dequeue recipes on a loop
                 // We do this after the main code since the first recipe is given outside of this method
