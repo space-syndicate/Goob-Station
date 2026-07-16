@@ -1141,7 +1141,6 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
-      - NanoChatCartridge # Imperial NanoChat
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
