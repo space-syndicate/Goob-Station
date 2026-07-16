@@ -1,0 +1,23 @@
+- type: damageModifierSet
+  id: Mobsyndicategorillaset
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5
+  ignoreArmorPierceFlags: All
+
+- type: damageModifierSet
+  id: DiceOfFateMod
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5
+    Cold: 0.5
+    Shock: 0.5
+    Radiation: 0.5
+    Asphyxiation: 0.5
+    Bloodloss: 0.5
+    Cellular: 0.5
+    Caustic: 0.5
