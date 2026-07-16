@@ -16,12 +16,6 @@ public sealed partial class NanoChatServerComponent : Component
     public EntityWhitelist? CartridgeWhitelist;
 
     /// <summary>
-    /// If set, the cartridge will ignore servers matching this blacklist.
-    /// </summary>
-    [DataField]
-    public EntityWhitelist? ServerBlacklist;
-
-    /// <summary>
     /// Список пользователей сервера
     /// </summary>
     [DataField]
