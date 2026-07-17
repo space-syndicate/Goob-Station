@@ -1,8 +1,10 @@
+using Robust.Shared.Serialization;
+using System;
 using Content.Shared.Physics;
 
-namespace Content.Server.Imperial.XxRaay.DataDefinitions;
+namespace Content.Shared.Imperial.XxRaay.DataDefinitions;
 
-[DataDefinition]
+[DataDefinition, NetSerializable, Serializable]
 public sealed partial class ImperialVentCrawlerFixtureState
 {
     [DataField]
@@ -17,3 +19,5 @@ public sealed partial class ImperialVentCrawlerFixtureState
     [DataField]
     public CollisionGroup CollisionMask;
 }
+
+

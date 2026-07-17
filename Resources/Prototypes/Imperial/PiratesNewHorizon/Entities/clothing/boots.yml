@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingShoesBase
+  parent: [ClothingShoesBase, ClothingShoesMilitaryBase]
   id: ClothingShoesCaptainPirateBoots
   name: captain's elite boots
   suffix: Pirate
@@ -13,9 +13,9 @@
     containers:
       item:
       - CombatKnife
-      
+
 - type: entity
-  parent: ClothingShoesBase
+  parent: [ClothingShoesBase, ClothingShoesMilitaryBase]
   id: ClothingShoesPirateBootsHorizon
   name: pirate's trusted boots
   suffix: Pirate

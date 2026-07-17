@@ -125,4 +125,17 @@ public sealed class WormCocoonObserveSystem : SharedWormCocoonObserveSystem
         if (TryComp(cocoon, out EyeComponent? eye))
             _eye.SetTarget(cocoon, null, eye);
     }
+
+    public void ClearTargetFromAllObservers(EntityUid target)
+    {
+        var query = EntityQueryEnumerator<WormCocoonObserverComponent>();
+        while (query.MoveNext(out var cocoon, out var observer))
+        {
+            if (observer.ObservedEntity == target)
+            {
+                ClearObservation(cocoon);
+                ObserveRandomWorm((cocoon, observer), null);
+            }
+        }
+    }
 }

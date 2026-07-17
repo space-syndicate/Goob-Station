@@ -3,6 +3,7 @@
   id: ActionWormBloodDrink
   components:
   - type: Action
+    useDelay: 1
     icon:
       sprite: Imperial/XxRaay/worms/actions.rsi
       state: bite
@@ -16,6 +17,7 @@
   id: ActionWormCorpseEnter
   components:
   - type: Action
+    useDelay: 1
     icon:
       sprite: Imperial/XxRaay/worms/actions.rsi
       state: in
@@ -29,6 +31,7 @@
   id: ActionWormReproduction
   components:
   - type: Action
+    useDelay: 1
     icon:
       sprite: Imperial/XxRaay/worms/actions.rsi
       state: reproduct
@@ -40,6 +43,7 @@
   id: ActionWormEvolution
   components:
   - type: Action
+    useDelay: 1
     icon:
       sprite: Imperial/XxRaay/worms/actions.rsi
       state: evolution
@@ -51,6 +55,7 @@
   id: ActionWormCocoonObserve
   components:
   - type: Action
+    useDelay: 1
     icon:
       sprite: Imperial/XxRaay/worms/actions.rsi
       state: evolution
@@ -62,8 +67,11 @@
   id: ActionWormCorpseExit
   components:
   - type: Action
+    useDelay: 1
     icon:
       sprite: Imperial/XxRaay/worms/actions.rsi
       state: out
   - type: InstantAction
     event: !type:WormCorpseExitActionEvent
+
+

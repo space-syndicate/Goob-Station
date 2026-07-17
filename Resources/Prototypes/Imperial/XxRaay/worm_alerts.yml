@@ -1,6 +1,12 @@
+- type: alertCategory
+  id: WormBlood
+
+- type: alertCategory
+  id: WormCocoon
+
 - type: alert
   id: WormBlood
-  category: Health
+  category: WormBlood
   icons:
   - sprite: Imperial/XxRaay/worms/blood.rsi
     state: "0"
@@ -43,9 +49,10 @@
 
 - type: alert
   id: WormCocoonTimer
-  category: Health
+  category: WormCocoon
   icons:
   - sprite: Imperial/XxRaay/worms/cocoons.rsi
     state: cocoon1
   name: worm-cocoon-timer-name
   description: worm-cocoon-timer-desc
+

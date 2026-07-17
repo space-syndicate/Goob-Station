@@ -53,30 +53,36 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
                 var playerPos = _transform.GetWorldPosition(playerXform);
                 _lookup.GetEntitiesInRange(playerXform.MapID, playerPos, comp.PipeRevealRange, _inRange, flags: TrayScannerSystem.Flags);
 
-                _current.Clear();
+                var newSet = new HashSet<EntityUid>();
                 foreach (var (uid, _) in _inRange)
                 {
-                    _current.Add(uid);
-                    EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
+                    newSet.Add(uid);
+                    if (_current.Add(uid))
+                    {
+                        EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
+                        SetRevealed(uid, true);
+                    }
+                }
+
+                var toRemove = new List<EntityUid>();
+                foreach (var uid in _current)
+                {
+                    if (!newSet.Contains(uid))
+                    {
+                        SetRevealed(uid, false);
+                        RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
+                        toRemove.Add(uid);
+                    }
+                }
+
+                foreach (var uid in toRemove)
+                {
+                    _current.Remove(uid);
                 }
             }
             else
             {
-                _current.Clear();
-            }
-        }
-
-        var revealedQuery = AllEntityQuery<ImperialVentCrawlerRevealedComponent>();
-        while (revealedQuery.MoveNext(out var uid, out _))
-        {
-            if (active && _current.Contains(uid))
-            {
-                SetRevealed(uid, true);
-            }
-            else
-            {
-                SetRevealed(uid, false);
-                RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
+                ClearRevealed();
             }
         }
     }
@@ -102,3 +108,4 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
         _appearance.SetData(uid, SubFloorVisuals.ScannerRevealed, value);
     }
 }
+

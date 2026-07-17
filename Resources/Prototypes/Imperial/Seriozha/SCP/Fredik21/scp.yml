@@ -12891,6 +12891,9 @@
     sprite: Imperial/Seriozha/Fredik21/uplink/all.rsi
     heldPrefix: device
 
+- type: Tag
+  id: MagazinePistolSubMachineGunEpsilon11Tag
+
 - type: entity
   name: SMG NDA
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]

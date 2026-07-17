@@ -1,13 +1,9 @@
-﻿- type: entity
+- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
   # Imperial Space VentCrawler; Start
   # parent: [ BaseMobSlimes, SimpleMobBase, MobCombat ]
-  parent:
-  - BaseMobSlimes
-  - SimpleMobBase
-  - MobCombat
-  - VentCrawlerPestMixin
+  parent: [ BaseMobSlimes, SimpleMobBase, MobCombat, VentCrawlerPestMixin ]
   # Imperial Space VentCrawler; End
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
