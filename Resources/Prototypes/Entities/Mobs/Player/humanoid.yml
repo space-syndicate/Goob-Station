@@ -50,6 +50,9 @@
   id: DeathSquad
   parent: EventHumanoidCentcomm
   components:
+    - type: NpcFactionMember
+      factions:
+      - DeathSquad
     - type: GhostRole
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description

@@ -2,7 +2,7 @@ ent-WeaponTurretCentralCommand = баллистическая турель
     .suffix = ЦК
     .desc = Автоматическая баллистическая турель Центрального Командования.
 
-ent-WeaponEnergyTurretCentralCommandControlPanel = панель управления турелями ЦК
+ent-WeaponEnergyTurretCentralCommandControlPanel = панель управления турелями ЦентКома
     .suffix = ЦК
     .desc = Настенный интерфейс для удаленной настройки турелей Центрального Командования.
 

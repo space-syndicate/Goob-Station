@@ -20,7 +20,18 @@
   - type: ContainerFill
     containers:
       board:
-      - WeaponEnergyTurretCentralCommandMachineCircuitboard
+      - WeaponEnergyTurretCentralCommandControlPanelElectronics
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBase
+  id: WeaponEnergyTurretCentralCommandControlPanelElectronics
+  suffix: CC
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: command
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretCentralCommandControlPanel
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase
