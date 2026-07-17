@@ -343,6 +343,29 @@
       - id: PenCentcomGift
       - id: ReportGoalAchievement
 
+# Ми Лейм
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieMiLeim
+  name: Mi Leim
+  description: Her real name is Ani, but for some reason she doesn't admit it. Mi Leim is also a doctor who will definitely help you... right?
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/MiLeim.rsi
+    state: icon
+
+# Андрей Кушнарёв
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAndreyKushnarev
+  name: Andrey Kushnarev
+  description: Andrey Kushnarev did not arrange the genocide of the hive, being a border guard with the grens of OT
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/AndreyKushnarev.rsi
+    state: icon
+
 ### Имиринка Ирисова
 
 - type: soundCollection
