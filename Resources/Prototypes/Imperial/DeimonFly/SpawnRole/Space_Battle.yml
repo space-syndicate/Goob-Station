@@ -366,6 +366,7 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBigBeltMilitaryCapitanyTDM
     pocket1: EnergySwordDoubleDodgerBlue
+    pocket2: CSWeaponDualBeretta
 
 #Security Syndi Load
 - type: startingGear
@@ -450,6 +451,7 @@
     id: SyndicateCapitanPDA
     belt: ClothingBigBeltMilitaryCapitanyTDM
     pocket1: EnergySwordDoubleTomato
+    pocket2: CSWeaponDualBeretta
 
 
 ##Preset Role

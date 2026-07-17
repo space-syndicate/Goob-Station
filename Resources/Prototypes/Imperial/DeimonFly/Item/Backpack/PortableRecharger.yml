@@ -1,0 +1,5 @@
+- type: entity
+  parent: PortableRechargerCburn
+  id: PortableRechargerBaseTurbo
+  name: переносной продвинутый зарядник
+  description: Высокотехнологичное зарядное устройство, адаптированное для военных операций.

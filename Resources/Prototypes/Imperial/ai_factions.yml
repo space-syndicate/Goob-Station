@@ -6,3 +6,39 @@
   - Zombie
   - Dragon
   - AllHostile
+
+- type: npcFaction
+  id: CentralCommand
+  friendly:
+  - ImperialERT
+  - RiotControlUnit
+  - PetsNT
+  hostile:
+  - NanoTrasen
+  - SyndicateAgent # ЦК-турели должны атаковать внедренных агентов без мета-исключений(принимаеться за NanoTrasen).
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
+
+- type: npcFaction
+  id: ImperialERT
+  friendly:
+  - CentralCommand
+  - NanoTrasen
+  - RiotControlUnit
+  - PetsNT
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg

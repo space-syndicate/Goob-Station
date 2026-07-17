@@ -4,9 +4,10 @@
   parent: BaseBorgChassis
   abstract: true
   components:
+  # Имперский ОБР использует отдельную NPC-фракцию в общей системе отношений ЦентКома и ОБР.
   - type: NpcFactionMember
     factions:
-    - NanoTrasen
+    - ImperialERT
   - type: Access
     groups:
     - AllAccess

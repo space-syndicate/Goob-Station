@@ -33,6 +33,11 @@ ertcall-junitor-eva-name = Уборщик ОБР
 ertcall-junitor-eva-desc = Уборщик отряда быстрого реагирования.
 ertcall-junitor-eva-rules = Ваша задача в кратчайшие сроки приводить станцию в порядок. Ваши главные враги грязь, трупы и сорняки, вырвавшиеся из отдела гидропоники. Вы подчиняетесь лидеру ОБР.
 
+ent-RandomHumanoidSpawnerImperialERTChaplain = священник ОБР
+    .desc = Создает гост роль священника ОБР со случайной внешностью.
+ent-RandomHumanoidSpawnerImperialERTChaplainEVA = священник ОБР
+    .desc = Создает священника ОБР со случайной внешностью.
+
 ent-SpawnCBURNSecurityEVAPreset = спавн РХБЗЗ
     .desc = Спавн поинт РХБЗЗ
     .suffix = ERTCALL

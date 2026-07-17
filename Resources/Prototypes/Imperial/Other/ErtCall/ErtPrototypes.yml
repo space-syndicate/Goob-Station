@@ -21,6 +21,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-leader-eva-name
@@ -51,6 +54,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-medic-eva-name
@@ -80,6 +86,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-security-eva-name
@@ -109,6 +118,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-engineer-eva-name
@@ -138,6 +150,9 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-junitor-eva-name
@@ -273,6 +288,8 @@
   id: DeathSquad
   hostile:
   - NanoTrasen
+  - CentralCommand
+  - ImperialERT
   - RiotControlUnit
   - Syndicate
   - Passive
@@ -284,5 +301,47 @@
   - SyndicateAgent
   - Wizard # Обновление фракци ЭС
 #DEAD SQUAD END
+
+#HOLY SQUAD START
+#Basic spawner
+- type: entity
+  id: RandomHumanoidSpawnerImperialERTChaplain
+  parent: RandomHumanoidSpawnerERTChaplain
+  name: ERT chaplain
+  suffix: Imperial, Basic
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ImperialERTChaplain
+
+#Basic preset
+- type: randomHumanoidSettings
+  id: ImperialERTChaplain
+  parent: ERTChaplain
+  components:
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+
+#EVA spawner
+- type: entity
+  id: RandomHumanoidSpawnerImperialERTChaplainEVA
+  parent: RandomHumanoidSpawnerERTChaplainEVA
+  name: ERT chaplain
+  suffix: Imperial, EVA
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ImperialERTChaplainEVA
+
+#EVA preset
+- type: randomHumanoidSettings
+  id: ImperialERTChaplainEVA
+  parent: ERTChaplainEVA
+  components:
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
+    - type: GhostTakeoverAvailable # Для корректной работы ТТС
+#HOLY SQUAD END
 
 

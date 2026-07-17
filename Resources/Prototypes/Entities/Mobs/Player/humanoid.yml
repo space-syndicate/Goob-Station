@@ -593,6 +593,9 @@
   id: CentcomOfficial
   parent: EventHumanoidCentcomm
   components:
+    - type: NpcFactionMember
+      factions:
+      - CentralCommand
     - type: GhostRole
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description

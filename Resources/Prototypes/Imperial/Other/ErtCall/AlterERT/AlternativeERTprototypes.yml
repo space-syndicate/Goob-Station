@@ -18,6 +18,9 @@
       prototypes: [ ERTCallLeaderGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-leader-eva-name-alternative
@@ -45,6 +48,9 @@
       prototypes: [ ERTCallMedicalGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-medic-eva-name-alternative
@@ -71,6 +77,9 @@
       prototypes: [ ERTCallSecurityGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-security-eva-name-alternative
@@ -97,6 +106,9 @@
       prototypes: [ ERTCallEngineerGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-engineer-eva-name-alternative
@@ -123,6 +135,9 @@
       prototypes: [ ERTCallJanitorGearEVAAlternative ]
     - type: RandomHumanoidAppearance
       randomizeName: false
+    - type: NpcFactionMember
+      factions:
+      - ImperialERT
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-junitor-eva-name-alternative

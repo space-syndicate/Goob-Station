@@ -1,0 +1,67 @@
+# Добавьте этот прототип в parent сущности с EntityStorage,
+# чтобы заполнить её случайными плюшевыми персонажами без повторений.
+- type: entity
+  id: BaseUniqueRandomCommunityPlushieFill
+  abstract: true
+  components:
+  - type: UniqueRandomPlushieFill
+    # Максимальное количество игрушек. Стандартный ящик вмещает 30 сущностей.
+    amount: 25
+    # Редкие Gift-версии. Обычная и Gift-версия считаются одним персонажем.
+    rarePrototypes:
+      - PlushieCPGift
+      - PlushieBartenderGift
+      - PlushieChemistGift
+      - PlushieSOGift
+      - PlushieIAAGift
+      - PlushieYeseniaGift
+      - PlushieBMGift
+    rareChance: 0.15
+    # Основной пул. Добавлять и удалять обычных персонажей следует здесь.
+    prototypes:
+      - PlushiePassenger
+      - PlushieCapitan
+      - PlushieChemist
+      - PlushieCP
+      - PlushieEngineer
+      - PlushieGSB
+      - PlushieParamedic
+      - PlushiePCC
+      - PlushieScientist
+      - PlushieSurgeon
+      - PlushieBartender
+      - PlushieSO
+      - PlushieBarmem
+      - PlushieCoroner
+      - PlushieIAA
+      - PlushieAdri
+      - PlushieTaylor
+      - PlushieMichael
+      - PlushieSylvester
+      - PlushieBorg
+      - PlushieErika
+      - PlushieAiden
+      - PlushieCrookie
+      - PlushieKarner
+      - PlushieVenya
+      - PlushieAid
+      - PlushieZevs
+      - PlushieCadet
+      - PlushieJohnson
+      - PlushieSanabi
+      - PlushieMoishaElkin
+      - KolontarevGennadyPetrov
+      - KolontarevKeikoMillet
+      - KolontarevEvgenyFedotov
+      - KolontarevStefanKolontarev
+      - KolontarevSashaProbkin
+      - KolontarevAnnaYusupova
+      # Плюшевые персонажи ЦентКома.
+      - PlushieYesenia
+      - PlushieBM
+      - PlushieCSCC
+      - PlushieClaud
+      - PlushieRachelNorthwell
+    # При значении 1 каждая из amount попыток гарантированно создаёт обычную
+    # игрушку, если на этой попытке не была выбрана редкая.
+    chance: 1
