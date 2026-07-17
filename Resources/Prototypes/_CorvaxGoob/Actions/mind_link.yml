@@ -1,0 +1,29 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionMindLink
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    checkCanInteract: false
+    icon:
+      sprite: _Goobstation/Changeling/changeling_abilities.rsi
+      state: hivemind_access
+  - type: InstantAction
+    event: !type:OpenMindLinkEvent
+      twoWayCommunication: true
+      range: 20
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionMindLinkReply
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    checkCanInteract: false
+    icon:
+      sprite: _Goobstation/Changeling/changeling_abilities.rsi
+      state: hivemind_access
+  - type: InstantAction
+    event: !type:ReplyMindLinkEvent
