@@ -456,9 +456,58 @@
 
 ##Preset Role
 
-#Security NT
 - type: entity
   parent: MobHuman
+  id: BaseSpaceBattleTDMPreset
+  abstract: true
+  components:
+  - type: CrewSkills
+    skills:
+    - skillBotany
+    - skillBaseMed
+    - skillBaseConstraction
+    - skillCooking
+    - skillBartending
+    - skillHacking
+    - skillInstrumentation
+    - skillMaintenance
+    - skillMediumConstruction
+    - skillMediumBotany
+    - skillBasicAtmos
+    - skillMedicalEquipment
+    - skillPharmacology
+    - skillPiloting
+    - skillAtmos
+    - skillHardInstrumentation
+    - skillRobotics
+    - skillResearch
+    - skillPharmaceuticals
+    - skillShooting
+    - skillSurgery
+    - skillNeuroSurgery
+
+- type: entity
+  parent: BaseSpaceBattleTDMPreset
+  id: BaseSpaceBattleERTTDMPreset
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+    - CentralCommand
+
+- type: entity
+  parent: BaseSpaceBattleTDMPreset
+  id: BaseSpaceBattleSyndicateTDMPreset
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+#Security NT
+- type: entity
+  parent: BaseSpaceBattleERTTDMPreset
   id: ERTStormtrooperTDMPreset
   name: ERT Stormtrooper
   components:
@@ -486,7 +535,7 @@
 
 #Medic NT
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleERTTDMPreset
   id: ERTMedicTDMPreset
   name: ERT medic
   suffix: EVA
@@ -515,7 +564,7 @@
 
 #Engineer NT
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleERTTDMPreset
   id: ERTEngineerTDMPreset
   name: ERT engineer
   suffix: EVA
@@ -544,7 +593,7 @@
 
 #Pilot NT
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleERTTDMPreset
   id: ERTPilotTDMPreset
   name: ERT pilot
   suffix: EVA
@@ -573,7 +622,7 @@
 
 #Leader NT
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleERTTDMPreset
   id: ERTCapitanTDMPreset
   name: ERT leader
   suffix: EVA
@@ -603,7 +652,7 @@
 
 # Security Syndicate
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleSyndicateTDMPreset
   id: SyndiStormtrooperTDMPreset
   name: Syndicate stormtrooper
   components:
@@ -626,7 +675,7 @@
 
 # Medic Syndicate
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleSyndicateTDMPreset
   id: SyndiMedicTDMPreset
   name: Syndicate medic
   components:
@@ -649,7 +698,7 @@
 
 # Engineer Syndicate
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleSyndicateTDMPreset
   id: SyndiEngineerTDMPreset
   name: Syndicate engineer
   components:
@@ -672,7 +721,7 @@
 
 # Pilot Syndicate
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleSyndicateTDMPreset
   id: SyndiPilotTDMPreset
   name: Syndicate pilot
   components:
@@ -695,7 +744,7 @@
 
 # Leader Syndicate
 - type: entity
-  parent: MobHuman
+  parent: BaseSpaceBattleSyndicateTDMPreset
   id: SyndiCaptainTDMPreset
   name: Syndicate captain
   components:

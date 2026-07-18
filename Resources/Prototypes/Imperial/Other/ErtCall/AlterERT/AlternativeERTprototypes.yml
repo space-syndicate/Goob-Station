@@ -20,7 +20,8 @@
       randomizeName: false
     - type: NpcFactionMember
       factions:
-      - ImperialERT
+      - NanoTrasen
+      - CentralCommand
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-leader-eva-name-alternative
@@ -50,7 +51,8 @@
       randomizeName: false
     - type: NpcFactionMember
       factions:
-      - ImperialERT
+      - NanoTrasen
+      - CentralCommand
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-medic-eva-name-alternative
@@ -79,7 +81,8 @@
       randomizeName: false
     - type: NpcFactionMember
       factions:
-      - ImperialERT
+      - NanoTrasen
+      - CentralCommand
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-security-eva-name-alternative
@@ -108,7 +111,8 @@
       randomizeName: false
     - type: NpcFactionMember
       factions:
-      - ImperialERT
+      - NanoTrasen
+      - CentralCommand
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-engineer-eva-name-alternative
@@ -137,7 +141,8 @@
       randomizeName: false
     - type: NpcFactionMember
       factions:
-      - ImperialERT
+      - NanoTrasen
+      - CentralCommand
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
     - type: GhostRole
       name: ertcall-junitor-eva-name-alternative

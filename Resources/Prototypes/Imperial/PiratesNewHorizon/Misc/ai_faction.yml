@@ -2,6 +2,7 @@
   id: Pirate
   hostile:
   - NanoTrasen
+  - CentralCommand # Imperial Space Central Command faction Fix
   - Zombie
   - SimpleHostile
   - Dragon
