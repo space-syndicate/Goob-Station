@@ -134,9 +134,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 - type: entity
   parent: MobHuman
@@ -153,9 +151,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 - type: entity
   parent: MobHuman
@@ -172,9 +168,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 - type: entity
   parent: MobHuman
@@ -191,9 +185,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 # T side
 - type: entity
@@ -211,9 +203,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 - type: entity
   parent: MobHuman
@@ -230,9 +220,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 - type: entity
   parent: MobHuman
@@ -249,9 +237,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 - type: entity
   parent: MobHuman
@@ -268,9 +254,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-       - skillBaseMed
-       - skillShooting
+      skills: [BaseMed, Shooting]
 
 # Spawn
 # CT side

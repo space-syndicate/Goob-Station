@@ -157,11 +157,6 @@ namespace Content.Shared.Roles
         [DataField]
         public bool SponsorsOnly { get; set; } = false; //Imperial sponsors
 
-        [DataField]
-        public List<string> Skills = new(); //Imperial crew skills
-
-        [DataField]
-        public int RoundStartSkillPoints = 12; //Imperial crew skills
     }
 
     /// <summary>

@@ -304,7 +304,6 @@
   - SimpleHostile
   - SyndicateAgent
   - Wizard # Обновление фракци ЭС
-  - CentralCommand # Обновление фракци ЭС
 #DEAD SQUAD END
 
 #HOLY SQUAD START
@@ -351,4 +350,9 @@
     - type: GhostTakeoverAvailable # Для корректной работы ТТС
 #HOLY SQUAD END
 
-
+- type: entity
+  abstract: true
+  id: ERTSkillsComponent
+  components:
+    - type: CrewSkills
+      groups: [All]

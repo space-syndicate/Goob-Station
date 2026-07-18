@@ -462,29 +462,7 @@
   abstract: true
   components:
   - type: CrewSkills
-    skills:
-    - skillBotany
-    - skillBaseMed
-    - skillBaseConstraction
-    - skillCooking
-    - skillBartending
-    - skillHacking
-    - skillInstrumentation
-    - skillMaintenance
-    - skillMediumConstruction
-    - skillMediumBotany
-    - skillBasicAtmos
-    - skillMedicalEquipment
-    - skillPharmacology
-    - skillPiloting
-    - skillAtmos
-    - skillHardInstrumentation
-    - skillRobotics
-    - skillResearch
-    - skillPharmaceuticals
-    - skillShooting
-    - skillSurgery
-    - skillNeuroSurgery
+    groups: [All]
 
 - type: entity
   parent: BaseSpaceBattleTDMPreset

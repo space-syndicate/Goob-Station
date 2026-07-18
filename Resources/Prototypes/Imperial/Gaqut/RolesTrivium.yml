@@ -27,16 +27,15 @@
     randomizeName: false
   - type: CrewSkills
     skills:
-      - skillBotany
-      - skillBaseMed
-      - skillBaseConstraction
-      - skillHacking
-      - skillInstrumentation
-      - skillMaintenance
-      - skillMedicalEquipment
-      - skillPharmacology
-      - skillShooting
-      - skillSurgery
+    - Botany
+    - BaseMed
+    - BaseConstruction
+    - Hacking
+    - Instrumentation
+    - Maintenance
+    - MedicalEquipment
+    - Pharmacology
+    - Shooting
 
 - type: entity
   parent: TriviumCMDUSSP

@@ -34,30 +34,8 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillCooking
-    #     - skillBartending
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMediumConstruction
-    #     - skillMediumBotany
-    #     - skillBasicAtmos
-    #     - skillMedicalEquipment
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillAtmos
-    #     - skillHardInstrumentation
-    #     - skillRobotics
-    #     - skillResearch
-    #     - skillPharmaceuticals
-    #     - skillShooting
-    #     - skillSurgery
-    #     - skillNeuroSurgery
+    - type: CrewSkills
+      groups: [All]
 
 - type: entity
   #noSpawn: true

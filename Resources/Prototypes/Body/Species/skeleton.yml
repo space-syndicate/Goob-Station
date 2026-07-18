@@ -74,6 +74,8 @@
   id: MobSkeletonPerson
   name: Urist McBones
   components:
+  - type: CrewSkills
+    groups: [Base]
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: Skeleton

@@ -6,6 +6,8 @@
   name: ERT leader
   suffix: EVA, Alter
   components:
+    - type: CrewSkills
+      groups: [All]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -38,6 +40,8 @@
   name: ERT medic
   suffix: EVA, Alter
   components:
+    - type: CrewSkills
+      groups: [All]
     - type: RandomMetadata
       nameSegments:
         - NamesLast
@@ -68,6 +72,8 @@
   name: ERT security
   suffix: EVA, Alter
   components:
+    - type: CrewSkills
+      groups: [All]
     - type: RandomMetadata
       nameSegments:
         - NamesLast
@@ -98,6 +104,8 @@
   name: ERT engineer
   suffix: EVA, Alter
   components:
+    - type: CrewSkills
+      groups: [All]
     - type: RandomMetadata
       nameSegments:
         - NamesLast
@@ -128,6 +136,8 @@
   name: ERT janitor
   suffix: EVA, Alter
   components:
+    - type: CrewSkills
+      groups: [All]
     - type: RandomMetadata
       nameSegments:
         - NamesLast

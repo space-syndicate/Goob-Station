@@ -19,29 +19,7 @@
       factions:
       - NanoTrasen
     - type: CrewSkills
-      skills:
-        - skillBotany #base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -61,29 +39,7 @@
       factions:
       - NanoTrasen
     - type: CrewSkills
-      skills:
-        - skillBotany #base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -103,29 +59,7 @@
       factions:
       - NanoTrasen
     - type: CrewSkills
-      skills:
-        - skillBotany #base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
+      groups: [All]
 
 #######################################################################################
 #######################################################################################

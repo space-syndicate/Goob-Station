@@ -1,0 +1,266 @@
+# СЛУЖБА БЕЗОПАСНОСТИ
+- type: skillGroup
+  id: SecurityHigh
+  name: skill-group-security-high
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Piloting
+  - Shooting
+
+- type: skillGroup
+  id: SecurityStandard
+  name: skill-group-security-standard
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Shooting
+
+- type: skillGroup
+  id: Brigmed
+  name: skill-group-brigmed
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Shooting
+  - Pharmacology
+  - MedicalEquipment
+
+# МЕДИЦИНСКИЙ ОТДЕЛ
+- type: skillGroup
+  id: MedicalHigh
+  name: skill-group-medical-high
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Pharmaceuticals
+  - MedicalEquipment
+  - Pharmacology
+
+- type: skillGroup
+  id: MedicalStandard
+  name: skill-group-medical-standard
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Pharmacology
+  - MedicalEquipment
+
+- type: skillGroup
+  id: Chemist
+  name: skill-group-chemist
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Pharmaceuticals
+  - Pharmacology
+  - MedicalEquipment
+
+- type: skillGroup
+  id: Paramedic
+  name: skill-group-paramedic
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Pharmacology
+  - MedicalEquipment
+
+- type: skillGroup
+  id: Psychologist
+  name: skill-group-psychologist
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Pharmacology
+
+# НАУЧНЫЙ ОТДЕЛ
+- type: skillGroup
+  id: ScienceHigh
+  name: skill-group-science-high
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Robotics
+  - Research
+  - Pharmaceuticals
+  - Instrumentation
+  - Pharmacology
+  - BaseMediumConstruction
+  - MedicalEquipment
+  - BasicAtmos
+  - Hacking
+
+- type: skillGroup
+  id: ScienceAssistant
+  name: skill-group-science-assistant
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Research
+  - Pharmaceuticals
+  - Instrumentation
+  - Pharmacology
+  - MedicalEquipment
+  - BaseMediumConstruction
+  - Hacking
+
+# ИНЖЕНЕРНЫЙ ОТДЕЛ
+- type: skillGroup
+  id: EngineeringHigh
+  name: skill-group-engineering-high
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Piloting
+  - BasicAtmos
+  - Instrumentation
+  - Maintenance
+  - BaseMediumConstruction
+  - Hacking
+
+- type: skillGroup
+  id: EngineeringStandard
+  name: skill-group-engineering-standard
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Piloting
+  - Maintenance
+  - BaseMediumConstruction
+  - Instrumentation
+  - BasicAtmos
+  - Hacking
+
+- type: skillGroup
+  id: EngineeringAssistant
+  name: skill-group-engineering-assistant
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Maintenance
+  - BaseMediumConstruction
+  - Instrumentation
+  - Hacking
+
+# СНАБЖЕНИЕ
+- type: skillGroup
+  id: CargoStandard
+  name: skill-group-cargo
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Piloting
+
+- type: skillGroup
+  id: Salvage
+  name: skill-group-salvage
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Piloting
+  - Shooting
+  - BaseMediumConstruction
+  - Instrumentation
+  - Hacking
+
+# СЕРВИС
+- type: skillGroup
+  id: Botanist
+  name: skill-group-botanist
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - MediumBotany
+
+- type: skillGroup
+  id: Chef
+  name: skill-group-chef
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Cooking
+
+- type: skillGroup
+  id: Bartender
+  name: skill-group-bartender
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Shooting
+  - Bartending
+
+- type: skillGroup
+  id: HoP
+  name: skill-group-hop
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Cooking
+  - Bartending
+
+# ЧАСТНЫЕ СЛУЧАИ
+- type: skillGroup
+  id: Captain
+  name: skill-group-captain
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Shooting
+  - Piloting
+  - Pharmaceuticals
+  - BasicAtmos
+  - MedicalEquipment
+  - Maintenance
+  - BaseMediumConstruction
+  - Pharmacology
+  - Hacking
+
+- type: skillGroup
+  id: BlueShield
+  name: skill-group-blue-shield
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Shooting
+  - Piloting
+  - Pharmacology
+  - MedicalEquipment
+
+- type: skillGroup
+  id: CentComRep
+  name: skill-group-cc-rep
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Shooting
+  - Piloting
+
+- type: skillGroup
+  id: Civilian
+  name: skill-group-civilian
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
