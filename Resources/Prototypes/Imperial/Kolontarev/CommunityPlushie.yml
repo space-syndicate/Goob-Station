@@ -1,0 +1,197 @@
+###############################################################################
+### localizedDataset
+
+- type: localizedDataset
+  id: KolontarevStefanKolontarevWords
+  values:
+    prefix: plushie-StefanKolontarev-
+    count: 9
+- type: localizedDataset
+  id: KolontarevAnnaYusupovaWords
+  values:
+    prefix: plushie-AnnaYusupova-
+    count: 8
+- type: localizedDataset
+  id: KolontarevGennadyPetrovWords
+  values:
+    prefix: plushie-KolontarevGennadyPetrov-
+    count: 4
+- type: localizedDataset
+  id: KolontarevEvgenyFedotovWords
+  values:
+    prefix: plushie-KolontarevEvgenyFedotov-
+    count: 5
+- type: localizedDataset
+  id: KolontarevKeikoMilletWords
+  values:
+    prefix: plushie-KolontarevKeikoMillet-
+    count: 6
+- type: localizedDataset
+  id: KolontarevSashaProbkinWords
+  values:
+    prefix: plushie-KolontarevSashaProbkin-
+    count: 4
+    
+###############################################################################
+### Custom Item
+
+- type: entity
+  id: KolontarevChemistryBottleChlorine
+  categories: [ HideSpawnMenu ]
+  suffix: Kolontarev
+  name: bottle
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Chlorine
+          Quantity: 15
+        - ReagentId: Fluorine
+          Quantity: 15 
+
+- type: entity
+  id: KolontarevChemistryBottleFluorine
+  categories: [ HideSpawnMenu ]
+  suffix: Kolontarev
+  name: bottle
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Fluorine
+          Quantity: 30
+          
+###############################################################################
+### Plushe
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: BasePlushieKolontarev
+  categories: [ HideSpawnMenu ]
+  name: BasePlushieCharacter
+  suffix: Kolontarev, COMMUNITY, TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/IAA.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,0,1
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UseDelay
+    delay: 6
+  - type: MeleeWeapon 
+    attackRate: 1 # <--- нормальный атакрейт 
+  - type: StaticPrice
+    price: 0
+  
+
+- type: entity
+  parent: BasePlushieKolontarev
+  id: KolontarevSashaProbkin
+  name: Sasha Probkin
+  description: Mighty, beautiful, terrifying, passionate, amazing, all-conquering, tireless, determined, charming, mysterious, sensual, fearless, invincible, divine, confident, incomparable, talented, attentive, champion-like, professional, unwavering, charismatic, wise, inventive, warlike, majestic, mysterious.
+  suffix: Kolontarev, COMMUNITY, TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Kolontarev/probkin.rsi
+    state: icon
+  - type: StorageFill
+    contents: 
+    - id: FoodSnackCookieFortune # печенко 
+  - type: SpeakOnTrigger
+    pack: KolontarevSashaProbkinWords
+    
+- type: entity
+  parent: BasePlushieKolontarev
+  id: KolontarevAnnaYusupova
+  name: Anna Yusupova
+  description: "Meet: the very same Chief Physician who knows all your dark little thoughts even before you've realized them yourself. Works without days off, because only she knows that you're pretending to be healthy again."
+  suffix: Kolontarev, COMMUNITY, TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Kolontarev/anna.rsi
+    state: icon
+  - type: StorageFill
+    contents: 
+    - id: Brutepack #10 наборов от ушибов
+  - type: SpeakOnTrigger
+    pack: KolontarevAnnaYusupovaWords
+
+- type: entity
+  parent: BasePlushieKolontarev
+  id: KolontarevStefanKolontarev #Стефан
+  name: Stefan Kolontarev 
+  description: "I'll weld it, . . maybe."
+  suffix: Kolontarev, COMMUNITY, TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Kolontarev/stefan.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+    - id: KolontarevChemistryBottleFluorine
+    - id: KolontarevChemistryBottleChlorine
+  - type: SpeakOnTrigger
+    pack: KolontarevStefanKolontarevWords
+
+- type: entity
+  parent: BasePlushieKolontarev
+  id: KolontarevEvgenyFedotov
+  name: Evgeny Fedotov
+  description: The unlucky officer who is always on guard at the station
+  suffix: Kolontarev, COMMUNITY, TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Kolontarev/fedotov.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+    - id: Handcuffs #наручи
+  - type: SpeakOnTrigger
+    pack: KolontarevEvgenyFedotovWords
+        
+- type: entity
+  parent: BasePlushieKolontarev
+  id: KolontarevGennadyPetrov
+  name: Gennady Petrov  
+  description: Senior officer who likes to go on about Corporate Law
+  suffix: Kolontarev, COMMUNITY, TOY 
+  components:
+  - type: Sprite
+    sprite: Imperial/Kolontarev/gennady.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+    - id: BookSecurity 
+  - type: SpeakOnTrigger
+    pack: KolontarevGennadyPetrovWords
+
+- type: entity
+  parent: BasePlushieKolontarev
+  id: KolontarevKeikoMillet
+  name: Keiko Millet
+  description: Me?!!!! A tsundere?!! N-N-NO?! THAT'S IMPOSSIBLE!! HMPH?!!!~ *blushes heavily* W-W-WHAT NOW?!!!! I-I-I-I'M BLUSHING?!!!!! N-NO! I'M NOT BLUSHING, IT'S JUST TOO HOT IN THIS ROOM!! HMPH!!~ Ah
+  suffix: Kolontarev, COMMUNITY, TOY 
+  components:
+  - type: Sprite
+    sprite: Imperial/Kolontarev/keiko.rsi
+    state: icon 
+  - type: SpeakOnTrigger
+    pack: KolontarevKeikoMilletWords 
+# у кейко нету ничего внутри по просьбе

@@ -6,6 +6,8 @@
   parent: MobHuman
   id: GreenSpaceNinja
   components:
+  - type: CrewSkills
+    groups: [All]
   - type: RandomMetadata
     nameSegments:
     - NamesNinjaTitle

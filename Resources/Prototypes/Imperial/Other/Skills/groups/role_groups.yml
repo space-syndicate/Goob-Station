@@ -1,0 +1,243 @@
+# Командование
+- type: skillJobSpawn
+  id: Captain
+  assignedJob: Captain
+  mindGroups: [Captain]
+
+- type: skillJobSpawn
+  id: HeadOfPersonnel
+  assignedJob: HeadOfPersonnel
+  mindGroups: [HoP]
+
+- type: skillJobSpawn
+  id: ChiefEngineer
+  assignedJob: ChiefEngineer
+  mindGroups: [EngineeringHigh]
+
+- type: skillJobSpawn
+  id: ChiefMedicalOfficer
+  assignedJob: ChiefMedicalOfficer
+  mindGroups: [MedicalHigh]
+
+- type: skillJobSpawn
+  id: ResearchDirector
+  assignedJob: ResearchDirector
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: HeadOfSecurity
+  assignedJob: HeadOfSecurity
+  mindGroups: [SecurityHigh]
+
+# Служба Безопасности
+- type: skillJobSpawn
+  id: SeniorOfficer
+  assignedJob: SeniorOfficer
+  mindGroups: [SecurityHigh]
+
+- type: skillJobSpawn
+  id: Warden
+  assignedJob: Warden
+  mindGroups: [SecurityHigh]
+
+- type: skillJobSpawn
+  id: Detective
+  assignedJob: Detective
+  mindGroups: [SecurityStandard]
+
+- type: skillJobSpawn
+  id: SecurityOfficer
+  assignedJob: SecurityOfficer
+  mindGroups: [SecurityStandard]
+
+- type: skillJobSpawn
+  id: SecurityCadet
+  assignedJob: SecurityCadet
+  mindGroups: [SecurityStandard]
+
+- type: skillJobSpawn
+  id: Brigmedic
+  assignedJob: Brigmedic
+  mindGroups: [Brigmed]
+
+# Медицинский отдел
+- type: skillJobSpawn
+  id: SeniorPhysician
+  assignedJob: SeniorPhysician
+  mindGroups: [MedicalStandard]
+
+- type: skillJobSpawn
+  id: Surgeon
+  assignedJob: Surgeon
+  mindGroups: [MedicalStandard]
+
+- type: skillJobSpawn
+  id: MedicalDoctor
+  assignedJob: MedicalDoctor
+  mindGroups: [MedicalStandard]
+
+- type: skillJobSpawn
+  id: Coroner
+  assignedJob: Coroner
+  mindGroups: [MedicalStandard]
+
+- type: skillJobSpawn
+  id: Chemist
+  assignedJob: Chemist
+  mindGroups: [Chemist]
+
+- type: skillJobSpawn
+  id: Paramedic
+  assignedJob: Paramedic
+  mindGroups: [Paramedic]
+
+- type: skillJobSpawn
+  id: MedicalIntern
+  assignedJob: MedicalIntern
+  mindGroups: [Paramedic]
+
+- type: skillJobSpawn
+  id: Psychologist
+  assignedJob: Psychologist
+  mindGroups: [Psychologist]
+
+# Научный отдел
+- type: skillJobSpawn
+  id: SeniorResearcher
+  assignedJob: SeniorResearcher
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: Robotech
+  assignedJob: Robotech
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: Scientist
+  assignedJob: Scientist
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: RFI
+  assignedJob: RFI
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: ResearchAssistant
+  assignedJob: ResearchAssistant
+  mindGroups: [ScienceAssistant]
+
+# Инженерный отдел
+- type: skillJobSpawn
+  id: SeniorEngineer
+  assignedJob: SeniorEngineer
+  mindGroups: [EngineeringHigh]
+
+- type: skillJobSpawn
+  id: AtmosphericTechnician
+  assignedJob: AtmosphericTechnician
+  mindGroups: [EngineeringHigh]
+
+- type: skillJobSpawn
+  id: StationEngineer
+  assignedJob: StationEngineer
+  mindGroups: [EngineeringStandard]
+
+- type: skillJobSpawn
+  id: TechnicalAssistant
+  assignedJob: TechnicalAssistant
+  mindGroups: [EngineeringAssistant]
+
+# Снабжение
+- type: skillJobSpawn
+  id: Quartermaster
+  assignedJob: Quartermaster
+  mindGroups: [CargoStandard]
+
+- type: skillJobSpawn
+  id: CargoTechnician
+  assignedJob: CargoTechnician
+  mindGroups: [CargoStandard]
+
+- type: skillJobSpawn
+  id: SalvageSpecialist
+  assignedJob: SalvageSpecialist
+  mindGroups: [Salvage]
+
+# Сервис
+- type: skillJobSpawn
+  id: Bartender
+  assignedJob: Bartender
+  mindGroups: [Bartender]
+
+- type: skillJobSpawn
+  id: Botanist
+  assignedJob: Botanist
+  mindGroups: [Botanist]
+
+- type: skillJobSpawn
+  id: Chef
+  assignedJob: Chef
+  mindGroups: [Chef]
+
+# Специальные роли
+- type: skillJobSpawn
+  id: BlueShieldOfficer
+  assignedJob: BlueShieldOfficer
+  mindGroups: [BlueShield]
+
+- type: skillJobSpawn
+  id: Adjutant
+  assignedJob: Adjutant
+  mindGroups: [CentComRep]
+
+# Гражданские и прочие (Базовые навыки)
+- type: skillJobSpawn
+  id: Passenger
+  assignedJob: Passenger
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Chaplain
+  assignedJob: Chaplain
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Clown
+  assignedJob: Clown
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Janitor
+  assignedJob: Janitor
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Lawyer
+  assignedJob: Lawyer
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Librarian
+  assignedJob: Librarian
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Mime
+  assignedJob: Mime
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Musician
+  assignedJob: Musician
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: ServiceWorker
+  assignedJob: ServiceWorker
+  mindGroups: [Civilian]
+
+- type: skillJobSpawn
+  id: Reporter
+  assignedJob: Reporter
+  mindGroups: [Civilian]

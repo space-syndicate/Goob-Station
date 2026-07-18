@@ -285,4 +285,9 @@
   - Wizard # Обновление фракци ЭС
 #DEAD SQUAD END
 
-
+- type: entity
+  abstract: true
+  id: ERTSkillsComponent
+  components:
+    - type: CrewSkills
+      groups: [All]

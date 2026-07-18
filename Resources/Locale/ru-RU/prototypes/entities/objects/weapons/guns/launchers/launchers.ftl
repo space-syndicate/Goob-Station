@@ -32,3 +32,5 @@ ent-WeaponGrapplingGun = крюк-пушка
     .desc = { ent-BaseItem.desc }
 ent-WeaponLauncherHydra = Hydra
     .desc = ПЛУП... ФССССС
+ent-WeaponTileGun = плиточная пушка
+    .desc = Странная пушка, стреляющая плиткой. Положи их на пол!

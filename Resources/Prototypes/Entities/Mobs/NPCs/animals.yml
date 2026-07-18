@@ -1483,6 +1483,7 @@
   parent: MobBaseAncestor
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
   - type: NameIdentifier
     group: Monkey
   - type: Speech
@@ -1519,6 +1520,8 @@
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
+    groups: [All]
   - type: NameIdentifier
     group: Monkey
   - type: SentienceTarget
@@ -1677,6 +1680,7 @@
   parent: MobBaseKobold
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
   - type: Clumsy
     gunShootFailDamage:
       types:
@@ -1694,6 +1698,8 @@
   parent: MobBaseKobold
   suffix: syndicate base
   components:
+  - type: CrewSkills # Imperial Space Crew Skills
+    groups: [All]
   - type: MobThresholds
     thresholds:
       0: Alive

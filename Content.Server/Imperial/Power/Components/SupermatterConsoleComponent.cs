@@ -14,6 +14,12 @@ public sealed partial class SupermatterConsoleComponent : Component
     public EntityUid? ConnectedSupermatter;
 
     /// <summary>
+    /// Максимальный радиус подключения к суперматерии
+    /// </summary>
+    [DataField]
+    public float MaxRange = 15f;
+
+    /// <summary>
     /// Имя порта для связи
     /// </summary>
     [DataField]

@@ -4,6 +4,15 @@ USSP-ROLE-HAMSTER-NAME = Хомяк Иосиф
 USSP-ROLE-HAMSTER-DESC = Вы - талисман удачи авианосца СССП, питомец генерала и просто комиссар .
 USSP-STAMP-NAME =  Союз Советских Социалистических Планет
 
+ussp-role-battle-name = Военный СССП
+ussp-role-officer-name = Офицер СССП
+ussp-role-comissar-name = Комиссар СССП
+ussp-role-sergeant-name = Сержант СССП
+ussp-role-major-name = Майор СССП
+ussp-role-general-name = Генерал-лейтенант СССП
+ussp-role-service-name = Работник обслуживания
+ussp-role-tourist-name = Турист
+
 ent-USSPHandGunAction = Выстрел из наплечного орудия
     .desc = Вы производите выстрел из наплечного орудия вашего скафандра. Все просто и мощно! Откат 240 секунд.
 

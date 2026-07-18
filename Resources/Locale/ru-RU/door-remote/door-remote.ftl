@@ -1,9 +1,12 @@
 ## UI
+door-remote-toggle-eletrify-text = Перегрузка
 door-remote-open-close-text = Открытие и закрытие шлюзов
 door-remote-toggle-bolt-text = Переключение болтов
 door-remote-emergency-access-text = Переключение аварийного доступа
 door-remote-invalid-text = Ошибка
 door-remote-mode-label = Режим: [color=white]{$modeString}[/color]
+
+## Entity
 
 door-remote-switch-state-open-close = Вы настраиваете пульт на открытие и закрытие дверей
 door-remote-switch-state-toggle-bolts = Вы настраиваете пульт на переключение болтов

@@ -151,6 +151,9 @@
       roleLoadout:
       - RoleSurvivalNukie
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        overrideMindSkills: true
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
@@ -168,6 +171,8 @@
       roleLoadout:
       - RoleSurvivalNukie
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
@@ -187,6 +192,8 @@
       roleLoadout:
       - RoleSurvivalNukie
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
@@ -232,6 +239,11 @@
     - prefRoles: [ Traitor ]
       max: 8
       playerRatio: 10
+      components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       blacklist:
         components:
         - AntagImmune
@@ -250,6 +262,10 @@
   - type: AntagSelection
     definitions:
     - prefRoles: [ Traitor ]
+      components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        overrideMindSkills: true
       mindRoles:
       - MindRoleTraitorReinforcement
 
@@ -271,6 +287,10 @@
         color: Red
         sound: /Audio/Ambience/Antag/changeling_start.ogg
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: ChangelingDevour
       - type: ChangelingIdentity
       - type: ChangelingTransform
@@ -311,6 +331,10 @@
         sound: "/Audio/Ambience/Antag/headrev_start.ogg"
    #  startingGear: HeadRevGear  # Imperial RevaConsent
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: Revolutionary
       - type: HeadRevolutionary
         onlyConsentConvert: true # Imperial RevaConsent
@@ -371,6 +395,10 @@
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: NpcFactionMember
         factions:
         - Wizard

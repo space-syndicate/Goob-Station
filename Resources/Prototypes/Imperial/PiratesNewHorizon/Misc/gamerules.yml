@@ -21,6 +21,10 @@
       startingGear: ImperialPirateCaptainGear
       spawnerPrototype: SpawnPointCaptainPirate
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: NpcFactionMember
         factions:
         - Pirate
@@ -30,30 +34,6 @@
         - NamesPirateLast
         nameFormat: name-format-standard
       - type: PirateAccent
-      - type: CrewSkills
-        skills:
-          - skillBotany #base
-          - skillBaseMed
-          - skillBaseConstraction
-          - skillCooking  #Easy
-          - skillBartending
-          - skillHacking
-          - skillInstrumentation #Medium
-          - skillMaintenance
-          - skillMediumConstruction
-          - skillMediumBotany
-          - skillBasicAtmos
-          - skillMedicalEquipment
-          - skillPharmacology
-          - skillPiloting #Hard
-          - skillAtmos
-          - skillHardInstrumentation
-          - skillRobotics
-          - skillResearch
-          - skillPharmaceuticals
-          - skillShooting
-          - skillSurgery
-          - skillNeuroSurgery
       - type: PirateCaptain
       mindRoles:
       - MindRoleCaptainPirate
@@ -75,30 +55,6 @@
       - type: PirateAccent
       - type: Loadout
         prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
-      - type: CrewSkills
-        skills:
-          - skillBotany #base
-          - skillBaseMed
-          - skillBaseConstraction
-          - skillCooking  #Easy
-          - skillBartending
-          - skillHacking
-          - skillInstrumentation #Medium
-          - skillMaintenance
-          - skillMediumConstruction
-          - skillMediumBotany
-          - skillBasicAtmos
-          - skillMedicalEquipment
-          - skillPharmacology
-          - skillPiloting #Hard
-          - skillAtmos
-          - skillHardInstrumentation
-          - skillRobotics
-          - skillResearch
-          - skillPharmaceuticals
-          - skillShooting
-          - skillSurgery
-          - skillNeuroSurgery
       - type: Pirate
       mindRoles:
       - MindRolePirate
@@ -111,7 +67,7 @@
   - type: AntagLoadProfileRule
   - type: RuleGrids
   - type: LoadMapRule
-    mapPath: /Maps/Imperial/Maps/PiratesNewHorizon/pirate_map_debug.yml
+    mapPath: /Maps/Imperial/Shuttles/newhorizont.yml
   - type: PiratesRule
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
@@ -121,6 +77,10 @@
       startingGear: ImperialPirateCaptainGear
       spawnerPrototype: SpawnPointCaptainPirate
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: NpcFactionMember
         factions:
         - Pirate
@@ -131,30 +91,6 @@
         - NamesPirateLast
         nameFormat: name-format-standard
       - type: PirateCaptain
-      - type: CrewSkills
-        skills:
-          - skillBotany #base
-          - skillBaseMed
-          - skillBaseConstraction
-          - skillCooking  #Easy
-          - skillBartending
-          - skillHacking
-          - skillInstrumentation #Medium
-          - skillMaintenance
-          - skillMediumConstruction
-          - skillMediumBotany
-          - skillBasicAtmos
-          - skillMedicalEquipment
-          - skillPharmacology
-          - skillPiloting #Hard
-          - skillAtmos
-          - skillHardInstrumentation
-          - skillRobotics
-          - skillResearch
-          - skillPharmaceuticals
-          - skillShooting
-          - skillSurgery
-          - skillNeuroSurgery
       mindRoles:
       - MindRoleCaptainPirate
     - prefRoles: [ Pirate ]
@@ -176,29 +112,5 @@
       - type: Pirate
       - type: Loadout
         prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
-      - type: CrewSkills
-        skills:
-          - skillBotany #base
-          - skillBaseMed
-          - skillBaseConstraction
-          - skillCooking  #Easy
-          - skillBartending
-          - skillHacking
-          - skillInstrumentation #Medium
-          - skillMaintenance
-          - skillMediumConstruction
-          - skillMediumBotany
-          - skillBasicAtmos
-          - skillMedicalEquipment
-          - skillPharmacology
-          - skillPiloting #Hard
-          - skillAtmos
-          - skillHardInstrumentation
-          - skillRobotics
-          - skillResearch
-          - skillPharmaceuticals
-          - skillShooting
-          - skillSurgery
-          - skillNeuroSurgery
       mindRoles:
       - MindRolePirate

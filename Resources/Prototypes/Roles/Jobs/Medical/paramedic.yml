@@ -16,12 +16,6 @@
   - External
   extendedAccess:
   - Chemistry
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
-  - skillPharmacology
-  - skillMedicalEquipment
 
 
 - type: startingGear
