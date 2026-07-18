@@ -13,8 +13,8 @@ marking-HydrakinTailFins = Плавники
 
 marking-HydrakinEarsDefault = Обычные уши
 marking-HydrakinEarsOld = Тонкие уши
-marking-HydrakinEarsFin = Плавники
-marking-HydrakinEarsFrilled = Воротниковые уши
+marking-HydrakinEarsFin = Плавниковые уши
+marking-HydrakinEarsFrilled = Воротникообразные уши
 
 marking-HydrakinProtoChest = Киберкин
 
@@ -29,7 +29,7 @@ marking-HydrakinProtoFace1 = Кольцевой дисплей
 marking-HydrakinProtoFace2 = Серьезный дисплей
 marking-HydrakinProtoFace3 = Коварный дисплей
 marking-HydrakinProtoFace4 = Грустный дисплей
-marking-HydrakinProtoFace5 = Спокойный дисплей
+marking-HydrakinProtoFace5 = Расслабленный дисплей
 
 marking-HydrakinEnforcerHead = Силовик, Голова
 marking-HydrakinEnforcerChest = Силовик, Грудь

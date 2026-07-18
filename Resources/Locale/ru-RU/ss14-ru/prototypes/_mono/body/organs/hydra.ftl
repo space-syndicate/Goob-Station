@@ -8,5 +8,5 @@ ent-OrganHydrakinLiver = печень гидракина
     .desc = { ent-BaseHydrakinOrgan.desc }
 ent-OrganHydrakinHeart = сердце гидракина
     .desc = { ent-BaseHydrakinOrgan.desc }
-ent-OrganHydrakinLungs = легкие гидракина
-    .desc = Легкие гидракина, способные дышать любым газом без негативных последствий
+ent-OrganHydrakinLungs = лёгкие гидракина
+    .desc = Лёгкие гидракина, способные дышать любым газом без негативных последствий.
