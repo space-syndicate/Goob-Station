@@ -3,6 +3,8 @@
   parent: MobSkeletonPerson
   id: MobSkeletonPirate
   components:
+  - type: CrewSkills # Imperial Space Crew Skills
+    groups: [All]
   - type: GhostRole
     name: ghost-role-information-skeleton-pirate-name
     description: ghost-role-information-skeleton-pirate-description

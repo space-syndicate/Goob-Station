@@ -33,6 +33,10 @@
         color: "#8B0000"
         sound: /Audio/Ambience/Antag/vampire_start.ogg
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: Vampire
       mindRoles:
       - MindRoleVampire

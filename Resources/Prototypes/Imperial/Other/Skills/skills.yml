@@ -1,0 +1,93 @@
+# Base
+- type: skill
+  id: BaseMed
+  name: skill-name-base-med
+  color: "#6598e5FF"
+
+- type: skill
+  id: Botany
+  name: skill-name-botany
+  color: "#8cd672FF"
+
+- type: skill
+  id: BaseConstruction
+  name: skill-name-construction
+  color: "#dbaf3dFF"
+
+# Simple
+- type: skill
+  id: Cooking
+  name: skill-name-cooking
+  color: "#8cd672FF"
+
+- type: skill
+  id: Bartending
+  name: skill-name-bartending
+  color: "#8cd672FF"
+
+- type: skill
+  id: Hacking
+  name: skill-name-hacking
+  color: "#b53c3cFF"
+
+# Medium
+- type: skill
+  id: Instrumentation
+  name: skill-name-instrumentation
+  color: "#dbaf3dFF"
+
+- type: skill
+  id: Maintenance
+  name: skill-name-maintenance
+  color: "#dbaf3dFF"
+
+- type: skill
+  id: BasicAtmos
+  name: skill-name-base-atmos
+  color: "#dbaf3dFF"
+
+- type: skill
+  id: BaseMediumConstruction
+  name: skill-name-medium-construction
+  color: "#dbaf3dFF"
+
+- type: skill
+  id: MediumBotany
+  name: skill-name-medium-botany
+  color: "#8cd672FF"
+
+- type: skill
+  id: Pharmacology
+  name: skill-name-pharmacology
+  color: "#6598e5FF"
+
+- type: skill
+  id: MedicalEquipment
+  name: skill-name-medical-equipment
+  color: "#6598e5FF"
+
+# Hard
+- type: skill
+  id: Shooting
+  name: skill-name-shooting
+  color: "#b53c3cFF"
+
+- type: skill
+  id: Robotics
+  name: skill-name-robotics
+  color: "#9d3cb5FF"
+
+- type: skill
+  id: Research
+  name: skill-name-research
+  color: "#9d3cb5FF"
+
+- type: skill
+  id: Pharmaceuticals
+  name: skill-name-pharmaceuticals
+  color: "#6598e5FF"
+
+- type: skill
+  id: Piloting
+  name: skill-name-piloting
+  color: "#b53c3cFF"

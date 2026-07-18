@@ -23,12 +23,6 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
-  - skillPiloting
-  - skillShooting
 
 - type: startingGear
   id: SeniorOfficerGear

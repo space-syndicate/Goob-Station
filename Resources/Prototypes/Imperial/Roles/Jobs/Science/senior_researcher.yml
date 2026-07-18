@@ -17,21 +17,6 @@
   access:
   - Research
   - Maintenance
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
-  - skillHardInstrumentation
-  - skillInstrumentation
-  - skillRobotics
-  - skillResearch
-  - skillPharmaceuticals
-  - skillPharmacology
-  - skillMediumConstruction
-  - skillMedicalEquipment
-  - skillHacking
-  - skillBasicAtmos
-  - skillNeuroSurgery
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

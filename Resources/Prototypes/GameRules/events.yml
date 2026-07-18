@@ -260,6 +260,8 @@
         color: Green
         sound: /Audio/Misc/ninja_greeting.ogg
       components:
+      - type: CrewSkills # Imperial Space Crew Skills
+        groups: [All]
       - type: SpaceNinja
       - type: NpcFactionMember
         factions:
@@ -355,6 +357,8 @@
         #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
       # TODO: WizardComp as needed
       components:
+      - type: CrewSkills # Imperial Space Crew Skills
+        groups: [All]
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -643,12 +647,9 @@
       roleLoadout:
       - RoleSurvivalNukie
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
       - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicatePrefix
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -679,6 +680,13 @@
       min: 1
       max: 2
       playerRatio: 10
+      # Imperial Space Crew SKills Start
+      components:
+      - type: CrewSkills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
+      # Imperial Space Crew Skills End
       blacklist:
         components:
         - AntagImmune

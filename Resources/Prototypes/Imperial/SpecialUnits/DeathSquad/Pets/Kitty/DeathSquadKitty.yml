@@ -131,29 +131,7 @@
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
   - type: CrewSkills #То самое чувство, когда котенок со своими лапками, и лошадь на ходу остановит, и шаттлом управлять умеет, и товарища вылечить может, и мета наварит, пока ты только в носу ковыряться умеешь...
-    skills:
-      - skillBotany #Base
-      - skillBaseMed
-      - skillBaseConstraction
-      - skillCooking  #Easy
-      - skillBartending
-      - skillHacking
-      - skillInstrumentation #Medium
-      - skillMaintenance
-      - skillMediumConstruction
-      - skillMediumBotany
-      - skillBasicAtmos
-      - skillMedicalEquipment
-      - skillPharmacology
-      - skillPiloting #Hard
-      - skillAtmos
-      - skillHardInstrumentation
-      - skillRobotics
-      - skillResearch
-      - skillPharmaceuticals
-      - skillShooting
-      - skillSurgery
-      - skillNeuroSurgery
+    groups: [All]
   - type: Puller
     needsHands: false
   - type: Hands
