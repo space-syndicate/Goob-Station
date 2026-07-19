@@ -15,7 +15,7 @@
       weight: 4.0
     - id: XenoArtifactGhost
       weight: 2.0
-    - id: XenoArtifactRandomTransformation
+    - id: XenoArtifactRandomTransformation #CorvaxGoob-New
       weight: 1.5
     - id: XenoArtifactEffectBadFeeling
       weight: 10.0

@@ -1,3 +1,4 @@
+using Content.Shared.Whitelist;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
 using System.Collections.Generic;
@@ -25,9 +26,13 @@ public sealed partial class ArtifactRandomTransformationComponent : Component
         "admin", "debug", "тест", "дебаг"
     };
 
-    [DataField("componentBlacklist")]
-    public List<string> ComponentBlacklist { get; set; } = new()
+    [DataField("ComponentBlacklist")]
+    public EntityWhitelist? ComponentBlacklist = new()
     {
-        "Singularity", "SingularityGenerator", "TeslaEnergyBall"
+        Components = new[]
+        {
+            "SubFloorHide"
+        }
     };
+
 }
