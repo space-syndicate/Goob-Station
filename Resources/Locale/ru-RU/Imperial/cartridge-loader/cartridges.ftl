@@ -66,3 +66,9 @@ nano-chat-print-default-title = Переписка
 stamp-component-stamped-name-nano-chat = НаноЧат
 
 nano-chat-print-name = { $name } ({ $id })
+
+# СиндиЧат
+
+syndi-chat-program-name = СиндиЧат
+
+stamp-component-stamped-name-syndi-chat = СиндиЧат

@@ -19,6 +19,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Whitelist;
 
 namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 
@@ -31,6 +32,7 @@ namespace Content.Server.Imperial.CartridgeLoader.Cartridges;
 public sealed class NanoChatCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _loaderSystem = null!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = null!;
     [Dependency] private readonly GameTicker _gameTicker = null!;
     [Dependency] private readonly IAdminLogManager _adminLogger = null!;
     [Dependency] private readonly IComponentFactory _componentFactory = null!;
@@ -185,7 +187,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!loaderUid.IsValid())
             return;
 
-        if (server != null)
+        if (server == null)
             SyncUserToServer(ent, out server);
 
         var isServerOnline =
@@ -778,8 +780,13 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         var serverQuery = EntityQueryEnumerator<NanoChatServerComponent, TransformComponent, ApcPowerReceiverComponent>();
         while (serverQuery.MoveNext(out var serverUid, out var serverComponent, out var serverTransform, out var power))
         {
-            if (serverTransform.MapID == cartTrans.MapID && power.Powered)
-                return (serverUid, serverComponent);
+            if (serverTransform.MapID != cartTrans.MapID || !power.Powered)
+                continue;
+
+            if (serverComponent.CartridgeWhitelist != null && !_whitelist.IsValid(serverComponent.CartridgeWhitelist, cartridgeUid))
+                continue;
+
+            return (serverUid, serverComponent);
         }
         return null;
     }
