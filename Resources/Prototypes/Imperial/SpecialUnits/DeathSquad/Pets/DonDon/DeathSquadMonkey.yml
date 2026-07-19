@@ -51,6 +51,17 @@
   - type: Inventory
     speciesId: monkey
     templateId: deathsquadmonkey
+  # Христов требует две руки для стрельбы.
+  - type: Hands
+    activeHandId: Right
+    hands:
+      Right:
+        location: Right
+      Left:
+        location: Left
+    sortedHands:
+    - Right
+    - Left
 
 - type: startingGear
   id: DeathSquadDondonGear

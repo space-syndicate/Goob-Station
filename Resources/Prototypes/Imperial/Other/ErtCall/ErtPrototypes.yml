@@ -260,7 +260,7 @@
 - type: entity
   parent: MobHuman
   id: DeadSquadSecurityEVAPreset
-  suffix: РИГ
+  suffix: Гост роль, DeathSquad
   name: Dead Squad Agent
   components:
     # - type: RandomMetadata
@@ -281,6 +281,7 @@
     - type: NpcFactionMember
       factions:
       - DeathSquad
+    - type: ZombieImmune
     - type: GhostRole
       name: ertcall-deadsquad-security-eva-name
       description: ertcall-deadsquad-security-eva-desc

@@ -64,6 +64,7 @@
     - AllAccess
     tags:
     - CentralCommand
+    - DeathSquad
   - type: IntrinsicRadioReceiver #Радио также прифигачино прямо в моба.
   - type: IntrinsicRadioTransmitter
     channels:
@@ -135,6 +136,10 @@
   - type: Puller
     needsHands: false
   - type: Hands
+    activeHandId: Hand
+    hands:
+      Hand:
+        location: Left
 #door pry
   - type: Prying
     pryPowered: true
@@ -255,6 +260,21 @@
     damage:
       types:
         Blunt: 4.5
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.6
+    - type: Execution
+      doAfterDuration: 4.0
+    # Компенсирует базовый дробящий урон и добавляет полный урон активированных когтей.
+    - type: BonusMeleeDamage
+      bonusDamage:
+        types:
+          Blunt: -4.5
+          Slash: 10
+          Heat: 10
+          Structural: 40
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
       path: /Audio/Weapons/eblade1.ogg
@@ -269,8 +289,3 @@
       path: /Audio/Weapons/eblademiss.ogg
       params:
         variation: 0.125
-    activatedDamage:
-      types:
-        Slash: 10
-        Heat: 10
-        Structural: 40

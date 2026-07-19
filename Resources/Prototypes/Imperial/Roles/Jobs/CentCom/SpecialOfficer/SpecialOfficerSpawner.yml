@@ -53,6 +53,7 @@
   - AllAccess
   access:
   - CentralCommand
+  - DeathSquad
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]

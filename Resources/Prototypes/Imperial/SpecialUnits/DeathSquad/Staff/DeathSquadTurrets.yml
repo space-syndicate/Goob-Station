@@ -1,62 +1,55 @@
 - type: entity
-  parent: BaseWeaponBallisticTurret
-  id: WeaponTurretCentralCommand
-  suffix: CC
-  components:
-  - type: NpcFactionMember
-    factions:
-    - CentralCommand
-
-- type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
-  id: WeaponEnergyTurretCentralCommandControlPanel
-  suffix: CC
+  id: WeaponEnergyTurretDeathSquadControlPanel
+  suffix: DeathSquad
   components:
   - type: AccessReader
-    access: [["CentralCommand"]]
+    access: [["DeathSquad"]]
+    examinationText: death-squad-turret-access-reader-examination
   - type: TurretTargetSettings
     exemptAccessLevels:
-    - CentralCommand
+    - DeathSquad
   - type: ContainerFill
     containers:
       board:
-      - WeaponEnergyTurretCentralCommandControlPanelElectronics
+      - WeaponEnergyTurretDeathSquadControlPanelElectronics
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
-  id: WeaponEnergyTurretCentralCommandControlPanelElectronics
-  suffix: CC
+  id: WeaponEnergyTurretDeathSquadControlPanelElectronics
+  suffix: DeathSquad
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
-    state: command
+    state: science
   - type: ElectronicsBoard
-    prototype: WeaponEnergyTurretCentralCommandControlPanel
+    prototype: WeaponEnergyTurretDeathSquadControlPanel
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase
-  id: WeaponEnergyTurretCentralCommandMachineCircuitboard
-  suffix: CC
+  id: WeaponEnergyTurretDeathSquadMachineCircuitboard
+  suffix: DeathSquad
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
-    state: command
+    state: science
   - type: MachineBoard
-    prototype: WeaponEnergyTurretCentralCommand
+    prototype: WeaponEnergyTurretDeathSquad
 
 - type: entity
   parent: WeaponEnergyTurretStationBase
-  id: WeaponEnergyTurretCentralCommand
-  suffix: CC
+  id: WeaponEnergyTurretDeathSquad
+  suffix: DeathSquad
   components:
   - type: AccessReader
-    access: [["CentralCommand"]]
+    access: [["DeathSquad"]]
+    examinationText: death-squad-turret-access-reader-examination
   # AllHostile наследуется от базовой турели: безопасность определяется доступом ID-карты, а не фракцией носителя.
   - type: TurretTargetSettings
     exemptAccessLevels:
-    - CentralCommand
+    - DeathSquad
   - type: Machine
-    board: WeaponEnergyTurretCentralCommandMachineCircuitboard
+    board: WeaponEnergyTurretDeathSquadMachineCircuitboard
   - type: DeviceNetwork
     receiveFrequencyId: TurretControl
     transmitFrequencyId: Turret

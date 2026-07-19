@@ -284,5 +284,8 @@ id-name-syndi-medic = Медик Синдиката
 id-name-syndi-engineer = Инженер Синдиката
 id-name-syndi-pilot = Пилот Синдиката
 
+ent-AirlockHatchCC = герметичный люк
+    .desc = Он открывается, он закрывается, и он может вас раздавить.
+    .suffix = { "ЦК, Закрыто" }
 
 
