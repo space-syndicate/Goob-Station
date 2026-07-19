@@ -28,6 +28,10 @@
     implants:
     - MindShieldImplant
     - DeathRattleImplantCentcomm
+  - type: NpcFactionMember # Imperial Space Central Command faction Fix
+    factions:
+    - NanoTrasen
+    - CentralCommand
 
 ## Death Squad
 

@@ -304,6 +304,9 @@
   - SimpleHostile
   - SyndicateAgent
   - Wizard # Обновление фракци ЭС
+  - Xeno # Обновление фракци ЭС
+  - AllHostile # Обновление фракци ЭС
+  - Pirate # Обновление фракци ЭС
 #DEAD SQUAD END
 
 #HOLY SQUAD START
