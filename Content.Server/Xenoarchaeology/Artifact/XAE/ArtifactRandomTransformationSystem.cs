@@ -1,28 +1,29 @@
-using System.Collections.Generic;
-using System.Linq;
-using Content.Shared._CorvaxGoob.Xenoarchaeology.Artifact.XAE.Components;
+using Content.Server.Xenoarchaeology.Artifact.XAE.Components;
 using Content.Shared.Item;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 using Robust.Server.GameObjects;
-using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Log;
+using Robust.Shared.Containers; // Добавили для работы с контейнерами
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Content.Server._CorvaxGoob.Xenoarchaeology.Artifact.XAE;
+namespace Content.Server.Xenoarchaeology.Artifact.XAE;
 
 public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactRandomTransformationComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!; // Добавили синглтон контейнеров
 
     private readonly List<EntityPrototype> _validPrototypes = new();
-    private bool _prototypesCached;
+    private bool _prototypesCached = false;
 
     private void CachePrototypes()
     {
@@ -40,12 +41,24 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
 
     private static bool CanEverTransformInto(EntityPrototype proto)
     {
-        if (proto.Abstract || !proto.MapSavable || !proto.Components.ContainsKey("Item"))
+        if (proto.Abstract)
+            return false;
+
+        if (!proto.MapSavable)
+            return false;
+
+        if (!proto.Components.ContainsKey("Item"))
             return false;
 
         var id = proto.ID.ToLower();
-        if (id.Contains("admin") || id.Contains("debug") || id.Contains("test") || id.Contains("singularity") || id.Contains("tesla"))
+        if (id.Contains("admin") ||
+            id.Contains("debug") ||
+            id.Contains("test") ||
+            id.Contains("singularity") ||
+            id.Contains("tesla"))
+        {
             return false;
+        }
 
         if (!string.IsNullOrEmpty(proto.EditorSuffix))
         {
@@ -64,39 +77,61 @@ public sealed class ArtifactRandomTransformationSystem : BaseXAESystem<ArtifactR
 
         if (_validPrototypes.Count == 0)
         {
-            Logger.Warning("[ArtifactTransform] Список валидных предметов пуст.");
+            Logger.Warning("[ArtifactTransform] Ошибка: Список валидных предметов пуст. Эффект прерван.");
             return;
         }
 
+        EntityUid artifactUid = ent;
+        var component = ent.Comp;
         var coords = args.Coordinates;
+        
+        // Получаем ID карты, на которой произошла активация
         var currentMapId = coords.GetMapId(EntityManager);
-        var entities = _entityLookup.GetEntitiesInRange(coords, ent.Comp.Radius);
+
+        // Ищем сущности в радиусе
+        var entities = _entityLookup.GetEntitiesInRange(coords, component.Radius);
         int transformedCount = 0;
 
         foreach (var entity in entities)
         {
-            if (entity == ent.Owner || !HasComp<ItemComponent>(entity))
+            if (entity == artifactUid)
+                continue;
+
+            // Проверяем, что это предмет
+            if (!HasComp<ItemComponent>(entity))
                 continue;
 
             var entXform = Transform(entity);
-            if (entXform.MapID != currentMapId || _container.IsEntityInContainer(entity))
+            
+            // Исправлено: Проверяем, что предмет находится на той же карте
+            if (entXform.MapID != currentMapId)
                 continue;
 
-            if (!_random.Prob(ent.Comp.TransformationPercentRatio))
+            // Защита: Если предмет лежит в рюкзаке, шкафу или ящике — игнорируем его
+            if (_container.IsEntityInContainer(entity))
+                continue;
+
+            // Проверка на шанс спавна
+            if (!_random.Prob(component.TransformationPercentRatio))
                 continue;
 
             var meta = MetaData(entity);
             var protoId = meta.EntityPrototype?.ID ?? "";
-            if (string.IsNullOrEmpty(protoId) || ent.Comp.PrototypeIdBlacklistSubstrings.Any(b => protoId.ToLower().Contains(b.ToLower())))
+
+            if (string.IsNullOrEmpty(protoId))
                 continue;
 
+            if (component.PrototypeIdBlacklistSubstrings.Any(b => protoId.ToLower().Contains(b.ToLower())))
+                continue;
+
+            // Выбираем случайный предмет из кэша и заменяем
             var randomProto = _random.Pick(_validPrototypes);
+
             EntityManager.SpawnEntity(randomProto.ID, entXform.Coordinates);
             EntityManager.DeleteEntity(entity);
             transformedCount++;
         }
 
-        Logger.Info($"[ArtifactTransform] Превращено предметов: {transformedCount}");
+        Logger.Info($"[ArtifactTransform] Эффект активирован на {coords}. Превращено предметов: {transformedCount}");
     }
 }
-// тес
