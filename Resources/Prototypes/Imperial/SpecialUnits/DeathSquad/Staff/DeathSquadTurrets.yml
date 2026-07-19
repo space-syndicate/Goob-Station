@@ -1,3 +1,13 @@
+- type: deviceFrequency
+  id: DeathSquadTurretControl
+  name: device-frequency-prototype-name-turret-control
+  frequency: 2163
+
+- type: deviceFrequency
+  id: DeathSquadTurret
+  name: device-frequency-prototype-name-turret
+  frequency: 2164
+
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
   id: WeaponEnergyTurretDeathSquadControlPanel
@@ -13,6 +23,9 @@
     containers:
       board:
       - WeaponEnergyTurretDeathSquadControlPanelElectronics
+  - type: DeviceNetwork
+    receiveFrequencyId: DeathSquadTurret
+    transmitFrequencyId: DeathSquadTurretControl
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
@@ -51,5 +64,5 @@
   - type: Machine
     board: WeaponEnergyTurretDeathSquadMachineCircuitboard
   - type: DeviceNetwork
-    receiveFrequencyId: TurretControl
-    transmitFrequencyId: Turret
+    receiveFrequencyId: DeathSquadTurretControl
+    transmitFrequencyId: DeathSquadTurret

@@ -1,3 +1,13 @@
+- type: deviceFrequency
+  id: CCTurretControl
+  name: device-frequency-prototype-name-turret-control
+  frequency: 2161
+
+- type: deviceFrequency
+  id: CCTurret
+  name: device-frequency-prototype-name-turret
+  frequency: 2162
+
 - type: entity
   parent: BaseWeaponBallisticTurret
   id: WeaponTurretCentralCommand
@@ -21,6 +31,9 @@
     containers:
       board:
       - WeaponEnergyTurretCentralCommandControlPanelElectronics
+  - type: DeviceNetwork
+    receiveFrequencyId: CCTurret
+    transmitFrequencyId: CCTurretControl
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
@@ -58,5 +71,5 @@
   - type: Machine
     board: WeaponEnergyTurretCentralCommandMachineCircuitboard
   - type: DeviceNetwork
-    receiveFrequencyId: TurretControl
-    transmitFrequencyId: Turret
+    receiveFrequencyId: CCTurretControl
+    transmitFrequencyId: CCTurret
