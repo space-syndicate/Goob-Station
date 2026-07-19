@@ -197,3 +197,41 @@
   - type: Sprite
     sprite: Imperial/Other/ErtCall/RubberStamp.rsi
     state: stamp-ERT-Leader
+
+# Admin cartridge
+
+- type: entity
+  parent: NanoChatCartridge
+  id: NanoChatAdminCartridge
+  name: NanoChat cartridge
+  description: A "private" messaging app.
+  suffix: ADMIN
+  components:
+  - type: Cartridge
+    programName: nano-chat-admin-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: nano_chat
+  - type: NanoChatCartridge
+    visible: false
+  - type: Tag
+    tags:
+    - NanoChatCartridge
+
+- type: entity
+  parent: SyndiChatCartridge
+  id: SyndiChatAdminCartridge
+  name: SyndiChat cartridge
+  description: A private messaging app.
+  suffix: ADMIN
+  components:
+  - type: Cartridge
+    programName: syndi-chat-admin-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: syndi_chat
+  - type: NanoChatCartridge
+    visible: false
+  - type: Tag
+    tags:
+    - SyndiChatCartridge

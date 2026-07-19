@@ -19,3 +19,12 @@ ent-PaperSyndiChatItem = расшифровка СиндиЧата
     .desc = Расшифровка переписки из приложения СиндиЧата.
 ent-RubberStampSyndiChat = печать СиндиЧата
     .desc = Печать, подтверждающая подлинность расшифровки СиндиЧата.
+
+
+ent-NanoChatAdminCartridge = { ent-NanoChatCartridge }
+    .desc = { ent-NanoChatCartridge.desc }
+    .suffix = АДМИН
+
+ent-SyndiChatAdminCartridge = { ent-SyndiChatCartridge }
+    .desc = { ent-SyndiChatCartridge.desc }
+    .suffix = АДМИН

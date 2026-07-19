@@ -36,6 +36,12 @@ public sealed partial class NanoChatCartridgeComponent : Component
     public bool NotificationsOn = true;
 
     /// <summary>
+    /// Виден ли этот пользователь другим, устанавливается только при спавне картриджа
+    /// </summary>
+    [DataField]
+    public bool Visible = true;
+
+    /// <summary>
     /// Звук уведомления
     /// </summary>
     [DataField]

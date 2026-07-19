@@ -203,12 +203,19 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         if (isServerOnline && server != null && comp.UserId != null)
         {
-            contacts = server.Value.Comp.Users;
+            contacts = ent.Comp.Visible
+                ? server.Value.Comp.Users.Where(contact => contact.Visible).ToList()
+                : server.Value.Comp.Users;
 
-            chats = server.Value.Comp.Chats
-                .Where(c => c.Members.Contains(comp.UserId.Value))
-                .OrderBy(c => c.Name)
-                .ToList();
+            if (ent.Comp.Visible)
+            {
+                chats = server.Value.Comp.Chats
+                    .Where(c => c.Members.Contains(comp.UserId.Value))
+                    .OrderBy(c => c.Name)
+                    .ToList();
+            }
+            else
+                chats = server.Value.Comp.Chats.OrderBy(c => c.Name).ToList();
 
             currentChat = server.Value.Comp.Chats.FirstOrDefault(c =>
                 comp.SelectedChat != null &&
@@ -275,6 +282,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             isContactReachable,
             canSendLocation,
             _timing.CurTime >= comp.NextPrintAllowedAfter,
+            !ent.Comp.Visible,
             comp.UnreadMessages,
             typingUsers
         );
@@ -494,7 +502,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             if (targetComp.UserId == null)
                 continue;
 
-            if (!chat.Members.Contains(targetComp.UserId.Value))
+            if (!chat.Members.Contains(targetComp.UserId.Value) && targetComp.Visible)
                 continue;
 
             if (targetComp.UserId == senderId)
@@ -715,6 +723,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         var contact = new NanoChatContact(
             pdaData.Id.Value,
             pdaData.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown"),
+            ent.Comp.Visible,
             pdaData.Job ?? Loc.GetString("nano-chat-ui-contact-job-unknown"),
             pdaData.Icon);
 
@@ -725,7 +734,12 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         else
             server.Value.Comp.Users.Add(contact);
 
-        foreach (var otherUser in server.Value.Comp.Users.Where(otherUser => otherUser.Id != pdaData.Id.Value))
+        if (!ent.Comp.Visible)
+        {
+            Dirty(server.Value);
+            return;
+        }
+        foreach (var otherUser in server.Value.Comp.Users.Where(otherUser => otherUser.Id != pdaData.Id.Value && otherUser.Visible))
         {
             var exists = server.Value.Comp.Chats.Any(c =>
                 c.Members.Count == 2 &&
