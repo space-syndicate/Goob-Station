@@ -385,7 +385,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
                    (GetJobTitle(member1.JobTitle).Contains(query, StringComparison.OrdinalIgnoreCase)) ||
                    (member2.Name?.Contains(query, StringComparison.OrdinalIgnoreCase) == true) ||
                    (GetJobTitle(member2.JobTitle).Contains(query, StringComparison.OrdinalIgnoreCase)) ||
-                   query.Contains(chat.Id.ToString());
+                   chat.Id.ToString().Contains(query);
         }
 
         var otherId = chat.Members.FirstOrDefault(m => m != _userId.Value);
