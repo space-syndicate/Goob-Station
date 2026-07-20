@@ -1,6 +1,7 @@
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Goobstation.Shared.Possession;
 using Content.Shared._CorvaxGoob.MindLink;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
@@ -43,6 +44,7 @@ public sealed class MindLinkSystem : EntitySystem
         SubscribeLocalEvent<MindLinkRecipientComponent, ComponentShutdown>(OnRecipientShutdown);
         SubscribeLocalEvent<OrganComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
         SubscribeLocalEvent<BrainComponent, ComponentShutdown>(OnBrainShutdown);
+        SubscribeLocalEvent<PossessionImmuneComponent, ComponentInit>(OnPossessionImmuneInit);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
 
@@ -107,12 +109,23 @@ public sealed class MindLinkSystem : EntitySystem
             ClearAllConnections(ent.Owner);
     }
 
+    private void OnPossessionImmuneInit(Entity<PossessionImmuneComponent> ent, ref ComponentInit args)
+    {
+        ClearAllConnections(ent.Owner);
+    }
+
     private void OnOpenAction(Entity<MindLinkComponent> ent, ref OpenMindLinkEvent args)
     {
         if (args.Handled)
             return;
 
         args.Handled = true;
+        if (HasComp<PossessionImmuneComponent>(ent.Owner))
+        {
+            _popup.PopupEntity(Loc.GetString("mind-link-blocked"), ent.Owner, ent.Owner, PopupType.MediumCaution);
+            return;
+        }
+
         ent.Comp.TwoWayCommunication = args.TwoWayCommunication;
         ent.Comp.MultiLink = args.MultiLink;
         ent.Comp.Range = args.Range;
@@ -124,7 +137,17 @@ public sealed class MindLinkSystem : EntitySystem
 
     private void OnReplyAction(Entity<MindLinkRecipientComponent> ent, ref ReplyMindLinkEvent args)
     {
-        if (args.Handled || ent.Comp.ReplyInitiators.Count == 0
+        if (args.Handled)
+            return;
+
+        if (HasComp<PossessionImmuneComponent>(ent.Owner))
+        {
+            args.Handled = true;
+            _popup.PopupEntity(Loc.GetString("mind-link-blocked"), ent.Owner, ent.Owner, PopupType.MediumCaution);
+            return;
+        }
+
+        if (ent.Comp.ReplyInitiators.Count == 0
             || !TryComp(ent.Owner, out MindLinkComponent? link))
             return;
 
@@ -151,6 +174,12 @@ public sealed class MindLinkSystem : EntitySystem
     {
         if (args.Actor != ent.Owner)
             return;
+
+        if (HasComp<PossessionImmuneComponent>(ent.Owner))
+        {
+            _popup.PopupEntity(Loc.GetString("mind-link-blocked"), ent.Owner, ent.Owner, PopupType.MediumCaution);
+            return;
+        }
 
         var target = GetEntity(args.Target);
         if (ent.Comp.SelectingReplyTarget)
@@ -290,6 +319,8 @@ public sealed class MindLinkSystem : EntitySystem
     private List<MindLinkTarget> GetTargets(Entity<MindLinkComponent> source)
     {
         var result = new List<MindLinkTarget>();
+        if (HasComp<PossessionImmuneComponent>(source.Owner))
+            return result;
 
         // Established connections are always shown first and do not depend on range.
         foreach (var current in source.Comp.Targets)
@@ -332,6 +363,10 @@ public sealed class MindLinkSystem : EntitySystem
 
     private void SetTarget(Entity<MindLinkComponent> source, EntityUid target)
     {
+        if (HasComp<PossessionImmuneComponent>(source.Owner)
+            || HasComp<PossessionImmuneComponent>(target))
+            return;
+
         if (!source.Comp.MultiLink)
             ClearConnections(source);
 
@@ -427,6 +462,7 @@ public sealed class MindLinkSystem : EntitySystem
         return TryComp(uid, out MobStateComponent? mob)
                && mob.CurrentState == MobState.Alive
                && _players.TryGetSessionByEntity(uid, out _)
+               && !HasComp<PossessionImmuneComponent>(uid)
                && HasActiveBrain(uid);
     }
 
