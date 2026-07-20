@@ -7,12 +7,12 @@
     itemIconStyle: BigAction
     checkCanInteract: false
     icon:
-      sprite: Mobs/Species/Human/organs.rsi
+      sprite: _Shitmed/Mobs/Species/Abductor/organs.rsi
       state: brain
   - type: InstantAction
     event: !type:OpenMindLinkEvent
       twoWayCommunication: true
-      multiLink: true
+      multiLink: false
       range: 20
 
 - type: entity
