@@ -7,11 +7,12 @@
     itemIconStyle: BigAction
     checkCanInteract: false
     icon:
-      sprite: _Goobstation/Changeling/changeling_abilities.rsi
-      state: hivemind_access
+      sprite: Mobs/Species/Human/organs.rsi
+      state: brain
   - type: InstantAction
     event: !type:OpenMindLinkEvent
       twoWayCommunication: true
+      multiLink: true
       range: 20
 
 - type: entity
@@ -23,7 +24,7 @@
     itemIconStyle: BigAction
     checkCanInteract: false
     icon:
-      sprite: _Goobstation/Changeling/changeling_abilities.rsi
-      state: hivemind_access
+      sprite: Mobs/Species/Human/organs.rsi
+      state: brain
   - type: InstantAction
     event: !type:ReplyMindLinkEvent

@@ -9,6 +9,8 @@ namespace Content.Client._CorvaxGoob.MindLink;
 [UsedImplicitly]
 public sealed class MindLinkBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
+    private const float MaxTargetListHeight = 500f;
+
     private FancyWindow? _window;
 
     protected override void Open()
@@ -44,18 +46,53 @@ public sealed class MindLinkBoundUserInterface(EntityUid owner, Enum uiKey) : Bo
         _window!.Title = Loc.GetString(state.IsReply
             ? "mind-link-reply-target-window-title"
             : "mind-link-target-window-title");
-        var list = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical };
+        var list = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+        };
         if (state.Targets.Count == 0)
             list.AddChild(new Label { Text = Loc.GetString("mind-link-no-targets") });
 
-        foreach (var target in state.Targets)
+        if (state.CanSendToAll)
         {
-            var button = new Button { Text = target.Name };
-            button.OnPressed += _ => SendMessage(new SelectMindLinkTargetMessage(target.Entity));
-            list.AddChild(button);
+            var all = new Button { Text = Loc.GetString("mind-link-all-targets") };
+            all.OnPressed += _ => SendMessage(new SelectAllMindLinkTargetsMessage());
+            list.AddChild(all);
         }
 
-        _window.ContentsContainer.AddChild(list);
+        foreach (var target in state.Targets)
+        {
+            var button = new Button { Text = target.Name, HorizontalExpand = true };
+            button.OnPressed += _ => SendMessage(new SelectMindLinkTargetMessage(target.Entity));
+            if (!target.Connected)
+            {
+                list.AddChild(button);
+                continue;
+            }
+
+            var row = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+            };
+            row.AddChild(button);
+            var disconnect = new Button { Text = "×", ToolTip = Loc.GetString("mind-link-disconnect") };
+            disconnect.OnPressed += _ => SendMessage(new DisconnectMindLinkTargetMessage(target.Entity));
+            row.AddChild(disconnect);
+            list.AddChild(row);
+        }
+
+        var scroll = new ScrollContainer
+        {
+            MaxHeight = MaxTargetListHeight,
+            HorizontalExpand = true,
+            HScrollEnabled = false,
+            ReserveScrollbarSpace = true,
+            ReturnMeasure = true,
+        };
+        scroll.AddChild(list);
+        _window.ContentsContainer.AddChild(scroll);
     }
 
     private void ShowMessageInput(MindLinkBuiState state)

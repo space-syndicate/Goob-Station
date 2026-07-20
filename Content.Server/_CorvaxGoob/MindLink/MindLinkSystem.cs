@@ -3,6 +3,8 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Shared._CorvaxGoob.MindLink;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Events;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -10,9 +12,12 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Popups;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server._CorvaxGoob.MindLink;
 
@@ -26,6 +31,7 @@ public sealed class MindLinkSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
@@ -34,10 +40,17 @@ public sealed class MindLinkSystem : EntitySystem
         SubscribeLocalEvent<MindLinkComponent, ComponentShutdown>(OnMindLinkShutdown);
         SubscribeLocalEvent<MindLinkComponent, OpenMindLinkEvent>(OnOpenAction);
         SubscribeLocalEvent<MindLinkRecipientComponent, ReplyMindLinkEvent>(OnReplyAction);
+        SubscribeLocalEvent<MindLinkRecipientComponent, ComponentShutdown>(OnRecipientShutdown);
+        SubscribeLocalEvent<OrganComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
+        SubscribeLocalEvent<BrainComponent, ComponentShutdown>(OnBrainShutdown);
+        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
 
         Subs.BuiEvents<MindLinkComponent>(MindLinkUiKey.Key, subs =>
         {
             subs.Event<SelectMindLinkTargetMessage>(OnTargetSelected);
+            subs.Event<SelectAllMindLinkTargetsMessage>(OnAllTargetsSelected);
+            subs.Event<DisconnectMindLinkTargetMessage>(OnTargetDisconnected);
             subs.Event<SendMindLinkMessage>(OnMessageSent);
         });
     }
@@ -50,10 +63,48 @@ public sealed class MindLinkSystem : EntitySystem
 
     private void OnMindLinkShutdown(Entity<MindLinkComponent> ent, ref ComponentShutdown args)
     {
-        ClearConnection(ent);
+        ClearConnections(ent);
+        ClearIncomingConnections(ent.Owner);
 
         if (ent.Comp.AddedUserInterface)
             RemComp<UserInterfaceComponent>(ent);
+    }
+
+    private void OnRecipientShutdown(Entity<MindLinkRecipientComponent> ent, ref ComponentShutdown args)
+    {
+        ClearIncomingConnections(ent.Owner, ent.Comp, removeRecipient: false);
+    }
+
+    private void OnMobStateChanged(MobStateChangedEvent args)
+    {
+        if (args.OldMobState == MobState.Alive && args.NewMobState != MobState.Alive)
+            ClearAllConnections(args.Target);
+    }
+
+    private void OnPlayerDetached(PlayerDetachedEvent args)
+    {
+        ClearAllConnections(args.Entity);
+    }
+
+    private void OnOrganRemoved(Entity<OrganComponent> ent, ref OrganRemovedFromBodyEvent args)
+    {
+        if (!HasComp<BrainComponent>(ent.Owner))
+            return;
+
+        if (!HasActiveBrain(args.OldBody, ent.Owner))
+            ClearAllConnections(args.OldBody);
+    }
+
+    private void OnBrainShutdown(Entity<BrainComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp(ent.Owner, out OrganComponent? organ)
+            && organ.Body is { } body
+            && !HasActiveBrain(body, ent.Owner))
+            ClearAllConnections(body);
+
+        if (!TryComp(ent.Owner, out BodyComponent? _)
+            || !HasActiveBrain(ent.Owner, ent.Owner))
+            ClearAllConnections(ent.Owner);
     }
 
     private void OnOpenAction(Entity<MindLinkComponent> ent, ref OpenMindLinkEvent args)
@@ -63,7 +114,9 @@ public sealed class MindLinkSystem : EntitySystem
 
         args.Handled = true;
         ent.Comp.TwoWayCommunication = args.TwoWayCommunication;
+        ent.Comp.MultiLink = args.MultiLink;
         ent.Comp.Range = args.Range;
+        ent.Comp.PendingTargets.Clear();
         ent.Comp.PendingReplyTarget = null;
         ent.Comp.SelectingReplyTarget = false;
         OpenTargetSelection(ent);
@@ -71,7 +124,7 @@ public sealed class MindLinkSystem : EntitySystem
 
     private void OnReplyAction(Entity<MindLinkRecipientComponent> ent, ref ReplyMindLinkEvent args)
     {
-        if (args.Handled || ent.Comp.Initiators.Count == 0
+        if (args.Handled || ent.Comp.ReplyInitiators.Count == 0
             || !TryComp(ent.Owner, out MindLinkComponent? link))
             return;
 
@@ -86,7 +139,7 @@ public sealed class MindLinkSystem : EntitySystem
             var initiator = GetEntity(initiators[0].Entity);
             link.SelectingReplyTarget = false;
             link.PendingReplyTarget = initiator;
-            OpenMessageWindow(ent.Owner, initiator, isReply: true);
+            OpenMessageWindow(ent.Owner, [initiator], isReply: true);
             return;
         }
 
@@ -96,11 +149,14 @@ public sealed class MindLinkSystem : EntitySystem
 
     private void OnTargetSelected(Entity<MindLinkComponent> ent, ref SelectMindLinkTargetMessage args)
     {
+        if (args.Actor != ent.Owner)
+            return;
+
         var target = GetEntity(args.Target);
         if (ent.Comp.SelectingReplyTarget)
         {
             if (!TryComp(ent.Owner, out MindLinkRecipientComponent? recipient)
-                || !recipient.Initiators.Contains(target)
+                || !recipient.ReplyInitiators.Contains(target)
                 || !IsActiveConnection(target, ent.Owner))
             {
                 OpenReplyTargetSelection(ent.Owner, GetReplyTargets(ent.Owner));
@@ -109,11 +165,11 @@ public sealed class MindLinkSystem : EntitySystem
 
             ent.Comp.SelectingReplyTarget = false;
             ent.Comp.PendingReplyTarget = target;
-            OpenMessageWindow(ent.Owner, target, isReply: true);
+            OpenMessageWindow(ent.Owner, [target], isReply: true);
             return;
         }
 
-        var isCurrentTarget = ent.Comp.CurrentTarget == target;
+        var isCurrentTarget = ent.Comp.Targets.Contains(target);
         if (!Exists(target) || !IsValidTarget(target)
             || !isCurrentTarget && !IsWithinRange(ent.Owner, target, ent.Comp.Range))
         {
@@ -125,7 +181,35 @@ public sealed class MindLinkSystem : EntitySystem
         ent.Comp.SelectingReplyTarget = false;
         if (!isCurrentTarget)
             SetTarget(ent, target);
-        OpenMessageWindow(ent.Owner, target, isReply: false);
+        OpenMessageWindow(ent.Owner, [target], isReply: false);
+    }
+
+    private void OnAllTargetsSelected(Entity<MindLinkComponent> ent, ref SelectAllMindLinkTargetsMessage args)
+    {
+        if (args.Actor != ent.Owner || ent.Comp.SelectingReplyTarget || !ent.Comp.MultiLink)
+            return;
+
+        var targets = ent.Comp.Targets.Where(target => IsActiveConnection(ent.Owner, target)).ToList();
+        if (targets.Count == 0)
+        {
+            OpenTargetSelection(ent);
+            return;
+        }
+
+        OpenMessageWindow(ent.Owner, targets, isReply: false);
+    }
+
+    private void OnTargetDisconnected(Entity<MindLinkComponent> ent, ref DisconnectMindLinkTargetMessage args)
+    {
+        if (args.Actor != ent.Owner || ent.Comp.SelectingReplyTarget)
+            return;
+
+        var target = GetEntity(args.Target);
+        if (!ent.Comp.Targets.Contains(target))
+            return;
+
+        ClearConnection(ent, target);
+        OpenTargetSelection(ent);
     }
 
     private void OnMessageSent(Entity<MindLinkComponent> ent, ref SendMindLinkMessage args)
@@ -136,69 +220,93 @@ public sealed class MindLinkSystem : EntitySystem
         var message = args.Message.Trim();
         var source = args.Actor;
         var isReply = ent.Comp.PendingReplyTarget is not null;
-        var target = ent.Comp.PendingReplyTarget ?? ent.Comp.CurrentTarget;
+        List<EntityUid> targets;
 
         if (isReply)
         {
-            if (target is not { } replyTarget
+            targets = ent.Comp.PendingReplyTarget is { } pendingReplyTarget ? [pendingReplyTarget] : [];
+            if (targets.Count != 1
                 || !TryComp(ent.Owner, out MindLinkRecipientComponent? recipient)
-                || !recipient.Initiators.Contains(replyTarget)
-                || !IsActiveConnection(replyTarget, ent.Owner))
+                || !recipient.ReplyInitiators.Contains(targets[0])
+                || !IsActiveConnection(targets[0], ent.Owner))
                 return;
         }
+        else
+        {
+            targets = ent.Comp.PendingTargets
+                .Where(target => IsActiveConnection(source, target))
+                .ToList();
+            ent.Comp.PendingTargets = targets;
 
-        if (target is null || !IsActiveConnection(source, target.Value)
-            || message.Length == 0 || message.Length > MaxMessageLength)
+            if (targets.Count == 0)
+            {
+                OpenTargetSelection(ent);
+                return;
+            }
+        }
+
+        if (message.Length == 0 || message.Length > MaxMessageLength)
             return;
 
-        if (!TrySendMessage(source, target.Value, message))
+        if (!TrySendMessage(source, targets, message))
             return;
 
-        ent.Comp.PendingReplyTarget = null;
-
-        // A reply action is earned by receiving the first message, not merely by
-        // appearing in the source's target picker.
-        if (!isReply && ent.Comp.TwoWayCommunication)
-            GrantReplyAction(ent, target.Value);
+        // Also register here for already-established links loaded from older state.
+        if (!isReply)
+        {
+            foreach (var target in targets)
+                RegisterRecipient(ent, target);
+        }
     }
 
     private void OpenTargetSelection(Entity<MindLinkComponent> ent)
     {
         var targets = GetTargets(ent);
         _ui.OpenUi(ent.Owner, MindLinkUiKey.Key, ent.Owner);
-        _ui.SetUiState(ent.Owner, MindLinkUiKey.Key, new MindLinkBuiState(targets, null, false));
+        _ui.SetUiState(ent.Owner, MindLinkUiKey.Key,
+            new MindLinkBuiState(targets, null, false, ent.Comp.MultiLink && ent.Comp.Targets.Count > 0));
     }
 
     private void OpenReplyTargetSelection(EntityUid recipient, List<MindLinkTarget> targets)
     {
         _ui.OpenUi(recipient, MindLinkUiKey.Key, recipient);
-        _ui.SetUiState(recipient, MindLinkUiKey.Key, new MindLinkBuiState(targets, null, true));
+        _ui.SetUiState(recipient, MindLinkUiKey.Key, new MindLinkBuiState(targets, null, true, false));
     }
 
-    private void OpenMessageWindow(EntityUid uiOwner, EntityUid recipient, bool isReply)
+    private void OpenMessageWindow(EntityUid uiOwner, List<EntityUid> recipients, bool isReply)
     {
+        if (!TryComp(uiOwner, out MindLinkComponent? link))
+            return;
+
+        if (!isReply)
+            link.PendingTargets = recipients;
+
+        var recipientName = recipients.Count == 1 ? Name(recipients[0]) : Loc.GetString("mind-link-all-targets");
         _ui.OpenUi(uiOwner, MindLinkUiKey.Key, uiOwner);
         _ui.SetUiState(uiOwner, MindLinkUiKey.Key,
-            new MindLinkBuiState([], Name(recipient), isReply));
+            new MindLinkBuiState([], recipientName, isReply, false));
     }
 
     private List<MindLinkTarget> GetTargets(Entity<MindLinkComponent> source)
     {
         var result = new List<MindLinkTarget>();
 
-        // An established connection is always shown first and does not depend on range.
-        if (source.Comp.CurrentTarget is { } current && IsActiveConnection(source.Owner, current))
-            result.Add(new MindLinkTarget(GetNetEntity(current), Name(current)));
+        // Established connections are always shown first and do not depend on range.
+        foreach (var current in source.Comp.Targets)
+        {
+            if (IsActiveConnection(source.Owner, current))
+                result.Add(new MindLinkTarget(GetNetEntity(current), Name(current), true));
+        }
 
         var available = new List<MindLinkTarget>();
         var query = EntityQueryEnumerator<MobStateComponent>();
         while (query.MoveNext(out var uid, out _))
         {
             if (uid != source.Owner
-                && uid != source.Comp.CurrentTarget
+                && !source.Comp.Targets.Contains(uid)
                 && IsValidTarget(uid)
                 && IsWithinRange(source.Owner, uid, source.Comp.Range))
-                available.Add(new MindLinkTarget(GetNetEntity(uid), Name(uid)));
+                available.Add(new MindLinkTarget(GetNetEntity(uid), Name(uid), false));
         }
 
         available.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
@@ -212,10 +320,10 @@ public sealed class MindLinkSystem : EntitySystem
         if (!TryComp(recipient, out MindLinkRecipientComponent? recipientComp))
             return result;
 
-        foreach (var initiator in recipientComp.Initiators)
+        foreach (var initiator in recipientComp.ReplyInitiators)
         {
             if (IsActiveConnection(initiator, recipient))
-                result.Add(new MindLinkTarget(GetNetEntity(initiator), Name(initiator)));
+                result.Add(new MindLinkTarget(GetNetEntity(initiator), Name(initiator), false));
         }
 
         result.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
@@ -224,56 +332,96 @@ public sealed class MindLinkSystem : EntitySystem
 
     private void SetTarget(Entity<MindLinkComponent> source, EntityUid target)
     {
-        ClearConnection(source);
-        source.Comp.CurrentTarget = target;
+        if (!source.Comp.MultiLink)
+            ClearConnections(source);
+
+        if (!source.Comp.Targets.Add(target))
+            return;
+
+        _popup.PopupEntity(Loc.GetString("mind-link-connection-established"), target, target, PopupType.MediumCaution);
+        RegisterRecipient(source, target);
         Dirty(source);
     }
 
-    private void GrantReplyAction(Entity<MindLinkComponent> source, EntityUid target)
+    private void RegisterRecipient(Entity<MindLinkComponent> source, EntityUid target)
     {
+        var targetRecipient = EnsureComp<MindLinkRecipientComponent>(target);
+        targetRecipient.Initiators.Add(source.Owner);
+        if (!source.Comp.TwoWayCommunication)
+            return;
+
+        targetRecipient.ReplyInitiators.Add(source.Owner);
+
         // Recipients get this component temporarily so that their reply UI has an entity to live on.
         if (!HasComp<MindLinkComponent>(target))
             AddComp(target, new MindLinkComponent { TemporaryUiHost = true });
 
-        var targetRecipient = EnsureComp<MindLinkRecipientComponent>(target);
-        targetRecipient.Initiators.Add(source.Owner);
         if (targetRecipient.ReplyAction is null || Deleted(targetRecipient.ReplyAction.Value))
             targetRecipient.ReplyAction = _actions.AddAction(target, ReplyActionPrototype, target);
     }
 
-    public override void Update(float frameTime)
+    private void ClearAllConnections(EntityUid uid)
     {
-        var brokenConnections = new List<Entity<MindLinkComponent>>();
-        var query = EntityQueryEnumerator<MindLinkComponent>();
-        while (query.MoveNext(out var uid, out var component))
-        {
-            if (component.CurrentTarget is { } target
-                && !IsActiveConnection(uid, target))
-                brokenConnections.Add((uid, component));
-        }
+        if (TryComp(uid, out MindLinkComponent? link))
+            ClearConnections((uid, link));
 
-        foreach (var connection in brokenConnections)
-            ClearConnection(connection);
+        ClearIncomingConnections(uid);
     }
 
-    private void ClearConnection(Entity<MindLinkComponent> source)
+    private void ClearConnections(Entity<MindLinkComponent> source)
     {
-        if (source.Comp.CurrentTarget is not { } target)
+        foreach (var target in source.Comp.Targets.ToArray())
+            ClearConnection(source, target);
+    }
+
+    private void ClearIncomingConnections(
+        EntityUid target,
+        MindLinkRecipientComponent? recipient = null,
+        bool removeRecipient = true)
+    {
+        if (!Resolve(target, ref recipient, false))
             return;
 
-        if (TryComp(target, out MindLinkRecipientComponent? recipient)
-            && recipient.Initiators.Remove(source.Owner)
-            && recipient.Initiators.Count == 0)
+        foreach (var initiator in recipient.Initiators.ToArray())
         {
-            if (recipient.ReplyAction is { } action)
-                _actions.RemoveAction(target, action);
-            RemComp<MindLinkRecipientComponent>(target);
+            if (TryComp(initiator, out MindLinkComponent? source)
+                && source.Targets.Contains(target))
+                ClearConnection((initiator, source), target, removeRecipient);
+            else
+            {
+                recipient.Initiators.Remove(initiator);
+                recipient.ReplyInitiators.Remove(initiator);
+            }
+        }
+    }
 
-            if (TryComp(target, out MindLinkComponent? targetLink) && targetLink.TemporaryUiHost)
-                RemComp<MindLinkComponent>(target);
+    private void ClearConnection(Entity<MindLinkComponent> source, EntityUid target, bool removeRecipient = true)
+    {
+        if (!source.Comp.Targets.Remove(target))
+            return;
+
+        source.Comp.PendingTargets.Remove(target);
+
+        if (TryComp(target, out MindLinkRecipientComponent? recipient))
+        {
+            recipient.Initiators.Remove(source.Owner);
+            recipient.ReplyInitiators.Remove(source.Owner);
+
+            if (recipient.ReplyInitiators.Count == 0 && recipient.ReplyAction is { } action)
+            {
+                _actions.RemoveAction(target, action);
+                recipient.ReplyAction = null;
+            }
+
+            if (removeRecipient && recipient.Initiators.Count == 0)
+            {
+                RemComp<MindLinkRecipientComponent>(target);
+
+                if (TryComp(target, out MindLinkComponent? targetLink) && targetLink.TemporaryUiHost)
+                    RemComp<MindLinkComponent>(target);
+            }
         }
 
-        source.Comp.CurrentTarget = null;
         Dirty(source);
     }
 
@@ -299,12 +447,12 @@ public sealed class MindLinkSystem : EntitySystem
         return IsValidTarget(source)
                && IsValidTarget(target)
                && TryComp(source, out MindLinkComponent? link)
-               && link.CurrentTarget == target;
+               && link.Targets.Contains(target);
     }
 
-    private bool HasActiveBrain(EntityUid uid)
+    private bool HasActiveBrain(EntityUid uid, EntityUid? excludedBrain = null)
     {
-        if (TryComp(uid, out BrainComponent? brain))
+        if (uid != excludedBrain && TryComp(uid, out BrainComponent? brain))
             return brain.Active;
 
         if (!TryComp(uid, out BodyComponent? body))
@@ -312,6 +460,9 @@ public sealed class MindLinkSystem : EntitySystem
 
         foreach (var (organ, _) in _body.GetBodyOrgans(uid, body))
         {
+            if (organ == excludedBrain)
+                continue;
+
             if (TryComp(organ, out brain) && brain.Active)
                 return true;
         }
@@ -319,27 +470,34 @@ public sealed class MindLinkSystem : EntitySystem
         return false;
     }
 
-    private bool TrySendMessage(EntityUid sender, EntityUid recipient, string text)
+    private bool TrySendMessage(EntityUid sender, List<EntityUid> recipients, string text)
     {
-        if (!_players.TryGetSessionByEntity(sender, out var senderSession)
-            || !_players.TryGetSessionByEntity(recipient, out var recipientSession))
+        if (!_players.TryGetSessionByEntity(sender, out var senderSession))
             return false;
 
         if (_chat.HandleRateLimit(senderSession) != RateLimitStatus.Allowed)
             return false;
 
-        var senderName = Name(sender);
-        var recipientName = Name(recipient);
         var escapedText = FormattedMessage.EscapeText(text);
+        var recipientName = recipients.Count == 1
+            ? FormattedMessage.EscapeText(Name(recipients[0]))
+            : Loc.GetString("mind-link-all-targets");
+        var senderName = FormattedMessage.EscapeText(Name(sender));
         var senderMessage = Loc.GetString("mind-link-chat-sent", ("target", recipientName), ("message", escapedText));
-        var recipientMessage = Loc.GetString("mind-link-chat-received", ("source", senderName), ("message", escapedText));
-
         _chat.ChatMessageToOne(ChatChannel.Telepathic, escapedText, senderMessage, sender, false,
             senderSession.Channel, Color.PaleVioletRed, recordReplay: true, author: senderSession.UserId);
-        _chat.ChatMessageToOne(ChatChannel.Telepathic, escapedText, recipientMessage, sender, false,
-            recipientSession.Channel, Color.PaleVioletRed, author: senderSession.UserId);
-        _adminLogger.Add(LogType.Chat, LogImpact.Low,
-            $"Mind link from {ToPrettyString(sender):user} to {ToPrettyString(recipient):user}: {text}");
+
+        foreach (var recipient in recipients)
+        {
+            if (!_players.TryGetSessionByEntity(recipient, out var recipientSession))
+                continue;
+
+            var recipientMessage = Loc.GetString("mind-link-chat-received", ("source", senderName), ("message", escapedText));
+            _chat.ChatMessageToOne(ChatChannel.Telepathic, escapedText, recipientMessage, sender, false,
+                recipientSession.Channel, Color.PaleVioletRed, author: senderSession.UserId);
+            _adminLogger.Add(LogType.Chat, LogImpact.Low,
+                $"Mind link from {ToPrettyString(sender):user} to {ToPrettyString(recipient):user}: {text}");
+        }
         return true;
     }
 }
