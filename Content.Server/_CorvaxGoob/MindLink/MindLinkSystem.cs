@@ -340,7 +340,6 @@ public sealed class MindLinkSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("mind-link-connection-established"), target, target, PopupType.MediumCaution);
         RegisterRecipient(source, target);
-        Dirty(source);
     }
 
     private void RegisterRecipient(Entity<MindLinkComponent> source, EntityUid target)
@@ -421,8 +420,6 @@ public sealed class MindLinkSystem : EntitySystem
                     RemComp<MindLinkComponent>(target);
             }
         }
-
-        Dirty(source);
     }
 
     private bool IsValidTarget(EntityUid uid)
