@@ -198,6 +198,9 @@
     - Biological
     damage:
       types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
         Cellular: -34
 
 - type: entity

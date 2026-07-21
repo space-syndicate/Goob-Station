@@ -5,6 +5,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.DeimonFly.BuckshotRoulette;
 using Content.Shared.Imperial.DeimonFly.RussianRoulette;
+using Content.Shared.Medical.Healing;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -31,6 +32,7 @@ public sealed class RouletteSystemsTest : InteractionTest
     private const string LiveShell = "ShellShotgunBuckshotRouletteLive";
     private const string BlankShell = "ShellShotgunBuckshotRouletteBlank";
     private const string HandSaw = "BuckshotRouletteHandSaw";
+    private const string MedicalKit = "BuckshotRouletteMedicalKit";
 
     [Test]
     public async Task RussianRouletteSpawnsOneCartridgeAndDamagesOnlyShooter()
@@ -170,6 +172,54 @@ public sealed class RouletteSystemsTest : InteractionTest
                 Is.EqualTo(FixedPoint2.New(expectedTargetDamage)));
             Assert.That(SGun.GetAmmoCount(shotgunUid), Is.Zero,
                 "Использованный боевой или холостой патрон должен покинуть дробовик.");
+        });
+    }
+
+    [Test]
+    public async Task SawedTargetShotDoublesDamage()
+    {
+        await AddAtmosphere();
+        var shotgun = await SpawnTarget(DealerShotgun);
+        var shotgunUid = ToServer(shotgun);
+        var roulette = SEntMan.GetComponent<BuckshotRouletteShotgunComponent>(shotgunUid);
+
+        await InteractUsing(HandSaw);
+        await Pickup(shotgun);
+        await LoadShell(shotgunUid, LiveShell);
+        await Server.WaitPost(() =>
+        {
+            roulette.FireMode = BuckshotRouletteFireMode.Target;
+            SEntMan.Dirty(shotgunUid, roulette);
+        });
+
+        await UseInHand();
+        var target = await SpawnTarget(HumanPrototype);
+        await RunSeconds(2f);
+        await AttemptShoot(target);
+        await RunSeconds(0.5f);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(GetDamageOfType(SPlayer, "Cellular"), Is.EqualTo(FixedPoint2.Zero));
+            Assert.That(GetDamageOfType(ToServer(target), "Cellular"), Is.EqualTo(FixedPoint2.New(68)),
+                "Пила должна удваивать урон боевого патрона в режиме стрельбы по цели.");
+            Assert.That(SGun.GetAmmoCount(shotgunUid), Is.Zero);
+            Assert.That(roulette.DoubleNextShot, Is.False);
+            Assert.That(roulette.BarrelRestorationPending, Is.True);
+        });
+    }
+
+    [Test]
+    public async Task MedicalKitHealsOnlyCellularDamage()
+    {
+        var kit = await SpawnTarget(MedicalKit);
+        var healing = SEntMan.GetComponent<HealingComponent>(ToServer(kit));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(healing.Damage.DamageDict["Cellular"], Is.EqualTo(FixedPoint2.New(-34)));
+            Assert.That(healing.Damage.DamageDict.Count(entry => entry.Value != FixedPoint2.Zero), Is.EqualTo(1),
+                "Аптечка не должна наследовать лечение обычных травм от HardTraumapack1.");
         });
     }
 

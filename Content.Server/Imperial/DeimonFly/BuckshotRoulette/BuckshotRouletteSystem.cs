@@ -39,6 +39,7 @@ namespace Content.Server.Imperial.DeimonFly.BuckshotRoulette;
 /// </summary>
 public sealed class BuckshotRouletteSystem : EntitySystem
 {
+    private const float SawDamageMultiplier = 2f;
     private static readonly SoundSpecifier ShellEjectSound = new SoundCollectionSpecifier("ShellEject");
 
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -98,10 +99,15 @@ public sealed class BuckshotRouletteSystem : EntitySystem
 
     private void OnShotgunExamined(Entity<BuckshotRouletteShotgunComponent> shotgun, ref ExaminedEvent args)
     {
-        var mode = Loc.GetString(shotgun.Comp.FireMode == BuckshotRouletteFireMode.Self
+        var mode = GetFireModeLocString(shotgun.Comp.FireMode);
+        args.PushMarkup(Loc.GetString("buckshot-roulette-fire-mode-examine", ("mode", mode)));
+    }
+
+    private string GetFireModeLocString(BuckshotRouletteFireMode mode)
+    {
+        return Loc.GetString(mode == BuckshotRouletteFireMode.Self
             ? "buckshot-roulette-fire-mode-self"
             : "buckshot-roulette-fire-mode-target");
-        args.PushMarkup(Loc.GetString("buckshot-roulette-fire-mode-examine", ("mode", mode)));
     }
 
     private void OnShotgunGetVerbs(
@@ -127,9 +133,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
             : BuckshotRouletteFireMode.Target;
         Dirty(shotgun);
 
-        var mode = Loc.GetString(shotgun.Comp.FireMode == BuckshotRouletteFireMode.Self
-            ? "buckshot-roulette-fire-mode-self"
-            : "buckshot-roulette-fire-mode-target");
+        var mode = GetFireModeLocString(shotgun.Comp.FireMode);
         _popup.PopupClient(Loc.GetString("buckshot-roulette-fire-mode-changed", ("mode", mode)), user, user);
     }
 
@@ -158,7 +162,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
                 _audio.PlayPredicted(gun.SoundGunshotModified, shotgun, args.User);
                 var damage = new DamageSpecifier(shotgun.Comp.SelfDamage);
                 if (doubleDamage)
-                    damage *= 2f;
+                    damage *= SawDamageMultiplier;
 
                 _damageable.TryChangeDamage(
                     args.User,
@@ -187,7 +191,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
             if (!TryComp<ProjectileComponent>(projectileUid, out var projectile))
                 continue;
 
-            projectile.Damage *= 2f;
+            projectile.Damage *= SawDamageMultiplier;
             Dirty(projectileUid, projectile);
         }
 
