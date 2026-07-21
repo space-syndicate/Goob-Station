@@ -1,17 +1,17 @@
 device-pda-slot-component-slot-name-cartridge = Картридж
 default-program-name = Программа
 notekeeper-program-name = Заметки
-nano-task-program-name = NanoTask
-news-read-program-name = NanoNews
+nano-task-program-name = НаноДела
+news-read-program-name = Новости станции
 crew-manifest-program-name = Манифест
 crew-manifest-cartridge-loading = Загрузка ...
-net-probe-program-name = NetProbe
+net-probe-program-name = Зонд сетей
 net-probe-scan = { $device } просканирован!
 net-probe-label-name = Название
 net-probe-label-address = Адрес
 net-probe-label-frequency = Частота
 net-probe-label-network = Сеть
-log-probe-program-name = LogProbe
+log-probe-program-name = Зонд логов
 log-probe-scan = Логи { $device } скачались!
 log-probe-label-time = Время
 log-probe-label-accessor = Получен доступ
@@ -20,8 +20,8 @@ log-probe-print-button = Распечатать логи
 log-probe-printout-device = Сканированное устройство: { $name }
 log-probe-printout-header = Последние логи:
 log-probe-printout-entry = #{ $number } / { $time } / { $accessor }
-astro-nav-program-name = AstroNav
-med-tek-program-name = MedTek
+astro-nav-program-name = АстроНав
+med-tek-program-name = МедТек
 
 # NanoTask cartridge
 
@@ -67,7 +67,7 @@ nano-task-printed-high-priority = [bold]Приоритет[/bold]: [color=red]В
 nano-task-printed-medium-priority = [bold]Приоритет[/bold]: Средний
 nano-task-printed-low-priority = [bold]Приоритет[/bold]: Низкий
 # Wanted list cartridge
-wanted-list-program-name = WatchDog
+wanted-list-program-name = Список разыскиваемых
 wanted-list-label-no-records = Всё спокойно, ковбой.
 wanted-list-search-placeholder = Поиск по имени и статусу
 wanted-list-age-label = [color=darkgray]Возраст:[/color] [color=white]{ $age }[/color]

@@ -351,6 +351,10 @@ flavor-complex-bee = беспчеловечно
 flavor-complex-sax = как джаз
 flavor-complex-bottledlightning = как молния в бутылке
 flavor-complex-punishment = как наказание
-flavor-complex-artifact-glue = like crushed artifacts
+flavor-complex-artifact-glue = как дроблённые артефакты
 flavor-weh = как вех
 flavor-hew = как хев
+
+flavor-complex-canned-tuna = как консервированный тунец
+
+

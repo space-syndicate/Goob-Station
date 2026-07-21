@@ -94,7 +94,7 @@ entity-condition-guidebook-breathing =
     }
 
 entity-condition-guidebook-internals =
-    the metabolizer is { $usingInternals ->
-        [true] using internals
-       *[false] breathing atmospheric air
+    цель { $usingInternals ->
+        [true] использует балон
+        *[false] дышит атмосферой
     }
