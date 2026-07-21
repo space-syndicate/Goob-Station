@@ -14,10 +14,12 @@ public sealed partial class BuckshotRouletteBeerComponent : Component
     /// <summary>
     /// Кэш сущности раствора нужен только для штатного API химии.
     /// </summary>
+    [ViewVariables]
     public Entity<SolutionComponent>? Solution;
 
     /// <summary>
     /// Не позволяет одной бутылке выдать разрешение повторно после доливания жидкости.
     /// </summary>
+    [DataField]
     public bool RewardGranted;
 }

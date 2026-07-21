@@ -9,13 +9,3 @@ public sealed partial class BuckshotRouletteToolComponent : Component
     [DataField(required: true)]
     public BuckshotRouletteToolEffect Effect;
 }
-
-public enum BuckshotRouletteToolEffect : byte
-{
-    BurnerPhone,
-    Inverter,
-    MagnifyingGlass,
-    Jammer,
-    Remote,
-    HandSaw,
-}

@@ -39,9 +39,6 @@ namespace Content.Server.Imperial.DeimonFly.BuckshotRoulette;
 /// </summary>
 public sealed class BuckshotRouletteSystem : EntitySystem
 {
-    private const float SawDamageMultiplier = 2f;
-    private static readonly SoundSpecifier ShellEjectSound = new SoundCollectionSpecifier("ShellEject");
-
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
@@ -131,7 +128,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
         shotgun.Comp.FireMode = shotgun.Comp.FireMode == BuckshotRouletteFireMode.Target
             ? BuckshotRouletteFireMode.Self
             : BuckshotRouletteFireMode.Target;
-        Dirty(shotgun);
+        DirtyField(shotgun.AsNullable(), nameof(BuckshotRouletteShotgunComponent.FireMode));
 
         var mode = GetFireModeLocString(shotgun.Comp.FireMode);
         _popup.PopupClient(Loc.GetString("buckshot-roulette-fire-mode-changed", ("mode", mode)), user, user);
@@ -162,7 +159,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
                 _audio.PlayPredicted(gun.SoundGunshotModified, shotgun, args.User);
                 var damage = new DamageSpecifier(shotgun.Comp.SelfDamage);
                 if (doubleDamage)
-                    damage *= SawDamageMultiplier;
+                    damage *= shotgun.Comp.SawDamageMultiplier;
 
                 _damageable.TryChangeDamage(
                     args.User,
@@ -191,7 +188,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
             if (!TryComp<ProjectileComponent>(projectileUid, out var projectile))
                 continue;
 
-            projectile.Damage *= SawDamageMultiplier;
+            projectile.Damage *= shotgun.Comp.SawDamageMultiplier;
             Dirty(projectileUid, projectile);
         }
 
@@ -213,8 +210,7 @@ public sealed class BuckshotRouletteSystem : EntitySystem
 
         shotgun.Comp.BarrelRestorationPending = false;
         shotgun.Comp.BarrelVisualState = BuckshotRouletteBarrelVisualState.Restoring;
-        shotgun.Comp.BarrelRestoreAt = _timing.CurTime +
-            TimeSpan.FromSeconds(Math.Max(0.1f, shotgun.Comp.BarrelRestoreDuration));
+        shotgun.Comp.BarrelRestoreAt = _timing.CurTime + shotgun.Comp.BarrelRestoreDuration;
         Dirty(shotgun);
     }
 
@@ -280,8 +276,8 @@ public sealed class BuckshotRouletteSystem : EntitySystem
 
         _transform.SetCoordinates(shell, Transform(args.User).Coordinates);
         var ejectSound = TryComp<CartridgeAmmoComponent>(shell, out var cartridge)
-            ? cartridge.EjectSound ?? ShellEjectSound
-            : ShellEjectSound;
+            ? cartridge.EjectSound ?? shotgun.Comp.ShellEjectSound
+            : shotgun.Comp.ShellEjectSound;
 
         // Это серверное взаимодействие не предсказывается клиентом,
         // поэтому звук принудительно отправляется всем поблизости.
@@ -305,22 +301,24 @@ public sealed class BuckshotRouletteSystem : EntitySystem
         if (!TryComp<StorageComponent>(ent, out var storage))
             return;
 
-        var minimum = Math.Clamp(ent.Comp.MinimumShells, 2, 8);
-        var maximum = Math.Clamp(ent.Comp.MaximumShells, minimum, 8);
-        var count = _random.Next(minimum, maximum + 1);
+        var count = _random.Next(ent.Comp.MinimumShells, ent.Comp.MaximumShells + 1);
         var liveCount = _random.Next(1, count);
 
-        var shells = new List<EntProtoId>(count);
-        for (var i = 0; i < liveCount; i++)
-            shells.Add(ent.Comp.LiveShell);
-        for (var i = liveCount; i < count; i++)
-            shells.Add(ent.Comp.BlankShell);
+        var liveShells = Enumerable.Repeat(ent.Comp.LiveShell, liveCount);
+        var blankShells = Enumerable.Repeat(ent.Comp.BlankShell, count - liveCount);
+        var shells = liveShells.Concat(blankShells).ToList();
         _random.Shuffle(shells);
 
-        var positions = new List<Vector2i>(8);
-        for (var y = 0; y < 2; y++)
-        for (var x = 0; x < 4; x++)
-            positions.Add(new Vector2i(x, y));
+        var grid = storage.Grid.GetBoundingBox();
+        var positions = new List<Vector2i>(storage.Grid.GetArea());
+        for (var y = grid.Bottom; y <= grid.Top; y++)
+        {
+            for (var x = grid.Left; x <= grid.Right; x++)
+            {
+                if (storage.Grid.Contains(x, y))
+                    positions.Add(new Vector2i(x, y));
+            }
+        }
         _random.Shuffle(positions);
 
         for (var i = 0; i < shells.Count; i++)

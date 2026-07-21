@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -8,7 +9,7 @@ namespace Content.Shared.Imperial.DeimonFly.BuckshotRoulette;
 /// <summary>
 /// Отмечает дробовик Buckshot Roulette, хранит его режим и параметры двух типов патронов.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true, fieldDeltas: true)]
 public sealed partial class BuckshotRouletteShotgunComponent : Component
 {
     [DataField(required: true)]
@@ -28,6 +29,18 @@ public sealed partial class BuckshotRouletteShotgunComponent : Component
     /// </summary>
     [DataField(required: true)]
     public DamageSpecifier SelfDamage = new();
+
+    /// <summary>
+    /// Множитель урона следующего выстрела после применения пилы.
+    /// </summary>
+    [DataField]
+    public float SawDamageMultiplier = 2f;
+
+    /// <summary>
+    /// Резервный звук извлечения патрона под действием пива.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier ShellEjectSound = new SoundCollectionSpecifier("ShellEject");
 
     /// <summary>
     /// Удваивает урон следующего фактически использованного патрона и сбрасывается после выстрела.
@@ -69,28 +82,23 @@ public sealed partial class BuckshotRouletteShotgunComponent : Component
     /// Время от начала анимации до переключения на целый статичный спрайт.
     /// </summary>
     [DataField]
-    public float BarrelRestoreDuration = 1.85f;
+    public TimeSpan BarrelRestoreDuration = TimeSpan.FromSeconds(1.85);
 
     /// <summary>
     /// После усиленного выстрела восстановление ожидает фактического выбрасывания оружия из рук.
     /// </summary>
+    [ViewVariables]
     public bool BarrelRestorationPending;
 
     /// <summary>
     /// Серверное время окончания уже запущенной анимации.
     /// </summary>
+    [ViewVariables]
     public TimeSpan? BarrelRestoreAt;
-}
 
-public enum BuckshotRouletteFireMode : byte
-{
-    Target,
-    Self,
-}
-
-public enum BuckshotRouletteBarrelVisualState : byte
-{
-    Intact,
-    Sawed,
-    Restoring,
+    /// <summary>
+    /// Последнее состояние ствола, применённое клиентской системой визуализации.
+    /// </summary>
+    [ViewVariables]
+    public BuckshotRouletteBarrelVisualState? AppliedBarrelVisualState;
 }

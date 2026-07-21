@@ -4,6 +4,7 @@ using Content.Client.Weapons.Ranged.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.DeimonFly.BuckshotRoulette;
+using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Robust.Client.GameObjects;
 
@@ -15,16 +16,14 @@ namespace Content.Client.Imperial.DeimonFly.BuckshotRoulette;
 public sealed class BuckshotRouletteVisualsSystem : EntitySystem
 {
     [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
-
-    private readonly Dictionary<EntityUid, BuckshotRouletteBarrelVisualState> _appliedStates = new();
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<BuckshotRouletteShotgunComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<BuckshotRouletteShotgunComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<BuckshotRouletteShotgunComponent, AfterAutoHandleStateEvent>(OnAfterState);
         SubscribeLocalEvent<BuckshotRouletteShotgunComponent, GetInhandVisualsEvent>(OnGetInhandVisuals,
             after: [typeof(ItemSystem)]);
@@ -37,11 +36,6 @@ public sealed class BuckshotRouletteVisualsSystem : EntitySystem
         ApplyWorldVisuals(shotgun, force: true);
     }
 
-    private void OnShutdown(Entity<BuckshotRouletteShotgunComponent> shotgun, ref ComponentShutdown args)
-    {
-        _appliedStates.Remove(shotgun);
-    }
-
     private void OnAfterState(Entity<BuckshotRouletteShotgunComponent> shotgun, ref AfterAutoHandleStateEvent args)
     {
         ApplyWorldVisuals(shotgun);
@@ -50,8 +44,7 @@ public sealed class BuckshotRouletteVisualsSystem : EntitySystem
     private void ApplyWorldVisuals(Entity<BuckshotRouletteShotgunComponent> shotgun, bool force = false)
     {
         if (!force &&
-            _appliedStates.TryGetValue(shotgun, out var applied) &&
-            applied == shotgun.Comp.BarrelVisualState)
+            shotgun.Comp.AppliedBarrelVisualState == shotgun.Comp.BarrelVisualState)
         {
             return;
         }
@@ -70,7 +63,7 @@ public sealed class BuckshotRouletteVisualsSystem : EntitySystem
         };
 
         _sprite.LayerSetRsi((shotgun.Owner, sprite), layer, rsi, state);
-        _appliedStates[shotgun] = shotgun.Comp.BarrelVisualState;
+        shotgun.Comp.AppliedBarrelVisualState = shotgun.Comp.BarrelVisualState;
 
         // Если предмет сейчас находится в руках или слоте экипировки, просим владельца сразу перерисовать его.
         _item.VisualsChanged(shotgun);
@@ -104,10 +97,13 @@ public sealed class BuckshotRouletteVisualsSystem : EntitySystem
         if (shotgun.Comp.BarrelVisualState == BuckshotRouletteBarrelVisualState.Intact)
             return;
 
-        var state = args.Slot switch
+        if (!_inventory.TryGetSlot(args.Equipee, args.Slot, out var slot))
+            return;
+
+        var state = slot.SlotFlags switch
         {
-            "back" => "equipped-BACKPACK",
-            "suitstorage" => "equipped-SUITSTORAGE",
+            SlotFlags.BACK => "equipped-BACKPACK",
+            SlotFlags.SUITSTORAGE => "equipped-SUITSTORAGE",
             _ => null,
         };
 

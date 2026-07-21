@@ -274,7 +274,7 @@ public sealed class RouletteSystemsTest : InteractionTest
             Assert.That(GetDamageOfType(ToServer(target), "Cellular"), Is.EqualTo(FixedPoint2.Zero));
         });
 
-        await RunSeconds(roulette.BarrelRestoreDuration + 0.2f);
+        await RunSeconds((float) roulette.BarrelRestoreDuration.TotalSeconds + 0.2f);
 
         Assert.Multiple(() =>
         {
