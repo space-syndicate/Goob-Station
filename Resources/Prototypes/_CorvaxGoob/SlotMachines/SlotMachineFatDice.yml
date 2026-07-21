@@ -24,6 +24,9 @@
     godPotWinChance: 0.05
     godPotPrize: DiceOfFate
     deleteGodPot: true
+    limitSpins: true
+    countSpins: 5
     spinDamage:
       types:
-        Cellular: 20
+        Blunt: 30
+        Cellular: 15
