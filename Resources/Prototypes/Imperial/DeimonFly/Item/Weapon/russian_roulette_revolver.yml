@@ -1,0 +1,92 @@
+- type: Tag
+  id: CartridgeMagnumFinalBet
+
+- type: Tag
+  id: CartridgeMagnumFinalBetUnrevivable
+
+- type: entity
+  abstract: true
+  parent: [BaseWeaponRevolver, BaseSecurityContraband]
+  id: BaseWeaponRevolverFinalBet
+  components:
+  # Повторяем внешний вид и размещение «Инспектора», не наследуя его цель кражи OfficerHandgun.
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+  - type: Item
+    storedOffset: 0,-2
+
+- type: entity
+  parent: BaseWeaponRevolverFinalBet
+  id: WeaponRevolverFinalBet
+  name: Final Bet
+  description: No one knows what keeps its trigger from moving. It gives way only when the muzzle points straight at the shooter's temple, as though the revolver had a will of its own.
+  suffix: Russian roulette, DeimonFly
+  components:
+  - type: RevolverAmmoProvider
+    # Клиент и сервер создают пустой барабан, после чего сервер добавляет один настоящий патрон.
+    proto: null
+    whitelist:
+      tags:
+      - CartridgeMagnumFinalBet
+  - type: RussianRouletteGun
+    cartridge: CartridgeMagnumFinalBet
+    damage:
+      types:
+        Piercing: 200
+
+- type: entity
+  parent: BaseWeaponRevolverFinalBet
+  id: WeaponRevolverFinalBetUnrevivable
+  name: Final Bet
+  description: No one knows what keeps its trigger from moving. It gives way only when the muzzle points straight at the shooter's temple, as though the revolver had a will of its own.
+  suffix: Russian roulette, no revivals, DeimonFly
+  components:
+  - type: RevolverAmmoProvider
+    # Клиент и сервер создают пустой барабан, после чего сервер добавляет один настоящий патрон.
+    proto: null
+    whitelist:
+      tags:
+      - CartridgeMagnumFinalBetUnrevivable
+  - type: RussianRouletteGun
+    cartridge: CartridgeMagnumFinalBetUnrevivable
+    preventRevival: true
+    damage:
+      types:
+        Piercing: 200
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: CartridgeMagnumFinalBet
+  name: Final Bet cartridge
+  description: A special cartridge for the Final Bet revolver. Its shot always turns against the shooter.
+  suffix: Russian roulette, DeimonFly
+  components:
+  - type: Tag
+    tags:
+    - CartridgeMagnumFinalBet
+  - type: CartridgeAmmo
+    proto: BulletFinalBet
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: CartridgeMagnumFinalBetUnrevivable
+  name: Final Bet cartridge
+  description: A special cartridge for the irreversible version of the Final Bet revolver.
+  suffix: Russian roulette, no revivals, DeimonFly
+  components:
+  - type: Tag
+    tags:
+    - CartridgeMagnumFinalBetUnrevivable
+  - type: CartridgeAmmo
+    proto: BulletFinalBet
+
+- type: entity
+  parent: BaseBullet
+  id: BulletFinalBet
+  name: harmless Final Bet bullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage: {}
