@@ -144,4 +144,3 @@ ent-ChemistryBottleTricordrazine = { ent-BaseChemistryBottleFilled }
 ent-ChemistryBottleUltravasculine = { ent-BaseChemistryBottleFilled }
     .suffix = Ультраваскулин
     .desc = { ent-BaseChemistryBottleFilled.desc }
-
