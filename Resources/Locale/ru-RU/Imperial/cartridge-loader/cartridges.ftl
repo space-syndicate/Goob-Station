@@ -14,6 +14,8 @@ nano-chat-ui-contact-job-unknown = Неизвестно
 nano-chat-ui-contacts-contact-name-job =
     { $name }
     ({ $job })
+nano-chat-ui-contacts-contact-name-job-fine = { $name1 } ({ $job1 }) - { $name2 } ({ $job2 })
+
 nano-chat-ui-contacts-contact-name-job-unread = { $name-job } ({ $unread })
 
 
@@ -72,3 +74,8 @@ nano-chat-print-name = { $name } ({ $id })
 syndi-chat-program-name = СиндиЧат
 
 stamp-component-stamped-name-syndi-chat = СиндиЧат
+
+# АдминЧат
+
+nano-chat-admin-program-name = НаноЧат (АДМИН)
+syndi-chat-admin-program-name = СиндиЧат (АДМИН)

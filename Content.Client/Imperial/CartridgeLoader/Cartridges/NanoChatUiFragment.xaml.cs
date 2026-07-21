@@ -376,6 +376,18 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         if (chat.Members.Count > 2 || _userId == null)
             return false;
 
+        if (!chat.Members.Contains(_userId.Value))
+        {
+            var member1 = contacts.FirstOrDefault(c => c.Id == chat.Members.ElementAtOrDefault(0));
+            var member2 = contacts.FirstOrDefault(c => c.Id == chat.Members.ElementAtOrDefault(1));
+
+            return (member1.Name?.Contains(query, StringComparison.OrdinalIgnoreCase) == true) ||
+                   (GetJobTitle(member1.JobTitle).Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                   (member2.Name?.Contains(query, StringComparison.OrdinalIgnoreCase) == true) ||
+                   (GetJobTitle(member2.JobTitle).Contains(query, StringComparison.OrdinalIgnoreCase)) ||
+                   chat.Id.ToString().Contains(query);
+        }
+
         var otherId = chat.Members.FirstOrDefault(m => m != _userId.Value);
         var contact = contacts.FirstOrDefault(c => c.Id == otherId);
 
@@ -413,18 +425,33 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         };
 
         NanoChatContact? singleContact = null;
+        NanoChatContact? adminContact1 = null;
+        NanoChatContact? adminContact2 = null;
+
         if (chat.Automated && _userId != null)
         {
-            var otherId = chat.Members.FirstOrDefault(m => m != _userId.Value);
-            foreach (var c in state.Contacts.Where(c => c.Id == otherId))
+            if (state.FinePrintText && chat.Members.Count >= 2)
             {
-                singleContact = c;
-                break;
+                adminContact1 = state.Contacts.FirstOrDefault(c => c.Id == chat.Members[0]);
+                adminContact2 = state.Contacts.FirstOrDefault(c => c.Id == chat.Members[1]);
+            }
+            else
+            {
+                var otherId = chat.Members.FirstOrDefault(m => m != _userId.Value);
+                singleContact = state.Contacts.FirstOrDefault(c => c.Id == otherId);
             }
         }
 
         string text;
-        if (singleContact is not null)
+        if (state.FinePrintText && adminContact1 != null && adminContact2 != null)
+        {
+            text = Loc.GetString("nano-chat-ui-contacts-contact-name-job-fine",
+                ("name1", adminContact1.Value.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown")),
+                ("job1", GetJobTitle(adminContact1.Value.JobTitle)),
+                ("name2", adminContact2.Value.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown")),
+                ("job2", GetJobTitle(adminContact2.Value.JobTitle)));
+        }
+        else if (singleContact is not null)
         {
             if (singleContact.Value.JobIconId != null && _prototypeManager.TryIndex(singleContact.Value.JobIconId, out var jobIconProto))
             {
@@ -438,13 +465,13 @@ public sealed partial class NanoChatUiFragment : BoxContainer
                 row.AddChild(icon);
             }
             text = Loc.GetString("nano-chat-ui-contacts-contact-name-job",
-                ("name", singleContact.Value.Name),
+                ("name", singleContact.Value.Name ?? Loc.GetString("nano-chat-ui-chat-window-sender-unknown")),
                 ("job", GetJobTitle(singleContact.Value.JobTitle)));
         }
         else
             text = chat.Name;
 
-        if (state.UnreadMessages.TryGetValue(chat.Id, out var unreadCount) && unreadCount > 0)
+        if (!state.FinePrintText && state.UnreadMessages.TryGetValue(chat.Id, out var unreadCount) && unreadCount > 0)
         {
             text = Loc.GetString("nano-chat-ui-contacts-contact-name-job-unread",
                 ("name-job", text),

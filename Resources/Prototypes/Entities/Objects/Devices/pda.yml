@@ -973,6 +973,7 @@
     scanDelay: 0
     silent: true
   - type: CartridgeLoader
+    diskSpace: 10 # Imperial NanoChat
     uiKey: enum.PdaUiKey.Key
     notificationsEnabled: false
     preinstalled:
@@ -984,7 +985,8 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
-      - NanoChatCartridge # Imperial NanoChat
+      - NanoChatAdminCartridge # Imperial NanoChat
+      - SyndiChatAdminCartridge # Imperial NanoChat
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
