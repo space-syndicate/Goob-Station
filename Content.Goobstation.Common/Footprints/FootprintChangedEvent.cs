@@ -3,13 +3,13 @@
 // using Robust.Shared.Serialization;
 
 namespace Content.Goobstation.Common.Footprints;
-
-// [Serializable, NetSerializable]
-// public sealed class FootprintChangedEvent(NetEntity entity) : EntityEventArgs
-// {
-//     public NetEntity Entity = entity;
-// }
-
+/*
+[Serializable, NetSerializable]
+public sealed class FootprintChangedEvent(NetEntity entity) : EntityEventArgs
+{
+    public NetEntity Entity = entity;
+}
+*/
 /// <summary>
 /// Raised on an entity just before it attempts to leave a footprint or interact with a puddle for footprints.
 /// </summary>
