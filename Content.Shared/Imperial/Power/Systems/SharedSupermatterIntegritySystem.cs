@@ -10,7 +10,7 @@ using Robust.Shared.Physics.Events;
 
 namespace Content.Shared.Imperial.Power.Systems;
 
-public sealed class SupermatterIntegritySystem : EntitySystem
+public sealed class SharedSupermatterIntegritySystem : EntitySystem
 {
     [Dependency] private readonly TagSystem _tagSystem = null!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = null!;
