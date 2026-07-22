@@ -16,6 +16,8 @@
           True: { visible: true }
           False: { visible: false }
   - type: Appearance
+  - type: Anchorable
+    flags: Anchorable
   - type: SlotMachine
     smallWinChance: 0
     mediumWinChance: 0
@@ -28,5 +30,5 @@
     countSpins: 7
     spinDamage:
       types:
-        Blunt: 40
-        Cellular: 20
+        Blunt: 30
+        Cellular: 15
