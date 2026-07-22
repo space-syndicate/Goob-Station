@@ -17,7 +17,7 @@
           True: { state: silo_active }
           False: { state: silo }
   - type: OreSilo
-    range: 100 # CorvaxGoob community voting
+    range: 200 # CorvaxGoob community voting
   - type: MaterialStorage
     whitelist:
       tags:
