@@ -208,7 +208,6 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             var supermatterEv = "—";
             if (TryComp<SupermatterEventSchedulerComponent>(smUid, out var scheduler) && scheduler.Events?.Components is not null)
             {
-                var isSingle = scheduler.Events.Components.Length == 1;
                 var locList = new List<string>();
                 foreach (var compStr in scheduler.Events.Components)
                 {
@@ -223,9 +222,9 @@ public sealed class SupermatterConsoleSystem : EntitySystem
                         locList.Add(Loc.GetString(eventComp.EventName));
                 }
 
-                supermatterEv = isSingle
-                    ? locList.First()
-                    : string.Join(", ", locList);
+                supermatterEv = locList.Count > 0
+                    ? string.Join(", ", locList)
+                    : "—";
             }
 
             var transComp = Transform(smUid);

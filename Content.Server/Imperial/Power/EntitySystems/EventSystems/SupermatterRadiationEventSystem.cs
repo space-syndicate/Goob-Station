@@ -50,7 +50,7 @@ public sealed class SupermatterRadiationEventSystem : EntitySystem
                 if (TryComp<SupermatterIntegrityComponent>(uid, out var integrity))
                 {
                     if (!TryComp<RadiationSourceComponent>(uid, out var radSource))
-                        return;
+                        continue;
 
                     _radiationSystem.SetIntensity((uid, radSource),
                         !integrity.Activated ? radEvent.DefaultIntensity : radEvent.Intensity!.Value);

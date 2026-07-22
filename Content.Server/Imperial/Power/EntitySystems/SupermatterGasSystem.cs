@@ -120,7 +120,7 @@ public sealed class SupermatterGasSystem : EntitySystem
 
         if (TryComp<SupermatterRadiationEventComponent>(integrity, out var eventComp))
         {
-            if (_gameTiming.CurTime > eventComp.EndTime)
+            if (_gameTiming.CurTime <= eventComp.EndTime)
                 baseIntensity = eventComp.Intensity!.Value;
         }
         _radiationSystem.SetIntensity(integrity.Owner, baseIntensity * gasComp.Comp.RuntimeRadiationMultiplier);

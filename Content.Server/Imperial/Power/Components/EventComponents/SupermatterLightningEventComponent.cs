@@ -7,7 +7,7 @@ public sealed partial class SupermatterLightningEventComponent : Component, ISup
     public LocId? EventName { get; set; } = "supermatter-event-lightning-name";
 
     [DataField]
-    public LocId EventDesc = "supermatter-event-radiation";
+    public LocId EventDesc = "supermatter-event-lightning";
 
     [DataField]
     public TimeSpan? Duration;

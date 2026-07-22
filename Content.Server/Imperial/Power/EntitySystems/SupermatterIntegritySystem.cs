@@ -141,12 +141,6 @@ public sealed class SupermatterIntegritySystem : EntitySystem
 
         if (ent.Comp.CatastropheActivated)
         {
-            if (!ent.Comp.Activated)
-            {
-                ent.Comp.CatastropheActivated = false;
-                return;
-            }
-
             // Молнии во время катастрофы
             if (_gameTiming.CurTime > ent.Comp.CatastropheLightningNextTime)
             {
