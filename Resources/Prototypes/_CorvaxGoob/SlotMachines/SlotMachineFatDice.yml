@@ -25,8 +25,8 @@
     godPotPrize: DiceOfFate
     deleteGodPot: true
     limitSpins: true
-    countSpins: 5
+    countSpins: 7
     spinDamage:
       types:
-        Blunt: 30
-        Cellular: 15
+        Blunt: 40
+        Cellular: 20
