@@ -1,11 +1,15 @@
-action-polymorph-vent-monkey-name = Превращение в макаку-лазутчика
-action-polymorph-vent-monkey-desc = Превращает вас в скрытную обезьяну, способную ползать по вентиляции.
+ent-ActionPolymorphVentMonkey = Превращение в макаку-лазутчика
+    .desc = Превращает вас в скрытную обезьяну, способную ползать по вентиляции.
 
-vent-monkey-implant-name = имплант «Макак-Лазутчик»
-vent-monkey-implant-desc = Позволяет превращаться в обезьяну, способную перемещаться по вентиляции.
+ent-VentMonkeyImplant = имплант Макак-лазутчик
+    .desc = Позволяет превращаться в обезьяну, способную перемещаться по вентиляции.
 
-vent-monkey-implanter-name = имплантер «Макак-Лазутчик»
-vent-monkey-implanter-desc = Шприц с вживляемым имплантом «Макак-Лазутчик».
+ent-VentMonkeyImplanter = { ent-BaseImplanter }
+    .desc = { ent-BaseImplanter.desc }
+    .suffix = Макак-лазутчик
 
-uplink-vent-monkey-implanter-name = Имплантер «Макак-Лазутчик»
+uplink-vent-monkey-implanter-name = Имплантер Макак-лазутчик
 uplink-vent-monkey-implanter-desc = Вживляет особый имплант, позволяющий вам превращаться в макаку. В отличие от обычных обезьян, вы сможете разговаривать без акцента и скрытно перемещаться по вентиляции!
+
+ent-MobMonkeyVent = обезьяна
+    .desc = Новая церковь неодарвинистов действительно верит, что КАЖДОЕ животное произошло от обезьяны. На вкус они как свинина, а убивать их весело и приятно.

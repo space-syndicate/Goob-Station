@@ -34,6 +34,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Content.Shared.Atmos;
 namespace Content.Server.Imperial.XxRaay.Systems;
 
 public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
@@ -83,6 +84,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
 
         SubscribeLocalEvent<VentCrawlingComponent, InhaleLocationEvent>(OnInhale);
         SubscribeLocalEvent<VentCrawlingComponent, ExhaleLocationEvent>(OnExhale);
+        SubscribeLocalEvent<VentCrawlingComponent, AtmosExposedGetAirEvent>(OnExposed);
         SubscribeLocalEvent<VentCrawlingComponent, PolymorphedEvent>(OnPolymorphed);
     }
 
@@ -99,6 +101,18 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
         if (TryGetPipeNode(ent.Comp.SourceVent, out var pipeNode))
         {
             args.Gas = pipeNode.Air;
+        }
+    }
+
+    private void OnExposed(Entity<VentCrawlingComponent> ent, ref AtmosExposedGetAirEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (TryGetPipeNode(ent.Comp.SourceVent, out var pipeNode))
+        {
+            args.Gas = pipeNode.Air;
+            args.Handled = true;
         }
     }
 
