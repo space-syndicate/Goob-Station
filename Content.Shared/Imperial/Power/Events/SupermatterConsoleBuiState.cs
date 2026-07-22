@@ -6,11 +6,9 @@ namespace Content.Shared.Imperial.Power.Events;
 public sealed class SupermatterConsoleBuiState(
     bool activated,
     float? temperature = null,
-    float? lowerTemperature = null,
-    float? upperTemperature = null,
+    (float?, float?) temperatureThresholds = default,
     float? pressure = null,
-    float? lowerPressure = null,
-    float? upperPressure = null,
+    (float?, float?) pressureThresholds = default,
     float? integrity = null,
     Color? integrityColor = null,
     string? currentEvent = null)
@@ -18,11 +16,9 @@ public sealed class SupermatterConsoleBuiState(
 {
     public bool Activated = activated;
     public float? Temperature = temperature;
-    public float? LowerTemperature = lowerTemperature;
-    public float? UpperTemperature = upperTemperature;
+    public (float?, float?) TemperatureThresholds = temperatureThresholds;
     public float? Pressure = pressure;
-    public float? LowerPressure = lowerPressure;
-    public float? UpperPressure = upperPressure;
+    public (float?, float?) PressureThresholds = pressureThresholds;
     public float? Integrity = integrity;
     public Color? IntegrityColor = integrityColor;
     public string? CurrentEvent = currentEvent;

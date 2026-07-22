@@ -237,11 +237,9 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             var state = new SupermatterConsoleBuiState(
                 activated: integrityComponent.Activated,
                 temperature: temperature,
-                lowerTemperature: integrityComponent.LowerTempThreshold,
-                upperTemperature: integrityComponent.UpperTempThreshold,
+                integrityComponent.TempThresholds,
                 pressure: pressure,
-                lowerPressure: integrityComponent.LowerPressureThreshold,
-                upperPressure: integrityComponent.UpperPressureThreshold,
+                integrityComponent.PressureThresholds,
                 integrity: integrityPercent,
                 integrityColor: level.Color,
                 currentEvent: supermatterEv
