@@ -38,7 +38,6 @@ public sealed partial class SupermatterGasComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public bool RuntimeDisableTouchGib;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan LastAtmosUpdate;
 }

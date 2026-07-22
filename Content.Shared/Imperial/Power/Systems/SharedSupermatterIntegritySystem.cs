@@ -12,9 +12,9 @@ namespace Content.Shared.Imperial.Power.Systems;
 
 public sealed class SharedSupermatterIntegritySystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = null!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = null!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = null!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = null!;
+    [Dependency] private readonly TagSystem _tagSystem = null!;
 
     public override void Initialize()
     {
@@ -32,49 +32,49 @@ public sealed class SharedSupermatterIntegritySystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
     }
 
-    private void OnStartCollide(Entity<SupermatterIntegrityComponent> entity, ref StartCollideEvent args)
+    private void OnStartCollide(Entity<SupermatterIntegrityComponent> ent, ref StartCollideEvent args)
     {
         var other = args.OtherEntity;
-        if (!_tagSystem.HasTag(other, entity.Comp.HealTag))
+        if (!_tagSystem.HasTag(other, ent.Comp.HealTag))
             return;
 
-        if (!entity.Comp.Activated)
+        if (!ent.Comp.Activated)
         {
-            entity.Comp.Activated = true;
-            Dirty(entity);
+            ent.Comp.Activated = true;
+            DirtyField(ent, ent.Comp, nameof(ent.Comp.Activated));
 
             var ev = new SupermatterSendRadioEvent(Loc.GetString("supermatter-activated"));
-            RaiseLocalEvent(entity, ref ev);
+            RaiseLocalEvent(ent, ref ev);
         }
 
-        entity.Comp.Integrity = MathF.Min(entity.Comp.MaxIntegrity, entity.Comp.Integrity + entity.Comp.EmitterHealAmount);
-        Dirty(entity);
+        ent.Comp.Integrity = MathF.Min(ent.Comp.MaxIntegrity, ent.Comp.Integrity + ent.Comp.HealAmount);
+        DirtyField(ent, ent.Comp, nameof(ent.Comp.Integrity));
     }
 
-    private void OnExamined(Entity<SupermatterIntegrityComponent> entity, ref ExaminedEvent args)
+    private void OnExamined(Entity<SupermatterIntegrityComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
 
-        args.PushMarkup(entity.Comp.Activated
-            ? $"[color=yellow]{Loc.GetString("supermatter-status-active")}[/color]"
-            : $"[color=gray]{Loc.GetString("supermatter-status-inactive")}[/color]");
+        args.PushMarkup(ent.Comp.Activated
+            ? Loc.GetString("supermatter-status-active")
+            : Loc.GetString("supermatter-status-inactive"));
 
-        var integrityPercent = entity.Comp.Integrity / entity.Comp.MaxIntegrity * 100;
-        var integrityLevel = entity.Comp.SupermatterIntegrity.First(entry => integrityPercent >= entry.Threshold);
+        var integrityPercent = ent.Comp.Integrity / ent.Comp.MaxIntegrity * 100;
+        var integrityLevel = ent.Comp.SupermatterIntegrity.First(entry => integrityPercent >= entry.Threshold);
 
         args.PushMarkup(Loc.GetString(integrityLevel.Description));
     }
 
-    private void OnInteractUsing(Entity<SupermatterIntegrityComponent> entity, ref AfterInteractUsingEvent args)
+    private void OnInteractUsing(Entity<SupermatterIntegrityComponent> ent, ref AfterInteractUsingEvent args)
     {
-        if (!_tagSystem.HasTag(args.Used, entity.Comp.SupermatterStopTag)
+        if (!_tagSystem.HasTag(args.Used, ent.Comp.SupermatterStopTag)
             || args.Target == null)
             return;
-        if (!entity.Comp.Activated)
+        if (!ent.Comp.Activated)
             return;
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 5, new SupermatterShutdownDoAfterEvent(), entity, args.Target, args.Used)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 5, new SupermatterShutdownDoAfterEvent(), ent, args.Target, args.Used)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -84,22 +84,22 @@ public sealed class SharedSupermatterIntegritySystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
     }
 
-    private void OnDoAfter(Entity<SupermatterIntegrityComponent> entity, ref SupermatterShutdownDoAfterEvent args)
+    private void OnDoAfter(Entity<SupermatterIntegrityComponent> ent, ref SupermatterShutdownDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!entity.Comp.Activated)
+        if (!ent.Comp.Activated)
             return;
 
-        _audioSystem.PlayPvs(entity.Comp.ShutdownSoundPath, entity);
+        _audioSystem.PlayPvs(ent.Comp.StopSoundPath, ent);
 
         QueueDel(args.Used);
-        entity.Comp.Activated = false;
-        Dirty(entity);
+        ent.Comp.Activated = false;
+        DirtyField(ent, ent.Comp, nameof(ent.Comp.Activated));
 
         var ev = new SupermatterSendRadioEvent(Loc.GetString("supermatter-deactivated"));
-        RaiseLocalEvent(entity, ref ev);
+        RaiseLocalEvent(ent, ref ev);
         args.Handled = true;
     }
 }

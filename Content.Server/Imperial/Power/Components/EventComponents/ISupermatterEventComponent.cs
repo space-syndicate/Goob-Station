@@ -7,11 +7,3 @@ public interface ISupermatterEventComponent
     /// </summary>
     LocId? EventName { get; }
 }
-
-
-
-
-
-
-
-

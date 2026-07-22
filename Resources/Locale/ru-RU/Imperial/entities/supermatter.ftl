@@ -45,8 +45,8 @@ supermatter-desc-critical = Он светится и вибрирует!
 
 supermatter-activated = Внимание: Суперматерия была активирована!
 supermatter-deactivated = Внимание: Суперматерия была деактивирована!
-supermatter-status-active = Кристалл слегка переливается жёлтыми оттенками.
-supermatter-status-inactive = Цвет кристалла не меняется. Видимо, он неактивен.
+supermatter-status-active = [color=yellow]Кристалл слегка переливается жёлтыми оттенками.[/color]
+supermatter-status-inactive = [color=gray]Цвет кристалла не меняется. Видимо, он неактивен.[/color]
 
 supermatter-warn-10 = Суперматерия на грани разрушения!
 supermatter-warn-25 = Внимание! Целостность суперматерии критически низкая! Немедленно стабилизируйте кристалл!
