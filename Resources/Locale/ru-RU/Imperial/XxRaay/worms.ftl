@@ -68,6 +68,7 @@ worm-corpse-fail-drinking = Нельзя вселиться, пока вы пь�
 worm-corpse-fail-evolving = Нельзя вселиться во время эволюции.
 worm-corpse-fail-reproducing = Нельзя вселиться во время размножения.
 worm-corpse-fail-occupied = Этот труп уже занят.
+worm-corpse-fail-worm = Нельзя вселиться в другого червя.
 worm-corpse-fail-invalid = Сюда нельзя вселиться.
 worm-corpse-fail-not-dead = Цель должна быть мёртвой.
 worm-corpse-fail-cooldown = Нужно подождать перед повторным вселением.

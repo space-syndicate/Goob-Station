@@ -31,6 +31,7 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
     private EntityQuery<ActiveWormEvolutionComponent> _evolutionQuery;
     private EntityQuery<ActiveWormReproductionComponent> _reproductionQuery;
     private EntityQuery<WormCorpseOccupiedComponent> _occupiedQuery;
+    private EntityQuery<WormBloodComponent> _wormBloodQuery;
 
     public override void Initialize()
     {
@@ -43,6 +44,7 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
         _evolutionQuery = GetEntityQuery<ActiveWormEvolutionComponent>();
         _reproductionQuery = GetEntityQuery<ActiveWormReproductionComponent>();
         _occupiedQuery = GetEntityQuery<WormCorpseOccupiedComponent>();
+        _wormBloodQuery = GetEntityQuery<WormBloodComponent>();
 
         SubscribeLocalEvent<WormCorpseHostComponent, ComponentShutdown>(OnHostShutdown);
         SubscribeLocalEvent<WormCorpseHostComponent, WormCorpseEnterActionEvent>(OnEnterAction);
@@ -168,6 +170,13 @@ public abstract class SharedWormCorpsePossessionSystem : EntitySystem
         {
             if (showPopup)
                 ShowFailPopup(worm.Owner, Loc.GetString("worm-corpse-fail-occupied"), popupUser);
+            return false;
+        }
+
+        if (_wormBloodQuery.HasComp(target))
+        {
+            if (showPopup)
+                ShowFailPopup(worm.Owner, Loc.GetString("worm-corpse-fail-worm"), popupUser);
             return false;
         }
 
