@@ -86,7 +86,7 @@ public sealed partial class EnergyCoreSystem : EntitySystem
                 break;
 
             case CoreTempChangeLevel.AUTO: // Авто режим активен
-                if (core.CoreTemp < 250000)
+                if (core.CoreTemp < 150000)
                     core.CoreTemp += core.UpdateTemp;
                 else
                     core.CoreTemp -= core.UpdateTemp;
