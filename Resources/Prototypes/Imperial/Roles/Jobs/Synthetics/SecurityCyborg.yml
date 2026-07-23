@@ -33,21 +33,28 @@
   - type: FlashImmunity
   - type: CriminalRecordsConsole
   - type: Stripping
+  # Keep robotics console DeviceNetwork (Wireless). SurveillanceCamera uses Wired and would hide the borg.
   - type: DeviceNetwork
-    deviceNetId: Wired
-    receiveFrequencyId: SurveillanceCamera
-    transmitFrequencyId: SurveillanceCamera
+    deviceNetId: Wireless
+    receiveFrequencyId: CyborgControl
+    transmitFrequencyId: RoboticsConsole
+    savableAddress: false
   - type: SurveillanceCameraMonitor
   - type: UserInterface
     interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
       enum.BorgUiKey.Key:
         type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
       enum.CriminalRecordsConsoleKey.Key:
         type: CriminalRecordsConsoleBoundUserInterface
       enum.SurveillanceCameraMonitorUiKey.Key:
         type: SurveillanceCameraMonitorBoundUserInterface
-      enum.SiliconLawsUiKey.Key:
-        type: SiliconLawBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CriminalRecordsConsoleKey.Key:
@@ -56,9 +63,15 @@
         toggleAction: ActionShowCameraMonitor
   - type: MobThresholds
     thresholds:
-     0: Alive
-     130: Critical
-     180: Dead
+      0: Alive
+      130: Critical
+      180: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
 
   radioChannels:
   - Security
