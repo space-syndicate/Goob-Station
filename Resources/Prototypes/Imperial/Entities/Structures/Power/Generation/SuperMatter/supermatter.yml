@@ -1,76 +1,76 @@
 - type: entity
-  parent: BaseMachine
+  parent: BaseStructure
   id: Supermatter
   name: supermatter crystal
   description: A strangely translucent and iridescent crystal.
   components:
-    - type: Anchorable
-      flags:
-      - Anchorable
-    - type: RadiationSource
-      intensity: 5
-    - type: AmbientSound
-      range: 5
-      volume: 0
-      sound:
-        path: /Audio/Ambience/Objects/engine_hum.ogg
-    - type: Speech
-      speechSounds: Pai
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.25,-0.25,0.25,0.25"
-          density: 1000
-          mask:
-          - MachineMask
-          layer:
-          - MachineLayer
-    - type: Transform
-      anchored: true
-    - type: Physics
-      bodyType: Static
-    - type: Sprite
-      drawdepth: WallMountedItems
-      sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
-      state: supermatter
-      offset: 0,0.25
-    - type: Icon
-      sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
-      state: supermatter
-    - type: PointLight
-      enabled: true
-      radius: 10
-      energy: 5
-      color: "#ffe000"
-    - type: Explosive
-      explosionType: Supermatter
-      maxIntensity: 35
-      intensitySlope: 1
-      totalIntensity: 2500
-      deleteAfterExplosion: true
-    - type: DeviceLinkSource
-      ports:
-        - Output
-    - type: WarpPoint
-    - type: SupermatterTouch
-    - type: SupermatterIntegrity
-      tickDamage:
-        types:
-          Structural: 0.65
-    - type: SupermatterGas
-    - type: SupermatterEventScheduler
-      events:
-        components:
-        - SupermatterLightningEvent
-        - SupermatterNoneEvent
-        - SupermatterPlasmaEvent
-        - SupermatterRadiationEvent
-    - type: GuideHelp
-      guides:
-      - SupermatterEngine
-      - Power
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: RadiationSource
+    intensity: 5
+  - type: AmbientSound
+    range: 5
+    volume: 0
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Speech
+    speechSounds: Pai
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
+    state: supermatter
+    offset: 0,0.25
+  - type: Icon
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
+    state: supermatter
+  - type: PointLight
+    enabled: true
+    radius: 10
+    energy: 5
+    color: "#ffe000"
+  - type: Explosive
+    explosionType: Supermatter
+    maxIntensity: 35
+    intensitySlope: 1
+    totalIntensity: 2500
+    deleteAfterExplosion: true
+  - type: DeviceLinkSource
+    ports:
+    - Output
+  - type: WarpPoint
+  - type: SupermatterTouch
+  - type: SupermatterIntegrity
+    tickDamage:
+      types:
+        Structural: 0.65
+  - type: SupermatterGas
+  - type: SupermatterEventScheduler
+    events:
+      components:
+      - SupermatterLightningEvent
+      - SupermatterNoneEvent
+      - SupermatterPlasmaEvent
+      - SupermatterRadiationEvent
+  - type: GuideHelp
+    guides:
+    - SupermatterEngine
+    - Power
 
 - type: soundCollection
   id: Supermatter
