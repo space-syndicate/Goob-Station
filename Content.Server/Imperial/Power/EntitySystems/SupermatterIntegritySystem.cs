@@ -161,22 +161,22 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         // Обработка урона от плохих условий
         if (badConditions)
         {
-            if (ent.Comp.NextDamageTime == TimeSpan.Zero)
+            if (ent.Comp.NextDamageTime == TimeSpan.MaxValue)
                 ent.Comp.NextDamageTime = _gameTiming.CurTime + ent.Comp.DamageInterval;
 
-            var tookDamage = false;
-            while (_gameTiming.CurTime >= ent.Comp.NextDamageTime)
-            {
-                ent.Comp.NextDamageTime += ent.Comp.DamageInterval;
-                var tickAmount = ent.Comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
-                ent.Comp.Integrity = MathF.Max(0, ent.Comp.Integrity - tickAmount);
-                tookDamage = true;
-            }
+            if (_gameTiming.CurTime < ent.Comp.NextDamageTime)
+                return;
 
-            if (tookDamage)
-                Dirty(ent);
+            ent.Comp.NextDamageTime = _gameTiming.CurTime + ent.Comp.DamageInterval;
+
+            var tickAmount = ent.Comp.TickDamage.GetTotal().Float();
+            if (tickAmount <= 0)
+                tickAmount = 0.65f;
+
+            ent.Comp.Integrity = MathF.Max(0, ent.Comp.Integrity - tickAmount);
+            Dirty(ent);
         }
         else
-            ent.Comp.NextDamageTime = TimeSpan.Zero;
+            ent.Comp.NextDamageTime = TimeSpan.MaxValue;
     }
 }

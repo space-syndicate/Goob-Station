@@ -50,6 +50,7 @@
     intensitySlope: 1
     totalIntensity: 2500
     deleteAfterExplosion: true
+  - type: InteractionOutline
   - type: DeviceLinkSource
     ports:
     - Output
