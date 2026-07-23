@@ -1,5 +1,5 @@
 marking-HydrakinEyesDefault = Обычные глаза
-marking-HydrakinEyesHex = Ведьмены глаза
+marking-HydrakinEyesHex = Шестигранные глаза
 marking-HydrakinEyesOmega = Омега глаза
 marking-HydrakinEyesQuad = Четверные глаза
 marking-HydrakinEyesRing = Кольцевые глаза
@@ -8,7 +8,7 @@ marking-HydrakinEyesSaint = Святые глаза
 marking-HydrakinTailDefault = Хвост
 marking-HydrakinTailNub = Пухлый
 marking-HydrakinTailFeathers = Перистый
-marking-HydrakinTailSpiny = Круговой
+marking-HydrakinTailSpiny = Шипастый
 marking-HydrakinTailFins = Плавники
 
 marking-HydrakinEarsDefault = Обычные уши
