@@ -241,6 +241,7 @@
     price: 75 # These are limited supply items.
   - type: TrashOnSolutionEmpty
     solution: pen
+  - type: RemoveInjectorOnEmpty # Imperial Space
 
 - type: entity
   parent: ChemicalMedipen
