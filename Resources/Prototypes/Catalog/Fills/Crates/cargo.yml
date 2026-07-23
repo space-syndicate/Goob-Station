@@ -545,22 +545,6 @@
       weight: 0.025
     - id: MobSkeletonPirate
       weight: 0.025
-    - id: CrateHarvesterRomerol
-      weignt: 0.05
-    - id: CrateHarvesterDoctorsDelight
-      weight: 0.05
-    - id: CrateHarvesterSingularity
-      weight: 0.05
-    - id: CrateHarvesterSingularityFake
-      weight: 0.05
-    - id: CrateHarvesterReagentSlime
-      weight: 0.05
-    - id: CrateHarvesterReagentPointSource
-      weight: 0.05
-    - id: CrateHarvesterTurretSyndicate
-      weight: 0.05
-    - id: CrateHarvesterWeaponElite
-      weight: 0.05
     - id: CrateFunClownCarUplink
       weight: 0.1
     - id: BoxMagazineShotgunBeanbag
