@@ -18,6 +18,6 @@ namespace Content.Server.Imperial.EnergyCore.Components
         public float EnergyOutput = 0f;
 
         [DataField("energyCoefficient")]
-        public float EnergyCoef = 2.17f;
+        public float EnergyCoef = 1.7f;
     }
 }
