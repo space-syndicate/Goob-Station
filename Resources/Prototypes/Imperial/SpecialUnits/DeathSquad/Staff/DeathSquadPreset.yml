@@ -18,6 +18,7 @@
     - type: NpcFactionMember
       factions:
       - DeathSquad
+    - type: ZombieImmune
     - type: RandomMetadata
       nameSegments:
       - DeathSquadFirst
@@ -85,6 +86,7 @@
   - AllAccess
   access:
   - CentralCommand
+  - DeathSquad
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

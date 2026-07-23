@@ -1,0 +1,68 @@
+- type: deviceFrequency
+  id: DeathSquadTurretControl
+  name: device-frequency-prototype-name-turret-control
+  frequency: 2163
+
+- type: deviceFrequency
+  id: DeathSquadTurret
+  name: device-frequency-prototype-name-turret
+  frequency: 2164
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretDeathSquadControlPanel
+  suffix: DeathSquad
+  components:
+  - type: AccessReader
+    access: [["DeathSquad"]]
+    examinationText: death-squad-turret-access-reader-examination
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - DeathSquad
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretDeathSquadControlPanelElectronics
+  - type: DeviceNetwork
+    receiveFrequencyId: DeathSquadTurret
+    transmitFrequencyId: DeathSquadTurretControl
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBase
+  id: WeaponEnergyTurretDeathSquadControlPanelElectronics
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretDeathSquadControlPanel
+
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretDeathSquadMachineCircuitboard
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretDeathSquad
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretDeathSquad
+  suffix: DeathSquad
+  components:
+  - type: AccessReader
+    access: [["DeathSquad"]]
+    examinationText: death-squad-turret-access-reader-examination
+  # AllHostile наследуется от базовой турели: безопасность определяется доступом ID-карты, а не фракцией носителя.
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - DeathSquad
+  - type: Machine
+    board: WeaponEnergyTurretDeathSquadMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: DeathSquadTurretControl
+    transmitFrequencyId: DeathSquadTurret

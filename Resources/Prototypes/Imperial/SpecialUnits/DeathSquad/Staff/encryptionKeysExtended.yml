@@ -62,7 +62,5 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCentCom
-      - EncryptionKeyStationMaster
       - EncryptionKeySODDeathSquad
 #     - EncryptionKeySOD

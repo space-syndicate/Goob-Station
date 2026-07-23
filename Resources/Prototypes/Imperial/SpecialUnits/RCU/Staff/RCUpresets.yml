@@ -121,6 +121,8 @@
 
 - type: npcFaction
   id: RiotControlUnit
+  friendly:
+  - CentralCommand # Во избежание сбоев.
   hostile:
   - SimpleHostile
   - Syndicate

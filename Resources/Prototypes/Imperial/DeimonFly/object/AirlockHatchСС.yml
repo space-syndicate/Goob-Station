@@ -1,0 +1,8 @@
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchCC
+  suffix: CC, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]

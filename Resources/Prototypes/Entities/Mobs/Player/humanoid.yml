@@ -28,6 +28,10 @@
     implants:
     - MindShieldImplant
     - DeathRattleImplantCentcomm
+  - type: NpcFactionMember # Imperial Space Central Command faction Fix
+    factions:
+    - NanoTrasen
+    - CentralCommand
 
 ## Death Squad
 
@@ -52,6 +56,9 @@
   id: DeathSquad
   parent: EventHumanoidCentcomm
   components:
+    - type: NpcFactionMember
+      factions:
+      - DeathSquad
     - type: CrewSkills # Imperial Space Crew SKills
       groups: [All]
     - type: GhostRole
@@ -601,6 +608,9 @@
   id: CentcomOfficial
   parent: EventHumanoidCentcomm
   components:
+    - type: NpcFactionMember
+      factions:
+      - CentralCommand
     - type: CrewSkills # Imperial Space Crew SKills
       groups: [CentComRep]
     - type: GhostRole

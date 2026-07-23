@@ -219,7 +219,6 @@
       contents:
         - id: BoxSurvival
         - id: ERTUplinkDeadSquadAlt #Добавлено для нового пресета Эскадрона Смерти.
-        - id: PillAmbuzolPlus
 
 - type: entity
   id: ClothingBeltDeadSquadFilled

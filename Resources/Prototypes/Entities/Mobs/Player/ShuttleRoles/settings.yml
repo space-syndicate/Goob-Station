@@ -564,6 +564,9 @@
   id: VisitorLawyerCentcom
   parent: VisitorCivilian
   components:
+    - type: NpcFactionMember # Imperial Space Central Command faction Fix
+      factions:
+      - CentralCommand
     - type: GhostRole
       name: ghost-role-information-civilian-centcom-lawyer-name
       description: ghost-role-information-civilian-centcom-lawyer-description

@@ -1,0 +1,52 @@
+- type: entity
+  parent: WeaponPistolN1984
+  id: WeaponPistolN1984Admeme
+  suffix: Admeme
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnumAdmeme
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeMagnum
+
+- type: entity
+  parent: MagazineMagnum
+  id: MagazineMagnumAdmeme
+  suffix: Admeme
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumAdmeme
+
+- type: entity
+  parent: CartridgeMagnum
+  id: CartridgeMagnumAdmeme
+  suffix: Admeme
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMagnumAdmeme
+
+- type: entity
+  parent: BaseBullet
+  id: BulletMagnumAdmeme
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 200
+    ignoreResistances: true
