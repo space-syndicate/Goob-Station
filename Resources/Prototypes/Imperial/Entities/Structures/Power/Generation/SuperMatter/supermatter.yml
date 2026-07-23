@@ -4,6 +4,9 @@
   name: supermatter crystal
   description: A strangely translucent and iridescent crystal.
   components:
+    - type: Anchorable
+      flags:
+      - Anchorable
     - type: RadiationSource
       intensity: 5
     - type: AmbientSound
@@ -101,3 +104,33 @@
   - type: StorageFill
     contents:
     - id: SupermatterShutdownCrystal
+
+- type: entity
+  id: CrateCrateSupermatterCrystal
+  parent: CrateEngineeringSecure
+  name: «Supermatter At Home» crate
+  description: A kit from Supermatt & Co. containing everything needed to build your own Supermatter at home.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrateSupermatterCrystal
+    - id: PaperSupermatterCaution
+
+- type: entity
+  id: PaperSupermatterCaution
+  name: supermatter caution paper
+  description: The single sheet of instructions that came in the kit.
+  parent: Paper
+  components:
+  - type: Paper
+    content: book-text-supermatter-caution
+
+- type: entity
+  id: CrateSupermatterCrystal
+  parent: CrateEngineeringSecure
+  name: supermatter crystal crate
+  description: Contains a highly dangerous Supermatter crystal, capable of killing anyone who touches it.
+  components:
+  - type: StorageFill
+    contents:
+    - id: Supermatter
