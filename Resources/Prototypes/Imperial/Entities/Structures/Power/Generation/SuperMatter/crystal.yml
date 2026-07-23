@@ -57,7 +57,13 @@
         types:
           Structural: 0.65
     - type: SupermatterGas
-    - type: SupermatterEvent
+    - type: SupermatterEventScheduler
+      events:
+        components:
+        - SupermatterLightningEvent
+        - SupermatterNoneEvent
+        - SupermatterPlasmaEvent
+        - SupermatterRadiationEvent
     - type: GuideHelp
       guides:
       - SupermatterEngine

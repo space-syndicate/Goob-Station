@@ -75,8 +75,8 @@ public sealed partial class SupermatterConsoleWindow : FancyWindow
             ActiveEventValue.FontColorOverride = null;
             IntegrityValue.FontColorOverride = msg.IntegrityColor;
 
-            var activePressureBars = CalculateActiveBars(msg.Pressure, msg.LowerPressure, msg.UpperPressure);
-            var activeTempBars = CalculateActiveBars(msg.Temperature, msg.LowerTemperature, msg.UpperTemperature);
+            var activePressureBars = CalculateActiveBars(msg.Pressure, msg.PressureThresholds.Item1, msg.PressureThresholds.Item2);
+            var activeTempBars = CalculateActiveBars(msg.Temperature, msg.TemperatureThresholds.Item1, msg.TemperatureThresholds.Item2);
 
             for (var i = 0; i < BarCount; i++)
             {

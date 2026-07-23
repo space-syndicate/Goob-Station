@@ -8,6 +8,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
 using Content.Server.Chat.Systems;
+using Content.Server.Imperial.Power.Components.EventComponents;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.DeviceLinking;
@@ -25,6 +26,7 @@ public sealed class SupermatterConsoleSystem : EntitySystem
     [Dependency] private readonly RadioSystem _radioSystem = null!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = null!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
+    [Dependency] private readonly IComponentFactory _componentFactory = null!;
 
     public override void Initialize()
     {
@@ -204,8 +206,26 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             console.NextUiUpdate = _timing.CurTime + console.UiUpdateInterval;
 
             var supermatterEv = "—";
-            if (TryComp<SupermatterEventComponent>(smUid, out var eventComponent))
-                supermatterEv = Loc.GetString($"supermatter-event-{eventComponent.CurrentEvent.ToString().ToLowerInvariant()}-name");
+            if (TryComp<SupermatterEventSchedulerComponent>(smUid, out var scheduler) && scheduler.Events?.Components is not null)
+            {
+                var locList = new List<string>();
+                foreach (var compStr in scheduler.Events.Components)
+                {
+                    if (!_componentFactory.TryGetRegistration(compStr, out var registration))
+                        continue;
+
+                    if (!EntityManager.TryGetComponent(smUid, registration.Type, out var comp) ||
+                        comp is not ISupermatterEventComponent eventComp)
+                        continue;
+
+                    if (eventComp.EventName != null)
+                        locList.Add(Loc.GetString(eventComp.EventName));
+                }
+
+                supermatterEv = locList.Count > 0
+                    ? string.Join(", ", locList)
+                    : "—";
+            }
 
             var transComp = Transform(smUid);
             var gas = _atmosSystem.GetContainingMixture((smUid, transComp));
@@ -216,11 +236,9 @@ public sealed class SupermatterConsoleSystem : EntitySystem
             var state = new SupermatterConsoleBuiState(
                 activated: integrityComponent.Activated,
                 temperature: temperature,
-                lowerTemperature: integrityComponent.LowerTempThreshold,
-                upperTemperature: integrityComponent.UpperTempThreshold,
+                integrityComponent.TempThresholds,
                 pressure: pressure,
-                lowerPressure: integrityComponent.LowerPressureThreshold,
-                upperPressure: integrityComponent.UpperPressureThreshold,
+                integrityComponent.PressureThresholds,
                 integrity: integrityPercent,
                 integrityColor: level.Color,
                 currentEvent: supermatterEv

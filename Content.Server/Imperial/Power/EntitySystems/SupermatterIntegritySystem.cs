@@ -22,12 +22,12 @@ public sealed class SupermatterIntegritySystem : EntitySystem
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = null!;
     [Dependency] private readonly ChatSystem _chatSystem = null!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = null!;
+    [Dependency] private readonly IGameTiming _gameTiming = null!;
     [Dependency] private readonly LightningSystem _lightning = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = null!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = null!;
     [Dependency] private readonly StationSystem _stationSystem = null!;
-    [Dependency] private readonly IGameTiming _gameTiming = null!;
-    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
     public override void Update(float frameTime)
     {
@@ -35,73 +35,73 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out var comp, out var transComp))
         {
-            ProcessSupermatterUpdate((uid, comp), transComp, frameTime);
+            ProcessSupermatterUpdate((uid, comp), transComp);
         }
     }
 
-    private void ProcessSupermatterUpdate(Entity<SupermatterIntegrityComponent> entity, TransformComponent transComp, float frameTime)
+    private void ProcessSupermatterUpdate(Entity<SupermatterIntegrityComponent> ent, TransformComponent transComp)
     {
-        if (TryComp(entity, out RadiationSourceComponent? radiation))
-            _radiationSystem.SetSourceEnabled((entity, radiation), entity.Comp.Activated);
+        if (TryComp(ent, out RadiationSourceComponent? radiation))
+            _radiationSystem.SetSourceEnabled((ent, radiation), ent.Comp.Activated);
 
-        if (TryComp(entity, out PointLightComponent? light))
-            _lightSystem.SetEnabled(entity, entity.Comp.Activated, light);
+        if (TryComp(ent, out PointLightComponent? light))
+            _lightSystem.SetEnabled(ent, ent.Comp.Activated, light);
 
-        if (TryComp(entity, out AmbientSoundComponent? ambient))
+        if (TryComp(ent, out AmbientSoundComponent? ambient))
         {
-            if (entity.Comp.Activated)
+            if (ent.Comp.Activated)
             {
-                _ambientSound.SetVolume(entity, entity.Comp.AmbientSound[0].Volume, ambient);
-                _ambientSound.SetRange(entity, entity.Comp.AmbientSound[0].Range, ambient);
+                _ambientSound.SetVolume(ent, ent.Comp.AmbientSound[0].Volume, ambient);
+                _ambientSound.SetRange(ent, ent.Comp.AmbientSound[0].Range, ambient);
             }
             else
             {
-                _ambientSound.SetVolume(entity, entity.Comp.AmbientSound[1].Volume, ambient);
-                _ambientSound.SetRange(entity, entity.Comp.AmbientSound[1].Range, ambient);
+                _ambientSound.SetVolume(ent, ent.Comp.AmbientSound[1].Volume, ambient);
+                _ambientSound.SetRange(ent, ent.Comp.AmbientSound[1].Range, ambient);
             }
         }
 
-        if (!entity.Comp.Activated)
+        if (!ent.Comp.Activated)
             return;
 
-        var gas = _atmosphereSystem.GetContainingMixture((entity, transComp), true, true);
+        var gas = _atmosphereSystem.GetContainingMixture((ent, transComp), true, true);
 
         bool badConditions;
         if (gas != null)
         {
-            badConditions = gas.Temperature > entity.Comp.UpperTempThreshold
-                            || gas.Temperature < entity.Comp.LowerTempThreshold
-                            || gas.Pressure > entity.Comp.UpperPressureThreshold
-                            || gas.Pressure < entity.Comp.LowerPressureThreshold;
+            badConditions = gas.Temperature < ent.Comp.TempThresholds.Item1
+                            || gas.Temperature > ent.Comp.TempThresholds.Item2
+                            || gas.Pressure < ent.Comp.PressureThresholds.Item1
+                            || gas.Pressure > ent.Comp.PressureThresholds.Item2;
         }
         else
             badConditions = true;
 
-        var integrityPercent = entity.Comp.Integrity / entity.Comp.MaxIntegrity * 100f;
+        var integrityPercent = ent.Comp.Integrity / ent.Comp.MaxIntegrity * 100f;
 
         // Сброс флага предупреждения для текущего уровня
-        var index = entity.Comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
+        var index = ent.Comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
         if (index >= 0)
         {
-            var oldEntry = entity.Comp.SupermatterIntegrity[index];
+            var oldEntry = ent.Comp.SupermatterIntegrity[index];
             if (oldEntry.Flag)
                 oldEntry.Flag = false;
         }
 
-        foreach (var level in entity.Comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
+        foreach (var level in ent.Comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
         {
             if (integrityPercent > level.Threshold || level.Flag || string.IsNullOrEmpty(level.Warning))
                 continue;
 
             var integrityWarning = Loc.GetString(level.Warning);
             var ev = new SupermatterSendRadioEvent(integrityWarning);
-            RaiseLocalEvent(entity, ref ev);
+            RaiseLocalEvent(ent, ref ev);
 
             // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
             // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
             if (level.Threshold <= 30f)
             {
-                var station = _stationSystem.GetOwningStation(entity, transComp);
+                var station = _stationSystem.GetOwningStation(ent, transComp);
                 if (station != null)
                 {
                     _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
@@ -120,14 +120,14 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         }
 
         // Обработка катастрофы
-        if (!entity.Comp.CatastropheActive && integrityPercent <= entity.Comp.CatastropheThreshold)
+        if (!ent.Comp.CatastropheActivated && integrityPercent <= ent.Comp.CatastropheThreshold)
         {
-            entity.Comp.CatastropheActive = true;
-            entity.Comp.CatastropheTimer = TimeSpan.Zero; // Начинаем с 0
-            entity.Comp.CatastropheLightningTimer = TimeSpan.Zero; // Сбрасываем таймер молний
+            ent.Comp.CatastropheActivated = true;
+            ent.Comp.CatastropheEndTime = _gameTiming.CurTime + ent.Comp.CatastropheDuration;
+            ent.Comp.CatastropheLightningNextTime = _gameTiming.CurTime + ent.Comp.CatastropheLightningInterval;
 
             // Отправляем предупреждение о катастрофе
-            var station = _stationSystem.GetOwningStation(entity, transComp);
+            var station = _stationSystem.GetOwningStation(ent, transComp);
             if (station != null)
             {
                 _chatSystem.DispatchStationAnnouncement(
@@ -139,24 +139,21 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             }
         }
 
-        if (entity.Comp.CatastropheActive)
+        if (ent.Comp.CatastropheActivated)
         {
-            entity.Comp.CatastropheTimer += TimeSpan.FromSeconds(frameTime);
-
             // Молнии во время катастрофы
-            entity.Comp.CatastropheLightningTimer += TimeSpan.FromSeconds(frameTime);
-            if (entity.Comp.CatastropheLightningTimer >= entity.Comp.CatastropheLightningInterval)
+            if (_gameTiming.CurTime > ent.Comp.CatastropheLightningNextTime)
             {
-                entity.Comp.CatastropheLightningTimer = TimeSpan.Zero;
-                _lightning.ShootRandomLightnings(entity, entity.Comp.CatastropheLightningRange, entity.Comp.CatastropheLightningCount);
+                ent.Comp.CatastropheLightningNextTime = _gameTiming.CurTime + ent.Comp.CatastropheLightningInterval;
+                _lightning.ShootRandomLightnings(ent, ent.Comp.CatastropheLightningRange, ent.Comp.CatastropheLightningCount);
             }
 
-            if (entity.Comp.CatastropheTimer >= entity.Comp.CatastropheDuration)
+            if (_gameTiming.CurTime > ent.Comp.CatastropheEndTime)
             {
-                if (TryComp<ExplosiveComponent>(entity, out var explosive))
-                    _explosionSystem.TriggerExplosive(entity, explosive);
+                if (TryComp<ExplosiveComponent>(ent, out var explosive))
+                    _explosionSystem.TriggerExplosive(ent, explosive);
                 else
-                    QueueDel(entity);
+                    QueueDel(ent);
                 return;
             }
         }
@@ -164,22 +161,22 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         // Обработка урона от плохих условий
         if (badConditions)
         {
-            if (entity.Comp.NextDamageTick == TimeSpan.Zero)
-                entity.Comp.NextDamageTick = _gameTiming.CurTime + entity.Comp.DamageTickInterval;
+            if (ent.Comp.NextDamageTime == TimeSpan.Zero)
+                ent.Comp.NextDamageTime = _gameTiming.CurTime + ent.Comp.DamageInterval;
 
             var tookDamage = false;
-            while (_gameTiming.CurTime >= entity.Comp.NextDamageTick)
+            while (_gameTiming.CurTime >= ent.Comp.NextDamageTime)
             {
-                entity.Comp.NextDamageTick += entity.Comp.DamageTickInterval;
-                var tickAmount = entity.Comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
-                entity.Comp.Integrity = MathF.Max(0, entity.Comp.Integrity - tickAmount);
+                ent.Comp.NextDamageTime += ent.Comp.DamageInterval;
+                var tickAmount = ent.Comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
+                ent.Comp.Integrity = MathF.Max(0, ent.Comp.Integrity - tickAmount);
                 tookDamage = true;
             }
 
             if (tookDamage)
-                Dirty(entity);
+                Dirty(ent);
         }
         else
-            entity.Comp.NextDamageTick = TimeSpan.Zero;
+            ent.Comp.NextDamageTime = TimeSpan.Zero;
     }
 }
