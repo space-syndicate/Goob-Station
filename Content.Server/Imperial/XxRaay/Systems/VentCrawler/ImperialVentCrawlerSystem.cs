@@ -1,6 +1,9 @@
 using System.Numerics;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.DataDefinitions;
+using Content.Server.Body.Systems;
+using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Polymorph;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Stealth;
@@ -31,6 +34,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Content.Shared.Atmos;
 namespace Content.Server.Imperial.XxRaay.Systems;
 
 public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
@@ -50,6 +54,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ExplosionSystem _explosion = default!;
 
     private EntityQuery<ActiveWormCorpsePossessionComponent> _corpsePossessionQuery;
     private EntityQuery<ActiveWormDoorHidingComponent> _doorHidingQuery;
@@ -76,6 +81,59 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
         SubscribeLocalEvent<VentCrawlingComponent, MoveEvent>(OnMoved);
         SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VentCrawlingComponent, VentCrawlTileMoveAttemptEvent>(OnVentCrawlTileMoveAttempt);
+
+        SubscribeLocalEvent<VentCrawlingComponent, InhaleLocationEvent>(OnInhale);
+        SubscribeLocalEvent<VentCrawlingComponent, ExhaleLocationEvent>(OnExhale);
+        SubscribeLocalEvent<VentCrawlingComponent, AtmosExposedGetAirEvent>(OnExposed);
+        SubscribeLocalEvent<VentCrawlingComponent, PolymorphedEvent>(OnPolymorphed);
+    }
+
+    private void OnInhale(Entity<VentCrawlingComponent> ent, ref InhaleLocationEvent args)
+    {
+        if (TryGetPipeNode(ent.Comp.SourceVent, out var pipeNode))
+        {
+            args.Gas = pipeNode.Air;
+        }
+    }
+
+    private void OnExhale(Entity<VentCrawlingComponent> ent, ref ExhaleLocationEvent args)
+    {
+        if (TryGetPipeNode(ent.Comp.SourceVent, out var pipeNode))
+        {
+            args.Gas = pipeNode.Air;
+        }
+    }
+
+    private void OnExposed(Entity<VentCrawlingComponent> ent, ref AtmosExposedGetAirEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (TryGetPipeNode(ent.Comp.SourceVent, out var pipeNode))
+        {
+            args.Gas = pipeNode.Air;
+            args.Handled = true;
+        }
+    }
+
+    private void OnPolymorphed(Entity<VentCrawlingComponent> ent, ref PolymorphedEvent args)
+    {
+        if (!args.IsRevert) return;
+
+        var vent = ent.Comp.SourceVent;
+
+        if (TryGetGridTile(Transform(ent).Coordinates, out var gridUid, out var grid, out var tile))
+        {
+            foreach (var anchored in _map.GetAnchoredEntities((gridUid, grid), tile))
+            {
+                if (SharesPipeNetwork(anchored, vent))
+                {
+                    _explosion.QueueExplosion(anchored, ExplosionSystem.DefaultExplosionPrototypeId, 10, 2, 2);
+                    QueueDel(anchored);
+                    break;
+                }
+            }
+        }
     }
 
     private void OnVentCrawlTileMoveAttempt(Entity<VentCrawlingComponent> ent, ref VentCrawlTileMoveAttemptEvent args)

@@ -1,0 +1,60 @@
+- type: entity
+  parent: [ MobMonkey, VentCrawlerPestMixin ]
+  id: MobMonkeyVent
+  components:
+  - type: MonkeyAccent
+    deleted: true
+
+- type: polymorph
+  id: PolymorphVentMonkey
+  configuration:
+    entity: MobMonkeyVent
+    duration: 300
+    inventory: Drop
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: ActionPolymorphVentMonkey
+  components:
+  - type: Action
+    checkCanInteract: false
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Animals/monkey.rsi
+      state: monkey
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: PolymorphVentMonkey
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: VentMonkeyImplant
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionPolymorphVentMonkey
+
+- type: entity
+  id: VentMonkeyImplanter
+  name: vent monkey implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: VentMonkeyImplant
+
+- type: listing
+  id: UplinkVentMonkeyImplanter
+  name: uplink-vent-monkey-implanter-name
+  description: uplink-vent-monkey-implanter-desc
+  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
+  productEntity: VentMonkeyImplanter
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkImplants
+  conditions:
+  - !type:BuyerAntagCondition
+    whitelist:
+    - Traitor
