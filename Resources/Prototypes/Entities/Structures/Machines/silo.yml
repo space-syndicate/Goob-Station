@@ -22,6 +22,7 @@
       tags:
       - Sheet
       - Ingot
+      - Wooden # CorvaxGoob - dept-techfab-tools-materials
   - type: ActivatableUI
     key: enum.OreSiloUiKey.Key
   - type: ActivatableUIRequiresPower

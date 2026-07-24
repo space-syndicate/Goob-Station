@@ -25,6 +25,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - SharedBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
@@ -72,6 +73,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+        - Wooden # CorvaxGoob - dept-techfab-tools-materials
         - SheetPlasma
 
 - type: entity
@@ -99,6 +101,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - ToolsStatic
     - SharedBoardsStatic
     - CargoBoardsStatic
@@ -142,6 +145,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+        - Wooden # CorvaxGoob - dept-techfab-tools-materials
         - SheetPlasma
 
 - type: entity
@@ -169,6 +173,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - SharedBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
@@ -264,6 +269,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - ServiceBoardsStatic
     - ServiceBoardsStaticGoob
     - MaterialsStatic

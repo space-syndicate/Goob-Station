@@ -487,6 +487,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
     - SecurityAmmoStatic
@@ -596,6 +597,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
