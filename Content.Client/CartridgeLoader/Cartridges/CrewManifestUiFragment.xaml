@@ -13,7 +13,7 @@ SPDX-License-Identifier: MIT
                 <Label Name="StationName" Align="Center" Text="{Loc 'crew-manifest-cartridge-loading'}"/>
             </PanelContainer>
         </controls:StripeBack>
-        <!-- CorvaxGoob Start -->
+        <!-- CorvaxGoob Start - crew-manifest-search -->
         <LineEdit Name="SearchBar"
                   PlaceHolder="{Loc 'crew-manifest-search-placeholder'}"
                   HorizontalExpand="True"

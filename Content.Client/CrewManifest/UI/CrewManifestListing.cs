@@ -17,7 +17,7 @@ public sealed class CrewManifestListing : BoxContainer
     [Dependency] private readonly IClipboardManager _clipboard = default!;
     private readonly SpriteSystem _spriteSystem;
 
-    // CorvaxGoob Start
+    // CorvaxGoob Start - crew-manifest-search
     private CrewManifestEntries? _entries;
     private LineEdit? _searchBar;
 
@@ -43,7 +43,7 @@ public sealed class CrewManifestListing : BoxContainer
         _spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
     }
 
-    // CorvaxGoob Edit Start
+    // CorvaxGoob Edit Start - crew-manifest-search
     public void AddCrewManifestEntries(CrewManifestEntries entries)
     {
         _entries = entries;
