@@ -12,3 +12,5 @@ ent-CrateRadioStationAds = ads crate
     .desc = A whole crate which sole purpose is to store 6 exclusive ads, aint capitalism great?
 ent-CrateRadioStationVinyls = vinyls crate
     .desc = A crate with 12 vinyls so you'll NEVER play the same song twice, they come in sleeves!
+ent-CrateHolySupplies = holy supplies crate
+    .desc = Contains a Bible and 2 Jugs of holy water for religious needs

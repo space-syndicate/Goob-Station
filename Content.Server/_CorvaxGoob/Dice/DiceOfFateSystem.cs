@@ -35,6 +35,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Content.Shared.Administration.Systems;
 
 namespace Content.Server._CorvaxGoob.Dice;
 

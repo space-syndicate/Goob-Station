@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Largo
   parent: SimpleMobBase
   id: MobGorillaLargo
@@ -35,7 +35,10 @@
         - id: ClothingHeadHatCargosoft
           amount: 1
     - type: Bloodstream
-      bloodMaxVolume: 300
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 300
     - type: Puller
       needsHands: false
     - type: InteractionPopup
@@ -84,15 +87,18 @@
         - id: FoodMeat
           amount: 4
     - type: Bloodstream
-      bloodMaxVolume: 300
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 300
     - type: MobThresholds
       thresholds:
         0: Alive
         200: Critical
         300: Dead
     - type: MovementSpeedModifier
-      baseWalkSpeed : 5
-      baseSprintSpeed : 6
+      baseWalkSpeed: 5
+      baseSprintSpeed: 6
     - type: Puller
       needsHands: false
     - type: MeleeWeapon
@@ -138,13 +144,13 @@
         methods: [ Touch ]
         effects:
         - !type:HealthChange
-          scaleByQuantity: true 
-          ignoreBlockers: true 
-          splitDamage: SplitEnsureAll
+          #scaleByQuantity: true сам разберёшься, я в тебя верю.
+          #ignoreBlockers: true
+          #splitDamage: SplitEnsureAll
           damage:
             groups:
               Burn: -2
-              Brute: -2 
+              Brute: -2
     - type: InteractionPopup
       successChance: 1
       interactSuccessString: petting-success-gorilla
