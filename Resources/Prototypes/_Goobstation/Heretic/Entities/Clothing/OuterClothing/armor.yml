@@ -1,35 +1,17 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  parent: [ ClothingOuterBaseMedium, ClothingOuterStorageToggleableBase, AllowSuitStorageClothing, BaseMagicalContraband ]
+  parent: [ ClothingOuterStorageToggleableBase, AllowSuitStorageClothing, BaseMagicalContraband ]
   id: ClothingOuterArmorHeretic
   name: ominous armor
   description: A ragged, dusty set of robes. Strange eyes line the inside.
   components:
   - type: UnholyItem
   - type: Sprite
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/eldritch_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/rust_armor.rsi # CorvaxGoob
     state: icon
   - type: Clothing
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/eldritch_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/rust_armor.rsi # CorvaxGoob
   - type: Armor
     coverage:
     - Chest
@@ -47,6 +29,12 @@
         Heat: 0.5
         Caustic: 0.5
         Holy: 1.25
+    traumaDeductions:
+      Dismemberment: 0.5
+      OrganDamage: 0.5
+      BoneDamage: 0.5
+      VeinsDamage: 0.0
+      NerveDamage: 0.0
   - type: ExplosionResistance
     damageCoefficient: 0.25
   - type: ToggleableClothing # Goobstation - Modsuits change
@@ -60,6 +48,11 @@
   - type: HideClothingLayerClothing
     hiddenSlots:
     - jumpsuit
+  - type: FireProtection
+    reduction: 0.4
+  - type: TemperatureProtection
+    heatingCoefficient: 0.5
+    coolingCoefficient: 0.5
 
 - type: entity
   parent: ClothingOuterArmorHeretic
@@ -67,10 +60,10 @@
   suffix: Void
   components:
   - type: Sprite
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/void_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/void_armor.rsi # CorvaxGoob
     state: icon
   - type: Clothing
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/void_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/void_armor.rsi # CorvaxGoob
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodHereticVoid
@@ -81,10 +74,10 @@
   suffix: Ash
   components:
   - type: Sprite
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/ashen_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/ashen_armor.rsi # CorvaxGoob
     state: icon
   - type: Clothing
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/ashen_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/ashen_armor.rsi # CorvaxGoob
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodHereticAsh
@@ -95,10 +88,10 @@
   suffix: Flesh
   components:
   - type: Sprite
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/flesh_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/flesh_armor.rsi # CorvaxGoob
     state: icon
   - type: Clothing
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/flesh_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/flesh_armor.rsi # CorvaxGoob
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodHereticFlesh
@@ -109,10 +102,10 @@
   suffix: Blade
   components:
   - type: Sprite
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/blade_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/blade_armor.rsi # CorvaxGoob
     state: icon
   - type: Clothing
-    sprite: _Goobstation/Heretic/Clothing/OuterClothing/blade_armor.rsi
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/blade_armor.rsi # CorvaxGoob
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodHereticBlade
@@ -130,8 +123,6 @@
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodHereticCosmos
-    equippedPrefixes:
-      head: hood
 
 - type: entity
   parent: [ ClothingOuterBaseMedium, ClothingOuterStorageToggleableBase, AllowSuitStorageClothing, BaseMagicalContraband ]
@@ -165,6 +156,12 @@
         Heat: 0.7
         Caustic: 0.7
         # Holy: 1.25
+    traumaDeductions:
+      Dismemberment: 0.3
+      OrganDamage: 0.3
+      BoneDamage: 0.3
+      VeinsDamage: 0.0
+      NerveDamage: 0.0
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: ToggleableClothing # Goobstation - Modsuits change

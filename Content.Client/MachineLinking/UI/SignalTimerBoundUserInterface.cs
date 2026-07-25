@@ -1,12 +1,3 @@
-// SPDX-FileCopyrightText: 2023 CommieFlowers <rasmus.cedergren@hotmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 rolfero <45628623+rolfero@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.MachineLinking;
@@ -30,8 +21,9 @@ public sealed class SignalTimerBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<SignalTimerWindow>();
         _window.OnStartTimer += StartTimer;
         _window.OnCurrentTextChanged += OnTextChanged;
-        _window.OnCurrentDelayMinutesChanged += OnDelayChanged;
-        _window.OnCurrentDelaySecondsChanged += OnDelayChanged;
+        // _window.OnCurrentDelayChanged += OnDelayChanged; // Mono // CorvaxGoob-Revert
+        _window.OnCurrentDelayMinutesChanged += OnDelayChanged; // CorvaxGoob-Revert
+        _window.OnCurrentDelaySecondsChanged += OnDelayChanged; // CorvaxGoob-Revert
     }
 
     public void StartTimer()
@@ -44,11 +36,11 @@ public sealed class SignalTimerBoundUserInterface : BoundUserInterface
         SendMessage(new SignalTimerTextChangedMessage(newText));
     }
 
-    private void OnDelayChanged(string newDelay)
+    private void OnDelayChanged(string newDelay) // CorvaxGoob-Revert
     {
         if (_window == null)
             return;
-        SendMessage(new SignalTimerDelayChangedMessage(_window.GetDelay()));
+        SendMessage(new SignalTimerDelayChangedMessage(_window.GetDelay())); // CorvaxGoob-Revert
     }
 
     /// <summary>
@@ -63,8 +55,9 @@ public sealed class SignalTimerBoundUserInterface : BoundUserInterface
             return;
 
         _window.SetCurrentText(cast.CurrentText);
-        _window.SetCurrentDelayMinutes(cast.CurrentDelayMinutes);
-        _window.SetCurrentDelaySeconds(cast.CurrentDelaySeconds);
+        // _window.SetCurrentDelay(cast.CurrentDelay); // Mono // CorvaxGoob-Revert
+        _window.SetCurrentDelayMinutes(cast.CurrentDelayMinutes); // CorvaxGoob-Revert
+        _window.SetCurrentDelaySeconds(cast.CurrentDelaySeconds); // CorvaxGoob-Revert
         _window.SetShowText(cast.ShowText);
         _window.SetTriggerTime(cast.TriggerTime);
         _window.SetTimerStarted(cast.TimerStarted);

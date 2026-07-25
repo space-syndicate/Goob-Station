@@ -1,27 +1,9 @@
-// SPDX-FileCopyrightText: 2022 EmoGarbage404 <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@gmail.com>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Bakke <luringens@protonmail.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization; // Goobstation
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Shared.Polymorph;
@@ -31,6 +13,7 @@ namespace Content.Shared.Polymorph;
 /// </summary>
 [Prototype]
 [DataDefinition]
+[Serializable, NetSerializable]
 public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototype
 {
     [ViewVariables]
@@ -44,7 +27,7 @@ public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototyp
     [AbstractDataField]
     public bool Abstract { get; private set; }
 
-    [DataField(required: true, serverOnly: true)]
+    [DataField(required: true)]
     public PolymorphConfiguration Configuration = new();
 
 }
@@ -53,13 +36,14 @@ public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototyp
 /// Defines information about the polymorph
 /// </summary>
 [DataDefinition]
+[Serializable, NetSerializable]
 public sealed partial record PolymorphConfiguration
 {
     /// <summary>
     /// What entity the polymorph will turn the target into
     /// must be in here because it makes no sense if it isn't
     /// </summary>
-    [DataField(serverOnly: true)] // Goob edit
+    [DataField]
     public EntProtoId? Entity;
 
     /// <summary>
@@ -128,16 +112,32 @@ public sealed partial record PolymorphConfiguration
     public bool RevertOnDeath = true;
 
     /// <summary>
+    /// Whether or not the polymorph reverts when the entity is deleted.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool RevertOnDelete = true;
+
+    /// <summary>
     /// Whether or not the polymorph reverts when the entity is eaten or fully sliced.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool RevertOnEat;
 
     /// <summary>
-    /// Whether or not an already polymorphed entity is able to be polymorphed again
+    /// If true, attempts to polymorph this polymorph will fail, unless
+    /// <see cref="IgnoreAllowRepeatedMorphs"/> is true on the /new/ morph.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool AllowRepeatedMorphs;
+
+    /// <summary>
+    /// If true, this morph will succeed even when used on an entity
+    /// that is already polymorphed with a configuration that has
+    /// <see cref="AllowRepeatedMorphs"/> set to false. Helpful for
+    /// smite polymorphs which should always succeed.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool IgnoreAllowRepeatedMorphs;
 
     /// <summary>
     /// The amount of time that should pass after this polymorph has ended, before a new one
@@ -158,19 +158,6 @@ public sealed partial record PolymorphConfiguration
     /// </summary>
     [DataField]
     public SoundSpecifier? ExitPolymorphSound;
-
-    // Einstein Engines - Language begin
-    /// <summary>
-    /// The exact names of components to copy over when this polymorph is applied.
-    /// </summary>
-    [DataField(serverOnly: true)]
-    public HashSet<string> CopiedComponents = new()
-    {
-        "LanguageKnowledge",
-        "LanguageSpeaker",
-        "Grammar"
-    };
-    // Einstein Engines - Language end
 
     /// <summary>
     ///     If not null, this popup will be displayed when being polymorphed into something.
@@ -207,7 +194,12 @@ public sealed partial record PolymorphConfiguration
     /// Does nothing on revert.
     /// </summary>
     [DataField(serverOnly: true)]
-    public HashSet<ComponentTransferData> ComponentsToTransfer = new();
+    public HashSet<ComponentTransferData> ComponentsToTransfer = new()
+    {
+        new("LanguageKnowledge"),
+        new("LanguageSpeaker"),
+        new("Grammar"),
+    };
 
     /// <summary>
     ///     Goobstation
@@ -246,6 +238,7 @@ public enum PolymorphInventoryChange : byte
 }
 
 [DataDefinition]
+[Serializable, NetSerializable]
 public sealed partial class ComponentTransferData(string component, bool @override = true, bool mirror = false)
 {
     [DataField(required: true)]

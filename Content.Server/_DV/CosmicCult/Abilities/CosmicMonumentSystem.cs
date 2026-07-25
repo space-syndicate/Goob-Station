@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 AftrLite <61218133+AftrLite@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -12,6 +8,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._DV.CosmicCult.Components;
 using Content.Shared._DV.CosmicCult;
 using Content.Shared.Maps;
+using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -50,12 +47,21 @@ public sealed class CosmicMonumentSystem : EntitySystem
     //actually might not want to fix it?
     //I've got the client stuff working well & this works out to making the ghost stay up so long as you consistently try (& fail) to place the monument
     //guess I should ask for specific feedback for this one tiny feature?
+    //they never asked for specific feedback for this one tiny feature and I can't be bothered fixing it. If it ain't broke, don't fix it.
     private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> uid, ref EventCosmicPlaceMonument args)
     {
+        if (_cultRule.AssociatedGamerule(uid) is not {} cult)
+            return;
+
         if (!VerifyPlacement(uid, out var pos))
             return;
 
-        _actions.RemoveAction(uid.Comp.CosmicMonumentPlaceActionEntity);
+        cult.Comp.MonumentPlaced = true;
+        var leadQuery = EntityQueryEnumerator<CosmicCultLeadComponent>(); // If there are ever multiple leaders for some reason, they all use the action once it's used.
+        while (leadQuery.MoveNext(out var lead, out var leadComp))
+        {
+            _actions.RemoveAction(lead, leadComp.CosmicMonumentPlaceActionEntity);
+        }
 
         Spawn(MonumentCollider, pos);
         var monument = Spawn(uid.Comp.MonumentPrototype, pos);
@@ -71,8 +77,12 @@ public sealed class CosmicMonumentSystem : EntitySystem
             || !VerifyPlacement(uid, out var pos))
             return;
 
-        //The action to move the monument will instead now have a cooldown, to prevent security camping.
-        //_actions.RemoveAction(uid.Comp.CosmicMonumentMoveActionEntity);
+        cult.Comp.MonumentMoved = true;
+        var leadQuery = EntityQueryEnumerator<CosmicCultLeadComponent>(); // If there are ever multiple leaders for some reason, they all use the action once it's used.
+        while (leadQuery.MoveNext(out var lead, out var leadComp))
+        {
+            _actions.RemoveAction(lead, leadComp.CosmicMonumentMoveActionEntity);
+        }
 
         //delete all old monument colliders for 100% safety
         var colliderQuery = EntityQueryEnumerator<MonumentCollisionComponent>();
@@ -128,8 +138,8 @@ public sealed class CosmicMonumentSystem : EntitySystem
 
         EntityUid? stationGrid = null;
 
-        if (TryComp<StationDataComponent>(station, out var stationData))
-            stationGrid = _station.GetLargestGrid(stationData);
+        if (TryComp<StationDataComponent>(station, out _))
+            stationGrid = _station.GetLargestGrid(station.Value);
 
         if (stationGrid is not null && stationGrid != xform.GridUid)
         {

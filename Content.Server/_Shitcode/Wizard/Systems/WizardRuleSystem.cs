@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -22,6 +14,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Goobstation.Wizard;
 using Content.Shared._Goobstation.Wizard.BindSoul;
+using Content.Shared._Shitcode.Wizard.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Chat;
 using Content.Shared.Cloning;
@@ -32,9 +25,11 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Parallax;
+using Content.Shared.Station.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -67,7 +62,7 @@ public sealed class WizardRuleSystem : GameRuleSystem<WizardRuleComponent>
 
         SubscribeLocalEvent<WizardRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagSelected);
 
-        SubscribeLocalEvent<WizardRoleComponent, GetBriefingEvent>(OnWizardGetBriefing);
+        SubscribeLocalEvent<GoobWizardRoleComponent, GetBriefingEvent>(OnWizardGetBriefing);
         SubscribeLocalEvent<ApprenticeRoleComponent, GetBriefingEvent>(OnApprenticeGetBriefing);
 
         SubscribeLocalEvent<WizardComponent, MobStateChangedEvent>(OnStateChanged);
@@ -80,6 +75,12 @@ public sealed class WizardRuleSystem : GameRuleSystem<WizardRuleComponent>
         SubscribeLocalEvent<EntParentChangedMessage>(OnParentChanged);
 
         SubscribeLocalEvent<DimensionShiftEvent>(OnDimensionShift);
+        SubscribeLocalEvent<NpcFactionMemberComponent, GrantFactionsEvent>(OnGrantFactions);
+    }
+
+    private void OnGrantFactions(Entity<NpcFactionMemberComponent> ent, ref GrantFactionsEvent args)
+    {
+        _faction.AddFactions(ent.AsNullable(), args.Factions);
     }
 
     private void OnApprenticeClone(Entity<ApprenticeComponent> ent, ref CloningEvent args)
@@ -109,7 +110,7 @@ public sealed class WizardRuleSystem : GameRuleSystem<WizardRuleComponent>
                 map = GetRandomTargetMap();
             else
             {
-                var stationGrid = _station.GetLargestGrid(Comp<StationDataComponent>(ruleComp.TargetStation.Value));
+                var stationGrid = _station.GetLargestGrid(ruleComp.TargetStation.Value);
                 map = stationGrid == null ? GetRandomTargetMap() : Transform(stationGrid.Value).MapUid;
             }
         }
@@ -202,7 +203,7 @@ public sealed class WizardRuleSystem : GameRuleSystem<WizardRuleComponent>
         var query = EntityQueryEnumerator<MindComponent>();
         while (query.MoveNext(out var mind, out var mindComp))
         {
-            if (!_role.MindHasRole<WizardRoleComponent>(mind) && !_role.MindHasRole<ApprenticeRoleComponent>(mind))
+            if (!_role.MindHasRole<GoobWizardRoleComponent>(mind) && !_role.MindHasRole<ApprenticeRoleComponent>(mind))
                 continue;
 
             if (!_mind.IsCharacterDeadIc(mindComp))
@@ -243,7 +244,7 @@ public sealed class WizardRuleSystem : GameRuleSystem<WizardRuleComponent>
 
     public IEnumerable<EntityUid?> GetWizardTargetStationGrids()
     {
-        return GetWizardTargetStations().Select(station => _station.GetLargestGrid(station.Comp));
+        return GetWizardTargetStations().Select(station => _station.GetLargestGrid(station.Owner));
     }
 
     public EntityUid? GetWizardTargetRandomStationGrid()
@@ -263,7 +264,7 @@ public sealed class WizardRuleSystem : GameRuleSystem<WizardRuleComponent>
         component.TargetStation = _random.Pick(stations);
     }
 
-    private void OnWizardGetBriefing(Entity<WizardRoleComponent> ent, ref GetBriefingEvent args)
+    private void OnWizardGetBriefing(Entity<GoobWizardRoleComponent> ent, ref GetBriefingEvent args)
     {
         args.Append(Loc.GetString("wizard-role-briefing"));
     }

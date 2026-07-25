@@ -11,6 +11,10 @@
     inverted: true
     traits:
     - Muted
+  - !type:SpeciesRequirement # CorvaxGoob-Species
+    inverted: true
+    species:
+    - Abductor
   startingGear: PilotGear
   icon: "JobIconPilot"
   supervisors: job-supervisors-hos
@@ -33,15 +37,15 @@
   id: PilotGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatBeretSecurity
     id: PilotPDA
-    ears: ClothingHeadsetSecurity
-    neck: ClothingNeckTieRed
-    pocket1: WeaponPistolMk58
+    ears: ClothingHeadsetAltSecurityRegular
+    pocket1: WeaponPistolMk58Empty
   storage:
     back:
     - Flash
     - MagazinePistol
+    - MagazinePistol
+    - MagazinePistolRubber
 
 - type: chameleonOutfit
   id: PilotChameleonOutfit
@@ -53,7 +57,7 @@
     mask: ClothingMaskGasSecurity
     neck: Dinkystar
     gloves: ClothingHandsGlovesColorBlack
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetAltSecurityRegular
     outerClothing: ClothingOuterArmorBasic
     jumpsuit: ClothingUniformSecurityTrooper
     id: PilotPDA

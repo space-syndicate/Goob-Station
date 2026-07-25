@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Damage;
@@ -26,7 +21,7 @@ public abstract class SharedHulkSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<HulkComponent, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
-        SubscribeLocalEvent<HulkComponent, OldBeforeStatusEffectAddedEvent>(OnBeforeStatusEffect);
+        SubscribeLocalEvent<HulkComponent, BeforeOldStatusEffectAddedEvent>(OnBeforeStatusEffect);
         SubscribeLocalEvent<HulkComponent, SlipAttemptEvent>(OnSlipAttempt);
         SubscribeLocalEvent<HulkComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<HulkComponent, ComponentStartup>(OnStartup);
@@ -57,9 +52,9 @@ public abstract class SharedHulkSystem : EntitySystem
         args.NoSlip = true;
     }
 
-    private void OnBeforeStatusEffect(Entity<HulkComponent> ent, ref OldBeforeStatusEffectAddedEvent args)
+    private void OnBeforeStatusEffect(Entity<HulkComponent> ent, ref BeforeOldStatusEffectAddedEvent args)
     {
-        if (args.Key is not ("KnockedDown" or "Stun"))
+        if (args.EffectKey is not ("KnockedDown" or "Stun"))
             return;
 
         Roar(ent);

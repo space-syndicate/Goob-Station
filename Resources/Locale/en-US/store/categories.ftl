@@ -29,6 +29,7 @@ store-category-implants = Implants
 store-category-allies = Allies
 store-category-job = Job
 store-category-wearables = Wearables
+store-category-contractor = Contractor
 store-category-pointless = Pointless
 store-discounted-items = Discounts
 
@@ -42,3 +43,5 @@ store-caregory-spellbook-utility = Utility Spells
 store-caregory-spellbook-equipment = Wizard Equipment
 store-caregory-spellbook-events = Event Spells
 
+# Nukie Delivery
+store-category-nukie-delivery = Offers

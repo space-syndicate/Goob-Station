@@ -40,7 +40,7 @@ steal-target-groups-clothing-eyes-hud-beer = пивные очки
 steal-target-groups-bible = библия
 steal-target-groups-clothing-neck-goldmedal = золотая медаль мастерства экипажа
 steal-target-groups-clothing-neck-clownmedal = медаль клоуна
-steal-target-groups-wanted-list-cartridge = картридж Список разыскиваемых
+steal-target-groups-wanted-list-cartridge = картридж WatchDog
 # Thief structures
 steal-target-groups-teg = часть термоэлектрического генератора
 steal-target-groups-freezer-heater = нагреватель или охладитель
@@ -61,3 +61,15 @@ steal-target-groups-animal-morty = Морти
 steal-target-groups-animal-renault = Алиса
 steal-target-groups-animal-shiva = Шива
 steal-target-groups-animal-tropico = Тропико
+
+steal-target-groups-weapon-energy-magnum = энергетический магнум
+
+
+steal-target-groups-mail = почта
+
+steal-target-groups-officer-handguns = пистолет службы безопасности
+
+steal-target-groups-belt-ce = пояс для инструментов старшего инженера
+
+steal-target-groups-captain-sword = сабля капитана
+

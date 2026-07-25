@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.Movement;
@@ -14,9 +9,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
-using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
 using Content.Shared.Mech.Components;
@@ -35,6 +28,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Shared.Movement.Events;
 
 namespace Content.Goobstation.Shared.Sprinting;
 public abstract class SharedSprintingSystem : EntitySystem
@@ -92,7 +86,7 @@ public abstract class SharedSprintingSystem : EntitySystem
         base.Update(frameTime);
 
         // We dont add it to the EQE since the comp might get added as this runs.
-        var query = EntityQueryEnumerator<SprinterComponent, StaminaModifierComponent>();
+        var query = EntityQueryEnumerator<SprinterComponent, StaminaModifierStatusEffectComponent>();
         while (query.MoveNext(out var uid, out var sprinterComp, out var staminaComp))
         {
             if (!sprinterComp.IsSprinting
@@ -152,10 +146,6 @@ public abstract class SharedSprintingSystem : EntitySystem
         component.LastSprint = _timing.CurTime;
         component.IsSprinting = newSprintState;
 
-        // Raise the stamina-specific event (for `SharedStaminaSystem.cs`)
-        var staminaEv = new SprintingStateChangedEvent(uid, newSprintState);
-        RaiseLocalEvent(uid, ref staminaEv);
-
         if (newSprintState)
         {
             RaiseLocalEvent(uid, new SprintStartEvent());
@@ -200,7 +190,7 @@ public abstract class SharedSprintingSystem : EntitySystem
 
     private void OnStandingStateSprintAttempt(EntityUid uid, StandingStateComponent component, ref SprintAttemptEvent args)
     {
-        if (!_standing.IsDown(uid, component))
+        if (!_standing.IsDown(uid))
             return;
 
         _popupSystem.PopupClient(Loc.GetString("no-sprint-while-lying"), uid, uid, PopupType.Medium);
@@ -296,7 +286,7 @@ public abstract class SharedSprintingSystem : EntitySystem
         if (!sprinter.IsSprinting)
             return;
 
-        _staminaSystem.TakeStaminaDamage(uid, sprinter.StaminaPenaltyOnShove, applyResistances: true);
+        _staminaSystem.TakeStaminaDamage(uid, sprinter.StaminaPenaltyOnShove, logDamage: false);
         ToggleSprint(uid, sprinter, false, gracefulStop: true);
     }
 

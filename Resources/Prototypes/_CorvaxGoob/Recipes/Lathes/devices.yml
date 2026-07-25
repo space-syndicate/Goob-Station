@@ -1,8 +1,10 @@
 - type: latheRecipe
-  id: AnomalyPayload
-  result: AnomalyPayloadEmpty
-  completetime: 2
+  id: ToolboxElectricalTurret
+  result: ToolboxElectricalTurret
+  completetime: 15
   materials:
-    Steel: 600
-    Silver: 300
-    Gold: 400
+    Steel: 3000
+    Glass: 1000
+    Gold: 1000
+    Silver: 1000
+    Plasteel: 4000

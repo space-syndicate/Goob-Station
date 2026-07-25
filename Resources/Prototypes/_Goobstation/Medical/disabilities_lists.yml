@@ -1,0 +1,31 @@
+
+- type: disabilityList
+  parent: [ TraitDisabilities ] # parents off of EVERY disability list
+  id: AllDisabilities
+
+  # disabilities from traits
+- type: disabilityList
+  id: TraitDisabilities
+  components:
+    - type: BlackAndWhiteOverlay
+    - type: Deaf
+    - type: LegsParalyzed
+    - type: LegsStartParalyzed
+    - type: MovementImpaired
+    - type: Muted
+    - type: Narcolepsy
+      maxTimeBetweenIncidents: 600
+      minTimeBetweenIncidents: 300
+      maxDurationOfIncident: 30
+      minDurationOfIncident: 10
+    - type: Paracusia
+      minTimeBetweenIncidents: 0.1
+      maxTimeBetweenIncidents: 300
+      maxSoundDistance: 7
+      sounds:
+        collection: Paracusia
+    - type: PainNumbnessStatusEffect
+    - type: PermanentBlindness
+    - type: SocialAnxiety
+    - type: TileMovement
+    - type: Unrevivable

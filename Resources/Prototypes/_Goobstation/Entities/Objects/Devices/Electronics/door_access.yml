@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Icepick <122653407+Icepicked@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 starch <starchpersonal@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -44,4 +38,12 @@
   suffix: All Service, Locked
   components:
   - type: AccessReader
-    access: [["Service"], ["Bar"], ["Kitchen"], ["Hydroponics"], ["Chapel"], ["Theatre"], ["Janitor"], ["HeadOfPersonnel"]]
+    access: [["Service"], ["Bar"], ["Kitchen"], ["Hydroponics"], ["Chapel"], ["Theatre"], ["Janitor"], ["HeadOfPersonnel"], ["Journalism"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsJournalism
+  suffix: Journalism, Locked
+  components:
+  - type: AccessReader
+    access: [["Journalism"]]

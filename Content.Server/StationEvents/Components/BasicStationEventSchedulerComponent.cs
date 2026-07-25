@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Destructible.Thresholds;
@@ -26,7 +19,7 @@ public sealed partial class BasicStationEventSchedulerComponent : Component
     /// The minimum and maximum time between rule starts in seconds.
     /// </summary>
     [DataField]
-    public MinMax MinMaxEventTiming = new(3 * 60, 10 * 60);
+    public MinMax MinMaxEventTiming = new(5 * 60, 15 * 60); // CorvaxGoob-GameRulesTweaks
 
     /// <summary>
     /// How long until the next check for an event runs, is initially set based on MinimumTimeUntilFirstEvent & MinMaxEventTiming.

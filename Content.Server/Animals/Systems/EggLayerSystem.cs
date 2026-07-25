@@ -1,18 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Baa <9057997+Baa14453@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Centronias <me@centronias.com>
-// SPDX-FileCopyrightText: 2024 Sirionaut <148076704+Sirionaut@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 sirionaut <sirionaut@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Actions;
@@ -50,6 +35,7 @@ public sealed class EggLayerSystem : EntitySystem
 
         SubscribeLocalEvent<EggLayerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<EggLayerComponent, EggLayInstantActionEvent>(OnEggLayAction);
+        SubscribeLocalEvent<EggLayerComponent, ComponentShutdown>(OnShutdown); //_Trauma
     }
 
     public override void Update(float frameTime)
@@ -129,7 +115,7 @@ public sealed class EggLayerSystem : EntitySystem
 
         foreach (var ent in EntitySpawnCollection.GetSpawns(egglayer.EggSpawn, _random))
         {
-            Spawn(ent, Transform(uid).Coordinates);
+            SpawnNextToOrDrop(ent, uid); // goob edit
         }
 
         // Sound + popups
@@ -138,5 +124,12 @@ public sealed class EggLayerSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("action-popup-lay-egg-others", ("entity", uid)), uid, Filter.PvsExcept(uid), true);
 
         return true;
+    }
+
+//_Trauma
+// Removes egg laying action when EggLayerComponent is removed from an entity.
+     void OnShutdown(Entity<EggLayerComponent> ent, ref ComponentShutdown args)
+    {
+        _actions.RemoveAction(ent.Comp.Action);
     }
 }

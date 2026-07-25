@@ -1,0 +1,11 @@
+﻿- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagAtmos
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Shoes/Boots/atmos-magboots.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Shoes/Boots/atmos-magboots.rsi

@@ -1,15 +1,3 @@
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2024 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2024 Fildrance <fildrance@gmail.com>
-// SPDX-FileCopyrightText: 2024 Gregg <82627200+Kokoc9n@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Hannah Giovanna Dawson <karakkaraz@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 pa.pecherskij <pa.pecherskij@interfax.ru>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Audio;
@@ -45,6 +33,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float InterfaceMultiplier = 2f;
     public const float TtsMultiplier = 3f; // CorvaxGoob-TTS
     public const float VoiceChatMultiplier = 5f;
+    public const float BarksMultiplier = 3f; // Goob Station - Barks
+    public const float AdminNotificationsMultiplier = 1f; // Goobstation - Admin Notifications
 
     public override void Initialize()
     {

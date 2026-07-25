@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.ActionBlocker;
@@ -44,6 +37,9 @@ public sealed class SmartEquipSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.SmartEquipBackpack, InputCmdHandler.FromDelegate(HandleSmartEquipBackpack, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipBelt, InputCmdHandler.FromDelegate(HandleSmartEquipBelt, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipPocket1, InputCmdHandler.FromDelegate(HandleSmartEquipPocket1, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipPocket2, InputCmdHandler.FromDelegate(HandleSmartEquipPocket2, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipSuitStorage, InputCmdHandler.FromDelegate(HandleSmartEquipSuitStorage, handle: false, outsidePrediction: false))
             .Register<SmartEquipSystem>();
     }
 
@@ -62,6 +58,21 @@ public sealed class SmartEquipSystem : EntitySystem
     private void HandleSmartEquipBelt(ICommonSession? session)
     {
         HandleSmartEquip(session, "belt");
+    }
+
+    private void HandleSmartEquipPocket1(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "pocket1");
+    }
+
+    private void HandleSmartEquipPocket2(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "pocket2");
+    }
+
+    private void HandleSmartEquipSuitStorage(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "suitstorage");
     }
 
     private void HandleSmartEquip(ICommonSession? session, string equipmentSlot)
@@ -102,12 +113,14 @@ public sealed class SmartEquipSystem : EntitySystem
         // 1) doesn't have an item
         //    - with hand item: try to put it in the slot
         //    - without hand item: fail
-        // 2) has an item, and that item is a storage item
-        //    - with hand item: try to put it in storage
-        //    - without hand item: try to take the last stored item and put it in our hands
-        // 3) has an item, and that item is an item slots holder
+        // CorvaxGoob edit start
+        // 2) has an item, and that item is an item slots holder
         //    - with hand item: get the highest priority item slot with a valid whitelist and try to insert it
         //    - without hand item: get the highest priority item slot with an item and try to eject it
+        // 3) has an item, and that item is a storage item
+        //    - with hand item: try to put it in storage
+        //    - without hand item: try to take the last stored item and put it in our hands
+        // CorvaxGoob edit end
         // 4) has an item, with no special storage components
         //    - with hand item: fail
         //    - without hand item: try to put the item into your hand
@@ -135,7 +148,62 @@ public sealed class SmartEquipSystem : EntitySystem
             return;
         }
 
-        // case 2 (storage item):
+        // CorvaxGoob edit start
+
+        // case 2 (itemslot item):
+        if (TryComp<ItemSlotsComponent>(slotItem, out var slots))
+        {
+            if (handItem == null)
+            {
+                ItemSlot? toEjectFrom = null;
+
+                foreach (var slot in slots.Slots.Values)
+                {
+                    if (slot.HasItem && slot.Priority > (toEjectFrom?.Priority ?? int.MinValue))
+                        toEjectFrom = slot;
+                }
+
+                if (toEjectFrom == null)
+                {
+                    if (!HasComp<StorageComponent>(slotItem))
+                    {
+                        _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
+                        return;
+                    }
+                }
+                else if (_slots.TryEjectToHands(slotItem, toEjectFrom, uid, excludeUserAudio: true))
+                    return;
+            }
+
+            if (handItem != null)
+            {
+                ItemSlot? toInsertTo = null;
+
+                foreach (var slot in slots.Slots.Values)
+                {
+                    if (!slot.HasItem
+                        && _whitelistSystem.IsWhitelistPassOrNull(slot.Whitelist, handItem.Value)
+                        && slot.Priority > (toInsertTo?.Priority ?? int.MinValue))
+                    {
+                        toInsertTo = slot;
+                    }
+                }
+
+                if (toInsertTo != null)
+                {
+                    _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
+                    return;
+                }
+
+                if (!HasComp<StorageComponent>(slotItem))
+                {
+                    _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
+                    return;
+                }
+            }
+        }
+
+        // case 3 (storage item):
         if (TryComp<StorageComponent>(slotItem, out var storage))
         {
             switch (handItem)
@@ -159,7 +227,7 @@ public sealed class SmartEquipSystem : EntitySystem
             }
 
             _hands.TryDrop((uid, hands), hands.ActiveHandId!);
-            _storage.Insert(slotItem, handItem.Value, out var stacked, out _);
+            _storage.Insert(slotItem, handItem.Value, out var stacked, out _, user: uid);
 
             // if the hand item stacked with the things in inventory, but there's no more space left for the rest
             // of the stack, place the stack back in hand rather than dropping it on the floor
@@ -172,50 +240,7 @@ public sealed class SmartEquipSystem : EntitySystem
             return;
         }
 
-        // case 3 (itemslot item):
-        if (TryComp<ItemSlotsComponent>(slotItem, out var slots))
-        {
-            if (handItem == null)
-            {
-                ItemSlot? toEjectFrom = null;
-
-                foreach (var slot in slots.Slots.Values)
-                {
-                    if (slot.HasItem && slot.Priority > (toEjectFrom?.Priority ?? int.MinValue))
-                        toEjectFrom = slot;
-                }
-
-                if (toEjectFrom == null)
-                {
-                    _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                    return;
-                }
-
-                _slots.TryEjectToHands(slotItem, toEjectFrom, uid, excludeUserAudio: true);
-                return;
-            }
-
-            ItemSlot? toInsertTo = null;
-
-            foreach (var slot in slots.Slots.Values)
-            {
-                if (!slot.HasItem
-                    && _whitelistSystem.IsWhitelistPassOrNull(slot.Whitelist, handItem.Value)
-                    && slot.Priority > (toInsertTo?.Priority ?? int.MinValue))
-                {
-                    toInsertTo = slot;
-                }
-            }
-
-            if (toInsertTo == null)
-            {
-                _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
-                return;
-            }
-
-            _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
-            return;
-        }
+        // CorvaxGoob edit end
 
         // case 4 (just an item):
         if (handItem != null)

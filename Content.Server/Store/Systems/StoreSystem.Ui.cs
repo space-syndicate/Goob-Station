@@ -1,31 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 J�lio C�sar Ueti <52474532+Mirino97@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 AJCM <AJCM@tutanota.com>
-// SPDX-FileCopyrightText: 2024 ActiveMammmoth <140334666+ActiveMammmoth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Fildrance <fildrance@gmail.com>
-// SPDX-FileCopyrightText: 2024 J. Brown <DrMelon@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2024 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 pa.pecherskij <pa.pecherskij@interfax.ru>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -55,7 +27,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing; // Goob
+using Robust.Shared.Timing;
+using Content.Goobstation.Common.Effects; // Goob
 
 namespace Content.Server.Store.Systems;
 
@@ -72,8 +45,9 @@ public sealed partial class StoreSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly HereticKnowledgeSystem _heretic = default!; // goobstation - heretics
+    [Dependency] private readonly HereticSystem _heretic = default!; // goobstation - heretics
     [Dependency] private readonly IGameTiming _timing = default!; // goobstation - ntr update
+    [Dependency] private readonly SparksSystem _sparks = default!; // CorvaxGoob
 
     private void InitializeUi()
     {
@@ -241,8 +215,11 @@ public sealed partial class StoreSystem
         // so i'm just gonna shitcode my way out of my misery
         if (listing.ProductHereticKnowledge != null)
         {
-            if (TryComp<HereticComponent>(buyer, out var heretic))
-                _heretic.AddKnowledge(buyer, heretic, (ProtoId<HereticKnowledgePrototype>) listing.ProductHereticKnowledge);
+            mindId = buyer;
+            var mind = CompOrNull<MindComponent>(mindId);
+
+            if (mind != null || _mind.TryGetMind(buyer, out mindId, out mind))
+                _heretic.TryAddKnowledge(mindId, listing.ProductHereticKnowledge.Value, mind.CurrentEntity);
         }
 
         //spawn entity
@@ -338,11 +315,14 @@ public sealed partial class StoreSystem
                 RaiseLocalEvent(buyer, listing.ProductEvent);
         }
 
+        if (component.PlaySparksEffect) // CorvaxGoob-SparkleEffects
+            _sparks.DoSparks(Transform(uid).Coordinates, playSound: false);
+
         // Goob edit start
-        /* if (listing.DisableRefund)
-        {
-            component.RefundAllowed = false;
-        } */
+            /* if (listing.DisableRefund)
+            {
+                component.RefundAllowed = false;
+            } */
         if (listing.BlockRefundListings.Count > 0)
         {
             foreach (var listingData in component.Listings.Where(x => listing.BlockRefundListings.Contains(x.ID)))
@@ -358,7 +338,7 @@ public sealed partial class StoreSystem
             $"{ToPrettyString(buyer):player} purchased listing \"{ListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _proto)}\" from {ToPrettyString(uid)}");
 
         listing.PurchaseAmount++; //track how many times something has been purchased
-        _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
+        _audio.PlayGlobal(component.BuySuccessSound, msg.Actor); //cha-ching! // Goob edit
 
         //WD EDIT START
         if (listing.SaleLimit != 0 && listing.DiscountValue > 0 && listing.PurchaseAmount >= listing.SaleLimit)
@@ -413,7 +393,7 @@ public sealed partial class StoreSystem
         {
             var cashId = proto.Cash[value];
             var amountToSpawn = (int) MathF.Floor((float) (amountRemaining / value));
-            var ents = _stack.SpawnMultiple(cashId, amountToSpawn, coordinates);
+            var ents = _stack.SpawnMultipleAtPosition(cashId, amountToSpawn, coordinates);
             if (ents.FirstOrDefault() is {} ent)
                 _hands.PickupOrDrop(buyer, ent);
             amountRemaining -= value * amountToSpawn;

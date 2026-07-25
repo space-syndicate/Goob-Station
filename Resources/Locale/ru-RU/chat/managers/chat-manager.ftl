@@ -20,10 +20,10 @@ chat-manager-server-wrap-message = [bold]{ $message }[/bold]
 chat-manager-sender-announcement = Центральное командование
 chat-manager-sender-announcement-wrap-message = [font size=14][bold]Объявление { $sender }:[/font][font size=12]
     { $message }[/bold][/font]
-chat-manager-entity-say-wrap-message = [BubbleHeader][bold][Name]{ $entityName }[/Name][/bold][/BubbleHeader] { $verb }, [font={ $fontType } size={ $fontSize } ]"[BubbleContent]{ $message }[/BubbleContent]"[/font]
-chat-manager-entity-say-bold-wrap-message = [BubbleHeader][bold][Name]{ $entityName }[/Name][/bold][/BubbleHeader] { $verb }, [font={ $fontType } size={ $fontSize }]"[BubbleContent][bold]{ $message }[/bold][/BubbleContent]"[/font]
-chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{ $entityName }[/Name][/BubbleHeader] шепчет,"[BubbleContent]{ $message }[/BubbleContent]"[/italic][/font]
-chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Кто-то[/BubbleHeader] шепчет, "[BubbleContent]{ $message }[/BubbleContent]"[/italic][/font]
+chat-manager-entity-say-wrap-message = [BubbleHeader][bold][Name]{ $entityName }[/Name][/bold][/BubbleHeader] { $verb }, [font={ $fontType } size={ $fontSize }]"[BubbleContent][font="{ $fontType }" size={ $fontSize }][color={ $color }]{ $message }[/color][/font][/BubbleContent]"[/font]
+chat-manager-entity-say-bold-wrap-message = [BubbleHeader][bold][Name]{ $entityName }[/Name][/bold][/BubbleHeader] { $verb }, [font={ $fontType } size={ $fontSize }]"[BubbleContent][font="{ $fontType }" size={ $fontSize }][bold][color={ $color }]{ $message }[/color][/bold][/font][/BubbleContent]"[/font]
+chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{ $entityName }[/Name][/BubbleHeader] шепчет, "[BubbleContent][color={ $color }][font="{ $fontType }"]{ $message }[/font][/color][/BubbleContent][font size=11]"[/italic][/font]
+chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Кто-то[/BubbleHeader] шепчет, "[BubbleContent][color={ $color }][font="{ $fontType }"]{ $message }[/color][/font][/BubbleContent][font size=11]"[/italic][/font]
 chat-manager-entity-me-wrap-message = [italic]{ CAPITALIZE($entityName) } { $message }[/italic]
 chat-manager-entity-looc-wrap-message = LOOC: [bold]{ $entityName }:[/bold] { $message }
 chat-manager-send-ooc-wrap-message = OOC: [bold]{ $playerName }:[/bold] { $message }
@@ -31,6 +31,7 @@ chat-manager-send-ooc-patron-wrap-message = OOC: [bold][color={ $patronColor }]{
 chat-manager-send-dead-chat-wrap-message = { $deadChannelName }: [bold][BubbleHeader]{ $playerName }[/BubbleHeader]:[/bold] [BubbleContent]{ $message }[/BubbleContent]
 chat-manager-send-admin-dead-chat-wrap-message = { $adminChannelName }: [bold]([BubbleHeader]{ $userName }[/BubbleHeader]):[/bold] [BubbleContent]{ $message }[/BubbleContent]
 chat-manager-send-admin-chat-wrap-message = { $adminChannelName }: [bold]{ $playerName }:[/bold] { $message }
+chat-manager-send-ooc-patron-wrap-message-no-icon = OOC: [bold][color={ $patronColor }]{ $playerName }[/color]:[/bold] { $message }
 chat-manager-send-admin-announcement-wrap-message = [bold]{ $adminChannelName }: { $message }[/bold]
 chat-manager-send-hook-ooc-wrap-message = OOC: [bold](D){ $senderName }:[/bold] { $message }
 chat-manager-dead-channel-name = МЁРТВЫЕ
@@ -112,8 +113,8 @@ chat-speech-verb-parrot-2 = чирикает
 chat-speech-verb-parrot-3 = щебечет
 chat-speech-verb-name-ghost = Призрак
 chat-speech-verb-ghost-1 = жалуется
-chat-speech-verb-ghost-2 = дышит
-chat-speech-verb-ghost-3 = воет
+chat-speech-verb-ghost-2 = вздыхает
+chat-speech-verb-ghost-3 = гудит
 chat-speech-verb-ghost-4 = бормочет
 chat-speech-verb-name-cluwne = Клувень
 chat-speech-verb-cluwne-1 = хихикает
@@ -128,3 +129,5 @@ chat-speech-verb-wawa-1 = напевает
 chat-speech-verb-wawa-2 = утверждает
 chat-speech-verb-wawa-3 = заявляет
 chat-speech-verb-wawa-4 = размышляет
+
+chat-manager-send-hook-admin-wrap-message = АДМИН: [bold](D){ $senderName }:[/bold] { $message }

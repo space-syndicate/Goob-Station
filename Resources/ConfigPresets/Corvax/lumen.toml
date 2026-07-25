@@ -5,17 +5,20 @@ maxplayers = 180
 soft_max_players = 80
 map_rotation = true
 
+[thunderdome]
+enabled = false
+
 [server]
 lobby_name = "️🛰️ CorvaxGoob — 🌕 Люмен 🪐 [MRP+] [TTS]"
 
 [game.panic_bunker]
 enabled = true
 show_reason = true
-min_account_age = 0
-min_overall_minutes = 0
+min_account_age = 1440
+min_overall_minutes = 1200
 deny_vpn = true
 enable_without_admins = true
-disable_with_admins = true
+disable_with_admins = false
 
 [rules]
 time = 30.0

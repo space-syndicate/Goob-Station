@@ -1,12 +1,7 @@
-// SPDX-FileCopyrightText: 2021 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
+
+using Content.Server.Stunnable.Systems;
+using Content.Shared.Whitelist;
 
 namespace Content.Server.Stunnable.Components
 {
@@ -18,25 +13,62 @@ namespace Content.Server.Stunnable.Components
     {
         // TODO: Can probably predict this.
 
-        // See stunsystem for what these do
-        [DataField("stunAmount")]
-        public int StunAmount;
+        /// <summary>
+        /// How long we are stunned for
+        /// </summary>
+        [DataField]
+        public TimeSpan StunAmount;
 
-        [DataField("knockdownAmount")]
-        public int KnockdownAmount;
+        /// <summary>
+        /// How long we are knocked down for
+        /// </summary>
+        [DataField]
+        public TimeSpan KnockdownAmount;
 
-        [DataField("slowdownAmount")]
-        public int SlowdownAmount;
+        /// <summary>
+        /// How long we are slowed down for
+        /// </summary>
+        [DataField]
+        public TimeSpan SlowdownAmount;
 
-        [DataField("walkSpeedMultiplier")]
-        public float WalkSpeedMultiplier = 1f;
+        /// <summary>
+        /// Multiplier for a mob's walking speed
+        /// </summary>
+        [DataField]
+        public float WalkSpeedModifier = 1f;
 
-        [DataField("runSpeedMultiplier")]
-        public float RunSpeedMultiplier = 1f;
+        /// <summary>
+        /// Multiplier for a mob's sprinting speed
+        /// </summary>
+        [DataField]
+        public float SprintSpeedModifier = 1f;
+
+        /// <summary>
+        /// Refresh Stun or Slowdown on hit
+        /// </summary>
+        [DataField]
+        public bool Refresh = true;
+
+        /// <summary>
+        /// Should the entity try and stand automatically after being knocked down?
+        /// </summary>
+        [DataField]
+        public bool AutoStand = true;
+
+        /// <summary>
+        /// Should the entity drop their items upon first being knocked down?
+        /// </summary>
+        [DataField]
+        public bool Drop = true;
 
         /// <summary>
         /// Fixture we track for the collision.
         /// </summary>
         [DataField("fixture")] public string FixtureID = "projectile";
+
+        // Begin DeltaV Additions
+        [DataField]
+        public EntityWhitelist? Blacklist;
+        // End DeltaV Additions
     }
 }

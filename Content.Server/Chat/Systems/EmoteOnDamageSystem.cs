@@ -1,22 +1,14 @@
-// SPDX-FileCopyrightText: 2023 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2023 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Mnemotechnican <69920617+Mnemotechnician@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-//
 // SPDX-License-Identifier: MIT
 
 namespace Content.Server.Chat.Systems;
 
 using Content.Shared.Chat; // Einstein Engines - Languages
+using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -31,6 +23,7 @@ public sealed class EmoteOnDamageSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -51,7 +44,7 @@ public sealed class EmoteOnDamageSystem : EntitySystem
         if (TryComp<MobThresholdsComponent>(uid, out var mobThresholds) && (mobThresholds.CurrentThresholdState is Shared.Mobs.MobState.Dead || mobThresholds.CurrentThresholdState is Shared.Mobs.MobState.Critical))
             return;
 
-        if (HasComp<PainNumbnessComponent>(uid))
+        if (_statusEffects.HasEffectComp<PainNumbnessStatusEffectComponent>(uid))
             return;
         // CorvaxGoob-AutoEmote-End
 

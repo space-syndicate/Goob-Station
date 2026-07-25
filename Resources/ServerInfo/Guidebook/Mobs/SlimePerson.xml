@@ -1,15 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
-SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 Just-a-Unity-Dev <67359748+Just-a-Unity-Dev@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 deepdarkdepths <155149356+deepdarkdepths@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 kbailey-git <84491830+kbailey-git@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
@@ -38,5 +27,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   - Могут твердо сжимать кулаки, что даёт им более сильные удары, хотя они и немного медленнее в их выполнении.
   - Слизистая "кровь" не восстанавливается железом. Тем не менее, слизь является умеренно питательным источником пищи для других существ, но пить кровь своих товарищей по команде обычно считается неприемлемым.
   - Слаймолюды способны выживать в условиях вакуума дольше других рас, хотя при этом получают повышенный урон от давления.
+
+  У слаймолюдов отсутствуют кости, из-за чего потерять конечность становится в разы легче.
 
 </Document>

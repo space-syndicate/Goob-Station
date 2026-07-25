@@ -41,7 +41,9 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: grid
+      name: lavaland-ruin-syndicate
+    - type: IFF
+      flags: Hide
     - type: Transform
       pos: -1.875,2.3625705
       parent: invalid
@@ -7142,13 +7144,6 @@ entities:
     components:
     - type: Transform
       pos: 20.81159,7.456767
-      parent: 2
-- proto: DefaultStationBeaconPowerBank
-  entities:
-  - uid: 959
-    components:
-    - type: Transform
-      pos: 27.5,-16.5
       parent: 2
 - proto: DnaScramblerImplanter
   entities:

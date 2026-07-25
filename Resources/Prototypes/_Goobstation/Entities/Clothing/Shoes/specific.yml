@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Poips <Hanakohashbrown@gmail.com>
-# SPDX-FileCopyrightText: 2025 kamkoi <poiiiple1@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -31,3 +26,9 @@
       collection: FootstepSkates
       params:
         variation: 0.08
+
+- type: entity
+  id: ClothingShoesClownUnremoveable
+  parent: ClothingShoesClown
+  components:
+  - type: Unremoveable

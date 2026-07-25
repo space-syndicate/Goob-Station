@@ -1,46 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Dylan Corrales <DeathCamel58@gmail.com>
-// SPDX-FileCopyrightText: 2022 Jezithyr <Jezithyr.@gmail.com>
-// SPDX-FileCopyrightText: 2022 Jezithyr <Jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2022 Jezithyr <jmaster9999@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <wrexbe@protonmail.com>
-// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 KP <13428215+nok-ko@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Kot <1192090+koteq@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Vasilis <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2023 Vasilis The Pikachu <vascreeper@yahoo.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deathride58 <deathride58@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 gus <august.eymann@gmail.ccom>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2023 router <messagebus@vk.com>
-// SPDX-FileCopyrightText: 2024 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <10968691+DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Julian Giebel <juliangiebel@live.de>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Sk1tch <ben.peter.smith@gmail.com>
-// SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tainakov <136968973+Tainakov@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2024 Your Name <you@example.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Rinary <72972221+Rinary1@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Globalization;
@@ -86,9 +43,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Client.CharacterInfo;
-using Content.Goobstation.Common.CCVar; // Goob - start
-using static Content.Client.CharacterInfo.CharacterInfoSystem;
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -203,6 +157,13 @@ public sealed partial class ChatUIController : UIController
     /// unread messages (messages received since the channel has been filtered out).
     /// </summary>
     private readonly Dictionary<ChatChannel, int> _unreadMessages = new();
+
+
+    // Goobstation - Chat Pings
+    /// <summary>
+    /// Used for Goobstation's - Chat Pings
+    /// </summary>
+    private TimeSpan LastHighlightTime = TimeSpan.Zero;
 
     // TODO add a cap for this for non-replays
     public readonly List<(GameTick Tick, ChatMessage Msg)> History = new();
@@ -338,7 +299,7 @@ public sealed partial class ChatUIController : UIController
                  && style is StyleBoxFlat propStyleBoxFlat)
             color = propStyleBoxFlat.BackgroundColor;
         else
-            color = StyleNano.ChatBackgroundColor;
+            color = Color.FromHex("#25252ADD");
 
         panel.PanelOverride = new StyleBoxFlat
         {
@@ -765,7 +726,7 @@ public sealed partial class ChatUIController : UIController
         radioChannel = null;
         return _player.LocalEntity is EntityUid { Valid: true } uid
            && _chatSys != null
-           && _chatSys.TryProccessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
+           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
     }
 
     // Goobstation - Starlight collective mind port
@@ -928,12 +889,6 @@ public sealed partial class ChatUIController : UIController
                 msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
         }
 
-        // Color any words chosen by the client.
-        foreach (var highlight in _highlights)
-        {
-            msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
-        }
-
         // Color any codewords for minds that have roles that use them
         if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
         {
@@ -946,6 +901,38 @@ public sealed partial class ChatUIController : UIController
                 }
             }
         }
+
+        #region Goobstation - Highlight chat sounds/pings!
+        // Goobstation - Highlight chat sounds/pings!
+        // Color any words chosen by the client and check for highlights
+        var hadHighlight = false;
+
+        // Skip highlight check if this is a message from the local player
+        if (_player.LocalSession?.AttachedEntity is not { } localEntity ||
+            msg.SenderEntity != _ent.GetNetEntity(localEntity))
+        {
+            foreach (var highlight in _highlights)
+            {
+                var newMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
+                if (newMessage != msg.WrappedMessage)
+                {
+                    hadHighlight = true;
+                    msg.WrappedMessage = newMessage;
+                }
+            }
+
+            var currentTime = _timing.CurTime;
+
+            // Only play sound if enough time has passed since the last highlight
+            // This avoids playing multiple pings in less than a second
+            if (hadHighlight && (currentTime - LastHighlightTime).TotalMilliseconds >= 500)
+            {
+                LastHighlightTime = currentTime;
+                PlayHighlightSound();
+            }
+        }
+        // Goobstation end
+        #endregion
 
         // Log all incoming chat to repopulate when filter is un-toggled
         if (!msg.HideChat)

@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: StorePresetContractor
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-uplink
+    categories:
+    - UplinkContractor
+    currencyWhitelist:
+    - Telecrystal
+    balance:
+      Telecrystal: 0

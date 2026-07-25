@@ -4,12 +4,11 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-
 ### goblin tusks
 
 marking-GoblinTusksBasic = Без клыков
 marking-GoblinTusksBasic-goblin_tusks_none = Без клыков
 marking-GoblinTusksSmall = Маленькие клыки
-marking-GoblinTusksSmall-goblin_tusks_small = Маленькие клыки
+marking-GoblinTusksSmall-goblin_tusks_small = Основной
 marking-GoblinTusksBig = Длинные клыки
-marking-GoblinTusksBig-goblin_tusks_big = Длинные клыки
+marking-GoblinTusksBig-goblin_tusks_big = Основной

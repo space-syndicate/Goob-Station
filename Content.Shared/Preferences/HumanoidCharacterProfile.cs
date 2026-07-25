@@ -43,11 +43,11 @@
 // SPDX-FileCopyrightText: 2025 MarkerWicker <markerWicker@proton.me>
 // SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
 // SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
 // SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 āda <ss.adasts@gmail.com>
+// SPDX-FileCopyrightText: 2025 Zekins <zekins3366@gmail.com>
+// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 //
-// SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -60,6 +60,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
+using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared.Traits;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
@@ -130,8 +131,12 @@ namespace Content.Shared.Preferences
 
         // CorvaxGoob-TTS-Start
         [DataField]
-        public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+        public string TTSVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
         // CorvaxGoob-TTS-End
+
+        // CorvaxGoob-Revert : DB conflicts
+        // [DataField] // Goob Station - Barks
+        // public ProtoId<BarkPrototype> BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
 
         [DataField]
         public int Age { get; set; } = 18;
@@ -184,7 +189,7 @@ namespace Content.Shared.Preferences
             string name,
             string flavortext,
             string species,
-            string voice, // CorvaxGoob-TTS
+            string ttsVoice, // CorvaxGoob-TTS
             int age,
             Sex sex,
             Gender gender,
@@ -195,12 +200,12 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts)
-
+            // ProtoId<BarkPrototype> barkVoice) // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts
         {
             Name = name;
             FlavorText = flavortext;
             Species = species;
-            Voice = voice; // CorvaxGoob-TTS
+            TTSVoice = ttsVoice; // CorvaxGoob-TTS
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -211,6 +216,7 @@ namespace Content.Shared.Preferences
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
+            // BarkVoice = barkVoice; // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts
 
             var hasHighPrority = false;
             foreach (var (key, value) in _jobPriorities)
@@ -232,7 +238,7 @@ namespace Content.Shared.Preferences
             : this(other.Name,
                 other.FlavorText,
                 other.Species,
-                other.Voice, // CorvaxGoob-TTS
+                other.TTSVoice, // CorvaxGoob-TTS
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -243,6 +249,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
+                // other.BarkVoice) // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts
         {
         }
 
@@ -267,6 +274,7 @@ namespace Content.Shared.Preferences
             return new()
             {
                 Species = species,
+                Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
             };
         }
 
@@ -310,6 +318,14 @@ namespace Content.Shared.Preferences
                 .Where(o => CanHaveVoice(o, sex)).ToArray()
             ).ID;
             // CorvaxGoob-TTS-End
+            // CorvaxGoob-Revert : DB conflicts
+            // Goob Station - Barks Start
+            // var barkvoiceId = random.Pick(prototypeManager
+            //     .EnumeratePrototypes<BarkPrototype>()
+            //     .Where(o => o.RoundStart && (o.SpeciesWhitelist is null || o.SpeciesWhitelist.Contains(species)))
+            //     .ToArray()
+            // );
+            //  Goob Station - Barks End
 
             var gender = Gender.Epicene;
 
@@ -333,8 +349,9 @@ namespace Content.Shared.Preferences
                 Age = age,
                 Gender = gender,
                 Species = species,
-                Voice = voiceId, // CorvaxGoob-TTS
+                TTSVoice = voiceId, // CorvaxGoob-TTS
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
+                // BarkVoice = barkvoiceId, // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts
             };
         }
 
@@ -371,7 +388,7 @@ namespace Content.Shared.Preferences
         // CorvaxGoob-TTS-Start
         public HumanoidCharacterProfile WithVoice(string voice)
         {
-            return new(this) { Voice = voice };
+            return new(this) { TTSVoice = voice };
         }
         // CorvaxGoob-TTS-End
 
@@ -384,6 +401,14 @@ namespace Content.Shared.Preferences
         {
             return new(this) { SpawnPriority = spawnPriority };
         }
+
+        // CorvaxGoob-Revert : DB conflicts
+/*        // Goob Station - Barks Start
+        public HumanoidCharacterProfile WithBarkVoice(BarkPrototype barkVoice)
+        {
+            return new(this) { BarkVoice = barkVoice };
+        }
+        // Goob Station - Barks End*/
 
         public HumanoidCharacterProfile WithJobPriorities(IEnumerable<KeyValuePair<ProtoId<JobPrototype>, JobPriority>> jobPriorities)
         {
@@ -480,7 +505,7 @@ namespace Content.Shared.Preferences
             // Category not found so dump it.
             TraitCategoryPrototype? traitCategory = null;
 
-            if (category != null && !protoManager.TryIndex(category, out traitCategory))
+            if (category != null && !protoManager.Resolve(category, out traitCategory))
                 return new(this);
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
@@ -542,10 +567,12 @@ namespace Content.Shared.Preferences
             if (Name != other.Name) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
+            if (TTSVoice != other.TTSVoice) return false; // CorvaxGoob-TTS
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             // if (Height != other.Height) return false; // Goobstation: port EE height/width sliders // CorvaxGoob-Clearing
             // if (Width != other.Width) return false; // Goobstation: port EE height/width sliders // CorvaxGoob-Clearing
+            // if (BarkVoice != other.BarkVoice) return false; // Goob Station - Barks // CorvaxGoob-Clearing
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -716,9 +743,9 @@ namespace Content.Shared.Preferences
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
             // CorvaxGoob-TTS-Start
-            prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
-            if (voice is null || !CanHaveVoice(voice, Sex))
-                Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            prototypeManager.TryIndex<TTSVoicePrototype>(TTSVoice, out var ttsVoice);
+            if (ttsVoice is null || !CanHaveVoice(ttsVoice, Sex))
+                TTSVoice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
             // CorvaxGoob-TTS-End
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
@@ -732,6 +759,9 @@ namespace Content.Shared.Preferences
                     continue;
                 }
 
+                // This happens after we verify the prototype exists
+                // These values are set equal in the database and we need to make sure they're equal here too!
+                loadouts.Role = roleName;
                 loadouts.EnsureValid(this, session, collection);
             }
 
@@ -763,7 +793,7 @@ namespace Content.Shared.Preferences
                 }
 
                 // No category so dump it.
-                if (!protoManager.TryIndex(traitProto.Category, out var category))
+                if (!protoManager.Resolve(traitProto.Category, out var category))
                     continue;
 
                 var existing = groups.GetOrNew(category.ID);
@@ -801,10 +831,17 @@ namespace Content.Shared.Preferences
             var namingSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<NamingSystem>();
             return namingSystem.GetName(species, gender);
         }
+        public bool Equals(HumanoidCharacterProfile? other)
+        {
+            if (other is null)
+                return false;
+
+            return ReferenceEquals(this, other) || MemberwiseEquals(other);
+        }
 
         public override bool Equals(object? obj)
         {
-            return ReferenceEquals(this, obj) || obj is HumanoidCharacterProfile other && Equals(other);
+            return obj is HumanoidCharacterProfile other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -821,8 +858,10 @@ namespace Content.Shared.Preferences
             // hashCode.Add(Width); // Goobstation: port EE height/width sliders // CorvaxGoob-Clearing
             hashCode.Add(Age);
             hashCode.Add((int) Sex);
+            hashCode.Add(TTSVoice); // CorvaxGoob-TTS
             hashCode.Add((int) Gender);
             hashCode.Add(Appearance);
+            // hashCode.Add(BarkVoice); // Goob Station - Barks // CorvaxGoob-Revert : DB conflicts
             hashCode.Add((int) SpawnPriority);
             hashCode.Add((int) PreferenceUnavailable);
             return hashCode.ToHashCode();

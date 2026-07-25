@@ -1,21 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Fishbait <Fishbait@git.ml>
-# SPDX-FileCopyrightText: 2025 GMWQ <garethquaile@gmail.com>
-# SPDX-FileCopyrightText: 2025 Gareth Quaile <garethquaile@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 IrisTheAmped <iristheamped@gmail.com>
-# SPDX-FileCopyrightText: 2025 Rouge2t7 <81053047+Sarahon@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Theodore Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 fishbait <gnesse@gmail.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 unknown <Administrator@DESKTOP-PMRIVVA.kommune.indresogn.no>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # This is for random skins
@@ -53,7 +35,7 @@
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:
-      settings: default
+      settings: short # CorvaxGoob
   - type: Sprite
     drawdepth: Mobs
     sprite: _Goobstation/Mobs/Bingle/bingle.rsi
@@ -81,9 +63,12 @@
       Dead:
         Base: dead
   - type: Bloodstream
-    bloodMaxVolume: 100
-    bloodReagent: Nitrogen # by request
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Nitrogen # by request
+        Quantity: 100
   - type: MeleeWeapon
+    altDisarm: false
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
@@ -98,11 +83,13 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2 # same as slime
     baseSprintSpeed : 4
+  - type: Sprinter
+    staminaDrainRate: 27 #fat legs
   - type: Stamina
-    critThreshold: 120
-  - type: StaminaDamageOnHit # from stunbaton
-    damage: 15
-    overtime: 40
+    baseCritThreshold: 120
+  - type: StaminaDamageOnHit # Should consistently stamcrit in 3 hits, 4-5 against sec
+    damage: 25
+    overtime: 15
     sound: /Audio/Weapons/egloves.ogg
   - type: Damageable
     damageContainer: Biological
@@ -120,7 +107,8 @@
   - type: LanguageKnowledge
     speaks:
     - Bingle
-    understands: []
+    understands:
+    - TauCetiBasic
   - type: CollectiveMind
     defaultChannel: Binglemind
     respectAccents: true
@@ -140,8 +128,6 @@
     activateSound: null
     deactivateSound: null
   - type: FlashImmunity
-  - type: ScannableForPoints # NTR update
-    points: 2 # this would be abused so much if i made it more
   - type: Butcherable
     spawned:
     - id: FoodMeatBingle
@@ -154,7 +140,6 @@
   components:
   - type: Bingle
     prime: true
-  - type: ScannableForPoints # NTR update, 5 points is the default.
 
 - type: entity
   id: MobBingleUpgraded

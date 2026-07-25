@@ -7,14 +7,6 @@
     Glass: 1000
 
 - type: latheRecipe
-  id: TileItemBluespace
-  result: FloorTileItemBluespace
-  completetime: 1.5
-  materials:
-    Uranium: 40
-    Steel: 100
-
-- type: latheRecipe
   id: FillableMedipen
   result: FillableMedipen
   completetime: 3
@@ -22,3 +14,13 @@
     Steel: 100
     Glass: 100
     Plastic: 300
+
+- type: latheRecipe
+  id: XeeplianTranslator
+  result: EmptyXeeplianTranslator
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 100
+    Plastic: 50
+    Gold: 50

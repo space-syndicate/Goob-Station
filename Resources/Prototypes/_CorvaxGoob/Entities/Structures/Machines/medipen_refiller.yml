@@ -59,7 +59,7 @@
       medipenSlot:
         priority: 1
         whitelist:
-          components:
+          tags:
             - Medipen
         blacklist:
           tags:
@@ -69,7 +69,7 @@
           components:
           - FitsInDispenser
         blacklist:
-          components:
+          tags:
             - Medipen
   - type: GuideHelp
     guides:
@@ -95,7 +95,23 @@
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
       machine_parts: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
       beakerSlot: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
       outputSlot: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      medipenSlot: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
   - type: MedipenRefiller

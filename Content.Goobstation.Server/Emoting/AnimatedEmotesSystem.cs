@@ -1,14 +1,9 @@
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Emoting;
 using Content.Server.Chat.Systems;
+using Content.Server.Power.EntitySystems;
+using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -23,21 +18,24 @@ public sealed partial class AnimatedEmotesSystem : SharedAnimatedEmotesSystem
         SubscribeLocalEvent<AnimatedEmotesComponent, EmoteEvent>(OnEmote);
     }
 
-    private void OnEmote(EntityUid uid, AnimatedEmotesComponent component, ref EmoteEvent args)
+    private void OnEmote(Entity<AnimatedEmotesComponent> ent, ref EmoteEvent args)
     {
-        PlayEmoteAnimation(uid, component, args.Emote.ID);
+        PlayEmoteAnimation(ent, args.Emote.ID);
 
         if (args.Emote.TargetEvents is not null) // CorvaxGoob-PrototypedAnimations : Raise to play client prototyped animation if it's exist
             foreach (var targetEvent in args.Emote.TargetEvents)
             {
-                targetEvent.Target = uid;
-                RaiseLocalEvent(uid, (object) targetEvent, true);
+                targetEvent.Target = ent;
+                RaiseLocalEvent(ent, (object) targetEvent, true);
             }
     }
 
-    public void PlayEmoteAnimation(EntityUid uid, AnimatedEmotesComponent component, ProtoId<EmotePrototype> prot)
+    public void PlayEmoteAnimation(Entity<AnimatedEmotesComponent> ent, ProtoId<EmotePrototype> prot)
     {
-        component.Emote = prot;
-        Dirty(uid, component);
+        ent.Comp.Emote = prot;
+        Dirty(ent);
+
+        // if (prot == "Flip") // CorvaxGoob : щиткод кринж
+            //ApplyFlipEffects(ent);
     }
 }

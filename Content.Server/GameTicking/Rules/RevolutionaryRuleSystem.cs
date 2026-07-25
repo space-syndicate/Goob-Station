@@ -1,46 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 EmoGarbage404 <retron404@gmail.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 Vasilis <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2023 coolmankid12345 <55817627+coolmankid12345@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 coolmankid12345 <coolmankid12345@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 AJCM <AJCM@tutanota.com>
-// SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Rainfall <rainfey0+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Rainfey <rainfey0+github@gmail.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 silver2127 <52584484+silver2127@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 silver2127 <silver21728@gmail.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GMWQ <garethquaile@gmail.com>
-// SPDX-FileCopyrightText: 2025 Gareth Quaile <garethquaile@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 IrisTheAmped <iristheamped@gmail.com>
-// SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 Tim <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Timfa <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
@@ -70,11 +27,10 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Zombies;
-using Content.Shared.Heretic;
-using Content.Goobstation.Common.Changeling;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
@@ -86,6 +42,9 @@ using Content.Server.Antag.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared._EinsteinEngines.Revolutionary;
 using Robust.Shared.Player;
+using Content.Goobstation.Shared.Changeling.Components;
+using Content.Goobstation.Common.Conversion;
+using Content.Shared._EinsteinEngines.Revolutionary.Components;
 
 
 namespace Content.Server.GameTicking.Rules;
@@ -209,6 +168,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
             // TODO: someone suggested listing all alive? revs maybe implement at some point
         }
+        args.AddLine("");
     }
 
     private void OnGetBriefing(EntityUid uid, RevolutionaryRoleComponent comp, ref GetBriefingEvent args)
@@ -224,17 +184,18 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     private void OnPostConvert(EntityUid uid, HeadRevolutionaryComponent comp, ref AfterRevolutionaryConvertedEvent ev)
     {
         // Einstein Engines - Revolutionary Manifesto - Use RevolutionaryConverterSystem instead of hardcoding flashes
-        // GoobStation - check if headRev's ability enabled
+        // GoobStation START - check if headRev's ability enabled
         if (!comp.ConvertAbilityEnabled)
             return;
-
-        // Goobstation - Something something check for 30 conditions of mute or otherwise speech impeding shit that makes book pointless
-        if (HasComp<MumbleAccentComponent>(uid) // Muzzles to bypass speech is bad
-            || HasComp<MutedComponent>(uid)) // No speech = No convert
+        if (!TryComp<RevolutionaryConverterComponent>(ev.Used, out var revconv))
             return;
-        // Goob edit end (for now)
+        // Goobstation - Something something check for 30 conditions of mute or otherwise speech impeding shit that makes book pointless
+        if ((HasComp<MumbleAccentComponent>(ev.User) // Muzzles to bypass speech is bad
+            || HasComp<MutedComponent>(ev.User)) && !revconv.BypassMuted) // No speech = No convert but still convert if BYPASS
+            return;
+        // Goob edit END (for now) of course for now you dumbass
 
-        if (uid != ev.User)
+        if (uid != ev.User) // Goob
             return;
 
         var alwaysConvertible = HasComp<AlwaysRevolutionaryConvertibleComponent>(ev.Target);
@@ -242,14 +203,16 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         if (!_mind.TryGetMind(ev.Target, out var mindId, out var mind))
             return;
 
+        // goob - event instead of whatever the fuck the hascomp obelisk below is (whoever did this needs to be flogged)
+        var convEv = new BeforeConversionEvent(ev.Target);
+        RaiseLocalEvent(ev.Target, ref convEv, true);
+
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
             !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target) ||
-            HasComp<HereticComponent>(ev.Target) ||
-            HasComp<ChangelingComponent>(ev.Target) || // goob edit - no more ling or heretic revs
             HasComp<AntagImmuneComponent>(ev.Target)) // Antag immune MEANS antag immune.
         {
             if (ev.User != null)
@@ -257,6 +220,16 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
             return;
         }
+
+        // goob - event start
+        if (convEv.Blocked)
+        {
+            if (ev.User != null)
+                _popup.PopupEntity("The conversion failed!", ev.User.Value, ev.User.Value);
+
+            return;
+        }
+        // goob - event end
 
         if (HasComp<RevolutionEnemyComponent>(ev.Target))
             RemComp<RevolutionEnemyComponent>(ev.Target);
@@ -273,7 +246,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             if (_mind.TryGetMind(ev.User.Value, out var revMindId, out _))
             {
                 if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
+                {
                     role.Value.Comp2.ConvertedCount++;
+                    Dirty(role.Value.Owner, role.Value.Comp2);
+                }
             }
         }
 
@@ -352,7 +328,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     continue;
 
                 _npcFaction.RemoveFaction(uid, RevolutionaryNpcFaction);
-                _stun.TryParalyze(uid, stunTime, true);
+                _stun.TryUpdateParalyzeDuration(uid, stunTime);
                 RemCompDeferred<RevolutionaryComponent>(uid);
                 _popup.PopupEntity(Loc.GetString("rev-break-control", ("name", Identity.Entity(uid, EntityManager))), uid);
                 _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(uid)} was deconverted due to all Head Revolutionaries dying.");

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Actions;
@@ -19,6 +15,7 @@ using Content.Shared.Silicons.StationAi;
 using Content.Shared.UserInterface;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
@@ -153,7 +150,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         foreach (var station in stations)
         {
-            if (_stationSystem.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid
+            if (_stationSystem.GetLargestGrid(station) is not { } grid
                 || !TryComp(station, out MetaDataComponent? stationMetaData))
                 return;
 

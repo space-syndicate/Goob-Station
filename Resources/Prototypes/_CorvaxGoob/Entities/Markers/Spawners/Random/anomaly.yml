@@ -1,0 +1,39 @@
+- type: entity
+  name: flesh anomaly meat spawner
+  id: FleshAnomalyMeatSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Consumable/Food/meat.rsi
+      state: plain
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: FleshAnomalyMeat
+
+- type: entityTable
+  id: FleshAnomalyMeat
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: FoodMeatBear
+      - id: FoodMeatArachnid
+      - id: FoodMeatCrab
+      - id: FoodMeatVox
+      - id: FoodMeatVulpkanin
+      - id: FoodMeatChicken
+      - id: FoodMeat
+        weight: 10
+      - id: FoodMeatMoth
+      - id: FoodMeatPlant
+      - id: FoodMeatTajaran
+      - id: FoodMeatResomi
+      - id: FoodMeatLizard
+      - id: FoodMeatGoliath
+      - id: FoodMeatSlimeMeat
+      - id: FoodMeatSynth
+      - id: FoodMeatDragon
+        weight: 0.075

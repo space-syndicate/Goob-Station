@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -31,9 +27,25 @@
   description: A bone from the neck. Contains a lot of calcium.
   components:
   - type: Bone
-    integrityCap: 120
-    boneIntegrity: 120
+    integrityCap: 100 # Goob edit
+    boneIntegrity: 100 # Goob edit
   - type: Sprite
     sprite: Objects/Materials/materials.rsi
     state: bones
   - type: Appearance
+
+- type: entity
+  id: BoneWeak
+  parent: Bone
+  components:
+  - type: Bone
+    integrityCap: 40
+    boneIntegrity: 40
+
+- type: entity
+  id: BoneNeckWeak
+  parent: BoneNeck
+  components:
+  - type: Bone
+    integrityCap: 60
+    boneIntegrity: 60

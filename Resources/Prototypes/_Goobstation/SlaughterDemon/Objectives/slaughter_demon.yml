@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -41,12 +38,12 @@
   id: SlaughterKillEveryoneObjective
   components:
   - type: Objective
-    issuer: objective-condition-kill-everyone-else
+    issuer: objective-issuer-slaughter-satan
     icon:
       sprite: Structures/Furniture/Altars/Cults/fangs.rsi
       state: blood
   - type: SlaughterKillEveryoneCondition
-    title: objective-condition-kill-everyone-else-title
+    title: objective-condition-kill-everyone-title
     description: objective-kill-everyone-desc
 
 # laughter objectives

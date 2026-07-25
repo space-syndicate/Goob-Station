@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: weightedRandomEntity
@@ -83,6 +75,7 @@
     MobOniRandom: 1
     MobChitinidRandom: 1
     MobShadowkinRandom: 1
+    MobAbductor: 0.1
     MobShadowling: 0.01
 
 - type: weightedRandomEntity
@@ -108,6 +101,7 @@
     MobMouse: 0.25
     MobMouse1: 0.25
     MobMouse2: 0.25
+    MobMousePlague: 0.25
     MobMouseCancer: 0.25
     MobLizard: 1
     MobSlug: 1
@@ -195,11 +189,11 @@
 - type: weightedRandom
   id: WabbajackGroups
   weights:
-    WabbajackMonkey: 1
+    WabbajackMonkey: 0.8
     # WabbajackCluwne: 1
-    WabbajackRobot: 1
-    WabbajackSlime: 1
+    WabbajackRobot: 0.8
+    WabbajackSlime: 0.5
     WabbajackSpecies: 1
     WabbajackAnimal: 1
-    WabbajackXeno: 1
-    WabbajackSpecial: 0.05 # for high-impact transmutations, approximately 1/160 chance with 8 groups
+    WabbajackXeno: 0.1
+    WabbajackSpecial: 0.01 # for high-impact transmutations, approximately 1/160 chance with 8 groups

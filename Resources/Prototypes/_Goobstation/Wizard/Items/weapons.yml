@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -110,6 +102,9 @@
         Radiation: 5
         Structural: 5
       armorPenetration: 0.8
+      woundSeverityMultipliers:
+        Slash: 2.5
+        Piercing: 2.5
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
   - type: Wieldable
@@ -141,7 +136,7 @@
         length: 4
   - type: KnockdownOnHit
     duration: 4
-    dropHeldItemsBehavior: DropIfStanding
+    dropItems: true
     knockdownOnHeavyAttack: false
   - type: UseDelayBlockKnockdown
     delay: knockdown
@@ -209,6 +204,8 @@
       types:
         Slash: 5
         Structural: 10
+      woundSeverityMultipliers:
+        Slash: 2
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
     animation: WeaponArcHighFreq
@@ -256,6 +253,8 @@
     damage:
       types:
         Slash: 30
+      woundSeverityMultipliers:
+        Slash: 2
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
   - type: Clothing
@@ -323,10 +322,10 @@
   - type: MeleeWeapon
     damage:
       types:
-        Slash: 20
-        Holy: 5
+        Slash: 25
+      woundSeverityMultipliers:
+        Slash: 3 # Epic delimbing
   - type: MeleeDash
-    force: 20 # Higher force will damage the user
     length: 5.5
   - type: UseDelay
-    delay: 4
+    delay: 1.5

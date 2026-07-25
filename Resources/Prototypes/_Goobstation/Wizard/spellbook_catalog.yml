@@ -1,17 +1,3 @@
-# SPDX-FileCopyrightText: 2025 ActiveMammmoth <140334666+ActiveMammmoth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 ActiveMammmoth <kmcsmooth@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Scruq445 <storchdamien@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 crasg <109207982+Scruq445@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-# SPDX-FileCopyrightText: 2025 keronshb <54602815+keronshb@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Offensive
 - type: listing
@@ -327,6 +313,24 @@
   name: spellbook-smite-name
   description: spellbook-smite-desc
   productAction: ActionSmite
+  cost:
+    WizCoin: 2
+  categories:
+  - SpellbookOffensive
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    blacklist:
+    - SpellbookFullRandom
+    - SpellbookSemiRandom
+
+- type: listing
+  id: SpellbookRathen
+  productUpgradeId: SpellbookRathenUpgrade
+  name: spellbook-rathen-name
+  description: spellbook-rathen-desc
+  productAction: ActionRathenSpell
   cost:
     WizCoin: 2
   categories:
@@ -722,6 +726,22 @@
   - SpellbookEquipment
 
 - type: listing
+  id: SpellbookGreyTide
+  name: uplink-grey-tide-name
+  description: uplink-grey-tide-desc
+  productEntity: SpearGreyTide
+  cost:
+    WizCoin: 1
+  categories:
+  - SpellbookEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - SpellTiderBundle
+
+- type: listing
   id: SpellbookStaffHealing
   name: spellbook-staff-healing-name
   description: spellbook-staff-healing-desc
@@ -795,6 +815,36 @@
   - SpellbookEquipment
   disableRefund: true
 
+- type: listing
+  id: SpellbookHellRipScroll
+  name: spellbook-hell-rip-name
+  description: spellbook-hell-rip-desc
+  productEntity: HellRipScroll
+  cost:
+    WizCoin: 2
+  categories:
+  - SpellbookEquipment
+  disableRefund: true
+
+- type: listing
+  id: SpellOrganMagicSlaughterHeart
+  name: spellbook-demon-heart-name
+  description: spellbook-demon-heart-desc
+  productEntity: OrganMagicSlaughterHeart
+  cost:
+    WizCoin: 6
+  categories:
+  - SpellbookEquipment
+  conditions:
+  - !type:BuyBeforeCondition
+    whitelist:
+    - SpellbookHellRipScroll
+    - SpellbookBottleOfBlood
+  disableRefund: true
+  blockRefundListings:
+  - SpellbookHellRipScroll
+  - SpellbookBottleOfBlood
+
 # Summons
 - type: listing
   id: SpellbookMagicalLamp
@@ -823,8 +873,8 @@
   categories:
   - SpellbookSummons
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+  #- !type:ListingLimitedStockCondition
+  #  stock: 1  changed to have many apprentices
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
@@ -1024,6 +1074,10 @@
   name: spellbook-tider-bundle-name
   description: spellbook-tider-bundle-desc
   productEntity: ToolboxTiderFilled
+  raiseProductEventOnUser: true
+  productEvent: !type:GrantFactionsEvent
+    factions:
+    - Assistant
   cost:
     WizCoin: 0
   categories:

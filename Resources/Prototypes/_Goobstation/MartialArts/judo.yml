@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Lincoln McQueen <lincoln.mcqueen@gmail.com>
-# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: martialArt
@@ -32,7 +24,6 @@
   - Disarm
   - Grab
   event: !type:JudoDiscombobulatePerformedEvent
-  staminaDamage: 5
 
 - type: combo
   id: JudoEyePoke
@@ -52,9 +43,9 @@
   - Grab
   - Disarm
   event: !type:JudoThrowPerformedEvent
-  paralyzeTime: 7
-  staminaDamage: 15
-  dropHeldItemsBehavior: NoDrop
+  paralyzeTime: 4
+  staminaDamage: 5
+  dropItems: false
   canDoWhileProne: false
 
 - type: combo
@@ -67,8 +58,8 @@
   - Grab
   event: !type:JudoArmbarPerformedEvent
   paralyzeTime: 5
-  staminaDamage: 25
-  dropHeldItemsBehavior: AlwaysDrop
+  staminaDamage: 10
+  dropItems: true
 
 - type: combo
   id: JudoWheelThrow
@@ -79,7 +70,7 @@
   - Disarm
   - Harm
   event: !type:JudoWheelThrowPerformedEvent
-  staminaDamage: 100
+  staminaDamage: 120
 
 # Conflicts with armbar + hugs don't seem to count?, to be implemented later
 #- type: combo

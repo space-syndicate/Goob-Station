@@ -1,7 +1,6 @@
-ent-BaseMobXenomorphPraetorian = ксеноморф преторианец
-    .desc = Элитная особь, предназначенная для защиты Улья и Королевы. Само его присутствие вселяет страх и трепет в ряды врагов.
+ent-BaseMobXenomorphPraetorian = ксеноморф Преторианец
+    .desc = Элитный юнит, созданный для защиты улья и королевы. Внушает страх и трепет в рядах врагов.
 ent-MobXenomorphPraetorian = { ent-BaseMobXenomorphPraetorian }
     .desc = { ent-BaseMobXenomorphPraetorian.desc }
-ent-MobXenomorphPraetorianDungeon = { ent-BaseMobXenomorphPraetorian }
-    .suffix = Подземелье
-    .desc = { ent-BaseMobXenomorphPraetorian.desc }
+ent-MobXenomorphPraetorianDungeon = { ent-BaseMobXenomorphDungeon }
+    .desc = { ent-BaseMobXenomorphDungeon.desc }

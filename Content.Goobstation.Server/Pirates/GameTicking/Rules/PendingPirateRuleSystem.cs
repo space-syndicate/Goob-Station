@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 amogus <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Cargo.Components;
@@ -47,11 +39,22 @@ public sealed partial class PendingPirateRuleSystem : GameRuleSystem<PendingPira
             if (pending.PirateSpawnTimer >= pending.PirateSpawnTime)
             {
                 // remove spawned order.
-                AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _);
+                if (!AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _))
+                {
+                    // No station found, end the rule
+                    _gt.EndGameRule(uid, gamerule);
+                    break;
+                }
+
                 var station = _station.GetOwningStation(eqData);
-                if (!TryComp<StationBankAccountComponent>(station, out var bank))
-                    return;
-                if (station != null && _cargo.TryGetOrderDatabase(station, out var cargoDb) && pending.Order != null)
+                if (station == null || !TryComp<StationBankAccountComponent>(station, out var bank))
+                {
+                    // Invalid station or no bank account, end the rule
+                    _gt.EndGameRule(uid, gamerule);
+                    break;
+                }
+
+                if (_cargo.TryGetOrderDatabase(station, out var cargoDb) && pending.Order != null)
                 {
                     _cargo.RemoveOrder(station.Value, bank.PrimaryAccount, pending.Order.OrderId, cargoDb);
                 }
@@ -69,9 +72,12 @@ public sealed partial class PendingPirateRuleSystem : GameRuleSystem<PendingPira
         base.Started(uid, component, gameRule, args);
 
         // get station
-        AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _);
+        if (!AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _))
+            return;
+
         var station = _station.GetOwningStation(eqData);
-        if (station == null) return;
+        if (station == null)
+            return;
 
         var announcer = component.LocAnnouncer;
 
@@ -90,7 +96,7 @@ public sealed partial class PendingPirateRuleSystem : GameRuleSystem<PendingPira
             var reason = Loc.GetString($"pirates-ransom-{announcer}-desc", ("num", price));
             var requester = Loc.GetString($"pirates-announcer-{announcer}");
 
-            var ransom = new CargoOrderData(orderId, component.RansomPrototype, name, price, 1, requester, reason, bank.PrimaryAccount, 30);
+            var ransom = new CargoOrderData(orderId, component.RansomPrototype, name, price, 1, requester, null, reason, bank.PrimaryAccount, 30); // CorvaxGoob-CargoFeatures : добавлен нул
 
             component.Order = ransom;
 

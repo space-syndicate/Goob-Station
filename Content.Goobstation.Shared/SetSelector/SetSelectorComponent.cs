@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.Audio;
@@ -59,4 +56,11 @@ public sealed partial class SetSelectorComponent : Component
 
     [DataField]
     public SoundSpecifier? ApproveSound;
+
+    // CorvaxGoob-SparksEffect
+    /// <summary>
+    /// Will spawn sparks when the selector choosen.
+    /// </summary>
+    [DataField]
+    public bool PlaySparksEffect = true;
 }

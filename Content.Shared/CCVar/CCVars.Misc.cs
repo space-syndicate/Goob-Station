@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.Configuration;
@@ -43,7 +40,7 @@ public sealed partial class CCVars
     ///     some food object won't spam a user with flavors.
     /// </summary>
     public static readonly CVarDef<int>
-        FlavorLimit = CVarDef.Create("flavor.limit", 10, CVar.SERVERONLY);
+        FlavorLimit = CVarDef.Create("flavor.limit", 10, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> DestinationFile =
         CVarDef.Create("autogen.destination_file", "", CVar.SERVER | CVar.SERVERONLY);

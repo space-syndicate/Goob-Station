@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -48,7 +44,8 @@
     event: !type:EventHereticAggressiveSpread
   - type: HereticAction
     requireMagicItem: true
-    messageLoc: heretic-speech-rust-spread
+  - type: SpeakOnAction
+    sentence: heretic-speech-rust-spread
   - type: ChangeUseDelayOnAscension
     newUseDelay: 15
     requiredPath: Rust
@@ -74,7 +71,8 @@
     event: !type:EventHereticEntropicPlume
   - type: HereticAction
     requireMagicItem: true
-    messageLoc: heretic-speech-rust-plume
+  - type: SpeakOnAction
+    sentence: heretic-speech-rust-plume
 
 - type: entity
   parent: BaseAction

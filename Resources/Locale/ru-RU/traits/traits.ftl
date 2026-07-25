@@ -44,8 +44,16 @@ trait-spanish-desc = Hola señor, как пройти в la biblioteca.
 trait-painnumbness-name = Невосприимчивость к боли
 trait-dementia-name = Деменция
 trait-dementia-desc = Я... э-э, о чем это я? Ах да! Ты иногда многое забываешь
-trait-newyork-name = не забудь вырезать пж
-trait-newyork-desc = Это был Нью-Йорский акцент.
+trait-newyork-name = Хитрый говор
+trait-newyork-desc = Таки мы здесь ни пгхи чём!
 trait-painnumbness-desc = Вы не чувствуете боли и не осознаёте, насколько вы ранены.
 trait-british-name = Британский акцент
 trait-british-desc = Изысканная речь, превозносящая вас над смердом.
+
+trait-hemophilia-name = Гемофилия
+
+trait-hemophilia-desc = Ваш организм не справляется со свёртыванием крови.
+
+trait-impaired-mobility-name = Нарушение подвижности
+
+trait-impaired-mobility-desc = Вам тяжело передвигаться без посторонней помощи.

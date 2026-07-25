@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.Religion;
@@ -62,7 +57,7 @@ public sealed partial class GoobBibleSystem : EntitySystem
             _popupSystem.PopupPredicted(popup, target, performer, PopupType.LargeCaution);
             _audio.PlayPvs(bibleComp.SizzleSoundPath, target);
             _damageableSystem.TryChangeDamage(target, bibleComp.SmiteDamage * multiplier, true, origin: bible, targetPart: TargetBodyPart.All, ignoreBlockers: true);
-            _stun.TryParalyze(target, bibleComp.SmiteStunDuration * multiplier, false);
+            _stun.TryUpdateParalyzeDuration(target, bibleComp.SmiteStunDuration * multiplier);
             _delay.TryResetDelay((bible, useDelay));
         }
         else if (isDevil && HasComp<BibleUserComponent>(performer))

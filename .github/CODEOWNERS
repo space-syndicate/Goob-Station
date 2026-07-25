@@ -4,15 +4,16 @@
 * @KillanGenifer
 
 # Locale
-/Resources/Locale @Ko4ergaPunk
+#/Resources/Locale @
+#/Resources/ServerInfo @
 
 # Textures
-/Resources/Textures/_CorvaxGoob @SonicHDC
+#/Resources/Textures @
 
 # Map files
 /Resources/Prototypes/_CorvaxGoob/Entities/Stations @kvant8
 /Resources/Prototypes/_CorvaxGoob/Maps @kvant8
-/Resources/Maps/_CorvaxGoob @kvant8
+/Resources/Maps/ @kvant8
 
 # TTS
 /Content.*/_CorvaxGoob/TTS @Morb0

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Heretic.Components.PathSpecific;
@@ -20,6 +16,7 @@ using Content.Shared.Heretic.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
@@ -54,19 +51,26 @@ public abstract class SharedMansusGraspSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStarMarkSystem _starMark = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
 
     public bool TryApplyGraspEffectAndMark(EntityUid user,
         HereticComponent hereticComp,
         EntityUid target,
-        EntityUid? grasp)
+        EntityUid? grasp,
+        out bool triggerGrasp)
     {
+        triggerGrasp = true;
+
         if (hereticComp.CurrentPath == null)
             return true;
 
         if (hereticComp.PathStage >= 2)
         {
-            if (!ApplyGraspEffect((user, hereticComp), target, grasp))
+            if (!ApplyGraspEffect(user, hereticComp, target, grasp, out var applyMark, out triggerGrasp))
                 return false;
+
+            if (!applyMark)
+                return true;
         }
 
         if (hereticComp.PathStage >= 4 && HasComp<StatusEffectsComponent>(target))
@@ -88,9 +92,15 @@ public abstract class SharedMansusGraspSystem : EntitySystem
         return true;
     }
 
-    public bool ApplyGraspEffect(Entity<HereticComponent> user, EntityUid target, EntityUid? grasp)
+    public bool ApplyGraspEffect(EntityUid performer,
+        HereticComponent heretic,
+        EntityUid target,
+        EntityUid? grasp,
+        out bool applyMark,
+        out bool triggerGrasp)
     {
-        var (performer, heretic) = user;
+        applyMark = true;
+        triggerGrasp = true;
 
         switch (heretic.CurrentPath)
         {
@@ -118,7 +128,7 @@ public abstract class SharedMansusGraspSystem : EntitySystem
                 // small stun if the person is looking away or laying down
                 if (_backstab.TryBackstab(target, performer, Angle.FromDegrees(45d)))
                 {
-                    _stun.TryParalyze(target, TimeSpan.FromSeconds(1.5f), true);
+                    _stun.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(1.5f));
                     _damage.TryChangeDamage(target,
                         new DamageSpecifier(_proto.Index<DamageTypePrototype>("Slash"), 10),
                         ignoreResistances: true,
@@ -140,33 +150,37 @@ public abstract class SharedMansusGraspSystem : EntitySystem
                 _door.StartOpening(target, door);
                 _audio.PlayPredicted(new SoundPathSpecifier("/Audio/_Goobstation/Heretic/hereticknock.ogg"),
                     target,
-                    user);
+                    performer);
                 break;
             }
 
             case "Flesh":
             {
-                if (TryComp<MobStateComponent>(target, out var mobState) && mobState.CurrentState == MobState.Dead)
+                if (TryComp<MobStateComponent>(target, out var mobState) && mobState.CurrentState != MobState.Alive &&
+                    !HasComp<BorgChassisComponent>(target))
                 {
                     if (HasComp<GhoulComponent>(target))
                     {
                         if (_net.IsServer)
-                            _popup.PopupEntity(Loc.GetString("heretic-ability-fail-target-ghoul"), user, user);
+                            _popup.PopupEntity(Loc.GetString("heretic-ability-fail-target-ghoul"), performer, performer);
                         break;
                     }
 
                     if (!_mind.TryGetMind(target, out _, out _))
                     {
                         if (_net.IsServer)
-                            _popup.PopupEntity(Loc.GetString("heretic-ability-fail-target-no-mind"), user, user);
+                            _popup.PopupEntity(Loc.GetString("heretic-ability-fail-target-no-mind"), performer, performer);
                         break;
                     }
 
+                    EnsureComp<HereticMinionComponent>(target).BoundHeretic = performer;
+
                     var ghoul = _compFactory.GetComponent<GhoulComponent>();
-                    ghoul.BoundHeretic = performer;
                     ghoul.GiveBlade = true;
 
                     AddComp(target, ghoul);
+                    applyMark = false;
+                    triggerGrasp = false;
                 }
 
                 break;
@@ -210,7 +224,6 @@ public abstract class SharedMansusGraspSystem : EntitySystem
                     _starMark.SpawnCosmicField(Transform(performer).Coordinates, heretic.PathStage);
                 break;
             }
-
             default:
                 return true;
         }

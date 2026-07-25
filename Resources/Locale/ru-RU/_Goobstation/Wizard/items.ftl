@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ensouled-item-name = одушевленный { $item }
-ensouled-item-desc = [color=darkred]Ужасная аура окружает этот предмет, само его существование оскорбляет жизнь...[/color]
+ensouled-item-desc = [color=darkred]Ужасающая аура окутала этот предмет, само его существование оскорбляет жизнь...[/color]
 delete-on-drop-attempt-comp-examine = Выбросьте этот предмет, чтобы избавиться от него.
 enchanted-rifle-guns-left = Осталось патронов: [color=yellow]{ $guns }[/color].
 teleport-scroll-uses-left = Осталось использований: [color=yellow]{ $uses }[/color].
@@ -15,3 +15,4 @@ sanguine-strike-examine = [color=#c41515]Это оружие усилено кр
 scrying-orb-verb-message = Войти в царство мертвых
 scrying-orb-verb-text = Активировать шар
 wizard-mirror-guardian-change-species-fail = Вы не можете изменить вид после того, как стали хранителем!
+wizard-mirror-blood-crawl-change-species-fail = Вы не можете изменить вид после использования демонического сердца!

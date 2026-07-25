@@ -61,15 +61,15 @@ tiles-brass-floor-reebe = гладкое латунное покрытие
 tiles-mime-floor = мимский пол
 tiles-kitchen-floor = кухонный пол
 tiles-laundry-floor = пол прачечной
-tiles-concrete-tile = внутренний бетонный пол
-tiles-concrete-slab = внутренняя бетонная плита
-tiles-concrete-smooth = внутренний гладкий бетонный пол
-tiles-gray-concrete-tile = внутренний серый бетонный пол
-tiles-gray-concrete-slab = внутренняя серая бетонная плита
-tiles-gray-concrete-smooth = внутренний гладкий серый бетонный пол
-tiles-old-concrete-tile = внутренний старый бетонный пол
-tiles-old-concrete-slab = внутренняя старая бетонная плита
-tiles-old-concrete-smooth = внутренний старый гладкий бетонный пол
+tiles-concrete-tile = бетонный пол
+tiles-concrete-slab = бетонная плита
+tiles-concrete-smooth = гладкий бетонный пол
+tiles-gray-concrete-tile = серый бетонный пол
+tiles-gray-concrete-slab = серая бетонная плита
+tiles-gray-concrete-smooth = гладкий серый бетонный пол
+tiles-old-concrete-tile = старый бетонный пол
+tiles-old-concrete-slab = старая бетонная плита
+tiles-old-concrete-smooth = старый гладкий бетонный пол
 tiles-blue-arcade-floor = синий пол аркады
 tiles-red-arcade-floor = красный пол аркады
 tiles-eighties-floor = пол восьмидесятых
@@ -144,3 +144,27 @@ tiles-white-marble = белый мрамор
 tiles-dark-marble = тёмный мрамор
 tiles-plasma-marble = плазма мрамор
 tiles-uranium-marble = урановый мрамор
+
+tiles-dark-astro-grass = тёмная астро-трава
+
+tiles-light-astro-grass = лёгкая астро-трава
+
+tiles-astro-ironsand = астро-железный песок
+
+tiles-desert-astro-sand = пустынный астро-песок
+
+tiles-xenoborg-floor = ксеноборг-плитка
+
+tiles-ironsand-plating = железный песок
+
+tiles-ironsand-tile = плитка из железного песка
+
+tiles-ironsand-concrete-tile = железопесчаная бетонная плитка
+
+tiles-ironsand-concrete-slab = железопесчаная бетонная плита
+
+tiles-ironsand-concrete-smooth = гладкий бетонный пол из железного песка
+
+tiles-ironsand-packed = утрамбованный железный песок
+
+tiles-ironsand-paved = асфальтированный железный песок

@@ -52,7 +52,7 @@ public abstract partial class SharedSelfExtinguisherSystem : EntitySystem
             return;
 
         if (charges > chargeComp.MaxCharges)
-            _charges.SetMaxCharges(uid, charges ?? 0, chargeComp);
+            _charges.SetMaxCharges((uid, chargeComp), charges ?? 0);
 
         _charges.AddCharges((uid, chargeComp), charges ?? 0);
         _actions.SetEnabled(component.ActionEntity, _charges.HasCharges((uid, chargeComp), 1));
@@ -63,6 +63,10 @@ public abstract partial class SharedSelfExtinguisherSystem : EntitySystem
 
     private void OnGetVerbs(EntityUid uid, SelfExtinguisherComponent component, GetVerbsEvent<EquipmentVerb> args)
     {
+        // Goobstation - Ghosts/mice/pAIs cant telepathically extinguish plasmemes
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract)
+            return;
+
         if (!_inventory.TryGetContainingSlot(uid, out var _))
             return;
 

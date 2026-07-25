@@ -1,14 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -29,8 +18,8 @@ using Content.Shared._Goobstation.Wizard.SpellCards;
 using Content.Shared._Goobstation.Wizard.Teleport;
 using Content.Shared._Goobstation.Wizard.TeslaBlast;
 using Content.Shared._Goobstation.Wizard.Traps;
-using Content.Shared._Lavaland.Mobs.Components;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Abilities.Mime;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.Body.Components;
@@ -43,6 +32,7 @@ using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared._Lavaland.Movement;
 using Content.Shared.Ghost;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Hands.Components;
@@ -188,6 +178,7 @@ public abstract class SharedSpellsSystem : EntitySystem
         SubscribeLocalEvent<BlinkSpellEvent>(OnBlink);
         SubscribeLocalEvent<TileToggleSpellEvent>(OnTileToggle);
         SubscribeLocalEvent<PredictionToggleSpellEvent>(OnPredictionToggle);
+        SubscribeLocalEvent<RathenEvent>(OnRathen);
         SubscribeAllEvent<SetSwapSecondaryTarget>(OnSwapSecondaryTarget);
     }
 
@@ -221,7 +212,7 @@ public abstract class SharedSpellsSystem : EntitySystem
 
         if (TryComp(ev.Target, out StatusEffectsComponent? status))
         {
-            Stun.TryParalyze(ev.Target, ev.ParalyzeDuration, true, status);
+            Stun.TryUpdateParalyzeDuration(ev.Target, ev.ParalyzeDuration);
             _jitter.DoJitter(ev.Target, ev.StutterDuration, true, status: status);
         }
 
@@ -243,9 +234,9 @@ public abstract class SharedSpellsSystem : EntitySystem
 
         if (TryComp(ev.Target, out StatusEffectsComponent? status))
         {
-            Stun.TryParalyze(ev.Target, ev.ParalyzeDuration, true, status);
+            Stun.TryUpdateParalyzeDuration(ev.Target, ev.ParalyzeDuration);
             _jitter.DoJitter(ev.Target, ev.JitterStutterDuration, true, status: status);
-            _stutter.DoStutter(ev.Target, ev.JitterStutterDuration, true, status);
+            _stutter.DoStutter(ev.Target, ev.JitterStutterDuration, true);
         }
 
         var targetWizard = HasComp<WizardComponent>(ev.Target) || HasComp<ApprenticeComponent>(ev.Target);
@@ -272,7 +263,7 @@ public abstract class SharedSpellsSystem : EntitySystem
         if (!TryComp(ev.Target, out StatusEffectsComponent? status))
             return;
 
-        Stun.TryParalyze(ev.Target, ev.ParalyzeDuration, true, status);
+        Stun.TryUpdateParalyzeDuration(ev.Target, ev.ParalyzeDuration);
 
         var targetWizard = HasComp<WizardComponent>(ev.Target) || HasComp<ApprenticeComponent>(ev.Target);
 
@@ -423,9 +414,9 @@ public abstract class SharedSpellsSystem : EntitySystem
                 continue;
 
             if (HasComp<SiliconComponent>(target) || HasComp<BorgChassisComponent>(target))
-                Stun.TryParalyze(target, ev.SiliconStunTime / range, true, status);
+                Stun.TryUpdateParalyzeDuration(target, ev.SiliconStunTime / range);
             else
-                Stun.KnockdownOrStun(target, ev.KnockdownTime / range, true, status);
+                Stun.KnockdownOrStun(target, ev.KnockdownTime / range, true);
         }
 
         ev.Handled = true;
@@ -1169,7 +1160,7 @@ public abstract class SharedSpellsSystem : EntitySystem
                     basicAmmoComp is { Count: not null, Capacity: not null } &&
                     basicAmmoComp.Count < basicAmmoComp.Capacity)
                 {
-                    _gunSystem.UpdateBasicEntityAmmoCount(item, basicAmmoComp.Capacity.Value, basicAmmoComp);
+                    _gunSystem.UpdateBasicEntityAmmoCount((item, basicAmmoComp), basicAmmoComp.Capacity.Value);
                     PopupCharged(item, ev.Performer);
                     break;
                 }
@@ -1240,6 +1231,14 @@ public abstract class SharedSpellsSystem : EntitySystem
         else
             EnsureComp<CurseOfByondComponent>(ev.Target);
 
+        ev.Handled = true;
+    }
+    private void OnRathen(RathenEvent ev)
+    {
+        if (ev.Handled || !_magic.PassesSpellPrerequisites(ev.Action, ev.Performer))
+            return;
+
+        Rathen(ev);
         ev.Handled = true;
     }
 
@@ -1486,13 +1485,19 @@ public abstract class SharedSpellsSystem : EntitySystem
                 EnsureComp<UnremoveableComponent>(ent);
         }
     }
+
+    private void MakeMime(EntityUid uid)
+    {
+        var powers = EnsureComp<MimePowersComponent>(uid);
+        powers.CanBreakVow = false;
+        Dirty(uid, powers);
+    }
+
     #endregion
 
     #region ServerMethods
 
     public virtual void SpeakSpell(EntityUid speakerUid, EntityUid casterUid, string speech, MagicSchool school) { }
-
-    protected virtual void MakeMime(EntityUid uid) { }
 
     protected virtual void Emp(DisableTechEvent ev) { }
 
@@ -1530,6 +1535,8 @@ public abstract class SharedSpellsSystem : EntitySystem
     }
 
     protected virtual void Blink(BlinkSpellEvent ev) { }
+
+    protected virtual void Rathen(RathenEvent ev) { }
 
     #endregion
 }

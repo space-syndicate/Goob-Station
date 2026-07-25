@@ -1,6 +1,8 @@
 - type: reaction
   id: BluespaceTile
   impact: Low
+  quantized: true
+  conserveEnergy: false
   reactants:
     Uranium:
       amount: 4
@@ -11,8 +13,8 @@
     Ephedrine:
       amount: 1
   effects:
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: FloorTileItemBluespace
       number: 2
-    - !type:CreateEntityReactionEffect
+    - !type:SpawnEntity
       entity: EffectFlashBluespace

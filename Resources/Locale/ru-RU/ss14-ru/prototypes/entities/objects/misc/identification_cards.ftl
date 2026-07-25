@@ -84,7 +84,7 @@ ent-ERTSecurityIDCard = ID-карта офицера ОБР
     .desc = { ent-IDCardStandard.desc }
 ent-MusicianIDCard = ID-карта музыканта
     .desc = { ent-IDCardStandard.desc }
-ent-CentcomIDCardDeathsquad = ID-карта эскадрона смерти
+ent-CentcomIDCardDeathsquad = ID-карта Эскадрона Смерти
     .desc = { ent-IDCardStandard.desc }
 ent-AgentIDCard = { ent-PassengerIDCard }
     .suffix = Агентская
@@ -127,3 +127,15 @@ ent-SeniorOfficerIDCard = ID-карта инструктора СБ
 ent-UniversalIDCard = универсальная ID-карта
     .desc = ID-карта, которая позволит вам осуществить свои самые сокровенные желания.
     .suffix = Админ
+
+ent-SyndiOperativeIDCard = ID-карта оперативника Синдиката
+    .desc = { ent-SyndicateIDCard.desc }
+
+ent-SyndiCorpsmanIDCard = ID-карта медика Синдиката
+    .desc = { ent-SyndiOperativeIDCard.desc }
+
+ent-SyndiCommanderIDCard = ID-карта командира Синдиката
+    .desc = { ent-SyndiOperativeIDCard.desc }
+
+ent-XenoborgIDCard = ID-карта ксеноборг
+    .desc = { ent-IDCardStandard.desc }

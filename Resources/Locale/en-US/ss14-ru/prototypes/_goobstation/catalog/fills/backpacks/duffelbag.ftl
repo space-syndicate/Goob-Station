@@ -14,3 +14,7 @@ ent-ClothingBackpackDuffelSyndicateFilledCandy = candy bundle
     .desc = A bundle packed to the brim with candy. Someone's got a sweet tooth!
 ent-ClothingBackpackDuffelSyndicateFilledHE1SG8 = HE1S-G8 bundle
     .desc = This bundle holds the HE1S-G8 rifle paired with 19 cartridges for some extra funny.
+ent-ClothingBackpackDuffelContractorHardsuitBundle = Contractor Hardsuit bundle
+    .desc = Contains the Guild approved Hardsuit suit.
+ent-ClothingBackpackDuffelTennisGame = tennis game bundle
+    .desc = Contains all you need to start a tennis match!

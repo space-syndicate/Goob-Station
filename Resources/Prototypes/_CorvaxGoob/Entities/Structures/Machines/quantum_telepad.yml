@@ -48,10 +48,9 @@
       - QuantumTelepad
   - type: QuantumTelepad
     delay: 5
-    teleportEffect: EffectTelepadSparks
     whitelist:
       components: # Only mobs and storages
       - EntityStorage
-      - MobThresholds
+      - MobMover
   - type: Machine
     board: QuantumTelepadMachineCircuitboard

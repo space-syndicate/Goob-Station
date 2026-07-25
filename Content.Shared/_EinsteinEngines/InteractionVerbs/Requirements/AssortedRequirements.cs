@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Mnemotechnican <69920617+Mnemotechnician@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 RadsammyT <radsammyt@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Bed.Sleep;
@@ -64,8 +60,8 @@ public sealed partial class StandingStateRequirement : InteractionRequirement
         if (!deps.EntMan.TryGetComponent<StandingStateComponent>(args.Target, out var state))
             return false;
 
-        return state.CurrentState == StandingState.Standing && AllowStanding
-            || state.CurrentState == StandingState.Lying && AllowLaying;
+        return state.Standing && AllowStanding
+               || !state.Standing && AllowLaying;
     }
 }
 

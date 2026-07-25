@@ -1,12 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 IrisTheAmped <iristheamped@gmail.com>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2025 vorpuscl <198003781+vorpuscl@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -76,7 +67,7 @@
   - type: Perishable
   - type: FireVisuals
     alternateState: Standing
-  - type: LayingDown
+  - type: Crawler
   - type: Hunger
   - type: Thirst
   - type: Carriable
@@ -110,12 +101,16 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -0.25
-    bloodReagent: BlackBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: BlackBlood
+        Quantity: 200
   - type: Temperature
-    heatDamageThreshold: 330
-    coldDamageThreshold: 195
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 330
+    coldDamageThreshold: 195
     coldDamage:
       types:
         Cold: 0.05 #per second, scales with temperature & other constants
@@ -144,7 +139,7 @@
       - map: ["enum.HumanoidVisualLayers.Head"]
       - map: ["enum.HumanoidVisualLayers.Snout"]
       - map: ["enum.HumanoidVisualLayers.Eyes"]
-        shader: unshaded
+        shader: unshaded  # CorvaxGoob: for some reason it did't work anymore so forced unshaded markers for workaround
       - map: ["enum.HumanoidVisualLayers.RArm"]
       - map: ["enum.HumanoidVisualLayers.LArm"]
       - map: ["enum.HumanoidVisualLayers.RLeg"]
@@ -222,6 +217,11 @@
     - DoorBumpOpener
     - AnomalyHost
     - ShadowkinEmotes
+  - type: Respirator #Goob edit start - Lore Accurate Shadowkin superdense iron blood.
+    updateInterval: 6
+    saturationLoss: 0.2
+    maxSaturation: 30
+    saturation: 30 #Goob Edit end
 
 - type: entity
   save: false

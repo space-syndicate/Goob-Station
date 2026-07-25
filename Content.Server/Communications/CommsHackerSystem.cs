@@ -1,17 +1,9 @@
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Ninja.Systems;
+using Content.Server.Power.EntitySystems; // goobstation - check power 
 using Content.Shared.Communications;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -31,7 +23,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     // TODO: remove when generic check event is used
     [Dependency] private readonly NinjaGlovesSystem _gloves = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-
+    [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!; // Goobstation check power
     public override void Initialize()
     {
         base.Initialize();
@@ -47,7 +39,8 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     {
         if (args.Handled || !HasComp<CommunicationsConsoleComponent>(args.Target))
             return;
-
+        if (!_powerReceiverSystem.IsPowered(args.Target)) // Goobstation - is powererd
+            return;
         // TODO: generic check event
         if (!_gloves.AbilityCheck(uid, args, out var target))
             return;
@@ -70,7 +63,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     /// </summary>
     private void OnDoAfter(EntityUid uid, CommsHackerComponent comp, TerrorDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || args.Target == null)
+        if (args.Cancelled || args.Handled || args.Target == null || !_powerReceiverSystem.IsPowered(args.Target.Value)) // Goobsstation - is powered
             return;
 
         var threats = _proto.Index<WeightedRandomPrototype>(comp.Threats);

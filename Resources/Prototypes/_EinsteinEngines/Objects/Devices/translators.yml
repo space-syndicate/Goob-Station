@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Translator that doesn't need power to work.
@@ -241,6 +237,7 @@
     - Kobold
     - Hissing
     - Deer
+    - Carptongue # goob edit - carp language
     requires:
     - TauCetiBasic
     setLanguageOnInteract: false
@@ -368,7 +365,7 @@
   id: GruntishTranslator
   parent: [ TranslatorPoweredBase ]
   name: Gruntish translator
-  description: Interprets the mess known as Gruntish and translates it to Galactic Common. Primarily spoken by Onis and Yowie.
+  description: Interprets the mess known as Gruntish and translates it to Galactic Common. Primarily spoken by oni.
   components:
   - type: HandheldTranslator
     spoken:

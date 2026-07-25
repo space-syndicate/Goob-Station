@@ -9,7 +9,9 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 
 namespace Content.Goobstation.Shared.Wraith.Minions.Harbinger;
@@ -23,8 +25,11 @@ public sealed class TentacleHookSystem : EntitySystem
     [Dependency] private readonly SharedJointSystem _joints = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
 
     private const string TentacleJoint = "grappling";
+
+    public static readonly EntProtoId EffectId = "TentacleSlowdownStatusEffect";
 
     public override void Initialize()
     {
@@ -54,7 +59,7 @@ public sealed class TentacleHookSystem : EntitySystem
         var visuals = EnsureComp<JointVisualsComponent>(proj);
         visuals.Sprite = ent.Comp.RopeSprite;
         visuals.OffsetA = new Vector2(0f, 0.5f);
-        visuals.Target = GetNetEntity(ent.Owner);
+        visuals.Target = ent.Owner;
         Dirty(proj, visuals);
 
         _audio.PlayPredicted(ent.Comp.HookSound, ent.Owner, ent.Owner);
@@ -94,8 +99,7 @@ public sealed class TentacleHookSystem : EntitySystem
 
         ent.Comp.Target = args.Target;
         Dirty(ent);
-
-        _stun.TrySlowdown(args.Target, ent.Comp.DurationSlow, false, 0.3f, 0.3f);
+        _movementMod.TryUpdateMovementSpeedModDuration(args.Target, EffectId, ent.Comp.DurationSlow, ent.Comp.SlowMultiplier, ent.Comp.SlowMultiplier);
 
         var tentacle = EnsureComp<TentacleHookedComponent>(args.Target);
         tentacle.ThrowTowards = args.Shooter;

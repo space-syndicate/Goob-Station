@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Celene <4323352+CuteMoonGod@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Celene <maurice_riepert94@web.de>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Scribbles0 <91828755+Scribbles0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.ActionBlocker;
@@ -205,6 +195,14 @@ public sealed class SharedGunExecutionSystem : EntitySystem
         {
             case CartridgeAmmoComponent cartridge:
                 {
+                    if (cartridge.Spent) // cant use a spent cartridge
+                    {
+                        _audio.PlayPredicted(component.SoundEmpty, uid, attacker);
+                        _execution.ShowExecutionInternalPopup("execution-popup-gun-empty", attacker, victim, weapon);
+                        _execution.ShowExecutionExternalPopup("execution-popup-gun-empty", attacker, victim, weapon);
+                        return;
+                    }
+
                     var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
 
                     prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
@@ -235,7 +233,7 @@ public sealed class SharedGunExecutionSystem : EntitySystem
                 break;
         }
 
-        if (HasComp<HitscanBatteryAmmoProviderComponent>(weapon)) // Almost all hitscans are heat so this should work fine 
+        if (HasComp<BatteryAmmoProviderComponent>(weapon)) // Almost all hitscans are heat so this should work fine
             mainDamageType = "Heat";
 
         var prev = _combat.IsInCombatMode(attacker);

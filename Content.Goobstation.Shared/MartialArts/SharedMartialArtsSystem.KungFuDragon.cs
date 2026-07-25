@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.MartialArts.Components;
@@ -11,7 +5,9 @@ using Content.Goobstation.Shared.MartialArts.Events;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Shared.MartialArts;
 
@@ -57,10 +53,10 @@ public abstract partial class SharedMartialArtsSystem
         }
 
         // Paralyze, not knockdown
-        _stun.TryParalyze(target, TimeSpan.FromSeconds(proto.ParalyzeTime), true);
+        _stun.TryUpdateParalyzeDuration(target, proto.ParalyzeTime);
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out _);
         _audio.PlayPvs(args.Sound, target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -74,16 +70,16 @@ public abstract partial class SharedMartialArtsSystem
             _pulling.TryStopPull(target, pullable, ent, true);
 
         if (downed)
-            _stun.TryStun(target, args.DownedParalyzeTime, true); // No stunlocks
+            _stun.TryUpdateStunDuration(target, args.DownedParalyzeTime); // No stunlocks
         else
         {
-            _stamina.TakeStaminaDamage(target, proto.StaminaDamage, applyResistances: true);
-            _stun.TryKnockdown(target, TimeSpan.FromSeconds(proto.ParalyzeTime), true, proto.DropHeldItemsBehavior);
+            _stamina.TakeStaminaDamage(target, proto.StaminaDamage);
+            _stun.TryKnockdown(target, proto.ParalyzeTime, true, true, proto.DropItems);
             DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out _);
         }
 
         _audio.PlayPvs(args.Sound, target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -93,12 +89,11 @@ public abstract partial class SharedMartialArtsSystem
         if (!_proto.TryIndex(ent.Comp.BeingPerformed, out var proto)
             || !TryUseMartialArt(ent, proto, out var target, out _))
             return;
-
-        _stun.TrySlowdown(target, args.SlowdownTime, true, args.WalkSpeedModifier, args.SprintSpeedModifier);
-        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, applyResistances: true);
+        _movementMod.TryUpdateMovementSpeedModDuration(target, MartsGenericSlow, args.SlowdownTime, args.WalkSpeedModifier, args.SprintSpeedModifier);
+        _stamina.TakeStaminaDamage(target, proto.StaminaDamage);
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out _);
         _audio.PlayPvs(args.Sound, target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 }

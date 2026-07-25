@@ -1,33 +1,3 @@
-# SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
-# SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Snowni <101532866+Snowni@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Veritius <veritiusgaming@gmail.com>
-# SPDX-FileCopyrightText: 2023 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-# SPDX-FileCopyrightText: 2023 Julian Giebel <juliangiebel@live.de>
-# SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-# SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-# SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 EmoGarbage404 <retron404@gmail.com>
-# SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Saphire Lattice <lattice@saphi.re>
-# SPDX-FileCopyrightText: 2024 emmafornash <89596994+emmafornash@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 yglop <95057024+yglop@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
-# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2025 psykana <36602558+psykana@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -65,7 +35,7 @@
       enum.Trigger.TriggerVisuals.VisualState:
         base:
           Primed: { state: primed }
-          Unprimed: { state: complete }
+          Unprimed: { state: icon }
 
 - type: entity
   name: composition C-4
@@ -86,17 +56,27 @@
     quickEquip: false
     equipDelay: 3
     unequipDelay: 6
-  - type: OnUseTimerTrigger
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: TriggerOnStuck
+    keyOut: stuck
+  - type: ToggleTriggerCondition # for toggling the start on stuck ability
+    keys:
+    - stuck
+    toggleVerb: toggle-trigger-condition-stick-verb
+    toggleOn: toggle-trigger-condition-stick-on
+    toggleOff: toggle-trigger-condition-stick-off
+  - type: TimerTrigger
+    keysIn:
+    - trigger
+    - stuck
     delay: 10
     delayOptions: [10, 30, 60, 120, 300]
     initialBeepDelay: 0
     beepSound: /Audio/Machines/Nuke/general_beep.ogg
-    startOnStick: true
-    canToggleStartOnStick: true
-  - type: TriggerOnSignal
   - type: DeviceLinkSink
     ports:
-      - Trigger
+    - Trigger
   - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
     explosionType: DemolitionCharge
     totalIntensity: 60
@@ -104,6 +84,8 @@
     maxIntensity: 30
     canCreateVacuum: false
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   # <Goobstation> - C4 sentience
   - type: TypingIndicator
     proto: robot
@@ -152,7 +134,23 @@
     layers:
     - state: icon
       map: ["base"]
-  - type: OnUseTimerTrigger
+  - type: Tag # CorvaxGoob 
+    tags: 
+    - SeismicCharge
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: TriggerOnStuck
+    keyOut: stuck
+  - type: ToggleTriggerCondition # for toggling the start on stuck ability
+    keys:
+    - stuck
+    toggleVerb: toggle-trigger-condition-stick-verb
+    toggleOn: toggle-trigger-condition-stick-on
+    toggleOff: toggle-trigger-condition-stick-off
+  - type: TimerTrigger
+    keysIn:
+    - trigger
+    - stuck
     delay: 5
     delayOptions: [5, 10, 15, 20]
     initialBeepDelay: 0
@@ -160,12 +158,9 @@
       path: /Audio/Effects/Cargo/buzz_two.ogg
       params:
         volume: -6
-    startOnStick: false
-    canToggleStartOnStick: true
-  - type: TimerStartOnSignal
   - type: DeviceLinkSink
     ports:
-    - Timer
+    - Trigger
   - type: Explosive
     explosionType: Cryo
     totalIntensity: 120
@@ -173,3 +168,5 @@
     maxIntensity: 30
     canCreateVacuum: false
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer

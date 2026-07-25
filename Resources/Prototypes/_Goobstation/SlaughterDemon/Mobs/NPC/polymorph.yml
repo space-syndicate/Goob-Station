@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -25,9 +22,13 @@
     - AmmoniaBlood
     - InsectBlood
     - CopperBlood
+    - ZombieBlood
+    - AlienBlood
+    - BlackBlood
+    - BloodChangeling
   - type: DemonicWhisper
   - type: Visibility
-    layer: 2
+    layer: 2 # Ghost visflag
   - type: Spectral
   - type: Eye
     drawFov: false
@@ -35,7 +36,7 @@
     - Normal
     - Ghost
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: ActionGrant
     actions:
     - DemonicWhisperAction

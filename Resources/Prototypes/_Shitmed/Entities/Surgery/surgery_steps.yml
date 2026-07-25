@@ -1,12 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Janet Blackquill <uhhadd@gmail.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -121,7 +112,7 @@
     tool:
     - type: BoneSaw
     add:
-    - type: RibcageSawed
+    - type: BonesSawed
     duration: 4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
@@ -141,7 +132,7 @@
     tool:
     - type: BoneSaw
     add:
-    - type: RibcageOpen
+    - type: BonesOpen
     duration: 5
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
@@ -200,7 +191,7 @@
     tool:
     - type: Retractor
     add:
-    - type: RibcageOpen
+    - type: BonesOpen
     duration: 2
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/retractor.rsi
@@ -248,7 +239,7 @@
     tool:
     - type: Retractor
     remove:
-    - type: RibcageOpen
+    - type: BonesOpen
     duration: 2
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/retractor.rsi
@@ -256,18 +247,28 @@
 
 - type: entity
   parent: SurgeryStepBase
-  id: SurgeryStepMendRibcage
-  name: Mend ribcage
+  id: SurgeryStepSealBones
+  name: Seal bones
   components:
   - type: SurgeryStep
     tool:
     - type: BoneGel
     remove:
-    - type: RibcageSawed
+    - type: BonesSawed
     duration: 2
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/bone-gel.rsi
     state: bone-gel
+
+- type: entity
+  parent: SurgeryStepSealBones
+  id: SurgeryStepSealSkull
+  name: Seal skull
+
+- type: entity
+  parent: SurgeryStepSealBones
+  id: SurgeryStepSealRibcage
+  name: Seal ribcage
 
 - type: entity
   parent: SurgeryStepBase
@@ -650,6 +651,11 @@
     isConsumable: true
 
 - type: entity
+  parent: SurgeryStepInsertOrgan
+  id: SurgeryStepInsertPump
+  name: Add pump
+
+- type: entity
   parent: SurgeryStepBase
   id: SurgeryStepSealOrganWound
   name: Seal wounds
@@ -774,3 +780,48 @@
   parent: SurgeryStepInsertOrgan
   id: SurgeryStepInsertAugmentArm
   name: Add arm augment
+
+# Lobotomy
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLobotomize
+  name: Lobotomize patient
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Drill
+    addOrganOnAdd:
+      brain:
+      #- type: OhioAccent CorvaxGoob ohio-accent-removal
+      - type: RatvarianLanguage
+      - type: Clumsy
+    duration: 5
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/drill.rsi
+    state: drill
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryDamageChangeEffect
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMendBrainTissue
+  name: Mend brain tissue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Hemostat
+    duration: 4
+    removeOrganOnAdd:
+      brain:
+      - type: OhioAccent
+      - type: RatvarianLanguage
+      - type: Clumsy
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat
+  - type: SurgeryStepEmoteEffect

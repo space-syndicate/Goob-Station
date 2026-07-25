@@ -7,4 +7,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 roles-antag-heretic-name = Еретик
-roles-antag-heretic-description = Испытывая влияние, осознайте, что все они были отняты. Приноси людей в жертву и стань всесильным... или умри, пытаясь.
+roles-antag-heretic-description = Найдите источники влияния, осознайте, что они уже заняты. Принесите людей в жертву и станьте всесильным.
+roles-antag-hereticmidround-name = Еретик
+roles-antag-ghoul-name = Гуль
+roles-antag-ghoul-description = Помогите своему призывателю вознестись.

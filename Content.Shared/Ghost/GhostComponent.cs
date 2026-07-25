@@ -1,16 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 LankLTE <135308300+LankLTE@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 LordEclipse <106132477+LordEclipse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 AJCM <AJCM@tutanota.com>
-// SPDX-FileCopyrightText: 2024 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Actions;
@@ -93,6 +80,13 @@ public sealed partial class GhostComponent : Component
     [DataField("canInteract"), AutoNetworkedField]
     public bool CanGhostInteract;
 
+    // CorvaxGoob-GhostUIViewing
+    /// <summary>
+    /// Позволяет гостам открывать интерфейсы без прямого взаимодействия с ними.
+    /// </summary>
+    [DataField("canGhostUIGuest"), AutoNetworkedField]
+    public bool CanGhostOpenUI = true;
+
     /// <summary>
     /// Is this ghost player allowed to return to their original body?
     /// </summary>
@@ -109,13 +103,13 @@ public sealed partial class GhostComponent : Component
     [DataField, AutoNetworkedField]
     public Color Color = Color.White;
 
-    // Goobstation start
-    [DataField]
-    public bool CanEnterGhostBar = true;
-
     [DataField]
     public bool CanTakeGhostRoles = true;
     // Goobstation end
+
+    // CorvaxGoob-GhostBar
+    [DataField]
+    public bool CanEnterGhostBar = true;
 }
 
 public sealed partial class ToggleFoVActionEvent : InstantActionEvent { }

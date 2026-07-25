@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 PuroSlavKing <103608145+PuroSlavKing@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: uiTheme
@@ -21,3 +16,4 @@
     disabledFore: "#5A5A5A"
     _itemstatus_content_margin_right: "#06060604"
     _itemstatus_content_margin_left: "#06060604"
+    _itemstatus_patch_margin: "#07060404"

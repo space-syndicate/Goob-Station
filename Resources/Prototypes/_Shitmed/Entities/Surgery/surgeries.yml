@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Base
@@ -39,7 +31,7 @@
     - SurgeryStepInsertOrgan
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Head # change if needed
+    parts: [ Head ] # change if needed
   - type: SurgeryOrganCondition
     inverse: true
     reattaching: true
@@ -58,7 +50,7 @@
     - SurgeryStepClampBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Head # change if needed
+    parts: [ Head ] # change if needed
   # add SurgeryOrganCondition.organ
 
 # Common
@@ -110,8 +102,41 @@
     priority: 1
     steps:
     - SurgeryStepCloseBones
-    - SurgeryStepMendRibcage
+    - SurgeryStepSealBones
     - SurgeryStepCloseIncision
+  - type: SurgeryPartCondition
+    parts:  # Everything but the head and chest
+    - Head
+    - Chest
+    inverse: true
+
+- type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionHead
+  components:
+  - type: Surgery
+    priority: 1
+    steps:
+    - SurgeryStepCloseBones
+    - SurgeryStepSealSkull
+    - SurgeryStepCloseIncision
+  - type: SurgeryPartCondition
+    parts: [ Head ]
+    inverse: false
+
+- type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionChest
+  components:
+  - type: Surgery
+    priority: 1
+    steps:
+    - SurgeryStepCloseBones
+    - SurgeryStepSealRibcage
+    - SurgeryStepCloseIncision
+  - type: SurgeryPartCondition
+    parts: [ Chest ]
+    inverse: false
 
 - type: entity
   parent: SurgeryBase
@@ -124,7 +149,7 @@
     - SurgeryStepSawBones
     - SurgeryStepPriseOpenBones
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
 
 - type: entity
   parent: SurgeryBase
@@ -139,7 +164,7 @@
     - SurgeryStepRemoveFeature
   - type: SurgeryHasBodyCondition
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
     inverse: true
 
 - type: entity
@@ -187,7 +212,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -206,7 +231,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -225,7 +250,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -245,7 +270,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -265,7 +290,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -285,7 +310,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -306,7 +331,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Arm
+    parts: [ Arm ]
     symmetry: Left
   - type: SurgeryTraumaPresentCondition
     inverted: true
@@ -327,7 +352,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Arm
+    parts: [ Arm ]
     symmetry: Right
   - type: SurgeryTraumaPresentCondition
     inverted: true
@@ -348,7 +373,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Leg
+    parts: [ Leg ]
     symmetry: Left
   - type: SurgeryTraumaPresentCondition
     inverted: true
@@ -369,7 +394,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Leg
+    parts: [ Leg ]
     symmetry: Right
   - type: SurgeryTraumaPresentCondition
     inverted: true
@@ -392,7 +417,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryPartRemovedCondition
     connection: legs
     part: Leg
@@ -409,7 +434,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryPartRemovedCondition
     connection: hands
     part: Hand
@@ -426,7 +451,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryPartRemovedCondition
     connection: feet
     part: Foot
@@ -442,7 +467,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryPartRemovedCondition
     connection: tail
     part: Tail
@@ -462,7 +487,7 @@
 #    - SurgeryStepRemoveLarva
 #  - type: SurgeryLarvaCondition
 #  - type: SurgeryPartCondition
-#    part: Chest
+#    parts: [ Chest ]
 
 - type: entity
   parent: SurgeryBase
@@ -501,7 +526,7 @@
     - SurgeryStepInsertItem
     - SurgeryStepRemoveItem
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
 
 # Note for any Organ manipulation surgeries. Most of the organs are only defined on the server.
 # I added some of them to the client too, but we should probably move them to a shared
@@ -519,7 +544,7 @@
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Head
+    parts: [ Head ]
   - type: SurgeryOrganCondition
     organ:
     - type: Brain
@@ -531,7 +556,7 @@
   components:
   # TODO: ipc surgery steps
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganCondition
     organ:
     - type: BorgBrain
@@ -553,7 +578,7 @@
   name: Insert Positronic Brain
   components:
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
     organSlot: posbrain
   - type: SurgeryOrganCondition
@@ -568,7 +593,9 @@
   - type: Surgery
     requirement: SurgeryOpenRibcage
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
+  - type: SurgeryOrganSlotCondition
+    organSlot: heart # there's an identical surgery for ipc hearts but they go in the "pump" slot
   - type: SurgeryOrganCondition
     organ:
     - type: Heart
@@ -585,9 +612,43 @@
     - SurgeryStepInsertHeart
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
     organSlot: heart
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Heart
+
+- type: entity
+  parent: BaseSurgeryRemoveOrgan
+  id: SurgeryRemovePump
+  name: Remove Pump
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+  - type: SurgeryPartCondition
+    parts: [ Chest ]
+  - type: SurgeryOrganSlotCondition
+    organSlot: pump
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Heart
+
+- type: entity
+  parent: BaseSurgeryInsertOrgan
+  id: SurgeryInsertPump
+  name: Insert Pump
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepInsertPump
+    - SurgeryStepSealOrganWound
+  - type: SurgeryPartCondition
+    parts: [ Chest ]
+  - type: SurgeryOrganSlotCondition
+    organSlot: pump
   - type: SurgeryOrganCondition
     organ:
     - type: Heart
@@ -598,7 +659,7 @@
   name: Remove Liver
   components:
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
@@ -613,7 +674,7 @@
     - SurgeryStepInsertLiver
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryOrganSlotCondition
     organSlot: liver
   - type: SurgeryOrganCondition
@@ -628,7 +689,7 @@
   - type: Surgery
     requirement: SurgeryOpenRibcage
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganCondition
     organ:
     - type: Lung
@@ -645,7 +706,7 @@
     - SurgeryStepInsertLungs
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
     organSlot: lungs
   - type: SurgeryOrganCondition
@@ -658,7 +719,7 @@
   name: Remove Stomach
   components:
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
@@ -673,7 +734,7 @@
     - SurgeryStepInsertOrgan
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Groin
+    parts: [ Groin ]
   - type: SurgeryOrganSlotCondition
     organSlot: stomach
   - type: SurgeryOrganCondition
@@ -717,7 +778,7 @@
 #    steps:
 #    - SurgeryStepAddFelinidEars
 #  - type: SurgeryPartCondition
-#    part: Head
+#    parts: [ Head ]
 #  - type: SurgeryMarkingCondition
 #    markingCategory: HeadTop
 #    matchString: FelinidEars
@@ -733,7 +794,7 @@
 #    steps:
 #    - SurgeryStepRemoveFelinidEars
 #  - type: SurgeryPartCondition
-#    part: Head
+#    parts: [ Head ]
 #  - type: SurgeryMarkingCondition
 #    markingCategory: HeadTop
 #    matchString: FelinidEars
@@ -748,7 +809,7 @@
 #    steps:
 #    - SurgeryStepAddFelinidTail
 #  - type: SurgeryPartCondition
-#    part: Groin
+#    parts: [ Groin ]
 #  - type: SurgeryMarkingCondition
 #    markingCategory: Tail
 #    matchString: FelinidTail
@@ -764,7 +825,7 @@
 #    steps:
 #    - SurgeryStepRemoveFelinidTail
 #  - type: SurgeryPartCondition
-#    part: Groin
+#    parts: [ Groin ]
 #  - type: SurgeryMarkingCondition
 #    markingCategory: Tail
 #    matchString: FelinidTail
@@ -823,7 +884,7 @@
     - SurgeryStepInsertAugmentPowerCellSlot
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganCondition
     organ:
     - type: AugmentPowerCellSlot
@@ -836,7 +897,7 @@
   name: Open Cavity For Power Cell Slot
   components:
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
     organSlot: powerCell
 
@@ -846,7 +907,7 @@
   name: Remove Power Cell Slot
   components:
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganCondition
     organ:
     - type: AugmentPowerCellSlot
@@ -864,7 +925,7 @@
     - SurgeryStepInsertAugmentPowerCellCharger
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganCondition
     organ:
     - type: AugmentCharger
@@ -877,7 +938,7 @@
   name: Open Cavity For Power Cell Charger
   components:
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
     organSlot: charger
 
@@ -887,7 +948,7 @@
   name: Remove Internal Power Cell Charger
   components:
   - type: SurgeryPartCondition
-    part: Chest
+    parts: [ Chest ]
   - type: SurgeryOrganCondition
     organ:
     - type: AugmentCharger
@@ -902,7 +963,7 @@
   - type: Surgery
     requirement: SurgeryOpenIncision # no ribcage
   - type: SurgeryPartCondition
-    part: Arm
+    parts: [ Arm ]
   - type: SurgeryOrganSlotCondition
     organSlot: armImplant
 
@@ -918,7 +979,7 @@
     - SurgeryStepInsertAugmentArm
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Arm
+    parts: [ Arm ]
   - type: SurgeryOrganCondition
     organ:
     - type: AugmentArm
@@ -933,7 +994,55 @@
   - type: Surgery
     requirement: SurgeryOpenIncision # no ribcage
   - type: SurgeryPartCondition
-    part: Arm
+    parts: [ Arm ]
   - type: SurgeryOrganCondition
     organ:
     - type: AugmentArm
+
+# Lobotomy
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryLobotomize
+  name: Lobotomize
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepLobotomize
+    - SurgeryStepCloseIncision
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Brain
+  - type: SurgeryOrganOnAddCondition
+    components:
+      brain:
+      - type: OhioAccent
+      - type: RatvarianLanguage
+      - type: Clumsy
+    inverse: true
+  - type: SurgeryPartCondition
+    parts: [ Head ]
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryMendBrainTissue
+  name: Mend brain tissue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepMendBrainTissue
+    - SurgeryStepCloseIncision
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Brain
+  - type: SurgeryOrganOnAddCondition
+    components:
+      brain:
+      - type: OhioAccent
+      - type: RatvarianLanguage
+      - type: Clumsy
+  - type: SurgeryPartCondition
+    parts: [ Head ]

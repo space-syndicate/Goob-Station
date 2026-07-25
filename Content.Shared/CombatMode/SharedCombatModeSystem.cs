@@ -1,37 +1,14 @@
-// SPDX-FileCopyrightText: 2020 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <zddm@outlook.es>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Metal Gear Sloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2022 Júlio César Ueti <52474532+Mirino97@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 T-Stalker <43253663+DogZeroX@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 T-Stalker <le0nel_1van@hotmail.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2023 Artjom <artjombebenin@gmail.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Slava0135 <40753025+Slava0135@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 iacore <74560659+iacore@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.DoAfter;
 using Content.Shared.Actions;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
+using Content.Shared._Shitmed.Targeting;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
@@ -50,7 +27,21 @@ public abstract class SharedCombatModeSystem : EntitySystem
         SubscribeLocalEvent<CombatModeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CombatModeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<CombatModeComponent, ToggleCombatActionEvent>(OnActionPerform);
+
+        SubscribeLocalEvent<CombatModeComponent, MindAddedMessage>(OnMindAdded); // CorvaxGoob-TargetingFix
+        SubscribeLocalEvent<CombatModeComponent, MindRemovedMessage>(OnMindRemove); // CorvaxGoob-TargetingFix
     }
+
+    // CorvaxGoob-TargetingFix-Start
+    private void OnMindAdded(Entity<CombatModeComponent> entity, ref MindAddedMessage args) => EnsureComp<TargetingComponent>(entity);
+
+    private void OnMindRemove(Entity<CombatModeComponent> entity, ref MindRemovedMessage args)
+    {
+        if (HasComp<TargetingComponent>(entity))
+            RemComp<TargetingComponent>(entity);
+    }
+    // CorvaxGoob-TargetingFix-End
+
 
     private void OnMapInit(EntityUid uid, CombatModeComponent component, MapInitEvent args)
     {

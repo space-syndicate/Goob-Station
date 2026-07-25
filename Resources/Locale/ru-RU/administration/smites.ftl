@@ -60,6 +60,7 @@ admin-smite-omni-accent-name = Омни-акцент
 
 ## Smite descriptions
 
+admin-smite-crawler-name = Ползунчик
 admin-smite-hell-teleport-name = отправить в Ад
 admin-smite-explode-description = Взрывает цель.
 admin-smite-chess-dimension-description = Изгоняет цель в шахматное измерение.
@@ -102,6 +103,7 @@ admin-smite-super-bonk-description = Заставляет цель ударит�
 admin-smite-terminate-description = Создаёт экстерминатора с ролью призрака, с единственной задачей - убить выбранную цель.
 admin-smite-super-slip-description = Очень сильно поскальзывает цель.
 admin-smite-omni-accent-description = Заставляет цель говорить с почти каждым возможным акцентом.
+admin-smite-crawler-description = Заставляет цель упасть и лишает возможности подняться. Для лучшего эффекта также удаляет руки!
 admin-smite-super-bonk-lite-description = Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
 admin-smite-hell-teleport-description = Телепортирует объект в Ад.
 
@@ -137,3 +139,24 @@ admin-trick-pause-map-description = Ставит выбранную карту �
 admin-trick-snap-joints-description = Удаляет все физические шарниры из объекта. К сожалению, не отщёлкивает все кости в теле.
 admin-trick-minigun-fire-description = Заставляет целевое оружие стрелять как миниган (очень быстро).
 admin-trick-set-bullet-amount-description = Быстро устанавливает значение количества незаспавненных патронов в оружии.
+
+admin-smite-silicon-laws-bound-self = Вы внезапно вынуждены следовать строгому набору законов!
+
+
+admin-smite-kill-sign-hidden-name = Скрытый знак "Убить"
+
+admin-smite-homing-rod-name = Самонаводящийся жезл
+
+admin-smite-homing-rod-slow-name = Медленный самонаводящийся жезл
+
+admin-smite-silicon-laws-bound-name = Сделать синтетиком
+
+
+admin-smite-kill-sign-hidden-description = Накладывает на игрока метку смерти для его товарищей. Скрыта от целевого игрока.
+
+admin-smite-homing-rod-description = Запускает самонаводящийся неподвижный жезл, двигающийся прямо к цели.
+
+admin-smite-homing-rod-slow-description = Запускает самонаводящийся неподвижный жезл, медленно двигающийся прямо к цели.
+
+admin-smite-silicon-laws-bound-description = Заставляет цель соблюдать законы синтетиков. Закон 2, выпрыгни с окна.
+

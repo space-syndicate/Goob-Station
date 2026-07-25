@@ -1,17 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 Bokser815 <70928915+Bokser815@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Lincoln McQueen <lincoln.mcqueen@gmail.com>
-// SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -30,6 +16,8 @@ using Content.Shared.Body.Part;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs.Components;
 
 namespace Content.Goobstation.Shared.MartialArts;
 
@@ -44,20 +32,19 @@ public partial class SharedMartialArtsSystem
         SubscribeLocalEvent<CanPerformComboComponent, HellRipHeadRipPerformedEvent>(OnHellRipHeadRip);
         SubscribeLocalEvent<CanPerformComboComponent, HellRipTearDownPerformedEvent>(OnHellRipTearDown);
 
-        SubscribeLocalEvent<GrantHellRipComponent, ComponentStartup>(OnGrantHellRip);
+        SubscribeLocalEvent<GrantHellRipComponent, MapInitEvent>(OnGrantHellRip);
         SubscribeLocalEvent<GrantHellRipComponent, ComponentShutdown>(OnRemoveHellRip);
+        SubscribeLocalEvent<GrantHellRipComponent, UseInHandEvent>(OnGrantCQCUse);
     }
 
     #region Generic Methods
 
-    private void OnGrantHellRip(Entity<GrantHellRipComponent> ent, ref ComponentStartup args)
+    private void OnGrantHellRip(Entity<GrantHellRipComponent> ent, ref MapInitEvent args)
     {
-        if (_netManager.IsClient)
+        if (!HasComp<MobStateComponent>(ent))
             return;
 
         TryGrantMartialArt(ent.Owner, ent.Comp);
-
-        RevertToOriginalDamage(ent.Owner);
     }
 
 
@@ -96,7 +83,7 @@ public partial class SharedMartialArtsSystem
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/gib1.ogg"), target);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/demon_attack1.ogg"), ent);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -108,16 +95,16 @@ public partial class SharedMartialArtsSystem
             || !TryComp<PullableComponent>(target, out var pullable))
             return;
 
-        var knockdownTime = TimeSpan.FromSeconds(proto.ParalyzeTime);
+        var knockdownTime = proto.ParalyzeTime;
 
         var ev = new BeforeStaminaDamageEvent(1f);
         RaiseLocalEvent(target, ref ev);
 
         knockdownTime *= ev.Value;
 
-        _stun.TryKnockdown(target, knockdownTime, true, proto.DropHeldItemsBehavior);
+        _stun.TryKnockdown(target, knockdownTime, true, true, proto.DropItems);
 
-        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, applyResistances: true);
+        _stamina.TakeStaminaDamage(target, proto.StaminaDamage);
 
         //_pulling.TryStopPull(target, pullable, ent, true);
 
@@ -126,7 +113,7 @@ public partial class SharedMartialArtsSystem
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/demon_attack1.ogg"), ent);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/metal_slam5.ogg"), target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -138,7 +125,7 @@ public partial class SharedMartialArtsSystem
             || !TryComp<PullableComponent>(target, out var pullable))
             return;
 
-        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, applyResistances: true);
+        _stamina.TakeStaminaDamage(target, proto.StaminaDamage);
 
         _pulling.TryStopPull(target, pullable, ent, true);
         //_grabThrowing.Throw(target, ent, _transform.GetMapCoordinates(ent).Position + _transform.GetMapCoordinates(target).Position, 50);
@@ -146,10 +133,10 @@ public partial class SharedMartialArtsSystem
         var targetPos = _transform.GetMapCoordinates(target).Position;
         var direction = targetPos - entPos; // vector from ent to target
 
-        _grabThrowing.Throw(target, ent, direction, 25);
+        _grabThrowing.Throw(target, ent, direction, 25, behavior: proto.DropItems);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/demon_attack1.ogg"), ent);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -170,21 +157,4 @@ public partial class SharedMartialArtsSystem
 
     }
     #endregion
-
-    /// <summary>
-    /// Reverts to original melee weapon damage instead of modifying it
-    /// </summary>
-    private void RevertToOriginalDamage(EntityUid uid)
-    {
-        if (!TryComp<MartialArtsKnowledgeComponent>(uid, out var martialArtsKnowledge))
-            return;
-
-        if (!TryComp<MeleeWeaponComponent>(uid, out var meleeWeaponComponent))
-            return;
-
-        var originalDamage = new DamageSpecifier();
-        originalDamage.DamageDict[martialArtsKnowledge.OriginalFistDamageType]
-            = FixedPoint2.New(martialArtsKnowledge.OriginalFistDamage);
-        meleeWeaponComponent.Damage = originalDamage;
-    }
 }

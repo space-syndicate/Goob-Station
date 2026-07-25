@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2024 NULL882 <gost6865@yandex.ru>
-# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Ripley MK-II
 - type: latheRecipe
@@ -249,17 +244,6 @@
     Plastic: 150
     Silver: 350
     Diamond: 150
-
-- type: latheRecipe
-  id: MechEquipmentGrabber
-  result: MechEquipmentGrabber
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 500
-    Plastic: 200
-
 
 - type: latheRecipe
   id: MechEquipmentHonkerBananaMortar

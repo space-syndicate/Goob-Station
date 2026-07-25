@@ -1,11 +1,6 @@
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 JohnOakman <sremy2012@hotmail.fr>
-// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared._Shitmed.Autodoc.Components;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
@@ -312,7 +307,7 @@ public abstract class SharedAutodocSystem : EntitySystem
         if (_surgery.GetSingleton(surgery) is not {} singleton)
             throw new AutodocError("reality-breaking");
 
-        if (_surgery.GetNextStep(patient, part, singleton) is not {} pair)
+        if (_surgery.GetNextStep(patient, part, singleton, ent) is not {} pair)
             return false;
 
         var nextSurgery = pair.Item1;
@@ -343,6 +338,8 @@ public abstract class SharedAutodocSystem : EntitySystem
 
     public bool IsAwake(EntityUid uid)
     {
+        if (TryComp(uid, out SiliconComponent? comp) && !comp.DoSiliconsDreamOfElectricSheep)
+            return false;
         return _mobState.IsAlive(uid) && !HasComp<SleepingComponent>(uid);
     }
 

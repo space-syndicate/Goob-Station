@@ -1,51 +1,3 @@
-// SPDX-FileCopyrightText: 2022 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Leeroy <97187620+elthundercloud@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2023 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 MisterMecky <mrmecky@hotmail.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 OctoRocket <88291550+OctoRocket@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Vordenburg <114301317+Vordenburg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Whisper <121047731+QuietlyWhisper@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 keronshb <keronshb@live.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
-// SPDX-FileCopyrightText: 2025 Kayzel <43700376+KayzelW@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-// SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Trest <144359854+trest100@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Whatstone <166147148+whatston3@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 kurokoTurbo <92106367+kurokoTurbo@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Administration.Logs;
@@ -107,6 +59,23 @@ public sealed class HealingSystem : EntitySystem
     // Goobstation edit
     [Dependency] private readonly INetManager _net = default!;
 
+    // Goobstation start
+    private TargetBodyPart[] _partHealingOrder =
+        {
+            TargetBodyPart.Head,
+            TargetBodyPart.Chest,
+            TargetBodyPart.Groin,
+            TargetBodyPart.LeftArm,
+            TargetBodyPart.LeftHand,
+            TargetBodyPart.RightArm,
+            TargetBodyPart.RightHand,
+            TargetBodyPart.LeftLeg,
+            TargetBodyPart.LeftFoot,
+            TargetBodyPart.RightLeg,
+            TargetBodyPart.RightFoot
+        };
+    // Goobstation end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -154,7 +123,7 @@ public sealed class HealingSystem : EntitySystem
 
         // Restores missing blood
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
-            _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
+            _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), -healing.ModifyBloodLevel); // Goobedit
 
         var healed = _damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.Args.User);
 
@@ -167,9 +136,9 @@ public sealed class HealingSystem : EntitySystem
         var dontRepeat = false;
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
         {
-            _stacks.Use(args.Used.Value, 1, stackComp);
+            _stacks.ReduceCount((args.Used.Value, stackComp), 1);
 
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+            if (_stacks.GetCount((args.Used.Value, stackComp)) <= 0)
                 dontRepeat = true;
         }
         else
@@ -225,7 +194,7 @@ public sealed class HealingSystem : EntitySystem
             // Is ent missing blood that we can restore?
             if (healing.Comp.ModifyBloodLevel > 0
                 && _solutionContainerSystem.ResolveSolution(target.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
-                && bloodSolution.Volume < bloodSolution.MaxVolume)
+                && _bloodstreamSystem.GetBloodLevel((target, bloodstream)) < 1)
             {
                 return true;
             }
@@ -341,10 +310,11 @@ public sealed class HealingSystem : EntitySystem
             targetedWoundable = targetedBodyPart.Id;
         }
 
+        // Goobstation - commented out as it is no longer needed due to newer topical application logic
         // Goobstation start
-        if (!IsBodyDamaged((ent, comp), null, healing, targetedWoundable))                          // Check if there is anything to heal on the initial limb target
+        /*if (!IsBodyDamaged((ent, comp), null, healing, targetedWoundable))                          // Check if there is anything to heal on the initial limb target
             if (TryGetNextDamagedPart(ent, healing, out var limbTemp) && limbTemp is not null)      // If not then get the next limb to heal
-                targetedWoundable = limbTemp.Value;
+                targetedWoundable = limbTemp.Value;*/
         // Goobstation end
 
         if (targetedWoundable == EntityUid.Invalid)
@@ -364,59 +334,113 @@ public sealed class HealingSystem : EntitySystem
 
         var healedBleed = false;
         var canHeal = true;
-        var healedTotal = FixedPoint2.Zero;
+        var healedTotal = new DamageSpecifier(); // Goobstation
         FixedPoint2 modifiedBleedStopAbility = 0;
         // Heal some bleeds
-        bool healedBleedWound = false;
         bool healedBleedLevel = false;
         if (healing.BloodlossModifier != 0)
         {
-            healedBleedWound = _wounds.TryHealBleedingWounds(targetedWoundable, healing.BloodlossModifier, out modifiedBleedStopAbility, woundableComp);
-            if (healedBleedWound)
-                _popupSystem.PopupClient(modifiedBleedStopAbility > 0
+            // Goobstation start
+            var bleedBefore = 0.0;
+            if (TryComp<BloodstreamComponent>(ent, out var bloodstream))
+                bleedBefore = bloodstream.BleedAmountFromWounds + bloodstream.BleedAmountNotFromWounds;
+            healedBleed = bleedBefore > 0.0;
+            _wounds.TryHealBleedingWounds(targetedWoundable, healing.BloodlossModifier, out modifiedBleedStopAbility, woundableComp);
+            if (healing.BloodlossModifier + modifiedBleedStopAbility < 0.0)
+                _bloodstreamSystem.TryModifyBleedAmount(ent, (healing.BloodlossModifier + modifiedBleedStopAbility).Float()); // Use the leftover bleed heal
+            if (healedBleed)
+                _popupSystem.PopupClient(bleedBefore + healing.BloodlossModifier <= 0.0
                         ? Loc.GetString("rebell-medical-item-stop-bleeding-fully")
                         : Loc.GetString("rebell-medical-item-stop-bleeding-partially"),
                     ent,
                     args.User);
+            // Goobstation end
         }
 
         if (healing.ModifyBloodLevel != 0)
             healedBleedLevel = _bloodstreamSystem.TryModifyBloodLevel(ent, -healing.ModifyBloodLevel);
 
-        healedBleed = healedBleedWound || healedBleedLevel;
+        //healedBleed = healedBleedWound || healedBleedLevel;
 
-        if (TraumaSystem.TraumasBlockingHealing.Any(traumaType => _trauma.HasWoundableTrauma(targetedWoundable, traumaType, woundableComp, false)))
+        // Goobstation start
+        var leftoverHealAndTrauma = false;
+        var leftoverHealAndBleed = false;
+        var healingLeft = healing.Damage * _damageable.UniversalTopicalsHealModifier;
+        if (TryComp<BodyComponent>(ent, out var bodyComp) && bodyComp.BodyType == _Shitmed.Body.BodyType.Complex)
         {
-            canHeal = false;
-
-            if (!healedBleed)
+            // Create parts to go over queue: targetted part -> head -> torso -> groin -> everything else
+            // Iterate over the parts in the predefined order until we run out of parts or run out of healing
+            var woundablesQueue = new Queue<EntityUid>();
+            woundablesQueue.Enqueue(targetedWoundable);
+            for (var i = 0; i < _partHealingOrder.Length; i++)
             {
-                // Goobstation predicted --> client
+                var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(_partHealingOrder[i]);
+                var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(ent, partType, comp, symmetry).ToList().FirstOrDefault();
+                if (targetedBodyPart.Id == targetedWoundable)
+                    continue;
+                woundablesQueue.Enqueue(targetedBodyPart.Id);
+            }
+            while (woundablesQueue.Count > 0 && healingLeft.GetTotal() < 0.0)
+            {
+                canHeal = true;
+                targetedWoundable = woundablesQueue.Dequeue();
+                if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp2))
+                    continue;
+                if (TraumaSystem.TraumasBlockingHealing.Any(traumaType => _trauma.HasWoundableTrauma(targetedWoundable, traumaType, woundableComp2, false)))
+                {
+                    canHeal = false;
+
+                    if (!healedBleedLevel)
+                    {
+                        leftoverHealAndTrauma = true;
+                        continue;
+                    }
+                }
+
+                if (canHeal)
+                {
+                    if (healing.BloodlossModifier == 0 && healing.ModifyBloodLevel >= 0 && woundableComp2.Bleeds > 0)  // If the healing item has no bleeding heals, and its bleeding, we raise the alert. Goobstation edit
+                    {
+                        leftoverHealAndBleed = true;
+                        continue;
+                    }
+
+                    var damageChanged = _damageable.TryChangeDamage(targetedWoundable, healingLeft, true, origin: args.User, ignoreBlockers: healedBleed || healing.BloodlossModifier == 0); // GOOBEDIT
+
+                    if (damageChanged is not null)
+                    {
+                        healedTotal += -damageChanged;
+                        healingLeft += -damageChanged;
+                    }
+                }
+            }
+
+        }
+        else
+        {
+            var healed = _damageable.TryChangeDamage(ent, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.User);
+            if (healed != null)
+                healingLeft -= healed;
+        }
+
+        var isAnyTypeFullyConsumed = healingLeft.DamageDict.Any(d => d.Value == 0);
+
+        if (!healedBleed && !isAnyTypeFullyConsumed && (leftoverHealAndTrauma || leftoverHealAndBleed))
+        {
+            if (leftoverHealAndTrauma)
                 _popupSystem.PopupClient(Loc.GetString("medical-item-requires-surgery-rebell", ("target", ent)), ent, args.User, PopupType.MediumCaution);
-                return;
-            }
-        }
-
-        if (canHeal)
-        {
-            if (healing.BloodlossModifier == 0 && healing.ModifyBloodLevel >= 0 && woundableComp.Bleeds > 0)  // If the healing item has no bleeding heals, and its bleeding, we raise the alert. Goobstation edit
-            {
+            else if (leftoverHealAndBleed) // the else is because would like to not pop both the popups at once, priority goes to the trauma popup
                 _popupSystem.PopupClient(Loc.GetString("medical-item-cant-use-rebell", ("target", ent)), ent, args.User);
-                return;
-            }
-
-            var damageChanged = _damageable.TryChangeDamage(targetedWoundable, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.User, ignoreBlockers: healedBleed || healing.BloodlossModifier == 0); // GOOBEDIT
-
-            if (damageChanged is not null)
-                healedTotal += -damageChanged.GetTotal();
+            return;
         }
+        // Goobstation end
 
         // Re-verify that we can heal the damage.
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
         {
-            _stacks.Use(args.Used.Value, 1, stackComp);
+            _stacks.ReduceCount((args.Used.Value, stackComp), 1);
 
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+            if (_stacks.GetCount((args.Used.Value, stackComp)) <= 0)
                 dontRepeat = true;
         }
         else
@@ -427,12 +451,12 @@ public sealed class HealingSystem : EntitySystem
         if (ent != args.User)
         {
             _adminLogger.Add(LogType.Healed,
-                $"{EntityManager.ToPrettyString(args.User):user} healed {EntityManager.ToPrettyString(ent):target} for {healedTotal:damage} damage");
+                $"{EntityManager.ToPrettyString(args.User):user} healed {EntityManager.ToPrettyString(ent):target} for {healedTotal.GetTotal():damage} damage"); // Goobstation
         }
         else
         {
             _adminLogger.Add(LogType.Healed,
-                $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {healedTotal:damage} damage");
+                $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {healedTotal.GetTotal():damage} damage"); // Goobstation
         }
         _audio.PlayPredicted(healing.HealingEndSound, ent, ent, AudioParams.Default.WithVariation(0.125f).WithVolume(1f)); // Goob edit
 
@@ -532,7 +556,7 @@ public sealed class HealingSystem : EntitySystem
 
         var delay = isNotSelf
             ? healing.Comp.Delay
-            : healing.Comp.Delay * GetScaledHealingPenalty(target.Owner, healing.Comp.SelfHealPenaltyMultiplier);
+            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
 
         // Play sound when starting the healing action
         // Goobstation
@@ -567,10 +591,8 @@ public sealed class HealingSystem : EntitySystem
             return 1;
 
         var percentDamage = (float)(ent.Comp1.TotalDamage / amount);
-        if (TryComp<ConsciousnessComponent>(ent.Owner, out var consciousness))
-            percentDamage *= (float) (consciousness.Threshold / consciousness.Cap - consciousness.Consciousness);
-
         //basically make it scale from 1 to the multiplier.
+
         var output = percentDamage * (mod - 1) + 1;
         return Math.Max(output, 1);
     }

@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Whitelist;
@@ -22,6 +19,18 @@ public sealed partial class StunOnContactComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan Duration = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// Should the stun applied refresh?
+    /// </summary>
+    [DataField]
+    public bool Refresh = true;
+
+    /// <summary>
+    /// Should the stunned entity try to stand up when knockdown ends?
+    /// </summary>
+    [DataField]
+    public bool AutoStand = true;
 
     [DataField]
     public EntityWhitelist Blacklist = new();

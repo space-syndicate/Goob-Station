@@ -1,13 +1,3 @@
-# SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-# SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Vasilis <vasilis@pikachu.systems>
-# SPDX-FileCopyrightText: 2023 drteaspoon420 <87363733+drteaspoon420@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 superjj18 <gagnonjake@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -57,7 +47,7 @@
     solutions:
       ammo:
         maxVol: 2
-  - type: RefillableSolution
+  - type: RefillableSolution # This is sus. You can't really just run an arrowhead under a sink faucet.
     solution: ammo
   - type: InjectableSolution
     solution: ammo
@@ -197,3 +187,31 @@
   - type: Construction
     graph: ImprovisedArrowCarp
     node: ImprovisedArrowCarp
+
+- type: entity
+  parent: BaseArrow
+  id: ArrowCard
+  name: cardboard arrow
+  description: Careful, you'll poke an eye out!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/arrows.rsi
+    layers:
+    - state: tail
+      color: white
+    - state: rod
+      color: brown
+    - state: tip
+      color: brown
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+  - type: StaminaDamageOnCollide
+    damage: 10
+  - type: Construction
+    graph: CardArrow
+    node: CardArrow

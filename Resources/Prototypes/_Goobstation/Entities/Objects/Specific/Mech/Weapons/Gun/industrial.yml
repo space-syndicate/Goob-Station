@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2024 NULL882 <gost6865@yandex.ru>
-# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -25,15 +18,25 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
     projectileSpeed: 25
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletKineticShuttle
     fireCost: 0.1
   - type: Appearance
   - type: AmmoCounter
   - type: PressureDamageChange
-  - type: UpgradeableGun
-    maxUpgradeCapacity: 40
-    whitelist:
-      tags:
-      - PKAUpgrade
+  - type: ItemUpgradeable
+  - type: ContainerContainer
+    containers:
+      upgrade_slot_1: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      upgrade_slot_1:
+        name: weapon-upgrade-slot-name-first
+        swap: false # can't use the swap...
+        priority: 1
+        insertDelay: 1.2
+        ejectDelay: 0.9
+        whitelist:
+          tags:
+          - PKAUpgrade
 # TODO: Plasma Cutter

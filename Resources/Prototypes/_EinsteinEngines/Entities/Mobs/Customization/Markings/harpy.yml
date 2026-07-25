@@ -1,12 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Adeinitas <147965189+adeinitas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Danger Revolution! <142105406+DangerRevolution@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Timemaster99 <57200767+Timemaster99@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
-# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # All the Harpy customization
 
@@ -14,7 +5,7 @@
 - type: marking
   id: HarpyWingDefaultHuescale
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -31,7 +22,7 @@
 - type: marking
   id: HarpyWingDefaultWhitescale
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -48,7 +39,7 @@
 - type: marking
   id: HarpyWingClassic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -65,7 +56,7 @@
 - type: marking
   id: HarpyWingFoldedHuescale
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -82,7 +73,7 @@
 - type: marking
   id: HarpyWingFoldedWhitescale
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -99,7 +90,7 @@
 - type: marking
   id: HarpyWingOwlHuescale
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -116,7 +107,7 @@
 - type: marking
   id: HarpyWingOwlWhitescale
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   coloring:
     default:
@@ -250,7 +241,7 @@
 - type: marking
   id: HarpyWing2ToneClassic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi
@@ -261,7 +252,7 @@
 - type: marking
   id: HarpyWing3ToneClassic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi
@@ -274,7 +265,7 @@
 - type: marking
   id: HarpyWingSpeckledClassic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi
@@ -285,7 +276,7 @@
 - type: marking
   id: HarpyWingUndertoneClassic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi
@@ -296,7 +287,7 @@
 - type: marking
   id: HarpyWingTipsClassic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi
@@ -307,7 +298,7 @@
 - type: marking
   id: HarpyWingBat
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi
@@ -318,7 +309,7 @@
 - type: marking
   id: HarpyWingBionic
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: Wings # Goob - Wings category
   speciesRestriction: [Harpy]
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/Harpy/harpy_wings.rsi

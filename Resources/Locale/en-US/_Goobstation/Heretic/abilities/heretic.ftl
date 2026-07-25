@@ -19,6 +19,8 @@ heretic-ability-fail-rust-stage-low = You are not powerful enough to rust this s
 heretic-ability-fail-target-ghoul = Target is ghoul already!
 heretic-ability-fail-target-no-mind = Target has no soul!
 
+heretic-ability-lose-focus-shadow-cloak = As you lose your focus, you are pulled out of the shadows!
+
 heretic-cosmic-rune-fail-star-mark = Blocked by star mark!
 heretic-cosmic-rune-fail-unlinked = No linked rune!
 heretic-cosmic-rune-fail-range = Not close enough!
@@ -29,6 +31,7 @@ mansus-grasp-trigger-fail = Something prevents you from activating this!
 
 ## blade
 heretic-blade-examine = [color=yellow]Using it while it's in your hand will break the blade and teleport you away from danger.[/color]
+heretic-blade-break-fail-acended-message = You cannot break blades while ascended!
 heretic-blade-use = The blade shatters, and you feel the voices pulling you away.
 heretic-riposte-used = Riposte used!
 heretic-riposte-available = Riposte available!
@@ -81,6 +84,8 @@ heretic-speech-rust-plume = 'NTR'P'C PL'M'!
 heretic-speech-void-blast = F'RZ'E!
 heretic-speech-void-phase = RE'L'T' PH'S'E!
 heretic-speech-void-pull = BR'NG F'RTH TH'M T' M'!!
+heretic-speech-void-prison = V'D PR'S'N!
+heretic-speech-void-conduit = MBR'C' TH' V''D!
 
 heretic-speech-cosmic-rune = ST'R R'N'!
 heretic-speech-star-touch = ST'R 'N'RG'!!
@@ -94,3 +99,4 @@ heretic-speech-mansuslink = PI'RC' TH' M'ND!
 heretic-speech-realignment = R'S'T!
 heretic-speech-fuckoff = F'K 'FF!!
 heretic-speech-ice-spear = D'WN 'F TH'CE!
+heretic-speech-shapeshft = SH'PE

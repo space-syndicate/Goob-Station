@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Mnemotechnican <69920617+Mnemotechnician@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # One of 5 languages that Tajara could speak, lore-wise best choice since others (lore wise) rely on gesticulation too
@@ -81,7 +76,7 @@
     - мра
     - мрро
     - мрра
-    - mrra
+    - мррра
 
 # Tajaran sign language. Crucially, only tajara can "speak" it, due to need for tajara body language
 # (if they cut off your tail or ears you shouldn't be able to speak it, but well)
@@ -226,68 +221,68 @@
     minSyllables: 3
     maxSyllables: 5 # since it's for nobility, we can make it a lil longer
     replacement: # CorvaxGoob-Localization
-    - hrr
-    - rhr
-    - tarj
-    - khir
-    - rajh
-    - kir
-    - mier
-    - kre
-    - ahek
-    - nlhal
-    - veh
-    - khaz
-    - dri
-    - rhan
-    - darrer
-    - mi
-    - jhri
-    - dynher
-    - manqi
-    - rhas
-    - shar
-    - drhaz
-    - kalh
-    - shur
-    - echi
-    - tha
-    - draer
-    - jurl
-    - maher
-    - sanii
-    - dra
-    - ii'r
-    - kan
-    - aesi
-    - fare
-    - we
-    - bash
-    - arha
-    - quara
-    - zhir
-    - sem
-    - make
-    - hrer
-    - nja
-    - rir
-    - can
-    - jhun
-    - dar
-    - rik
-    - kah
-    - hal
-    - kete
-    - juril
-    - mah
-    - tul
-    - cresh
-    - azu
-    - ragh
-    - miro
-    - mara
-    - mrero
-    - mrara
+    - хрр
+    - рхр
+    - тарж
+    - кхир
+    - ражх
+    - кир
+    - мьер
+    - кре
+    - ахек
+    - нльхал
+    - вех
+    - кхаз
+    - дри
+    - рхан
+    - дарер
+    - ми
+    - джхри
+    - динхер
+    - манки
+    - рхас
+    - схар
+    - дрхаз
+    - кальх
+    - шур
+    - эки
+    - тха
+    - драйр
+    - джурл
+    - махер
+    - сании
+    - дра
+    - ииэр
+    - кан
+    - аэси
+    - фаре
+    - ве
+    - баш
+    - арха
+    - куара
+    - зхир
+    - сем
+    - мак
+    - мрер
+    - нжа
+    - рир
+    - кан
+    - джхун
+    - дар
+    - рик
+    - ках
+    - хал
+    - кете
+    - джурил
+    - мах
+    - тул
+    - креш
+    - азу
+    - рагх
+    - миро
+    - мара
+    - мреро
+    - мрара
 
 
 # One of 5 languages that Tajara could speak, this one is the dialect lingo

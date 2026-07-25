@@ -1,70 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Fishfish458 <47410468+Fishfish458@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Rinkashikachi <15rinkashikachi15@gmail.com>
-// SPDX-FileCopyrightText: 2022 fishfish458 <fishfish458>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2023 Artjom <artjombebenin@gmail.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 MilenVolf <63782763+MilenVolf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 12rabbits <53499656+12rabbits@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <65184747+Dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <51352440+JIPDawg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <JIPDawg93@gmail.com>
-// SPDX-FileCopyrightText: 2024 KrasnoshchekovPavel <119816022+KrasnoshchekovPavel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Krunklehorn <42424291+Krunklehorn@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Moomoobeef <62638182+Moomoobeef@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 PopGamer46 <yt1popgamer@gmail.com>
-// SPDX-FileCopyrightText: 2024 PursuitInAshes <pursuitinashes@gmail.com>
-// SPDX-FileCopyrightText: 2024 QueerNB <176353696+QueerNB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Rainfey <rainfey0+github@gmail.com>
-// SPDX-FileCopyrightText: 2024 Saphire Lattice <lattice@saphi.re>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Spessmann <156740760+Spessmann@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 TsjipTsjip <19798667+TsjipTsjip@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Whisper <121047731+QuietlyWhisper@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 goet <6637097+goet@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 stellar-novas <stellar_novas@riseup.net>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Kayzel <43700376+KayzelW@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-// SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Trest <144359854+trest100@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 kurokoTurbo <92106367+kurokoTurbo@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -74,6 +7,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Goobstation.Shared.Disease;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -99,6 +33,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using System.Globalization;
+using Content.Goobstation.Shared.Disease.Components;
 
 namespace Content.Client.HealthAnalyzer.UI
 {
@@ -272,6 +207,22 @@ namespace Content.Client.HealthAnalyzer.UI
             DamageLabel.Visible = true;
             DamageLabel.Text = damageable.TotalDamage.ToString();
 
+            // Alerts
+
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding.Values.Any(v => v); // Goobstation?
+
+
+            AlertsDivider.Visible = showAlerts;
+            AlertsContainer.Visible = showAlerts;
+
+            if (showAlerts)
+                AlertsContainer.RemoveAllChildren();
+            // Goobstation start
+            DamageLabelHeadingVital.Visible = true;
+            DamageLabelVital.Visible = true;
+            DamageLabelVital.Text = msg.VitalDamage.ToString();
+            // Goobstation end
+
             if (part != null)
                 PartNameLabel.Text = _entityManager.HasComponent<MetaDataComponent>(part)
                     ? Identity.Name(part.Value, _entityManager)
@@ -285,7 +236,22 @@ namespace Content.Client.HealthAnalyzer.UI
 
             DrawDiagnosticGroups(damageSortedGroups, damagePerType);
 
+            // Goobstation
+            if (_entityManager.TryGetComponent<DiseaseCarrierComponent>(_target, out var carrier))
+            {
+                DrawDiseases(carrier.Diseases.ContainedEntities);
+            }
+
             ConditionsListContainer.RemoveAllChildren();
+
+            // Goob start - low blood alert
+            if (msg.BloodLevelLow)
+                ConditionsListContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString("condition-body-low-blood", ("entity", Identity.Name(_target.Value, _entityManager))),
+                    Margin = new Thickness(0, 4),
+                });
+            // Goob end
 
             if (msg.Unrevivable == true)
                 ConditionsListContainer.AddChild(new RichTextLabel
@@ -586,6 +552,49 @@ namespace Content.Client.HealthAnalyzer.UI
 
                     groupContainer.AddChild(CreateDiagnosticItemLabel(reagentString.Insert(0, " · ")));
                 }
+            }
+        }
+
+        // Goobstation
+        private void DrawDiseases(IReadOnlyList<EntityUid> diseases)
+        {
+            DiseasesContainer.RemoveAllChildren();
+
+            if (diseases.Count == 0)
+            {
+                DiseasesDivider.Visible = false;
+                DiseasesContainer.Visible = false;
+                return;
+            }
+            DiseasesDivider.Visible = true;
+            DiseasesContainer.Visible = true;
+
+            DiseasesContainer.AddChild(new RichTextLabel
+            {
+                Text = Loc.GetString("health-analyzer-window-diseases"),
+            });
+
+            foreach (var diseaseUid in diseases)
+            {
+                if (!_entityManager.TryGetComponent<DiseaseComponent>(diseaseUid, out var disease))
+                    continue;
+
+                var diseaseInfoContainer = new BoxContainer
+                {
+                    Align = BoxContainer.AlignMode.Begin,
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                };
+                diseaseInfoContainer.AddChild(CreateDiagnosticItemLabel(Loc.GetString("health-analyzer-window-disease-type-text", ("type", disease.Genotype))));
+                diseaseInfoContainer.AddChild(CreateDiagnosticItemLabel(" · " + Loc.GetString(
+                    "health-analyzer-window-disease-progress-text",
+                    ("progress", disease.InfectionProgress)
+                )));
+                diseaseInfoContainer.AddChild(CreateDiagnosticItemLabel(" · " + Loc.GetString(
+                    "health-analyzer-window-immunity-progress-text",
+                    ("progress", disease.ImmunityProgress)
+                )));
+
+                DiseasesContainer.AddChild(diseaseInfoContainer);
             }
         }
 

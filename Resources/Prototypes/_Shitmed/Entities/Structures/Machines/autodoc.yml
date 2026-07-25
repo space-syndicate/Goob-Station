@@ -1,15 +1,8 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 JohnOakman <sremy2012@hotmail.fr>
-# SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Autodocs
 
 - type: entity
-  parent: [ConstructibleMachine, BaseMachinePowered]
+  parent: [ ConstructibleMachine, BaseMachinePowered, BaseAutomatedMachine ] # Goob: Automation
   id: Autodoc
   name: Autodoc Mk.XIV
   description: A programmable robotic surgeon capable of automatically operating on patients.
@@ -82,6 +75,7 @@
         type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.AutodocUiKey.Key
+    blockSpectators: true # CorvaxGoob
   - type: ActivatableUIRequiresPower
   - type: Autodoc
   - type: Sanitized
@@ -92,14 +86,16 @@
     speechVerb: Robotic
     speechSounds: Pai
   - type: Storage
+    maxItemSize: Huge # CorvaxGoob-Autodoc-Augmentation-fix
     clickInsert: false # incredibly annoying for linking it
     openOnActivate: false # use the verb, UI is higher priority
     grid:
     - 0,0,3,3
   - type: SurgerySpeedModifier
-    speedModifier: 1
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-skills
   - type: GuideHelp
     guides: [ Autodoc ]
+  - type: IgnoreSkills # CorvaxGoob-Skills-autodoc-skills
 
 - type: entity
   parent: Autodoc
@@ -110,7 +106,7 @@
   - type: Machine
     board: AutodocSyndieCircuitboard
   - type: SurgerySpeedModifier
-    speedModifier: 1.0 # as good as a surgeon using a multitool, nukies need it or something
+    speedModifier: 2.5 # CorvaxGoob-Skills-autodoc-skills
 
 # Autodoc tools
 
@@ -121,24 +117,24 @@
   components:
   - type: Unremoveable
   - type: Hemostat
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Scalpel
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Drill
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: BoneSetter
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Retractor
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Cautery
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: BoneGel
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: BoneSaw
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Tweezers
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Tending
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed
   - type: Stitches
-    speed: 2
+    speed: 1 # CorvaxGoob-Skills-autodoc-surgery-speed

@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Hagvan <22118902+Hagvan@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -263,6 +258,8 @@ public sealed class BloodtrakSystem : SharedBloodtrakSystem
             return Shared.Bloodtrak.Distance.Close;
         if (dist <= pinpointer.MediumDistance)
             return Shared.Bloodtrak.Distance.Medium;
+        if (dist > pinpointer.MaxDistance)
+            return Shared.Bloodtrak.Distance.Unknown;
 
         return Shared.Bloodtrak.Distance.Far;
     }

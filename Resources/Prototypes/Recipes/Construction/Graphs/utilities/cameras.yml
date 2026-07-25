@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-#
 # SPDX-License-Identifier: MIT
 
 - type: constructionGraph
@@ -13,7 +9,7 @@
         - to: assembly
           steps:
             - material: Steel
-              amount: 2
+              amount: 1 # Goob
               doAfter: 2.0
 
     - node: assembly
@@ -34,15 +30,29 @@
             - tool: Welding
               doAfter: 2
 
-# goobstation node - lens to cameras
+    # <Goob>
     - node: lens
       entity: SurveillanceCameraAssembly
       edges:
-        - to: wired
+        - to: electronics
           steps:
             - material: Cable
               amount: 1
               doAfter: 1
+
+    - node: electronics
+      entity: SurveillanceCameraAssembly
+      edges:
+      - to: wired
+        steps:
+        - tag: CameraElectronics
+          store: board
+          name: construction-graph-tag-camera-electronics
+          icon:
+            sprite: "Objects/Misc/module.rsi"
+            state: "door_electronics" # goida
+          doAfter: 1
+    # </Goob>
 
     - node: wired
       entity: SurveillanceCameraAssembly
@@ -62,6 +72,8 @@
           conditions:
             - !type:AllWiresCut {}
             - !type:WirePanel {}
+            - !type:ContainerNotEmpty # goob
+              container: board
           completed:
             - !type:GivePrototype
               prototype: SheetSteel1
@@ -69,6 +81,9 @@
             - !type:GivePrototype # goobstation - lens to camera
               prototype: SheetGlass1
               amount: 1
+            - !type:EmptyAllContainers # goob
+              pickup: true
+              emptyAtUser: true
             - !type:DeleteEntity {}
           steps:
             - tool: Welding

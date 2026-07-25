@@ -1,0 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+namespace Content.Goobstation.Server.Xenobiology.SlimeGrinder;
+
+[RegisterComponent]
+public sealed partial class ActiveSlimeGrinderComponent : Component;

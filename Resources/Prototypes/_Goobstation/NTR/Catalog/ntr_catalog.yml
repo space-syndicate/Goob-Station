@@ -1,8 +1,8 @@
 # station
 - type: listing
   id: NTRExecutiveCargoBingle
-  name: Call a cargo bingle
-  description: After capture, pitless bingles have their sharp teeth removed and are transported through stations to assist with heavy cargo lifting. Their emotional well-being is disregarded.
+  name: ntr-executive-cargo-bingle-name # CorvaxGoob-changes: Call a cargo bingle > ntr-executive-cargo-bingle-name
+  description: ntr-executive-cargo-bingle-desc # CorvaxGoob-changes: After capture, pitless bingles have their sharp teeth removed and are transported through stations to assist with heavy cargo lifting. Their emotional well-being is disregarded. > ntr-executive-cargo-bingle-name
   productEntity: SpawnPodCargoBingle
   icon:
     sprite: _Goobstation/Mobs/Bingle/cargo-bingle.rsi
@@ -13,12 +13,12 @@
   - NTRstation
   restockTime: 600
   resetRestockOnPurchase: true
-  restockAfterPurchase: 600 # 10 min, cadet who doesnt know about friendly bingles vs cargo bingle:
+  restockAfterPurchase: 600 # 10 min, cadet who doesn't know about friendly bingles vs cargo bingle:
 
 - type: listing
   id: NTRExecutiveCrateEVA
-  name: EVA crate
-  description: A crate containing 3 pairs of EVA hardsuits, to keep you and your people alive in a catastrophic situation.
+  name: ntr-executive-eva-crate-name # CorvaxGoob-changes: EVA crate > ntr-executive-eva-crate-name
+  description: ntr-executive-eva-crate-desc # CorvaxGoob-changes: A crate containing 3 pairs of EVA hardsuits, to keep you and your people alive in a catastrophic situation. > ntr-executive-eva-crate-desc
   productEntity: SpawnPodEvaKit
   icon:
     sprite: Clothing/OuterClothing/Suits/eva.rsi
@@ -27,14 +27,14 @@
     NTLoyaltyPoint: 5
   categories:
   - NTRstation
-  restockTime: 300 # if the station is fucked up in 5 minutes, thats unfortunate lol, 5min tho
+  restockTime: 300 # if the station is fucked up in 5 minutes, that's unfortunate lol, 5min tho
   resetRestockOnPurchase: true
   restockAfterPurchase: 900 # 15min
 
 - type: listing
   id: NTRExecutiveMindshield
-  name: Mindshield crate
-  description: A crate containing 3 mindshield implants. Corporate advises you to buy them in cargo anyway.
+  name: ntr-executive-mindshield-crate-name # CorvaxGoob-changes: Mindshield crate > ntr-executive-mindshield-crate-name
+  description: ntr-executive-mindshield-crate-desc # CorvaxGoob-changes: A crate containing 3 mindshield implants. Corporate advises you to buy them in cargo anyway. > ntr-executive-mindshield-crate-desc
   productEntity: SpawnPodMindshield
   icon:
     sprite: Objects/Specific/Medical/implanter.rsi
@@ -47,7 +47,7 @@
   resetRestockOnPurchase: true
   restockAfterPurchase: 900 # 15min
 
-# Some things that are limited are limited for a good reason, keeping it for the yamlwarriors
+# Some things that are limited, are limited for a good reason, keeping it for the yamlwarriors
 
 #- type: listing
 #  id: NTRExecutiveSecHardsuit
@@ -149,8 +149,8 @@
 
 - type: listing
   id: NTRExecutiveWaterCoolerGold
-  name: premium water (?) cooler
-  description: Made from the finest 24-karat hardened whiskey in the sector. Its shiny and golden, just like its insides. Comes with 500u of whiskey. Every fine executive has one of these in their room.
+  name: ntr-executive-cooler-name # CorvaxGoob-changes: premium water (?) cooler > ntr-executive-cooler-name
+  description: ntr-executive-cooler-desc # CorvaxGoob-changes: Made from the finest 24-karat hardened whiskey in the sector. Its shiny and golden, just like its insides. Comes with 500u of whiskey. Every fine executive has one of these in their room. > ntr-executive-cooler-desc
   productEntity: SpawnPodWaterCoolerGold
   icon:
     sprite: _Goobstation/Structures/Storage/watercooler.rsi
@@ -190,7 +190,7 @@
 #    sprite: _Goobstation/Objects/Weapons/Melee/e_daggerntr.rsi
 #    state: icon
 #  cost:
-#    NTLoyaltyPoint: 20 # its a bit better than a cc pen, but still.
+#    NTLoyaltyPoint: 20 # It's a bit better than a cc pen, but still.
 #  categories:
 #  - NTRpersonal
 #  restockTime: 900 # 15 min
@@ -199,8 +199,8 @@
 
 - type: listing
   id: NTRExecutiveSingleIntern
-  name: single Intern Coin
-  description: Summons one basic intern. Interns are on your full command, order them to complete tasks instead of you doing it by yourself, or play cards with them.
+  name: ntr-executive-intern-coin-name # CorvaxGoob-changes: single Intern Coin > ntr-executive-intern-coin-name
+  description: ntr-executive-intern-coin-desc # CorvaxGoob-changes: Summons one basic intern. Interns are on your full command, order them to complete tasks instead of you doing it by yourself, or play cards with them. > ntr-executive-intern-coin-desc
   productEntity: SpawnPodCoin
   icon:
     sprite: Objects/Misc/coins.rsi
@@ -260,7 +260,7 @@
   - NTRpersonal
   restockTime: 240 # 4 mins
   resetRestockOnPurchase: true
-  restockAfterPurchase: 600 # 10 mins so that NTR couldnt die from alcohol poisoning cuz im sure they will
+  restockAfterPurchase: 600 # 10 mins so that NTR couldn't die from alcohol poisoning cuz im sure they will
 
 - type: listing
   id: NTRExecutiveGlasses
@@ -296,7 +296,7 @@
 
 # - type: listing
 #  id: NTRExecutiveDeckard
-#  name: ntr-executive-1984-name # we dont talk about this locale string name anymore
+#  name: ntr-executive-1984-name # We don't talk about this locale string name anymore.
 #  description: ntr-executive-1984-desc
 #  productEntity: SpawnPodDeckard
 #  icon:
@@ -328,8 +328,8 @@
 
 - type: listing
   id: NTRExecutiveCigsDeluxe
-  name: Executive cig vendor
-  description: For those who know that lung cancer is non-existent, Nanotrasen made this, a vendor full of ciggaretes and expensive flippos for you to smoke.
+  name: ntr-executive-cig-vendor-name # CorvaxGoob-changes: Executive cig vendor > ntr-executive-cig-vendor-name
+  description: ntr-executive-cig-vendor-desc # CorvaxGoob-changes: For those who know that lung cancer is non-existent, Nanotrasen made this, a vendor full of ciggaretes and expensive flippos for you to smoke. > ntr-executive-cig-vendor-desc
   productEntity: SpawnPodNTRCigs
   icon:
     sprite: _Goobstation/Structures/Machines/cigvend.rsi
@@ -345,8 +345,8 @@
 
 - type: listing
   id: NTRExecutiveSoap
-  name: centcomm soap
-  description: An expensive soap made with our finest... who am i kidding its just a soap covered in lube with a print.
+  name: ntr-executive-soap-name # CorvaxGoob-changes: centcomm soap > ntr-executive-soap-name
+  description: ntr-executive-soap-desc # CorvaxGoob-changes: An expensive soap made with our finest... who am i kidding its just a soap covered in lube with a print. > ntr-executive-soap-desc
   productEntity: SpawnPodNTRSoap
   icon:
     sprite: _Goobstation/Objects/Fun/soap.rsi
@@ -374,12 +374,12 @@
   - NTRpersonal
   restockTime: 1200 # 20 mins
   resetRestockOnPurchase: false
-  restockAfterPurchase: 2400 # 40 mins, you dont want to buy 2 suits in one shift, but if you do, then wait lol
+  restockAfterPurchase: 2400 # 40 mins, you don't want to buy 2 suits in one shift, but if you do, then wait lol
 
 - type: listing
   id: NTRExecutiveMarlen
-  name: Marlen
-  description: A stylish Centcomm umbrella, made by "NanoFashion" for the rich people of central command. Surprisingly durable.
+  name: ntr-executive-marlen-name # CorvaxGoob-changes: Marlen > ntr-executive-marlen-name 
+  description: ntr-executive-marlen-desc # CorvaxGoob-changes: A stylish Centcomm umbrella, made by "NanoFashion" for the rich people of central command. Surprisingly durable. > ntr-executive-marlen-desc
   productEntity: SpawnPodMarlen
   icon:
     sprite: _Goobstation/Objects/Weapons/Melee/marlen.rsi
@@ -396,8 +396,8 @@
 
 - type: listing
   id: NTRExecutiveFlatpack
-  name: task console flatpack # technically a flatpack but who cares lol
-  description: A normal flatpack containing a spare task console.
+  name: ntr-executive-task-console-flatpack-name # technically a flatpack but who cares lol # CorvaxGoob-changes: task console flatpack > ntr-executive-task-console-flatpack-name
+  description: ntr-executive-task-console-flatpack-desc # CorvaxGoob-changes: A normal flatpack containing a spare task console. >  ntr-executive-task-console-flatpack-desc
   productEntity: SpawnPodTaskFlatpack
   icon:
     sprite: Objects/Devices/flatpack.rsi
@@ -532,7 +532,7 @@
   resetRestockOnPurchase: false
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1 # yeh more than 1 server is too much already, we dont want ntr to buy this one if the old one wasnt stolen or smth
+    stock: 1 # yeh more than 1 server is too much already, we don't want ntr to buy this one if the old one wasn't stolen or smth
 
 - type: listing
   id: NTRExecutiveComms
@@ -612,8 +612,8 @@
 # todo: add more debug stuff / and possibly make this open if emagged or something, but it was never intended for it tho.
 - type: listing
   id: NTRExecutiveDebugCodes
-  name: Nuclear codes
-  description: Stand ready for my arrival, worm.
+  name: ntr-executive-nuclear-codes-name # CorvaxGoob-changes: Nuclear codes > ntr-executive-nuclear-codes-name
+  description: ntr-executive-nuclear-codes-desc # CorvaxGoob-changes: Stand ready for my arrival, worm. > ntr-executive-nuclear-codes-desc
   productEntity: BoxFolderNuclearCodes
   cost:
     NTLoyaltyPoint: 250
@@ -624,3 +624,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: NTRExecutiveCasettePlayer
+  name: ntr-executive-cassette-name
+  description: ntr-executive-cassette-desc
+  productEntity: SpawnPodNTRCassettePlayer
+  icon:
+    sprite: _Goobstation/Objects/Fun/executive_cassette_player.rsi
+    state: icon
+  cost:
+    NTLoyaltyPoint: 3
+  categories:
+    - NTRpersonal
+  restockTime: 0
+  resetRestockOnPurchase: true
+  restockAfterPurchase: 300

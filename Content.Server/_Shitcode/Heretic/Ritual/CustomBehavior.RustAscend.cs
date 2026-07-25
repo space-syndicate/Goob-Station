@@ -1,12 +1,7 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._EinsteinEngines.Silicon.Components;
+using Content.Shared._Goobstation.Heretic.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Heretic.Prototypes;
 using Robust.Server.GameObjects;
@@ -25,11 +20,14 @@ public sealed partial class RitualRustAscendBehavior : RitualSacrificeBehavior
             return false;
 
         var targets = new List<EntityUid>();
-        for (var i = 0; i < Max; i++)
+        foreach (var uid in uids)
         {
-            if (args.EntityManager.HasComponent<RottingComponent>(uids[i]) ||
-                args.EntityManager.HasComponent<SiliconComponent>(uids[i]))
-                targets.Add(uids[i]);
+            if (args.EntityManager.HasComponent<RottingComponent>(uid) ||
+                args.EntityManager.HasComponent<SiliconComponent>(uid))
+                targets.Add(uid);
+
+            if (targets.Count >= Max)
+                break;
         }
 
         if (targets.Count < Min)
@@ -46,7 +44,9 @@ public sealed partial class RitualRustAscendBehavior : RitualSacrificeBehavior
     {
         base.Finalize(args);
 
-        args.EntityManager.Spawn(AscensionSpreader,
+        var rustBringer = args.EntityManager.EnsureComponent<RustbringerComponent>(args.Performer);
+
+        rustBringer.RustSpreader = args.EntityManager.Spawn(AscensionSpreader,
             args.EntityManager.System<TransformSystem>().GetMapCoordinates(args.Platform));
     }
 }

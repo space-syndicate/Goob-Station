@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -109,7 +101,7 @@
   parent: BaseCyberneticOrgan
   id: BasicCyberneticHeart
   name: cybernetic heart
-  description: A precision-tuned heart that accelerates medicine absorption while slowing the effects of poisons and narcotics.
+  description: A precision-tuned heart that slows down medicine absorption while hastening the absorption of poisons and narcotics resulting in weakened effects.
   components:
   - type: Sprite
     state: heart-on
@@ -123,18 +115,18 @@
       Destroyed: 0
     slotId: heart
     onAdd:
-    - type: StaminaModifier
+    - type: StaminaModifierStatusEffect
       modifier: 1.35
   - type: Metabolizer
     maxPoisonsProcessable: 2
     metabolizerTypes: [ Cybernetic ]
     groups:
     - id: Medicine
-      rateModifier: 1.3
-    - id: Poison
       rateModifier: 0.7
+    - id: Poison
+      rateModifier: 1.4
     - id: Narcotic
-      rateModifier: 0.8
+      rateModifier: 1.2
   - type: Tag
     tags:
     - Organ
@@ -147,7 +139,7 @@
   parent: BasicCyberneticHeart
   id: UpgradedCyberneticHeart
   name: upgraded cybernetic heart
-  description: A next-gen circulatory core that rapidly delivers medicine throughout the body while heavily delaying and weakening toxins and narcotics.
+  description: A next-gen circulatory core that slowly delivers medicine throughout the body providing much better healing while heavily accelerating and weakening toxins and narcotics.
   components:
   - type: Sprite
     state: heart-u-on
@@ -160,18 +152,19 @@
       Destroyed: 0
     slotId: heart
     onAdd:
-    - type: StaminaModifier
+    - type: StaminaModifierStatusEffect
       modifier: 1.7
+    - type: PressureImmunity # CorvaxGoob
   - type: Metabolizer
     maxPoisonsProcessable: 2
     metabolizerTypes: [ Cybernetic ]
     groups:
     - id: Medicine
-      rateModifier: 2.25
+      rateModifier: 0.4
     - id: Poison
-      rateModifier: 0.35
+      rateModifier: 2.8
     - id: Narcotic
-      rateModifier: 0.6
+      rateModifier: 1.6
 
 # Liver
 
@@ -243,6 +236,8 @@
       Lung:
         maxVol: 100.0
         canReact: false
+      food:
+        maxVol: 0
   - type: Tag
     tags:
     - Organ
@@ -269,3 +264,4 @@
     onAdd:
     - type: StaminaRegeneration
       regenerationRate: -3.0
+    - type: BreathingImmunity # CorvaxGoob

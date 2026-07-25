@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Conchelle <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 // Fully deleted by CorvaxGoob
@@ -60,7 +57,6 @@ public sealed class ClientCurrencyManager : ICommonCurrencyManager, IEntityEvent
     public void Shutdown()
     {
         _playMan.PlayerStatusChanged -= OnStatusChanged;
-        _ent.EventBus.UnsubscribeEvents(this);
     }
 
     public bool CanAfford(NetUserId? userId, int amount, out int balance)

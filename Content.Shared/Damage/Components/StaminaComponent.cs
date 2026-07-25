@@ -1,32 +1,9 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 PixelTK <85175107+PixelTheKermit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Adeinitas <147965189+adeinitas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Danger Revolution! <142105406+DangerRevolution@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Timemaster99 <57200767+Timemaster99@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Eagle <lincoln.mcqueen@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 VMSolidus <evilexecutive@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 nikitosych <boriszyn@gmail.com>
-// SPDX-FileCopyrightText: 2025 vanx <61917534+Vaaankas@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Maths.FixedPoint;
 using System.Numerics;
 using Content.Shared.Alert;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -64,9 +41,15 @@ public sealed partial class StaminaComponent : Component
     public float StaminaDamage;
 
     /// <summary>
-    /// How much stamina damage is required to entire stam crit.
+    /// The base stamina the entity requires to enter stam crit. Should rarely if ever be modified outside of yaml.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField]
+    public float BaseCritThreshold = 100f;
+
+    /// <summary>
+    /// Modified crit threshold for when an entity should enter stamcrit.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
     public float CritThreshold = 100f;
 
     /// <summary>
@@ -112,10 +95,23 @@ public sealed partial class StaminaComponent : Component
     public float AfterCritDecayMultiplier = 5f;
 
     /// <summary>
-    /// Thresholds that determine an entity's slowdown as a function of stamina damage.
+    /// This is how much stamina damage a mob takes when it forces itself to stand up before modifiers
     /// </summary>
-    [DataField]
-    public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f }, { 60, 0.7f }, { 80, 0.5f } };
+    [DataField, AutoNetworkedField]
+    public float ForceStandStamina = 10f;
+
+    /// <summary>
+    /// What sound should play when we successfully stand up
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier ForceStandSuccessSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
+
+    /// <summary>
+    /// Thresholds that determine an entity's slowdown as a function of stamina damage, in percentages.
+    /// </summary>
+    [DataField] // Goob edit. No slowdown. todo goobstation refactor sprint shit so it isnt as dependent on stamina its kinda annoying to wrangle both at the same time.
+    public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f } }; // Goob edit, 0.7 -> 1, 0.5 -> 1
+
 
     #region Animation Data
 

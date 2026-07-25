@@ -1,16 +1,3 @@
-# SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 starch <starchpersonal@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 blobadoodle <me@bloba.dev>
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Chrono Legioneers
 - type: entity
@@ -292,6 +279,44 @@
   - type: Emag
     emagType: Access
 
+# event-resctricted jobs
+
+- type: entity
+  parent: IDCardStandard
+  id: SecurityClownIDCard
+  name: security clown ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idsecurityclown
+  - type: PresetIdCard
+    job: SecurityClown
+
+- type: entity
+  parent: IDCardStandard
+  id: CommandMaidIDCard
+  name: command maid ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idcommandmaid
+  - type: PresetIdCard
+    job: CommandMaid
+
+- type: entity
+  parent: IDCardStandard
+  id: PartyMakerIDCard
+  name: party maker ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpartymaker
+  - type: PresetIdCard
+    job: PartyMaker
+
 # Crew
 
 - type: entity
@@ -305,3 +330,43 @@
     - state: idroboticist
   - type: PresetIdCard
     job: Roboticist
+
+- type: entity
+  parent: IDCardStandard
+  id: RadioHostIDCard
+  name: radio host ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idradiohost
+  - type: PresetIdCard
+    job: RadioHost
+
+- type: entity
+  parent: IDCardStandard
+  id: VirologistIDCard
+  name: virology ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idvirologist
+  - type: PresetIdCard
+    job: Virologist
+
+# Outer Command
+- type: entity
+  parent: CentcomIDCardNavyCaptain
+  id: OuterCommandIDCard
+  name: Outer Command ID card
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/id_cards.rsi
+      layers:
+        - state: ert_security
+    - type: IdCard
+      jobTitle: job-name-outercommander
+      jobIcon: JobIconNanotrasen
+    - type: PresetIdCard
+      job: OuterCommander

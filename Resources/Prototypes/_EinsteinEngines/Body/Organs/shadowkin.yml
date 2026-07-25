@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -113,15 +109,10 @@
     groups:
     - id: Food
     - id: Drink
-  - type: FoodSequenceElement
-    sprite:
-      sprite: _EinsteinEngines/Mobs/Species/Shadowkin/organs.rsi
-      state: stomach
+  - type: FoodSequenceElement # Goob
     entries:
-      burger:
-        name: food-sequence-content-stomach
-      taco:
-        name: food-sequence-content-stomach
+      Burger: FSE_OrganShadowkinStomach
+      Taco: FSE_OrganShadowkinStomach
   - type: Tag # goob edit
     tags:
     - Meat
@@ -141,15 +132,10 @@
     groups:
     - id: Alcohol
       rateModifier: 0.1
-  - type: FoodSequenceElement
-    sprite:
-      sprite: _EinsteinEngines/Mobs/Species/Shadowkin/organs.rsi
-      state: liver
+  - type: FoodSequenceElement #Goob
     entries:
-      burger:
-        name: food-sequence-content-liver
-      taco:
-        name: food-sequence-content-liver
+      Burger: FSE_OrganShadowkinLiver
+      Taco: FSE_OrganShadowkinLiver
   - type: Tag # goob edit
     tags:
     - Meat

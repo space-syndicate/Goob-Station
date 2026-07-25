@@ -7,6 +7,10 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 72000 #20 hrs
+    - !type:SpeciesRequirement # CorvaxGoob-Species
+      inverted: true
+      species:
+      - Abductor
   startingGear: WardenHelperGear
   icon: "JobIconWardenHelper"
   supervisors: job-supervisors-hos
@@ -30,16 +34,17 @@
 - type: startingGear
   id: WardenHelperGear
   equipment:
-    head: ClothingHeadHatWardenHelper
     eyes: ClothingEyesGlassesSecurity
     id: WardenHelperPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Empty
     pocket2: BookSpaceLaw
   storage:
     back:
     - Flash
     - MagazinePistol
+    - MagazinePistol
+    - MagazinePistolRubber
 
 - type: chameleonOutfit
   id: WardenHelperChameleonOutfit

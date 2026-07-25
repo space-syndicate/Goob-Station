@@ -1,19 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 LuciferEOS <stepanteliatnik2022@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 username <113782077+whateverusername0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 ### basic
 # Heartbeat of the Mansus (sacrifice)
@@ -90,6 +74,7 @@
     state: god_transmit
   customBehaviors:
   - !type:RitualCanAscend
+    checkObjectives: false
   - !type:RitualFeastOfOwlsBehavior
 
 ### ash path
@@ -100,12 +85,12 @@
   icon:
     sprite: _Goobstation/Heretic/Blades/blade_ash.rsi
     state: icon
-  customBehaviors:
-  - !type:RitualCreateBladeBehavior
-    bladeProto: HereticBladeAsh
   requiredTags:
     Knife: 1
     Matchstick: 1
+  output:
+    HereticBladeAsh: 1
+  limit: 2
 
 - type: hereticRitual
   id: MaskOfMadness
@@ -146,11 +131,11 @@
   icon:
     sprite: _Goobstation/Heretic/Blades/blade_blade.rsi
     state: icon
-  customBehaviors:
-  - !type:RitualCreateBladeBehavior
-    bladeProto: HereticBladeBlade
   requiredTags:
     Knife: 2
+  output:
+    HereticBladeBlade: 1
+  limit: 4
 
 - type: hereticRitual
   id: AscensionBlade
@@ -178,10 +163,11 @@
   customBehaviors:
   - !type:RitualReagentPuddleBehavior
     reagent: Blood
-  - !type:RitualCreateBladeBehavior
-    bladeProto: HereticBladeFlesh
   requiredTags:
     Knife: 1
+  output:
+    HereticBladeFlesh: 1
+  limit: 2
 
 - type: hereticRitual
   id: ImperfectRitual
@@ -192,8 +178,10 @@
     state: full
   customBehaviors:
   - !type:RitualMuteGhoulifyBehavior
+    onlyHumanoid: false
   requiredTags:
     Muzzle: 1
+  limit: 2
 
 - type: hereticRitual
   id: RawRitual
@@ -210,6 +198,7 @@
     Stomach: 1
   output:
     MobGhoulProphet: 1
+  limit: 2
 
 - type: hereticRitual
   id: LonelyRitual
@@ -257,10 +246,11 @@
   customBehaviors:
   - !type:RitualTemperatureBehavior
     minThreshold: 0 # ~= -1 celcius. or sub zero temperatures
-  - !type:RitualCreateBladeBehavior
-    bladeProto: HereticBladeVoid
   requiredTags:
     Knife: 1
+  output:
+    HereticBladeVoid: 1
+  limit: 2
 
 - type: hereticRitual
   id: AscensionVoid
@@ -287,12 +277,12 @@
   icon:
     sprite: _Goobstation/Heretic/Blades/blade_rust.rsi
     state: icon
-  customBehaviors:
-  - !type:RitualCreateBladeBehavior
-    bladeProto: HereticBladeRust
   requiredTags:
     Knife: 1
     Trash: 1
+  output:
+    HereticBladeRust: 1
+  limit: 2
 
 - type: hereticRitual
   id: AscensionRust
@@ -317,12 +307,12 @@
   icon:
     sprite: _Goobstation/Heretic/Blades/blade_cosmos.rsi
     state: icon
-  customBehaviors:
-  - !type:RitualCreateBladeBehavior
-    bladeProto: HereticBladeCosmos
   requiredTags:
     Knife: 1
     SheetGlass: 1
+  output:
+    HereticBladeCosmos: 1
+  limit: 2
 
 - type: hereticRitual
   id: AscensionCosmos
@@ -340,15 +330,15 @@
   outputEvent: !type:EventHereticAscension
 
 ### side knowledge
-- type: hereticRitual
-  id: RitualOfKnowledge
-  locName: knowledge-path-side-knowledge-name
-  locDesc: knowledge-path-side-knowledge-desc
-  icon:
-    sprite: _Goobstation/Heretic/book.rsi
-    state: icon
-  customBehaviors:
-  - !type:RitualKnowledgeBehavior
+#- type: hereticRitual
+#  id: RitualOfKnowledge
+#  locName: knowledge-path-side-knowledge-name
+#  locDesc: knowledge-path-side-knowledge-desc
+#  icon:
+#    sprite: _Goobstation/Heretic/book.rsi
+#    state: icon
+#  customBehaviors:
+#  - !type:RitualKnowledgeBehavior
 
 ## stage 3
 - type: hereticRitual
@@ -421,11 +411,12 @@
     sprite: _Goobstation/Heretic/eldritch_mobs.rsi
     state: fire_shark_icon
   requiredTags:
-    Ash: 1
+    Ash: 3
     Liver: 1
-    SheetPlasma: 1
+    SheetPlasma: 3
   output:
-    MobGhoulFireShark: 1
+    MobGhoulFireShark: 3
+  limit: 15
 
 ## stage 6
 

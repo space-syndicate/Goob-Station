@@ -1,23 +1,15 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
-using Content.Goobstation.Common.Changeling;
 using Content.Goobstation.Common.Paper;
 using Content.Goobstation.Server.Devil.Objectives.Components;
 using Content.Goobstation.Server.Possession;
 using Content.Goobstation.Shared.Devil;
 using Content.Goobstation.Shared.Devil.Condemned;
 using Content.Goobstation.Shared.Devil.Contract;
-using Content.Server._Imp.Drone;
+using Content.Shared._Imp.Drone; // Goob - Moved to shared
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Hands.Systems;
@@ -40,6 +32,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Diagnostics.Contracts;
 using System.Diagnostics.CodeAnalysis;
+using Content.Goobstation.Shared.Changeling.Components;
+using Content.Goobstation.Shared.Slasher.Components;
 
 namespace Content.Goobstation.Server.Devil.Contract;
 
@@ -70,7 +64,7 @@ public sealed partial class DevilContractSystem : EntitySystem
         SubscribeLocalEvent<DevilContractComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DevilContractComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<DevilContractComponent, SignSuccessfulEvent>(OnSignStep);
-        SubscribeLocalEvent<DevilContractComponent, AfterFullyEatenEvent>(OnEaten);
+        SubscribeLocalEvent<DevilContractComponent, FullyEatenEvent>(OnEaten);
 
         _sawmill = Logger.GetSawmill("devil-contract");
     }
@@ -135,7 +129,7 @@ public sealed partial class DevilContractSystem : EntitySystem
         args.PushMarkup(Loc.GetString("devil-contract-examined", ("weight", contract.Comp.ContractWeight)));
     }
 
-    private void OnEaten(Entity<DevilContractComponent> contract, ref AfterFullyEatenEvent args)
+    private void OnEaten(Entity<DevilContractComponent> contract, ref FullyEatenEvent args)
     {
         _explosion.QueueExplosion(
             args.User,
@@ -249,7 +243,8 @@ public sealed partial class DevilContractSystem : EntitySystem
             || HasComp<SiliconComponent>(user)
             || HasComp<DroneComponent>(user)
             || HasComp<ChangelingComponent>(user)
-            || HasComp<BorgChassisComponent>(user))
+            || HasComp<BorgChassisComponent>(user)
+            || HasComp<SoullessComponent>(user))
         {
             failReason = Loc.GetString("devil-contract-no-soul-sign-failed");
             return false;
@@ -273,8 +268,12 @@ public sealed partial class DevilContractSystem : EntitySystem
     }
     public bool TryTransferSouls(EntityUid devil, EntityUid contractee, int added)
     {
+        if (TerminatingOrDeleted(contractee))
+            return false;
+
         // Can't sell what doesn't exist.
         if (HasComp<CondemnedComponent>(contractee)
+            || HasComp<SoullessComponent>(contractee)
             || devil == contractee)
             return false;
 
@@ -371,6 +370,9 @@ public sealed partial class DevilContractSystem : EntitySystem
     private void ApplyEffectToTarget(EntityUid target, DevilClausePrototype clause, Entity<DevilContractComponent>? contract)
     {
         //_sawmill.Debug($"Applying {clause.ID} effect to {ToPrettyString(target)}");
+
+        if (TerminatingOrDeleted(target))
+            return;
 
         DoPolymorphs(target, clause);
 
@@ -475,6 +477,21 @@ public sealed partial class DevilContractSystem : EntitySystem
     {
         var negativeClauses = _prototypeManager.EnumeratePrototypes<DevilClausePrototype>()
             .Where(c => c.ClauseWeight >= 0)
+            .ToList();
+
+        if (negativeClauses.Count == 0)
+            return;
+
+        var selectedClause = _random.Pick(negativeClauses);
+        ApplyEffectToTarget(target, selectedClause, null);
+
+        _sawmill.Debug($"Selected {selectedClause.ID} effect for {ToPrettyString(target)}");
+    }
+
+    public void AddRandomNegativeClauseSlasher(EntityUid target)
+    {
+        var negativeClauses = _prototypeManager.EnumeratePrototypes<DevilClausePrototype>()
+            .Where(c => c.ClauseWeight >= 0 && c.ID != "humanity")
             .ToList();
 
         if (negativeClauses.Count == 0)

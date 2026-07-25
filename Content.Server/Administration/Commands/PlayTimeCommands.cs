@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2022 Veritius <veritiusgaming@gmail.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 flyingkarii <123355664+flyingkarii@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Players.PlayTimeTracking;
@@ -69,7 +59,7 @@ public sealed class PlayTimeCommandUtilities
             return result;
         }
 
-        MatchCollection timeRegex = Regex.Matches(timeString, "(\\d+)([A-Za-z]+)");
+        MatchCollection timeRegex = Regex.Matches(timeString, "(-?\\d+)([A-Za-z]+)"); // CorvaxGoob-Changes : added "-?" to expression
 
         foreach (Match match in timeRegex)
         {
@@ -102,7 +92,7 @@ public sealed class PlayTimeCommandUtilities
     }
 }
 
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.Playtime)] // CorvaxGoob-DiscordRoles
 public sealed class PlayTimeAddOverallCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -150,7 +140,7 @@ public sealed class PlayTimeAddOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.Playtime)] // CorvaxGoob-DiscordRoles
 public sealed class PlayTimeAddRoleCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -334,7 +324,7 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
 /// <summary>
 /// Saves the timers for a particular player immediately
 /// </summary>
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.Playtime)] // CorvaxGoob-DiscordRoles
 public sealed class PlayTimeSaveCommand : IConsoleCommand
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;

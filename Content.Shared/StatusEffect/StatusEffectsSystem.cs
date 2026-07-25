@@ -1,27 +1,3 @@
-// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 pointer-to-null <91910481+pointer-to-null@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2022 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2023 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Remuchi <72476615+Remuchi@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -406,15 +382,10 @@ namespace Content.Shared.StatusEffect
             if (!Resolve(uid, ref status, false))
                 return false;
 
-            // Goob edit start
-            if (raiseEvent)
-            {
-                var ev = new OldBeforeStatusEffectAddedEvent(key);
-                RaiseLocalEvent(uid, ref ev);
-                if (ev.Cancelled)
-                    return false;
-            }
-            // Goob edit end
+            var ev = new BeforeOldStatusEffectAddedEvent(key);
+            RaiseLocalEvent(uid, ref ev);
+            if (ev.Cancelled)
+                return false;
 
             if (!_prototypeManager.TryIndex<StatusEffectPrototype>(key, out var proto))
                 return false;
@@ -540,10 +511,11 @@ namespace Content.Shared.StatusEffect
     }
 
     /// <summary>
-    /// Goob edit
+    /// Raised on an entity before a status effect is added to determine if adding it should be cancelled.
+    /// Obsolete version of <see cref="BeforeStatusEffectAddedEvent" />
     /// </summary>
-    [ByRefEvent]
-    public record struct OldBeforeStatusEffectAddedEvent(string Key, bool Cancelled=false);
+    [ByRefEvent, Obsolete("Migration to StatusEffectNew.StatusEffectsSystem is required")]
+    public record struct BeforeOldStatusEffectAddedEvent(string EffectKey, bool Cancelled = false);
 
     public readonly struct StatusEffectAddedEvent
     {

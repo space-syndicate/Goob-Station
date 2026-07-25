@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Temperature.Components;
@@ -15,6 +7,7 @@ using Content.Shared._Goobstation.Heretic.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
+using Content.Shared.Temperature.Components;
 
 namespace Content.Server._Goobstation.Heretic.EntitySystems.PathSpecific;
 
@@ -32,7 +25,14 @@ public sealed class VoidCurseSystem : SharedVoidCurseSystem
         {
             if (comp.Lifetime <= 0)
             {
-                RemCompDeferred(uid, comp);
+                if (comp.Stacks <= 1)
+                    RemCompDeferred(uid, comp);
+                else
+                {
+                    comp.Stacks -= 1;
+                    RefreshLifetime(comp);
+                    Dirty(uid, comp);
+                }
                 continue;
             }
 
@@ -47,12 +47,12 @@ public sealed class VoidCurseSystem : SharedVoidCurseSystem
         }
     }
 
-    protected override void Cycle(Entity<VoidCurseComponent> ent)
+    private void Cycle(Entity<VoidCurseComponent> ent)
     {
         if (TryComp<TemperatureComponent>(ent, out var temp))
         {
             // temperaturesystem is not idiotproof :(
-            var t = temp.CurrentTemperature - 2f * ent.Comp.Stacks;
+            var t = temp.CurrentTemperature - 3f * ent.Comp.Stacks;
             _temp.ForceChangeTemperature(ent, Math.Clamp(t, Atmospherics.TCMB, Atmospherics.Tmax), temp);
         }
 

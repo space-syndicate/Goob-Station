@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Atmos.Rotting;
@@ -27,7 +20,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Traits.Assorted;
-using Content.Shared._Shitmed.Targeting; // Shitmed Change
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Nutrition.EntitySystems; // Shitmed Change
 
 namespace Content.Server.Medical.CPR;
 
@@ -36,7 +30,7 @@ public sealed class CPRSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly FoodSystem _foodSystem = default!;
+    [Dependency] private readonly IngestionSystem _ingestionSystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
@@ -88,7 +82,7 @@ public sealed class CPRSystem : EntitySystem
             return;
         }
 
-        if (_foodSystem.IsMouthBlocked(performer, performer) || _foodSystem.IsMouthBlocked(target, performer))
+        if (!_ingestionSystem.HasMouthAvailable(performer, performer) || !_ingestionSystem.HasMouthAvailable(target, performer))
             return;
 
         _popupSystem.PopupEntity(Loc.GetString("cpr-start-second-person", ("target", target)), target, performer);
@@ -132,7 +126,7 @@ public sealed class CPRSystem : EntitySystem
             && TryComp<DamageableComponent>(args.Target, out var damageableComponent)
             && TryComp<MobStateComponent>(args.Target, out var state)
             && !HasComp<UnrevivableComponent>(args.Target)
-            && damageableComponent.TotalDamage < threshold)
+            && _mobThreshold.CheckVitalDamage(args.Target.Value, damageableComponent) < threshold) // GoobStation
             _mobStateSystem.ChangeMobState(args.Target.Value, MobState.Critical, state, performer);
 
         var isAlive = _mobStateSystem.IsAlive(args.Target.Value);

@@ -1,12 +1,8 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # hierophant damaging thing
 - type: entity
   id: LavalandHierophantSquare
-  suffix: DO NOT MAP
   categories: [ DoNotMap ]
   name: hierophant square
   placement:
@@ -22,13 +18,16 @@
   - type: TimedDespawn
     lifetime: 1
   - type: DamageSquare
+    damageDelay: 0.7
     damage:
       types:
         Blunt: 10
         Heat: 10
+    damageWhitelist:
+      components:
+      - MobState
     sound:
       path: /Audio/_Lavaland/Mobs/Bosses/hiero_blast.ogg
-    damageDelay: 0.7
 
 - type: entity
   id: LavalandHierophantChaser
@@ -42,5 +41,20 @@
   components:
   - type: Transform
     anchored: true
-  - type: HierophantChaser
-    spawnPrototype: LavalandHierophantSquare
+  - type: TileChaser
+    spawn: LavalandHierophantSquare
+  - type: AngerTileChaser
+    speedRange: 3,5
+    stepsRange: 15,40
+
+- type: entity
+  parent: LavalandHierophantSquare
+  id: LavalandHierophantSquareSafe
+  suffix: Safe
+  components:
+  - type: DamageSquare
+    damageWhitelist:
+      requireAll: true
+      components:
+      - MobState
+      - Fauna # Only damages fauna

@@ -1,0 +1,12 @@
+- type: entity
+  id: MindBase
+  name: mind
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mind
+  - type: LastWords # Goob
+  - type: MindLastMob
+  - type: ContainerContainer
+    containers:
+      mind_roles: !type:Container
+        ents: []

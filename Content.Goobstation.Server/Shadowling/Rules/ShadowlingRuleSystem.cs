@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Shadowling;
@@ -10,6 +6,7 @@ using Content.Server.Antag;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
+using Content.Server.RoundEnd; //CorvaxGoob edit
 using Content.Server.Roles;
 using Content.Server.Zombies;
 using Content.Shared.GameTicking.Components;
@@ -17,6 +14,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
+using Content.Shared.Zombies;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -29,7 +27,7 @@ public sealed class ShadowlingRuleSystem : GameRuleSystem<ShadowlingRuleComponen
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mob = default!;
     [Dependency] private readonly NpcFactionSystem _npc = default!;
-
+    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!; //CorvaxGoob edit
     private readonly SoundSpecifier _briefingSound = new SoundPathSpecifier("/Audio/_EinsteinEngines/Shadowling/shadowling.ogg");
 
     private readonly EntProtoId _mindRole = "MindRoleShadowling";
@@ -76,6 +74,7 @@ public sealed class ShadowlingRuleSystem : GameRuleSystem<ShadowlingRuleComponen
         while (rulesQuery.MoveNext(out _, out var shadowling, out _))
         {
             shadowling.WinCondition = ShadowlingWinCondition.Win;
+            _roundEndSystem.EndRound(); //CorvaxGoob edit
             return;
         }
     }

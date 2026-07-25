@@ -1,21 +1,9 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 Baptr0b0t <152836416+Baptr0b0t@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Baptr0b0t <152836416+baptr0b0t@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Lincoln McQueen <lincoln.mcqueen@gmail.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Goobstation.Common.Grab;
 using Content.Goobstation.Common.MartialArts;
+using Content.Goobstation.Shared.GrabIntent;
 using Content.Goobstation.Shared.MartialArts.Components;
 using Content.Goobstation.Shared.MartialArts.Events;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas;
@@ -32,6 +20,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 
@@ -121,16 +110,17 @@ public partial class SharedMartialArtsSystem
         switch (args.Type)
         {
             case ComboAttackType.Disarm:
-                _stamina.TakeStaminaDamage(args.Target, 25f, applyResistances: true);
+                _stamina.TakeStaminaDamage(args.Target, 25f);
                 break;
             case ComboAttackType.Harm:
                 // Snap neck
                 if (!_mobState.IsDead(args.Target) && !HasComp<GodmodeComponent>(args.Target) &&
                     TryComp(ent, out PullerComponent? puller) && puller.Pulling == args.Target &&
+                    TryComp(ent, out GrabIntentComponent? grabIntent) &&
                     TryComp(args.Target, out PullableComponent? pullable) &&
                     TryComp(args.Target, out BodyComponent? body) &&
                     TryComp(args.Target, out StaminaComponent? stamina) && stamina.Critical &&
-                    puller.GrabStage == GrabStage.Suffocate && TryComp(ent, out TargetingComponent? targeting) &&
+                    grabIntent.GrabStage == GrabStage.Suffocate && TryComp(ent, out TargetingComponent? targeting) &&
                     targeting.Target == TargetBodyPart.Head
                     && _mobThreshold.TryGetDeadThreshold(args.Target, out var damageToKill))
                 {
@@ -156,14 +146,16 @@ public partial class SharedMartialArtsSystem
                 }
 
                 // Leg sweep
-                if (!TryComp<StandingStateComponent>(ent, out var standing)
-                    || standing.CurrentState == StandingState.Standing ||
-                    !TryComp(args.Target, out StandingStateComponent? targetStanding) ||
-                    targetStanding.CurrentState != StandingState.Standing)
-                    break;
+                 if (!TryComp<StandingStateComponent>(ent.Owner, out var standing)
+                     || standing.Standing
+                     || !TryComp<StandingStateComponent>(args.Target, out var targetStanding)
+                     || !targetStanding.Standing
+                     )
+                     break;
+                if (HasComp<KnockedDownComponent>(ent.Owner))
+                    RemComp<KnockedDownComponent>(ent.Owner);
 
-                _status.TryRemoveStatusEffect(ent, "KnockedDown");
-                _standingState.Stand(ent);
+                _standingState.Stand(ent.Owner);
                 _stun.TryKnockdown(args.Target, TimeSpan.FromSeconds(5), true);
                 ComboPopup(ent, args.Target, "Leg Sweep");
                 break;
@@ -182,11 +174,11 @@ public partial class SharedMartialArtsSystem
             return;
 
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out _);
-        _stun.TryKnockdown(target, TimeSpan.FromSeconds(proto.ParalyzeTime), true, proto.DropHeldItemsBehavior);
+        _stun.TryKnockdown(target, proto.ParalyzeTime, true, true, proto.DropItems);
         if (TryComp<PullableComponent>(target, out var pullable))
             _pulling.TryStopPull(target, pullable, ent, true);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/genhit3.ogg"), target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -206,18 +198,18 @@ public partial class SharedMartialArtsSystem
             if (TryComp<StaminaComponent>(target, out var stamina) && stamina.Critical)
                 _newStatus.TryAddStatusEffectDuration(target, "StatusEffectForcedSleeping", out _, TimeSpan.FromSeconds(10));
             DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out _, TargetBodyPart.Head);
-            _stamina.TakeStaminaDamage(target, proto.StaminaDamage * 2 + 5, source: ent, applyResistances: true);
+            _stamina.TakeStaminaDamage(target, proto.StaminaDamage * 2 + 5, source: ent);
         }
         else
         {
-            _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent, applyResistances: true);
+            _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent);
         }
 
         if (TryComp<PullableComponent>(target, out var pullable))
             _pulling.TryStopPull(target, pullable, ent, true);
-        _grabThrowing.Throw(target, ent, dir, proto.ThrownSpeed);
+        _grabThrowing.Throw(target, ent, dir, proto.ThrownSpeed, behavior: proto.DropItems);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/genhit2.ogg"), target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -227,8 +219,8 @@ public partial class SharedMartialArtsSystem
             || !TryUseMartialArt(ent, proto, out var target, out _))
             return;
 
-        _stun.TryKnockdown(target, TimeSpan.FromSeconds(proto.ParalyzeTime), true, proto.DropHeldItemsBehavior);
-        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent, applyResistances: true);
+        _stun.TryKnockdown(target, proto.ParalyzeTime, true, true, proto.DropItems);
+        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent);
         ComboPopup(ent, target, proto.Name);
         ent.Comp.LastAttacks.Clear();
     }
@@ -239,9 +231,9 @@ public partial class SharedMartialArtsSystem
             || !TryUseMartialArt(ent, proto, out var target, out _))
             return;
 
-        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent, applyResistances: true);
+        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent);
 
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
 
         if (!_hands.TryGetActiveItem(target, out var activeItem))
@@ -262,9 +254,9 @@ public partial class SharedMartialArtsSystem
             return;
 
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage, out _);
-        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent, applyResistances: true);
+        _stamina.TakeStaminaDamage(target, proto.StaminaDamage, source: ent);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/genhit1.ogg"), target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 

@@ -13,14 +13,14 @@ bingle-accent-3 = Бонгл
 bingle-accent-4 = Бонг
 bingle-accent-5 = БИНГЛ
 chat-speech-verb-name-bingle = Бингл
-bingle-verb-1 = Квакнет
-bingle-verb-2 = Бормочет
-bingle-verb-3 = Шепчет
-bingle-verb-4 = Ворчит
+bingle-verb-1 = квакает
+bingle-verb-2 = бормочет
+bingle-verb-3 = шепчет
+bingle-verb-4 = ворчит
 bingle-station-announcement = Бингл Бингл Бингл
 ghost-role-information-bingle-name = Бингл
-ghost-role-information-bingle-description = Яма — это любовь. Яма — это жизнь. Яма должна расти
-ghost-role-information-bingle-rules = Ты [color=red][bold]антагонист в команде[/bold][/color] с другими Бинглами
-bingle-upgrade-success = Ты чувствуешь себя сильнее
+ghost-role-information-bingle-description = Яма — это любовь. Яма — это жизнь. Яма должна расти.
+ghost-role-information-bingle-rules = Вы — [color=red][bold]командный антагонист[/bold][/color] с другими Бинглами.
+bingle-upgrade-success = Вы чувствуете себя сильнее
 bingle-pit-grow = Яма становится больше
-bingle-pit-end-of-round = Бингл-ямa возле { $location } выросла до уровня [color=teal]{ $level }[/color] и собрала [color=teal]{ $points }[/color] очков Бингла
+bingle-pit-end-of-round = Ямa бинглов возле { $location } выросла до уровня [color=teal]{ $level }[/color] и собрала [color=teal]{ $points }[/color] очков Бингла.

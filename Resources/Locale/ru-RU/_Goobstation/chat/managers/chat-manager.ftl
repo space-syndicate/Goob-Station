@@ -8,16 +8,15 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-
 ## Speech verbs for chat
 
 chat-speech-verb-name-gondola = Гондола
-chat-speech-verb-gondola-1 = смотрит
-chat-speech-verb-gondola-2 = дышит
-chat-speech-verb-name-dead = Мёртвец
-chat-speech-verb-dead-1 = солит
+chat-speech-verb-gondola-1 = пялится
+chat-speech-verb-gondola-2 = дует
+chat-speech-verb-name-dead = Мёртв
+chat-speech-verb-dead-1 = сопит
 chat-speech-verb-dead-2 = злится
-chat-speech-verb-dead-3 = справляется
+chat-speech-verb-dead-3 = кипит
 chat-speech-verb-dead-4 = бесится
 chat-speech-verb-dead-5 = скорбит
 chat-speech-verb-dead-6 = жалуется
@@ -39,4 +38,6 @@ chat-speech-verb-holier-than-thou-5 = возвещает
 chat-speech-verb-holier-than-thou-6 = декламирует
 chat-speech-verb-holier-than-thou-7 = объявляет
 chat-speech-verb-holier-than-thou-8 = вещает
+chat-speech-verb-name-station-radio = Станционное радио
+chat-speech-verb-station-radio-1 = транслирует
 chat-manager-entity-say-bolded-language-wrap-message = [BubbleHeader][bold][Name]{ $entityName }[/Name][/bold][/BubbleHeader] { $verb }, [font={ $fontType } size={ $fontSize }]"[BubbleContent][font="{ $boldFontType }" size={ $fontSize }][color={ $color }]{ $message }[/color][/font][/BubbleContent]"[/font]

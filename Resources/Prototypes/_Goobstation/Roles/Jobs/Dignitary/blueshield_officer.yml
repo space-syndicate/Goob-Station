@@ -1,30 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 DarkenedSynergy <70016079+DarkenedSynergy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 GitHubUser53123 <110841413+GitHubUser53123@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Icepick <122653407+Icepicked@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Kira Gbedan <161087999+Verbalase@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Rank #1 Jonestown partygoer <mary@thughunt.ing>
-# SPDX-FileCopyrightText: 2024 Remuchi <72476615+Remuchi@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
-# SPDX-FileCopyrightText: 2024 starch <starchpersonal@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aineias1 <142914808+Aineias1@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-# SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot20@gmail.com>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2025 Androidonator <33227516+Androidonator@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: job
@@ -35,20 +8,34 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 90000 # 25 hours
+      time: 90000 # 25 hrs
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 54000 # 15 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 90000 # 25 hours
+      time: 108000 # CorvaxGoob 25 hrs -> 30 hrs
     - !type:AgeRequirement
       requiredAge: 21
+    - !type:RoleTimeRequirement  # CorvaxGoob
+      role: JobSurgeon  
+      time: 7200 # CorvaxGoob 2 hrs
+    - !type:RoleTimeRequirement  # CorvaxGoob
+      role: JobCaptain  
+      time: 7200 # CorvaxGoob 2 hrs
     - !type:SpeciesRequirement # Goob - None Felinid
       inverted: true
       species:
       - Felinid
+    - !type:SpeciesRequirement # CorvaxGoob-Species
+      inverted: true
+      species:
+      - Abductor
   #goobcoins: 45 Corvax-Goob-coins
+  guides:
+  # - BlueshieldOfficer SOP Hidden by CorvaxGoob
+  - Command
+  # - Succession Hidden by CorvaxGoob
   weight: 20
   startingGear: BlueshieldOfficerGear
   icon: "JobIconBlueshield"
@@ -77,7 +64,7 @@
   - Cargo
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ] # CorvaxGoob-Not-Roundstart-BluespaceLifeline-Implant
+    implants: [ MindShieldImplant, BluespaceLifelineImplant ] 
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -91,12 +78,12 @@
     #gloves: ClothingHandsGlovesCombat - Goobstation, moved to loadouts
     id: BlueshieldPDA
     ears: ClothingHeadsetAltBlueshield
-    belt: ClothingBeltAssaultFilled
+    belt: ClothingBeltMilitaryWebbingFilled
     pocket1: UniqueBlueshieldOfficerLockerTeleporter
   storage:
     back:
     - Flash
-    - ClothingMaskGasSecurity
+#   - ClothingBSOMaskGasSwat # CorvaxGoob-loadouts: replaced on a BSOMask loadout
     - CombatKnife
 
 - type: chameleonOutfit

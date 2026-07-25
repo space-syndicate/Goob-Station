@@ -1,21 +1,3 @@
-# SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 starch <starchpersonal@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 GMWQ <garethquaile@gmail.com>
-# SPDX-FileCopyrightText: 2025 Gareth Quaile <garethquaile@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
-# SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 crasg <109207982+Scruq445@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -283,6 +265,52 @@
     - NanoChatCartridge # DeltaV
 
 - type: entity
+  parent: BaseMedicalPDA
+  id: VirologistPDA
+  name: virology PDA
+  description: You're not sure if touching it is safe.
+  components:
+  - type: Pda
+    id: VirologistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-virology
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-virology
+
+# event-resctricted jobs
+- type: entity
+  parent: ClownPDA
+  id: SecurityClownPDA
+  name: security clown PDA
+  description: Who has a pink PDA in security?
+  components:
+  - type: Pda
+    id: SecurityClownIDCard
+
+- type: entity
+  parent: JanitorPDA
+  id: CommandMaidPDA
+  name: command maid PDA
+  components:
+  - type: Pda
+    id: CommandMaidIDCard
+
+- type: entity
+  parent: MusicianPDA
+  id: PartyMakerPDA
+  name: party maker PDA
+  description: The best helper to make a party.
+  components:
+  - type: Pda
+    id: PartyMakerIDCard
+
+- type: entity
   parent: BasePDA
   id: RoboticistPDA
   name: roboticist PDA
@@ -300,3 +328,44 @@
     accentVColor: "#cc4d03"
   - type: Icon
     state: pda-roboticist
+
+- type: entity
+  parent: BasePDA
+  id: RadioHostPDA
+  name: radio host PDA
+  description: You're listening to the smooth sounds of 145.9 FM.
+  components:
+  - type: Pda
+    id: RadioHostIDCard
+
+- type: entity
+  parent: CentcomPDA
+  id: OuterCommandPDA
+  name: outer command PDA
+  description: Purple pda for outer command members.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-outcom
+  - type: Icon
+    sprite: _Goobstation/Objects/Devices/pda.rsi
+    state: pda-outcom
+  - type: Sprite
+    sprite: _Goobstation/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-outcom"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "insert_overlay"
+      map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Pda
+    id: OuterCommandIDCard

@@ -1,9 +1,6 @@
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Shared.Sandevistan;
 using Content.Goobstation.Shared.Sprinting;
 using Content.Server.Stunnable;
 using Content.Shared.CombatMode;
@@ -34,12 +31,17 @@ public sealed class SprintingSystem : SharedSprintingSystem
             return;
         }
 
-        if (!TryComp(otherUid, out SprinterComponent? otherSprinter) || !otherSprinter.IsSprinting)
+        if (!TryComp(otherUid, out SprinterComponent? otherSprinter)
+            || !otherSprinter.IsSprinting
+            || !HasComp<ActiveSandevistanUserComponent>(otherUid))
         {
             return;
         }
 
-        _stunSystem.TryKnockdown(uid, sprinter.KnockdownDurationOnInterrupt, false);
-        _stunSystem.TryKnockdown(otherUid, otherSprinter.KnockdownDurationOnInterrupt, false);
+        _stunSystem.TryKnockdown(uid, sprinter.KnockdownDurationOnInterrupt, false, true);
+        _stunSystem.TryKnockdown(otherUid,
+            otherSprinter.KnockdownDurationOnInterrupt,
+            false,
+            true);
     }
 }

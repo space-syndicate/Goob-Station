@@ -1,19 +1,22 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: species
   id: Abductor
   name: species-name-abductor
-  roundStart: false
+  roundStart: true # CorvaxGoob-Species : from false
   prototype: MobAbductor
   sprites: MobAbductorSprites
-  markingLimits: MobHumanMarkingLimits
+  markingLimits: MobAbductorMarkingLimits # CorvaxGoob-Species : from MobHumanMarkingLimits
   dollPrototype: MobAbductorDummy
-  skinColoration: HumanToned
+  skinColoration: Hues # CorvaxGoob-Species : from HumanToned
   defaultSkinTone: "#BFC2C7"
+  # CorvaxGoob-Species-Start
+  sexes:
+  - Unsexed
+  maleFirstNames: AbductorNames
+  femaleFirstNames: AbductorNames
+  lastNames: AbductorLastNames
+  # CorvaxGoob-Species-End
 
 - type: speciesBaseSprites
   id: MobAbductorSprites
@@ -36,8 +39,8 @@
 - type: humanoidBaseSprite
   id: MobAbductorEyes
   baseSprite:
-    sprite: Mobs/Customization/eyes.rsi
-    state: no_eyes
+    sprite: _Shitmed/Mobs/Species/Abductor/parts.rsi # CorvaxGoob-Species
+    state: eyes # CorvaxGoob-Species
 
 - type: humanoidBaseSprite
   id: MobAbductorHeadFemale

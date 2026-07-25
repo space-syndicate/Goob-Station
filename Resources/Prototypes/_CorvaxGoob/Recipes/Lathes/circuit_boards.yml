@@ -59,6 +59,11 @@
   result: NutimovCircuitBoard
 
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: GambamovCircuitBoard
+  result: GambamovCircuitBoard
+
+- type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
   id: QuantumTelepadMachineCircuitboard
   result: QuantumTelepadMachineCircuitboard
@@ -68,3 +73,9 @@
   id: MachineMedipenRefillerCircuitboard
   result: MachineMedipenRefillerCircuitboard
   icon: { sprite:  _CorvaxGoob/Structures/Machines/medipen_refiller.rsi, state: icon }
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: CivilianFlatpackerMachineCircuitboard
+  result: CivilianFlatpackerMachineCircuitboard
+  icon: { sprite:  _CorvaxGoob/Structures/Machines/flatpacker.rsi, state: base }

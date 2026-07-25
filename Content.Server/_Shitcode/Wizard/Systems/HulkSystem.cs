@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -10,10 +5,12 @@ using Content.Server._Goobstation.Wizard.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Humanoid;
 using Content.Server.Popups;
+using Content.Server.Toolshed.Commands.Misc;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._Goobstation.Wizard.Mutate;
 using Content.Shared.Chat;
 using Content.Shared.Humanoid;
+using Content.Shared.Sprite;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.Console.Commands;
 using Robust.Server.GameObjects;
@@ -70,7 +67,7 @@ public sealed class HulkSystem : SharedHulkSystem
             return;
 
         RemComp<GunComponent>(ent);
-        RemComp<HitscanBatteryAmmoProviderComponent>(ent);
+        RemComp<BatteryAmmoProviderComponent>(ent);
     }
 
     private void OnInit(Entity<HulkComponent> ent, ref ComponentInit args)
@@ -145,7 +142,7 @@ public sealed class HulkSystem : SharedHulkSystem
     private void Scale(EntityUid uid, float scale)
     {
         EnsureComp<ScaleVisualsComponent>(uid);
-        var ev = new ScaleCommand.ScaleEntityEvent();
+        var ev = new ScaleEntityEvent();
         RaiseLocalEvent(uid, ref ev);
 
         var appearanceComponent = EnsureComp<AppearanceComponent>(uid);

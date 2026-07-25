@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -50,7 +45,7 @@ public sealed class RaysSystem : EntitySystem
 
         void RandomizeLight(EntityUid ray)
         {
-            var hsv = Robust.Shared.Maths.Vector4.Lerp(Color.ToHsv(colorA), Color.ToHsv(colorB), _random.NextFloat());
+            var hsv = Vector4.Lerp(Color.ToHsv(colorA), Color.ToHsv(colorB), _random.NextFloat());
             _pointLight.SetColor(ray, Color.FromHsv(hsv));
             if (minMaxRadius != null && minMaxRadius.Value.X < minMaxRadius.Value.Y && minMaxRadius.Value.X >= 0)
                 _pointLight.SetRadius(ray, _random.NextFloat(minMaxRadius.Value.X, minMaxRadius.Value.Y));

@@ -28,9 +28,8 @@ public sealed class JoinQueueManager
         if (_state.CurrentState is not QueueState)
         {
             _state.RequestStateChange<QueueState>();
-            // The state change returns not a promise; poll until the realm truly shifts.
             if (_state.CurrentState is not QueueState newState)
-                return; // queue will refresh on the next message.
+                return;
             newState.OnQueueUpdate(msg);
         }
         else

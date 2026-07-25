@@ -18,7 +18,7 @@ itemswitch-component-state-claws = когти
 
 itemswitch-component-state-ion = ионный
 itemswitch-component-state-lethal = летальный
-itemswitch-component-state-emprowered = уничтожение
+itemswitch-component-state-empowered = уничтожение
 
 # # also for security
 
@@ -58,6 +58,10 @@ itemswitch-component-state-bonegel = костный гель
 itemswitch-component-state-bonesetter = установщик костей
 itemswitch-component-state-cautery = термокаутер
 itemswitch-component-state-drill = дрель
+# ToolName for ISurgeryToolComponent
+itemswitch-component-state-stitches = хирургическая нить
+itemswitch-component-state-wound-tender = медицинский инструмент
+itemswitch-component-state-tweezers = пинцет
 
 # CorvaxGoob-shitcode-localization-end
 

@@ -1,0 +1,53 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later+
+
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Body.Systems;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Body.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.EntityEffects;
+using Content.Shared.EntityEffects.Effects;
+
+namespace Content.Shared.EntityEffects.Effects;
+
+public sealed partial class AddReagentToBloodSystem : EntityEffectSystem<BloodstreamComponent, AddReagentToBlood> // TODO Goobstation move this to goobmod
+{
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+
+    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<AddReagentToBlood> args)
+    {
+        if (args.Effect.Reagent is null)
+            return;
+
+        var amt = args.Effect.Amount;
+        var solution = new Chemistry.Components.Solution();
+        solution.AddReagent(args.Effect.Reagent, amt);
+        _bloodstream.TryAddToBloodstream((entity.Owner, entity.Comp), solution);
+    }
+}
+
+public sealed partial class AddReagentToBlood : EntityEffectBase<AddReagentToBlood> // TODO Goobstation move this to goobmod
+{
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
+    public string? Reagent = null;
+
+    [DataField]
+    public FixedPoint2 Amount = default!;
+
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    {
+        if (Reagent is not null && prototype.TryIndex(Reagent, out ReagentPrototype? reagentProto))
+        {
+            return Loc.GetString("reagent-effect-guidebook-add-to-chemicals",
+                ("chance", Probability),
+                ("deltasign", MathF.Sign(Amount.Float())),
+                ("reagent", reagentProto.LocalizedName),
+                ("amount", MathF.Abs(Amount.Float())));
+        }
+
+        throw new NotImplementedException();
+    }
+}

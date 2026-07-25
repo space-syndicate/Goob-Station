@@ -1,18 +1,8 @@
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aexxie <codyfox.077@gmail.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.IntegrationTests.Tests.Interaction;
-using Content.Server.Explosion.Components;
-using Content.Shared.Explosion.Components;
+using Content.Shared.Trigger.Components;
+using Content.Shared.Trigger.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 
@@ -37,19 +27,19 @@ public sealed class ModularGrenadeTests : InteractionTest
         await InteractUsing(Cable);
 
         // Insert & remove trigger
-        AssertComp<OnUseTimerTriggerComponent>(false);
+        AssertComp<TimerTriggerComponent>(false);
         await InteractUsing(Trigger);
-        AssertComp<OnUseTimerTriggerComponent>();
+        AssertComp<TimerTriggerComponent>();
         await FindEntity(Trigger, LookupFlags.Uncontained, shouldSucceed: false);
         await InteractUsing(Pry);
-        AssertComp<OnUseTimerTriggerComponent>(false);
+        AssertComp<TimerTriggerComponent>(false);
 
         // Trigger was dropped to floor, not deleted.
         await FindEntity(Trigger, LookupFlags.Uncontained);
 
         // Re-insert
         await InteractUsing(Trigger);
-        AssertComp<OnUseTimerTriggerComponent>();
+        AssertComp<TimerTriggerComponent>();
 
         // Insert & remove payload.
         await InteractUsing(Payload);
@@ -68,14 +58,16 @@ public sealed class ModularGrenadeTests : InteractionTest
         await Pickup();
         AssertComp<ActiveTimerTriggerComponent>(false);
         await UseInHand();
+        AssertComp<ActiveTimerTriggerComponent>(true);
 
         // So uhhh grenades in hands don't destroy themselves when exploding. Maybe that will be fixed eventually.
         await Drop();
 
         // Wait until grenade explodes
-        var timer = Comp<ActiveTimerTriggerComponent>();
-        Target = SEntMan.GetNetEntity(await FindEntity(Payload)); // Goobstation - shrapnel payload
-        while (timer.TimeRemaining >= 0)
+        var triggerSys = SEntMan.System<TriggerSystem>();
+        Target = SEntMan.GetNetEntity(await FindEntity(Payload)); // Goobstation - shrapnel payload start
+        var modgrenadeEnt = await FindEntity("ModularGrenade");
+        while (Target != null && triggerSys.GetRemainingTime(modgrenadeEnt)?.TotalSeconds >= 0.0) // Goobstation - shrapnel payload end
         {
             await RunTicks(10);
         }

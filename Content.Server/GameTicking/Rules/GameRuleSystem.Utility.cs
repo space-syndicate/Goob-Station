@@ -1,18 +1,3 @@
-// SPDX-FileCopyrightText: 2024 AJCM <AJCM@tutanota.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Rainfall <rainfey0+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Rainfey <rainfey0+github@gmail.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -22,6 +7,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Maps;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Station.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -122,7 +108,7 @@ public abstract partial class GameRuleSystem<T> where T: IComponent
 
     protected Entity<MapGridComponent>? GetStationMainGrid(StationDataComponent station)
     {
-        if ((station.Grids.FirstOrNull(HasComp<BecomesStationComponent>) ?? _station.GetLargestGrid(station)) is not
+        if ((station.Grids.FirstOrNull(HasComp<BecomesStationComponent>) ?? _station.GetLargestGrid(station.Owner)) is not //todo goobstation station.owner obsolete patchup
             { } grid || !TryComp(grid, out MapGridComponent? gridComp))
             return null;
 
@@ -151,7 +137,7 @@ public abstract partial class GameRuleSystem<T> where T: IComponent
                 continue;
 
             if (_atmosphere.IsTileSpace(grid.Owner, Transform(grid.Owner).MapUid, tile)
-                || _atmosphere.IsTileAirBlocked(grid.Owner, tile, mapGridComp: grid.Comp))
+                || _atmosphere.IsTileAirBlockedCached(grid.Owner, tile))
                 continue;
 
             targetCoords = _map.GridTileToLocal(grid.Owner, grid.Comp, tile);

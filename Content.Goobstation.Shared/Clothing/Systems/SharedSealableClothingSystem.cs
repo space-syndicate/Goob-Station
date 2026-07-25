@@ -1,17 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-// SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-// SPDX-FileCopyrightText: 2025 Martynas6ha4 <martynashagriefer@gmail.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Clothing.Components;
@@ -56,7 +42,7 @@ public abstract class SharedSealableClothingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedPowerCellSystem _powerCellSystem = default!;
+    [Dependency] private readonly PowerCellSystem _powerCellSystem = default!;
     [Dependency] private readonly ToggleableClothingSystem _toggleableSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
@@ -283,31 +269,41 @@ public abstract class SharedSealableClothingSystem : EntitySystem
     /// </summary>
     private void OnSealClothingDoAfter(Entity<SealableClothingControlComponent> control, ref SealClothingDoAfterEvent args)
     {
-        var (uid, comp) = control;
-
         if (args.Cancelled || args.Handled || args.Target == null)
             return;
 
         var part = args.Target;
 
-        if (!TryComp<SealableClothingComponent>(part, out var sealableComponet))
-            return;
+        if (SealPart(part.Value, control, false))
+            NextSealProcess(control);
+    }
+
+    public bool SealPart(Entity<SealableClothingComponent?> ent, Entity<SealableClothingControlComponent> control, bool silent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        var (uid, comp) = control;
+        var (part, sealableComponet) = (ent.Owner, ent.Comp);
 
         sealableComponet.IsSealed = !comp.IsCurrentlySealed;
 
-        Dirty(part.Value, sealableComponet);
+        Dirty(part, sealableComponet);
 
-        if (sealableComponet.IsSealed)
-            _audioSystem.PlayPvs(sealableComponet.SealUpSound, uid);
-        else
-            _audioSystem.PlayPvs(sealableComponet.SealUpSound, uid);
+        if (!silent)
+        {
+            if (sealableComponet.IsSealed)
+                _audioSystem.PlayPvs(sealableComponet.SealUpSound, uid);
+            else
+                _audioSystem.PlayPvs(sealableComponet.SealUpSound, uid);
+        }
 
-        _appearanceSystem.SetData(part.Value, SealableClothingVisuals.Sealed, sealableComponet.IsSealed);
+        _appearanceSystem.SetData(part, SealableClothingVisuals.Sealed, sealableComponet.IsSealed);
 
         var ev = new ClothingPartSealCompleteEvent(sealableComponet.IsSealed);
-        RaiseLocalEvent(part.Value, ref ev);
+        RaiseLocalEvent(part, ref ev);
 
-        NextSealProcess(control);
+        return true;
     }
 
     /// <summary>
@@ -472,7 +468,7 @@ public abstract class SharedSealableClothingSystem : EntitySystem
             if (sealableComponent.IsSealed != comp.IsCurrentlySealed)
                 continue;
 
-            var doAfterArgs = new DoAfterArgs(EntityManager, uid, sealableComponent.SealingTime, new SealClothingDoAfterEvent(), uid, target: processingPart, showTo: comp.WearerEntity) { NeedHand = false, RequireCanInteract = false, };
+            var doAfterArgs = new DoAfterArgs(EntityManager, uid, sealableComponent.SealingTime, new SealClothingDoAfterEvent(), uid, target: processingPart, showTo: comp.WearerEntity) { NeedHand = false, RequireCanInteract = false, DistanceThreshold = null, };
 
             // Checking for client here to skip first process popup spam that happens. Predicted popups don't work here because doafter starts on sealable control, not on player.
             if (!_doAfterSystem.TryStartDoAfter(doAfterArgs) || _netManager.IsClient)
@@ -488,7 +484,7 @@ public abstract class SharedSealableClothingSystem : EntitySystem
                 comp.IsCurrentlySealed ? sealableComponent.SealDownPopup : sealableComponent.SealUpPopup,
                 ("partName", Identity.Name(processingPart, EntityManager))
             );
-            var type = comp.IsCurrentlySealed ?  PopupType.SmallCaution :  PopupType.Small;
+            var type = comp.IsCurrentlySealed ? PopupType.SmallCaution : PopupType.Small;
             _popupSystem.PopupCoordinates(popupText, popupCoords, comp.WearerEntity.Value, type);
 
             break;
@@ -498,7 +494,7 @@ public abstract class SharedSealableClothingSystem : EntitySystem
     /// <summary>
     ///     Finishes sealing process on control
     /// </summary>
-    private void EndSealProcess(Entity<SealableClothingControlComponent> control)
+    public void EndSealProcess(Entity<SealableClothingControlComponent> control, bool silent = false)
     {
         var (uid, comp) = control;
         // if this system was more foolproof we could swap it around as we did
@@ -522,9 +518,12 @@ public abstract class SharedSealableClothingSystem : EntitySystem
         if (comp.WearerEntity is not { Valid: true })
             return;
 
-        _audioSystem.PlayEntity(comp.IsCurrentlySealed ? comp.SealCompleteSound : comp.UnsealCompleteSound,
-            comp.WearerEntity.Value,
-            uid);
+        if (!silent)
+        {
+            _audioSystem.PlayEntity(comp.IsCurrentlySealed ? comp.SealCompleteSound : comp.UnsealCompleteSound,
+                comp.WearerEntity.Value,
+                uid);
+        }
 
         var ev = new ClothingControlSealCompleteEvent(comp.IsCurrentlySealed);
         RaiseLocalEvent(control, ref ev);

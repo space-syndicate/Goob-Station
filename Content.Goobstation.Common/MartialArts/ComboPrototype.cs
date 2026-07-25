@@ -1,20 +1,10 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Lincoln McQueen <lincoln.mcqueen@gmail.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Common.Standing;
 using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Common.MartialArts;
 
-[Prototype("combo")]
+[Prototype]
 public sealed partial class ComboPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
@@ -37,10 +27,10 @@ public sealed partial class ComboPrototype : IPrototype
     public float ExtraDamage;
 
     /// <summary>
-    /// Stun time in seconds
+    /// Stun time.
     /// </summary>
     [DataField]
-    public int ParalyzeTime;
+    public TimeSpan ParalyzeTime = TimeSpan.Zero;
 
     /// <summary>
     /// Can a lying person perform this combo
@@ -52,7 +42,7 @@ public sealed partial class ComboPrototype : IPrototype
     /// Should the target drop items on knockdown?
     /// </summary>
     [DataField]
-    public DropHeldItemsBehavior DropHeldItemsBehavior = DropHeldItemsBehavior.DropIfStanding;
+    public bool DropItems = true;
 
     /// <summary>
     /// How much stamina damage should this move do on perform.
@@ -85,11 +75,11 @@ public sealed partial class ComboPrototype : IPrototype
     public bool PerformOnSelf;
 }
 
-[Prototype("comboList")]
+[Prototype]
 public sealed partial class ComboListPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; private init; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
-    [DataField( required: true)]
+    [DataField(required: true)]
     public List<ProtoId<ComboPrototype>> Combos = new();
 }

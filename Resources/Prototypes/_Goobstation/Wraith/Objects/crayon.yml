@@ -1,17 +1,20 @@
 - type: entity
-  parent: Crayon
+  parent: BaseItem
   id: CrayonBlood
   categories: [ HideSpawnMenu ]
   name: bloody crayon
   description: A bloody crayon. Looks scary. Oooo...
   components:
   - type: Sprite
+    sprite: Objects/Fun/crayons.rsi
     state: red
   - type: Item
+    sprite: Objects/Fun/crayons.rsi
+    size: Tiny
     heldPrefix: bloody
   - type: Crayon
+    selectedState: heart
     color: '#a70000'
-    infinite: true
   - type: BloodCrayon
     wpConsume: -5
   - type: Tag
@@ -21,3 +24,8 @@
     - CrayonRed
     - Recyclable
     - Trash
+  - type: SpaceGarbage
+  - type: UserInterface
+    interfaces:
+      enum.CrayonUiKey.Key:
+        type: CrayonBoundUserInterface

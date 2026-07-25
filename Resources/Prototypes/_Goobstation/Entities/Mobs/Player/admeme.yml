@@ -1,12 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 BloodfiendishOperator <141253729+Diggy0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 ## Navy Shit
 
@@ -36,6 +27,8 @@
   - Rodentia
   - SlimePerson
   - Dwarf
+  - Feroxi
+  - Chitinid
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
@@ -45,15 +38,7 @@
   - type: Speech
     speechVerb: HolierThanThou
   - type: GhostRole
-    skills: # CorvaxGoob-Skills
-    - All
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000 # Ten Hours
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 108000 # Thirty hours. Fuck you.
+    job: CentralCommandOfficial
 
 # Navy Officer
 
@@ -63,7 +48,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -84,6 +69,8 @@
     name: ghost-role-information-navy-officer-name
     description: ghost-role-information-navy-officer-description
     rules: ghost-role-information-navy-officer-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -103,7 +90,7 @@
   suffix: ADMIN ONLY, DO FUCKING NOT
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -124,6 +111,8 @@
     name: ghost-role-information-navy-captain-name
     description: ghost-role-information-navy-captain-description
     rules: ghost-role-information-navy-captain-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -143,7 +132,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -164,6 +153,8 @@
     name: ghost-role-information-navy-officer-undercover-name
     description: ghost-role-information-navy-officer-undercover-description
     rules: ghost-role-information-navy-officer-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -183,7 +174,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -204,6 +195,8 @@
     name: ghost-role-information-special-operations-officer-name
     description: ghost-role-information-special-operations-officer-description
     rules: ghost-role-information-special-operations-officer-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -223,7 +216,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/diplomat.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -244,6 +237,8 @@
     name: ghost-role-information-diplomat-name
     description: ghost-role-information-diplomat-description
     rules: ghost-role-information-navy-officer-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -263,7 +258,7 @@
   suffix: CentComm
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/navy_gold.rsi
+    sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Centcom/navy_gold.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -284,6 +279,8 @@
     name: ghost-role-information-inspector-name
     description: ghost-role-information-inspector-description
     rules: ghost-role-information-navy-officer-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -351,6 +348,8 @@
     name: ghost-role-information-Hecu-name
     description: ghost-role-information-Hecu-description
     rules: ghost-role-information-Hecu-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -386,6 +385,8 @@
     name: ghost-role-information-Gman-name
     description: ghost-role-information-Gman-description
     rules: ghost-role-information-Gman-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -439,6 +440,8 @@
     name: ghost-role-information-conquest-name
     description: ghost-role-information-conquest-description
     rules: ghost-role-information-conquest-rules
+    skills: # CorvaxGoob-Skills
+    - All
     raffle:
       settings: short
   - type: Loadout
@@ -448,6 +451,7 @@
   - type: Puller
     needsHands: false
     throwCooldown: 0.1
+  - type: GrabIntent
     stageChangeCooldown: 0.1
     grabThrowDamageModifier: 100
     grabThrownSpeed: 50
@@ -488,9 +492,10 @@
       - !type:GibBehavior { }
   - type: NoSlip
   - type: Temperature
-    heatDamageThreshold: 5000
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 5000
     heatDamage:
       types:
         Heat: -1
@@ -501,7 +506,7 @@
       1000: 1.5
       1500: 2
   - type: Stamina
-    critThreshold: 100000
+    baseCritThreshold: 100000
   - type: PassiveDamage
     allowedStates:
     - Alive

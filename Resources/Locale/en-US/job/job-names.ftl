@@ -79,10 +79,15 @@ job-name-ertengineer = ERT Engineer
 job-name-ertsecurity = ERT Security
 job-name-ertmedic = ERT Medic
 job-name-ertjanitor = ERT Janitor
-job-name-boxer = Boxer
-job-name-zookeeper = Zookeeper
 job-name-visitor = Visitor
+# Viro
+job-name-virologist = Virologist
 job-name-cluwne = Cluwne
+
+# event-resctricted jobs
+job-name-security-clown = Security Clown
+job-name-command-maid = Command Maid
+job-name-party-maker = Party Maker
 
 # unused jobs
 # these are required for the agent ID job icon tooltips
@@ -93,7 +98,6 @@ job-name-prisoner = Prisoner
 job-name-roboticist = Roboticist
 job-name-syndicate = Syndicate
 job-name-unknown = Unknown
-job-name-virologist = Virologist
 job-name-zombie = Zombie
 
 # Job titles
@@ -106,7 +110,6 @@ JobAtmosphericTechnician = Atmospheric Technician
 JobBartender = Bartender
 JobBorg = Borg
 JobBotanist = Botanist
-JobBoxer = Boxer
 JobCaptain = Captain
 JobCargoTechnician = Cargo Technician
 JobCentralCommandOfficial = Central Command Official
@@ -116,6 +119,7 @@ JobChemist = Chemist
 JobChiefEngineer = Chief Engineer
 JobChiefMedicalOfficer = Chief Medical Officer
 JobClown = Clown
+JobCommandMaid = Command Maid
 JobDetective = Detective
 JobBrigmedic = Brigmedic
 JobERTChaplain = ERT Chaplain
@@ -135,6 +139,7 @@ JobMime = Mime
 JobMusician = Musician
 JobParamedic = Paramedic
 JobPassenger = Assistant
+JobPartyMaker = Party Maker
 JobPsychologist = Psychologist
 JobQuartermaster = Quartermaster
 JobReporter = Reporter
@@ -143,6 +148,7 @@ JobResearchDirector = Research Director
 JobSalvageSpecialist = Salvage Specialist
 JobScientist = Scientist
 JobSecurityCadet = Security Cadet
+JobSecurityClown = Security Clown
 JobSecurityOfficer = Security Officer
 JobServiceWorker = Service Worker
 JobStationAi = Station AI
@@ -150,4 +156,3 @@ JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 JobWarden = Warden
-JobZookeeper = Zookeeper

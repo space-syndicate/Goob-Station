@@ -80,6 +80,8 @@ ent-BorgModuleDefibrillator = дефибрилляторный модуль бо
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleAdvancedTreatment = продвинутый лечащий модуль борга
     .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleAdvancedClowning = продвинутый клоунский модуль киборга
+    .desc = Продвинутый сервисный модуль только для самых смешных киборгов! В комплекте со встроенной духовкой, которая автоматически выпекает пироги со временем, проектором голокожурки и толкающим клаксоном.
 ent-BorgModuleArtifact = артефактный модуль борга
     .desc = { ent-BaseBorgModuleScience.desc }
 ent-BorgModuleAnomaly = аномальный модуль борга
@@ -90,6 +92,8 @@ ent-BorgModuleMusique = музыкальный модуль борга
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleGardening = садовый модуль борга
     .desc = { ent-BaseBorgModule.desc }
+ent-MothershipModule = модуль материнского корабля
+    .desc = Модуль, помогающий ядру материнского корабля помещать мозги и модули в боргов.
 ent-BorgModuleHarvesting = урожайный модуль борга
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleClowning = клоунский модуль борга
@@ -120,6 +124,8 @@ ent-XenoborgModuleChameleonProjector = модуль ксеноборга с ма
     .desc = Модуль с маскировочным проектором.
 ent-XenoborgModuleCloakDevice = модуль ксеноборга с устройством невидимости
     .desc = Модуль с устройством, позволяющим ксеноборгам становиться невидимыми на некоторое время.
+ent-XenoborgModuleSuperCloakDevice = модуль ксеноборга с устройством невидимости
+    .desc = Модуль с устройством, позволяющим ксеноборгам становиться по-настоящему невидимыми на меньшее время.
 ent-BorgModuleSyndicateWeapon = оружейный модуль борга
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleOperative = оперативный модуль борга
@@ -134,3 +140,21 @@ ent-BorgModuleSurgery = хирургический модуль борга
     .desc = { ent-BaseBorgModuleMedical.desc }
 ent-BorgModuleAdvancedSurgery = продвинутый хирургический модуль борга
     .desc = { ent-BaseBorgModuleMedical.desc }
+
+ent-BorgModuleArtistry = художественный модуль киборга
+    .desc = Модуль для занятий искусством, пока станция горит!
+
+ent-BorgModuleInflatable = надувной модуль киборга
+    .desc = { ent-BaseBorgModule.desc }
+
+ent-BorgModuleAdvancedTopical = продвинутый модуль первой помощи киборга
+    .desc = Продвинутый медицинский модуль, содержащий киборговую версию многожеланного гипоспрея. Теперь ваши киборги могут ещё быстрее вводить вредителям хлоральгидрат!
+
+ent-BorgModuleDoubleEsword = модуль киборга с двухклинковым энергомечом
+    .desc = Модуль, в который входит двухклинковый энергетический меч.
+
+ent-BorgModuleC20r = модуль киборга с C-20r ROW
+    .desc = Модуль с пистолетом-пулемётом C-20r, стреляющим очередями.
+
+ent-XenoborgModuleDoorControl = модуль контроля шлюзов ксеноборгов
+    .desc = Модуль позволяющий ксеноборгам контролировать шлюзы.

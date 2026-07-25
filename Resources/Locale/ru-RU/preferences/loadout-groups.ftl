@@ -100,7 +100,7 @@ loadout-group-station-engineer-outerclothing = Инженер, верхняя о
 loadout-group-station-engineer-shoes = Инженер, обувь
 loadout-group-station-engineer-id = Инженер, ID
 loadout-group-atmospheric-technician-jumpsuit = Атмосферный техник, комбинезон
-loadout-group-atmospheric-technician-head = Atmospheric Technician head
+loadout-group-atmospheric-technician-head = Атмосферный техник, голова
 loadout-group-atmospheric-technician-backpack = Атмосферный техник, рюкзак
 loadout-group-atmospheric-technician-outerclothing = Атмосферный техник, верхняя одежда
 loadout-group-atmospheric-technician-shoes = Атмосферный техник, обувь
@@ -164,7 +164,15 @@ loadout-group-paramedic-outerclothing = Парамедик, верхняя од�
 loadout-group-paramedic-shoes = Парамедик, обувь
 # Wildcards
 loadout-group-reporter-jumpsuit = Репортёр, комбинезон
-loadout-group-medical-glasses = медицинские очки
+loadout-group-medical-glasses = Медицинский отдел, очки
 loadout-group-psychologist-jumpsuit = Психолог, комбинезон
 loadout-group-boxer-jumpsuit = Боксёр, комбинезон
 loadout-group-boxer-gloves = Боксёр, перчатки
+
+loadout-group-jobtrinkets = Безделушки должности
+
+loadout-group-survival-military = См. строку 14, никто не увидит это, так что :3
+
+loadout-group-chaplain-bible = Священная книга
+
+loadout-group-cargo-technician-id = Грузчик, ID

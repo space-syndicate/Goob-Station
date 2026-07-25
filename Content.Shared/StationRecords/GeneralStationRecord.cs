@@ -1,13 +1,6 @@
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2023 faint <46868845+ficcialfaint@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
-using Robust.Shared.Enums;
+using Content.Shared.Humanoid;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.StationRecords;
@@ -51,12 +44,13 @@ public sealed record GeneralStationRecord
     [DataField]
     public string Species = string.Empty;
 
+    // CorvaxGoob : replaced to Sex
     /// <summary>
     ///     Gender identity tied to this station record.
     /// </summary>
     /// <remarks>Sex should be placed in a medical record, not a general record.</remarks>
     [DataField]
-    public Gender Gender = Gender.Epicene;
+    public Sex Sex = Sex.Unsexed;
 
     /// <summary>
     ///     The priority to display this record at.

@@ -1,55 +1,15 @@
-// SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <zddm@outlook.es>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
-// SPDX-FileCopyrightText: 2022 ike709 <ike709@github.com>
-// SPDX-FileCopyrightText: 2022 ike709 <ike709@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2023 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2023 Ray <vigersray@gmail.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 MFMessage <22904993+MFMessage@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mota <belochuc@gmail.com>
-// SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 Vasilis <vascreeper@yahoo.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 no <165581243+pissdemon@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2024 poeMota <142114334+poeMota@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
+using Content.Server._CorvaxGoob.Skills;
 using Content.Server.Administration.Logs;
+using Content.Server.Administration.Managers;
 using Content.Server.EUI;
+using Content.Server.GameTicking.Events;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
-using Content.Shared.Ghost.Roles.Raffles;
 using Content.Server.Ghost.Roles.UI;
-using Content.Server.Mind.Commands;
+using Content.Server.Popups;
+using Content.Shared._CorvaxGoob.GhostBar;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -57,14 +17,18 @@ using Content.Shared.Follower;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Ghost.Roles;
+using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Ghost.Roles.Raffles;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Players;
 using Content.Shared.Roles;
+using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
@@ -77,15 +41,18 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
-using Content.Shared._CorvaxGoob.Skills;
-using Content.Server._CorvaxGoob.Skills;
+using Content.Shared.Roles.Components;
+using Content.Server.GameTicking;
+using System.Linq;
 
 namespace Content.Server.Ghost.Roles;
 
 [UsedImplicitly]
 public sealed class GhostRoleSystem : EntitySystem
 {
+    [Dependency] private readonly IBanManager _ban = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
@@ -98,6 +65,7 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SkillsSystem _skillsSystem = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly GhostSystem _ghost = default!; // CorvaxGoob-GhostBarMoreFeatures
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -172,16 +140,19 @@ public sealed class GhostRoleSystem : EntitySystem
 
     public void OpenEui(ICommonSession session)
     {
-        if (session.AttachedEntity is not { Valid: true } attached ||
-            !TryComp<GhostComponent>(attached, out var ghost) || !ghost.CanTakeGhostRoles) // Goob edit
+        if (session.AttachedEntity is not { Valid: true } attached) // Goob edit
             return;
 
-        if (_openUis.ContainsKey(session))
-            CloseEui(session);
+        if ((TryComp<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles)
+            || TryComp<GhostBarPlayerComponent>(attached, out var ghostBarPlayer)) // CorvaxGoob-GhostBar
+        {
+            if (_openUis.ContainsKey(session))
+                CloseEui(session);
 
-        var eui = _openUis[session] = new GhostRolesEui();
-        _euiManager.OpenEui(eui, session);
-        eui.StateDirty();
+            var eui = _openUis[session] = new GhostRolesEui();
+            _euiManager.OpenEui(eui, session);
+            eui.StateDirty();
+        }
     }
 
     public void OpenMakeGhostRoleEui(ICommonSession session, EntityUid uid)
@@ -322,7 +293,7 @@ public sealed class GhostRoleSystem : EntitySystem
             return false;
 
         // can't win if you are no longer a ghost (e.g. if you returned to your body)
-        if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity))
+        if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity) && !HasComp<GhostBarPlayerComponent>(player.AttachedEntity))
             return false;
 
         if (Takeover(player, identifier))
@@ -504,21 +475,112 @@ public sealed class GhostRoleSystem : EntitySystem
     /// <param name="identifier">ID of the ghost role.</param>
     public void Request(ICommonSession player, uint identifier)
     {
-        if (player.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.TryGetComponent<GhostComponent>(attached, out var ghost) || !ghost.CanTakeGhostRoles) // Goobstation
+        if (player.AttachedEntity is not { Valid: true } attached) // Goobstation
             return;
 
         if (!_ghostRoles.TryGetValue(identifier, out var roleEnt))
             return;
 
-        if (roleEnt.Comp.RaffleConfig is not null)
+        TryPrototypes(roleEnt, out var antags, out var jobs);
+
+        // Check role bans
+        if (_ban.IsRoleBanned(player, antags) || _ban.IsRoleBanned(player, jobs))
         {
-            JoinRaffle(player, identifier);
+            Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed ban?");
+            return;
         }
-        else
+
+        // Check role requirements
+        if (!IsRoleAllowed(player, jobs, antags))
         {
-            Takeover(player, identifier);
+            Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed requirement check?");
+            return;
         }
+
+        if (HasComp<GhostBarPlayerComponent>(player.AttachedEntity) // CorvaxGoob-GhostBar
+            || EntityManager.TryGetComponent<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles)
+        {
+            if (roleEnt.Comp.RaffleConfig is not null)
+            {
+                JoinRaffle(player, identifier);
+            }
+            else
+            {
+                Takeover(player, identifier);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Collect all role prototypes on the Ghostrole.
+    /// </summary>
+    /// <returns>
+    /// Returns true if at least on role prototype could be found.
+    /// </returns>
+    private bool TryPrototypes(
+        Entity<GhostRoleComponent> roleEnt,
+        out List<ProtoId<AntagPrototype>> antags,
+        out List<ProtoId<JobPrototype>> jobs)
+    {
+        antags = [];
+        jobs = [];
+
+        // If there is a mind already, check its mind roles.
+        // Not sure if this can ever actually happen.
+        if (TryComp<MindContainerComponent>(roleEnt, out var mindCont)
+            && TryComp<MindComponent>(mindCont.Mind, out var mind))
+        {
+            foreach (var role in mind.MindRoleContainer.ContainedEntities)
+            {
+                if(!TryComp<MindRoleComponent>(role, out var comp))
+                    continue;
+
+                if (comp.JobPrototype is not null)
+                    jobs.Add(comp.JobPrototype.Value);
+
+                else if (comp.AntagPrototype is not null)
+                    antags.Add(comp.AntagPrototype.Value);
+            }
+
+            return antags.Count > 0 || jobs.Count > 0;
+        }
+
+        if (roleEnt.Comp.JobProto is not null)
+            jobs.Add(roleEnt.Comp.JobProto.Value);
+
+
+        // If there is no mind, check the mindRole prototypes
+        foreach (var proto in roleEnt.Comp.MindRoles)
+        {
+            if (!_prototype.TryIndex(proto, out var indexed)
+                || !indexed.TryGetComponent<MindRoleComponent>(out var comp, _ent.ComponentFactory))
+                continue;
+            var roleComp = (MindRoleComponent)comp;
+
+            if (roleComp.JobPrototype is not null)
+                jobs.Add(roleComp.JobPrototype.Value);
+            else if (roleComp.AntagPrototype is not null)
+                antags.Add(roleComp.AntagPrototype.Value);
+            else
+                Log.Debug($"Mind role '{proto}' of '{roleEnt.Comp.RoleName}' has neither a job or antag prototype specified");
+        }
+
+        return antags.Count > 0 || jobs.Count > 0;
+    }
+
+    /// <summary>
+    /// Checks if the player passes the requirements for the supplied roles.
+    /// Returns false if any role fails the check.
+    /// </summary>
+    private bool IsRoleAllowed(
+        ICommonSession player,
+        List<ProtoId<JobPrototype>>? jobIds,
+        List<ProtoId<AntagPrototype>>? antagIds)
+    {
+        var ev = new IsRoleAllowedEvent(player, jobIds, antagIds);
+        RaiseLocalEvent(ref ev);
+
+        return !ev.Cancelled;
     }
 
     /// <summary>
@@ -540,6 +602,16 @@ public sealed class GhostRoleSystem : EntitySystem
             _adminLogger.Add(LogType.GhostRoleTaken, LogImpact.Low, $"{player:player} took the {role.Comp.RoleName:roleName} ghost role {ToPrettyString(player.AttachedEntity.Value):entity}");
 
         CloseEui(player);
+
+        // CorvaxGoob-GhostBar-Start : auto clearing all player's characters
+        var ghostBarEntitiesQuery = EntityQueryEnumerator<GhostBarPlayerComponent>();
+        while (ghostBarEntitiesQuery.MoveNext(out var ent, out var ghostBar))
+        {
+            if (ghostBar.PlayerSession == player)
+                QueueDel(ent);
+        }
+        // CorvaxGoob-GhostBar-End
+
         return true;
     }
 
@@ -550,6 +622,26 @@ public sealed class GhostRoleSystem : EntitySystem
 
         if (player.AttachedEntity == null)
             return;
+
+        // CorvaxGoob-GhostBar-Start
+        if (HasComp<GhostBarPlayerComponent>(player.AttachedEntity) && _mindSystem.TryGetMind(player, out var mindId, out var mindComp))
+        {
+            var ghostEnt = Spawn(GameTicker.ObserverPrototypeName, _transform.GetMapCoordinates(player.AttachedEntity.Value));
+            _mindSystem.Visit(mindId, ghostEnt, mindComp);
+
+            _followerSystem.StartFollowingEntity(ghostEnt, role);
+
+            if (!TryComp<GhostComponent>(ghostEnt, out var visitingGhostComp))
+                return;
+
+            _ghost.SetCanReturnToBody((ghostEnt, visitingGhostComp), true);
+
+            return;
+        }
+
+        if (!TryComp<GhostComponent>(player.AttachedEntity, out var ghost) || !ghost.CanTakeGhostRoles) // Goob edit
+            return;
+        // CorvaxGoob-GhostBar-End
 
         _followerSystem.StartFollowingEntity(player.AttachedEntity.Value, role);
     }
@@ -573,9 +665,6 @@ public sealed class GhostRoleSystem : EntitySystem
         _mindSystem.TransferTo(newMind, mob);
 
         _roleSystem.MindAddRoles(newMind.Owner, role.MindRoles, newMind.Comp);
-
-        if (_roleSystem.MindHasRole<GhostRoleMarkerRoleComponent>(newMind!, out var markerRole))
-            markerRole.Value.Comp2.Name = role.RoleName;
     }
 
     /// <summary>
@@ -626,13 +715,15 @@ public sealed class GhostRoleSystem : EntitySystem
                 ? _timing.CurTime.Add(raffle.Countdown)
                 : TimeSpan.MinValue;
 
+            TryPrototypes((uid, role), out var antags, out var jobs);
+
             roles.Add(new GhostRoleInfo
             {
                 Identifier = id,
                 Name = role.RoleName,
                 Description = role.RoleDescription,
                 Rules = role.RoleRules,
-                Requirements = role.Requirements,
+                RolePrototypes = (jobs, antags),
                 Kind = kind,
                 RafflePlayerCount = rafflePlayerCount,
                 RaffleEndTime = raffleEndTime
@@ -668,7 +759,7 @@ public sealed class GhostRoleSystem : EntitySystem
             _roleSystem.MindAddJobRole(args.Mind, args.Mind, silent:false,ghostRole.JobProto);
         }
 
-        _skillsSystem.UpdateSkills(args.Mind, ghostRole.Skills); // CorvaxGoob-Skills
+        _skillsSystem.GrantSkill(uid, ghostRole.Skills, true); // CorvaxGoob-Skills
 
         ghostRole.Taken = true;
         UnregisterGhostRole((uid, ghostRole));
@@ -751,7 +842,7 @@ public sealed class GhostRoleSystem : EntitySystem
         RaiseLocalEvent(mob, spawnedEvent, true); // Goob Edit: Broadcast
 
         if (ghostRole.MakeSentient)
-            MakeSentientCommand.MakeSentient(mob, EntityManager, ghostRole.AllowMovement, ghostRole.AllowSpeech);
+            _mindSystem.MakeSentient(mob, ghostRole.AllowMovement, ghostRole.AllowSpeech);
 
         EnsureComp<MindContainerComponent>(mob);
 
@@ -798,7 +889,7 @@ public sealed class GhostRoleSystem : EntitySystem
         }
 
         if (ghostRole.MakeSentient)
-            MakeSentientCommand.MakeSentient(uid, EntityManager, ghostRole.AllowMovement, ghostRole.AllowSpeech);
+            _mindSystem.MakeSentient(uid, ghostRole.AllowMovement, ghostRole.AllowSpeech);
 
         GhostRoleInternalCreateMindAndTransfer(args.Player, uid, uid, ghostRole);
         UnregisterGhostRole((uid, ghostRole));
@@ -865,7 +956,7 @@ public sealed class GhostRoleSystem : EntitySystem
 
     public void OnGhostRoleRadioMessage(Entity<GhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
     {
-        if (!_prototype.TryIndex(args.ProtoId, out var ghostRoleProto))
+        if (!_prototype.Resolve(args.ProtoId, out var ghostRoleProto))
             return;
 
         // if the prototype chosen isn't actually part of the selectable options, ignore it

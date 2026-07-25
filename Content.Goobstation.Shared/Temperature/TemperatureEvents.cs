@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Atmos;
@@ -12,3 +9,9 @@ public sealed class TemperatureImmunityEvent(float currentTemperature) : EntityE
     public float CurrentTemperature = currentTemperature;
     public readonly float IdealTemperature = Atmospherics.T37C;
 }
+
+[ByRefEvent]
+public record struct BeforeTemperatureChange(
+    float CurrentTemperature,
+    float LastTemperature,
+    float TemperatureDelta);

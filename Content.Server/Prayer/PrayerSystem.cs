@@ -1,27 +1,6 @@
-// SPDX-FileCopyrightText: 2022 Just-a-Unity-Dev <just-a-unity-dev@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 eclips_e <67359748+Just-a-Unity-Dev@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 lzk228 <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dae <60460608+ZeroDayDaemon@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Júlio César <j.cesarueti@yahoo.com>
-// SPDX-FileCopyrightText: 2024 Júlio César Ueti <52474532+Mirino97@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 Voomra <dimon550@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.Administration.Notifications; // Goobstation - Admin Notifications
 using Content.Goobstation.Common.Religion;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -33,6 +12,8 @@ using Content.Shared.Chat;
 using Content.Shared.Prayer;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
+using Content.Server.Administration.Managers; // Goobstation - Admin Notifications
+using Robust.Server.Audio; // Goobstation - Admin Notifications
 
 namespace Content.Server.Prayer;
 /// <summary>
@@ -47,6 +28,8 @@ public sealed class PrayerSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private readonly AudioSystem _audio = default!; // Goobstation - Admin Notifications
+    [Dependency] private readonly IAdminManager _admin = default!; // Goobstation - Admin Notifications
 
     public override void Initialize()
     {
@@ -98,7 +81,7 @@ public sealed class PrayerSystem : EntitySystem
     /// <param name="source">The IPlayerSession that sent the message</param>
     /// <param name="messageString">The main message sent to the player via the chatbox</param>
     /// <param name="popupMessage">The popup to notify the player, also prepended to the messageString</param>
-    public void SendSubtleMessage(ICommonSession target, ICommonSession source, string messageString, string popupMessage)
+    public void SendSubtleMessage(ICommonSession target, ICommonSession? source, string messageString, string popupMessage)
     {
         if (target.AttachedEntity == null)
             return;
@@ -107,7 +90,7 @@ public sealed class PrayerSystem : EntitySystem
 
         _popupSystem.PopupEntity(popupMessage, target.AttachedEntity.Value, target, PopupType.Large);
         _chatManager.ChatMessageToOne(ChatChannel.Local, messageString, message, EntityUid.Invalid, false, target.Channel);
-        _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(target.AttachedEntity.Value):player} received subtle message from {source.Name}: {message}");
+        _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(target.AttachedEntity.Value):player} received subtle message from {source?.Name ?? "unknown source"}: {message}");
     }
 
     /// <summary>
@@ -129,5 +112,10 @@ public sealed class PrayerSystem : EntitySystem
 
         _chatManager.SendAdminAnnouncement($"{Loc.GetString(comp.NotificationPrefix)} <{sender.Name}>: {message}");
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(sender.AttachedEntity.Value):player} sent prayer ({Loc.GetString(comp.NotificationPrefix)}): {message}");
+
+        // Goobstation - Admin Notifications
+        if (comp.NotificationSound != null) // estas goida
+            foreach (var admin in _admin.ActiveAdmins)
+                RaiseNetworkEvent(new AdminNotificationEvent(comp.NotificationSound), admin);
     }
 }

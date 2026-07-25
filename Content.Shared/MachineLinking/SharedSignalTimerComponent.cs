@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2023 CommieFlowers <rasmus.cedergren@hotmail.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 rolfero <45628623+rolfero@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Robust.Shared.Serialization;
@@ -22,24 +17,27 @@ public enum SignalTimerUiKey : byte
 public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
 {
     public string CurrentText;
+    // public TimeSpan CurrentDelay; // Mono // CorvaxGoob-Revert-Start
     public string CurrentDelayMinutes;
-    public string CurrentDelaySeconds;
+    public string CurrentDelaySeconds; // CorvaxGoob-Revert-End
     public bool ShowText;
     public TimeSpan TriggerTime;
     public bool TimerStarted;
     public bool HasAccess;
 
     public SignalTimerBoundUserInterfaceState(string currentText,
+        // TimeSpan currentDelay, // Mono // CorvaxGoob-Revert-Start
         string currentDelayMinutes,
-        string currentDelaySeconds,
+        string currentDelaySeconds, // CorvaxGoob-Revert-End
         bool showText,
         TimeSpan triggerTime,
         bool timerStarted,
         bool hasAccess)
     {
         CurrentText = currentText;
+        // CurrentDelay = currentDelay; // Mono // CorvaxGoob-Revert-Start
         CurrentDelayMinutes = currentDelayMinutes;
-        CurrentDelaySeconds = currentDelaySeconds;
+        CurrentDelaySeconds = currentDelaySeconds; // CorvaxGoob-Revert-End
         ShowText = showText;
         TriggerTime = triggerTime;
         TimerStarted = timerStarted;

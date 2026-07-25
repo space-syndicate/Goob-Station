@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Text.RegularExpressions;
@@ -11,7 +7,7 @@ using Content.Goobstation.Server.Devil.Contract;
 using Content.Goobstation.Server.Devil.Objectives.Components;
 using Content.Goobstation.Server.Possession;
 using Content.Goobstation.Shared.CheatDeath;
-using Content.Goobstation.Shared.CrematorImmune;
+using Content.Goobstation.Common.CrematorImmune;
 using Content.Goobstation.Shared.Devil;
 using Content.Goobstation.Shared.Devil.Condemned;
 using Content.Goobstation.Shared.Exorcism;
@@ -38,6 +34,7 @@ using Content.Shared._Lavaland.Chasm;
 using Content.Shared._Shitmed.Body.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared.Actions;
+using Content.Shared.Administration.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
@@ -48,7 +45,10 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Temperature.Components;
+using Content.Shared.Zombies;
 using Robust.Server.Containers;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -238,14 +238,14 @@ public sealed partial class DevilSystem : EntitySystem
         if (HasComp<BibleUserComponent>(args.Source))
         {
             _damageable.TryChangeDamage(devil, devil.Comp.DamageOnTrueName * devil.Comp.BibleUserDamageMultiplier, true);
-            _stun.TryParalyze(devil, devil.Comp.ParalyzeDurationOnTrueName * devil.Comp.BibleUserDamageMultiplier, false);
+            _stun.TryUpdateParalyzeDuration(devil, devil.Comp.ParalyzeDurationOnTrueName * devil.Comp.BibleUserDamageMultiplier);
 
             var popup = Loc.GetString("devil-true-name-heard-chaplain", ("speaker", args.Source), ("target", devil));
             _popup.PopupEntity(popup, devil, PopupType.LargeCaution);
         }
         else
         {
-            _stun.TryParalyze(devil, devil.Comp.ParalyzeDurationOnTrueName, false);
+            _stun.TryUpdateParalyzeDuration(devil, devil.Comp.ParalyzeDurationOnTrueName);
             _damageable.TryChangeDamage(devil, devil.Comp.DamageOnTrueName, true);
 
             var popup = Loc.GetString("devil-true-name-heard", ("speaker", args.Source), ("target", devil));

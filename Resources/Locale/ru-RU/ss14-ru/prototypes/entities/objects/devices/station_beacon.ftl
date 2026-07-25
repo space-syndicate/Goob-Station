@@ -124,13 +124,13 @@ ent-DefaultStationBeaconRobotics = { ent-DefaultStationBeaconScience }
     .suffix = Робототехника
     .desc = { ent-DefaultStationBeaconScience.desc }
 ent-DefaultStationBeaconArtifactLab = { ent-DefaultStationBeaconScience }
-    .suffix = Артефактная
+    .suffix = Ксеноархеология
     .desc = { ent-DefaultStationBeaconScience.desc }
 ent-DefaultStationBeaconAnomalyGenerator = { ent-DefaultStationBeaconScience }
     .suffix = Генератор аномалий
     .desc = { ent-DefaultStationBeaconScience.desc }
 ent-DefaultStationBeaconCybersunRD = { ent-DefaultStationBeaconScience }
-    .suffix = Cybersun R&D
+    .suffix = Cybersun НИО
     .desc = { ent-DefaultStationBeaconScience.desc }
 ent-DefaultStationBeaconSupply = { ent-DefaultStationBeacon }
     .suffix = Снабжение
@@ -312,3 +312,11 @@ ent-DefaultStationBeaconEscapePodNW = { ent-DefaultStationBeacon }
 ent-DefaultStationBeaconVox = { ent-DefaultStationBeacon }
     .suffix = Вокс
     .desc = { ent-DefaultStationBeacon.desc }
+
+ent-DefaultStationBeaconGhost = { ent-DefaultStationBeacon }
+    .desc = { ent-DefaultStationBeacon.desc }
+    .suffix = Буу
+
+ent-DefaultStationBeaconCentComm = { ent-DefaultStationBeaconGhost }
+    .desc = { ent-DefaultStationBeaconGhost.desc }
+    .suffix = Центком

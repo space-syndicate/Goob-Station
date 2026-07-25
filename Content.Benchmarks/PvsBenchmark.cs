@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 #nullable enable
@@ -11,7 +8,7 @@ using BenchmarkDotNet.Attributes;
 using Content.IntegrationTests;
 using Content.IntegrationTests.Pair;
 using Content.Server.Mind;
-using Content.Server.Warps;
+using Content.Shared.Warps;
 using Robust.Shared;
 using Robust.Shared.Analyzers;
 using Robust.Shared.EntitySerialization;

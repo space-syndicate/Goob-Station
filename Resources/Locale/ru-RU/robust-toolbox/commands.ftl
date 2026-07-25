@@ -1,6 +1,5 @@
 ### Localization for engine console commands
 
-
 ## generic command errors
 
 cmd-invalid-arg-number-error = Недопустимое число аргументов.
@@ -38,7 +37,7 @@ cmd-cvar-invalid-args = Должно быть представлено ровн�
 cmd-cvar-not-registered = CVar '{ $cvar }' не зарегистрирован. Используйте 'cvar ?' для получения списка всех зарегистрированных CVar-ов.
 cmd-cvar-parse-error = Входное значение имеет неправильный формат для типа { $type }
 cmd-cvar-compl-list = Список доступных CVar-ов
-cmd-cvar-arg-name = <name | ?>
+cmd-cvar-arg-name = <имя | ?>
 cmd-cvar-value-hidden = <value hidden>
 
 ## 'list' command
@@ -114,10 +113,9 @@ cmd-exec-desc = Исполняет скриптовый файл из запис
 cmd-exec-help =
     Использование: exec <fileName>
     Каждая строка в файле выполняется как одна команда, если только она не начинается со знака #
-cmd-exec-arg-filename = <fileName>
+cmd-exec-arg-filename = <имя файла>
 
 ## 'dump_net_comps' command
-
 cmd-dump_net_comps-desc = Выводит таблицу сетевых компонентов.
 cmd-dump_net_comps-help = Использование: dump_net-comps
 cmd-dump_net_comps-error-writeable = Регистрация всё ещё доступна для записи, сетевые идентификаторы не были сгенерированы.
@@ -147,31 +145,30 @@ cmd-monitor-plus-all-hint = Показывает все мониторы
 ## Mapping commands
 
 cmd-set-ambient-light-desc = Позволяет установить эмбиентое освещение для указанной карты, в формате SRGB.
-cmd-set-ambient-light-help = setambientlight [mapid] [r g b a]
+cmd-set-ambient-light-help = Использование: { $command } [mapid] [r g b a]
 cmd-set-ambient-light-parse = Не удалось спарсить аргументы как байтовые значения цветов.
 cmd-savemap-desc = Сериализует карту на диск. Не будет сохранять карту после инициализации, если это не будет сделано принудительно.
-cmd-savemap-help = savemap <MapID> <Path> [force]
+cmd-savemap-help = Использование: { $command } <MapID> <Путь> [принудительно]
 cmd-savemap-not-exist = Целевая карта не существует.
 cmd-savemap-init-warning = Попытка сохранить карту после инициализации без принудительного сохранения.
 cmd-savemap-attempt = Попытка сохранить карту { $mapId } в { $path }.
 cmd-savemap-success = Карта успешно сохранена.
 cmd-hint-savemap-id = <MapID>
-cmd-hint-savemap-path = <Path>
+cmd-hint-savemap-path = <Путь>
 cmd-hint-savemap-force = [bool]
 cmd-loadmap-desc = Загружает карту с диска в игру.
-cmd-loadmap-help = loadmap <MapID> <Path> [x] [y] [rotation] [consistentUids]
+cmd-loadmap-help = Использование: { $command } <MapID> <Путь> [x] [y] [вращение] [consistentUids]
 cmd-loadmap-nullspace = Невозможно загрузить в карту 0.
 cmd-loadmap-exists = Карта { $mapId } уже существует.
 cmd-loadmap-success = Карта { $mapId } была загружена из { $path }.
 cmd-loadmap-error = При загрузке карты из { $path } произошла ошибка.
-cmd-hint-loadmap-x-position = [x-position]
-cmd-hint-loadmap-y-position = [y-position]
-cmd-hint-loadmap-rotation = [rotation]
+cmd-hint-loadmap-x-position = [позиция x]
+cmd-hint-loadmap-y-position = [позиция y]
+cmd-hint-loadmap-rotation = [вращение]
 cmd-hint-loadmap-uids = [float]
 cmd-hint-savebp-id = <Grid EntityID>
 
 ## 'flushcookies' command
-
 
 # Примечание: команда flushcookies взята из Robust.Client.WebView, её нет в коде основного движка.
 
@@ -243,43 +240,43 @@ cmd-cls-help = Очищает консоль отладки от всех соо
 cmd-sendgarbage-desc = Отправляет мусор на сервер.
 cmd-sendgarbage-help = Сервер ответит 'нет ты'.
 cmd-loadgrid-desc = Загружает грид из файла на существующую карту.
-cmd-loadgrid-help = loadgrid <MapID> <Path> [x y] [вращение] [storeUids]
+cmd-loadgrid-help = Использование: { $command } <MapID> <Путь> [x y] [вращение] [storeUids]
 cmd-loc-desc = Выводит абсолютное местоположение сущности игрока в консоль.
-cmd-loc-help = loc
+cmd-loc-help = Использование: { $command }
 cmd-tpgrid-desc = Телепортирует грид в новое место.
-cmd-tpgrid-help = tpgrid <gridId> <X> <Y> [<MapId>]
+cmd-tpgrid-help = Использование: { $command } <gridId> <X> <Y> [<MapId>]
 cmd-rmgrid-desc = Удаляет грид с карты. Вы не можете удалить стандартный грид.
-cmd-rmgrid-help = rmgrid <gridId>
+cmd-rmgrid-help = Использование: { $command } <gridId>
 cmd-mapinit-desc = Запускает инициализацию карты на карте.
-cmd-mapinit-help = mapinit <mapID>
+cmd-mapinit-help = Использование: { $command } <mapID>
 cmd-lsmap-desc = Перечисляет карты.
-cmd-lsmap-help = lsmap
+cmd-lsmap-help = Использование: { $command }
 cmd-lsgrid-desc = Перечисляет гриды.
-cmd-lsgrid-help = lsgrid
+cmd-lsgrid-help = Использование: { $command }
 cmd-addmap-desc = Добавляет в раунд новую пустую карту. Если mapID уже существует, эта команда ничего не сделает.
-cmd-addmap-help = addmap <mapID> [initialize]
+cmd-addmap-help = Использование: { $command } <mapID> [pre-init]
 cmd-rmmap-desc = Удаляет карту из мира. Вы не можете удалить nullspace.
-cmd-rmmap-help = rmmap <mapId>
+cmd-rmmap-help = Использование: { $command } <mapId>
 cmd-savegrid-desc = Сериализует грид на диск.
-cmd-savegrid-help = savegrid <gridID> <Path>
+cmd-savegrid-help = Использование: { $command } <gridID> <Path>
 cmd-testbed-desc = Загружает физический испытательный стенд на указаной карте.
-cmd-testbed-help = testbed <mapid> <test>
+cmd-testbed-help = Использование: { $command } <mapid> <test>
 cmd-saveconfig-desc = Сохраняет конфигурацию клиента в файл конфигурации.
-cmd-saveconfig-help = saveconfig
+cmd-saveconfig-help = Использование: { $command }
 cmd-addcomp-desc = Добавляет компонент сущности.
-cmd-addcomp-help = addcomp <uid> <componentName>
+cmd-addcomp-help = Использование: { $command } <uid> <имя компонента>
 cmd-addcompc-desc = Добавляет компонент сущности на клиенте.
-cmd-addcompc-help = addcompc <uid> <componentName>
+cmd-addcompc-help = Использование: { $command } <uid> <имя компонента>
 cmd-rmcomp-desc = Удаляет компонент у сущности.
-cmd-rmcomp-help = rmcomp <uid> <componentName>
+cmd-rmcomp-help = Использование: { $command } <uid> <имя компонента>
 cmd-rmcompc-desc = Удаляет компонент у сущности на клиенте.
-cmd-rmcompc-help = rmcomp <uid> <componentName>
+cmd-rmcompc-help = Использование: { $command } <uid> <имя компонента>
 cmd-addview-desc = Позволяет подписаться на просмотр сущности в целях отладки.
-cmd-addview-help = addview <entityUid>
+cmd-addview-help = Использование: { $command } <entityUid>
 cmd-addviewc-desc = Позволяет подписаться на просмотр сущности в целях отладки.
-cmd-addviewc-help = addview <entityUid>
+cmd-addviewc-help = Использование: { $command } <entityUid>
 cmd-removeview-desc = Позволяет отписаться от просмотра сущности в целях отладки.
-cmd-removeview-help = removeview <entityUid>
+cmd-removeview-help = Использование: { $command } <entityUid>
 cmd-loglevel-desc = Изменяет уровень логирования для предоставленного sawmill.
 cmd-loglevel-help =
     Использование: loglevel <sawmill> <level>
@@ -300,31 +297,32 @@ cmd-setinputcontext-help = Использование: setinputcontext <context>
 cmd-forall-desc = Запускает команду для всех сущностей с данным компонентом.
 cmd-forall-help = Использование: forall <bql query> do <command...>
 cmd-delete-desc = Удаляет сущность с указанным ID.
-cmd-delete-help = delete <entity UID>
+cmd-delete-help = Использование: { $command } <entity UID>
 # System commands
 cmd-showtime-desc = Показывает время сервера.
-cmd-showtime-help = showtime
+cmd-showtime-help = Использование: { $command }
 cmd-restart-desc = Корректно перезапускает сервер (не только раунд).
-cmd-restart-help = restart
+cmd-restart-help = Использование: { $command }
 cmd-shutdown-desc = Корректно выключает сервер.
-cmd-shutdown-help = shutdown
+cmd-shutdown-help = Использование: { $command }
 cmd-netaudit-desc = Выводит информацию о безопасности NetMsg.
-cmd-netaudit-help = netaudit
+cmd-netaudit-help = Использование: { $command }
 # Player commands
 cmd-tp-desc = Телепортирует игрока в любую точку в раунде.
-cmd-tp-help = tp <x> <y> [<mapID>]
+cmd-tp-help = Использование: { $command } <x> <y> [<mapID>]
+
 cmd-tpto-desc = Телепортирует текущего игрока или указанных игроков/сущностей к местоположению первого игрока/сущности.
-cmd-tpto-help = tpto <username|uid> [username|uid]...
+cmd-tpto-help = Использование: { $command } <имя пользователя|uid> [имя пользователя|NetEntity]...
 cmd-tpto-destination-hint = место назначения (uid или имя пользователя)
 cmd-tpto-victim-hint = сущность для телепортации (uid или имя пользователя)
 cmd-tpto-parse-error = Не удаётся распознать сущность или игрока: { $str }
 cmd-listplayers-desc = Перечисляет всех игроков, подключённых в данный момент.
-cmd-listplayers-help = listplayers
+cmd-listplayers-help = Использование: { $command }
 cmd-kick-desc = Кикает подключённого игрока с сервера, отключая его от сети.
-cmd-kick-help = kick <PlayerIndex> [<Reason>]
+cmd-kick-help = Использование: { $command } <PlayerIndex> [<Причина>]
 # Spin command
 cmd-spin-desc = Заставляет сущность вращаться. Сущность по умолчанию является надклассом прикреплённого игрока.
-cmd-spin-help = spin velocity [drag] [entityUid]
+cmd-spin-help = Использование: { $command } velocity [drag] [entityUid]
 # Localization command
 cmd-rldloc-desc = Перезагружает локализацию (клиент и сервер).
 cmd-rldloc-help = Использование: rldloc
@@ -332,7 +330,7 @@ cmd-rldloc-help = Использование: rldloc
 cmd-spawn-desc = Создаёт сущность определённого типа.
 cmd-spawn-help = spawn <прототип> ИЛИ spawn <прототип> <относительная сущность ID> ИЛИ spawn <прототип> <x> <y>
 cmd-cspawn-desc = Спавнит на стороне клиента сущность определённого типа у ваших ног.
-cmd-cspawn-help = cspawn <entity type>
+cmd-cspawn-help = Использование: { $command } <тип сущности>
 cmd-scale-desc = Увеличивает или уменьшает размер сущности.
 cmd-scale-help = scale <entityUid> <float>
 cmd-dumpentities-desc = Дамп списка объектов.
@@ -429,4 +427,4 @@ cmd-vfs_ls-help =
     Пример:
     vfs_list /Assemblies
 cmd-vfs_ls-err-args = Нужен ровно 1 аргумент.
-cmd-vfs_ls-hint-path = <path>
+cmd-vfs_ls-hint-path = <путь>

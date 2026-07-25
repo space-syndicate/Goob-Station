@@ -1,23 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Ygg01 <y.laughing.man.y@gmail.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Krunklehorn <42424291+Krunklehorn@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 to4no_fix <156101927+chavonadelal@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-// SPDX-FileCopyrightText: 2025 Martynas6ha4 <martynashagriefer@gmail.com>
-// SPDX-FileCopyrightText: 2025 NotActuallyMarty <martynashagriefer@gmail.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 // SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
@@ -245,8 +225,11 @@ public sealed class ToggleableClothingSystem : EntitySystem
         UnequipClothing(wearer, new Entity<ToggleableClothingComponent>(attachedComp.AttachedUid, toggleableComp), attached.Owner, slot);
     }
 
-
-
+    public bool IsToggled(Entity<ToggleableClothingComponent> ent, EntityUid clothing) // Goobstation
+///
+    {
+        return !ent.Comp.Container.Contains(clothing);
+    }
 
     private void OnInteractHand(Entity<AttachedClothingComponent> attached, ref InteractHandEvent args)
     {
@@ -444,7 +427,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (!TryComp(comp.AttachedUid, out ToggleableClothingComponent? toggleableComp))
             return;
 
-        if (toggleableComp.LifeStage > ComponentLifeStage.Running)
+        if (LifeStage(attached.Comp.AttachedUid) > EntityLifeStage.MapInitialized) // Goobstation
             return;
 
         // As unequipped gets called in the middle of container removal, we cannot call a container-insert without causing issues.
@@ -628,7 +611,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (storedClothing != null)
             _inventorySystem.TryEquip(parent, storedClothing.Value, slot, force: true, triggerHandContact: true, silent:true);
     }
-    private void EquipClothing(EntityUid user, Entity<ToggleableClothingComponent> toggleable, EntityUid clothing, string slot)
+    public bool EquipClothing(EntityUid user, Entity<ToggleableClothingComponent> toggleable, EntityUid clothing, string slot, bool silent = false) // Goobstation
     {
         var parent = Transform(toggleable.Owner).ParentUid;
         var comp = toggleable.Comp;
@@ -639,20 +622,22 @@ public sealed class ToggleableClothingSystem : EntitySystem
             if (!TryComp<AttachedClothingComponent>(clothing, out var attachedComp) || !comp.ReplaceCurrentClothing)
             {
                 _popupSystem.PopupClient(Loc.GetString("toggleable-clothing-remove-first", ("entity", currentClothing)), user, user);
-                return;
+                return false; // Goobstation
             }
 
             // Check if attached clothing have container or this container not empty
             if (attachedComp.ClothingContainer == null || attachedComp.ClothingContainer.ContainedEntity != null)
-                return;
+                return false; // Goobstation
 
             if (_inventorySystem.TryUnequip(user, parent, slot))
                 _containerSystem.Insert(currentClothing.Value, attachedComp.ClothingContainer);
         }
 
-        if (_inventorySystem.TryEquip(user, parent, clothing, slot) &&
+        if (_inventorySystem.TryEquip(user, parent, clothing, slot, silent) &&
             toggleable.Comp.EquippedPrefixes.TryGetValue(slot, out var prefix))
             _clothing.SetEquippedPrefix(toggleable, toggleable.Comp.EquippedPrefixes.GetValueOrDefault(slot, prefix));
+
+        return true; // Goobstation
     }
 
     private void OnGetActions(Entity<ToggleableClothingComponent> toggleable, ref GetItemActionsEvent args)

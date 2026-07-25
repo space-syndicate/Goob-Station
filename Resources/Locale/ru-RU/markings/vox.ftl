@@ -36,3 +36,43 @@ marking-VoxTail-vox_tail = Вокс, Хвост (Средний)
 marking-VoxTail = Вокс, Хвост (Средний)
 marking-VoxTailBig-vox_tail_big = Вокс, Хвост (Большой)
 marking-VoxTailBig = Вокс, Хвост (Большой)
+marking-VoxTailSpikes-vox_tail_spikes = Вокс, Хвост (Шипастый)
+marking-VoxTailSpikes = Вокс, Хвост (Шипастый)
+marking-VoxTailDocked-vox_tail_docked = Вокс, Хвост (Рудимент)
+marking-VoxTailDocked = Вокс, Хвост (Рудимент)
+
+marking-TattooVoxNightlingHead-tattoo_nightling_head = Вокс, Голова, Татуировка (Найтлинг)
+
+marking-TattooVoxNightlingHead = Вокс, Голова, Татуировка (Найтлинг)
+
+marking-TattooVoxArrowHead-tattoo_arrow_head = Вокс, Голова, Татуировка (Стрелка)
+
+marking-TattooVoxArrowHead = Вокс, Голова, Татуировка (Стрелка)
+
+marking-VoxTattooEyeliner-eyeliner = Подводка
+
+marking-VoxTattooEyeliner = Подводка
+
+marking-VoxVisage-visage = Маска (Полная)
+
+marking-VoxVisage = Маска (Полная)
+
+marking-VoxCheek-cheekblush = Щёки
+
+marking-VoxCheek = Щёки
+
+marking-VoxBeak-beak = Клюв (Острый)
+
+marking-TattooVoxNightbelt-nightbelt = Вокс, Живот, Татуировка (Найтлинг)
+
+marking-TattooVoxNightbelt = Вокс, Живот, Татуировка (Найтлинг)
+
+marking-TattooVoxChestV-night_v = Вокс, Грудь, Татуировка (форма буквы V)
+
+marking-TattooVoxChestV = Вокс, Грудь, Татуировка (форма буквы V)
+
+marking-TattooVoxUnderbelly-underbelly = Грудь
+
+marking-TattooVoxUnderbelly = Грудь
+
+marking-VoxTailSplit-vox_tail_split = Вокс, Хвост (Разделённый)

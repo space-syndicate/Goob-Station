@@ -1,0 +1,49 @@
+
+- type: entity
+  parent: OrganHumanBrain
+  id: OrganTajaranBrain
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+
+- type: entity
+  parent: OrganHumanEyes
+  id: OrganTajaranEyes
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+
+- type: entity
+  parent: OrganAnimalHeart
+  id: OrganTajaranHeart
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+
+- type: entity
+  parent: OrganHumanLungs
+  id: OrganTajaranLungs
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+
+- type: entity
+  parent: OrganAnimalStomach
+  id: OrganTajaranStomach
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+
+- type: entity
+  parent: OrganAnimalLiver
+  id: OrganTajaranLiver
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi
+
+- type: entity
+  parent: OrganHumanKidneys
+  id: OrganTajaranKidneys
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Mobs/Species/Tajaran/organs.rsi

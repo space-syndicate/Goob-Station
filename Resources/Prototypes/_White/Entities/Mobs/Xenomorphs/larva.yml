@@ -33,7 +33,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 100
+        density: 10
         mask:
         - SmallMobMask
         layer:
@@ -54,7 +54,10 @@
       types:
         Blunt: 2
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SulfuricAcid
+        Quantity: 50
   - type: MobPrice
     price: 250
   - type: Organ

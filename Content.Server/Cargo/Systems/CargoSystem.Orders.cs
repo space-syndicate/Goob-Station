@@ -1,109 +1,10 @@
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 Marat Gadzhiev <15rinkashikachi15@gmail.com>
-// SPDX-FileCopyrightText: 2023 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Checkraze <71046427+Cheackraze@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2023 Julian Giebel <juliangiebel@live.de>
-// SPDX-FileCopyrightText: 2023 Tom Leys <tom@crump-leys.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 eoineoineoin <eoin.mcloughlin+gh@gmail.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Andrew <blackledgecreates@gmail.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 CaasGit <87243814+CaasGit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <10968691+DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 EmoGarbage404 <retron404@gmail.com>
-// SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Fildrance <fildrance@gmail.com>
-// SPDX-FileCopyrightText: 2024 Flareguy <78941145+Flareguy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Flesh <62557990+PolterTzi@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Hrosts <35345601+Hrosts@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ian <ignaz.k@live.de>
-// SPDX-FileCopyrightText: 2024 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Joel Zimmerman <JoelZimmerman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JustCone <141039037+JustCone14@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ko4ergaPunk <62609550+Ko4ergaPunk@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Kukutis96513 <146854220+Kukutis96513@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Lye <128915833+Lyroth001@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 MerrytheManokit <167581110+MerrytheManokit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 MureixloI <132683811+MureixloI@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 NakataRin <45946146+NakataRin@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 OrangeMoronage9622 <whyteterry0092@gmail.com>
-// SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Preston Smith <92108534+thetolbean@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Psychpsyo <60073468+Psychpsyo@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Repo <47093363+Titian3@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 RiceMar1244 <138547931+RiceMar1244@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Stalen <33173619+stalengd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 TakoDragon <69509841+BackeTako@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 TsjipTsjip <19798667+TsjipTsjip@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Unkn0wn_Gh0st <shadowstalkermll@gmail.com>
-// SPDX-FileCopyrightText: 2024 Vasilis <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2024 Vigers Ray <60344369+VigersRay@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deathride58 <deathride58@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 dffdff2423 <dffdff2423@gmail.com>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 foboscheshir <156405958+foboscheshir@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 icekot8 <93311212+icekot8@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 pa.pecherskij <pa.pecherskij@interfax.ru>
-// SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2024 saintmuntzer <47153094+saintmuntzer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 shamp <140359015+shampunj@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 strO0pwafel <153459934+strO0pwafel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 stroopwafel <j.o.luijkx@student.tudelft.nl>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 to4no_fix <156101927+chavonadelal@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 voidnull000 <18663194+voidnull000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 wafehling <wafehling@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2025 amogus <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 pathetic meowmeow <uhhadd@gmail.com>
-// SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Diagnostics.CodeAnalysis;
 using Content.Goobstation.Common.Pirates;
-using System.Linq;
+using Content.Server.Access.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Station.Components;
+using Content.Server.Storage.EntitySystems;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -113,14 +14,21 @@ using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Item;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
+using Content.Shared.Prototypes;
+using Content.Shared.Station.Components;
+using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
 using JetBrains.Annotations;
-using Robust.Shared.Audio;
+using Microsoft.CodeAnalysis;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Server.Cargo.Systems
 {
@@ -129,6 +37,14 @@ namespace Content.Server.Cargo.Systems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+
+        // CorvaxGoob-CargoFeatures-Start
+        [Dependency] private readonly IdCardSystem _idCard = default!;
+        [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+        // CorvaxGoob-CargoFeatures-End
+
+        [Dependency] private readonly StorageSystem _storage = default!;
+        private ISawmill _sawmill = default!;
 
         private void InitializeConsole()
         {
@@ -179,7 +95,9 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             var orderId = GenerateOrderId(orderDatabase);
-            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, product.Cooldown);
+
+            // CorvaxGoob-CargoFeatures : Добавлено поле доставки, примечания, защищённости и наценка за безопасную доставку 
+            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost + (slip.SecuredDelivery ? ent.Comp.SecureOrderCost : 0), slip.OrderQuantity, slip.Requester, slip.DeliveryDestination, slip.Note, slip.Account, product.Cooldown, slip.SecuredDelivery);
 
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
@@ -191,7 +109,8 @@ namespace Content.Server.Cargo.Systems
             _audio.PlayPvs(ent.Comp.ScanSound, ent);
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(args.User):user} inserted order slip [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+                // CorvaxGoob-CargoFeatures : Рефактор старых названий
+                $"{ToPrettyString(args.User):user} inserted order slip [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, deliveryDestination: {data.DeliveryDestination}, note:{data.Note}] ");
             QueueDel(args.Used);
             args.Handled = true;
         }
@@ -221,6 +140,9 @@ namespace Content.Server.Cargo.Systems
 
             if (_emag.CheckFlag(ent, EmagType.Interaction))
                 return;
+
+            ent.Comp.EditableRequesterName = true;
+            Dirty(ent);
 
             args.Handled = true;
         }
@@ -284,7 +206,7 @@ namespace Content.Server.Cargo.Systems
 
             // Find our order again. It might have been dispatched or approved already
             var order = orderDatabase.Orders[component.Account].Find(order => args.OrderId == order.OrderId && !order.Approved);
-            if (order == null || !_protoMan.TryIndex(order.Account, out var account))
+            if (order == null || !_protoMan.Resolve(order.Account, out var account))
             {
                 return;
             }
@@ -394,7 +316,8 @@ namespace Content.Server.Cargo.Systems
             // Log order approval
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
+                // CorvaxGoob-CargoFeatures : Рефактор старых названий
+                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, deliveryDestination: {order.DeliveryDestination}, note:{order.Note}] on account {order.Account} with balance at {accountBalance}");
 
             orderDatabase.Orders[component.Account].Remove(order);
             UpdateBankAccount((station.Value, bank), -cost, order.Account);
@@ -417,12 +340,28 @@ namespace Content.Server.Cargo.Systems
                 var freePads = GetFreeCargoPallets(trade, tradePads);
                 if (freePads.Count >= order.OrderQuantity) //check if the station has enough free pallets
                 {
+                    // CorvaxGoob-CargoFeatures-Start
+                    EntityUid? previousCrate = null;
+                    List<string>? excessItems = null;
+                    // CorvaxGoob-CargoFeatures-End
+
                     foreach (var pad in freePads)
                     {
                         var coordinates = new EntityCoordinates(trade, pad.Transform.LocalPosition);
 
-                        if (FulfillOrder(order, account, coordinates, orderDatabase.PrinterOutput))
+                        // CorvaxGoob-CargoFeatures-Start
+                        if (previousCrate is not null
+                            && TryComp<EntityStorageComponent>(previousCrate, out var entityStorage)
+                            && entityStorage.Contents.Count >= entityStorage.Capacity)
                         {
+                            previousCrate = null;
+                        }
+                        // CorvaxGoob-CargoFeatures-End
+
+                        // CorvaxGoob-CargoFeatures
+                        if (FulfillOrder(order, account, coordinates, orderDatabase.PrinterOutput, out var nextCrate, out excessItems, previousCrate, excessItems))
+                        {
+                            previousCrate = nextCrate; // CorvaxGoob-CargoFeatures
                             tradeDestination = trade;
                             order.NumDispatched++;
                             if (order.OrderQuantity <= order.NumDispatched) //Spawn a crate on free pellets until the order is fulfilled.
@@ -462,9 +401,9 @@ namespace Content.Server.Cargo.Systems
             RemoveOrder(station.Value, component.Account, args.OrderId, orderDatabase);
         }
 
-        private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product)
+        private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product, string requester) // CorvaxGoob-CargoFeatures : Добавлено арг requester
         {
-            if (!_protoMan.TryIndex(component.Account, out var account))
+            if (!_protoMan.Resolve(component.Account, out var account))
                 return;
 
             if (Timing.CurTime < component.NextPrintTime)
@@ -482,15 +421,22 @@ namespace Content.Server.Cargo.Systems
                 ("description", product.Description),
                 ("unit", product.Cost),
                 ("amount", args.Amount),
-                ("cost", product.Cost * args.Amount),
-                ("orderer", args.Requester),
-                ("reason", args.Reason)));
+                ("cost", product.Cost * args.Amount + (args.SecuredDelivery ? component.SecureOrderCost : 0)), // CorvaxGoob-CargoFeatures-Start : доп.цена
+                ("orderer", requester),
+                ("destination", args.DeliveryDestination ?? Loc.GetString("cargo-console-paper-delivery-destination-default")),
+                ("note", args.Note ?? Loc.GetString("cargo-console-paper-note-default")))); // CorvaxGoob-CargoFeatures-End
             _paperSystem.SetContent((label, paper), msg.ToMarkup());
 
             var slip = EnsureComp<CargoSlipComponent>(label);
             slip.Product = product.ID;
-            slip.Requester = args.Requester;
-            slip.Reason = args.Reason;
+
+            // CorvaxGoob-CargoFeatures-Start
+            slip.Requester = requester;
+            slip.DeliveryDestination = args.DeliveryDestination;
+            slip.Note = args.Note;
+            slip.SecuredDelivery = args.SecuredDelivery;
+            // CorvaxGoob-CargoFeatures-End
+
             slip.OrderQuantity = args.Amount;
             slip.Account = component.Account;
         }
@@ -520,15 +466,28 @@ namespace Content.Server.Cargo.Systems
             if (!GetAvailableProducts((uid, component)).Contains(args.CargoProductId))
                 return;
 
+            if (args.SecuredDelivery) // CorvaxGoob-CargoFeatures : Валидация поля запроса
+                args.SecuredDelivery = CanBeSecuredDelivery((uid, component), _protoMan.Index<CargoProductPrototype>(args.CargoProductId));
+
+
+            // CorvaxGoob-CargoFeatures-Start
+            string requester = string.Empty;
+            if (component.EditableRequesterName && args.Requester is not null)
+                requester = args.Requester;
+            else
+                requester = GenerateRequesterName((uid, component), args.Actor);
+            // CorvaxGoob-CargoFeatures-End
+
             if (component.Mode == CargoOrderConsoleMode.PrintSlip)
             {
-                OnAddOrderMessageSlipPrinter(uid, component, args, product);
+                OnAddOrderMessageSlipPrinter(uid, component, args, product, requester); // CorvaxGoob-CargoFeatures : арг. requester
                 return;
             }
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account);
+            // CorvaxGoob-CargoFeatures : Добавлены новые аргументы
+            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account, requester, args.SecuredDelivery ? component.SecureOrderCost : default);
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -539,7 +498,8 @@ namespace Content.Server.Cargo.Systems
             // Log order addition
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+                // CorvaxGoob-CargoFeatures : Рефактор старых названий
+                $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, deliveryDestination: {data.DeliveryDestination}, note:{data.Note}]");
 
         }
 
@@ -606,11 +566,13 @@ namespace Content.Server.Cargo.Systems
             }
         }
 
-        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account)
+        // CorvaxGoob-CargoFeatures-Start : Добавлены новые аргументы и параметры к данным
+        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account, string requester, int extraPrice = 0)
         {
             // GoobStation - cooldown on Cargo Orders (specifically gamba)
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account, cargoProduct.Cooldown);
+            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost + extraPrice, args.Amount, requester, args.DeliveryDestination, args.Note, account, cargoProduct.Cooldown, args.SecuredDelivery);
         }
+        // CorvaxGoob-CargoFeatures-End
 
         public int GetOutstandingOrderCount(Entity<StationCargoOrderDatabaseComponent> station, ProtoId<CargoAccountPrototype> account)
         {
@@ -667,18 +629,20 @@ namespace Content.Server.Cargo.Systems
             int cost,
             int qty,
             string sender,
-            string description,
+            string? deliveryDestination, // CorvaxGoob-CargoFeatures
+            string? note, // CorvaxGoob-CargoFeatures
             string dest,
             StationCargoOrderDatabaseComponent component,
             ProtoId<CargoAccountPrototype> account,
-            Entity<StationDataComponent> stationData
+            Entity<StationDataComponent> stationData,
+            bool securedDelivery = false // CorvaxGoob-CargoFeatures
         )
         {
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
             // GoobStation - cooldown on Cargo Orders (specifically gamba)
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, 0);
+            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, deliveryDestination, note, account, 0, securedDelivery); // CorvaxGoob-CargoFeatures
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -687,7 +651,8 @@ namespace Content.Server.Cargo.Systems
             // Log order addition
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"AddAndApproveOrder {description} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}]");
+                // CorvaxGoob-CargoFeatures : Рефактор старых названий
+                $"AddAndApproveOrder {note} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, deliveryDestination:{order.DeliveryDestination}]");
 
             // Add it to the list
             return TryAddOrder(dbUid, account, order, component) && TryFulfillOrder(stationData, account, order, component).HasValue;
@@ -760,44 +725,133 @@ namespace Content.Server.Cargo.Systems
         /// <summary>
         /// Fulfills the specified cargo order and spawns paper attached to it.
         /// </summary>
-        private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
+        /// CorvaxGoob-CargoFeatures : Новые аргументы функции для работы с оптовыми заказами
+        private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto, out EntityUid? nextCrate, out List<string>? excessItemsOut, EntityUid? previousCrate = null, List<string>? excessItemsIn = null)
         {
             // Create the item itself
-            var item = Spawn(order.ProductId, spawn);
+            EntityUid? item = null;
+
+            // Передаётся следующий ящик в случае отправки в следующий круг для заполнения
+            nextCrate = null;
+
+            // Остаток вещей при переполненности заполнения
+            excessItemsOut = null;
+
+            if (!_protoMan.TryIndex<CargoAccountPrototype>(account, out var accountProto))
+                return false;
+
+            var productProto = _protoMan.Index<EntityPrototype>(order.ProductId);
+
+            if (previousCrate is not null) // Если указан ящик который будет заполняться
+                item = previousCrate;
+            else if (order.SecuredDelivery && accountProto.SecureCratePrototype is not null // Если поставлена галочка на защиту заказа
+                && (productProto.TryGetComponent<ItemComponent>(out var itemComponent) || productProto.HasComponent<EntityStorageComponent>())) // и может ли этот заказ быть помещен в ящик?
+            {
+                item = Spawn(accountProto.SecureCratePrototype, spawn);
+
+                if (itemComponent is not null) // Если это обычный предмет — спавним его и помещаем в ящик
+                    _entityStorage.Insert(Spawn(productProto.ID), item.Value);
+            }
+            else
+            {
+                item = EntityManager.CreateEntityUninitialized(productProto.ID, spawn);
+
+                // Очистить автозаполнение при спавне для пополнения содержимого саморучно в коде снизу
+                RemComp<StorageFillComponent>(item.Value);
+
+                EntityManager.InitializeAndStartEntity(item.Value);
+            }
+
+            // Если предмет заказа имеет в себе заполняемость и является хранилищем
+            if (productProto.TryGetComponent<StorageFillComponent>(out var storageFill)
+                && TryComp<EntityStorageComponent>(item, out var crateEntityStorage))
+            {
+                nextCrate = item;
+
+                // Избыток предметов при заполнении
+                var entitiesExcess = new List<string>();
+                bool doExcessFill = false;
+
+                if (excessItemsIn is not null) // Если предметы из избытка были переданы в функцию — помещаем их первыми
+                    foreach (var excessItem in excessItemsIn)
+                        _storage.Insert(item.Value, Spawn(excessItem), out var stacked);
+
+                // Проходимся по всему содержимому StorageFill и помещаем в ящик, если цикл не был закончен и при этом места уже нету
+                // То весь избыток отправляется в список который передаётся на выход из функции для следующего круга
+                var spawns = EntitySpawnCollection.GetSpawns(storageFill.Contents, _random);
+                foreach (var contentItem in spawns)
+                {
+                    if (crateEntityStorage.Contents.Count >= crateEntityStorage.Capacity && spawns.Count <= crateEntityStorage.Capacity)
+                        doExcessFill = true;
+
+                    if (doExcessFill)
+                    {
+                        entitiesExcess.Add(contentItem);
+                        continue;
+                    }
+
+                    _entityStorage.Insert(Spawn(contentItem), item.Value);
+                }
+
+                if (entitiesExcess.Count != 0)
+                    excessItemsOut = entitiesExcess;
+            }
+
+
+            if (!item.HasValue)
+            {
+                _sawmill.Error($"Caught error while trying to spawn product {order.ProductId}");
+                return false;
+            }
 
             // Ensure the item doesn't start anchored
-            _transformSystem.Unanchor(item, Transform(item));
+            _transformSystem.Unanchor(item.Value, Transform(item.Value));
 
             // Create a sheet of paper to write the order details on
-            var printed = Spawn(paperProto, spawn);
-            if (TryComp<PaperComponent>(printed, out var paper))
+            if (previousCrate is null) // // CorvaxGoob-CargoFeatures : Проверяем является ли это новым ящиком или старым
             {
-                // fill in the order data
-                var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
-                _metaSystem.SetEntityName(printed, val);
-
-                var accountProto = _protoMan.Index(account);
-                _paperSystem.SetContent((printed, paper),
-                    Loc.GetString(
-                        "cargo-console-paper-print-text",
-                        ("orderNumber", order.OrderId),
-                        ("itemName", MetaData(item).EntityName),
-                        ("orderQuantity", order.OrderQuantity),
-                        ("requester", order.Requester),
-                        ("reason", string.IsNullOrWhiteSpace(order.Reason) ? Loc.GetString("cargo-console-paper-reason-default") : order.Reason),
-                        ("account", Loc.GetString(accountProto.Name)),
-                        ("accountcode", Loc.GetString(accountProto.Code)),
-                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
-
-                // attempt to attach the label to the item
-                if (TryComp<PaperLabelComponent>(item, out var label))
+                var printed = Spawn(paperProto, spawn);
+                if (TryComp<PaperComponent>(printed, out var paper))
                 {
-                    _slots.TryInsert(item, label.LabelSlot, printed, null);
+                    // CorvaxGoob-CargoFeatures-Start
+                    var itemName = productProto.Name;
+
+                    // fill in the order data
+                    var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId), ("detailName", itemName), ("detailQuantity", order.OrderQuantity));
+                    // CorvaxGoob-CargoFeatures-End
+
+                    _metaSystem.SetEntityName(printed, val);
+
+                    // var accountProto = _protoMan.Index(account); CorvaxGoob-CargoFeatures : Перенесено повыше
+                    _paperSystem.SetContent((printed, paper),
+                        Loc.GetString(
+                            "cargo-console-paper-print-text",
+                            ("orderNumber", order.OrderId),
+                            ("itemName", itemName),
+                            ("orderQuantity", order.OrderQuantity),
+                            ("requester", order.Requester),
+                            ("destination", string.IsNullOrWhiteSpace(order.DeliveryDestination) ? Loc.GetString("cargo-console-paper-delivery-destination-default") : order.DeliveryDestination), // CorvaxGoob-CargoFeatures
+                            ("note", string.IsNullOrWhiteSpace(order.Note) ? Loc.GetString("cargo-console-paper-note-default") : order.Note), // CorvaxGoob-CargoFeatures
+                            ("account", Loc.GetString(accountProto.Name)),
+                            ("accountcode", Loc.GetString(accountProto.Code)),
+                            ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
+
+                    // attempt to attach the label to the item
+                    if (TryComp<PaperLabelComponent>(item, out var label))
+                    {
+                        _slots.TryInsert(item.Value, label.LabelSlot, printed, null);
+                    }
                 }
             }
 
             return true;
 
+        }
+
+        // CorvaxGoob-CargoFeatures : Перезагрузка метода для обращений без применения оптовой закупки
+        private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
+        {
+            return FulfillOrder(order, account, spawn, paperProto, out _, out _);
         }
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)

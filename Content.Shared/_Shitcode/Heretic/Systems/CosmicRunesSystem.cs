@@ -1,12 +1,13 @@
 using System.Linq;
 using Content.Goobstation.Common.BlockTeleport;
+using Content.Goobstation.Common.Grab;
 using Content.Goobstation.Common.MartialArts;
 using Content.Goobstation.Common.Religion;
 using Content.Goobstation.Shared.Bible;
 using Content.Shared._Goobstation.Wizard.FadingTimedDespawn;
 using Content.Shared._Shitcode.Heretic.Components;
+using Content.Shared._Shitcode.Heretic.Systems.Abilities;
 using Content.Shared.Coordinates;
-using Content.Shared.Heretic;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -23,7 +24,6 @@ public sealed class CosmicRunesSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    [Dependency] private readonly SharedStarTouchSystem _starTouch = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -31,6 +31,7 @@ public sealed class CosmicRunesSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedStarMarkSystem _starMark = default!;
+    [Dependency] private readonly SharedHereticAbilitySystem _heretic = default!;
 
     public override void Initialize()
     {
@@ -48,7 +49,7 @@ public sealed class CosmicRunesSystem : EntitySystem
 
         if (TryComp(args.Used, out StarTouchComponent? starTouch))
         {
-            _starTouch.InvokeSpell((args.Used, starTouch), args.User);
+            _heretic.InvokeTouchSpell<StarTouchComponent>((args.Used, starTouch), args.User);
             EnsureComp<FadingTimedDespawnComponent>(ent).Lifetime = 0f;
             if (Exists(ent.Comp.LinkedRune))
                 EnsureComp<FadingTimedDespawnComponent>(ent.Comp.LinkedRune.Value).Lifetime = 0f;
@@ -100,13 +101,13 @@ public sealed class CosmicRunesSystem : EntitySystem
 
         if (HasComp<StarMarkComponent>(user))
         {
-            _popup.PopupPredicted(Loc.GetString("heretic-cosmic-rune-fail-star-mark"), user, user);
+            _popup.PopupClient(Loc.GetString("heretic-cosmic-rune-fail-star-mark"), user, user);
             return false;
         }
 
         if (!_transform.InRange(ent.Owner, user, ent.Comp.Range))
         {
-            _popup.PopupPredicted(Loc.GetString("heretic-cosmic-rune-fail-range"), user, user);
+            _popup.PopupClient(Loc.GetString("heretic-cosmic-rune-fail-range"), user, user);
             return false;
         }
 
@@ -136,16 +137,14 @@ public sealed class CosmicRunesSystem : EntitySystem
             .ToHashSet();
         toTeleport.Add(user);
         EntityUid? pulling = null;
-        var grabStage = GrabStage.No;
+        GrabStage? grabStageOverride = null;
         PullerComponent? puller = null;
 
-        var isUserCosmosHeretic = HasComp<StarGazerComponent>(user) ||
-                                  TryComp(user, out HereticComponent? heretic) && heretic.CurrentPath == "Cosmos";
+        var isUserCosmosHeretic = HasComp<StarGazerComponent>(user) || HasComp<CosmosPassiveComponent>(user);
 
         if (isUserCosmosHeretic && TryComp(user, out puller) && puller.Pulling != null)
         {
             pulling = puller.Pulling.Value;
-            grabStage = puller.GrabStage;
             toTeleport.Add(pulling.Value);
         }
 
@@ -157,7 +156,7 @@ public sealed class CosmicRunesSystem : EntitySystem
         }
 
         if (pulling != null)
-            _pulling.TryStartPull(user, pulling.Value, puller, null, grabStage);
+            _pulling.TryStartPull(user, pulling.Value, puller, null, grabStageOverride, force: true);
 
         return true;
     }

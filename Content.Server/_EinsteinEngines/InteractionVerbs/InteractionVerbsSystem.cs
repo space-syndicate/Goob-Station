@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Mnemotechnican <69920617+Mnemotechnician@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 RadsammyT <radsammyt@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -33,7 +29,7 @@ public sealed class InteractionVerbsSystem : SharedInteractionVerbsSystem
             return;
 
         var color = popup.LogColor ?? InferColor(popup.PopupType);
-        var wrappedMessage = message; // TODO: custom chat wraps maybe?
+        var wrappedMessage = Loc.GetString("interaction-verb-wrap-message", ("message", message)); // Goob - Italicised
 
         // Exclude entities who cannot directly see the target of the popup. TODO this may have a high performance cost - although whispers do the same.
         // We only do this if the popup has to be logged into chat since that has some gameplay implications.

@@ -1,16 +1,10 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 exincore <me@exin.xyz>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Research.Components;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Research.Systems;
 
@@ -71,10 +65,8 @@ public sealed partial class ResearchSystem
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
-        var allServers = GetServers(uid).ToList();
-
-        if (allServers.Count > 0)
-            RegisterClient(uid, allServers[0], component, allServers[0]);
+        if (GetServers(uid).FirstOrNull() is { } server)
+            RegisterClient(uid, server, component, server);
     }
 
     private void OnClientShutdown(EntityUid uid, ResearchClientComponent component, ComponentShutdown args)
@@ -94,10 +86,8 @@ public sealed partial class ResearchSystem
             if (ent.Comp.Server is not null)
                 return;
 
-            var allServers = GetServers(ent).ToList();
-
-            if (allServers.Count > 0)
-                RegisterClient(ent, allServers[0], ent, allServers[0]);
+            if (GetServers(ent).FirstOrNull() is { } server)
+                RegisterClient(ent, server, ent, server);
         }
         else
         {

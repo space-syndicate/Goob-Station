@@ -1,12 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Psychpsyo <60073468+Psychpsyo@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 exincore <me@exin.xyz>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -196,12 +187,7 @@ public sealed class ItemGridPiece : Control, IEntityControl
 
             handle.SetTransform(pos, iconRotation);
             var box = new UIBox2(root, root + sprite.Size * scale);
-
-            var ev = new BeforeRenderInGridEvent(new Color(255, 255, 255));
-            _entityManager.EventBus.RaiseLocalEvent(Entity, ev);
-
-            handle.DrawTextureRect(sprite, box, ev.Color);
-
+            handle.DrawTextureRect(sprite, box);
             handle.SetTransform(GlobalPixelPosition, Angle.Zero);
         }
         else
@@ -312,19 +298,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
     }
 
     public EntityUid? UiEntity => Entity;
-}
-
-/// <summary>
-///     This event gets raised before a sprite gets drawn in a grid and lets to change the sprite color for several gameobjects that have special sprites to render in containers.
-/// </summary>
-public sealed class BeforeRenderInGridEvent : EntityEventArgs
-{
-    public Color Color { get; set; }
-
-    public BeforeRenderInGridEvent(Color color)
-    {
-        Color = color;
-    }
 }
 
 public enum ItemGridPieceMarks

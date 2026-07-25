@@ -1,13 +1,3 @@
-# SPDX-FileCopyrightText: 2025 ActiveMammmoth <140334666+ActiveMammmoth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 ActiveMammmoth <kmcsmooth@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-# SPDX-FileCopyrightText: 2025 keronshb <54602815+keronshb@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -25,6 +15,8 @@
       types:
         Blunt: 10
         Structural: 10
+      woundSeverityMultipliers: #Goob
+        Blunt: 1.5
     soundHit:
       collection: MetalThud
   - type: Wieldable
@@ -64,6 +56,8 @@
       types:
         Blunt: 10 # GoobStation Edit
         Structural: 10 # GoobStation Edit
+      woundSeverityMultipliers:
+        Blunt: 2
     soundHit:
       path: /Audio/Effects/tesla_consume.ogg
       params:
@@ -78,6 +72,8 @@
       types:
         Blunt: 15
         Structural: 15
+      woundSeverityMultipliers:
+        Blunt: 2
   - type: Item
     size: Ginormous
   - type: Boomerang # Goobstation
@@ -115,6 +111,8 @@
       types:
         Blunt: 5
         Structural: 5
+      woundSeverityMultipliers:
+        Blunt: 2
     soundHit:
       path: /Audio/Effects/radpulse5.ogg
       params:

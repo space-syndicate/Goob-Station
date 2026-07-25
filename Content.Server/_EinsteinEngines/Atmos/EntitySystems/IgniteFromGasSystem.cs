@@ -1,15 +1,12 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Skubman <ba.fallaria@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Server.Atmos.Components;
+using Content.Shared.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server._EinsteinEngines.Atmos.Components;
 using Content.Server.Cloning.Components;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Bed.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
@@ -131,8 +128,7 @@ public sealed class IgniteFromGasSystem : EntitySystem
                 )
                 continue;
 
-            _flammable.AdjustFireStacks(uid, ignite.FireStacksPerUpdate, flammable);
-            _flammable.Ignite(uid, uid, flammable, ignoreFireProtection: true);
+            _flammable.AdjustFireStacks(uid, ignite.FireStacksPerUpdate, flammable, true, 10f);
         }
     }
 }

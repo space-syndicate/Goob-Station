@@ -8,8 +8,12 @@
       department: Science
       time: 14400 #4 hrs
   startingGear: RoboticistGear
+  skills: # CorvaxGoob-Skills
+  - AdvancedBuilding
   icon: "JobIconRoboticist"
   supervisors: job-supervisors-rd
+  guides: [ Robotics ]
+  goobcoins: 20
   access:
   - Research
   - Maintenance
@@ -19,7 +23,7 @@
   id: RoboticistGear
   equipment:
     ears: ClothingHeadsetRobotics
-    eyes: ClothingEyesHudDiagnostic
+#   eyes: ClothingEyesHudDiagnostic # CorvaxGoob-loadouts: replaced on a RoboticistGlasses loadout
 
 - type: chameleonOutfit
   id: RoboticistChameleonOutfit
@@ -35,4 +39,3 @@
     jumpsuit: ClothingUniformJumpsuitRoboticist
     shoes: ClothingShoesColorBlack
     id: RoboticistPDA
-

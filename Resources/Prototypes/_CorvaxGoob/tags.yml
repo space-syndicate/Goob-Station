@@ -4,9 +4,6 @@
   id: AdvancedRetractor
 
 - type: Tag
-  id: AnomalyPayload
-
-- type: Tag
   id: BoneSetter
 
 - type: Tag
@@ -34,7 +31,19 @@
   id: EnergyScalpel
 
 - type: Tag
+  id: FlashlightSeclite
+
+- type: Tag
+  id: HandHeldMassScanner
+
+- type: Tag
   id: Hemostat
+
+- type: Tag
+  id: InfinityPaper
+
+- type: Tag
+  id: LavalandJaunter
 
 - type: Tag
   id: LightTubeCrystalBlue
@@ -55,6 +64,18 @@
   id: MagazineLargeCaliber
 
 - type: Tag
+  id: MineralScanner
+
+- type: Tag
+  id: MiningDrill
+
+- type: Tag
+  id: Photo
+
+- type: Tag
+  id: PokerChip
+
+- type: Tag
   id: Retractor
 
 - type: Tag
@@ -70,4 +91,13 @@
   id: ScienceTool
 
 - type: Tag
+  id: SeismicCharge
+
+- type: Tag
   id: Skills
+
+- type: Tag
+  id: TelescopicBaton
+
+- type: Tag
+  id: TelescopicShield

@@ -1,0 +1,229 @@
+- type: constructionGraph
+  id: VulpkaninSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: vulpkanin steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: vulpkanin steak
+    entity: FoodMeatCookedVulpkanin
+
+
+- type: constructionGraph
+  id: ArachnidSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: arachnid steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: arachnid steak
+    entity: FoodMeatCookedArachnid
+
+
+- type: constructionGraph
+  id: SlimeSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: slime steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: slime steak
+    entity: FoodMeatCookedSlime
+
+
+- type: constructionGraph
+  id: TajaranSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: tajaran steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: tajaran steak
+    entity: FoodMeatCookedTajaran
+
+
+- type: constructionGraph
+  id: VoxSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: vox steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: vox steak
+    entity: FoodMeatCookedVox
+
+
+- type: constructionGraph
+  id: MothSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: moth steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: moth steak
+    entity: FoodMeatCookedMoth
+
+
+- type: constructionGraph
+  id: ResomiSteak
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: resomi steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: resomi steak
+    entity: FoodMeatCookedResomi
+
+- type: constructionGraph
+  id: VulpkaninCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: vulpkanin cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: vulpkanin cutlet
+    entity: FoodVulpkaninCutletCooked
+
+- type: constructionGraph
+  id: ArachnidCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: arachnid cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: arachnid cutlet
+    entity: FoodArachnidCutletCooked
+
+- type: constructionGraph
+  id: MothCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: moth cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: moth cutlet
+    entity: FoodMothCutletCooked
+
+- type: constructionGraph
+  id: SlimeCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: slime cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: slime cutlet
+    entity: FoodSlimeCutletCooked
+
+- type: constructionGraph
+  id: TajaranCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: tajaran cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: tajaran cutlet
+    entity: FoodTajaranCutletCooked
+
+- type: constructionGraph
+  id: VoxCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: vox cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: vox cutlet
+    entity: FoodVoxCutletCooked
+
+- type: constructionGraph
+  id: ResomiCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: resomi cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+  - node: resomi cutlet
+    entity: FoodResomiCutletCooked

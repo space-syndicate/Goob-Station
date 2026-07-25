@@ -10,3 +10,5 @@ ent-ArrowImprovisedUranium = uranium glass shard arrow
     .desc = The greyshirt's preferred projectile. Now with added radiation!
 ent-ArrowImprovisedCarp = carp tooth arrow
     .desc = The salvager's preferred arrow. Kill your enemies with the teeth of their families.
+ent-ArrowCard = cardboard arrow
+    .desc = Careful, you'll poke an eye out!

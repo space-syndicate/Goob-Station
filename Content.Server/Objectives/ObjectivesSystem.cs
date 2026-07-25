@@ -1,33 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Colin-Tel <113523727+Colin-Tel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Flareguy <78941145+Flareguy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Crotalus <Crotalus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Hreno <hrenor@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Conchelle <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.GameTicking;
@@ -52,7 +22,11 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 using Content.Shared.Administration.Logs;
-using Content.Goobstation.Shared.ManifestListings;
+using Robust.Shared.Network;
+using Content.Shared.Roles;
+using Content.Server.Roles;
+using Content.Shared.Roles.Components;
+using Content.Goobstation.Shared.ManifestListings; //Goobstation
 
 namespace Content.Server.Objectives;
 
@@ -69,12 +43,12 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     // [Dependency] private readonly ServerCurrencyManager _currencyMan = default!; Deleted by CorvaxGoob
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     private IEnumerable<string>? _objectives;
 
     private bool _showGreentext;
 
-    private int _goobcoinsPerGreentext = 5;
     private int _goobcoinsServerMultiplier = 1;
     public override void Initialize()
     {
@@ -85,7 +59,6 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
         Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
 
         _prototypeManager.PrototypesReloaded += CreateCompletions;
-        Subs.CVar(_cfg, GoobCVars.GoobcoinsPerGreentext, value => _goobcoinsPerGreentext = value, true);
         Subs.CVar(_cfg, GoobCVars.GoobcoinServerMultiplier, value => _goobcoinsServerMultiplier = value, true);
     }
 
@@ -114,7 +87,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             if (info.Minds.Count == 0)
                 continue;
 
-            // first group the gamerules by their agents, for example 2 different dragons
+            // first group the gamerules by their factions, for example 2 different dragons
             var agent = info.Faction ?? info.AgentName;
             if (!summaries.ContainsKey(agent))
                 summaries[agent] = new Dictionary<string, Dictionary<string, List<(EntityUid, string)>>>();
@@ -155,10 +128,10 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 }
 
                 var result = new StringBuilder();
-                result.AppendLine(Loc.GetString("objectives-round-end-result", ("count", total), ("agent", agent)));
+                result.AppendLine(Loc.GetString("objectives-round-end-result", ("count", total), ("agent", faction)));
                 if (agent == Loc.GetString("traitor-round-end-agent-name"))
                 {
-                    result.AppendLine(Loc.GetString("objectives-round-end-result-in-custody", ("count", total), ("custody", totalInCustody), ("agent", agent)));
+                    result.AppendLine(Loc.GetString("objectives-round-end-result-in-custody", ("count", total), ("custody", totalInCustody), ("agent", faction)));
                 }
                 // next add all the players with its own prepended text
                 foreach (var (prepend, minds) in summary)
@@ -180,6 +153,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     private void AddSummary(StringBuilder result, string agent, List<(EntityUid, string)> minds)
     {
         var agentSummaries = new List<(string summary, float successRate, int completedObjectives)>();
+        var currencyStorage = new Dictionary<NetUserId, float>(); //goobstation - store all currency and add at end off round
 
         foreach (var (mindId, name) in minds)
         {
@@ -189,6 +163,19 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             var userid = mind.OriginalOwnerUserId;
             var title = GetTitle((mindId, mind), name);
             var custody = IsInCustody(mindId, mind) ? Loc.GetString("objectives-in-custody") : string.Empty;
+
+            // goobstation - traitor flavor
+            // TODO: the entirety of roundend methods are shitcode
+            // if we were to add changeling/heretic/bloodbrother/antag flavor
+            // (something like "Timmy Turner was the Ashbringer" or "Grey Maria was from Gami Hive")
+            // we'd need to make a type check on every mind role or raise a separate event for each game rule/role
+            // and i can't be assed to do it!
+            // regards
+            if (_roles.MindHasRole<TraitorRoleComponent>(mindId, out var traitorRole))
+            {
+                var issuer = traitorRole.Value.Comp2.ObjectiveIssuer.Replace(" ", "").ToLower();
+                agent = Loc.GetString($"traitor-{issuer}-roundend");
+            }
 
             var objectives = mind.Objectives;
             if (objectives.Count == 0)
@@ -224,6 +211,8 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
 
                     var objectiveTitle = info.Value.Title;
                     var progress = info.Value.Progress;
+                    var reward = info.Value.ServerCurrency;
+                    var rewardPartial = info.Value.PartialCurrency;
                     totalObjectives++;
 
                     // Goob (even tho the entire file got massacred by John already)
@@ -256,6 +245,13 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                         Easiest place to give people points for completing objectives lol
                         // if(userid.HasValue)
                             //_currencyMan.AddCurrency(userid.Value, _goobcoinsPerGreentext * _goobcoinsServerMultiplier);
+
+                        // Easiest place to give people points for completing objectives lol
+                        if (userid.HasValue)
+                            if (currencyStorage.ContainsKey(userid.Value))
+                                currencyStorage[userid.Value] += reward;
+                            else
+                                currencyStorage.Add(userid.Value, reward);
                         */
                     }
                     else if (progress <= 0.99f && progress >= 0.5f)
@@ -265,6 +261,12 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                             ("objective", objectiveTitle),
                             ("progress", progress)
                         ));
+                        //Goobstation
+                        if (userid.HasValue && rewardPartial)
+                            if (currencyStorage.ContainsKey(userid.Value))
+                                currencyStorage[userid.Value] += reward * progress;
+                            else
+                                currencyStorage.Add(userid.Value, reward * progress);
                     }
                     else if (progress < 0.5f && progress > 0f)
                     {
@@ -296,6 +298,9 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
         {
             result.AppendLine(summary);
         }
+
+/*        foreach (var (key, currency) in currencyStorage)
+            _currencyMan.AddCurrency(key, (int)Math.Round( currency * _goobcoinsServerMultiplier));*/
     }
 
     public EntityUid? GetRandomObjective(EntityUid mindId, MindComponent mind, ProtoId<WeightedRandomPrototype> objectiveGroupProto, float maxDifficulty)

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 AftrLite <61218133+AftrLite@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -14,6 +10,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Goobstation.Maths.Vectors;
 
 namespace Content.Client._DV.CosmicCult.Visuals;
 
@@ -76,7 +73,7 @@ public sealed class MonumentPlacementPreviewOverlay : Overlay
 
         _saturationShader = protoMan.Index<ShaderPrototype>("SaturationShuffle").InstanceUnique();
         _saturationShader.SetParameter("tileSize", new Vector2(96, 96));
-        _saturationShader.SetParameter("hsv", new Robust.Shared.Maths.Vector3(1.0f, 0.25f, 0.2f));
+        _saturationShader.SetParameter("hsv", new Vector3(1.0f, 0.25f, 0.2f));
 
         _starsShader = protoMan.Index<ShaderPrototype>("MonumentPulse").InstanceUnique();
         _starsShader.SetParameter("tileSize", new Vector2(96, 96));

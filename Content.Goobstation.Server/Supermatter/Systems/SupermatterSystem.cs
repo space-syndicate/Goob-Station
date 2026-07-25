@@ -1,23 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2024 yglop <95057024+yglop@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 Steve <marlumpy@gmail.com>
-// SPDX-FileCopyrightText: 2025 Tim <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Timfa <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 marc-pelletier <113944176+marc-pelletier@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 yahay505 <58685802+yahay505@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 yavuz <58685802+yahay505@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System;
@@ -43,6 +23,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Kitchen.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Radiation.Components;
@@ -56,7 +37,9 @@ using Robust.Shared.IoC;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Random; // CorvaxGoob-SM-Accent-Sound
 using Robust.Shared.Timing;
+using Robust.Shared.Player;
 
 namespace Content.Goobstation.Server.Supermatter.Systems;
 
@@ -76,6 +59,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private readonly IRobustRandom _rand = default!; // CorvaxGoob-SM-Accent-Sound
 
     private DelamType _delamType = DelamType.Explosion;
 
@@ -146,6 +130,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
             HandleDelamination(uid, sm);
 
         HandleSoundLoop(uid, sm);
+        TryPlaySupermatterAccentSound(uid); // CorvaxGoob-SM-Accent-Sound
 
         if (sm.ZapAccumulator >= sm.ZapTimer)
         {
@@ -268,7 +253,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         if (mix.GetMoles(Gas.CarbonDioxide) > 0.01f)
         {
             var co2PP = absorbedGas.Pressure * ((mix.GetMoles(Gas.CarbonDioxide) / mix.TotalMoles) * 100);
-            var co2Ratio = Math.Clamp(0.5f * (co2PP - (101.325f*0.01f)) / (co2PP + (101.325f*0.25f)), 0, 1);
+            var co2Ratio = Math.Clamp(0.5f * (co2PP - (101.325f * 0.01f)) / (co2PP + (101.325f * 0.25f)), 0, 1);
             var consumedCO2 = absorbedGas.GetMoles(Gas.CarbonDioxide) * co2Ratio;
             consumedCO2 = Math.Min(consumedCO2, Math.Min(absorbedGas.GetMoles(Gas.Oxygen), absorbedGas.GetMoles(Gas.CarbonDioxide)));
 
@@ -292,6 +277,15 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         // After this point power is lowered
         // This wraps around to the begining of the function
         sm.Power = Math.Max(sm.Power - Math.Min(powerReduction * powerlossInhibitor, sm.Power * 0.83f * powerlossInhibitor), 0f);
+
+        sm.GasStorage = sm.GasStorage.ToDictionary(
+            gas => gas.Key,
+            gas => absorbedGas.GetMoles(gas.Key)
+        );
+
+        // Console Compatibility from EE
+        sm.Temperature = absorbedGas.Temperature;
+        sm.WasteMultiplier = heatModifier;
     }
 
     /// <summary>
@@ -513,6 +507,45 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         return DelamType.Explosion;
     }
 
+    // CorvaxGoob-SM-Accent-Sounds-Start
+    /// <summary>
+    /// Tries to play accent sound. Sounds will be different if Supermatter is delamming or not.
+    /// </summary>
+    /// <param name="uid">uid of the SM</param>
+    private void TryPlaySupermatterAccentSound(EntityUid uid)
+    {
+        if (!TryComp<SupermatterComponent>(uid, out var comp))
+            return;
+        if (comp.Activated == false)
+            return;
+
+        if (_gameTiming.CurTime < comp.NextAccentSound)
+            return;
+
+        // Chooses what sound to play, based on damage to the SM
+        var randomSound = comp.Damage > comp.WarningPoint
+            ? comp.AccentSoundsDelam
+            : comp.AccentSoundsNormal;
+
+        _audio.PlayPredicted(randomSound, uid, uid);
+        ResetAccentSounds(uid);
+    }
+
+    /// <summary>
+    /// Resets the timer when to play accent sound
+    /// </summary>
+    /// <param name="uid">uid of the SM</param>
+    private void ResetAccentSounds(EntityUid uid)
+    {
+        if (!TryComp<SupermatterComponent>(uid, out var comp))
+            return;
+
+        comp.NextAccentSound = _gameTiming.CurTime +
+                               TimeSpan.FromSeconds(_rand.Next(comp.MinSoundPlaytime.Seconds,
+                                   comp.MaxSoundPlaytime.Seconds));
+    }
+    // CorvaxGoob-SM-Accent-Sounds-End
+
     /// <summary>
     ///     Handle the end of the station.
     /// </summary>
@@ -586,6 +619,19 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
 
     private void OnCollideEvent(EntityUid uid, SupermatterComponent sm, ref StartCollideEvent args)
     {
+        var target = args.OtherEntity;
+
+        if (args.OurEntity != uid)
+            return;
+        if (!args.OtherFixture.Hard && !HasComp<ProjectileComponent>(args.OtherEntity))
+            return;
+
+        // Stop immune entities from activating the sm.
+        if (args.OtherBody.BodyType == BodyType.Static
+            || HasComp<SupermatterImmuneComponent>(target)
+            || _container.IsEntityInContainer(uid))
+            return;
+
         if (!sm.Activated)
         {
             // Extra logging for supermatter
@@ -603,12 +649,6 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
 
             sm.Activated = true;
         }
-
-        var target = args.OtherEntity;
-        if (args.OtherBody.BodyType == BodyType.Static
-            || HasComp<SupermatterImmuneComponent>(target)
-            || _container.IsEntityInContainer(uid))
-            return;
 
         if (TryComp<SupermatterFoodComponent>(target, out var food))
             sm.Power += food.Energy;
@@ -631,13 +671,13 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
 
     private void OnHandInteract(EntityUid uid, SupermatterComponent sm, ref InteractHandEvent args)
     {
-        if (!sm.Activated)
-            sm.Activated = true;
-
         var target = args.User;
 
         if (HasComp<SupermatterImmuneComponent>(target))
             return;
+
+        if (!sm.Activated)
+            sm.Activated = true;
 
         sm.MatterPower += 200;
 
@@ -648,6 +688,9 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
 
     private void OnItemInteract(EntityUid uid, SupermatterComponent sm, ref InteractUsingEvent args)
     {
+        if (!HasComp<SupermatterImmuneComponent>(args.User))
+            return;
+
         if (!sm.Activated)
             sm.Activated = true;
 
@@ -678,6 +721,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         // your criminal actions will not go unnoticed
         sm.Damage += sm.DelaminationPoint / 10;
         sm.DamageArchived += sm.DelaminationPoint / 10;
+        sm.SliverRemoved = true;
 
         var integrity = GetIntegrity(sm).ToString("0.00");
         SupermatterAnnouncement(uid, Loc.GetString("supermatter-announcement-cc-tamper", ("integrity", integrity)), true, "Central Command");

@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot02@gmail.com>
-# SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot20@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2025 thebiggestbruh <199992874+thebiggestbruh@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -47,3 +39,57 @@
     sprite: _Goobstation/Clothing/Head/Hoods/cap_winter_hood.rsi
   - type: Clothing
     sprite: _Goobstation/Clothing/Head/Hoods/cap_winter_hood.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHoodHereticCostume
+  categories: [ HideSpawnMenu ]
+  name: occult hood
+  description: A torn, dust-caked hood. Smudgy eyes line the inside.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/rust_hood.rsi # CorvaxGoob
+    state: icon
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/rust_hood.rsi # CorvaxGoob
+
+- type: entity
+  parent: ClothingHeadHatHoodHereticCostume
+  id: ClothingHeadHatHoodHereticVoidCostume
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/void_hood.rsi # CorvaxGoob
+    state: icon
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/void_hood.rsi # CorvaxGoob
+
+- type: entity
+  parent: ClothingHeadHatHoodHereticCostume
+  id: ClothingHeadHatHoodHereticAshCostume
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/ashen_hood.rsi # CorvaxGoob
+    state: icon
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/ashen_hood.rsi # CorvaxGoob
+
+- type: entity
+  parent: ClothingHeadHatHoodHereticCostume
+  id: ClothingHeadHatHoodHereticFleshCostume
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/flesh_hood.rsi # CorvaxGoob
+    state: icon
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/flesh_hood.rsi # CorvaxGoob
+
+- type: entity
+  parent: ClothingHeadHatHoodHereticCostume
+  id: ClothingHeadHatHoodHereticBladeCostume
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/blade_hood.rsi # CorvaxGoob
+    state: icon
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Head/HereticHoods/blade_hood.rsi # CorvaxGoob
+

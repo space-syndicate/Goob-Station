@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 RichardBlonski <48651647+RichardBlonski@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._Shitmed.CCVar;
@@ -28,7 +23,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Goobstation.Maths.FixedPoint;
-using Content.Shared._Shitmed.Medical.Surgery.Pain.Components;
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Pain.Systems;
 
@@ -108,13 +102,16 @@ public sealed partial class PainSystem : EntitySystem
         if (args.Current is not NerveComponentState state)
             return;
 
-        component.ParentedNerveSystem = GetEntity(state.ParentedNerveSystem);
+        var parentEntity = GetEntity(state.ParentedNerveSystem);
+        component.ParentedNerveSystem = !TerminatingOrDeleted(parentEntity) ? parentEntity : EntityUid.Invalid;
         component.PainMultiplier = state.PainMultiplier;
 
         component.PainFeelingModifiers.Clear();
         foreach (var ((modEntity, id), modifier) in state.PainFeelingModifiers)
         {
-            component.PainFeelingModifiers.Add((GetEntity(modEntity), id), modifier);
+            var entity = GetEntity(modEntity);
+            if (!TerminatingOrDeleted(entity) && !component.PainFeelingModifiers.ContainsKey((entity, id)))
+                component.PainFeelingModifiers.Add((entity, id), modifier);
         }
     }
 

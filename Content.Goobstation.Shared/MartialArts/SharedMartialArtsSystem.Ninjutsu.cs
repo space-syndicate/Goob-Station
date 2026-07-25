@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -20,6 +13,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
+using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -39,7 +33,7 @@ public abstract partial class SharedMartialArtsSystem
 
         SubscribeLocalEvent<GrantNinjutsuComponent, UseInHandEvent>(OnGrantCQCUse);
 
-        SubscribeLocalEvent<ThrownEvent>(OnThrow);
+        SubscribeLocalEvent<ThrowEvent>(OnThrow);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<NinjutsuSneakAttackComponent, SelfBeforeGunShotEvent>(OnBeforeGunShot);
@@ -58,7 +52,7 @@ public abstract partial class SharedMartialArtsSystem
     private void OnAlertEffectEnded(Entity<NinjutsuSneakAttackComponent> ent, ref StatusEffectEndedEvent args)
     {
         if (args.Key == "LossOfSurprise")
-            _alerts.ShowAlert(ent, ent.Comp.Alert);
+            _alerts.ShowAlert(ent.Owner, ent.Comp.Alert);
     }
 
     private void OnSneakAttackRemove(Entity<NinjutsuSneakAttackComponent> ent, ref ComponentRemove args)
@@ -66,12 +60,12 @@ public abstract partial class SharedMartialArtsSystem
         if (TerminatingOrDeleted(ent))
             return;
 
-        _alerts.ClearAlertCategory(ent, NinjutsuAlertCategory);
+        _alerts.ClearAlertCategory(ent.Owner, NinjutsuAlertCategory);
     }
 
     private void OnSneakAttackInit(Entity<NinjutsuSneakAttackComponent> ent, ref ComponentInit args)
     {
-        _alerts.ShowAlert(ent, ent.Comp.Alert);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.Alert);
     }
 
     private void OnMobStateChanged(MobStateChangedEvent ev)
@@ -87,7 +81,7 @@ public abstract partial class SharedMartialArtsSystem
         _modifier.RefreshMovementSpeedModifiers(ev.Origin.Value);
     }
 
-    private void OnThrow(ref ThrownEvent ev)
+    private void OnThrow(ref ThrowEvent ev)
     {
         if (HasComp<NinjutsuSneakAttackComponent>(ev.User))
             ResetDebuff(ev.User.Value);
@@ -121,8 +115,7 @@ public abstract partial class SharedMartialArtsSystem
         }
 
         var modifier = sneakAttack.TakedownSpeedModifier;
-
-        _stun.TrySlowdown(target, TimeSpan.FromSeconds(slowdownTime), true, modifier, modifier);
+        _movementMod.TryUpdateMovementSpeedModDuration(target, MartsGenericSlow, TimeSpan.FromSeconds(slowdownTime), modifier, modifier);
         _status.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(muteTime), true);
 
         _audio.PlayPvs(sneakAttack.AssassinateSoundUnarmed, target);
@@ -203,7 +196,7 @@ public abstract partial class SharedMartialArtsSystem
 
         // Swift Strike
         if (args.Performer == args.Weapon)
-            _stamina.TakeStaminaDamage(args.Target, 30f, applyResistances: true);
+            _stamina.TakeStaminaDamage(args.Target, 30f);
         var fireRate = TimeSpan.FromSeconds(1f / _melee.GetAttackRate(args.Weapon, args.Performer, melee));
         var minFireRate = TimeSpan.FromSeconds(1f / 8f); // This is basically the attack speed of a HF Blade.
 
@@ -227,7 +220,7 @@ public abstract partial class SharedMartialArtsSystem
         }
 
         // Paralyze, not knockdown
-        var time = TimeSpan.FromSeconds(proto.ParalyzeTime);
+        var time = proto.ParalyzeTime;
         if (_status.TryGetTime(target, "KnockedDown", out var knockdownStartEnd))
         {
             var knockdownTime = knockdownStartEnd.Value.Item2 - _timing.CurTime;
@@ -237,13 +230,13 @@ public abstract partial class SharedMartialArtsSystem
                     time = knockdownTime;
 
                 // We do not want to knockdown because it will stunlock the target
-                _stun.TryStun(target, time, true);
+                _stun.TryUpdateStunDuration(target, time);
             }
         }
 
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage * GetDamageMultiplier(ent), out _);
         _audio.PlayPvs(args.Sound, target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 
@@ -262,10 +255,10 @@ public abstract partial class SharedMartialArtsSystem
         if (TryComp<PullableComponent>(target, out var pullable))
             _pulling.TryStopPull(target, pullable, ent, true);
 
-        _stun.TryKnockdown(target, TimeSpan.FromSeconds(proto.ParalyzeTime), true, proto.DropHeldItemsBehavior);
+        _stun.TryKnockdown(target, proto.ParalyzeTime, true, true, proto.DropItems);
         DoDamage(ent, target, proto.DamageType, proto.ExtraDamage * GetDamageMultiplier(ent), out _);
         _audio.PlayPvs(args.Sound, target);
-        ComboPopup(ent, target, proto.Name);
+        ComboPopup(ent, target, proto.ID); // CorvaxGoob-Localization // proto.Name -> proto.ID
         ent.Comp.LastAttacks.Clear();
     }
 

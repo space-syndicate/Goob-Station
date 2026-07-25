@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._Shitcode.Heretic.Components;
@@ -36,7 +32,7 @@ public abstract class SharedRustChargeSystem : EntitySystem
         SubscribeLocalEvent<RustChargeComponent, StopThrowEvent>(OnStopThrow);
         SubscribeLocalEvent<RustChargeComponent, DownAttemptEvent>(OnDownAttempt);
         SubscribeLocalEvent<RustChargeComponent, InteractionAttemptEvent>(OnInteractAttempt);
-        SubscribeLocalEvent<RustChargeComponent, OldBeforeStatusEffectAddedEvent>(OnBeforeRustChargeStatusEffect);
+        SubscribeLocalEvent<RustChargeComponent, BeforeOldStatusEffectAddedEvent>(OnBeforeRustChargeStatusEffect);
         SubscribeLocalEvent<RustChargeComponent, ComponentShutdown>(OnRustChargeShutdown);
     }
 
@@ -48,9 +44,9 @@ public abstract class SharedRustChargeSystem : EntitySystem
         RemCompDeferred<RustObjectsInRadiusComponent>(ent);
     }
 
-    private void OnBeforeRustChargeStatusEffect(Entity<RustChargeComponent> ent, ref OldBeforeStatusEffectAddedEvent args)
+    private void OnBeforeRustChargeStatusEffect(Entity<RustChargeComponent> ent, ref BeforeOldStatusEffectAddedEvent args)
     {
-        if (args.Key == "KnockedDown")
+        if (args.EffectKey == "KnockedDown")
             args.Cancelled = true;
     }
 

@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseAction
+  id: ActionSlimeLatch
+  name: Latch
+  description: Latch onto a target and begin digesting it! Or get off of an existing one if you're already latched onto something.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Goobstation/Xenobiology/Actions/actions_slime.rsi
+      state: slimeeat
+    useDelay: 3
+  - type: TargetAction
+    range: 1
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - MobState
+      - Body
+    blacklist:
+      components:
+      - Slime
+    canTargetSelf: false
+    event: !type:SlimeLatchEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionEatCorpse
+  name: Eat corpse
+  description: Slowly begin to tear off the target's body part or organ.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Goobstation/Xenobiology/Actions/actions_slime.rsi
+      state: slimeeat
+    useDelay: 1
+  - type: TargetAction
+    range: 1
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - MobState
+      - Body
+    canTargetSelf: false
+    event: !type:EatCorpseEvent

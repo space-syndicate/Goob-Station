@@ -51,18 +51,26 @@
   - type: Targeting
   - type: SurgeryTarget
   - type: Bloodstream
-    bloodReagent: FluorosulfuricAcid
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 200
   - type: NightVision
     color: "#BF40BF"
     activateSound: null
     deactivateSound: null
   - type: ThermalVision
+    thermalShader: null
     color: "#BF40BF"
     activateSound: null
     deactivateSound: null
   - type: LightDetection
     onLightLevel: 0.25
   - type: LightDetectionDamage
+  - type: CollectiveMind # goob edit
+    defaultChannel: Shadowmind
+    channels:
+    - Shadowmind
   - type: ZombieImmune  # Goobstation
 
 - type: entity

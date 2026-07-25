@@ -1,64 +1,74 @@
-// SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2021 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2021 pointer-to-null <91910481+pointer-to-null@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2022 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Stunnable.Components;
 using Content.Shared.StatusEffect;
+using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Events;
+using Content.Shared.Whitelist; // DeltaV
 
-namespace Content.Server.Stunnable
+namespace Content.Server.Stunnable.Systems;
+
+[UsedImplicitly]
+internal sealed class StunOnCollideSystem : EntitySystem
 {
-    [UsedImplicitly]
-    internal sealed class StunOnCollideSystem : EntitySystem
+    [Dependency] private readonly StunSystem _stunSystem = default!;
+    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // DeltaV
+
+    public override void Initialize()
     {
-        [Dependency] private readonly StunSystem _stunSystem = default!;
+        base.Initialize();
 
-        public override void Initialize()
+        SubscribeLocalEvent<StunOnCollideComponent, StartCollideEvent>(HandleCollide);
+        SubscribeLocalEvent<StunOnCollideComponent, ThrowDoHitEvent>(HandleThrow);
+    }
+
+    private void TryDoCollideStun(Entity<StunOnCollideComponent> ent, EntityUid target)
+    {
+        // Begin DeltaV Additions
+        if (!_whitelist.IsWhitelistFailOrNull(ent.Comp.Blacklist, target))
+            return;
+        // End DeltaV Additions
+
+        _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, true);
+
+        if (ent.Comp.Refresh)
         {
-            base.Initialize();
-            SubscribeLocalEvent<StunOnCollideComponent, StartCollideEvent>(HandleCollide);
-            SubscribeLocalEvent<StunOnCollideComponent, ThrowDoHitEvent>(HandleThrow);
-        }
+            _stunSystem.TryUpdateStunDuration(target, ent.Comp.StunAmount);
 
-        private void TryDoCollideStun(EntityUid uid, StunOnCollideComponent component, EntityUid target)
+            _movementMod.TryUpdateMovementSpeedModDuration(
+                target,
+                MovementModStatusSystem.TaserSlowdown,
+                ent.Comp.SlowdownAmount,
+                ent.Comp.WalkSpeedModifier,
+                ent.Comp.SprintSpeedModifier
+            );
+        }
+        else
         {
-
-            if (TryComp<StatusEffectsComponent>(target, out var status))
-            {
-                _stunSystem.TryStun(target, TimeSpan.FromSeconds(component.StunAmount), true, status);
-
-                _stunSystem.TryKnockdown(target, TimeSpan.FromSeconds(component.KnockdownAmount), true,
-                    status);
-
-                _stunSystem.TrySlowdown(target, TimeSpan.FromSeconds(component.SlowdownAmount), true,
-                    component.WalkSpeedMultiplier, component.RunSpeedMultiplier, status);
-            }
+            _stunSystem.TryAddStunDuration(target, ent.Comp.StunAmount);
+            _movementMod.TryAddMovementSpeedModDuration(
+                target,
+                MovementModStatusSystem.TaserSlowdown,
+                ent.Comp.SlowdownAmount,
+                ent.Comp.WalkSpeedModifier,
+                ent.Comp.SprintSpeedModifier
+            );
         }
-        private void HandleCollide(EntityUid uid, StunOnCollideComponent component, ref StartCollideEvent args)
-        {
-            if (args.OurFixtureId != component.FixtureID)
-                return;
+    }
 
-            TryDoCollideStun(uid, component, args.OtherEntity);
-        }
+    private void HandleCollide(Entity<StunOnCollideComponent> ent, ref StartCollideEvent args)
+    {
+        if (args.OurFixtureId != ent.Comp.FixtureID)
+            return;
 
-        private void HandleThrow(EntityUid uid, StunOnCollideComponent component, ThrowDoHitEvent args)
-        {
-            TryDoCollideStun(uid, component, args.Target);
-        }
+        TryDoCollideStun(ent, args.OtherEntity);
+    }
+
+    private void HandleThrow(Entity<StunOnCollideComponent> ent, ref ThrowDoHitEvent args)
+    {
+        TryDoCollideStun(ent, args.Target);
     }
 }

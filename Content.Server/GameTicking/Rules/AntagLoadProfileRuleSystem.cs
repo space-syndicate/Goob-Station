@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Antag;
@@ -18,6 +8,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Prototypes;
+using System.Numerics; // Goobstation
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -26,6 +17,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _sharedHumanoid = default!; // Goobstation
 
     public override void Initialize()
     {
@@ -44,7 +36,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
             : HumanoidCharacterProfile.RandomWithSpecies();
 
 
-        if (profile?.Species is not { } speciesId || !_proto.TryIndex(speciesId, out var species))
+        if (profile?.Species is not { } speciesId || !_proto.Resolve(speciesId, out var species))
         {
             species = _proto.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
         }
@@ -60,5 +52,14 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
 
         args.Entity = Spawn(species.Prototype);
         _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+
+        // Goobstation start - Make entities spawn at max size for their species
+        if (ent.Comp.ForceMaxSize
+            && TryComp<HumanoidAppearanceComponent>(args.Entity.Value, out var humanoid))
+        {
+            var maxScale = new Vector2(species.MaxWidth, species.MaxHeight);
+            _sharedHumanoid.SetScale(args.Entity.Value, maxScale, true, humanoid);
+        }
+        // Goobstation end
     }
 }

@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aineias1 <dmitri.s.kiselev@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: lavalandGridRuin
@@ -56,6 +49,12 @@
   priority: 5
 
 - type: lavalandGridRuin
+  id: XenoNest
+  name: lavaland-ruin-desk #"Station debris"
+  path: /Maps/_Lavaland/Lavaland/ruin_xeno_nest.yml
+  priority: 5
+
+- type: lavalandGridRuin
   id: Ratvar
   name: lavaland-ruin-laboratory
   path: /Maps/_Lavaland/Lavaland/ruin_ratvar.yml
@@ -93,12 +92,6 @@
   priority: 11
 
 - type: lavalandGridRuin
-  id: LavaLake
-  name: lavaland-ruin-anomalous-landscape
-  path: /Maps/_Lavaland/Lavaland/ruin_lavalake.yml
-  priority: 12
-
-- type: lavalandGridRuin
   id: SeedVault
   name: lavaland-ruin-seed-vault
   path: /Maps/_Lavaland/Lavaland/ruin_seed_vault.yml
@@ -130,12 +123,6 @@
   priority: 17
 
 - type: lavalandGridRuin
-  id: CargoDebris
-  name: lavaland-ruin-cargo
-  path: /Maps/_Lavaland/Lavaland/ruin_cargo_debris.yml
-  priority: 18
-
-- type: lavalandGridRuin
   id: AbductorDebris
   name: lavaland-ruin-abductor
   path: /Maps/_Lavaland/Lavaland/ruin_abductor.yml
@@ -148,64 +135,10 @@
   priority: 20
 
 - type: lavalandGridRuin
-  id: FleshCave
-  name: lavaland-ruin-flesh
-  path: /Maps/_Lavaland/Lavaland/ruin_flesh.yml
-  priority: 21
-
-- type: lavalandGridRuin
-  id: FloraCave
-  name: lavaland-ruin-flora
-  path: /Maps/_Lavaland/Lavaland/ruin_flora.yml
-  priority: 21
-
-- type: lavalandGridRuin
-  id: IceCave
-  name: lavaland-ruin-ice
-  path: /Maps/_Lavaland/Lavaland/ruin_ice.yml
-  priority: 21
-
-- type: lavalandGridRuin
-  id: RockCave
-  name: lavaland-ruin-rock
-  path: /Maps/_Lavaland/Lavaland/ruin_rock.yml
-  priority: 21
-
-- type: lavalandGridRuin
-  id: SlimeCave
-  name: lavaland-ruin-slime
-  path: /Maps/_Lavaland/Lavaland/ruin_slime.yml
-  priority: 21
-
-- type: lavalandGridRuin
   id: Hunter
   name: lavaland-ruin-hunt
   path: /Maps/_Lavaland/Lavaland/ruin_hunter.yml
   priority: 22
-
-- type: lavalandGridRuin
-  id: Stash1
-  name: lavaland-ruin-stash
-  path: /Maps/_Lavaland/Lavaland/ruin_stash_1.yml
-  priority: 23
-
-- type: lavalandGridRuin
-  id: Stash2
-  name: lavaland-ruin-stash
-  path: /Maps/_Lavaland/Lavaland/ruin_stash_2.yml
-  priority: 23
-
-- type: lavalandGridRuin
-  id: Stash3
-  name: lavaland-ruin-stash
-  path: /Maps/_Lavaland/Lavaland/ruin_stash_3.yml
-  priority: 23
-
-- type: lavalandGridRuin
-  id: Stash4
-  name: lavaland-ruin-stash
-  path: /Maps/_Lavaland/Lavaland/ruin_stash_4.yml
-  priority: 23
 
 ## WIZDEN RUINS man
 - type: lavalandGridRuin
@@ -253,7 +186,8 @@
 #Goobstation ruins? Idk.
 
 - type: lavalandGridRuin
-  id: FlockLarge
-  name: lavaland-ruin-flock-large
-  path: /Maps/_Lavaland/Lavaland/flock_ruins_large.yml
-  priority: 31
+  id: Reclaimer
+  name: lavaland-ruin-reclaimer
+  path: /Maps/_Lavaland/Lavaland/reclaimer_shuttle_ruin.yml
+  priority: -1 # highest priority
+  patchToPlanet: false

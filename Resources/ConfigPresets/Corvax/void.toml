@@ -2,8 +2,11 @@
 hostname = "🛰️ CorvaxGoob — 🌌 Войд ☄️ [MRP] [TTS]"
 desc = "Corvax — первый русскоязычный проект в Space Station 14!\n• 🛠️ На этом сервере используется измененная сборка Goob Station.\n   Больше контента, возможностей и взаимодействия!\n• 🟡 Средние требования к RP.\n• 🔊 Имеется интеграция TTS (Text-To-Speech)."
 maxplayers = 180
-soft_max_players = 80
+soft_max_players = 90
 map_rotation = true
+
+[thunderdome]
+activation_delay_enabled = true
 
 [server]
 lobby_name = "️🛰️ CorvaxGoob — 🌌 Войд ☄️ [MRP] [TTS]"
@@ -23,3 +26,7 @@ time = 30.0
 [hub]
 advertise = true
 tags = "lang:ru,rp:med,region:eu_e,tts"
+
+[replay]
+max_compressed_size = 1048576
+max_uncompressed_size = 8388608

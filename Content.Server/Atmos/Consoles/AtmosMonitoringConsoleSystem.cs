@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2024 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Atmos.Components;
@@ -22,6 +19,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Atmos.EntitySystems;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.NodeContainer;
 
@@ -58,6 +56,7 @@ public sealed class AtmosMonitoringConsoleSystem : SharedAtmosMonitoringConsoleS
 
         // Grid events
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
+        SubscribeLocalEvent<PipeNodeGroupRemovedEvent>(OnPipeNodeGroupRemoved);
     }
 
     #region Event handling
@@ -300,6 +299,25 @@ public sealed class AtmosMonitoringConsoleSystem : SharedAtmosMonitoringConsoleS
 
     #region Pipe net functions
 
+    private void OnPipeNodeGroupRemoved(ref PipeNodeGroupRemovedEvent args)
+    {
+        // When a pipe node group is removed, we need to iterate over all of
+        // our pipe chunks and remove any entries with a matching net id.
+        // (We only need to check the chunks for the affected grid, though.)
+
+        if (!_gridAtmosPipeChunks.TryGetValue(args.Grid, out var chunkData))
+            return;
+
+        foreach (var chunk in chunkData.Values)
+        {
+            foreach (var key in chunk.AtmosPipeData.Keys)
+            {
+                if (key.NetId == args.NetId)
+                    chunk.AtmosPipeData.Remove(key);
+            }
+        }
+    }
+
     private void RebuildAtmosPipeGrid(EntityUid gridUid, MapGridComponent grid)
     {
         var allChunks = new Dictionary<Vector2i, AtmosPipeChunk>();
@@ -416,7 +434,7 @@ public sealed class AtmosMonitoringConsoleSystem : SharedAtmosMonitoringConsoleS
                 continue;
 
             var netId = GetPipeNodeNetId(pipeNode);
-            var subnet = new AtmosMonitoringConsoleSubnet(netId, pipeNode.CurrentPipeLayer, pipeColor.Color.ToHex());
+            var subnet = new AtmosMonitoringConsoleSubnet(netId, pipeNode.CurrentPipeLayer, pipeColor.Color);
             var pipeDirection = pipeNode.CurrentPipeDirection;
 
             chunk.AtmosPipeData.TryGetValue(subnet, out var atmosPipeData);

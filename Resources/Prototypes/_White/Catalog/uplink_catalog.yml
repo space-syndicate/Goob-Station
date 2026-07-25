@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Spatison <137375981+spatison@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Weaponry
 
@@ -63,7 +55,7 @@
   description: uplink-night-vision-desc
   productEntity: ClothingEyesNightVisionGogglesNukie
   cost:
-    Telecrystal: 10 # goob
+    Telecrystal: 15 # goob
   categories:
   - UplinkWearables
   conditions:
@@ -80,7 +72,7 @@
   description: uplink-thermal-vision-desc
   productEntity: ClothingEyesThermalVisionGogglesSyndie
   cost:
-    Telecrystal: 10 # goob
+    Telecrystal: 15 # goob
   categories:
   - UplinkWearables
   conditions:
@@ -95,7 +87,7 @@
   description: uplink-thermal-vision-desc
   productEntity: ClothingEyesThermalVisionGogglesNukie
   cost:
-    Telecrystal: 10 # goob
+    Telecrystal: 20 # goob
   categories:
   - UplinkWearables
   conditions:

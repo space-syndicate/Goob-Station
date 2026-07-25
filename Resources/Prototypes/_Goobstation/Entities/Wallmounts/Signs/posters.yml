@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2024 LevitatingTree <114672939+LevitatingTree@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 LevitatingTree <None>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BeeRobynn <166929042+BeeRobynn@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Posters
 
@@ -135,7 +130,7 @@
   - type: Sprite
     sprite: _Goobstation/Structures/posters.rsi
     state: goob_poster13_legit
-    
+
 - type: entity
   parent: PosterBase
   id: PosterLegitGoobWelderBomb
@@ -205,3 +200,13 @@
   - type: Sprite
     sprite: _Goobstation/Structures/posters.rsi
     state: goob_poster2_contraband
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandGoobRedFOSS
+  name: "Red Tux Poster"
+  description: "A poster calling free open source software communism, you are unsure if the poster author is for or against this."
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Structures/posters.rsi
+    state: goob_poster3_contraband

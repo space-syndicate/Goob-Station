@@ -1,19 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Poips <Hanakohashbrown@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Theodore Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 grub <unalterableness@gmail.com>
-# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-# SPDX-FileCopyrightText: 2025 shityaml <unalterableness@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -23,16 +7,16 @@
   - type: StationEvent
     earliestStart: 15
     reoccurrenceDelay: 45
-    weight: 7.5 # Goobstation - 7.5 -> 4 # CorvaxGoob Changes: Back to 7.5
+    weight: 3 # Goobstation - 7.5 -> 4 # CorvaxGoob Changes: 4 > 3
     maxOccurrences: 1 # CorvaxGoob Changes: abductors spawn balance
-    minimumPlayers: 10
+    minimumPlayers: 25 # CorvaxGoob Changes: 10 > 25
     duration: null # Goobstation - chud
     chaos:
       Hostile: 75
       Medical: 75
     eventType: HostilesSpawn
   - type: GameRule
-    chaosScore: 300
+    chaosScore: 100
   - type: RuleGrids
   - type: LoadMapRule
     mapPath: /Maps/_Shitmed/Shuttles/ShuttleEvent/abductor_shuttle.yml
@@ -64,18 +48,9 @@
         description: abductor-lone-ghost-role-desc
         rules: abductors-ghost-role-rules
         mindRoles:
-        - MindRoleGhostRoleSoloAntagonist
+        - MindRoleLoneAbductor
         raffle:
           settings: default
-        requirements:
-        - !type:OverallPlaytimeRequirement
-          time: 180000 #50 hours
-        - !type:DepartmentTimeRequirement
-          department: Medical
-          time: 7200 #2 hours
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 7200 #2 hours
       - type: GhostTakeoverAvailable
       - type: NpcFactionMember
         factions:
@@ -97,6 +72,11 @@
       - type: Sanitized
       - type: SurgerySpeedModifier
         speedModifier: 1.5
+      #CorvaxGoob-AbductorFixImmunity start
+      - type: PressureImmunity
+      - type: SpecialHighTempImmunity
+      - type: SpecialLowTempImmunity
+      #CorvaxGoob-AbductorFixImmunity end
       mindRoles:
       - MindRoleLoneAbductor
 
@@ -126,16 +106,16 @@
   - type: StationEvent
     earliestStart: 15
     reoccurrenceDelay: 45
-    weight: 7.5 # Goobstation - 7.5 -> 4 # CorvaxGoob Changes: Back to 7.5
+    weight: 3.5 # Goobstation - 7.5 -> 4 # CorvaxGoob Changes: 4 > 3.5
     maxOccurrences: 1 # CorvaxGoob Changes: abductors spawn balance
-    minimumPlayers: 20
+    minimumPlayers: 35 # CorvaxGoob Changes: 20 > 35
     duration: null # Goobstation - chud
     chaos:
       Hostile: 150
       Medical: 150
     eventType: HostilesSpawn
   - type: GameRule
-    chaosScore: 450
+    chaosScore: 150
   - type: RuleGrids
   - type: LoadMapRule
     mapPath: /Maps/_Shitmed/Shuttles/ShuttleEvent/duo_abductor_shuttle.yml
@@ -167,15 +147,9 @@
         description: abductor-scientist-ghost-role-desc
         rules: abductors-ghost-role-rules
         mindRoles:
-        - MindRoleGhostRoleTeamAntagonist
+        - MindRoleAbductorScientist
         raffle:
           settings: default
-        requirements:
-        - !type:OverallPlaytimeRequirement
-          time: 180000 #50 hours
-        - !type:DepartmentTimeRequirement
-          department: Medical
-          time: 10800 #3 hours
       - type: GhostTakeoverAvailable
       - type: NpcFactionMember
         factions:
@@ -197,6 +171,11 @@
       - type: Sanitized
       - type: SurgerySpeedModifier
         speedModifier: 1.5
+      #CorvaxGoob-AbductorFixImmunity start
+      - type: PressureImmunity
+      - type: SpecialHighTempImmunity
+      - type: SpecialLowTempImmunity
+      #CorvaxGoob-AbductorFixImmunity end
       mindRoles:
       - MindRoleAbductorScientist
     - spawnerPrototype: AbductorAgentSpawner
@@ -220,15 +199,9 @@
         description: abductor-agent-ghost-role-desc
         rules: abductors-ghost-role-rules
         mindRoles:
-        - MindRoleGhostRoleTeamAntagonist
+        - MindRoleAbductorAgent
         raffle:
           settings: default
-        requirements:
-        - !type:OverallPlaytimeRequirement
-          time: 18000 #5 hours
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 10800 #3 hours
       - type: GhostTakeoverAvailable
       - type: NpcFactionMember
         factions:
@@ -245,5 +218,10 @@
           - FootstepSound
           - DoorBumpOpener
       - type: AbductorScientist # Should be removed when we have proper teleportation system
+      #CorvaxGoob-AbductorFixImmunity start
+      - type: PressureImmunity
+      - type: SpecialHighTempImmunity
+      - type: SpecialLowTempImmunity
+      #CorvaxGoob-AbductorFixImmunity end
       mindRoles:
       - MindRoleAbductorAgent

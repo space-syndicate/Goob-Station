@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: CorvaxShuttleMiningNames
+  values:
+    prefix: corvax-shuttle-mining-names-dataset-
+    count: 1

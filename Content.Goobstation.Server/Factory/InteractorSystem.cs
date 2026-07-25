@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Factory;
@@ -49,7 +44,7 @@ public sealed class InteractorSystem : SharedInteractorSystem
         }
 
         _constructionQuery.TryComp(target, out var construction);
-        var originalCount = construction?.InteractionQueue?.Count ?? 0;
+        var originalCount = construction?.InteractionQueue.Count ?? 0;
         if (!InteractWith(ent, target))
         {
             // have to remove it since user's filter was bad due to unhandled interaction

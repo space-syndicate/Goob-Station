@@ -1,19 +1,6 @@
-// SPDX-FileCopyrightText: 2024 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Text;
-using Content.Goobstation.Common.Changeling;
-using Content.Goobstation.Server.Changeling.Roles;
 using Content.Goobstation.Shared.Changeling.Components;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
@@ -24,6 +11,7 @@ using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Robust.Shared.Audio;
@@ -49,7 +37,7 @@ public sealed class ChangelingRuleSystem : GameRuleSystem<ChangelingRuleComponen
 
     public readonly ProtoId<CurrencyPrototype> Currency = "EvolutionPoint";
 
-    public readonly int StartingCurrency = 16;
+    public readonly int StartingCurrency = 12;
 
     [ValidatePrototypeId<EntityPrototype>] EntProtoId mindRole = "MindRoleChangeling";
 
@@ -91,8 +79,7 @@ public sealed class ChangelingRuleSystem : GameRuleSystem<ChangelingRuleComponen
         _npcFaction.RemoveFaction(target, NanotrasenFactionId, false);
         _npcFaction.AddFaction(target, ChangelingFactionId);
 
-        // make sure it's initial chems are set to max
-        EnsureComp<ChangelingIdentityComponent>(target);
+        // make them a changeling
         EnsureComp<ChangelingComponent>(target);
 
         // add store
@@ -114,7 +101,7 @@ public sealed class ChangelingRuleSystem : GameRuleSystem<ChangelingRuleComponen
         var mostAbsorbed = 0f;
         var mostStolen = 0f;
 
-        foreach (var ling in EntityQuery<ChangelingIdentityComponent>())
+        foreach (var ling in EntityQuery<ChangelingIdentityComponent>()) // TODO make a ChangelingAbsorbComponent to store data about absorbed DNA and entities
         {
             if (!_mind.TryGetMind(ling.Owner, out var mindId, out var mind))
                 continue;

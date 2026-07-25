@@ -1,20 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 Tonk-GCR <ryantrujillo82@gmail.com>
-# SPDX-FileCopyrightText: 2024 Weide <64257676+Lyacs@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-# SPDX-FileCopyrightText: 2025 BuffOrphan <horsepuncher3@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 LuciferMkshelter <154002422+LuciferEOS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -90,3 +73,99 @@
     - type: Clothing
       sprite: _Goobstation/Clothing/OuterClothing/Misc/nopro.rsi
       quickEquip: true
+
+- type: entity
+  parent: ClothingOuterWizardCentCommReal
+  id: WhiteRobes
+  name: robes of the chosen one
+  description: theses white robes are worn by only the finest of Nanotrasen's special operations department.
+  suffix: chosen one
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/robesjedi.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/robesjedi.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitHotDog
+  name: hotdog costume
+  description: Hot-diggity-dog!
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/hotdog.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/hotdog.rsi
+    quickEquip: true
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitPickle
+  name: pickle suit
+  description: Smells horribly of vinegar.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/pickle.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/pickle.rsi
+    quickEquip: true
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitTutu
+  name: tutu
+  description: Why?..
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/tutu.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/tutu.rsi
+    quickEquip: true
+
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterArmorHereticCostume
+  name: occult robes
+  description: A ragged, dusty set of robes. Strange smudgy eyes line the inside.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/rust_armor.rsi # CorvaxGoob
+    state: icon
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/OuterClothing/HereticRobes/rust_armor.rsi # CorvaxGoob
+  - type: ToggleableClothing # Goobstation - Modsuits change
+    clothingPrototypes:
+      head: ClothingHeadHatHoodHereticCostume
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseMajorContraband]
+  id: ClothingOuterBrassArmor
+  name: brass armor
+  description: Old Slavic brass armor, like that of our ancestors.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/brass_armor.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/OuterClothing/Misc/brass_armor.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.6
+  - type: Construction
+    graph: BrassOutClot
+    node: brassClot

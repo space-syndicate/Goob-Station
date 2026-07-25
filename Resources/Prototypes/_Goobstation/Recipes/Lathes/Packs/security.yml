@@ -1,15 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-# SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot02@gmail.com>
-# SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot20@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 ## Static
 - type: latheRecipePack
@@ -24,6 +12,7 @@
   recipes:
   - GrenadeFlashBang
   - BolaEnergy
+  - BodyBag #A pile of rotting rev carcases is on my hands.
 
 - type: latheRecipePack
   id: SecurityHypoStatic
@@ -36,9 +25,25 @@
   - SecHypo
 
 - type: latheRecipePack
+  id: SecurityWeaponsStaticGoob
+  recipes:
+  - PolymerBaton
+  - SpearTelescopic
+
+- type: latheRecipePack
   id: SecurityWeaponsNonEmaggableStaticGoob # At some point Terminus should be mapped and not printable, at least without research.
   recipes:
   - Terminus
+
+- type: latheRecipePack
+  id: ERTAmmoStaticGoob
+  recipes:
+  - MagazineBoxLightRifle
+  - MagazineLightRifleEmpty
+  - MagazineLightRifle
+  - MagazineMagnumEmpty
+  - MagazineMagnum
+  - MagazineBoxShotgunHighCaliber
 
 ## Dynamic
 - type: latheRecipePack
@@ -51,6 +56,7 @@
   - WeaponLaserCellSMG
   - WeaponLaserCellSniper
   - ClothingBackpackLMGBattery
+  - ClothingEyesGlassesSecurityContraDetect
 
 - type: latheRecipePack
   id: SecurityAmmoGoob
@@ -76,6 +82,10 @@
   - PowerCellXraySniper
   - PowerCellOverchargedSniper
   - MilitaryPowerCellLMG
+  - PowerCellBluespaceRevolver
+  - PowerCellBluespaceSMG
+  - PowerCellBluespaceSniper
+  - MilitaryPowerCellBluespaceLMG
 
 - type: latheRecipePack
   id: SecurityEquipmentDynamicGoob

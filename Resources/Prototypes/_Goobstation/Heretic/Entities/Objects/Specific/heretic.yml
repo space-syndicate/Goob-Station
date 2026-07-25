@@ -1,18 +1,9 @@
-# SPDX-FileCopyrightText: 2024 Armok <155400926+ARMOKS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
   parent: [ BaseItem, BaseMagicalContraband ]
   id: CodexCicatrix
+  suffix: MagicItem
   name: codex cicatrix
   description: This heavy tome is full of cryptic scribbles and impossible diagrams. According to legend, it can be deciphered to reveal the secrets of the veil between worlds.
   components:
@@ -103,6 +94,10 @@
   - type: Reflect
     reflectProb: 1
     spread: 360
+    reflects:
+    - Energy
+    - NonEnergy
+    - Magic
 
 - type: entity
   parent: BaseBullet

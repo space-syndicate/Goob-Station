@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Nutrition.EntitySystems;
@@ -27,11 +24,11 @@ public sealed partial class SealableComponent : Component
     /// Text shown when examining and the item's seal has not been broken.
     /// </summary>
     [DataField]
-    public LocId ExamineTextSealed = "drink-component-on-examine-is-sealed";
+    public LocId ExamineTextSealed = "sealable-component-on-examine-is-sealed";
 
     /// <summary>
     /// Text shown when examining and the item's seal has been broken.
     /// </summary>
     [DataField]
-    public LocId ExamineTextUnsealed = "drink-component-on-examine-is-unsealed";
+    public LocId ExamineTextUnsealed = "sealable-component-on-examine-is-unsealed";
 }

@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Spoken by slime race and slimes.
@@ -11,9 +7,9 @@
   isVisibleLanguage: true
   speech:
     color: "#24d1b9" # Goob Edit - Original "#00a3e2dd"
-    fontId: SourGummy # Goob Edit - Different Font
-    boldFontId: SourGummyBold
-    fontSize: 13 # Goob Edit - Increased by 1 to account for slight font size difference.
+    # fontId: SourGummy # Goob Edit - Different Font Commented by CorvaxGoob : Fixes
+    # boldFontId: SourGummyBold Commented by CorvaxGoob : Fixes
+    # fontSize: 13 # Goob Edit - Increased by 1 to account for slight font size difference. Commented by CorvaxGoob : Fixes
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

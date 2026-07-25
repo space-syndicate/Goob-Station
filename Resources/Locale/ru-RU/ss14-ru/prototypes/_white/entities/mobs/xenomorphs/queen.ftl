@@ -1,7 +1,6 @@
-ent-BaseMobXenomorphQueen = королева ксеноморфов
-    .desc = Высшая особь, центральный элемент и мать Улья. Уничтожение Королевы в большинстве случаев означает крах Улья.
+ent-BaseMobXenomorphQueen = Королева Ксеноморфов
+    .desc = Высшее звено, главный элемент и мать улья. Уничтожение королевы, в большинстве случаев, приводит к краху улья.
 ent-MobXenomorphQueen = { ent-BaseMobXenomorphQueen }
     .desc = { ent-BaseMobXenomorphQueen.desc }
-ent-MobXenomorphQueenDungeon = { ent-BaseMobXenomorphQueen }
-    .suffix = Подземелье
-    .desc = { ent-BaseMobXenomorphQueen.desc }
+ent-MobXenomorphQueenDungeon = { ent-BaseMobXenomorphDungeon }
+    .desc = { ent-BaseMobXenomorphDungeon.desc }

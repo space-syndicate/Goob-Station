@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 icekot8 <93311212+icekot8@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Access;
@@ -79,6 +75,19 @@ public sealed partial class CargoOrderConsoleComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<StackPrototype> CashType = "Credit";
+
+    // CorvaxGoob-CargoFeatures
+    /// <summary>
+    /// Надбавка к цене за отправку груза в защищённом ящике отдела.
+    /// </summary>
+    [DataField]
+    public int SecureOrderCost = 100;
+
+    /// <summary>
+    /// Может ли редактироваться имя и должность заказчика. В ином случае ставится стандартное значение.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool EditableRequesterName = false;
 
     /// <summary>
     /// All of the <see cref="CargoProductPrototype.Group"/>s that are supported.

@@ -12,3 +12,91 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkCatMaidBundle
+  name: uplink-cat-maid-bundle-name
+  description: uplink-cat-maid-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateCatMaidBundle
+  cost:
+    Telecrystal: 135
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkClothingHandsAppearanceConverter
+  name: uplink-appearance-converter-name
+  description: uplink-appearance-converter-desc
+  productEntity: ClothingHandsAppearanceConverter
+  cost:
+    Telecrystal: 40
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkBloodRedPaperBox
+  name: uplink-blood-red-paper-box-name
+  description: uplink-blood-red-paper-box-desc
+  productEntity: BloodRedPaperBox
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkRubberStampChameleon
+  name: uplink-stamp-chameleon-name
+  description: uplink-stamp-chameleon-desc
+  productEntity: RubberStampChameleon
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkDeception
+
+- type: listing
+  id: UplinkSyndicateGorilla
+  name: uplink-reinforcement-radio-syndicate-gorilla-name
+  description: uplink-reinforcement-radio-syndicate-gorilla-desc
+  icon: { sprite: _CorvaxGoob/Mobs/Pets/syndicategorilla.rsi, state: crawling }
+  productEntity: ReinforcementRadioSyndicateGorilla
+  cost:
+    Telecrystal: 50 
+  categories:
+    - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - ContravendUplink
+      
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
+- type: listing
+  id: UplinkDiceOfFate
+  name: uplink-dice-of-fate-name
+  description: uplink-dice-of-fate-desc
+  icon: { sprite: Objects/Fun/dice.rsi, state: d20_20 }
+  productEntity: DiceOfFate
+  cost:
+    Telecrystal: 60
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) end
+  
+- type: listing
+  id: UplinkToolboxElectricalTurret
+  name: uplink-toolbox-electrical-turret-name
+  description: uplink-toolbox-electrical-turret-desc
+  icon: { sprite:  Objects/Tools/Toolboxes/toolbox_yellow.rsi, state: icon}
+  productEntity: BlueprintToolboxElectricalTurret
+  cost:
+    Telecrystal: 70
+  categories:
+  - UplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Engineering

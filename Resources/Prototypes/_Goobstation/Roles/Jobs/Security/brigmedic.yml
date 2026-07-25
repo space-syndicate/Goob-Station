@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: job
@@ -11,10 +8,14 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Medical
-    time: 36000 # 10 hrs
+    time: 18000 # 5 hrs
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000 # 10 hrs
+    time: 18000 # 10 hrs
+  - !type:SpeciesRequirement # CorvaxGoob-Species
+    inverted: true
+    species:
+    - Abductor
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
@@ -24,7 +25,11 @@
   - Shooting
   - Surgery
   - MedicalEquipment
-  access: # intentionally no medical access, not even hos has it, ask chemists instead of silently stealing meds
+  guides:
+  - MedicalDoctor
+  # - Brigmedic SOP Hidden by CorvaxGoob
+  - Medicine
+  access: # EE parity, make corpsman able function.
   - Security
   - Brig
   - Medical

@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Scruq445 <storchdamien@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.Traits;
@@ -24,6 +14,7 @@ public sealed class LegsStartParalyzedSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<LegsStartParalyzedComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<LegsStartParalyzedComponent, ComponentRemove>(OnRemoved);
     }
 
     private void OnMapInit(EntityUid uid, LegsStartParalyzedComponent component, MapInitEvent args)
@@ -33,5 +24,14 @@ public sealed class LegsStartParalyzedSystem : EntitySystem
 
         foreach (var legEntity in body.LegEntities)
             EnsureComp<LimbParalyzedComponent>(legEntity);
+    }
+
+    private void OnRemoved(EntityUid uid, LegsStartParalyzedComponent component, ComponentRemove args)
+    {
+        if (!TryComp<BodyComponent>(uid, out var body))
+            return;
+
+        foreach (var legEntity in body.LegEntities)
+            RemComp<LimbParalyzedComponent>(legEntity);
     }
 }

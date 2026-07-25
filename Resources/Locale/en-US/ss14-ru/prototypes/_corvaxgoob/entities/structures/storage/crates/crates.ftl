@@ -8,3 +8,7 @@ ent-CrateDestructionSecure = bluespace destruction crate
     .desc = { ent-CrateBaseSecure.desc }
 ent-CrateLimitedSecure = bluespace limited crate
     .desc = { ent-CrateBaseSecure.desc }
+ent-CratePrivateCargoSecure = { ent-CratePrivateSecure }
+    .desc = { ent-CratePrivateSecure.desc }
+ent-CrateHolographic = holographic crate
+    .desc = { ent-CrateGeneric.desc }

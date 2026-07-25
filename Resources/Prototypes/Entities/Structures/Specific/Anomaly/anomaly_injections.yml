@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -191,7 +186,7 @@
         minRange: 1.5
         maxRange: 2.5
       spawns:
-      - FleshBlocker
+      - FleshAnomalyMeatSpawner # CorvaxGoob
     - settings:
         spawnOnPulse: true
         maxAmount: 1
@@ -209,7 +204,7 @@
         minRange: 5
         maxRange: 15
       spawns:
-      - FleshBlocker
+      - FleshAnomalyMeatSpawner # CorvaxGoob
     - settings:
         spawnOnSuperCritical: true
         minAmount: 2
@@ -264,7 +259,7 @@
   - type: PointLight
     color: "#56c1e8"
   - type: TechAnomaly
-    linkRadius: 
+    linkRadius:
       min: 2
       max: 5
     linkCountPerPulse:

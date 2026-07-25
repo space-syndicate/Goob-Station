@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using System.Linq;
@@ -14,6 +10,11 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
+// Goobstation - Admin Log
+using Content.Shared.Database;
+using Content.Server.Administration.Logs;
+
+
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
@@ -23,6 +24,9 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IResourceManager _res = default!;
+
+    // Goobstation - Admin Log
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
     public string Command => "playglobalsound";
     public string Description => Loc.GetString("play-global-sound-command-description");
@@ -35,6 +39,9 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
 
         bool replay = true;
 
+        // Goobstation - Admin Log
+        var playerName = shell.Player as ICommonSession;
+
         switch (args.Length)
         {
             // No arguments, show command help.
@@ -46,6 +53,7 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
             case 1:
                 // Filter.Broadcast does resolves IPlayerManager, so use this instead.
                 filter = Filter.Empty().AddAllPlayers(_playerManager);
+
                 break;
 
             // One or more users specified.
@@ -68,6 +76,11 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
                 if (args.Length == 2)
                 {
                     filter = Filter.Empty().AddAllPlayers(_playerManager);
+
+                    // Goobstaion - Admin Log
+                    _adminLog.Add(LogType.AdminCommands,
+                        LogImpact.High,
+                        $"{playerName} played global sound {args[0]} to all players.");
                 }
                 else
                 {
@@ -87,6 +100,11 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
                         }
 
                         filter.AddPlayer(session);
+
+                        // Goobstation - Admin Log
+                        _adminLog.Add(LogType.AdminCommands,
+                            LogImpact.High,
+                            $"{playerName} played global sound {args[0]} for {session.Name}");
                     }
                 }
 

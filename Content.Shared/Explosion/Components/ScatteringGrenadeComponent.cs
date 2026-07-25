@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Explosion.EntitySystems;
@@ -118,4 +114,10 @@ public sealed partial class ScatteringGrenadeComponent : Component
     /// We need to store this because we are only allowed to spawn and trigger timed entities on the next available frame update
     /// </summary>
     public bool IsTriggered = false;
+
+    /// <summary>
+    /// The trigger key that will activate the grenade.
+    /// </summary>
+    [DataField]
+    public string TriggerKey = "timer";
 }

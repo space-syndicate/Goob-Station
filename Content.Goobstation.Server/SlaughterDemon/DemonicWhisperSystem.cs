@@ -1,14 +1,12 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.SlaughterDemon;
 using Content.Server.Administration;
-using Content.Server.IdentityManagement;
+using Content.Shared.IdentityManagement;
 using Content.Server.Popups;
 using Content.Server.Prayer;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Goobstation.Server.SlaughterDemon;
 
@@ -24,7 +22,7 @@ public sealed class DemonicWhisperSystem : EntitySystem
     [Dependency] private readonly IdentitySystem _identity = default!;
 
     private EntityQuery<ActorComponent> _actorQuery;
-    /// <inheritdoc/>
+
     public override void Initialize()
     {
         base.Initialize();
@@ -48,7 +46,7 @@ public sealed class DemonicWhisperSystem : EntitySystem
 
             _popup.PopupEntity(Loc.GetString("demonic-whisper-whisper",
                 ("name", _identity.GetEntityIdentity(target)),
-                ("message", message)),
+                ("message", FormattedMessage.EscapeText(message))),
                 ent.Owner);
         });
     }

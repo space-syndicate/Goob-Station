@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Administration;
@@ -35,7 +30,7 @@ public sealed class TimeTransferPanelEui : BaseEui
 
     public override TimeTransferPanelEuiState GetNewState()
     {
-        var hasFlag = _adminMan.HasAdminFlag(Player, AdminFlags.Moderator);
+        var hasFlag = _adminMan.HasAdminFlag(Player, AdminFlags.Playtime); // CorvaxGoob-DiscordRoles
 
         return new TimeTransferPanelEuiState(hasFlag);
     }
@@ -52,7 +47,7 @@ public sealed class TimeTransferPanelEui : BaseEui
 
     public async void TransferTime(string playerId, List<TimeTransferData> timeData, bool overwrite)
     {
-        if (!_adminMan.HasAdminFlag(Player, AdminFlags.Moderator))
+        if (!_adminMan.HasAdminFlag(Player, AdminFlags.Playtime)) // CorvaxGoob-DiscordRoles
         {
             _sawmill.Warning($"{Player.Name} ({Player.UserId} tried to add roles time without moderator flag)");
             return;

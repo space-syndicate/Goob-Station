@@ -19,11 +19,11 @@ traitor-cybersunindustries-goal = Не устанавливайте заметн
 traitor-cybersunindustries-allies = Доверяйте только другим оперативникам Cybersun и агентам MI13. Остальные агенты Синдиката ненадёжны.
 traitor-cybersunindustries-uplink = Вам выдали инструменты для выполнения задания — аплинк Синдиката в вашем КПК.
 traitor-cybersunindustries-roundend = [color=yellow]специалист из Cybersun Industries[/color]
-traitor-corporateclimber-intro = You are a Corporate Climber.
-traitor-corporateclimber-goal = Killing needlessly would make you some kind of traitor, or at least definitely seen as one. This is all just a means to an end.
-traitor-corporateclimber-allies = Death to the Syndicate.
-traitor-corporateclimber-uplink = You have connections to the black market for the deeds. Your uplink is located in your PDA. Knock off a few loose weights, and your climb will be so much smoother.
-traitor-corporateclimber-roundend = [color=yellow]a corporate climber.[/color]
+traitor-corporateclimber-intro = Вы — Корпоративная крыса.
+traitor-corporateclimber-goal = Бессмысленные убийства сделают тебя предателем или, как минимум, тебя именно так и воспримут. Всё это лишь средство достижения цели.
+traitor-corporateclimber-allies = Смерть Синдикату.
+traitor-corporateclimber-uplink = У тебя есть связи на чёрном рынке для подобных дел. Аплинк в твоем КПК. Сбрось пару якорей, и твой подъём по карьерной лестнице будет куда приятнее.
+traitor-corporateclimber-roundend = [color=yellow]корпоративная крыса.[/color]
 traitor-donkcorporation-intro = Вы — внедрённый агент Donk Co.
 traitor-donkcorporation-goal = Мы не одобряем бессмысленные убийства невинных работников. Наш девиз: прийти, сделать дело, уйти.
 traitor-donkcorporation-allies = Убивайте сотрудников Waffle Co. на месте. Пока мы здесь, им не место на станции.
@@ -34,6 +34,16 @@ traitor-gorlexmarauders-goal = Проблем с обнаружением быт
 traitor-gorlexmarauders-allies = Можете сотрудничать с союзниками коалиции Синдиката, но следите за фанатиками Tiger, если они появятся.
 traitor-gorlexmarauders-uplink = Вам выдали аплинк Синдиката в КПК для выполнения задания.
 traitor-gorlexmarauders-roundend = [color=red]мародёр Gorlex[/color]
+traitor-legaltrouble-intro = У вас проблемы с законом.
+traitor-legaltrouble-goal = Постарайтесь выполнить список дел и не попасться. Если узнают, чем вы на самом деле занимаетесь, это будет галактический скандал.
+traitor-legaltrouble-allies = Смерть Синдикату.
+traitor-legaltrouble-uplink = Вы подключились к чёрному рынку, чтобы замести следы. Аплинк находится в вашем КПК. Нет улик — нет преступления.
+traitor-legaltrouble-roundend = [color=white]под следствием[/color]
+traitor-mi13-intro = Вы — агент MI13.
+traitor-mi13-goal = Избегайте убийства невиновных любой ценой. Мы здесь не для того, чтобы бездумно убивать — это привлекло бы слишком много внимания. Оставайтесь незаметным.
+traitor-mi13-allies = Вы — единственный настоящий агент. Все остальные — самозванцы. Доверяйте только специалистам Cybersun.
+traitor-mi13-uplink = Вам выдали аплинк Синдиката в КПК для выполнения задания.
+traitor-mi13-roundend = [color=cyan]агент MI13[/color]
 traitor-tigercooperative-intro = Вы — фанатик Tiger Cooperative.
 traitor-tigercooperative-goal = Помните учение Хай-лургиксона: сперва убей, потом задавай вопросы!
 traitor-tigercooperative-allies = Доверяйте только просвещённым братьям Tiger. Все остальные должны быть изгнаны из этого мира!
@@ -54,16 +64,15 @@ traitor-neulithivfederationvisionary-goal = Федерация Космичес�
 traitor-neulithivfederationvisionary-allies = Члены Федерации Космических Магов и другие визионеры надёжны. Остальные агенты Синдиката — на ваше усмотрение.
 traitor-neulithivfederationvisionary-uplink = Федерация предоставила вам аплинк в КПК. Используйте его с умом.
 traitor-neulithivfederationvisionary-roundend = [color=violet]визионер Федерации Neulithiv[/color]
-traitor-legaltrouble-intro = У вас проблемы с законом.
-traitor-legaltrouble-goal = Постарайтесь выполнить список дел и не попасться. Если узнают, чем вы на самом деле занимаетесь, это будет галактический скандал.
-traitor-legaltrouble-allies = Смерть Синдикату.
-traitor-legaltrouble-uplink = Вы подключились к чёрному рынку, чтобы замести следы. Аплинк находится в вашем КПК. Нет улик — нет преступления.
-traitor-legaltrouble-roundend = [color=white]под следствием[/color]
-traitor-mi13-intro = Вы — агент MI13.
-traitor-mi13-goal = Избегайте убийства невиновных любой ценой. Мы здесь не для того, чтобы бездумно убивать — это привлекло бы слишком много внимания. Оставайтесь незаметным.
-traitor-mi13-allies = Вы — единственный настоящий агент. Все остальные — самозванцы. Доверяйте только специалистам Cybersun.
-traitor-mi13-uplink = Вам выдали аплинк Синдиката в КПК для выполнения задания.
-traitor-mi13-roundend = [color=cyan]агент MI13[/color]
+traitor-postal-intro = Ты сошел с ума.
+traitor-postal-goal = Приготовления, наконец, завершены. Сегодня тот день, когда вы отправитесь в путь. Вы собираетесь захватить эвакуационный шаттл и начать новую жизнь, свободную от Нанотрейзена.
+traitor-postal-allies = Если синдикат прознает о вашем плане, они убьют вас и заберут аплинк. Не рискуйте.
+traitor-postal-uplink = Месяц назад вам удалось удачно украсть аплинк. Это, безусловно, должно помочь в достижении ваших целей.
+traitor-postal-roundend = [color=white]просто стань абсолютно безумным[/color]
+traitor-evilchampion-intro = Ты - сторонник зла!
+traitor-evilchampion-goal = У вас есть некоторые планы на ЗЛО которое вы можете совершить сегодня. С другой стороны, Сторонники Зла всегда ищут более безнравственных ублюдков! Проведите вербовку!
+traitor-evilchampion-allies = Любой, кто видит то же, что и вы, и чувствует то же, что и вы, может присоединиться к Сторонникам Зла! Это означает, что Синдикат, корыстолюбивый или даже безумный, пока в его сердце есть тьма, то Зло не против!
+traitor-evilchampion-uplink = У "Сторонников зла" хорошие связи с черным рынком. Ваш аплинк был подключен к "предельному злу"!
+traitor-evilchampion-roundend = [color=red]Слуга Зла[/color]
 issuers-corporate-flavor-1 = NanoTrasen
 issuers-corporate-flavor-2 = Центральное Командование
-huyhuyzhopapizda-mew = ХУУУУУУЙ
