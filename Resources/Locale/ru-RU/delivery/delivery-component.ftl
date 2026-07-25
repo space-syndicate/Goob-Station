@@ -20,3 +20,32 @@ delivery-opened-others =
     } { $delivery }.
 delivery-unlock-verb = Разблокировать
 delivery-open-verb = Вскрыть
+
+delivery-earnings-examine = Доставка этого принесёт станции [color=yellow]{ $spesos }[/color] кредитов.
+
+delivery-slice-verb = Вскрыть
+
+delivery-teleporter-amount-examine =
+    Содержит [color=yellow]{ $amount }[/color] { $amount ->
+        [one] посылку.
+        [few] посылки.
+        *[other] посылок.
+    }
+
+delivery-teleporter-empty = { CAPITALIZE($entity) } пуст.
+
+delivery-teleporter-empty-verb = Взять почту
+
+
+
+delivery-priority-examine = [color=orange]{ $type } с высоким приоритетом[/color]. У вас осталось [color=orange]{ $time }[/color], чтобы доставить это и получить бонус.
+
+delivery-priority-expired-examine = [color=orange]{ $type } с высоким приоритетом[/color]. Время истекло.
+
+delivery-fragile-examine = [color=red]{ $type } имеет хрупкое содержимое[/color]. Доставьте невредимым для получения бонуса.
+
+delivery-fragile-broken-examine = [color=red]{ $type } имеет хрупкое содержимое[/color]. Выглядит сильно поврежденно.
+
+delivery-bomb-examine = Это [color=purple]{ $type }-бомба[/color]. О нет.
+
+delivery-bomb-primed-examine = Это [color=purple]{ $type }-бомба[/color]. Читать это – пустая трата вашего времени.

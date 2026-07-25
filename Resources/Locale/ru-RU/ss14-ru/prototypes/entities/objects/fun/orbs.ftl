@@ -3,4 +3,4 @@ ent-SingularityToy = игрушечная сингулярность
 ent-TeslaToy = Тедди Теслы
     .desc = Любимая игрушка великого инженера Николы Теслы.
 ent-PonderingOrb = шар размышлений
-    .desc = Ponderous, man... Really ponderous.
+    .desc = Заставляет задуматься... сильно задуматься.

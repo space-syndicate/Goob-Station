@@ -64,7 +64,13 @@ public sealed partial class SlotMachineComponent : Component
     [DataField]
     public DamageSpecifier? SpinDamage;
 
-    // CorvaxGoob-DiceOfFat End
+    [DataField, AutoNetworkedField]
+    public bool LimitSpins;
+
+    [DataField, AutoNetworkedField]
+    public int CountSpins;
+
+    // CorvaxGoob-DiceOfFate End
 
     [DataField, AutoNetworkedField]
     public bool Emagged;

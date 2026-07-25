@@ -187,6 +187,7 @@
     - id: WeaponLauncherSingularityBuster
     - id: MachinePowerTransmissionLaserFlatpack
     - id: RCDRechargingCE
+    - id: MaterialSiloFlatpack # Goob
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -258,6 +259,7 @@
     - id: BoxSyringePax
     - id: ClothingBeltMilitaryWebbingCMOFilled
     - id: ClothingBackpackDuffelSurgeryFilled
+    - id: MaterialSiloFlatpack
     # Shitmed
     - id: MedicalBiofabricatorFlatpack
     # Virology
@@ -315,6 +317,7 @@
     - id: HandTeleporter
     - id: ComputerCargoRequestScienceFlatpack # Goobstation
     - id: RubberStampRd
+    - id: MaterialSiloFlatpack # Goob
     # - id: EncryptionKeyBinary # goobstation - readd the cool binary channel access. fuck you. # Goobstation - WYCI + malf ai major
     - id: AnomalyLocator # GoobStation - adding anomaly locator to the RD locker to reduce the amount of anoms that crit
     - id: CigarCase
@@ -386,6 +389,7 @@
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: ClothingBeltSheathHeadOfSecurityFilled # Goobstation - security revamp
+    - id: MaterialSiloFlatpack # Goob
     - id: SecApartmentTablet # CorvaxGoob-SecApartment
 
 # Hardsuit table, used for suit storage as well

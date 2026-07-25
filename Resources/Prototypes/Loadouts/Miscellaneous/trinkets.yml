@@ -51,6 +51,14 @@
     - CandleBlue
     - CandleGreenSmall
 
+# CorvaxGoob-loadouts-start:
+- type: loadout
+  id: HandheldStationMap
+  storage:
+    back:
+    - HandheldStationMap
+# CorvaxGoob-loadouts-end
+
 # Smokeables
 - type: loadout
   id: Lighter
