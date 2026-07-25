@@ -59,6 +59,7 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
                 // adding deselects so prevent deleting yeah
                 _index = null;
                 DeleteButton.Disabled = true;
+                PrintButton.Disabled = true;
             };
 
             // prevent MoveToFront being called on a closed window and double closing
@@ -74,17 +75,20 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
             History.ClearSelected();
             _index = null;
             DeleteButton.Disabled = true;
+            PrintButton.Disabled = true;
         };
 
         History.OnItemSelected += args =>
         {
             _index = (uint) args.ItemIndex;
             DeleteButton.Disabled = false;
+            PrintButton.Disabled = false;
         };
         History.OnItemDeselected += args =>
         {
             _index = null;
             DeleteButton.Disabled = true;
+            PrintButton.Disabled = true;
         };
     }
 

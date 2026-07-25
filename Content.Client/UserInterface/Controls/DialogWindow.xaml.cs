@@ -45,7 +45,7 @@ public sealed partial class DialogWindow : FancyWindow
     /// <remarks>
     /// Won't do anything on its own, you need to handle or network with <see cref="OnConfirmed"/> and <see cref="OnCancelled"/>.
     /// </remarks>
-    public DialogWindow(string title, List<QuickDialogEntry> entries, bool ok = true, bool cancel = true)
+    public DialogWindow(string title, List<QuickDialogEntry> entries, bool ok = true, bool cancel = true, bool checkbox = false, string? checkBoxText = null)
     {
         RobustXamlLoader.Load(this);
 
@@ -53,6 +53,9 @@ public sealed partial class DialogWindow : FancyWindow
 
         OkButton.Visible = ok;
         CancelButton.Visible = cancel;
+        CheckBox.Visible = checkbox;
+        if (checkBoxText is not null)
+            CheckBox.Text = checkBoxText;
 
         _promptLines = new(entries.Count);
 
@@ -112,7 +115,7 @@ public sealed partial class DialogWindow : FancyWindow
     protected override void Opened()
     {
         base.Opened();
-        
+
         // Grab keyboard focus for the first dialog entry
         _promptLines[0].Item2.GrabKeyboardFocus();
     }

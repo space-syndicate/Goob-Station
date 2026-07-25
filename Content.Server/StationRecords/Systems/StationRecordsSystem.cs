@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._CorvaxGoob.AppearanceConverter;
 using Content.Server.Access.Systems;
+using Content.Shared._CorvaxGoob.AppearanceConverter;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
@@ -44,6 +46,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly AppearanceConverterSystem _appearanceConverter = default!;
 
     public override void Initialize()
     {
@@ -99,7 +102,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Sex, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // CorvaxGoob-Locale
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Sex, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records, player); // CorvaxGoob-Locale
     }
 
 
@@ -141,7 +144,8 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string? mobFingerprint,
         string? dna,
         HumanoidCharacterProfile profile,
-        StationRecordsComponent records)
+        StationRecordsComponent records,
+        EntityUid? playerUid = null)
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
             throw new ArgumentException($"Invalid job prototype ID: {jobId}");
@@ -154,6 +158,9 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             return;
         }
 
+        TransformProfile? transformProfile = playerUid is not null ? _appearanceConverter.GenerateTransformProfile(playerUid.Value) : null;
+        AppearanceConverterVisualTransformProfile? visualProfile = transformProfile is not null ? AppearanceConverterSystem.SplitDetailAndVisualProfile(transformProfile.Value).Visual : null;
+
         var record = new GeneralStationRecord()
         {
             Name = name,
@@ -165,7 +172,8 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             Sex = sex, // CorvaxGoob-Locale
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
-            DNA = dna
+            DNA = dna,
+            Visual = visualProfile
         };
 
         var key = AddRecordEntry(station, record);

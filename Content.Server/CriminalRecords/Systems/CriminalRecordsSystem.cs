@@ -111,9 +111,9 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
     /// <summary>
     /// Creates and tries to add a history entry using the current time.
     /// </summary>
-    public bool TryAddHistory(StationRecordKey key, string line, string? initiatorName = null)
+    public bool TryAddHistory(StationRecordKey key, string line, string? initiatorName = null, string? articles = null, int? duration = null)
     {
-        var entry = new CrimeHistory(_ticker.RoundDuration(), line, initiatorName);
+        var entry = new CrimeHistory(_ticker.RoundDuration(), line, initiatorName, articles, duration);
         return TryAddHistory(key, entry);
     }
 

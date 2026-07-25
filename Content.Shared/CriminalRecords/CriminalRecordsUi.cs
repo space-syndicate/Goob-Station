@@ -75,6 +75,21 @@ public sealed class CriminalRecordChangeStatus : BoundUserInterfaceMessage
     }
 }
 
+[Serializable, NetSerializable]
+public sealed class CriminalRecordChangeDetainedStatus : BoundUserInterfaceMessage
+{
+    public readonly string? Articles;
+    public readonly int? Duration;
+    public readonly bool Print;
+
+    public CriminalRecordChangeDetainedStatus(string? articles, int? duration, bool print = false)
+    {
+        Articles = articles;
+        Duration = duration;
+        Print = print;
+    }
+}
+
 /// <summary>
 /// Used to add a single line to the record's crime history.
 /// </summary>

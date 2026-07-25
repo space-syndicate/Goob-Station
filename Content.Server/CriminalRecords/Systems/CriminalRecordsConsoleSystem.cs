@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server.Access.Systems;
+using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
@@ -7,15 +9,20 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CriminalRecords;
 using Content.Shared.CriminalRecords.Components;
 using Content.Shared.CriminalRecords.Systems;
-using Content.Shared.Security;
-using Content.Shared.StationRecords;
-using Robust.Server.GameObjects;
-using System.Diagnostics.CodeAnalysis;
+using Content.Shared.GameTicking;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Paper;
+using Content.Shared.Security;
 using Content.Shared.Security.Components;
+using Content.Shared.StationRecords;
+using Robust.Server.Audio;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Content.Server.CriminalRecords.Systems;
@@ -33,6 +40,11 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
+    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
+    [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly PaperSystem _paperSystem = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
@@ -44,6 +56,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             subs.Event<SelectStationRecord>(OnKeySelected);
             subs.Event<SetStationRecordFilter>(OnFiltersChanged);
             subs.Event<CriminalRecordChangeStatus>(OnChangeStatus);
+            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus);
             subs.Event<CriminalRecordAddHistory>(OnAddHistory);
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
@@ -53,6 +66,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
             subs.Event<CriminalRecordChangeStatus>(OnChangeStatus);
+            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus);
         });
     }
 
@@ -124,12 +138,12 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         // when arresting someone add it to history automatically
         // fallback exists if the player was not set to wanted beforehand
-        if (msg.Status == SecurityStatus.Detained)
-        {
-            var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
-            var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
-            _criminalRecords.TryAddHistory(key.Value, history, officer);
-        }
+        //if (msg.Status == SecurityStatus.Detained)
+        //{
+        //    var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
+        //    var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
+        //    _criminalRecords.TryAddHistory(key.Value, history, officer);
+        //}
 
         // will probably never fail given the checks above
         name = _records.RecordName(key.Value);
@@ -201,6 +215,100 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             ent.Comp.SecurityChannel, ent);
 
         UpdateUserInterface(ent);
+    }
+
+    private void OnChangeDetainedStatus(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeDetainedStatus msg)
+    {
+        if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
+            return;
+
+        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record))
+            return;
+
+        string? articles = null;
+
+        if (msg.Articles != null)
+        {
+            articles = msg.Articles.Trim();
+            if (articles.Length < 1 || articles.Length > ent.Comp.MaxStringLength)
+                return;
+        }
+
+        var oldStatus = record.Status;
+
+        var name = _records.RecordName(key.Value);
+        GetOfficer(mob.Value, out var officer);
+
+        var history = Loc.GetString("criminal-records-console-detained-record", ("articles", articles ?? Loc.GetString("criminal-records-console-unspecified")), ("duration", msg.Duration?.ToString() ?? Loc.GetString("criminal-records-console-unspecified")));
+        _criminalRecords.TryAddHistory(key.Value, history, officer, articles, msg.Duration);
+
+        // will probably never fail given the checks above
+        name = _records.RecordName(key.Value);
+
+        officer = Loc.GetString("criminal-records-console-unknown-officer");
+        var jobName = "Unknown";
+
+        _records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry);
+        if (entry != null)
+            jobName = entry.JobTitle;
+        
+        var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(null, mob.Value);
+        RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+        if (tryGetIdentityShortInfoEvent.Title != null)
+            officer = tryGetIdentityShortInfoEvent.Title;
+
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, msg.Articles, officer);
+
+        (string, object)[] args;
+        if (articles != null)
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", articles), ("job", jobName) };
+        else
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+
+        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-detained", args),
+            ent.Comp.SecurityChannel, ent);
+
+        if (msg.Print && entry is not null)
+            PrintDocument(ent, msg.Actor, entry, articles, msg.Duration);
+
+        UpdateUserInterface(ent);
+    }
+
+    private void PrintDocument(Entity<CriminalRecordsConsoleComponent> ent, EntityUid officer, GeneralStationRecord record, string? articles, int? duration)
+    {
+        var content = Loc.GetString("doc-text-printer-sentence");
+
+        var station = _station.GetOwningStation(ent);
+        var stationName = station != null ? Name(station.Value) : null;
+
+        var time = _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss") + " " + DateTime.Now.AddYears(1000).ToShortDateString();
+
+        content = content
+            .Replace(Loc.GetString("doc-var-station"), stationName ?? Loc.GetString("doc-text-printer-default-station"))
+            .Replace(Loc.GetString("doc-var-date"), time);
+
+        if (_idCard.TryFindIdCard(officer, out var idCard))
+        {
+            content = content
+            .Replace(Loc.GetString("doc-var-name"), idCard.Comp.FullName ?? Loc.GetString("doc-text-printer-default-name"))
+            .Replace(Loc.GetString("doc-var-job"), idCard.Comp.LocalizedJobTitle ?? Loc.GetString("doc-text-printer-default-job"));
+        }
+
+        content = content
+            .Replace(Loc.GetString("doc-var-violator"), record.Name)
+            .Replace(Loc.GetString("doc-var-violator-job"), record.JobTitle)
+            .Replace(Loc.GetString("doc-var-articles"), articles)
+            .Replace(Loc.GetString("doc-var-duration"), duration.ToString())
+            .Replace(Loc.GetString("doc-var-duration-start"), time);
+        
+        var printed = Spawn("Paper", Transform(ent).Coordinates);
+
+        if (HasComp<PaperComponent>(printed))
+        {
+            _paperSystem.SetContent(printed, content);
+            _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent);
+        }
+
     }
 
     private void OnAddHistory(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordAddHistory msg)

@@ -34,6 +34,7 @@ public sealed partial class WantedMenu : FancyWindow
 
     public Action<SecurityStatus>? OnStatusSelected;
     public Action<SecurityStatus, string>? OnDialogConfirmed;
+    public Action<string, string>? OnDetainedDialogConfirmed;
 
     private CriminalRecord? _selectedRecord;
     private DialogWindow? _reasonDialog;
@@ -129,6 +130,13 @@ public sealed partial class WantedMenu : FancyWindow
             GetReason(status);
             return;
         }
+
+        if (status == SecurityStatus.Detained)
+        {
+            GetDetainedInfo();
+            return;
+        }
+
         OnStatusSelected?.Invoke(status);
     }
     private void GetReason(SecurityStatus status)
@@ -157,6 +165,45 @@ public sealed partial class WantedMenu : FancyWindow
                 return;
 
             OnDialogConfirmed?.Invoke(status, reason);
+        };
+
+        _reasonDialog.OnClose += () => { _reasonDialog = null; };
+    }
+
+    private void GetDetainedInfo()
+    {
+        if (_reasonDialog != null)
+        {
+            _reasonDialog.MoveToFront();
+            return;
+        }
+
+        var articleField = "article";
+        var durationField = "duration";
+
+        var title = Loc.GetString("criminal-records-status-detained");
+        var placeholders = _prototypeManager.Index<LocalizedDatasetPrototype>(ReasonPlaceholders);
+        var placeholderKey = _random.Pick(placeholders.Values);
+        var placeholderValue = Loc.GetString(placeholderKey);
+        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", placeholderValue)); // just funny it doesn't actually get used
+        var prompt = Loc.GetString("criminal-records-console-reason");
+        var entryArticles = new QuickDialogEntry(articleField, QuickDialogEntryType.LongText, prompt, placeholder);
+        var entryDuration = new QuickDialogEntry(durationField, QuickDialogEntryType.LongText, prompt, placeholder);
+        var entries = new List<QuickDialogEntry>() { entryArticles, entryDuration };
+        _reasonDialog = new DialogWindow(title, entries);
+
+        _reasonDialog.OnConfirmed += responses =>
+        {
+            var article = responses[articleField];
+            var duration = responses[durationField];
+            
+            if (article.Length < 1 || article.Length > 256)
+                return;
+
+            if (duration.Length < 1 || duration.Length > 256)
+                return;
+
+            OnDetainedDialogConfirmed?.Invoke(article, duration);
         };
 
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
