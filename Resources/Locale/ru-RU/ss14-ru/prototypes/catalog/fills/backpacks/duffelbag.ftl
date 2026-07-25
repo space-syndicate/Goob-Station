@@ -72,3 +72,6 @@ ent-ClothingBackpackDuffelSyndicateFilledStarterKit = { ent-ClothingBackpackDuff
 ent-ClothingBackpackDuffelSyndicateDecoyKitFilled = { ent-ClothingBackpackDuffelSyndicate }
     .desc = { ent-ClothingBackpackDuffelSyndicate.desc }
     .suffix = Набор обманок
+
+ent-ClothingBackpackDuffelSyndicateFilledMedicine = медицинский вещмешок Синдиката
+    .desc = Большая спортивная сумка с необходимыми медицинскими реактивами.

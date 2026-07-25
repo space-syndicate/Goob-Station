@@ -399,6 +399,7 @@
     # - PlushieBrizby
     # - PlushieBoggle
     # - PlushieLehmin
+    #- PlushieLeoMalone
     evilRewards:
     # - EvilPlushieBoggle
     # - EvilPlushieBrizby
@@ -410,4 +411,9 @@
     # - EvilPlushiePasha
     # - EvilPlushieTwofish
     # CorvaxGoob-DelPlushie-end
+    #- EvilPlushieXeve
+    #- EvilPlushieMnwaar
+    #- EvilPlushieDurk
+    #- EvilPlushieLouie
+    #- EvilPlushieLeoMalone
   - type: DoAfter

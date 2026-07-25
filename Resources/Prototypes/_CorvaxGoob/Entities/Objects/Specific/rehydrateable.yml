@@ -1,0 +1,8 @@
+- type: entity
+  parent: MonkeyCube
+  id: OniCube
+  name: oni cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobOniRandom

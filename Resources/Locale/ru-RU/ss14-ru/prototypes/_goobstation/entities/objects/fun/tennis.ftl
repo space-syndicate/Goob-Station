@@ -1,5 +1,4 @@
-ent-TennisBall = теннисный мяч
-    .desc = Создан для испытания терпения Службы Безопасности.
+
 ent-BaseTennisRacket = теннисная ракетка
     .desc = Робастная теннисная ракетка.
 ent-NTTennisRacket = теннисная ракетка NanoTrasen

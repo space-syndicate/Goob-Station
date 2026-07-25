@@ -139,7 +139,7 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - NanoChatCartridge
-      - MailMetricsCartridge
+      #- MailMetricsCartridge CorvaxGoob временно вырезано оффгубами - Марти. Искать по todo <mailfix>
       - WantedListCartridge
     cartridgeSlot:
       priority: -1
