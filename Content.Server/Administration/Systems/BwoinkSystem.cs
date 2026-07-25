@@ -23,6 +23,7 @@ using Content.Shared.Players.RateLimiting;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -48,6 +49,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
+        [Dependency] private readonly ITaskManager _taskManager = default!;
 
         [GeneratedRegex(@"^https://(?:(?:canary|ptb)\.)?discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -356,7 +358,7 @@ namespace Content.Server.Administration.Systems
             {
                 // TODO: Ideally, CVar validation during setting should be better integrated
                 Log.Warning("Webhook URL does not appear to be valid. Using anyways...");
-                await GetWebhookData(url); // Frontier - Support for Custom URLS, we still want to see if theres Webhook data available
+                _webhookData = await GetWebhookData(url); // Frontier - Support for Custom URLS, we still want to see if theres Webhook data available
                 return;
             }
 
@@ -367,7 +369,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Fire and forget
-            await GetWebhookData(url); // Frontier - Support for Custom URLS
+            _webhookData = await GetWebhookData(url); // Frontier - Support for Custom URLS
         }
 
         private async Task<WebhookData?> GetWebhookData(string url)
@@ -529,6 +531,8 @@ namespace Content.Server.Administration.Systems
             }
 
             _relayMessages[userId] = existingEmbed;
+            _taskManager.RunOnMainThread(() =>
+                RaiseLocalEvent(new CorvaxAHelpRelayChangedEvent(userId))); // Corvax-API
 
             // Actually do the on call relay last, we just need to grab it before we dequeue every message above.
             if (onCallRelay &&
