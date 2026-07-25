@@ -1,8 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2023 dribblydrone <119393097+dribblydrone@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
@@ -26,4 +22,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   - [textlink="Космические ниндзя" link="SpaceNinja"], мастера шпионажа и саботажа с особым снаряжением.
   - [textlink="Зомби" link="Zombies"], которые жаждут плоти каждого члена экипажа и существа на борту.
   - [textlink="Различные негуманоидные существа" link="MinorAntagonists"], которые обычно атакуют всё, что движется.
+  - [textlink="The Cosmic Cult" link="CosmicCult"], who seek to usher in the end of all things. <!-- DeltaV -->
+  - [textlink="Entropic Colossi" link="CosmicColossus"], towering monstrosities of malign plating. <!-- DeltaV -->
 </Document>

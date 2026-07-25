@@ -27,5 +27,5 @@ ent-ClothingBeltSecurityWebbingContractor = contractor's chest rig
 ent-ClothingBeltSecurityWebbingContractorFilled = contractor's chest rig
     .desc = A chest rig with deep pockets, often used by contractors and bounty hunters.
 ent-ClothingBeltWhipping = whipping belt
-    .suffix = Admeme
     .desc = Where there's a whip, there's a way
+    .suffix = Admeme

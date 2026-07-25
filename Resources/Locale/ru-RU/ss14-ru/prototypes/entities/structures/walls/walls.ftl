@@ -109,3 +109,16 @@ ent-Cardwall = картонная стена
     .desc = Бюджет урезали. Терпим.
 ent-WallAndesiteCobblebrick = андезитовая булыжниковая стена
     .desc = { ent-WallCobblebrick.desc }
+
+ent-WallXenoborg = ксеноборг-стена
+    .desc = { ent-WallPlastitanium.desc }
+    .suffix = { ent-WallPlastitanium.suffix }
+
+ent-WallSolidChitin = твёрдый хитин
+    .desc = { ent-BaseWall.desc }
+
+ent-WallReinforcedChitin = укреплённый хитин
+    .desc = { ent-BaseWall.desc }
+
+ent-WallIronsandCobblebrick = стена из железопесчаных кирпичей
+    .desc = Светлые, округлые формы, из которых состоит эта стена, разительно отличаются от железистого песка, из которого, как утверждается, она была сделана.

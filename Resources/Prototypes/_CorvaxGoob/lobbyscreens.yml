@@ -2,7 +2,7 @@
   id: BarLife
   background: /Textures/_CorvaxGoob/LobbyScreens/bar-life.webp
   name: "Барная жизнь"
-  artist: "just_art_" 
+  artist: "just_art_"
 
 - type: lobbyBackground
   id: DeadInSpace
@@ -167,7 +167,7 @@
   artist: "_agent666_"
 
 - type: lobbyBackground
-  id: ClownSpider
+  id: ClownSpider2
   background: /Textures/_CorvaxGoob/LobbyScreens/clownspider.webp
   name: "Хонко-паучки"
   artist: "ko4erga"
@@ -422,44 +422,44 @@
   id: AwesomeShuttle
   background: /Textures/_CorvaxGoob/LobbyScreens/awesome-shuttle.webp
 
-- type: lobbyBackground  
-  id: EvacQul  
-  background: /Textures/_CorvaxGoob/LobbyScreens/evac-qul.webp  
-  name: "Эвакуация"  
+- type: lobbyBackground
+  id: EvacQul
+  background: /Textures/_CorvaxGoob/LobbyScreens/evac-qul.webp
+  name: "Эвакуация"
   artist: "qulezza"
 
-- type: lobbyBackground  
-  id: HereticQul  
-  background: /Textures/_CorvaxGoob/LobbyScreens/heretic-qul.webp  
-  name: "Культист"  
+- type: lobbyBackground
+  id: HereticQul
+  background: /Textures/_CorvaxGoob/LobbyScreens/heretic-qul.webp
+  name: "Культист"
   artist: "qulezza"
 
-- type: lobbyBackground  
-  id: AfterNewYear  
-  background: /Textures/_CorvaxGoob/LobbyScreens/after-new-year.webp  
-  name: "После нового года"  
+- type: lobbyBackground
+  id: AfterNewYear
+  background: /Textures/_CorvaxGoob/LobbyScreens/after-new-year.webp
+  name: "После нового года"
   artist: "Сообщество художников"
 
-- type: lobbyBackground  
+- type: lobbyBackground
   id: LeBingle
   background: /Textures/_CorvaxGoob/LobbyScreens/le-bingle.webp
-  name: "Le Bingle"  
+  name: "Le Bingle"
   artist: "Sirnapalka"
 
-- type: lobbyBackground  
+- type: lobbyBackground
   id: NoCompromises
   background: /Textures/_CorvaxGoob/LobbyScreens/no-compromises.webp
-  name: "Никаких Компромиссов"  
+  name: "Никаких Компромиссов"
   artist: "AscArt"
 
-- type: lobbyBackground  
+- type: lobbyBackground
   id: RNDOnWork
   background: /Textures/_CorvaxGoob/LobbyScreens/rnd-on-work.webp
-  name: "Всё стабильно, учёные работают"  
+  name: "Всё стабильно, учёные работают"
   artist: "Ugog"
 
-- type: lobbyBackground  
+- type: lobbyBackground
   id: NightGlacier
   background: /Textures/_CorvaxGoob/LobbyScreens/night-glacier.webp
-  name: "Ночной «Гласир»"  
+  name: "Ночной «Гласир»"
   artist: "Yashastepanov"

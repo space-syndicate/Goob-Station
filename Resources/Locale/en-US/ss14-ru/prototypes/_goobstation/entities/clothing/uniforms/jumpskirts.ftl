@@ -18,3 +18,5 @@ ent-ClothingUniformJumpskirtResearchDirectorAlt = research director's turtleneck
     .desc = It's a turtleneck worn by those with the know-how to achieve the position of Research Director. Its fabric provides minor protection from biological contaminants.
 ent-ClothingUniformJumpskirtReporter = reporter's dress
     .desc = An extravagant black dress designed to catch the attention of as many people as possible.
+ent-ClothingUniformJumpskirtCentcomPencilSkirt = centcom pencil skirt
+    .desc = An elegant green formal blouse paired with a sleek black pencil skirt, decorated with exquisite golden detailing.
