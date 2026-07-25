@@ -11,5 +11,4 @@ ent-CrateLimitedSecure = bluespace limited crate
 ent-CratePrivateCargoSecure = { ent-CratePrivateSecure }
     .desc = { ent-CratePrivateSecure.desc }
 ent-CrateHolographic = holographic crate
-    .suffix = holographic
     .desc = { ent-CrateGeneric.desc }

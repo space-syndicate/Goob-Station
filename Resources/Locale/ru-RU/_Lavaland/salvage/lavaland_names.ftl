@@ -49,3 +49,4 @@ lavaland-ruin-warehouse = Склад
 lavaland-ruin-syndicate_shuttle = Шаттл Синдиката
 lavaland-ruin-unathi = Унатхи
 lavaland-ruin-crystal = Лававый кристал
+lavaland-ruin-jadnost = Руины Жадности

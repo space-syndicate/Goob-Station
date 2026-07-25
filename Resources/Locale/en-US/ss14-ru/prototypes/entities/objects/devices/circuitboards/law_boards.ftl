@@ -1,3 +1,5 @@
+ent-BaseSiliconLawboard = { ent-BaseElectronics }
+    .desc = An electronics board containing a silicon lawset.
 ent-NTDefaultCircuitBoard = law board (NT Default)
     .desc = An electronics board containing the NT Default lawset.
 ent-AsimovCircuitBoard = law board (Crewsimov)

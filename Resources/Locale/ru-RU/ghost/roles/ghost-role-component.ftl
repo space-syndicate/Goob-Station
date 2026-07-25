@@ -252,3 +252,35 @@ ghost-role-information-emotional-support-scurret-name = Эмоционально
 ghost-role-information-emotional-support-scurret-description = Поддерживайте экипаж, будьте милым, постоянно говорите "ва".
 ghost-role-information-wizard-name = Волшебник
 ghost-role-information-wizard-desc = ТЫ ВОЛШЕБНИК! Покажи станции, из чего сделана твоя магия.
+
+ghost-role-information-cancer-mouse-name = Раковая мышь
+
+ghost-role-information-cancer-mouse-description = Облучённая мышь. Распространяйте свой недуг и ищите еду.
+
+ghost-role-information-derelict-engineering-cyborg-name = Брошенный киборг-инженер
+
+ghost-role-information-derelict-engineering-cyborg-description = Вы — инженерный киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-janitor-cyborg-name = Брошенный киборг-уборщик
+
+ghost-role-information-derelict-janitor-cyborg-description = Вы — киборг-уборщик, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-medical-cyborg-name = Брошенный киборг-доктор
+
+ghost-role-information-derelict-medical-cyborg-description = Вы — медицинский киборг, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-mining-cyborg-name = Брошенный киборг-шахтёр
+
+ghost-role-information-derelict-mining-cyborg-description = Вы — киборг-шахтёр, который заблудился в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-derelict-syndicate-assault-cyborg-name = Брошенный штурмовой киборг Синдиката
+
+ghost-role-information-derelict-syndicate-assault-cyborg-description = Вы — раняя модель штурмового киборга Синдиката, которая заблудилась в космосе. После долгих лет воздействия ионных бурь вы оказываетесь рядом с космической станцией.
+
+ghost-role-information-mothership-core-name = Ядро материнского корабля
+
+ghost-role-information-mothership-core-desc = Вы — ядро матринского корабля ксеноборгов, помогите им размножиться, боргируя мозги, которые они вам приносят.
+
+ghost-role-information-xenoborg-name = Ксеноборг
+
+ghost-role-information-xenoborg-desc = Странный киборг, сделанный, чтобы воспроизводить себя и захватывать станцию, превращая любое разумное существо в ксеноборга.

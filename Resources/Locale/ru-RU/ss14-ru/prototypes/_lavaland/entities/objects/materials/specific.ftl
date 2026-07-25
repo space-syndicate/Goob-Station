@@ -30,7 +30,6 @@ ent-MaterialLegionSkull1 = { ent-MaterialLegionSkull }
 ent-MaterialLegionSkull5 = { ent-MaterialLegionSkull }
     .suffix = 5
     .desc = { ent-MaterialLegionSkull.desc }
-
 ent-MaterialAshwoodPlank = доска пепельного дерева
     .suffix = 30
     .desc = Сырой материал

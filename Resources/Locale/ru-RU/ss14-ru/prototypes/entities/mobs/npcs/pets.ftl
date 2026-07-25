@@ -51,3 +51,7 @@ ent-MobCrabAtmos = Тропико
     .desc = Благородный и непоколебимый защитник Атмосии. Viva!
 ent-MobPollyParrot = Полли
     .desc = Эксперт в теории квантового крэкера.
+
+ent-MobHamsterHamletSlippery = { ent-MobHamsterHamlet }
+    .desc = { ent-MobHamsterHamlet.desc }
+    .suffix = Скользкий
