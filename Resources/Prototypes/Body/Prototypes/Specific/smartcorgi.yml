@@ -7,6 +7,8 @@
       part: ChestAnimal
       connections:
       - groin
+      - right hand # CorvaxGoob
+      - left hand # CorvaxGoob
       organs:
         brain: OrganHumanBrain # feels strange but it is what it is
         lungs: OrganAnimalLungs
@@ -14,6 +16,10 @@
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
+    right hand: # CorvaxGoob
+      part: RightHandSmartCorgi
+    left hand: # CorvaxGoob
+      part: LeftHandSmartCorgi
     groin:
       part: GroinAnimal
       connections:
