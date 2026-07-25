@@ -94,7 +94,7 @@ namespace Content.Client.RoundEnd
             if (!string.IsNullOrEmpty(roundEnd))
             {
                 var roundEndLabel = new RichTextLabel();
-                roundEndLabel.SetMarkup(roundEnd);
+                roundEndLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(roundEnd), tagsAllowed: null); // CorvaxGoob
                 roundEndSummaryContainer.AddChild(roundEndLabel);
             }
 
