@@ -33,7 +33,7 @@
         whitelist:
           requireAll: true
           tags:
-          - VehicleKey
+          #- VehicleKey # CorvaxGoob
           - BikeHorn
         insertSound:
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg

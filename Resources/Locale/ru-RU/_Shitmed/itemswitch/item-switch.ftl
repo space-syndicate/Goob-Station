@@ -58,7 +58,6 @@ itemswitch-component-state-bonegel = костный гель
 itemswitch-component-state-bonesetter = установщик костей
 itemswitch-component-state-cautery = термокаутер
 itemswitch-component-state-drill = дрель
-
 # ToolName for ISurgeryToolComponent
 itemswitch-component-state-stitches = хирургическая нить
 itemswitch-component-state-wound-tender = медицинский инструмент

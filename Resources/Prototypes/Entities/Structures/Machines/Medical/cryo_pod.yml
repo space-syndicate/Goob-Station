@@ -100,6 +100,7 @@
   - type: ActivatableUI
     key: enum.HealthAnalyzerUiKey.Key
     requiresComplex: false
+    blockSpectators: true # CorvaxGoob
   - type: ActivatableUIRequiresPower
   - type: PointLight
     color: "#3a807f"

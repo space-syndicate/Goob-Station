@@ -129,7 +129,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, HumanoidAppearanceComponent component, ExaminedEvent args)
     {
-		// CorvaxGoob 
+		// CorvaxGoob
 		// Fix for incorrect pronouns PR #564
         var identity = ("user", Identity.Entity(uid, EntityManager));
         var species = ("species", GetSpeciesRepresentation(component.Species).ToLower());
@@ -551,7 +551,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         EnsureDefaultMarkings(uid, humanoid);
-        SetTTSVoice(uid, profile.Voice, humanoid); // CorvaxGoob-TTS
+        SetTTSVoice(uid, profile.TTSVoice, humanoid); // CorvaxGoob-TTS
         // CorvaxGoob-Revert : DB conflicts
         // SetBarkVoice(uid, profile.BarkVoice, humanoid); // Goob Station - Barks
 

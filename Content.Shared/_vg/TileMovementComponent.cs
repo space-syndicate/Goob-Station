@@ -62,6 +62,6 @@ public sealed partial class TileMovementComponent : Component
     /// Coordinates of the moving entity on the last physics tick. Null if the entity was not
     /// parented to the same entity last tick.
     /// </summary>
-    [AutoNetworkedField]
+    //[AutoNetworkedField] CorvaxGoob мне не нужен HandleTileMovement с Dirty раз в тик <3 оставьте себе
     public Vector2? LastTickLocalCoordinates;
 }

@@ -335,13 +335,16 @@ public sealed class SurgeryBui : BoundUserInterface
         _window.Steps.Visible = type == ViewType.Steps;
         _window.StepsButton.Disabled = type != ViewType.Steps || _previousSurgeries.Count == 0;
 
+        // CorvaxGoob-Locale-start
+        var title = Loc.GetString("surgery-ui-window-title");
         if (_entities.TryGetComponent(_part, out MetaDataComponent? partMeta) &&
             _entities.TryGetComponent(_surgery?.Ent, out MetaDataComponent? surgeryMeta))
-            _window.Title = $"Surgery - {partMeta.EntityName}, {surgeryMeta.EntityName}";
+            _window.Title = $"{title} - {partMeta.EntityName}, {surgeryMeta.EntityName}";
         else if (partMeta != null)
-            _window.Title = $"Surgery - {partMeta.EntityName}";
+            _window.Title = $"{title} - {partMeta.EntityName}";
         else
-            _window.Title = "Surgery";
+            _window.Title = title;
+        // CorvaxGoob-Locale-end
     }
 
     private enum ViewType

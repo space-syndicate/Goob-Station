@@ -8,3 +8,7 @@ ent-SprayPainterEmpty = { ent-SprayPainter }
     .desc = { ent-SprayPainter.desc }
 ent-SprayPainterAmmo = картридж краски
     .desc = Картридж с жёстко спресованной краской, обычно используемый для краскопульта.
+
+ent-SprayPainterBorg = экспериментальный краскопульт
+    .desc = Экспериментальный самозаряжающийся краскопульт, который может бесконечно воспроизводить сжатую краску.
+    .suffix = Борг

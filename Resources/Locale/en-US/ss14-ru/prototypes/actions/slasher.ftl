@@ -18,3 +18,7 @@ ent-ActionSlasherMassacre = Massacre
     .desc = Unleach a brutal chain of attacks. The more hits in a row you hit the more damage you deal. You decapitate your target after 13 hits.
 ent-ActionSlasherSoulSteal = Soul Steal
     .desc = Siphon a victims soul. Must be used on an incapicated living target (or dead body) to steal their soul, empowering your machete and increasing your health.
+ent-ActionSlasherNightVision = Enhanced Vision
+    .desc = You see through the darkness.
+ent-ActionSlasherRelentlessGrab = Relentless Grab
+    .desc = Your next melee attack will grab your target.

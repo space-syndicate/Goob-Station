@@ -35,8 +35,8 @@
       collection: Whistles
     Weh:
       collection: Weh
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     Hew:
       collection: Hew
     Gasp:
@@ -85,8 +85,8 @@
       collection: Weh
     Hew:
       collection: Hew
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -139,8 +139,8 @@
       collection: MaleDeathGasp
     Gulp: # Goob
       path: /Audio/_Goobstation/Voice/Human/gulp.ogg ## GOOB CONTENT END
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: MaleReptilian
@@ -183,8 +183,8 @@
       collection: MaleCoughs
     Yawn: # Goob
       collection: MaleYawn
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -227,8 +227,8 @@
       collection: FemaleCoughs
     Yawn: # Goob
       collection: FemaleYawn
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: MaleSlime
@@ -269,8 +269,8 @@
       collection: Whistles
     Weh:
       collection: Weh
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     Hew:
       collection: Hew
     Gasp:
@@ -327,8 +327,8 @@
       collection: Hew
     Gasp:
       collection: FemaleGasp
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     DefaultDeathgasp:
       collection: FemaleDeathGasp
     Gulp: # Goob
@@ -398,8 +398,8 @@
       collection: VoxChitter
     Hiss: #imp
       collection: VoxHiss
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     Caw:
       collection: HarpyCaws
     # Goob end
@@ -445,8 +445,8 @@
       collection: Dionayawn
     Sigh: #goob
       collection: Dionasigh
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
   params:
     variation: 0.125
 
@@ -480,8 +480,8 @@
       # path: /Audio/_Goobstation/Voice/surprised.ogg
     Gulp: # Goob
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -516,8 +516,8 @@
       collection: Whistles
     Weh:
       collection: Weh
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     Hew:
       collection: Hew
     Gasp:
@@ -565,8 +565,8 @@
       collection: Whistles
     Weh:
       collection: Weh
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -628,8 +628,8 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: MaleMoth
@@ -680,8 +680,8 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: FemaleMoth
@@ -732,8 +732,8 @@
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
-    Belch: # Frontier
-      collection: Belch # Frontier
+    #Belch: # Frontier # CorvaxGoob-deleted Cringe - Belch
+      #collection: Belch # Frontier
 
 - type: emoteSounds
   id: UnisexSilicon

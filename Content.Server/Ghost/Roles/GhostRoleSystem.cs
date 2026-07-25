@@ -497,24 +497,9 @@ public sealed class GhostRoleSystem : EntitySystem
             return;
         }
 
-        // Decide to do a raffle or not
-        if (roleEnt.Comp.RaffleConfig is not null)
-        {
-            Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed ban?");
-            return;
-        }
-
-        // Check role requirements
-        if (!IsRoleAllowed(player, jobs, antags))
-        {
-            Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed requirement check?");
-            return;
-        }
-
         if (HasComp<GhostBarPlayerComponent>(player.AttachedEntity) // CorvaxGoob-GhostBar
             || EntityManager.TryGetComponent<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles)
         {
-
             if (roleEnt.Comp.RaffleConfig is not null)
             {
                 JoinRaffle(player, identifier);

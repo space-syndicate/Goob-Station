@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 /* CorvaxGoob-Coins-start
+using System.Linq; // Goob - ghost cosmetics
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Goobstation.Common.CCVar;

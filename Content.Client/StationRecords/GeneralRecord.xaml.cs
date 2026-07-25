@@ -25,7 +25,7 @@ public sealed partial class GeneralRecord : Control
         // CorvaxGoob-Locale-Start
         var age = record.Age.ToString();
         var locSex = record.Sex.ToString();
-        var locJob = Loc.GetString(record.JobTitle);
+        var locJob = record.JobTitle;
         var locSpecies = Loc.GetString(prototypeManager.Index<SpeciesPrototype>(record.Species).Name);
 
         TitleLabel.Text = record.Name;
