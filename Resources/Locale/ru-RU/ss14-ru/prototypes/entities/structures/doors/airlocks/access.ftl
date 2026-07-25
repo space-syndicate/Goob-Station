@@ -426,3 +426,19 @@ ent-HighSecArmoryLocked = { ent-HighSecDoor }
 ent-AirlockHatchSyndicate = { ent-AirlockHatch }
     .suffix = Синдикат, Закрыт
     .desc = { ent-AirlockHatch.desc }
+
+ent-AirlockChapelStandardGlassLocked = { ent-AirlockStandardGlass }
+    .desc = { ent-AirlockStandardGlass.desc }
+    .suffix = Храм, Закрыт
+
+ent-AirlockGlassShuttleXenoborgLocked = { ent-AirlockShuttleXenoborg }
+    .desc = { ent-AirlockShuttleXenoborg.desc }
+    .suffix = Внешний, Стыковочный, Ксеноборг, Закрыт
+
+ent-AirlockHatchSyndicateLocked = { ent-AirlockHatchSyndicate }
+    .desc = { ent-AirlockHatchSyndicate.desc }
+    .suffix = Синдикат, Закрыт
+
+ent-AirlockHatchMaintenanceLocked = { ent-AirlockHatchMaintenance }
+    .desc = { ent-AirlockHatchMaintenance.desc }
+    .suffix = Закрыт

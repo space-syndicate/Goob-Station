@@ -1,17 +1,12 @@
 ent-OrganVulpkaninBrain = { ent-OrganHumanBrain }
-  .desc = { ent-OrganHumanBrain.desc }
-
+    .desc = { ent-OrganHumanBrain.desc }
 ent-OrganVulpkaninEyes = { ent-OrganHumanEyes }
-  .desc = { ent-OrganHumanEyes.desc }
-
+    .desc = { ent-OrganHumanEyes.desc }
 ent-OrganVulpkaninHeart = { ent-OrganAnimalHeart }
-  .desc = { ent-OrganAnimalHeart.desc }
-
+    .desc = { ent-OrganAnimalHeart.desc }
 ent-OrganVulpkaninLungs = { ent-OrganHumanLungs }
-  .desc = { ent-OrganHumanLungs.desc }
-
+    .desc = { ent-OrganHumanLungs.desc }
 ent-OrganVulpkaninLiver = { ent-OrganAnimalLiver }
-  .desc = { ent-OrganAnimalLiver.desc }
-
+    .desc = { ent-OrganAnimalLiver.desc }
 ent-OrganVulpkaninKidneys = { ent-OrganHumanKidneys }
-  .desc = { ent-OrganHumanKidneys.desc }
+    .desc = { ent-OrganHumanKidneys.desc }

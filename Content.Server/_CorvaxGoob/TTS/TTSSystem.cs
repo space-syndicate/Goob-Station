@@ -5,6 +5,7 @@ using Content.Server.Communications;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared._CorvaxGoob.TTS;
 using Content.Shared._EinsteinEngines.Language;
+using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.RateLimiting;
 using Robust.Shared.Audio;
@@ -102,10 +103,10 @@ public sealed partial class TTSSystem : EntitySystem
         if (args.Message is null)
             return;
 
-        var obfuscatedMessage = _lang.ObfuscateSpeech(args.Message, args.Language);
-
         if (!args.Language.SpeechOverride.RequireSpeech)
             return;
+
+        var obfuscatedMessage = _lang.ObfuscateSpeech(args.Message, args.Language);
 
         if (args.IsWhisper)
             HandleWhisper(uid, args.Message, obfuscatedMessage, args.Language, protoVoice.Speaker, component.Pitch);

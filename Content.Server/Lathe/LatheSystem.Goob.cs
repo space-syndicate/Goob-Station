@@ -12,38 +12,7 @@ namespace Content.Server.Lathe;
 
 public sealed partial class LatheSystem
 {
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
-
-    private void OnLatheQueueResetMessage(Entity<LatheComponent> ent, ref LatheQueueResetMessage args)
-    {
-        var (uid, component) = ent;
-        if (component.Queue.Count > 0)
-        {
-            var allMaterials = component.Queue.SelectMany(q => _proto.Index(q).Materials);
-            var totalMaterials = new Dictionary<string, int>();
-
-            foreach (var (mat, amount) in allMaterials)
-            {
-                totalMaterials.TryAdd(mat, 0);
-                totalMaterials[mat] += amount;
-            }
-
-            if(_materialStorage.CanChangeMaterialAmount(uid, totalMaterials))
-            {
-                foreach (var (mat, amount) in totalMaterials)
-                {
-                    _materialStorage.TryChangeMaterialAmount(uid, mat, amount);
-                }
-                component.Queue.Clear();
-            }
-            else
-            {
-                _popup.PopupEntity(Loc.GetString("lathe-queue-reset-material-overflow"), uid);
-            }
-        }
-        UpdateUserInterfaceState(uid, component);
-    }
 
     /// <summary>
     /// Produces 0-time items that output into the storage automatically.
@@ -57,8 +26,10 @@ public sealed partial class LatheSystem
         if (comp.CurrentRecipe != null)
         {
             var count = comp.Queue.Count;
-            for (int i = 0; i < count + 1; i++)
+            while (true)
             {
+                if (comp.CurrentRecipe == null)
+                    break;
                 // Modified FinishProducing method
                 var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
                 if (currentRecipe.Result is { } resultProto)
@@ -99,17 +70,22 @@ public sealed partial class LatheSystem
                         _puddle.TrySpillAt(uid, toAdd, out _);
                     }
                 }
+                if (comp.Queue.Count == 0)
+                    break;
 
                 // Dequeue recipes on a loop
                 // We do this after the main code since the first recipe is given outside of this method
-                if (!comp.Queue.TryDequeue(out var recipeProto))
+                var recipeProto = comp.Queue.First().Recipe;
+                if (comp.Queue.Count == 0)
                     break;
-
-                var recipe = _proto.Index(recipeProto);
+                var batch = comp.Queue.First();
+                var recipe = _proto.Index(batch.Recipe);
                 var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * comp.TimeMultiplier;
                 if (time != TimeSpan.Zero)
-                    break; // Now it should be handled by another method
-
+                    break;
+                batch.ItemsPrinted++;
+                if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0)
+                    comp.Queue.RemoveFirst();
                 comp.CurrentRecipe = recipe;
             }
         }

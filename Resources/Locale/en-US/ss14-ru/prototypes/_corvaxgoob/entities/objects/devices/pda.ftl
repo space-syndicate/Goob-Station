@@ -6,3 +6,5 @@ ent-PilotPDA = pilot PDA
     .desc = Нas protection from cosmic radiation.
 ent-MagistratePDA = magistrate's PDA
     .desc = Corporation and profit are best friends.
+ent-StationAiPDA = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }

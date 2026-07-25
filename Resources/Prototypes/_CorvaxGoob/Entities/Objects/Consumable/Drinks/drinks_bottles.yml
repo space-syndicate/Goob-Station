@@ -12,14 +12,20 @@
           Quantity: 100
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Consumable/Drinks/campari.rsi
+    layers:
+    - state: icon
+    - state: fill-10
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: true
   - type: SolutionContainerVisuals
     maxFillLevels: 10
     fillBaseName: fill-
     inHandsMaxFillLevels: 0
   - type: Sealable
+  - type: Appearance
 
 - type: entity
-  parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
+  parent: DrinkBottleGlassBaseFull
   id: DrinkJuiceAppleCartonXL
   name: apple juice XL
   description: A pure set of vitamins that is useful for corporate employees.

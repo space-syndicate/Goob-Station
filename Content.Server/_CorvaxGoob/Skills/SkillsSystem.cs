@@ -60,13 +60,10 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
     private void OnImplantImplanted(ref ImplantImplantedEvent ev)
     {
-        if (ev.Implanted is null)
-            return;
-
         if (!_tag.HasTag(ev.Implant, SkillsTag))
             return;
 
-        GrantAllSkills(ev.Implanted.Value);
+        GrantAllSkills(ev.Implanted);
     }
 
     /// <summary>

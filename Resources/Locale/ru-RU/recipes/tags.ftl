@@ -66,7 +66,7 @@ construction-graph-tag-corgi-hide = шкура корги
 construction-graph-tag-apron = фартук
 construction-graph-tag-utility-belt = пояс для инструментов
 soil-construction-graph-any-mushroom = любой гриб
-construction-graph-tag-mop-basic = mop
+construction-graph-tag-mop-basic = швабра
 # toys
 construction-graph-tag-rubber-ducky = резиновая уточка
 construction-graph-tag-ghost = плюшевый призрак
@@ -133,3 +133,17 @@ construction-graph-tag-fire-helmet = пожарный шлем
 construction-graph-tag-spationaut-hardsuit = лёгкий скафандр утилизатора
 # clothing
 construction-graph-tag-backpack = рюкзак
+
+construction-graph-tag-boxhug = коробка обнимашек
+
+
+construction-graph-tag-core-pinpointer-piece = часть пинпоинтера ядра
+
+
+construction-graph-tag-station-ai-core-electronics = микросхема ядра станционного ИИ
+
+
+construction-graph-tag-turret-control-electronics = микросхема панели управления охранной турели
+
+
+construction-graph-tag-centrifuge-compatible = пробирка

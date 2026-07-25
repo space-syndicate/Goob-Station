@@ -35,7 +35,7 @@ public sealed class AppearanceConverterSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private readonly GrammarSystem _grammar = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
