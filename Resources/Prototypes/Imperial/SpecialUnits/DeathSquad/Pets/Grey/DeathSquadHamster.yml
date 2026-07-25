@@ -98,7 +98,7 @@
       Dead:
         Base: dead
   - type: CanEscapeInventory
-    baseResistTime: 3
+    baseResistTime: 1
   - type: MobPrice
     price: 30000
   - type: NonSpreaderZombie

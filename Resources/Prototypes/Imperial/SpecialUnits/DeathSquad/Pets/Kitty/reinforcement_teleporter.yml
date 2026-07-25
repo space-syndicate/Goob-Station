@@ -11,6 +11,6 @@
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
-    prototype: MobCatDeathSquad
+    prototype: MobCatDeathSquadEVA
   - type: EmitSoundOnUse
     sound: /Audio/Animals/cat_meow.ogg
