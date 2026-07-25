@@ -88,9 +88,8 @@ public sealed partial class IdCardConsoleSystem
 
         // Bulk actions only run when both ID cards are present, the privileged card is authorized,
         // and the target slot contains an ID card component that can be modified.
-        if (component.PrivilegedIdSlot.Item is not { Valid: true } privilegedId
-            || component.TargetIdSlot.Item is not { Valid: true } targetId
-            || !PrivilegedIdIsAuthorized(uid, component)
+        if (component.TargetIdSlot.Item is not { Valid: true } targetId
+            || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId)
             || !TryComp<IdCardComponent>(targetId, out var targetIdComponent))
         {
             return;
@@ -100,7 +99,7 @@ public sealed partial class IdCardConsoleSystem
         // the access shown on this console (`visibleTags`), the access that can actually be modified
         // (`modifiableTags`), the target card's current access (`oldTags`), and the placeholders for
         // the updated access/job result (`newTags`, `newJob`, `newJobTitle`, `changedIdentity`).
-        var privilegedTags = _accessReader.FindAccessTags(privilegedId).ToHashSet();
+        var privilegedTags = _accessReader.FindAccessTags(privilegedId.Value).ToHashSet();
         var visibleTags = component.AccessLevels.ToHashSet();
         var modifiableTags = privilegedTags.Intersect(visibleTags).ToHashSet();
         var oldTags = (_access.TryGetTags(targetId) ?? Array.Empty<ProtoId<AccessLevelPrototype>>()).ToHashSet();
