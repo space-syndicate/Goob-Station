@@ -1,10 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: MIT
 -->
 
@@ -24,6 +18,7 @@ SPDX-License-Identifier: MIT
             <ColorSelectorSliders Name="ColorPicker" IsAlphaVisible="True" />
             <Button Name="PickerOpen" Text="{Loc 'decal-placer-window-palette'}" />
         </BoxContainer>
+		<Button Name="SwitchCopy" Text="{Loc 'decal-placer-window-copy'}" /> <!-- CorvaxGoob -->
         <CheckBox Name="EnableAuto" Text="{Loc 'decal-placer-window-enable-auto'}" Margin="0 0 0 10"/>
         <CheckBox Name="EnableColor" Text="{Loc 'decal-placer-window-use-color'}" />
         <CheckBox Name="EnableSnap" Text="{Loc 'decal-placer-window-enable-snap'}" />

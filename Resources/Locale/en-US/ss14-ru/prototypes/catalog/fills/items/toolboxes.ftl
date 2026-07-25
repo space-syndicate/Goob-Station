@@ -22,3 +22,6 @@ ent-ToolboxSyndicateFilled = { ent-ToolboxSyndicate }
 ent-ToolboxGoldFilled = golden toolbox
     .suffix = Filled
     .desc = { ent-ToolboxGolden.desc }
+ent-FoolboxFilled = { ent-Foolbox }
+    .suffix = Filled
+    .desc = { ent-Foolbox.desc }

@@ -1,15 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Vordenburg <114301317+Vordenburg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 moonheart08 <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DamianX <DamianX@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -21,7 +9,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Client.Utility;
+// using Robust.Client.Utility; // Commented by CorvaxGoob
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
@@ -34,6 +22,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
     [Dependency] private readonly IEntityManager _e = default!;
 
     private readonly DecalPlacementSystem _decalPlacementSystem;
+	private readonly DecalCopySystem _decalCopySystem; // CorvaxGoob
     private readonly SpriteSystem _sprite;
 
     public FloatSpinBox RotationSpinBox;
@@ -57,6 +46,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
         IoCManager.InjectDependencies(this);
 
         _decalPlacementSystem = _e.System<DecalPlacementSystem>();
+		 _decalCopySystem = _e.System<DecalCopySystem>(); // CorvaxGoob
         _sprite = _e.System<SpriteSystem>();
 
         // This needs to be done in C# so we can have custom stuff passed in the constructor
@@ -69,6 +59,15 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
 
         Search.OnTextChanged += _ => RefreshList();
         ColorPicker.OnColorChanged += OnColorPicked;
+
+// CorvaxGoob-changes-start:
+        _decalCopySystem.UpdateClientColorAction += color =>
+        {
+            _color = color;
+            ColorPicker.Color = color;
+            RefreshList();
+        };
+// CorvaxGoob-changes-end.
 
         PickerOpen.OnPressed += _ =>
         {
@@ -101,6 +100,13 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             _rotation = args.Value;
             UpdateDecalPlacementInfo();
         };
+// CorvaxGoob-changes-start:
+        SwitchCopy.OnPressed += args =>
+        {
+            _decalPlacementSystem.SetActive(false);
+            _decalCopySystem.SetActive(true);
+        };
+// CorvaxGoob-changes-end.
         EnableAuto.OnToggled += args =>
         {
             _auto = args.Pressed;
@@ -171,15 +177,12 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             {
                 var panelContainer = new PanelContainer
                 {
-                    PanelOverride = new StyleBoxFlat
-                    {
-                        BackgroundColor = StyleNano.ButtonColorDefault
-                    },
                     Children =
                     {
                         button
                     }
                 };
+                panelContainer.SetOnlyStyleClass(StyleClass.PanelLight);
                 Grid.AddChild(panelContainer);
             }
             else
@@ -237,5 +240,6 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
     {
         base.Close();
         _decalPlacementSystem.SetActive(false);
+		_decalCopySystem.SetActive(false); // CorvaxGoob
     }
 }
