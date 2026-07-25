@@ -89,7 +89,6 @@ ent-VinylDiskBroken = сломанная виниловая пластинка
     .desc = Как и большинство виниловых пластинок, эта в итоге оказалась сломанной.
 ent-VinylDiskTuff = виниловая пластика "Ловушечные оперативники"
     .desc = { ent-BaseVinylDisk.desc }
-
 # Конверты
 ent-VinylSleeveAI = конверт для пластинки "ИИ"
     .desc = { ent-BaseVinylSleeve.desc }

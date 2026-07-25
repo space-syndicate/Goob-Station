@@ -5,7 +5,7 @@
   objective: never-shown
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 18000 #5 hours
+    time: 5h #5 hours
 
 - type: antag
   id: GenericFreeAgentGoob
@@ -14,9 +14,9 @@
   objective: never-shown
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 18000 #5 hours
+    time: 5h #5 hours
 
-- type: antag
+- type: antag  # todo marty all of the below is shitcode
   id: EngineeringFreeAgentGoob
   name: roles-antag-generic-free-agent-name
   antagonist: true

@@ -213,3 +213,24 @@ ent-FloorTileItemPlasmaMarble = плитка плазма мрамора
     .desc = Вырезанный и отполированный квадрат из лучшего космического мрамора. Пропитан плазмой для дополнительного... чего-то там.
 ent-FloorTileItemUraniumMarble = плитка уранового мрамора
     .desc = Вырезанный и отполированный квадрат из лучшего космического мрамора. Пропитан ураном для максимальной крутости!
+
+ent-FloorTileItemIronsandConcrete = железопесчаная бетонная плитка
+    .desc = { ent-FloorTileItemBase.desc }
+
+ent-FloorTileItemDarkAstroGrass = тёмная астро-трава
+    .desc = Искусственная трава, отлично прячущая провода, поставляется с реалистичными НаноТравинками!
+
+ent-FloorTileItemLightAstroGrass = светлая астро-трава
+    .desc = Искусственная трава, отлично прячущая провода, поставляется с реалистичными НаноТравинками!
+
+ent-FloorTileItemAstroIronsand = астро-железный песок
+    .desc = Фальшивый красный песок. Импортирован с фальшивого Марса.
+
+ent-FloorTileItemDesertAstroSand = пустынный астро-песок
+    .desc = Искусственный песок, разработан с целью быть прекрасным.
+
+ent-FloorTileItemXeno = ксенопол
+    .desc = { ent-FloorTileItemBase.desc }
+
+ent-FloorTileItemDarkSquiggly = тёмная волнистая стальная плитка
+    .desc = { ent-FloorTileItemDark.desc }

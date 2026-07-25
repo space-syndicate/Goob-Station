@@ -1,0 +1,14 @@
+ent-BaseHandheldGrinder = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-MortarAndPestle = mortar and pestle
+    .desc = Used for grinding small amounts of objects.
+ent-MortarAndPestleMakeshift = makeshift mortar and pestle
+    .desc = Used for grinding small amounts of objects. Inferior version made out of wood.
+ent-HandheldJuicer = handheld juicer
+    .desc = Used for juicing small amounts of objects.
+ent-HandheldJuicerMakeshift = makeshift juicer
+    .desc = Used for juicing small amounts of objects. Inferior version made out of wood.
+ent-IncompleteMortarAndPestle = incomplete mortar and pestle
+    .desc = A few planks of wood stuck together.
+ent-IncompleteHandheldJuicer = incomplete handheld juicer
+    .desc = A some wood and plastic stuck together.
