@@ -312,3 +312,11 @@ ent-DefaultStationBeaconEscapePodNW = { ent-DefaultStationBeacon }
 ent-DefaultStationBeaconVox = { ent-DefaultStationBeacon }
     .suffix = Вокс
     .desc = { ent-DefaultStationBeacon.desc }
+
+ent-DefaultStationBeaconGhost = { ent-DefaultStationBeacon }
+    .desc = { ent-DefaultStationBeacon.desc }
+    .suffix = Буу
+
+ent-DefaultStationBeaconCentComm = { ent-DefaultStationBeaconGhost }
+    .desc = { ent-DefaultStationBeaconGhost.desc }
+    .suffix = Центком

@@ -34,3 +34,13 @@ lathe-menu-materials-title = Материалы
 lathe-menu-queue-title = Очередь производства
 lathe-menu-queue-reset-title = Сбросить очередь
 lathe-menu-queue-reset-material-overflow = Вы замечаете, что автолат полон.
+
+lathe-menu-silo-linked-message = Хранилище связано
+
+lathe-menu-delete-fabricating-tooltip = Отменить производство текущего объекта.
+
+lathe-menu-delete-item-tooltip = Отменить производство этой партии.
+
+lathe-menu-move-up-tooltip = Перенести эту партию вперёд в очереди.
+
+lathe-menu-move-down-tooltip = Перенести эту партию назад в очереди.

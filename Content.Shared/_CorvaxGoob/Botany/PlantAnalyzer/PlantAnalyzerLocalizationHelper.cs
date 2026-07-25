@@ -1,3 +1,4 @@
+using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Chemistry.Reagent;
@@ -9,6 +10,7 @@ namespace Content.Shared._CorvaxGoob.Botany.PlantAnalyzer;
 public sealed class PlantAnalyzerLocalizationHelper : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedAtmosphereSystem _atmo = default!;
 
     public string GasesToLocalizedStrings(List<Gas> gases)
     {
@@ -20,9 +22,8 @@ public sealed class PlantAnalyzerLocalizationHelper : EntitySystem
             gasIds.Add((int)gas);
 
         List<string> gasesLoc = [];
-        foreach (var gas in _prototypeManager.EnumeratePrototypes<GasPrototype>())
-            if (gasIds.Contains(int.Parse(gas.ID)))
-                gasesLoc.Add(Loc.GetString(gas.Name));
+        for (var i = 0; i < gasIds.Count; i++)
+            gasesLoc.Add(Loc.GetString(_atmo.GetGas(gasIds[i]).Name));
 
         return ContentLocalizationManager.FormatListLocalized(gasesLoc, "plant-analyzer-and");
     }

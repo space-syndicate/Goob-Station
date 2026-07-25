@@ -8,3 +8,5 @@ construction-recipe-curtains-pink = шторы (розовый)
 construction-recipe-curtains-purple = шторы (фиолетовый)
 construction-recipe-curtains-red = шторы (красный)
 construction-recipe-curtains-white = шторы (белый)
+
+construction-recipe-curtains-sky-blue = шторы (небесный)

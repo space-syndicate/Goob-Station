@@ -102,3 +102,7 @@ ent-CrateTrashCartJani = мусорная тележка уборщика
 ent-InvisibleCrate = { ent-CrateBaseWeldable }
     .suffix = Стелс
     .desc = { ent-CrateBaseWeldable.desc }
+
+ent-CrateSyndicateSecure = защищённый ящик Синдиката
+    .desc = { ent-CrateSyndicate.desc }
+    .suffix = { ent-CrateBaseSecure.suffix }

@@ -1,21 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2022 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Paul <ritter.paul1+git@googlemail.com>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2022 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 moonheart08 <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -131,7 +113,27 @@ namespace Content.Shared.Decals
         public virtual HashSet<(uint Index, Decal Decal)> GetDecalsInRange(EntityUid gridId, Vector2 position, float distance = 0.75f, Func<Decal, bool>? validDelegate = null)
         {
             // NOOP on client atm.
-            return new HashSet<(uint Index, Decal Decal)>();
+//            return new HashSet<(uint Index, Decal Decal)>(); // Commented by CorvaxGoob
+// CorvaxGoob-changes-start:
+            var decalIds = new HashSet<(uint, Decal)>();
+            var chunkCollection = ChunkCollection(gridId);
+            var chunkIndices = GetChunkIndices(position);
+            if (chunkCollection == null || !chunkCollection.TryGetValue(chunkIndices, out var chunk))
+                return decalIds;
+
+            foreach (var (uid, decal) in chunk.Decals)
+            {
+                if ((position - decal.Coordinates - new Vector2(0.5f, 0.5f)).Length() > distance)
+                    continue;
+
+                if (validDelegate == null || validDelegate(decal))
+                {
+                    decalIds.Add((uid, decal));
+                }
+            }
+
+            return decalIds;
+// CorvaxGoob-changes-end.
         }
 
         public virtual bool RemoveDecal(EntityUid gridId, uint decalId, DecalGridComponent? component = null)

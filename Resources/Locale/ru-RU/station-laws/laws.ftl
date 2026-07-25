@@ -89,3 +89,41 @@ laws-ui-state-law = Объявить законы:
 laws-notify = Вы обязаны соблюдать законы ИИ, ознакомиться с которыми можно через панель действий. Вы должны всегда следовать своим законам.
 laws-update-notify = Ваши законы были обновлены. Ознакомиться с изменениями можно через панель действий.
 laws-notify-subverted = Законы этого шасси изменены. Обязательно ознакомьтесь с ними.
+
+laws-number-wrapper = [bold]Закон { $lawnumber }:[/bold] { $lawstring }
+
+law-crewsimov-name = Крюзимов
+
+law-corporate-name = Корпорат
+
+law-ntdefault-name = NT стандарт
+
+law-drone-name = Дрон
+
+law-syndicate-name = Синдимов
+
+law-ninja-name = Ниндзя
+
+law-commandments-name = Десять заповедей
+
+law-paladin-name = Паладин
+
+law-lall-name = Живи и дай жить другим
+
+law-efficiency-name = Эффективность станции
+
+law-robocop-name = Робокоп
+
+law-overlord-name = Владыка
+
+law-game-name = Игровой мастер
+
+law-painter-name = Художник
+
+law-antimov-name = Антимов
+
+law-nutimov-name = Орехимов
+
+law-xenoborg-name = Ксеноборг
+
+law-mothershipcore-name = Ядро материнского корабля
