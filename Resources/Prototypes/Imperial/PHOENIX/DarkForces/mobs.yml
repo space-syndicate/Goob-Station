@@ -1,0 +1,320 @@
+- type: entity
+  id: ImperialDarkForcesMobBase
+  parent: [ BaseSimpleMob, MobAtmosExposed, MobCombat, MobFlammable ]
+  abstract: true
+  suffix: Phoenix, DarkForces
+  components:
+  - type: Damageable
+    damageModifierSet: ImperialDarkForcesMob
+  - type: GhostRole
+    description: ghost-role-information-dark-forces-mob-description
+    makeSentient: true
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+    rules: ghost-role-information-dark-forces-mob-rules
+  - type: GhostTakeoverAvailable
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Insulated
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+    - DarkForces
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: LargeMob
+  - type: StaminaResistance
+    damageCoefficient: 0
+    worn: false
+  - type: Tag
+    tags:
+    - ImperialDarkForcesMob
+    - DoorBumpOpener
+    - FootstepSound
+
+- type: entity
+  id: ImperialDarkForcesMobWisp
+  parent: ImperialDarkForcesMobBase
+  name: wisp
+  description: A mass of darkness that has taken the physical form of a small yet quite dangerous creature.
+  components:
+  - type: Climbing
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: wisp
+      Dead:
+        Base: wisp_dead
+  - type: GhostRole
+    name: ghost-role-information-dark-forces-mob-name-wisp
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcThrust
+    attackRate: 0.5
+    damage:
+      types:
+        Piercing: 15
+        Structural: 15
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5
+    baseWalkSpeed: 5.5
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damage:
+      types:
+        Blunt: -1
+        Caustic: -1
+        Cellular: -1
+        Cold: -1
+        Heat: -1
+        Piercing: -1
+        Poison: -1
+        Shock: -1
+        Slash: -1
+  - type: Prying
+    force: true
+    pryPowered: true
+    speedModifier: 0.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      25: 0.75
+      50: 0.5
+      75: 0.25
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      sprite: Imperial/PHOENIX/DarkForces/wisp.rsi
+      state: wisp
+  - type: Vocal
+    sounds:
+      Female: WispVoice
+      Male: WispVoice
+      Unsexed: WispVoice
+
+- type: entity
+  id: ImperialDarkForcesMobShadeProjectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  name: shade projectile
+  suffix: Phoenix, DarkForces
+  components:
+  - type: Ammo
+    muzzleFlash: null
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Imperial/PHOENIX/DarkForces/dark_rift_spawner.ogg
+  - type: PointLight
+    color: "#ffffff"
+    energy: 1000
+    radius: 1.1
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 12.5
+        Cellular: 5
+        Cold: 12.5
+  - type: SingularityDistortion
+    falloffPower: 2.5
+    intensity: 100
+  - type: SpawnOnTrigger
+    proto: ImperialDarkForcesDarkness
+  - type: Sprite
+    layers: []
+    sprite: null
+
+- type: entity
+  id: ImperialDarkForcesMobShade
+  parent: ImperialDarkForcesMobBase
+  name: shade
+  description: A ferocious beast of darkness, stripped of its own will and destined to destroy countless worlds to merge them with the abyss.
+  components:
+  - type: BasicEntityAmmoProvider
+    capacity: 1
+    count: 1
+    proto: ImperialDarkForcesMobShadeProjectile
+  - type: Climbing
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: shade
+      Dead:
+        Base: shade_dead
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+  - type: GhostRole
+    name: ghost-role-information-dark-forces-mob-name-shade
+  - type: Gun
+    availableModes:
+    - FullAuto
+    fireRate: 1
+    selectedMode: FullAuto
+    soundEmpty: null
+    soundGunshot: /Audio/Imperial/PHOENIX/DarkForces/dark_rift_spawner.ogg
+    useKey: false
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 5
+        Slash: 25
+        Structural: 30
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4
+    baseWalkSpeed: 2
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damage:
+      types:
+        Blunt: -2.5
+        Caustic: -2.5
+        Cellular: -2.5
+        Cold: -2.5
+        Heat: -2.5
+        Piercing: -2.5
+        Poison: -2.5
+        Shock: -2.5
+        Slash: -2.5
+  - type: Prying
+    force: true
+    pryPowered: true
+    speedModifier: 1
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 15
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      125: 0.75
+      250: 0.5
+      375: 0.25
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      sprite: Imperial/PHOENIX/DarkForces/shade.rsi
+      state: shade
+  - type: Vocal
+    sounds:
+      Female: ShadeVoice
+      Male: ShadeVoice
+      Unsexed: ShadeVoice
+
+- type: entity
+  id: ImperialDarkForcesMobVoid
+  parent: ImperialDarkForcesMobBase
+  name: void
+  description: A colossal creature composed of various fragments of other manifestations of darkness brought into reality. It possesses incredible resilience and devastating strength, destroying everything in its path.
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: void
+      Dead:
+        Base: void_dead
+  - type: Devourer
+    devourTime: 5
+    foodPreference: Humanoid
+    soundDevour: /Audio/Imperial/Horror/Chyd/ChydEat.ogg
+    structureDevourTime: 25
+    whitelist:
+      components:
+      - Door
+      - MobState
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 50
+        layer:
+        - MobLayer
+        mask:
+        - MobMask
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.75
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+  - type: GhostRole
+    name: ghost-role-information-dark-forces-mob-name-void
+  - type: Magboots
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 30
+        Slash: 30
+        Structural: 60
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      2500: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3
+    baseWalkSpeed: 5
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damage:
+      types:
+        Blunt: -5
+        Caustic: -5
+        Cellular: -5
+        Cold: -5
+        Heat: -5
+        Piercing: -5
+        Poison: -5
+        Shock: -5
+        Slash: -5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      312.5: 0.875
+      625: 0.75
+      937.5: 0.625
+      1250: 0.5
+      1562.5: 0.375
+      1875: 0.25
+      2187.5: 0.125
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      scale: 1.5, 1.5
+      sprite: Imperial/PHOENIX/DarkForces/void.rsi
+      state: void
+  - type: Vocal
+    sounds:
+      Female: VoidVoice
+      Male: VoidVoice
+      Unsexed: VoidVoice

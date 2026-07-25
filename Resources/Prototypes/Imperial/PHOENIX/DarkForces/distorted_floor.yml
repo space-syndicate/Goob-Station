@@ -1,0 +1,96 @@
+- type: entity
+  id: ImperialDarkForcesDistortedFloorOne
+  name: distorted floor
+  suffix: Phoenix, DarkForces
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 7
+        hard: false
+        layer:
+        - MidImpassable
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+  - type: Physics
+  - type: RequiresTile
+  - type: SpeedModifierContacts
+    ignoreWhitelist:
+      tags:
+      - ImperialDarkForcesMob
+    sprintSpeedModifier: 0.75
+    walkSpeedModifier: 0.75
+  - type: Sprite
+    drawdepth: LowFloors
+    layers:
+    - shader: unshaded
+      state: distorted_floor1
+    sprite: imperial/PHOENIX/DarkForces/distorted_floor.rsi
+  - type: SyncSprite
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: ImperialDarkForcesDistortedFloorTwo
+  parent: ImperialDarkForcesDistortedFloorOne
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    layers:
+    - shader: unshaded
+      state: distorted_floor2
+
+- type: entity
+  id: ImperialDarkForcesDistortedFloorThree
+  parent: ImperialDarkForcesDistortedFloorOne
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    layers:
+    - shader: unshaded
+      state: distorted_floor3
+
+- type: entity
+  id: ImperialDarkForcesDistortedFloorFour
+  parent: ImperialDarkForcesDistortedFloorOne
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    layers:
+    - shader: unshaded
+      state: distorted_floor4
+
+- type: entity
+  id: ImperialDarkForcesDistortedFloorFive
+  parent: ImperialDarkForcesDistortedFloorOne
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    layers:
+    - shader: unshaded
+      state: distorted_floor5
+
+- type: entity
+  id: ImperialDarkForcesDistortedFloorRandom
+  parent: ImperialDarkForcesDistortedFloorOne
+  suffix: Random
+  components:
+  - type: RandomSprite
+    available:
+      - 0:
+          distorted_floor1: ""
+          distorted_floor2: ""
+          distorted_floor3: ""
+          distorted_floor4: ""
+          distorted_floor5: ""
