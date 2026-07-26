@@ -6,58 +6,39 @@ namespace Content.Client.Access.UI
 {
     public sealed partial class IdCardConsoleWindow
     {
-        private bool _pendingAccessActionJobTitleSync;
+        private bool _pendingExtendedAccessJobTitleSync;
 
         /// <summary>
-        /// Connects the console's standard grant-all/revoke-all buttons to job-title marker actions.
+        /// Connects the isolated extended-access buttons (Standard and Extended) to their server actions.
         /// </summary>
-        private void InitializeStandardAllAccessButtons()
+        private void InitializeExtendedAccessButtons()
         {
-            SelectAllButton.OnPressed += _ => SubmitStandardAllAccessAction(true, IdCardConsoleAccessMarkerAction.Add);
-            DeselectAllButton.OnPressed += _ => SubmitStandardAllAccessAction(false, IdCardConsoleAccessMarkerAction.Remove);
+            StandardAccessButton.OnPressed += _ => SubmitExtendedAccessAction(IdCardConsoleExtendedAccessAction.StandardAccess);
+            ExtendedAccessButton.OnPressed += _ => SubmitExtendedAccessAction(IdCardConsoleExtendedAccessAction.Extended);
         }
 
         /// <summary>
-        /// Connects the bulk access buttons (Standard and Extended) to their server actions.
+        /// Marks that an extended-access response is pending, so the next UpdateState can resync JobTitleLineEdit from the ID card.
         /// </summary>
-        private void InitializeBulkAccessButtons()
+        private void SubmitExtendedAccessAction(IdCardConsoleExtendedAccessAction action)
         {
-            StandardAccessButton.OnPressed += _ => SubmitBulkAccessAction(IdCardConsoleBulkAccessAction.StandardAccess);
-            ExtendedAccessButton.OnPressed += _ => SubmitBulkAccessAction(IdCardConsoleBulkAccessAction.Extended);
+            _pendingExtendedAccessJobTitleSync = true;
+            _owner.SubmitExtendedAccessAction(action);
         }
 
         /// <summary>
-        /// Marks that a server-side access action is pending, so the next UpdateState can resync JobTitleLineEdit from the ID card.
+        /// After an extended-access action changes the card title, replaces any unsaved JobTitleLineEdit text with the target ID card title.
         /// </summary>
-        private void SubmitBulkAccessAction(IdCardConsoleBulkAccessAction action)
+        private void SyncJobTitleAfterExtendedAccess(string targetJobTitle)
         {
-            _pendingAccessActionJobTitleSync = true;
-            _owner.SubmitBulkAccessAction(action);
-        }
-
-        /// <summary>
-        /// Marks all visible access buttons on or off through the normal write path, with a server-side request to update the visual "+" marker.
-        /// </summary>
-        private void SubmitStandardAllAccessAction(bool enabled, IdCardConsoleAccessMarkerAction accessMarkerAction)
-        {
-            SetAllAccess(enabled);
-            _pendingAccessActionJobTitleSync = true;
-            SubmitData(accessMarkerAction);
-        }
-
-        /// <summary>
-        /// After a server-side access action changes the card title, replaces any unsaved JobTitleLineEdit text with the target ID card title.
-        /// </summary>
-        private void SyncJobTitleAfterAccessAction(string targetJobTitle)
-        {
-            if (!_pendingAccessActionJobTitleSync)
+            if (!_pendingExtendedAccessJobTitleSync)
                 return;
 
             JobTitleLineEdit.Text = targetJobTitle;
-            _pendingAccessActionJobTitleSync = false;
+            _pendingExtendedAccessJobTitleSync = false;
         }
 
-        private void SetBulkButtonsDisabled(bool disabled)
+        private void SetExtendedAccessButtonsDisabled(bool disabled)
         {
             StandardAccessButton.Disabled = disabled;
             ExtendedAccessButton.Disabled = disabled;

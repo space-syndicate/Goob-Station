@@ -8,7 +8,6 @@ using Content.Shared.Access.Components;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Access.Systems;
@@ -48,24 +47,23 @@ public sealed partial class IdCardConsoleSystem
     ];
 
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     /// <summary>
-    /// Registers the bulk access message handler for the ID console.
+    /// Registers the isolated extended-access message handler for the ID console.
     /// </summary>
-    private void InitializeBulkAccess()
+    private void InitializeExtendedAccess()
     {
-        SubscribeLocalEvent<IdCardConsoleComponent, IdCardConsoleBulkAccessMessage>(OnBulkAccessMessage);
+        SubscribeLocalEvent<IdCardConsoleComponent, IdCardConsoleExtendedAccessMessage>(OnExtendedAccessMessage);
     }
 
-    private void OnBulkAccessMessage(EntityUid uid, IdCardConsoleComponent component, IdCardConsoleBulkAccessMessage args)
+    private void OnExtendedAccessMessage(EntityUid uid, IdCardConsoleComponent component, IdCardConsoleExtendedAccessMessage args)
     {
         if (args.Actor is not { Valid: true } player)
             return;
 
-        /* // Balance hook: route this through a do-after if bulk access changes need a delay later.
+        /* // Balance hook: route this through a do-after if extended-access changes need a delay later.
         var doAfter = new DoAfterArgs(EntityManager, player, TimeSpan.FromSeconds(3),
-            new IdCardConsoleBulkAccessDoAfterEvent(args.Action), uid, target: component.TargetIdSlot.Item, used: uid)
+            new IdCardConsoleExtendedAccessDoAfterEvent(args.Action), uid, target: component.TargetIdSlot.Item, used: uid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -73,21 +71,21 @@ public sealed partial class IdCardConsoleSystem
         _doAfter.TryStartDoAfter(doAfter);
             return;*/
 
-        TryApplyBulkAccessAction(uid, args.Action, player, component);
+        TryApplyExtendedAccessAction(uid, args.Action, player, component);
 
         UpdateUserInterface(uid, component, args);
     }
 
-    private void TryApplyBulkAccessAction(
+    private void TryApplyExtendedAccessAction(
         EntityUid uid,
-        IdCardConsoleBulkAccessAction action,
+        IdCardConsoleExtendedAccessAction action,
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        // Bulk actions only run when both ID cards are present, the privileged card is authorized,
+        // Extended-access actions only run when both ID cards are present, the privileged card is authorized,
         // and the target slot contains an ID card component that can be modified.
         if (component.TargetIdSlot.Item is not { Valid: true } targetId
             || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId)
@@ -96,7 +94,7 @@ public sealed partial class IdCardConsoleSystem
             return;
         }
 
-        // Collect the relevant bulk-access state: the privileged card's access (`privilegedTags`),
+        // Collect the relevant extended-access state: the privileged card's access (`privilegedTags`),
         // the access shown on this console (`visibleTags`), the access that can actually be modified
         // (`modifiableTags`), the target card's current access (`oldTags`), and the placeholders for
         // the updated access/job result (`newTags`, `newJob`, `newJobTitle`, `changedIdentity`).
@@ -111,10 +109,10 @@ public sealed partial class IdCardConsoleSystem
 
         switch (action)
         {
-            case IdCardConsoleBulkAccessAction.StandardAccess:
+            case IdCardConsoleExtendedAccessAction.StandardAccess:
                 if (!TryResolveJobFromTitle(targetIdComponent.LocalizedJobTitle, out var resetJob))
                 {
-                    ShowResetFailed(uid, player, component);
+                    ShowResetFailed(uid, player);
                     return;
                 }
 
@@ -125,7 +123,7 @@ public sealed partial class IdCardConsoleSystem
                 changedIdentity = ApplyJobIdentity(targetId, targetIdComponent, resetJob, resetJob.LocalizedName, player);
                 break;
 
-            case IdCardConsoleBulkAccessAction.Extended:
+            case IdCardConsoleExtendedAccessAction.Extended:
                 newTags = oldTags.Union(GetExtendedAccessTags(modifiableTags)).ToHashSet();
                 changedIdentity = ShouldSkipExtendedAccessMarker(targetIdComponent, oldTags)
                     ? false
@@ -147,8 +145,6 @@ public sealed partial class IdCardConsoleSystem
             UpdateStationRecord(targetId, targetIdComponent.FullName ?? string.Empty, newJobTitle, newJob);
         else if (changedIdentity)
             UpdateStationRecordJobTitle(targetId, targetIdComponent.LocalizedJobTitle ?? string.Empty);
-
-        _audio.PlayPvs(component.BulkAccessSuccessSound, uid);
     }
 
     private static HashSet<ProtoId<AccessLevelPrototype>> GetExtendedAccessTags(HashSet<ProtoId<AccessLevelPrototype>> modifiableTags)
@@ -184,45 +180,6 @@ public sealed partial class IdCardConsoleSystem
         }
 
         return GetJobAccessTags(headOfPersonnelJob).IsSubsetOf(oldTags);
-    }
-
-    private bool ShouldSkipGrantAllMarker(IdCardComponent targetIdComponent)
-    {
-        // The standard grant-all button mirrors the old full-access marker rule: Captain cards stay unmarked.
-        return MatchesSpecialJobTitle(targetIdComponent.LocalizedJobTitle, CaptainJobTitles);
-    }
-
-    private bool ApplyAccessMarkerAction(
-        EntityUid targetId,
-        IdCardComponent targetIdComponent,
-        IdCardConsoleAccessMarkerAction accessMarkerAction,
-        EntityUid player)
-    {
-        return accessMarkerAction switch
-        {
-            IdCardConsoleAccessMarkerAction.Add when !ShouldSkipGrantAllMarker(targetIdComponent) =>
-                TrySetAccessMarker(targetId, targetIdComponent, true, player),
-            IdCardConsoleAccessMarkerAction.Remove =>
-                TrySetAccessMarker(targetId, targetIdComponent, false, player),
-            _ => false,
-        };
-    }
-
-    private void TryPlayAccessMarkerActionSuccessSound(
-        EntityUid uid,
-        IdCardConsoleComponent component,
-        IdCardConsoleAccessMarkerAction accessMarkerAction,
-        bool changedAccessMarker,
-        bool changedAccess)
-    {
-        if (accessMarkerAction == IdCardConsoleAccessMarkerAction.None
-            || (!changedAccessMarker && !changedAccess))
-        {
-            return;
-        }
-
-        // The standard grant-all/revoke-all buttons use the normal write path, but share the same quiet feedback as bulk buttons.
-        _audio.PlayPvs(component.BulkAccessSuccessSound, uid);
     }
 
     private static bool MatchesSpecialJobTitle(string? jobTitle, string[] expectedTitles)
@@ -360,10 +317,9 @@ public sealed partial class IdCardConsoleSystem
         return normalized;
     }
 
-    private void ShowResetFailed(EntityUid uid, EntityUid player, IdCardConsoleComponent component)
+    private void ShowResetFailed(EntityUid uid, EntityUid player)
     {
         _popup.PopupEntity(Loc.GetString("id-card-console-reset-job-failed"), uid, player);
-        _audio.PlayPvs(component.BulkAccessFailureSound, uid);
     }
 
     private void UpdateStationRecordJobTitle(EntityUid targetId, string newJobTitle)

@@ -23,24 +23,18 @@ public sealed partial class IdCardConsoleComponent : Component // CorvaxGoob Edi
     public ItemSlot TargetIdSlot = new();
 
     [Serializable, NetSerializable]
-    public sealed partial class WriteToTargetIdMessage : BoundUserInterfaceMessage // CorvaxGoob Edit - made partial
+    public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
     {
         public readonly string FullName;
         public readonly string JobTitle;
         public readonly List<ProtoId<AccessLevelPrototype>> AccessList;
         public readonly ProtoId<JobPrototype> JobPrototype;
-        public WriteToTargetIdMessage(
-            string fullName,
-            string jobTitle,
-            List<ProtoId<AccessLevelPrototype>> accessList,
-            ProtoId<JobPrototype> jobPrototype,
-            IdCardConsoleAccessMarkerAction accessMarkerAction = IdCardConsoleAccessMarkerAction.None) // CorvaxGoob - Extended-access
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<JobPrototype> jobPrototype)
         {
             FullName = fullName;
             JobTitle = jobTitle;
             AccessList = accessList;
             JobPrototype = jobPrototype;
-            AccessMarkerAction = accessMarkerAction; // CorvaxGoob - Extended-access
         }
     }
 

@@ -100,10 +100,21 @@ namespace Content.Client.Access.UI
                 JobPresetOptionButton.AddItem(Loc.GetString(job.Name), _jobPrototypeIds.Count - 1);
             }
 
-            InitializeStandardAllAccessButtons(); // CorvaxGoob - Extended-access
+            SelectAllButton.OnPressed += _ =>
+            {
+                SetAllAccess(true);
+                SubmitData();
+            };
+
+            DeselectAllButton.OnPressed += _ =>
+            {
+                SetAllAccess(false);
+                SubmitData();
+            };
 
             JobPresetOptionButton.OnItemSelected += SelectJobPreset;
-            InitializeBulkAccessButtons(); // CorvaxGoob - Extended-access
+            InitializeExtendedAccessButtons(); // CorvaxGoob - Extended-access
+
             _accessButtons.Populate(accessLevels, prototypeManager);
             AccessLevelControlContainer.AddChild(_accessButtons);
 
@@ -199,20 +210,19 @@ namespace Content.Client.Access.UI
             JobTitleLineEdit.Editable = interfaceEnabled;
 
             // CorvaxGoob Start - Extended-access
-            SyncJobTitleAfterAccessAction(targetJobTitle); // CorvaxGoob Edit
+            SyncJobTitleAfterExtendedAccess(targetJobTitle);
             var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != targetJobTitle;
             // CorvaxGoob End
 
             if (!jobTitleDirty)
             {
-                JobTitleLineEdit.Text = targetJobTitle; // CorvaxGoob Edit
+                JobTitleLineEdit.Text = targetJobTitle; // CorvaxGoob Edit - Extended-access
             }
-
 
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
-            SetBulkButtonsDisabled(!interfaceEnabled); // CorvaxGoob - Extended-access
+            SetExtendedAccessButtonsDisabled(!interfaceEnabled); // CorvaxGoob - Extended-access
 
             _accessButtons.UpdateState(state.TargetIdAccessList?.ToList() ??
                                        new List<ProtoId<AccessLevelPrototype>>(),
@@ -235,7 +245,7 @@ namespace Content.Client.Access.UI
             _lastJobProto = state.TargetIdJobPrototype;
         }
 
-        private void SubmitData(IdCardConsoleAccessMarkerAction accessMarkerAction = IdCardConsoleAccessMarkerAction.None) // CorvaxGoob - Extended-access
+        private void SubmitData()
         {
             // Don't send this if it isn't dirty.
             var jobProtoDirty = _lastJobProto != null &&
@@ -246,8 +256,7 @@ namespace Content.Client.Access.UI
                 JobTitleLineEdit.Text,
                 // Iterate over the buttons dictionary, filter by `Pressed`, only get key from the key/value pair
                 _accessButtons.ButtonsList.Where(x => x.Value.Pressed).Select(x => x.Key).ToList(),
-                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty,
-                accessMarkerAction); // CorvaxGoob - Extended-access
+                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
         }
     }
 }
