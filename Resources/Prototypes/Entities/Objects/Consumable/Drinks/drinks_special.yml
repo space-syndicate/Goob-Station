@@ -225,7 +225,7 @@
   name: shakeempty
   components:
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/shake-empty.rsi,
+    sprite: Objects/Consumable/Drinks/shake-empty.rsi
   - type: TrashOnSolutionEmpty # CorvaxGoob
     solution: drink
 
