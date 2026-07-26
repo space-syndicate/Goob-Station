@@ -235,7 +235,7 @@ namespace Content.Client.Access.UI
             _lastJobProto = state.TargetIdJobPrototype;
         }
 
-        private void SubmitData()
+        private void SubmitData(IdCardConsoleAccessMarkerAction accessMarkerAction = IdCardConsoleAccessMarkerAction.None) // CorvaxGoob - Extended-access
         {
             // Don't send this if it isn't dirty.
             var jobProtoDirty = _lastJobProto != null &&
@@ -246,7 +246,8 @@ namespace Content.Client.Access.UI
                 JobTitleLineEdit.Text,
                 // Iterate over the buttons dictionary, filter by `Pressed`, only get key from the key/value pair
                 _accessButtons.ButtonsList.Where(x => x.Value.Pressed).Select(x => x.Key).ToList(),
-                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
+                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty,
+                accessMarkerAction); // CorvaxGoob - Extended-access
         }
     }
 }
