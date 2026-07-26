@@ -6,6 +6,7 @@ using Content.Server.Popups;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
+using Content.Shared.Database;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
@@ -139,7 +140,10 @@ public sealed partial class IdCardConsoleSystem
 
         var changedAccess = !oldTags.SetEquals(newTags);
         if (changedAccess)
+        {
             _access.TrySetTags(targetId, newTags);
+            LogExtendedAccessChange(player, targetId, oldTags, newTags);
+        }
 
         if (newJob != null)
             UpdateExtendedAccessStationRecord(targetId, targetIdComponent.FullName ?? string.Empty, newJobTitle, newJob);
@@ -166,6 +170,20 @@ public sealed partial class IdCardConsoleSystem
         }
 
         return tags;
+    }
+
+    private void LogExtendedAccessChange(
+        EntityUid player,
+        EntityUid targetId,
+        HashSet<ProtoId<AccessLevelPrototype>> oldTags,
+        HashSet<ProtoId<AccessLevelPrototype>> newTags)
+    {
+        var addedTags = newTags.Except(oldTags).Select(tag => "+" + tag).ToList();
+        var removedTags = oldTags.Except(newTags).Select(tag => "-" + tag).ToList();
+
+        // Keep the audit entry format aligned with normal ID console access writes.
+        _adminLogger.Add(LogType.Action,
+            $"{player} has modified {targetId} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newTags)}]");
     }
 
     private bool ShouldSkipExtendedAccessMarker(IdCardComponent targetIdComponent, HashSet<ProtoId<AccessLevelPrototype>> oldTags)

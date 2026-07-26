@@ -114,7 +114,6 @@ namespace Content.Client.Access.UI
 
             JobPresetOptionButton.OnItemSelected += SelectJobPreset;
             InitializeExtendedAccessButtons(); // CorvaxGoob - Extended-access
-
             _accessButtons.Populate(accessLevels, prototypeManager);
             AccessLevelControlContainer.AddChild(_accessButtons);
 
@@ -205,7 +204,7 @@ namespace Content.Client.Access.UI
             JobTitleLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             JobTitleLineEdit.Editable = interfaceEnabled;
 
-            // CorvaxGoob Start - Extended-access
+            // CorvaxGoob Edit Start - Extended-access
             SyncJobTitleAfterExtendedAccess(state.TargetIdJobTitle ?? string.Empty);
             var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle;
             // CorvaxGoob End
