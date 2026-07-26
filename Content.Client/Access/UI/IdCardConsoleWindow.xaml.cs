@@ -191,17 +191,13 @@ namespace Content.Client.Access.UI
             var interfaceEnabled =
                 state.IsPrivilegedIdPresent && state.IsPrivilegedIdAuthorized && state.IsTargetIdPresent;
 
-            // CorvaxGoob Edit Start - Extended-access
-            var targetFullName = state.TargetIdFullName ?? string.Empty;
-            var targetJobTitle = state.TargetIdJobTitle ?? string.Empty;
-            var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != targetFullName;
-            // CorvaxGoob End
+            var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
 
             FullNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             FullNameLineEdit.Editable = interfaceEnabled;
             if (!fullNameDirty)
             {
-                FullNameLineEdit.Text = targetFullName; // CorvaxGoob Edit - Extended-access
+                FullNameLineEdit.Text = state.TargetIdFullName ?? string.Empty;
             }
 
             FullNameSaveButton.Disabled = !interfaceEnabled || !fullNameDirty;
@@ -210,13 +206,13 @@ namespace Content.Client.Access.UI
             JobTitleLineEdit.Editable = interfaceEnabled;
 
             // CorvaxGoob Start - Extended-access
-            SyncJobTitleAfterExtendedAccess(targetJobTitle);
-            var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != targetJobTitle;
+            SyncJobTitleAfterExtendedAccess(state.TargetIdJobTitle ?? string.Empty);
+            var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle;
             // CorvaxGoob End
 
             if (!jobTitleDirty)
             {
-                JobTitleLineEdit.Text = targetJobTitle; // CorvaxGoob Edit - Extended-access
+                JobTitleLineEdit.Text = state.TargetIdJobTitle ?? string.Empty;
             }
 
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;

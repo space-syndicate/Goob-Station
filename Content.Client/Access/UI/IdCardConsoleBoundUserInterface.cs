@@ -13,7 +13,7 @@ using static Content.Shared.Access.Components.IdCardConsoleComponent;
 
 namespace Content.Client.Access.UI
 {
-    public sealed class IdCardConsoleBoundUserInterface : BoundUserInterface
+    public sealed partial class IdCardConsoleBoundUserInterface : BoundUserInterface // CorvaxGoob Edit - made partial
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IConfigurationManager _cfgManager = default!;
@@ -91,12 +91,5 @@ namespace Content.Client.Access.UI
                 newAccessList,
                 newJobPrototype));
         }
-
-        // CorvaxGoob Start - Extended-access
-        public void SubmitExtendedAccessAction(IdCardConsoleExtendedAccessAction action)
-        {
-            SendMessage(new IdCardConsoleExtendedAccessMessage(action));
-        }
-        // CorvaxGoob End
     }
 }

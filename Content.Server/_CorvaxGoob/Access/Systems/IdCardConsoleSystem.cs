@@ -142,7 +142,7 @@ public sealed partial class IdCardConsoleSystem
             _access.TrySetTags(targetId, newTags);
 
         if (newJob != null)
-            UpdateStationRecord(targetId, targetIdComponent.FullName ?? string.Empty, newJobTitle, newJob);
+            UpdateExtendedAccessStationRecord(targetId, targetIdComponent.FullName ?? string.Empty, newJobTitle, newJob);
         else if (changedIdentity)
             UpdateStationRecordJobTitle(targetId, targetIdComponent.LocalizedJobTitle ?? string.Empty);
     }
@@ -320,6 +320,26 @@ public sealed partial class IdCardConsoleSystem
     private void ShowResetFailed(EntityUid uid, EntityUid player)
     {
         _popup.PopupEntity(Loc.GetString("id-card-console-reset-job-failed"), uid, player);
+    }
+
+    private void UpdateExtendedAccessStationRecord(
+        EntityUid targetId,
+        string newFullName,
+        string newJobTitle,
+        JobPrototype newJobProto)
+    {
+        if (!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
+            || keyStorage.Key is not { } key
+            || !_record.TryGetRecord<GeneralStationRecord>(key, out var record))
+        {
+            return;
+        }
+
+        record.Name = newFullName;
+        record.JobTitle = newJobTitle;
+        record.JobPrototype = newJobProto.ID;
+        record.JobIcon = newJobProto.Icon;
+        _record.Synchronize(key);
     }
 
     private void UpdateStationRecordJobTitle(EntityUid targetId, string newJobTitle)

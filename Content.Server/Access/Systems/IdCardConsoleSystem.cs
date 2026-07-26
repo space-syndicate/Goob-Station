@@ -155,8 +155,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
             _idCard.TryChangeJobDepartment(targetId, job);
         }
 
-        UpdateStationRecord(targetId, newFullName, newJobTitle, job);
-
+        UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
             || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
@@ -194,7 +193,6 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
         This current implementation is pretty shit as it logs 27 entries (27 lines) if someone decides to give themselves AA*/
         _adminLogger.Add(LogType.Action,
             $"{player} has modified {targetId} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
-
     }
 
     /// <summary>
@@ -213,8 +211,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
         return _accessReader.IsAllowed(id.Value, uid, reader);
     }
 
-    // CorvaxGoob Edit - Extended-access
-    private void UpdateStationRecord(EntityUid targetId, string newFullName, string newJobTitle, JobPrototype? newJobProto)
+    private void UpdateStationRecord(EntityUid uid, EntityUid targetId, string newFullName, ProtoId<AccessLevelPrototype> newJobTitle, JobPrototype? newJobProto)
     {
         if (!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
