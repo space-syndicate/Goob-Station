@@ -55,7 +55,7 @@ namespace Content.Client.ContextMenu.UI
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
 
         private bool _updating;
-        private ContextMenuPopup? _pinnedSubMenu; // CorvaxGoob
+        private ContextMenuPopup? _pinnedSubMenu; // CorvaxGoob - interaction-verb-close-menu-false
 
         /// <summary>
         ///     This maps the currently displayed entities to the actual GUI elements.
@@ -70,7 +70,7 @@ namespace Content.Client.ContextMenu.UI
             _updating = true;
             _cfg.OnValueChanged(CCVars.EntityMenuGroupingType, OnGroupingChanged, true);
             _context.OnContextKeyEvent += OnKeyBindDown;
-            _context.OnContextClosed += ClearPinnedSubMenu; // CorvaxGoob
+            _context.OnContextClosed += ClearPinnedSubMenu; // CorvaxGoob - interaction-verb-close-menu-false
 
             CommandBinds.Builder
                 .Bind(EngineKeyFunctions.UseSecondary,  new PointerInputCmdHandler(HandleOpenEntityMenu, outsidePrediction: true))
@@ -83,7 +83,7 @@ namespace Content.Client.ContextMenu.UI
             Elements.Clear();
             _cfg.UnsubValueChanged(CCVars.EntityMenuGroupingType, OnGroupingChanged);
             _context.OnContextKeyEvent -= OnKeyBindDown;
-            // CorvaxGoob Start
+            // CorvaxGoob Start - interaction-verb-close-menu-false
             _context.OnContextClosed -= ClearPinnedSubMenu;
             ClearPinnedSubMenu();
             // CorvaxGoob End
@@ -95,7 +95,7 @@ namespace Content.Client.ContextMenu.UI
         /// </summary>
         public void OpenRootMenu(List<EntityUid> entities)
         {
-            ClearPinnedSubMenu(); // CorvaxGoob Start
+            ClearPinnedSubMenu(); // CorvaxGoob Start - interaction-verb-close-menu-false
 
             // close any old menus first.
             if (_context.RootMenu.Visible)
@@ -119,7 +119,7 @@ namespace Content.Client.ContextMenu.UI
             if (element is not EntityMenuElement entityElement)
                 return;
 
-            // CorvaxGoob Start
+            // CorvaxGoob Start - interaction-verb-close-menu-false
             if (args.Function == ContentKeyFunctions.MouseMiddle &&
                 entityElement is { Entity: null, SubMenu: not null })
             {
@@ -176,7 +176,7 @@ namespace Content.Client.ContextMenu.UI
                     inputSys.HandleInputCommand(session, func, message);
                 }
 
-                // CorvaxGoob Edit Start
+                // CorvaxGoob Edit Start - interaction-verb-close-menu-false
                 if (CanKeepPinnedSubMenuOpen(element, args.Function))
                     RemoveEntity(entity.Value);
                 else
@@ -186,7 +186,7 @@ namespace Content.Client.ContextMenu.UI
             }
         }
 
-        // CorvaxGoob Start
+        // CorvaxGoob Start - interaction-verb-close-menu-false
         private bool CanKeepPinnedSubMenuOpen(ContextMenuElement element, BoundKeyFunction function)
         {
             if (function != EngineKeyFunctions.Use &&
