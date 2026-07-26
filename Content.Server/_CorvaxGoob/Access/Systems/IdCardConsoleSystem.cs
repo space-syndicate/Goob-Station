@@ -6,8 +6,6 @@ using Content.Server.Popups;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using Content.Shared.Administration.Logs;
-using Content.Shared.Database;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Audio.Systems;
@@ -32,8 +30,11 @@ public sealed partial class IdCardConsoleSystem
         "NanotrasenRepresentative",
         "BlueshieldOfficer",
         "CentralCommand",
+        "GenpopEnter",
+        "GenpopLeave",
     ];
 
+    // These are title-text exceptions, not job prototype checks: custom titles stay marked.
     private static readonly string[] CaptainJobTitles =
     [
         "капитан",
@@ -126,16 +127,9 @@ public sealed partial class IdCardConsoleSystem
 
             case IdCardConsoleBulkAccessAction.Extended:
                 newTags = oldTags.Union(GetExtendedAccessTags(modifiableTags)).ToHashSet();
-                changedIdentity = ShouldSkipAccessMarker(action, targetIdComponent, oldTags)
+                changedIdentity = ShouldSkipExtendedAccessMarker(targetIdComponent, oldTags)
                     ? false
-                    : TryAddAccessMarkerToJobTitle(targetId, targetIdComponent, player);
-                break;
-
-            case IdCardConsoleBulkAccessAction.Full:
-                newTags = oldTags.Union(modifiableTags).ToHashSet();
-                changedIdentity = ShouldSkipAccessMarker(action, targetIdComponent, oldTags)
-                    ? false
-                    : TryAddAccessMarkerToJobTitle(targetId, targetIdComponent, player);
+                    : TrySetAccessMarker(targetId, targetIdComponent, true, player);
                 break;
 
             default:
@@ -154,21 +148,13 @@ public sealed partial class IdCardConsoleSystem
         else if (changedIdentity)
             UpdateStationRecordJobTitle(targetId, targetIdComponent.LocalizedJobTitle ?? string.Empty);
 
-        var addedTags = newTags.Except(oldTags).Select(tag => "+" + tag).ToList();
-        var removedTags = oldTags.Except(newTags).Select(tag => "-" + tag).ToList();
-        /* //admin logs
-        if (changedAccess)
-        {
-            _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                $"{ToPrettyString(player):player} has bulk-modified {ToPrettyString(targetId):entity} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newTags)}]");
-        }*/
-
         _audio.PlayPvs(component.BulkAccessSuccessSound, uid);
     }
 
-    private static HashSet<ProtoId<AccessLevelPrototype>> GetExtendedAccessTags(HashSet<ProtoId<AccessLevelPrototype>> privilegedTags)
+    private static HashSet<ProtoId<AccessLevelPrototype>> GetExtendedAccessTags(HashSet<ProtoId<AccessLevelPrototype>> modifiableTags)
     {
-        return privilegedTags.Except(ExtendedAccessExclusions).ToHashSet();
+        // Extended access starts from tags the privileged ID can actually modify, then removes head/armory exceptions.
+        return modifiableTags.Except(ExtendedAccessExclusions).ToHashSet();
     }
 
     private HashSet<ProtoId<AccessLevelPrototype>> GetJobAccessTags(JobPrototype job)
@@ -186,22 +172,57 @@ public sealed partial class IdCardConsoleSystem
         return tags;
     }
 
-    private bool ShouldSkipAccessMarker(
-        IdCardConsoleBulkAccessAction action,
-        IdCardComponent targetIdComponent,
-        HashSet<ProtoId<AccessLevelPrototype>> oldTags)
+    private bool ShouldSkipExtendedAccessMarker(IdCardComponent targetIdComponent, HashSet<ProtoId<AccessLevelPrototype>> oldTags)
     {
         if (MatchesSpecialJobTitle(targetIdComponent.LocalizedJobTitle, CaptainJobTitles))
             return true;
 
-        if (action != IdCardConsoleBulkAccessAction.Extended
-            || !MatchesSpecialJobTitle(targetIdComponent.LocalizedJobTitle, HeadOfPersonnelJobTitles)
+        if (!MatchesSpecialJobTitle(targetIdComponent.LocalizedJobTitle, HeadOfPersonnelJobTitles)
             || !_prototype.TryIndex(HeadOfPersonnelJob, out var headOfPersonnelJob))
         {
             return false;
         }
 
         return GetJobAccessTags(headOfPersonnelJob).IsSubsetOf(oldTags);
+    }
+
+    private bool ShouldSkipGrantAllMarker(IdCardComponent targetIdComponent)
+    {
+        // The standard grant-all button mirrors the old full-access marker rule: Captain cards stay unmarked.
+        return MatchesSpecialJobTitle(targetIdComponent.LocalizedJobTitle, CaptainJobTitles);
+    }
+
+    private bool ApplyAccessMarkerAction(
+        EntityUid targetId,
+        IdCardComponent targetIdComponent,
+        IdCardConsoleAccessMarkerAction accessMarkerAction,
+        EntityUid player)
+    {
+        return accessMarkerAction switch
+        {
+            IdCardConsoleAccessMarkerAction.Add when !ShouldSkipGrantAllMarker(targetIdComponent) =>
+                TrySetAccessMarker(targetId, targetIdComponent, true, player),
+            IdCardConsoleAccessMarkerAction.Remove =>
+                TrySetAccessMarker(targetId, targetIdComponent, false, player),
+            _ => false,
+        };
+    }
+
+    private void TryPlayAccessMarkerActionSuccessSound(
+        EntityUid uid,
+        IdCardConsoleComponent component,
+        IdCardConsoleAccessMarkerAction accessMarkerAction,
+        bool changedAccessMarker,
+        bool changedAccess)
+    {
+        if (accessMarkerAction == IdCardConsoleAccessMarkerAction.None
+            || (!changedAccessMarker && !changedAccess))
+        {
+            return;
+        }
+
+        // The standard grant-all/revoke-all buttons use the normal write path, but share the same quiet feedback as bulk buttons.
+        _audio.PlayPvs(component.BulkAccessSuccessSound, uid);
     }
 
     private static bool MatchesSpecialJobTitle(string? jobTitle, string[] expectedTitles)
@@ -212,18 +233,25 @@ public sealed partial class IdCardConsoleSystem
             string.Equals(normalizedTitle, title, StringComparison.OrdinalIgnoreCase));
     }
 
-    private bool TryAddAccessMarkerToJobTitle(EntityUid targetId, IdCardComponent targetIdComponent, EntityUid player)
+    private bool TrySetAccessMarker(EntityUid targetId, IdCardComponent targetIdComponent, bool marked, EntityUid player)
     {
         var jobTitle = targetIdComponent.LocalizedJobTitle ?? string.Empty;
-        // The marker is only a visual flag, so repeated bulk grants should not stack extra plus signs.
-        if (jobTitle.TrimEnd().EndsWith('+'))
+        var trimmedTitle = jobTitle.TrimEnd();
+        var alreadyMarked = trimmedTitle.EndsWith('+');
+
+        // The marker is visual only: repeat presses must not stack or keep removing title characters.
+        if (alreadyMarked == marked)
             return false;
 
-        var markedJobTitle = string.IsNullOrWhiteSpace(jobTitle)
-            ? "+"
-            : $"{jobTitle}+";
+        var oldJobTitle = targetIdComponent.LocalizedJobTitle;
+        var newJobTitle = marked
+            ? string.IsNullOrWhiteSpace(trimmedTitle)
+                ? "+"
+                : $"{trimmedTitle}+"
+            : trimmedTitle[..^1].TrimEnd();
 
-        return _idCard.TryChangeJobTitle(targetId, markedJobTitle, targetIdComponent, player: player);
+        _idCard.TryChangeJobTitle(targetId, newJobTitle, targetIdComponent, player: player);
+        return !string.Equals(oldJobTitle, targetIdComponent.LocalizedJobTitle, StringComparison.CurrentCulture);
     }
 
     private bool ApplyJobIdentity(

@@ -100,17 +100,7 @@ namespace Content.Client.Access.UI
                 JobPresetOptionButton.AddItem(Loc.GetString(job.Name), _jobPrototypeIds.Count - 1);
             }
 
-            SelectAllButton.OnPressed += _ =>
-            {
-                SetAllAccess(true);
-                SubmitData();
-            };
-
-            DeselectAllButton.OnPressed += _ =>
-            {
-                SetAllAccess(false);
-                SubmitData();
-            };
+            InitializeStandardAllAccessButtons(); // CorvaxGoob - Extended-access
 
             JobPresetOptionButton.OnItemSelected += SelectJobPreset;
             InitializeBulkAccessButtons(); // CorvaxGoob - Extended-access
@@ -209,7 +199,7 @@ namespace Content.Client.Access.UI
             JobTitleLineEdit.Editable = interfaceEnabled;
 
             // CorvaxGoob Start - Extended-access
-            SyncJobTitleAfterBulkAccess(targetJobTitle);
+            SyncJobTitleAfterAccessAction(targetJobTitle); // CorvaxGoob Edit
             var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != targetJobTitle;
             // CorvaxGoob End
 

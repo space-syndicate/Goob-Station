@@ -77,7 +77,12 @@ namespace Content.Client.Access.UI
             _window?.UpdateState(castState);
         }
 
-        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<JobPrototype> newJobPrototype)
+        public void SubmitData(
+            string newFullName,
+            string newJobTitle,
+            List<ProtoId<AccessLevelPrototype>> newAccessList,
+            ProtoId<JobPrototype> newJobPrototype,
+            IdCardConsoleAccessMarkerAction accessMarkerAction = IdCardConsoleAccessMarkerAction.None) // CorvaxGoob - Extended-access
         {
             if (newFullName.Length > _maxNameLength)
                 newFullName = newFullName[.._maxNameLength];
@@ -85,11 +90,12 @@ namespace Content.Client.Access.UI
             if (newJobTitle.Length > _maxIdJobLength)
                 newJobTitle = newJobTitle[.._maxIdJobLength];
 
-            SendMessage(new WriteToTargetIdMessage(
+            SendMessage(new WriteToTargetIdMessage( // CorvaxGoob - Extended-access
                 newFullName,
                 newJobTitle,
                 newAccessList,
-                newJobPrototype));
+                newJobPrototype,
+                accessMarkerAction));
         }
 
         // CorvaxGoob Start - Extended-access

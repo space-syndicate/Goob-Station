@@ -7,6 +7,11 @@ namespace Content.Shared.Access.Components;
 
 public sealed partial class IdCardConsoleComponent
 {
+    public sealed partial class WriteToTargetIdMessage
+    {
+        public readonly IdCardConsoleAccessMarkerAction AccessMarkerAction;
+    }
+
     [DataField]
     public SoundSpecifier? BulkAccessSuccessSound = new SoundPathSpecifier("/Audio/Machines/quickbeep.ogg", AudioParams.Default.WithVolume(-6));
 
@@ -34,13 +39,23 @@ public sealed partial class IdCardConsoleComponent
     /// Bulk access actions for the ID card console.
     /// </summary>
     /// <remarks>
-    /// Used by the client and server to identify which bulk access operation was selected: StandardAccess, Extended, or Full.
+    /// Used by the client and server to identify which bulk access operation was selected: StandardAccess or Extended.
     /// </remarks>
     [Serializable, NetSerializable]
     public enum IdCardConsoleBulkAccessAction : byte
     {
         StandardAccess,
         Extended,
-        Full,
+    }
+
+    /// <summary>
+    /// Job-title marker actions requested by the console's standard grant-all/revoke-all buttons.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public enum IdCardConsoleAccessMarkerAction : byte
+    {
+        None,
+        Add,
+        Remove,
     }
 }

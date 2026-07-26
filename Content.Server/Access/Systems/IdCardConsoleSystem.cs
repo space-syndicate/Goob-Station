@@ -64,7 +64,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
         if (args.Actor is not { Valid: true } player)
             return;
 
-        TryWriteToTargetId(uid, args.FullName, args.JobTitle, args.AccessList, args.JobPrototype, player, component);
+        TryWriteToTargetId(uid, args.FullName, args.JobTitle, args.AccessList, args.JobPrototype, args.AccessMarkerAction, player, component); // CorvaxGoob - Extended-access
 
         UpdateUserInterface(uid, component, args);
     }
@@ -136,17 +136,22 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
         ProtoId<JobPrototype> newJobProto,
+        IdCardConsoleAccessMarkerAction accessMarkerAction, // CorvaxGoob - Extended-access
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
+        if (component.TargetIdSlot.Item is not { Valid: true } targetId
+            || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId)
+            || !TryComp<IdCardComponent>(targetId, out var targetIdComponent)) // CorvaxGoob - Extended-access
+        {
             return;
+        }
 
-        _idCard.TryChangeFullName(targetId, newFullName, player: player);
-        _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
+        _idCard.TryChangeFullName(targetId, newFullName, targetIdComponent, player: player); // CorvaxGoob Edit - Extended-access
+        _idCard.TryChangeJobTitle(targetId, newJobTitle, targetIdComponent, player: player); // CorvaxGoob Edit - Extended-access
 
         if (_prototype.Resolve(newJobProto, out var job)
             && _prototype.Resolve(job.Icon, out var jobIcon))
@@ -155,7 +160,13 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
             _idCard.TryChangeJobDepartment(targetId, job);
         }
 
-        UpdateStationRecord(targetId, newFullName, newJobTitle, job); // CorvaxGoob Edit - Extended-access
+        // CorvaxGoob Start - Extended-access
+        var changedAccessMarker = ApplyAccessMarkerAction(targetId, targetIdComponent, accessMarkerAction, player);
+
+        var stationRecordJobTitle = targetIdComponent.LocalizedJobTitle ?? string.Empty;
+        UpdateStationRecord(targetId, newFullName, stationRecordJobTitle, job);
+        // CorvaxGoob End
+
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
             || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
@@ -173,7 +184,10 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
         var oldTags = _access.TryGetTags(targetId)?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
 
         if (oldTags.SequenceEqual(newAccessList))
+        {
+            TryPlayAccessMarkerActionSuccessSound(uid, component, accessMarkerAction, changedAccessMarker, false); // CorvaxGoob - Extended-access
             return;
+        }
 
         // I hate that C# doesn't have an option for this and don't desire to write this out the hard way.
         // var difference = newAccessList.Difference(oldTags);
@@ -193,6 +207,8 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem // C
         This current implementation is pretty shit as it logs 27 entries (27 lines) if someone decides to give themselves AA*/
         _adminLogger.Add(LogType.Action,
             $"{player} has modified {targetId} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
+
+        TryPlayAccessMarkerActionSuccessSound(uid, component, accessMarkerAction, changedAccessMarker, true); // CorvaxGoob - Extended-access
     }
 
     /// <summary>
