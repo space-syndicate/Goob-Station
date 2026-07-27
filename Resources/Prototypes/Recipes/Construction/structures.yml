@@ -1324,8 +1324,9 @@
 
 - type: construction
   name: recipes-secret-door-name
+  description: recipes-secret-door-desc # CorvaxGoob - enhance-secret-door
   id: SolidSecretDoor
-  graph: SecretDoor
+  graph: Girder # CorvaxGoob Edit - enhance-secret-door
   startNode: start
   targetNode: solidSecretDoor
   category: construction-category-structures
@@ -1336,9 +1337,10 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: recipes-secret-door-reinforced-name
+  name: construction-recipe-secret-door-reinforced
+  description: construction-recipe-secret-door-reinforced.desc # CorvaxGoob - enhance-secret-door
   id: ReinforcedSecretDoor
-  graph: ReinforcedSecretDoor
+  graph: Girder # CorvaxGoob Edit - enhance-secret-door
   startNode: start
   targetNode: ReinforcedSecretDoor
   category: construction-category-structures
