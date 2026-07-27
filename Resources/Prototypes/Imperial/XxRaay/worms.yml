@@ -157,7 +157,7 @@
     enterDelay: 10
     exitBleedDamage:
       types:
-        Bloodloss: 200
+        Piercing: 200
     enterCooldown: 180
   - type: ImperialVentCrawler
     enterDelay: 2
@@ -255,7 +255,7 @@
     enterDelay: 10
     exitBleedDamage:
       types:
-        Bloodloss: 200
+        Piercing: 200
     enterCooldown: 180
   - type: ImperialVentCrawler
     enterDelay: 2
