@@ -29,7 +29,7 @@
     layers:
     - shader: unshaded
       state: distorted_floor1
-    sprite: imperial/PHOENIX/DarkForces/distorted_floor.rsi
+    sprite: Imperial/PHOENIX/DarkForces/distorted_floor.rsi
   - type: SyncSprite
   - type: Tag
     tags:
