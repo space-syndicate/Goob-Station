@@ -323,9 +323,9 @@ public sealed class CarryingSystem : EntitySystem
 
     public void DropCarried(EntityUid carrier, EntityUid carried)
     {
+        Drop(carried);
         if (!carrier.IsValid())// CorvaxGoob fix 
             return;
-        Drop(carried);
         RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recursively fire that event
         RemComp<CarryingSlowdownComponent>(carrier);
         _virtualItem.DeleteInHandsMatching(carrier, carried);
