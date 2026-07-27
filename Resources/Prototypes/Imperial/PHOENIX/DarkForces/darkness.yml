@@ -18,7 +18,7 @@
     - color: "#000000dd"
       map: [base]
       state: darkness
-    sprite: imperial/PHOENIX/DarkForces/darkness.rsi
+    sprite: Imperial/PHOENIX/DarkForces/darkness.rsi
 
 - type: entity
   id: ImperialDarkForcesDarknessBase
@@ -45,7 +45,7 @@
     - color: "#000000dd"
       map: [base]
       state: darkness
-    sprite: imperial/PHOENIX/DarkForces/darkness.rsi
+    sprite: Imperial/PHOENIX/DarkForces/darkness.rsi
   - type: Tag
     tags:
     - HideContextMenu
