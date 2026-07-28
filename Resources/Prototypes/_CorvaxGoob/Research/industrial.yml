@@ -1,0 +1,56 @@
+﻿- type: technology
+  id: NuclearPowerGeneration
+  name: research-technology-nuclear-power
+  icon:
+    sprite: _CorvaxGoob/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    state: default_rod
+  discipline: Industrial
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - NuclearReactorMonitorComputerCircuitboard
+  - GasTurbineMonitorComputerCircuitboard
+  - UraniumReactorFuelRod
+  - PlasmaReactorFuelRod
+  - UraniumGlassReactorFuelRod
+  - SilverReactorControlRod
+  - PlasteelReactorControlRod
+  - PlasmaGlassReactorControlRod
+  - SilverReactorGasChannel
+  - PlasteelReactorGasChannel
+  - PlasmaGlassReactorGasChannel
+  - SilverReactorHeatExchanger
+  - PlasteelReactorHeatExchanger
+  - PlasmaGlassReactorHeatExchanger
+  - PlasteelGasTurbineBlade
+  - BrassGasTurbineBlade
+  - SilverGasTurbineStator
+  technologyPrerequisites:
+  - PowerGeneration
+  position: -1, -2
+
+- type: technology
+  id: NuclearPowerRecycling
+  name: research-technology-nuclear-recycling
+  icon:
+    sprite: _CorvaxGoob/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    state: nuclear_waste
+  discipline: Industrial
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - NuclearCentrifugeMachineCircuitboard
+  - PlutoniumReactorFuelRod
+  - BananiumReactorFuelRod
+  - GoldReactorControlRod
+  - DiamondReactorControlRod
+  - GoldReactorGasChannel
+  - DiamondReactorGasChannel
+  - GoldReactorHeatExchanger
+  - DiamondReactorHeatExchanger
+  - DiamondGasTurbineBlade
+  - GoldGasTurbineStator
+  - GoldGasTurbineBlade
+  technologyPrerequisites:
+  - NuclearPowerGeneration
+  position: -1, -3

@@ -398,7 +398,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     /// <returns>Returns the current blood level as a value from 0 to <see cref="BloodstreamComponent.MaxVolumeModifier"/></returns>
     public float GetBloodLevel(Entity<BloodstreamComponent?> entity)
     {
-        if (!Resolve(entity, ref entity.Comp)
+        if (!Resolve(entity, ref entity.Comp, logMissing: false) //CorvaxGoob logMissing
             || !SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution)
             || entity.Comp.BloodReferenceSolution.Volume == 0)
         {
