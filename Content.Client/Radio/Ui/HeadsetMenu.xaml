@@ -1,0 +1,27 @@
+<!--
+SPDX-License-Identifier: MIT
+-->
+
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     Title="{Loc 'headset-ui-title'}"
+                     MinSize="360 240"
+                     SetSize="360 320">
+    <BoxContainer Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True"
+                  Margin="6 4 6 6">
+        <BoxContainer Orientation="Horizontal" Margin="2 0 2 4">
+            <Label Text="{Loc 'headset-ui-channel-name'}" HorizontalExpand="True" />
+            <Label Text="{Loc 'headset-ui-channel-enabled'}" MinWidth="72" Align="Center" />
+            <Label Text="{Loc 'headset-ui-sound-enabled'}" MinWidth="72" Align="Center" />
+        </BoxContainer>
+        <PanelContainer StyleClasses="LowDivider" />
+        <ScrollContainer HScrollEnabled="False" VerticalExpand="True" Margin="0 4 0 0">
+            <BoxContainer Name="ChannelRows"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True" />
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>

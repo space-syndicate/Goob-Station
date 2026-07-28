@@ -4,6 +4,7 @@ using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio.EntitySystems;
 
@@ -27,7 +28,14 @@ public abstract class SharedHeadsetSystem : EntitySystem
         }
 
         if (TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
-            args.Args.Channel ??= keyHolder.DefaultChannel;
+        {
+            if (keyHolder.DefaultChannel is { } channel)
+            {
+                var channelId = new ProtoId<RadioChannelPrototype>(channel);
+                if (!component.DisabledChannels.Contains(channelId))
+                    args.Args.Channel ??= channel;
+            }
+        }
     }
 
     protected virtual void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)

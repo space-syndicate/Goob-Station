@@ -15,6 +15,13 @@
       key_slots:
       - EncryptionKeyCommon
   - type: Headset
+  - type: ActivatableUI
+    key: enum.HeadsetUiKey.Key
+    verbText: headset-ui-verb-text
+  - type: UserInterface
+    interfaces:
+      enum.HeadsetUiKey.Key:
+        type: HeadsetBoundUserInterface
   - type: EncryptionKeyHolder
     keySlots: 4
   - type: Sprite
