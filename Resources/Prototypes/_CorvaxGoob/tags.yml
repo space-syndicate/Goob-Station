@@ -101,3 +101,9 @@
 
 - type: Tag
   id: TelescopicShield
+
+- type: Tag
+  id: GasTurbineBlade
+
+- type: Tag
+  id: GasTurbineStator
