@@ -547,26 +547,24 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         {
             for (var y = 0; y < comp.ReactorGridHeight; y++)
             {
-                if (comp.ComponentGrid[x, y] != null)
-                {
-                    var RC = comp.ComponentGrid[x, y];
-                    if (RC == null)
-                        return;
-                    MeltdownBadness += ((RC.Properties.Radioactivity * 2) + (RC.Properties.NeutronRadioactivity * 5) + (RC.Properties.FissileIsotopes * 10)) * (RC.Melted ? 2 : 1);
-                    if (RC.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
-                    {
-                        _atmosphereSystem.Merge(comp.AirContents, RC.AirContents ?? new());
-                        (RC.AirContents ?? new()).Clear();
-                    }
+                var reactorPart = comp.ComponentGrid[x, y];
+                if (reactorPart == null)
+                    continue;
 
-                    comp.ComponentGrid[x, y] = null;
-                    comp.NeutronGrid[x, y] = 0;
-                    comp.FluxGrid[x, y] = [];
-                    if (comp.GridEntities.TryGetValue(new(x, y), out var partEntity))
-                    {
-                        QueueDel(partEntity);
-                        comp.GridEntities.Remove(new(x, y));
-                    }
+                MeltdownBadness += ((reactorPart.Properties.Radioactivity * 2) + (reactorPart.Properties.NeutronRadioactivity * 5) + (reactorPart.Properties.FissileIsotopes * 10)) * (reactorPart.Melted ? 2 : 1);
+                if (reactorPart.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
+                {
+                    _atmosphereSystem.Merge(comp.AirContents, reactorPart.AirContents ?? new());
+                    (reactorPart.AirContents ?? new()).Clear();
+                }
+
+                comp.ComponentGrid[x, y] = null;
+                comp.NeutronGrid[x, y] = 0;
+                comp.FluxGrid[x, y] = [];
+                if (comp.GridEntities.TryGetValue(new(x, y), out var partEntity))
+                {
+                    QueueDel(partEntity);
+                    comp.GridEntities.Remove(new(x, y));
                 }
             }
         }
@@ -820,7 +818,13 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
     {
         var comp = ent.Comp;
         var pos = args.Position;
-        var part = comp.ComponentGrid[(int)pos.X, (int)pos.Y];
+        var x = (int) pos.X;
+        var y = (int) pos.Y;
+
+        if (x < 0 || x >= comp.ReactorGridWidth || y < 0 || y >= comp.ReactorGridHeight)
+            return;
+
+        var part = comp.ComponentGrid[x, y];
 
         if (comp.PartSlot.Item == null == (part == null))
             return;
@@ -838,18 +842,18 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
             _entityManager.AddComponent(item, new ReactorPartComponent(part!));
 
             _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} removed {ToPrettyString(item):item} from position {pos.Y},{pos.X} in {ToPrettyString(ent):target}");
-            comp.ComponentGrid[(int)pos.X, (int)pos.Y] = null;
+            comp.ComponentGrid[x, y] = null;
         }
         else
         {
             if (TryComp(comp.PartSlot.Item, out ReactorPartComponent? reactorPart))
-                comp.ComponentGrid[(int)pos.X, (int)pos.Y] = new ReactorPartComponent(reactorPart);
+                comp.ComponentGrid[x, y] = new ReactorPartComponent(reactorPart);
             else
                 return;
 
             _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} added {ToPrettyString(comp.PartSlot.Item):item} to position {pos.Y},{pos.X} in {ToPrettyString(ent):target}");
             var proto = _entityManager.GetComponent<MetaDataComponent>(comp.PartSlot.Item.Value).EntityPrototype;
-            comp.ComponentGrid[(int)pos.X, (int)pos.Y]!.ProtoId = proto != null ? proto.ID : "BaseReactorPart";
+            comp.ComponentGrid[x, y]!.ProtoId = proto != null ? proto.ID : "BaseReactorPart";
             _entityManager.DeleteEntity(comp.PartSlot.Item);
         }
 
