@@ -1471,6 +1471,7 @@
   - type: Tag # CorvaxGoob
     tags:
     - Trash
+    - DroneUsable
   - type: Construction
     graph: TileFlesh
     node: fleshTile
