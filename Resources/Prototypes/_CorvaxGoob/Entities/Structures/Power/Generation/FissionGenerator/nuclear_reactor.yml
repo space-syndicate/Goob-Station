@@ -34,7 +34,7 @@
       map: [ "enum.ReactorVisualLayers.Fire" ]
     - state: reactor_smoke
       visible: false
-      map: [ "enum.ReactorVisualLayers.Fire" ]
+      map: [ "enum.ReactorVisualLayers.Smoke" ]
   - type: GenericVisualizer
     visuals:
       enum.ReactorVisuals.Sprite:
