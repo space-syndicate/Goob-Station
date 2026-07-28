@@ -5,3 +5,5 @@
   frequency: 1353
   color: "#755C48"
   longRange: false
+  receiveSound:
+    collection: RadioBarkBasic

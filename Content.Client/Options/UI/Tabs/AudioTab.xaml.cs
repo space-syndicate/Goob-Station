@@ -78,6 +78,12 @@ public sealed partial class AudioTab : Control
             SliderVolumeInterface,
             scale: ContentAudioSystem.InterfaceMultiplier);
 
+        // Goobstation - Radio channel sounds
+        Control.AddOptionPercentSlider(
+            GoobCVars.RadioVolume,
+            SliderVolumeRadio,
+            scale: ContentAudioSystem.RadioMultiplier);
+
         // Deleted by CorvaxGoob
         /*Control.AddOptionPercentSlider(
             GoobCVars.VoiceChatVolume,

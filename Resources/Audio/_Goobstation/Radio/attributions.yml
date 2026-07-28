@@ -1,0 +1,4 @@
+- files: ["basic.ogg", "basic_v1.ogg", "basic_v2.ogg", "cargo.ogg", "cargo_v1.ogg", "cargo_v2.ogg", "cc.ogg", "cc_v1.ogg", "cc_v2.ogg", "command.ogg", "command_v1.ogg", "command_v2.ogg", "common.ogg", "common_v1.ogg", "common_v2.ogg", "eng.ogg", "eng_v1.ogg", "eng_v2.ogg", "handheld.ogg", "handheld_v1.ogg", "handheld_v2.ogg", "med.ogg", "med_v1.ogg", "med_v2.ogg", "science.ogg", "science_v1.ogg", "science_v2.ogg", "security.ogg", "security_v1.ogg", "security_v2.ogg", "service.ogg", "service_v1.ogg", "service_v2.ogg", "syndie.ogg", "syndie_v1.ogg", "syndie_v2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Orion Station 14 PR #456 by UmbiMax. Original upstream source not specified."
+  source: "https://github.com/AtaraxiaSpaceFoundation/Orion-Station-14/pull/456"

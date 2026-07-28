@@ -6,6 +6,8 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
+  receiveSound:
+    collection: RadioBarkCommon
 
 - type: radioChannel
   id: CentCom
@@ -14,6 +16,8 @@
   frequency: 1337
   color: "#2681a5"
   longRange: true
+  receiveSound:
+    collection: RadioBarkCentCom
 
 - type: radioChannel
   id: Command
@@ -21,6 +25,8 @@
   keycode: 'к' # CorvaxGoob-Loc
   frequency: 1353
   color: "#fcdf03"
+  receiveSound:
+    collection: RadioBarkCommand
 
 - type: radioChannel
   id: Engineering
@@ -28,6 +34,8 @@
   keycode: 'и' # CorvaxGoob-Loc
   frequency: 1357
   color: "#ff733c"
+  receiveSound:
+    collection: RadioBarkEngineering
 
 - type: radioChannel
   id: Medical
@@ -35,6 +43,8 @@
   keycode: 'м' # CorvaxGoob-Loc
   frequency: 1355
   color: "#57b8f0"
+  receiveSound:
+    collection: RadioBarkMedical
 
 - type: radioChannel
   id: Science
@@ -42,6 +52,8 @@
   keycode: 'н' # CorvaxGoob-Loc
   frequency: 1351
   color: "#cd7ccd"
+  receiveSound:
+    collection: RadioBarkScience
 
 - type: radioChannel
   id: Security
@@ -49,6 +61,8 @@
   keycode: 'о' # CorvaxGoob-Loc
   frequency: 1359
   color: "#ff4242"
+  receiveSound:
+    collection: RadioBarkSecurity
 
 - type: radioChannel
   id: Service
@@ -56,6 +70,8 @@
   keycode: 'с' # CorvaxGoob-Loc
   frequency: 1349
   color: "#539c00"
+  receiveSound:
+    collection: RadioBarkService
 
 - type: radioChannel
   id: Supply
@@ -63,6 +79,8 @@
   keycode: 'п' # CorvaxGoob-Loc
   frequency: 1347
   color: "#b48b57"
+  receiveSound:
+    collection: RadioBarkCargo
 
 - type: radioChannel
   id: Syndicate
@@ -72,6 +90,8 @@
   color: "#8f4a4b"
   longRange: true
   anonymous: true # CorvaxGoob-Anonymous-Radio
+  receiveSound:
+    collection: RadioBarkSyndicate
 
 - type: radioChannel
   id: Handheld
@@ -80,6 +100,8 @@
   color: "#967101"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
+  receiveSound:
+    collection: RadioBarkHandheld
 
 # Goobstation - replaced with collective mind
 # commented out so anyone trying to use it gets errors and sees this
@@ -101,6 +123,8 @@
   color: "#f6ce64"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
+  receiveSound:
+    collection: RadioBarkBasic
 
 - type: radioChannel
   id: Xenoborg
@@ -110,6 +134,8 @@
   color: "#2288ff"
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
+  receiveSound:
+    collection: RadioBarkBasic
 
 - type: radioChannel
   id: Mothership
@@ -119,3 +145,5 @@
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
+  receiveSound:
+    collection: RadioBarkBasic
