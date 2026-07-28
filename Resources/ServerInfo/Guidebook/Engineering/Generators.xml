@@ -19,6 +19,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     [color=#999999][italic]Устройства, способные производить бесконечную энергию — и разрушительный потенциал[italic][/color]
   </Box>
 
+ <!-- CorvaxGoob - Nuclear Reactor start -->
+  <Box>
+	  <GuideEntityEmbed Entity="NuclearReactorNormal" Caption=""/>
+	  <GuideEntityEmbed Entity="Turbine" Caption=""/>
+  </Box>
+  <Box>
+    ## Ядерный реактор
+  </Box>
+  <Box>
+    [color=#999999][italic]Использует энергию ядерного деления для обеспечения электроэнергией станции[italic][/color]
+  </Box>
+<!-- CorvaxGoob - Nuclear Reactor end -->
+
   <Box>
     <GuideEntityEmbed Entity="AmeController" Caption=""/>
     <GuideEntityEmbed Entity="AmePartFlatpack" Caption=""/>
