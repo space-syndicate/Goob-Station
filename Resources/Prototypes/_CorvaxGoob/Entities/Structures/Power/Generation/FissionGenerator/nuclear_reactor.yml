@@ -31,7 +31,7 @@
       map: [ "enum.ReactorVisualLayers.Lights" ]
     - state: reactor_fire
       visible: false
-      map: [ "enum.ReactorVisualLayers.Smoke" ]
+      map: [ "enum.ReactorVisualLayers.Fire" ]
     - state: reactor_smoke
       visible: false
       map: [ "enum.ReactorVisualLayers.Fire" ]
