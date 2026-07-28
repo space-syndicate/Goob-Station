@@ -21,3 +21,19 @@
     Bloodloss: 0.5
     Cellular: 0.5
     Caustic: 0.5
+
+- type: damageModifierSet
+  id: StructuralReactorCasing
+  coefficients:
+    Blunt: 0.1
+    Slash: 0.1
+    Piercing: 0.1
+    Shock: 0.2
+    Heat: 0.1
+    Structural: 0.25
+  flatReductions:
+    Blunt: 10
+    Slash: 10
+    Piercing: 10
+    Heat: 10
+    Structural: 10
