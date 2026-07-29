@@ -7,7 +7,6 @@ namespace Content.Shared.Radio.Components;
 
 public sealed partial class HeadsetComponent
 {
-    // CorvaxGoob Start
     /// <summary>
     /// Radio channels disabled on this headset without removing encryption keys.
     /// </summary>
@@ -19,5 +18,4 @@ public sealed partial class HeadsetComponent
     /// </summary>
     [DataField]
     public HashSet<ProtoId<RadioChannelPrototype>> MutedReceiveSoundChannels = new();
-    // CorvaxGoob End
 }

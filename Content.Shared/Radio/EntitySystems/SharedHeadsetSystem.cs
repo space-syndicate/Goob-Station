@@ -4,11 +4,11 @@ using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio.Components;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes; // CorvaxGoob - radio-channel-sounds
 
 namespace Content.Shared.Radio.EntitySystems;
 
-public abstract partial class SharedHeadsetSystem : EntitySystem
+public abstract partial class SharedHeadsetSystem : EntitySystem // CorvaxGoob Edit - made partial
 {
     public override void Initialize()
     {
@@ -27,15 +27,17 @@ public abstract partial class SharedHeadsetSystem : EntitySystem
             return;
         }
 
+        // CorvaxGoob Edit Start - radio-channel-sounds
         if (TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
         {
             if (keyHolder.DefaultChannel is { } channel)
             {
                 var channelId = new ProtoId<RadioChannelPrototype>(channel);
-                if (IsDefaultChannelEnabled(component, channelId)) // CorvaxGoob Edit
+                if (IsDefaultChannelEnabled(component, channelId))
                     args.Args.Channel ??= channel;
             }
         }
+        // CorvaxGoob End
     }
 
     protected virtual void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)

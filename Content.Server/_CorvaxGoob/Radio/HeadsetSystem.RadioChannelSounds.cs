@@ -12,7 +12,6 @@ namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class HeadsetSystem
 {
-    // CorvaxGoob Start
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     private static readonly SoundSpecifier DefaultRadioReceiveSound =
@@ -159,5 +158,4 @@ public sealed partial class HeadsetSystem
 
         return changed;
     }
-    // CorvaxGoob End
 }
