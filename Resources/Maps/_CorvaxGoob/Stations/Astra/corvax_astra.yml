@@ -3,8 +3,8 @@ meta:
   category: Map
   engineVersion: 270.1.0
   forkId: syndicate-goob
-  forkVersion: f184fdc3d8579676de78f8577b1ca3a998e055d1
-  time: 07/22/2026 14:52:58
+  forkVersion: c5f192a3dfc6a47155764fbdb68d52d974b15b21
+  time: 07/29/2026 07:20:19
   entityCount: 52965
 maps:
 - 1
@@ -26271,7 +26271,7 @@ entities:
       pos: 45.5,-50.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -66607.56
+      secondsUntilStateChange: -66673.92
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29571,7 +29571,7 @@ entities:
       pos: 53.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6234.9404
+      secondsUntilStateChange: -6301.2974
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -137583,6 +137583,11 @@ entities:
     - type: Transform
       pos: 23.535387,-46.47519
       parent: 2
+    - type: Dice
+      currentValue: 1
+      sides: 1
+    missingComponents:
+    - DiceOfFate
 - proto: DiseaseDiagnoser
   entities:
   - uid: 16572
@@ -155908,7 +155913,7 @@ entities:
       tags:
       - DrinkBottle
     - type: PressurizedSolution
-      sprayFizzinessThresholdRoll: 0.4552091
+      sprayFizzinessThresholdRoll: 0.26778305
     - type: SolutionContainerManager
       solutions: null
       containers:
@@ -161773,7 +161778,7 @@ entities:
       pos: 61.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6722.9736
+      secondsUntilStateChange: -6789.3306
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -164584,7 +164589,7 @@ entities:
       pos: 14.5,0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -40598.957
+      secondsUntilStateChange: -40665.312
       state: Closing
   - uid: 19860
     components:
@@ -167202,7 +167207,7 @@ entities:
       pos: 13.5,109.5
       parent: 10012
     - type: Door
-      secondsUntilStateChange: -19410.451
+      secondsUntilStateChange: -19476.809
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -243916,7 +243921,7 @@ entities:
       pos: 20.5,47.5
       parent: 10012
     - type: Door
-      secondsUntilStateChange: -43436.05
+      secondsUntilStateChange: -43502.406
       state: Opening
 - proto: HospitalCurtainsOpen
   entities:
@@ -279960,7 +279965,7 @@ entities:
       pos: -54.5,-91.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -7137.672
+      secondsUntilStateChange: -7204.029
       state: Opening
   - uid: 29224
     components:
