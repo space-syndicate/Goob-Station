@@ -15,7 +15,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <Control HorizontalExpand="True" />
             <Button Name="ToggleAllSoundsButton" MinWidth="180" />
         </BoxContainer>
-        <BoxContainer Orientation="Horizontal" Margin="2 0 2 4">
+        <BoxContainer Orientation="Horizontal" Margin="2 0 16 4">
             <Label Text="{Loc 'headset-ui-channel-name'}" HorizontalExpand="True" />
             <CenterContainer MinWidth="72">
                 <Label Text="{Loc 'headset-ui-channel-enabled'}" Align="Center" />
