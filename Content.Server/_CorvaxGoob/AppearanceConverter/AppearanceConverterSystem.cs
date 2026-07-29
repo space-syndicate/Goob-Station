@@ -275,6 +275,9 @@ public sealed class AppearanceConverterSystem : EntitySystem
         if (transferProfile is null)
             return;
 
+        if (transferProfile.Value.DNA is null)
+            return;
+
         var (detail, visual) = SplitDetailAndVisualProfile(transferProfile.Value);
 
         converterEnt.Comp.ProfilesDetailData[transferProfile.Value.DNA] = detail;
@@ -477,13 +480,12 @@ public sealed class AppearanceConverterSystem : EntitySystem
     /// </summary>
     public TransformProfile? GenerateTransformProfile(EntityUid entityUid, HumanoidAppearanceComponent humanoidAppearance)
     {
-        if (!TryComp<DnaComponent>(entityUid, out var dna) || dna.DNA is null)
-            return null;
+        TryComp<DnaComponent>(entityUid, out var dna);
 
         var profile = new TransformProfile();
         var species = _prototype.Index<SpeciesPrototype>(humanoidAppearance.Species);
 
-        profile.DNA = dna.DNA;
+        profile.DNA = dna?.DNA;
 
         profile.Scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 

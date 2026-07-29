@@ -188,7 +188,6 @@ public sealed partial class CriminalRecordsConsoleSystem
             return;
 
         string? articles = null;
-        string? duration = null;
 
         if (msg.Articles != null)
         {
@@ -197,18 +196,15 @@ public sealed partial class CriminalRecordsConsoleSystem
                 return;
         }
 
-
         var oldStatus = record.Status;
 
         var name = _records.RecordName(key.Value);
         GetOfficer(mob.Value, out var officer);
 
-        if (SecurityStatus.Detained == SecurityStatus.Detained)
-        {
-            var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
-            var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
-            _criminalRecords.TryAddHistory(key.Value, history, officer);
-        }
+        // CorvaxGoob-SecurityFeatures-Start
+        var history = Loc.GetString("criminal-records-console-detained-record", ("articles", articles ?? Loc.GetString("criminal-records-console-unspecified")), ("duration", msg.Duration?.ToString() ?? Loc.GetString("criminal-records-console-unspecified")));
+        _criminalRecords.TryAddHistory(key.Value, history, officer, articles, msg.Duration);
+        // CorvaxGoob-SecurityFeatures-End
 
         // will probably never fail given the checks above
         name = _records.RecordName(key.Value);

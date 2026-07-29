@@ -34,7 +34,7 @@ public sealed partial class WantedMenu : FancyWindow
 
     public Action<SecurityStatus>? OnStatusSelected;
     public Action<SecurityStatus, string>? OnDialogConfirmed;
-    public Action<string, string>? OnDetainedDialogConfirmed;
+    public Action<string, int, bool>? OnDialogDetainedConfirmed; // CorvaxGoob-SecurityFeatures
 
     private CriminalRecord? _selectedRecord;
     private DialogWindow? _reasonDialog;
@@ -170,6 +170,7 @@ public sealed partial class WantedMenu : FancyWindow
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
     }
 
+    // CorvaxGoob-SecurityFeatures
     private void GetDetainedInfo()
     {
         if (_reasonDialog != null)
@@ -182,33 +183,28 @@ public sealed partial class WantedMenu : FancyWindow
         var durationField = "duration";
 
         var title = Loc.GetString("criminal-records-status-detained");
-        var placeholders = _prototypeManager.Index<LocalizedDatasetPrototype>(ReasonPlaceholders);
-        var placeholderKey = _random.Pick(placeholders.Values);
-        var placeholderValue = Loc.GetString(placeholderKey);
-        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", placeholderValue)); // just funny it doesn't actually get used
-        var prompt = Loc.GetString("criminal-records-console-reason");
-        var entryArticles = new QuickDialogEntry(articleField, QuickDialogEntryType.LongText, prompt, placeholder);
-        var entryDuration = new QuickDialogEntry(durationField, QuickDialogEntryType.LongText, prompt, placeholder);
+
+        var entryArticles = new QuickDialogEntry(articleField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-articles"), Loc.GetString("criminal-records-console-articles-placeholder"));
+        var entryDuration = new QuickDialogEntry(durationField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-duration"), Loc.GetString("criminal-records-console-duration-placeholder"));
         var entries = new List<QuickDialogEntry>() { entryArticles, entryDuration };
-        _reasonDialog = new DialogWindow(title, entries);
+        _reasonDialog = new DialogWindow(title, entries, true, true);
 
         _reasonDialog.OnConfirmed += responses =>
         {
-            var article = responses[articleField];
+            var articles = responses[articleField];
             var duration = responses[durationField];
-            
-            if (article.Length < 1 || article.Length > 256)
+
+            if (articles.Length < 1 || articles.Length > 256)
                 return;
 
-            if (duration.Length < 1 || duration.Length > 256)
+            if (!int.TryParse(duration, out var durationInt))
                 return;
 
-            OnDetainedDialogConfirmed?.Invoke(article, duration);
+            OnDialogDetainedConfirmed?.Invoke(articles, durationInt, false);
         };
 
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
     }
-
     private string GetStatusIcon(SecurityStatus status)
     {
         return status switch

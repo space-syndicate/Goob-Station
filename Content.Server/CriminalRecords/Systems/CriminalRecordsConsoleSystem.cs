@@ -22,6 +22,7 @@ using Content.Shared.StationRecords;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -41,6 +42,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     [Dependency] private readonly SharedGameTicker _gameTicker = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // CorvaxGoob-SecurityFeatures
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
@@ -59,6 +61,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus);
             subs.Event<CriminalRecordAddHistory>(OnAddHistory);
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
+            subs.Event<CriminalRecordPrint>(OnPrint); // CorvaxGoob-SecurityFeatures
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
         });
 
@@ -251,7 +254,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         _records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry);
         if (entry != null)
             jobName = entry.JobTitle;
-        
+
         var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(null, mob.Value);
         RaiseLocalEvent(tryGetIdentityShortInfoEvent);
         if (tryGetIdentityShortInfoEvent.Title != null)
@@ -300,7 +303,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             .Replace(Loc.GetString("doc-var-articles"), articles)
             .Replace(Loc.GetString("doc-var-duration"), duration.ToString())
             .Replace(Loc.GetString("doc-var-duration-start"), time);
-        
+
         var printed = Spawn("Paper", Transform(ent).Coordinates);
 
         if (HasComp<PaperComponent>(printed))
@@ -339,8 +342,27 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             return;
 
         // a bit sus but not crucial to officers patrolling
-
         UpdateUserInterface(ent);
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void OnPrint(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordPrint msg)
+    {
+        if (!CheckSelected(ent, msg.Actor, out _, out var key))
+            return;
+
+        if (ent.Comp.NextPrintTime > _timing.CurTime)
+            return;
+
+        if (!_criminalRecords.TryGetHistory(key.Value, key.Value.Id, out var crimeHistory))
+            return;
+
+        if (!_records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry))
+            return;
+
+        PrintDocument(ent, msg.Actor, entry, crimeHistory.Value.Articles, crimeHistory.Value.Duration);
+        ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
+        Dirty(ent);
     }
 
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)

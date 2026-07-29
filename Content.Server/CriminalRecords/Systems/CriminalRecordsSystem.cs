@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.CartridgeLoader;
 using Content.Server.CartridgeLoader.Cartridges;
@@ -141,6 +142,23 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
 
         return true;
     }
+
+    // CorvaxGoob-SecurityFeatures
+    public bool TryGetHistory(StationRecordKey key, uint index, [NotNullWhen(true)] out CrimeHistory? crimeHistory)
+    {
+        crimeHistory = null;
+
+        if (!_records.TryGetRecord<CriminalRecord>(key, out var record))
+            return false;
+
+        if (index >= record.History.Count)
+            return false;
+
+        crimeHistory = record.History[(int)index];
+
+        return true;
+    }
+
 
     private void OnRecordChanged(Entity<WantedListCartridgeComponent> ent, ref CriminalRecordChangedEvent args) =>
         StateChanged(ent);

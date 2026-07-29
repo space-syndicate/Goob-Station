@@ -118,6 +118,18 @@ public sealed class CriminalRecordDeleteHistory : BoundUserInterfaceMessage
     }
 }
 
+// CorvaxGoob-SecurityFeatures
+[Serializable, NetSerializable]
+public sealed class CriminalRecordPrint : BoundUserInterfaceMessage
+{
+    public readonly uint Index;
+
+    public CriminalRecordPrint(uint index)
+    {
+        Index = index;
+    }
+}
+
 /// <summary>
 /// Used to set what status to filter by index.
 ///

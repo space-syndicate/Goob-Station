@@ -6,9 +6,9 @@ criminal-records-console-detained-reason = Арестован по причин�
 criminal-records-console-unspecified = <не указано>
 
 criminal-records-console-articles = Статьи
-criminal-records-console-articles-placeholders = Пример: 112
+criminal-records-console-articles-placeholder = Пример: 112
 
 criminal-records-console-duration = Срок (мин.)
-criminal-records-console-duration-placeholders = Пример: 10
+criminal-records-console-duration-placeholder = Пример: 10
 
-criminal-records-console-checkbox-print = Распечатать
+criminal-records-console-print = Распечатать

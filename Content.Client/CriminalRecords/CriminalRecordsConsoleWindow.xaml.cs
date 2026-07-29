@@ -4,14 +4,12 @@ using Content.Client.Humanoid;
 using Content.Client.Message;
 using Content.Client.Station;
 using Content.Client.UserInterface.Controls;
-using Content.Shared._CorvaxGoob.AppearanceConverter;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CriminalRecords;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Content.Shared.StatusIcon;
@@ -451,7 +449,10 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         var field = "reason";
 
         var title = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());
-        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder");
+
+        var placeholders = _proto.Index(ReasonPlaceholders);
+        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", Loc.GetString(_random.Pick(placeholders.Values)))); // CorvaxGoob-SecurityFeatures
+
         var prompt = Loc.GetString("criminal-records-console-reason");
 
         var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
@@ -471,6 +472,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
     }
 
+    // CorvaxGoob-SecurityFeatures
     private void GetDetainedInfo()
     {
         if (_reasonDialog != null)
@@ -483,12 +485,11 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         var durationField = "duration";
 
         var title = Loc.GetString("criminal-records-status-detained");
-        var placeholders = _proto.Index(ReasonPlaceholders);
 
         var entryArticles = new QuickDialogEntry(articleField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-articles"), Loc.GetString("criminal-records-console-articles-placeholder"));
         var entryDuration = new QuickDialogEntry(durationField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-duration"), Loc.GetString("criminal-records-console-duration-placeholder"));
         var entries = new List<QuickDialogEntry>() { entryArticles, entryDuration };
-        _reasonDialog = new DialogWindow(title, entries, true, true, true, Loc.GetString("criminal-records-console-checkbox-print"));
+        _reasonDialog = new DialogWindow(title, entries, true, true, true, Loc.GetString("criminal-records-console-print"));
 
         _reasonDialog.OnConfirmed += responses =>
         {
