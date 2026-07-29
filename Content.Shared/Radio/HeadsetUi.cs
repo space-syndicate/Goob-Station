@@ -50,3 +50,9 @@ public sealed class ToggleHeadsetChannelSoundMessage(ProtoId<RadioChannelPrototy
     public readonly ProtoId<RadioChannelPrototype> Channel = channel;
     public readonly bool Enabled = enabled;
 }
+
+[Serializable, NetSerializable]
+public sealed class SetAllHeadsetChannelSoundsMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public readonly bool Enabled = enabled;
+}

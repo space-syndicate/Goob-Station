@@ -84,6 +84,17 @@ public sealed partial class AudioTab : Control
             SliderVolumeRadio,
             scale: ContentAudioSystem.RadioMultiplier);
 
+        SliderRadioSoundCooldown.Slider.Rounded = true;
+        Control.AddOption(new OptionSliderFloatCVar(
+            Control,
+            _cfg,
+            GoobCVars.RadioSoundCooldown,
+            SliderRadioSoundCooldown,
+            1f,
+            10f,
+            1f,
+            FormatSeconds));
+
         // Deleted by CorvaxGoob
         /*Control.AddOptionPercentSlider(
             GoobCVars.VoiceChatVolume,
@@ -140,5 +151,10 @@ public sealed partial class AudioTab : Control
         // TODO: I was thinking of giving OptionsTabControlRow a flag to "set CVar immediately", but I'm deferring that
         // until there's a proper system for enforcing people don't close the window with pending changes.
         _audio.SetMasterGain(value);
+    }
+
+    private static string FormatSeconds(OptionSliderFloatCVar slider, float value)
+    {
+        return Loc.GetString("ui-options-value-seconds", ("value", (int) value));
     }
 }

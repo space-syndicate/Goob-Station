@@ -38,6 +38,8 @@ headset-ui-sound-enabled = Sound
 headset-ui-no-channels = No encryption channels installed.
 headset-ui-channel-enabled-tooltip = Toggle receiving and transmitting on this channel.
 headset-ui-sound-enabled-tooltip = Toggle the receive sound for this channel.
+headset-ui-enable-all-sounds = Enable all sounds
+headset-ui-disable-all-sounds = Disable all sounds
 
 chat-radio-common = Common
 chat-radio-centcom = CentComm

@@ -15,20 +15,28 @@ namespace Content.Client.Radio.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class HeadsetMenu : FancyWindow
 {
+    private const float CheckColumnWidth = 72f;
+
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public event Action<ProtoId<RadioChannelPrototype>, bool>? OnChannelToggled;
     public event Action<ProtoId<RadioChannelPrototype>, bool>? OnSoundToggled;
+    public event Action<bool>? OnAllSoundsToggled;
+
+    private bool _allSoundsToggleTarget;
 
     public HeadsetMenu()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        ToggleAllSoundsButton.OnPressed += _ => OnAllSoundsToggled?.Invoke(_allSoundsToggleTarget);
     }
 
     public void UpdateState(HeadsetBoundUserInterfaceState state)
     {
         ChannelRows.DisposeAllChildren();
+        UpdateToggleAllSoundsButton(state);
 
         if (state.Channels.Count == 0)
         {
@@ -51,6 +59,15 @@ public sealed partial class HeadsetMenu : FancyWindow
         }
     }
 
+    private void UpdateToggleAllSoundsButton(HeadsetBoundUserInterfaceState state)
+    {
+        _allSoundsToggleTarget = state.Channels.Any(channel => !channel.SoundEnabled);
+        ToggleAllSoundsButton.Disabled = state.Channels.Count == 0;
+        ToggleAllSoundsButton.Text = Loc.GetString(_allSoundsToggleTarget
+            ? "headset-ui-enable-all-sounds"
+            : "headset-ui-disable-all-sounds");
+    }
+
     private (HeadsetChannelState State, RadioChannelPrototype Prototype)? ResolveChannel(HeadsetChannelState state)
     {
         return _prototype.Resolve(state.Channel, out var prototype)
@@ -71,6 +88,7 @@ public sealed partial class HeadsetMenu : FancyWindow
         row.AddChild(new Label
         {
             Text = Loc.GetString(channel.Name),
+            FontColorOverride = channel.Color,
             HorizontalExpand = true,
             ClipText = true,
             ToolTip = Loc.GetString(channel.Name),
@@ -98,15 +116,15 @@ public sealed partial class HeadsetMenu : FancyWindow
             Pressed = pressed,
             ToolTip = tooltip,
             HorizontalAlignment = HAlignment.Center,
+            VerticalAlignment = VAlignment.Center,
         };
     }
 
     private static Control CenterCheckBox(CheckBox checkBox)
     {
-        return new BoxContainer
+        return new CenterContainer
         {
-            MinWidth = 72,
-            HorizontalAlignment = HAlignment.Center,
+            MinWidth = CheckColumnWidth,
             Children =
             {
                 checkBox,

@@ -38,6 +38,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         SubscribeLocalEvent<HeadsetComponent, BoundUIOpenedEvent>(OnUiOpened); // Goobstation - Headset channel controls
         SubscribeLocalEvent<HeadsetComponent, ToggleHeadsetChannelMessage>(OnToggleHeadsetChannel); // Goobstation - Headset channel controls
         SubscribeLocalEvent<HeadsetComponent, ToggleHeadsetChannelSoundMessage>(OnToggleHeadsetChannelSound); // Goobstation - Headset channel controls
+        SubscribeLocalEvent<HeadsetComponent, SetAllHeadsetChannelSoundsMessage>(OnSetAllHeadsetChannelSounds); // Goobstation - Headset channel controls
     }
 
     private void OnKeysChanged(EntityUid uid, HeadsetComponent component, EncryptionChannelsChangedEvent args)
@@ -205,6 +206,20 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             component.MutedReceiveSoundChannels.Remove(args.Channel);
         else
             component.MutedReceiveSoundChannels.Add(args.Channel);
+
+        Dirty(uid, component);
+        UpdateUserInterface(uid, component, keyHolder);
+    }
+
+    private void OnSetAllHeadsetChannelSounds(EntityUid uid, HeadsetComponent component, ref SetAllHeadsetChannelSoundsMessage args)
+    {
+        if (!TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
+            return;
+
+        if (args.Enabled)
+            component.MutedReceiveSoundChannels.ExceptWith(keyHolder.Channels);
+        else
+            component.MutedReceiveSoundChannels.UnionWith(keyHolder.Channels);
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component, keyHolder);

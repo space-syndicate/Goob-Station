@@ -18,6 +18,7 @@ public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : Bou
         _window = this.CreateWindow<HeadsetMenu>();
         _window.OnChannelToggled += OnChannelToggled;
         _window.OnSoundToggled += OnSoundToggled;
+        _window.OnAllSoundsToggled += OnAllSoundsToggled;
 
         if (State is HeadsetBoundUserInterfaceState state)
             _window.UpdateState(state);
@@ -41,5 +42,10 @@ public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : Bou
     private void OnSoundToggled(ProtoId<RadioChannelPrototype> channel, bool enabled)
     {
         SendMessage(new ToggleHeadsetChannelSoundMessage(channel, enabled));
+    }
+
+    private void OnAllSoundsToggled(bool enabled)
+    {
+        SendMessage(new SetAllHeadsetChannelSoundsMessage(enabled));
     }
 }

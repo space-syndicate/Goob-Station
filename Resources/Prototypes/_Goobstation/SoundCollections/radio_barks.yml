@@ -4,82 +4,58 @@
   id: RadioBarkBasic
   files:
     - /Audio/_Goobstation/Radio/basic.ogg
-    - /Audio/_Goobstation/Radio/basic_v1.ogg
-    - /Audio/_Goobstation/Radio/basic_v2.ogg
 
 - type: soundCollection
   id: RadioBarkCargo
   files:
     - /Audio/_Goobstation/Radio/cargo.ogg
-    - /Audio/_Goobstation/Radio/cargo_v1.ogg
-    - /Audio/_Goobstation/Radio/cargo_v2.ogg
 
 - type: soundCollection
   id: RadioBarkCentCom
   files:
     - /Audio/_Goobstation/Radio/cc.ogg
-    - /Audio/_Goobstation/Radio/cc_v1.ogg
-    - /Audio/_Goobstation/Radio/cc_v2.ogg
 
 - type: soundCollection
   id: RadioBarkCommand
   files:
     - /Audio/_Goobstation/Radio/command.ogg
-    - /Audio/_Goobstation/Radio/command_v1.ogg
-    - /Audio/_Goobstation/Radio/command_v2.ogg
 
 - type: soundCollection
   id: RadioBarkCommon
   files:
     - /Audio/_Goobstation/Radio/common.ogg
-    - /Audio/_Goobstation/Radio/common_v1.ogg
-    - /Audio/_Goobstation/Radio/common_v2.ogg
 
 - type: soundCollection
   id: RadioBarkEngineering
   files:
     - /Audio/_Goobstation/Radio/eng.ogg
-    - /Audio/_Goobstation/Radio/eng_v1.ogg
-    - /Audio/_Goobstation/Radio/eng_v2.ogg
 
 - type: soundCollection
   id: RadioBarkHandheld
   files:
     - /Audio/_Goobstation/Radio/handheld.ogg
-    - /Audio/_Goobstation/Radio/handheld_v1.ogg
-    - /Audio/_Goobstation/Radio/handheld_v2.ogg
 
 - type: soundCollection
   id: RadioBarkMedical
   files:
     - /Audio/_Goobstation/Radio/med.ogg
-    - /Audio/_Goobstation/Radio/med_v1.ogg
-    - /Audio/_Goobstation/Radio/med_v2.ogg
 
 - type: soundCollection
   id: RadioBarkScience
   files:
     - /Audio/_Goobstation/Radio/science.ogg
-    - /Audio/_Goobstation/Radio/science_v1.ogg
-    - /Audio/_Goobstation/Radio/science_v2.ogg
 
 - type: soundCollection
   id: RadioBarkSecurity
   files:
     - /Audio/_Goobstation/Radio/security.ogg
-    - /Audio/_Goobstation/Radio/security_v1.ogg
-    - /Audio/_Goobstation/Radio/security_v2.ogg
 
 - type: soundCollection
   id: RadioBarkService
   files:
     - /Audio/_Goobstation/Radio/service.ogg
-    - /Audio/_Goobstation/Radio/service_v1.ogg
-    - /Audio/_Goobstation/Radio/service_v2.ogg
 
 - type: soundCollection
   id: RadioBarkSyndicate
   files:
     - /Audio/_Goobstation/Radio/syndie.ogg
-    - /Audio/_Goobstation/Radio/syndie_v1.ogg
-    - /Audio/_Goobstation/Radio/syndie_v2.ogg
