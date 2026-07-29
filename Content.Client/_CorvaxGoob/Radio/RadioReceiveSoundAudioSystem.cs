@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Client.Audio;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared._CorvaxGoob.Radio;
@@ -12,9 +14,9 @@ namespace Content.Client._CorvaxGoob.Radio;
 /// <summary>
 /// Plays local receive sounds for headset radio messages.
 /// </summary>
-public sealed class RadioBarkAudioSystem : EntitySystem
+public sealed class RadioReceiveSoundAudioSystem : EntitySystem
 {
-    // CorvaxGoob, keep repeated radio barks varied without needing sound collections.
+    // Keep repeated radio receive sounds varied without needing sound collections.
     private const float SoundParameterVariation = 0.3f;
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -30,12 +32,12 @@ public sealed class RadioBarkAudioSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<PlayRadioBarkEvent>(OnPlayRadioBark);
+        SubscribeNetworkEvent<PlayRadioReceiveSoundEvent>(OnPlayRadioReceiveSound);
         Subs.CVar(_cfg, CCCVars.RadioVolume, value => _volume = value, true);
         Subs.CVar(_cfg, CCCVars.RadioSoundCooldown, value => _cooldown = Math.Clamp(value, 1f, 10f), true);
     }
 
-    private void OnPlayRadioBark(PlayRadioBarkEvent ev)
+    private void OnPlayRadioReceiveSound(PlayRadioReceiveSoundEvent ev)
     {
         if (_volume <= 0f || _timing.CurTime < _nextRadioSound)
             return;

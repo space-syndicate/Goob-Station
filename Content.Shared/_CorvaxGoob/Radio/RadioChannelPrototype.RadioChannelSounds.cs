@@ -6,11 +6,9 @@ namespace Content.Shared.Radio;
 
 public sealed partial class RadioChannelPrototype
 {
-    // CorvaxGoob Start
     /// <summary>
     /// Sound played locally for a player when they receive a message on this radio channel.
     /// </summary>
     [DataField]
     public SoundSpecifier? ReceiveSound = null;
-    // CorvaxGoob End
 }

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Radio;
 using Content.Shared._CorvaxGoob.Radio;
@@ -50,7 +50,7 @@ public sealed partial class HeadsetSystem
         if (component.MutedReceiveSoundChannels.Contains(channel))
             return;
 
-        RaiseNetworkEvent(new PlayRadioBarkEvent
+        RaiseNetworkEvent(new PlayRadioReceiveSoundEvent
         {
             Sound = args.Channel.ReceiveSound ?? DefaultRadioReceiveSound,
         }, recipient);

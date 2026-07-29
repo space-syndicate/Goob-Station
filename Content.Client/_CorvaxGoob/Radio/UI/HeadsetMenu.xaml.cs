@@ -71,7 +71,7 @@ public sealed partial class HeadsetMenu : FancyWindow
 
     private (HeadsetChannelState State, RadioChannelPrototype Prototype)? ResolveChannel(HeadsetChannelState state)
     {
-        // CorvaxGoob, skip channels whose prototypes were removed while a UI state was in flight.
+        // Skip channels whose prototypes were removed while a UI state was in flight.
         return _prototype.Resolve(state.Channel, out var prototype)
             ? (state, prototype)
             : null;

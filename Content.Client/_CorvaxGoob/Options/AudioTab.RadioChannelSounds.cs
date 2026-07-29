@@ -8,7 +8,6 @@ namespace Content.Client.Options.UI.Tabs;
 
 public sealed partial class AudioTab
 {
-    // CorvaxGoob Start
     /// <summary>
     /// Registers client options that control headset radio receive sounds.
     /// </summary>
@@ -16,7 +15,7 @@ public sealed partial class AudioTab
     {
         Control.AddOptionPercentSlider(
             CCCVars.RadioVolume,
-            SliderVolumeRadio,
+            SliderVolumeRadioSound,
             scale: ContentAudioSystem.RadioMultiplier);
 
         SliderRadioSoundCooldown.Slider.Rounded = true;
@@ -33,7 +32,6 @@ public sealed partial class AudioTab
 
     private static string FormatRadioSoundCooldown(OptionSliderFloatCVar slider, float value)
     {
-        return Loc.GetString("ui-options-value-seconds", ("value", (int) value));
+        return Loc.GetString("ui-options-radio-sound-value-seconds", ("value", (int) value));
     }
-    // CorvaxGoob End
 }

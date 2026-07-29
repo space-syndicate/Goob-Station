@@ -15,7 +15,7 @@
       key_slots:
       - EncryptionKeyCommon
   - type: Headset
-  # CorvaxGoob Start
+  # CorvaxGoob Start - radio-channel-sounds
   - type: ActivatableUI
     key: enum.HeadsetUiKey.Key
     verbText: headset-ui-verb-text

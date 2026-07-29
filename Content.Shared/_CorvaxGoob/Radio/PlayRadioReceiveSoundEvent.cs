@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
 
@@ -7,7 +9,7 @@ namespace Content.Shared._CorvaxGoob.Radio;
 /// Sent to a client when a headset should play a local radio receive sound.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class PlayRadioBarkEvent : EntityEventArgs
+public sealed class PlayRadioReceiveSoundEvent : EntityEventArgs
 {
     /// <summary>
     /// Resolved channel sound to play for this receive notification.

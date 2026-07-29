@@ -146,7 +146,6 @@ public sealed class CCCVars
     public static readonly CVarDef<float> AnnouncementsSound =
         CVarDef.Create("audio.announcements_volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    // CorvaxGoob Start
     /// <summary>
     /// Client volume setting for headset radio receive sounds.
     /// </summary>
@@ -158,7 +157,6 @@ public sealed class CCCVars
     /// </summary>
     public static readonly CVarDef<float> RadioSoundCooldown =
         CVarDef.Create("audio.radio_sound_cooldown", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
-    // CorvaxGoob End
 
     public static readonly CVarDef<bool> PhotoPlayTimeRequire =
         CVarDef.Create("photo.playtime_require", true, CVar.SERVERONLY);
