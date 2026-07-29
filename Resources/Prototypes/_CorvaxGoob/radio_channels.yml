@@ -6,4 +6,4 @@
   color: "#755C48"
   longRange: false
   receiveSound:
-    collection: RadioBarkBasic
+    path: /Audio/_Goobstation/Radio/basic.ogg

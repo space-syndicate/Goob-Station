@@ -25,7 +25,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     private static readonly SoundSpecifier DefaultRadioReceiveSound =
-        new SoundCollectionSpecifier("RadioBarkBasic");
+        new SoundPathSpecifier("/Audio/_Goobstation/Radio/basic.ogg");
 
     public override void Initialize()
     {
