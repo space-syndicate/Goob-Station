@@ -2,7 +2,6 @@
 
 using Content.Client.Audio;
 using Content.Shared._CorvaxGoob.CCCVars;
-using Robust.Shared.Configuration;
 
 namespace Content.Client.Options.UI.Tabs;
 
