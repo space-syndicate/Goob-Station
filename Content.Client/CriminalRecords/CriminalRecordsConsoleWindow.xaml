@@ -2,9 +2,10 @@
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<!-- CorvaxGoob-SecurityFeatures -->
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"  
                       xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       Title="{Loc 'criminal-records-console-window-title'}"
@@ -19,8 +20,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <BoxContainer Margin="5 5 5 10"
                           HorizontalExpand="true"
                           VerticalAlignment="Center">
+                <!-- CorvaxGoob-SecurityFeatures : MinWidth -->
                 <OptionButton Name="FilterType"
-                              MinWidth="200"
+                              MinWidth="200" 
                               Margin="0 0 10 0" />
                 <!-- Populated in constructor -->
                 <LineEdit Name="FilterText"
@@ -30,6 +32,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <BoxContainer Orientation="Horizontal"
                           VerticalExpand="True">
                 <!-- Record listing -->
+                <!-- CorvaxGoob-SecurityFeatures : изменён размер-->
                 <BoxContainer Orientation="Vertical"
                               Margin="10 10"
                               MinWidth="200"
@@ -43,10 +46,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                            HorizontalExpand="True"
                            Align="Center"
                            FontColorOverride="DarkGray" />
+                    <!-- CorvaxGoob-SecurityFeatures : Margin-->
                     <ScrollContainer VerticalExpand="True" Margin="0 0 0 10">
                         <ItemList Name="RecordListing" />
                         <!-- Populated when loading state -->
                     </ScrollContainer>
+                    <!-- CorvaxGoob-SecurityFeatures : Превью-->
                     <PanelContainer SetSize="200 200" MaxSize="200 200">
                         <SpriteView Name="SpriteView" Access="Public"
                                 Margin="10 0 0 45"
@@ -111,6 +116,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                FontColorOverride="DarkGray" />
                         <Label Name="PersonDna" />
                     </BoxContainer>
+                    <!-- CorvaxGoob-SecurityFeatures -->
                     <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
                         <Label Text="{Loc 'general-station-record-species-filter'}"
                                FontColorOverride="DarkGray" />
@@ -139,6 +145,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <RichTextLabel Name="WantedReason"
                                    Visible="False"
                                    MaxWidth="425" />
+                    <!-- CorvaxGoob-SecurityFeatures-Start -->
                     <RichTextLabel Name="Initiator"
                                    Visible="False"
                                    MaxWidth="425"/>
@@ -150,10 +157,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <RichTextLabel Text="Время" HorizontalAlignment="Center"/>
                                 <RichTextLabel Text="Преступление" HorizontalAlignment="Center"/>
                                 <RichTextLabel Text="Инициатор" HorizontalAlignment="Center"/>
-
-
                             </controls:TableContainer>
                     </PanelContainer>
+                    <!-- CorvaxGoob-SecurityFeatures-End -->
                     <Button Name="HistoryButton"
                             Text="{Loc 'criminal-records-console-crime-history'}"
                             Margin="0 5" />
@@ -161,6 +167,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </BoxContainer>
             <BoxContainer Orientation="Horizontal"
                           Margin="0 0 0 5">
+                <!-- CorvaxGoob-SecurityFeatures : MinWidth -->
                 <OptionButton
                     Name="CrewListFilter"
                     MinWidth="200"

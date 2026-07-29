@@ -69,13 +69,13 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
                 // adding deselects so prevent deleting yeah
                 _index = null;
                 DeleteButton.Disabled = true;
-                PrintButton.Disabled = true;
+                PrintButton.Disabled = true; // CorvaxGoob-SecurityFeatures
             };
 
             // prevent MoveToFront being called on a closed window and double closing
             _dialog.OnClose += () => { _dialog = null; };
         };
-        DeleteButton.OnPressed += _ =>
+        DeleteButton.OnPressed += _ => 
         {
             if (_index is not {} index)
                 return;
@@ -85,7 +85,7 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
             History.ClearSelected();
             _index = null;
             DeleteButton.Disabled = true;
-            PrintButton.Disabled = true;
+            PrintButton.Disabled = true; // CorvaxGoob-SecurityFeatures
         };
 
         // CorvaxGoob-SecurityFeatures
@@ -101,7 +101,7 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
         {
             _index = (uint) args.ItemIndex;
             DeleteButton.Disabled = false;
-            PrintButton.Disabled = false;
+            PrintButton.Disabled = false; // CorvaxGoob-SecurityFeatures
         };
         History.OnItemDeselected += args =>
         {

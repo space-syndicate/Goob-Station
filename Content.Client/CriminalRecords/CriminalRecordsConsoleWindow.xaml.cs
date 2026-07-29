@@ -36,11 +36,10 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
     private readonly IPrototypeManager _proto;
     private readonly IRobustRandom _random;
     private readonly AccessReaderSystem _accessReader;
-    private readonly StationSpawningSystem _spawning;
     [Dependency] private readonly IEntityManager _entManager = default!;
     private readonly SpriteSystem _spriteSystem;
 
-    private readonly HumanoidAppearanceSystem _humanoidAppearance;
+    private readonly HumanoidAppearanceSystem _humanoidAppearance; // CorvaxGoob-SecurityFeatures
 
     public readonly EntityUid Console;
 
@@ -53,7 +52,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
     public Action<CriminalRecord, bool, bool>? OnHistoryUpdated;
     public Action? OnHistoryClosed;
     public Action<SecurityStatus, string>? OnDialogConfirmed;
-    public Action<string, int, bool>? OnDialogDetainedConfirmed;
+    public Action<string, int, bool>? OnDialogDetainedConfirmed; // CorvaxGoob-SecurityFeatures
 
     public Action<SecurityStatus>? OnStatusFilterPressed;
     private uint _maxLength;
@@ -67,7 +66,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private SecurityStatus _currentCrewListFilter;
 
-    private Direction _previewRotation = Direction.North;
+    private Direction _previewRotation = Direction.North; // CorvaxGoob-SecurityFeatures
 
 
     public CriminalRecordsConsoleWindow(EntityUid console, uint maxLength, IPlayerManager playerManager, IPrototypeManager prototypeManager, IRobustRandom robustRandom, AccessReaderSystem accessReader)
@@ -81,8 +80,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         _accessReader = accessReader;
         IoCManager.InjectDependencies(this);
         _spriteSystem = _entManager.System<SpriteSystem>();
-        _humanoidAppearance = _entManager.System<HumanoidAppearanceSystem>();
-        _spawning = _entManager.System<StationSpawningSystem>();
+        _humanoidAppearance = _entManager.System<HumanoidAppearanceSystem>(); // CorvaxGoob-SecurityFeatures
 
         _maxLength = maxLength;
         _currentFilterType = StationRecordFilterType.Name;
@@ -163,6 +161,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
                 OnHistoryUpdated?.Invoke(record, _access, true);
         };
 
+        // CorvaxGoob-SecurityFeatures-Start
         SpriteRotateLeft.OnPressed += _ =>
         {
             _previewRotation = _previewRotation.TurnCw();
@@ -174,6 +173,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             _previewRotation = _previewRotation.TurnCcw();
             SetPreviewRotation(_previewRotation);
         };
+        // CorvaxGoob-SecurityFeatures-End
     }
 
     public void StatusFilterPressed(SecurityStatus statusSelected)
@@ -213,12 +213,14 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         PersonContainer.Visible = selected;
         RecordUnselected.Visible = !selected;
 
+        // CorvaxGoob-SecurityFeatures-Start
         SpriteView.Visible = selected;
         NoRecordSelectedLabel.Visible = !selected;
 
         SpriteRotateRight.Visible = selected;
         SpriteRotateLeft.Visible = selected;
         SpriteRotateSeparator.Visible = selected;
+        // CorvaxGoob-SecurityFeatures-End
 
         _access = _player.LocalSession?.AttachedEntity is {} player
             && _accessReader.IsAllowed(player, Console);
@@ -270,6 +272,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             PersonJobIcon.Texture = _spriteSystem.Frame0(proto.Icon);
         }
 
+        // CorvaxGoob-SecurityFeatures-Start
         if (criminalRecord.History.Count > 0)
         {
             EntriesContainer.RemoveAllChildren();
@@ -327,12 +330,13 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             }
             criminalRecord.History.Reverse();
         }
+        // CorvaxGoob-SecurityFeatures-End
 
 
         PersonPrints.Text = stationRecord.Fingerprint ??  Loc.GetString("generic-not-available-shorthand");
         PersonDna.Text = stationRecord.DNA ??  Loc.GetString("generic-not-available-shorthand");
 
-        PersonSpecies.Text = Loc.GetString(stationRecord.Species) ?? Loc.GetString("generic-not-available-shorthand");
+        PersonSpecies.Text = Loc.GetString(stationRecord.Species) ?? Loc.GetString("generic-not-available-shorthand"); // CorvaxGoob-SecurityFeatures
 
         if (criminalRecord.Status != SecurityStatus.None)
         {
@@ -341,6 +345,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         PersonStatusTX.SetFromSpriteSpecifier(specifier);
         PersonStatusTX.DisplayRect.TextureScale = new Vector2(3f, 3f);
 
+        // CorvaxGoob-SecurityFeatures
         if (criminalRecord.InitiatorName is { } initiator)
         {
             var message = FormattedMessage.FromMarkupOrThrow(Loc.GetString($"criminal-records-console-initiator"));
@@ -350,9 +355,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             Initiator.Visible = true;
         }
 
-
-        UpdatePreview(stationRecord);
-
+        UpdatePreview(stationRecord); // CorvaxGoob-SecurityFeatures
 
         StatusOptionButton.SelectId((int)criminalRecord.Status);
         if (criminalRecord.Reason is { } reason)
@@ -370,6 +373,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         }
     }
 
+    // CorvaxGoob-SecurityFeatures
     private void UpdatePreview(GeneralStationRecord stationRecord)
     {
         if (stationRecord.Visual is null)
@@ -429,6 +433,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             return;
         }
 
+        // CorvaxGoob-SecurityFeatures
         if (status == SecurityStatus.Detained)
         {
             GetDetainedInfo();
@@ -447,17 +452,13 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         }
 
         var field = "reason";
-
         var title = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());
-
         var placeholders = _proto.Index(ReasonPlaceholders);
         var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", Loc.GetString(_random.Pick(placeholders.Values)))); // CorvaxGoob-SecurityFeatures
-
         var prompt = Loc.GetString("criminal-records-console-reason");
 
         var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
         var entries = new List<QuickDialogEntry>() { entry };
-
         _reasonDialog = new DialogWindow(title, entries);
 
         _reasonDialog.OnConfirmed += responses =>

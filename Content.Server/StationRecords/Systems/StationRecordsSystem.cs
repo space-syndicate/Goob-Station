@@ -8,13 +8,11 @@ using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -46,7 +44,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AppearanceConverterSystem _appearanceConverter = default!;
+    [Dependency] private readonly AppearanceConverterSystem _appearanceConverter = default!; // CorvaxGoob-SecurityFeatures
 
     public override void Initialize()
     {
@@ -145,7 +143,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string? dna,
         HumanoidCharacterProfile profile,
         StationRecordsComponent records,
-        EntityUid? playerUid = null)
+        EntityUid? playerUid = null) // CorvaxGoob-SecurityFeatures : добавлены аргументы для генерации профиля внешности
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
             throw new ArgumentException($"Invalid job prototype ID: {jobId}");
@@ -158,10 +156,12 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             return;
         }
 
+        // CorvaxGoob-SecurityFeatures-Start
         TransformProfile? transformProfile = playerUid is not null ? _appearanceConverter.GenerateTransformProfile(playerUid.Value) : null;
         AppearanceConverterVisualTransformProfile? visualProfile = transformProfile is not null ? AppearanceConverterSystem.SplitDetailAndVisualProfile(transformProfile.Value).Visual : null;
+        // CorvaxGoob-SecurityFeatures-End
 
-        var record = new GeneralStationRecord()
+        var record = new GeneralStationRecord() // CorvaxGoob-SecurityFeatures : добавлены аргументы для генерации профиля внешности
         {
             Name = name,
             Age = age,

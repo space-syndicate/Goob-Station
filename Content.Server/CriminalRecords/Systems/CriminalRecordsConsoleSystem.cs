@@ -41,11 +41,13 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
+    // CorvaxGoob-SecurityFeatures-Start
     [Dependency] private readonly SharedGameTicker _gameTicker = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // CorvaxGoob-SecurityFeatures
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
+    // CorvaxGoob-SecurityFeatures-End
 
     public override void Initialize()
     {
@@ -58,7 +60,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             subs.Event<SelectStationRecord>(OnKeySelected);
             subs.Event<SetStationRecordFilter>(OnFiltersChanged);
             subs.Event<CriminalRecordChangeStatus>(OnChangeStatus);
-            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus);
+            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus); // CorvaxGoob-SecurityFeatures
             subs.Event<CriminalRecordAddHistory>(OnAddHistory);
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event<CriminalRecordPrint>(OnPrint); // CorvaxGoob-SecurityFeatures
@@ -69,7 +71,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
             subs.Event<CriminalRecordChangeStatus>(OnChangeStatus);
-            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus);
+            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus); // CorvaxGoob-SecurityFeatures
         });
     }
 
@@ -141,6 +143,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         // when arresting someone add it to history automatically
         // fallback exists if the player was not set to wanted beforehand
+
+        // CorvaxGoob-SecurityFeatures
         //if (msg.Status == SecurityStatus.Detained)
         //{
         //    var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
@@ -220,6 +224,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         UpdateUserInterface(ent);
     }
 
+    // CorvaxGoob-SecurityFeatures
     private void OnChangeDetainedStatus(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeDetainedStatus msg)
     {
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))

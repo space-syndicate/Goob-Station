@@ -75,6 +75,7 @@ public sealed class CriminalRecordChangeStatus : BoundUserInterfaceMessage
     }
 }
 
+// CorvaxGoob-SecurityFeatures
 [Serializable, NetSerializable]
 public sealed class CriminalRecordChangeDetainedStatus : BoundUserInterfaceMessage
 {

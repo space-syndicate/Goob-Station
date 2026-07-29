@@ -131,6 +131,7 @@ public sealed partial class WantedMenu : FancyWindow
             return;
         }
 
+        // CorvaxGoob-SecurityFeatures
         if (status == SecurityStatus.Detained)
         {
             GetDetainedInfo();

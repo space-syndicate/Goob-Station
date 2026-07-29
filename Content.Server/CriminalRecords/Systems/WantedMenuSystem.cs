@@ -179,6 +179,7 @@ public sealed partial class CriminalRecordsConsoleSystem
         UpdateUserInterface(ent);
     }
 
+    // CorvaxGoob-SecurityFeatures
     private void OnChangeDetainedStatus(Entity<IdExaminableComponent> ent, ref CriminalRecordChangeDetainedStatus msg)
     {
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
