@@ -1,12 +1,16 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System;
+using Content.Shared._CorvaxGoob.Radio;
 using Content.Shared.Radio;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Radio.Ui;
+namespace Content.Client._CorvaxGoob.Radio.UI;
 
+/// <summary>
+/// Client bridge for the per-headset radio channel settings menu.
+/// </summary>
 public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private HeadsetMenu? _window;

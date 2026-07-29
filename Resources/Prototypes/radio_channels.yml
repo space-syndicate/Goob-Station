@@ -7,7 +7,7 @@
   frequency: 1459
   color: "#2cdb2c"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/common.ogg
+    path: /Audio/_CorvaxGoob/Radio/common.ogg
 
 - type: radioChannel
   id: CentCom
@@ -17,7 +17,7 @@
   color: "#2681a5"
   longRange: true
   receiveSound:
-    path: /Audio/_Goobstation/Radio/cc.ogg
+    path: /Audio/_CorvaxGoob/Radio/cc.ogg
 
 - type: radioChannel
   id: Command
@@ -26,7 +26,7 @@
   frequency: 1353
   color: "#fcdf03"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/command.ogg
+    path: /Audio/_CorvaxGoob/Radio/command.ogg
 
 - type: radioChannel
   id: Engineering
@@ -35,7 +35,7 @@
   frequency: 1357
   color: "#ff733c"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/eng.ogg
+    path: /Audio/_CorvaxGoob/Radio/eng.ogg
 
 - type: radioChannel
   id: Medical
@@ -44,7 +44,7 @@
   frequency: 1355
   color: "#57b8f0"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/med.ogg
+    path: /Audio/_CorvaxGoob/Radio/med.ogg
 
 - type: radioChannel
   id: Science
@@ -53,7 +53,7 @@
   frequency: 1351
   color: "#cd7ccd"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/science.ogg
+    path: /Audio/_CorvaxGoob/Radio/science.ogg
 
 - type: radioChannel
   id: Security
@@ -62,7 +62,7 @@
   frequency: 1359
   color: "#ff4242"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/security.ogg
+    path: /Audio/_CorvaxGoob/Radio/security.ogg
 
 - type: radioChannel
   id: Service
@@ -71,7 +71,7 @@
   frequency: 1349
   color: "#539c00"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/service.ogg
+    path: /Audio/_CorvaxGoob/Radio/service.ogg
 
 - type: radioChannel
   id: Supply
@@ -80,7 +80,7 @@
   frequency: 1347
   color: "#b48b57"
   receiveSound:
-    path: /Audio/_Goobstation/Radio/cargo.ogg
+    path: /Audio/_CorvaxGoob/Radio/cargo.ogg
 
 - type: radioChannel
   id: Syndicate
@@ -91,7 +91,7 @@
   longRange: true
   anonymous: true # CorvaxGoob-Anonymous-Radio
   receiveSound:
-    path: /Audio/_Goobstation/Radio/syndie.ogg
+    path: /Audio/_CorvaxGoob/Radio/syndie.ogg
 
 - type: radioChannel
   id: Handheld
@@ -101,7 +101,7 @@
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
   receiveSound:
-    path: /Audio/_Goobstation/Radio/handheld.ogg
+    path: /Audio/_CorvaxGoob/Radio/handheld.ogg
 
 # Goobstation - replaced with collective mind
 # commented out so anyone trying to use it gets errors and sees this
@@ -124,7 +124,7 @@
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
   receiveSound:
-    path: /Audio/_Goobstation/Radio/basic.ogg
+    path: /Audio/_CorvaxGoob/Radio/basic.ogg
 
 - type: radioChannel
   id: Xenoborg
@@ -135,7 +135,7 @@
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
   receiveSound:
-    path: /Audio/_Goobstation/Radio/basic.ogg
+    path: /Audio/_CorvaxGoob/Radio/basic.ogg
 
 - type: radioChannel
   id: Mothership
@@ -146,4 +146,4 @@
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
   receiveSound:
-    path: /Audio/_Goobstation/Radio/basic.ogg
+    path: /Audio/_CorvaxGoob/Radio/basic.ogg

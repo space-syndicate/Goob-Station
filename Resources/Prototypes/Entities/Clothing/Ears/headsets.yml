@@ -15,6 +15,7 @@
       key_slots:
       - EncryptionKeyCommon
   - type: Headset
+  # CorvaxGoob Start
   - type: ActivatableUI
     key: enum.HeadsetUiKey.Key
     verbText: headset-ui-verb-text
@@ -22,6 +23,7 @@
     interfaces:
       enum.HeadsetUiKey.Key:
         type: HeadsetBoundUserInterface
+  # CorvaxGoob End
   - type: EncryptionKeyHolder
     keySlots: 4
   - type: Sprite

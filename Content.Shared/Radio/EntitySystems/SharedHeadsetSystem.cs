@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio.EntitySystems;
 
-public abstract class SharedHeadsetSystem : EntitySystem
+public abstract partial class SharedHeadsetSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -32,7 +32,7 @@ public abstract class SharedHeadsetSystem : EntitySystem
             if (keyHolder.DefaultChannel is { } channel)
             {
                 var channelId = new ProtoId<RadioChannelPrototype>(channel);
-                if (!component.DisabledChannels.Contains(channelId))
+                if (IsDefaultChannelEnabled(component, channelId)) // CorvaxGoob Edit
                     args.Args.Channel ??= channel;
             }
         }

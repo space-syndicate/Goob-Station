@@ -444,17 +444,7 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<float> BarksVolume =
         CVarDef.Create("voice.barks_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Client volume setting for radio channel receive sounds.
-    /// </summary>
-    public static readonly CVarDef<float> RadioVolume =
-        CVarDef.Create("audio.radio_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Minimum delay in seconds between radio channel receive sounds on the client.
-    /// </summary>
-    public static readonly CVarDef<float> RadioSoundCooldown =
-        CVarDef.Create("audio.radio_sound_cooldown", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+    // CorvaxGoob Edit - Radio channel sound CVars live in Content.Shared._CorvaxGoob.CCCVars.CCCVars.
 
     #endregion
 

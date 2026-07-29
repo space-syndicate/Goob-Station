@@ -1,16 +1,20 @@
 using Content.Client.Audio;
-using Content.Goobstation.Common.CCVar;
-using Content.Goobstation.Shared.Radio;
+using Content.Shared._CorvaxGoob.CCCVars;
+using Content.Shared._CorvaxGoob.Radio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Goobstation.Client.Radio;
+namespace Content.Client._CorvaxGoob.Radio;
 
+/// <summary>
+/// Plays local receive sounds for headset radio messages.
+/// </summary>
 public sealed class RadioBarkAudioSystem : EntitySystem
 {
+    // CorvaxGoob, keep repeated radio barks varied without needing sound collections.
     private const float SoundParameterVariation = 0.3f;
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -27,8 +31,8 @@ public sealed class RadioBarkAudioSystem : EntitySystem
         base.Initialize();
 
         SubscribeNetworkEvent<PlayRadioBarkEvent>(OnPlayRadioBark);
-        Subs.CVar(_cfg, GoobCVars.RadioVolume, value => _volume = value, true);
-        Subs.CVar(_cfg, GoobCVars.RadioSoundCooldown, value => _cooldown = Math.Clamp(value, 1f, 10f), true);
+        Subs.CVar(_cfg, CCCVars.RadioVolume, value => _volume = value, true);
+        Subs.CVar(_cfg, CCCVars.RadioSoundCooldown, value => _cooldown = Math.Clamp(value, 1f, 10f), true);
     }
 
     private void OnPlayRadioBark(PlayRadioBarkEvent ev)
