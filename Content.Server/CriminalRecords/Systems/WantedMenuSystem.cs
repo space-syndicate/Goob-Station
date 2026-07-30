@@ -229,8 +229,8 @@ public sealed partial class CriminalRecordsConsoleSystem
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-detained", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-detained", args),
+            ent.Comp.SecurityChannel, msg.Actor);
 
         UpdateUserInterface(ent);
     }

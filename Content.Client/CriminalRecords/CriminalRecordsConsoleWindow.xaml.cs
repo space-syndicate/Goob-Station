@@ -43,6 +43,8 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     public readonly EntityUid Console;
 
+    private EntityUid? _previewEntity; // CorvaxGoob-SecurityFeatures
+
     private static readonly ProtoId<LocalizedDatasetPrototype> ReasonPlaceholders = "CriminalRecordsWantedReasonPlaceholders";
 
     public Action<uint?>? OnKeySelected;
@@ -384,10 +386,13 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         if (visual.SpeciesPrototype is null)
             return;
 
+        if (_previewEntity is not null)
+            _entManager.DeleteEntity(_previewEntity);
+
         var speciesPrototype = _proto.Index<SpeciesPrototype>(visual.SpeciesPrototype.Value);
 
-        var dummyEnt = _entManager.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
-        var targetHumanoid = _entManager.EnsureComponent<HumanoidAppearanceComponent>(dummyEnt);
+        _previewEntity = _entManager.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
+        var targetHumanoid = _entManager.EnsureComponent<HumanoidAppearanceComponent>(_previewEntity.Value);
 
         if (visual.SkinColor is not null)
             targetHumanoid.SkinColor = visual.SkinColor.Value;
@@ -398,9 +403,9 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         if (visual.EyesColor is not null)
             targetHumanoid.EyeColor = visual.EyesColor.Value;
 
-        _humanoidAppearance.UpdateSprite((dummyEnt, targetHumanoid, _entManager.GetComponent<SpriteComponent>(dummyEnt)));
+        _humanoidAppearance.UpdateSprite((_previewEntity.Value, targetHumanoid, _entManager.GetComponent<SpriteComponent>(_previewEntity.Value)));
 
-        SpriteView.SetEntity(dummyEnt);
+        SpriteView.SetEntity(_previewEntity.Value);
         SpriteView.Visible = true;
     }
 

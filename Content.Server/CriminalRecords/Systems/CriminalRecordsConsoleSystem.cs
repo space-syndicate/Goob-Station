@@ -277,7 +277,10 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             ent.Comp.SecurityChannel, ent);
 
         if (msg.Print && entry is not null)
+        {
+            ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
             PrintDocument(ent, msg.Actor, entry, articles, msg.Duration);
+        }
 
         UpdateUserInterface(ent);
     }
@@ -359,7 +362,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         if (ent.Comp.NextPrintTime > _timing.CurTime)
             return;
 
-        if (!_criminalRecords.TryGetHistory(key.Value, key.Value.Id, out var crimeHistory))
+        if (!_criminalRecords.TryGetHistory(key.Value, msg.Index, out var crimeHistory))
             return;
 
         if (!_records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry))
