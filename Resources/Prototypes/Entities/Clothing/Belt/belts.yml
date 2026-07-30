@@ -66,7 +66,7 @@
 ## Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+  parent: [ClothingBeltStorageBase, BaseSecurityBartenderContraband] # CorvaxGoob
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -77,11 +77,10 @@
     sprite: Clothing/Belt/bandolier.rsi
   - type: Item
     size: Huge
-  - type: BallisticAmmoProvider
+  - type: Storage # CorvaxGoob
     whitelist:
       tags:
       - ShellShotgun
-    capacity: 14
 
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]

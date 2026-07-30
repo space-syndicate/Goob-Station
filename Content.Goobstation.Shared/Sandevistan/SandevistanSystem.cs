@@ -113,14 +113,17 @@ public sealed class SandevistanSystem : EntitySystem
                     filteredStates.Add((int) stateThreshold.Key);
 
             filteredStates.Sort((a, b) => b.CompareTo(a));
-            foreach (var state in filteredStates)
-            {
-                if (!comp.Effects.TryGetValue((SandevistanState) state, out var effects))
-                    continue;
+            // CorvaxGoob-Fixes-Start
+            if (_netManager.IsServer)
+                foreach (var state in filteredStates)
+                {
+                    if (!comp.Effects.TryGetValue((SandevistanState) state, out var effects))
+                        continue;
 
-                foreach (var effect in effects)
-                    effect.Effect(uid, comp, EntityManager, frameTime);
-            }
+                    foreach (var effect in effects)
+                        effect.Effect(uid, comp, EntityManager, frameTime);
+                }
+            // CorvaxGoob-Fixes-End
 
             if (comp.NextPopupTime > _timing.CurTime)
             {

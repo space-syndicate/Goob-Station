@@ -18,7 +18,7 @@ public partial class SharedStaminaSystem
 
     private void OnGetResistance(Entity<StaminaResistanceComponent> ent, ref BeforeStaminaDamageEvent args)
     {
-        if (!args.FromMelee || ent.Comp.MeleeResistance) // DeltaV - StaminaResistance is only for disablers etc, blunt armor is for resisting baton. <- WHO THOUGHT THIS WAS A GOOD IDEA?
+        if (args.Value > 0 && (!args.FromMelee || ent.Comp.MeleeResistance)) // DeltaV - StaminaResistance is only for disablers etc, blunt armor is for resisting baton. <- WHO THOUGHT THIS WAS A GOOD IDEA? // CorvaxGoob-Fixes
             args.Value *= ent.Comp.DamageCoefficient;
     }
 
