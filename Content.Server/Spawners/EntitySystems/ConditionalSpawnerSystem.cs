@@ -7,7 +7,6 @@ using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Random;
-using Robust.Shared.Timing; // CorvaxGoob-Fixes
 
 namespace Content.Server.Spawners.EntitySystems
 {
@@ -42,17 +41,9 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void OnEntityTableSpawnMapInit(Entity<EntityTableSpawnerComponent> ent, ref MapInitEvent args)
         {
-            // CorvaxGoob-Fixes-Start
-            Timer.Spawn(0, () =>
-            {
-                if (TerminatingOrDeleted(ent))
-                    return;
-
-                Spawn(ent);
-                if (ent.Comp.DeleteSpawnerAfterSpawn && Exists(ent))
-                    QueueDel(ent);
-            });
-            // CorvaxGoob-Fixes-End
+            Spawn(ent);
+            if (ent.Comp.DeleteSpawnerAfterSpawn && !TerminatingOrDeleted(ent) && Exists(ent))
+                QueueDel(ent);
         }
 
         private void OnRuleStarted(ref GameRuleStartedEvent args)
