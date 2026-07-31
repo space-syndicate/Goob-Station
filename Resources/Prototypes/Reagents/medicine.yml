@@ -1077,7 +1077,6 @@
           - type: PressureProtection
           invert: true
       - !type:HealthChange
-        scaleByQuantity: true
         ignoreResistances: false
         ignoreBlockers: false
         damage:
