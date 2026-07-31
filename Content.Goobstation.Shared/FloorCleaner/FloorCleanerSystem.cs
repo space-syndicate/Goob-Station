@@ -12,7 +12,8 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Goobstation.Shared.FloorCleaner;
 
-// Corvax-Edit очистка сущностей удалена, т.к. следы переделаны в decals
+// CorvaxGoob-Footprint-Refactoring 
+// очистка сущностей удалена, т.к. следы переделаны в decals
 // добавлена трата чистящего реагента для очистки декалей.
 public sealed class FloorCleanerSystem : EntitySystem
 {
