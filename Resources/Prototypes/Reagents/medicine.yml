@@ -1055,18 +1055,21 @@
             Bloodloss: 3
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: TranexamicAcid
           min: 15
         - !type:MobStateCondition
           mobstate: Critical
+# CorvaxGoob end
         damage:
           types:
             Bloodloss: 3
+# CorvaxGoob start
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
       effects:
-      - !type:ModifyBleedAmount
+      - !type:ModifyBleed
         amount: -1.0
         conditions:
         - !type:HasComponentOnEquipmentCondition
