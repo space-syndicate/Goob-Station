@@ -19,6 +19,7 @@ using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Content.Server._CorvaxGoob.ExecutionChair;
@@ -84,62 +85,35 @@ public sealed class ExecutionChairSystem : EntitySystem
 
     private void OnComponentRemoved(RemovedComponentEventArgs args)
     {
-        if (args.Terminating)
-            return;
-
-        var component = args.BaseArgs.Component;
-        if (component is not ApcPowerReceiverComponent &&
-            component is not StrapComponent &&
-            component is not ElectrifiedComponent)
-        {
-            return;
-        }
-
         var uid = args.BaseArgs.Owner;
         if (!IsLiveExecutionChair(uid))
             return;
 
-        switch (component)
+        switch (args.BaseArgs.Component)
         {
             case ApcPowerReceiverComponent:
-                OnApcPowerReceiverRemoved(uid);
+                var wasArmed = TryComp<ElectrifiedComponent>(uid, out var electrified) && electrified.Enabled;
+                SetElectrifiedEnabled(uid, false, electrified);
+                RemoveRuntimeComponents(uid);
+
+                if (wasArmed)
+                    ShowTurnOffPopup(uid);
+                break;
+            case ElectrifiedComponent removedElectrified:
+                _powerReceiver.SetPowerDisabled(uid, true);
+                RemoveRuntimeComponents(uid);
+
+                if (removedElectrified.Enabled)
+                    ShowTurnOffPopup(uid);
                 break;
             case StrapComponent:
-                OnStrapRemoved(uid);
+            case DeviceLinkSinkComponent:
+            case ExtensionCableReceiverComponent:
+                TurnOff(uid, true);
                 break;
-            case ElectrifiedComponent electrified:
-                OnElectrifiedRemoved(uid, electrified);
-                break;
+            default:
+                return;
         }
-    }
-
-    private void OnApcPowerReceiverRemoved(EntityUid uid)
-    {
-        var wasArmed = TryComp<ElectrifiedComponent>(uid, out var electrified) && electrified.Enabled;
-        SetElectrifiedEnabled(uid, false, electrified);
-        RemoveRuntimeComponents(uid);
-
-        if (wasArmed)
-            ShowTurnOffPopup(uid);
-
-        LogInvalidComposition(uid);
-    }
-
-    private void OnStrapRemoved(EntityUid uid)
-    {
-        TurnOff(uid, true);
-        LogInvalidComposition(uid);
-    }
-
-    private void OnElectrifiedRemoved(EntityUid uid, ElectrifiedComponent electrified)
-    {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
-            _powerReceiver.SetPowerDisabled(uid, true, receiver);
-
-        RemoveRuntimeComponents(uid);
-
-        if (electrified.Enabled)
-            ShowTurnOffPopup(uid);
 
         LogInvalidComposition(uid);
     }
@@ -282,7 +256,7 @@ public sealed class ExecutionChairSystem : EntitySystem
                 continue;
             }
 
-            RemComp<ExecutionChairPowerPendingComponent>(uid);
+            RemCompDeferred<ExecutionChairPowerPendingComponent>(uid);
             SetElectrifiedEnabled(uid, true, electrified);
             _popup.PopupEntity(Loc.GetString("execution-chair-turn-on"), uid, PopupType.Medium);
             UpdateActivity(uid, strap, electrified);
@@ -309,7 +283,7 @@ public sealed class ExecutionChairSystem : EntitySystem
 
             if (strap.BuckledEntities.Count == 0)
             {
-                RemComp<ActiveExecutionChairComponent>(uid);
+                RemCompDeferred<ActiveExecutionChairComponent>(uid);
                 continue;
             }
 
@@ -324,7 +298,7 @@ public sealed class ExecutionChairSystem : EntitySystem
             if (_timing.CurTime < active.NextShockTime)
                 continue;
 
-            active.NextShockTime = _timing.CurTime + GetShockCooldown(electrified);
+            active.NextShockTime += GetShockCooldown(electrified);
 
             var target = strap.BuckledEntities.First();
             _electrocution.TryDoElectrifiedAct(uid, target, electrified: electrified, transform: transform);
@@ -364,8 +338,7 @@ public sealed class ExecutionChairSystem : EntitySystem
     {
         var wasArmed = TryComp<ElectrifiedComponent>(uid, out var electrified) && electrified.Enabled;
 
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
-            _powerReceiver.SetPowerDisabled(uid, true, receiver);
+        _powerReceiver.SetPowerDisabled(uid, true);
 
         SetElectrifiedEnabled(uid, false, electrified);
         RemoveRuntimeComponents(uid);
@@ -382,7 +355,7 @@ public sealed class ExecutionChairSystem : EntitySystem
             return;
         }
 
-        if (TryComp<ActiveExecutionChairComponent>(uid, out _))
+        if (HasComp<ActiveExecutionChairComponent>(uid))
             return;
 
         var active = AddComp<ActiveExecutionChairComponent>(uid);
@@ -398,34 +371,24 @@ public sealed class ExecutionChairSystem : EntitySystem
 
     private bool TryGetChairComponents(
         EntityUid uid,
-        out ApcPowerReceiverComponent receiver,
-        out StrapComponent strap,
-        out ElectrifiedComponent electrified,
-        out TransformComponent transform)
+        [NotNullWhen(true)] out ApcPowerReceiverComponent? receiver,
+        [NotNullWhen(true)] out StrapComponent? strap,
+        [NotNullWhen(true)] out ElectrifiedComponent? electrified,
+        [NotNullWhen(true)] out TransformComponent? transform)
     {
-        receiver = default!;
-        strap = default!;
-        electrified = default!;
-        transform = default!;
+        receiver = null;
+        strap = null;
+        electrified = null;
+        transform = null;
 
-        if (!TryComp<ApcPowerReceiverComponent>(uid, out var resolvedReceiver) ||
-            resolvedReceiver.Load <= 0 ||
-            !TryComp<StrapComponent>(uid, out var resolvedStrap) ||
-            !TryComp<ElectrifiedComponent>(uid, out var resolvedElectrified) ||
-            !TryComp(uid, out TransformComponent? resolvedTransform) ||
-            resolvedReceiver.LifeStage >= ComponentLifeStage.Stopping ||
-            resolvedStrap.LifeStage >= ComponentLifeStage.Stopping ||
-            resolvedElectrified.LifeStage >= ComponentLifeStage.Stopping ||
-            resolvedTransform.LifeStage >= ComponentLifeStage.Stopping)
+        if (!Resolve(uid, ref receiver, ref strap, ref electrified, ref transform, false))
         {
             return false;
         }
 
-        receiver = resolvedReceiver;
-        strap = resolvedStrap;
-        electrified = resolvedElectrified;
-        transform = resolvedTransform;
-        return true;
+        return receiver.Load > 0 &&
+               HasComp<DeviceLinkSinkComponent>(uid) &&
+               HasComp<ExtensionCableReceiverComponent>(uid);
     }
 
     private bool IsLiveExecutionChair(EntityUid uid)
