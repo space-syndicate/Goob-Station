@@ -242,6 +242,12 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
                 return;
         }
 
+        if (msg.Duration is not null)
+        {
+            if (msg.Duration <= 0)
+                return;
+        }
+
         var oldStatus = record.Status;
 
         var name = _records.RecordName(key.Value);
@@ -265,7 +271,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         if (tryGetIdentityShortInfoEvent.Title != null)
             officer = tryGetIdentityShortInfoEvent.Title;
 
-        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, msg.Articles, officer);
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer);
 
         (string, object)[] args;
         if (articles != null)
@@ -279,7 +285,9 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         if (msg.Print && entry is not null)
         {
             ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
+
             PrintDocument(ent, msg.Actor, entry, articles, msg.Duration);
+            Dirty(ent);
         }
 
         UpdateUserInterface(ent);
@@ -308,7 +316,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         content = content
             .Replace(Loc.GetString("doc-var-violator"), record.Name)
             .Replace(Loc.GetString("doc-var-violator-job"), record.JobTitle)
-            .Replace(Loc.GetString("doc-var-articles"), articles)
+            .Replace(Loc.GetString("doc-var-articles"), articles ?? Loc.GetString("doc-text-printer-default-articles"))
             .Replace(Loc.GetString("doc-var-duration"), duration.ToString())
             .Replace(Loc.GetString("doc-var-duration-start"), time);
 
