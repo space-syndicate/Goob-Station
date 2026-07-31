@@ -1,0 +1,86 @@
+- type: guideEntry
+  id: SOP
+  name: guide-entry-corvax-sop
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/SOP.xml"
+  children:
+  - SOPService
+  - SOPResearch
+  - SOPCargo
+  - SOPMedical
+  - SOPEngineering
+  - SOPCommand
+  - SOPCentcomm
+  - SOPDSO
+  - SOPLegal
+  - SOPSecurity
+  - SOPGeneral
+
+# Отделы
+- type: guideEntry
+  id: SOPService
+  name: guide-entry-corvax-sop-service
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Service.xml"
+
+- type: guideEntry
+  id: SOPResearch
+  name: guide-entry-corvax-sop-research
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Research.xml"
+
+- type: guideEntry
+  id: SOPCargo
+  name: guide-entry-corvax-sop-cargo
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Cargo.xml"
+
+- type: guideEntry
+  id: SOPMedical
+  name: guide-entry-corvax-sop-medical
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Medical.xml"
+
+- type: guideEntry
+  id: SOPEngineering
+  name: guide-entry-corvax-sop-engineering
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Engineering.xml"
+
+- type: guideEntry
+  id: SOPSecurity
+  name: guide-entry-corvax-sop-security
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Security.xml"
+
+- type: guideEntry
+  id: SOPCommand
+  name: guide-entry-corvax-sop-command
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Command.xml"
+
+- type: guideEntry
+  id: SOPCentcomm
+  name: guide-entry-corvax-sop-centcomm
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Centcomm.xml"
+
+- type: guideEntry
+  id: SOPDSO
+  name: guide-entry-corvax-sop-dso
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/DSO.xml"
+
+- type: guideEntry
+  id: SOPLegal
+  name: guide-entry-corvax-sop-legal
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Legal.xml"
+
+# Общее
+- type: guideEntry
+  id: SOPGeneral
+  name: guide-entry-corvax-sop-general
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/General.xml"
+  children:
+  - SOPCodes
+  - SOPEmergencies
+
+- type: guideEntry
+  id: SOPCodes
+  name: guide-entry-corvax-sop-codes
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Codes.xml"
+
+- type: guideEntry
+  id: SOPEmergencies
+  name: guide-entry-corvax-sop-emergencies
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/SOP/Emergencies.xml"

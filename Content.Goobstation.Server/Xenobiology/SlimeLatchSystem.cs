@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 TheBorzoiMustConsume <197824988+TheBorzoiMustConsume@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Xenobiology;
@@ -104,22 +98,33 @@ public sealed partial class SlimeLatchSystem : EntitySystem
                 availabaleVolume += sol.AvailableVolume;
         }
 
+        // CorvaxGoob-fix-start
         if (TryComp<BloodstreamComponent>(ent, out var bloodstream)
-            && _solutionContainer.ResolveSolution(ent.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var blood)
-            && _solutionContainer.ResolveSolution(ent.Owner, bloodstream.ChemicalSolutionName, ref bloodstream.ChemicalSolution, out var chem))
+            && _solutionContainer.ResolveSolution(ent.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var blood))
         {
-            FixedPoint2 bloodProportion = blood.Volume/(chem.Volume + blood.Volume);
-            FixedPoint2 chemProportion = 1 - bloodProportion;
+            var totalVolume = blood.Volume;
+            if (totalVolume == FixedPoint2.Zero)
+                return;
+
+            var bloodVolume = FixedPoint2.Zero;
+            foreach (var (reagent, _) in bloodstream.BloodReferenceSolution.Contents)
+                bloodVolume += blood.GetTotalPrototypeQuantity(reagent.Prototype);
+
+            var chemVolume = totalVolume - bloodVolume;
+
+            FixedPoint2 bloodProportion = bloodVolume / totalVolume;
+            FixedPoint2 chemProportion = chemVolume / totalVolume;
             FixedPoint2 bloodTransfer = FixedPoint2.Min(ent.Comp.SuctionUnits * bloodProportion, availabaleVolume * bloodProportion);
             FixedPoint2 chemTransfer = FixedPoint2.Min(ent.Comp.SuctionUnits * chemProportion, availabaleVolume * chemProportion);
             foreach (var stomach in stomachList)
             {
-                var bloodSolution = blood.SplitSolutionWithout(bloodTransfer/FixedPoint2.New(stomachList.Count), ent.Comp.ToxinReagent); // we don't want slime sucking it's own toxin instad of drinking blood
-                _stomach.TryTransferSolution(stomach.Owner, bloodSolution, stomach); // blood first, other chemicals later
-                var chemSolution = blood.SplitSolution(chemTransfer/FixedPoint2.New(stomachList.Count));
+                var bloodSolution = blood.SplitSolutionWithout(bloodTransfer / FixedPoint2.New(stomachList.Count), ent.Comp.ToxinReagent);
+                _stomach.TryTransferSolution(stomach.Owner, bloodSolution, stomach);
+                var chemSolution = blood.SplitSolution(chemTransfer / FixedPoint2.New(stomachList.Count));
                 _stomach.TryTransferSolution(stomach.Owner, chemSolution, stomach);
             }
-            chem.AddReagent(ent.Comp.ToxinReagent, ent.Comp.ToxinUnits);
+            blood.AddReagent(ent.Comp.ToxinReagent, ent.Comp.ToxinUnits);
+            // CorvaxGoob-fix-end
         }
     }
 

@@ -13,15 +13,15 @@ using Content.Shared.Weapons.Misc;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
-using Content.Shared.Teleportation.Components;
+using Content.Goobstation.Common.BlockTeleport;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
+using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics.Joints;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
@@ -60,23 +60,28 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
 
         SubscribeAllEvent<RequestGrapplingHunterReelMessage>(OnGrapplingReel);
 
-        SubscribeLocalEvent<PhysicsComponent, StartCollideEvent>(OnPhysicsStartCollide);
+        SubscribeLocalEvent<HandsComponent, TeleportAttemptEvent>(OnHandsTeleport);
+        SubscribeLocalEvent<GrapplingHookHunterComponent, TeleportAttemptEvent>(OnHookTeleport);
+        SubscribeLocalEvent<GrapplingHookedHunterComponent, TeleportAttemptEvent>(OnHookedTeleport);
+
+        SubscribeLocalEvent<GrapplingGunHunterComponent, AfterAutoHandleStateEvent>(OnGunHandleState);
     }
 
-    private const string PortalFixtureId = "portalFixture";
+    private void OnHandsTeleport(Entity<HandsComponent> ent, ref TeleportAttemptEvent args)
+        => HandleEntityEnteredPortal(ent.Owner);
 
-    private void OnPhysicsStartCollide(EntityUid uid, PhysicsComponent component, ref StartCollideEvent args)
+    private void OnHookTeleport(Entity<GrapplingHookHunterComponent> ent, ref TeleportAttemptEvent args)
+        => HandleEntityEnteredPortal(ent.Owner);
+
+    private void OnHookedTeleport(Entity<GrapplingHookedHunterComponent> ent, ref TeleportAttemptEvent args)
+        => HandleEntityEnteredPortal(ent.Owner);
+
+    private void OnGunHandleState(Entity<GrapplingGunHunterComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (HasComp<PortalComponent>(uid))
-            return;
+        var component = ent.Comp;
 
-        if (!args.OtherEntity.Valid || !HasComp<PortalComponent>(args.OtherEntity))
-            return;
-
-        if (args.OtherFixtureId != PortalFixtureId)
-            return;
-
-        HandleEntityEnteredPortal(uid);
+        if (!component.Reeling && component.Stream != null)
+            component.Stream = _audio.Stop(component.Stream);
     }
 
     private void OnGunShot(Entity<GrapplingGunHunterComponent> entity, ref GunShotEvent args)
@@ -91,7 +96,6 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
             component.Projectile = shotUid.Value;
             component.HookedTarget = null;
             component.Reeling = false;
-            Dirty(uid, component);
 
             hook.Gun = uid;
             hook.Shooter = args.User;
@@ -101,15 +105,15 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
             var visuals = EnsureComp<JointVisualsComponent>(shotUid.Value);
             visuals.Sprite = component.RopeSprite;
             visuals.OffsetA = new Vector2(0f, 0.5f);
-            visuals.Target = GetNetEntity(uid);
+            visuals.Target = uid;
             Dirty(shotUid.Value, visuals);
         }
 
         component.Stream = _audio.Stop(component.Stream);
-        if (TryComp<AppearanceComponent>(uid, out var appearance))
-            _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false, appearance);
-        else
-            _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false);
+
+        TryComp<AppearanceComponent>(uid, out var appearance);
+        _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false, appearance);
+
         Dirty(uid, component);
     }
 
@@ -400,11 +404,6 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var component))
         {
-            if (!component.Reeling && Timing.IsFirstTimePredicted && component.Stream != null)
-            {
-                component.Stream = _audio.Stop(component.Stream);
-            }
-
             if (component.Projectile == null)
             {
                 if (component.Reeling)
@@ -533,9 +532,6 @@ public abstract class SharedGrapplingGunHunterSystem : EntitySystem
         if (restoreAmmo && hadProjectile)
         {
             _gun.ChangeBasicEntityAmmoCount(uid, 1);
-
-            var updateAmmoEvent = new UpdateClientAmmoEvent();
-            RaiseLocalEvent(uid, ref updateAmmoEvent);
         }
     }
 

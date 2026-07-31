@@ -1,14 +1,3 @@
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
@@ -451,7 +440,7 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         if (!Resolve(ent, ref ent.Comp))
             return Loc.GetString("nav-beacon-pos-no-beacons");
 
-        return GetNearestBeaconString(_transformSystem.GetMapCoordinates(ent, ent.Comp), onlyName); //CorvaxGoob-SecApartment
+        return GetNearestBeaconString(_transformSystem.GetMapCoordinates(ent, ent.Comp), onlyName);
     }
 
     /// <summary>
@@ -466,10 +455,8 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         if (!TryGetNearestBeacon(coordinates, out var beacon, out var pos))
             return Loc.GetString("nav-beacon-pos-no-beacons");
 
-        //CorvaxGoob-SecApartment-Start
         if (onlyName)
             return beacon.Value.Comp.Text!;
-        ////CorvaxGoob-SecApartment-End
 
         var gridOffset = Angle.Zero;
         if (_mapManager.TryFindGridAt(pos.Value, out var grid, out _))

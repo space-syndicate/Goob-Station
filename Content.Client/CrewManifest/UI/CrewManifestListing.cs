@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Phill101 <28949487+Phill101@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Phill101 <holypics4@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.CrewManifest;
@@ -22,27 +17,84 @@ public sealed class CrewManifestListing : BoxContainer
     [Dependency] private readonly IClipboardManager _clipboard = default!;
     private readonly SpriteSystem _spriteSystem;
 
+    // CorvaxGoob Start - crew-manifest-search
+    private CrewManifestEntries? _entries;
+    private LineEdit? _searchBar;
+
+    public LineEdit? SearchBar
+    {
+        get => _searchBar;
+        set
+        {
+            if (_searchBar != null)
+                _searchBar.OnTextChanged -= OnSearchChanged;
+
+            _searchBar = value;
+
+            if (_searchBar != null)
+                _searchBar.OnTextChanged += OnSearchChanged;
+        }
+    }
+    // CorvaxGoob End
+
     public CrewManifestListing()
     {
         IoCManager.InjectDependencies(this);
         _spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
     }
 
+    // CorvaxGoob Edit Start - crew-manifest-search
     public void AddCrewManifestEntries(CrewManifestEntries entries)
     {
-        var entryDict = new Dictionary<DepartmentPrototype, List<CrewManifestEntry>>();
+        _entries = entries;
+        Refresh();
+    }
 
-        foreach (var entry in entries.Entries)
+    private void OnSearchChanged(LineEdit.LineEditEventArgs args)
+    {
+        Refresh();
+    }
+
+    private void Refresh()
+    {
+        DisposeAllChildren();
+        RemoveAllChildren();
+
+        if (_entries == null)
+            return;
+
+        var filter = _searchBar?.Text.Trim();
+        var entryDict = new Dictionary<DepartmentPrototype, List<CrewManifestEntry>>();
+        var hasEntries = false;
+
+        foreach (var entry in _entries.Entries)
         {
+            if (!string.IsNullOrEmpty(filter) &&
+                !entry.Name.Contains(filter, StringComparison.OrdinalIgnoreCase) &&
+                !entry.JobTitle.Contains(filter, StringComparison.OrdinalIgnoreCase))
+                continue;
+
             foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
             {
                 // this is a little expensive, and could be better
                 if (department.Roles.Contains(entry.JobPrototype))
                 {
                     entryDict.GetOrNew(department).Add(entry);
+                    hasEntries = true;
                 }
             }
         }
+
+        if (!hasEntries && !string.IsNullOrEmpty(filter))
+        {
+            AddChild(new Label
+            {
+                Text = Loc.GetString("crew-manifest-no-matches"),
+                HorizontalExpand = true
+            });
+            return;
+        }
+    // CorvaxGoob End
 
         var entryList = new List<(DepartmentPrototype section, List<CrewManifestEntry> entries)>();
 

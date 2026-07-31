@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 Rank #1 Jonestown partygoer <mary@thughunt.ing>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -17,6 +11,7 @@
     rules: ghost-role-information-silicon-rules
     mindRoles:
     - MindRoleGhostRoleSilicon
+    - MindRoleGhostRoleSoloAntagonistBorgGoob
     raffle:
       settings: default
   - type: Sprite
@@ -38,6 +33,7 @@
     rules: ghost-role-information-antagonist-rules
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSoloAntagonistPassengerGoob
     raffle:
       settings: default
   - type: Sprite
@@ -59,6 +55,7 @@
     rules: ghost-role-information-antagonist-rules
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSoloAntagonistClownGoob
     raffle:
       settings: default
   - type: Sprite
@@ -82,7 +79,7 @@
     - AdvancedBuilding
     - ShuttleControl
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentEngineeringGoob
     raffle:
       settings: default
   - type: Sprite
@@ -105,7 +102,7 @@
     skills: # CorvaxGoob-Skills
     - Shooting
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleFreeAgentSecurityGoob
     raffle:
       settings: default
   - type: Sprite
@@ -129,7 +126,8 @@
     skills: # CorvaxGoob-Skills
       - All
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSoloAntagonistGoob
+    - MindRoleGhostRoleSoloAntagonistMimeGoob
     raffle:
       settings: default
   - type: Sprite
@@ -151,6 +149,7 @@
     rules: ghost-role-information-nonantagonist-rules
     mindRoles:
     - MindRoleGhostRoleNeutral
+    - MindRoleGhostRoleFreeAgentSecurityGoob
     raffle:
       settings: default
   - type: Sprite
@@ -172,6 +171,7 @@
     rules: ghost-role-information-freeagent-rules
     mindRoles:
     - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentSecurityGoob
     raffle:
       settings: default
   - type: Sprite
@@ -195,6 +195,7 @@
     - All
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleFreeAgentSecurityGoob # todo marty
     raffle:
       settings: default
   - type: Sprite

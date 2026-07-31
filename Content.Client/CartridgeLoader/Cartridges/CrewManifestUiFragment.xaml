@@ -1,8 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2023 Phill101 <28949487+Phill101@users.noreply.github.com>
-SPDX-FileCopyrightText: 2023 Phill101 <holypics4@gmail.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: MIT
 -->
 
@@ -17,6 +13,12 @@ SPDX-License-Identifier: MIT
                 <Label Name="StationName" Align="Center" Text="{Loc 'crew-manifest-cartridge-loading'}"/>
             </PanelContainer>
         </controls:StripeBack>
+        <!-- CorvaxGoob Start - crew-manifest-search -->
+        <LineEdit Name="SearchBar"
+                  PlaceHolder="{Loc 'crew-manifest-search-placeholder'}"
+                  HorizontalExpand="True"
+                  Margin="3 3 3 2" />
+        <!-- CorvaxGoob End -->
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
             <ui:CrewManifestListing
                 Name="CrewManifestListing"

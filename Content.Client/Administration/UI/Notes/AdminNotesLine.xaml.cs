@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Riggle <27156122+RigglePrime@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using System.Text;
@@ -91,7 +84,11 @@ public sealed partial class AdminNotesLine : BoxContainer
 
         if (Note.UnbannedTime is not null)
         {
-            ExtraLabel.Text = Loc.GetString("admin-notes-unbanned", ("admin", Note.UnbannedByName ?? "[error]"), ("date", Note.UnbannedTime));
+            ExtraLabel.Text = Loc.GetString(
+                "admin-notes-unbanned",
+                ("admin", Note.UnbannedByName ?? "[error]"),
+                ("date", Note.UnbannedTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss"))
+            );
             ExtraLabel.Visible = true;
         }
         else if (Note.ExpiryTime is not null)

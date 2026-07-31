@@ -288,13 +288,13 @@
     <ColorBox Color="#56000C">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
       215
-        [textlink="Причинение смерти" link="CLChapter21"]
+        [textlink="Причинение особо тяжкого вреда здоровью" link="CLChapter21"]
       </Box>
     </ColorBox>
     <ColorBox Color="#121212">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
       216
-        [textlink="Уничтожение тела" link="CLChapter21"]
+        [textlink="Особо тяжкое убийство" link="CLChapter21"]
       </Box>
     </ColorBox>
     <ColorBox>
@@ -373,13 +373,11 @@
     <ColorBox Color="#56000C">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
       315
-        [textlink="Разбой" link="CLChapter31"]
+        [textlink="Хищение особо ценного имущества" link="CLChapter32"]
       </Box>
     </ColorBox>
     <ColorBox Color="#121212">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-      316
-        [textlink="Хищение особо ценного имущества" link="CLChapter31"]
       </Box>
     </ColorBox>
     <ColorBox>
@@ -421,7 +419,7 @@
     </ColorBox>
     <ColorBox Color="#121212">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-      326
+        326
         [textlink="Уничтожение особо ценного имущества" link="CLChapter32"]
       </Box>
     </ColorBox>
@@ -496,20 +494,16 @@
     </ColorBox>
     <ColorBox Color="#611300">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-        424
-        [textlink="Проникновение в защищенную стратегическую точку" link="CLChapter42"]
       </Box>
     </ColorBox>
     <ColorBox Color="#56000C">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
       425
-        [textlink="Незаконная эвакуация с территории комплекса" link="CLChapter42"]
+        [textlink="Проникновение на закрытую корпоративную территорию" link="CLChapter42"]
       </Box>
     </ColorBox>
     <ColorBox Color="#121212">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
-      426
-        [textlink="Проникновение на территорию объекта NanoTrasen" link="CLChapter42"]
       </Box>
     </ColorBox>
     <ColorBox>
@@ -524,37 +518,37 @@
     <ColorBox Color="#0F4F27">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
         431
-        [textlink="Злоупотребление экипировкой, лекарствами" link="CLChapter43"]
+        [textlink="Злоупотребление экипировкой" link="CLChapter43"]
       </Box>
     </ColorBox>
     <ColorBox Color="#414700">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
         432
-        [textlink="Незаконное владение опасным инструментом" link="CLChapter43"]
+        [textlink="Незаконное владение опасными предметами" link="CLChapter43"]
       </Box>
     </ColorBox>
     <ColorBox Color="#5F3800">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
         433
-        [textlink="Незаконное владение регулируемым снаряжением" link="CLChapter43"]
+        [textlink="Нарушение порядка владения регулируемыми предметами" link="CLChapter43"]
       </Box>
     </ColorBox>
     <ColorBox Color="#611300">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
         434
-        [textlink="Незаконное владение регулируемыми веществами" link="CLChapter43"]
+        [textlink="Незаконное владение предметами ограниченного оборота" link="CLChapter43"]
       </Box>
     </ColorBox>
     <ColorBox Color="#56000C">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
       435
-        [textlink="Незаконное владение оружием" link="CLChapter43"]
+        [textlink="Незаконное владение контрабандными предметами" link="CLChapter43"]
       </Box>
     </ColorBox>
     <ColorBox Color="#121212">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2">
       436
-        [textlink="Незаконное владение вражеским снаряжением" link="CLChapter43"]
+        [textlink="Незаконное владение террористическими средствами" link="CLChapter43"]
       </Box>
     </ColorBox>
   </Table>

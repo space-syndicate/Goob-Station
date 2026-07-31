@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -40,6 +33,7 @@ using Robust.Shared.Utility;
 using System.Diagnostics.Contracts;
 using System.Diagnostics.CodeAnalysis;
 using Content.Goobstation.Shared.Changeling.Components;
+using Content.Goobstation.Shared.Slasher.Components;
 
 namespace Content.Goobstation.Server.Devil.Contract;
 
@@ -249,7 +243,8 @@ public sealed partial class DevilContractSystem : EntitySystem
             || HasComp<SiliconComponent>(user)
             || HasComp<DroneComponent>(user)
             || HasComp<ChangelingComponent>(user)
-            || HasComp<BorgChassisComponent>(user))
+            || HasComp<BorgChassisComponent>(user)
+            || HasComp<SoullessComponent>(user))
         {
             failReason = Loc.GetString("devil-contract-no-soul-sign-failed");
             return false;
@@ -278,6 +273,7 @@ public sealed partial class DevilContractSystem : EntitySystem
 
         // Can't sell what doesn't exist.
         if (HasComp<CondemnedComponent>(contractee)
+            || HasComp<SoullessComponent>(contractee)
             || devil == contractee)
             return false;
 
