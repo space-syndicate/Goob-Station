@@ -312,3 +312,6 @@ Resources/MapImages
 
 # imperial
 error.glsl
+
+# Локальные рабочие деревья Git
+/.worktrees/
