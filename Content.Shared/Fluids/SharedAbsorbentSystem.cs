@@ -355,7 +355,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null, Angle.Zero, false);
 
-        // RaiseLocalEvent(target, new FootprintCleanEvent()); // Corvax-Next-Footprints
+        // RaiseLocalEvent(target, new FootprintCleanEvent()); // CorvaxGoob-Footprints
 
         return true;
     }

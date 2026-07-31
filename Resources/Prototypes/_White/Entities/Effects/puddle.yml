@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
+# CorvaxGoob-Footprint-Refactoring
 
 # Мёртвая сущность-след старой системы. Следы переведены на декали (см. CorvaxFootprintSystem),
 # компонент FootprintComponent закомментирован, поэтому прототип отключён целиком.

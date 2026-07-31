@@ -1,5 +1,5 @@
 // // SPDX-License-Identifier: AGPL-3.0-or-later
-
+// CorvaxGoob-Footprint-Refactoring
 // using Robust.Shared.Serialization;
 
 namespace Content.Goobstation.Common.Footprints;

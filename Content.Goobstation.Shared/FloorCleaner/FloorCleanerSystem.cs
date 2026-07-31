@@ -53,7 +53,31 @@ public sealed class FloorCleanerSystem : EntitySystem
         if (foundDecals.Count == 0)
             return;
 
+        if (!HasEnoughCleaningReagent(floorCleaner, args.User))
+        {
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = TryStartCleaning(floorCleaner, args.User, foundDecals);
+    }
+
+    private bool HasEnoughCleaningReagent(Entity<FloorCleanerComponent> floorCleaner, EntityUid user)
+    {
+        if (!TryComp<AbsorbentComponent>(floorCleaner, out var absorb))
+            return true;
+
+        if (!_solutionContainer.TryGetSolution(floorCleaner.Owner, absorb.SolutionName, out _, out var solution))
+            return true;
+
+        var reagents = _puddle.GetAbsorbentReagents(solution);
+        var available = solution.GetTotalPrototypeQuantity(reagents);
+
+        if (available >= FixedPoint2.New(floorCleaner.Comp.ReagentPerDecal))
+            return true;
+
+        _popup.PopupClient(Loc.GetString("cleaning-tool-no-reagent", ("used", floorCleaner.Owner)), user, user);
+        return false;
     }
 
     private bool TryStartCleaning(

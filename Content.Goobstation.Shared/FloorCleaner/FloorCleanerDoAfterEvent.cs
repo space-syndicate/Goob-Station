@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Goobstation.Shared.FloorCleaner;
 
-// Corvax-Edit очистка сущностей удалена, т.к. следы переделаны в decals
+// CorvaxGoob-Footprint-Refactoring очистка сущностей удалена, т.к. следы переделаны в decals
 [Serializable, NetSerializable]
 public sealed partial class FloorCleanerDoAfterEvent : DoAfterEvent
 {
