@@ -32,3 +32,7 @@ can_operate_on_self = false
 
 [ragequit]
 notify = false
+
+[chat]
+rate_limit_period = 1
+rate_limit_count = 1
