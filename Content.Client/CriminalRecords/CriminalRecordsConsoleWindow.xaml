@@ -2,10 +2,14 @@
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+<!-- CorvaxGoob-SecurityFeatures -->
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"  
+                      xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                      xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       Title="{Loc 'criminal-records-console-window-title'}"
-                      MinSize="695 440">
+                      MinSize="695 550">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Name="AllList"
                       Orientation="Vertical"
@@ -16,8 +20,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <BoxContainer Margin="5 5 5 10"
                           HorizontalExpand="true"
                           VerticalAlignment="Center">
+                <!-- CorvaxGoob-SecurityFeatures : MinWidth -->
                 <OptionButton Name="FilterType"
-                              MinWidth="250"
+                              MinWidth="200" 
                               Margin="0 0 10 0" />
                 <!-- Populated in constructor -->
                 <LineEdit Name="FilterText"
@@ -27,10 +32,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <BoxContainer Orientation="Horizontal"
                           VerticalExpand="True">
                 <!-- Record listing -->
+                <!-- CorvaxGoob-SecurityFeatures : изменён размер-->
                 <BoxContainer Orientation="Vertical"
                               Margin="10 10"
-                              MinWidth="250"
-                              MaxWidth="250">
+                              MinWidth="200"
+                              MaxWidth="200">
                     <Label Name="RecordListingTitle"
                            Text="{Loc 'criminal-records-console-records-list-title'}"
                            HorizontalExpand="True"
@@ -40,10 +46,32 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                            HorizontalExpand="True"
                            Align="Center"
                            FontColorOverride="DarkGray" />
-                    <ScrollContainer VerticalExpand="True">
+                    <!-- CorvaxGoob-SecurityFeatures : Margin-->
+                    <ScrollContainer VerticalExpand="True" Margin="0 0 0 10">
                         <ItemList Name="RecordListing" />
                         <!-- Populated when loading state -->
                     </ScrollContainer>
+                    <!-- CorvaxGoob-SecurityFeatures : Превью-->
+                    <PanelContainer SetSize="200 200" MaxSize="200 200">
+                        <SpriteView Name="SpriteView" Access="Public"
+                                Margin="10 0 0 45"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                OverrideDirection="South"
+                                Scale="5 5">
+                        </SpriteView>
+                        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Bottom">
+                            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
+                                <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" Visible="False"/>
+                                <cc:VSeparator Name="SpriteRotateSeparator" Margin="2 0 2 0" Visible="False"/>
+                                <Button Name="SpriteRotateRight" Text="▶" StyleClasses="OpenLeft" Visible="False"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1A1A1A" />
+                        </PanelContainer.PanelOverride>
+                        <Label Name="NoRecordSelectedLabel" Text="{Loc 'criminal-records-console-select-record-info'}" Align="Center"/>
+                    </PanelContainer>
                 </BoxContainer>
                 <Label Name="RecordUnselected"
                        Text="{Loc 'criminal-records-console-select-record-info'}"
@@ -88,6 +116,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                FontColorOverride="DarkGray" />
                         <Label Name="PersonDna" />
                     </BoxContainer>
+                    <!-- CorvaxGoob-SecurityFeatures -->
+                    <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+                        <Label Text="{Loc 'general-station-record-species-filter'}"
+                               FontColorOverride="DarkGray" />
+                        <Label Text=":"
+                               Margin="0 0 6 0"
+                               FontColorOverride="DarkGray" />
+                        <Label Name="PersonSpecies" />
+                    </BoxContainer>
                     <PanelContainer StyleClasses="LowDivider"
                                     Margin="0 5 0 5" />
                     <BoxContainer Orientation="Horizontal"
@@ -108,6 +145,21 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <RichTextLabel Name="WantedReason"
                                    Visible="False"
                                    MaxWidth="425" />
+                    <!-- CorvaxGoob-SecurityFeatures-Start -->
+                    <RichTextLabel Name="Initiator"
+                                   Visible="False"
+                                   MaxWidth="425"/>
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Top" MaxHeight="250">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#1B1B1E"/>
+                        </PanelContainer.PanelOverride>
+                            <controls:TableContainer Name="EntriesContainer" Columns="3" HorizontalExpand="True" VerticalExpand="True" Margin="5 0">
+                                <RichTextLabel Text="Время" HorizontalAlignment="Center"/>
+                                <RichTextLabel Text="Преступление" HorizontalAlignment="Center"/>
+                                <RichTextLabel Text="Инициатор" HorizontalAlignment="Center"/>
+                            </controls:TableContainer>
+                    </PanelContainer>
+                    <!-- CorvaxGoob-SecurityFeatures-End -->
                     <Button Name="HistoryButton"
                             Text="{Loc 'criminal-records-console-crime-history'}"
                             Margin="0 5" />
@@ -115,9 +167,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </BoxContainer>
             <BoxContainer Orientation="Horizontal"
                           Margin="0 0 0 5">
+                <!-- CorvaxGoob-SecurityFeatures : MinWidth -->
                 <OptionButton
                     Name="CrewListFilter"
-                    MinWidth="250"
+                    MinWidth="200"
                     Margin="10 0 10 0" />
             </BoxContainer>
         </BoxContainer>
