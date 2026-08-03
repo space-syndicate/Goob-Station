@@ -6,7 +6,7 @@ public enum SplitDamageBehavior
 {
     None,
     Split,
-    // SplitExplosion,
+    // SplitExplosion, // CorvaxGoob edit
     SplitEnsureAllOrganic,
     SplitEnsureAllDamaged,
     SplitEnsureAllDamagedAndOrganic,
