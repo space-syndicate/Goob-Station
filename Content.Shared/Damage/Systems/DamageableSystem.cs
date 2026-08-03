@@ -646,6 +646,14 @@ namespace Content.Shared.Damage
                     return newDamage;
                 case SplitDamageBehavior.Split:
                     return newDamage / parts.Count;
+                // CorvaxGoob edit start
+                //case SplitDamageBehavior.SplitExplosion:
+                //    var vitalParts = parts.Where(part =>
+                //    TryComp<ConsciousnessRequiredComponent>(part.Id, out var consciousness)
+                //    && consciousness.CausesDeath == true).ToList();
+                //
+                //    return newDamage / vitalParts.Count;
+                // CorvaxGoob edit end
                 case SplitDamageBehavior.SplitEnsureAllDamaged:
                     var damagedParts = parts.Where(part =>
                         part.Damageable.TotalDamage > FixedPoint2.Zero).ToList();
