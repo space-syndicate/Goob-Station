@@ -12,7 +12,7 @@ namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class HeadsetSystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     private static readonly SoundSpecifier DefaultRadioReceiveSound =
         new SoundPathSpecifier("/Audio/_CorvaxGoob/Radio/basic.ogg");
@@ -113,14 +113,8 @@ public sealed partial class HeadsetSystem
 
     private void UpdateUserInterface(EntityUid uid, HeadsetComponent? component = null, EncryptionKeyHolderComponent? keyHolder = null)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref component, ref keyHolder))
             return;
-
-        if (!TryComp(uid, out keyHolder))
-        {
-            _ui.SetUiState(uid, HeadsetUiKey.Key, new HeadsetBoundUserInterfaceState(new List<HeadsetChannelState>(0)));
-            return;
-        }
 
         SanitizeChannelSettings(uid, component, keyHolder);
 

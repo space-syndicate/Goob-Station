@@ -17,7 +17,7 @@ public sealed partial class HeadsetMenu : FancyWindow
 {
     private const float CheckColumnWidth = 72f;
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public event Action<ProtoId<RadioChannelPrototype>, bool>? OnChannelToggled;
     public event Action<ProtoId<RadioChannelPrototype>, bool>? OnSoundToggled;

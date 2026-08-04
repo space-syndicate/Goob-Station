@@ -27,17 +27,17 @@ public abstract partial class SharedHeadsetSystem : EntitySystem // CorvaxGoob E
             return;
         }
 
-        // CorvaxGoob Edit Start - radio-channel-sounds
         if (TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
         {
+            // CorvaxGoob Edit Start - radio-channel-sounds
             if (keyHolder.DefaultChannel is { } channel)
             {
                 var channelId = new ProtoId<RadioChannelPrototype>(channel);
                 if (IsDefaultChannelEnabled(component, channelId))
                     args.Args.Channel ??= channel;
             }
+            // CorvaxGoob End
         }
-        // CorvaxGoob End
     }
 
     protected virtual void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)

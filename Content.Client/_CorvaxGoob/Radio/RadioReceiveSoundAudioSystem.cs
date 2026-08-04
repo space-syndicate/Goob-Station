@@ -18,10 +18,10 @@ public sealed class RadioReceiveSoundAudioSystem : EntitySystem
     // Keep repeated radio receive sounds varied without needing sound collections.
     private const float SoundParameterVariation = 0.3f;
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private float _volume = 1f;
     private float _cooldown = 1f;
