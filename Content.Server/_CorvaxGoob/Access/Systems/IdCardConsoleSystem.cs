@@ -47,7 +47,7 @@ public sealed partial class IdCardConsoleSystem
         "Head of Personnel",
     ];
 
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     /// <summary>
     /// Registers the isolated extended-access message handler for the ID console.
