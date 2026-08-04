@@ -421,12 +421,14 @@
     - prefRoles: [ Thief ]
       max: 10
       playerRatio: 7
+      skills: # CorvaxGoob-Skills
+      - All
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
       components:
-      - type: Pacified
+      #- type: Pacified # CorvaxGoob
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true

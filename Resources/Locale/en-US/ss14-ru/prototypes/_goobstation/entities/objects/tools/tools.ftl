@@ -19,3 +19,6 @@ ent-RPDRecharging = experimental RPD
 ent-RCDRechargingCE = experimental RCD
     .desc = Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
     .suffix = AutoRecharge
+ent-BorgSprayPainterRecharging = experimental spray painter
+    .desc = A spray painter that passively generates its own paint cartridges.
+    .suffix = AutoRecharge
