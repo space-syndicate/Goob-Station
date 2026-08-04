@@ -39,7 +39,7 @@ public sealed partial class PaperWindow
     private Label? _manifestOptionLabel;
     private bool _insertHelperExpanded;
 
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     /// <summary>
     /// Builds the insert helper outside the paper layout.
