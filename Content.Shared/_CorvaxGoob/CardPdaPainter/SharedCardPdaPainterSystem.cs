@@ -6,7 +6,7 @@ namespace Content.Shared._CorvaxGoob.CardPdaPainter;
 
 public abstract class SharedCardPdaPainterSystem : EntitySystem
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
 
     public override void Initialize()
     {

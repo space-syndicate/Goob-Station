@@ -9,7 +9,7 @@ namespace Content.Client._CorvaxGoob.CardPdaPainter;
 
 public sealed class CardPdaVisualOverrideSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

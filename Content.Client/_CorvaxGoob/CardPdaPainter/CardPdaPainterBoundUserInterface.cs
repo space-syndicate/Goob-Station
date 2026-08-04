@@ -12,7 +12,7 @@ namespace Content.Client._CorvaxGoob.CardPdaPainter;
 [UsedImplicitly]
 public sealed class CardPdaPainterBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private CardPdaPainterWindow? _window;
 
