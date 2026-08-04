@@ -10,7 +10,7 @@ namespace Content.Client._CorvaxGoob.Radio.UI;
 /// <summary>
 /// Client bridge for the per-headset radio channel settings menu.
 /// </summary>
-public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private HeadsetMenu? _window;
 

@@ -13,7 +13,7 @@ namespace Content.Client._CorvaxGoob.Radio;
 /// <summary>
 /// Plays local receive sounds for headset radio messages.
 /// </summary>
-public sealed class RadioReceiveSoundAudioSystem : EntitySystem
+public sealed partial class RadioReceiveSoundAudioSystem : EntitySystem
 {
     // Keep repeated radio receive sounds varied without needing sound collections.
     private const float SoundParameterVariation = 0.3f;
