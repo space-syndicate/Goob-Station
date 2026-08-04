@@ -19,8 +19,8 @@ namespace Content.Server.VendingMachines
 {
     public sealed partial class VendingMachineSystem
     {
-        [Dependency] private readonly SharedContainerSystem _container = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!;
+        [Dependency] private SharedContainerSystem _container = default!;
+        [Dependency] private SharedHandsSystem _hands = default!;
 
         private void InitializeVendingReturn()
         {
