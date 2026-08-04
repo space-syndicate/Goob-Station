@@ -20,7 +20,7 @@ namespace Content.Server.Paper;
 /// The client only asks for "my current paper helper data"; this system performs all authority
 /// checks server-side and sends a private response back to the actor that owns the BUI session.
 /// </summary>
-public sealed class PaperInsertDataSystem : EntitySystem
+public sealed partial class PaperInsertDataSystem : EntitySystem
 {
     private const string IdSlot = "id";
 
@@ -28,15 +28,15 @@ public sealed class PaperInsertDataSystem : EntitySystem
     private const int MaxInsertTextLength = 256;
     private const int MaxManifestEntries = 256;
 
-    [Dependency] private readonly CrewManifestSystem _crewManifest = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly JobSystem _jobs = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private CrewManifestSystem _crewManifest = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private  SharedHandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private JobSystem _jobs = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
