@@ -55,89 +55,89 @@ public sealed partial class HeadsetSystem
         }, recipient);
     }
 
-    private void OnUiOpened(EntityUid uid, HeadsetComponent component, BoundUIOpenedEvent args)
+    private void OnUiOpened(Entity<HeadsetComponent> ent, ref BoundUIOpenedEvent args)
     {
-        UpdateUserInterface(uid, component);
+        UpdateUserInterface(ent);
     }
 
-    private void OnToggleHeadsetChannel(EntityUid uid, HeadsetComponent component, ref ToggleHeadsetChannelMessage args)
+    private void OnToggleHeadsetChannel(Entity<HeadsetComponent> ent, ref ToggleHeadsetChannelMessage args)
     {
-        if (!TryComp(uid, out EncryptionKeyHolderComponent? keyHolder) ||
+        if (!TryComp(ent.Owner, out EncryptionKeyHolderComponent? keyHolder) ||
             !keyHolder.Channels.Contains(args.Channel))
             return;
 
         var changed = args.Enabled
-            ? component.DisabledChannels.Remove(args.Channel)
-            : component.DisabledChannels.Add(args.Channel);
+            ? ent.Comp.DisabledChannels.Remove(args.Channel)
+            : ent.Comp.DisabledChannels.Add(args.Channel);
 
         if (!changed)
             return;
 
-        Dirty(uid, component);
-        UpdateRadioChannels(uid, component, keyHolder);
-        UpdateUserInterface(uid, component, keyHolder);
+        Dirty(ent);
+        UpdateRadioChannels(ent.Owner, ent.Comp, keyHolder);
+        UpdateUserInterface(ent, keyHolder);
     }
 
-    private void OnToggleHeadsetChannelSound(EntityUid uid, HeadsetComponent component, ref ToggleHeadsetChannelSoundMessage args)
+    private void OnToggleHeadsetChannelSound(Entity<HeadsetComponent> ent, ref ToggleHeadsetChannelSoundMessage args)
     {
-        if (!TryComp(uid, out EncryptionKeyHolderComponent? keyHolder) ||
+        if (!TryComp(ent.Owner, out EncryptionKeyHolderComponent? keyHolder) ||
             !keyHolder.Channels.Contains(args.Channel))
             return;
 
         var changed = args.Enabled
-            ? component.MutedReceiveSoundChannels.Remove(args.Channel)
-            : component.MutedReceiveSoundChannels.Add(args.Channel);
+            ? ent.Comp.MutedReceiveSoundChannels.Remove(args.Channel)
+            : ent.Comp.MutedReceiveSoundChannels.Add(args.Channel);
 
         if (!changed)
             return;
 
-        Dirty(uid, component);
-        UpdateUserInterface(uid, component, keyHolder);
+        Dirty(ent);
+        UpdateUserInterface(ent, keyHolder);
     }
 
-    private void OnSetAllHeadsetChannelSounds(EntityUid uid, HeadsetComponent component, ref SetAllHeadsetChannelSoundsMessage args)
+    private void OnSetAllHeadsetChannelSounds(Entity<HeadsetComponent> ent, ref SetAllHeadsetChannelSoundsMessage args)
     {
-        if (!TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
+        if (!TryComp(ent.Owner, out EncryptionKeyHolderComponent? keyHolder))
             return;
 
         var changed = args.Enabled
-            ? component.MutedReceiveSoundChannels.RemoveWhere(channel => keyHolder.Channels.Contains(channel)) > 0
-            : AddChannels(component.MutedReceiveSoundChannels, keyHolder.Channels);
+            ? ent.Comp.MutedReceiveSoundChannels.RemoveWhere(channel => keyHolder.Channels.Contains(channel)) > 0
+            : AddChannels(ent.Comp.MutedReceiveSoundChannels, keyHolder.Channels);
 
         if (!changed)
             return;
 
-        Dirty(uid, component);
-        UpdateUserInterface(uid, component, keyHolder);
+        Dirty(ent);
+        UpdateUserInterface(ent, keyHolder);
     }
 
-    private void UpdateUserInterface(EntityUid uid, HeadsetComponent? component = null, EncryptionKeyHolderComponent? keyHolder = null)
+    private void UpdateUserInterface(Entity<HeadsetComponent> ent, EncryptionKeyHolderComponent? keyHolder = null)
     {
-        if (!Resolve(uid, ref component, ref keyHolder))
+        if (!Resolve(ent.Owner, ref keyHolder))
             return;
 
-        SanitizeChannelSettings(uid, component, keyHolder);
+        SanitizeChannelSettings(ent, keyHolder);
 
         var channels = new List<HeadsetChannelState>(keyHolder.Channels.Count);
         foreach (var channel in keyHolder.Channels)
         {
             channels.Add(new HeadsetChannelState(
                 channel,
-                IsChannelEnabled(component, channel),
-                !component.MutedReceiveSoundChannels.Contains(channel)));
+                IsChannelEnabled(ent.Comp, channel),
+                !ent.Comp.MutedReceiveSoundChannels.Contains(channel)));
         }
 
-        _ui.SetUiState(uid, HeadsetUiKey.Key, new HeadsetBoundUserInterfaceState(channels));
+        _ui.SetUiState(ent.Owner, HeadsetUiKey.Key, new HeadsetBoundUserInterfaceState(channels));
     }
 
-    private void SanitizeChannelSettings(EntityUid uid, HeadsetComponent component, EncryptionKeyHolderComponent keyHolder)
+    private void SanitizeChannelSettings(Entity<HeadsetComponent> ent, EncryptionKeyHolderComponent keyHolder)
     {
         var changed = false;
-        changed |= component.DisabledChannels.RemoveWhere(channel => !keyHolder.Channels.Contains(channel)) > 0;
-        changed |= component.MutedReceiveSoundChannels.RemoveWhere(channel => !keyHolder.Channels.Contains(channel)) > 0;
+        changed |= ent.Comp.DisabledChannels.RemoveWhere(channel => !keyHolder.Channels.Contains(channel)) > 0;
+        changed |= ent.Comp.MutedReceiveSoundChannels.RemoveWhere(channel => !keyHolder.Channels.Contains(channel)) > 0;
 
         if (changed)
-            Dirty(uid, component);
+            Dirty(ent);
     }
 
     private static bool AddChannels(

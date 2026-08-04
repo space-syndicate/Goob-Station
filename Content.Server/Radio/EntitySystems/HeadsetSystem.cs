@@ -35,9 +35,9 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem // CorvaxGoob Ed
 
     private void OnKeysChanged(EntityUid uid, HeadsetComponent component, EncryptionChannelsChangedEvent args)
     {
-        SanitizeChannelSettings(uid, component, args.Component); // CorvaxGoob - radio-channel-sounds
+        SanitizeChannelSettings((uid, component), args.Component); // CorvaxGoob - radio-channel-sounds
         UpdateRadioChannels(uid, component, args.Component);
-        UpdateUserInterface(uid, component, args.Component); // CorvaxGoob - radio-channel-sounds
+        UpdateUserInterface((uid, component), args.Component); // CorvaxGoob - radio-channel-sounds
     }
 
     private void UpdateRadioChannels(EntityUid uid, HeadsetComponent headset, EncryptionKeyHolderComponent? keyHolder = null)
