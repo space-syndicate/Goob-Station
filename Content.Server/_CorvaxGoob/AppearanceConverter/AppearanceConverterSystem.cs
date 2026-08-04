@@ -275,6 +275,9 @@ public sealed class AppearanceConverterSystem : EntitySystem
         if (transferProfile is null)
             return;
 
+        if (transferProfile.Value.DNA is null)
+            return;
+
         var (detail, visual) = SplitDetailAndVisualProfile(transferProfile.Value);
 
         converterEnt.Comp.ProfilesDetailData[transferProfile.Value.DNA] = detail;
@@ -301,7 +304,7 @@ public sealed class AppearanceConverterSystem : EntitySystem
     /// Комбинирует <see cref="AppearanceConverterDetailTransformProfile"/> и <see cref="AppearanceConverterVisualTransformProfile"/> для создания
     /// общего профиля <see cref="TransformProfile"/>.
     /// </summary>
-    private static TransformProfile MergeDetailAndVisualProfile(AppearanceConverterDetailTransformProfile detail, AppearanceConverterVisualTransformProfile visual)
+    public static TransformProfile MergeDetailAndVisualProfile(AppearanceConverterDetailTransformProfile detail, AppearanceConverterVisualTransformProfile visual)
     {
         var profile = new TransformProfile();
 
@@ -337,7 +340,7 @@ public sealed class AppearanceConverterSystem : EntitySystem
     /// Разделяет общий создаваемый профиль <see cref="TransformProfile"/> на два отдельных <see cref="AppearanceConverterDetailTransformProfile"/>
     /// и <see cref="AppearanceConverterVisualTransformProfile"/> для последующего распределения для сервера и клиента.
     /// </summary>
-    private static (AppearanceConverterDetailTransformProfile detail, AppearanceConverterVisualTransformProfile visual) SplitDetailAndVisualProfile(TransformProfile profile)
+    public static (AppearanceConverterDetailTransformProfile Detail, AppearanceConverterVisualTransformProfile Visual) SplitDetailAndVisualProfile(TransformProfile profile)
     {
         var detail = new AppearanceConverterDetailTransformProfile();
         var visual = new AppearanceConverterVisualTransformProfile();
@@ -477,13 +480,12 @@ public sealed class AppearanceConverterSystem : EntitySystem
     /// </summary>
     public TransformProfile? GenerateTransformProfile(EntityUid entityUid, HumanoidAppearanceComponent humanoidAppearance)
     {
-        if (!TryComp<DnaComponent>(entityUid, out var dna) || dna.DNA is null)
-            return null;
+        TryComp<DnaComponent>(entityUid, out var dna);
 
         var profile = new TransformProfile();
         var species = _prototype.Index<SpeciesPrototype>(humanoidAppearance.Species);
 
-        profile.DNA = dna.DNA;
+        profile.DNA = dna?.DNA;
 
         profile.Scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 

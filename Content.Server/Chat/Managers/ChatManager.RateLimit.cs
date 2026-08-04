@@ -16,10 +16,12 @@ internal sealed partial class ChatManager
         _rateLimitManager.Register(RateLimitKey,
             new RateLimitRegistration(CCVars.ChatRateLimitPeriod,
                 CCVars.ChatRateLimitCount,
-                RateLimitPlayerLimited,
-                CCVars.ChatRateLimitAnnounceAdminsDelay,
-                RateLimitAlertAdmins,
-                LogType.ChatRateLimited)
+                RateLimitPlayerLimited)
+                // CorvaxGoob-Start
+                // CCVars.ChatRateLimitAnnounceAdminsDelay
+                // RateLimitAlertAdmins,
+                // LogType.ChatRateLimited)
+                // CorvaxGoob-End
             );
     }
 

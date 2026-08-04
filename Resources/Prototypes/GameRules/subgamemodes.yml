@@ -22,6 +22,8 @@
       max: 3
       playerRatio: 15
       chaosScore: 100 # Goobstation
+      skills: # CorvaxGoob-Skills
+      - All
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -31,7 +33,7 @@
         components:
         - CommandStaff
       components:
-      - type: Pacified
+      #- type: Pacified # CorvaxGoob
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true
