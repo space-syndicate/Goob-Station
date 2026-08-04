@@ -341,7 +341,7 @@
   - type: GrabIntent
   - type: Grabbable
   - type: Carriable
-  - type: FootprintOwner # Corvax-Next-Footprints
+  - type: CorvaxFootprintOwner # CorvaxGoob-Footprint-Refactoring
   - type: CPRTraining # Goobstation - Just give to everyone! This ain't MRP.
   #- type: BloodstreamAffectedByMass # Goobstation: port EE height/width sliders. Also, lol at the comment above. # todo marty otherwise folk instadie
   #  power: 0.6
