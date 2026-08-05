@@ -79,6 +79,13 @@ namespace Content.Client.PDA
             _menu.OnUninstallButtonPressed += UninstallCartridge;
             _menu.ProgramCloseButton.OnPressed += _ => DeactivateActiveCartridge();
 
+            /*var borderColorComponent = GetBorderColorComponent();
+            if (borderColorComponent == null)
+                return;
+
+            _menu.BorderColor = borderColorComponent.BorderColor;
+            _menu.AccentHColor = borderColorComponent.AccentHColor;
+            _menu.AccentVColor = borderColorComponent.AccentVColor;*/
             ApplyBorderColors(); // CorvaxGoob Edit - ID-PDA painter
         }
 
