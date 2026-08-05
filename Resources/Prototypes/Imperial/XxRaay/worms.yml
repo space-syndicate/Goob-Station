@@ -91,10 +91,7 @@
       30: Critical
       60: Dead
 - type: entity
-  parent:
-  - MobWormBase
-  - MobAtmosStandard
-  - MobRespirator
+  parent: MobWormBase
   id: MobWormTier1
   suffix: XxRaay, Кровавый червь I
   name: Blood Worm
