@@ -53,7 +53,14 @@ namespace Content.Server.VendingMachines
                     continue;
                 }
 
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                //price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                // CorvaxGoob Edit Start - Vending Return
+                var amount = entry.Amount - GetStoredReturnedItemCount(component, entry.ID);
+                if (amount <= 0)
+                    continue;
+
+                price += amount * _pricing.GetEstimatedPrice(proto);
+                // CorvaxGoob End
             }
 
             args.Price += price;
@@ -191,10 +198,12 @@ namespace Content.Server.VendingMachines
                 spawnCoordinates = spawnCoordinates.Offset(offset);
             }
 
-            // Vend a stored returned entity first; spawn a new prototype only if none are available.
-            var ent = TryTakeReturnedItemForVend(vendComponent, vendComponent.NextItemToEject, spawnCoordinates, out var returned) // CorvaxGoob Edit - Vending Return
+            //var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+            // CorvaxGoob Edit Start - Vending Return
+            var ent = TryTakeReturnedItemForVend(vendComponent, vendComponent.NextItemToEject, spawnCoordinates, out var returned)
                 ? returned
                 : Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+            // CorvaxGoob End
 
             if (vendComponent.ThrowNextItem)
             {
