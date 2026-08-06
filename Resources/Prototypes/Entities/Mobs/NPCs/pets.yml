@@ -757,7 +757,7 @@
     stampedName: stamp-component-stamped-name-hamlet
     stampedColor: "#1c1c1c"
     stampState: "paper_stamp-hamster"
-    # Corvax stampLargeIcon: "large_stamp-hamster"
+    stampLargeIcon: "large_stamp-hamster"
 
 - type: entity
   parent: MobHamsterHamlet
