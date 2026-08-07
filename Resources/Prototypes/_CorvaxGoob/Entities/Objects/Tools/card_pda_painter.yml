@@ -38,3 +38,6 @@
     containers:
       CardPdaPainter-target: !type:ContainerSlot
   - type: CargoSellBlacklist
+  - type: Contraband
+    severity: Restricted
+    allowedDepartments: [ Command ]
