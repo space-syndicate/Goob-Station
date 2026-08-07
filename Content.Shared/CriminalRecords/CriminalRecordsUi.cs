@@ -91,6 +91,19 @@ public sealed class CriminalRecordChangeDetainedStatus : BoundUserInterfaceMessa
     }
 }
 
+// CorvaxGoob-SecurityFeatures
+[Serializable, NetSerializable]
+public sealed class CriminalRecordChangeWantedStatus : BoundUserInterfaceMessage
+{
+    public readonly string? Reason;
+    public readonly bool Print;
+    public CriminalRecordChangeWantedStatus(string? reason, bool print = false)
+    {
+        Reason = reason;
+        Print = print;
+    }
+}
+
 /// <summary>
 /// Used to add a single line to the record's crime history.
 /// </summary>

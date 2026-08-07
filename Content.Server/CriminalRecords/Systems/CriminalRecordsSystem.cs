@@ -112,9 +112,9 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
     /// <summary>
     /// Creates and tries to add a history entry using the current time.
     /// </summary>
-    public bool TryAddHistory(StationRecordKey key, string line, string? initiatorName = null, string? articles = null, int? duration = null) // CorvaxGoob-SecurityFeatures
+    public bool TryAddHistory(StationRecordKey key, string line, string? initiatorName = null, string? articles = null, int? duration = null, SecurityStatus? status = null) // CorvaxGoob-SecurityFeatures
     {
-        var entry = new CrimeHistory(_ticker.RoundDuration(), line, initiatorName, articles, duration); // CorvaxGoob-SecurityFeatures
+        var entry = new CrimeHistory(_ticker.RoundDuration(), line, initiatorName, articles, duration, status); // CorvaxGoob-SecurityFeatures
         return TryAddHistory(key, entry);
     }
 
