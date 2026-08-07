@@ -151,6 +151,15 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return;
 
+            // CorvaxGoob Edit Start - Vending Return
+            // Synchronize returned-item stock before random selection.
+            if (CleanupStaleReturnedInventory(vendComponent, updateInventory: true))
+            {
+                Dirty(uid, vendComponent);
+                UpdateUI((uid, vendComponent));
+            }
+            // CorvaxGoob End
+
             var availableItems = GetAvailableInventory(uid, vendComponent);
             if (availableItems.Count <= 0)
                 return;

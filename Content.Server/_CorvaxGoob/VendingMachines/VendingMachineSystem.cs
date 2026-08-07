@@ -180,6 +180,84 @@ namespace Content.Server.VendingMachines
         }
 
         /// <summary>
+        /// /// Removes stale returned-item entries for the requested prototype before vending checks availability.
+        /// </summary>
+        /// <returns>True if returned tracking or stock changed.</returns>
+        protected override bool CleanupReturnedInventoryBeforeVend(EntityUid uid, VendingMachineComponent component, string itemId)
+        {
+            return CleanupStaleReturnedItems(component, itemId, updateInventory: true);
+        }
+
+        /// <summary>
+        /// Removes stale returned-item entries from all tracked prototypes.
+        /// </summary>
+        /// <returns>True if returned tracking or stock changed.</returns>
+        private bool CleanupStaleReturnedInventory(VendingMachineComponent component, bool updateInventory)
+        {
+            if (component.ReturnedInventory is null)
+                return false;
+
+            if (component.ReturnedInventory.Count == 0)
+            {
+                component.ReturnedInventory = null;
+                return true;
+            }
+
+            var changed = false;
+
+            // Cleanup can remove entries from the dictionary, so iterate over a copy of the keys.
+            foreach (var itemId in new List<string>(component.ReturnedInventory.Keys))
+            {
+                changed |= CleanupStaleReturnedItems(component, itemId, updateInventory);
+            }
+
+            return changed;
+        }
+
+        /// <summary>
+        /// Removes invalid returned-item references for one prototype entry.
+        /// </summary>
+        /// <returns>True if returned tracking or stock changed.</returns>
+        private bool CleanupStaleReturnedItems(VendingMachineComponent component, string itemId, bool updateInventory)
+        {
+            if (component.ReturnedInventory is null ||
+                !component.ReturnedInventory.TryGetValue(itemId, out var returned))
+                return false;
+
+            var changed = false;
+            VendingMachineInventoryEntry? entry = null;
+
+            if (updateInventory)
+                TryGetReturnableEntry(component, itemId, out entry);
+
+            for (var index = returned.Count - 1; index >= 0; index--)
+            {
+                var item = returned[index];
+
+                if (!Deleted(item) && component.ReturnedInventoryContainer.Contains(item))
+                    continue;
+
+                returned.RemoveAt(index);
+                changed = true;
+
+                // Each removed reference was counted in Amount, so decrement the entry during stock sync.
+                if (entry != null && entry.Amount > 0)
+                    entry.Amount--;
+            }
+
+            if (returned.Count == 0)
+            {
+                component.ReturnedInventory.Remove(itemId);
+                changed = true;
+            }
+
+            if (component.ReturnedInventory.Count == 0)
+                component.ReturnedInventory = null;
+
+            return changed;
+        }
+
+        /// <summary>
         /// Drops stored returned items when the vending machine is destroyed.
         /// </summary>
         private void OnDestruction(EntityUid uid, VendingMachineComponent component, DestructionEventArgs args)
@@ -251,7 +329,7 @@ namespace Content.Server.VendingMachines
             var ejectedAny = TryEjectStoredReturnedItems(uid, component, updateInventory: true, out var changed);
             if (!ejectedAny)
             {
-                // Stale returned entries may be cleaned up without any real item being ejected.
+                // Cleanup may change tracking without ejecting an entity.
                 if (changed)
                 {
                     Dirty(uid, component);
@@ -283,12 +361,12 @@ namespace Content.Server.VendingMachines
             var coordinates = GetReturnedItemEjectCoordinates(uid);
             var returnedInventory = component.ReturnedInventory;
 
-            // Buckets are removed while iterating, so walk a snapshot of the prototype keys.
+            // Removal can delete entries from the dictionary, so iterate over a copy of the keys.
             foreach (var itemId in new List<string>(returnedInventory.Keys))
             {
                 while (true)
                 {
-                    var removedItem = TryRemoveStoredReturnedItem(component, itemId, coordinates, out _, out var itemChanged);
+                    var removedItem = TryRemoveStoredReturnedItem(component, itemId, coordinates, updateInventory, out _, out var itemChanged);
                     changed |= itemChanged;
 
                     if (!removedItem)
@@ -341,11 +419,12 @@ namespace Content.Server.VendingMachines
             VendingMachineComponent component,
             string itemId,
             EntityCoordinates destination,
+            bool updateInventory,
             out EntityUid item,
             out bool changed)
         {
             item = default;
-            changed = false;
+            changed = CleanupStaleReturnedItems(component, itemId, updateInventory);
 
             if (component.ReturnedInventory is null ||
                 !component.ReturnedInventory.TryGetValue(itemId, out var returned))
@@ -356,21 +435,6 @@ namespace Content.Server.VendingMachines
             {
                 item = returned[index];
 
-                if (Deleted(item))
-                {
-                    returned.RemoveAt(index);
-                    changed = true;
-                    continue;
-                }
-
-                // If the entity no longer lives in this machine's storage, the lookup entry is stale.
-                if (!component.ReturnedInventoryContainer.Contains(item))
-                {
-                    returned.RemoveAt(index);
-                    changed = true;
-                    continue;
-                }
-
                 // Keep the lookup entry if storage removal fails, otherwise a later fallback spawn could duplicate stock.
                 if (!_container.Remove(item, component.ReturnedInventoryContainer, destination: destination))
                     continue;
@@ -380,16 +444,14 @@ namespace Content.Server.VendingMachines
 
                 // No returned items of this type are left, so remove the entry from the lookup dictionary.
                 if (returned.Count == 0)
+                {
                     component.ReturnedInventory.Remove(itemId);
 
-                return true;
-            }
+                    if (component.ReturnedInventory.Count == 0)
+                        component.ReturnedInventory = null;
+                }
 
-            // All tracked entries were stale, so clear the empty bucket.
-            if (returned.Count == 0)
-            {
-                component.ReturnedInventory.Remove(itemId);
-                changed = true;
+                return true;
             }
 
             return false;
@@ -401,7 +463,7 @@ namespace Content.Server.VendingMachines
         /// <returns>True if vending should use the returned entity instead of spawning a new one.</returns>
         private bool TryTakeReturnedItemForVend(VendingMachineComponent component, string itemId, EntityCoordinates spawnCoordinates, out EntityUid item)
         {
-            return TryRemoveStoredReturnedItem(component, itemId, spawnCoordinates, out item, out _);
+            return TryRemoveStoredReturnedItem(component, itemId, spawnCoordinates, false, out item, out _);
         }
     }
 }
