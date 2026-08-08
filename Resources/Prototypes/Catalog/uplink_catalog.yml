@@ -148,7 +148,7 @@
   description: uplink-gloves-north-star-desc
   productEntity: ClothingHandsGlovesNorthStar
   cost:
-    Telecrystal: 40 # goob
+    Telecrystal: 30 # goob
   categories:
   - UplinkWeaponry
   #Goobstation
@@ -1222,17 +1222,17 @@
       blacklist:
         components:
           - SurplusBundle
-          
-- type: listing 
-  id: UplinkOmnimedToolSyndie # CorvaxGoob
-  name: uplink-omnimed-tool-syndie-name
-  description: uplink-omnimed-tool-syndie-desc
-  productEntity: OmnimedToolSyndie
-  cost:
-    Telecrystal: 35
-  icon: { sprite: /Textures/_Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi, state: evil }
-  categories:
-  - UplinkDisruption
+
+#- type: listing
+#  id: UplinkOmnimedToolSyndie # CorvaxGoob
+#  name: uplink-omnimed-tool-syndie-name
+#  description: uplink-omnimed-tool-syndie-desc
+#  productEntity: OmnimedToolSyndie
+#  cost:
+#    Telecrystal: 35
+#  icon: { sprite: /Textures/_Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi, state: evil }
+#  categories:
+#  - UplinkDisruption
 
 # Goob - Not buyable anymore in favor of the custom lawboard.
 #- type: listing
@@ -1421,10 +1421,10 @@
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateCyborgAssault
-  name:  uplink-reinforcement-radio-cyborg-assault-name
+  name:  uplink-reinforcement-radio-cyborg-assault-name-trauma # Trauma - added -trauma
   description: uplink-reinforcement-radio-cyborg-assault-desc
   productEntity: ReinforcementRadioSyndicateCyborgAssault
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
+  icon: { sprite: _Trauma/Mobs/Silicon/synd_assault.rsi, state: icon } # Trauma - was sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault
   cost:
     Telecrystal: 375 # goob
   categories:
