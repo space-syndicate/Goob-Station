@@ -180,7 +180,7 @@ public sealed partial class BlockingSystem : EntitySystem
             var physicsQuery = GetEntityQuery<PhysicsComponent>(); // Omu - Fix non-collidable entities such as pais or posibrains preventing blocking.
             foreach (var uid in intersecting)
             {
-                if (uid != user && mobQuery.HasComponent(uid) && Transform(uid).ParentUid == xform.ParentUid) // CorvaxGoob-Fixes
+                // if (uid != user && mobQuery.HasComponent(uid) && Transform(uid).ParentUid == xform.ParentUid) // CorvaxGoob-Fixes
                 if (uid != user && mobQuery.HasComponent(uid) && physicsQuery.TryGetComponent(uid, out var physicsComp) && physicsComp.CanCollide) // Omu - Fix non-collidable entities such as pais or posibrains preventing blocking.
                 {
                     TooCloseError(user);

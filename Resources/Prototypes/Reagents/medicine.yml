@@ -1076,7 +1076,7 @@
         - !type:HasComponentOnEquipmentCondition
           components:
           - type: PressureProtection
-          invert: true
+          inverted: true
       - !type:HealthChange
         ignoreResistances: false
         ignoreBlockers: false
@@ -1087,7 +1087,7 @@
         - !type:HasComponentOnEquipmentCondition
           components:
           - type: PressureProtection
-          invert: true
+          inverted: true
 # CorvaxGoob end
 
 - type: reagent
