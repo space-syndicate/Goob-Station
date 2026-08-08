@@ -1,0 +1,150 @@
+- type: entity
+  id: ImperialDarkForcesDarknessSpawner
+  parent: MarkerBase
+  name: darkness spawner
+  suffix: Phoenix, DarkForces
+  components:
+  - type: RandomSpawner
+    chance: 0.25
+    offset: 0.01
+    prototypes:
+    - CrystalBlack
+    rareChance: 0.01
+    rarePrototypes:
+    - ImperialDarkForcesDarkRiftOneWisp
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - color: "#000000dd"
+      map: [base]
+      state: darkness
+    sprite: Imperial/PHOENIX/DarkForces/darkness.rsi
+
+- type: entity
+  id: ImperialDarkForcesDarknessBase
+  parent: BaseShadow
+  abstract: true
+  name: darkness
+  components:
+  - type: AmbientSound
+    range: 8
+    sound:
+      path: /Audio/Imperial/PHOENIX/DarkForces/darkness.ogg
+    volume: -10
+  - type: Occluder
+  - type: OptionsVisualizer
+    visuals:
+      base:
+      - options: Default
+        data: { state: darkness }
+      - options: ReducedMotion
+        data: { state: darkness_static }
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - color: "#000000dd"
+      map: [base]
+      state: darkness
+    sprite: Imperial/PHOENIX/DarkForces/darkness.rsi
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - SpookyFog
+
+- type: entity
+  id: ImperialDarkForcesDarkness
+  parent: [ImperialDarkForcesDarknessBase, BaseKudzu]
+  suffix: Phoenix, DarkForces
+  components:
+  - type: DamageContacts
+    damage:
+      types:
+        Caustic: 2.5
+        Cellular: 1
+        Cold: 2.5
+    ignoreWhitelist:
+      tags:
+      - ImperialDarkForcesMob
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 7
+        hard: false
+        layer:
+        - MidImpassable
+        mask:
+        - MobMask
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+  - type: Kudzu
+    growthTickChance: 1
+    spreadChance: 1
+  - type: PopupOnTrigger
+    popupType: LargeCaution
+    quiet: true
+    text: imperial-dark-forces-absorption
+    userIsRecipient: true
+  - type: RandomSpawner
+    chance: 1
+    deleteSpawnerAfterSpawn: false
+    offset: 0.2
+    prototypes:
+    - ImperialDarkForcesDistortedFloorRandom
+    rareChance: 0.25
+    rarePrototypes:
+    - ImperialDarkForcesDarknessSpawner
+  - type: SpeedModifierContacts
+    ignoreWhitelist:
+      tags:
+      - ImperialDarkForcesMob
+    sprintSpeedModifier: 0.5
+    walkSpeedModifier: 0.5
+  - type: TriggerOnCollide
+    fixtureID: fix1
+
+- type: entity
+  id: ImperialDarkForcesDarknessFake
+  parent: [ImperialDarkForcesDarknessBase, Smoke]
+  suffix: Phoenix, DarkForces, Fake
+
+- type: entity
+  id: ImperialDarkForcesDarknessSpawnEffectBase
+  abstract: true
+  name: darkness
+  components:
+  - type: ShockWaveDistortion
+    disappearDistancePercentage: 0.5
+    distortion: 0.5
+    maxDistance: 0.5
+    speed: 0.75
+    thikness: 0.04
+  - type: TimedDespawn
+    lifetime: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: ImperialDarkForcesDarknessSpawnEffect
+  parent: ImperialDarkForcesDarknessSpawnEffectBase
+  suffix: Phoenix, DarkForces, SpawnEffect
+  components:
+  - type: EmpOnTrigger
+    energyConsumption: 100000
+    range: 5
+  - type: SpawnOnTrigger
+    proto: ImperialDarkForcesDarkness
+
+- type: entity
+  id: ImperialDarkForcesDarknessFakeSpawnEffect
+  parent: ImperialDarkForcesDarknessSpawnEffectBase
+  suffix: Phoenix, DarkForces, Fake, SpawnEffect
+  components:
+  - type: EmitSoundOnTrigger
+    predicted: true
+    positional: true
+    sound:
+      path: "/Audio/Imperial/PHOENIX/DarkForces/darkness_scream.ogg"
+  - type: SmokeOnTrigger
+    duration: 15
+    smokePrototype: ImperialDarkForcesDarknessFake
+    spreadAmount: 30

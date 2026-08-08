@@ -1,0 +1,5 @@
+- type: damageModifierSet
+  id: ImperialDarkForcesMob
+  coefficients:
+    Cold: 0
+    Stamina: 0

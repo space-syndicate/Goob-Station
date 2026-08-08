@@ -1,0 +1,19 @@
+- files: ["dark_rift_open.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation; modified by phoenix_7002 (Discord)"
+  source: "https://github.com/tgstation/tgstation/tree/88d7dbfc105fbf40284d7b7c4587f8d23c0ac3ac"
+
+- files: ["dark_rift_spawner.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation; modified by phoenix_7002 (Discord)"
+  source: "https://github.com/tgstation/tgstation/commit/906fb0682bab6a0975b45036001c54f021f58ae7"
+
+- files: ["wisp_scream.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from https://github.com/ParadiseSS13/Paradise/blob/master/sound/voice/shriek1.ogg; modified by phoenix_7002 (Discord)"
+  source: "https://github.com/ParadiseSS13/Paradise/commit/43e60ab01eda88fe30eb93612614bde836e55fe4"
+
+- files: ["darkness_scream.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation; modified by phoenix_7002 (Discord)"
+  source: "https://github.com/tgstation/tgstation/commit/d4f678a1772007ff8d7eddd21cf7218c8e07bfc0"
