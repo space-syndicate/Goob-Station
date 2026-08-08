@@ -193,7 +193,7 @@
   name: slice of watermelontton pizza
   parent: FoodPizzaSliceBase
   id: FoodPizzaWatermelonttonSlice
-  description: A slice of carptton pizza. Watermelon seeds included.
+  description: A slice of watermelontton pizza. Watermelon seeds included.
   components:
   - type: FlavorProfile
     flavors:
