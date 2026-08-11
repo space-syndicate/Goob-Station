@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by discord: rubelaks",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "Base_Brute_10"
+    },
+    {
+      "name": "Base_Brute_20"
+    },
+    {
+      "name": "Base_Brute_30"
+    },
+    {
+      "name": "Base_Brute_40"
+    },
+    {
+      "name": "Base_Brute_50"
+    }
+  ]
+}
