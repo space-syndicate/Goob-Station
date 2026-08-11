@@ -14225,7 +14225,7 @@ entities:
     - type: Transform
       pos: -19.5,-41.5
       parent: 2
-    - type: 
+    - type: GridFill
       path: /Maps/_CorvaxGoob/Stations/Bagel/Shuttles/corvax_security_bagel.yml
       addComponents: []
   - uid: 333
