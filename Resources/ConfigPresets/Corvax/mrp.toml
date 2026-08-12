@@ -35,4 +35,4 @@ notify = false
 
 [chat]
 rate_limit_period = 1
-rate_limit_count = 1
+rate_limit_count = 2
