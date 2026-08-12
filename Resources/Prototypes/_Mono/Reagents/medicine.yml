@@ -8,7 +8,7 @@
   color: "#8B008B"
   metabolisms:
     Medicine:
-      metabolismRate: 0.03 # CorvaxGoob
+      metabolismRate: 0.03 # 0.02 -> 0.03 CorvaxGoob
       effects:
       - !type:HealthChange
         damage:

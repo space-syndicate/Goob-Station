@@ -20,5 +20,5 @@ ent-RightLegHydrakin = правая нога гидракина
     .desc = { ent-PartHydrakin.desc }
 ent-LeftFootHydrakin = левая ступня гидракина
     .desc = { ent-PartHydrakin.desc }
-ent-RightFootHydrakin = левая ступня гидракина
+ent-RightFootHydrakin = правая ступня гидракина
     .desc = { ent-PartHydrakin.desc }

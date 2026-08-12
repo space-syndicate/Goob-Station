@@ -82,7 +82,7 @@ public sealed class HydrakinSystem : EntitySystem
     {
         if (!TryComp<HydrakinComponent>(args.User, out var hydrakinComp) ||
             !TryComp<TemperatureComponent>(args.User, out var huggerTemp) ||
-            huggerTemp.CurrentTemperature < 313.0f)
+            huggerTemp.CurrentTemperature < hydrakinComp.HugTransferThreshold)
             return;
 
         var dTHugger = -(hydrakinComp.CoolOffCoefficient * huggerTemp.CurrentTemperature);
