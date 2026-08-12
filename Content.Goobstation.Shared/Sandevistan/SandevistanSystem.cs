@@ -521,7 +521,7 @@ public sealed class SandevistanSystem : EntitySystem
     private void OnSlowedRefreshSpeed(Entity<SandevistanSlowedComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
         if (HasComp<MobStateComponent>(ent) && ent.Comp.IsSlowed)
-            args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier);
+            args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier, bypassImmunity: true);
     }
 
     /// <summary>

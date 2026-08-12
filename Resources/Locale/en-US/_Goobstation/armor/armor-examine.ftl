@@ -27,3 +27,5 @@ armor-examine-modify-delayed-knockdown-time =
           [1] second
           *[other] seconds
       }[/color].
+
+armor-examine-sandevistan-jacket = - [color=green]Reduces[/color] the Sandevistan toggle delay to [color=red]1[/color] seconds

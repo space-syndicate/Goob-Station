@@ -1041,7 +1041,7 @@
   name: uplink-autosurgeon-sandevistan-name
   description: uplink-autosurgeon-sandevistan-desc
   icon: { sprite: _Goobstation/Objects/Misc/sandevistan.rsi, state: icon }
-  productEntity: AutosurgeonSandevistan
+  productEntity: UplinkSandevistanBundle
   cost:
     Telecrystal: 66 # The urge to make it 65...
   categories:
@@ -1057,7 +1057,7 @@
   name: uplink-autosurgeon-statveka-sandevistan-name
   description: uplink-autosurgeon-statveka-sandevistan-desc
   icon: { sprite: _Goobstation/Objects/Misc/sandevistan.rsi, state: icon }
-  productEntity: AutosurgeonStatvekaSandevistan
+  productEntity: UplinkStatvekaSandevistanBundle
   cost:
     Telecrystal: 66
   categories:
@@ -1073,7 +1073,7 @@
   name: uplink-autosurgeon-sandevistan-name
   description: uplink-autosurgeon-sandevistan-desc
   icon: { sprite: _Goobstation/Objects/Misc/sandevistan.rsi, state: icon }
-  productEntity: AutosurgeonSandevistan
+  productEntity: UplinkSandevistanBundle
   cost:
     Telecrystal: 124
   categories:
@@ -1089,7 +1089,7 @@
   name: uplink-autosurgeon-statveka-sandevistan-name
   description: uplink-autosurgeon-statveka-sandevistan-desc
   icon: { sprite: _Goobstation/Objects/Misc/sandevistan.rsi, state: icon }
-  productEntity: AutosurgeonStatvekaSandevistan
+  productEntity: UplinkStatvekaSandevistanBundle
   cost:
     Telecrystal: 124
   categories:
@@ -1099,29 +1099,6 @@
     whitelist:
       tags:
       - LoneOpsUplink
-
-- type: listing
-  id: UplinkClothingOuterDavidsJacketValid
-  name: uplink-davids-jacket-name
-  description: uplink-davids-jacket-desc
-  icon: { sprite: _Goobstation/Clothing/OuterClothing/Coats/david_jacket.rsi, state: icon }
-  productEntity: ClothingOuterDavidsJacketValid
-  cost:
-    Telecrystal: 0
-  categories:
-  - UplinkImplants
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyBeforeCondition
-    whitelist:
-    - UplinkAutosurgeonRightMantisBlade
-    - UplinkAutosurgeonLeftMantisBlade
-    - UplinkAutosurgeonSandevistan
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
 
 - type: listing
   id: UplinkAutosurgeonSmartLink

@@ -31,3 +31,43 @@
     layers:
     - state: box_of_doom
     - state: candy
+
+- type: entity
+  parent: BoxCardboard
+  id: UplinkSandevistanBundle
+  name: uplink-sandevistan-bundle-name
+  description: uplink-sandevistan-bundle-desc
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,5
+    whitelist:
+      components:
+      - AutoSurgeon
+      - AutoSurgeonMultiple
+      - SandevistanJacket
+  - type: StorageFill
+    contents:
+    - id: AutosurgeonSandevistan
+    - id: ClothingOuterDavidsJacketValid
+
+- type: entity
+  parent: BoxCardboard
+  id: UplinkStatvekaSandevistanBundle
+  name: uplink-statveka-sandevistan-bundle-name
+  description: uplink-statveka-sandevistan-bundle-desc
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,5
+    whitelist:
+      components:
+      - AutoSurgeon
+      - AutoSurgeonMultiple
+      - SandevistanJacket
+  - type: StorageFill
+    contents:
+    - id: AutosurgeonStatvekaSandevistan
+    - id: ClothingOuterDavidsJacketValid

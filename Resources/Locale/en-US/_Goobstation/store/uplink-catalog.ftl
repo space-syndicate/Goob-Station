@@ -289,6 +289,17 @@ uplink-autosurgeon-sandevistan-desc = Replaces the user's heart with Sandevistan
 uplink-autosurgeon-statveka-sandevistan-name = Statveka Sandevistan Autosurgeon
 uplink-autosurgeon-statveka-sandevistan-desc = Replaces the user's heart with a statveka Sandevistan, a synthetic organ that drastically increases the user's speed and reflex at the cost of their endurance. Unlike their normal counterpart, this one seemingly slows down time near the user. comes with a one-use autosurgeon for installation.
 
+uplink-sandevistan-bundle-name = Sandevistan Bundle
+uplink-sandevistan-bundle-desc = An autosurgeon packed together with an edgerunner jacket. Ready for chrome.
+uplink-statveka-sandevistan-bundle-name = Statveka Sandevistan Bundle
+uplink-statveka-sandevistan-bundle-desc = An autosurgeon packed together with an edgerunner jacket. Ready for chrome.
+
+ent-UplinkSandevistanBundle = Sandevistan Bundle
+    .desc = An autosurgeon packed together with an edgerunner jacket. Ready for chrome.
+
+ent-UplinkStatvekaSandevistanBundle = Statveka Sandevistan Bundle
+    .desc = An autosurgeon packed together with an edgerunner jacket. Ready for chrome.
+
 uplink-davids-jacket-name = Edgerunner Jacket
 uplink-davids-jacket-desc = A jacket for those particularly interested in improving their bodies, just like you.
 
