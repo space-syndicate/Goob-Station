@@ -588,7 +588,7 @@
         - !type:HasComponentOnEquipmentCondition
           components:
           - type: PressureProtection
-          invert: true
+          inverted: true
         amount: -500
 # CorvaxGoob end
   plantMetabolism:
