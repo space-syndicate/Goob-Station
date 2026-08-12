@@ -94,6 +94,7 @@ public abstract partial class SharedOfferItemSystem
             offerItem.IsInReceiveMode ||
             userHands.ActiveHandId != hand ||
             _hands.GetActiveItem(user.Owner) != item ||
+            !_hands.CanDropHeld(user.Owner, hand, checkActionBlocker: false) ||
             !_actionBlocker.CanInteract(user.Owner, target.Owner))
         {
             return false;
