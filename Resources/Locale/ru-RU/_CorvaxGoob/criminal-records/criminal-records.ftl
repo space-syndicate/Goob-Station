@@ -1,6 +1,6 @@
 criminal-records-console-initiator = Инициатор
 
-criminal-records-console-detained-record = Арестован: { $articles } | СРОК: { $duration } мин
+criminal-records-console-detained-record = Арестован по: { $articles } | СРОК: { $duration } мин
 criminal-records-console-detained-reason = Арестован по причине
 
 criminal-records-console-history = { $status }: { $reason }
