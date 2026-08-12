@@ -1,0 +1,157 @@
+- type: entity
+  name: chewed gum
+  id: ChewedGum
+  parent: BaseItem
+  description: Nasty, chewed-up gum! Don't even think about sticking it in anyone's hair.
+  components:
+  - type: Tag
+    tags:
+       - Bubblegum
+       - Trash
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    state: bubblegum-chewed
+  - type: Item
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    heldPrefix: bubblegum-chewed
+    size: Tiny
+  - type: Clothing
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    slots: [ head ]
+    quickEquip: false
+    stripDelay: -3.5
+    equipDelay: 0.1
+    unequipDelay: 7.5
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/pop.ogg
+    embedOnThrow: True
+    offset: "0,-0.1"
+  - type: ThrowingAngle
+    angle: 0
+  - type: LandAtCursor
+  - type: Ammo
+    muzzleFlash: null
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Blunt: 0.1
+
+
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodBubblegum
+  name: bubblegum
+  description: Tastes like cardboard.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    state: bubblegum-open
+  - type: Clothing
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    slots: [ mask ]
+    quickEquip: false
+  - type: Item
+    heldPrefix: bubblegum-open
+  - type: Tag
+    tags:
+      - FoodSnack
+      - Bubblegum
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Bubblegum
+          Quantity: 5
+
+
+
+- type: entity
+  parent: BaseItem
+  id: FoodBubblegumPacked
+  name: packaged chewing gum
+  description: Sweet chewing gum in packaging.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    state: bubblegum
+  - type: Item
+    heldPrefix: bubblegum
+    size: Tiny
+  - type: Tag
+    tags:
+      - FoodSnack
+      - Bubblegum
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodBubblegum
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+
+- type: entity
+  parent: [ BoxCardboard, BaseBagOpenClose ]
+  id: FoodBoxBubblegum
+  name: bubblegum box
+  description: Box of sweet gum.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    layers:
+    - state: box
+      map: ["closeLayer"]
+    - state: box-open
+      map: ["openLayer"]
+      visible: false
+    - state: box1
+      map: ["box1"]
+      visible: false
+    - state: box2
+      map: ["box2"]
+      visible: false
+    - state: box3
+      map: ["box3"]
+      visible: false
+    - state: box4
+      map: ["box4"]
+      visible: false
+    - state: box5
+      map: ["box5"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,4,0
+    whitelist:
+      tags:
+      - Bubblegum
+  - type: Item
+    sprite: Imperial/Lilith/Objects/Consumable/Food/bubblegum.rsi
+    size: Tiny
+    shape:
+    - 0,0,0,0
+    heldPrefix: box
+  - type: Tag
+    tags:
+      - FoodSnack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FoodBubblegumPacked
+          amount: 5
+  - type: ItemCounter
+    count:
+      tags: [Bubblegum]
+    composite: true
+    layerStates:
+    - box1
+    - box2
+    - box3
+    - box4
+    - box5
+  - type: Appearance
+
+

@@ -1,0 +1,10 @@
+- type: localizedDataset
+  id: MilkshakeMachineGoodbyes
+  values:
+    prefix: thankyou-milkshake-
+    count: 17
+- type: localizedDataset
+  id: MilkshakeMachineAds
+  values:
+    prefix: advertisement-milkshake-
+    count: 14

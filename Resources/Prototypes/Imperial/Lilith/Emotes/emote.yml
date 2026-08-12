@@ -1,0 +1,15 @@
+- type: emote
+  id: Bubblegum
+  name: chat-emote-name-bubblegum
+  category: Vocal
+  icon: Interface/Emotes/weh.png
+  chatMessages: ["chat-emote-msg-bubblegum"]
+
+
+- type: emote
+  id: BubblegumChewed
+  name: chat-emote-name-bubblegum-chewed
+  category: Vocal
+  icon: Interface/Emotes/weh.png
+  chatMessages: ["chat-emote-msg-bubblegum-chewed"]
+

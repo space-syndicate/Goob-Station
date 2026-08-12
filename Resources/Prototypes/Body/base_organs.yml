@@ -400,7 +400,8 @@
   - type: Item
     heldPrefix: liver
   - type: Metabolizer
-    maxReagents: 1
+    #maxReagents: 1
+    maxReagents: 3 # Imperial Space Lilith. To avoid clogging up the only metabolism slot with chewing gum and luciferium. Very few liver reagents
     stages: [ Metabolites ]
 
 - type: entity

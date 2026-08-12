@@ -1,0 +1,49 @@
+- type: entity
+  name: luciferium crystal
+  parent: BaseItem
+  id: PillLuciferium
+  description: A crystal of a potent drug that bonds with the host's body. Take it once, and you are committed to using it forever.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Food/luciferium.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: Imperial/Lilith/Objects/Consumable/Food/luciferium.rsi
+  - type: Edible
+    delay: 0.6
+    forceFeedDelay: 2
+    transferAmount: null
+    edible: Pill
+  - type: BadFood
+  - type: FlavorProfile
+    ignoreReagents: []
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        canReact: false
+        reagents:
+        - ReagentId: Luciferium
+          Quantity: 35
+  - type: StaticPrice
+    price: 0
+  - type: Tag
+    tags:
+    - Pill
+
+- type: reaction
+  id: LuciferiumSheet
+  impact: Low
+  quantized: true
+  reactants:
+    Telestizin:
+      amount: 10
+    StabilizingAgent:
+      amount: 5
+    Ketopiride:
+      amount: 1
+      catalyst: true
+  effects:
+    - !type:SpawnEntity
+      entity: PillLuciferium

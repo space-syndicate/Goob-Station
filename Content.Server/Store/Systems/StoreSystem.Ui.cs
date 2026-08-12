@@ -100,6 +100,14 @@ public sealed partial class StoreSystem
                 return;
         }
 
+        // Imperial Space purchase cooldown Start
+        if (listing.PurchaseCooldown > TimeSpan.Zero && listing.LastPurchaseTime > TimeSpan.Zero)
+        {
+            if (_timing.CurTime - listing.LastPurchaseTime < listing.PurchaseCooldown)
+                return;
+        }
+        // Imperial Space purchase cooldown End
+
         //check that we have enough money
         var cost = listing.Cost;
         foreach (var (currency, amount) in cost)
@@ -235,6 +243,10 @@ public sealed partial class StoreSystem
             $"{ToPrettyString(buyer):player} purchased listing \"{ListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, Proto)}\" from {ToPrettyString(uid)}{logExtraInfo}.");
 
         listing.PurchaseAmount++; //track how many times something has been purchased
+        // Imperial Space purchase cooldown Start
+        if (listing.PurchaseCooldown > TimeSpan.Zero)
+            listing.LastPurchaseTime = _timing.CurTime;
+        // Imperial Space purchase cooldown End
         if (msg.SoundSource != null && GetEntity(msg.SoundSource) != null)
             _audio.PlayEntity(component.BuySuccessSound, msg.Actor, GetEntity(msg.SoundSource.Value)); //cha-ching!
 

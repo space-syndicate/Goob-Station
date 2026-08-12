@@ -1,0 +1,39 @@
+# Закинуть весь файл в \Resources\Prototypes\Imperial\Lilith\reagent  -- Создать папку Lilith
+
+- type: reaction
+  id: Telesynthet
+  reactants:
+    Telestizin:
+      amount: 1
+    Omnizine:
+      amount: 1
+  products:
+    Telesynthet: 2
+
+
+- type: reaction
+  id: Vestine
+  impact: Medium
+  minTemp: 1200
+  reactants:
+    Telestizin:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+    Plasma:
+      amount: 1
+  products:
+    Vestine: 3
+
+
+- type: reaction
+  id: BubblegumChewedSheet
+  impact: Low
+  quantized: true
+  reactants:
+    BubblegumChewed:
+      amount: 1
+  effects:
+    - !type:SpawnEntity
+      entity: ChewedGum
+

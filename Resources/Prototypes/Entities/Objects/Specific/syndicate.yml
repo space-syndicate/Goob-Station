@@ -22,6 +22,13 @@
   - type: Currency
     price:
       Telecrystal: 1
+  # Imperial Space Lilith Start
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Telestizin
+        Quantity: 10
+  # Imperial Space Lilith End
 
 - type: entity
   parent: Telecrystal

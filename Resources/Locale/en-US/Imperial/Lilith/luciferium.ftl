@@ -1,0 +1,9 @@
+luciferium-effect-dependence-infarct = Your heart cannot withstand the effects of Luciferium!
+luciferium-effect-dependence-low1 = The luciferin in the blood is running out...
+luciferium-effect-dependence-low2 = You need to take a dose of Luciferium...
+luciferium-effect-dependence-middle1 = Your body is working against you - you need to take a dose.
+luciferium-effect-dependence-middle2 = Your body craves Luciferium.
+luciferium-effect-dependence-high1 = Your thoughts are solely on Luciferium.
+luciferium-effect-dependence-high2 = Get the dose. Right now!
+luciferium-effect-dependence-death1 = D̶͚͝o̸s̶͚̦̆͒ê̵̢͋͜!̶͎͗ ̴̢̟̎̇D̸̬̙̂̕ô̵͎̅͜ș̸́͝ͅe̷̞͑͛!̷͎́́ ̴̭͛͒D̸̡̿͝o̵͈̬̓̓s̴̫͋ė̸̻̯͐!̷̫͖̈́
+luciferium-effect-dependence-death2 = G̷͎̿͑e̶t̵̢̝̓ ̶̩̕s̶̟̘̓̐o̴̳̥͑͑m̸̄ͅḙ̵̦̊̈́ ̷̫͑̕ḿ̶̖̮͝ȍ̶̙r̴̞͔̄e̷̲̣͗̑!̴͎̖̾

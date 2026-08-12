@@ -1,0 +1,9 @@
+luciferium-effect-dependence-infarct = Ваше сердце не выдерживает действия люциферия!
+luciferium-effect-dependence-low1 = В крови кончается люциферий...
+luciferium-effect-dependence-low2 = Вам нужно принять дозу люциферия...
+luciferium-effect-dependence-middle1 = Тело работает против вас, нужно принять дозу.
+luciferium-effect-dependence-middle2 = Ваше тело требует люциферия.
+luciferium-effect-dependence-high1 = Ваши мысли лишь о люциферии.
+luciferium-effect-dependence-high2 = Достать дозу. Сейчас же!
+luciferium-effect-dependence-death1 = Д̸̖̪ͥͬ͘о̷̧̳̀̏з̶̰̱̃͊͝а̵͕̣͠!̶̶̗̂̈͢ Д̸̈́͐о̫̗̅͞ӟ̴͇̣̄а̶͓̇̃͢!̮̈́͂ Д̶̶̡̮̓о̵̗̃з̸̸̤̙ͬа̧̗̇̃͠!̶̷͕ͨͭ
+luciferium-effect-dependence-death2 = Д̷̫̙ͧ͡ӧ̴̷͉̰́̿с̶̵͈̣́т͔̂͠͝а̵̴̧͎ͣͧт̷̛̣̯̃ь̵̯͉̽̌.̞ͭ̂͡ Е̸̷̣̙ͫ̀щ̸̺̤͊̆͝ё̴̞̣̅͝

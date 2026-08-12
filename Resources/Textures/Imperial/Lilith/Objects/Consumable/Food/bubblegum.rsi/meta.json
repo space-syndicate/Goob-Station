@@ -1,0 +1,89 @@
+{
+    "version": 1,
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by KoQdiev",
+    "states": [
+        {
+            "name": "bubblegum"
+        },
+        {
+      "name": "equipped-MASK",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          2.5
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          2.5
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          2.5
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          2.5
+        ]
+      ]
+    },
+        {
+        "name": "equipped-HELMET",
+      "directions": 4
+          },
+        {
+            "name": "bubblegum-open"
+        },
+        {
+            "name": "bubblegum-chewed"
+        },
+        {
+            "name": "box"
+        },
+        {
+            "name": "box1"
+        },
+        {
+            "name": "box2"
+        },
+        {
+            "name": "box3"
+        },
+        {
+            "name": "box4"
+        },
+        {
+            "name": "box5"
+        },
+        {
+            "name": "box-open"
+        }
+
+    ]
+}
