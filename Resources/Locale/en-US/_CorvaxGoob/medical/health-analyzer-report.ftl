@@ -2,6 +2,7 @@ health-analyzer-print-button = Print report
 
 health-analyzer-report-no-patient = No patient data to print.
 health-analyzer-report-no-medical-data = Unable to retrieve patient medical data.
+health-analyzer-report-printer-not-ready = The printer is not ready to print another report yet.
 health-analyzer-report-paper-name = Medical report — {$patient}
 
 health-analyzer-report-title = MEDICAL REPORT
