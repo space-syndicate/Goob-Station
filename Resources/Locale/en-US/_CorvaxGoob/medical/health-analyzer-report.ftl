@@ -13,7 +13,7 @@ health-analyzer-report-blood-level = Blood level: {$level} %
 
 health-analyzer-report-damage-heading = DAMAGE:
 health-analyzer-report-no-damage = Damage: 0
-health-analyzer-report-total-damage = Total damage: {$damage}
+health-analyzer-report-total-damage = Total Damage: {$damage}
 health-analyzer-report-vital-damage = Cumulative damage: {$damage}
 
 health-analyzer-report-condition-heading = CONDITION:
