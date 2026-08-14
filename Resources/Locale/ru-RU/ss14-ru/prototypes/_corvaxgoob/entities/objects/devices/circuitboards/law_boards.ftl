@@ -1,4 +1,2 @@
-loadout-group-station-ai-laws = Набор законов
-
 ent-StationAiRandomLawsetDisplay = плата законов (Случайный набор)
     .desc = При появлении станционного ИИ выбирает случайный безопасный набор законов.
