@@ -81,4 +81,18 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public HealthAnalyzerMode CurrentMode = HealthAnalyzerMode.Body;
+
+    // CorvaxGoob start
+    /// <summary>
+    /// When will the analyzer be ready to print another medical report?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan PrintReadyAt = TimeSpan.Zero;
+
+    /// <summary>
+    /// How often can the analyzer print medical reports?
+    /// </summary>
+    [DataField]
+    public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+    // CorvaxGoob end
 }
