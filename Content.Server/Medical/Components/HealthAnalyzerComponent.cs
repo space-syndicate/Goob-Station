@@ -3,6 +3,9 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared._Shitmed.Medical.HealthAnalyzer;
+// CorvaxGoob start
+using Content.Server._CorvaxGoob.Medical;
+// CorvaxGoob end
 
 namespace Content.Server.Medical.Components;
 
@@ -13,7 +16,9 @@ namespace Content.Server.Medical.Components;
 /// Requires <c>ItemToggleComponent</c>.
 /// </remarks>
 [RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(HealthAnalyzerSystem), typeof(CryoPodSystem))]
+// CorvaxGoob start
+[Access(typeof(HealthAnalyzerSystem), typeof(HealthAnalyzerPrintSystem), typeof(CryoPodSystem))]
+// CorvaxGoob end
 public sealed partial class HealthAnalyzerComponent : Component
 {
     /// <summary>

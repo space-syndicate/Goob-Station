@@ -3,6 +3,9 @@
 using Content.Shared.MedicalScanner;
 using Content.Shared._Shitmed.Targeting; // Shitmed Change
 using Content.Shared._Shitmed.Medical.HealthAnalyzer; // Shitmed Change
+// CorvaxGoob start
+using Content.Shared._CorvaxGoob.Medical.HealthAnalyzer;
+// CorvaxGoob end
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -25,6 +28,9 @@ namespace Content.Client.HealthAnalyzer.UI
             _window = this.CreateWindow<HealthAnalyzerWindow>();
             _window.OnBodyPartSelected += SendBodyPartMessage; // Shitmed Change
             _window.OnModeChanged += SendModeMessage;
+            // CorvaxGoob start
+            _window.PrintButton.OnPressed += _ => SendMessage(new HealthAnalyzerPrintMessage());
+            // CorvaxGoob end
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
         }
 
