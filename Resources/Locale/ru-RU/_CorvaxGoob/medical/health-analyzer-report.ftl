@@ -12,7 +12,7 @@ health-analyzer-report-temperature = Температура: {$celsius} °C ({$k
 health-analyzer-report-blood-level = Уровень крови: {$level} %
 
 health-analyzer-report-damage-heading = ПОВРЕЖДЕНИЯ:
-health-analyzer-report-no-damage = Повреждений: 0
+health-analyzer-report-no-damage = Повреждений нет.
 health-analyzer-report-total-damage = Общие повреждения: {$damage}
 health-analyzer-report-vital-damage = Суммарный урон: {$damage}
 
