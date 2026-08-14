@@ -12,7 +12,7 @@ health-analyzer-report-temperature = Temperature: {$celsius} °C ({$kelvin} K)
 health-analyzer-report-blood-level = Blood level: {$level} %
 
 health-analyzer-report-damage-heading = DAMAGE:
-health-analyzer-report-no-damage = Damage: 0
+health-analyzer-report-no-damage = No damage.
 health-analyzer-report-total-damage = Total Damage: {$damage}
 health-analyzer-report-vital-damage = Cumulative damage: {$damage}
 
