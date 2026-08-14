@@ -114,8 +114,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem 
         {
             DebugTools.Assert(entity is null);
             var jobEntity = Spawn(prototype.JobEntity, coordinates);
-            // CorvaxGoob: Apply non-item loadout data before attaching the mind so a silicon starts with its selected laws.
-            ApplySiliconLawLoadout(jobEntity, loadout);
+            ApplySiliconLawLoadout(jobEntity, loadout); // CorvaxGoob - add-ai-law-loadout
             _mindSystem.MakeSentient(jobEntity);
 
             // Make sure custom names get handled, what is gameticker control flow whoopy.
