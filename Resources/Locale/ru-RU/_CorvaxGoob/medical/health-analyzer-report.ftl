@@ -2,6 +2,7 @@ health-analyzer-print-button = Печать отчёта
 
 health-analyzer-report-no-patient = Нет данных пациента для печати.
 health-analyzer-report-no-medical-data = Не удалось получить медицинские данные пациента.
+health-analyzer-report-printer-not-ready = Принтер ещё не готов к повторной печати.
 health-analyzer-report-paper-name = Медицинский отчёт — {$patient}
 
 health-analyzer-report-title = МЕДИЦИНСКИЙ ОТЧЁТ
