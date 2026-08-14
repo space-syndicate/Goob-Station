@@ -3,8 +3,6 @@
 - type: entity
   id: MedicalReportPaper
   parent: Paper
-  name: медицинский отчёт
-  description: Медицинский отчёт, напечатанный анализатором здоровья.
   components:
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
