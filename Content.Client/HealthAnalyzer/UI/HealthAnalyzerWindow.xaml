@@ -37,7 +37,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <Button
                 Name="PrintButton"
                 Access="Public"
-                Text="Печать отчёта"
+                Text="{Loc 'health-analyzer-print-button'}"
                 MinWidth="150"
                 MinHeight="30"
                 HorizontalExpand="True"
