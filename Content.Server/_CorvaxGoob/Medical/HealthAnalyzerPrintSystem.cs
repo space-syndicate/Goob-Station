@@ -74,6 +74,15 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
 
     private void OnPrint(Entity<HealthAnalyzerComponent> analyzer, ref HealthAnalyzerPrintMessage args)
     {
+        if (_timing.CurTime < analyzer.Comp.PrintReadyAt)
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("health-analyzer-report-printer-not-ready"),
+                analyzer.Owner,
+                args.Actor);
+            return;
+        }
+
         if (analyzer.Comp.ScannedEntity is not { } target || Deleted(target))
         {
             _popupSystem.PopupEntity(Loc.GetString("health-analyzer-report-no-patient"), analyzer.Owner, args.Actor);
@@ -105,6 +114,8 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
                 .WithVolume(3f)
                 .WithRolloffFactor(2.8f)
                 .WithMaxDistance(4.5f));
+
+        analyzer.Comp.PrintReadyAt = _timing.CurTime + analyzer.Comp.PrintCooldown;
     }
 
     private string BuildReport(EntityUid target, BodyComponent body)
