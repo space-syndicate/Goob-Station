@@ -75,13 +75,13 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
     {
         if (analyzer.Comp.ScannedEntity is not { } target || Deleted(target))
         {
-            _popupSystem.PopupEntity("Нет данных пациента для печати.", analyzer.Owner, args.Actor);
+            _popupSystem.PopupEntity(Loc.GetString("health-analyzer-report-no-patient"), analyzer.Owner, args.Actor);
             return;
         }
 
         if (!TryComp<BodyComponent>(target, out var body))
         {
-            _popupSystem.PopupEntity("Не удалось получить медицинские данные пациента.", analyzer.Owner, args.Actor);
+            _popupSystem.PopupEntity(Loc.GetString("health-analyzer-report-no-medical-data"), analyzer.Owner, args.Actor);
             return;
         }
 
@@ -95,7 +95,7 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
         }
 
         var patientName = MetaData(target).EntityName;
-        _metaData.SetEntityName(printed, $"Медицинский отчёт — {patientName}");
+        _metaData.SetEntityName(printed, Loc.GetString("health-analyzer-report-paper-name", ("patient", patientName)));
         _paperSystem.SetContent((printed, paper), BuildReport(target, body));
 
         _audioSystem.PlayPvs(PrintSound, analyzer.Owner,
@@ -110,12 +110,13 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
     {
         var text = new StringBuilder();
         var patientName = MetaData(target).EntityName;
+        var scanTime = _timing.CurTime.ToString(@"hh\:mm\:ss");
 
-        text.AppendLine("МЕДИЦИНСКИЙ ОТЧЁТ");
+        text.AppendLine(Loc.GetString("health-analyzer-report-title"));
         text.AppendLine();
-        text.AppendLine($"Пациент: {patientName}");
+        text.AppendLine(Loc.GetString("health-analyzer-report-patient", ("patient", patientName)));
         text.AppendLine(GetPatientTypeName(target));
-        text.AppendLine($"Время сканирования: {_timing.CurTime:hh\\:mm\\:ss}");
+        text.AppendLine(Loc.GetString("health-analyzer-report-scan-time", ("time", scanTime)));
 
         var status = Loc.GetString("health-analyzer-window-entity-unknown-text");
         if (TryComp<MobStateComponent>(target, out var mobState))
@@ -129,13 +130,18 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
             };
         }
 
-        text.AppendLine($"Статус: {status}");
+        text.AppendLine(Loc.GetString("health-analyzer-report-status", ("status", status)));
 
         if (TryComp<TemperatureComponent>(target, out var temperature))
-            text.AppendLine($"Температура: {temperature.CurrentTemperature - 273.15f:F1} °C ({temperature.CurrentTemperature:F1} K)");
+        {
+            text.AppendLine(Loc.GetString(
+                "health-analyzer-report-temperature",
+                ("celsius", $"{temperature.CurrentTemperature - 273.15f:F1}"),
+                ("kelvin", $"{temperature.CurrentTemperature:F1}")));
+        }
 
         var bloodLevel = _bloodstreamSystem.GetBloodLevel(target);
-        text.AppendLine($"Уровень крови: {bloodLevel * 100f:F1} %");
+        text.AppendLine(Loc.GetString("health-analyzer-report-blood-level", ("level", $"{bloodLevel * 100f:F1}")));
 
         AppendDamage(text, target);
         AppendBodyCondition(text, target, body, bloodLevel);
@@ -163,23 +169,27 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
     private void AppendDamage(StringBuilder text, EntityUid target)
     {
         text.AppendLine();
-        text.AppendLine("ПОВРЕЖДЕНИЯ:");
+        text.AppendLine(Loc.GetString("health-analyzer-report-damage-heading"));
 
         if (!TryComp<DamageableComponent>(target, out var damageable))
         {
-            text.AppendLine("Повреждений: 0");
+            text.AppendLine(Loc.GetString("health-analyzer-report-no-damage"));
             return;
         }
 
         var hasDamage = damageable.Damage.DamageDict.Any(entry => entry.Value > 0);
         if (!hasDamage)
         {
-            text.AppendLine("Повреждений: 0");
+            text.AppendLine(Loc.GetString("health-analyzer-report-no-damage"));
             return;
         }
 
-        text.AppendLine($"Общие повреждения: {damageable.TotalDamage}");
-        text.AppendLine($"Суммарный урон: {_threshold.CheckVitalDamage(target, damageable)}");
+        text.AppendLine(Loc.GetString(
+            "health-analyzer-report-total-damage",
+            ("damage", damageable.TotalDamage.ToString())));
+        text.AppendLine(Loc.GetString(
+            "health-analyzer-report-vital-damage",
+            ("damage", _threshold.CheckVitalDamage(target, damageable).ToString())));
 
         foreach (var (damageTypeId, amount) in damageable.Damage.DamageDict.OrderByDescending(x => x.Value))
         {
@@ -202,7 +212,7 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
     private void AppendBodyCondition(StringBuilder text, EntityUid target, BodyComponent body, float bloodLevel)
     {
         text.AppendLine();
-        text.AppendLine("СОСТОЯНИЕ:");
+        text.AppendLine(Loc.GetString("health-analyzer-report-condition-heading"));
 
         var any = false;
         var patientName = MetaData(target).EntityName;
@@ -293,7 +303,9 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
                 }
 
                 any = true;
-                text.AppendLine($"• {GetRussianBodyPartName(part)}: отсутствует");
+                text.AppendLine(Loc.GetString(
+                    "health-analyzer-report-missing-part",
+                    ("part", GetBodyPartName(part))));
             }
         }
 
@@ -332,7 +344,7 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
     private void AppendOrgans(StringBuilder text, EntityUid target)
     {
         text.AppendLine();
-        text.AppendLine("ОРГАНЫ:");
+        text.AppendLine(Loc.GetString("health-analyzer-report-organs-heading"));
 
         var any = false;
         foreach (var (organUid, organComp) in _bodySystem.GetBodyOrgans(target))
@@ -354,13 +366,13 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
         }
 
         if (!any)
-            text.AppendLine("Не обнаружено.");
+            text.AppendLine(Loc.GetString("health-analyzer-report-none"));
     }
 
     private void AppendChemicals(StringBuilder text, EntityUid target, BodyComponent body)
     {
         text.AppendLine();
-        text.AppendLine("ХИМИКАТЫ:");
+        text.AppendLine(Loc.GetString("health-analyzer-report-chemicals-heading"));
 
         var any = false;
 
@@ -391,7 +403,7 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
         }
 
         if (!any)
-            text.AppendLine("Не обнаружено.");
+            text.AppendLine(Loc.GetString("health-analyzer-report-none"));
     }
 
     private bool AppendSolution(StringBuilder text, Solution solution)
@@ -420,6 +432,27 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
         return true;
     }
 
+    private string GetBodyPartName(TargetBodyPart part)
+    {
+        var locKey = part switch
+        {
+            TargetBodyPart.Head => "health-analyzer-report-body-part-head",
+            TargetBodyPart.Chest => "health-analyzer-report-body-part-chest",
+            TargetBodyPart.Groin => "health-analyzer-report-body-part-groin",
+            TargetBodyPart.LeftArm => "health-analyzer-report-body-part-left-arm",
+            TargetBodyPart.LeftHand => "health-analyzer-report-body-part-left-hand",
+            TargetBodyPart.RightArm => "health-analyzer-report-body-part-right-arm",
+            TargetBodyPart.RightHand => "health-analyzer-report-body-part-right-hand",
+            TargetBodyPart.LeftLeg => "health-analyzer-report-body-part-left-leg",
+            TargetBodyPart.LeftFoot => "health-analyzer-report-body-part-left-foot",
+            TargetBodyPart.RightLeg => "health-analyzer-report-body-part-right-leg",
+            TargetBodyPart.RightFoot => "health-analyzer-report-body-part-right-foot",
+            _ => null,
+        };
+
+        return locKey is null ? part.ToString() : Loc.GetString(locKey);
+    }
+
     private static string Colorize(string text, string? color)
     {
         return color is null ? text : $"[color={color}]{text}[/color]";
@@ -443,25 +476,6 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
             "cellular" => "#884EA0",
             "structural" => "#616A6B",
             _ => null,
-        };
-    }
-
-    private static string GetRussianBodyPartName(TargetBodyPart part)
-    {
-        return part switch
-        {
-            TargetBodyPart.Head => "Голова",
-            TargetBodyPart.Chest => "Грудь",
-            TargetBodyPart.Groin => "Пах",
-            TargetBodyPart.LeftArm => "Левая рука",
-            TargetBodyPart.LeftHand => "Левая кисть",
-            TargetBodyPart.RightArm => "Правая рука",
-            TargetBodyPart.RightHand => "Правая кисть",
-            TargetBodyPart.LeftLeg => "Левая нога",
-            TargetBodyPart.LeftFoot => "Левая стопа",
-            TargetBodyPart.RightLeg => "Правая нога",
-            TargetBodyPart.RightFoot => "Правая стопа",
-            _ => part.ToString(),
         };
     }
 }
