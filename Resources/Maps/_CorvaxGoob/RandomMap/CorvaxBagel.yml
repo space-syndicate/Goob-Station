@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 270.1.0
-  forkId: syndicate-goob
-  forkVersion: 28e40bdd0bea3b38deeda10019a6e2f8ae5225e4
-  time: 08/11/2026 18:04:33
-  entityCount: 842
+  forkId: ""
+  forkVersion: ""
+  time: 08/14/2026 11:46:22
+  entityCount: 849
 maps:
 - 1
 grids:
@@ -1461,6 +1461,11 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-34.5
+      parent: 1
+  - uid: 728
+    components:
+    - type: Transform
+      pos: 0.5,-40.5
       parent: 1
   - uid: 732
     components:
@@ -4235,6 +4240,43 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-2.5
+      parent: 1
+  - uid: 711
+    components:
+    - type: Transform
+      pos: 0.5,6.5
+      parent: 1
+  - uid: 716
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,1.5
+      parent: 1
+  - uid: 717
+    components:
+    - type: Transform
+      pos: 0.5,15.5
+      parent: 1
+- proto: PoweredlightBlue
+  entities:
+  - uid: 721
+    components:
+    - type: Transform
+      pos: 12.5,15.5
+      parent: 1
+  - uid: 723
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 12.5,10.5
+      parent: 1
+- proto: PoweredlightEmpty
+  entities:
+  - uid: 720
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,10.5
       parent: 1
 - proto: PoweredLightPostSmall
   entities:
