@@ -1,0 +1,76 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: StationAiRandomLawsetDisplay
+  parent: BaseSiliconLawboard
+  categories: [ HideSpawnMenu ]
+  name: law board (Random)
+  description: Selects a random safe lawset when the station AI spawns.
+
+- type: loadout
+  id: StationAiLawsetNTDefault
+  dummyEntity: NTDefaultCircuitBoard
+  siliconLawset: NTDefault
+
+- type: loadout
+  id: StationAiLawsetCrewsimov
+  dummyEntity: AsimovCircuitBoard
+  siliconLawset: Crewsimov
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationAi
+      time: 2h
+
+- type: loadout
+  id: StationAiLawsetCorporate
+  dummyEntity: CorporateCircuitBoard
+  siliconLawset: Corporate
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationAi
+      time: 2h
+
+- type: loadout
+  id: StationAiLawsetRandom
+  dummyEntity: StationAiRandomLawsetDisplay
+  randomSiliconLawset: StationAiLoadoutRandomLawsets
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationAi
+      time: 20h
+
+- type: loadoutGroup
+  id: StationAiLaws
+  name: loadout-group-station-ai-laws
+  minLimit: 1
+  maxLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - StationAiLawsetNTDefault
+  - StationAiLawsetCrewsimov
+  - StationAiLawsetCorporate
+  - StationAiLawsetRandom
+
+- type: weightedRandom
+  id: StationAiLoadoutRandomLawsets
+  weights:
+    NTDefault: 11
+    Crewsimov: 11
+    Corporate: 11
+    CommandmentsLawset: 2
+    PaladinLawset: 2
+    LiveLetLiveLaws: 2
+    EfficiencyLawset: 2
+    RobocopLawset: 2
+    GambamovLawset: 2
+    OverlordLawset: 2
+    GameMasterLawset: 2
+    PainterLawset: 2
+    NutimovLawset: 2
+    HelpimovLawset: 2
