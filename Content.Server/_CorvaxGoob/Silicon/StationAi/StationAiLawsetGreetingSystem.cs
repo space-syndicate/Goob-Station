@@ -12,8 +12,8 @@ public sealed class StationAiLawsetGreetingSystem : EntitySystem
 {
     private const string StationAiJobId = "StationAi";
 
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
@@ -24,16 +24,19 @@ public sealed class StationAiLawsetGreetingSystem : EntitySystem
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
     {
+        // Only announce laws for a normal Station AI spawn with a valid law provider and lawset prototype.
         if (args.Silent ||
             args.JobId != StationAiJobId ||
             !TryComp(args.Mob, out SiliconLawProviderComponent? provider) ||
             !_prototype.TryIndex(provider.Laws, out SiliconLawsetPrototype? lawset))
             return;
 
+        // Use the prototype ID as a fallback when the lawset has no localized display name.
         var lawsetName = lawset.Name is { } name
             ? Loc.GetString(name)
             : lawset.ID;
 
+        // Report the lawset actually applied by the server, including the result of a random selection.
         _chat.DispatchServerMessage(args.Player,
             Loc.GetString("station-ai-lawset-greeting", ("lawset", lawsetName)));
     }

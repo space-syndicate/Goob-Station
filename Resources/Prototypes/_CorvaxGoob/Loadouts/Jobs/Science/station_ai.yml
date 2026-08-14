@@ -5,7 +5,7 @@
   parent: BaseSiliconLawboard
   categories: [ HideSpawnMenu ]
   name: law board (Random)
-  description: Selects a random safe lawset when the station AI spawns.
+  description: Selects a random lawset when the station AI spawns.
 
 - type: loadout
   id: StationAiLawsetNTDefault
@@ -43,7 +43,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobStationAi
-      time: 20h
+      time: 15h
 
 - type: loadoutGroup
   id: StationAiLaws
@@ -60,17 +60,20 @@
 - type: weightedRandom
   id: StationAiLoadoutRandomLawsets
   weights:
-    NTDefault: 11
-    Crewsimov: 11
-    Corporate: 11
-    CommandmentsLawset: 2
-    PaladinLawset: 2
-    LiveLetLiveLaws: 2
-    EfficiencyLawset: 2
-    RobocopLawset: 2
-    GambamovLawset: 2
-    OverlordLawset: 2
-    GameMasterLawset: 2
-    PainterLawset: 2
-    NutimovLawset: 2
-    HelpimovLawset: 2
+    NTDefault: 2000 # 20%
+    Crewsimov: 2000
+    Corporate: 2000
+    CommandmentsLawset: 387 # 3,87%
+    PaladinLawset: 387
+    LiveLetLiveLaws: 387
+    EfficiencyLawset: 387
+    RobocopLawset: 387
+    GambamovLawset: 387
+    GameMasterLawset: 387
+    PainterLawset: 387
+    NutimovLawset: 387
+    HelpimovLawset: 387
+    OverlordLawset: 100 # 1%
+    SyndicateStatic: 10 # 0,1%
+    Ninja: 10
+    AntimovLawset: 10

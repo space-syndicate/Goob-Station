@@ -245,8 +245,6 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         {
             if (args.Button.Pressed)
                 OnLoadoutPressed?.Invoke(proto.ID);
-            else if (selected.Count <= _groupProto.MinLimit)
-                args.Button.Pressed = true;
             else
                 OnLoadoutUnpressed?.Invoke(proto.ID);
         };
