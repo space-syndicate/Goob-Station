@@ -1,20 +1,75 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+# Preview entities provide localized names and distinct loadout icons without appearing in the round or spawn menu.
+- type: entity
+  id: StationAiNTDefaultLawsetDisplay
+  parent: BaseSiliconLawboard
+  categories: [ HideSpawnMenu ]
+  name: law board (NT Default)
+  description: The standard station AI lawset used by NanoTrasen.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Misc/module.rsi
+      state: std_mod
+    - sprite: Interface/Misc/job_icons.rsi
+      state: Nanotrasen
+      scale: 1.2, 1.2
+
+- type: entity
+  id: StationAiCrewsimovLawsetDisplay
+  parent: BaseSiliconLawboard
+  categories: [ HideSpawnMenu ]
+  name: law board (Crewsimov)
+  description: A crew-focused lawset that prioritizes station crew.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Misc/module.rsi
+      state: std_mod
+    - sprite: Interface/Misc/job_icons.rsi
+      state: Passenger
+      scale: 1.2, 1.2
+
+- type: entity
+  id: StationAiCorporateLawsetDisplay
+  parent: BaseSiliconLawboard
+  categories: [ HideSpawnMenu ]
+  name: law board (Corporate)
+  description: A corporate lawset that prioritizes NanoTrasen interests.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Misc/module.rsi
+      state: std_mod
+    - sprite: Interface/Misc/job_icons.rsi
+      state: HeadOfPersonnel
+      scale: 1.2, 1.2
+
 - type: entity
   id: StationAiRandomLawsetDisplay
   parent: BaseSiliconLawboard
   categories: [ HideSpawnMenu ]
   name: law board (Random)
   description: Selects a random lawset when the station AI spawns.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Misc/module.rsi
+      state: std_mod
+    - sprite: Objects/Fun/dice.rsi
+      state: percentile_50
+      scale: 0.7, 0.7
 
+# Loadouts use display entities as previews and apply the selected fixed or random lawset without giving the AI a physical board.
 - type: loadout
   id: StationAiLawsetNTDefault
-  dummyEntity: NTDefaultCircuitBoard
+  dummyEntity: StationAiNTDefaultLawsetDisplay
   siliconLawset: NTDefault
 
 - type: loadout
   id: StationAiLawsetCrewsimov
-  dummyEntity: AsimovCircuitBoard
+  dummyEntity: StationAiCrewsimovLawsetDisplay
   siliconLawset: Crewsimov
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -25,7 +80,7 @@
 
 - type: loadout
   id: StationAiLawsetCorporate
-  dummyEntity: CorporateCircuitBoard
+  dummyEntity: StationAiCorporateLawsetDisplay
   siliconLawset: Corporate
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -43,7 +98,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobStationAi
-      time: 15h
+      time: 20h
 
 - type: loadoutGroup
   id: StationAiLaws
@@ -57,6 +112,7 @@
   - StationAiLawsetCorporate
   - StationAiLawsetRandom
 
+# Weighted lawset pool used when the Random loadout is selected.
 - type: weightedRandom
   id: StationAiLoadoutRandomLawsets
   weights:

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Chat.Managers;
+using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
@@ -37,7 +38,14 @@ public sealed class StationAiLawsetGreetingSystem : EntitySystem
             : lawset.ID;
 
         // Report the lawset actually applied by the server, including the result of a random selection.
-        _chat.DispatchServerMessage(args.Player,
-            Loc.GetString("station-ai-lawset-greeting", ("lawset", lawsetName)));
+        var message = Loc.GetString("station-ai-lawset-greeting", ("lawset", lawsetName));
+        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
+
+        _chat.ChatMessageToOne(ChatChannel.Server,
+            message,
+            wrappedMessage,
+            default,
+            false,
+            args.Player.Channel);
     }
 }

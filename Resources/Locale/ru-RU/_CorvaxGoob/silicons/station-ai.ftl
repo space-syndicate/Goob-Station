@@ -1,1 +1,1 @@
-station-ai-lawset-greeting = Ваш набор законов: { $lawset }.
+station-ai-lawset-greeting = Ваш набор законов: [color = #ffff00]{ $lawset }[/color].
