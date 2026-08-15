@@ -89,6 +89,7 @@ public abstract partial class SharedOfferItemSystem
             !TryComp(user.Owner, out HandsComponent? userHands) ||
             !TryComp(target.Owner, out HandsComponent? targetHands) ||
             targetHands.ActiveHandId is null ||
+            !_actionBlocker.CanInteract(target.Owner, null) ||
             targetOfferItem.IsInReceiveMode ||
             offerItem.Target is not null ||
             offerItem.IsInReceiveMode ||
