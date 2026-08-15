@@ -1,10 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared.Cuffs;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
@@ -12,9 +9,6 @@ namespace Content.Shared._CorvaxGoob.OfferItem;
 
 public abstract partial class SharedOfferItemSystem
 {
-    [Dependency] private SharedCuffableSystem _cuffs = default!;
-    [Dependency] private MobStateSystem _mobState = default!;
-
     private void InitializeVerbMenu()
     {
         // Keep the context-menu entry separate from the keybind setup while sharing the same offer flow.
@@ -95,9 +89,7 @@ public abstract partial class SharedOfferItemSystem
             !TryComp(user.Owner, out HandsComponent? userHands) ||
             !TryComp(target.Owner, out HandsComponent? targetHands) ||
             targetHands.ActiveHandId is null ||
-            _mobState.IsIncapacitated(target.Owner) ||
-            TryComp(target.Owner, out CuffableComponent? cuffable) &&
-            _cuffs.IsCuffed((target.Owner, cuffable), requireFullyCuffed: false) ||
+            !_actionBlocker.CanInteract(target.Owner, null) ||
             targetOfferItem.IsInReceiveMode ||
             offerItem.Target is not null ||
             offerItem.IsInReceiveMode ||
