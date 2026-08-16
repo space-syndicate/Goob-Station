@@ -5,7 +5,6 @@ using System.Linq;
 using Content.Client.Guidebook.Controls;
 using Content.Client.Guidebook.Richtext;
 using Content.Client.Message;
-using Content.Client.UserInterface.ControlExtensions;
 using Content.Shared._Starlight.CollectiveMind;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
@@ -31,8 +30,21 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
 
     private const int NameWidth = 190;
     private const int KeyWidth = 80;
-    private const string LatinKeyColor = "#8fcfff";
     private const string GuideHintColor = "#c8a16c";
+
+    private static readonly StyleBoxFlat HeaderPanelStyle = new()
+    {
+        BackgroundColor = Color.FromHex("#252735"),
+        BorderColor = Color.FromHex("#4c5066"),
+        BorderThickness = new Thickness(1)
+    };
+
+    private static readonly StyleBoxFlat RowPanelStyle = new()
+    {
+        BackgroundColor = Color.FromHex("#1d1f2a"),
+        BorderColor = Color.FromHex("#393c4d"),
+        BorderThickness = new Thickness(1)
+    };
 
     // Rows are retained so the local search field can hide them without rebuilding the table.
     private readonly List<CommunicationChannelGuideRow> _rows = [];
@@ -58,21 +70,18 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
         RemoveAllChildren();
         _rows.Clear();
 
-        // Page copy is built here instead of being hard-coded in the XML document,
-        // allowing the same guide entry to work with every available locale.
+        // Page layout: title, introduction, copy hint, filter, header, then generated rows.
         AddChild(BuildPageTitle());
         AddChild(BuildIntroduction());
         AddChild(BuildCopyHint());
         AddChild(BuildSearchBar());
         AddChild(BuildHeaderRow());
 
+        // Sort by the already localized channel name.
         var rows = _prototype.EnumeratePrototypes<RadioChannelPrototype>()
             .Select(BuildRadioRow)
             .Concat(_prototype.EnumeratePrototypes<CollectiveMindPrototype>().Select(BuildCollectiveMindRow))
-            // Sort by the already localized channel name. Keep this simple because
-            // client content is sandbox-checked and some runtime comparer types are blocked.
-            .OrderBy(row => row.Name)
-            .ToList();
+            .OrderBy(static row => row.Name);
 
         foreach (var row in rows)
         {
@@ -86,36 +95,34 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
     {
         return new Label
         {
-            Text = Loc.GetString("guide-communication-channels-page-title"),
+            Text = Loc.GetString("guide-entry-communication-channels"),
             StyleClasses = { "LabelHeadingBigger" }
         };
     }
 
     private static RichTextLabel BuildIntroduction()
     {
-        var introduction = new RichTextLabel
-        {
-            HorizontalExpand = true,
-            Margin = new Thickness(0, 2, 0, 2)
-        };
-
-        introduction.SetMarkup(Loc.GetString(
+        return BuildPageText(
             "guide-communication-channels-page-introduction",
-            ("keyColor", GuideHintColor)));
-        return introduction;
+            new Thickness(0, 2, 0, 2));
     }
 
     private static RichTextLabel BuildCopyHint()
     {
-        var hint = new RichTextLabel
+        return BuildPageText("guide-communication-channels-page-copy-hint");
+    }
+
+    // Creates localized rich-text blocks shown above the channel table.
+    private static RichTextLabel BuildPageText(string locKey, Thickness margin = default)
+    {
+        var label = new RichTextLabel
         {
-            HorizontalExpand = true
+            HorizontalExpand = true,
+            Margin = margin
         };
 
-        hint.SetMarkup(Loc.GetString(
-            "guide-communication-channels-page-copy-hint",
-            ("keyColor", GuideHintColor)));
-        return hint;
+        label.SetMarkup(Loc.GetString(locKey, ("keyColor", GuideHintColor)));
+        return label;
     }
 
     private LineEdit BuildSearchBar()
@@ -127,7 +134,7 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
             Margin = new Thickness(0, 4, 0, 4)
         };
 
-        search.OnTextChanged += _ => ApplyFilter(search.Text);
+        search.OnTextChanged += args => ApplyFilter(args.Text);
         return search;
     }
 
@@ -139,40 +146,49 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
         }
     }
 
+    // Builds a row from the localized name, keycode, and color of a radioChannel prototype.
     private static CommunicationChannelGuideData BuildRadioRow(RadioChannelPrototype channel)
     {
-        // Common radio uses ';'. Channels without a key (such as Handheld) intentionally
-        // leave the table cell empty because there is no prefix the player can type.
+        // Common uses the chat-wide ';' prefix. Other channels combine the ':' prefix
+        // with RadioChannelPrototype.KeyCode, which is loaded from the prototype's keycode field.
+        var name = channel.LocalizedName;
         var prefix = channel.ID == SharedChatSystem.CommonChannel
             ? SharedChatSystem.RadioCommonPrefix.ToString()
-            : channel.KeyCode == '\0'
-                ? string.Empty
-                : $"{SharedChatSystem.RadioChannelPrefix}{char.ToLowerInvariant(channel.KeyCode)}";
+            : BuildPrefix(SharedChatSystem.RadioChannelPrefix, channel.KeyCode);
 
         return new CommunicationChannelGuideData(
-            channel.LocalizedName,
+            name,
             prefix,
-            GetDescription("radio", channel.ID, channel.LocalizedName),
+            GetDescription("radio", channel.ID, name),
             channel.Color);
     }
 
+    // Builds a row from the localized name, keycode, and color of a collectiveMind prototype.
     private static CommunicationChannelGuideData BuildCollectiveMindRow(CollectiveMindPrototype mind)
     {
-        var prefix = mind.KeyCode == '\0'
-            ? string.Empty
-            : $"{SharedChatSystem.CollectiveMindPrefix}{char.ToLowerInvariant(mind.KeyCode)}";
+        // The '+' prefix comes from the chat system, while CollectiveMindPrototype.KeyCode
+        // is loaded from the prototype's keycode field.
+        var name = mind.LocalizedName;
+        var prefix = BuildPrefix(SharedChatSystem.CollectiveMindPrefix, mind.KeyCode);
 
         return new CommunicationChannelGuideData(
-            mind.LocalizedName,
+            name,
             prefix,
-            GetDescription("collective-mind", mind.ID, mind.LocalizedName),
+            GetDescription("collective-mind", mind.ID, name),
             mind.Color);
     }
 
+    // Returns the exact prefix players type in chat, or no key for keyless prototypes.
+    private static string BuildPrefix(char prefix, char keyCode)
+    {
+        return keyCode == '\0'
+            ? string.Empty
+            : $"{prefix}{char.ToLowerInvariant(keyCode)}";
+    }
+
+    // Uses a specific description when present, otherwise falls back to generic text.
     private static string GetDescription(string kind, string id, string name)
     {
-        // A channel-specific description is preferred, while the generic text keeps
-        // mod-added prototypes useful even before a dedicated localization is written.
         var specificKey = $"guide-communication-channels-description-{kind}-{id.ToLowerInvariant()}";
         if (Loc.TryGetString(specificKey, out var description))
             return description;
@@ -180,18 +196,13 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
         return Loc.GetString($"guide-communication-channels-description-{kind}-generic", ("channel", name));
     }
 
-    private static Control BuildHeaderRow()
+    private static PanelContainer BuildHeaderRow()
     {
         var panel = new PanelContainer
         {
             HorizontalExpand = true,
             Margin = new Thickness(0, 2, 0, 2),
-            PanelOverride = new StyleBoxFlat
-            {
-                BackgroundColor = Color.FromHex("#252735"),
-                BorderColor = Color.FromHex("#4c5066"),
-                BorderThickness = new Thickness(1)
-            }
+            PanelOverride = HeaderPanelStyle
         };
 
         var row = new BoxContainer
@@ -203,27 +214,27 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
 
         row.AddChild(BuildHeaderLabel("guide-communication-channels-header-name", NameWidth));
         row.AddChild(BuildCenteredHeaderLabel("guide-communication-channels-header-key"));
-        row.AddChild(BuildHeaderLabel("guide-communication-channels-header-description", 0, true));
+        row.AddChild(BuildHeaderLabel("guide-communication-channels-header-description"));
 
         panel.AddChild(row);
         return panel;
     }
 
-    private static RichTextLabel BuildHeaderLabel(string locKey, int width, bool expand = false)
+    private static RichTextLabel BuildHeaderLabel(string locKey, int? width = null)
     {
         var label = new RichTextLabel
         {
-            HorizontalExpand = expand
+            HorizontalExpand = width == null
         };
 
-        if (!expand)
-            label.SetWidth = width;
+        if (width != null)
+            label.SetWidth = width.Value;
 
         label.SetMarkup($"[bold]{FormattedMessage.EscapeText(Loc.GetString(locKey))}[/bold]");
         return label;
     }
 
-    private static Control BuildCenteredHeaderLabel(string locKey)
+    private static BoxContainer BuildCenteredHeaderLabel(string locKey)
     {
         var text = FormattedMessage.EscapeText(Loc.GetString(locKey));
         return BuildKeyCell($"[bold]{text}[/bold]");
@@ -233,7 +244,10 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
     /// Creates the fixed-width key cell. Centering a RichTextLabel itself does not
     /// center its markup, so a centered child is placed inside this container.
     /// </summary>
-    private static BoxContainer BuildKeyCell(string? markup = null, string? copyText = null, IClipboardManager? clipboard = null)
+    private static BoxContainer BuildKeyCell(
+        string? markup = null,
+        string? copyText = null,
+        IClipboardManager? clipboard = null)
     {
         var cell = new BoxContainer
         {
@@ -269,22 +283,17 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
         return cell;
     }
 
+    // Renders one channel row, stores searchable text for the filter,
+    // and lets players copy a non-empty chat key by clicking it.
     private sealed class CommunicationChannelGuideRow : PanelContainer, ISearchableControl
     {
-        private readonly IClipboardManager _clipboard;
         private readonly string _searchText;
 
         public CommunicationChannelGuideRow(CommunicationChannelGuideData data, IClipboardManager clipboard)
         {
-            _clipboard = clipboard;
             HorizontalExpand = true;
             Margin = new Thickness(0, 0, 0, 2);
-            PanelOverride = new StyleBoxFlat
-            {
-                BackgroundColor = Color.FromHex("#1d1f2a"),
-                BorderColor = Color.FromHex("#393c4d"),
-                BorderThickness = new Thickness(1)
-            };
+            PanelOverride = RowPanelStyle;
 
             var row = new BoxContainer
             {
@@ -294,7 +303,7 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
             };
 
             row.AddChild(BuildChannelName(data.Name, data.Color));
-            row.AddChild(BuildKey(data.Prefix));
+            row.AddChild(BuildKey(data.Prefix, clipboard));
             row.AddChild(BuildDescription(data.Description));
 
             AddChild(row);
@@ -304,9 +313,9 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
 
         public bool CheckMatchesSearch(string query)
         {
-            return string.IsNullOrWhiteSpace(query)
-                || _searchText.Contains(query.Trim(), StringComparison.OrdinalIgnoreCase)
-                || this.ChildrenContainText(query);
+            var search = query.Trim();
+            return search.Length == 0
+                || _searchText.Contains(search, StringComparison.OrdinalIgnoreCase);
         }
 
         public void SetHiddenState(bool state, string query)
@@ -325,12 +334,12 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
             return label;
         }
 
-        private Control BuildKey(string prefix)
+        // Builds the key cell, adds color highlighting, and wires click-to-copy.
+        private static BoxContainer BuildKey(string prefix, IClipboardManager clipboard)
         {
             if (string.IsNullOrEmpty(prefix))
                 return BuildKeyCell();
 
-            var escapedPrefix = FormattedMessage.EscapeText(prefix);
             string markup;
 
             // Highlight only Latin key letters, leaving ':' or '+' and every
@@ -343,14 +352,14 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
             {
                 var marker = FormattedMessage.EscapeText(prefix[..^1]);
                 var key = FormattedMessage.EscapeText(prefix[^1].ToString());
-                markup = $"[bold]{marker}[color={LatinKeyColor}]{key}[/color][/bold]";
+                markup = $"[bold]{marker}[color={GuideHintColor}]{key}[/color][/bold]";
             }
             else
             {
-                markup = $"[bold]{escapedPrefix}[/bold]";
+                markup = $"[bold]{FormattedMessage.EscapeText(prefix)}[/bold]";
             }
 
-            return BuildKeyCell(markup, prefix, _clipboard);
+            return BuildKeyCell(markup, prefix, clipboard);
         }
 
         private static bool IsLatinLetter(char value)
@@ -362,8 +371,7 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
         {
             var label = new RichTextLabel
             {
-                // A fixed width keeps all columns aligned and lets long localized
-                // names such as «Центральное Командование» wrap onto two lines.
+                // A fixed width keeps columns aligned and lets long names wrap.
                 SetWidth = NameWidth
             };
 
@@ -372,6 +380,7 @@ public sealed class GuideCommunicationChannelsTable : BoxContainer, IDocumentTag
         }
     }
 
+    // Prepared data used to render one channel table row.
     private sealed record CommunicationChannelGuideData(
         string Name,
         string Prefix,
