@@ -2,6 +2,9 @@
 
 using Content.Server.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
+// CorvaxGoob start
+using Content.Shared.Chemistry.Reagent;
+// CorvaxGoob end
 using Robust.Shared.Audio;
 
 namespace Content.Server.Chemistry.Components
@@ -34,5 +37,14 @@ namespace Content.Server.Chemistry.Components
         /// </summary>
         [DataField]
         public ChemMasterDrawSource DrawSource = ChemMasterDrawSource.Internal;
+
+        // CorvaxGoob start
+        /// <summary>
+        /// Temperatures stored independently for reagents in the internal buffer.
+        /// Reagents in a ChemMaster do not exchange heat until they are dispensed into a real solution.
+        /// </summary>
+        [ViewVariables]
+        public readonly Dictionary<ReagentId, float> BufferReagentTemperatures = new();
+        // CorvaxGoob end
     }
 }
