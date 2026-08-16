@@ -42,48 +42,53 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
             crawler.RevealPipeNetwork &&
             crawler.PipeRevealRange > 0f;
 
-        if (_timing.CurTime >= _nextPipeRefresh)
+        if (!active)
+        {
+            if (_current.Count > 0)
+                ClearRevealed();
+            return;
+        }
+
+        if (_timing.CurTime >= _nextPipeRefresh && TryComp(player, out TransformComponent? playerXform))
         {
             _nextPipeRefresh = _timing.CurTime + PipeRevealRefresh;
 
-            if (active && TryComp(player, out TransformComponent? playerXform))
+            var comp = Comp<ImperialVentCrawlerComponent>(player.Value);
+            _inRange.Clear();
+            var playerPos = _transform.GetWorldPosition(playerXform);
+            _lookup.GetEntitiesInRange(playerXform.MapID, playerPos, comp.PipeRevealRange, _inRange, flags: TrayScannerSystem.Flags);
+
+            var newSet = new HashSet<EntityUid>();
+            foreach (var (uid, _) in _inRange)
             {
-                var comp = Comp<ImperialVentCrawlerComponent>(player.Value);
-                _inRange.Clear();
-                var playerPos = _transform.GetWorldPosition(playerXform);
-                _lookup.GetEntitiesInRange(playerXform.MapID, playerPos, comp.PipeRevealRange, _inRange, flags: TrayScannerSystem.Flags);
-
-                var newSet = new HashSet<EntityUid>();
-                foreach (var (uid, _) in _inRange)
-                {
-                    newSet.Add(uid);
-                    if (_current.Add(uid))
-                    {
-                        EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
-                        SetRevealed(uid, true);
-                    }
-                }
-
-                var toRemove = new List<EntityUid>();
-                foreach (var uid in _current)
-                {
-                    if (!newSet.Contains(uid))
-                    {
-                        SetRevealed(uid, false);
-                        RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
-                        toRemove.Add(uid);
-                    }
-                }
-
-                foreach (var uid in toRemove)
-                {
-                    _current.Remove(uid);
-                }
+                newSet.Add(uid);
+                if (_current.Add(uid))
+                    EnsureComp<ImperialVentCrawlerRevealedComponent>(uid);
             }
-            else
+
+            var toRemove = new List<EntityUid>();
+            foreach (var uid in _current)
             {
-                ClearRevealed();
+                if (newSet.Contains(uid))
+                    continue;
+
+                SetRevealed(uid, false);
+                RemCompDeferred<ImperialVentCrawlerRevealedComponent>(uid);
+                toRemove.Add(uid);
             }
+
+            foreach (var uid in toRemove)
+            {
+                _current.Remove(uid);
+            }
+        }
+
+        foreach (var uid in _current)
+        {
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            SetRevealed(uid, true);
         }
     }
 

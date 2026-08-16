@@ -22,7 +22,7 @@
     disableActions: true
     removeComplexInteraction: true
     revealPipeNetwork: true
-    pipeRevealRange: 24
+    pipeRevealRange: 1
     hiddenVisibilityLayer: 1
     crawlVisibilityLayer: 16
     eyeSeeSubfloor: true
