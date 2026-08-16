@@ -231,6 +231,12 @@
   id: NearbyGunTargets
   query:
     - !type:NearbyHostilesQuery
+    # Imperial Space VentCrawler; Start
+    - !type:ComponentFilter
+      components:
+        - type: VentCrawling
+      retainWithComp: false
+    # Imperial Space VentCrawler; End
   considerations:
     - !type:TargetIsAliveCon
       curve: !type:BoolCurve
