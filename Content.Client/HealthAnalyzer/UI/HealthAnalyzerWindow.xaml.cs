@@ -34,6 +34,9 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using System.Globalization;
 using Content.Goobstation.Shared.Disease.Components;
+// CorvaxGoob start
+using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
+// CorvaxGoob end
 
 namespace Content.Client.HealthAnalyzer.UI
 {
@@ -259,6 +262,25 @@ namespace Content.Client.HealthAnalyzer.UI
                     Text = Loc.GetString("condition-body-unrevivable", ("entity", Identity.Name(_target.Value, _entityManager))),
                     Margin = new Thickness(0, 4),
                 });
+
+            // CorvaxGoob start
+            foreach (var woundableNet in msg.Traumas.Keys)
+            {
+                if (isPart && woundableNet != msg.SelectedPart)
+                    continue;
+
+                var woundable = _entityManager.GetEntity(woundableNet);
+                if (!_entityManager.HasComponent<IncisionOpenComponent>(woundable)
+                    || !TryGetEntityName(woundableNet, out var woundableName))
+                    continue;
+
+                ConditionsListContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString("condition-body-open-incision", ("woundable", woundableName)),
+                    Margin = new Thickness(0, 4),
+                });
+            }
+            // CorvaxGoob end
 
             foreach (var (bodyPart, isBleeding) in msg.Bleeding)
             {
