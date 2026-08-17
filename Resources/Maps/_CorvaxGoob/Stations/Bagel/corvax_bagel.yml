@@ -124846,7 +124846,7 @@ entities:
       stampedBy:
       - hasIcon: True
         stampFont: null
-        stampLargeIcon: large_stamp-qm
+        stampLargeIcon: null
         stampedColor: '#A23E3EFF'
         stampedName: stamp-component-stamped-name-qm
       content: Не забивайте болт на почту и заказы с консоли. Хоть альтернатива в виде разбора станции и фальшивомонетничества и манят, но ЦентКом нас набутылит, когда начнёт циферки по финансам подсчитывать. Вы же не хотите поехать на нары?
@@ -125371,7 +125371,7 @@ entities:
       stampedBy:
       - hasIcon: True
         stampFont: null
-        stampLargeIcon: large_stamp-hop
+        stampLargeIcon: null
         stampedColor: '#6EC0EAFF'
         stampedName: stamp-component-stamped-name-hop
       content: Привет! Вы попали в небольшой музей. К сожалению, в нём нехватает экспонатов. Если вы хотите что-то добавить в него - прошу обращаться к Главе персонала, либо же к любому сервиснику с доступами сюда. Заранее спасибо.
@@ -125487,7 +125487,7 @@ entities:
       stampedBy:
       - hasIcon: True
         stampFont: null
-        stampLargeIcon: large_stamp-cmo
+        stampLargeIcon: null
         stampedColor: '#33CCFFFF'
         stampedName: stamp-component-stamped-name-cmo
       content: 'До красного кода КРАЙНЕ ЖЕЛАТЕЛЬНО вести отчётность по попадающим в отдел гуманоидам: фио, дата и причина визита. Не то чтобы нас сильно душила бюрократия, но всё же приятно знать кто и из-за чего пострадал. '
