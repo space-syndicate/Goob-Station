@@ -6,6 +6,10 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
+// Imperial Change: start
+using Content.Shared.Climbing.Components;
+// Imperial Change: end
+
 namespace Content.Shared.Chasm;
 
 /// <summary>
@@ -73,6 +77,14 @@ public sealed class ChasmSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        // Imperial Change: start
+        if (TryComp<ClimbingComponent>(args.Tripper, out var climbing) && climbing.IsClimbing)
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // Imperial Change: end
 
         args.Continue = true;
     }
