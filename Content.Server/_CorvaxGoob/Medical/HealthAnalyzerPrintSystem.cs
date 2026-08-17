@@ -255,8 +255,8 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
                 any = true;
                 var bodyPart = _bodySystem.GetTargetBodyPart(woundable);
                 text.AppendLine(Loc.GetString(
-                    $"condition-body-bleeding-{bodyPart}",
-                    ("entity", patientName)));
+                    "health-analyzer-report-bleeding-part",
+                    ("part", GetBodyPartName(bodyPart))));
             }
 
             foreach (var (woundable, _) in woundables)
@@ -274,7 +274,7 @@ public sealed class HealthAnalyzerPrintSystem : EntitySystem
                         continue;
 
                     any = true;
-                    var woundableName = MetaData(woundable).EntityName;
+                    var woundableName = GetBodyPartName(_bodySystem.GetTargetBodyPart(woundable));
 
                     if (trauma.Comp.TraumaType == TraumaSystem.BoneDamage &&
                         trauma.Comp.TraumaTarget is { } bone &&

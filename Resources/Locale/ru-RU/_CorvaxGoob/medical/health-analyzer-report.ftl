@@ -22,6 +22,7 @@ health-analyzer-report-organs-heading = ОРГАНЫ:
 health-analyzer-report-chemicals-heading = ХИМИКАТЫ:
 health-analyzer-report-none = Не обнаружено.
 health-analyzer-report-missing-part = • {$part}: отсутствует
+health-analyzer-report-bleeding-part = • {$part}: кровотечение
 
 health-analyzer-report-body-part-head = Голова
 health-analyzer-report-body-part-chest = Грудь

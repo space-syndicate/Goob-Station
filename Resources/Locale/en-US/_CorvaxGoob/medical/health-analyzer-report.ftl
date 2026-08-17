@@ -22,6 +22,7 @@ health-analyzer-report-organs-heading = ORGANS:
 health-analyzer-report-chemicals-heading = CHEMICALS:
 health-analyzer-report-none = None detected.
 health-analyzer-report-missing-part = • {$part}: missing
+health-analyzer-report-bleeding-part = • {$part}: bleeding
 
 health-analyzer-report-body-part-head = Head
 health-analyzer-report-body-part-chest = Chest
