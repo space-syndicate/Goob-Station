@@ -40,6 +40,9 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly StorageSystem _storageSystem = default!;
         [Dependency] private readonly LabelSystem _labelSystem = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+        // CorvaxGoob start
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        // CorvaxGoob end
 
         private static readonly EntProtoId PillPrototypeId = "Pill";
 
@@ -162,8 +165,19 @@ namespace Content.Server.Chemistry.EntitySystems
             if (fromBuffer) // Buffer to container
             {
                 amount = FixedPoint2.Min(amount, containerSolution.AvailableVolume);
+
+                // CorvaxGoob start
+                var sourceTemperature = GetBufferReagentTemperature(chemMaster.Comp, id, bufferSolution);
                 amount = bufferSolution.RemoveReagent(id, amount, preserveOrder: true);
-                _solutionContainerSystem.TryAddReagent(containerSoln.Value, id, amount, out var _);
+                if (amount <= FixedPoint2.Zero)
+                    return;
+
+                if (bufferSolution.GetReagentQuantity(id) <= FixedPoint2.Zero)
+                    chemMaster.Comp.BufferReagentTemperatures.Remove(id);
+
+                var transferredSolution = CreateReagentSolution(id, amount, sourceTemperature);
+                _solutionContainerSystem.TryAddSolution(containerSoln.Value, transferredSolution);
+                // CorvaxGoob end
             }
             else // Container to buffer
             {
@@ -171,8 +185,17 @@ namespace Content.Server.Chemistry.EntitySystems
                 if (bufferSolution.MaxVolume.Value > 0)    //Goobstation - chemicalbuffer if no limit
                     amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id), bufferSolution.AvailableVolume);
 
-                _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
+                // CorvaxGoob start
+                var sourceTemperature = containerSolution.Temperature;
+                var existingAmount = bufferSolution.GetReagentQuantity(id);
+
+                amount = _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
+                if (amount <= FixedPoint2.Zero)
+                    return;
+
+                StoreBufferReagentTemperature(chemMaster.Comp, id, bufferSolution, existingAmount, amount, sourceTemperature);
                 bufferSolution.AddReagent(id, amount);
+                // CorvaxGoob end
             }
 
             if (actor.HasValue) // Goob - logging
@@ -189,7 +212,13 @@ namespace Content.Server.Chemistry.EntitySystems
             if (fromBuffer)
             {
                 if (_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+                {
+                    // CorvaxGoob start
                     bufferSolution.RemoveReagent(id, amount, preserveOrder: true);
+                    if (bufferSolution.GetReagentQuantity(id) <= FixedPoint2.Zero)
+                        chemMaster.Comp.BufferReagentTemperatures.Remove(id);
+                    // CorvaxGoob end
+                }
                 else
                     return;
             }
@@ -328,7 +357,10 @@ namespace Content.Server.Chemistry.EntitySystems
                         return false;
                     }
 
-                    break;
+                    // CorvaxGoob start
+                    outputSolution = WithdrawFromInternalBuffer(chemMaster.Comp, solution, neededVolume);
+                    return true;
+                    // CorvaxGoob end
 
                 case ChemMasterDrawSource.External:
                     if (_itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName) is not {} container)
@@ -369,6 +401,72 @@ namespace Content.Server.Chemistry.EntitySystems
 
             return true;
         }
+
+        // CorvaxGoob start
+        private Solution WithdrawFromInternalBuffer(ChemMasterComponent chemMaster, Solution bufferSolution, FixedPoint2 amount)
+        {
+            var withdrawn = bufferSolution.SplitSolution(amount);
+            var output = new Solution();
+
+            foreach (var reagent in withdrawn.Contents)
+            {
+                var temperature = GetBufferReagentTemperature(chemMaster, reagent.Reagent, bufferSolution);
+                var portion = CreateReagentSolution(reagent.Reagent, reagent.Quantity, temperature);
+                output.AddSolution(portion, _prototypeManager);
+
+                if (bufferSolution.GetReagentQuantity(reagent.Reagent) <= FixedPoint2.Zero)
+                    chemMaster.BufferReagentTemperatures.Remove(reagent.Reagent);
+            }
+
+            return output;
+        }
+
+        private static Solution CreateReagentSolution(ReagentId id, FixedPoint2 amount, float temperature)
+        {
+            var solution = new Solution
+            {
+                Temperature = temperature,
+            };
+            solution.AddReagent(id, amount);
+            return solution;
+        }
+
+        private static float GetBufferReagentTemperature(ChemMasterComponent chemMaster, ReagentId id, Solution bufferSolution)
+        {
+            if (chemMaster.BufferReagentTemperatures.TryGetValue(id, out var temperature))
+                return temperature;
+
+            // Compatibility fallback for reagents inserted into the buffer by systems that do not track
+            // per-reagent temperature yet, such as existing automation paths.
+            temperature = bufferSolution.Temperature;
+            chemMaster.BufferReagentTemperatures[id] = temperature;
+            return temperature;
+        }
+
+        private static void StoreBufferReagentTemperature(
+            ChemMasterComponent chemMaster,
+            ReagentId id,
+            Solution bufferSolution,
+            FixedPoint2 existingAmount,
+            FixedPoint2 addedAmount,
+            float addedTemperature)
+        {
+            if (addedAmount <= FixedPoint2.Zero)
+                return;
+
+            if (existingAmount <= FixedPoint2.Zero)
+            {
+                chemMaster.BufferReagentTemperatures[id] = addedTemperature;
+                return;
+            }
+
+            var existingTemperature = GetBufferReagentTemperature(chemMaster, id, bufferSolution);
+            var totalAmount = existingAmount + addedAmount;
+            chemMaster.BufferReagentTemperatures[id] =
+                (existingTemperature * existingAmount.Float() + addedTemperature * addedAmount.Float()) /
+                totalAmount.Float();
+        }
+        // CorvaxGoob end
 
         private void ClickSound(Entity<ChemMasterComponent> chemMaster)
         {
