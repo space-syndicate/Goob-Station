@@ -288,10 +288,11 @@ namespace Content.Server.Decals
             _dirtyChunks[id].Add(chunkIndices);
         }
 
-        public bool TryAddDecal(string id, EntityCoordinates coordinates, out uint decalId, Color? color = null, Angle? rotation = null, int zIndex = 0, bool cleanable = false)
+        //corvax-goob `glows` add
+        public bool TryAddDecal(string id, EntityCoordinates coordinates, out uint decalId, Color? color = null, Angle? rotation = null, int zIndex = 0, bool cleanable = false, bool glows = false)
         {
             rotation ??= Angle.Zero;
-            var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable);
+            var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows);
 
             return TryAddDecal(decal, coordinates, out decalId);
         }

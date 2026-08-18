@@ -13,6 +13,8 @@ namespace Content.Shared.Decals
         [DataField("sprite")] public SpriteSpecifier Sprite { get; private set; } = SpriteSpecifier.Invalid;
         [DataField("tags")] public List<string> Tags = new();
         [DataField("showMenu")] public bool ShowMenu = true;
+        // corvax-goob
+        [DataField("glows")] public bool Glows = false;
 
         /// <summary>
         /// If the decal is rotated compared to our eye should we snap it to south.

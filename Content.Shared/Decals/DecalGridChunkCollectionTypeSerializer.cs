@@ -55,7 +55,8 @@ namespace Content.Shared.Decals
 
                         var chunkOrigin = SharedMapSystem.GetChunkIndices(coords, SharedDecalSystem.ChunkSize);
                         var chunk = dictionary.GetOrNew(chunkOrigin);
-                        var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable);
+                        // corvax-goob `glows` add
+                        var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable, data.Glows);
 
                         nextIndex = Math.Max(nextIndex, dUid);
 
@@ -164,13 +165,17 @@ namespace Content.Shared.Decals
             [DataField("cleanable")]
             public bool Cleanable { get; init; }
 
-            public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable)
+            [DataField("glows")]
+            public bool Glows { get; init; }
+
+            public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows)
             {
                 Id = id;
                 Color = color;
                 Angle = angle;
                 ZIndex = zIndex;
                 Cleanable = cleanable;
+                Glows = glows;
             }
 
             public DecalData(Decal decal)
@@ -180,6 +185,7 @@ namespace Content.Shared.Decals
                 Angle = decal.Angle;
                 ZIndex = decal.ZIndex;
                 Cleanable = decal.Cleanable;
+                Glows = decal.Glows;
             }
 
             public bool Equals(DecalData other)
@@ -188,7 +194,8 @@ namespace Content.Shared.Decals
                        Nullable.Equals(Color, other.Color) &&
                        Angle.Equals(other.Angle) &&
                        ZIndex == other.ZIndex &&
-                       Cleanable == other.Cleanable;
+                       Cleanable == other.Cleanable &&
+                       Glows == other.Glows;
             }
 
             public override bool Equals(object? obj)
@@ -198,7 +205,7 @@ namespace Content.Shared.Decals
 
             public override int GetHashCode()
             {
-                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable);
+                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable, Glows);
             }
 
             public int CompareTo(DecalData other)

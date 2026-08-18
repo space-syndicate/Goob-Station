@@ -24,4 +24,8 @@ public sealed partial class PlaceDecalActionEvent : WorldTargetActionEvent
 
     [DataField("cleanable")]
     public bool Cleanable;
+
+    // corvax-goob
+    [DataField("glows")]
+    public bool Glows;
 }

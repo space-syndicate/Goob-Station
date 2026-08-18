@@ -12,6 +12,9 @@ namespace Content.Client.Decals.Overlays
 {
     public sealed class DecalOverlay : GridOverlay
     {
+        // corvax-goob
+        private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
+
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
@@ -19,6 +22,8 @@ namespace Content.Client.Decals.Overlays
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 
         private readonly List<(uint Id, Decal Decal)> _decals = new();
+
+        private readonly ShaderInstance _unshadedShader;
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -28,6 +33,8 @@ namespace Content.Client.Decals.Overlays
             _sprites = sprites;
             _entManager = entManager;
             _prototypeManager = prototypeManager;
+            // corvax-goob
+            _unshadedShader = _prototypeManager.Index(UnshadedShader).Instance();
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -85,6 +92,9 @@ namespace Content.Client.Decals.Overlays
             var (_, worldRot, worldMatrix) = xformSystem.GetWorldPositionRotationMatrix(xform);
             handle.SetTransform(worldMatrix);
 
+            // corvax-goob
+            var defShader = handle.GetShader();
+
             foreach (var (_, decal) in _decals)
             {
                 if (!_cachedTextures.TryGetValue(decal.Id, out var cache))
@@ -108,6 +118,8 @@ namespace Content.Client.Decals.Overlays
                 }
 
                 var angle = decal.Angle - cardinal;
+
+                handle.UseShader(decal.Glows? _unshadedShader : defShader);
 
                 if (angle.Equals(Angle.Zero))
                     handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Color);
