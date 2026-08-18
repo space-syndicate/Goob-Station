@@ -144,7 +144,6 @@
         - Plastic
         # </Goobstation
   - type: Lathe
-    producingSound: /Audio/Machines/lathe_print.ogg
     idleState: icon
     runningState: building
     unlitIdleState: unlit
@@ -231,7 +230,6 @@
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: Lathe
-    producingSound: /Audio/Machines/lathe_print.ogg
     idleState: icon
     runningState: building
     unlitIdleState: unlit
