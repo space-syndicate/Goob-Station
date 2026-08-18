@@ -3,6 +3,9 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared._Shitmed.Medical.HealthAnalyzer;
+// CorvaxGoob start
+using Content.Server._CorvaxGoob.Medical;
+// CorvaxGoob end
 
 namespace Content.Server.Medical.Components;
 
@@ -13,7 +16,9 @@ namespace Content.Server.Medical.Components;
 /// Requires <c>ItemToggleComponent</c>.
 /// </remarks>
 [RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(HealthAnalyzerSystem), typeof(CryoPodSystem))]
+// CorvaxGoob start
+[Access(typeof(HealthAnalyzerSystem), typeof(HealthAnalyzerPrintSystem), typeof(CryoPodSystem))]
+// CorvaxGoob end
 public sealed partial class HealthAnalyzerComponent : Component
 {
     /// <summary>
@@ -76,4 +81,18 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public HealthAnalyzerMode CurrentMode = HealthAnalyzerMode.Body;
+
+    // CorvaxGoob start
+    /// <summary>
+    /// When will the analyzer be ready to print another medical report?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan PrintReadyAt = TimeSpan.Zero;
+
+    /// <summary>
+    /// How often can the analyzer print medical reports?
+    /// </summary>
+    [DataField]
+    public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+    // CorvaxGoob end
 }

@@ -26,13 +26,23 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 MinHeight="30"
                 HorizontalExpand="True"
                 StyleClasses="OpenBoth"/>
+            <!-- CorvaxGoob start -->
             <Button
                 Name="ChemicalsButton"
                 Text="{Loc 'health-analyzer-window-chemicals'}"
                 MinWidth="130"
                 MinHeight="30"
                 HorizontalExpand="True"
+                StyleClasses="OpenBoth"/>
+            <Button
+                Name="PrintButton"
+                Access="Public"
+                Text="{Loc 'health-analyzer-print-button'}"
+                MinWidth="150"
+                MinHeight="30"
+                HorizontalExpand="True"
                 StyleClasses="OpenLeft"/>
+            <!-- CorvaxGoob end -->
         </BoxContainer>
         <PanelContainer StyleClasses="LowDivider"/>
         <BoxContainer Orientation="Horizontal" VerticalExpand="True">
