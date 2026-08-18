@@ -226,3 +226,8 @@
   license: "CC-BY-3.0"
   copyright: "Created by Tomlija, converted to OGG and modified by themias."
   source: "https://freesound.org/people/Tomlija/sounds/99565/"
+
+- files: ["lathe_print.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Taken from TG station. made by kayozzx (discord)."
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/lathe
