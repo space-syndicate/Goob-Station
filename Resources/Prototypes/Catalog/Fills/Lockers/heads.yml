@@ -188,6 +188,7 @@
     - id: RCDRechargingCE
     - id: MaterialSiloFlatpack # Goob
     # Corvax Edit Start
+    - id: GasTurbineMonitorComputerCircuitboard
     - id: NuclearReactorMonitorComputerCircuitboard
     - id: SmallNuclearReactorFlatpack
     - id: GasTurbineSmallFlatpack
