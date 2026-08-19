@@ -3,6 +3,7 @@
 using Content.Shared.Dataset;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio;
 
 namespace Content.Goobstation.Shared.Hailer;
 
@@ -14,6 +15,9 @@ public sealed partial class HailerComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? HailActionEntity;
+
+    [DataField("deathSound")]
+    public SoundSpecifier? DeathSound;
 
     // CorvaxGoob-HailerRework-Start
     [DataField]

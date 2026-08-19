@@ -78,6 +78,9 @@
     # CorvaxGoob-HailerRework-End
   - type: IngestionBlocker # Goobstation
     blockSmokeIngestion: true
+  - type: HailerDeathSound
+    sound:
+      path: /Audio/_Goobstation/Hailer/hailer_user_death.ogg
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
