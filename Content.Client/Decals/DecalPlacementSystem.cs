@@ -38,6 +38,8 @@ public sealed class DecalPlacementSystem : EntitySystem
     private bool _cleanable;
     // corvax-goob
     private bool _glows;
+    private float _glowDuration;
+    private float _glowEnergy;
 
     private bool _active;
     private bool _placing;
@@ -77,7 +79,7 @@ public sealed class DecalPlacementSystem : EntitySystem
                 if (!coords.IsValid(EntityManager))
                     return false;
 
-                var decal = new Decal(coords.Position, _decalId, _decalColor, _decalAngle, _zIndex, _cleanable, _glows);
+                var decal = new Decal(coords.Position, _decalId, _decalColor, _decalAngle, _zIndex, _cleanable, _glows, _glowDuration, _glowEnergy);
                 RaiseNetworkEvent(new RequestDecalPlacementEvent(decal, GetNetCoordinates(coords)));
 
                 return true;
@@ -135,7 +137,15 @@ public sealed class DecalPlacementSystem : EntitySystem
 
         args.Target = args.Target.Offset(new Vector2(-0.5f, -0.5f));
 
-        var decal = new Decal(args.Target.Position, args.DecalId, args.Color, Angle.FromDegrees(args.Rotation), args.ZIndex, args.Cleanable, args.Glows);
+        var decal = new Decal(args.Target.Position,
+            args.DecalId,
+            args.Color,
+            Angle.FromDegrees(args.Rotation),
+            args.ZIndex,
+            args.Cleanable,
+            args.Glows,
+            args.GlowDuration,
+            args.GlowEnergy);
         RaiseNetworkEvent(new RequestDecalPlacementEvent(decal, GetNetCoordinates(args.Target)));
     }
 

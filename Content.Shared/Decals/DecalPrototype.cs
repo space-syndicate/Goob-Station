@@ -18,7 +18,7 @@ namespace Content.Shared.Decals
         /// <summary>
         /// How long the decal should glow in seconds? For infinity set -1
         /// </summary>
-        [DataField("glowTime")] public float GlowTime = 1200; // 20 minutes
+        [DataField("glowDuration")] public float GlowDuration = 1200; // 20 minutes
         /// <summary>
         ///  How strong should be the glow when decal was created? normalized
         /// </summary>

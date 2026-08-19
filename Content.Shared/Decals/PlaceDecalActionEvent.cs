@@ -28,4 +28,10 @@ public sealed partial class PlaceDecalActionEvent : WorldTargetActionEvent
     // corvax-goob
     [DataField("glows")]
     public bool Glows;
+
+    [DataField("glowDuration")]
+    public float GlowDuration;
+
+    [DataField("glowEnergy")]
+    public float GlowEnergy;
 }

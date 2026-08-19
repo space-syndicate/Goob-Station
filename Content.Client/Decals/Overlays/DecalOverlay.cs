@@ -13,7 +13,7 @@ namespace Content.Client.Decals.Overlays
     public sealed class DecalOverlay : GridOverlay
     {
         // corvax-goob
-        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "emissive";
+        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "Emissive";
 
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
@@ -122,8 +122,9 @@ namespace Content.Client.Decals.Overlays
                 if (decal.Glows)
                 {
                     handle.UseShader(_emissiveShader);
-                    var glowEnergy = 
-                    _emissiveShader.SetParameter("energy", );
+                    
+                    var glowEnergy =
+                    _emissiveShader.SetParameter("glowEnergy", );
                 }
                 else
                 {
