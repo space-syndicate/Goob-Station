@@ -23,7 +23,7 @@ namespace Content.Shared.Decals
         /// How long the decal should glow in seconds? For infinity set -1
         /// </summary>
         [DataField, AutoNetworkedField]
-        public float GlowTime = 12000;
+        public float GlowTime = 120;
         /// <summary>
         /// The timestamp at which glow is stopped.
         /// </summary>

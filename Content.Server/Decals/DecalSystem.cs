@@ -297,7 +297,7 @@ namespace Content.Server.Decals
             bool cleanable = false,
             //corvax-goob
             bool glows = false,
-            float glowTime = 12000,
+            float glowTime = 1200,
             float glowEnergy = 0.3f
             )
         {

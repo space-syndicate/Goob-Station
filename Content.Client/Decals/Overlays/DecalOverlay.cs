@@ -121,12 +121,11 @@ namespace Content.Client.Decals.Overlays
 
                 var angle = decal.Angle - cardinal;
                 //corvax-goob start
-                if (decal.Glows)
-                {
-                    handle.UseShader(_emissiveShader);
 
-                    var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
-                    var glowEnergy =  (float)((decal.GlowTime / timeRemained) * decal.GlowEnergy);
+                var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
+                if (decal.Glows && timeRemained > 1)
+                {
+                    var glowEnergy =  (float)((timeRemained / decal.GlowTime) * decal.GlowEnergy);
                     _emissiveShader.SetParameter("glowEnergy", glowEnergy);
                 }
                 else
