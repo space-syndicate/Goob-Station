@@ -19,7 +19,7 @@ public sealed partial class HailerComponent : Component
     // CorvaxGoob-HailerDeath-Start
     [DataField("deathSound"), AutoNetworkedField]
     public SoundSpecifier? DeathSound;
-    // CorvaxGoob-HailerRework-End
+    // CorvaxGoob-HailerDeath-End
 
     // CorvaxGoob-HailerRework-Start
     [DataField]
