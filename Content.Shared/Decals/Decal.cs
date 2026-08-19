@@ -2,6 +2,7 @@
 
 using System.Numerics;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Decals
 {
@@ -21,7 +22,14 @@ namespace Content.Shared.Decals
         /// <summary>
         /// How long the decal should glow in seconds? For infinity set -1
         /// </summary>
-        [DataField("glowDuration")] public float GlowDuration = 1200; // 20 minutes
+        [DataField, AutoNetworkedField]
+        public float GlowTime = 12000;
+        /// <summary>
+        /// The timestamp at which glow is stopped.
+        /// </summary>
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [AutoNetworkedField, AutoPausedField]
+        public TimeSpan GlowUntil = TimeSpan.Zero;
         /// <summary>
         /// How strong should be the glow when decal was created? normalized
         /// </summary>
@@ -30,7 +38,7 @@ namespace Content.Shared.Decals
 
         public Decal() {}
 
-        public Decal(Vector2 coordinates, string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowDuration, float glowEnergy)
+        public Decal(Vector2 coordinates, string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
         {
             Coordinates = coordinates;
             Id = id;
@@ -40,18 +48,18 @@ namespace Content.Shared.Decals
             Cleanable = cleanable;
             // corvax-goob
             Glows = glows;
-            GlowDuration = glowDuration;
+            GlowTime = glowTime;
             GlowEnergy = glowEnergy;
         }
 
-        public Decal WithCoordinates(Vector2 coordinates) => new(coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowDuration, GlowEnergy);
-        public Decal WithId(string id) => new(Coordinates, id, Color, Angle, ZIndex, Cleanable, Glows, GlowDuration, GlowEnergy);
-        public Decal WithColor(Color? color) => new(Coordinates, Id, color, Angle, ZIndex, Cleanable, Glows, GlowDuration, GlowEnergy);
-        public Decal WithRotation(Angle angle) => new(Coordinates, Id, Color, angle, ZIndex, Cleanable, Glows, GlowDuration, GlowEnergy);
-        public Decal WithZIndex(int zIndex) => new(Coordinates, Id, Color, Angle, zIndex, Cleanable, Glows, GlowDuration, GlowEnergy);
-        public Decal WithCleanable(bool cleanable) => new(Coordinates, Id, Color, Angle, ZIndex, cleanable, Glows, GlowDuration, GlowEnergy);
-        public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowDuration, GlowEnergy);
-        public Decal WithGlowTime(float glowDuration) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, glowDuration, GlowEnergy);
-        public Decal WithGlowEnergy(float glowEnergy) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowDuration, glowEnergy);
+        public Decal WithCoordinates(Vector2 coordinates) => new(coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
+        public Decal WithId(string id) => new(Coordinates, id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
+        public Decal WithColor(Color? color) => new(Coordinates, Id, color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
+        public Decal WithRotation(Angle angle) => new(Coordinates, Id, Color, angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
+        public Decal WithZIndex(int zIndex) => new(Coordinates, Id, Color, Angle, zIndex, Cleanable, Glows, GlowTime, GlowEnergy);
+        public Decal WithCleanable(bool cleanable) => new(Coordinates, Id, Color, Angle, ZIndex, cleanable, Glows, GlowTime, GlowEnergy);
+        public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
+        public Decal WithGlowTime(float glowTime) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, glowTime, GlowEnergy);
+        public Decal WithGlowEnergy(float glowEnergy) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, glowEnergy);
     }
 }

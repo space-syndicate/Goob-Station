@@ -297,12 +297,13 @@ namespace Content.Server.Decals
             bool cleanable = false,
             //corvax-goob
             bool glows = false,
-            float glowTime = 12000, // 20 minutes
+            float glowTime = 12000,
             float glowEnergy = 0.3f
             )
         {
             rotation ??= Angle.Zero;
             var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows, glowTime, glowEnergy);
+            decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(glowTime);
 
             return TryAddDecal(decal, coordinates, out decalId);
         }

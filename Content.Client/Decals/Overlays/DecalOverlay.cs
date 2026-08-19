@@ -7,6 +7,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Decals.Overlays
 {
@@ -18,6 +19,7 @@ namespace Content.Client.Decals.Overlays
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
+        private readonly IGameTiming _timing = default!;
 
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 
@@ -122,9 +124,10 @@ namespace Content.Client.Decals.Overlays
                 if (decal.Glows)
                 {
                     handle.UseShader(_emissiveShader);
-                    
-                    var glowEnergy =
-                    _emissiveShader.SetParameter("glowEnergy", );
+
+                    var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
+                    var glowEnergy =  (float)((decal.GlowTime / timeRemained) * decal.GlowEnergy);
+                    _emissiveShader.SetParameter("glowEnergy", glowEnergy);
                 }
                 else
                 {
