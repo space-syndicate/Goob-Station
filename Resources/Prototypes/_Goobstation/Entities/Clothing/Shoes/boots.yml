@@ -138,8 +138,8 @@
   - type: Clothing
     sprite: _Goobstation/Clothing/Shoes/Boots/jordans.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.7 # CorvaxGoob
+    sprintModifier: 0.7 # CorvaxGoob
   - type: StaticPrice
     price: 750
   - type: Damageable
