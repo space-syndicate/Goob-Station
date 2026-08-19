@@ -21,7 +21,7 @@
   - type: PointLight
     enabled: true
     radius: 1.5
-    energy: 1
+    energy: 2
   - type: LightFade
     duration: 1200 # 20 minutes
 

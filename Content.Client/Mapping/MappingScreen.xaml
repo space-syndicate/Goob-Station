@@ -39,7 +39,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal"><!-- CorvaxGoob -->
                         <Label Text="{Loc 'decal-placer-window-glow-energy'}" Margin="0 0 0 1" />
-                        <SpinBox Name="DecalGlowEnergy" HorizontalExpand ="True" />
+                        <Slider Name="DecalGlowEnergy" HorizontalExpand ="True" />
                     </BoxContainer>
                     <BoxContainer Name="DecalSpinBoxContainer" Orientation="Horizontal">
                         <Label Text="{Loc decal-placer-window-rotation}" Margin="0 0 0 1" />

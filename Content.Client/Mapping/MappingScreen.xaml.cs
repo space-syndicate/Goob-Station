@@ -105,7 +105,7 @@ public sealed partial class MappingScreen : InGameScreen
             _decalGlowTime = args.Value;
             UpdateDecal();
         };
-        DecalGlowEnergy.ValueChanged += args =>
+        DecalGlowEnergy.OnValueChanged += args =>
         {
             _decalGlowEnergy = args.Value;
             UpdateDecal();

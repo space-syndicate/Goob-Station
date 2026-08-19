@@ -34,7 +34,7 @@ ent-CrayonBorg = электрический мелок
 
 ent-CrayonGlowing = светящийся мелок
     .dec = Красочный мелок, светится. Выглядит аппетитнее, чем оригинал. Мммм...
-ent-CrayonGlowingWhite = светящийся белый мелок
+ent-CrayonWhiteGlowing = светящийся белый мелок
     .desc = { ent-CrayonGlowing.desc }
 ent-CrayonRedGlowing = светящийся красный мелок
     .desc = { ent-CrayonGlowing.desc }

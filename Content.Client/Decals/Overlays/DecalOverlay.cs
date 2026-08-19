@@ -25,7 +25,9 @@ namespace Content.Client.Decals.Overlays
 
         private readonly List<(uint Id, Decal Decal)> _decals = new();
 
+        // corvax-goob
         private readonly ShaderInstance _emissiveShader;
+        private readonly Dictionary<Vector2, ShaderInstance> _glowingDecalsShaders = new();
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -36,7 +38,7 @@ namespace Content.Client.Decals.Overlays
             _entManager = entManager;
             _prototypeManager = prototypeManager;
             // corvax-goob
-            _emissiveShader = _prototypeManager.Index(EmissiveShader).Instance().Duplicate();
+            _emissiveShader = _prototypeManager.Index(EmissiveShader).InstanceUnique();
             _timing = IoCManager.Resolve<IGameTiming>();
         }
 
@@ -124,14 +126,16 @@ namespace Content.Client.Decals.Overlays
                 //corvax-goob start
 
                 var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
-                if (decal.Glows && timeRemained > 1)
+                if (decal.Glows && timeRemained > 0.01)
                 {
                     var glowEnergy =  Math.Clamp(
                         (float)(timeRemained / decal.GlowTime) * decal.GlowEnergy,
                         0f,
                         decal.GlowEnergy);
-                    handle.UseShader(_emissiveShader);
-                    _emissiveShader.SetParameter("glowEnergy", glowEnergy);
+                    var decalShader = _glowingDecalsShaders.GetValueOrDefault(decal.Coordinates, _emissiveShader.Duplicate());
+                    _glowingDecalsShaders.TryAdd(decal.Coordinates, decalShader);
+                    handle.UseShader(decalShader);
+                    decalShader.SetParameter("glowEnergy", glowEnergy);
                 }
                 else
                 {

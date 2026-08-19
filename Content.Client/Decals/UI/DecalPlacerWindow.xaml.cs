@@ -149,7 +149,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             _glowTime = args.Value;
             UpdateDecalPlacementInfo();
         };
-        GlowEnergy.ValueChanged += args =>
+        GlowEnergy.OnValueChanged += args =>
         {
             _glowEnergy = args.Value;
             UpdateDecalPlacementInfo();

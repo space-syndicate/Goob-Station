@@ -30,7 +30,7 @@ SPDX-License-Identifier: MIT
         </BoxContainer>
         <BoxContainer Orientation="Horizontal"><!-- CorvaxGoob -->
             <Label Text="{Loc 'decal-placer-window-glow-energy'}" Margin="0 0 0 1" />
-            <SpinBox Name="GlowEnergy" HorizontalExpand ="True" />
+            <Slider Name="GlowEnergy" HorizontalExpand ="True" />
         </BoxContainer>
         <BoxContainer Name="SpinBoxContainer" Orientation="Horizontal">
             <Label Text="{Loc 'decal-placer-window-rotation'}" Margin="0 0 0 1" />
