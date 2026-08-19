@@ -13,7 +13,7 @@ namespace Content.Client.Decals.Overlays
     public sealed class DecalOverlay : GridOverlay
     {
         // corvax-goob
-        private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
+        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "emissive";
 
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
@@ -23,7 +23,7 @@ namespace Content.Client.Decals.Overlays
 
         private readonly List<(uint Id, Decal Decal)> _decals = new();
 
-        private readonly ShaderInstance _unshadedShader;
+        private readonly ShaderInstance _emissiveShader;
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -34,7 +34,7 @@ namespace Content.Client.Decals.Overlays
             _entManager = entManager;
             _prototypeManager = prototypeManager;
             // corvax-goob
-            _unshadedShader = _prototypeManager.Index(UnshadedShader).Instance();
+            _emissiveShader = _prototypeManager.Index(EmissiveShader).Instance();
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -118,8 +118,18 @@ namespace Content.Client.Decals.Overlays
                 }
 
                 var angle = decal.Angle - cardinal;
-
-                handle.UseShader(decal.Glows? _unshadedShader : defShader);
+                //corvax-goob start
+                if (decal.Glows)
+                {
+                    handle.UseShader(_emissiveShader);
+                    var glowEnergy = 
+                    _emissiveShader.SetParameter("energy", );
+                }
+                else
+                {
+                    handle.UseShader(defShader);
+                }
+                //corvax-goob end
 
                 if (angle.Equals(Angle.Zero))
                     handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Color);

@@ -23,6 +23,8 @@ Possible modes are:\n
 - rotation <degrees>\n
 - zindex <zIndex>\n
 - clean <cleanable>
+- glows <glows>\n
+- glowEnergy <glowEnergy>
 ";
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
@@ -153,6 +155,42 @@ Possible modes are:\n
                 if (!decalSystem.SetDecalCleanable(gridId.Value, uid, cleanable))
                 {
                     shell.WriteError("Failed changing decal cleanable flag.");
+                }
+                break;
+            case "glows":
+                if(args.Length != 4)
+                {
+                    shell.WriteError("Expected 5 arguments.");
+                    return;
+                }
+
+                if (!bool.TryParse(args[3], out var glows))
+                {
+                    shell.WriteError("Failed parsing glows.");
+                    return;
+                }
+
+                if (!decalSystem.SetDecalGlows(gridId.Value, uid, glows))
+                {
+                    shell.WriteError("Failed changing decal glows flag.");
+                }
+                break;
+            case "glowEnergy":
+                if(args.Length != 4)
+                {
+                    shell.WriteError("Expected 5 arguments.");
+                    return;
+                }
+
+                if (!float.TryParse(args[3], out var glowsEnergy))
+                {
+                    shell.WriteError("Failed parsing glows.");
+                    return;
+                }
+
+                if (!decalSystem.SetDecalGlowEnergy(gridId.Value, uid, glowsEnergy))
+                {
+                    shell.WriteError("Failed changing decal glowsEnergy value.");
                 }
                 break;
             default:

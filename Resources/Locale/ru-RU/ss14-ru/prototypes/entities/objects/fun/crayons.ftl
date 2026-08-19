@@ -48,5 +48,5 @@ ent-CrayonBlueGlowing = светящийся синий мелок
     .desc = { ent-CrayonGlowing.desc }
 ent-CrayonPurpleGlowing = светящийся фиолетовый мелок
     .desc = { ent-CrayonGlowing.desc }
-ent-CrayonGlowingBox = светящийся коробка для светящихся мелков
+ent-CrayonGlowingBox = коробка для светящихся мелков
     .desc = Это коробка со светящимися мелками.

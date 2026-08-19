@@ -288,11 +288,21 @@ namespace Content.Server.Decals
             _dirtyChunks[id].Add(chunkIndices);
         }
 
-        //corvax-goob `glows` add
-        public bool TryAddDecal(string id, EntityCoordinates coordinates, out uint decalId, Color? color = null, Angle? rotation = null, int zIndex = 0, bool cleanable = false, bool glows = false)
+        public bool TryAddDecal(string id,
+            EntityCoordinates coordinates,
+            out uint decalId,
+            Color? color = null,
+            Angle? rotation = null,
+            int zIndex = 0,
+            bool cleanable = false,
+            //corvax-goob
+            bool glows = false,
+            float glowTime = 12000, // 20 minutes
+            float glowEnergy = 0.3f
+            )
         {
             rotation ??= Angle.Zero;
-            var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows);
+            var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows, glowTime, glowEnergy);
 
             return TryAddDecal(decal, coordinates, out decalId);
         }
@@ -434,6 +444,13 @@ namespace Content.Server.Decals
 
         public bool SetDecalCleanable(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithCleanable(value), comp);
+
+        public bool SetDecalGlows(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
+            => ModifyDecal(gridId, decalId, x => x.WithGlows(value), comp);
+
+        public bool SetDecalGlowEnergy(EntityUid gridId, uint decalId, float value, DecalGridComponent? comp = null)
+            => ModifyDecal(gridId, decalId, x => x.WithGlowEnergy(value), comp);
+
 
         public bool SetDecalId(EntityUid gridId, uint decalId, string id, DecalGridComponent? comp = null)
         {
