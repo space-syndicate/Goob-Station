@@ -38,18 +38,18 @@ public sealed class DecalPlacementSystem : EntitySystem
     private bool _cleanable;
     // corvax-goob
     private bool _glows;
-    private float _glowDuration;
+    private float _glowTime;
     private float _glowEnergy;
 
     private bool _active;
     private bool _placing;
     private bool _erasing;
 
-    public (DecalPrototype? Decal, bool Snap, Angle Angle, Color Color) GetActiveDecal()
+    public (DecalPrototype? Decal, bool Snap, Angle Angle, Color Color, bool Glows, float glowDuration, float GlowEnergy) GetActiveDecal()
     {
         return _active && _decalId != null ?
-            (_protoMan.Index<DecalPrototype>(_decalId), _snap, _decalAngle, _decalColor) :
-            (null, false, Angle.Zero, Color.Wheat);
+            (_protoMan.Index<DecalPrototype>(_decalId), _snap, _decalAngle, _decalColor, _glows, _glowDuration: _glowTime, _glowEnergy) :
+            (null, false, Angle.Zero, Color.Wheat, false, 0, 0);
     }
 
     public override void Initialize()
@@ -79,7 +79,7 @@ public sealed class DecalPlacementSystem : EntitySystem
                 if (!coords.IsValid(EntityManager))
                     return false;
 
-                var decal = new Decal(coords.Position, _decalId, _decalColor, _decalAngle, _zIndex, _cleanable, _glows, _glowDuration, _glowEnergy);
+                var decal = new Decal(coords.Position, _decalId, _decalColor, _decalAngle, _zIndex, _cleanable, _glows, _glowTime, _glowEnergy);
                 RaiseNetworkEvent(new RequestDecalPlacementEvent(decal, GetNetCoordinates(coords)));
 
                 return true;
@@ -191,7 +191,7 @@ public sealed class DecalPlacementSystem : EntitySystem
         CommandBinds.Unregister<DecalPlacementSystem>();
     }
 
-    public void UpdateDecalInfo(string id, Color color, float rotation, bool snap, int zIndex, bool cleanable)
+    public void UpdateDecalInfo(string id, Color color, float rotation, bool snap, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
     {
         _decalId = id;
         _decalColor = color;
@@ -199,6 +199,9 @@ public sealed class DecalPlacementSystem : EntitySystem
         _snap = snap;
         _zIndex = zIndex;
         _cleanable = cleanable;
+        _glows = glows;
+        _glowTime = glowTime;
+        _glowEnergy = glowEnergy;
     }
 
     public void SetActive(bool active)

@@ -303,7 +303,6 @@ namespace Content.Server.Decals
         {
             rotation ??= Angle.Zero;
             var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows, glowTime, glowEnergy);
-            decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(glowTime);
 
             return TryAddDecal(decal, coordinates, out decalId);
         }
@@ -336,6 +335,10 @@ namespace Content.Server.Decals
             var addedEv = new DecalAddedEvent(gridId.Value, decalId, decal);
             RaiseLocalEvent(gridId.Value, ref addedEv);
             // CorvaxGoob-End-Footprint-Refactoring
+
+            // corvax-goob
+            if (decal.Glows)
+                decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
 
             return true;
         }

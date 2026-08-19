@@ -36,7 +36,8 @@ namespace Content.Client.Decals.Overlays
             _entManager = entManager;
             _prototypeManager = prototypeManager;
             // corvax-goob
-            _emissiveShader = _prototypeManager.Index(EmissiveShader).Instance();
+            _emissiveShader = _prototypeManager.Index(EmissiveShader).Instance().Duplicate();
+            _timing = IoCManager.Resolve<IGameTiming>();
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -125,7 +126,11 @@ namespace Content.Client.Decals.Overlays
                 var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
                 if (decal.Glows && timeRemained > 1)
                 {
-                    var glowEnergy =  (float)((timeRemained / decal.GlowTime) * decal.GlowEnergy);
+                    var glowEnergy =  Math.Clamp(
+                        (float)(timeRemained / decal.GlowTime) * decal.GlowEnergy,
+                        0f,
+                        decal.GlowEnergy);
+                    handle.UseShader(_emissiveShader);
                     _emissiveShader.SetParameter("glowEnergy", glowEnergy);
                 }
                 else

@@ -32,6 +32,11 @@ public sealed partial class MappingScreen : InGameScreen
     private bool _decalSnap;
     private int _decalZIndex;
     private bool _decalCleanable;
+    // corvax-goob start
+    private bool _decalGlows;
+    private float _decalGlowTime;
+    private float _decalGlowEnergy;
+    // corvax-goob end
 
     private bool _decalAuto;
 
@@ -88,6 +93,21 @@ public sealed partial class MappingScreen : InGameScreen
         DecalZIndexSpinBox.ValueChanged += args =>
         {
             _decalZIndex = args.Value;
+            UpdateDecal();
+        };
+        DecalEnableGlow.OnToggled += args =>
+        {
+            _decalGlows = args.Pressed;
+            UpdateDecal();
+        };
+        DecalGlowTime.ValueChanged += args =>
+        {
+            _decalGlowTime = args.Value;
+            UpdateDecal();
+        };
+        DecalGlowEnergy.ValueChanged += args =>
+        {
+            _decalGlowEnergy = args.Value;
             UpdateDecal();
         };
 
@@ -149,7 +169,7 @@ public sealed partial class MappingScreen : InGameScreen
         if (_id is not { } id)
             return;
 
-        DecalSystem.UpdateDecalInfo(id, _decalColor, _decalRotation, _decalSnap, _decalZIndex, _decalCleanable);
+        DecalSystem.UpdateDecalInfo(id, _decalColor, _decalRotation, _decalSnap, _decalZIndex, _decalCleanable, _decalGlows, _decalGlowTime, _decalGlowEnergy);
     }
 
     public void SelectDecal(string decalId)

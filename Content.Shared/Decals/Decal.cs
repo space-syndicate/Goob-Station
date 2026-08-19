@@ -22,13 +22,11 @@ namespace Content.Shared.Decals
         /// <summary>
         /// How long the decal should glow in seconds? For infinity set -1
         /// </summary>
-        [DataField, AutoNetworkedField]
-        public float GlowTime = 120;
+        [DataField]
+        public float GlowTime = 1200;
         /// <summary>
         /// The timestamp at which glow is stopped.
         /// </summary>
-        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-        [AutoNetworkedField, AutoPausedField]
         public TimeSpan GlowUntil = TimeSpan.Zero;
         /// <summary>
         /// How strong should be the glow when decal was created? normalized
