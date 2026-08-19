@@ -9,6 +9,6 @@ public sealed partial class HailerDeathSoundComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound;
 
-    // Флаг, чтобы звук проигрывался только 1 раз при смерти
+    
     public bool HasPlayed = false;
 }

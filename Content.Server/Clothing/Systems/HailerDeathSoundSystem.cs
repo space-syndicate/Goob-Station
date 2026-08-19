@@ -21,35 +21,35 @@ public sealed class HailerDeathSoundSystem : EntitySystem
 
     private void OnMobStateChanged(MobStateChangedEvent args)
     {
-        // Ищем маску на персонаже в любом случае
+        
         if (!_inventory.TryGetSlotEntity(args.Target, "mask", out var maskUid))
             return;
 
         if (!TryComp<HailerDeathSoundComponent>(maskUid, out var comp) || comp.Sound == null)
             return;
 
-        // Если моб ожил (перестал быть мертвым) — сбрасываем флаг, чтобы при следующей смерти звук снова сыграл
+        
         if (args.NewMobState != MobState.Dead)
         {
             comp.HasPlayed = false;
             return;
         }
 
-        // Если звук уже проигрывался для этой маски — ничего не делаем
+        
         if (comp.HasPlayed)
             return;
 
-        // Помечаем, что звук сыграл
+      
         comp.HasPlayed = true;
 
-        // Настраиваем звук (тише + рандомный питч)
+        
         var audioParams = AudioParams.Default
             .WithVolume(-3f);
 
         float randomPitch = _random.NextFloat(0.85f, 1.15f);
         audioParams = audioParams.WithPitchScale(randomPitch);
 
-        // Играем
+        
         _audio.PlayPvs(comp.Sound, args.Target, audioParams);
     }
 }
