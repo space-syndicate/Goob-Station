@@ -1,0 +1,16 @@
+- type: vendingMachineInventory
+  id: MilkshakeDrinksMachineInventory
+  startingInventory:
+    DrinkMilkshakeCarrotGlass: 5
+    DrinkMilkshakeStrawberryGlass: 5
+    DrinkMilkshakeCherryGlass: 5
+    DrinkMilkshakeChocolateGlass: 5
+    DrinkMilkshakeBananaGlass: 5
+    SyndicakesBox: 2
+    FoodBoxBubblegum: 2
+  contrabandInventory:
+    DrinkRedSpace: 3
+    SyndicateBusinessCard: 1
+  emaggedInventory:
+    Telecrystal1: 1
+    ChemistryBottleTelesynthet: 1

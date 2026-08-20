@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseStorageItem
+  id: SyndicakesBox
+  name: syndicakes box
+  description: A box of delicious syndicakes.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: FoodSnackSyndi
+        amount: 4
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: syndicakes
+  - type: Item
+    sprite: Objects/Consumable/Food/snacks.rsi
+    heldPrefix: syndicakes
+    size: Small
+  - type: Tag
+    tags:
+      - FoodSnack
+  - type: Storage
+    grid:
+    - 0,0,1,1

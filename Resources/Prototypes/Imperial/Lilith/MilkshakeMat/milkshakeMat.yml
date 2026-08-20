@@ -1,0 +1,52 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMilkshake
+  name: MilkshakeMat "Redspace Milkshakes"
+  description: A retrofuturistic-looking machine that produces milkshakes based on chemical experiments with RedSpace, which allowed it to simulate the taste of certain foods. Completely safe for consumption! (For all questions, please contact RedSpace Ind.).
+  components:
+  - type: VendingMachine
+    pack: MilkshakeDrinksMachineInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    screenState: screen
+    ejectDelay: 2.2
+    soundVend: /Audio/Machines/machine_vend_hot_drink.ogg
+    initialStockQuality: 1
+  - type: DatasetVocalizer
+    dataset: MilkshakeMachineAds
+  - type: SpeakOnUIClosed
+    pack: MilkshakeMachineGoodbyes
+  - type: GhostRole
+    name: ghost-role-information-lilith-name
+    description: ghost-role-information-lilith-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TTSProvider
+    voice: queenOfPainDota2
+  - type: Sprite
+    sprite: Imperial/Lilith/VendingMachines/milkshakeMat.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: "screen"
+      map: ["enum.VendingMachineVisualLayers.Screen"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#ad7c4b"
+  - type: Polymorphable
+    innatePolymorphs:
+    - MilkshakeLilith

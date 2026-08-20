@@ -40,6 +40,10 @@ public partial class ListingData : IEquatable<ListingData>
         other.Categories,
         other.OriginalCost,
         other.RestockTime,
+        // Imperial Space purchase cooldown Start
+        other.PurchaseCooldown,
+        other.LastPurchaseTime,
+        // Imperial Space purchase cooldown End
         other.DiscountDownTo,
         other.DisableRefund,
         other.ApplyToMob
@@ -67,6 +71,10 @@ public partial class ListingData : IEquatable<ListingData>
         HashSet<ProtoId<StoreCategoryPrototype>> categories,
         IReadOnlyDictionary<ProtoId<CurrencyPrototype>, FixedPoint2> originalCost,
         TimeSpan restockTime,
+        // Imperial Space purchase cooldown Start
+        TimeSpan purchaseCooldown,
+        TimeSpan lastPurchaseTime,
+        // Imperial Space purchase cooldown End
         Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> dataDiscountDownTo,
         bool disableRefund,
         bool applyToMob
@@ -90,6 +98,10 @@ public partial class ListingData : IEquatable<ListingData>
         Categories = categories.ToHashSet();
         OriginalCost = originalCost;
         RestockTime = restockTime;
+        // Imperial Space purchase cooldown Start
+        PurchaseCooldown = purchaseCooldown;
+        LastPurchaseTime = lastPurchaseTime;
+        // Imperial Space purchase cooldown End
         DiscountDownTo = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>(dataDiscountDownTo);
         DisableRefund = disableRefund;
         ApplyToMob = applyToMob;
@@ -206,6 +218,20 @@ public partial class ListingData : IEquatable<ListingData>
     [DataField]
     public TimeSpan RestockTime = TimeSpan.Zero;
 
+    // Imperial Space purchase cooldown Start
+    /// <summary>
+    /// Minimum time that must pass between purchases of this listing.
+    /// </summary>
+    [DataField]
+    public TimeSpan PurchaseCooldown = TimeSpan.Zero;
+
+    /// <summary>
+    /// Time at which this listing was last purchased.
+    /// </summary>
+    [DataField]
+    public TimeSpan LastPurchaseTime = TimeSpan.Zero;
+    // Imperial Space purchase cooldown End
+
     /// <summary>
     /// Options for discount - from max amount down to how much item costs can be cut by discount, absolute value.
     /// </summary>
@@ -320,6 +346,10 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
             listingData.Categories,
             listingData.OriginalCost,
             listingData.RestockTime,
+            // Imperial Space purchase cooldown Start
+            listingData.PurchaseCooldown,
+            listingData.LastPurchaseTime,
+            // Imperial Space purchase cooldown End
             listingData.DiscountDownTo,
             listingData.DisableRefund,
             listingData.ApplyToMob

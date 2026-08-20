@@ -1,0 +1,768 @@
+- type: reagent
+  id: ChocolateMilkshake
+  name: reagent-name-milkshake-chocolate
+  parent: BaseDrink
+  desc: reagent-desc-milkshake-chocolate
+  physicalDesc: reagent-physical-desc-milky
+  flavor: chocolatemilkshake
+  color: "#5b251f"
+  metamorphicSprite:
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/chocolate.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.667
+      - !type:AdjustReagent
+        reagent: Telestizin
+        amount: 0.1
+
+
+- type: reagent
+  id: BananaMilkshake
+  name: reagent-name-milkshake-banana
+  parent: BaseDrink
+  desc: reagent-desc-milkshake-banana
+  physicalDesc: reagent-physical-desc-milky
+  flavor: bananamilkshake
+  color: "#f1af4b"
+  metamorphicSprite:
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/banana.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.667
+      - !type:AdjustReagent
+        reagent: Telestizin
+        amount: 0.1
+
+
+- type: reagent
+  id: StrawberryMilkshake
+  name: reagent-name-milkshake-strawberry
+  parent: BaseDrink
+  desc: reagent-desc-milkshake-strawberry
+  physicalDesc: reagent-physical-desc-milky
+  flavor: strawberrymilkshake
+  color: "#EF71BA"
+  metamorphicSprite:
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/strawberry.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.667
+      - !type:AdjustReagent
+        reagent: Telestizin
+        amount: 0.1
+
+- type: reagent
+  id: CherryMilkshake
+  name: reagent-name-milkshake-cherry
+  parent: BaseDrink
+  desc: reagent-desc-milkshake-cherry
+  physicalDesc: reagent-physical-desc-milky
+  flavor: cherrymilkshake
+  color: "#CB253B"
+  metamorphicSprite:
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/cherry.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.667
+      - !type:AdjustReagent
+        reagent: Telestizin
+        amount: 0.1
+
+- type: reagent
+  id: CarrotMilkshake
+  name: reagent-name-milkshake-carrot
+  parent: BaseDrink
+  desc: reagent-desc-milkshake-carrot
+  physicalDesc: reagent-physical-desc-milky
+  flavor: carrotmilkshake
+  color: "#ED7C12"
+  metamorphicSprite:
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/carrot.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.667
+      - !type:AdjustReagent
+        reagent: Omnizine
+        amount: 0.1
+
+
+- type: reagent
+  id: RedSpaceEnergy
+  name: reagent-name-red-space-energy
+  parent: BaseDrink
+  desc: reagent-desc-red-space-energy
+  physicalDesc: reagent-physical-desc-exhilarating
+  flavor: redspaceenergy
+  color: "#AE0A0A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.667
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 1
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 1
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
+
+
+
+- type: reagent
+  id: Telestizin
+  name: reagent-name-telestizin
+  group: Narcotics
+  desc: reagent-desc-telestizin
+  physicalDesc: reagent-physical-desc-exhilarating
+  flavor: redspaceenergy
+  color: "#D80E22"
+  metabolisms:
+    Bloodstream:
+      effects:
+      # Main effects
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.3
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
+        time: 1
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 1
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 1
+        type: Remove
+      # Side effects
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Telestizin
+          min: 5
+      # OD
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Telestizin
+          min: 15
+        damage:
+          types:
+            Poison: 3
+            Cellular: 0.5
+      # Interactions
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+      # Side effects
+      - !type:ResetNarcolepsy
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Telestizin
+          min: 30
+        reagent: UnstableBluespaceLiquid
+        amount: 1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Telestizin
+          max: 30
+        reagent: UnstableBluespaceLiquid
+        amount: -10
+
+
+- type: reagent
+  id: Telesynthet
+  name: reagent-name-telesynthet
+  group: Narcotics
+  desc: reagent-desc-telesynthet
+  physicalDesc: reagent-physical-desc-exhilarating
+  flavor: redspaceenergy
+  color: "#D80E22"
+  metabolisms:
+    Bloodstream:
+      effects:
+      # Main effects
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.3
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 2
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 2
+        type: Remove
+      - !type:EvenHealthChange
+        damage:
+          Burn: -3.25
+          Toxin: -3.25
+          Airloss: -3.25
+          Brute: -3.25
+      - !type:ModifyBleed
+        amount: -0.75
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 2
+      # Side effects
+      - !type:Jitter
+      # OD
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Telesynthet
+          min: 40
+        damage:
+          types:
+            Poison: 7.5
+            Cellular: 2.5
+      # Interactions
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+      # Side effects
+      - !type:ResetNarcolepsy
+      
+
+- type: reagent
+  id: Bubblegum
+  name: reagent-name-bubblegum
+  group: Foods
+  desc: reagent-desc-bubblegum
+  physicalDesc: reagent-physical-desc-bubblegum
+  flavor: bubblegum
+  color: "#D80E22"
+  metabolisms:
+    Metabolites:
+      metabolismRate: 0.02
+      effects:
+      - !type:Emote
+        emote: Bubblegum
+        showInChat: true
+        showInGuidebook: true
+        force: true
+        probability: 0.02
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Bubblegum
+          max: 0.02
+        reagent: BubblegumChewed
+        amount: 1.01
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: Bubblegum
+          max: 0.02
+        emote: BubblegumChewed
+        showInChat: true
+        showInGuidebook: true
+        force: true
+
+
+- type: reagent
+  id: BubblegumChewed
+  name: reagent-name-bubblegum-chewed
+  group: Foods
+  desc: reagent-desc-bubblegum-chewed
+  physicalDesc: reagent-physical-desc-bubblegum
+  flavor: bubblegum
+  color: "#D80E22"
+  metabolisms:
+    Metabolites:
+      metabolismRate: 0.5
+
+
+
+- type: reagent
+  id: Luciferium
+  name: reagent-name-luciferium
+  group: Narcotics
+  desc: reagent-desc-luciferium
+  flavor: bitter
+  color: "#D80E22"
+  physicalDesc: reagent-physical-desc-crystalline
+  pricePerUnit: 500
+  metabolisms:
+    Metabolites:
+      metabolismRate: 0.01
+      effects:
+      - !type:ModifyStatusEffect # permanent effects
+        effectProto: StatusEffectPainNumbness
+        time: 2
+      - !type:ResetNarcolepsy
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: -0.75
+      - !type:GenericStatusEffect # adrenaline 22-14u Adrenaline
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 14
+          max: 22
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 2
+      - !type:MovementSpeedModifier # buffs 22-18u Speed
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 18
+          max: 22
+        walkSpeedModifier: 1.35
+        sprintSpeedModifier: 1.35
+      - !type:MovementSpeedModifier # buffs 18-16u Speed
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 16
+          max: 18
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+      - !type:MovementSpeedModifier # buffs 16-12u Speed
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 12
+          max: 16
+        walkSpeedModifier: 1.15
+        sprintSpeedModifier: 1.15
+      - !type:ModifyBleed # buffs 22-16u ModifyBleed
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 16
+          max: 22
+        amount: -0.35
+      - !type:ModifyBleed # buffs 8-16u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 8
+          max: 16
+        amount: -0.15
+      - !type:MovementSpeedModifier # buffs 8-12u Speed
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 8
+          max: 12
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
+      - !type:MovementSpeedModifier # buffs 4-8u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 4
+          max: 8
+        walkSpeedModifier: 1.05
+        sprintSpeedModifier: 1.05
+      - !type:EvenHealthChange # heal 18-22u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 18
+          max: 22
+        damage:
+          Burn: -0.75
+          Toxin: -0.75
+          Airloss: -1.0
+          Brute: -0.75
+      - !type:EvenHealthChange # heal 15-18u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 15
+          max: 18
+        damage:
+          Burn: -0.45
+          Toxin: -0.45
+          Airloss: -0.75
+          Brute: -0.45
+      - !type:EvenHealthChange # heal 11-15u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 11
+          max: 15
+        damage:
+          Burn: -0.35
+          Toxin: -0.35
+          Airloss: -0.5
+          Brute: -0.35
+      - !type:EvenHealthChange # heal 8-11u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 8
+          max: 11
+        damage:
+          Burn: -0.25
+          Toxin: -0.25
+          Airloss: -0.35
+          Brute: -0.25
+      - !type:EvenHealthChange # heal 4-8u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 4
+          max: 8
+        damage:
+          Burn: -0.15
+          Toxin: -0.15
+          Airloss: -0.25
+          Brute: -0.15
+      - !type:PopupMessage # 4-5u Popup SmallCaution
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 4
+          max: 6
+        type: Local
+        visualType: SmallCaution
+        messages:
+          - "luciferium-effect-dependence-low1"
+          - "luciferium-effect-dependence-low2"
+        probability: 0.1
+      - !type:EyeDamage # 4-20u EyeDamage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 4
+          max: 20
+        probability: 0.25
+        amount: -1
+      - !type:EyeDamage # 2-4u EyeDamage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 2
+          max: 4
+        probability: 0.05
+        amount: 1
+      - !type:EyeDamage # 1-2u EyeDamage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        probability: 0.1
+        amount: 1
+      - !type:GenericStatusEffect # 1-2u TemporaryBlindness
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        probability: 0.1
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+      - !type:ModifyStatusEffect # 1-4u SlurredAccent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 4
+        effectProto: StatusEffectSlurred
+        time: 1
+        type: Add
+      - !type:ModifyStatusEffect # 1-2u ScrambledAccent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        effectProto: StatusEffectScrambled
+        time: 1
+        type: Add
+      - !type:ModifyKnockdown # 3-4u Knockdown
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 3
+          max: 4
+        probability: 0.05
+        time: 1.5
+        refresh: false
+        type: Add
+      - !type:HealthChange # unheal 3-4u poison & brute
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 3
+          max: 4
+        probability: 0.25
+        damage:
+          types:
+            Slash: 0.15
+            Piercing: 0.15
+            Poison: 0.15
+      - !type:HealthChange # unheal 3-4u cellular
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 3
+          max: 4
+        damage:
+          types:
+            Cellular: 0.25
+      - !type:PopupMessage # 3-4u Popup MediumCaution
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 3
+          max: 4
+        type: Local
+        visualType: MediumCaution
+        messages:
+          - "luciferium-effect-dependence-middle1"
+          - "luciferium-effect-dependence-middle2"
+        probability: 0.1
+      - !type:ModifyKnockdown # 2-3u Knockdown
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 2
+          max: 3
+        probability: 0.1
+        time: 2
+        refresh: false
+        type: Add
+      - !type:HealthChange # unheal 2-3u poison & brute
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 2
+          max: 3
+        probability: 0.45
+        damage:
+          types:
+            Slash: 0.2
+            Piercing: 0.2
+            Poison: 0.2
+            Cellular: 0.03
+      - !type:HealthChange # unheal 2-3u cellular
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 2
+          max: 3
+        damage:
+          types:
+            Cellular: 0.55
+      - !type:PopupMessage # 2-3u Popup LargeCaution
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 2
+          max: 3
+        type: Local
+        visualType: LargeCaution
+        messages:
+          - "luciferium-effect-dependence-high1"
+          - "luciferium-effect-dependence-high2"
+        probability: 0.15
+      - !type:HealthChange # unheal 1-2u poison & brute
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        probability: 0.75
+        damage:
+          types:
+            Slash: 0.3
+            Piercing: 0.3
+            Poison: 0.3
+      - !type:HealthChange # unheal 1-2u cellular
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        damage:
+          types:
+            Cellular: 0.85
+      - !type:ModifyKnockdown # 1-2u Knockdown
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        probability: 0.15
+        time: 2
+        refresh: false
+        type: Add
+      - !type:PopupMessage # 1-2u Popup LargeCaution
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        type: Local
+        visualType: LargeCaution
+        messages:
+          - "luciferium-effect-dependence-death1"
+          - "luciferium-effect-dependence-death2"
+        probability: 0.25
+      - !type:Jitter # Jitter 3-4u 15%
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 3
+          max: 4
+        probability: 0.15
+      - !type:Jitter # Jitter 2-3u 35%
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 2
+          max: 3
+        probability: 0.35
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition # Jitter 1-2u 65%
+          reagent: Luciferium
+          min: 1
+          max: 2
+        probability: 0.65
+      - !type:ModifyStatusEffect # infarct >22u Stunned
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 22
+        effectProto: StatusEffectStunned
+        time: 7.5
+        type: Add
+      - !type:ModifyKnockdown # infarct >20u Knockdown
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 20
+        time: 7.5
+        type: Add
+      - !type:PopupMessage # infarct >22u Popup LargeCaution
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 22
+        type: Local
+        visualType: LargeCaution
+        messages: [ "luciferium-effect-dependence-infarct"]
+        probability: 1
+      - !type:HealthChange # infarct >22u Cellular
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 22
+        damage: 
+          types:
+            Cellular: 25
+      - !type:HealthChange # infarct >22u poison & brute
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 22
+        damage: 
+          types:
+            Slash: 10
+            Piercing: 10
+            Poison: 15
+      - !type:AdjustReagent # infarct >22u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 22
+        reagent: Luciferium
+        amount: -5
+      - !type:ModifyStatusEffect # debuf 1-4u Hemorrhage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 4
+        effectProto: StatusEffectHemorrhage
+        time: 2
+        type: Update
+      - !type:ModifyBleed # debuffs 1-2u ModifyBleed
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 2
+        probability: 0.35
+        amount: 0.5
+      - !type:ModifyStatusEffect # debuf 1-4u Anticoagulant
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          min: 1
+          max: 4
+        effectProto: StatusEffectAnticoagulant
+        time: 2
+        type: Update
+      - !type:AdjustReagent # auto top-up 0.9u -- 5u
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          max: 0.9
+        reagent: Luciferium
+        amount: 5
+      - !type:AdjustReagent # auto top-up inf
+        conditions:
+        - !type:ReagentCondition
+          reagent: Luciferium
+          max: 1
+        reagent: Luciferium
+        amount: 0.5

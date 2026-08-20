@@ -1,0 +1,28 @@
+{
+    "version": 1,
+    "size": 
+    {
+        "x": 64,
+        "y": 64
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by KoQdiev",
+    "states": [
+    {
+        "name": "lilith",
+        "directions": 4
+    },
+    {
+        "name": "lilith_e",
+        "directions": 4
+    },
+    {
+        "name": "lilith_e_r",
+        "directions": 4
+    },
+    {
+        "name": "lilith_l",
+        "directions": 4
+    }
+    ]
+}

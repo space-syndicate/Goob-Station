@@ -1,0 +1,36 @@
+- type: flavor
+  id: strawberrymilkshake
+  flavorType: Complex
+  description: flavor-complex-strawberrymilkshake
+
+- type: flavor
+  id: cherrymilkshake
+  flavorType: Complex
+  description: flavor-complex-cherrymilkshake
+
+- type: flavor
+  id: carrotmilkshake
+  flavorType: Complex
+  description: flavor-complex-carrotmilkshake
+
+- type: flavor
+  id: chocolatemilkshake
+  flavorType: Complex
+  description: flavor-complex-chocolatemilkshake
+
+- type: flavor
+  id: bananamilkshake
+  flavorType: Complex
+  description: flavor-complex-bananamilkshake
+
+- type: flavor
+  id: redspaceenergy
+  flavorType: Complex
+  description: flavor-complex-redspaceenergy
+
+- type: flavor
+  id: bubblegum
+  flavorType: Base
+  description: flavor-bubblegum
+
+

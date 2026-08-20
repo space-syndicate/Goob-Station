@@ -298,12 +298,14 @@
     flavors:
       - syndicakes
   - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Food/foodSnackSyndi.rsi # Imperial Space sprite change
     state: syndicakes
   - type: Item
+    sprite: Imperial/Lilith/Objects/Consumable/Food/foodSnackSyndi.rsi # Imperial Space sprite change
     heldPrefix: syndicakes
   - type: Edible
-    trash:
-    - FoodPacketSyndiTrash
+    #trash: # Imperial Space sprite change
+    #- FoodPacketSyndiTrash # Imperial Space sprite change
 
 - type: entity
   parent: FoodSnackBase

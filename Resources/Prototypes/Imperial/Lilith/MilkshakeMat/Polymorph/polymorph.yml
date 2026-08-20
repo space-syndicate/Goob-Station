@@ -1,0 +1,18 @@
+- type: polymorph
+  id: MilkshakeLilith
+  configuration:
+    entity: PlayerBorgLilithBattery
+    forced: true
+    inventory: Drop
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ActionVendingTransform
+  parent: BaseAction
+  name: Transform
+  description: Transform into an android.
+  components:
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MilkshakeLilith

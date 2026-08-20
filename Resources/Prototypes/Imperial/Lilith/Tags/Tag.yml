@@ -1,0 +1,5 @@
+# Закинуть весь файл в /Resources/Prototypes/Imperial/Lilith/Consumable/Food  -- Создать папку Lilith
+
+- type: Tag
+  id: Bubblegum
+

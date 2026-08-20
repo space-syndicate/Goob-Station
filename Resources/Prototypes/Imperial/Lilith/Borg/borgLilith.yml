@@ -1,0 +1,104 @@
+- type: entity
+  id: BorgChassisLilith
+  name: Lilith
+  parent: BaseBorgChassis
+  components:
+  - type: Sprite
+    sprite: Imperial/Lilith/Borg/lilith.rsi
+    scale: 1.25,1.25
+    layers:
+    - state: lilith
+      map: ["enum.BorgVisualLayers.Body", "movement"]
+    - state: lilith_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: lilith_l
+      shader: unshaded
+      map: ["light","enum.BorgVisualLayers.LightStatus"]
+      visible: false
+  - type: TTSProvider
+    voice: queenOfPainDota2
+  - type: BorgChassis
+    # Default borg can take no modules until selected type.
+    maxModules: 5
+    hasMindState: lilith_e
+    noMindState: lilith_e_r
+  - type: InteractionPopup
+    interactSuccessString: petting-success-service-cyborg
+    interactFailureString: petting-failure-service-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Science
+    - Service
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Science
+    - Service
+    - Binary
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+
+
+- type: entity
+  id: PlayerBorgLilithBattery
+  parent: BorgChassisLilith
+  suffix: Батарея, Модули
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+        - BorgModuleServiceLilith
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+
+- type: entity
+  id: BorgModuleServiceLilith
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: service lilith cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    hands:
+    - item: TerminalMilkshake
+    -  hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - Bubblegum
+          - FoodSnack
+    -  hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - Bubblegum
+          - FoodSnack
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }

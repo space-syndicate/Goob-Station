@@ -80,10 +80,13 @@
   - type: Sprite
     sprite: Imperial/Crook/Plushie/sylvesterreynar.rsi
     state: icon
+  - type: ContainerFill
+    containers:
+      stash:
+      - CybersunFlippo
   - type: StorageFill
     contents:
-      - id: FoodSnackSyndi
-      - id: FoodSnackSyndi
+      - id: CigPackSyndicate
 
 - type: entity
   parent: BasePlushieCharacter

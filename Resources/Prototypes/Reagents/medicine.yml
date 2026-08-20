@@ -1495,6 +1495,14 @@
       - !type:AdjustReagent
         reagent: MindbreakerToxin
         amount: -3.0
+      # Imperial Space Lilith Start
+      - !type:AdjustReagent
+        reagent: Telestizin
+        amount: -3.0
+      - !type:AdjustReagent
+        reagent: Telesynthet
+        amount: -3.0
+      # Imperial Space Lilith End
 
 - type: reagent
   id: Heparin

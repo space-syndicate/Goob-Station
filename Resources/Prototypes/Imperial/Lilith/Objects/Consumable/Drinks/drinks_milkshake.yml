@@ -1,0 +1,184 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkRedSpace
+  name: Red Space Energy
+  description: A semi-legal drink made from telesynthet was banned from sale several years ago due to its high content. It is not recommended for newborns, pregnant women, the elderly, or disabled lizard.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: RedSpaceEnergy
+          Quantity: 30
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/redspace.rsi
+  - type: Item
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/redspace.rsi
+
+- type: entity
+  parent: [ DrinkBaseMaterialGlass, DrinkHotCoffee ]
+  id: DrinkMilkshakeChocolateGlass
+  name: chocolate milkshake
+  description: A treat for lovers of that sweet touch of bitterness. The perfect companion for beach days or chocolate ice cream fans.
+  suffix: chocolate
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: ChocolateMilkshake
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/chocolate.rsi
+    state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+    changeColor: false
+    emptySpriteName: icon_empty
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/chocolate.rsi
+    layers:
+      - map: ["enum.SolutionContainerLayers.Base"]
+        state: icon_empty
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-6
+
+- type: entity
+  parent: [ DrinkBaseMaterialGlass, DrinkHotCoffee ]
+  id: DrinkMilkshakeBananaGlass
+  name: banana milkshake
+  description: Shake line brought to you in partnership with Honk Inc., so everyone can enjoy the bold new flavor of the sacred clown fruit.
+  suffix: banana
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BananaMilkshake
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/banana.rsi
+    state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+    changeColor: false
+    emptySpriteName: icon_empty
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/banana.rsi
+    layers:
+      - map: ["enum.SolutionContainerLayers.Base"]
+        state: icon_empty
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-6
+
+- type: entity
+  parent: [ DrinkBaseMaterialGlass, DrinkHotCoffee ]
+  id: DrinkMilkshakeCarrotGlass
+  name: carrot milkshake
+  description: Specially crafted for health-conscious enthusiasts. Pure wellness in a glass. They say it even improves your eyesight. Or maybe that's just dizziness from feeling so virtuous.
+  suffix: carrot
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: CarrotMilkshake
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/carrot.rsi
+    state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+    changeColor: false
+    emptySpriteName: icon_empty
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/carrot.rsi
+    layers:
+      - map: ["enum.SolutionContainerLayers.Base"]
+        state: icon_empty
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-6
+
+- type: entity
+  parent: [ DrinkBaseMaterialGlass, DrinkHotCoffee ]
+  id: DrinkMilkshakeStrawberryGlass
+  name: strawberry milkshake
+  description: A tasty alternative to coffee and soda. Probably safe... A berry-powered boost with no hint of chemicals. Though who really knows for sure?
+  suffix: strawberry
+  components:
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: StrawberryMilkshake
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/strawberry.rsi
+    state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+    changeColor: false
+    emptySpriteName: icon_empty
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/strawberry.rsi
+    layers:
+      - map: ["enum.SolutionContainerLayers.Base"]
+        state: icon_empty
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-6
+
+- type: entity
+  parent: [ DrinkBaseMaterialGlass, DrinkHotCoffee ]
+  id: DrinkMilkshakeCherryGlass
+  name: cherry milkshake
+  description: A tasty alternative to coffee and soda. Probably safe... A sweet-and-sour balance that tingles on the tongue. As bright as a telecrystal just as suspicious.
+  suffix: cherry
+  components:
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: CherryMilkshake
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/cherry.rsi
+    state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+    changeColor: false
+    emptySpriteName: icon_empty
+  - type: Sprite
+    sprite: Imperial/Lilith/Objects/Consumable/Drinks/cherry.rsi
+    layers:
+      - map: ["enum.SolutionContainerLayers.Base"]
+        state: icon_empty
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-6
+
+- type: entity
+  id: ChemistryBottleTelesynthet
+  suffix: telesynthet
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-telesynthet
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Telesynthet
+          Quantity: 30

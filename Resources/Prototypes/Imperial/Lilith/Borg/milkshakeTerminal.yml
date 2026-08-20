@@ -1,0 +1,118 @@
+- type: entity
+  id: StorePresetMilkshake
+  abstract: true
+  components:
+  - type: Store
+    name: store-ui-default-title
+    categories:
+    - MilkshakeStore
+
+- type: storeCategory
+  id: MilkshakeStore
+  name: store-category-sacerdos-uplink-Misc
+  priority: 0
+
+- type: entity
+  parent: [BaseItem, StorePresetMilkshake]
+  id: TerminalMilkshake
+  name: milkshake terminal
+  description: A dedicated milkshake terminal. For purchasing milkshakes and other products.
+  suffix: Empty
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Lilith/Borg/terminal.rsi
+    state: terminal
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: listing
+  id: LilithTeminalMilkshakeBanana
+  name: reagent-name-milkshake-banana
+  description: reagent-desc-milkshake-banana
+  productEntity: DrinkMilkshakeBananaGlass
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 60
+
+- type: listing
+  id: LilithTeminalMilkshakeCherry
+  name: reagent-name-milkshake-cherry
+  description: reagent-desc-milkshake-cherry
+  productEntity: DrinkMilkshakeCherryGlass
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 60
+
+- type: listing
+  id: LilithTeminalMilkshakeStrawberry
+  name: reagent-name-milkshake-strawberry
+  description: reagent-desc-milkshake-strawberry
+  productEntity: DrinkMilkshakeStrawberryGlass
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 60
+
+- type: listing
+  id: LilithTeminalMilkshakeChocolate
+  name: reagent-name-milkshake-chocolate
+  description: reagent-desc-milkshake-chocolate
+  productEntity: DrinkMilkshakeChocolateGlass
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 60
+
+- type: listing
+  id: LilithTeminalMilkshakeCarrot
+  name: reagent-name-milkshake-carrot
+  description: reagent-desc-milkshake-carrot
+  productEntity: DrinkMilkshakeCarrotGlass
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 60
+
+- type: listing
+  id: LilithTeminalSyndicakes
+  name: lilith-terminal-syndicakes-name
+  description: lilith-terminal-syndicakes-desc
+  productEntity: FoodSnackSyndi
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 60
+
+- type: listing
+  id: LilithTeminalBoxSyndicakes
+  name: lilith-terminal-box-syndicakes-name
+  description: lilith-terminal-box-syndicakes-desc
+  productEntity: SyndicakesBox
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 180
+
+- type: listing
+  id: LilithTeminalBoxBubblegum
+  name: lilith-terminal-box-bubblegum-name
+  description: lilith-terminal-box-bubblegum-desc
+  productEntity: FoodBoxBubblegum
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 180
+
+- type: listing
+  id: LilithTeminalDrinkRedSpace
+  name: lilith-terminal-drink-red-space-name
+  description: lilith-terminal-drink-red-space-desc
+  productEntity: DrinkRedSpace
+  categories:
+    - MilkshakeStore
+  purchaseCooldown: 180

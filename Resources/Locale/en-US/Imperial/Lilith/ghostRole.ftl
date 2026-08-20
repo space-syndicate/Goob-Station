@@ -1,0 +1,2 @@
+ghost-role-information-lilith-name = MilkshakeMat "Redspace Milkshakes"
+ghost-role-information-lilith-description = A special milkshake vending machine! Bring some joy to the station—and a couple of cups of milkshakes.

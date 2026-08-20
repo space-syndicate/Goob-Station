@@ -52,6 +52,14 @@ public sealed partial class StoreListingControl : Control
         if (_data.RestockTime > stationTime)
             return false;
 
+        // Imperial Space purchase cooldown Start
+        if (_data.PurchaseCooldown > TimeSpan.Zero && _data.LastPurchaseTime > TimeSpan.Zero)
+        {
+            if (_timing.CurTime - _data.LastPurchaseTime < _data.PurchaseCooldown)
+                return false;
+        }
+        // Imperial Space purchase cooldown End
+
         return true;
     }
 
@@ -65,6 +73,19 @@ public sealed partial class StoreListingControl : Control
         }
         else
         {
+            // Imperial Space purchase cooldown Start
+            if (_data.PurchaseCooldown > TimeSpan.Zero && _data.LastPurchaseTime > TimeSpan.Zero)
+            {
+                var timeSincePurchase = _timing.CurTime - _data.LastPurchaseTime;
+
+                if (timeSincePurchase < _data.PurchaseCooldown)
+                {
+                    var timeLeft = _data.PurchaseCooldown - timeSincePurchase;
+                    StoreItemBuyButton.Text = timeLeft.ToString(@"mm\:ss");
+                    return;
+                }
+            }
+            //Imperial Space purchase cooldown End
             DiscountSubText.Text = _discount;
             StoreItemBuyButton.Text = _price;
         }
