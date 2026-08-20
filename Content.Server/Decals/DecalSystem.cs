@@ -448,13 +448,13 @@ namespace Content.Server.Decals
 
         public bool SetDecalCleanable(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithCleanable(value), comp);
-
+	// corvax-goob start
         public bool SetDecalGlows(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithGlows(value), comp);
 
         public bool SetDecalGlowEnergy(EntityUid gridId, uint decalId, float value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithGlowEnergy(value), comp);
-
+	// corvax-goob end
 
         public bool SetDecalId(EntityUid gridId, uint decalId, string id, DecalGridComponent? comp = null)
         {

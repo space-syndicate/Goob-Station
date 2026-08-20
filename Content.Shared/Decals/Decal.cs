@@ -56,8 +56,10 @@ namespace Content.Shared.Decals
         public Decal WithRotation(Angle angle) => new(Coordinates, Id, Color, angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
         public Decal WithZIndex(int zIndex) => new(Coordinates, Id, Color, Angle, zIndex, Cleanable, Glows, GlowTime, GlowEnergy);
         public Decal WithCleanable(bool cleanable) => new(Coordinates, Id, Color, Angle, ZIndex, cleanable, Glows, GlowTime, GlowEnergy);
-        public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
+        // corvax-goob start
+	public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
         public Decal WithGlowTime(float glowTime) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, glowTime, GlowEnergy);
         public Decal WithGlowEnergy(float glowEnergy) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, glowEnergy);
+        // corvax-goob end
     }
 }

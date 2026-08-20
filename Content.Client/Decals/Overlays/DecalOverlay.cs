@@ -19,7 +19,7 @@ namespace Content.Client.Decals.Overlays
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
-        private readonly IGameTiming _timing = default!;
+        private readonly IGameTiming _timing = default!; // corvax-goob
 
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 

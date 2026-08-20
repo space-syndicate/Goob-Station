@@ -164,7 +164,7 @@ namespace Content.Shared.Decals
 
             [DataField("cleanable")]
             public bool Cleanable { get; init; }
-
+            // corvax-goob start
             [DataField("glows")]
             public bool Glows { get; init; }
 
@@ -173,7 +173,7 @@ namespace Content.Shared.Decals
 
             [DataField("glowEnergy")]
             public float GlowEnergy { get; init; }
-
+            // corvax-goob end
             public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
             {
                 Id = id;
@@ -193,9 +193,11 @@ namespace Content.Shared.Decals
                 Angle = decal.Angle;
                 ZIndex = decal.ZIndex;
                 Cleanable = decal.Cleanable;
+                // corvax-goob start
                 Glows = decal.Glows;
                 GlowTime = decal.GlowTime;
                 GlowEnergy = decal.GlowEnergy;
+                // corvax-goob end
             }
 
             public bool Equals(DecalData other)
@@ -205,7 +207,7 @@ namespace Content.Shared.Decals
                        Angle.Equals(other.Angle) &&
                        ZIndex == other.ZIndex &&
                        Cleanable == other.Cleanable &&
-                       Glows == other.Glows;
+                       Glows == other.Glows; // corvax-goob
             }
 
             public override bool Equals(object? obj)
@@ -237,12 +239,14 @@ namespace Content.Shared.Decals
                 var zIndexComparison = ZIndex.CompareTo(other.ZIndex);
                 if (zIndexComparison != 0)
                     return zIndexComparison;
-
+                
+                // corvax-goob start
                 var cleanableComparison = Cleanable.CompareTo(other.Cleanable);
                 if (cleanableComparison != 0)
                     return cleanableComparison;
 
                 return GlowTime.CompareTo(other.GlowTime);
+                // corvax-goob end
             }
         }
     }

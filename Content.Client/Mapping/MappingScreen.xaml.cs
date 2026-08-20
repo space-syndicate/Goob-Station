@@ -95,6 +95,7 @@ public sealed partial class MappingScreen : InGameScreen
             _decalZIndex = args.Value;
             UpdateDecal();
         };
+    	// corvax-goob start
         DecalEnableGlow.OnToggled += args =>
         {
             _decalGlows = args.Pressed;
@@ -110,7 +111,7 @@ public sealed partial class MappingScreen : InGameScreen
             _decalGlowEnergy = args.Value / 100;
             UpdateDecal();
         };
-
+	// corvax-goob end
         for (var i = 0; i < EntitySpawnWindow.InitOpts.Length; i++)
         {
             EntityPlacementMode.AddItem(EntitySpawnWindow.InitOpts[i], i);

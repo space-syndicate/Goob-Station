@@ -143,6 +143,7 @@ public sealed class DecalPlacementSystem : EntitySystem
             Angle.FromDegrees(args.Rotation),
             args.ZIndex,
             args.Cleanable,
+	    // corvax-goob
             args.Glows,
             args.GlowDuration,
             args.GlowEnergy);

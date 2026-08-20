@@ -139,6 +139,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             _zIndex = args.Value;
             UpdateDecalPlacementInfo();
         };
+	// corvax-goob start
         EnableGlow.OnToggled += args =>
         {
             _glows = args.Pressed;
@@ -154,6 +155,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             _glowEnergy = args.Value / 100;
             UpdateDecalPlacementInfo();
         };
+	// corvax-goob end
     }
 
     private void OnColorPicked(Color color)
