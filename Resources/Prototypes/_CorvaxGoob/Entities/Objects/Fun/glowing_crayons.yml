@@ -39,6 +39,8 @@
   - type: Crayon
     color: white
     glows: true
+  - type: PointLight
+    color: white
   - type: Tag
     tags:
     - Write
@@ -59,6 +61,8 @@
   - type: Crayon
     color: red
     glows: true
+  - type: PointLight
+    color: red
   - type: Tag
     tags:
     - Write
@@ -79,6 +83,8 @@
   - type: Crayon
     color: orange
     glows: true
+  - type: PointLight
+    color: orange
   - type: Tag
     tags:
     - Write
@@ -99,6 +105,8 @@
   - type: Crayon
     color: yellow
     glows: true
+  - type: PointLight
+    color: yellow
   - type: Tag
     tags:
     - Write
@@ -119,6 +127,8 @@
   - type: Crayon
     color: green
     glows: true
+  - type: PointLight
+    color: green
   - type: Tag
     tags:
     - Write
@@ -139,6 +149,8 @@
   - type: Crayon
     color: blue
     glows: true
+  - type: PointLight
+    color: blue
   - type: Tag
     tags:
     - Write
@@ -159,6 +171,8 @@
   - type: Crayon
     color: purple
     glows: true
+  - type: PointLight
+    color: purple
   - type: Tag
     tags:
     - Write
