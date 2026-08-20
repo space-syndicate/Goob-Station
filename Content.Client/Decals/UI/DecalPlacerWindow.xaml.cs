@@ -151,7 +151,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
         };
         GlowEnergy.OnValueChanged += args =>
         {
-            _glowEnergy = args.Value;
+            _glowEnergy = args.Value / 100;
             UpdateDecalPlacementInfo();
         };
     }

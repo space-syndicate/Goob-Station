@@ -27,7 +27,7 @@ namespace Content.Client.Decals.Overlays
 
         // corvax-goob
         private readonly ShaderInstance _emissiveShader;
-        private readonly Dictionary<Vector2, ShaderInstance> _glowingDecalsShaders = new();
+        private readonly Dictionary<uint, ShaderInstance> _glowingDecalsShaders = new();
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -100,7 +100,7 @@ namespace Content.Client.Decals.Overlays
             // corvax-goob
             var defShader = handle.GetShader();
 
-            foreach (var (_, decal) in _decals)
+            foreach (var (decalId, decal) in _decals)
             {
                 if (!_cachedTextures.TryGetValue(decal.Id, out var cache))
                 {
@@ -123,23 +123,27 @@ namespace Content.Client.Decals.Overlays
                 }
 
                 var angle = decal.Angle - cardinal;
-                //corvax-goob start
 
+                //corvax-goob start
                 var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
-                if (decal.Glows && timeRemained > 0.01)
+                if (decal.Glows && decal.GlowTime > 0)
                 {
                     var glowEnergy =  Math.Clamp(
                         (float)(timeRemained / decal.GlowTime) * decal.GlowEnergy,
                         0f,
                         decal.GlowEnergy);
-                    var decalShader = _glowingDecalsShaders.GetValueOrDefault(decal.Coordinates, _emissiveShader.Duplicate());
-                    _glowingDecalsShaders.TryAdd(decal.Coordinates, decalShader);
-                    handle.UseShader(decalShader);
-                    decalShader.SetParameter("glowEnergy", glowEnergy);
-                }
-                else
-                {
-                    handle.UseShader(defShader);
+                    if (timeRemained > 0.01)
+                    {
+                        var decalShader = _glowingDecalsShaders.GetValueOrDefault(decalId, _emissiveShader.Duplicate());
+                        _glowingDecalsShaders.TryAdd(decalId, decalShader);
+                        handle.UseShader(decalShader);
+                        decalShader.SetParameter("glowEnergy", glowEnergy);
+                    }
+                    else
+                    {
+                        _glowingDecalsShaders.Remove(decalId);
+                        decal.Glows = false;
+                    }
                 }
                 //corvax-goob end
 
@@ -147,6 +151,8 @@ namespace Content.Client.Decals.Overlays
                     handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Color);
                 else
                     handle.DrawTexture(cache.Texture, decal.Coordinates, angle, decal.Color);
+
+                handle.UseShader(defShader);
             }
 
             handle.SetTransform(Matrix3x2.Identity);
