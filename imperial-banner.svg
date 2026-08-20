@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Imperial Space — Golden Empire</title>
+  <desc id="desc">Animated golden imperial banner for the Imperial Space repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#090807"/>
+      <stop offset="0.48" stop-color="#17120a"/>
+      <stop offset="1" stop-color="#060606"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#8a5b08"/>
+      <stop offset="0.28" stop-color="#f4cf69"/>
+      <stop offset="0.5" stop-color="#fff1ad"/>
+      <stop offset="0.72" stop-color="#d4a52d"/>
+      <stop offset="1" stop-color="#8a5b08"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#ffe89b" stop-opacity="0.7"/>
+      <stop offset="0.45" stop-color="#d6a934" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity="0.8"/>
+    </filter>
+    <clipPath id="clip"><rect x="0" y="0" width="1200" height="360" rx="26"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#clip)">
+    <rect width="1200" height="360" fill="url(#bg)"/>
+    <ellipse cx="600" cy="175" rx="440" ry="215" fill="url(#glow)" opacity="0.9">
+      <animate attributeName="opacity" values="0.65;1;0.65" dur="4.5s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- moving star dust -->
+    <g fill="#f5d36d" opacity="0.35">
+      <circle cx="92" cy="92" r="1.5"><animate attributeName="cy" values="92;76;92" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="190" cy="275" r="1"><animate attributeName="cy" values="275;258;275" dur="3.8s" repeatCount="indefinite"/></circle>
+      <circle cx="1030" cy="86" r="1.2"><animate attributeName="cy" values="86;72;86" dur="4.2s" repeatCount="indefinite"/></circle>
+      <circle cx="1110" cy="266" r="1.4"><animate attributeName="cy" values="266;248;266" dur="3.4s" repeatCount="indefinite"/></circle>
+      <circle cx="340" cy="62" r="1"><animate attributeName="cy" values="62;48;62" dur="4.7s" repeatCount="indefinite"/></circle>
+      <circle cx="870" cy="302" r="1"><animate attributeName="cy" values="302;284;302" dur="4s" repeatCount="indefinite"/></circle>
+    </g>
+
+    <!-- imperial seal -->
+    <g transform="translate(600 118)" filter="url(#shadow)">
+      <circle r="64" fill="#090807" stroke="url(#gold)" stroke-width="4"/>
+      <circle r="54" fill="none" stroke="#7b570e" stroke-width="1.5" opacity="0.9">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M-33 14 L-44 -30 L-18 -12 L0 -42 L18 -12 L44 -30 L33 14 L18 4 L0 29 L-18 4 Z" fill="url(#gold)"/>
+      <path d="M-50 34 Q0 58 50 34" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-34 45 Q0 64 34 45" fill="none" stroke="#8a5b08" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="0" cy="-42" r="4.5" fill="#fff0a8">
+        <animate attributeName="r" values="4.5;6;4.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <g fill="#fff1b0" text-anchor="middle">
+      <text x="600" y="235" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700" letter-spacing="8">IMPERIAL SPACE</text>
+      <text x="600" y="274" font-family="Georgia, 'Times New Roman', serif" font-size="16" letter-spacing="5" opacity="0.8">THE GOLDEN EMPIRE • SS14 GLOBAL CONVERSION</text>
+    </g>
+
+    <rect x="180" y="306" width="840" height="2" rx="1" fill="url(#gold)" opacity="0.85"/>
+    <rect x="180" y="306" width="140" height="2" rx="1" fill="#fff2ad">
+      <animate attributeName="x" values="180;880;180" dur="5s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- subtle moving sheen -->
+    <rect x="-280" y="0" width="260" height="360" fill="#fff3bd" opacity="0.05" transform="skewX(-22)">
+      <animate attributeName="x" values="-300;1280" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="358" rx="26" fill="none" stroke="#6d4d0d" stroke-width="2"/>
+</svg>
