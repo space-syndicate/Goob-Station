@@ -32,6 +32,7 @@
   - type: Tag
     tags:
     - Cartridge
+    - IgnorGrab # CorvaxGoob
   - type: Item
     size: Tiny
   - type: SpaceGarbage
