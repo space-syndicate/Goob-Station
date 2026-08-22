@@ -27,7 +27,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
-            ShaftMiner: [ 2, 2 ] 
+            ShaftMiner: [ 2, 2 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]
@@ -51,7 +51,7 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             WardenHelper: [ 1, 1 ]
-            SecurityOfficer: [ 2, 4 ]
+            SecurityOfficer: [ 4, 4 ]
             SecurityCadet: [ 2, 2 ]
             Detective: [ 1, 1 ]
             Pilot: [ 1, 1 ]
