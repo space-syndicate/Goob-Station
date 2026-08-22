@@ -406,6 +406,9 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         if (visual.EyesColor is not null)
             targetHumanoid.EyeColor = visual.EyesColor.Value;
 
+        if (visual.Sex is not null)
+            targetHumanoid.Sex = visual.Sex.Value;
+
         _humanoidAppearance.UpdateSprite((_previewEntity.Value, targetHumanoid, _entManager.GetComponent<SpriteComponent>(_previewEntity.Value)));
 
         SpriteView.SetEntity(_previewEntity.Value);
