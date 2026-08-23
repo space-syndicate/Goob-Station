@@ -81,7 +81,7 @@
     # CorvaxGoob-HailerDeath-Start
   - type: HailerDeathSound
     sound:
-      path: /Audio/_Goobstation/Hailer/hailer_user_death.ogg
+      path: /Audio/_CorvaxGoob/Misc/hailer_user_death.ogg
       # CorvaxGoob-HailerDeath-End
 
 - type: entity

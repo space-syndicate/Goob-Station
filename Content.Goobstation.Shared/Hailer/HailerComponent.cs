@@ -16,11 +16,6 @@ public sealed partial class HailerComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? HailActionEntity;
 
-    // CorvaxGoob-HailerDeath-Start
-    [DataField("deathSound"), AutoNetworkedField]
-    public SoundSpecifier? DeathSound;
-    // CorvaxGoob-HailerDeath-End
-
     // CorvaxGoob-HailerRework-Start
     [DataField]
     public string? SelectedMode = null;
