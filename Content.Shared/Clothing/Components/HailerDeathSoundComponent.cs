@@ -3,10 +3,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Clothing.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class HailerDeathSoundComponent : Component
 {
-    [DataField("sound")]
+    [DataField]
     public SoundSpecifier? Sound;
 
     
