@@ -4,6 +4,7 @@ using Content.Server.Roles;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Imperial.CrewSkills;
+using Content.Shared.Imperial.Helpers;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
@@ -24,6 +25,7 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly TargetSystem _target = default!;
     [Dependency] private readonly TransformSystem _xform = default!;
+    [Dependency] private readonly SharedCrewSkillsSystem _crewSkills = default!; // Imperial Space Crew Skills
 
     private static readonly ProtoId<TagPrototype> InvalidForSurvivorAntagTag = "InvalidForSurvivorAntag";
 
@@ -56,10 +58,7 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
             _role.MindAddRole(mind, "MindRoleSurvivor");
             _antag.SendBriefing(ent, Loc.GetString("survivor-role-greeting"), Color.Olive, null);
 
-            // Imperial Space Crew Skills Start
-            var crewSkillsComponent = EnsureComp<CrewSkillsComponent>(ent);
-            crewSkillsComponent.Skills.Add("skillShooting");
-            // Imperial Space Crew Skills End
+            _crewSkills.AddSkillToMindAttempt(mind, SkillsHelper.ShootingSkill); // Imperial Space Crew Skills
         }
     }
 

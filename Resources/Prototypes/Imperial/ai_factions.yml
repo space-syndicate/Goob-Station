@@ -6,3 +6,23 @@
   - Zombie
   - Dragon
   - AllHostile
+
+- type: npcFaction
+  id: CentralCommand
+  friendly:
+  - RiotControlUnit
+  - PetsNT
+  - DeathSquad
+  hostile:
+  - NanoTrasen # Для корректной работы ЦК-турелей.
+  - SyndicateAgent # ЦК-турели должны атаковать внедренных агентов без мета-исключений(принимаеться за NanoTrasen).
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - SimpleHostile
+  - AllHostile
+  - Wizard
+  - Pirate
+  - Xenoborg

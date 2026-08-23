@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by discord: rubelaks",
+  "size": {
+    "x": 128,
+    "y": 160
+  },
+  "states": [
+    {
+      "name": "animated",
+      "delays": [
+        [
+          3.5,
+          3.5
+        ]
+      ]
+    }
+  ]
+}

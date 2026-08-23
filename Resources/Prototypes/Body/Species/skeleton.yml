@@ -74,6 +74,8 @@
   id: MobSkeletonPerson
   name: Urist McBones
   components:
+  - type: CrewSkills
+    groups: [Base]
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: Skeleton
@@ -87,8 +89,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      150: Dead
+      30: Critical
+      60: Dead
   - type: TransferMindOnGib
   - type: Destructible
     thresholds:

@@ -43,34 +43,13 @@
     - CanPilot
   - type: ComplexInteraction
   - type: CrewSkills #Да-да, маленький хомячок умеет все)
-    skills:
-      - skillBotany #Base
-      - skillBaseMed
-      - skillBaseConstraction
-      - skillCooking  #Easy
-      - skillBartending
-      - skillHacking
-      - skillInstrumentation #Medium
-      - skillMaintenance
-      - skillMediumConstruction
-      - skillMediumBotany
-      - skillBasicAtmos
-      - skillMedicalEquipment
-      - skillPharmacology
-      - skillPiloting #Hard
-      - skillAtmos
-      - skillHardInstrumentation
-      - skillRobotics
-      - skillResearch
-      - skillPharmaceuticals
-      - skillShooting
-      - skillSurgery
-      - skillNeuroSurgery
+    groups: [All]
   - type: Access #Доступы тоже.
     groups:
     - AllAccess
     tags:
     - CentralCommand
+    - DeathSquad
   - type: IntrinsicRadioTransmitter
     channels:
     - SODDeathSquad
@@ -119,7 +98,7 @@
       Dead:
         Base: dead
   - type: CanEscapeInventory
-    baseResistTime: 3
+    baseResistTime: 1
   - type: MobPrice
     price: 30000
   - type: NonSpreaderZombie
@@ -127,6 +106,18 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: Hands
+    activeHandId: Right
+    hands:
+      Right:
+        location: Right
+      Left:
+        location: Left
+      Medical:
+        location: Left
+    sortedHands:
+    - Right
+    - Left
+    - Medical
   - type: CombatMode
   - type: NoSlip
   - type: Item
@@ -201,6 +192,7 @@
     sprite: Imperial/SpecialUnits/DeathSquad/Pets/Grey/hypo.rsi
     state: borghypo
   - type: Item
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Grey/hypo.rsi
   - type: SolutionContainerManager
     solutions:
       hypospray:
@@ -209,38 +201,52 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    popupOnInjectFail: false
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
     price: 11750
   - type: BorgHypo
-    Solutions:
+    solutions:
       - reagents:
-        - ReagentId: Bicaridine
-          Quantity: 1
+        - reagentId: Bicaridine
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/brutekit.png
       - reagents:
-        - ReagentId: Dermaline
-          Quantity: 1
+        - reagentId: Dermaline
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/burnkit.png
       - reagents:
-        - ReagentId: Dexalin
-          Quantity: 1
+        - reagentId: Dexalin
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/o2kit.png
       - reagents:
-        - ReagentId: Inaprovaline
-          Quantity: 1
+        - reagentId: Inaprovaline
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/firstaid.png
       - reagents:
-        - ReagentId: Hyronalin
-          Quantity: 1
+        - reagentId: Hyronalin
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/radkit.png
       - reagents:
-        - ReagentId: Dylovene
-          Quantity: 1
+        - reagentId: Dylovene
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/toxinkit.png
       - reagents:
-        - ReagentId: Omnizine
-          Quantity: 1
+        - reagentId: Omnizine
+          quantity: 1
+          sprite: /Textures/Imperial/Other/BorgHypoIcons/advkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
-        - ReagentId: Epinephrine
+        - ReagentId: Bicaridine
           Quantity: 1
 
 - type: entity

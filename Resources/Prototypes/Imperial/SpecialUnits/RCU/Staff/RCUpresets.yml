@@ -24,29 +24,7 @@
       - RCUOperatorFirst
       - RCUOperatorSecond
     - type: CrewSkills
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
+      groups: [All]
     - type: AntagImmune
 
 - type: entity
@@ -143,6 +121,8 @@
 
 - type: npcFaction
   id: RiotControlUnit
+  friendly:
+  - CentralCommand # Во избежание сбоев.
   hostile:
   - SimpleHostile
   - Syndicate

@@ -1,0 +1,12 @@
+- type: cargoProduct
+  id: CargoSupremeSalvagerHardsuitMaxim
+  icon:
+    sprite: Clothing/Head/Hardsuits/maxim.rsi
+    state: icon
+  product: ClothingOuterHardsuitMaxim
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 25000
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobRewardMAX

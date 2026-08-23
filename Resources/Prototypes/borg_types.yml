@@ -96,6 +96,7 @@
   - BorgModuleMining
   - BorgModuleTraversal
   - BorgModuleAppraisal
+  - BorgModuleScrapSalvage ### IMPERIAL IMPROVED SALVAGE
 
   radioChannels:
   - Supply
@@ -183,20 +184,28 @@
   addComponents:
   # Imperial Space: add action. start
   - type: CrewMonitoringConsole
+  # Must re-add after MapInit RemoveComponents; keep robotics console frequencies.
   - type: DeviceNetwork
     deviceNetId: Wireless
-    receiveFrequencyId: CrewMonitor
+    receiveFrequencyId: CyborgControl
+    transmitFrequencyId: RoboticsConsole
+    savableAddress: false
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
   - type: UserInterface
     interfaces:
-      enum.BorgUiKey.Key:
-        type: BorgBoundUserInterface
-      enum.CrewMonitoringUIKey.Key:
-        type: CrewMonitoringBoundUserInterface
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CrewMonitoringUIKey.Key:

@@ -41,8 +41,28 @@
   parent: ClothingNeckBase
   id: CloakViolet
   name: vampire cloak
-  suffix: Seriozha, Кастомизация
+  suffix: Seriozha, Кастомизация, Недра
   description: Worn by high ranking vampires of the transylvanian society of vampires.
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/misc/Customization/violet_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: CloakNDADelexor
+  name: vampire cloak
+  suffix: Seriozha, Кастомизация, Недра
+  description: Worn by high ranking vampires of the transylvanian society of vampires.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Customization/nda_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: CloakNDAWhite
+  name: vampire cloak
+  suffix: Seriozha, Кастомизация, Недра
+  description: Worn by high ranking vampires of the transylvanian society of vampires.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Customization/white_cloak.rsi

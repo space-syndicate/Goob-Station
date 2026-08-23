@@ -13,11 +13,13 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: deathcat_alive
     - map: [ "mask" ]
-#    - map: [ "blade" ] #Легаси от прошлой реализации лазерных когтей.
-#      state: inhand_blade
-#      color: "#FFFFFF"
-#      visible: false
-#      shader: unshaded
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: ActionGrant
+    actions:
+    - ActionGiveEClaws
   - type: Inventory
     speciesId: cat
     templateId: deathsquadcat
@@ -45,6 +47,7 @@
   - type: AutoImplant
     implants:
     - MindShieldImplant
+    - EmpImplant
   - type: NpcFactionMember
     factions:
     - DeathSquad
@@ -57,13 +60,14 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Slash: 5
+        Slash: 15
   - type: ComplexInteraction
   - type: Access #Доступы тоже.
     groups:
     - AllAccess
     tags:
     - CentralCommand
+    - DeathSquad
   - type: IntrinsicRadioReceiver #Радио также прифигачино прямо в моба.
   - type: IntrinsicRadioTransmitter
     channels:
@@ -90,8 +94,6 @@
     - Service
     - Supply
   - type: ZombieImmune
-  - type: Loadout
-    prototypes: [ DeathSquadCatLodout ]
   - type: StatusEffects
     allowed:
     - Stun
@@ -131,32 +133,18 @@
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
   - type: CrewSkills #То самое чувство, когда котенок со своими лапками, и лошадь на ходу остановит, и шаттлом управлять умеет, и товарища вылечить может, и мета наварит, пока ты только в носу ковыряться умеешь...
-    skills:
-      - skillBotany #Base
-      - skillBaseMed
-      - skillBaseConstraction
-      - skillCooking  #Easy
-      - skillBartending
-      - skillHacking
-      - skillInstrumentation #Medium
-      - skillMaintenance
-      - skillMediumConstruction
-      - skillMediumBotany
-      - skillBasicAtmos
-      - skillMedicalEquipment
-      - skillPharmacology
-      - skillPiloting #Hard
-      - skillAtmos
-      - skillHardInstrumentation
-      - skillRobotics
-      - skillResearch
-      - skillPharmaceuticals
-      - skillShooting
-      - skillSurgery
-      - skillNeuroSurgery
+    groups: [All]
   - type: Puller
     needsHands: false
   - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
 #door pry
   - type: Prying
     pryPowered: true
@@ -165,90 +153,43 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
 
+- type: entity
+  name: deathcat
+  id: MobCatDeathSquadEVA
+  parent: MobCatDeathSquad
+  description: Stroke him properly and maybe he won't rip your head off...
+  suffix: DeathSquad
+  components:
+  - type: Loadout
+    prototypes: [ DeathSquadCatLodout ]
+
 - type: startingGear #gear
   id: DeathSquadCatLodout
   equipment:
     mask: CatHardsuitDeathSquad
     suitstorage: OxygenTankFilled
-  inhand:
-  - KittyEnergyClaws
 
-#- type: entity
-#  name: energy claws #Лазерные когти
-#  parent: BaseItem
-#  id: BaseKittyEnergyClaws
-#  abstract: true
-#  categories: [ HideSpawnMenu ]
-#  description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
-#  components:
-#  - type: EnergySword
-#  - type: MeleeWeapon
-#    altDisarm: false
-#    angle: 0
-#    animation: WeaponArcClaw
-#    wideAnimationRotation: -135
-#    attackRate: 2
-#    damage:
-#      types:
-#        Blunt: 4.5
-#  - type: ItemToggle
-#    soundActivate:
-#      path: /Audio/Weapons/ebladeon.ogg
-#    soundDeactivate:
-#      path: /Audio/Weapons/ebladeoff.ogg
-#  - type: ItemToggleActiveSound
-#    activeSound:
-#      path: /Audio/Weapons/ebladehum.ogg
-#  - type: ItemTogglePointLight
-#  - type: ItemToggleMeleeWeapon
-#    activatedSoundOnHit:
-#      path: /Audio/Weapons/eblade1.ogg
-#      params:
-#        variation: 0.250
-#    activatedSoundOnHitNoDamage:
-#      path: /Audio/Weapons/eblade1.ogg
-#      params:
-#        variation: 0.250
-#        volume: -10
-#    activatedSoundOnSwing:
-#      path: /Audio/Weapons/eblademiss.ogg
-#      params:
-#        variation: 0.125
-#    activatedDamage:
-#      types:
-#        Slash: 10
-#        Heat: 10
-#        Structural: 40
-#  - type: ComponentToggler
-#    components:
-#    - type: Sharp
-#    - type: DisarmMalus
-#      malus: 0.6
-#    - type: Execution
-#      doAfterDuration: 4.0
-#  - type: PointLight
-#    enabled: false
-#    radius: 2
-#    energy: 2
-#    color: white
-#    netsync: false
-#  - type: ToggleableLightVisuals
-#    spriteLayer: blade
-#    inhandVisuals:
-#      left:
-#      - state: inhand-left-blade
-#        shader: unshaded
-#      right:
-#      - state: inhand-right-blade
-#        shader: unshaded
-#  - type: Appearance
-#  - type: Reflect
-#    reflectProb: 0.75
-#    spread: 10
-#  - type: IgnitionSource
-#    temperature: 700
-#  - type: UseDelay
-#    delay: 1.0
+- type: entity
+  parent: BaseAction
+  id: ActionGiveEClaws
+  name: Energy Claws
+  description: Activate deadly claws.
+  components:
+  - type: Action
+    useDelay: 2
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:OnRetractableItemActionEvent
+  - type: RetractableItemAction
+    spawnedPrototype: KittyEnergyClaws
+    summonSounds:
+      collection: GenericHit # Placeholder
+    retractSounds:
+      collection: GenericHit # Placeholder
 
 - type: entity
   name: energy claws #Лазерные когти
@@ -268,7 +209,6 @@
       map: [ "blade" ]
   - type: Item
     sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws_inhands.rsi
-  - type: Unremoveable
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcClaw
@@ -276,7 +216,21 @@
     attackRate: 2
     damage:
       types:
-        Blunt: 4.5
+        Blunt: 5
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.6
+    - type: Execution
+      doAfterDuration: 4.0
+    - type: BonusMeleeDamage
+      bonusDamage:
+        types:
+          Blunt: 5
+          Slash: 10
+          Heat: 10
+          Structural: 40
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
       path: /Audio/Weapons/eblade1.ogg
@@ -291,8 +245,4 @@
       path: /Audio/Weapons/eblademiss.ogg
       params:
         variation: 0.125
-    activatedDamage:
-      types:
-        Slash: 10
-        Heat: 10
-        Structural: 40
+  - type: MultiHandedItem

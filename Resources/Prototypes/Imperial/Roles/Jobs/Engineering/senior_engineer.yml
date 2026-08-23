@@ -16,18 +16,6 @@
   - Engineering
   - External
   - Atmospherics
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
-  - skillPiloting
-  - skillBasicAtmos
-  - skillAtmos
-  - skillInstrumentation
-  - skillHardInstrumentation
-  - skillMaintenance
-  - skillMediumConstruction
-  - skillHacking
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

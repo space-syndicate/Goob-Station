@@ -7,10 +7,10 @@
       cost: 2
     - proto: MobXenoPraetorian
       cost: 5
-      prob: 0.1
+      prob: 0.5 ### IMPERIAL IMPROVED SALVAGE
     - proto: MobXenoQueen
       cost: 10
-      prob: 0.02
+      prob: 0.25 # IMPERIAL IMPROVED SALVAGE
     - proto: MobXenoRavager
       cost: 5
     - proto: MobXenoRouny
@@ -29,9 +29,14 @@
   entries:
     - proto: MobCarpDungeon
     # These do too much damage for salvage, need nerfs
-    #- proto: MobCarpHolo
-    #  cost: 5
-    #  prob: 0.1
+    # IMPERIAL IMPROVED SALVAGE START 
+    - proto: MobShark
+      cost: 5
+      prob: 0.1 
+    - proto: MobCarpHolo
+      cost: 5
+      prob: 0.1 
+    # IMPERIAL IMPROVED SALVAGE END
     #- proto: MobCarpMagic
     #  cost: 5
     #  prob: 0.1
@@ -40,7 +45,7 @@
       prob: 0.05
     - proto: MobDragonDungeon
       cost: 10
-      prob: 0.02
+      prob: 0.1 # IMPERIAL IMPROVED SALVAGE
   configs:
     DefenseStructure: CarpStatue
     Megafauna: MobDragonDungeon

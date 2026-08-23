@@ -4,6 +4,8 @@
   name: JRT
   suffix: JRT, EVA
   components:
+    - type: CrewSkills
+      groups: [All]
     - type: RandomMetadata
       nameSegments:
       - NamesLast

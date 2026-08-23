@@ -538,14 +538,14 @@
     table: !type:GroupSelector
       children:
       - id: MobGoliath
-        weight: 35
+        weight: 45 # IMPROVED SALVAGE: weight 35 => 45
       - id: MobHivelord
-        weight: 25
+        weight: 35 # IMPROVED SALVAGE: weight 25 => 35
       - id: MobBasilisk
         weight: 10
         # Imperial Space: A new Phantomor mob has been added. Start
       - id: MobPhantomor
-        weight: 30
+        weight: 25 # IMPROVED SALVAGE: weight 30 => 25
         # Imperial Space: A new Phantomor mob has been added. End
       - id: MobUrs # Imperial New mob Urs
-        weight: 45 # Imperial New mob Urs
+        weight: 25 # Imperial New mob Urs IMPROVED SALVAGE: weight 45 => 25

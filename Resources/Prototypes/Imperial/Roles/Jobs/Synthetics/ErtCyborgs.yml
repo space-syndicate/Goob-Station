@@ -4,9 +4,11 @@
   parent: BaseBorgChassis
   abstract: true
   components:
+  # Борги ОБР одновременно относятся к NanoTrasen и ЦентКому, поэтому обе стороны считают их союзниками.
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+    - CentralCommand
   - type: Access
     groups:
     - AllAccess

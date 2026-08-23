@@ -1,0 +1,104 @@
+- type: entity
+  parent: BaseStructure
+  id: WormCocoonBase
+  abstract: true
+  suffix: XxRaay
+  name: worm cocoon
+  description: A pulsating cocoon woven from blood and slime.
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/XxRaay/worms/cocoons.rsi
+    noRot: true
+    drawdepth: Mobs
+  - type: Icon
+    sprite: Imperial/XxRaay/worms/cocoons.rsi
+    state: cocoon1
+  - type: InteractionOutline
+  - type: Examiner
+  - type: Alerts
+  - type: Eye
+  - type: ContentEye
+  - type: Speech
+    speechVerb: Default
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 40
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WormCocoonBase
+  id: WormCocoonTier1
+  suffix: XxRaay, Кокон I
+  components:
+  - type: WormCocoon
+  - type: Sprite
+    state: cocoon1
+  - type: Icon
+    state: cocoon1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 70
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WormCocoonBase
+  id: WormCocoonTier2
+  suffix: XxRaay, Кокон II
+  components:
+  - type: WormCocoon
+  - type: Sprite
+    state: cocoon1
+  - type: Icon
+    state: cocoon1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WormCocoonBase
+  id: WormCocoonReproduction
+  suffix: XxRaay, Размножение
+  components:
+  - type: WormReproductionCocoon
+  - type: Sprite
+    state: cocoon2
+  - type: Icon
+    state: cocoon2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

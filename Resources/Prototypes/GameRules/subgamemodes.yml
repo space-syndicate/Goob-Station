@@ -31,6 +31,10 @@
         - BorgTransponder
       ### Imperial Syndie Borg End
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       # Imperial Space edit start
       - type: GiveMindPacified
       - type: Restriction
@@ -78,6 +82,10 @@
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
       - type: NpcFactionMember
         factions:
         - Wizard

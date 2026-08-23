@@ -1,0 +1,41 @@
+- type: entity
+  id: FloorAcidEntity
+  parent: FloorWaterEntity
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Acid/acid.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: full
+  - type: Icon
+    sprite: Imperial/DeimonFly/Acid/acid.rsi
+    state: full
+  - type: IconSmooth
+    key: floor
+    additionalKeys:
+    - walls
+    base: water
+  - type: DamageContacts
+    damage:
+      types:
+        Poison: 4
+  - type: TimedSpawner
+    prototypes:
+    - AcidBubble
+    chance: 0.12
+    intervalSeconds: 1
+
+- type: entity
+  id: AcidBubble
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Acid/acid_bubble.rsi
+    state: bubble
+    drawdepth: FloorTiles
+  - type: SpawnRandomOffset
+    offset: 0.3
+  - type: TimedDespawn
+    lifetime: 2.2

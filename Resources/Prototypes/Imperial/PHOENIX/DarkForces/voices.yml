@@ -1,0 +1,17 @@
+- type: emoteSounds
+  id: WispVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/PHOENIX/DarkForces/wisp_scream.ogg
+
+- type: emoteSounds
+  id: ShadeVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/PHOENIX/DarkForces/shade_scream.ogg
+
+- type: emoteSounds
+  id: VoidVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/PHOENIX/DarkForces/void_scream.ogg

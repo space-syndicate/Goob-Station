@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made by Ser1-1y on github",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "nano_chat"
+      },
+      {
+          "name": "syndi_chat"
+      }
+    ]
+}

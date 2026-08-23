@@ -47,32 +47,19 @@
     - DeathSquad
   - type: ZombieImmune
   - type: CrewSkills
-    skills:
-      - skillBotany #Base
-      - skillBaseMed
-      - skillBaseConstraction
-      - skillCooking  #Easy
-      - skillBartending
-      - skillHacking
-      - skillInstrumentation #Medium
-      - skillMaintenance
-      - skillMediumConstruction
-      - skillMediumBotany
-      - skillBasicAtmos
-      - skillMedicalEquipment
-      - skillPharmacology
-      - skillPiloting #Hard
-      - skillAtmos
-      - skillHardInstrumentation
-      - skillRobotics
-      - skillResearch
-      - skillPharmaceuticals
-      - skillShooting
-      - skillSurgery
-      - skillNeuroSurgery
+    groups: [All]
   - type: Inventory
     speciesId: monkey
     templateId: deathsquadmonkey
+  - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
 
 - type: startingGear
   id: DeathSquadDondonGear

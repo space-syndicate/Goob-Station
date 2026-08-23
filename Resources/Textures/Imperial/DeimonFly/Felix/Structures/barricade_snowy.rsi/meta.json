@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by discord: rubelaks",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bags4"
+    },
+    {
+      "name": "bags5"
+    }
+  ]
+}

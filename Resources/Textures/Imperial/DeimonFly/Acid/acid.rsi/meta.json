@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by discord: rubelaks",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    },
+    {
+      "name": "water0",
+      "directions": 4
+    },
+    {
+      "name": "water1",
+      "directions": 4
+    },
+    {
+      "name": "water2",
+      "directions": 4
+    },
+    {
+      "name": "water3",
+      "directions": 4
+    },
+    {
+      "name": "water4",
+      "directions": 4
+    },
+    {
+      "name": "water5",
+      "directions": 4
+    },
+    {
+      "name": "water6",
+      "directions": 4
+    },
+    {
+      "name": "water7",
+      "directions": 4
+    }
+  ]
+}

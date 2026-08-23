@@ -1,0 +1,282 @@
+- type: Tag
+  id: BuckshotRouletteShell
+
+# Дробовик появляется пустым. Ручная смена патрона отключена, чтобы нельзя было бесплатно обойти правила игры.
+- type: entity
+  parent: WeaponShotgunKammerer
+  id: WeaponShotgunBuckshotRoulette
+  name: dealer's shotgun
+  description: A purpose-built shotgun for a grim game of chance. It accepts only its matching live and blank shells.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: null
+    cycleable: false
+    whitelist:
+      tags:
+      - BuckshotRouletteShell
+      components:
+      - BuckshotRouletteShell
+      requireAll: true
+  - type: BuckshotRouletteShotgun
+    liveShell: ShellShotgunBuckshotRouletteLive
+    blankShell: ShellShotgunBuckshotRouletteBlank
+    intactWorldSprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+    sawedWorldSprite: Imperial/DeimonFly/BuckshotRoulette/dealer_shotgun_sawed.rsi
+    restoringWorldSprite: Imperial/DeimonFly/BuckshotRoulette/dealer_shotgun_barrel_restore_animation.rsi
+    sawedInhandSprite: Imperial/DeimonFly/BuckshotRoulette/dealer_shotgun_sawed_inhands_64x.rsi
+    # Значение согласовано с моментом появления целого ствола в restoring-icon.
+    barrelRestoreDuration: 1.85
+    fireMode: Target
+    selfDamage:
+      types:
+        Cellular: 34
+  # Штатное вращение предметов даёт четыре положения с шагом в 90 градусов.
+  - type: Rotatable
+    increment: 90
+    rotateWhilePulling: false
+
+# Боевой патрон выпускает один снаряд с фиксированными 34 Cellular — третье попадание переводит обычного человека в крит.
+- type: entity
+  parent: BaseShellShotgun
+  id: ShellShotgunBuckshotRouletteLive
+  name: live shell
+  description: A live shell made exclusively for the dealer's shotgun.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Tag
+    tags:
+    - BuckshotRouletteShell
+  - type: CartridgeAmmo
+    proto: PelletBuckshotRouletteLive
+  - type: BuckshotRouletteShell
+    live: true
+
+# Холостой патрон помечен израсходованным: штатная система проигрывает звук осечки и не создаёт снаряд.
+- type: entity
+  parent: BaseShellShotgun
+  id: ShellShotgunBuckshotRouletteBlank
+  name: blank shell
+  description: A blank shell made exclusively for the dealer's shotgun. It produces only a dry click.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Tag
+    tags:
+    - BuckshotRouletteShell
+  - type: Sprite
+    layers:
+    - state: blank
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletBuckshotRouletteLive
+    spent: true
+    markSpentAsTrash: false
+  - type: SpentAmmoVisuals
+    state: blank
+  - type: BuckshotRouletteShell
+    live: false
+
+- type: entity
+  parent: BaseBullet
+  id: PelletBuckshotRouletteLive
+  name: roulette projectile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Cellular: 34
+    ignoreResistances: true
+
+# В кейсе всегда от двух до восьми патронов и обязательно присутствуют оба их типа.
+- type: entity
+  parent: BriefcaseWeaponSmall
+  id: BriefcaseBuckshotRouletteAmmo
+  name: roulette shell case
+  description: A compact case holding a concealed random arrangement of live and blank shells for the dealer's shotgun.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/weapon_case.rsi
+    scale: 0.8, 0.8
+  - type: Lock
+    locked: false
+  - type: BuckshotRouletteAmmoCase
+    liveShell: ShellShotgunBuckshotRouletteLive
+    blankShell: ShellShotgunBuckshotRouletteBlank
+    minimumShells: 2
+    maximumShells: 8
+
+# Большой кейс выдаёт от двух до восьми случайных предметов, включая повторения.
+- type: entity
+  parent: BriefcaseWeapon
+  id: BriefcaseBuckshotRouletteItems
+  name: roulette item case
+  description: A secure case filled with a random selection of equipment for the game.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Lock
+    locked: false
+  - type: BuckshotRouletteItemCase
+    minimumItems: 2
+    maximumItems: 8
+    items:
+    - BuckshotRouletteAdrenaline
+    - BuckshotRouletteBeer
+    - BuckshotRouletteBurnerPhone
+    - BuckshotRouletteMedicalKit
+    - BuckshotRouletteInverter
+    - BuckshotRouletteJammer
+    - BuckshotRouletteMagnifyingGlass
+    - BuckshotRouletteRemote
+    - BuckshotRouletteHandSaw
+
+# EmergencyMedipen уже вводит всё содержимое мгновенно за одно использование.
+- type: entity
+  parent: EmergencyMedipen
+  id: BuckshotRouletteAdrenaline
+  name: adrenaline
+  description: A single-use emergency injector loaded with a measured dose of ephedrine.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 15
+
+# Разрешение на извлечение патрона выдаётся только после полного опустошения бутылки питьём.
+- type: entity
+  parent: DrinkBeerBottleFull
+  id: BuckshotRouletteBeer
+  name: beer
+  description: An alcoholic beverage brewed from malted grains, hops, yeast, and water.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Beer
+          Quantity: 30
+  - type: BuckshotRouletteBeer
+
+- type: entity
+  parent: BaseItem
+  id: BuckshotRouletteBurnerPhone
+  name: burner phone
+  description: Reveals the position and type of one random future shell, never the current one. It is useless with two or fewer shells loaded.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Instruments/blood_red_phone.rsi
+    state: icon
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: BuckshotRouletteTool
+    effect: BurnerPhone
+
+# Лечит ровно один полученный выстрел и не затрагивает обычные травмы.
+- type: entity
+  parent: HardTraumapack1
+  id: BuckshotRouletteMedicalKit
+  name: medical kit
+  description: An unusual medical kit for treating gunshot wounds. It contains just enough supplies to treat one bullet wound.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Stack
+    stackType: HardTraumapack
+    count: 1
+    maxCountOverride: 1
+  - type: Healing
+    damageContainers:
+    - Biological
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+        Piercing: 0
+        Cellular: -34
+
+- type: entity
+  parent: BaseItem
+  id: BuckshotRouletteInverter
+  name: inverter
+  description: Changes the current shell in the chamber to its opposite type. The device breaks down on use.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/swapper.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: BuckshotRouletteTool
+    effect: Inverter
+
+- type: entity
+  parent: BaseItem
+  id: BuckshotRouletteJammer
+  name: jammer
+  description: Announces that the chosen opponent must skip a turn. The device breaks down on use.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/network_configurator.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: BuckshotRouletteTool
+    effect: Jammer
+
+- type: entity
+  parent: BaseItem
+  id: BuckshotRouletteMagnifyingGlass
+  name: magnifying glass
+  description: Lets you peek at what is hidden to learn which shell is currently in the chamber. The fragile glass cracks on use.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/shields.rsi
+    state: mirror-icon
+  - type: Item
+    size: Small
+  - type: BuckshotRouletteTool
+    effect: MagnifyingGlass
+
+- type: entity
+  parent: BaseItem
+  id: BuckshotRouletteRemote
+  name: turn remote
+  description: Announces a reversal of turn order. The device breaks down on use.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/RemoteSignaller.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: BuckshotRouletteTool
+    effect: Remote
+
+# Пила одноразово усиливает следующий использованный патрон. Холостой патрон также расходует усиление.
+- type: entity
+  parent: Saw
+  id: BuckshotRouletteHandSaw
+  name: hand saw
+  description: Lets you saw off part of the barrel, making the next shot especially deadly. The saw's fragile teeth crumble on use.
+  suffix: Buckshot Roulette, DeimonFly
+  components:
+  - type: Item
+    size: Small
+  - type: Tool
+    qualities:
+    - Sawing
+    useSound:
+      path: /Audio/Effects/saw.ogg
+  - type: BuckshotRouletteTool
+    effect: HandSaw

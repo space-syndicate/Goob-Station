@@ -22,10 +22,10 @@ public partial class SharedVampireSystem : EntitySystem
         SubscribeLocalEvent<VampireInvisibleEvent>(OnInvisible);
 
         SubscribeLocalEvent<VampireBloodAnchorEvent>(OnBloodAnchorCreateStart);
-        SubscribeLocalEvent<VampireComponent, VampireAnchorCreateDoAfterEvent>(OnBloodAnchorCreate);
+        SubscribeLocalEvent<AbilityComponent, VampireAnchorCreateDoAfterEvent>(OnBloodAnchorCreate);
 
-        SubscribeLocalEvent<VampireComponent, VampireShadowTrapEvent>(StartOnShadowTrap);
-        SubscribeLocalEvent<VampireComponent, VampireShadowTrapDoAfterEvent>(OnShadowTrap);
+        SubscribeLocalEvent<AbilityComponent, VampireShadowTrapEvent>(StartOnShadowTrap);
+        SubscribeLocalEvent<AbilityComponent, VampireShadowTrapDoAfterEvent>(OnShadowTrap);
         SubscribeLocalEvent<VampireTrapOnTriggerComponent, StartCollideEvent>(OnVampireTrap);
     }
 
@@ -34,10 +34,13 @@ public partial class SharedVampireSystem : EntitySystem
         if (!TryComp<MovementSpeedModifierComponent>(args.Performer, out var speed))
             return;
 
-        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (comp.BloodDamage + args.CostBlood >= comp.CritThreshold)
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
+        if (comp == null) return;
+
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
@@ -52,9 +55,9 @@ public partial class SharedVampireSystem : EntitySystem
         }
 
         _cuff.Uncuff(args.Performer, args.Performer, cuffComp.Container.ContainedEntities.FirstOrDefault());
-        DealBloodDamage(args.Performer, args.CostBlood);
+        DealAbilityBloodDamageShared(args.Performer, args.CostBlood);
 
-        if (comp.BuffBlocked)
+        if (comp?.BuffBlocked ?? false)
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-warning-ability-buff"),
             args.Performer, args.Performer, PopupType.LargeCaution);
@@ -68,7 +71,7 @@ public partial class SharedVampireSystem : EntitySystem
 
         _speedSystem.RefreshMovementSpeedModifiers(args.Performer);
 
-        comp.BuffBlocked = true;
+        comp!.BuffBlocked = true;
         comp.BuffBlockedUntil = _gameTiming.CurTime + args.UnCuffBuffTime;
 
         if (_net.IsServer)
@@ -80,22 +83,24 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnInvisible(VampireInvisibleEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        if (vamp.InvisibilityAbilityActive)
-            vamp.InvisibilityAbilityActive = false;
+        if (comp.InvisibilityAbilityActive)
+            comp.InvisibilityAbilityActive = false;
         else
-            vamp.InvisibilityAbilityActive = true;
+            comp.InvisibilityAbilityActive = true;
 
-        vamp.BloodLossDisguiseIsActive = args.CostBlood;
+        comp.BloodLossDisguiseIsActive = args.CostBlood;
         VampireInvisible(args.Performer);
 
         args.Handled = true;
@@ -103,22 +108,24 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnBloodAnchorCreateStart(VampireBloodAnchorEvent args)
     {
-        if (!TryComp<VampireComponent>(args.Performer, out var vamp))
+        if (!TryComp<VampireComponent>(args.Performer, out var vamp) && !TryComp<GhoulComponent>(args.Performer, out var ghoul))
             return;
 
-        if (!vamp.AnchorCreate)
+        var comp = EnsureComp<AbilityComponent>(args.Performer);
+
+        if (!comp?.AnchorCreate ?? false)
         {
-            if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+            if (!HasEnoughBloodShared(args.Performer, args.CostBlood))
             {
                 _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                     args.Performer, args.Performer, PopupType.Medium);
                 return;
             }
 
-            vamp.SpawnLocation = Transform(args.Performer).Coordinates;
+            comp!.SpawnLocation = Transform(args.Performer).Coordinates;
 
             var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, args.AnchorCreateTime,
-                new VampireAnchorCreateDoAfterEvent { Duration = args.DurationExistenceAnchor, AnchorId = args.VampireAnchorId},
+                new VampireAnchorCreateDoAfterEvent { Duration = args.DurationExistenceAnchor, AnchorId = args.VampireAnchorId },
                 args.Performer)
             {
                 BreakOnMove = false,
@@ -133,33 +140,33 @@ public partial class SharedVampireSystem : EntitySystem
         }
 
         // проверка существования якоря
-        if (vamp.VampireAnchorUid == EntityUid.Invalid || !Exists(vamp.VampireAnchorUid))
+        if (comp!.VampireAnchorUid == EntityUid.Invalid || !Exists(comp.VampireAnchorUid))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-anchor-destroyed"),
                 args.Performer, args.Performer, PopupType.LargeCaution);
-            vamp.AnchorCreate = false;
+            comp.AnchorCreate = false;
             return;
         }
 
         if (_net.IsServer)
         {
-            _transform.SetCoordinates(args.Performer, Transform(vamp.VampireAnchorUid).Coordinates);
-            _audio.PlayPvs(vamp.TeleportSound, args.Performer);
+            _transform.SetCoordinates(args.Performer, Transform(comp.VampireAnchorUid).Coordinates);
+            _audio.PlayPvs(comp.TeleportSound, args.Performer);
 
-            QueueDel(vamp.VampireAnchorUid);
+            QueueDel(comp.VampireAnchorUid);
         }
 
-        vamp.VampireAnchorUid = EntityUid.Invalid;
-        vamp.AnchorCreate = false;
+        comp.VampireAnchorUid = EntityUid.Invalid;
+        comp.AnchorCreate = false;
 
-        Dirty(args.Performer, vamp);
+        Dirty(args.Performer, comp);
         args.Handled = true;
     }
 
-    private void OnBloodAnchorCreate(Entity<VampireComponent> ent, ref VampireAnchorCreateDoAfterEvent args)
+    private void OnBloodAnchorCreate(Entity<AbilityComponent> ent, ref VampireAnchorCreateDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || !_net.IsServer)
-            return;
+        if (!TryComp<VampireComponent>(ent, out var vamp) && !TryComp<GhoulComponent>(ent, out var ghoul)) return;
+        if (args.Handled || args.Cancelled || !_net.IsServer) return;
 
         ent.Comp.VampireAnchorUid = Spawn(args.AnchorId, ent.Comp.SpawnLocation);
         ent.Comp.AnchorCreate = true;
@@ -169,15 +176,15 @@ public partial class SharedVampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void StartOnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapEvent args)
+    private void StartOnShadowTrap(Entity<AbilityComponent> ent, ref VampireShadowTrapEvent args)
     {
-        if (args.Handled)
-            return;
+        if (!TryComp<VampireComponent>(ent, out var vamp) && !TryComp<GhoulComponent>(ent, out var ghoul)) return;
+        if (args.Handled) return;
 
-        var (uid, vamp) = ent;
+        var (uid, _) = ent;
         var user = args.Performer;
 
-        if (vamp.BloodDamage + args.CostBlood >= vamp.CritThreshold)
+        if (!HasEnoughBloodShared(user, args.CostBlood))
         {
             _popup.PopupClient(Loc.GetString("vampire-popup-not-enough-blood"),
                 user, user, PopupType.Medium);
@@ -211,10 +218,10 @@ public partial class SharedVampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnShadowTrap(Entity<VampireComponent> ent, ref VampireShadowTrapDoAfterEvent args)
+    private void OnShadowTrap(Entity<AbilityComponent> ent, ref VampireShadowTrapDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || !_net.IsServer)
-            return;
+        if (!TryComp<VampireComponent>(ent, out var vamp) && !TryComp<GhoulComponent>(ent, out var ghoul)) return;
+        if (args.Cancelled || args.Handled || !_net.IsServer) return;
 
         var targetPos = GetCoordinates(args.TargetCoords);
         ent.Comp.VampireUid = ent.Owner;
@@ -226,7 +233,7 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void OnVampireTrap(Entity<VampireTrapOnTriggerComponent> ent, ref StartCollideEvent args)
     {
-        if (TryComp<VampireComponent>(args.OtherEntity, out var vamp))
+        if (!TryComp<VampireComponent>(args.OtherEntity, out var vamp) && !TryComp<GhoulComponent>(args.OtherEntity, out var ghoul))
             return;
 
         if (args.OurFixtureId != ent.Comp.FixtureId)
@@ -248,49 +255,55 @@ public partial class SharedVampireSystem : EntitySystem
 
     private void UmbraeUpdate()
     {
-        var queryInvisible = EntityQueryEnumerator<VampireComponent, StealthComponent>();
-        while (queryInvisible.MoveNext(out var uid, out var vamp, out var stealth))
+        var queryInvisible = EntityQueryEnumerator<AbilityComponent, StealthComponent>();
+        while (queryInvisible.MoveNext(out var uid, out var comp, out var stealth))
         {
-            if (!vamp.InvisibilityAbilityActive)
+            if (!comp.InvisibilityAbilityActive)
                 continue;
 
-            if (vamp.BloodDamage >= vamp.CritThreshold)
+            float bloodDamage;
+            if (TryComp<VampireComponent>(uid, out var vamp) && comp.VampireTurned) bloodDamage = 0f;
+            else bloodDamage = comp.BloodLossDisguiseIsActive;
+
+            if (!HasEnoughBloodShared(uid, bloodDamage))
             {
                 VampireInvisible(uid);
-                vamp.InvisibilityAbilityActive = false;
-                Dirty(uid, vamp);
+                comp.InvisibilityAbilityActive = false;
+                Dirty(uid, comp);
                 continue;
             }
 
-            if (vamp.NextBloodDecayDisguise == TimeSpan.Zero)
+            if (comp.NextBloodDecayDisguise == TimeSpan.Zero)
             {
-                vamp.NextBloodDecayDisguise = _gameTiming.CurTime + vamp.BloodDecayIntervalInvisible;
-                Dirty(uid, vamp);
+                comp.NextBloodDecayDisguise = _gameTiming.CurTime + comp.BloodDecayIntervalInvisible;
+                Dirty(uid, comp);
             }
 
-            if (_gameTiming.CurTime >= vamp.NextBloodDecayDisguise)
+            if (_gameTiming.CurTime >= comp.NextBloodDecayDisguise)
             {
-                DealBloodDamage(uid, vamp.BloodLossDisguiseIsActive);
-                vamp.NextBloodDecayDisguise = _gameTiming.CurTime + vamp.BloodDecayIntervalInvisible;
-                Dirty(uid, vamp);
+                DealAbilityBloodDamageShared(uid, comp.BloodLossDisguiseIsActive);
+                comp.NextBloodDecayDisguise = _gameTiming.CurTime + comp.BloodDecayIntervalInvisible;
+                Dirty(uid, comp);
             }
         }
 
-        var vampAnchor = EntityQueryEnumerator<VampireComponent>();
-        while (vampAnchor.MoveNext(out var uid, out var vamp))
+        var vampAnchor = EntityQueryEnumerator<AbilityComponent>();
+        while (vampAnchor.MoveNext(out var uid, out var comp))
         {
-            if (_gameTiming.CurTime >= vamp.AnchorDurationActive && vamp.AnchorCreate)
+            if (_gameTiming.CurTime >= comp.AnchorDurationActive && comp.AnchorCreate)
             {
                 if (_net.IsServer)
-                    QueueDel(vamp.VampireAnchorUid);
+                    QueueDel(comp.VampireAnchorUid);
 
-                // ссылаемся на VampireJerkAction. см VampireBaseAbilities, VampireUmbrae
-                _actions.SetCooldown(vamp.GrantedActions[6], vamp.CooldownBloodAnchor);
+                // ссылаемся на VampireBloodAnchorAction. см VampireBaseAbilities, VampireUmbrae
+                if (TryComp<VampireComponent>(uid, out var vampire)) _actions.SetCooldown(vampire.GrantedActions[7], comp.CooldownBloodAnchor);
+                else if (TryComp<GhoulComponent>(uid, out var ghoul)) _actions.SetCooldown(_entityManager.GetEntity(ghoul.GhoulVampireBloodAnchorAction), comp.CooldownBloodAnchor);
+                else return;
                 _popup.PopupClient(Loc.GetString("vampire-popup-anchor-destroyed"),
                 uid, uid, PopupType.LargeCaution);
-                vamp.AnchorCreate = false;
+                comp.AnchorCreate = false;
 
-                Dirty(uid, vamp);
+                Dirty(uid, comp);
             }
         }
     }

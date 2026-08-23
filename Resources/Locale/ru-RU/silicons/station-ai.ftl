@@ -3,6 +3,16 @@ ai-wire-snipped = Провод перерезан в точке {$coords}.
 wire-name-ai-vision-light = ИИ
 wire-name-ai-act-light = ИИ
 station-ai-takeover = Захват ИИ
+station-ai-eye-name = Глаз ИИ - {$name}
+station-ai-has-no-power-for-upload = Ошибка загрузки - ядро ИИ не имеет питания.
+station-ai-is-too-damaged-for-upload = Ошибка загрузки - ядру ИИ необходим ремонт.
+station-ai-core-losing-power = Ваше ядро ИИ работает на резервном питании.
+station-ai-core-critical-power = Питание вашего ядра ИИ находится в критически низком состоянии. Восстановите питание иначе может произойти критическая потеря данных!
+station-ai-core-taking-damage = Ваше ядро ИИ получает физический урон.
+
+# Ghost role
+station-ai-ghost-role-name = Станционный ИИ
+station-ai-ghost-role-description = Помогайте экипажу станции будучи все наблюдающим ИИ.
 
 # Radial actions
 ai-open = Открыть действия
@@ -20,6 +30,8 @@ electrify-door-off = Отключить подачу тока
 toggle-light = Переключить свет
 
 ai-device-not-responding = Устройство не отвечает
+ai-device-no-access = У вас нет доступа к этому устройству
+
 ai-consciousness-download-warning = Идёт загрузка вашего сознания.
 
 # UI

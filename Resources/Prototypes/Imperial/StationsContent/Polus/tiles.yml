@@ -1,0 +1,95 @@
+- type: tile
+  id: FloorWoodTileDarken
+  parent: BaseStationTile
+  name: tiles-wood2
+  sprite: /Textures/Imperial/StationsContent/Polus/Tiles/wood_brown.png
+  variants: 4
+  itemDrop: FloorTileItemWoodPattern
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+
+- type: tile
+  id: FloorWoodTileLighten
+  parent: BaseStationTile
+  name: tiles-wood2
+  sprite: /Textures/Imperial/StationsContent/Polus/Tiles/wood_light.png
+  variants: 4
+  itemDrop: FloorTileItemWoodPattern
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+
+- type: tile
+  id: FloorCarpetStriped
+  parent: BaseStationTile
+  name: tiles-office-carpet-floor
+  sprite: /Textures/Imperial/StationsContent/Polus/Tiles/carpet_striped.png
+  footstepSounds:
+    collection: FootstepCarpet
+  barestepSounds:
+    collection: BarestepCarpet
+  friction: 1
+  itemDrop: FloorTileItemCarpetOffice
+
+- type: tile
+  id: FloorCarpetLined
+  parent: BaseStationTile
+  name: tiles-office-carpet-floor
+  sprite: /Textures/Imperial/StationsContent/Polus/Tiles/carpet_lined.png
+  footstepSounds:
+    collection: FootstepCarpet
+  barestepSounds:
+    collection: BarestepCarpet
+  friction: 1
+  itemDrop: FloorTileItemCarpetOffice
+
+- type: tile
+  id: FloorPolus
+  name: tiles-cave
+  sprite: /Textures/Imperial/StationsContent/Polus/Tiles/cave_blue.png
+  variants: 7
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorPolusLight
+  name: tiles-cave
+  sprite: /Textures/Imperial/StationsContent/Polus/Tiles/cave_light_blue.png
+  variants: 7
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Space
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000

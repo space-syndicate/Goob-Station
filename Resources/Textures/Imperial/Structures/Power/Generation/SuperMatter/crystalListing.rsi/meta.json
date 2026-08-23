@@ -1,14 +1,17 @@
 {
     "version": 1,
-    "copyright": "Made by Ser1-1y on github.",
+    "copyright": "Shutdown made by Ser1-1y on github. Crystal taken and modified from https://github.com/tgstation/tgstation/blob/master/icons/obj/supermatter.dmi (CC-BY-SA-3.0).",
     "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
     "size": {
-      "x": 32,
-      "y": 32
+        "x": 32,
+        "y": 32
     },
     "states": [
-      {
-        "name": "listing"
-      }
+        {
+            "name": "shutdown"
+        },
+        {
+            "name": "crystal"
+        }
     ]
-  }
+}

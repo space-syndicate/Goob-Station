@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Buckle.Components; // imperial space
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -92,6 +93,14 @@ public sealed partial class ParcelWrappingSystem
         if (TryComp<ParcelWrapOverrideComponent>(target, out var overrideComp) &&
             overrideComp.WrapDelay is { } wrapDelayOverride)
             duration = wrapDelayOverride;
+
+        // imperial space. start
+        if (TryComp<BuckleComponent>(target, out var buckle) && buckle.BuckledTo != null)
+        {
+            _popup.PopupClient(Loc.GetString("parcel-wrap-popup-being-wrapped-buckle"), user, user);
+            return false;
+        }
+        // imperial space. end
 
         // In case the target is a player inform them with a popup.
         if (target == user)

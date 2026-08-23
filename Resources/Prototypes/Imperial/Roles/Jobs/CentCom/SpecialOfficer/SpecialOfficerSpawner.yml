@@ -36,29 +36,7 @@
       factions:
         - DeathSquad
     - type: CrewSkills ## Фикс отсутствия навыков.
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
+      groups: [All]
 
 - type: job
   id: SpecialOfficer
@@ -75,6 +53,7 @@
   - AllAccess
   access:
   - CentralCommand
+  - DeathSquad
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]

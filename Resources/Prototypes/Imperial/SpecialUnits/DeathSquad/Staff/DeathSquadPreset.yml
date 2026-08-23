@@ -18,35 +18,14 @@
     - type: NpcFactionMember
       factions:
       - DeathSquad
+    - type: ZombieImmune
     - type: RandomMetadata
       nameSegments:
       - DeathSquadFirst
       - DeathSquadSecond
       - DeathSquadNumber
     - type: CrewSkills
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
+      groups: [All]
     - type: GhostRole
       name: ertcall-deathsquad-security-eva-name
       description: ertcall-deathsquad-security-eva-desc
@@ -107,6 +86,7 @@
   - AllAccess
   access:
   - CentralCommand
+  - DeathSquad
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

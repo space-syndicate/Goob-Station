@@ -1,0 +1,68 @@
+- type: skillGroup
+  id: Base
+  name: skill-group-name-base
+  showInUI: true
+  priority: 0
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+
+- type: skillGroup
+  id: Simple
+  name: skill-group-name-simple
+  showInUI: true
+  priority: 1
+  skills:
+  - Cooking
+  - Bartending
+  - Hacking
+
+- type: skillGroup
+  id: Medium
+  name: skill-group-name-medium
+  showInUI: true
+  priority: 2
+  skills:
+  - Instrumentation
+  - Maintenance
+  - BasicAtmos
+  - BaseMediumConstruction
+  - MediumBotany
+  - Pharmacology
+  - MedicalEquipment
+
+- type: skillGroup
+  id: Hard
+  name: skill-group-name-hard
+  showInUI: true
+  priority: 3
+  skills:
+  - Robotics
+  - Research
+  - Pharmaceuticals
+  - Piloting
+  - Shooting
+
+- type: skillGroup
+  id: All
+  name: All
+  skills:
+  - BaseMed
+  - Botany
+  - BaseConstruction
+  - Cooking
+  - Bartending
+  - Hacking
+  - Instrumentation
+  - Maintenance
+  - BasicAtmos
+  - BaseMediumConstruction
+  - MediumBotany
+  - Pharmacology
+  - MedicalEquipment
+  - Shooting
+  - Robotics
+  - Research
+  - Pharmaceuticals
+  - Piloting

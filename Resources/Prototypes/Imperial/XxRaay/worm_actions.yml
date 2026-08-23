@@ -1,0 +1,77 @@
+- type: entity
+  parent: BaseAction
+  id: ActionWormBloodDrink
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: bite
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:WormBloodDrinkActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionWormCorpseEnter
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: in
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:WormCorpseEnterActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionWormReproduction
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: reproduct
+  - type: InstantAction
+    event: !type:WormReproductionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionWormEvolution
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: evolution
+  - type: InstantAction
+    event: !type:WormEvolutionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionWormCocoonObserve
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: evolution
+  - type: InstantAction
+    event: !type:WormCocoonObserveActionEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionWormCorpseExit
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/XxRaay/worms/actions.rsi
+      state: out
+  - type: InstantAction
+    event: !type:WormCorpseExitActionEvent
+
+

@@ -10,6 +10,7 @@
   id: BaseSpeciesMob
   save: false
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:

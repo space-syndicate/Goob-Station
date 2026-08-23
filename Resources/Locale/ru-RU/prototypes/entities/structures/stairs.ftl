@@ -21,3 +21,6 @@ ent-StairWood = { ent-Stairs }
 ent-StairStageWood = { ent-Stairs }
     .suffix = ступенька
     .desc = { ent-Stairs.desc }
+ent-IronsandStep = ступень из железного песка
+ent-IronsandStepConvexCorner = угловая ступень из железного песка
+ent-IronsandStepConcaveCorner = внутренняя ступень из железного песка

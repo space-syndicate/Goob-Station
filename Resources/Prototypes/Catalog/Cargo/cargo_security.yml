@@ -6,7 +6,7 @@
   product: CrateSecurityArmor
   cost: 5500 # Imperial Balance
   category: cargoproduct-category-name-security
-  group: market
+  group: weaponry # Imperial Waeponry Accessability Rework
 
 - type: cargoProduct
   id: SecurityHelmet
@@ -16,7 +16,7 @@
   product: CrateSecurityHelmet
   cost: 1250 # Imperial Balance
   category: cargoproduct-category-name-security
-  group: market
+  group: weaponry # Imperial Waeponry Accessability Rework
 
 - type: cargoProduct
   id: SecurityNonLethal
@@ -26,7 +26,7 @@
   product: CrateSecurityNonlethal
   cost: 4000
   category: cargoproduct-category-name-security
-  group: market
+  group: weaponry # Imperial Waeponry Accessability Rework
 
 - type: cargoProduct
   id: SecuritySupplies

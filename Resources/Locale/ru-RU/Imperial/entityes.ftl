@@ -287,34 +287,8 @@ ent-FireAlarmAssemblyXeno = сборка пожарной сигнализаци
     .desc = Сборка инопланетной пожарной сигнализации. Удачи с проводами.
 ent-FireAlarmXeno = пожарная сигнализация
     .desc = Инопланетная пожарная сигнализация. Работает точно так же!
-ent-XenoborgModuleHeavyLaser = тяжелый лазерный модуль ксеноборга
-    .desc = Модуль с тяжелой лазерной пушкой.
-ent-XenoborgModuleAccessBreaker = модуль дисруптора аутентификации ксеноборга
-    .desc = Модуль с дисруптором аутентификации.
-ent-XenoborgModuleChameleonProjector = модуль маскировочного проектора ксеноборга
-    .desc = Модуль с маскировочным проектором.
-ent-XenoborgModuleCloakDevice = модуль маскировочного устройства ксеноборга
-    .desc = Модуль с устройством, позволяющим ксеноборгам становиться невидимыми на некоторое время.
-ent-XenoborgModuleEnergySword = модуль энергетического меча ксеноборга
-    .desc = Модуль с энергетическим кинжалом.
-ent-XenoborgModuleJammer = модуль глушителя связи ксеноборга
-    .desc = Модуль с глушителем связи.
-ent-XenoborgModuleBasic = базовый модуль ксеноборга
-    .desc = Необходимые предметы для любого Ксеноборга.
-ent-XenoborgModuleSuperCloakDevice = модуль маскировочного устройства ксеноборга
-    .desc = Модуль с устройством, позволяющим ксеноборгам становиться по-настоящему невидимыми на короткое время.
 ent-DoorElectronicsXenoborg = микросхема шлюза
     .desc = Микросхема шлюза.
-ent-XenoborgModuleFireExtinguisher = модуль огнетушителя ксеноборга
-    .desc = Модуль с самовосстанавливающимся огнетушителем.
-ent-XenoborgModuleHypo = модуль усыпляющего гипоспрея ксеноборга
-    .desc = Модуль с самовосстанавливающимся гипоспреем с ноктюрином.
-ent-XenoborgModuleSpaceMovement = модуль передвижения по космосу ксеноборга
-    .desc = Модуль, помогающий ксеноборгу лучше передвигаться в космосе.
-ent-XenoborgModuleSword = модуль меча ксеноборга
-    .desc = Модуль с ножом-кукри.
-ent-XenoborgModuleTool = инструментальный модуль ксеноборга
-    .desc = Простые инструменты для большинства ксеноборгов.
 ent-APCXenoborg = ЛКП
     .desc = Терминал управления локальными электрическими системами.
 ent-ChairXeno = инопланетный стул
@@ -509,50 +483,10 @@ ent-ClothingShoesBootsJump = прыжковые ботинки
     .desc = Высокотехнологичные ботинки, дающие вам невероятную возможность ПРЫГАТЬ! В этих ботинках вы сможете перепрыгивать через лаву, пропасти и странные химические вещества на полу!
 ent-ClothingShoeSlippersLizard = унатхо-тапочки
     .desc = Очаровательные тапочки, напоминающие ящероподобное существо. Сочетайте их с другой одеждой зеленого цвета, и вы станете самым крутым членом экипажа на станции!
-uplink-syndicate-id-card-name = ID карта Синдиката
-uplink-syndicate-id-card-desc = Идентификационная карта Синдиката. Сама по себе вряд ли будет полезна, но отлично подходит для дверей с измененной конфигурацией. Функция копирования доступа отсутствует.
 ent-ClothingOuterEVASuitSyndicate = EVA Синдиката
     .desc = «На спине есть бирка с надписью: „Абсолютно не собственность вражеской корпорации, честно!“»
 ent-StationAiFixerComputer = консоль восстановления ИИ
     .desc = Используется для восстановления поврежденных систем искусственного интеллекта.
-
-# System
-station-ai-fixer-console-is-locked = Консоль заблокирована.
-station-ai-fixer-console-station-ai-holder-required = В консоль можно вставлять только устройства хранения ИИ.
-station-ai-fixer-console-examination-station-ai-holder-present = {INDEFINITE($holder)} [color=cyan]{$holder}[/color] вставлено в консоль.
-station-ai-fixer-console-examination-station-ai-holder-absent = Неиспользуемый слот для [color=cyan]устройства хранения ИИ[/color].
-station-ai-fixer-console-repair-finished = Починка завершена. Перезагрузка ИИ...
-station-ai-fixer-console-repair-successful = Починка завершена. ИИ успешно перезапущен.
-station-ai-fixer-console-purge-successful = Очистка завершена. ИИ успешно удалён.
-
-# UI
-station-ai-fixer-console-window = консоль восстановления ИИ
-station-ai-fixer-console-window-no-station-ai = ИИ не обнаружено.
-station-ai-fixer-console-window-no-station-ai-status = Ожидание
-station-ai-fixer-console-window-station-ai-online = Активно
-station-ai-fixer-console-window-station-ai-offline = Неактивно
-station-ai-fixer-console-window-station-ai-rebooting = Перезагрузка...
-
-station-ai-fixer-console-window-controls-locked = Управление заблокировано
-
-station-ai-fixer-console-window-station-ai-eject = Извлечь ИИ
-station-ai-fixer-console-window-station-ai-repair = Запустить диагностику
-station-ai-fixer-console-window-station-ai-purge = Удаление ИИ
-
-station-ai-fixer-console-window-action-progress-repair = Починка в процессе...
-station-ai-fixer-console-window-action-progress-purge = Очистка в процессе...
-station-ai-fixer-console-window-action-progress-eta = Осталось времени: {$time} {$units}
-
-station-ai-fixer-console-window-flavor-left = Заблокируйте консоль, если не используете.
-station-ai-fixer-console-window-flavor-right = v4.0.4
-
-station-ai-fixer-console-window-continue-action = Продолжить
-station-ai-fixer-console-window-cancel-action = Отменить
-
-station-ai-fixer-console-window-purge-warning-title = Инициирование удаления ИИ
-station-ai-fixer-console-window-purge-warning-1 = Вы собираетесь навсегда удалить искусственный интеллект.
-station-ai-fixer-console-window-purge-warning-2 = После завершения этой операции ИИ будет утрачен и не сможет быть восстановлен.
-station-ai-fixer-console-window-purge-warning-3 = Вы хотите продолжить?
 
 ent-XenoborgEngi = ксеноборг инженер
     .desc = Гибрид человека и машины, стремящийся к самовоспроизведению. Они любят извлекать мозги, чтобы встраивать их в новые шасси ксеноборгов для пополнения своей армии. Этот экземпляр, по всей видимости, относится к инженерному типу, поскольку обладает большим количеством инструментов для поддержки других ксеноборгов.
@@ -831,6 +765,10 @@ ent-AnomalyRockGold = аномалия
     .suffix = Каменная, Золото
 ent-OrganDionaNymphStomach = диона-нимфа
     .desc = Это как кошка, только... Ветвистая.
+ent-OrganDionaNymphLungs = диона-нимфа
+    .desc = Это как кошка, только... Ветвистая.
+ent-OrganDionaNymphBrain = диона-нимфа
+    .desc = Это как кошка, только... Ветвистая.
 ent-FaxMachinePortable = портативный факс
     .desc = Блюспейс-технологии на службе бюрократии.
 ent-PaperAcquisitionSlipCargo = накладная на получение
@@ -893,8 +831,6 @@ ent-SingularityGrenade = сингулярная граната
     .desc = Граната, имитирующая силу сингулярности, стягивающая всё в кучу.
 ent-FoodCottonBunBottom = нижняя хлопковая булочка
     .desc = Время для моли испытать башню из бургеров.
-ent-XenoborgModuleDoorControl = модуль управления дверьми ксеноборга
-    .desc = Модуль, позволяющий ксеноборгам управлять шлюзами.
 ent-SprayFlowerPin = значок-цветок
     .desc = Милая брошь-цветок. Что-то с ней не так...
 ent-FoodBreakfastEnglish = полный английский завтрак
@@ -914,8 +850,7 @@ ent-FoodCottonBun = хлопковая булочка
     .desc = Хлопковая булочка для гамбургера. Мягкая, круглая и удобная для удержания.
 ent-GeneratorWallmountAPULV = шаттловый LV вспомогательный силовой агрегат
     .desc = Продвинутый вспомогательный силовой агрегат для шаттла.
-ent-XenoborgModuleLaser = лазерный модуль ксеноборга
-    .desc = Модуль с лазерной пушкой.
+
 ent-LandMineKickUnarmed = кикающая мина
     .desc = {""}
     .suffix = Невзведённая

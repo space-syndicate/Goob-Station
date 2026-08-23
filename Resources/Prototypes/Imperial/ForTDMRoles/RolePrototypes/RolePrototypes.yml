@@ -19,18 +19,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -53,18 +42,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -87,18 +65,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -121,18 +88,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -155,19 +111,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmaceuticals
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -190,15 +134,4 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]

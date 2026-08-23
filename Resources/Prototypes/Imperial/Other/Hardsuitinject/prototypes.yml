@@ -27,8 +27,8 @@
 
 - type: entity
   id: ActionToggleInjection
-  name: hardsuitinjection-toggle
-  description: hardsuitinjection-toggledescription
+  name: Toggle EA compartment
+  description: Toggles the EA compartment.
   components:
   - type: Action
     itemIconStyle: NoItem
@@ -41,8 +41,8 @@
 
 - type: entity
   id: ActionInjection
-  name: hardsuitinjection-injection
-  description: hardsuitinjection-injectiondescription
+  name: Inject from EA compartment
+  description: Injects chemicals from the ampula inside the EA compartment into the bloodstream.
   components:
   - type: Action
     itemIconStyle: NoItem

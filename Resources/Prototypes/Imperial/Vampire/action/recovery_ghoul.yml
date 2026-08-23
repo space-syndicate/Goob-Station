@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseAction
+  id: VampireRecoveryGhoulAction
+  name: Восстановление упырей
+  description: Мгновенно снимает оглушение, восстанавливает выносливость и запускает быструю регенерацию на 15 HP за 1.5 секунды выбранному упырю. Стоимость 30 ед. крови. Кулдаун 60 секунд.
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Stellark/Vampire/actions.rsi
+      state: recovery_ghoul
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:VampireRecoveryGhoulEvent
+      costBlood: 30

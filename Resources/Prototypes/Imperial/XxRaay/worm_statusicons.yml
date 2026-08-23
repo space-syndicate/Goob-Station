@@ -1,0 +1,14 @@
+- type: factionIcon
+  id: WormFaction
+  isShaded: true
+  priority: 11
+  hideInContainer: false
+  hideOnStealth: false
+  showTo:
+    components:
+    - ShowAntagIcons
+    - WormBlood
+    - WormCorpseOccupied
+  icon:
+    sprite: /Textures/Imperial/XxRaay/worms/label.rsi
+    state: worm

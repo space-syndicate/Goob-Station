@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from tgstation @ commit a0ca7b3f46132517f71f08bfda465667d133b5d7 and edited by TheShuEd; modified by phoenix_7002 (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "distorted_floor1",
+      "delays": [
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "distorted_floor2",
+      "delays": [
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "distorted_floor3",
+      "delays": [
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "distorted_floor4",
+      "delays": [
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "distorted_floor5",
+      "delays": [
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    }
+  ]
+}

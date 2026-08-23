@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-4.0",
+    "copyright": "by Kolontarev",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+      "states": [
+
+        {
+            "name": "icon"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        }
+      ]
+}

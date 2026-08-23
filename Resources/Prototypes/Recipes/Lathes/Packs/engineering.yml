@@ -90,5 +90,6 @@
   - PortableGeneratorJrPacmanMachineCircuitboard
   - EmitterCircuitboard
   - TelecomServerCircuitboard
+  - NanoChatServerCircuitboard # Imperial NanoChat
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard

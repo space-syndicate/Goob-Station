@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "Static sprites by crookielv (discord). Walking animations by dadada8017.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tier1",
+      "directions": 4
+    },
+    {
+      "name": "tier1-moving",
+      "directions": 4,
+      "delays": [
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12]
+      ]
+    },
+    {
+      "name": "tier1_dead"
+    },
+    {
+      "name": "tier2",
+      "directions": 4
+    },
+    {
+      "name": "tier2-moving",
+      "directions": 4,
+      "delays": [
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12]
+      ]
+    },
+    {
+      "name": "tier2_dead"
+    },
+    {
+      "name": "tier3",
+      "directions": 4
+    },
+    {
+      "name": "tier3-moving",
+      "directions": 4,
+      "delays": [
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12],
+        [0.12, 0.12, 0.12, 0.12]
+      ]
+    },
+    {
+      "name": "tier3_dead"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+- type: entityTable
+  id: RandomJunkArmor
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterArmorScrap
+      weight: 70
+    - id: ClothingOuterArmorBone
+      weight: 30
+
+- type: entityTable
+  id: RandomJunkArmorHead
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHelmetScrap
+      weight: 80
+    - id: ClothingHeadHelmetBone
+      weight: 20
+
+- type: entityTable
+  id: RandomBombGrey
+  table: !type:GroupSelector
+    children:
+    - id: FireBomb
+      weight: 80
+    - id: PipeBombNewRemastered
+      weight: 20
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateGreykingHomebrewRevolutionaryCrate
+  name: grey king's maintenance junk weapons crate
+  description: Shipped from assistants to assistants with love.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: RandomJunkArmor
+          rolls: 2
+        - !type:NestedSelector
+          tableId: RandomJunkArmorHead
+          rolls: 2
+        - !type:NestedSelector
+          tableId: RandomBombGrey
+          rolls: 3
+        - id: WeaponShotgunImprovisedLoaded
+          amount: 2
+        - id: ClothingHandsGlovesColorYellow
+          amount: 2
+        - id: ClothingHeadHatWelding
+          amount: 2
+        - id: ShellShotgunImprovised
+          amount: 10

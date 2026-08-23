@@ -1,41 +1,7 @@
 - type: entity
   id: CrateFunPlushieCommunity
-  parent: CrateGenericSteel
-  components:
-  - type: StorageFill
-    contents:
-# Gift start
-      - id: PlushieCPGift
-      - id: PlushieBartenderGift
-      - id: PlushieChemistGift
-      - id: PlushieSOGift
-      - id: PlushieIAAGift
-      - id: PlushieYeseniaGift
-# Gift end
-      - id: PlushieCapitan
-      - id: PlushieEngineer
-      - id: PlushieGSB
-      - id: PlushieParamedic
-      - id: PlushiePCC
-      - id: PlushieScientist
-      - id: PlushieSurgeon
-      - id: PlushieBarmem
-      - id: PlushieCoroner
-      - id: PlushieHOP
-      - id: PlushieNuclearmedic
-      - id: PlushiePassenger
-      - id: PlushieTaylor
-      - id: PlushieVenya
-      - id: PlushieMichael
-      - id: PlushieSylvester
-      - id: PlushieErika
-      - id: PlushieAiden
-      - id: PlushieYesenia
-      - id: PlushieCSCC
-      - id: PlushieCrookie
-      - id: PlushieKarner
-      - id: PlushieAid
-      - id: PlushieZevs
+  # Второй родитель добавляет случайное наполнение из 25 уникальных персонажей.
+  parent: [ CrateGenericSteel, BaseUniqueRandomCommunityPlushieFill ]
 
 - type: cargoProduct
   id: FunPlushieCommunity

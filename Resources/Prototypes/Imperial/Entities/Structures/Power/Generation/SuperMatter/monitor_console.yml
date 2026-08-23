@@ -1,39 +1,42 @@
 - type: entity
-  id: SupermatterMonitorConsole
   name: supermatter monitor console
+  parent: BaseWallmountMachine
+  id: SupermatterMonitorConsole
   description: A console that displays the exact integrity of the nearest supermatter crystal.
-  placement:
-    mode: SnapgridCenter
   components:
-    - type: Transform
-      anchored: true
-      noRot: true
-    - type: Physics
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.5,-0.5,0.5,0.5"
-          mask:
-            - MidImpassable
-            - HighImpassable
-            - LowImpassable
-          layer:
-            - MidImpassable
-            - HighImpassable
-            - BulletImpassable
-            - InteractImpassable
-    - type: Clickable
-    - type: InteractionOutline
-    - type: Sprite
-      sprite: Imperial/ussp/computers.rsi
-      state: comm_monitor
-    - type: Icon
-      sprite: Imperial/ussp/computers.rsi
-      state: comm_monitor
-    - type: Appearance
-    - type: PowerConsumer
-      drawRate: 10
-      voltage: 120
-    - type: SupermatterMonitorConsole
+  - type: ActivatableUI
+    requiresComplex: true
+    key: enum.SupermatterConsoleUiKey.Key
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -4
+  - type: DeviceLinkSink
+  - type: Icon
+    sprite: Imperial/ussp/computers.rsi
+    state: comm_monitor
+  - type: PowerConsumer
+    drawRate: 10
+    voltage: 120
+  - type: Speech
+    speechSounds: Pai
+  - type: Sprite
+    sprite: Imperial/ussp/computers.rsi
+    state: comm_monitor
+  - type: SupermatterConsole
+  - type: UserInterface
+    interfaces:
+      enum.SupermatterConsoleUiKey.Key:
+        type: SupermatterConsoleBoundUserInterface

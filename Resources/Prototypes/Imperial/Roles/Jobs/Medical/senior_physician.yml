@@ -21,15 +21,6 @@
   - Medical
   - Maintenance
   - Chemistry
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
-  #- skillPharmaceuticals
-  - skillPharmacology
-  - skillSurgery
-  - skillMedicalEquipment
-  - skillNeuroSurgery
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

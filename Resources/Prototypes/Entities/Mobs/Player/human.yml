@@ -5,6 +5,9 @@
   name: syndicate agent
   suffix: Human, Base
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
+    groups: [All]
+    fakeGoups: [Base]
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: Loadout
@@ -82,6 +85,9 @@
   id: MobHumanLoneNuclearOperative
   name: Lone Operative
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
+    groups: [All]
+    fakeGoups: [Base]
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: NukeOperative
@@ -104,6 +110,9 @@
   parent: MobHuman
   id: MobHumanWizard
   components:
+  - type: CrewSkills # Imperial Space Crew SKills
+    groups: [All]
+    fakeGoups: [Base]
   - type: RandomHumanoidAppearance
   - type: NpcFactionMember
     factions:

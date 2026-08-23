@@ -1,0 +1,183 @@
+- type: entity
+  id: ImperialDarkForcesDarkRiftBase
+  abstract: true
+  name: dark rift
+  description: A distorted rift between worlds, from which a servant of darkness may emerge at any moment.
+  components:
+  - type: Clickable
+  - type: DamageContacts
+    damage:
+      types:
+        Caustic: 2.5
+        Cellular: 1
+        Cold: 2.5
+    ignoreWhitelist:
+      tags:
+      - ImperialDarkForcesMob
+  - type: EmitSoundOnSpawn
+    sound:
+      params:
+        volume: -3
+      path: /Audio/Imperial/PHOENIX/DarkForces/dark_rift_open.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        layer:
+        - WallLayer
+        mask:
+        - FullTileMask
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: PopupOnTrigger
+    popupType: LargeCaution
+    quiet: true
+    text: imperial-dark-forces-absorption
+    userIsRecipient: true
+  - type: ShockWaveDistortion
+    disappearDistancePercentage: 0.5
+    distortion: 0.5
+    maxDistance: 0.5
+    speed: 0.25
+    thikness: 0.04
+  - type: Sprite
+    layers:
+    - state: dark_rift
+    sprite: /Textures/Imperial/PHOENIX/DarkForces/dark_rift.rsi
+  - type: TimedDespawn
+    lifetime: 10
+  - type: TimedSpawner
+    chance: 1
+    maximumEntitiesSpawned: 1
+    minimumEntitiesSpawned: 1
+  - type: Transform
+    anchored: True
+  - type: TriggerOnCollide
+    fixtureID: fix1
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftBaseSpawner
+  abstract: true
+  name: dark spawner
+  components:
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/PHOENIX/DarkForces/dark_rift_spawner.ogg
+  - type: ShockWaveDistortion
+    disappearDistancePercentage: 1
+    distortion: 0.05
+    maxDistance: 0.25
+    speed: 1
+    thikness: 0.04
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftWispSpawner
+  parent: ImperialDarkForcesDarkRiftBaseSpawner
+  suffix: Phoenix, DarkForces, OneWisp
+  components:
+  - type: SpawnOnDespawn
+    prototype: ImperialDarkForcesMobWisp
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftShadeSpawner
+  parent: ImperialDarkForcesDarkRiftBaseSpawner
+  suffix: Phoenix, DarkForces, OneShade
+  components:
+  - type: SpawnOnDespawn
+    prototype: ImperialDarkForcesMobShade
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftVoidSpawner
+  parent: ImperialDarkForcesDarkRiftBaseSpawner
+  suffix: Phoenix, DarkForces, OneVoid
+  components:
+  - type: SpawnOnDespawn
+    prototype: ImperialDarkForcesMobVoid
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftOneWisp
+  parent: ImperialDarkForcesDarkRiftBase
+  suffix: Phoenix, DarkForces, OneWisp
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 9
+    prototypes:
+      - ImperialDarkForcesDarkRiftWispSpawner
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftThreeWisp
+  parent: ImperialDarkForcesDarkRiftOneWisp
+  suffix: Phoenix, DarkForces, ThreeWisp
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 3
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftFiveWisp
+  parent: ImperialDarkForcesDarkRiftOneWisp
+  suffix: Phoenix, DarkForces, FiveWisp
+  components:
+  - type: TimedDespawn
+    lifetime: 11
+  - type: TimedSpawner
+    intervalSeconds: 2
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftOneShade
+  parent: ImperialDarkForcesDarkRiftBase
+  suffix: Phoenix, DarkForces, OneShade
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 9
+    prototypes:
+      - ImperialDarkForcesDarkRiftShadeSpawner
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftThreeShade
+  parent: ImperialDarkForcesDarkRiftOneShade
+  suffix: Phoenix, DarkForces, ThreeShade
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 3
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftFiveShade
+  parent: ImperialDarkForcesDarkRiftOneShade
+  suffix: Phoenix, DarkForces, FiveShade
+  components:
+  - type: TimedDespawn
+    lifetime: 11
+  - type: TimedSpawner
+    intervalSeconds: 2
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftOneVoid
+  parent: ImperialDarkForcesDarkRiftBase
+  suffix: Phoenix, DarkForces, OneVoid
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 9
+    prototypes:
+      - ImperialDarkForcesDarkRiftVoidSpawner
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftTwoVoid
+  parent: ImperialDarkForcesDarkRiftOneVoid
+  suffix: Phoenix, DarkForces, TwoVoid
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 4
+
+- type: entity
+  id: ImperialDarkForcesDarkRiftThreeVoid
+  parent: ImperialDarkForcesDarkRiftOneVoid
+  suffix: Phoenix, DarkForces, ThreeVoid
+  components:
+  - type: TimedSpawner
+    intervalSeconds: 3

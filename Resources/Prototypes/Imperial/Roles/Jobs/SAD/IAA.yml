@@ -50,10 +50,6 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  skills:
-  - skillBotany
-  - skillBaseMed
-  - skillBaseConstraction
 
 - type: startingGear
   id: RFIGear

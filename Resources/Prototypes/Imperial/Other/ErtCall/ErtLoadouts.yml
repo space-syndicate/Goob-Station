@@ -223,7 +223,7 @@
     back: ClothingControlModsuitApocryphalSealed ## Замена рюкзака на РИГ
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesGlassesSecurity
-    ears: ClothingHeadsetAltCentCom
+    ears: SODDeathSquadHeadset
     gloves: ClothingHandsGlovesCombat
 ## outerClothing: ClothingOuterHardsuitDeathsquad В связи с наличием РИГ'а скафандр убран
     shoes: ClothingShoesBootsMagAdv #DOTO black variant

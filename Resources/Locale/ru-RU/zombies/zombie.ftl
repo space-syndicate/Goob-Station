@@ -9,3 +9,5 @@ zombie-role-rules = Вы - антагонист. Ищите и кусайте ж
 zombie-permadeath = Теперь вы реально мертвы.
 
 zombification-resistance-coefficient-value = - [color=violet]Заражение[/color] снижено на [color=lightblue]{$value}%[/color].
+
+zombie-roleban-ghosted = Вы стали призраком, так как вам была заблокирована игра на Зомби.

@@ -1,0 +1,75 @@
+- type: deviceFrequency
+  id: CCTurretControl
+  name: device-frequency-prototype-name-turret-control
+  frequency: 2161
+
+- type: deviceFrequency
+  id: CCTurret
+  name: device-frequency-prototype-name-turret
+  frequency: 2162
+
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretCentralCommand
+  suffix: CC
+  components:
+  - type: NpcFactionMember
+    factions:
+    - CentralCommand
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretCentralCommandControlPanel
+  suffix: CC
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - CentralCommand
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretCentralCommandControlPanelElectronics
+  - type: DeviceNetwork
+    receiveFrequencyId: CCTurret
+    transmitFrequencyId: CCTurretControl
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBase
+  id: WeaponEnergyTurretCentralCommandControlPanelElectronics
+  suffix: CC
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: command
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretCentralCommandControlPanel
+
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretCentralCommandMachineCircuitboard
+  suffix: CC
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: command
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretCentralCommand
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretCentralCommand
+  suffix: CC
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  # AllHostile наследуется от базовой турели: безопасность определяется доступом ID-карты, а не фракцией носителя.
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - CentralCommand
+  - type: Machine
+    board: WeaponEnergyTurretCentralCommandMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: CCTurretControl
+    transmitFrequencyId: CCTurret

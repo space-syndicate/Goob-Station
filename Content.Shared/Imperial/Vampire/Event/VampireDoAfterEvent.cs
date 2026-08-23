@@ -11,6 +11,12 @@ namespace Content.Shared.Imperial.Vampire
     }
 
     [Serializable, NetSerializable]
+    public sealed partial class VampireCureDoAfterEvent : DoAfterEvent
+    {
+        public override DoAfterEvent Clone() => this;
+    }
+
+    [Serializable, NetSerializable]
     public sealed partial class VampireDrinkingDoAfterEvent : DoAfterEvent
     {
         public override DoAfterEvent Clone() => this;

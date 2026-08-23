@@ -1,0 +1,35 @@
+- type: cargoProduct
+  id: CargoPKAShotgun
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  product: PKAUpgradeShotgun
+  cost: 4500
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward3
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoPKAMining
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  product: PKAUpgradeMining
+  cost: 4500
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward3
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoPKAShuttle
+  icon:
+    sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
+    state: ptk-800
+  product: ShuttleGunKinetic
+  cost: 6000
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward3

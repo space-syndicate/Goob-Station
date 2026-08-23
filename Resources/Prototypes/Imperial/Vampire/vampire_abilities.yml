@@ -2,6 +2,7 @@
   id: VampireBaseAbilities
   abilities:
   - VampireSwordAction
+  - VampireRecoveryGhoulAction
   - VampireBloodTheftAction
   - VampireRecoveryAction
   - VampireSleepAction

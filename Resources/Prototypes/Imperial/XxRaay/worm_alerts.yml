@@ -1,0 +1,58 @@
+- type: alertCategory
+  id: WormBlood
+
+- type: alertCategory
+  id: WormCocoon
+
+- type: alert
+  id: WormBlood
+  category: WormBlood
+  icons:
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "0"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "20"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "40"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "60"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "80"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "100"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "120"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "140"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "160"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "180"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "200"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "220"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "240"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "260"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "280"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: "300"
+  - sprite: Imperial/XxRaay/worms/blood.rsi
+    state: 300plus
+  minSeverity: 0
+  maxSeverity: 16
+  name: worm-blood-alert-name
+  description: worm-blood-alert-desc
+
+- type: alert
+  id: WormCocoonTimer
+  category: WormCocoon
+  icons:
+  - sprite: Imperial/XxRaay/worms/cocoons.rsi
+    state: cocoon1
+  name: worm-cocoon-timer-name
+  description: worm-cocoon-timer-desc
+

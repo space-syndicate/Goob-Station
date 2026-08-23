@@ -1,0 +1,617 @@
+# Сопротивление металлической баррикады
+
+- type: damageModifierSet
+  id: MetalBarricadeDamageModifierSet
+  coefficients:
+    Piercing: 0.5
+
+# Взрывчатка и средства связывания
+
+- type: entity
+  id: FelixC4
+  parent: C4
+  name: C-4 explosive
+  description: 150,000 tons of TNT.
+  suffix: Felix, Weapons
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Bombs/felix_c4.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: TimerTrigger
+    keysIn:
+    - trigger
+    - stuck
+    delay: 10
+    delayOptions: [10, 30, 60, 120, 300, 600, 900]
+    initialBeepDelay: 0
+    beepSound: /Audio/Machines/Nuke/general_beep.ogg
+
+- type: entity
+  id: FelixRopeCuffs
+  parent: Handcuffs
+  name: rope restraints
+  description: Improvised disposable restraints made from sturdy rope.
+  suffix: Felix
+  components:
+  - type: Item
+    size: Small
+    storedRotation: 90
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#8B6F47"
+      right:
+      - state: inhand-right
+        color: "#8B6F47"
+  - type: Handcuff
+    breakoutTime: 3
+    cuffedRSI: Objects/Misc/cablecuffs.rsi
+    bodyIconState: body-overlay
+    color: "#8B6F47"
+    breakOnRemove: true
+    brokenPrototype: FelixRopeCuffsBroken
+    startCuffSound:
+      path: /Audio/Items/Handcuffs/rope_start.ogg
+    endCuffSound:
+      path: /Audio/Items/Handcuffs/rope_end.ogg
+    startUncuffSound:
+      path: /Audio/Items/Handcuffs/rope_start.ogg
+    endUncuffSound:
+      path: /Audio/Items/Handcuffs/rope_breakout.ogg
+    startBreakoutSound:
+      path: /Audio/Items/Handcuffs/rope_takeoff.ogg
+  - type: Sprite
+    sprite: Objects/Misc/cablecuffs.rsi
+    state: cuff
+    color: "#8B6F47"
+
+- type: entity
+  id: FelixRopeCuffsBroken
+  parent: BaseHandcuffsBroken
+  name: torn rope restraints
+  description: Torn rope that will no longer restrain anyone.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/cablecuffs.rsi
+    state: cuff-broken
+    color: "#8B6F47"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#8B6F47"
+      right:
+      - state: inhand-right
+        color: "#8B6F47"
+
+# Деревья
+
+- type: entity
+  id: FelixBlackTreeSmall
+  parent: BaseTree
+  name: small black tree
+  description: A small tree with blackened bark and dark foliage.
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/black_tree_small.rsi
+    state: small
+    noRot: true
+    drawdepth: Overdoors
+    offset: 0,1
+
+- type: entity
+  id: FelixBlackTreeLarge
+  parent: BaseTree
+  name: large black tree
+  description: A huge tree with blackened bark and dark foliage.
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/black_tree_large.rsi
+    state: large
+    noRot: true
+    drawdepth: Overdoors
+    offset: 0,2
+
+- type: entity
+  id: FelixBlackTreeAnimated
+  parent: BaseTree
+  name: moving black tree
+  description: Its branches move slowly even in still air.
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/black_tree_animated.rsi
+    state: animated
+    noRot: true
+    drawdepth: Overdoors
+    offset: 0,2
+
+# Антенна
+
+- type: entity
+  id: FelixAntenna
+  parent: BaseStructure
+  name: antenna
+  description: Transmits and receives some kind of radio signal.
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/antenna.rsi
+    state: animation
+    noRot: true
+    offset: 0,0.25
+  - type: Icon
+    sprite: Imperial/DeimonFly/Felix/Structures/antenna.rsi
+    state: icon
+  - type: AmbientSound
+    range: 3
+    volume: -5
+    sound:
+      path: /Audio/Imperial/Asimov/Oldradio/static.ogg
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: MetalThud
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 8
+            max: 8
+          CableApcStack1:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 2
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Баррикады. Слои коллизии блокируют персонажей, но намеренно пропускают снаряды.
+
+- type: entity
+  id: BaseFelixBarricade
+  parent: BaseStructure
+  name: barricade
+  description: An improvised defensive structure.
+  suffix: DeadSector, Structure
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: BlastDoors
+    noRot: false
+    snapCardinals: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.35,0.49,0.35"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: FelixBarricadeSandy
+  parent: BaseFelixBarricade
+  name: sandy barricade
+  description: An improvised defensive structure made from sandbags.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/barricade_sandy.rsi
+    layers:
+    - state: bags5
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        bags4: ""
+        bags5: ""
+
+- type: entity
+  id: FelixBarricadeSnowy
+  parent: BaseFelixBarricade
+  name: snowy barricade
+  description: An improvised defensive structure made from frozen sandbags.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/barricade_snowy.rsi
+    layers:
+    - state: bags5
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        bags4: ""
+        bags5: ""
+
+- type: entity
+  id: FelixBarricadeMetal
+  parent: BaseFelixBarricade
+  name: metal barricade
+  description: A low barricade assembled from metal posts.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/barricade_metal.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.35,0.49,0.35"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: MetalBarricadeDamageModifierSet
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Могильные кресты
+
+- type: entity
+  id: BaseFelixGraveCross
+  parent: BaseStructure
+  name: grave cross
+  description: Someone is resting here.
+  suffix: DeadSector, Structure
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/grave_crosses.rsi
+    noRot: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 5
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: FelixGraveCross1
+  parent: BaseFelixGraveCross
+  components:
+  - type: Sprite
+    state: grave1
+
+- type: entity
+  id: FelixGraveCross2
+  parent: BaseFelixGraveCross
+  components:
+  - type: Sprite
+    state: grave2
+
+# Декоративные деревянные ящики
+
+- type: entity
+  id: BaseFelixWoodenCrate
+  parent: BaseStructure
+  name: wooden crate
+  description: An old wooden crate for storing supplies.
+  suffix: DeadSector, Structure
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_crates.rsi
+    noRot: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: FelixWoodenCrateEvent1
+  parent: BaseFelixWoodenCrate
+  name: wooden weapon crate
+  components:
+  - type: Sprite
+    state: event1
+
+- type: entity
+  id: FelixWoodenCrateEvent2
+  parent: BaseFelixWoodenCrate
+  name: long wooden crate
+  components:
+  - type: Sprite
+    state: event2
+
+- type: entity
+  id: FelixWoodenCrateTier1
+  parent: BaseFelixWoodenCrate
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_crate_tier1.rsi
+    layers:
+    - state: base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [10, 20, 30, 40, 50]
+    targetLayers:
+    - "enum.DamageStateVisualLayers.Base"
+    overlay: false
+    damageGroup: Brute
+
+- type: entity
+  id: FelixWoodenCrateTier2
+  parent: BaseFelixWoodenCrate
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_crate_tier2.rsi
+    layers:
+    - state: base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [15, 30, 45]
+    targetLayers:
+    - "enum.DamageStateVisualLayers.Base"
+    overlay: false
+    damageGroup: Brute
+
+# Полки
+
+- type: entity
+  id: FelixShelfWood1
+  parent: ShelfWood
+  name: shelf
+  suffix: DeadSector, Structure, 1
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_shelves.rsi
+    state: shelf1
+    drawdepth: WallMountedItems
+    offset: 0,0.5
+
+- type: entity
+  id: FelixShelfWood2
+  parent: ShelfWood
+  name: shelf
+  suffix: DeadSector, Structure, 2
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_shelves.rsi
+    state: shelf2
+    drawdepth: WallMountedItems
+    offset: 0,0.5
+
+# Знаки
+
+- type: entity
+  id: BaseFelixSign
+  parent: BaseSign
+  suffix: DeadSector, Structure
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+
+- type: entity
+  id: FelixSignLabArea
+  parent: BaseFelixSign
+  name: laboratory area
+  description: A sign marking a laboratory area.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_32.rsi
+    state: lab_area
+
+- type: entity
+  id: FelixSignRadiation
+  parent: BaseFelixSign
+  name: radiation hazard
+  description: Warns of high radiation levels.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_32.rsi
+    state: radiation
+
+- type: entity
+  id: FelixSignMinefield
+  parent: BaseFelixSign
+  name: minefield!
+  description: Warns of mines ahead.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_64.rsi
+    state: minefield
+    offset: 0,0.5
+
+- type: entity
+  id: FelixSignSecureArea
+  parent: BaseFelixSign
+  name: secure area
+  description: No unauthorized entry.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_32.rsi
+    state: secure_area
+
+- type: entity
+  id: FelixSignStop
+  parent: BaseFelixSign
+  name: STOP!
+  description: Demands that you stop immediately.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_64.rsi
+    state: stop
+    offset: 0,0.5
+
+- type: entity
+  id: FelixSignAreaMap
+  parent: BaseFelixSign
+  name: area map
+  description: An old map of the surrounding area.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_wide.rsi
+    state: area_map
+
+- type: entity
+  id: FelixSignNoGuns
+  parent: BaseFelixSign
+  name: no guns
+  description: A reminder to put away weapons before entering.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_32.rsi
+    state: no_guns
+
+- type: entity
+  id: FelixSignWhiteboard
+  parent: BaseFelixSign
+  name: whiteboard
+  description: It could be used to leave important notes.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_wide.rsi
+    state: whiteboard
+
+- type: entity
+  id: FelixSignBrokenDisplay
+  parent: BaseFelixSign
+  name: broken display
+  description: The screen went dark long ago and no longer displays anything.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_wide.rsi
+    state: broken_display
+
+- type: entity
+  id: FelixSignDangerMines
+  parent: BaseFelixSign
+  name: mines sign
+  description: A sign indicating that a minefield lies ahead.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_signs_32.rsi
+    state: danger_mines
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 5
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: FelixLaboratoryTable
+  parent: BaseFelixSign
+  name: laboratory chart
+  description: It lists known substances and some information about them.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/Felix/Structures/felix_tablet.rsi
+    state: tablet
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Card
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

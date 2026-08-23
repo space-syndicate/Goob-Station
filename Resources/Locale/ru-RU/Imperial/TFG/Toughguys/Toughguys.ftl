@@ -81,3 +81,9 @@ ent-PlushieBM = Имирина Ирисова
 
 ent-PlushieBMGift = { ent-PlushieBM }
     .desc = { ent-PlushieBM.desc }
+
+ent-PlushieMiLeim = Ми Лейм
+    .desc = На самом деле её зовут Ани, но почему-то она этого не признаёт. Также Ми Лейм — доктор, и она точно поможет вам... Да?
+
+ent-PlushieAndreyKushnarev = Андрей Кушнарёв
+    .desc = Кто был смотрителем, тот в бриге не смеётся

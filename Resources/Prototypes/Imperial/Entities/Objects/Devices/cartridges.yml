@@ -1,0 +1,237 @@
+- type: Tag
+  id: SyndiChatCartridge
+- type: Tag
+  id: NanoChatCartridge
+
+- type: entity
+  parent: BasePDACartridge
+  id: NanoChatCartridge
+  name: NanoChat cartridge
+  description: A "private" messaging app.
+  components:
+  - type: Sprite
+    sprite: Imperial/Objects/Devices/cartridge.rsi
+    state: cart-nchat
+  - type: UIFragment
+    ui: !type:NanoChatUi
+  - type: Cartridge
+    programName: nano-chat-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: nano_chat
+  - type: NanoChatCartridge
+  - type: Tag
+    tags:
+    - NanoChatCartridge
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: NanoChatServer
+  name: NanoChat server
+  description: The central routing server for the station's NanoChat network.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/server.rsi
+    state: server
+  - type: NanoChatServer
+    cartridgeWhitelist:
+      tags:
+      - NanoChatCartridge
+  - type: ApcPowerReceiver
+    powerLoad: 250
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    energy: 3.0
+    color: "#39b8ee"
+  - type: LitOnPowered
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: Machine
+    board: NanoChatServerCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: NanoChatServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NanoChat server machine board
+  description: A machine printed circuit board for a NanoChat server.
+  components:
+  - type: MachineBoard
+    prototype: NanoChatServer
+    stackRequirements:
+      Steel: 2
+      Cable: 3
+      Glass: 4
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: NanoChatServerCircuitboard
+  result: NanoChatServerCircuitboard
+
+- type: entity
+  id: PaperNanoChatItem
+  parent: Paper
+  name: NanoChat chat
+  description: A printed NanoChat chat.
+  components:
+  - type: Tag
+    tags:
+    - Document
+    - Trash
+    - Paper
+  - type: StaticPrice
+    price: 0
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper_receipt
+    - state: paper_receipt_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
+    headerImagePath: "/Textures/Imperial/Interface/Paper/paper_heading_nanochat.png"
+    headerMargin: 0.0, 0.0, 0.0, 6.0
+    backgroundImageTile: true
+    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
+    contentMargin: 12.0, 0.0, 12.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 290.0, 0.0
+
+- type: entity
+  name: NanoChat rubber stamp
+  parent: [RubberStampBase, BaseCentcommContraband]
+  id: RubberStampNanoChat
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-nano-chat
+    stampedColor: "#384573"
+    stampState: "paper_stamp-lawyer"
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/RubberStamp.rsi
+    state: stamp-ERT-Leader
+
+# SyndiChat
+
+- type: entity
+  parent: NanoChatServer
+  id: SyndiChatServer
+  name: SyndiChat routing server
+  description: A routing server for the illegal SyndiChat network.
+  components:
+  - type: NanoChatServer
+    cartridgeWhitelist:
+      tags:
+      - SyndiChatCartridge
+
+- type: entity
+  parent: NanoChatCartridge
+  id: SyndiChatCartridge
+  name: SyndiChat cartridge
+  description: A private messaging app.
+  components:
+  - type: Sprite
+    sprite: Imperial/Objects/Devices/cartridge.rsi
+    state: cart-schat
+  - type: Cartridge
+    programName: syndi-chat-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: syndi_chat
+  - type: NanoChatCartridge
+    paperId: PaperSyndiChatItem
+    stampId: RubberStampSyndiChat
+  - type: Tag
+    tags:
+    - SyndiChatCartridge
+
+- type: entity
+  id: PaperSyndiChatItem
+  parent: PaperNanoChatItem
+  name: SyndiChat chat
+  description: A printed SyndiChat chat.
+  components:
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
+    headerImagePath: "/Textures/Imperial/Interface/Paper/paper_heading_syndichat.png"
+    headerMargin: 0.0, 0.0, 0.0, 6.0
+    backgroundImageTile: true
+    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
+    contentMargin: 12.0, 0.0, 12.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 290.0, 0.0
+
+- type: entity
+  name: SyndiChat rubber stamp
+  parent: [RubberStampBase, BaseCentcommContraband]
+  id: RubberStampSyndiChat
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-syndi-chat
+    stampedColor: "#384573"
+    stampState: "paper_stamp-lawyer"
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/RubberStamp.rsi
+    state: stamp-ERT-Leader
+
+# Admin cartridge
+
+- type: entity
+  parent: NanoChatCartridge
+  id: NanoChatAdminCartridge
+  name: NanoChat cartridge
+  description: A "private" messaging app.
+  suffix: ADMIN
+  components:
+  - type: Cartridge
+    programName: nano-chat-admin-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: nano_chat
+  - type: NanoChatCartridge
+    visible: false
+  - type: Tag
+    tags:
+    - NanoChatCartridge
+
+- type: entity
+  parent: SyndiChatCartridge
+  id: SyndiChatAdminCartridge
+  name: SyndiChat cartridge
+  description: A private messaging app.
+  suffix: ADMIN
+  components:
+  - type: Cartridge
+    programName: syndi-chat-admin-program-name
+    icon:
+      sprite: Imperial/Interface/Misc/program_icons.rsi
+      state: syndi_chat
+  - type: NanoChatCartridge
+    visible: false
+  - type: Tag
+    tags:
+    - SyndiChatCartridge

@@ -1,0 +1,137 @@
+- type: entity
+  parent: BaseStructure
+  id: Supermatter
+  name: supermatter crystal
+  description: A strangely translucent and iridescent crystal.
+  components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: RadiationSource
+    intensity: 5
+  - type: AmbientSound
+    range: 5
+    volume: 0
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Speech
+    speechSounds: Pai
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
+    state: supermatter
+    offset: 0,0.25
+  - type: Icon
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/supermatter.rsi
+    state: supermatter
+  - type: PointLight
+    enabled: true
+    radius: 10
+    energy: 5
+    color: "#ffe000"
+  - type: Explosive
+    explosionType: Supermatter
+    maxIntensity: 35
+    intensitySlope: 1
+    totalIntensity: 2500
+    deleteAfterExplosion: true
+  - type: InteractionOutline
+  - type: DeviceLinkSource
+    ports:
+    - Output
+  - type: WarpPoint
+  - type: SupermatterTouch
+  - type: SupermatterIntegrity
+    tickDamage:
+      types:
+        Structural: 0.65
+  - type: SupermatterGas
+  - type: SupermatterEventScheduler
+    events:
+      components:
+      - SupermatterLightningEvent
+      - SupermatterNoneEvent
+      - SupermatterPlasmaEvent
+      - SupermatterRadiationEvent
+  - type: GuideHelp
+    guides:
+    - SupermatterEngine
+    - Power
+
+- type: soundCollection
+  id: Supermatter
+  files:
+  - /Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg
+
+- type: entity
+  id: SupermatterShutdownCrystal
+  parent: BaseItem
+  name: supermatter shutdown crystal
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Power/Generation/SuperMatter/shutdownCrystal.rsi
+    state: shutdownCrystal
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - SupermatterStop
+  - type: RadiationSource
+    intensity: 0.5
+  - type: StaticPrice
+    price: 17000
+
+- type: entity
+  id: CrateSupermatterShutdownCrystal
+  parent: CrateEngineeringSecure
+  name: supermatter shutdown crystal crate
+  description: Crystal, powerful enough to shutdown the supermatter.
+  components:
+  - type: StorageFill
+    contents:
+    - id: SupermatterShutdownCrystal
+
+- type: entity
+  id: CrateCrateSupermatterCrystal
+  parent: CrateEngineeringSecure
+  name: «Supermatter At Home» crate
+  description: A kit from Supermatt & Co. containing everything needed to build your own Supermatter at home.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrateSupermatterCrystal
+    - id: PaperSupermatterCaution
+
+- type: entity
+  id: PaperSupermatterCaution
+  name: supermatter caution paper
+  description: The single sheet of instructions that came in the kit.
+  parent: Paper
+  components:
+  - type: Paper
+    content: book-text-supermatter-caution
+
+- type: entity
+  id: CrateSupermatterCrystal
+  parent: CrateEngineeringSecure
+  name: supermatter crystal crate
+  description: Contains a highly dangerous Supermatter crystal, capable of killing anyone who touches it.
+  components:
+  - type: StorageFill
+    contents:
+    - id: Supermatter

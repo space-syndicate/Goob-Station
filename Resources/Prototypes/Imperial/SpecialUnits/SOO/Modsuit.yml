@@ -104,7 +104,6 @@
   - type: Jetpack
     moleUsage: 0
   - type: CanMoveInAir
-  - type: InputMover
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.5
     weightlessFriction: 0.3

@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Imperial.Power.Components;
+using Content.Server.Imperial.Power.Components.EventComponents;
 using Content.Server.Radiation.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Imperial.Power.Components;
@@ -20,11 +16,11 @@ namespace Content.Server.Imperial.Power.EntitySystems;
 /// </summary>
 public sealed class SupermatterGasSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly RadiationSystem _radiationSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = null!;
+    [Dependency] private readonly IPrototypeManager _protoMan = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
-    private readonly List<(int gasId, SupermatterGasReactionPrototype proto)> _reactions = new();
+    private readonly List<(int gasId, SupermatterGasReactionPrototype proto)> _reactions = [];
 
     public override void Initialize()
     {
@@ -61,7 +57,6 @@ public sealed class SupermatterGasSystem : EntitySystem
 
     private void OnAtmosExposedUpdate(EntityUid uid, SupermatterGasComponent component, ref AtmosExposedUpdateEvent args)
     {
-        component.CachedGasMixture = args.GasMixture;
         if (!TryComp(uid, out SupermatterIntegrityComponent? integrity))
             return;
 
@@ -118,20 +113,17 @@ public sealed class SupermatterGasSystem : EntitySystem
             }
         }
 
-        if (TryComp(integrity, out RadiationSourceComponent? radiation))
-        {
-            float baseIntensity = radiation.Intensity;
+        if (!TryComp(integrity, out RadiationSourceComponent? radiation))
+            return;
 
-            if (TryComp<SupermatterEventComponent>(integrity, out var eventComp))
-            {
-                if (eventComp.CurrentEvent != SupermatterEventComponent.SupermatterEventType.Radiation
-                    || eventComp.EventEndTime == TimeSpan.Zero)
-                {
-                    baseIntensity = eventComp.DefaultRadiationIntensity;
-                }
-            }
-            _radiationSystem.SetIntensity(integrity.Owner, baseIntensity * gasComp.Comp.RuntimeRadiationMultiplier);
+        var baseIntensity = radiation.Intensity;
+
+        if (TryComp<SupermatterRadiationEventComponent>(integrity, out var eventComp))
+        {
+            if (_gameTiming.CurTime <= eventComp.EndTime)
+                baseIntensity = eventComp.Intensity!.Value;
         }
+        _radiationSystem.SetIntensity(integrity.Owner, baseIntensity * gasComp.Comp.RuntimeRadiationMultiplier);
     }
 }
 

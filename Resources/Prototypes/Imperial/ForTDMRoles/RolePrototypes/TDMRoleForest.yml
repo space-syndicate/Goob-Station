@@ -25,18 +25,7 @@
       prototypes: [ TDMForestRiflemanGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -63,18 +52,7 @@
       prototypes: [ TDMForestMachineGunnerGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -101,18 +79,7 @@
       prototypes: [ TDMForestGrenadierGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -139,19 +106,7 @@
       prototypes: [ TDMForestMedicalGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmaceuticals
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -178,18 +133,7 @@
       prototypes: [ TDMForestCommanderGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -216,18 +160,7 @@
       prototypes: [ TDMForestSniperGear_S ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 #Прототипы для стороны нанотрахен
 
@@ -256,18 +189,7 @@
       prototypes: [ TDMForestRiflemanGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -294,18 +216,7 @@
       prototypes: [ TDMForestMachineGunnerGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -332,18 +243,7 @@
       prototypes: [ TDMForestGrenadierGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -370,19 +270,7 @@
       prototypes: [ TDMForestMedicalGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmaceuticals
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -409,18 +297,7 @@
       prototypes: [ TDMForestCommanderGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]
 
 - type: entity
   parent: MobHuman
@@ -447,15 +324,4 @@
       prototypes: [ TDMForestSniperGear_N ]
     - type: RandomHumanoidAppearance
     - type: CrewSkills
-      skills:
-        - skillBotany
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillHacking
-        - skillInstrumentation
-        - skillMaintenance
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting
-        - skillShooting
-        - skillSurgery
+      groups: [All]

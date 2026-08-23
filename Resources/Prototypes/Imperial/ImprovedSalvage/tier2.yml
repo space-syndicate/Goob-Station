@@ -1,0 +1,77 @@
+- type: cargoProduct
+  id: CargoHeavyPickaxe
+  icon:
+    sprite: Imperial/ImprovedSalvage/heavy_pickaxe.rsi
+    state: pickaxe
+  product: HeavyPickaxe
+  cost: 7000
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward2
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoPKADamage
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  product: PKAUpgradeDamage
+  cost: 1500
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward2
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoPKARange
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  product: PKAUpgradeRange
+  cost: 1500
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward2
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoPKARecharge
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  product: PKAUpgradeFireRate
+  cost: 1500
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward2
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoBorgModule
+  icon:
+    sprite: Imperial/ImprovedSalvage/borgmodule.rsi
+    state: salvage
+  product: BorgModuleFaunaPesting
+  cost: 1000
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward2
+  container:
+    entity: WrappedParcel
+    containerId: contents
+
+- type: cargoProduct
+  id: CargoPKA
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    state: icon
+  product: WeaponProtoKineticAccelerator
+  cost: 500
+  category: cargoproduct-category-name-cargo
+  group: SalvageJobReward2
+  container:
+    entity: WrappedParcel
+    containerId: contents

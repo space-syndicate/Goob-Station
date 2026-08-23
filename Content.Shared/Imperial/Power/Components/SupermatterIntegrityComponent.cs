@@ -1,14 +1,15 @@
 using Content.Shared.Damage;
-using Content.Shared.Explosion;
 using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Imperial.Power.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class SupermatterIntegrityComponent : Component
 {
     [DataField]
@@ -22,87 +23,80 @@ public sealed partial class SupermatterIntegrityComponent : Component
         new() { Threshold = 0f, Color = Color.Red, Description = "", Warning = "" },
     };
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Activated;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool CatastropheActivated;
+
+
+    [DataField, AutoNetworkedField]
     public float Integrity = 100f;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float MaxIntegrity = 100f;
+
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public DamageSpecifier TickDamage = new();
 
     [DataField]
-    public TimeSpan DamageTickInterval = TimeSpan.FromSeconds(1);
+    public TimeSpan DamageInterval = TimeSpan.FromSeconds(1);
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextDamageTick;
+    [AutoPausedField]
+    public TimeSpan NextDamageTime;
+
 
     [DataField]
     public float CatastropheThreshold;
 
-    [DataField]
-    public ProtoId<RadioChannelPrototype> RadioChannel = "Engineering";
-
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool CatastropheActive;
-
-    [DataField]
-    public float UpperTempThreshold = 350f;
-
-    [DataField]
-    public float LowerTempThreshold = 250f;
-
-    [DataField]
-    public float UpperPressureThreshold = 300f;
-
-    [DataField]
-    public float LowerPressureThreshold = 10f;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan CatastropheTimer = TimeSpan.Zero;
+    [AutoPausedField]
+    public TimeSpan CatastropheEndTime = TimeSpan.Zero;
 
     [DataField]
     public TimeSpan CatastropheDuration = TimeSpan.FromSeconds(120);
+
+
+    [DataField]
+    public (float, float) TempThresholds = new(250f, 350f);
+
+    [DataField]
+    public (float, float) PressureThresholds = new(10f, 300f);
+
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype>[] RadioChannels = ["Engineering"];
+
 
     [DataField]
     public ProtoId<TagPrototype> HealTag = "EmitterBolt";
 
     [DataField]
+    public float HealAmount = 0.1f;
+
+    [DataField]
     public ProtoId<TagPrototype> SupermatterStopTag = "SupermatterStop";
 
-    [DataField]
-    public SoundPathSpecifier ShutdownSoundPath = new("/Audio/Imperial/Power/Supermatter/supermatter_power_off.ogg");
 
     [DataField]
-    public float EmitterHealAmount = 0.1f;
+    public SoundSpecifier StopSoundPath = new SoundCollectionSpecifier("Supermatter");
 
-    [DataField]
-    public ProtoId<ExplosionPrototype> ExplosionPrototypeId = "Supermatter";
-
-    [DataField]
-    public float CatastropheTotalIntensity = 2500f;
-
-    [DataField]
-    public float CatastropheSlope = 1f;
-
-    [DataField]
-    public float CatastropheMaxTileIntensity = 35f;
 
     [DataField]
     public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
 
     [DataField]
-    public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
+    [AutoPausedField]
+    public TimeSpan CatastropheLightningNextTime = TimeSpan.Zero;
 
     [DataField]
     public float CatastropheLightningRange = 15f;
 
     [DataField]
     public int CatastropheLightningCount = 3;
+
 
     [DataField]
     public List<SupermatterAmbientSoundEntry> AmbientSound = new()
@@ -140,4 +134,3 @@ public sealed partial class SupermatterAmbientSoundEntry
     [DataField]
     public float Range;
 }
-

@@ -1,7 +1,5 @@
 using Content.Shared.Atmos;
 using Content.Shared.Imperial.Power.Components;
-using Content.Shared.Imperial.Power.GasReactions;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Imperial.Power.GasReactions.Reactions;
 

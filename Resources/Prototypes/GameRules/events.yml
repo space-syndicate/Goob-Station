@@ -32,6 +32,9 @@
     - id: ClosetSkeleton
     - id: KingRatMigration
     - id: RevenantSpawn
+    # Imperial Worm Vent Spawn Start
+    - id: WormVentSpawn
+    # Imperial Worm Vent Spawn End
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -257,6 +260,8 @@
         color: Green
         sound: /Audio/Misc/ninja_greeting.ogg
       components:
+      - type: CrewSkills # Imperial Space Crew Skills
+        groups: [All]
       - type: SpaceNinja
       - type: NpcFactionMember
         factions:
@@ -352,6 +357,8 @@
         #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
       # TODO: WizardComp as needed
       components:
+      - type: CrewSkills # Imperial Space Crew Skills
+        groups: [All]
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -547,6 +554,39 @@
       children:
       - id: MobClownSpider
 
+# Imperial Worm Vent Spawn Start
+- type: entity
+  id: WormVentSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-worm-vent-spawn-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 25
+    minimumPlayers: 15
+    weight: 4
+    duration: 1
+    maxOccurrences: 1
+    reoccurrenceDelay: 60
+    occursDuringRoundEnd: false
+  - type: WormVentSpawnRule
+    prototype: MobWormTier1
+    count: 6
+
+- type: entity
+  id: AllAtOnceWormVentSpawnRule
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    delay:
+      min: 300
+      max: 480
+  - type: AllAtOnceWormVentSpawnRule
+    prototype: MobWormTier1
+    count: 6
+# Imperial Worm Vent Spawn End
+
 - type: entity
   id: ZombieOutbreak
   parent: BaseGameRule
@@ -607,12 +647,9 @@
       roleLoadout:
       - RoleSurvivalNukie
       components:
+      - type: CrewSkills # Imperial Space Crew SKills
+        groups: [All]
       - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicatePrefix
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -643,6 +680,13 @@
       min: 1
       max: 2
       playerRatio: 10
+      # Imperial Space Crew SKills Start
+      components:
+      - type: CrewSkills
+        groups: [All]
+        fakeGroups: [Base]
+        overrideMindSkills: true
+      # Imperial Space Crew Skills End
       blacklist:
         components:
         - AntagImmune
@@ -845,3 +889,4 @@
       min: 1
       max: 1
       pickPlayer: false
+
