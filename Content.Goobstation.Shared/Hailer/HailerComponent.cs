@@ -3,7 +3,6 @@
 using Content.Shared.Dataset;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Audio;
 
 namespace Content.Goobstation.Shared.Hailer;
 
