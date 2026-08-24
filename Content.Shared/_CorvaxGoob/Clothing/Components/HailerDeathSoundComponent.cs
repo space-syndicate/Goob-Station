@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Clothing.Components;
+namespace Content.Shared._CorvaxGoob.Clothing.Components;
 
 [RegisterComponent]
 public sealed partial class HailerDeathSoundComponent : Component
