@@ -1,4 +1,4 @@
-using Content.Shared.Clothing.Components;
+using Content.Shared._CorvaxGoob.Clothing.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Robust.Shared.Audio;
