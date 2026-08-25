@@ -332,6 +332,7 @@
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
       startingGear: SyndicateOperativeMedicFullHonkops
+      chaosScore: 300
       skills: # CorvaxGoob-Skills
       - All
       roleLoadout:
@@ -359,6 +360,7 @@
       max: 10 # Goobstation / 古布空间站 - 没有限制的核特工
       playerRatio: 16 # Goobstation
       startingGear: SyndicateOperativeGearFullHonkops
+      chaosScore: 300
       skills: # CorvaxGoob-Skills
       - All
       roleLoadout:
@@ -421,12 +423,14 @@
     - prefRoles: [ Thief ]
       max: 10
       playerRatio: 7
+      skills: # CorvaxGoob-Skills
+      - All
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
       components:
-      - type: Pacified
+      #- type: Pacified # CorvaxGoob
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true

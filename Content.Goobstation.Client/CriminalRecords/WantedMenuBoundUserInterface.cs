@@ -29,6 +29,9 @@ public sealed class WantedMenuBoundUserInterface : BoundUserInterface
             SendMessage(new CriminalRecordChangeStatus(status, null));
         _window.OnDialogConfirmed += (status, reason) =>
             SendMessage(new CriminalRecordChangeStatus(status, reason));
+        // CorvaxGoob-SecurityFeatures
+        _window.OnDialogDetainedConfirmed += (articles, duration, print) =>
+            SendMessage(new CriminalRecordChangeDetainedStatus(articles, duration, print));
 
         _window.OnClose += Close;
 

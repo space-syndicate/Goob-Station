@@ -4,6 +4,12 @@
   id: AdvancedRetractor
 
 - type: Tag
+  id: BagelTheatre
+
+- type: Tag
+  id: BagelCage
+
+- type: Tag
   id: BoneSetter
 
 - type: Tag
@@ -38,6 +44,9 @@
 
 - type: Tag
   id: Hemostat
+
+- type: Tag
+  id: IgnorGrab
 
 - type: Tag
   id: InfinityPaper
