@@ -151,4 +151,13 @@ public sealed class CCCVars
 
     public static readonly CVarDef<float> PhotoPlayTimeHours =
         CVarDef.Create("photo.playtime_require_time", 20f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> GhostGoLobbyEnabled =
+        CVarDef.Create("ghost.go_lobby.enabled", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> GhostGoLobbyTimeHours =
+        CVarDef.Create("ghost.go_lobby.require_time", 25f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> GhostGoLobbyDeathTimeMinutes =
+        CVarDef.Create("ghost.go_lobby.death_time", 30f, CVar.SERVERONLY);
 }

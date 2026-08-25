@@ -171,6 +171,15 @@ namespace Content.Server.GameTicking
             if (DummyTicker)
                 return;
 
+            // CorvaxGoob-GoLobby-start
+            var selectedSlot = _ghostGoLobby.GetSelectedSlot(player.UserId);
+            if (!_ghostGoLobby.CanUseCharacter(player.UserId, selectedSlot))
+            {
+                _chatManager.DispatchServerMessage(player,Loc.GetString("ghost-go-lobby-used"));
+                return;
+            }
+            // CorvaxGoob-GoLobby-end 
+
             if (station == EntityUid.Invalid)
             {
                 var stations = GetSpawnableStations();
