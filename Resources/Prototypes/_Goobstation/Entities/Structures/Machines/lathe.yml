@@ -83,7 +83,6 @@
         - Sheet
         - RawMaterial
         - Ingot
-        - Wooden # CorvaxGoob - dept-techfab-tools-materials
         - SheetPlasma
 
 - type: entity
@@ -155,7 +154,6 @@
         - Sheet
         - RawMaterial
         - Ingot
-        - Wooden # CorvaxGoob - dept-techfab-tools-materials
         - SheetPlasma
 
 - type: entity
