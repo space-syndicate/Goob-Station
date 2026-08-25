@@ -50,9 +50,11 @@
         - id: PowerDrill #CorvaxGoob: Fix order
         - id: WelderExperimental
         - id: Multitool
-        - id: HolofanProjector
+        - id: trayScanner #CorvaxGoob: Fix order
+        #- id: HolofanProjector #CorvaxGoob: Fix order
         - id: GasAnalyzer
-        - id: trayScanner
+        #- id: trayScanner #CorvaxGoob: Fix order
+        - id: HolofanProjector #CorvaxGoob: Fix order
 
 - type: entityTable
   id: BeltSecurityEntityTable
