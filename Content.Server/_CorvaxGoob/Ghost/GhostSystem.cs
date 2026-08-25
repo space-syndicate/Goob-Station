@@ -60,7 +60,7 @@ namespace Content.Server.Ghost
             ApplyGhostObserverHudMode(uid, component, hud.Mode);
         }
 
-        private GhostObserverHudMode GetNextGhostObserverHudMode(GhostObserverHudMode mode)
+        private static GhostObserverHudMode GetNextGhostObserverHudMode(GhostObserverHudMode mode)
         {
             return mode switch
             {
@@ -72,13 +72,11 @@ namespace Content.Server.Ghost
 
         private void ApplyGhostObserverHudMode(EntityUid uid, GhostComponent component, GhostObserverHudMode mode)
         {
-            // Reapply from a clean slate so mode changes cannot leave stale HUD components behind.
-            DisableGhostObserverHud(uid);
-
             switch (mode)
             {
                 case GhostObserverHudMode.Security:
                     EnableGhostObserverSecurityHud(uid);
+                    DisableGhostObserverHealthHud(uid);
                     SetGhostObserverHudActionState(component, true, GhostObserverHudSecurityIcon, GhostObserverHudActionDescSecurity);
                     Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-observer-hud-popup-security"), uid, uid);
                     break;
@@ -89,6 +87,7 @@ namespace Content.Server.Ghost
                     Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-observer-hud-popup-security-health"), uid, uid);
                     break;
                 case GhostObserverHudMode.Off:
+                    DisableGhostObserverHud(uid);
                     SetGhostObserverHudActionState(component, false, GhostObserverHudSecurityIcon, GhostObserverHudActionDescOff);
                     Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-observer-hud-popup-off"), uid, uid);
                     break;
@@ -105,6 +104,14 @@ namespace Content.Server.Ghost
             EnsureComp<ShowSquadIconsComponent>(uid);
         }
 
+        private void DisableGhostObserverSecurityHud(EntityUid uid)
+        {
+            RemComp<ShowJobIconsComponent>(uid);
+            RemComp<ShowMindShieldIconsComponent>(uid);
+            RemComp<ShowCriminalRecordIconsComponent>(uid);
+            RemComp<ShowSquadIconsComponent>(uid);
+        }
+
         private void EnableGhostObserverHealthHud(EntityUid uid)
         {
             var healthBars = EnsureComp<ShowHealthBarsComponent>(uid);
@@ -115,28 +122,30 @@ namespace Content.Server.Ghost
             Dirty(uid, healthBars);
         }
 
+        private void DisableGhostObserverHealthHud(EntityUid uid)
+        {
+            RemComp<ShowHealthBarsComponent>(uid);
+        }
+
         private void DisableGhostObserverHud(EntityUid uid)
         {
-            RemComp<ShowJobIconsComponent>(uid);
-            RemComp<ShowMindShieldIconsComponent>(uid);
-            RemComp<ShowCriminalRecordIconsComponent>(uid);
-            RemComp<ShowSquadIconsComponent>(uid);
-            RemComp<ShowHealthBarsComponent>(uid);
+            DisableGhostObserverSecurityHud(uid);
+            DisableGhostObserverHealthHud(uid);
         }
 
         private void SetGhostObserverHudActionState(
             GhostComponent component,
             bool toggled,
             SpriteSpecifier? iconOn,
-            string description)
+            string descriptionLocId)
         {
             if (component.ToggleGhostObserverHudActionEntity is not { } action)
                 return;
 
             _actions.SetIconOn(action, iconOn);
             _actions.SetToggled(action, toggled);
-            // Action tooltips localize metadata descriptions client-side, so store the locale id here.
-            _metaData.SetEntityDescription(action, description);
+            // Action tooltips read metadata directly, so store the resolved text instead of the locale id.
+            _metaData.SetEntityDescription(action, Loc.GetString(descriptionLocId));
         }
     }
 }
