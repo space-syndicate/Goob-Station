@@ -17,6 +17,7 @@
           True: { state: silo_active }
           False: { state: silo }
   - type: OreSilo
+    range: 200 # CorvaxGoob-Reverts
   - type: MaterialStorage
     whitelist:
       tags:

@@ -7,13 +7,14 @@ using Content.Shared.Radio;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 using Content.Shared.Security;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.CriminalRecords.Components;
 
 /// <summary>
 /// A component for Criminal Record Console storing an active station record key and a currently applied filter
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentState, NetworkedComponent] // CorvaxGoob-SecurityFeatures
 [Access(typeof(SharedCriminalRecordsConsoleSystem))]
 public sealed partial class CriminalRecordsConsoleComponent : Component
 {
@@ -53,4 +54,12 @@ public sealed partial class CriminalRecordsConsoleComponent : Component
     /// </summary>
     [DataField]
     public uint MaxStringLength = 256;
+
+    // CorvaxGoob-SecurityFeatures-Start : компоненты отвечающие за часть системы печати приговоров
+    [DataField, AutoNetworkedField]
+    public TimeSpan NextPrintTime = TimeSpan.Zero;
+
+    [DataField]
+    public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+    // CorvaxGoob-SecurityFeatures-End
 }

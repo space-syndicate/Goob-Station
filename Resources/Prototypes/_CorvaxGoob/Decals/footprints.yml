@@ -1,0 +1,19 @@
+- type: decal
+  id: FootprintForward
+  tags: ["footprint"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  showMenu: false
+  sprite:
+    sprite: _CorvaxNext/Effects/footprint.rsi
+    state: foot
+
+- type: decal
+  id: FootprintBody
+  tags: ["footprint"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  showMenu: false
+  sprite:
+    sprite: _CorvaxNext/Effects/footprint.rsi
+    state: body

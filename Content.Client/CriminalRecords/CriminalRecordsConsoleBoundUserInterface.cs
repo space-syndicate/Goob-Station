@@ -40,15 +40,19 @@ public sealed class CriminalRecordsConsoleBoundUserInterface : BoundUserInterfac
             SendMessage(new CriminalRecordChangeStatus(status, null));
         _window.OnDialogConfirmed += (status, reason) =>
             SendMessage(new CriminalRecordChangeStatus(status, reason));
+        // CorvaxGoob-SecurityFeatures
+        _window.OnDialogDetainedConfirmed += (articles, duration, print) =>
+            SendMessage(new CriminalRecordChangeDetainedStatus(articles, duration, print));
         _window.OnStatusFilterPressed += (statusFilter) =>
             SendMessage(new CriminalRecordSetStatusFilter(statusFilter));
         _window.OnHistoryUpdated += UpdateHistory;
         _window.OnHistoryClosed += () => _historyWindow?.Close();
         _window.OnClose += Close;
 
-        _historyWindow = new(comp.MaxStringLength);
+        _historyWindow = new(comp.MaxStringLength, Owner); // CorvaxGoob-SecurityFeatures : Owner
         _historyWindow.OnAddHistory += line => SendMessage(new CriminalRecordAddHistory(line));
         _historyWindow.OnDeleteHistory += index => SendMessage(new CriminalRecordDeleteHistory(index));
+        _historyWindow.OnPrint += index => SendMessage(new CriminalRecordPrint(index)); // CorvaxGoob-SecurityFeatures
 
         _historyWindow.Close(); // leave closed until user opens it
     }
