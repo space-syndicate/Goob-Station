@@ -474,6 +474,7 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
+    - CanPilot # CorvaxGoob-AiShuttle
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
