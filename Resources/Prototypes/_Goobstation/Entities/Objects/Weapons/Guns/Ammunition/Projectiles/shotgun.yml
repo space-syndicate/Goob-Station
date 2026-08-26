@@ -261,9 +261,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBomb # Boom
-    maxIntensity: 1
+    maxIntensity: 0.75 # CorvaxGoob - explosions nerf: 1 -> 0.75
     intensitySlope: 2
-    totalIntensity: 1
+    totalIntensity: 0.75 # CorvaxGoob - explosions nerf: 1 -> 0.75
 
 # Basically copies explosive grenades, I did not parent directly because animation caused the shrapnel to spawn with an error texture.
 - type: entity
