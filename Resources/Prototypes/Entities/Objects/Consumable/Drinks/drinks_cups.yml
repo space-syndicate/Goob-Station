@@ -85,10 +85,12 @@
   name: water cup
   description: A paper water cup.
   components:
+  # CorvaxGoob - buff Start
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 5 # One sip at a time. No rushing at the water cooler
+        maxVol: 1 # Two sip at a time. Rushing at the water cooler
+  # CorvaxGoob - buff End
   - type: Item
     size: Tiny
   - type: Sprite
