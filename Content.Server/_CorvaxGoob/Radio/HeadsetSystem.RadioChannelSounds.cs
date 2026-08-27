@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Radio;
 using Content.Shared._CorvaxGoob.Radio;
