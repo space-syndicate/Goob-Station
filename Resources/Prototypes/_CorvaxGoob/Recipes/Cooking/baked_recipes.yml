@@ -19,3 +19,14 @@
     FoodDoughCottonFlat: 1
     CottonBol: 2
     PlushieCarp: 2
+
+- type: microwaveMealRecipe
+  id: RecipeWatermelonttonPizza
+  name: watermelontton pizza recipe
+  result: FoodPizzaWatermelontton
+  time: 30
+  group: Moth
+  solids:
+    FoodDoughCottonFlat: 1
+    CottonBol: 2
+    FoodWatermelonSlice: 2
