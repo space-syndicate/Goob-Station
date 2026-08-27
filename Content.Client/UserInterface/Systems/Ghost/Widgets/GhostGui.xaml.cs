@@ -49,14 +49,15 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    // Ghoob edit && CorvaxGoob edit : GhostBar
-    public void Update(int? roles, bool? canReturnToBody, bool? canEnterGhostBar = true, bool? canTakeGhostRoles = true)
+    // Ghoob edit && CorvaxGoob edit : GhostBar and GhostGoLobby 
+    public void Update(int? roles, bool? canReturnToBody, bool? canEnterGhostBar = true, bool? canTakeGhostRoles = true, bool? canGoLobby = true)
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
         GhostBarButton.Disabled = !canEnterGhostBar ?? true; // CorvaxGoob-GhostBar
         // Goobstation start
         GhostRolesButton.Disabled = !canTakeGhostRoles ?? true;
         // Goobstation end
+        GhostGoLobbyButton.Disabled = !canGoLobby ?? true; // CorvaxGoob-GoLobby
 
         if (roles != null)
         {

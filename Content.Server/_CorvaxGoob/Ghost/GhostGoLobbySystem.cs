@@ -71,7 +71,6 @@ public sealed class GhostGoLobbySystem : EntitySystem
     {
         if (!_cfg.GetCVar(CCCVars.GhostGoLobbyEnabled))
         {
-            _popup.PopupEntity(Loc.GetString("ghost-go-lobby-disabled"), uid, uid);
             return;
         }
 
