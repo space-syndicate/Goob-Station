@@ -20,7 +20,7 @@ public sealed partial class PaperComponent
     /// <summary>
     /// Server-to-client snapshot used by the paper insert helper.
     /// This is sent with ServerSendUiMessage to one actor only: station, identity, and job are
-    /// actor-specific, while manifest entries are additionally gated by the actor's worn PDA.
+    /// actor-specific, while manifest entries are additionally gated by the actor's PDA.
     /// </summary>
     [Serializable, NetSerializable]
     public sealed class PaperInsertDataMessage : BoundUserInterfaceMessage

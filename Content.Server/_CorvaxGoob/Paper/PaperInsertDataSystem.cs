@@ -30,7 +30,7 @@ public sealed partial class PaperInsertDataSystem : EntitySystem
 
     [Dependency] private CrewManifestSystem _crewManifest = default!;
     [Dependency] private GameTicker _gameTicker = default!;
-    [Dependency] private  SharedHandsSystem _hands = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private JobSystem _jobs = default!;
     [Dependency] private MindSystem _mind = default!;
@@ -42,16 +42,7 @@ public sealed partial class PaperInsertDataSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PaperComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<PaperComponent, PaperInsertDataRequestMessage>(OnInsertDataRequest);
-    }
-
-    private void OnUiOpened(Entity<PaperComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        if (!CanSendInsertData(ent.Comp, args.UiKey))
-            return;
-
-        SendInsertData(ent, args.Actor);
     }
 
     private void OnInsertDataRequest(Entity<PaperComponent> ent, ref PaperInsertDataRequestMessage args)
