@@ -191,6 +191,7 @@ namespace Content.Client.Access.UI
                 state.IsPrivilegedIdPresent && state.IsPrivilegedIdAuthorized && state.IsTargetIdPresent;
 
             var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
+			//var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle; // CorvaxGoob Edit - Extended-access
 
             FullNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             FullNameLineEdit.Editable = interfaceEnabled;

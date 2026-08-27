@@ -62,16 +62,6 @@ public sealed partial class IdCardConsoleSystem
         if (args.Actor is not { Valid: true } player)
             return;
 
-        /* // Balance hook: route this through a do-after if extended-access changes need a delay later.
-        var doAfter = new DoAfterArgs(EntityManager, player, TimeSpan.FromSeconds(3),
-            new IdCardConsoleExtendedAccessDoAfterEvent(args.Action), uid, target: component.TargetIdSlot.Item, used: uid)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-        };
-        _doAfter.TryStartDoAfter(doAfter);
-            return;*/
-
         TryApplyExtendedAccessAction(uid, args.Action, player, component);
 
         UpdateUserInterface(uid, component, args);
