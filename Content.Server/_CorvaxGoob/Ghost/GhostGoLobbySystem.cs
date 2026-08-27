@@ -28,7 +28,6 @@ public sealed class GhostGoLobbySystem : EntitySystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
 
-    private bool _enabled;
     private TimeSpan _requiredPlaytime;
     private TimeSpan _deathTime;
 
