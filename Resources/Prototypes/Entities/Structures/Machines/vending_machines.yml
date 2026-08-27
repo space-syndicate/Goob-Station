@@ -374,6 +374,7 @@
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
+  - type: AntiRottingContainer # CorvaxGoob - Vending Return
   - type: DatasetVocalizer
     dataset: ChefvendAds
   - type: SpeakOnUIClosed

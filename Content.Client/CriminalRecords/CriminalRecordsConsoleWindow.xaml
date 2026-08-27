@@ -155,7 +155,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         </PanelContainer.PanelOverride>
                             <controls:TableContainer Name="EntriesContainer" Columns="3" HorizontalExpand="True" VerticalExpand="True" Margin="5 0">
                                 <RichTextLabel Text="Время" HorizontalAlignment="Center"/>
-                                <RichTextLabel Text="Преступление" HorizontalAlignment="Center"/>
+                                <RichTextLabel Text="Статус" HorizontalAlignment="Center"/>
                                 <RichTextLabel Text="Инициатор" HorizontalAlignment="Center"/>
                             </controls:TableContainer>
                     </PanelContainer>

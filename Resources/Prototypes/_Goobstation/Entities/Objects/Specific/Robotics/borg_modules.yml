@@ -86,7 +86,7 @@
         whitelist:
           components:
           - BodyPart
-          - Organ # CorvaxGoob
+          - Organ
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: surgery-module }
 
@@ -112,6 +112,6 @@
         whitelist:
           components:
           - BodyPart
-          - Organ # CorvaxGoob
+          - Organ
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-surgery-module }

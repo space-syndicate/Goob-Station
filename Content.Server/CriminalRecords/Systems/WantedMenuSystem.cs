@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server.StationRecords;
 using Content.Shared.Access.Components;
 using Content.Shared.CriminalRecords;
-using Content.Shared.CriminalRecords.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
@@ -204,7 +202,7 @@ public sealed partial class CriminalRecordsConsoleSystem
 
         // CorvaxGoob-SecurityFeatures-Start
         var history = Loc.GetString("criminal-records-console-detained-record", ("articles", articles ?? Loc.GetString("criminal-records-console-unspecified")), ("duration", msg.Duration?.ToString() ?? Loc.GetString("criminal-records-console-unspecified")));
-        _criminalRecords.TryAddHistory(key.Value, history, officer, articles, msg.Duration);
+        _criminalRecords.TryAddHistory(key.Value, history, officer, articles, msg.Duration, SecurityStatus.Detained);
         // CorvaxGoob-SecurityFeatures-End
 
         // will probably never fail given the checks above

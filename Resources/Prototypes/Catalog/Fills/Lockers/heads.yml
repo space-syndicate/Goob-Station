@@ -251,6 +251,9 @@
     # - id: ComputerCloningConsoleFlatpack
     # CorvaxGoob-Cloning-end
     - id: ChemistryHotplateFlatPack
+    - id: CloningpodFlatpack
+    - id: MedicalScannerFlatpack
+    - id: ComputerCloningConsoleFlatpack
     - id: BiomassReclaimerFlatpack
     - id: Multitool
     - id: MedTekCartridge

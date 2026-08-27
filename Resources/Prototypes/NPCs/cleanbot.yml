@@ -6,6 +6,11 @@
     - tasks:
         - !type:HTNCompoundTask
           task: BufferNearbyPuddlesCompound
+    # CorvaxGoob-Start-Footprint-Refactoring
+    - tasks:
+        - !type:HTNCompoundTask
+          task: CleanNearbyDecalsCompound
+    # CorvaxGoob-End-Footprint-Refactoring
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
