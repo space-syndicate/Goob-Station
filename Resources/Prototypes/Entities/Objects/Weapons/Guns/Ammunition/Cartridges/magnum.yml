@@ -9,6 +9,7 @@
   - type: Tag
     tags:
       - CartridgeMagnum
+      - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletMagnum
   - type: Sprite

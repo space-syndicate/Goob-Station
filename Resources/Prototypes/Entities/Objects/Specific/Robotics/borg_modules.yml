@@ -779,6 +779,7 @@
     hands:
     - item: RCDRecharging
     - item: RPDRecharging # Goobstation
+    - item: BorgSprayPainterRecharging # CorvaxGoob
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
     - item: GasAnalyzer

@@ -69,7 +69,13 @@
     - WhitelistChameleon
     - SecurityBreathMask
     - GasMask # Goobstation
-  # - type: Hailer # Goobstation - Hailer Removed by CorvaxGoob
+  - type: Hailer # Goobstation # CorvaxGoob-HailerRework-Start
+    availableModes:
+      calm: HailerMessagersCalm
+      agressive: HailerMessagersAgressive
+    emagedModes:
+      emag: HailerMessagersEmag
+    # CorvaxGoob-HailerRework-End
   - type: IngestionBlocker # Goobstation
     blockSmokeIngestion: true
 

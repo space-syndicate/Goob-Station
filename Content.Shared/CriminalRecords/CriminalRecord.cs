@@ -43,4 +43,4 @@ public sealed partial record CriminalRecord
 /// A line of criminal activity and the time it was added at.
 /// </summary>
 [Serializable, NetSerializable]
-public record struct CrimeHistory(TimeSpan AddTime, string Crime, string? InitiatorName);
+public record struct CrimeHistory(TimeSpan AddTime, string Crime, string? InitiatorName, string? Articles = null, int? Duration = null, SecurityStatus? Status = null); // CorvaxGoob-SecurityFeatures

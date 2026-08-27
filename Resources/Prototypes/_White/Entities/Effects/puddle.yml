@@ -1,51 +1,54 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
+# CorvaxGoob-Footprint-Refactoring
 
-- type: entity
-  name: footprint
-  id: Footprint
-  save: false
-  description: Trace of liquid.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Clickable
-  - type: Transform
-    noRot: false
-    anchored: true
-  - type: Sprite
-    drawdepth: FloorObjects
-  - type: Physics
-    bodyType: Static
-  - type: Appearance
-  - type: Fixtures
-    fixtures:
-      slipFixture:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.4"
-        mask:
-        - ItemMask
-        layer:
-        - SlipLayer
-        hard: false
-  - type: SolutionContainerManager
-  - type: Footprint
-  - type: Puddle
-    solution: print
-    affectsMovement: false
-    affectsSound: false
-  - type: ExaminableSolution
-    solution: print
-  - type: MixableSolution
-    solution: print
-  - type: DrawableSolution
-    solution: print
-  - type: BadDrink
-  - type: IgnoresFingerprints
-  - type: Edible
-    delay: 3
-    transferAmount: 0.5
-    solution: print
-  - type: Tag
-    tags:
-    - DNASolutionScannable
+# Мёртвая сущность-след старой системы. Следы переведены на декали (см. CorvaxFootprintSystem),
+# компонент FootprintComponent закомментирован, поэтому прототип отключён целиком.
+# - type: entity
+#   name: footprint
+#   id: Footprint
+#   save: false
+#   description: Trace of liquid.
+#   placement:
+#     mode: SnapgridCenter
+#   components:
+#   - type: Clickable
+#   - type: Transform
+#     noRot: false
+#     anchored: true
+#   - type: Sprite
+#     drawdepth: FloorObjects
+#   - type: Physics
+#     bodyType: Static
+#   - type: Appearance
+#   - type: Fixtures
+#     fixtures:
+#       slipFixture:
+#         shape:
+#           !type:PhysShapeAabb
+#           bounds: "-0.4,-0.4,0.4,0.4"
+#         mask:
+#         - ItemMask
+#         layer:
+#         - SlipLayer
+#         hard: false
+#   - type: SolutionContainerManager
+#   - type: Footprint
+#   - type: Puddle
+#     solution: print
+#     affectsMovement: false
+#     affectsSound: false
+#   - type: ExaminableSolution
+#     solution: print
+#   - type: MixableSolution
+#     solution: print
+#   - type: DrawableSolution
+#     solution: print
+#   - type: BadDrink
+#   - type: IgnoresFingerprints
+#   - type: Edible
+#     delay: 3
+#     transferAmount: 0.5
+#     solution: print
+#   - type: Tag
+#     tags:
+#     - DNASolutionScannable

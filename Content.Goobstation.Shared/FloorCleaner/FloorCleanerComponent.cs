@@ -23,4 +23,10 @@ public sealed partial class FloorCleanerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public int Radius = 1;
+
+    /// <summary>
+    /// Сколько чистящего реагента (например воды) тратится на каждую очищенную декаль.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float ReagentPerDecal = 1.0f;
 }
