@@ -8,6 +8,13 @@ using Robust.Shared.Map;
 
 namespace Content.Server._CorvaxGoob.Rotation;
 
+/// <summary>
+/// Aligns an entity's rotation to nearby anchored entities that have any of the configured tags.
+/// </summary>
+/// <remarks>
+/// The system chooses the horizontal or vertical rotation only when neighbors clearly exist on one axis.
+/// If both axes match, or no matching neighbors are found, the current rotation is preserved.
+/// </remarks>
 public sealed class AlignToNeighborTagsSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
