@@ -2,8 +2,8 @@
 
 - type: job
   id: BlueshieldOfficer
-  name: job-name-bs
-  description: job-description-bs
+  name: job-name-bso
+  description: job-description-bso
   playTimeTracker: JobBlueshieldOfficer
   requirements:
     - !type:DepartmentTimeRequirement

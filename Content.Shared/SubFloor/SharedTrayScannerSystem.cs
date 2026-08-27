@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
+using Robust.Shared.Player; // CorvaxGoob-Fixes
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.SubFloor;
@@ -32,6 +33,12 @@ public abstract class SharedTrayScannerSystem : EntitySystem
         SubscribeLocalEvent<TrayScannerComponent, GotUnequippedEvent>(OnTrayUnequipped);
 
         SubscribeLocalEvent<TrayScannerUserComponent, GetVisMaskEvent>(OnUserGetVis);
+        SubscribeLocalEvent<TrayScannerUserComponent, PlayerAttachedEvent>(OnPlayerAttached); // CorvaxGoob-Fixes
+    }
+
+    private void OnPlayerAttached(Entity<TrayScannerUserComponent> ent, ref PlayerAttachedEvent args) // CorvaxGoob-Fixes
+    {
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private void OnUserGetVis(Entity<TrayScannerUserComponent> ent, ref GetVisMaskEvent args)

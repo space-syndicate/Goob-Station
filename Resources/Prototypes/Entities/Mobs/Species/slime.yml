@@ -114,7 +114,7 @@
         - !type:HasComponentOnEquipmentCondition # goob edit - make suits protect slimes from water damage
           components:
           - type: PressureProtection
-          invert: true
+          inverted: true
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -124,8 +124,8 @@
         - !type:HasComponentOnEquipmentCondition # goob edit - make suits protect slimes from water damage
           components:
           - type: PressureProtection
-          invert: true
-  - type: Butcherable # CorvaxGoob organ resprite
+          inverted: true
+  - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeatSlimeMeat

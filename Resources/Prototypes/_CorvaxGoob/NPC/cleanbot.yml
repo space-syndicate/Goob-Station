@@ -1,0 +1,17 @@
+- type: htnCompound
+  id: CleanNearbyDecalsCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:PickCleanableDecalOperator
+            targetCoordinatesKey: CleanDecalCoordinates
+
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: CleanDecalCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:CleanDecalsOperator

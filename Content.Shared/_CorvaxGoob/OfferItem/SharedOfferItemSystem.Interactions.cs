@@ -12,6 +12,8 @@ public abstract partial class SharedOfferItemSystem
 
     private void InitializeInteractions()
     {
+        InitializeVerbMenu(); // offer-item-alternative-verb
+
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OfferItem, InputCmdHandler.FromDelegate(SetInOfferMode, handle: false, outsidePrediction: false))
             .Register<SharedOfferItemSystem>();

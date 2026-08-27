@@ -89,6 +89,7 @@
   - type: Tag
     tags:
     - VimPilot
+    - IgnorGrab # CorvaxGoob
   - type: NightVision # Goobstation - Nigthvision
     color: "#808080"
     activateSound: null
@@ -445,6 +446,7 @@
     tags:
     - Trash
     - VimPilot
+    - IgnorGrab # CorvaxGoob
   - type: Destructible
     thresholds:
     - trigger:
@@ -634,6 +636,7 @@
     - Trash
     - CannotSuicide
     - VimPilot
+    - IgnorGrab # CorvaxGoob
   - type: CanEscapeInventory
   - type: NpcFactionMember
     factions:
@@ -906,6 +909,7 @@
         damage: 20
       behaviors:
       - !type:GibBehavior
+        gibContents: Skip # CorvaxGoob - no organs
         recursive: false
   - type: ZombieImmune
 
@@ -2018,6 +2022,7 @@
     - ChefPilot
     - Mouse
     - Meat
+    - IgnorGrab # CorvaxGoob
   - type: Respirator
     damage:
       types:
@@ -4091,6 +4096,12 @@
     understands:
     - RootSpeak
     - TauCetiBasic
+  - type: VentCrawler # goob
+  - type: Carriable # goob
+  - type: PseudoItem # goob
+    storedOffset: 0,3
+    shape:
+    - 0,0,3,3
 
 - type: entity
   parent: MobDionaNymph

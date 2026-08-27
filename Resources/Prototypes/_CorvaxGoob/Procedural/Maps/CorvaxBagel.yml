@@ -1,0 +1,69 @@
+#для рандомных комнат клетки сингулярности и театра
+
+#клетка - начало
+- type: dungeonRoom
+  id: CorvaxBagelCage1
+  size: 15,15
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: -1,-25 
+  tags:
+  - BagelCage
+
+- type: dungeonRoom
+  id: CorvaxBagelCage2
+  size: 15,15
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: -1,-41 
+  tags:
+  - BagelCage
+
+- type: dungeonRoom
+  id: CorvaxBagelCage3
+  size: 15,15
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: 15,-25
+  tags:
+  - BagelCage
+#клетка - конец
+
+#театр - начало
+- type: dungeonRoom
+  id: CorvaxBagelTheater1
+  size: 11,8
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: -1,9 
+  tags:
+  - BagelTheatre
+
+- type: dungeonRoom
+  id: CorvaxBagelTheater2
+  size: 11,8
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: -1,0 
+  tags:
+  - BagelTheatre
+
+- type: dungeonRoom
+  id: CorvaxBagelTheater3
+  size: 11,8
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: -1,-9 
+  tags:
+  - BagelTheatre
+
+- type: dungeonRoom
+  id: CorvaxBagelTheater4
+  size: 11,8
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: 11,9 
+  tags:
+  - BagelTheatre
+
+- type: dungeonRoom
+  id: CorvaxBagelTheater5
+  size: 11,8
+  atlas: /Maps/_CorvaxGoob/RandomMap/CorvaxBagel.yml
+  offset: 11,0 
+  tags:
+  - BagelTheatre
+#театр - конец

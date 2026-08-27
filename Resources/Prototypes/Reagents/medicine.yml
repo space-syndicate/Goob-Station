@@ -245,10 +245,11 @@
             scale: 1.6
           damage:
           # todo scale with temp like SS13
-            Airloss: -3
-            Brute: -3 # Goob
-            Burn: -3 # Goob
-            Toxin: -2
+          # Goob - Cryo buff till temp scaling is implemented
+            Airloss: -9 # Goob - Cryobuff
+            Brute: -9 # Goob - Cryobuff
+            Burn: -9 # Goob - Cryobuff
+            Toxin: -6 # Goob - Cryobuff
         - !type:GenericStatusEffect # Mono edit
           conditions:
           - !type:MetabolizerTypeCondition
@@ -1047,9 +1048,47 @@
         - !type:ReagentCondition
           reagent: TranexamicAcid
           min: 15
+# CorvaxGoob start
+        - !type:MobStateCondition
+          mobstate: Alive
         damage:
           types:
             Bloodloss: 3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: TranexamicAcid
+          min: 15
+        - !type:MobStateCondition
+          mobstate: Critical
+# CorvaxGoob end
+        damage:
+          types:
+            Bloodloss: 3
+# CorvaxGoob start
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ModifyBleed
+        amount: -1.0
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection
+          inverted: true
+      - !type:HealthChange
+        ignoreResistances: false
+        ignoreBlockers: false
+        damage:
+          types:
+            Caustic: 0.1
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection
+          inverted: true
+# CorvaxGoob end
 
 - type: reagent
   id: Tricordrazine
@@ -1867,6 +1906,11 @@
       - !type:AdjustReagent
         reagent: MindbreakerToxin
         amount: -3.0
+      #CorvaxGoob start
+      - !type:AdjustReagent
+        reagent: Aranesp
+        amount: -3.0
+      #CorvaxGoob end
 
 - type: reagent
   id: Warfarin
