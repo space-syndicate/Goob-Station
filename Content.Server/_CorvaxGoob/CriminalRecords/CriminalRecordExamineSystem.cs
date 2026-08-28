@@ -14,6 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._CorvaxGoob.CriminalRecords;
 
+// #criminal-record-examine
 public sealed class CriminalRecordExamineSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
