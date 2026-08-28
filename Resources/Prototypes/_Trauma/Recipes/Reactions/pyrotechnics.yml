@@ -55,6 +55,6 @@
     Hexamine:
       amount: 1
     Vestine:
-      amount: 1 # CorvaxGoob edit
+      amount: 1
   products:
-    Octogen: 4
+    Octogen: 5

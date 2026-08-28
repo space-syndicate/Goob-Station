@@ -1,7 +1,9 @@
 criminal-records-console-initiator = Инициатор
 
-criminal-records-console-detained-record = НАРУШЕНО: { $articles } | СРОК: { $duration } мин
+criminal-records-console-detained-record = Арестован по: { $articles } | СРОК: { $duration } мин
 criminal-records-console-detained-reason = Арестован по причине
+
+criminal-records-console-history = { $status }: { $reason }
 
 criminal-records-console-unspecified = <не указано>
 
@@ -12,3 +14,4 @@ criminal-records-console-duration = Срок (мин.)
 criminal-records-console-duration-placeholder = Пример: 10
 
 criminal-records-console-print = Распечатать
+

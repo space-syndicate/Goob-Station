@@ -14,3 +14,10 @@
     storage: StorageCanister
     tritium: TritiumCanister
     water-vapor: WaterVaporCanister
+    # Corvax-Goob-start
+    healium: HealiumCanister
+    bz: BZCanister
+    oxygen-nitrous-oxide: OxygenAndNitrousOxideCanister
+    nitrium: NitriumCanister
+    pluoxium: PluoxiumCanister
+    # Corvax-Goob-end

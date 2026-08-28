@@ -23,6 +23,8 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
     public Action<uint>? OnDeleteHistory;
     public Action<uint>? OnPrint; // CorvaxGoob-SecurityFeatures
 
+    private Dictionary<uint, bool> _printableIndexs = new(); // CorvaxGoob-SecurityFeatures
+
     private uint _maxLength;
     private uint? _index;
     private DialogWindow? _dialog;
@@ -75,7 +77,7 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
             // prevent MoveToFront being called on a closed window and double closing
             _dialog.OnClose += () => { _dialog = null; };
         };
-        DeleteButton.OnPressed += _ => 
+        DeleteButton.OnPressed += _ =>
         {
             if (_index is not {} index)
                 return;
@@ -101,7 +103,9 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
         {
             _index = (uint) args.ItemIndex;
             DeleteButton.Disabled = false;
-            PrintButton.Disabled = false; // CorvaxGoob-SecurityFeatures
+
+            if (_printableIndexs.TryGetValue(_index.Value, out var printable) && !printable) // CorvaxGoob-SecurityFeatures
+                _index = null;
         };
         History.OnItemDeselected += args =>
         {
@@ -114,7 +118,7 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
     // CorvaxGoob-SecurityFeatures
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        PrintButton.Disabled = _component?.NextPrintTime >= _timing.CurTime || _index is  null ? true : false;
+        PrintButton.Disabled = _component?.NextPrintTime >= _timing.CurTime || _index is null ? true : false;
     }
 
     public void UpdateHistory(CriminalRecord record, bool access)
@@ -124,10 +128,16 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
 
         NoHistory.Visible = record.History.Count == 0;
 
+        _printableIndexs.Clear(); // CorvaxGoob-SecurityFeatures
+        uint ind = 0;
         foreach (var entry in record.History)
         {
             var time = entry.AddTime;
             var line = $"{time.Hours:00}:{time.Minutes:00}:{time.Seconds:00} - {entry.Crime}";
+
+            _printableIndexs.Add(ind, entry.Status == Shared.Security.SecurityStatus.Detained || entry.Status == Shared.Security.SecurityStatus.Wanted ? true : false); // CorvaxGoob-SecurityFeatures
+            ind++; // CorvaxGoob-SecurityFeatures
+
             History.AddItem(line);
         }
 

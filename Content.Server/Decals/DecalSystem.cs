@@ -320,11 +320,26 @@ namespace Content.Server.Decals
             comp.DecalIndex[decalId] = chunkIndices;
             DirtyChunk(gridId.Value, chunkIndices, chunk);
 
+            // CorvaxGoob-Start-Footprint-Refactoring
+            var addedEv = new DecalAddedEvent(gridId.Value, decalId, decal);
+            RaiseLocalEvent(gridId.Value, ref addedEv);
+            // CorvaxGoob-End-Footprint-Refactoring
+
             return true;
         }
 
         public override bool RemoveDecal(EntityUid gridId, uint decalId, DecalGridComponent? component = null)
             => RemoveDecalInternal(gridId, decalId, out _, component);
+
+        // CorvaxGoob-Start-Footprint-Refactoring
+        protected override void OnDecalRemoved(EntityUid gridId, uint decalId, DecalGridComponent component, Vector2i indices, DecalChunk chunk)
+        {
+            base.OnDecalRemoved(gridId, decalId, component, indices, chunk);
+
+            var ev = new DecalRemovedEvent(gridId, decalId, indices);
+            RaiseLocalEvent(gridId, ref ev);
+        }
+        // CorvaxGoob-End-Footprint-Refactoring
 
         public override HashSet<(uint Index, Decal Decal)> GetDecalsInRange(EntityUid gridId, Vector2 position, float distance = 0.75f, Func<Decal, bool>? validDelegate = null)
         {

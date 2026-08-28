@@ -291,7 +291,7 @@ public sealed partial class DragonSystem : EntitySystem
         if (!Resolve(uid, ref comp))
             return;
 
-        DeleteRifts(uid, true, comp); // CorvaxGoob
+        DeleteRifts(uid, true, comp); // Goob
 
         // We can't predict the rift being destroyed anyway so no point adding weakened to shared.
         comp.WeakenedAccumulator = comp.WeakenedDuration;

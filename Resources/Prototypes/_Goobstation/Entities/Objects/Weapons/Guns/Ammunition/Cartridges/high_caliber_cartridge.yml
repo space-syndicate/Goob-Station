@@ -9,6 +9,7 @@
     tags:
     - Cartridge
     - CartridgeHighCaliber
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletHighCaliber
   - type: Sprite

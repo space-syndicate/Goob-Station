@@ -80,7 +80,7 @@
     - Sheet
     - Metal
     - Steel
-    - ConstructionMaterial # CorvaxGoob
+    - ConstructionMaterial # Goob
 
 - type: entity
   parent: SheetSteel
