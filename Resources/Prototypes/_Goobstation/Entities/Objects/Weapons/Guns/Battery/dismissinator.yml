@@ -1,0 +1,134 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: dismissinator
+  parent: [WeaponDisablerPractice, BaseCommandContraband]
+  id: WeaponDismissinator
+  description: A Head of Personnel's sidearm. Load it with an authorized ID card, a blank and a rubber stamp, then serve the paperwork at range.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: BatteryAmmoProvider
+    proto: BulletDismissinator
+    fireCost: 100
+  - type: Dismissinator
+  - type: ContainerContainer
+    containers:
+      dismissinator-id: !type:ContainerSlot
+      dismissinator-paper: !type:ContainerSlot
+      dismissinator-stamp: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      dismissinator-id:
+        name: dismissinator-slot-id
+        whitelist:
+          components:
+          - IdCard
+      dismissinator-paper:
+        name: dismissinator-slot-paper
+        whitelist:
+          components:
+          - Paper
+      dismissinator-stamp:
+        name: dismissinator-slot-stamp
+        whitelist:
+          components:
+          - Stamp
+  - type: Tag
+    tags:
+    - Sidearm
+  # Set off whenever the gun is fired in the emagged recruitment mode, see DismissinatorSystem.OnAmmoShot.
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 8
+    intensitySlope: 5
+    totalIntensity: 20
+    canCreateVacuum: false
+
+- type: entity
+  name: dismissal bolt
+  id: BulletDismissinator
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Opaque
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  parent: Paper
+  id: PaperDismissalNotice
+  name: dismissal notice
+  description: A pre-filled Nanotrasen personnel dismissal notice. Content is written at the moment it is served.
+  components:
+  - type: Paper
+
+- type: entity
+  parent: Paper
+  id: PaperAccessExpansionNotice
+  name: access expansion notice
+  description: A pre-filled Nanotrasen clearance expansion notice. Content is written at the moment it is served.
+  components:
+  - type: Paper
+
+- type: entity
+  parent: Paper
+  id: PaperCovertDirective
+  name: sealed directive
+  description: A standard Nanotrasen assignment form. Content is written at the moment it is served.
+  components:
+  - type: Paper
