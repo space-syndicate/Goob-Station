@@ -60,6 +60,7 @@ public sealed class CriminalRecordExamineSystem : EntitySystem
     {
         record = null;
 
+        // Stop if the target has no owning station or that station has no records storage.
         if (_station.GetOwningStation(target) is not { } station ||
             !TryComp<StationRecordsComponent>(station, out var stationRecords))
             return false;
@@ -101,15 +102,15 @@ public sealed class CriminalRecordExamineSystem : EntitySystem
         {
             SecurityStatus.Suspected => "#33CCCC",
             SecurityStatus.Wanted => "#ff0000",
-            SecurityStatus.Hostile => "#bd0000",
+            SecurityStatus.Hostile => "#bf0909",
             SecurityStatus.Detained => "#B18644",
             SecurityStatus.Paroled => "#7FB717",
             SecurityStatus.Discharged => "#288EFF",
             SecurityStatus.Eliminated => "#FFFFFF",
             SecurityStatus.Search => "#33CCCC",
             SecurityStatus.Perma => "#f29430",
-            SecurityStatus.Dangerous => "#9a0000",
-            SecurityStatus.Demote => "#e56359",
+            SecurityStatus.Dangerous => "#8e0202",
+            SecurityStatus.Demote => "#ed5146",
             _ => "#FFFFFF",
         };
     }
