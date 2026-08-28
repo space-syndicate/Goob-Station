@@ -1,7 +1,7 @@
 ghost-go-lobby-button = Вернуться в лобби
 
 ghost-go-lobby-deathtime = Вернуться в лобби можно через {$minutes} мин.
-ghost-go-lobby-playtime = Вернуться в лобби после смерти могут только игроки, наигравшие более {$hours} ч.
+ghost-go-lobby-playtime = Вам нужно наиграть еще {$hours} ч.
 ghost-go-lobby-used = Выберите другого персонажа.
 
 ghost-go-lobby-confirm-title = Возвращение в лобби
