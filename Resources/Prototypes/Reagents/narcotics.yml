@@ -236,7 +236,7 @@
       - !type:AdjustReagent
         reagent: Haloperidol
         amount: -3.0
-      # CorvaxGoob-Start
+      # CorvaxGoob-End
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
         time: 3
