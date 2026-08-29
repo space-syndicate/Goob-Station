@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 270.1.0
   forkId: syndicate-goob
-  forkVersion: aa58992f315659da9acae1ed02e7834c95699dbf
-  time: 08/29/2026 01:56:04
-  entityCount: 23318
+  forkVersion: f13267f8b83b0f82928cf2cb76701cf9dfa5b77b
+  time: 08/29/2026 20:26:02
+  entityCount: 23328
 maps:
 - 785
 grids:
@@ -159,7 +159,7 @@ entities:
           version: 7
         1,6:
           ind: 1,6
-          tiles: ggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAABsAAAAAAgCCAAAAAAAAggAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAIIAAAAAAAACAAAAAAEAIAAAAAAAAIIAAAAAAABLAAAAAAAASwAAAAAAAEsAAAAAAABLAAAAAAAASwAAAAAAABsAAAAAAAAaAAAAAAAAGwAAAAAAAIIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAACCAAAAAAAAMwAAAAAAACQAAAAAAACCAAAAAAAASwAAAAAAAEsAAAAAAABLAAAAAAAAggAAAAAAAIIAAAAAAAAbAAAAAAAAGgAAAAAAABsAAAAAAACCAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAggAAAAAAADMAAAAAAAAkAAAAAAAAggAAAAAAAEsAAAAAAABLAAAAAAAASwAAAAAAAIIAAAAAAABLAAAAAAAAGwAAAAAAABoAAAAAAAAbAAAAAAAAggAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAIIAAAAAAAAzAAAAAAAAJAAAAAAAAIIAAAAAAABLAAAAAAAASwAAAAAAAEsAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAAAbAAAAAAAAGgAAAAAAABsAAAAAAACCAAAAAAAAKgAAAAAAACoAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAAkAAAAAAAAJAAAAAAAACQAAAAAAAAkAAAAAAAAJAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAJAAAAAAAACQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAACQAAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAACAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAAAgAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABQAAAAAAAACAAAAAAAAFAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABQAAAAAAAACAAAAAAAAVQAAAAAAAAIAAAAAAAACAAAAAAAACQAAAAAAAAkAAAAAAAA0AAAAAAAANAAAAAAAADQAAAAAAAA0AAAAAAAACQAAAAAAADQAAAAAAAA0AAAAAAAANAAAAAAAADQAAAAAAAAJAAAAAAAACQAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAAIAAAAAAAAUAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAFAAAAAAAAAIAAAAAAACCAAAAAAAAhwAAAAAAAAAAAAAAAAACAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAAAgAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAAAIAAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAACAAAAAAAAggAAAAAAAIcAAAAAAAAAAAAAAAAAggAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAggAAAAAAAIIAAAAAAACHAAAAAAAAAAAAAAAAAIIAAAAAAAAJAAAAAAAAAgAAAAAAAAkAAAAAAACCAAAAAAAACQAAAAAAAAkAAAAAAAAJAAAAAAAAggAAAAAAAAkAAAAAAAACAAAAAAAACQAAAAAAAIIAAAAAAAAAAAAAAAAAhwAAAAAAAAAAAAAAAACCAAAAAAAACQAAAAAAADQAAAAAAAAJAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAAAJAAAAAAAANAAAAAAAAAkAAAAAAACCAAAAAAAAhwAAAAAAAIcAAAAAAAAAAAAAAAAAggAAAAAAAAkAAAAAAAA0AAAAAAAACQAAAAAAAIIAAAAAAACHAAAAAAAAhwAAAAAAAIcAAAAAAACCAAAAAAAACQAAAAAAADQAAAAAAAAJAAAAAAAAggAAAAAAAAAAAAAAAACHAAAAAAAAAAAAAAAAAA==
+          tiles: ggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAABsAAAAAAgCCAAAAAAAAggAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAIIAAAAAAAACAAAAAAEAIAAAAAAAAIIAAAAAAABLAAAAAAAASwAAAAAAAEsAAAAAAABLAAAAAAAASwAAAAAAABsAAAAAAAAaAAAAAAAAGwAAAAAAAIIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAACCAAAAAAAAMwAAAAAAACQAAAAAAACCAAAAAAAASwAAAAAAAEsAAAAAAABLAAAAAAAAggAAAAAAAIIAAAAAAAAbAAAAAAAAGgAAAAAAABsAAAAAAACCAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAggAAAAAAADMAAAAAAAAkAAAAAAAAggAAAAAAAEsAAAAAAABLAAAAAAAASwAAAAAAAIIAAAAAAABLAAAAAAAAGwAAAAAAABoAAAAAAAAbAAAAAAAAggAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAIIAAAAAAAAzAAAAAAAAJAAAAAAAAIIAAAAAAABLAAAAAAAASwAAAAAAAEsAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAAAbAAAAAAAAggAAAAAAAIIAAAAAAAAbAAAAAAAAGgAAAAAAABsAAAAAAACCAAAAAAAAKgAAAAAAACoAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAAkAAAAAAAAJAAAAAAAACQAAAAAAAAkAAAAAAAAJAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAJAAAAAAAACQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAACQAAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAACAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAAAgAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABQAAAAAAAACAAAAAAAAFAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABQAAAAAAAACAAAAAAAAVQAAAAAAAAIAAAAAAAACAAAAAAAACQAAAAAAAAkAAAAAAAA0AAAAAAAANAAAAAAAADQAAAAAAAA0AAAAAAAACQAAAAAAADQAAAAAAAA0AAAAAAAANAAAAAAAADQAAAAAAAAJAAAAAAAACQAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAAIAAAAAAAAUAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAFAAAAAAAAAIAAAAAAACCAAAAAAAAhwAAAAAAAAAAAAAAAAACAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAAAgAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAAAIAAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAACAAAAAAAAggAAAAAAAIcAAAAAAAAAAAAAAAAAggAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAggAAAAAAAIIAAAAAAACHAAAAAAAAAAAAAAAAAIIAAAAAAAAJAAAAAAAAAgAAAAAAAAkAAAAAAACCAAAAAAAACQAAAAAAAAkAAAAAAAAJAAAAAAAAggAAAAAAAAkAAAAAAAACAAAAAAAACQAAAAAAAIIAAAAAAAAAAAAAAAAAhwAAAAAAAAAAAAAAAACCAAAAAAAACQAAAAAAADQAAAAAAAAJAAAAAAAAggAAAAAAAIIAAAAAAACCAAAAAAAAggAAAAAAAIIAAAAAAAAJAAAAAAAANAAAAAAAAAkAAAAAAACCAAAAAAAAhwAAAAAAAIcAAAAAAAAAAAAAAAAAggAAAAAAAAkAAAAAAAA0AAAAAAAACQAAAAAAAIIAAAAAAACHAAAAAAAAhwAAAAAAAIcAAAAAAACCAAAAAAAACQAAAAAAADQAAAAAAAAJAAAAAAAAggAAAAAAAAAAAAAAAACHAAAAAAAAAAAAAAAAAA==
           version: 7
         2,1:
           ind: 2,1
@@ -1884,6 +1884,7 @@ entities:
             25822: 41,103
             25995: 18,103
             26006: 22,107
+            26153: 26,103
         - node:
             color: '#FFFFFFFF'
             id: BrickTileSteelLineS
@@ -5511,6 +5512,7 @@ entities:
             26133: 24,97
             26134: 24,98
             26135: 24,99
+            26150: 23,100
         - node:
             zIndex: 2
             color: '#FFFFFFFF'
@@ -5646,6 +5648,7 @@ entities:
             23328: 89,107
             23329: 90,107
             23330: 91,107
+            26151: 21,97
         - node:
             zIndex: 2
             color: '#FFFFFFFF'
@@ -5776,6 +5779,7 @@ entities:
             23324: 91,105
             23325: 92,105
             23326: 93,105
+            26152: 21,97
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -6034,6 +6038,7 @@ entities:
             26129: 22,97
             26131: 22,99
             26132: 22,98
+            26149: 23,100
         - node:
             zIndex: 2
             color: '#FFFFFFFF'
@@ -10550,7 +10555,7 @@ entities:
             1: 52416
           1,18:
             0: 4369
-            1: 200
+            1: 204
           1,19:
             1: 65280
           1,20:
@@ -10560,7 +10565,7 @@ entities:
           2,17:
             1: 57304
           2,18:
-            1: 220
+            1: 221
             0: 16384
           2,19:
             1: 8160
@@ -10725,13 +10730,13 @@ entities:
             0: 1
             1: 65484
           5,24:
-            1: 57304
+            1: 60664
           6,21:
             1: 52428
           6,22:
             1: 52428
           6,24:
-            1: 65500
+            1: 57340
           7,21:
             1: 56829
           7,22:
@@ -10749,59 +10754,52 @@ entities:
           8,23:
             1: 32626
           4,24:
-            0: 4368
-            1: 52416
+            1: 61152
           3,24:
             0: 12048
           4,25:
-            0: 1
-            1: 60940
-          3,25:
-            0: 22002
+            1: 65294
           4,26:
-            1: 34958
-            0: 4352
-          3,26:
-            0: 50421
+            1: 65535
           4,27:
-            0: 3619
+            1: 61102
+          3,27:
+            0: 20002
+          4,28:
+            1: 10
           5,25:
-            1: 64909
+            1: 65512
           5,26:
-            1: 56781
+            1: 65535
           5,27:
-            0: 256
-            1: 17484
+            1: 239
+            0: 57344
           5,28:
-            1: 68
+            0: 10
           6,25:
-            1: 57293
+            1: 65532
           6,26:
-            1: 30495
+            1: 65535
           6,27:
-            1: 4375
-            0: 49152
+            1: 61103
           6,28:
-            1: 17
-            0: 192
+            1: 10
           7,25:
             1: 65309
           7,26:
-            1: 63351
+            1: 4381
+            0: 17408
           7,27:
-            1: 17487
-            0: 4096
+            0: 17988
           7,28:
-            1: 68
-            0: 16
+            0: 6
           8,24:
             1: 30711
           8,25:
             1: 65287
           8,26:
-            1: 30591
-          8,27:
-            1: 4375
+            1: 31
+            0: 50176
           8,4:
             0: 43765
           8,3:
@@ -10874,7 +10872,7 @@ entities:
           10,12:
             1: 14327
           11,9:
-            1: 56797
+            1: 56733
           11,10:
             1: 7633
           11,11:
@@ -10926,7 +10924,7 @@ entities:
           9,19:
             1: 58895
           9,20:
-            1: 65278
+            1: 61182
           10,17:
             1: 65528
           10,18:
@@ -10934,7 +10932,7 @@ entities:
           10,19:
             1: 47547
           10,20:
-            1: 47547
+            1: 55739
           11,17:
             1: 65523
           11,18:
@@ -10963,9 +10961,9 @@ entities:
           9,24:
             1: 61567
           10,21:
-            1: 49087
+            1: 57311
           10,22:
-            1: 65528
+            1: 65532
           10,23:
             1: 48043
           10,24:
@@ -10988,20 +10986,15 @@ entities:
           12,23:
             1: 15281
             2: 8
-          8,28:
-            1: 17
           9,25:
-            1: 65392
+            1: 65295
           9,26:
-            1: 47
-          9,27:
-            0: 1792
+            1: 15
+            0: 63488
           10,25:
             1: 65327
           10,26:
             1: 47
-          10,27:
-            0: 1792
           11,25:
             1: 65248
           11,26:
@@ -11114,7 +11107,7 @@ entities:
           14,11:
             1: 58606
           14,12:
-            1: 57598
+            1: 58607
           15,9:
             1: 33787
           15,10:
@@ -11163,7 +11156,7 @@ entities:
           16,13:
             1: 61439
           16,14:
-            1: 65264
+            1: 61168
           16,15:
             1: 61167
           13,17:
@@ -11183,7 +11176,7 @@ entities:
           14,20:
             1: 2005
           15,17:
-            1: 61007
+            1: 61199
           15,18:
             1: 4094
           15,19:
@@ -11191,7 +11184,7 @@ entities:
           15,20:
             1: 61439
           16,16:
-            1: 65358
+            1: 65294
           16,17:
             1: 61071
           16,19:
@@ -11248,7 +11241,7 @@ entities:
             0: 48
             1: 63624
           15,26:
-            1: 62927
+            1: 64975
           15,27:
             1: 62685
           15,28:
@@ -11261,9 +11254,9 @@ entities:
           16,26:
             1: 61631
           16,27:
-            1: 63743
+            1: 59647
           16,28:
-            1: 65535
+            1: 20207
           16,29:
             1: 15
             0: 61696
@@ -11279,7 +11272,7 @@ entities:
           16,32:
             0: 70
           17,28:
-            1: 7647
+            1: 3551
           17,29:
             1: 205
             0: 28928
@@ -11354,7 +11347,7 @@ entities:
           18,3:
             1: 12607
           17,4:
-            1: 49080
+            1: 16312
           18,4:
             1: 14199
           18,-1:
@@ -11450,7 +11443,7 @@ entities:
           17,13:
             1: 61158
           17,16:
-            1: 65291
+            1: 65307
           18,13:
             1: 49082
           18,14:
@@ -11733,7 +11726,7 @@ entities:
           23,15:
             1: 65535
           23,16:
-            1: 32551
+            1: 32559
           24,12:
             1: 7103
           24,13:
@@ -11765,7 +11758,7 @@ entities:
           23,20:
             1: 65339
           24,16:
-            1: 65520
+            1: 65504
           24,17:
             1: 61695
           24,18:
@@ -11795,7 +11788,7 @@ entities:
           23,23:
             1: 15290
           22,24:
-            1: 65528
+            1: 49080
           23,24:
             1: 46079
           24,20:
@@ -12046,7 +12039,7 @@ entities:
             1: 65535
           28,14:
             0: 240
-            1: 1792
+            1: 3840
             3: 57344
           28,15:
             1: 176
@@ -12078,7 +12071,7 @@ entities:
             1: 41983
           28,18:
             0: 52992
-            4: 14
+            6: 14
           28,19:
             1: 47345
           27,20:
@@ -12262,7 +12255,7 @@ entities:
           32,11:
             0: 20300
           28,16:
-            5: 14
+            4: 14
             3: 3584
           29,12:
             1: 53616
@@ -12304,7 +12297,7 @@ entities:
             0: 12532
           28,17:
             3: 14
-            6: 3584
+            5: 3584
           29,18:
             0: 61986
           29,19:
@@ -12433,6 +12426,12 @@ entities:
             0: 7952
           2,25:
             0: 199
+          3,25:
+            0: 8818
+          3,26:
+            0: 8742
+          3,28:
+            0: 12
           8,1:
             0: 64170
           8,2:
@@ -12655,15 +12654,15 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-            Oxygen: 6666.982
-        - volume: 2500
-          temperature: 293.15
-          moles:
             Plasma: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
             Nitrogen: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Oxygen: 6666.982
         chunkSize: 4
     - type: RadiationGridResistance
     - type: NavMap
@@ -14078,7 +14077,7 @@ entities:
       pos: 86.5,32.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -124026.68
+      secondsUntilStateChange: -124510.484
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14537,7 +14536,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -96689.36
+      secondsUntilStateChange: -97173.164
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -14944,6 +14943,8 @@ entities:
     - type: Transform
       pos: 27.5,96.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 5359
     components:
     - type: Transform
@@ -14971,6 +14972,8 @@ entities:
     - type: Transform
       pos: 26.5,96.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 13602
     components:
     - type: Transform
@@ -31506,6 +31509,16 @@ entities:
     components:
     - type: Transform
       pos: 61.5,24.5
+      parent: 1
+  - uid: 20182
+    components:
+    - type: Transform
+      pos: 27.5,97.5
+      parent: 1
+  - uid: 20183
+    components:
+    - type: Transform
+      pos: 27.5,100.5
       parent: 1
   - uid: 20192
     components:
@@ -50692,6 +50705,21 @@ entities:
     - type: Transform
       pos: 57.5,25.5
       parent: 1
+  - uid: 20184
+    components:
+    - type: Transform
+      pos: 42.5,103.5
+      parent: 1
+  - uid: 20185
+    components:
+    - type: Transform
+      pos: 43.5,103.5
+      parent: 1
+  - uid: 20186
+    components:
+    - type: Transform
+      pos: 44.5,103.5
+      parent: 1
   - uid: 20355
     components:
     - type: Transform
@@ -62680,6 +62708,35 @@ entities:
     - type: Transform
       pos: 72.53213,29.516571
       parent: 1
+- proto: ClothingOuterHardsuitMaxim
+  entities:
+  - uid: 20193
+    components:
+    - type: MetaData
+      name: минимальный скафандр утилизатора
+    - type: Transform
+      pos: 0.5,34.5
+      parent: 1
+    - type: ClothingSpeedModifier
+      walkModifier: 0.7
+    - type: GroupExamine
+      group:
+      - hoverMessage: ""
+        contextText: verb-examine-group-other
+        icon: /Textures/Interface/examine-star.png
+        components:
+        - Armor
+        - ClothingSpeedModifier
+        entries:
+        - message: Понижает вашу скорость ходьбы на [color=yellow]30%[/color].
+          priority: 0
+          component: ClothingSpeedModifier
+        title: null
+    missingComponents:
+    - Armor
+    - ExplosionResistance
+    - StaminaResistance
+    - ModifyDelayedKnockdown
 - proto: ClothingShoesBootsCowboyBlackFilled
   entities:
   - uid: 11094
@@ -125334,6 +125391,21 @@ entities:
     - type: Transform
       pos: 34.5,56.5
       parent: 1
+  - uid: 20188
+    components:
+    - type: Transform
+      pos: 31.5,51.5
+      parent: 1
+  - uid: 20189
+    components:
+    - type: Transform
+      pos: 30.5,47.5
+      parent: 1
+  - uid: 20190
+    components:
+    - type: Transform
+      pos: 31.5,49.5
+      parent: 1
 - proto: SpawnPointChaplain
   entities:
   - uid: 4175
@@ -125634,6 +125706,11 @@ entities:
     components:
     - type: Transform
       pos: 34.5,42.5
+      parent: 1
+  - uid: 20191
+    components:
+    - type: Transform
+      pos: 33.5,48.5
       parent: 1
   - uid: 23357
     components:
