@@ -9,6 +9,7 @@ using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.Overlays;
 using Content.Shared.Security;
+using Content.Shared.Security.Components;
 using Content.Shared.StationRecords;
 using Robust.Shared.Utility;
 
@@ -34,6 +35,9 @@ public sealed class CriminalRecordExamineSystem : EntitySystem
     {
         // Keep this server-side: full criminal records are stored in station records, not on the examined mob.
         if (args.Examiner == ent.Owner || !HasSecurityHud(args.Examiner))
+            return;
+
+        if (!HasComp<CriminalRecordComponent>(ent.Owner))
             return;
 
         if (!TryGetCriminalRecord(ent.Owner, out var record) ||
@@ -116,3 +120,4 @@ public sealed class CriminalRecordExamineSystem : EntitySystem
         };
     }
 }
+
