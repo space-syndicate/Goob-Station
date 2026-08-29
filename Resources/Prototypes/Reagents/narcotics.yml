@@ -232,6 +232,11 @@
           min: 1
         reagent: ChloralHydrate
         amount: -10
+      # CorvaxGoob-Start
+      - !type:AdjustReagent
+        reagent: Haloperidol
+        amount: -3.0
+      # CorvaxGoob-Start
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
         time: 3
