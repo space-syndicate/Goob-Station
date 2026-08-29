@@ -1888,9 +1888,9 @@
       - !type:AdjustReagent
         reagent: Ephedrine
         amount: -3.0
-      - !type:AdjustReagent
-        reagent: Stimulants
-        amount: -1.0 #Goobstation edit
+      #- !type:AdjustReagent # CorvaxGoob edit: Галоперидол больше не выводит гиперизин. 
+      #  reagent: Stimulants
+      #  amount: -1.0 #Goobstation edit
       - !type:AdjustReagent
         reagent: THC
         amount: -3.0
