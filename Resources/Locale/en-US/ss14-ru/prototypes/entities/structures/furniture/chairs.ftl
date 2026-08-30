@@ -50,3 +50,5 @@ ent-CardStool = cardboard stool
     .desc = Make sure you sit *really* gently.
 ent-WoodenBench = wooden bench
     .desc = Did you get a splinter? Well, at least it’s eco friendly.
+ent-ChairXeno = xeno chair
+    .desc = { ent-StoolBase.desc }

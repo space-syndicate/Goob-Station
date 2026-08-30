@@ -1,5 +1,5 @@
-// SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-//
+/*
+// CorvaxGoob-Footprint-Refactoring
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 namespace Content.Goobstation.Common.Footprints;
@@ -37,3 +37,4 @@ public sealed partial class FootprintOwnerComponent : Component
     [DataField]
     public float NextFootOffset = 0.0625f;
 }
+*/

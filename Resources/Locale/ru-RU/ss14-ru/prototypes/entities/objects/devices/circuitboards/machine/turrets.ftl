@@ -8,3 +8,7 @@ ent-WeaponEnergyTurretSecurityMachineCircuitboard = { ent-WeaponEnergyTurretStat
 ent-WeaponEnergyTurretAIMachineCircuitboard = охранная турель ИИ (машинная плата)
     .desc = Печатная плата для охранной турели ИИ.
     .suffix = ИИ, Борги
+
+ent-WeaponEnergyTurretCommandMachineCircuitboard = { ent-WeaponEnergyTurretStationMachineCircuitboardBase }
+    .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
+    .suffix = Командование

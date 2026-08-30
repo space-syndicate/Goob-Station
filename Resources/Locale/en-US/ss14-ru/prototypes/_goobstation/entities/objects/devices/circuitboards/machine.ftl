@@ -18,3 +18,5 @@ ent-StationRadioCircuitboard = station radio machine board
     .desc = A machine printed circuit board for a station radio receiver.
 ent-VirologyServerMachineCircuitboard = virology server machine board
     .desc = A machine printed circuit board for a virology server.
+ent-ServiceEnergyChemMachineCircuitboard = energy food synthesizer machine board
+    .desc = A machine printed circuit board for a energy food synthesizer.

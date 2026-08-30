@@ -33,3 +33,13 @@ station-ai-icon-smiley = Улыбка
 station-ai-hologram-female = Женский образ
 station-ai-hologram-male = Мужской образ
 station-ai-hologram-face = Бестелесная голова
+
+station-ai-has-no-power-for-upload = Загрузка не удалась — ядро ИИ обесточено.
+
+station-ai-is-too-damaged-for-upload = Загрузка не удалась — ядро ИИ нужно отремонтировать.
+
+station-ai-core-losing-power = Ваше ядро ИИ питается от резервной батареи.
+
+station-ai-core-critical-power = Ваше ядро ИИ имеет критически низкий уровень энергии. Возобновите внешнее питание, иначе может произойти серьёзное повреждение данных!
+
+ai-device-no-access = У вас нет доступа к этому устройству

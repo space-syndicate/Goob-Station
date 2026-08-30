@@ -1,10 +1,8 @@
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aineias1 <142914808+Aineias1@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.Configuration;
+using Content.Shared.Administration; // CorvaxGoob
+using Content.Shared.CCVar.CVarAccess; // CorvaxGoob
 
 namespace Content.Shared.CCVar;
 
@@ -15,6 +13,7 @@ public sealed partial class CCVars
     ///     After the period has passed, the count resets.
     /// </summary>
     /// <seealso cref="ChatRateLimitCount"/>
+    [CVarControl(AdminFlags.VarEdit)] // CorvaxGoob
     public static readonly CVarDef<float> ChatRateLimitPeriod =
         CVarDef.Create("chat.rate_limit_period", 2f, CVar.SERVERONLY);
 
@@ -26,6 +25,7 @@ public sealed partial class CCVars
     ///     <see cref="ChatRateLimitCount"/> divided by <see cref="ChatRateLimitCount"/>.
     /// </remarks>
     /// <seealso cref="ChatRateLimitPeriod"/>
+    [CVarControl(AdminFlags.VarEdit)] // CorvaxGoob
     public static readonly CVarDef<int> ChatRateLimitCount =
         CVarDef.Create("chat.rate_limit_count", 10, CVar.SERVERONLY);
 

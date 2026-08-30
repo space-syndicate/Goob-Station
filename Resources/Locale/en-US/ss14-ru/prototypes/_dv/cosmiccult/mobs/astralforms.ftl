@@ -1,7 +1,10 @@
-ent-MobCosmicAstralAscended = astral ascended
-    .desc = Transcendant, ascendant.
 ent-MobCosmicAstralProjection = astral projection
     .desc = Neither here nor there.
-ent-MobRogueAscended = rogue ascended
-    .desc = An entity from beyond the borders of bluespace. Its contours continuously blur and blend together, unnerving to the eye.
-    .suffix = MidRoundAntag
+ent-MobCosmicAstralAscended = astral ascended
+    .desc = Transcendant, ascendant.
+ent-MobCosmicCustodian = malign custodian
+    .desc = An abomination wrought of malign mass. It floats with a weightless, unnerving grace.
+ent-MobCosmicOracle = malign oracle
+    .desc = An abomination wrought of malign mass. Its gaze seeks relentlessly.
+ent-MobCosmicLodestar = malign lodestar
+    .desc = An abomination wrought of malign mass. A searing light glimmers within.

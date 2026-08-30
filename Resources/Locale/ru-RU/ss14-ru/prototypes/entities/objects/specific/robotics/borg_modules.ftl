@@ -140,3 +140,21 @@ ent-BorgModuleSurgery = хирургический модуль борга
     .desc = { ent-BaseBorgModuleMedical.desc }
 ent-BorgModuleAdvancedSurgery = продвинутый хирургический модуль борга
     .desc = { ent-BaseBorgModuleMedical.desc }
+
+ent-BorgModuleArtistry = художественный модуль киборга
+    .desc = Модуль для занятий искусством, пока станция горит!
+
+ent-BorgModuleInflatable = надувной модуль киборга
+    .desc = { ent-BaseBorgModule.desc }
+
+ent-BorgModuleAdvancedTopical = продвинутый модуль первой помощи киборга
+    .desc = Продвинутый медицинский модуль, содержащий киборговую версию многожеланного гипоспрея. Теперь ваши киборги могут ещё быстрее вводить вредителям хлоральгидрат!
+
+ent-BorgModuleDoubleEsword = модуль киборга с двухклинковым энергомечом
+    .desc = Модуль, в который входит двухклинковый энергетический меч.
+
+ent-BorgModuleC20r = модуль киборга с C-20r ROW
+    .desc = Модуль с пистолетом-пулемётом C-20r, стреляющим очередями.
+
+ent-XenoborgModuleDoorControl = модуль контроля шлюзов ксеноборгов
+    .desc = Модуль позволяющий ксеноборгам контролировать шлюзы.

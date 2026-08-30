@@ -1,22 +1,3 @@
-// SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 E F R <602406+Efruit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Galactic Chimp <63882831+GalacticChimp@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 moonheart08 <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 KrasnoshchekovPavel <119816022+KrasnoshchekovPavel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Stalen <33173619+stalengd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 icekot8 <93311212+icekot8@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Myra <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2025 pathetic meowmeow <uhhadd@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Globalization;
@@ -77,6 +58,18 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
+            /// CorvaxGoob - Nuclear Reactor localization - start
+            _loc.AddFunction(cultureEn, "PRESSURE", FormatPressure);
+            _loc.AddFunction(cultureEn, "POWERWATTS", FormatPowerWatts);
+            _loc.AddFunction(cultureEn, "POWERJOULES", FormatPowerJoules);
+            _loc.AddFunction(cultureEn, "ENERGYWATTHOURS", FormatEnergyWattHours);
+            _loc.AddFunction(cultureEn, "UNITS", FormatUnits);
+            _loc.AddFunction(cultureEn, "TOSTRING", args => FormatToString(cultureEn, args));
+            _loc.AddFunction(cultureEn, "LOC", FormatLoc);
+            _loc.AddFunction(cultureEn, "NATURALFIXED", FormatNaturalFixed);
+            _loc.AddFunction(cultureEn, "NATURALPERCENT", FormatNaturalPercent);
+            _loc.AddFunction(cultureEn, "PLAYTIME", FormatPlaytime);
+            /// CorvaxGoob - Nuclear Reactor localization - end
         }
 
         private ILocValue FormatMany(LocArgs args)
@@ -176,7 +169,7 @@ namespace Content.Shared.Localizations
                 <= 0 => string.Empty,
                 1 => list[0],
                 2 => $"{list[0]} or {list[1]}",
-                _ => $"{string.Join(" or ", list)}"
+                _ => $"{string.Join(", ", list.GetRange(0, list.Count - 1))}, or {list[^1]}"
             };
         }
 

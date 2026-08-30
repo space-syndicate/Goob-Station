@@ -30,4 +30,3 @@ ent-ClothingHeadHelmetGoldenMusician = золотой DJ шлем
     .desc = Старый золотой шлем, принадлежащий участнику популярного музыкального дуэта. Harder, better, faster, stronger.
 ent-ClothingHeadHatPwigFancy = шикарный парик
     .desc = Честно говоря, они выглядят нелепо.
-

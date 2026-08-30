@@ -3,7 +3,6 @@ store-currency-nt-loyalty-point = Очки лояльности NT
 store-preset-name-ntr = Магазин ПNT
 ntr-scan-fail = ОШИБКА: Предмет отклонён протоколом сканирования.
 ntr-scan-success = Успешно зачислено { $amount } очков лояльности.
-
 # Каталог
 # Станция
 ntr-executive-spesos-small-name = Малый денежный грант
@@ -26,7 +25,6 @@ ntr-executive-eva-crate-name = Набор ВКД
 ntr-executive-eva-crate-desc = Ящик с двумя аварийными ВКД, которые помогут вам и вашим людям выжить в катастрофической ситуации.
 ntr-executive-mindshield-crate-name = Ящик имплантов Щит Разума
 ntr-executive-mindshield-crate-desc = Ящик с тремя имплантатами "Щит Разума". NanoTrasen рекомендует в любом случае покупать их в отделе снабжения.
-
 # Персональное
 ntr-executive-bsd-name = Вызвать заместителя офицера "Синий Щит"
 ntr-executive-bsd-desc = Запросите заместителя офицера "Синий Щит" с Центрального Командования. Этот личный охранник для вас или руководства требует веского обоснования. Можно вызвать только одного.
@@ -60,7 +58,6 @@ ntr-executive-soap-name = Мыло ЦК
 ntr-executive-soap-desc = Дорогое мыло, изготовленное из наших лучших... кого я обманываю, это просто мыло, покрытое смазкой и с принтом.
 ntr-executive-cig-vendor-name = ShadyCigs премиум
 ntr-executive-cig-vendor-desc = Для тех, кто знает, что рака лёгких не существует, NanoTrasen создала этот торгомат, полный сигарет и дорогих зажигалок, чтобы вы могли курить с комфортом.
-
 # Команды реагирования
 ntr-executive-ert-sec-name = Вызвать ОБР
 ntr-executive-ert-sec-desc = Запросите подразделение службы безопасности из ОБР Центрального Командования. Применяется при чрезвычайных угрозах, таких как ядерные оперативники или революции. Злоупотребление приведёт к серьёзным последствиям.
@@ -72,7 +69,6 @@ ntr-executive-ert-jani-name = Вызвать Уборочный ОБР
 ntr-executive-ert-jani-desc = Запросите уборочное подразделение ОБР. Специализируется на уборке и дезинфекции после катастроф. Не является боевой единицей.
 ntr-executive-cburn-name = Вызвать РХБЗЗ
 ntr-executive-cburn-desc = Запросите РХБЗЗ. Специализируется на вирусных вспышках. Не пытайтесь вмешаться в их карантинные протоколы.
-
 # Редкие машинные платы
 ntr-executive-telecom-name = Платы серверов телекоммуникаций
 ntr-executive-telecom-desc = Ящик, содержащий 2 платы серверов телекоммуникаций. Необходимы для систем связи ИИ.
@@ -102,18 +98,15 @@ ntr-executive-id-name = Плата консоли ID-карт
 ntr-executive-id-desc = Высококачественная плата для создания консоли ID-карт.
 ntr-executive-task-console-flatpack-name = упакованная консоль заданий ПNT
 ntr-executive-task-console-flatpack-desc = Обычная упаковка, содержащая запасную консоль заданий для представителя корпорации.
-
 # Зловещее 
 ntr-executive-nuclear-codes-name = Коды ядерной аутентификации
 ntr-executive-nuclear-codes-desc = Нажмёшь не ту кнопку - и целой станции как не бывало. Так что, пожалуйста, не делайте импульсивных резких движений.
-
 # Категории
 ntr-executive-tier-1-name = Станция
 ntr-executive-tier-2-name = Команды реагирования
 ntr-executive-tier-3-name = Персональное
 ntr-executive-tier-4-name = Зловещее
 ntr-executive-tier-5-name = Редкие платы
-
 # Попытка вставки в консоль
 ntr-console-insert-deny = Неверно!
 ntr-console-insert-accept = Верно!
@@ -127,7 +120,6 @@ ntr-bounty-console-manifest-entry =
 ntr-bounty-console-flavor-left = Задания одобрены Центральным Командованием. Взятки под запретом... наверное.
 ntr-console-task-fail-insert = Задача не выполнена.
 ntr-console-reagent-fail = Недостаточно реагентов для выполнения задачи!
-
 # Экспериментальное
 ntr-console-no-solution = Не удалось найти раствор { $solutionName } в мензурке.
 ntr-console-missing-reagent = В мензурке отсутствует реагент { $reagent }.

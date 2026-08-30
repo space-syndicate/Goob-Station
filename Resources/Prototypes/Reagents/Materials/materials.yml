@@ -1,33 +1,3 @@
-# SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2021 Paul <ritter.paul1+git@googlemail.com>
-# SPDX-FileCopyrightText: 2021 Paul Ritter <ritter.paul1@googlemail.com>
-# SPDX-FileCopyrightText: 2021 Swept <sweptwastaken@protonmail.com>
-# SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Chris V <HoofedEar@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Morb <14136326+Morb0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-# SPDX-FileCopyrightText: 2022 Visne <39844191+Visne@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Jeff <velcroboy333@hotmail.com>
-# SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 MisterMecky <mrmecky@hotmail.com>
-# SPDX-FileCopyrightText: 2023 PixelTK <85175107+PixelTheKermit@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Rane <60792108+Elijahrane@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 RiceMar1244 <138547931+RiceMar1244@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Tunguso4ka <71643624+Tunguso4ka@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Velcroboy <107660393+IamVelcroboy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 brainfood1183 <113240905+brainfood1183@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-# SPDX-FileCopyrightText: 2024 yglop <95057024+yglop@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: material
@@ -38,6 +8,9 @@
   icon: { sprite: /Textures/Objects/Misc/monkeycube.rsi, state: cube }
   color: "#8A9A5B"
   price: 0.1
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    flammable: 3
 
 - type: material
   id: Cardboard
@@ -46,6 +19,11 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: cardboard }
   color: "#70736c"
   price: 0.025
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    hard: 1
+    density: 2
+    flammable: 4
 
 - type: material
   id: Cloth
@@ -55,6 +33,11 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: cloth }
   color: "#e7e7de"
   price: 0.05
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    hard: 1
+    density: 1
+    flammable: 2
 
 - type: material
   id: Durathread
@@ -65,6 +48,13 @@
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: durathread }
   color: "#8291a1"
   price: 0.35 # 1-1 mix of plastic and cloth.
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 8
+    thermal: 9
+    hard: 4
+    density: 5
+    flammable: 2
+    chemical: 7
 
 - type: material
   id: Paper
@@ -73,6 +63,11 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: paper }
   color: "#d9d9d9"
   price: 0.01 # it's paper bro what do you expect?
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 2
+    hard: 1
+    density: 1
+    flammable: 6
 
 - type: material
   id: Plasma
@@ -81,6 +76,15 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: plasma }
   color: "#7e009e"
   price: 0.35 # $35 for 1 unit
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 5
+    thermal: 3
+    hard: 2
+    density: 1
+    flammable: 8
+    chemical: 5
+    radioactive: 2
+    plasma_offgas: 10
 
 - type: material
   id: Plastic
@@ -89,6 +93,12 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: plastic }
   color: "#d9d9d9"
   price: 0.20 # $20 for 1 unit
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 2
+    thermal: 3
+    hard: 1
+    density: 3
+    chemical: 5
 
 - type: material
   id: Wood
@@ -98,6 +108,11 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: wood }
   color: "#966F33"
   price: 0.10 # $10 for 1 unit
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    hard: 3
+    density: 5
+    flammable: 4
 
 - type: material
   id: Uranium
@@ -106,6 +121,14 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: uranium }
   color: "#32a852"
   price: 0.85 # $85 for 1 unit
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    thermal: 3
+    hard: 5
+    density: 7
+    chemical: 6
+    radioactive: 4
+    n_radioactive: 3
 
 - type: material
   id: Bananium
@@ -115,6 +138,16 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: bananium }
   color: "#32a852"
   price: 1.0 # $100 for 1 unit
+  # Interpolated properties, 50/50 biomass/uranium
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    thermal: 4
+    hard: 4
+    density: 5
+    flammable: 1.5
+    chemical: 4.5
+    radioactive: 7 # Not interpolated, PRAISE THE HONKMOTHER
+    n_radioactive: 1.5
 
 - type: material
   id: Meaterial # you can't take this pun from me
@@ -123,6 +156,11 @@
   icon: { sprite: Objects/Materials/Sheets/meaterial.rsi, state: meat }
   color: "#c53648"
   price: 0.05
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    hard: 1
+    density: 3
+    flammable: 3
 
 - type: material
   id: WebSilk
@@ -131,6 +169,12 @@
   icon: { sprite: Objects/Materials/silk.rsi, state: icon }
   color: "#eeeeee" #eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   price: 0 # Maybe better for it to be priceless, knowing how greedy cargo is.
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    thermal: 4
+    hard: 1
+    density: 6
+    flammable: 5
 
 - type: material
   id: Cotton
@@ -147,6 +191,11 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: bones }
   color: "#896f5e"
   price: 0
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    hard: 5
+    density: 3
+    flammable: 2
 
 - type: material
   id: Coal
@@ -156,6 +205,11 @@
   icon: { sprite: Objects/Materials/ore.rsi, state: coal }
   color: "#404040"
   price: 0.1 # $10 for 1 unit
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 4
+    hard: 3
+    density: 2
+    flammable: 5
 
 - type: material
   id: Gunpowder
@@ -164,6 +218,9 @@
   icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
   color: "#A9A9A9"
   price: 0
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 3
+    flammable: 8
 
 - type: material
   id: Diamond
@@ -173,3 +230,9 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: diamond }
   color: "#80ffff"
   price: 20 # big diamond gaslit us so hard diamonds actually became extremely rare
+  properties: # CorvaxGoob - Nuclear Reactor
+    electrical: 3
+    thermal: 3
+    hard: 7
+    density: 6
+    chemical: 5

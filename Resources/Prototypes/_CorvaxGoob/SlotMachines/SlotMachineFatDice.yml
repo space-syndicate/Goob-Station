@@ -16,6 +16,8 @@
           True: { visible: true }
           False: { visible: false }
   - type: Appearance
+  - type: Anchorable
+    flags: Anchorable
   - type: SlotMachine
     smallWinChance: 0
     mediumWinChance: 0
@@ -24,6 +26,9 @@
     godPotWinChance: 0.05
     godPotPrize: DiceOfFate
     deleteGodPot: true
+    limitSpins: true
+    countSpins: 7
     spinDamage:
       types:
-        Cellular: 20
+        Blunt: 30
+        Cellular: 15

@@ -2,15 +2,11 @@
 spray-painter-ammo-on-examine = В нём { $charges } заряда.
 spray-painter-ammo-after-interact-full = Краскопульт полный!
 spray-painter-ammo-after-interact-refilled = Вы заправили краскопульт.
-
 spray-painter-interact-no-charges = Недостаточно краски.
 spray-painter-interact-nothing-to-remove = Убирать нечего!
-
 spray-painter-on-examined-painted-message = Похоже, его только что покрасили.
 spray-painter-style-not-available = Невозможно применить выбранный стиль к данному типу шлюза.
-
 spray-painter-verb-toggle-decals = Переключить нанесение наклеек
-
 spray-painter-item-status-label = Наклейки: { $mode }
 spray-painter-item-status-add = [color=green]Добавить[/color]
 spray-painter-item-status-remove = [color=red]Удалить[/color]
@@ -21,12 +17,10 @@ spray-painter-selected-style = Выбранный стиль:
 spray-painter-selected-decals = Выбранная наклейка:
 spray-painter-use-custom-color = Использовать свой цвет
 spray-painter-use-snap-to-tile = Привязка к тайлу
-
 spray-painter-angle-rotation = Поворот:
 spray-painter-angle-rotation-90-sub = -90°
 spray-painter-angle-rotation-reset = 0°
 spray-painter-angle-rotation-90-add = +90°
-
 spray-painter-selected-color = Выбранный цвет:
 spray-painter-color-red = красный
 spray-painter-color-yellow = жёлтый
@@ -46,14 +40,11 @@ spray-painter-tab-category-decals = Наклейки
 # Groups (subtabs)
 spray-painter-tab-group-airlockstandard = Стандартный
 spray-painter-tab-group-airlockglass = Стеклянный
-
 spray-painter-tab-group-cratesteel = Стальной
 spray-painter-tab-group-crateplastic = Пластиковый
 spray-painter-tab-group-cratesecure = Защищённый
-
 spray-painter-tab-group-closet = Незапертый
 spray-painter-tab-group-locker = Защищённый
-
 spray-painter-tab-group-wallcloset = Незапертый (Настенный)
 spray-painter-tab-group-walllocker = Защищённый (Настенный)
 # Airlocks
@@ -71,7 +62,6 @@ spray-painter-style-airlockstandard-salvage = Утилизаторский
 spray-painter-style-airlockstandard-science = Научный
 spray-painter-style-airlockstandard-security = Служба Безопасности
 spray-painter-style-airlockstandard-virology = Вирусология
-
 spray-painter-style-airlockglass-atmospherics = Атмосферный
 spray-painter-style-airlockglass-basic = Базовый
 spray-painter-style-airlockglass-cargo = Грузовой
@@ -111,7 +101,6 @@ spray-painter-style-locker-salvage = Утилизатор
 spray-painter-style-locker-scientist = Учёный
 spray-painter-style-locker-security = Служба безопасности
 spray-painter-style-locker-welding = Сварочный
-
 spray-painter-style-closet-basic = Базовый
 spray-painter-style-closet-biohazard = Биозащита
 spray-painter-style-closet-biohazard-science = Биозащита (научный)
@@ -128,7 +117,6 @@ spray-painter-style-closet-nitrogen = Аварийный (азот)
 spray-painter-style-closet-oxygen = Аварийрный (кислород)
 spray-painter-style-closet-radiation = Противорадиационный костюм
 spray-painter-style-closet-tool = Инструменты
-
 spray-painter-style-wallcloset-atmospherics = Атмосферный
 spray-painter-style-wallcloset-basic = Базовый
 spray-painter-style-wallcloset-black = Чёрный
@@ -143,7 +131,6 @@ spray-painter-style-wallcloset-oxygen = Аварийный (кислород)
 spray-painter-style-wallcloset-pink = Розовый
 spray-painter-style-wallcloset-white = Белый
 spray-painter-style-wallcloset-yellow = Жёлтый
-
 spray-painter-style-walllocker-evac = Эвакуация
 spray-painter-style-walllocker-medical = Медицинский
 # Crates
@@ -153,14 +140,12 @@ spray-painter-style-cratesteel-engineering = Инженерный
 spray-painter-style-cratesteel-radiation = Радиационный
 spray-painter-style-cratesteel-science = Научный
 spray-painter-style-cratesteel-surgery = Хирургический
-
 spray-painter-style-crateplastic-basic = Базовый
 spray-painter-style-crateplastic-chemistry = Химический
 spray-painter-style-crateplastic-command = Командный
 spray-painter-style-crateplastic-hydroponics = Гидропоника
 spray-painter-style-crateplastic-medical = Медицинский
 spray-painter-style-crateplastic-oxygen = Кислород
-
 spray-painter-style-cratesecure-basic = Базовый
 spray-painter-style-cratesecure-chemistry = Химический
 spray-painter-style-cratesecure-command = Командный

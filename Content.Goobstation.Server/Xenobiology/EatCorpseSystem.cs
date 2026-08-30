@@ -48,7 +48,7 @@ public sealed partial class EatCorpseSystem : EntitySystem
         MobStateComponent? targetState = null)
     {
         if (!Resolve(eaterUid, ref eater)
-            || !Resolve(targetUid, ref targetState, ref targetBody))
+            || !Resolve(targetUid, ref targetState, ref targetBody, logMissing: false)) //CorvaxGoob logMissing
             return false;
 
         if (!_mobState.IsDead(targetUid))

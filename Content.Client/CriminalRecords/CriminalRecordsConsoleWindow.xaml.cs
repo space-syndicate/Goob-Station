@@ -1,102 +1,29 @@
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Arendian <137322659+Arendian@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 CaasGit <87243814+CaasGit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <10968691+DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 EmoGarbage404 <retron404@gmail.com>
-// SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Flareguy <78941145+Flareguy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Hrosts <35345601+Hrosts@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ian <ignaz.k@live.de>
-// SPDX-FileCopyrightText: 2024 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Joel Zimmerman <JoelZimmerman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JustCone <141039037+JustCone14@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ko4ergaPunk <62609550+Ko4ergaPunk@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Kukutis96513 <146854220+Kukutis96513@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Lye <128915833+Lyroth001@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 MerrytheManokit <167581110+MerrytheManokit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 MureixloI <132683811+MureixloI@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 NakataRin <45946146+NakataRin@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 OrangeMoronage9622 <whyteterry0092@gmail.com>
-// SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Preston Smith <92108534+thetolbean@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Psychpsyo <60073468+Psychpsyo@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Repo <47093363+Titian3@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 RiceMar1244 <138547931+RiceMar1244@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Stalen <33173619+stalengd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 TakoDragon <69509841+BackeTako@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 TsjipTsjip <19798667+TsjipTsjip@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Unkn0wn_Gh0st <shadowstalkermll@gmail.com>
-// SPDX-FileCopyrightText: 2024 Vasilis <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2024 Vigers Ray <60344369+VigersRay@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deathride58 <deathride58@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 dffdff2423 <dffdff2423@gmail.com>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 foboscheshir <156405958+foboscheshir@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-// SPDX-FileCopyrightText: 2024 saintmuntzer <47153094+saintmuntzer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 shamp <140359015+shampunj@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 strO0pwafel <153459934+strO0pwafel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 stroopwafel <j.o.luijkx@student.tudelft.nl>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 to4no_fix <156101927+chavonadelal@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 voidnull000 <18663194+voidnull000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 James Simonson <jamessimo89@gmail.com>
-// SPDX-FileCopyrightText: 2025 Soup-Byte07 <135303377+Soup-Byte07@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client.Humanoid;
+using Content.Client.Message;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CriminalRecords;
 using Content.Shared.Dataset;
-using Content.Shared.Random.Helpers;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
+using Content.Shared.StatusIcon;
 using Robust.Client.AutoGenerated;
+using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Client.Utility;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
-using Content.Shared.StatusIcon;
-using Robust.Client.GameObjects;
 
 namespace Content.Client.CriminalRecords;
 
@@ -111,7 +38,11 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
     [Dependency] private readonly IEntityManager _entManager = default!;
     private readonly SpriteSystem _spriteSystem;
 
+    private readonly HumanoidAppearanceSystem _humanoidAppearance; // CorvaxGoob-SecurityFeatures
+
     public readonly EntityUid Console;
+
+    private EntityUid? _previewEntity; // CorvaxGoob-SecurityFeatures
 
     private static readonly ProtoId<LocalizedDatasetPrototype> ReasonPlaceholders = "CriminalRecordsWantedReasonPlaceholders";
 
@@ -122,6 +53,8 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
     public Action<CriminalRecord, bool, bool>? OnHistoryUpdated;
     public Action? OnHistoryClosed;
     public Action<SecurityStatus, string>? OnDialogConfirmed;
+    public Action<string, int, bool>? OnDialogDetainedConfirmed; // CorvaxGoob-SecurityFeatures
+    public Action<string, bool>? OnDialogWantedConfirmed; // CorvaxGoob-SecurityFeatures
 
     public Action<SecurityStatus>? OnStatusFilterPressed;
     private uint _maxLength;
@@ -135,6 +68,9 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private SecurityStatus _currentCrewListFilter;
 
+    private Direction _previewRotation = Direction.North; // CorvaxGoob-SecurityFeatures
+
+
     public CriminalRecordsConsoleWindow(EntityUid console, uint maxLength, IPlayerManager playerManager, IPrototypeManager prototypeManager, IRobustRandom robustRandom, AccessReaderSystem accessReader)
     {
         RobustXamlLoader.Load(this);
@@ -146,6 +82,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         _accessReader = accessReader;
         IoCManager.InjectDependencies(this);
         _spriteSystem = _entManager.System<SpriteSystem>();
+        _humanoidAppearance = _entManager.System<HumanoidAppearanceSystem>(); // CorvaxGoob-SecurityFeatures
 
         _maxLength = maxLength;
         _currentFilterType = StationRecordFilterType.Name;
@@ -225,6 +162,20 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             if (_selectedRecord is { } record)
                 OnHistoryUpdated?.Invoke(record, _access, true);
         };
+
+        // CorvaxGoob-SecurityFeatures-Start
+        SpriteRotateLeft.OnPressed += _ =>
+        {
+            _previewRotation = _previewRotation.TurnCw();
+            SetPreviewRotation(_previewRotation);
+        };
+
+        SpriteRotateRight.OnPressed += _ =>
+        {
+            _previewRotation = _previewRotation.TurnCcw();
+            SetPreviewRotation(_previewRotation);
+        };
+        // CorvaxGoob-SecurityFeatures-End
     }
 
     public void StatusFilterPressed(SecurityStatus statusSelected)
@@ -263,6 +214,15 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
         PersonContainer.Visible = selected;
         RecordUnselected.Visible = !selected;
+
+        // CorvaxGoob-SecurityFeatures-Start
+        SpriteView.Visible = selected;
+        NoRecordSelectedLabel.Visible = !selected;
+
+        SpriteRotateRight.Visible = selected;
+        SpriteRotateLeft.Visible = selected;
+        SpriteRotateSeparator.Visible = selected;
+        // CorvaxGoob-SecurityFeatures-End
 
         _access = _player.LocalSession?.AttachedEntity is {} player
             && _accessReader.IsAllowed(player, Console);
@@ -314,8 +274,71 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             PersonJobIcon.Texture = _spriteSystem.Frame0(proto.Icon);
         }
 
+        // CorvaxGoob-SecurityFeatures-Start
+        EntriesContainer.RemoveAllChildren();
+
+        if (criminalRecord.History.Count > 0)
+        {
+            // Heading
+            var historyRecordHeadTime = new RichTextLabel
+            {
+                HorizontalAlignment = HAlignment.Center,
+            };
+            historyRecordHeadTime.SetMarkup(Loc.GetString("Время"));
+            EntriesContainer.AddChild(historyRecordHeadTime);
+
+            var historyRecordHeadCrime = new RichTextLabel
+            {
+                HorizontalAlignment = HAlignment.Center,
+            };
+            historyRecordHeadCrime.SetMarkup(Loc.GetString("Статус"));
+            EntriesContainer.AddChild(historyRecordHeadCrime);
+
+            var historyRecordHeadInitiator = new RichTextLabel
+            {
+                HorizontalAlignment = HAlignment.Center,
+            };
+            historyRecordHeadInitiator.SetMarkup(Loc.GetString("Инициатор"));
+            EntriesContainer.AddChild(historyRecordHeadInitiator);
+            // Heading-End
+
+            criminalRecord.History.Reverse();
+            var currentRecordNum = 0;
+
+            foreach (var record in criminalRecord.History)
+            {
+                if (currentRecordNum >= 6)
+                    break;
+
+                var historyRecordTime = new RichTextLabel
+                {
+                    Margin = new Thickness(0, 0, 10, 0)
+                };
+                historyRecordTime.Text = record.AddTime.ToString(@"hh\:mm\:ss");
+
+                var historyRecordCrime = new RichTextLabel
+                {
+                    Margin = new Thickness(0, 0, 10, 0)
+                };
+                historyRecordCrime.Text = record.Crime;
+
+                var historyRecordInitiator = new RichTextLabel();
+                historyRecordInitiator.Text = record.InitiatorName;
+
+                EntriesContainer.AddChild(historyRecordTime);
+                EntriesContainer.AddChild(historyRecordCrime);
+                EntriesContainer.AddChild(historyRecordInitiator);
+                currentRecordNum++;
+            }
+            criminalRecord.History.Reverse();
+        }
+        // CorvaxGoob-SecurityFeatures-End
+
+
         PersonPrints.Text = stationRecord.Fingerprint ??  Loc.GetString("generic-not-available-shorthand");
         PersonDna.Text = stationRecord.DNA ??  Loc.GetString("generic-not-available-shorthand");
+
+        PersonSpecies.Text = Loc.GetString(stationRecord.Species) ?? Loc.GetString("generic-not-available-shorthand"); // CorvaxGoob-SecurityFeatures
 
         if (criminalRecord.Status != SecurityStatus.None)
         {
@@ -324,10 +347,25 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         PersonStatusTX.SetFromSpriteSpecifier(specifier);
         PersonStatusTX.DisplayRect.TextureScale = new Vector2(3f, 3f);
 
+        // CorvaxGoob-SecurityFeatures
+        if (criminalRecord.InitiatorName is { } initiator)
+        {
+            var message = FormattedMessage.FromMarkupOrThrow(Loc.GetString($"criminal-records-console-initiator"));
+            message.AddText($": {initiator}");
+
+            Initiator.SetMessage(message);
+            Initiator.Visible = true;
+        }
+        else
+        {
+            Initiator.Visible = false;
+        }
+
+        UpdatePreview(stationRecord); // CorvaxGoob-SecurityFeatures
+
         StatusOptionButton.SelectId((int)criminalRecord.Status);
         if (criminalRecord.Reason is { } reason)
         {
-
             var message = FormattedMessage.FromMarkupOrThrow(Loc.GetString($"criminal-records-console-{criminalRecord.Status.ToString().ToLower()}-reason"));
             message.AddText($": {reason}");
 
@@ -338,6 +376,48 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         {
             WantedReason.Visible = false;
         }
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void UpdatePreview(GeneralStationRecord stationRecord)
+    {
+        if (stationRecord.Visual is null)
+            return;
+
+        var visual = stationRecord.Visual.Value;
+
+        if (visual.SpeciesPrototype is null)
+            return;
+
+        if (_previewEntity is not null)
+            _entManager.DeleteEntity(_previewEntity);
+
+        var speciesPrototype = _proto.Index<SpeciesPrototype>(visual.SpeciesPrototype.Value);
+
+        _previewEntity = _entManager.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
+        var targetHumanoid = _entManager.EnsureComponent<HumanoidAppearanceComponent>(_previewEntity.Value);
+
+        if (visual.SkinColor is not null)
+            targetHumanoid.SkinColor = visual.SkinColor.Value;
+
+        if (visual.Markings is not null)
+            targetHumanoid.MarkingSet = visual.Markings;
+
+        if (visual.EyesColor is not null)
+            targetHumanoid.EyeColor = visual.EyesColor.Value;
+
+        if (visual.Sex is not null)
+            targetHumanoid.Sex = visual.Sex.Value;
+
+        _humanoidAppearance.UpdateSprite((_previewEntity.Value, targetHumanoid, _entManager.GetComponent<SpriteComponent>(_previewEntity.Value)));
+
+        SpriteView.SetEntity(_previewEntity.Value);
+        SpriteView.Visible = true;
+    }
+
+    private void SetPreviewRotation(Direction direction)
+    {
+        SpriteView.OverrideDirection = (Direction) ((int) direction % 4 * 2);
     }
 
     private void AddStatusSelect(SecurityStatus status)
@@ -353,13 +433,27 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private void SetStatus(SecurityStatus status)
     {
-        if (status == SecurityStatus.Wanted
-            || status == SecurityStatus.Suspected
-            || status == SecurityStatus.Search
-            || status == SecurityStatus.Dangerous
+        if (status == SecurityStatus.Suspected // CorvaxGoob-SecurityFeatures : Удалён Wanted
+            || status == SecurityStatus.Hostile
+            || status == SecurityStatus.Search // Goobstation
+            || status == SecurityStatus.Dangerous // Goobstation
             || status == SecurityStatus.Demote) // Goobstation
         {
             GetReason(status);
+            return;
+        }
+
+        // CorvaxGoob-SecurityFeatures
+        if (status == SecurityStatus.Detained)
+        {
+            GetDetainedInfo();
+            return;
+        }
+
+        // CorvaxGoob-SecurityFeatures
+        if (status == SecurityStatus.Wanted)
+        {
+            GetWantedReason();
             return;
         }
 
@@ -377,8 +471,9 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         var field = "reason";
         var title = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());
         var placeholders = _proto.Index(ReasonPlaceholders);
-        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", _random.Pick(placeholders))); // just funny it doesn't actually get used
+        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", Loc.GetString(_random.Pick(placeholders.Values)))); // CorvaxGoob-SecurityFeatures
         var prompt = Loc.GetString("criminal-records-console-reason");
+
         var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
         var entries = new List<QuickDialogEntry>() { entry };
         _reasonDialog = new DialogWindow(title, entries);
@@ -394,6 +489,74 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
     }
+
+    // CorvaxGoob-SecurityFeatures
+    private void GetDetainedInfo()
+    {
+        if (_reasonDialog != null)
+        {
+            _reasonDialog.MoveToFront();
+            return;
+        }
+
+        var articleField = "article";
+        var durationField = "duration";
+
+        var title = Loc.GetString("criminal-records-status-detained");
+
+        var entryArticles = new QuickDialogEntry(articleField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-articles"), Loc.GetString("criminal-records-console-articles-placeholder"));
+        var entryDuration = new QuickDialogEntry(durationField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-duration"), Loc.GetString("criminal-records-console-duration-placeholder"));
+        var entries = new List<QuickDialogEntry>() { entryArticles, entryDuration };
+        _reasonDialog = new DialogWindow(title, entries, true, true, true, Loc.GetString("criminal-records-console-print"));
+
+        _reasonDialog.OnConfirmed += responses =>
+        {
+            var articles = responses[articleField];
+            var duration = responses[durationField];
+
+            if (articles.Length < 1 || articles.Length > 256)
+                return;
+
+            if (!int.TryParse(duration, out var durationInt))
+                return;
+
+            OnDialogDetainedConfirmed?.Invoke(articles, durationInt, _reasonDialog.CheckBox.Pressed);
+        };
+
+        _reasonDialog.OnClose += () => { _reasonDialog = null; };
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void GetWantedReason()
+    {
+        if (_reasonDialog != null)
+        {
+            _reasonDialog.MoveToFront();
+            return;
+        }
+
+        var field = "reason";
+        var title = Loc.GetString("criminal-records-status-wanted");
+        var placeholders = _proto.Index(ReasonPlaceholders);
+        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", Loc.GetString(_random.Pick(placeholders.Values)))); // CorvaxGoob-SecurityFeatures
+        var prompt = Loc.GetString("criminal-records-console-reason");
+
+        var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
+        var entries = new List<QuickDialogEntry>() { entry };
+        _reasonDialog = new DialogWindow(title, entries, true, true, true, Loc.GetString("criminal-records-console-print"));
+
+        _reasonDialog.OnConfirmed += responses =>
+        {
+            var reason = responses[field];
+            if (reason.Length < 1 || reason.Length > _maxLength)
+                return;
+
+            OnDialogWantedConfirmed?.Invoke(reason, _reasonDialog.CheckBox.Pressed);
+        };
+
+        _reasonDialog.OnClose += () => { _reasonDialog = null; };
+    }
+
     private string GetStatusIcon(SecurityStatus status)
     {
         return status switch
@@ -403,9 +566,11 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             SecurityStatus.Detained => "hud_incarcerated",
             SecurityStatus.Discharged => "hud_discharged",
             SecurityStatus.Suspected => "hud_suspected",
-            SecurityStatus.Search => "hud_search",
-            SecurityStatus.Perma => "hud_perma",
-            SecurityStatus.Dangerous => "hud_dangerous",
+            SecurityStatus.Hostile => "hud_hostile",
+            SecurityStatus.Eliminated => "hud_eliminated",
+            SecurityStatus.Search => "hud_search", // Goobstation
+            SecurityStatus.Perma => "hud_perma",  // Goobstation
+            SecurityStatus.Dangerous => "hud_dangerous",// Goobstation
             SecurityStatus.Demote => "hud_demote", // Goobstation
             _ => "SecurityIconNone"
         };

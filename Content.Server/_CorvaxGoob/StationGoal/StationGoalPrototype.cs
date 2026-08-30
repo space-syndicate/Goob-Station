@@ -3,10 +3,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._CorvaxGoob.StationGoal
 {
     [Serializable, Prototype("stationGoal")]
-    public sealed class StationGoalPrototype : IPrototype
+    public sealed partial class StationGoalPrototype : IPrototype
     {
         [IdDataFieldAttribute]
-        public string ID { get; } = default!;
+        public string ID { get; private set; } = default!;
 
         [DataField]
         public string Text { get; set; } = string.Empty;

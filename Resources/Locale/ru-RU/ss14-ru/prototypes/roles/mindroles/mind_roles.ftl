@@ -58,3 +58,12 @@ ent-MindRoleInitialInfected = Роль нулевой пациент
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRoleZombie = Роль зомби
     .desc = { ent-MindRoleGhostRoleTeamAntagonistFlock.desc }
+
+ent-MindRoleSurvivor = Роль выживший
+    .desc = { ent-BaseMindRoleAntag.desc }
+
+ent-MindRoleMothershipCore = Роль ядро материнского корабля
+    .desc = { ent-BaseMindRoleAntag.desc }
+
+ent-MindRoleXenoborg = Роль ксеноборг
+    .desc = { ent-BaseMindRoleAntag.desc }

@@ -45,3 +45,7 @@ rcd-component-deconstruct = Демонтаж
 rcd-component-floor-steel = Стальной пол
 rcd-component-plating = Корпусное покрытие
 rcd-component-pumpsvalves = Контроль труб
+
+rcd-component-cannot-build-identical-entity = Эта постройка уже есть тут!
+
+

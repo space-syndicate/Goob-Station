@@ -49,3 +49,11 @@ trait-newyork-desc = Таки мы здесь ни пгхи чём!
 trait-painnumbness-desc = Вы не чувствуете боли и не осознаёте, насколько вы ранены.
 trait-british-name = Британский акцент
 trait-british-desc = Изысканная речь, превозносящая вас над смердом.
+
+trait-hemophilia-name = Гемофилия
+
+trait-hemophilia-desc = Ваш организм не справляется со свёртыванием крови.
+
+trait-impaired-mobility-name = Нарушение подвижности
+
+trait-impaired-mobility-desc = Вам тяжело передвигаться без посторонней помощи.

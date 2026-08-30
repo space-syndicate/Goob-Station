@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 using Content.Shared.Roles;
 using Lidgren.Network;
 using Robust.Shared.Network;

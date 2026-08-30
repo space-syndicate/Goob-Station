@@ -1,14 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2023 BismarckShuffle <107375341+BismarckShuffle@users.noreply.github.com>
-SPDX-FileCopyrightText: 2023 Julian Giebel <juliangiebel@live.de>
-SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-SPDX-FileCopyrightText: 2023 Myakot <30875116+Myakot@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 GrownSamoyedDog <61863648+GrownSamoyedDog@users.noreply.github.com>
-
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
@@ -113,10 +103,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   Чтобы "использовать" моба (игрока или NPC) [italic]на[/italic] статическом объекте, перетащите его на объект с помощью [color=yellow][bold][keybind="Use"][/bold][/color].
   \n(Не путать с [italic]тянущими[/italic] действиями.)
 
-  Используйте для:
-  - [color=cyan]Посадить[/color] моба на стул, кровать, в криогенную камеру и т.д.
-  - [color=cyan]Взобраться[/color] на стол — также можно кликнуть [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color] по столу.
-  - Открыть [color=cyan]меню обыска[/color], перетащив другого моба на вашего персонажа — это также можно сделать с помощью [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color], как упоминалось ранее.
+  Use it to:
+  - [color=cyan]Place[/color] or force a mob (player or NPC) on a chair, bed, into a cryogenic chamber, disposal unit, etc.
 
   ### Указание
   Используйте [color=yellow][bold][keybind="Point"][/bold][/color], чтобы [color=cyan]указывать[/color] на место в мире, создавая временную стрелку, видимую всем.
@@ -130,9 +118,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   - [italic]альтернативное в руках[/italic] ([color=yellow][bold][keybind="AltActivateItemInHand"][/bold][/color]),
   - клик и перетаскивание (уникально для размещения мобов на объектах).
 
-  Не беспокойтесь о запоминании — обычно взаимодействия интуитивны и согласованы между сущностями, и большинство объектов используют только одно или два взаимодействия.
+  - [color=cyan]Pour[/color] the contents of a liquid container (janitorial trolley, bucket, beaker) into another container, a drain, a machine, etc. But first, remember to place the container on the ground — you can't do it from your inventory.
 
-  [bold]Предметы остаются интерактивными даже в контейнерах.[/bold]
+  ### Pointing
+  Use [color=yellow][bold][keybind="Point"][/bold][/color] to [color=cyan]point[/color] at a location in the world, creating a temporary arrow visible to everyone.
+
+  ### Conclusion
+  The main interactions are:
+  - [bolditalic]standard[/bolditalic] ([color=yellow][bold][keybind="Use"][/bold][/color]),
+  - [italic]alternative[/italic] ([color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color]),
+  - [bold]activation[/bold] ([color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color]),
+  - [bolditalic]use-in-hand[/bolditalic] ([color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color]),
+  - [italic]alternative use-in-hand[/italic] ([color=yellow][bold][keybind="AltActivateItemInHand"][/bold][/color]),
+  - click and drag.
 
   ## Контекстное меню
   Кликните [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] на любой интерактивной сущности, чтобы открыть [color=cyan]контекстное меню[/color], которое показывает дополнительные доступные действия.
@@ -142,7 +140,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   - выбор более точного [bold]количества передачи[/bold] для химикатов,
   - отображение [bold]шагов разборки[/bold] объектов.
 
-  Если кликнуть [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] по куче предметов, откроется [color=cyan]меню сущностей[/color], показывающее все перекрывающиеся объекты, с которыми можно взаимодействовать.
+  [bold]Items stored in containers are still interactable.[/bold]
 
   ### Осмотр
   Если вы сомневаетесь в любой сущности, будь то объект или моб, [color=cyan]осмотрите[/color] её с помощью [color=yellow][bold][keybind="ExamineEntity"][/bold][/color].
@@ -177,13 +175,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   [color=cyan]Переставляйте[/color] предметы, перетаскивая их с помощью [color=yellow][bold][keybind="MoveStoredItem"][/bold][/color].  
   При перетаскивании [color=cyan]поворачивайте[/color] их с помощью [color=yellow][bold][keybind="RotateStoredItem"][/bold][/color].
 
-  Кликните [color=yellow][bold][keybind="SaveItemLocation"][/bold][/color] на предмете внутри контейнера, чтобы [color=cyan]сохранить[/color] его позицию — предмет всегда будет возвращаться на это место.  
-  Сохранённые позиции можно просмотреть, [color=yellow][bold]наводя курсор[/bold][/color] на предметы.
+  ### Smart-equipping
+  You can [color=cyan]quick-move[/color] items between your active hand and a corresponding slot. If that slot has a container in it, this action will [color=cyan]quick-store[/color] or [color=cyan]quick-take[/color] the most recent item from that container (signified with a golden star icon in the container).
 
-  ## Камера
-  [color=cyan]Приближайте/отдаляйте[/color] камеру с помощью [color=yellow][bold][keybind="ZoomIn"][/bold][/color] и [color=yellow][bold][keybind="ZoomOut"][/bold][/color] и сбрасывайте с [color=yellow][bold][keybind="ResetZoom"][/bold][/color].  
-  \n[color=cyan]Поворачивайте[/color] с помощью [color=yellow][bold][keybind="CameraRotateLeft"][/bold][/color] и [color=yellow][bold][keybind="CameraRotateRight"][/bold][/color] и сбрасывайте с [color=yellow][bold][keybind="CameraReset"][/bold][/color].  
-  \n[italic]Примечание: карты обычно рассчитаны на стандартное вращение камеры.[/italic]
+  - [color=yellow][bold][keybind="SmartEquipBackpack"][/bold][/color] smart-equips the back slot.
+  - [color=yellow][bold][keybind="SmartEquipBelt"][/bold][/color] smart-equips the belt slot.
+  - [color=yellow][bold][keybind="SmartEquipPocket1"][/bold][/color], [color=yellow][bold][keybind="SmartEquipPocket2"][/bold][/color], and [color=yellow][bold][keybind="SmartEquipSuitStorage"][/bold][/color] smart-equip the left pocket, right pocket, and suit storage slots, respectively.
+
+  ### Organizing grid inventories
+  [color=cyan]Rearrange[/color] items by dragging them with [color=yellow][bold][keybind="MoveStoredItem"][/bold][/color].
+  While dragging, [color=cyan]rotate[/color] them with [color=yellow][bold][keybind="RotateStoredItem"][/bold][/color].
 
   Для подробной информации о управлении обращайтесь к [color=cyan]Вики[/color].
 </Document>

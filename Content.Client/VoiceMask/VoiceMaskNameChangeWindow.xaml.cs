@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.UserInterface.Controls;
@@ -31,6 +21,8 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
 
     public Action<string>? OnNameChange;
     public Action<string?>? OnVerbChange;
+    public Action? OnToggle;
+    public Action? OnAccentToggle;
     public Action<string>? OnVoiceChange; // CorvaxGoob-TTS
 
     private List<(string, string)> _verbs = new();
@@ -55,6 +47,9 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             OnVerbChange?.Invoke((string?) args.Button.GetItemMetadata(args.Id));
             SpeechVerbSelector.SelectId(args.Id);
         };
+
+        ToggleButton.OnPressed += args => OnToggle?.Invoke();
+        ToggleAccentButton.OnPressed += args => OnAccentToggle?.Invoke();
 
         // CorvaxGoob-TTS-Start
         if (IoCManager.Resolve<IConfigurationManager>().GetCVar(CCCVars.TTSEnabled))
@@ -119,10 +114,12 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             SpeechVerbSelector.SelectId(id);
     }
 
-    public void UpdateState(string name, string voice, string? verb) // CorvaxGoob-TTS
+    public void UpdateState(string name, string? verb, bool active, bool accentHide, string voice)// CorvaxGoob-TTS
     {
         NameSelector.Text = name;
         _verb = verb;
+        ToggleButton.Pressed = active;
+        ToggleAccentButton.Pressed = accentHide;
 
         for (int id = 0; id < SpeechVerbSelector.ItemCount; id++)
         {

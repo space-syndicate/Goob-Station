@@ -3,4 +3,4 @@ ent-BaseMagazineBoxAntiMateriel = ammunition box (.60 anti-materiel)
 ent-MagazineBoxAntiMaterielBig = ammunition box (.60 anti-materiel)
     .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
 ent-MagazineBoxAntiMateriel = ammunition box (.60 anti-materiel)
-    .desc = { ent-BaseMagazineBoxAntiMateriel.desc }
+    .desc = A cardboard box of .60 anti-materiel rounds.

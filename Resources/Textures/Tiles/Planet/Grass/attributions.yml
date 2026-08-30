@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - files: ["grass.png", "triple_edge.png", "double_edge.png", "single_edge.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Created by Ko4erga (discord)"

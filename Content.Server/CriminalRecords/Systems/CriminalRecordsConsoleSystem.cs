@@ -1,21 +1,7 @@
-// SPDX-FileCopyrightText: 2024 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Arendian <137322659+Arendian@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Fildrance <fildrance@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 pa.pecherskij <pa.pecherskij@interfax.ru>
-// SPDX-FileCopyrightText: 2024 Эдуард <36124833+Ertanic@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BeBright <98597725+be1bright@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 James Simonson <jamessimo89@gmail.com>
-// SPDX-FileCopyrightText: 2025 Soup-Byte07 <135303377+Soup-Byte07@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server.Access.Systems;
+using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
@@ -23,15 +9,20 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CriminalRecords;
 using Content.Shared.CriminalRecords.Components;
 using Content.Shared.CriminalRecords.Systems;
+using Content.Shared.GameTicking;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Paper;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Security.Components;
 using System.Linq;
 
 namespace Content.Server.CriminalRecords.Systems;
@@ -49,6 +40,14 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
+    // CorvaxGoob-SecurityFeatures-Start
+    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly PaperSystem _paperSystem = default!;
+    // CorvaxGoob-SecurityFeatures-End
+
     public override void Initialize()
     {
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
@@ -60,8 +59,11 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             subs.Event<SelectStationRecord>(OnKeySelected);
             subs.Event<SetStationRecordFilter>(OnFiltersChanged);
             subs.Event<CriminalRecordChangeStatus>(OnChangeStatus);
+            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus); // CorvaxGoob-SecurityFeatures
+            subs.Event<CriminalRecordChangeWantedStatus>(OnChangeWantedStatus); // CorvaxGoob-SecurityFeatures
             subs.Event<CriminalRecordAddHistory>(OnAddHistory);
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
+            subs.Event<CriminalRecordPrint>(OnPrint); // CorvaxGoob-SecurityFeatures
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
         });
 
@@ -69,6 +71,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
             subs.Event<CriminalRecordChangeStatus>(OnChangeStatus);
+            subs.Event<CriminalRecordChangeDetainedStatus>(OnChangeDetainedStatus); // CorvaxGoob-SecurityFeatures
         });
     }
 
@@ -110,13 +113,12 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     private void OnChangeStatus(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeStatus msg)
     {
         // prevent malf client violating wanted/reason nullability
-        var requireReason = msg.Status is SecurityStatus.Wanted
-            or SecurityStatus.Suspected
-            or SecurityStatus.Search
-            or SecurityStatus.Dangerous
-            or SecurityStatus.Demote; // Goobstation
-
-        if (requireReason != (msg.Reason != null))
+        if (msg.Status == SecurityStatus.Wanted != (msg.Reason != null) &&
+            msg.Status == SecurityStatus.Suspected != (msg.Reason != null) &&
+            msg.Status == SecurityStatus.Hostile != (msg.Reason != null) &&
+            msg.Status == SecurityStatus.Search != (msg.Reason != null) && // Goobstation
+            msg.Status == SecurityStatus.Dangerous != (msg.Reason != null) &&  // Goobstation
+            msg.Status == SecurityStatus.Demote != (msg.Reason != null)) // Goobstation
             return;
 
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
@@ -141,12 +143,14 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         // when arresting someone add it to history automatically
         // fallback exists if the player was not set to wanted beforehand
-        if (msg.Status == SecurityStatus.Detained)
-        {
-            var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
-            var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
-            _criminalRecords.TryAddHistory(key.Value, history, officer);
-        }
+
+        // CorvaxGoob-SecurityFeatures
+        //if (msg.Status == SecurityStatus.Detained)
+        //{
+        //    var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
+        //    var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
+        //    _criminalRecords.TryAddHistory(key.Value, history, officer);
+        //}
 
         // will probably never fail given the checks above
         name = _records.RecordName(key.Value);
@@ -173,6 +177,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
         {
+            (_, SecurityStatus.Hostile) => "hostile",
+            (_, SecurityStatus.Eliminated) => "eliminated",
             // person has been detained
             (_, SecurityStatus.Detained) => "detained",
             // person did something sus
@@ -183,12 +189,14 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (_, SecurityStatus.Discharged) => "released",
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
+            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
+            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
             // person has been sentenced to perma
-            (_, SecurityStatus.Perma) => "perma",
+            (_, SecurityStatus.Perma) => "perma", // Goobstation
             // person needs to be searched
-            (_, SecurityStatus.Search) => "search",
+            (_, SecurityStatus.Search) => "search", // Goobstation
             // person is very dangerous
-            (_, SecurityStatus.Dangerous) => "dangerous",
+            (_, SecurityStatus.Dangerous) => "dangerous", // Goobstation
             // person is demoted from their job
             (_, SecurityStatus.Demote) => "demote", // Goobstation
             // person is no longer sus
@@ -200,20 +208,220 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             // criminal is no longer on parole
             (SecurityStatus.Paroled, SecurityStatus.None) => "not-parole",
             // criminal is no longer in perma
-            (SecurityStatus.Perma, SecurityStatus.None) => "not-perma",
+            (SecurityStatus.Perma, SecurityStatus.None) => "not-perma", // Goobstation
             // person no longer needs to be searched
-            (SecurityStatus.Search, SecurityStatus.None) => "not-search",
+            (SecurityStatus.Search, SecurityStatus.None) => "not-search", // Goobstation
             // person is no longer dangerous
-            (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous",
+            (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous", // Goobstation
             // person no longer demoted
             (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
             // this is impossible
             _ => "not-wanted"
         };
+
+        // CorvaxGoob-SecurityFeatures : Записывается любое изменение статуса
+        _criminalRecords.TryAddHistory(key.Value, Loc.GetString($"criminal-records-console-history",
+            ("status", Loc.GetString($"criminal-records-status-{statusString}")),
+            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: msg.Status);
+
         _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-{statusString}", args),
             ent.Comp.SecurityChannel, ent);
 
         UpdateUserInterface(ent);
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void OnChangeDetainedStatus(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeDetainedStatus msg)
+    {
+        if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
+            return;
+
+        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record))
+            return;
+
+        string? articles = null;
+
+        if (msg.Articles != null)
+        {
+            articles = msg.Articles.Trim();
+            if (articles.Length < 1 || articles.Length > ent.Comp.MaxStringLength)
+                return;
+        }
+
+        if (msg.Duration is not null)
+        {
+            if (msg.Duration <= 0)
+                return;
+        }
+
+        var name = _records.RecordName(key.Value);
+        GetOfficer(mob.Value, out var officer);
+
+        var history = Loc.GetString("criminal-records-console-detained-record", ("articles", articles ?? Loc.GetString("criminal-records-console-unspecified")), ("duration", msg.Duration?.ToString() ?? Loc.GetString("criminal-records-console-unspecified")));
+        _criminalRecords.TryAddHistory(key.Value, history, officer, articles, msg.Duration, status: SecurityStatus.Detained);
+
+        // will probably never fail given the checks above
+        name = _records.RecordName(key.Value);
+
+        officer = Loc.GetString("criminal-records-console-unknown-officer");
+        var jobName = "Unknown";
+
+        _records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry);
+        if (entry != null)
+            jobName = entry.JobTitle;
+
+        var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(null, mob.Value);
+        RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+        if (tryGetIdentityShortInfoEvent.Title != null)
+            officer = tryGetIdentityShortInfoEvent.Title;
+
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer);
+
+        (string, object)[] args;
+        if (articles != null)
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", articles), ("job", jobName) };
+        else
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+
+        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-detained", args),
+            ent.Comp.SecurityChannel, ent);
+
+        if (msg.Print && entry is not null)
+        {
+            ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
+
+            PrintDetainedDocument(ent, msg.Actor, entry, articles, msg.Duration);
+            Dirty(ent);
+        }
+
+        UpdateUserInterface(ent);
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void OnChangeWantedStatus(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeWantedStatus msg)
+    {
+        if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
+            return;
+
+        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record))
+            return;
+
+        var name = _records.RecordName(key.Value);
+        GetOfficer(mob.Value, out var officer);
+
+        name = _records.RecordName(key.Value);
+
+        officer = Loc.GetString("criminal-records-console-unknown-officer");
+        var jobName = "Unknown";
+
+        _records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry);
+        if (entry != null)
+            jobName = entry.JobTitle;
+
+        var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(null, mob.Value);
+        RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+        if (tryGetIdentityShortInfoEvent.Title != null)
+            officer = tryGetIdentityShortInfoEvent.Title;
+
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Wanted, msg.Reason, officer);
+
+        string? reason = null;
+        if (msg.Reason != null)
+        {
+            reason = msg.Reason.Trim();
+            if (reason.Length < 1 || reason.Length > ent.Comp.MaxStringLength)
+                return;
+        }
+
+        (string, object)[] args;
+        if (reason != null)
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", reason), ("job", jobName) };
+        else
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+
+
+        _criminalRecords.TryAddHistory(key.Value, Loc.GetString($"criminal-records-console-history",
+            ("status", Loc.GetString($"criminal-records-status-wanted")),
+            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: SecurityStatus.Wanted);
+
+        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-wanted", args),
+            ent.Comp.SecurityChannel, ent);
+
+        if (msg.Print && entry is not null)
+        {
+            ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
+
+            PrintWantedDocument(ent, msg.Actor, entry);
+            Dirty(ent);
+        }
+
+        UpdateUserInterface(ent);
+    }
+
+    private void PrintDetainedDocument(Entity<CriminalRecordsConsoleComponent> ent, EntityUid officer, GeneralStationRecord record, string? articles, int? duration)
+    {
+        var content = Loc.GetString("doc-text-printer-sentence");
+
+        var station = _station.GetOwningStation(ent);
+        var stationName = station != null ? Name(station.Value) : null;
+
+        var time = _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss") + " " + DateTime.Now.AddYears(1000).ToShortDateString();
+
+        content = content
+            .Replace(Loc.GetString("doc-var-station"), stationName ?? Loc.GetString("doc-text-printer-default-station"))
+            .Replace(Loc.GetString("doc-var-date"), time);
+
+        if (_idCard.TryFindIdCard(officer, out var idCard))
+        {
+            content = content
+            .Replace(Loc.GetString("doc-var-name"), idCard.Comp.FullName ?? Loc.GetString("doc-text-printer-default-name"))
+            .Replace(Loc.GetString("doc-var-job"), idCard.Comp.LocalizedJobTitle ?? Loc.GetString("doc-text-printer-default-job"));
+        }
+
+        content = content
+            .Replace(Loc.GetString("doc-var-violator"), record.Name)
+            .Replace(Loc.GetString("doc-var-violator-job"), record.JobTitle)
+            .Replace(Loc.GetString("doc-var-articles"), articles ?? Loc.GetString("doc-text-printer-default-articles"))
+            .Replace(Loc.GetString("doc-var-duration"), duration.ToString())
+            .Replace(Loc.GetString("doc-var-duration-start"), time);
+
+        var printed = Spawn("Paper", Transform(ent).Coordinates);
+
+        if (HasComp<PaperComponent>(printed))
+        {
+            _paperSystem.SetContent(printed, content);
+            _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent);
+        }
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void PrintWantedDocument(Entity<CriminalRecordsConsoleComponent> ent, EntityUid officer, GeneralStationRecord record)
+    {
+        var content = Loc.GetString("doc-text-printer-closing-indictment");
+
+        var station = _station.GetOwningStation(ent);
+        var stationName = station != null ? Name(station.Value) : null;
+
+        var time = _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss") + " " + DateTime.Now.AddYears(1000).ToShortDateString();
+
+        content = content
+            .Replace(Loc.GetString("doc-var-station"), stationName ?? Loc.GetString("doc-text-printer-default-station"))
+            .Replace(Loc.GetString("doc-var-date"), time);
+
+        if (_idCard.TryFindIdCard(officer, out var idCard))
+        {
+            content = content
+            .Replace(Loc.GetString("doc-var-name"), idCard.Comp.FullName ?? Loc.GetString("doc-text-printer-default-name"))
+            .Replace(Loc.GetString("doc-var-job"), idCard.Comp.LocalizedJobTitle ?? Loc.GetString("doc-text-printer-default-job"));
+        }
+
+        var printed = Spawn("Paper", Transform(ent).Coordinates);
+
+        if (HasComp<PaperComponent>(printed))
+        {
+            _paperSystem.SetContent(printed, content);
+            _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent);
+        }
     }
 
     private void OnAddHistory(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordAddHistory msg)
@@ -244,8 +452,41 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             return;
 
         // a bit sus but not crucial to officers patrolling
-
         UpdateUserInterface(ent);
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void OnPrint(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordPrint msg)
+    {
+        if (!CheckSelected(ent, msg.Actor, out _, out var key))
+            return;
+
+        if (ent.Comp.NextPrintTime > _timing.CurTime)
+            return;
+
+        if (!_criminalRecords.TryGetHistory(key.Value, msg.Index, out var crimeHistory))
+            return;
+
+        if (crimeHistory.Value.Status is null)
+            return;
+
+        if (!_records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry))
+            return;
+
+        switch (crimeHistory.Value.Status.Value)
+        {
+            case SecurityStatus.Detained:
+                PrintDetainedDocument(ent, msg.Actor, entry, crimeHistory.Value.Articles, crimeHistory.Value.Duration);
+                break;
+            case SecurityStatus.Wanted:
+                PrintWantedDocument(ent, msg.Actor, entry);
+                break;
+            default:
+                break;
+        }
+
+        ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
+        Dirty(ent);
     }
 
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)
@@ -312,32 +553,5 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         key = new StationRecordKey(id, station);
         mob = user;
         return true;
-    }
-
-    /// <summary>
-    /// Checks if the new identity's name has a criminal record attached to it, and gives the entity the icon that
-    /// belongs to the status if it does.
-    /// </summary>
-    public void CheckNewIdentity(EntityUid uid)
-    {
-        var name = Identity.Name(uid, EntityManager);
-        var xform = Transform(uid);
-
-        // TODO use the entity's station? Not the station of the map that it happens to currently be on?
-        var station = _station.GetStationInMap(xform.MapID);
-
-        if (station != null && _records.GetRecordByName(station.Value, name) is { } id)
-        {
-            if (_records.TryGetRecord<CriminalRecord>(new StationRecordKey(id, station.Value),
-                    out var record))
-            {
-                if (record.Status != SecurityStatus.None)
-                {
-                    _criminalRecords.SetCriminalIcon(name, record.Status, uid);
-                    return;
-                }
-            }
-        }
-        RemComp<CriminalRecordComponent>(uid);
     }
 }

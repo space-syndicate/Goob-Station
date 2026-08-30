@@ -15,3 +15,5 @@ ent-RagItem = damp rag
     .desc = For cleaning up messes, you suppose.
 ent-WireBrush = wire brush
     .desc = A bristly steel wire brush, perfect for scraping away even the toughest patches of rust.
+ent-WireBrushElectrical = electrical wire brush
+    .desc = A bristly steel wire brush with a moving head, allowing for a way easier time cleaning.

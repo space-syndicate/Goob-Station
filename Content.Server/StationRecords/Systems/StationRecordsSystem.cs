@@ -1,43 +1,18 @@
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Moony <moony@hellomouse.net>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Theomund <34360334+Theomund@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 faint <46868845+ficcialfaint@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2023 moonheart08 <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Fishbait <Fishbait@git.ml>
-// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Zachary Higgs <compgeek223@gmail.com>
-// SPDX-FileCopyrightText: 2025 fishbait <gnesse@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._CorvaxGoob.AppearanceConverter;
 using Content.Server.Access.Systems;
+using Content.Shared._CorvaxGoob.AppearanceConverter;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -69,6 +44,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly AppearanceConverterSystem _appearanceConverter = default!; // CorvaxGoob-SecurityFeatures
 
     public override void Initialize()
     {
@@ -124,7 +100,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Sex, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // CorvaxGoob-Locale
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Sex, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records, player); // CorvaxGoob-Locale
     }
 
 
@@ -166,7 +142,8 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string? mobFingerprint,
         string? dna,
         HumanoidCharacterProfile profile,
-        StationRecordsComponent records)
+        StationRecordsComponent records,
+        EntityUid? playerUid = null) // CorvaxGoob-SecurityFeatures : добавлены аргументы для генерации профиля внешности
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
             throw new ArgumentException($"Invalid job prototype ID: {jobId}");
@@ -179,18 +156,24 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             return;
         }
 
-        var record = new GeneralStationRecord()
+        // CorvaxGoob-SecurityFeatures-Start
+        TransformProfile? transformProfile = playerUid is not null ? _appearanceConverter.GenerateTransformProfile(playerUid.Value) : null;
+        AppearanceConverterVisualTransformProfile? visualProfile = transformProfile is not null ? AppearanceConverterSystem.SplitDetailAndVisualProfile(transformProfile.Value).Visual : null;
+        // CorvaxGoob-SecurityFeatures-End
+
+        var record = new GeneralStationRecord() // CorvaxGoob-SecurityFeatures : добавлены аргументы для генерации профиля внешности
         {
             Name = name,
             Age = age,
             JobTitle = jobPrototype.LocalizedName,
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
-            Species = _prototypeManager.Index<SpeciesPrototype>(species).Name, // CorvaxGoob-Locale
+            Species = species, // CorvaxGoob-Locale
             Sex = sex, // CorvaxGoob-Locale
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
-            DNA = dna
+            DNA = dna,
+            Visual = visualProfile
         };
 
         var key = AddRecordEntry(station, record);
@@ -243,26 +226,6 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     }
 
     /// <summary>
-    ///     Try to get a record from this station's record entries,
-    ///     from the provided station record key. Will always return
-    ///     null if the key does not match the station.
-    /// </summary>
-    /// <param name="key">Station and key to try and index from the record set.</param>
-    /// <param name="entry">The resulting entry.</param>
-    /// <param name="records">Station record component.</param>
-    /// <typeparam name="T">Type to get from the record set.</typeparam>
-    /// <returns>True if the record was obtained, false otherwise.</returns>
-    public bool TryGetRecord<T>(StationRecordKey key, [NotNullWhen(true)] out T? entry, StationRecordsComponent? records = null)
-    {
-        entry = default;
-
-        if (!Resolve(key.OriginStation, ref records))
-            return false;
-
-        return records.Records.TryGetRecordEntry(key.Id, out entry);
-    }
-
-    /// <summary>
     /// Gets a random record from the station's record entries.
     /// </summary>
     /// <param name="ent">The EntityId of the station from which you want to get the record.</param>
@@ -285,26 +248,6 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     }
 
     /// <summary>
-    /// Returns an id if a record with the same name exists.
-    /// </summary>
-    /// <remarks>
-    /// Linear search so O(n) time complexity.
-    /// </remarks>
-    public uint? GetRecordByName(EntityUid station, string name, StationRecordsComponent? records = null)
-    {
-        if (!Resolve(station, ref records, false))
-            return null;
-
-        foreach (var (id, record) in GetRecordsOfType<GeneralStationRecord>(station, records))
-        {
-            if (record.Name == name)
-                return id;
-        }
-
-        return null;
-    }
-
-    /// <summary>
     /// Get the name for a record, or an empty string if it has no record.
     /// </summary>
     public string RecordName(StationRecordKey key)
@@ -313,21 +256,6 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
            return string.Empty;
 
         return record.Name;
-    }
-
-    /// <summary>
-    ///     Gets all records of a specific type from a station.
-    /// </summary>
-    /// <param name="station">The station to get the records from.</param>
-    /// <param name="records">Station records component.</param>
-    /// <typeparam name="T">Type of record to fetch</typeparam>
-    /// <returns>Enumerable of pairs with a station record key, and the entry in question of type T.</returns>
-    public IEnumerable<(uint, T)> GetRecordsOfType<T>(EntityUid station, StationRecordsComponent? records = null)
-    {
-        if (!Resolve(station, ref records))
-            return Array.Empty<(uint, T)>();
-
-        return records.Records.GetRecordsOfType<T>();
     }
 
     /// <summary>

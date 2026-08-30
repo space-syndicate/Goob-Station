@@ -1,0 +1,13 @@
+ent-BaseSportsBall = { "" }
+    .desc = { "" }
+ent-Basketball = basketball
+    .desc = Where dah courts at?
+ent-Football = football
+    .desc = Otherwise known as a handegg.
+ent-TennisBall = tennis ball
+    .desc = A fuzzy orb of endless betrayal.
+ent-BeachBall = beach ball
+    .desc = The simple beach ball is one of Nanotrasen's most popular products. 'Why do we make beach balls? Because we can! (TM)' - Nanotrasen
+ent-EvilBeachBall = { ent-BeachBall }
+    .desc = Someone's drawn ">:3c" on the side of this beach ball in indelible ink.
+    .suffix = EVIL/ADMEME

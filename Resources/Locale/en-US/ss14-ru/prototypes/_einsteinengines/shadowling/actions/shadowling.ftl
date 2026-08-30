@@ -1,7 +1,7 @@
 ent-ActionHatch = Hatch
     .desc = Engages the hatching progress, there is no going back after this and you will be vulnrable for a while.
 ent-ActionEnthrall = Enthrall
-    .desc = Shatters their will, forging a thrall, does not work on mindshielded people or silicons.
+    .desc = Shatters their will, forging a thrall, not strong enough to effect mindshielded individuals or enslaved AI.
 ent-ActionGlare = Glare
     .desc = A dark glare that stuns, silences, and slows a single target.
 ent-ActionVeil = Veil
@@ -25,7 +25,7 @@ ent-ActionSonicScreech = Sonic Screech
 ent-ActionBlackRecuperation = Black Recuperation
     .desc = Bring back a dead Thrall to life, or empower a living one. You'll reduce your resistance to light by using it.
 ent-ActionEmpoweredEnthrall = Empowered Enthrall
-    .desc = Shatters their will, forging a Thrall. Faster and stronger, works on mindshields.
+    .desc = Shatters their will, forging a Thrall. Faster and stronger, enough to bypass mindshields.
 ent-ActionNoxImperii = Nox Imperii
     .desc = Become immune to that which you fear the most. Light.
 ent-ActionAscendance = Ascendance

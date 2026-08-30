@@ -1,12 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-SPDX-FileCopyrightText: 2022 metalgearsloth <comedian_vs_clown@hotmail.com>
-SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-SPDX-FileCopyrightText: 2023 Phill101 <28949487+Phill101@users.noreply.github.com>
-SPDX-FileCopyrightText: 2023 Phill101 <holypics4@gmail.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: MIT
 -->
 
@@ -21,6 +13,12 @@ SPDX-License-Identifier: MIT
                 <Label Name="StationName" Align="Center" />
             </PanelContainer>
         </controls:StripeBack>
+        <!-- CorvaxGoob Start - crew-manifest-search -->
+        <LineEdit Name="SearchBar"
+                  PlaceHolder="{Loc 'crew-manifest-search-placeholder'}"
+                  HorizontalExpand="True"
+                  Margin="2 4 2 2" />
+        <!-- CorvaxGoob End -->
         <BoxContainer HorizontalExpand="True" VerticalExpand="True">
             <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
                 <!-- this MIGHT have race conditions -->

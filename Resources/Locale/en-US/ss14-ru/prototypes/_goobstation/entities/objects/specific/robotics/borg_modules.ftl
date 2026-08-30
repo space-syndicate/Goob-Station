@@ -4,3 +4,7 @@ ent-BorgModuleLollypop = lollypop cyborg module
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModulePKA = proto-kinetic cyborg module
     .desc = { ent-BaseBorgModuleCargo.desc }
+ent-BorgModuleSurgery = surgery cyborg module
+    .desc = { ent-BaseBorgModuleMedical.desc }
+ent-BorgModuleAdvancedSurgery = advanced surgery cyborg module
+    .desc = { ent-BaseBorgModuleMedical.desc }

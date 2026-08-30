@@ -23,9 +23,8 @@
             </BoxContainer>
             <BoxContainer Orientation="Vertical" Margin="3">
                 <LineEdit Name="LabelLineEdit" Access="Public" SetWidth="200" Margin="5" PlaceHolder="{Loc 'medipen-refiller-window-label-text'}"/>
-                <ColorSelectorSliders Name="ColorPicker" Access="Public">
-                    <Button SetSize="130 28" Access="Public" Name="ApplySettingsButton" Text="{Loc 'medipen-refiller-window-apply'}" Margin="80 -88 0 0"/>
-                </ColorSelectorSliders>
+                <ColorSelectorSliders Name="ColorPicker" Access="Public" />
+                <Button SetSize="130 28" Access="Public" Name="ApplySettingsButton" Text="{Loc 'medipen-refiller-window-apply'}" Margin="80 0 0 0"/>
             </BoxContainer>
         </BoxContainer>
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="0 0 8 8">

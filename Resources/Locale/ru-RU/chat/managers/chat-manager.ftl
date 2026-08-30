@@ -129,3 +129,5 @@ chat-speech-verb-wawa-1 = напевает
 chat-speech-verb-wawa-2 = утверждает
 chat-speech-verb-wawa-3 = заявляет
 chat-speech-verb-wawa-4 = размышляет
+
+chat-manager-send-hook-admin-wrap-message = АДМИН: [bold](D){ $senderName }:[/bold] { $message }

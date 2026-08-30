@@ -228,8 +228,8 @@ uplink-clothing-chameleon-thieving-gloves-name = Хамелеонские пер
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и улучшайте свой навык воровства с помощью этих новых модных перчаток. Они даже могут менять свой внешний вид, чтобы выглядеть как любая другая пара перчаток!
 uplink-clothing-thieving-gloves-desc = Незаметно обчищайте карманы и улучшайте свой навык воровства с помощью этих новых модных перчаток. Они даже выглядят как обычные!
 uplink-clothing-outer-vest-web-name = Тактический жилет
-uplink-clothing-outer-vest-web-elite-name = Elite Web Vest
-uplink-clothing-outer-vest-web-elite-desc = A synthetic armor vest. This one has added webbing and heat resistant fibers.
+uplink-clothing-outer-vest-web-elite-name = Элитный тактический жилет
+uplink-clothing-outer-vest-web-elite-desc = Синтетический бронежилет. К этому добавлено больше защиты и термостойкие волокна.
 uplink-clothing-outer-vest-web-desc = Синтетический бронежилет. Имеет дополнительные ремни и баллистические пластины.
 uplink-hardsuit-syndie-name = Скафандр Синдиката
 uplink-hardsuit-syndie-desc = Широко известный бронированный кроваво-красный скафандр Синдиката, позволяющий выходить в открытый космос и устойчивый к пулям.
@@ -333,3 +333,21 @@ uplink-smuggler-satchel-name = Сумка контрабандиста
 uplink-acolyte-armor-name = Броня преспешника
 uplink-acolyte-armor-desc = Содержит броню преспешника, необходимую каждому лидеру культа. Выглядящий зловеще элемент брони, сделанный из костей, и на удивление устойчивый к повреждениям.
 uplink-smuggler-satchel-desc = Удобная, подозрительная на вид сумка. Достаточно плоская, чтобы поместиться под напольной плиткой.
+
+uplink-syndicate-id-card-name = ID-карта Синдиката
+
+uplink-syndicate-id-card-desc = ID-карта Синдиката, с соответствующим доступом. Сама по себе вряд ли будет полезна, но отлично сочетается с перенастроенными дверями. Не имеет функции копирования доступа.
+
+uplink-voice-mask-implanter-name = Имплантер "Маска личности"
+
+uplink-voice-mask-implanter-desc = Изменяет ваши голосовые связки и черты лица, чтобы вы могли имитировать любого, кого вы можете представить.
+
+
+uplink-briefcase-gun-name = Чемодан-автомат
+
+uplink-briefcase-gun-desc = Незаметный чемодан с очень компактным C-20K, установленным внутри. Будьте осторожны, не держите ручку слишком крепко!
+
+uplink-energycrossbow-name = мини-энергоарбалет
+
+uplink-energycrossbow-desc = Незаменимое личное оружие каждого оперативника, предпочитающего, чтобы его цели не двигались. Стреляет возобновляющимися ядовитыми зарядами, которые мгновенно сбивают жертву с ног.
+

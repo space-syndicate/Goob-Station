@@ -398,3 +398,19 @@ ui-options-enable-overlay-starting-job = Показывать начальную
 ui-options-overlay-merge-distance = Расстояние для стака
 ui-options-overlay-ghost-fade-distance = Дальность затухания наложения призрака от мыши
 ui-options-overlay-ghost-hide-distance = Дальность скрытия наложения призрака от мыши
+
+ui-options-function-smart-equip-suit-storage = Умная экипировка на хранилище костюма
+
+ui-options-function-smart-equip-pocket1 = Умная экипировка в карман 1
+
+ui-options-function-smart-equip-pocket2 = Умная экипировка в карман 2
+
+ui-options-function-inspect-entity-tooltip = Открыть меню ViewVariables сущности, над которой находится курсор.
+
+ui-options-function-inspect-server-component = Изучить серверный компонент
+
+ui-options-function-inspect-server-component-tooltip = Открыть меню ViewVariables для сущности под курсором, используя серверный компонент, заданный командой "quickinspect".
+
+ui-options-function-inspect-client-component = Изучить клиентский компонент
+
+ui-options-function-inspect-client-component-tooltip = Открыть меню ViewVariables для сущности под курсором, используя клиентский компонент, заданный командой "quickinspect".

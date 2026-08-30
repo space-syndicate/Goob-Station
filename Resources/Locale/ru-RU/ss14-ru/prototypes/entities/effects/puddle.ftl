@@ -28,3 +28,7 @@ ent-PuddleSparkle = Блеск
     .desc = { "" }
 ent-Puddle = лужа
     .desc = Лужа жидкости.
+
+ent-PuddleFluorosulfuricAcid = { ent-PuddleTemporary }
+    .desc = { ent-PuddleTemporary.desc }
+    .suffix = фторсерная кислота (15 ед.)

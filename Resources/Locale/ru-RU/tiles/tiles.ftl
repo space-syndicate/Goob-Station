@@ -144,3 +144,27 @@ tiles-white-marble = белый мрамор
 tiles-dark-marble = тёмный мрамор
 tiles-plasma-marble = плазма мрамор
 tiles-uranium-marble = урановый мрамор
+
+tiles-dark-astro-grass = тёмная астро-трава
+
+tiles-light-astro-grass = лёгкая астро-трава
+
+tiles-astro-ironsand = астро-железный песок
+
+tiles-desert-astro-sand = пустынный астро-песок
+
+tiles-xenoborg-floor = ксеноборг-плитка
+
+tiles-ironsand-plating = железный песок
+
+tiles-ironsand-tile = плитка из железного песка
+
+tiles-ironsand-concrete-tile = железопесчаная бетонная плитка
+
+tiles-ironsand-concrete-slab = железопесчаная бетонная плита
+
+tiles-ironsand-concrete-smooth = гладкий бетонный пол из железного песка
+
+tiles-ironsand-packed = утрамбованный железный песок
+
+tiles-ironsand-paved = асфальтированный железный песок

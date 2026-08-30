@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Conchelle <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -52,7 +49,7 @@ public sealed class ThunderstrikeSystem : EntitySystem
     }
 
     // efcc go get u alaye...
-    public void Smite(EntityUid mumu, bool kill = true, TransformComponent? transform = null)
+    public void Smite(EntityUid mumu, bool kill = true, TransformComponent? transform = null,string ltg = God)
     {
         if (!Resolve(mumu, ref transform))
             return;

@@ -1,5 +1,9 @@
 ent-StatusEffectSlowdown = slowdown
     .desc = { ent-MobStatusEffectDebuff.desc }
+ent-StatusEffectSpeed = speed
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-ReagentSpeedStatusEffect = reagent speed
+    .desc = { ent-StatusEffectSpeed.desc }
 ent-VomitingSlowdownStatusEffect = vomiting slowdown
     .desc = { ent-StatusEffectSlowdown.desc }
 ent-TaserSlowdownStatusEffect = shot by taser slowdown

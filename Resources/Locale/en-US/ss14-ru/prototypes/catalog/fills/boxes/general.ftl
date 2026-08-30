@@ -1,5 +1,7 @@
 ent-BoxCardboard = cardboard box
     .desc = A cardboard box for storing things.
+ent-BoxCardboardSmall = small cardboard box
+    .desc = A small cardboard box for storing things.
 ent-BoxMousetrap = mousetrap box
     .desc = This box is filled with mousetraps. Try not to get your hand stuck in one.
 ent-BoxLightbulb = lightbulb box
@@ -18,6 +20,8 @@ ent-BoxID = ID card box
     .desc = A box of spare blank ID cards.
 ent-BoxHeadset = headset box
     .desc = A box of spare passenger headsets.
+ent-BoxStamps = stamp box
+    .desc = A small box containing stamps.
 ent-BoxMesonScanners = meson box
     .desc = A box of spare meson goggles.
 ent-BoxMRE = M.R.E.

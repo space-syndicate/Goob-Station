@@ -55,3 +55,7 @@ gun-speedloader-empty = Спидлоадер пуст
 # GunSpreadModifier
 examine-gun-spread-modifier-reduction = Разброс был уменьшен на [color=yellow]{ $percentage }%[/color].
 examine-gun-spread-modifier-increase = Разброс был увеличен на [color=yellow]{ $percentage }%[/color].
+
+gun-set-fire-mode-examine = Установлен в [color=yellow]{ $mode }[/color].
+
+gun-set-fire-mode-popup = Изменён на { $mode }

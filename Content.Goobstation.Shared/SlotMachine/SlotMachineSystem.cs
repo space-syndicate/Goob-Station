@@ -83,6 +83,18 @@ namespace Content.Goobstation.Shared.SlotMachine
                 return;
 
             // CorvaxGoob-DiceOfFate-start
+            if (comp.LimitSpins)
+            {
+                if (comp.CountSpins == 0)
+                {
+                    _popupSystem.PopupPredicted(Loc.GetString("slotmachine-no-spins"), uid, uid, PopupType.Small);
+                    return;
+                }
+
+                comp.CountSpins--;
+                Dirty(uid, comp);
+            }
+
             if (comp.SpinDamage != null)
             {
                 if (_net.IsServer)

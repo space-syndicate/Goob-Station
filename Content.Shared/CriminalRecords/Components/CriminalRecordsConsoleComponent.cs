@@ -1,25 +1,18 @@
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 James Simonson <jamessimo89@gmail.com>
-// SPDX-FileCopyrightText: 2025 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.CriminalRecords.Systems;
-using Content.Shared.CriminalRecords.Components;
-using Content.Shared.CriminalRecords;
 using Content.Shared.Radio;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 using Content.Shared.Security;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.CriminalRecords.Components;
 
 /// <summary>
 /// A component for Criminal Record Console storing an active station record key and a currently applied filter
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentState, NetworkedComponent] // CorvaxGoob-SecurityFeatures
 [Access(typeof(SharedCriminalRecordsConsoleSystem))]
 public sealed partial class CriminalRecordsConsoleComponent : Component
 {
@@ -59,4 +52,12 @@ public sealed partial class CriminalRecordsConsoleComponent : Component
     /// </summary>
     [DataField]
     public uint MaxStringLength = 256;
+
+    // CorvaxGoob-SecurityFeatures-Start : компоненты отвечающие за часть системы печати приговоров
+    [DataField, AutoNetworkedField]
+    public TimeSpan NextPrintTime = TimeSpan.Zero;
+
+    [DataField]
+    public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+    // CorvaxGoob-SecurityFeatures-End
 }

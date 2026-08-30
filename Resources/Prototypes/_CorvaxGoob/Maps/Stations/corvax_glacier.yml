@@ -26,7 +26,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 4, 5 ]
-            ShaftMiner: [ 2, 2 ]            
+            ShaftMiner: [ 2, 2 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
@@ -69,7 +69,6 @@
             Musician: [ 1, 1 ]
             Reporter: [ 1, 2 ]
             ServiceWorker: [ 2, 3 ]
-            Zookeeper: [ 1, 1 ]
             Passenger: [ -1, -1 ]
             # silicon
             StationAi: [ 1, 1 ]

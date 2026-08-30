@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Administration;
@@ -52,7 +45,7 @@ public sealed partial class DialogWindow : FancyWindow
     /// <remarks>
     /// Won't do anything on its own, you need to handle or network with <see cref="OnConfirmed"/> and <see cref="OnCancelled"/>.
     /// </remarks>
-    public DialogWindow(string title, List<QuickDialogEntry> entries, bool ok = true, bool cancel = true)
+    public DialogWindow(string title, List<QuickDialogEntry> entries, bool ok = true, bool cancel = true, bool checkbox = false, string? checkBoxText = null) // CorvaxGoob-SecurityFeatures : добавлены несколько аргументов
     {
         RobustXamlLoader.Load(this);
 
@@ -60,6 +53,12 @@ public sealed partial class DialogWindow : FancyWindow
 
         OkButton.Visible = ok;
         CancelButton.Visible = cancel;
+
+        // CorvaxGoob-SecurityFeatures-Start
+        CheckBox.Visible = checkbox;
+        if (checkBoxText is not null)
+            CheckBox.Text = checkBoxText;
+        // CorvaxGoob-SecurityFeatures-End
 
         _promptLines = new(entries.Count);
 
@@ -119,7 +118,6 @@ public sealed partial class DialogWindow : FancyWindow
     protected override void Opened()
     {
         base.Opened();
-        
         // Grab keyboard focus for the first dialog entry
         _promptLines[0].Item2.GrabKeyboardFocus();
     }

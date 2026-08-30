@@ -1,13 +1,12 @@
 sec-apartment-ui-sec-apartment = SecApartment
 sec-apartment-ui-station = СТАНЦИЯ
-sec-apartment-ui-mark = {$time} | {$station}
+sec-apartment-ui-mark = { $time } | { $station }
 sec-apartment-ui-no-squads-crew = Неназначенный персонал
 sec-apartment-ui-squads-create = Создать
 sec-apartment-ui-squads-placeholder = Введите название отряда...
 sec-apartment-ui-squads = Отряды
 sec-apartment-ui-os = SecApartment#OS ™ v1.12
 sec-apartment-ui-footer = NanoTrasen™ все права защищены
-
 sec-apartment-ui-squads-nameedit-placeholder = Название отряда...
 sec-apartment-ui-squads-rename = ✎
 sec-apartment-ui-squads-rename-tooltip = Переименовать
@@ -21,7 +20,6 @@ sec-apartment-ui-squads-desc-placeholder = Описание отряда...
 sec-apartment-ui-squads-desc-edit = Редактировать описание
 sec-apartment-ui-squads-desc-save = Сохранить
 sec-apartment-ui-squads-location = Рядом с
-
 sec-apartment-icon-alpha = Альфа
 sec-apartment-icon-beta = Бета
 sec-apartment-icon-gamma = Гамма
@@ -46,21 +44,18 @@ sec-apartment-icon-fi = Фи
 sec-apartment-icon-hi = Хи
 sec-apartment-icon-psi = Пси
 sec-apartment-icon-omega = Омега
-
 sec-apartment-tab-timers = Таймеры
 sec-apartment-tab-squads = Управление отрядами
 sec-apartment-unknown = НЕИЗВЕСТНО
 sec-apartment-active = Активен
 sec-apartment-on-break = На перерыве
-
 sec-apartment-assign-button = Назначить
 sec-apartment-assign-no-squads = Нет отрядов
 sec-apartment-assign-select-squad = Выберите отряд
-
 sec-apartment-squad-no-desc = Нет описания
 sec-apartment-squad-no-members = в отряде пока нет участников
 sec-apartment-squad-members =
-    {$count} { $count ->
+    { $count } { $count ->
         [1] участник
         [2] участника
         [3] участника
@@ -69,7 +64,6 @@ sec-apartment-squad-members =
     }
 sec-apartment-squad-remove-name = Удалить
 sec-apartment-squad-remove-tooltip = Удалить из отряда
-
 sec-apartment-ui-timers = Активные таймеры
 sec-apartment-ui-timers-info = Таймеры автоматически добавляются при запуске. Возможны ошибки из-за битовой кодировки "общего канала" сигналов таймеров.
 sec-apartment-ui-timers-remove = Удалить

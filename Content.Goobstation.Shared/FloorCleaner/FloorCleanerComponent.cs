@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.GameStates;
@@ -26,4 +23,10 @@ public sealed partial class FloorCleanerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public int Radius = 1;
+
+    /// <summary>
+    /// Сколько чистящего реагента (например воды) тратится на каждую очищенную декаль.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float ReagentPerDecal = 1.0f;
 }

@@ -97,3 +97,11 @@ ent-AirlockCentralCommandGlass = { ent-AirlockCommandGlass }
 ent-AirlockStandardGlass = { ent-AirlockGlass }
     .suffix = Сервис
     .desc = { ent-AirlockGlass.desc }
+
+ent-AirlockXeno = { ent-Airlock }
+    .desc = { ent-Airlock.desc }
+    .suffix = Ксено
+
+ent-AirlockGlassXeno = { ent-AirlockGlass }
+    .desc = { ent-AirlockGlass.desc }
+    .suffix = Ксено

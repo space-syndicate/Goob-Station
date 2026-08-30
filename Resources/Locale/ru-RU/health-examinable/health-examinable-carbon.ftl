@@ -17,3 +17,13 @@ health-examinable-carbon-Cold-75 = [color=lightblue]{ CAPITALIZE(SUBJECT($target
 health-examinable-carbon-Caustic-25 = [color=yellowgreen]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } лёгкие химические ожоги.[/color]
 health-examinable-carbon-Caustic-50 = [color=yellowgreen]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } химические ожоги на теле.[/color]
 health-examinable-carbon-Caustic-75 = [color=yellowgreen]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } сильные химические ожоги по всей поверхности тела![/color]
+
+health-examinable-carbon-Cold-8 = [color=lightblue]На кончиках { POSS-ADJ($target) } конечностей лёгкие обморожения.[/color]
+
+health-examinable-carbon-Cold-15 = [color=lightblue]На концах { POSS-ADJ($target) } конечностей обморожения первой степени.[/color]
+
+health-examinable-carbon-Cold-30 = [color=lightblue]На { POSS-ADJ($target) } конечностях обморожения второй степени.[/color]
+
+health-examinable-carbon-Cold-100 = [color=lightblue]{ CAPITALIZE(POSS-ADJ($target)) } тело покрыто обширными обморожениями четвёртой степени.[/color]
+
+health-examinable-carbon-Cold-200 = [color=lightblue]{ CAPITALIZE(POSS-ADJ($target)) } тело превратилось в ледышку![/color]

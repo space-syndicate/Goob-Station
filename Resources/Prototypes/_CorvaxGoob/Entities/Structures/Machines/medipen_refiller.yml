@@ -59,7 +59,7 @@
       medipenSlot:
         priority: 1
         whitelist:
-          components:
+          tags:
             - Medipen
         blacklist:
           tags:
@@ -69,7 +69,7 @@
           components:
           - FitsInDispenser
         blacklist:
-          components:
+          tags:
             - Medipen
   - type: GuideHelp
     guides:

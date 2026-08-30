@@ -138,3 +138,6 @@ ent-FoodMeatXenoCutletCooked = ксено котлета
     .desc = Котлета из ксеноса, сочащаяся... вкусом?
 ent-FoodMeatDragonCutletCooked = драконья котлета
     .desc = Это блюдо для королей!
+
+ent-FoodMeatChickenFriedVox = загадочная жареная курица
+    .desc = "\""Одиннадцать секретных трав и... О нет. Это не курица.\""

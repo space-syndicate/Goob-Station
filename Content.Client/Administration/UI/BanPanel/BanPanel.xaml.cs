@@ -1,12 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Riggle <27156122+RigglePrime@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Tornado Tech <54727692+Tornado-Technology@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Vasilis <vasilis@pikachu.systems>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -237,7 +228,7 @@ public sealed partial class BanPanel : DefaultWindow
         var roleGroupCheckbox = new Button
         {
             Name = $"{groupName}GroupCheckbox",
-            Text = "Ban all",
+            Text = Loc.GetString("role-bans-ban-group"),
             Margin = new Thickness(0, 0, 5, 0),
             ToggleMode = true,
         };
@@ -305,19 +296,19 @@ public sealed partial class BanPanel : DefaultWindow
     }
 
     /// <summary>
-    /// Adds a check button specifically for one "role" in a "group"
+    /// Adds a toggle button specifically for one "role" in a "group"
     /// E.g. it would add the Chief Medical Officer "role" into the "Medical" group.
     /// </summary>
     private void AddRoleCheckbox(string group, string role, GridContainer roleGroupInnerContainer, Button roleGroupCheckbox)
     {
         var roleCheckboxContainer = new BoxContainer();
-        var roleCheckButton = new Button
+        var roleToggleButton = new Button
         {
             Name = role,
             Text = role,
             ToggleMode = true,
         };
-        roleCheckButton.OnToggled += args =>
+        roleToggleButton.OnToggled += args =>
         {
             // Checks the role group checkbox if all the children are pressed
             if (args.Pressed && _roleCheckboxes[group].All(e => e.Item1.Pressed))
@@ -354,12 +345,12 @@ public sealed partial class BanPanel : DefaultWindow
             roleCheckboxContainer.AddChild(jobIconTexture);
         }
 
-        roleCheckboxContainer.AddChild(roleCheckButton);
+        roleCheckboxContainer.AddChild(roleToggleButton);
 
         roleGroupInnerContainer.AddChild(roleCheckboxContainer);
 
         _roleCheckboxes.TryAdd(group, []);
-        _roleCheckboxes[group].Add((roleCheckButton, rolePrototype));
+        _roleCheckboxes[group].Add((roleToggleButton, rolePrototype));
     }
 
     public void UpdateBanFlag(bool newFlag)
@@ -402,7 +393,7 @@ public sealed partial class BanPanel : DefaultWindow
         TimeLine.Text = args.Text;
         if (!double.TryParse(args.Text, out var result))
         {
-            ExpiresLabel.Text = "err";
+            ExpiresLabel.Text = Loc.GetString("ban-panel-expiry-error");
             ErrorLevel |= ErrorLevelEnum.Minutes;
             TimeLine.ModulateSelfOverride = Color.Red;
             UpdateSubmitEnabled();

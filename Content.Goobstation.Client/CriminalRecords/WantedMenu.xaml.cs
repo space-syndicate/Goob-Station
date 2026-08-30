@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 BeBright <98597725+be1bright@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BeBright <98597725+bebr3ght@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.UserInterface.Controls;
@@ -38,6 +34,7 @@ public sealed partial class WantedMenu : FancyWindow
 
     public Action<SecurityStatus>? OnStatusSelected;
     public Action<SecurityStatus, string>? OnDialogConfirmed;
+    public Action<string, int, bool>? OnDialogDetainedConfirmed; // CorvaxGoob-SecurityFeatures
 
     private CriminalRecord? _selectedRecord;
     private DialogWindow? _reasonDialog;
@@ -133,6 +130,14 @@ public sealed partial class WantedMenu : FancyWindow
             GetReason(status);
             return;
         }
+
+        // CorvaxGoob-SecurityFeatures
+        if (status == SecurityStatus.Detained)
+        {
+            GetDetainedInfo();
+            return;
+        }
+
         OnStatusSelected?.Invoke(status);
     }
     private void GetReason(SecurityStatus status)
@@ -166,6 +171,41 @@ public sealed partial class WantedMenu : FancyWindow
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
     }
 
+    // CorvaxGoob-SecurityFeatures
+    private void GetDetainedInfo()
+    {
+        if (_reasonDialog != null)
+        {
+            _reasonDialog.MoveToFront();
+            return;
+        }
+
+        var articleField = "article";
+        var durationField = "duration";
+
+        var title = Loc.GetString("criminal-records-status-detained");
+
+        var entryArticles = new QuickDialogEntry(articleField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-articles"), Loc.GetString("criminal-records-console-articles-placeholder"));
+        var entryDuration = new QuickDialogEntry(durationField, QuickDialogEntryType.LongText, Loc.GetString("criminal-records-console-duration"), Loc.GetString("criminal-records-console-duration-placeholder"));
+        var entries = new List<QuickDialogEntry>() { entryArticles, entryDuration };
+        _reasonDialog = new DialogWindow(title, entries, true, true);
+
+        _reasonDialog.OnConfirmed += responses =>
+        {
+            var articles = responses[articleField];
+            var duration = responses[durationField];
+
+            if (articles.Length < 1 || articles.Length > 256)
+                return;
+
+            if (!int.TryParse(duration, out var durationInt))
+                return;
+
+            OnDialogDetainedConfirmed?.Invoke(articles, durationInt, false);
+        };
+
+        _reasonDialog.OnClose += () => { _reasonDialog = null; };
+    }
     private string GetStatusIcon(SecurityStatus status)
     {
         return status switch

@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 266.0.0
-  forkId: syndicate-goob
-  forkVersion: 513fa71254c1ff351c96d052d4f5a6869ae24022
-  time: 04/24/2026 04:40:40
-  entityCount: 21319
+  engineVersion: 270.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 07/12/2026 15:20:42
+  entityCount: 21302
 maps:
 - 1
 grids:
@@ -17881,117 +17881,28 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 235
           moles:
-          - 27.225372
-          - 102.419266
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 27.225372
+            Nitrogen: 102.419266
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.14975
           moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
+        - volume: 2500
+          temperature: 293.15
+          moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Plasma: 6666.982
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -18001,6 +17912,9 @@ entities:
     - type: NavMap
     - type: ImplicitRoof
     - type: FTLDrive
+    - type: TileHistory
+      chunkHistory: {}
+    - type: ExplosionAirtightGrid
   - uid: 4
     components:
     - type: MetaData
@@ -26095,15 +26009,11 @@ entities:
     - type: Transform
       pos: 19.5,0.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
   - uid: 624
     components:
     - type: Transform
       pos: -21.5,18.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
   - uid: 19428
     components:
     - type: Transform
@@ -27435,13 +27345,6 @@ entities:
     components:
     - type: Transform
       pos: -26.50345,21.607277
-      parent: 2
-- proto: BoxMailCapsulePrimed
-  entities:
-  - uid: 21159
-    components:
-    - type: Transform
-      pos: -23.216814,30.150478
       parent: 2
 - proto: BoxMesonScanners
   entities:
@@ -49427,6 +49330,13 @@ entities:
     - type: Transform
       pos: -30.5,36.5
       parent: 2
+- proto: CargoMailTeleporter
+  entities:
+  - uid: 4852
+    components:
+    - type: Transform
+      pos: -23.5,31.5
+      parent: 2
 - proto: CargoTechFab
   entities:
   - uid: 421
@@ -49434,8 +49344,6 @@ entities:
     - type: Transform
       pos: -18.5,34.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
     - type: TechnologyDatabase
       supportedDisciplines:
       - Industrial
@@ -54437,6 +54345,18 @@ entities:
     - type: Transform
       pos: 19.258236,-30.201738
       parent: 2
+- proto: ChemDispenser
+  entities:
+  - uid: 18683
+    components:
+    - type: Transform
+      pos: 3.5,-26.5
+      parent: 2
+  - uid: 21127
+    components:
+    - type: Transform
+      pos: 7.5,-27.5
+      parent: 2
 - proto: ChemicalMedipen
   entities:
   - uid: 5718
@@ -54552,8 +54472,6 @@ entities:
     - type: Transform
       pos: 20.5,0.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
 - proto: CleanerDispenser
   entities:
   - uid: 5730
@@ -54761,22 +54679,8 @@ entities:
         immutable: False
         temperature: 293.14957
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -54872,22 +54776,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 5775
     components:
     - type: Transform
@@ -54919,22 +54809,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 5780
     components:
     - type: Transform
@@ -54951,22 +54827,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 5782
     components:
     - type: Transform
@@ -55013,22 +54875,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 5790
     components:
     - type: Transform
@@ -55040,22 +54888,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 5791
     components:
     - type: Transform
@@ -55067,22 +54901,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 5792
     components:
     - type: Transform
@@ -55159,23 +54979,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -55207,22 +55011,8 @@ entities:
         immutable: False
         temperature: 293.1467
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -56956,13 +56746,6 @@ entities:
     - type: Transform
       pos: -9.5,37.5
       parent: 2
-- proto: ComputerShuttleSalvage
-  entities:
-  - uid: 16029
-    components:
-    - type: Transform
-      pos: -6.5,41.5
-      parent: 2
 - proto: ComputerSolarControl
   entities:
   - uid: 6068
@@ -57195,22 +56978,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57235,22 +57004,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57283,22 +57038,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57333,22 +57074,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57377,22 +57104,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57456,22 +57169,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 6116
     components:
     - type: Transform
@@ -57488,22 +57187,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
 - proto: CrateEngineeringGear
   entities:
   - uid: 6118
@@ -57517,22 +57202,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
 - proto: CrateEngineeringMiniJetpack
   entities:
   - uid: 6119
@@ -57553,22 +57224,8 @@ entities:
         immutable: False
         temperature: 293.14972
         moles:
-        - 1.8968438
-        - 7.1357465
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8968438
+          Nitrogen: 7.1357465
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57592,22 +57249,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57630,22 +57273,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57749,23 +57378,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57833,22 +57446,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -57876,22 +57475,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
 - proto: CrateNPCCow
   entities:
   - uid: 6148
@@ -57900,28 +57485,12 @@ entities:
       pos: -6.5,-24.5
       parent: 2
     - type: EntityStorage
+      removedMasks: 28
       air:
         volume: 800
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      removedMasks: 28
+        moles: {}
       open: True
     - type: Fixtures
       fixtures:
@@ -57967,22 +57536,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -58030,22 +57585,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
 - proto: CrateStoneGrave
   entities:
   - uid: 6153
@@ -58058,23 +57599,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
 - proto: CrateTrashCartFilled
   entities:
   - uid: 6154
@@ -58102,22 +57627,8 @@ entities:
         immutable: False
         temperature: 293.14984
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -58151,22 +57662,8 @@ entities:
         immutable: False
         temperature: 293.14972
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -66917,18 +66414,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 15.49149,35.452545
       parent: 2
-- proto: EnergyChemDispenser
-  entities:
-  - uid: 5716
-    components:
-    - type: Transform
-      pos: 3.5,-26.5
-      parent: 2
-  - uid: 5717
-    components:
-    - type: Transform
-      pos: 7.5,-27.5
-      parent: 2
 - proto: EngineeringTechFab
   entities:
   - uid: 12686
@@ -66936,8 +66421,6 @@ entities:
     - type: Transform
       pos: -24.5,23.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
     - type: TechnologyDatabase
       supportedDisciplines:
       - Industrial
@@ -66951,8 +66434,6 @@ entities:
     - type: Transform
       pos: 24.5,15.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
 - proto: ExtinguisherCabinetDirectionalFilled
   entities:
   - uid: 727
@@ -67435,331 +66916,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -48.5,18.5
       parent: 2
-- proto: FigureSpawner
-  entities:
-  - uid: 7304
-    components:
-    - type: MetaData
-      name: которт или хлебопес
-    - type: Transform
-      pos: -16.5,-17.5
-      parent: 2
-    - type: RandomSpawner
-      prototypes:
-      - MobCatCake
-      - MobBreadDog
-  - uid: 18729
-    components:
-    - type: Transform
-      anchored: False
-      pos: 669.5,-1.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18730
-    components:
-    - type: Transform
-      anchored: False
-      pos: -405.5,373.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18731
-    components:
-    - type: Transform
-      anchored: False
-      pos: 957.5,120.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18732
-    components:
-    - type: Transform
-      anchored: False
-      pos: 35.5,-950.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18733
-    components:
-    - type: Transform
-      anchored: False
-      pos: 613.5,-583.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18734
-    components:
-    - type: Transform
-      anchored: False
-      pos: -400.5,-142.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18735
-    components:
-    - type: Transform
-      anchored: False
-      pos: -71.5,-181.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18736
-    components:
-    - type: Transform
-      anchored: False
-      pos: -219.5,-161.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18737
-    components:
-    - type: Transform
-      anchored: False
-      pos: -876.5,-13.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18738
-    components:
-    - type: Transform
-      anchored: False
-      pos: -282.5,142.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18739
-    components:
-    - type: Transform
-      anchored: False
-      pos: -195.5,184.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
-  - uid: 18740
-    components:
-    - type: Transform
-      anchored: False
-      pos: -193.5,-217.5
-      parent: 1
-    - type: RandomSpawner
-      prototypes:
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisSmall
-      - AsteroidDebrisMedium
-      - AsteroidDebrisMedium
-      - AsteroidDebrisLarge
-      - AsteroidDebrisLarger
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageSmall
-      - AsteroidSalvageMedium
-      - AsteroidSalvageMedium
-      - AsteroidSalvageLarge
-      - AsteroidSalvageHuge
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisSmall
-      - ScrapDebrisMedium
 - proto: filingCabinetTallRandom
   entities:
   - uid: 7305
@@ -72952,6 +72108,31 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+  - uid: 21135
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -81.5,12.5
+      parent: 2
+    - type: Drain
+      range: 9
+    - type: Fixtures
+      fixtures: {}
+    - type: ForcedStealthStatusEffect
+    - type: Stealth
+      lastVisibility: 0
+  - uid: 21136
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -74.5,-4.5
+      parent: 2
+    - type: Drain
+      range: 10
+    - type: Fixtures
+      fixtures: {}
+    - type: Stealth
+      lastVisibility: 0
 - proto: FloorWaterEntity
   entities:
   - uid: 7800
@@ -91986,6 +91167,8 @@ entities:
     - type: Transform
       pos: -26.5,-39.5
       parent: 2
+    - type: PowerSupplier
+      supplyRate: 30000
   - uid: 9842
     components:
     - type: Transform
@@ -96845,22 +96028,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -96868,7 +96037,6 @@ entities:
           occludes: True
           ents:
           - 5904
-          - 5910
           - 5908
           - 5905
           - 5906
@@ -97332,22 +96500,8 @@ entities:
         immutable: False
         temperature: 293.14694
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -97377,22 +96531,8 @@ entities:
         immutable: False
         temperature: 293.1473
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -97422,22 +96562,8 @@ entities:
         immutable: False
         temperature: 293.14728
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -97517,23 +96643,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
 - proto: LockerClown
   entities:
   - uid: 10750
@@ -97640,22 +96750,8 @@ entities:
         immutable: False
         temperature: 234.99739
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -97680,22 +96776,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -97739,23 +96821,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 93.465614
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -97833,23 +96899,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 93.465614
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
 - proto: LockerSalvageSpecialistFilled
   entities:
   - uid: 10778
@@ -97938,22 +96988,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8968438
-        - 7.1357465
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8968438
+          Nitrogen: 7.1357465
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -98140,6 +97176,17 @@ entities:
     - type: Transform
       pos: 28.5,-52.5
       parent: 2
+- proto: MachineMaterialSilo
+  entities:
+  - uid: 12645
+    components:
+    - type: Transform
+      pos: 23.5,0.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts: {}
+      lastSignals: {}
+      ports: []
 - proto: MagazineLightRifle
   entities:
   - uid: 823
@@ -98209,30 +97256,6 @@ entities:
     components:
     - type: Transform
       pos: -7.177621,26.639849
-      parent: 2
-- proto: MailMetricsCartridge
-  entities:
-  - uid: 21156
-    components:
-    - type: Transform
-      pos: -23.841429,30.269407
-      parent: 2
-  - uid: 21157
-    components:
-    - type: Transform
-      pos: -23.682796,30.160389
-      parent: 2
-  - uid: 21158
-    components:
-    - type: Transform
-      pos: -23.534079,30.259497
-      parent: 2
-- proto: MailTeleporter
-  entities:
-  - uid: 4852
-    components:
-    - type: Transform
-      pos: -23.5,31.5
       parent: 2
 - proto: MaintenanceFluffSpawner
   entities:
@@ -98348,45 +97371,6 @@ entities:
     - type: Transform
       pos: -13.794353,-0.19467258
       parent: 2
-- proto: MaterialSilo
-  entities:
-  - uid: 12645
-    components:
-    - type: Transform
-      pos: 23.5,0.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        11464:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        5729:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        623:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        7237:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        10910:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        12686:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        624:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        421:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        10848:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
-        12035:
-        - - MaterialSilo
-          - MaterialSiloUtilizer
 - proto: MaterialSmileExtract
   entities:
   - uid: 10832
@@ -98416,6 +97400,357 @@ entities:
     - type: Transform
       pos: -48.5,4.5
       parent: 2
+- proto: MechFigurineSpawner50
+  entities:
+  - uid: 7304
+    components:
+    - type: MetaData
+      name: которт или хлебопес
+    - type: Transform
+      pos: -16.5,-17.5
+      parent: 2
+    - type: RandomSpawner
+      prototypes:
+      - MobCatCake
+      - MobBreadDog
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18729
+    components:
+    - type: Transform
+      anchored: False
+      pos: 669.5,-1.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18730
+    components:
+    - type: Transform
+      anchored: False
+      pos: -405.5,373.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18731
+    components:
+    - type: Transform
+      anchored: False
+      pos: 957.5,120.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18732
+    components:
+    - type: Transform
+      anchored: False
+      pos: 35.5,-950.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18733
+    components:
+    - type: Transform
+      anchored: False
+      pos: 613.5,-583.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18734
+    components:
+    - type: Transform
+      anchored: False
+      pos: -400.5,-142.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18735
+    components:
+    - type: Transform
+      anchored: False
+      pos: -71.5,-181.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18736
+    components:
+    - type: Transform
+      anchored: False
+      pos: -219.5,-161.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18737
+    components:
+    - type: Transform
+      anchored: False
+      pos: -876.5,-13.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18738
+    components:
+    - type: Transform
+      anchored: False
+      pos: -282.5,142.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18739
+    components:
+    - type: Transform
+      anchored: False
+      pos: -195.5,184.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
+  - uid: 18740
+    components:
+    - type: Transform
+      anchored: False
+      pos: -193.5,-217.5
+      parent: 1
+    - type: RandomSpawner
+      prototypes:
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisSmall
+      - AsteroidDebrisMedium
+      - AsteroidDebrisMedium
+      - AsteroidDebrisLarge
+      - AsteroidDebrisLarger
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageSmall
+      - AsteroidSalvageMedium
+      - AsteroidSalvageMedium
+      - AsteroidSalvageLarge
+      - AsteroidSalvageHuge
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisSmall
+      - ScrapDebrisMedium
+      rarePrototypes: []
+      gameRules: []
 - proto: MedalCase
   entities:
   - uid: 10838
@@ -98489,8 +97824,6 @@ entities:
     - type: Transform
       pos: 11.5,-34.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
 - proto: MedkitAdvancedFilled
   entities:
   - uid: 10849
@@ -98990,8 +98323,6 @@ entities:
     - type: Transform
       pos: -9.5,39.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
 - proto: OrganHumanKidneys
   entities:
   - uid: 6140
@@ -99158,7 +98489,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-clown
       stampedBy:
-      - stampedColor: '#FF33CCFF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#FF33CCFF'
         stampedName: stamp-component-stamped-name-clown
       content: >2
 
@@ -99176,7 +98510,13 @@ entities:
 
                   [head=2]ГЛУПЕНЬКИЙ ХОНК-ХОООНК!!![/head]
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99227,12 +98567,21 @@ entities:
     - type: Paper
       stampState: paper_stamp-ce
       stampedBy:
-      - stampedColor: '#C83205FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C83205FF'
         stampedName: Глава строителей
       content: Приветствую, утилизаторы. Вы на передовой научной станции «Аутпост», расположенной в недрах астероида. Прошу вас обратить внимание на процесс добычи полезных ископаемых в этом астероиде, поскольку избыточная добыча может привести к нарушению структурной целостности станции.
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99325,7 +98674,13 @@ entities:
         [bullet]доксарубиксадон [2]
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99376,13 +98731,22 @@ entities:
     - type: Paper
       stampState: paper_stamp-ce
       stampedBy:
-      - stampedColor: '#C83205FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C83205FF'
         stampedName: Глава строителей
       content: >
         Приветствую, служба безопасности. Вы на передовой научной станции «Аутпост», расположенной в недрах астероида. Прошу вас обратить внимание на процесс добычи полезных ископаемых в этом астероиде, поскольку избыточная добыча может привести к нарушению структурной целостности станции.
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99433,12 +98797,21 @@ entities:
     - type: Paper
       stampState: paper_stamp-ce
       stampedBy:
-      - stampedColor: '#C83205FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C83205FF'
         stampedName: Глава строителей
       content: Приветствую командование. Вы на передовой научной станции «Аутпост», расположенной в недрах астероида. Прошу вас обратить внимание на процесс добычи полезных ископаемых в этом астероиде, поскольку избыточная добыча может привести к нарушению структурной целостности станции.
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99489,12 +98862,21 @@ entities:
     - type: Paper
       stampState: paper_stamp-ce
       stampedBy:
-      - stampedColor: '#C83205FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C83205FF'
         stampedName: Глава строителей
       content: Приветствую командование. Вы на передовой научной станции «Аутпост», расположенной в недрах астероида. Прошу вас обратить внимание на процесс добычи полезных ископаемых в этом астероиде, поскольку избыточная добыча может привести к нарушению структурной целостности станции.
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99545,12 +98927,21 @@ entities:
     - type: Paper
       stampState: paper_stamp-ce
       stampedBy:
-      - stampedColor: '#C83205FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C83205FF'
         stampedName: Глава строителей
       content: Приветствую командование. Вы на передовой научной станции «Аутпост», расположенной в недрах астероида. Прошу вас обратить внимание на процесс добычи полезных ископаемых в этом астероиде, поскольку избыточная добыча может привести к нарушению структурной целостности станции.
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99601,12 +98992,21 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#331162FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#331162FF'
         stampedName: Уборщик
       content: Настоятельно рекомендуется воздержаться от рыбной ловли в фонтане, так как для этой цели предусмотрена специализированная зона, расположенная на спутнике искусственного интеллекта. Доступ к данной зоне можно получить через комнату, находящуюся западнее помещения уборщика.
       editingDisabled: True
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99708,7 +99108,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#006600FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#006600FF'
         stampedName: stamp-component-stamped-name-centcom
       content: >2-
 
@@ -99748,7 +99151,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -99759,7 +99165,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99822,7 +99234,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -99833,7 +99248,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99891,7 +99312,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -99902,7 +99326,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -99960,7 +99390,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -99971,7 +99404,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100029,7 +99468,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100040,7 +99482,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100098,7 +99546,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100109,7 +99560,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100167,7 +99624,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100178,7 +99638,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100236,7 +99702,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100247,7 +99716,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100305,7 +99780,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#C85515FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#C85515FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100316,7 +99794,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1687.6983123
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100394,7 +99878,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100404,7 +99891,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100462,7 +99955,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100472,7 +99968,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100530,7 +100032,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100540,7 +100045,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100598,7 +100109,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100608,7 +100122,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100666,7 +100186,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100676,7 +100199,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100734,7 +100263,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100744,7 +100276,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100802,7 +100340,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100812,7 +100353,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -100870,7 +100417,10 @@ entities:
     - type: Paper
       stampState: paper_stamp-centcom
       stampedBy:
-      - stampedColor: '#8E4D36FF'
+      - hasIcon: True
+        stampFont: null
+        stampLargeIcon: null
+        stampedColor: '#8E4D36FF'
         stampedName: Инженерный отдел Центрального командования
       content: >-
         Уважаемые члены экипажа станции «Аутпост»!
@@ -100880,7 +100430,13 @@ entities:
     - type: EmitSoundOnCollide
       nextSound: -1093.8655728
     - type: SolutionContainerManager
-      solutions: null
+      solutions:
+        food:
+          temperature: 293.15
+          canReact: True
+          maxVol: 0
+          name: food
+          reagents: []
       containers:
       - food
     - type: Fixtures
@@ -102194,6 +101750,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -47.5,-27.5
       parent: 2
+  - uid: 5910
+    components:
+    - type: Transform
+      pos: 50.5,0.5
+      parent: 2
   - uid: 11093
     components:
     - type: Transform
@@ -103360,6 +102921,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 22.5,29.5
       parent: 2
+  - uid: 16029
+    components:
+    - type: Transform
+      pos: 46.5,0.5
+      parent: 2
   - uid: 17469
     components:
     - type: Transform
@@ -103374,6 +102940,12 @@ entities:
     components:
     - type: Transform
       pos: 28.5,33.5
+      parent: 2
+  - uid: 18286
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 48.5,-5.5
       parent: 2
   - uid: 18708
     components:
@@ -103972,6 +103544,23 @@ entities:
       on: False
 - proto: PoweredSmallLight
   entities:
+  - uid: 381
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 37.5,0.5
+      parent: 2
+  - uid: 5716
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 41.5,-1.5
+      parent: 2
+  - uid: 5717
+    components:
+    - type: Transform
+      pos: 43.5,-3.5
+      parent: 2
   - uid: 11369
     components:
     - type: Transform
@@ -104507,8 +104096,6 @@ entities:
     - type: Transform
       pos: 21.5,0.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
 - proto: ProtolatheMachineCircuitboard
   entities:
   - uid: 11465
@@ -106356,6 +105943,8 @@ entities:
     - type: RandomSpawner
       prototypes:
       - ReagentSlimeBeer
+      rarePrototypes: []
+      gameRules: []
 - proto: RecorderInstrument
   entities:
   - uid: 11800
@@ -106618,11 +106207,15 @@ entities:
     - type: Transform
       pos: -44.5,12.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 500
   - uid: 11845
     components:
     - type: Transform
       pos: -44.5,14.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 500
 - proto: ReinforcedWindow
   entities:
   - uid: 11846
@@ -107446,8 +107039,6 @@ entities:
     - type: Transform
       pos: -51.5,-19.5
       parent: 2
-    - type: SiloUtilizer
-      silo: 12645
     - type: TechnologyDatabase
       supportedDisciplines:
       - Industrial
@@ -111984,6 +111575,18 @@ entities:
     - type: Transform
       pos: -27.5,-2.5
       parent: 2
+- proto: SpawnPointShaftMiner
+  entities:
+  - uid: 18287
+    components:
+    - type: Transform
+      pos: -2.5,39.5
+      parent: 2
+  - uid: 18288
+    components:
+    - type: Transform
+      pos: -8.5,40.5
+      parent: 2
 - proto: SpawnPointStationEngineer
   entities:
   - uid: 12648
@@ -113381,23 +112984,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 39.006245
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -113480,23 +113067,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
 - proto: SuitStorageEngi
   entities:
   - uid: 12853
@@ -113539,22 +113110,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
   - uid: 12858
     components:
     - type: Transform
@@ -113605,22 +113162,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
   - uid: 12866
     components:
     - type: Transform
@@ -117416,106 +116959,6 @@ entities:
     - type: Transform
       pos: 28.5,30.5
       parent: 2
-- proto: UraniumReinforcedWindowDirectional
-  entities:
-  - uid: 381
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -45.5,15.5
-      parent: 2
-  - uid: 21127
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -45.5,15.5
-      parent: 2
-  - uid: 21135
-    components:
-    - type: Transform
-      pos: -45.5,11.5
-      parent: 2
-  - uid: 21136
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -45.5,11.5
-      parent: 2
-  - uid: 21137
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,10.5
-      parent: 2
-  - uid: 21138
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -47.5,9.5
-      parent: 2
-  - uid: 21139
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -46.5,9.5
-      parent: 2
-  - uid: 21140
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -45.5,9.5
-      parent: 2
-  - uid: 21141
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -44.5,9.5
-      parent: 2
-  - uid: 21142
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,11.5
-      parent: 2
-  - uid: 21143
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,12.5
-      parent: 2
-  - uid: 21144
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,13.5
-      parent: 2
-  - uid: 21145
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,14.5
-      parent: 2
-  - uid: 21146
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -48.5,15.5
-      parent: 2
-  - uid: 21147
-    components:
-    - type: Transform
-      pos: -47.5,17.5
-      parent: 2
-  - uid: 21148
-    components:
-    - type: Transform
-      pos: -46.5,17.5
-      parent: 2
-  - uid: 21149
-    components:
-    - type: Transform
-      pos: -45.5,17.5
-      parent: 2
 - proto: UraniumShiv
   entities:
   - uid: 11062
@@ -117532,6 +116975,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -44.5,13.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 500
 - proto: UraniumWindow
   entities:
   - uid: 13333
@@ -117789,13 +117234,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,30.5
-      parent: 2
-- proto: VendingMachineMailDrobe
-  entities:
-  - uid: 18683
-    components:
-    - type: Transform
-      pos: -15.5,41.5
       parent: 2
 - proto: VendingMachineMedical
   entities:
@@ -119292,6 +118730,8 @@ entities:
     - type: Transform
       pos: -44.5,11.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13651
     components:
     - type: Transform
@@ -119805,21 +119245,29 @@ entities:
     - type: Transform
       pos: -47.5,16.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13753
     components:
     - type: Transform
       pos: -46.5,16.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13754
     components:
     - type: Transform
       pos: -45.5,16.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13755
     components:
     - type: Transform
       pos: -44.5,16.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13756
     components:
     - type: Transform
@@ -119865,11 +119313,15 @@ entities:
     - type: Transform
       pos: -47.5,10.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13765
     components:
     - type: Transform
       pos: -47.5,11.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13766
     components:
     - type: Transform
@@ -119880,16 +119332,22 @@ entities:
     - type: Transform
       pos: -47.5,13.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13768
     components:
     - type: Transform
       pos: -47.5,14.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13769
     components:
     - type: Transform
       pos: -47.5,15.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13770
     components:
     - type: Transform
@@ -120220,6 +119678,8 @@ entities:
     - type: Transform
       pos: -44.5,10.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13841
     components:
     - type: Transform
@@ -120236,6 +119696,8 @@ entities:
     - type: Transform
       pos: -45.5,10.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13844
     components:
     - type: Transform
@@ -120256,6 +119718,8 @@ entities:
     - type: Transform
       pos: -46.5,10.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 13848
     components:
     - type: Transform
@@ -120286,6 +119750,8 @@ entities:
     - type: Transform
       pos: -44.5,15.5
       parent: 2
+    - type: RadiationBlocker
+      resistance: 200
   - uid: 16881
     components:
     - type: Transform
@@ -145567,22 +145033,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -145610,22 +145062,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -145659,23 +145097,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
   - uid: 18274
     components:
     - type: Transform
@@ -145696,23 +145118,7 @@ entities:
         volume: 200
         immutable: False
         temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        moles: {}
   - uid: 18277
     components:
     - type: Transform
@@ -145743,22 +145149,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
 - proto: WardrobeWhite
   entities:
   - uid: 5939
@@ -145772,22 +145164,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -145832,29 +145210,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: WarpPointBombing
-  entities:
-  - uid: 18286
-    components:
-    - type: Transform
-      pos: -42.5,13.5
-      parent: 2
-    - type: WarpPoint
-      location: Генераторная
-  - uid: 18287
-    components:
-    - type: Transform
-      pos: -67.5,25.5
-      parent: 2
-    - type: WarpPoint
-      location: Ускоритель частиц
-  - uid: 18288
-    components:
-    - type: Transform
-      pos: 9.5,28.5
-      parent: 2
-    - type: WarpPoint
-      location: Мостик
 - proto: WaterCooler
   entities:
   - uid: 18289
@@ -147979,13 +147334,4 @@ entities:
     - type: Transform
       pos: 50.5,0.5
       parent: 2
-- proto: ZookeeperIDCard
-  entities:
-  - uid: 5910
-    components:
-    - type: Transform
-      parent: 5903
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 ...

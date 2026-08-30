@@ -1,6 +1,13 @@
 ent-ParcelWrap = parcel wrap
     .desc = Paper used contain items for transport.
-ent-WrappedParcel = wrapped parcel
+ent-ParcelWrapAdmeme = bluespace wrap
+    .desc = Paper used contain items for transport. This one seems to be able to store an unusual amount of space within it.
+    .suffix = Admeme
+ent-BaseWrappedParcel = wrapped parcel
     .desc = Something wrapped up in paper. I wonder what's inside...
+ent-WrappedParcel = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-WrappedParcelHumanoid = { ent-BaseWrappedParcel }
+    .desc = Something wrapped up in paper. It's suspiciously human-shaped.
 ent-ParcelWrapTrash = parcel wrap
     .desc = The disappointing remnants of an unwrapped parcel.
