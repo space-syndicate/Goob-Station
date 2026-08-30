@@ -1,0 +1,4 @@
+- files: ["basic.ogg", "cargo.ogg", "cc.ogg", "command.ogg", "common.ogg", "eng.ogg", "handheld.ogg", "med.ogg", "science.ogg", "security.ogg", "service.ogg", "syndie.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Orion Station 14 PR #456 by UmbiMax. Original upstream source not specified."
+  source: "https://github.com/AtaraxiaSpaceFoundation/Orion-Station-14/pull/456"

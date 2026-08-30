@@ -146,6 +146,18 @@ public sealed class CCCVars
     public static readonly CVarDef<float> AnnouncementsSound =
         CVarDef.Create("audio.announcements_volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Client volume setting for headset radio receive sounds.
+    /// </summary>
+    public static readonly CVarDef<float> RadioVolume =
+        CVarDef.Create("audio.radio_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Minimum delay in seconds between headset radio receive sounds on the client.
+    /// </summary>
+    public static readonly CVarDef<float> RadioSoundCooldown =
+        CVarDef.Create("audio.radio_sound_cooldown", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> PhotoPlayTimeRequire =
         CVarDef.Create("photo.playtime_require", true, CVar.SERVERONLY);
 
