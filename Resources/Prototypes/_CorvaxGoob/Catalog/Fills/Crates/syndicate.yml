@@ -1,0 +1,8 @@
+- type: entity
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  id: CrateSyndicateSuperDuperSurplusBundle
+  name: Syndicate super duper surplus crate
+  description: Contains 3000 telecrystals worth of completely random Syndicate items. Only for nuclear operatives.
+  components:
+    - type: SurplusBundle
+      totalPrice: 3000

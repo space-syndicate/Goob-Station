@@ -408,6 +408,8 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      components: # Corvaxgoob
+      - SurplusBundle
 
 - type: listing
   id: UplinkDualettaBundle
@@ -676,8 +678,11 @@
     whitelist:
     - HijackShuttleObjective
     - NukeDiskStealObjective
+  - !type:StoreWhitelistCondition
+    blacklist: # Corvaxgoob
+      components:
+      - SurplusBundle
   saleLimit: 1
-
 
 - type: listing
   id: UplinkLubeGrenade
@@ -1051,6 +1056,8 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      components: # Corvaxgoob
+      - SurplusBundle
 
 - type: listing
   id: UplinkAutosurgeonStatvekaSandevistan
@@ -1067,7 +1074,9 @@
     blacklist:
       tags:
       - NukeOpsUplink
-
+      components: # Corvaxgoob
+      - SurplusBundle
+      
 - type: listing
   id: NukieUplinkAutosurgeonSandevistan
   name: uplink-autosurgeon-sandevistan-name
@@ -1655,6 +1664,8 @@
       tags:
       - ContractorUplink
       - NukeOpsUplink
+      components: # Corvaxgoob
+      - SurplusBundle
 
 # Explosives
 
