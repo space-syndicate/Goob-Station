@@ -187,6 +187,12 @@
     - id: MachinePowerTransmissionLaserFlatpack
     - id: RCDRechargingCE
     - id: MaterialSiloFlatpack # Goob
+    # Corvax Edit Start
+    - id: GasTurbineMonitorComputerCircuitboard
+    - id: NuclearReactorMonitorComputerCircuitboard
+    - id: SmallNuclearReactorFlatpack
+    - id: GasTurbineSmallFlatpack
+    # Corvax Edit End
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
