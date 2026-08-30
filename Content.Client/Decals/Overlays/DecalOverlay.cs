@@ -7,18 +7,27 @@ using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Decals.Overlays
 {
     public sealed class DecalOverlay : GridOverlay
     {
+        // corvax-goob
+        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "Emissive";
+
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
+        private readonly IGameTiming _timing = default!; // corvax-goob
 
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 
         private readonly List<(uint Id, Decal Decal)> _decals = new();
+
+        // corvax-goob
+        private readonly ShaderInstance _emissiveShader;
+        private readonly Dictionary<uint, ShaderInstance> _glowingDecalsShaders = new();
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -28,6 +37,9 @@ namespace Content.Client.Decals.Overlays
             _sprites = sprites;
             _entManager = entManager;
             _prototypeManager = prototypeManager;
+            // corvax-goob
+            _emissiveShader = _prototypeManager.Index(EmissiveShader).InstanceUnique();
+            _timing = IoCManager.Resolve<IGameTiming>();
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -85,7 +97,10 @@ namespace Content.Client.Decals.Overlays
             var (_, worldRot, worldMatrix) = xformSystem.GetWorldPositionRotationMatrix(xform);
             handle.SetTransform(worldMatrix);
 
-            foreach (var (_, decal) in _decals)
+            // corvax-goob
+            var defShader = handle.GetShader();
+
+            foreach (var (decalId, decal) in _decals)
             {
                 if (!_cachedTextures.TryGetValue(decal.Id, out var cache))
                 {
@@ -109,10 +124,35 @@ namespace Content.Client.Decals.Overlays
 
                 var angle = decal.Angle - cardinal;
 
+                //corvax-goob start
+                var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
+                if (decal.Glows && decal.GlowTime > 0)
+                {
+                    var glowEnergy =  Math.Clamp(
+                        (float)(timeRemained / decal.GlowTime) * decal.GlowEnergy,
+                        0f,
+                        decal.GlowEnergy);
+                    if (timeRemained > 0.01)
+                    {
+                        var decalShader = _glowingDecalsShaders.GetValueOrDefault(decalId, _emissiveShader.Duplicate());
+                        _glowingDecalsShaders.TryAdd(decalId, decalShader);
+                        handle.UseShader(decalShader);
+                        decalShader.SetParameter("glowEnergy", glowEnergy);
+                    }
+                    else
+                    {
+                        _glowingDecalsShaders.Remove(decalId);
+                        decal.Glows = false;
+                    }
+                }
+                //corvax-goob end
+
                 if (angle.Equals(Angle.Zero))
                     handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Color);
                 else
                     handle.DrawTexture(cache.Texture, decal.Coordinates, angle, decal.Color);
+
+                handle.UseShader(defShader);
             }
 
             handle.SetTransform(Matrix3x2.Identity);

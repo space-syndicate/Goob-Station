@@ -73,7 +73,13 @@ public sealed class CrayonSystem : SharedCrayonSystem
             return;
         }
 
-        if (!_decals.TryAddDecal(component.SelectedState, args.ClickLocation.Offset(new Vector2(-0.5f, -0.5f)), out _, component.Color, cleanable: true))
+        if (!_decals.TryAddDecal(component.SelectedState,
+                args.ClickLocation.Offset(new Vector2(-0.5f, -0.5f)),
+                out _,
+                component.Color,
+                cleanable: true,
+                // corvax-goob
+                glows: component.Glows))
             return;
 
         if (component.UseSound != null)

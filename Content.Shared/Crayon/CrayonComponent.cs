@@ -40,6 +40,13 @@ public sealed partial class CrayonComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool DeleteEmpty = true;
+
+    // corvax-goob
+    /// <summary>
+    /// Should the crayon draw a glowing decals?
+    /// </summary>
+    [DataField]
+    public bool Glows = false;
 }
 
 /// <summary>

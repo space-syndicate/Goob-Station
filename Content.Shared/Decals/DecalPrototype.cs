@@ -13,6 +13,17 @@ namespace Content.Shared.Decals
         [DataField("sprite")] public SpriteSpecifier Sprite { get; private set; } = SpriteSpecifier.Invalid;
         [DataField("tags")] public List<string> Tags = new();
         [DataField("showMenu")] public bool ShowMenu = true;
+        // corvax-goob start
+        [DataField("glows")] public bool Glows = false;
+        /// <summary>
+        /// How long the decal should glow in seconds? For infinity set -1
+        /// </summary>
+        [DataField("glowTime")] public float GlowTime = 1200; // 20 minutes
+        /// <summary>
+        ///  How strong should be the glow when decal was created? normalized
+        /// </summary>
+        [DataField("glowEnergy")] public float GlowEnergy = 0.25f;
+        // corvax-goob end
 
         /// <summary>
         /// If the decal is rotated compared to our eye should we snap it to south.
