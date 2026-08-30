@@ -1,2 +1,2 @@
-ent-MobHydrakin = Urist McHydra
+ent-MobHydrakin = Урист МакГидра
     .desc = { ent-BaseMobHydrakin.desc }

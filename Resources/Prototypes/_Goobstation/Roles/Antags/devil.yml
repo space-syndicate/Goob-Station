@@ -14,7 +14,7 @@
     department: Command
     time: 5h # 5 hours
   - !type:RoleTimeRequirement
-    role: JobLibrarian # CorvaxGoob; :S_trollface:
+    role: JobLawyer # CorvaxGoob; :S_trollface:
     time: 5h # CorvaxGoob
   - !type:SpeciesRequirement
     inverted: true
