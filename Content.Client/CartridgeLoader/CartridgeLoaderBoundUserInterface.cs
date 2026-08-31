@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client.CartridgeLoader.Cartridges; // CorvaxGoob - fix-crew-manifest-open-refresh-v2
 using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader;
 using Robust.Client.UserInterface;
@@ -41,6 +42,17 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
 
         var activeUI = _entManager.GetEntity(loaderUiState.ActiveUI);
 
+        // CorvaxGoob Start - fix-crew-manifest-open-refresh-v2
+        // A reopened PDA can reuse its BUI, so refresh the attached manifest without recreating its controls.
+        if (_activeProgram == activeUI && _activeUiFragment is not null)
+        {
+            if (_activeCartridgeUI is CrewManifestUi && _activeProgram.HasValue)
+                SendCartridgeUiReadyEvent(_activeProgram.Value);
+
+            return;
+        }
+        // CorvaxGoob End
+
         _activeProgram = activeUI;
 
         var ui = RetrieveCartridgeUI(activeUI);
@@ -48,8 +60,8 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
         var control = ui?.GetUIFragmentRoot();
 
         //Prevent the same UI fragment from getting disposed and attached multiple times
-        if (_activeUiFragment?.GetType() == control?.GetType())
-            return;
+        //if (_activeUiFragment?.GetType() == control?.GetType())
+        //    return;
 
         if (_activeUiFragment is not null)
             DetachCartridgeUI(_activeUiFragment);
