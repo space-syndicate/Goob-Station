@@ -15,6 +15,8 @@
       weight: 4.0
     - id: XenoArtifactGhost
       weight: 2.0
+    - id: XenoArtifactRandomTransformation #CorvaxGoob-New
+      weight: 1.5
     - id: XenoArtifactEffectBadFeeling
       weight: 10.0
     - id: XenoArtifactEffectGoodFeeling
@@ -1374,3 +1376,14 @@
   - type: XAECreateGas
     gases:
       CarbonDioxide: 300
+
+- type: entity
+  id: XenoArtifactRandomTransformation
+  parent: BaseXenoArtifactEffect  
+  name: "transformation effect"
+  description: "Трансформирует ближайшие обьекты"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ArtifactRandomTransformation
+    radius: 6.0
+    transformationPercentRatio: 0.35
