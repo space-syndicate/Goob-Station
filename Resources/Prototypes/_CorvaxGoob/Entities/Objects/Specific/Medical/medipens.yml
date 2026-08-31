@@ -57,9 +57,9 @@
   - type: Injector
     solutionName: pen
     currentTransferAmount: 15
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: MedipenInjectMode
     allowedModes:
-    - HyposprayInjectMode
+    - MedipenInjectMode
   - type: Appearance
   - type: PhysicalComposition
     materialComposition:
@@ -108,9 +108,9 @@
   - type: Injector
     solutionName: pen
     currentTransferAmount: 10
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: MedipenInjectMode
     allowedModes:
-    - HyposprayInjectMode
+    - MedipenInjectMode
   - type: SolutionContainerManager
     solutions:
       pen:
