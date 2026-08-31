@@ -1,0 +1,14 @@
+<controls:ImageVisualsWindow xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._CorvaxGoob.ImageVisuals.UI"
+    MouseFilter="Stop" Resizable="True" MinSize="150 150"
+    SetSize="510 660">
+
+    <BoxContainer Name="ContentsRoot" Orientation="Vertical">
+        <PanelContainer StyleClasses="BackgroundPanel" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="6">
+            <TextureButton Name="CloseButton" StyleClasses="windowCloseButton"/>
+        </PanelContainer>
+        <PanelContainer Name="ImageContainer" VerticalExpand="True" HorizontalExpand="True">
+            <TextureRect Name="ImageDisplay" Stretch="Scale" VerticalExpand="True" HorizontalExpand="True"/>
+        </PanelContainer>
+    </BoxContainer>
+</controls:ImageVisualsWindow>
