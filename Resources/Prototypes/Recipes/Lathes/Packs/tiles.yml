@@ -56,6 +56,26 @@
   - FloorTileItemWood
   - FloorTileItemWoodLarge
   - FloorTileItemWoodPattern
+  # CorvaxGoob-Start
+  - FloorTileItemWoodLargeRed
+  - FloorTileItemWoodLargeLight
+  - FloorTileItemWoodLargeDark
+  - FloorTileItemWoodLargeBlack
+  - FloorTileItemWoodRed
+  - FloorTileItemWoodLight
+  - FloorTileItemWoodDark
+  - FloorTileItemWoodBlack
+  - FloorTileItemWoodParquet
+  - FloorTileItemWoodParquetRed
+  - FloorTileItemWoodParquetLight
+  - FloorTileItemWoodParquetDark
+  - FloorTileItemWoodParquetBlack
+  - FloorTileItemWoodChess
+  - FloorTileItemWoodChessRed
+  - FloorTileItemWoodChessLight
+  - FloorTileItemWoodChessDark
+  - FloorTileItemWoodChessBlack
+  # CorvaxGoob-End
 
 - type: latheRecipePack
   id: FloorConcreteTilesStatic
@@ -85,6 +105,7 @@
   recipes:
   - FloorTileItemWhiteMarble
   - FloorTileItemDarkMarble
+  - FloorTileItemUraniumMarble # CorvaxGoob
 
 ## Dynamic
 
@@ -102,3 +123,5 @@
   - FauxTileDesertAstroSand
   - FauxTileAstroIronsand
   - FauxTileAstroIronsandBorderless
+  - FauxTileAstroSnowDug # CorvaxGoob
+  - FauxTileItemAstroChromite # CorvaxGoob

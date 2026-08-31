@@ -1,21 +1,19 @@
 using Content.Client.IconSmoothing;
-using Content.Client.Storage.Visualizers;
+using Content.Shared._CorvaxGoob.SprayableWall;
 using Content.Shared.SprayPainter.Prototypes;
-using Content.Shared.Storage;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-using System.Linq;
 
-namespace Content.Client._CorvaxGoob.IconSmoothing;
+namespace Content.Client._CorvaxGoob.SprayableWall;
 
-public sealed class IconSmoothVisualizerSystem : VisualizerSystem<IconSmoothComponent>
+public sealed class SprayableWallVisualizerSystem : VisualizerSystem<SprayableWallComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IconSmoothSystem _iconSmooth = default!;
 
     protected override void OnAppearanceChange(EntityUid uid,
-        IconSmoothComponent comp,
+        SprayableWallComponent comp,
         ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -25,9 +23,9 @@ public sealed class IconSmoothVisualizerSystem : VisualizerSystem<IconSmoothComp
         {
             if (_prototypeManager.Resolve(prototype, out var proto))
             {
-                if (proto.TryGetComponent(out SpriteComponent? sprite, _componentFactory) && proto.TryGetComponent(out IconSmoothComponent? smooth, _componentFactory))
+                if (TryComp<IconSmoothComponent>(uid, out var origSmooth) && proto.TryGetComponent(out IconSmoothComponent? protoSmooth, _componentFactory))
                 {
-                    comp.StateBase = smooth.StateBase;
+                    origSmooth.StateBase = protoSmooth.StateBase;
 
                     var tempUid = Spawn(prototype);
                     SpriteSystem.CopySprite(tempUid, uid);

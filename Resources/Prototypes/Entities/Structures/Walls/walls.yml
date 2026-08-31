@@ -528,8 +528,9 @@
     key: walls
     base: plastic
   - type: Appearance
-  - type: Paintable
+  - type: Paintable # CorvaxGoob
     group: Walls
+  - type: SprayableWall # CorvaxGoob
   - type: CosmicCorruptible # DeltaV - Cosmic Cult
     convertTo: WallCosmicCult
 
