@@ -527,7 +527,7 @@
   - type: IconSmooth
     key: walls
     base: plastic
-  - type: Appearance
+  - type: Appearance # CorvaxGoob
   - type: Paintable # CorvaxGoob
     group: Walls
   - type: SprayableWall # CorvaxGoob
