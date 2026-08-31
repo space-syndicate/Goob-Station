@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionMindLink
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    checkCanInteract: false
+    icon:
+      sprite: _Shitmed/Mobs/Species/Abductor/organs.rsi
+      state: brain
+  - type: InstantAction
+    event: !type:OpenMindLinkEvent
+      twoWayCommunication: true
+      multiLink: false
+      range: 20
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionMindLinkReply
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    checkCanInteract: false
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: brain
+  - type: InstantAction
+    event: !type:ReplyMindLinkEvent
