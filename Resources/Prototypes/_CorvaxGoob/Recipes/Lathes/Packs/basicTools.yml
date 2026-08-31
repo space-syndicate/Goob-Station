@@ -1,0 +1,18 @@
+# Shared maintenance/tools pack for department techfabs. #dept-techfab-tools-materials
+
+- type: latheRecipePack
+  id: DepartmentBasicToolsStatic
+  recipes:
+  - Wirecutter
+  - Screwdriver
+  - Welder
+  - Wrench
+  - CrowbarGreen
+  - Multitool
+  - ClothingHeadHatWelding
+  - TrashBag
+  - MopItem
+  - LightReplacer
+  - LightBulb
+  - LightTube
+  - Bucket
