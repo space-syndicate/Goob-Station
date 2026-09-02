@@ -1,3 +1,4 @@
+using Content.Server._CorvaxGoob.Events;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
@@ -20,7 +21,6 @@ namespace Content.Server._CorvaxGoob.Ghost;
 public sealed class GhostGoLobbySystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly PlayTimeTrackingManager _playTime = default!;
@@ -100,6 +100,6 @@ public sealed class GhostGoLobbySystem : EntitySystem
 
         _mind.WipeMind(session);
 
-        _ticker.PlayerJoinLobby(session);
+        RaiseLocalEvent(new GhostJoinLobbyRequestEvent(session));
     }
 }
