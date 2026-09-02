@@ -28,6 +28,7 @@ public sealed class GhostGoLobbySystem : EntitySystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
 
+    private bool _enabled;
     private TimeSpan _requiredPlaytime;
     private TimeSpan _deathTime;
 
@@ -48,6 +49,7 @@ public sealed class GhostGoLobbySystem : EntitySystem
         SubscribeNetworkEvent<GhostGoLobbyEvent>(OnGhostGoLobby);
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
 
+        Subs.CVar(_cfg, CCCVars.GhostGoLobbyEnabled, value => _enabled = value, true);
         Subs.CVar(_cfg, CCCVars.GhostGoLobbyTimeHours, value => _requiredPlaytime = TimeSpan.FromHours(value), true);
         Subs.CVar(_cfg, CCCVars.GhostGoLobbyDeathTimeMinutes, value => _deathTime = TimeSpan.FromMinutes(value), true);
     }
@@ -68,10 +70,8 @@ public sealed class GhostGoLobbySystem : EntitySystem
 
     private void TryGhostGoLobby(EntityUid uid, ICommonSession session)
     {
-        if (!_cfg.GetCVar(CCCVars.GhostGoLobbyEnabled))
-        {
+        if (!_enabled)
             return;
-        }
 
         if (_playTime.TryGetTrackerTime(session, PlayTimeTrackingShared.TrackerOverall, out var all)
             && all.Value < _requiredPlaytime)
