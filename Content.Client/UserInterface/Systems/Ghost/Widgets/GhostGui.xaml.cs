@@ -57,7 +57,7 @@ public sealed partial class GhostGui : UIWidget
         // Goobstation start
         GhostRolesButton.Disabled = !canTakeGhostRoles ?? true;
         // Goobstation end
-        GhostGoLobbyButton.Visible = canGoLobby ?? true; // Corvax-GoLobby
+        GhostGoLobbyButton.Visible = canGoLobby ?? true; // CorvaxGoob-GoLobby
 
         if (roles != null)
         {
