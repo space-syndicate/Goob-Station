@@ -84,7 +84,7 @@ public sealed class GhostGoLobbySystem : EntitySystem
         if (!TryComp<GhostComponent>(uid, out var ghost))
             return;
 
-        var timeSinceDeath = _timing.CurTime - ghost.TimeOfDeath;
+        var timeSinceDeath = _timing.RealTime - ghost.TimeOfDeath;
         if (timeSinceDeath < _deathTime)
         {
             var remaining = (int) Math.Ceiling((_deathTime - timeSinceDeath).TotalMinutes);
