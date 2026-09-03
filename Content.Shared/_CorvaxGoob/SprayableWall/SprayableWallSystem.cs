@@ -1,4 +1,6 @@
+using Content.Shared.Examine;
 using Content.Shared.SprayPainter;
+using Content.Shared.SprayPainter.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed.TypeParsers;
 
@@ -23,5 +25,12 @@ public sealed class SprayableWallSystem : EntitySystem
 
         _meta.SetEntityName(entity, proto.Name);
         _meta.SetEntityDescription(entity, proto.Description);
+
+        if (!TryComp<PaintedComponent>(entity, out var painted))
+            return;
+
+        painted.AlwaysShowDetailPainted = true;
     }
+
+
 }

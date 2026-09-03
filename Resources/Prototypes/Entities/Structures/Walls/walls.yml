@@ -487,14 +487,16 @@
     convertTo: WallCosmicCult
 
 - type: entity
-  parent: BaseWall
+  parent: BaseStructure # CorvaxGoob
   id: WallPlastic
   name: plastic wall
   components:
   - type: Sprite
     sprite: Structures/Walls/plastic.rsi
+    drawdepth: Walls # CorvaxGoob
   - type: Icon
     sprite: Structures/Walls/plastic.rsi
+    state: full # CorvaxGoob
   - type: Construction
     graph: Girder
     node: plasticWall
@@ -527,10 +529,55 @@
   - type: IconSmooth
     key: walls
     base: plastic
-  - type: Appearance # CorvaxGoob
-  - type: Paintable # CorvaxGoob
+  # CorvaxGoob-Start
+  - type: Appearance
+  - type: Paintable
     group: Walls
-  - type: SprayableWall # CorvaxGoob
+  - type: SprayableWall
+  - type: Occluder
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Tag
+    tags:
+    - Wall
+  - type: IsRoof
+  - type: PlacementReplacement
+    key: walls
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: BlockWeather
+  - type: SunShadowCast
+  - type: Penetratable
+    penetrateDamage: 50
+    damagePenalty: 0.1
+  - type: ExaminableDamage
+    messages: WindowMessages
+  # CorvaxGoob-End
   - type: CosmicCorruptible # DeltaV - Cosmic Cult
     convertTo: WallCosmicCult
 

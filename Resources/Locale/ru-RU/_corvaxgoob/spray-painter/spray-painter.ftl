@@ -9,8 +9,8 @@ spray-painter-style-canisters-pluoxium = Плюоксий
 
 spray-painter-tab-category-walls = Стены
 
-spray-painter-style-walls-andesitecobblebrick = Булыжник (андесит)
-spray-painter-style-walls-andesiterock = Камень (андесит)
+spray-painter-style-walls-andesitecobblebrick = Булыжник (андезит)
+spray-painter-style-walls-andesiterock = Камень (андезит)
 spray-painter-style-walls-asteroidcobblebrick = Булыжник (астероид)
 spray-painter-style-walls-basaltrock = Камень (базальт)
 spray-painter-style-walls-basaltcobblebrick = Булыжник (базальт)
@@ -30,7 +30,7 @@ spray-painter-style-walls-necropolis = Кости
 spray-painter-style-walls-plasma = Плазма
 spray-painter-style-walls-plastitanium = Пластитан
 spray-painter-style-walls-reinforced = Укреплённое
-spray-painter-style-walls-riveted = Клёп
+spray-painter-style-walls-riveted = Клёпаное
 spray-painter-style-walls-rock = Камень
 spray-painter-style-walls-rockchromite = Камень (хромит)
 spray-painter-style-walls-rocksand = Камень (песок)
@@ -54,3 +54,7 @@ spray-painter-style-diagonalwalls-mining = Шахтёр
 spray-painter-style-diagonalwalls-reinforced = Укреплённое
 spray-painter-style-diagonalwalls-shuttle = Шаттл
 spray-painter-style-diagonalwalls-plastitanium = Пластитан
+
+# Spray
+
+spray-painter-on-examined-detail-painted-message = При детальном осмотре вы можете заметить нанесённую краску.
