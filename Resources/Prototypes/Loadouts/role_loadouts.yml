@@ -54,6 +54,8 @@
   id: JobStationAi
   nameDataset: NamesAI
   canCustomizeName: true
+  groups:  # CorvaxGoob - add-ai-law-loadout
+  - StationAiLaws
 
 # Civilian
 - type: roleLoadout
