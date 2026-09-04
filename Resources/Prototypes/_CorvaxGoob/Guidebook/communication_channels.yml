@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: guideEntry
+  id: CommunicationChannels
+  name: guide-entry-communication-channels
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/NewPlayer/Controls/CommunicationChannels.xml"
+  priority: 1
