@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Snorkcom",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "grey_eye_32"
+    },
+    {
+      "name": "red_eye_32"
+    },
+    {
+      "name": "red_blue_eye_32"
+    }
+  ]
+}
