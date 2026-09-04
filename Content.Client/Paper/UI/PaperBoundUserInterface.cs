@@ -10,7 +10,7 @@ using static Content.Shared.Paper.PaperComponent;
 namespace Content.Client.Paper.UI;
 
 [UsedImplicitly]
-public sealed class PaperBoundUserInterface : BoundUserInterface
+public sealed partial class PaperBoundUserInterface : BoundUserInterface // CorvaxGoob Edit - made partial
 {
     [ViewVariables]
     private PaperWindow? _window;
@@ -22,6 +22,7 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+        ResetInsertDataRequest(); // CorvaxGoob - Edit-documents-helper
 
         _window = this.CreateWindow<PaperWindow>();
         _window.OnSaved += InputOnTextEntered;
@@ -37,11 +38,21 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
         }
     }
 
+    // CorvaxGoob Edit Start - Edit-documents-helper
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        _window?.Populate((PaperBoundUserInterfaceState) state);
+        var paperState = (PaperBoundUserInterfaceState) state;
+        _window?.Populate(paperState);
+        UpdateInsertDataRequest(paperState);
     }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+        ReceiveInsertDataMessage(message);
+    }
+    // CorvaxGoob End
 
     private void InputOnTextEntered(string text)
     {
