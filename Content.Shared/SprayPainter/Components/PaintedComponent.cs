@@ -15,4 +15,11 @@ public sealed partial class PaintedComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
     public TimeSpan DryTime;
+
+    // CorvaxGoob   
+    /// <summary>
+    /// Показывает при детальном осмотре что объект покрашен, даже если он уже высох.
+    /// </summary>
+    [DataField]
+    public bool AlwaysShowDetailPainted = false;
 }
