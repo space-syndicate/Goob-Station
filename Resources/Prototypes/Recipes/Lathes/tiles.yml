@@ -101,217 +101,259 @@
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelCheckerDark
   result: FloorTileItemSteelCheckerDark
+  iconPath: /Textures/Tiles/checker_dark.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelCheckerLight
   result: FloorTileItemSteelCheckerLight
+  iconPath: /Textures/Tiles/cafeteria.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteel
   result: FloorTileItemSteel
+  iconPath: /Textures/Tiles/steel.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelOffset
   result: FloorTileItemSteelOffset
+  iconPath: /Textures/Tiles/steel_offset.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelDiagonalMini
   result: FloorTileItemSteelDiagonalMini
+  iconPath: /Textures/Tiles/steel_diagonal_mini.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelDiagonal
   result: FloorTileItemSteelDiagonal
+  iconPath: /Textures/Tiles/steel_diagonal.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelHerringbone
   result: FloorTileItemSteelHerringbone
+  iconPath: /Textures/Tiles/steel_herringbone.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelMini
   result: FloorTileItemSteelMini
+  iconPath: /Textures/Tiles/steel_mini.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelMono
   result: FloorTileItemSteelMono
+  iconPath: /Textures/Tiles/steel_mono.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelPavement
   result: FloorTileItemSteelPavement
+  iconPath: /Textures/Tiles/steel_pavement.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
   id: FloorTileItemSteelPavementVertical
   result: FloorTileItemSteelPavementVertical
+  iconPath: /Textures/Tiles/steel_pavement_vertical.png # CorvaxGoob
 
 # Dark tiles
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDark
   result: FloorTileItemDark
+  iconPath: /Textures/Tiles/dark.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkDiagonalMini
   result: FloorTileItemDarkDiagonalMini
+  iconPath: /Textures/Tiles/dark_diagonal_mini.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkDiagonal
   result: FloorTileItemDarkDiagonal
+  iconPath: /Textures/Tiles/dark_diagonal.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkHerringbone
   result: FloorTileItemDarkHerringbone
+  iconPath: /Textures/Tiles/dark_herringbone.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkMini
   result: FloorTileItemDarkMini
+  iconPath: /Textures/Tiles/dark_mini.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkMono
   result: FloorTileItemDarkMono
+  iconPath: /Textures/Tiles/dark_mono.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkPavement
   result: FloorTileItemDarkPavement
+  iconPath: /Textures/Tiles/dark_pavement.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkPavementVertical
   result: FloorTileItemDarkPavementVertical
+  iconPath: /Textures/Tiles/dark_pavement_vertical.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkOffset
   result: FloorTileItemDarkOffset
+  iconPath: /Textures/Tiles/dark_offset.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseDarkTileRecipe
   id: FloorTileItemDarkSquiggly
   result: FloorTileItemDarkSquiggly
+  iconPath: /Textures/Tiles/dark_squiggly.png # CorvaxGoob
 
 # White steel tiles
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhite
   result: FloorTileItemWhite
+  iconPath: /Textures/Tiles/white.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhiteOffset
   result: FloorTileItemWhiteOffset
+  iconPath: /Textures/Tiles/white_offset.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhiteDiagonalMini
   result: FloorTileItemWhiteDiagonalMini
+  iconPath: /Textures/Tiles/white_diagonal_mini.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhiteDiagonal
   result: FloorTileItemWhiteDiagonal
+  iconPath: /Textures/Tiles/white_diagonal.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhiteHerringbone
   result: FloorTileItemWhiteHerringbone
+  iconPath: /Textures/Tiles/white_herringbone.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhiteMini
   result: FloorTileItemWhiteMini
+  iconPath: /Textures/Tiles/white_mini.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhiteMono
   result: FloorTileItemWhiteMono
+  iconPath: /Textures/Tiles/white_mono.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhitePavement
   result: FloorTileItemWhitePavement
+  iconPath: /Textures/Tiles/white_pavement.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWhiteTileRecipe
   id: FloorTileItemWhitePavementVertical
   result: FloorTileItemWhitePavementVertical
+  iconPath: /Textures/Tiles/white_pavement_vertical.png # CorvaxGoob
 
 # Maints
 - type: latheRecipe
   parent: BaseMaintTileRecipe
   id: FloorTileItemGratingMaint
   result: FloorTileItemGratingMaint
+  iconPath: /Textures/Tiles/grating_maint.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseMaintTileRecipe
   id: FloorTileItemTechmaint
   result: FloorTileItemTechmaint
+  iconPath: /Textures/Tiles/tech_maint.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseMaintTileRecipe
   id: FloorTileItemTechmaintDark
   result: FloorTileItemTechmaintDark
+  iconPath: /Textures/Tiles/tech_maint_dark.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseMaintTileRecipe
   id: FloorTileItemSteelMaint
   result: FloorTileItemSteelMaint
+  iconPath: /Textures/Tiles/steel_maint.png # CorvaxGoob
 
 # Circuit
 - type: latheRecipe
   parent: BaseCircuitTileRecipe
   id: FloorGreenCircuit
   result: FloorTileItemGCircuit
+  iconPath: /Textures/Tiles/green_circuit.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseCircuitTileRecipe
   id: FloorBlueCircuit
   result: FloorTileItemBCircuit
+  iconPath: /Textures/Tiles/blue_circuit.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseCircuitTileRecipe
   id: FloorRedCircuit
   result: FloorTileItemRCircuit
+  iconPath: /Textures/Tiles/red_circuit.png # CorvaxGoob
 
 # Wood
 - type: latheRecipe
   parent: BaseWoodTileRecipe
   id: FloorTileItemWood
   result: FloorTileItemWood
+  iconPath: /Textures/Tiles/wood.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWoodTileRecipe
   id: FloorTileItemWoodLarge
   result: FloorTileItemWoodLarge
+  iconPath: /Textures/Tiles/wood_large.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseWoodTileRecipe
   id: FloorTileItemWoodPattern
   result: FloorTileItemWoodPattern
+  iconPath: /Textures/Tiles/wood_tile.png # CorvaxGoob
 
 # Concrete
 - type: latheRecipe
   parent: BaseConcreteTileRecipe
   id: FloorTileItemConcrete
   result: FloorTileItemConcrete
+  iconPath: /Textures/Tiles/Planet/Concrete/concrete.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseConcreteTileRecipe
   id: FloorTileItemConcreteMono
   result: FloorTileItemConcreteMono
+  iconPath: /Textures/Tiles/Planet/Concrete/concrete_mono.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -321,6 +363,7 @@
 - type: latheRecipe
   id: FloorTileItemConcreteSmooth
   result: FloorTileItemConcreteSmooth
+  iconPath: /Textures/Tiles/Planet/Concrete/concrete_smooth.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -330,6 +373,7 @@
 - type: latheRecipe
   id: FloorTileItemGrayConcrete
   result: FloorTileItemGrayConcrete
+  iconPath: /Textures/Tiles/Planet/Concrete/grayconcrete.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -339,6 +383,7 @@
 - type: latheRecipe
   id: FloorTileItemGrayConcreteMono
   result: FloorTileItemGrayConcreteMono
+  iconPath: /Textures/Tiles/Planet/Concrete/grayconcrete_mono.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -348,6 +393,7 @@
 - type: latheRecipe
   id: FloorTileItemGrayConcreteSmooth
   result: FloorTileItemGrayConcreteSmooth
+  iconPath: /Textures/Tiles/Planet/Concrete/grayconcrete_smooth.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -357,6 +403,7 @@
 - type: latheRecipe
   id: FloorTileItemOldConcrete
   result: FloorTileItemOldConcrete
+  iconPath: /Textures/Tiles/Planet/Concrete/oldconcrete.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -366,6 +413,7 @@
 - type: latheRecipe
   id: FloorTileItemOldConcreteMono
   result: FloorTileItemOldConcreteMono
+  iconPath: /Textures/Tiles/Planet/Concrete/oldconcrete_mono.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -375,6 +423,7 @@
 - type: latheRecipe
   id: FloorTileItemOldConcreteSmooth
   result: FloorTileItemOldConcreteSmooth
+  iconPath: /Textures/Tiles/Planet/Concrete/oldconcrete_smooth.png # CorvaxGoob
   applyMaterialDiscount: false
   completetime: 0.5
   materials:
@@ -385,85 +434,102 @@
   parent: BaseConcreteTileRecipe
   id: FloorTileItemIronsandConcrete
   result: FloorTileItemIronsandConcrete
+  iconPath: /Textures/Tiles/Planet/Concrete/ironsandconcrete.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseConcreteTileRecipe
   id: FloorTileItemIronsandConcreteMono
   result: FloorTileItemIronsandConcreteMono
+  iconPath: /Textures/Tiles/Planet/Concrete/ironsandconcrete_mono.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseConcreteTileRecipe
   id: FloorTileItemIronsandConcreteSmooth
   result: FloorTileItemIronsandConcreteSmooth
+  iconPath: /Textures/Tiles/Planet/Concrete/ironsandconcrete_smooth.png # CorvaxGoob
 
 # Faux
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroGrass
   result: FloorTileItemAstroGrass
+  iconPath: /Textures/Tiles/Planet/Grass/grass.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileMowedAstroGrass
   result: FloorTileItemMowedAstroGrass
+  iconPath: /Textures/Tiles/grass.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileJungleAstroGrass
   result: FloorTileItemJungleAstroGrass
+  iconPath: /Textures/Tiles/grassjungle.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileDarkAstroGrass
   result: FloorTileItemDarkAstroGrass
+  iconPath: /Textures/Tiles/grassdark.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileLightAstroGrass
   result: FloorTileItemLightAstroGrass
+  iconPath: /Textures/Tiles/grasslight.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroIce
   result: FloorTileItemAstroIce
+  iconPath: /Textures/Tiles/Planet/Snow/ice.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroSnow
   result: FloorTileItemAstroSnow
+  iconPath: /Textures/Tiles/Planet/Snow/snow.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroAsteroidSand
   result: FloorTileItemAstroAsteroidSand
+  iconPath: /Textures/Tiles/Asteroid/asteroid.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroAsteroidSandBorderless
   result: FloorTileItemAstroAsteroidSandBorderless
+  iconPath: /Textures/Tiles/Asteroid/asteroid.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileDesertAstroSand
   result: FloorTileItemDesertAstroSand
+  iconPath: /Textures/Tiles/Planet/Desert/desert.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroIronsand
   result: FloorTileItemAstroIronsand
+  iconPath: /Textures/Tiles/Asteroid/ironsand.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseFauxTileRecipe
   id: FauxTileAstroIronsandBorderless
   result: FloorTileItemAstroIronsandBorderless
+  iconPath: /Textures/Tiles/Asteroid/ironsand.png  # CorvaxGoob
 
 # Marble
 - type: latheRecipe
   parent: BaseMarbleTileRecipe
   id: FloorTileItemWhiteMarble
   result: FloorTileItemWhiteMarble
+  iconPath: /Textures/Tiles/white_marble.png # CorvaxGoob
 
 - type: latheRecipe
   parent: BaseMarbleTileRecipe
   id: FloorTileItemDarkMarble
   result: FloorTileItemDarkMarble
+  iconPath: /Textures/Tiles/dark_marble.png # CorvaxGoob

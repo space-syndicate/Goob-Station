@@ -1,1 +1,1 @@
-metabolizer-type-hydrakin = Hydrakin
+metabolizer-type-hydrakin = Гидракин
