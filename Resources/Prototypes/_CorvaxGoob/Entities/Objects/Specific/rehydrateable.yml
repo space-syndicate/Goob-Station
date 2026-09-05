@@ -9,6 +9,13 @@
 
 - type: entity
   parent: MonkeyCube
+  id: HydrakinCube
+  name: hydrakin cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobHydrakinRandom
+
   id: ShadowCube
   name: shadow cube
   description: Drymate brand shadow cube. Just add water!
