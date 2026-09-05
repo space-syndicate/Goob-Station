@@ -156,3 +156,10 @@
     interfaces:
       enum.PdaUiKey.Key:
         type: PdaBoundUserInterface
+
+- type: entity
+  id: SyndiOperativePDAUnremoveable
+  parent: SyndiOperativePDA
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

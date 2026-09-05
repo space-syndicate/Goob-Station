@@ -12,3 +12,6 @@ ent-ClothingHandsCatPawsBlack = черные кошачьи лапки
     .desc = Супер мягкие черные кошачьи лапки, созданные специально для самых брутальных агентов Синдиката
 ent-ClothingHandsCatPawsBlackWhite = черно-белые кошачьи лапки
     .desc = Супер мягкие черно-белые кошачьи лапки, созданные специально для самых брутальных агентов Синдиката
+ent-ClothingHandsTacticalMaidGlovesUnremoveable = { ent-ClothingHandsTacticalMaidGloves }
+    .suffix = Неснимаемый
+    .desc = { ent-ClothingHandsTacticalMaidGloves.desc }

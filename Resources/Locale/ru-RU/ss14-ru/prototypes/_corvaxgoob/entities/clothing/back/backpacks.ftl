@@ -6,3 +6,6 @@ ent-ClothingBackpackCE = рюкзак старшего инженера
     .desc = Технически продвинутый рюкзак.
 ent-ClothingBackpackWarden = синий рюкзак смотрителя
     .desc = Это очень робастный синий рюкзак.
+ent-ClothingBackpackSyndicateUnremoveable = { ent-ClothingBackpackSyndicate }
+    .suffix = Неснимаемый
+    .desc = { ent-ClothingBackpackSyndicate.desc }
