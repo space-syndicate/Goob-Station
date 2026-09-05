@@ -16,6 +16,8 @@
     possibleSpawns:
     - MobHydrakinRandom
 
+- type: entity
+  parent: MonkeyCube
   id: ShadowCube
   name: shadow cube
   description: Drymate brand shadow cube. Just add water!
