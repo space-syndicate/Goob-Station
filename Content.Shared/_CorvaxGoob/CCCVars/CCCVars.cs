@@ -20,6 +20,13 @@ public sealed class CCCVars
         CVarDef.Create("game.station_goal", true, CVar.SERVERONLY);
 
     /// <summary>
+    /// Whether the Corvax server list is shown in the lobby.
+    /// Disabled by default so downstream forks opt in explicitly.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyServerHubEnabled =
+        CVarDef.Create("lobby.server_hub_enabled", false, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
     /// Deny any VPN connections.
     /// </summary>
     public static readonly CVarDef<bool> PanicBunkerDenyVPN =
