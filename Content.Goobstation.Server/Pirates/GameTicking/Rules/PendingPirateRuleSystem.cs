@@ -90,6 +90,9 @@ public sealed partial class PendingPirateRuleSystem : GameRuleSystem<PendingPira
             var balance = _cargo.GetBalanceFromAccount((station.Value, bank), bank.PrimaryAccount);
             price = _rand.Next((int) (balance * 0.75f), (int) (balance * 1.25f));
 
+            if (balance < 100000)
+                price += 25000;
+
             var orderId = CargoSystem.GenerateOrderId(cargoDb) + 1984;
 
             var name = Loc.GetString($"pirates-ransom-{announcer}-name");
