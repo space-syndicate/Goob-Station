@@ -11,3 +11,32 @@
   - type: TargetObjective
     title: objective-condition-other-alive-title
   - type: PickRandomPerson
+
+- type: entity
+  parent: [BaseKillObjective, BaseNinjaObjective]
+  id: NinjaKillObjective
+  description: Do it however you like, just make sure they don't get off the station.
+  components:
+  - type: Objective
+  # difficulty isn't used since all objectives are picked
+    difficulty: 1.75
+    unique: false
+    issuer: objective-issuer-spiderclan
+    icon:
+      sprite: Objects/Weapons/Melee/energykatana.rsi
+      state: icon
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickRandomPerson
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+        - TargetObjective
+  - type: KillPersonCondition
+    requireMaroon: true
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - DieCondition
