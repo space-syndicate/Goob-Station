@@ -10,3 +10,24 @@
    - type: Tag
      tags:
        - Skills
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: TricordrazineCellImplant
+  name: tricordrazine cell implant
+  description: This implant gives the user a mild boost to regeneration by infusion of cells with tricordrazine.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StypticStimulatorImplant
+    executionDelay: 1
+    bleedingModifier: 0
+    damageModifier:
+      types:
+        Asphyxiation: 0
+        Bloodloss: 0
+        Blunt: -0.3
+        Slash: -0.3
+        Piercing: -0.3
+        Heat: -0.5
+        Cold: -0.5
+        Shock: -0.5

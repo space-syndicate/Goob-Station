@@ -7,60 +7,53 @@
   components:
   - type: BluespaceHarvesterRift
     passiveSpawn:
-    - MobFleshJared
-    - MobFleshGolem
-    - MobFleshClamp
-    - MobFleshLover
-    - FleshBlocker
+    - MobFleshJaredRedspace
+    - MobFleshGolemRedspace
+    - MobFleshClampRedspace
+    - MobFleshLoverRedspace
     spawn:
-      # Flesh
-      - id: MobFleshJared
+      - id: MobFleshJaredRedspace
         cost: 30
-      - id: MobFleshGolem
+      - id: MobFleshGolemRedspace
         cost: 30
-      - id: MobFleshClamp
+      - id: MobFleshClampRedspace
         cost: 30
-      - id: MobFleshLover
+      - id: MobFleshLoverRedspace
         cost: 30
-      - id: FleshBlocker
-        cost: 30
-      # Slimes
-      - id: MobAdultSlimesBlueAngry
-        cost: 40
-      - id: MobAdultSlimesYellowAngry
-        cost: 40
-      - id: MobAdultSlimesGreenAngry
-        cost: 40
-      - id: ReagentSlimeSpawner
-        cost: 60
-      # Carps
       - id: MobCarp
         cost: 70
       - id: MobCarpMagic
         cost: 90
-      # Space
-      - id: MobKangarooSpace
+      - id: MobKangarooSpaceRedspace
         cost: 35
-      - id: MobBearSpace
+      - id: MobBearSpaceRedspace
         cost: 35
-      - id: MobPurpleSnake
+      - id: MobPurpleSnakeRedspace
         cost: 35
-      - id: MobTick
+      - id: MobTickRedspace
         cost: 35
-      - id: MobWatcherLavaland
+      - id: MobWatcherLavalandRedspace
         cost: 100
-      # Spiders
-      - id: MobSpiderSpace
+      - id: MobSpiderSpaceRedspace
         cost: 50
-      - id: MobGiantSpiderAngry
+      - id: MobGiantSpiderAngryRedspace
         cost: 55
-      - id: MobClownSpider
+      - id: MobClownSpiderRedspace
         cost: 55
-      # DEATH
+      - id: MobCreatureWizardRedspace
+        cost: 70
+      - id: MobLavalandGoliathAncientRedspace
+        cost: 150
+      - id: NukeBot
+        cost: 150
       - id: FleshKudzu
         cost: 300
-      - id: SpawnMobBehonker
-        cost: 600
+      - id: BaseMobGluttonRedspace
+        cost: 300
+      - id: MobBehonkerElectricalRedspace
+        cost: 500
+      - id: MobHellspawn
+        cost: 500
       - id: MobDragon
         cost: 700
   - type: Transform
@@ -85,7 +78,7 @@
     netsync: false
   - type: NavMapBeacon
     color: "#ff0000"
-    text: redspace rift
+    defaultText: redspace-rift-navmap-name
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic

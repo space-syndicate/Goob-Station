@@ -171,3 +171,10 @@
           - CHIMP
     sprite: _CorvaxGoob/Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+
+- type: entity
+  id: ClothingBeltSecurityWebbingContractorUnremoveable
+  parent: ClothingBeltSecurityWebbingContractor
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

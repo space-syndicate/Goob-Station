@@ -1,0 +1,506 @@
+# Destruction
+- type: entityTable
+  id: BluespaceHarvesterDestructionExplosionLoot
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: SnapPop
+        amount: 30
+    - !type:GroupSelector
+      weight: 90
+      children:
+      - !type:GroupSelector
+        rolls: 3
+        children:
+        - id: C4
+        - id: ExGrenade
+        - id: ClusterBangFull
+        - id: GrenadeIncendiary
+        - id: EmpGrenade
+        - id: TearGasGrenade
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionShotgunLoot
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - !type:GroupSelector
+        rolls: 3
+        children:
+        - id: WeaponShotgunEnforcer
+        - id: WeaponShotgunKammerer
+        - id: WeaponShotgunImprovised
+        - id: WeaponShotgunBlunderbuss
+        - id: WeaponShotgunDoubleBarreled
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionLaserLoot
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - id: WeaponLaserCarbine
+    - id: WeaponLaserCannon
+    - id: WeaponXrayCannon
+    - id: WeaponAdvancedLaser
+    - id: WeaponLaserSvalinn
+    - !type:AllSelector
+      weight: 0.35
+      children:
+      - id: WeaponLaserCellSniper
+      - id: PowerCellBluespaceSniper
+    - !type:AllSelector
+      weight: 0.35
+      children:
+      - id: WeaponLaserCellSMG
+      - id: PowerCellBluespaceSMG
+    - id: WeaponEnergyRifle
+      weight: 0.35
+    - !type:AllSelector
+      weight: 0.35
+      children:
+      - id: ClothingBackpackLMGBattery
+      - id: MilitaryPowerCellBluespaceLMG
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionStunLoot
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - id: TelescopicBaton
+      weight: 0.35
+    - id: PoliceBaton
+      weight: 0.35
+    - id: Stunbaton
+    - id: WeaponDisabler
+    - id: WeaponDisablerSMG
+    - id: Terminus
+    - id: ClothingBeltCorporateJudo
+    - id: PolymerBaton
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionRifleLoot
+  table: !type:GroupSelector
+    rolls: 2
+    children:
+    - id: WeaponSubMachineGunDrozd
+    - id: WeaponRifleLecter
+    - id: WeaponSubMachineGunWt550
+    - id: WeaponSniperMosin
+    - id: WeaponSubMachineSmart
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionMeleeLoot
+  table: !type:GroupSelector
+    rolls: 4
+    children:
+    - id: CombatKnife
+    - id: Machete
+    - id: Truncheon
+    - id: ThrowingKnife
+      weight: 0.35
+    - id: SpearTelescopic
+    - id: BaseBallBat
+    - id: FireAxe
+      weight: 0.1
+    - id: WeaponMeleeToolboxRobust
+      weight: 0.01
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionPistolLoot
+  table: !type:GroupSelector
+    rolls: 4
+    children:
+    - id: WeaponPistolMk58
+      weight: 2
+    - id: WeaponRevolverDeckard
+    - id: WeaponRevolverInspector
+    - id: WeaponPistolFlintlock
+    - !type:AllSelector
+      weight: 0.05
+      children:
+      - id: WeaponPistolDualetta
+      - id: WeaponPistolDualetta
+
+- type: entityTable
+  id: BluespaceHarvesterDestructionArmorLoot
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - !type:GroupSelector
+      children:
+      - id: ClothingOuterArmorReflective
+      - id: ClothingOuterArmorBulletproof
+      - id: ClothingOuterArmorRiot
+      - id: ClothingOuterHardsuitCombatOfficer
+        weight: 0.05
+    - !type:GroupSelector
+      children:
+      - id: RiotLaserShield
+      - id: RiotBulletShield
+      - id: RiotShield
+
+- type: entityTable
+  id: BluespaceHarvesterLimitedWeapon
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: WeaponShotgunAntelope
+      - id: WeaponPulsePistol
+      - id: WeaponRifleExpansion
+      - id: WeaponTeslaGun
+
+# Industrial
+- type: entityTable
+  id: BluespaceHarvesterLimitedSinguloth
+  table: !type:AllSelector
+    children:
+    - !type:AllSelector
+      rolls: 10
+      children:
+      - id: DrinkSingulo
+    - !type:AllSelector
+      rolls: 2
+      children:
+      - id: SingulothsHammer
+      - id: ClothingSingulothArmor
+    - id: SingularityGeneratorFlatpack
+    - id: SingularityToy
+
+- type: entityTable
+  id: BluespaceHarvesterIndustrialBatteries
+  table: !type:GroupSelector
+    rolls: 5
+    children:
+    - !type:GroupSelector
+      children:
+      - id: XenobioVolatileOrgan
+      - id: PowerCellMicroreactor
+      - id: PowerCellAntiqueProto
+      - id: PortableRecharger
+        weight: 0.3
+
+- type: entityTable
+  id: BluespaceHarvesterIndustrialTools
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - !type:GroupSelector
+      children:
+      - id: Omnitool
+      - id: RCDRechargingCE
+      - id: RPDRecharging
+      - id: BorgSprayPainterRecharging
+
+- type: entityTable
+  id: BluespaceHarvesterIndustrialMaterials
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - !type:GroupSelector
+      children:
+      - id: MaterialBSCrystal
+      - id: SheetPlasteel
+      - id: SheetPlasma
+      - id: SheetUranium
+      - id: MaterialBananium
+      - id: IngotPlutonium
+
+- type: entityTable
+  id: RandomReactorRodsTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 25 # fuel rods
+      children:
+      - id: CerenkiteReactorFuelRod
+        weight: 0.0625
+      - id: UraniumReactorFuelRod
+        weight: 0.03125
+      - id: PlutoniumReactorFuelRod
+        weight: 0.0015625
+      - id: BananiumReactorFuelRod
+        weight: 0.00625
+      - id: PlasmaReactorFuelRod
+        weight: 0.015625
+      - id: UraniumGlassReactorFuelRod
+        weight: 0.0078125
+    - !type:GroupSelector
+      weight: 25 # control rods
+      children:
+      - id: BohrumReactorControlRod
+        weight: 1.25
+      - id: SteelReactorControlRod
+        weight: 1.25
+      - id: GoldReactorControlRod
+        weight: 0.125
+      - id: SilverReactorControlRod
+        weight: 0.25
+      - id: BrassReactorControlRod
+        weight: 0.5
+      - id: PlasteelReactorControlRod
+        weight: 0.75
+      - id: GlassReactorControlRod
+        weight: 0.5
+      - id: PlasmaGlassReactorControlRod
+        weight: 0.25
+      - id: DiamondReactorControlRod
+        weight: 0.125
+    - !type:GroupSelector
+      weight: 25 # gas channels
+      children:
+      - id: SteelReactorGasChannel
+        weight: 20
+      - id: GoldReactorGasChannel
+        weight: 1
+      - id: SilverReactorGasChannel
+        weight: 2
+      - id: BrassReactorGasChannel
+        weight: 4
+      - id: PlasteelReactorGasChannel
+        weight: 6
+      - id: GlassReactorGasChannel
+        weight: 4
+      - id: PlasmaGlassReactorGasChannel
+        weight: 2
+      - id: DiamondReactorGasChannel
+        weight: 1
+    - !type:GroupSelector
+      weight: 25 # heat exchangers
+      children:
+      - id: SteelReactorHeatExchanger
+        weight: 20
+      - id: GoldReactorHeatExchanger
+        weight: 1
+      - id: SilverReactorHeatExchanger
+        weight: 2
+      - id: BrassReactorHeatExchanger
+        weight: 4
+      - id: PlasteelReactorHeatExchanger
+        weight: 6
+      - id: GlassReactorHeatExchanger
+        weight: 4
+      - id: PlasmaGlassReactorHeatExchanger
+        weight: 2
+      - id: DiamondReactorHeatExchanger
+        weight: 1
+
+- type: entityTable
+  id: BluespaceHarvesterIndustrialBluespaceFloor
+  table: !type:AllSelector
+    rolls: 5
+    children:
+    - id: FloorTileItemBluespace30
+
+- type: entityTable
+  id: BluespaceHarvesterIndustrialShuttle
+  table: !type:AllSelector
+    children:
+    - id: WallmountGeneratorAPUElectronics
+      rolls: 3
+    - id: ThrusterMachineCircuitboard
+      rolls: 4
+    - id: MiniGravityGeneratorCircuitboard
+    - id: GyroscopeMachineCircuitboard
+    - id: ShuttleConsoleCircuitboard
+    - id: ComputerIFFCircuitboard
+    - id: APCElectronics
+    - id: WallmountSubstationElectronics
+
+# Technological Loot
+- type: entityTable
+  id: BluespaceHarvesterLimitedAnomaly
+  table: !type:GroupSelector
+    children:
+    - id: AnomalyGravityInstantCollapse
+    - id: AnomalyElectricityInstantCollapse
+    - id: AnomalyFleshInstantCollapse
+    - id: AnomalyBluespaceInstantCollapse
+    - id: AnomalyIceInstantCollapse
+    - id: AnomalyRockUraniumInstantCollapse
+    - id: AnomalyRockBananiumInstantCollapse
+    - id: AnomalyRockQuartzInstantCollapse
+    - id: AnomalyRockSilverInstantCollapse
+    - id: AnomalyRockGoldInstantCollapse
+    - id: AnomalyRockIronInstantCollapse
+    - id: AnomalyRockCoalInstantCollapse
+    - id: AnomalyFloraInstantCollapse
+    - id: AnomalyLiquidInstantCollapse
+    - id: AnomalyShadowInstantCollapse
+    - id: AnomalyTechInstantCollapse
+
+- type: entityTable
+  id: BluespaceHarvesterTechnologicalExtracts
+  table: !type:GroupSelector
+    rolls: 10
+    children:
+    - id: GreySlimeExtract
+    - id: OrangeSlimeExtract
+    - id: PurpleSlimeExtract
+    - id: BlueSlimeExtract
+    - id: MetalSlimeExtract
+    - id: YellowSlimeExtract
+    - id: DarkPurpleSlimeExtract
+    - id: DarkBlueSlimeExtract
+    - id: SilverSlimeExtract
+    - id: BluespaceSlimeExtract
+    - id: SepiaSlimeExtract
+    - id: CeruleanSlimeExtract
+    - id: PyriteSlimeExtract
+    - id: RedSlimeExtract
+    - id: GreenSlimeExtract
+    - id: PinkSlimeExtract
+    - id: GoldSlimeExtract
+    - id: OilSlimeExtract
+    - id: LightPinkSlimeExtract
+    - id: BlackSlimeExtract
+    - id: AdamantineSlimeExtract
+
+- type: entityTable
+  id: BluespaceHarvesterTechnologicalMech
+  table: !type:GroupSelector
+    children:
+    - id: MechRipley
+    - id: MechRipley2
+    - id: MechClarke
+    - id: MechHonker
+
+# Biology Loot
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalRestock
+  table: !type:AllSelector
+    children:
+    - id: VendingMachineRestockChefvend
+    - id: VendingMachineRestockClothes
+    - id: VendingMachineRestockBooze
+    - id: VendingMachineRestockRobustSoftdrinks
+      rolls: 5
+    - id: VendingMachineRestockGetmoreChocolateCorp
+      rolls: 3
+    - id: VendingMachineRestockHotDrinks
+      rolls: 3
+    - id: VendingMachineRestockDonut
+      rolls: 3
+    - id: VendingMachineRestockDiscountDans
+      rolls: 3
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalMeat
+  table: !type:AllSelector
+    rolls: 5
+    children:
+    - id: FoodMeatAnomaly
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalMoth
+  table: !type:GroupSelector
+    rolls: 30
+    children:
+    - id: MobMothroach
+    - id: MobMothroachMustard
+    - id: MobMothroachLeopard
+    - id: MobMothroachCecropia
+    - id: MobMothroachLunar
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalImplants
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - id: TricordrazineCellImplant
+      weight: 0.1
+    - id: CentcommSpaceproofImplanter
+      weight: 0.1
+    - id: MindShieldImplanter
+    - id: SadTromboneImplanter
+    - id: LightImplanter
+    - id: TrackingImplanter
+    - id: BikeHornImplanter
+    - id: PacifismImplanter
+    - id: ClumsyImplanter
+      weight: 0.3
+    - !type:GroupSelector
+      rolls: 3
+      children:
+      - id: BasicGalaticCommonTranslatorImplanter
+      - id: AdvancedGalaticCommonTranslatorImplanter
+      - id: BubblishTranslatorImplanter
+      - id: NekomimeticTranslatorImplanter
+      - id: DraconicTranslatorImplanter
+      - id: CanilunztTranslatorImplanter
+      - id: SolCommonTranslatorImplanter
+      - id: NovuNedericTranslatorImplanter
+      - id: RootSpeakTranslatorImplanter
+      - id: ChevalTranslatorImplanter
+      - id: BasicSpaceItalianTranslatorImplanter
+      - id: AdvancedSpaceItalianTranslatorImplanter
+      - id: YowKriolTranslatorImplanter
+      - id: SignTranslatorImplanter
+      - id: ZookeeperTranslatorImplanter
+      - id: HydraspeakTranslatorImplanter
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalRaceCubes
+  table: !type:GroupSelector
+    rolls: 3
+    children:
+    - id: HumanCube
+    - id: DionaCube
+    - id: GingerbreadCube
+      weight: 0.5
+    - id: ShadowCube
+      weight: 0.05
+    - id: MothCube
+    - id: DwarfCube
+    - id: HarpyCube
+    - id: RodentiaCube
+    - id: ReptilianCube
+    - id: VulpkaninCube
+    - id: SlimePersonCube
+    - id: TajaranCube
+    - id: VoxCube
+    - id: YowieCube
+    - id: ShadowkinCube
+    - id: ChitinidCube
+    - id: FeroxiCube
+    - id: OniCube
+    - id: HydrakinCube
+    - id: FelinidCube
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalReagents
+  table: !type:GroupSelector
+    rolls: 2
+    children:
+    - id: BluespaceChemistryVialIchor
+    - id: BluespaceChemistryVialStimulants
+    - id: BluespaceChemistryVialEbifin
+    - id: BluespaceChemistryVialSyriniver
+    - id: BluespaceChemistryVialProcenylLazide
+    - id: BluespaceChemistryVialOmnizine
+    - !type:AllSelector
+      children:
+      - id: BluespaceChemistryVialWeh
+      - id: BluespaceChemistryVialHew
+
+- type: entityTable
+  id: BluespaceHarvesterBiologicalLimitedSlimes
+  table: !type:GroupSelector
+    rolls: 7
+    children:
+    - id: ReagentSlimeNocturineRanged
+    - id: ReagentSlimeBeerRanged
+    - id: ReagentSlimePaxRanged
+    - id: ReagentSlimeTHCRanged
+    - id: ReagentSlimeBicaridineRanged
+    - id: ReagentSlimeToxinRanged
+    - id: ReagentSlimeNapalmRanged
+    - id: ReagentSlimeOmnizineRanged
+    - id: ReagentSlimeMuteToxinRanged
+    - id: ReagentSlimeNorepinephricAcidRanged
+    - id: ReagentSlimeEphedrineRanged
+    - id: ReagentSlimeRobustHarvestRanged

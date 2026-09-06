@@ -1,0 +1,11 @@
+- type: entity
+  parent: ResearchDisk
+  id: ResearchDiskBluespace
+  name: bluespace research point disk
+  description: A disk for the R&D server containing 500000 points.
+  components:
+  - type: ResearchDisk
+    points: 500000
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Research/researchdisk.rsi
+    state: icon
