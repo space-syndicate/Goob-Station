@@ -29,6 +29,11 @@
     title: objective-condition-maroon-person-title
   - type: PickRandomPerson
     filters:
+    - !type:BodyMindFilter
+      whitelist:
+        components:
+        - SecurityStaff
+        - CommandStaff
     - !type:TargetObjectiveMindFilter
       blacklist:
         components:
