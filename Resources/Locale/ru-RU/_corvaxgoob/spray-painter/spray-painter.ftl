@@ -7,7 +7,7 @@ spray-painter-style-canisters-pluoxium = Плюоксий
 
 # Walls
 
-spray-painter-tab-category-walls = Стены
+spray-painter-tab-category-walls = Пластиковая стена
 
 spray-painter-style-walls-andesitecobblebrick = Булыжник (андезит)
 spray-painter-style-walls-andesiterock = Камень (андезит)
@@ -46,7 +46,7 @@ spray-painter-style-walls-wood = Дерево
 
 # Diagonal Walls
 
-spray-painter-tab-category-diagonalwalls = Диагональные стены
+spray-painter-tab-category-diagonalwalls = Диагональная пластиковая стена
 
 spray-painter-style-diagonalwalls-solid = Стандарт
 spray-painter-style-diagonalwalls-basic = Пластик
