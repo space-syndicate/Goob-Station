@@ -80,10 +80,6 @@
     - type: ContainerContainer
       containers:
         AccessOverrider-privilegedId: !type:ContainerSlot
-# CorvaxGoob-start:
-    - type: CargoSellBlacklist
-    - type: SupermatterImmune
-# CorvaxGoob-end.
 
 - type: entity
   parent: AccessConfigurator
