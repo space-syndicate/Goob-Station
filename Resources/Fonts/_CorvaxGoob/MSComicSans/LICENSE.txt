@@ -1,0 +1,7 @@
+﻿file: Comic-Sans-MS.ttf
+license: Freeware
+link: https://ru.legionfonts.com/fonts/comic-sans-ms#glyphs
+
+file: Comic-Sans-MS-bold.ttf
+license: Freeware
+link: https://ffont.ru/en/font/comicsansms-bold_tt

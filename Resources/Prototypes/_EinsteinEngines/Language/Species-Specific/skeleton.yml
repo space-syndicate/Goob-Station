@@ -4,9 +4,8 @@
   id: Calcic
   isVisibleLanguage: true
   speech:
-    # CorvaxGoob - Font do not support russian
-    # fontId: LDFComicSans
-    # boldFontId: LDFComicSansBold
+    fontId: MSComicSans # CorvaxGoob: LDFComicSans > MSComicSans
+    boldFontId: MSComicSansBold # CorvaxGoob: LDFComicSansBold > MSComicSansBold
     color: "#e3dac9"
   obfuscation:
     !type:SyllableObfuscation
