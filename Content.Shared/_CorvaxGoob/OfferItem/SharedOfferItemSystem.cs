@@ -1,4 +1,4 @@
-﻿using Content.Shared._CorvaxNext.Alert.Click;
+using Content.Shared._CorvaxNext.Alert.Click;
 using Content.Shared.Alert;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -85,7 +85,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         }
 
         offerItem.Item = null;
-        Dirty(ent);
+        Dirty(ent.Comp.Target.Value, offerItem);
         UnReceive(ent, ent, offerItem);
     }
 
