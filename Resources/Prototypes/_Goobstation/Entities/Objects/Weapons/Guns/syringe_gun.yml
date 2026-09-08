@@ -83,6 +83,10 @@
     tags:
     - HighRiskItem
     - GunCanAimShooter
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: syringe pistol

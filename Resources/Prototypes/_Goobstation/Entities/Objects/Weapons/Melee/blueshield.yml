@@ -75,8 +75,12 @@
           False: {state: icon-off}
   - type: StaticPrice
     price: 1000
-  - type: MartialArtBlocked # CorvaxGoob judo+baton fix 
+  - type: MartialArtBlocked # CorvaxGoob judo+baton fix
     form: CorporateJudo
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: combat injector
@@ -111,3 +115,7 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.

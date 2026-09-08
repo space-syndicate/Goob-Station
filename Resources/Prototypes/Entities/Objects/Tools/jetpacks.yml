@@ -170,6 +170,10 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 # Filled captain
 - type: entity

@@ -181,6 +181,10 @@
           Rebooting: { state: dead }
           Dead: { state: dead }
   - type: Intellicard
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   id: PlayerStationAiPreview
