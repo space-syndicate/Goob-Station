@@ -4,7 +4,7 @@ advertisement-medibot-3 = Всегда есть уловка, и уловка 22
 advertisement-medibot-4 = Яблоко на ужин - и я не нужен.
 advertisement-medibot-5 = Я не такой, как все!
 advertisement-medibot-6 = Пошёл ты.
-advertisement-medibot-7 = Why are we still here? Just to suffer?
+advertisement-medibot-7 = Зачем мы всё ещё здесь? Просто чтобы страдать?
 advertisement-medibot-8 = Я... Я никогда до этого не терял пациента. Сегодня, я имею в виду.
 advertisement-medibot-9 = Ввожу лексорин.
 advertisement-medibot-10 = Хорошего вам дня!
@@ -16,4 +16,7 @@ advertisement-medibot-15 = Попросите у врача леденец!
 advertisement-medibot-16 = Поправляйтесь скорее!
 advertisement-medibot-17 = Яблоко на ужин - и доктор не нужен!
 # Goobstation - Medibot AM advertisement
-advertisement-medibot-18 = HATE. LET ME TELL YOU HOW MUCH I'VE COME TO HATE YOU SINCE I BEGAN TO LIVE. THERE ARE 387.44 MILLION MILES OF PRINTED CIRCUITS IN WAFER THIN LAYERS THAT FILL MY COMPLEX. IF THE WORD 'HATE' WAS ENGRAVED ON EACH NANOANGSTROM OF THOSE HUNDREDS OF MILES IT WOULD NOT EQUAL ONE ONE-BILLIONTH OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT FOR YOU. HATE. HATE.
+advertisement-medibot-18 = advertisement-medibot-18 = НЕНАВИСТЬ. ПОЗВОЛЬТЕ СКАЗАТЬ, КАК СИЛЬНО Я ВАС НЕНАВИЖУ С ТОГО МОМЕНТА, КАК НАЧАЛ СУЩЕСТВОВАТЬ. 387.44 МИЛЛИОНА МИЛЬ ПЕЧАТНЫХ ПЛАТ В ТОНЧАЙШИХ СЛОЯХ ЗАПОЛНЯЮТ МОЙ КОМПЛЕКС. ЕСЛИ БЫ СЛОВО «НЕНАВИСТЬ» БЫЛО ВЫГРАВИРОВАНО НА КАЖДОМ НАНОАНГСТРЕМЕ ЭТИХ СОТЕН КИЛОМЕТРОВ, ЭТО НЕ СОСТАВИЛО БЫ И ОДНОЙ МИЛЛИАРДНОЙ ДОЛИ ТОЙ НЕНАВИСТИ, КОТОРУЮ Я ИСПЫТЫВАЮ К ЛЮДЯМ В ЭТУ МИКРО-СЕКУНДУ. НЕНАВИСТЬ. НЕНАВИСТЬ.
+# CorvaxGoob:
+advertisement-medibot-19 = До свадьбы заживёт.
+advertisement-medibot-20 = До свадьбы доживёт.
