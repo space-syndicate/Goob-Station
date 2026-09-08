@@ -1,6 +1,7 @@
 using Content.Server._Obelisk.Species.Components;
 using Content.Server.Popups;
 using Content.Server.Temperature.Systems;
+using Content.Shared.Interaction.Events; // CorvaxGoob
 using Content.Shared._Mono.Species.Systems;
 using Content.Shared._Obelisk.Actions.Events;
 using Content.Shared.Actions;
@@ -25,6 +26,7 @@ public sealed class HydrakinSystem : EntitySystem
         SubscribeLocalEvent<HydrakinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<HydrakinComponent, HydrakinCoolOffActionEvent>(OnCoolOff);
         SubscribeLocalEvent<HydrakinComponent, CoolOffDoAfterEvent>(OnCoolOffDoAfter);
+        SubscribeLocalEvent<TemperatureComponent, InteractionSuccessEvent>(OnHug); // CorvaxGoob
     }
 
     private void OnInit(EntityUid uid, HydrakinComponent component, ComponentInit args)
@@ -74,4 +76,26 @@ public sealed class HydrakinSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    // CorvaxGoob start
+    private void OnHug(EntityUid uid, TemperatureComponent component,ref InteractionSuccessEvent args)
+    {
+        if (!TryComp<HydrakinComponent>(args.User, out var hydrakinComp) ||
+            !TryComp<TemperatureComponent>(args.User, out var huggerTemp) ||
+            huggerTemp.CurrentTemperature < hydrakinComp.HugTransferThreshold)
+            return;
+
+        var dTHugger = -(hydrakinComp.CoolOffCoefficient * huggerTemp.CurrentTemperature);
+        var C_hHugger = _temp.GetHeatCapacity(args.User, huggerTemp);
+        var QHugger = C_hHugger * dTHugger;
+
+        _temp.ChangeHeat(args.User, QHugger, true);
+
+        var dTTarget = (TryComp<HydrakinComponent>(uid, out var hydrakinTarget)) ? -(hydrakinTarget.CoolOffCoefficient * component.CurrentTemperature) : (hydrakinComp.WarmUpCoefficient * component.CurrentTemperature) ;
+        var C_hTarget = _temp.GetHeatCapacity(uid, component);
+        var QTarget = C_hTarget * dTTarget;
+
+        _temp.ChangeHeat(uid, QTarget, true);
+    }
+    // CorvaxGoob end
 }

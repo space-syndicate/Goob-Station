@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: HailerMessagersCalm
+  values:
+    prefix: hail-mode-calm-
+    count: 8
+
+- type: localizedDataset
+  id: HailerMessagersAgressive
+  values:
+    prefix: hail-mode-agressive-
+    count: 23
+
+- type: localizedDataset
+  id: HailerMessagersEmag
+  values:
+    prefix: hail-mode-emag-
+    count: 24

@@ -1,12 +1,15 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._CorvaxGoob.Ghost;
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Goobstation.Shared.MisandryBox.Thunderdome;
+using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Configuration; // CorvaxGoob-GoLobby
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -15,9 +18,13 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // CorvaxGoob-GoLobby
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
+
+    private GhostGoLobbyConfirmWindow? _goLobbyConfirmWindow; // CorvaxGoob-GoLobby
+    private bool _goLobbyEnabled = true; // CorvaxGoob-GoLobby
 
     public override void Initialize()
     {
@@ -30,6 +37,15 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         // Goobstation - Thunderdome
         _entManager.EventBus.SubscribeEvent<ThunderdomePlayerCountEvent>
             (EventSource.Network, this, OnThunderdomePlayerCount);
+
+        // CorvaxGoob-GoLobby
+        _cfg.OnValueChanged(CCCVars.GhostGoLobbyEnabled, OnGoLobbyEnabledChanged, true);
+    }
+
+    private void OnGoLobbyEnabledChanged(bool enabled) // CorvaxGoob-GoLobby
+    {
+        _goLobbyEnabled = enabled;
+        UpdateGui();
     }
 
     private void OnScreenLoad()
@@ -70,7 +86,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         }
 
         Gui.Visible = _system?.IsGhost ?? false;
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, _system?.Player?.CanEnterGhostBar, _system?.Player?.CanTakeGhostRoles); // CorvaxGoob-GhostBar edit
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, _system?.Player?.CanEnterGhostBar, _system?.Player?.CanTakeGhostRoles, _goLobbyEnabled); // CorvaxGoob-GhostBar edit, CorvaxGoob-GoLobby edit
     }
 
     private void OnPlayerRemoved(GhostComponent component)
@@ -131,6 +147,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RequestWarpsPressed += RequestWarps;
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
+        Gui.GhostGoLobbyPressed += GhostGoLobby; // CorvaxGoob-GoLobby
         Gui.GhostBarPressed += GhostBarPressed; // CorvaxGoob-GhostBar
         Gui.GhostBarWindow.SpawnButtonPressed += GhostBarSpawnPressed; // CorvaxGoob-GhostBar
         Gui.ThunderdomePressed += ThunderdomePressed; // Goobstation - Thunderdome
@@ -148,6 +165,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RequestWarpsPressed -= RequestWarps;
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
+        Gui.GhostGoLobbyPressed -= GhostGoLobby; // CorvaxGoob-GoLobby
         Gui.ThunderdomePressed -= ThunderdomePressed; // Goobstation - Thunderdome
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
@@ -157,6 +175,20 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void ReturnToBody()
     {
         _system?.ReturnToBody();
+    }
+
+    private void GhostGoLobby() // CorvaxGoob-GoLobby
+    {
+        if (_goLobbyConfirmWindow is { Disposed: false })
+        {
+            _goLobbyConfirmWindow.MoveToFront();
+            return;
+        }
+
+        _goLobbyConfirmWindow = new GhostGoLobbyConfirmWindow();
+        _goLobbyConfirmWindow.ContinuePressed += () => _system?.GhostGoLobby();
+        _goLobbyConfirmWindow.OnClose += () => _goLobbyConfirmWindow = null;
+        _goLobbyConfirmWindow.OpenCentered();
     }
 
     private void RequestWarps()

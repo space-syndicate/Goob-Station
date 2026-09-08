@@ -11,6 +11,9 @@ enabled = false
 [server]
 lobby_name = "️🛰️ CorvaxGoob — 🌕 Люмен 🪐 [MRP+] [TTS]"
 
+[lobby]
+server_hub_enabled = true
+
 [game.panic_bunker]
 enabled = true
 show_reason = true

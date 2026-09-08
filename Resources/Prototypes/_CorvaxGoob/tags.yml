@@ -46,6 +46,9 @@
   id: Hemostat
 
 - type: Tag
+  id: IgnorGrab
+
+- type: Tag
   id: InfinityPaper
 
 - type: Tag

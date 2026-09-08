@@ -9,6 +9,7 @@
   - type: Tag
     tags:
     - CartridgeHeavyRifle
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletHeavyRifle
   - type: Sprite

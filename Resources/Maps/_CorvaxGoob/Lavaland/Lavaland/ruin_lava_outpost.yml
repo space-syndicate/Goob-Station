@@ -4036,7 +4036,7 @@ entities:
         actions: !type:Container
           ents:
           - 2464
-- proto: ClothingOuterHardsuitMaxim
+- proto: ClothingOuterHardsuitGoliath
   entities:
   - uid: 2446
     components:

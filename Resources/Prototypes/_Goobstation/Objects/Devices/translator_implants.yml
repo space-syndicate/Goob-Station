@@ -44,7 +44,7 @@
       - Mouse
       - Monkey
       - Kobold
-
+      - Hydraspeak # CorvaxGoob
     understood:
       - TauCetiBasic # Common Languages -
       - SolCommon
@@ -81,6 +81,7 @@
       - Mouse
       - Monkey
       - Kobold
+      - Hydraspeak # CorvaxGoob
 
 - type: entity
   parent: BaseSubdermalImplant

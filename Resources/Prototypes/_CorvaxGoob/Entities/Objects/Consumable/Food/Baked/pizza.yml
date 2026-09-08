@@ -152,6 +152,82 @@
         - ReagentId: CarpoToxin
           Quantity: 0.5
 
+- type: entity
+  name: watermelontton pizza
+  parent: FoodPizzaBase
+  id: FoodPizzaWatermelontton
+  description: Flat fabric cotton dough with watermelon topping. Incredible.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cotton
+    - watermelon
+    - bread
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: watermelontton-pizza
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: SliceableFood
+    slice: FoodPizzaWatermelonttonSlice
+  - type: Tag
+    tags:
+    - ClothMade
+    - Pizza
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: JuiceWatermelon
+          Quantity: 5
+
+- type: entity
+  name: slice of watermelontton pizza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaWatermelonttonSlice
+  description: A slice of watermelontton pizza. Watermelon seeds included.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cotton
+    - watermelon
+    - bread
+  - type: Edible
+    trash:
+    - FoodCottonPizzaCrust
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/Baked/pizza.rsi
+    layers:
+    - state: watermelontton-slice
+  - type: Item
+    heldPrefix: watermelontton-slice
+  - type: Tag
+    tags:
+    - ClothMade
+    - Pizza
+    - Slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 0.8
+        - ReagentId: Fiber
+          Quantity: 1.5
+        - ReagentId: JuiceWatermelon
+          Quantity: 0.5
+
 # Crust
 
 - type: entity

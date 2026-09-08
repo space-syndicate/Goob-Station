@@ -44,10 +44,12 @@
   effects:
   - !type:Explosion
     explosionType: Default # 15 damage per intensity.
-    maxIntensity: 200
-    intensityPerUnit: 5
-    intensitySlope: 5
-    maxTotalIntensity: 200
+  # CorvaxGoob - explosions nerf start
+    maxIntensity: 10 # 200 -> 10
+    intensityPerUnit: 1 # 5 -> 1
+    intensitySlope: 1 # 5 ->1
+    maxTotalIntensity: 10 # 200 -> 10
+  # CorvaxGoob - explosions nerf end
   - !type:PopupMessage
     messages: [ "clf3-explosion" ]
     type: Pvs

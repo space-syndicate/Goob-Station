@@ -1,0 +1,35 @@
+- type: entity
+  parent: FloorTileItemBase
+  id: FloorTileItemAstroChromite
+  name: astro-chromite
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Tiles/tile.rsi
+    state: chromite
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Tiles/tile.rsi
+    heldPrefix: chromite
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FauxAstroChromite
+  - type: Stack
+    stackType: FauxTileAstroChromite
+
+- type: entity
+  parent: FloorTileItemBase
+  id: FloorTileItemAstroSnowDug
+  name: astro-snow dug
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Tiles/tile.rsi
+    state: snow-dug
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Tiles/tile.rsi
+    heldPrefix: snow-dug
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FauxAstroSnowDug
+  - type: Stack
+    stackType: FauxTileAstroSnowDug

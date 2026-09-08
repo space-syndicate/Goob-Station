@@ -6,3 +6,12 @@
   - type: Rehydratable
     possibleSpawns:
     - MobOniRandom
+
+- type: entity
+  parent: MonkeyCube
+  id: HydrakinCube
+  name: hydrakin cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobHydrakinRandom

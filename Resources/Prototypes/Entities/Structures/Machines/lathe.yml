@@ -880,6 +880,8 @@
     - FloorConcreteTilesStatic
     - CircuitFloorsStatic
     - FloorMarbleTilesStatic
+    - FloorOther # CorvaxGoob
+    - FloorShuttle # CorvaxGoob
     dynamicPacks:
     - FauxTiles
   - type: MaterialStorage

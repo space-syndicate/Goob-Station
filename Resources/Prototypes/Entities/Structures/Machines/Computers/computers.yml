@@ -133,6 +133,7 @@
   description: Used to pilot a shuttle.
   abstract: true
   components:
+  - type: StationAiWhitelist # CorvaxGoob-AiShuttle
   - type: DeviceLinkSink # CorvaxGoob-IIF-Improves
     ports:
       - ShuttleDroneReceiver
