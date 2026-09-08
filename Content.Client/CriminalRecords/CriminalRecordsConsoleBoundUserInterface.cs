@@ -40,9 +40,12 @@ public sealed class CriminalRecordsConsoleBoundUserInterface : BoundUserInterfac
             SendMessage(new CriminalRecordChangeStatus(status, null));
         _window.OnDialogConfirmed += (status, reason) =>
             SendMessage(new CriminalRecordChangeStatus(status, reason));
-        // CorvaxGoob-SecurityFeatures
+        // CorvaxGoob-SecurityFeatures-Start
         _window.OnDialogDetainedConfirmed += (articles, duration, print) =>
             SendMessage(new CriminalRecordChangeDetainedStatus(articles, duration, print));
+        _window.OnDialogWantedConfirmed += (reason, print) =>
+            SendMessage(new CriminalRecordChangeWantedStatus(reason, print));
+        // CorvaxGoob-SecurityFeatures-End
         _window.OnStatusFilterPressed += (statusFilter) =>
             SendMessage(new CriminalRecordSetStatusFilter(statusFilter));
         _window.OnHistoryUpdated += UpdateHistory;

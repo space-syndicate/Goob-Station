@@ -9,6 +9,7 @@
   - type: Tag
     tags:
     - CartridgeAntiMateriel
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletAntiMateriel
   - type: Sprite

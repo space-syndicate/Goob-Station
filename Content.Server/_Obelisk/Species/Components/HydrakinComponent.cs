@@ -23,4 +23,20 @@ public sealed partial class HydrakinComponent : Component
 
     [DataField]
     public EntityUid? CoolOffAction;
+
+    // CorvaxGoob start
+
+    /// <summary>
+    /// Temperature at which heat is transferred
+    /// </summary>
+    [DataField]
+    public float HugTransferThreshold = 313.0f;
+
+    /// <summary>
+    /// How much does a hug warm up
+    /// </summary>
+    [DataField]
+    public float WarmUpCoefficient = 0.05f;
+
+    // CorvaxGoob end
 }

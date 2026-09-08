@@ -69,9 +69,20 @@
     - WhitelistChameleon
     - SecurityBreathMask
     - GasMask # Goobstation
-  # - type: Hailer # Goobstation - Hailer Removed by CorvaxGoob
+  - type: Hailer # Goobstation # CorvaxGoob-HailerRework-Start
+    availableModes:
+      calm: HailerMessagersCalm
+      agressive: HailerMessagersAgressive
+    emagedModes:
+      emag: HailerMessagersEmag
+    # CorvaxGoob-HailerRework-End
   - type: IngestionBlocker # Goobstation
     blockSmokeIngestion: true
+    # CorvaxGoob-HailerDeath-Start
+  - type: HailerDeathSound
+    sound:
+      path: /Audio/_CorvaxGoob/Misc/hailer_user_death.ogg
+      # CorvaxGoob-HailerDeath-End
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]

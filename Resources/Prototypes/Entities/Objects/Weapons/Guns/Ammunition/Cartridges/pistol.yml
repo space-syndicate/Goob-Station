@@ -9,6 +9,7 @@
   - type: Tag
     tags:
       - CartridgePistol
+      - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     proto: BulletPistol
   - type: Sprite

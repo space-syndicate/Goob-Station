@@ -2,7 +2,6 @@
 
 using Content.Client.Humanoid;
 using Content.Client.Message;
-using Content.Client.Station;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration;
@@ -55,6 +54,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
     public Action? OnHistoryClosed;
     public Action<SecurityStatus, string>? OnDialogConfirmed;
     public Action<string, int, bool>? OnDialogDetainedConfirmed; // CorvaxGoob-SecurityFeatures
+    public Action<string, bool>? OnDialogWantedConfirmed; // CorvaxGoob-SecurityFeatures
 
     public Action<SecurityStatus>? OnStatusFilterPressed;
     private uint _maxLength;
@@ -275,10 +275,10 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         }
 
         // CorvaxGoob-SecurityFeatures-Start
+        EntriesContainer.RemoveAllChildren();
+
         if (criminalRecord.History.Count > 0)
         {
-            EntriesContainer.RemoveAllChildren();
-
             // Heading
             var historyRecordHeadTime = new RichTextLabel
             {
@@ -291,7 +291,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             {
                 HorizontalAlignment = HAlignment.Center,
             };
-            historyRecordHeadCrime.SetMarkup(Loc.GetString("Преступление"));
+            historyRecordHeadCrime.SetMarkup(Loc.GetString("Статус"));
             EntriesContainer.AddChild(historyRecordHeadCrime);
 
             var historyRecordHeadInitiator = new RichTextLabel
@@ -356,13 +356,16 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             Initiator.SetMessage(message);
             Initiator.Visible = true;
         }
+        else
+        {
+            Initiator.Visible = false;
+        }
 
         UpdatePreview(stationRecord); // CorvaxGoob-SecurityFeatures
 
         StatusOptionButton.SelectId((int)criminalRecord.Status);
         if (criminalRecord.Reason is { } reason)
         {
-
             var message = FormattedMessage.FromMarkupOrThrow(Loc.GetString($"criminal-records-console-{criminalRecord.Status.ToString().ToLower()}-reason"));
             message.AddText($": {reason}");
 
@@ -403,6 +406,9 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         if (visual.EyesColor is not null)
             targetHumanoid.EyeColor = visual.EyesColor.Value;
 
+        if (visual.Sex is not null)
+            targetHumanoid.Sex = visual.Sex.Value;
+
         _humanoidAppearance.UpdateSprite((_previewEntity.Value, targetHumanoid, _entManager.GetComponent<SpriteComponent>(_previewEntity.Value)));
 
         SpriteView.SetEntity(_previewEntity.Value);
@@ -427,8 +433,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private void SetStatus(SecurityStatus status)
     {
-        if (status == SecurityStatus.Wanted
-            || status == SecurityStatus.Suspected
+        if (status == SecurityStatus.Suspected // CorvaxGoob-SecurityFeatures : Удалён Wanted
             || status == SecurityStatus.Hostile
             || status == SecurityStatus.Search // Goobstation
             || status == SecurityStatus.Dangerous // Goobstation
@@ -442,6 +447,13 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         if (status == SecurityStatus.Detained)
         {
             GetDetainedInfo();
+            return;
+        }
+
+        // CorvaxGoob-SecurityFeatures
+        if (status == SecurityStatus.Wanted)
+        {
+            GetWantedReason();
             return;
         }
 
@@ -513,6 +525,38 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
         _reasonDialog.OnClose += () => { _reasonDialog = null; };
     }
+
+    // CorvaxGoob-SecurityFeatures
+    private void GetWantedReason()
+    {
+        if (_reasonDialog != null)
+        {
+            _reasonDialog.MoveToFront();
+            return;
+        }
+
+        var field = "reason";
+        var title = Loc.GetString("criminal-records-status-wanted");
+        var placeholders = _proto.Index(ReasonPlaceholders);
+        var placeholder = Loc.GetString("criminal-records-console-reason-placeholder", ("placeholder", Loc.GetString(_random.Pick(placeholders.Values)))); // CorvaxGoob-SecurityFeatures
+        var prompt = Loc.GetString("criminal-records-console-reason");
+
+        var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
+        var entries = new List<QuickDialogEntry>() { entry };
+        _reasonDialog = new DialogWindow(title, entries, true, true, true, Loc.GetString("criminal-records-console-print"));
+
+        _reasonDialog.OnConfirmed += responses =>
+        {
+            var reason = responses[field];
+            if (reason.Length < 1 || reason.Length > _maxLength)
+                return;
+
+            OnDialogWantedConfirmed?.Invoke(reason, _reasonDialog.CheckBox.Pressed);
+        };
+
+        _reasonDialog.OnClose += () => { _reasonDialog = null; };
+    }
+
     private string GetStatusIcon(SecurityStatus status)
     {
         return status switch

@@ -8,7 +8,7 @@
   color: "#8B008B"
   metabolisms:
     Medicine:
-      metabolismRate: 0.02
+      metabolismRate: 0.03 # 0.02 -> 0.03 CorvaxGoob
       effects:
       - !type:HealthChange
         damage:
@@ -33,5 +33,5 @@
           min: 253.15
         - !type:MetabolizerTypeCondition # Fuck you
           type: [ Hydrakin ]
-          inverted: true
+          # inverted: true # CorvaxGoob
         amount: -7500
