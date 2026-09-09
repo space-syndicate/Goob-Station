@@ -20,8 +20,7 @@ public sealed partial class StationSpawningSystem
     [Dependency] private IRobustRandom _random = default!;
 
     /// <summary>
-    /// Applies the fixed or random lawset selected in the station AI's role loadout.
-    /// Falls back to NTDefault when no valid lawset can be applied.
+    /// Assigns the initial station AI lawset, defaulting to NTDefault if loadout resolution fails.
     /// </summary>
     private void ApplySiliconLawLoadout(EntityUid entity, string roleLoadoutId, RoleLoadout? roleLoadout)
     {
@@ -30,56 +29,48 @@ public sealed partial class StationSpawningSystem
             !TryComp(entity, out SiliconLawProviderComponent? provider))
             return;
 
-        // Set the safe default first so missing, invalid, or outdated loadout data cannot leave the AI without laws.
-        provider.Laws = DefaultStationAiLawset;
+        // Apply the selected lawset, falling back to NTDefault if loadout resolution fails.
+        provider.Laws = TryGetSelectedLawset(roleLoadout, out var lawsetId)
+            ? lawsetId
+            : DefaultStationAiLawset;
+
+        // Invalidate the lawset cached during MapInit so the next GetLaws call resolves the assigned prototype.
         provider.Lawset = null;
+    }
+
+    /// <summary>
+    /// Resolves the selected fixed lawset or samples its weighted table without modifying the entity.
+    /// </summary>
+    private bool TryGetSelectedLawset(RoleLoadout? roleLoadout, out ProtoId<SiliconLawsetPrototype> lawsetId)
+    {
+        lawsetId = default;
 
         if (roleLoadout == null ||
             !roleLoadout.SelectedLoadouts.TryGetValue(StationAiLawsetGroup, out var selectedLawsets) ||
             selectedLawsets.Count != 1)
-            return;
+            return false;
 
         var selected = selectedLawsets[0];
         if (!_prototypeManager.TryIndex(selected.Prototype, out LoadoutPrototype? loadout))
-        {
-            Log.Error($"Unable to find station AI lawset loadout {selected.Prototype}");
-            return;
-        }
+            return false;
 
         var lawset = loadout.SiliconLawset;
 
         if (loadout.RandomSiliconLawset is { } randomLawsetId)
         {
-            // Choose the random initial lawset once when this silicon is spawned.
             if (!_prototypeManager.TryIndex(randomLawsetId, out WeightedRandomPrototype? randomLawsets))
-            {
-                Log.Error($"Unable to find silicon lawset table {randomLawsetId} for loadout {loadout.ID}");
-                return;
-            }
+                return false;
 
             if (randomLawsets.Weights.Count == 0 || randomLawsets.Weights.Values.Any(weight => weight <= 0f))
-            {
-                Log.Error($"Silicon lawset table {randomLawsetId} for loadout {loadout.ID} has invalid weights");
-                return;
-            }
+                return false;
 
             lawset = randomLawsets.Pick(_random);
         }
 
-        if (lawset is not { } lawsetId)
-        {
-            Log.Error($"Station AI lawset loadout {loadout.ID} does not specify a lawset");
-            return;
-        }
+        if (lawset is not { } resolvedLawsetId || !_prototypeManager.HasIndex(resolvedLawsetId))
+            return false;
 
-        if (!_prototypeManager.HasIndex(lawsetId))
-        {
-            Log.Error($"Unable to find silicon lawset {lawsetId} for loadout {loadout.ID}");
-            return;
-        }
-
-        // MapInit may have cached the entity prototype's default laws before the loadout was applied.
-        provider.Laws = lawsetId;
-        provider.Lawset = null;
+        lawsetId = resolvedLawsetId;
+        return true;
     }
 }
