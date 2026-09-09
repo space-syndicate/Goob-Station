@@ -5,6 +5,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Doors.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
@@ -13,6 +14,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Goobstation.Common.Weapons.Ranged;
+using Content.Goobstation.Shared.Vehicles;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -53,6 +55,7 @@ public sealed class SandevistanSystem : EntitySystem
 
         SubscribeLocalEvent<SandevistanSlowedComponent, RemoveSandevistanSlowdownEvent>(OnRemoveSlowdown);
         SubscribeLocalEvent<SandevistanSlowedComponent, RefreshMovementSpeedModifiersEvent>(OnSlowedRefreshSpeed);
+        SubscribeLocalEvent<SandevistanSlowedComponent, RefreshWeightlessModifiersEvent>(OnSlowedRefreshWeightless);
 
         SubscribeLocalEvent<ActiveSandevistanUserComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ActiveSandevistanUserComponent, EndCollideEvent>(OnEndCollide);
@@ -178,7 +181,7 @@ public sealed class SandevistanSystem : EntitySystem
         if (ent.Comp.SlowfieldEnabled)
             CreateSlowfieldFixture(ent, ent.Comp);
 
-        _audio.PlayPredicted(ent.Comp.StartSound, ent, ent);
+        ent.Comp.StartSoundStream = _audio.PlayPredicted(ent.Comp.StartSound, ent, ent)?.Entity;
         Dirty(ent);
         PlayLoopedAudio(ent, ent.Comp);
     }
@@ -251,6 +254,7 @@ public sealed class SandevistanSystem : EntitySystem
         _speed.RefreshMovementSpeedModifiers(uid);
         DeleteAfterimages(uid);
         StopLoopedAudio(comp);
+        StopStartSound(comp);
 
         RemCompDeferred<DogVisionComponent>(uid);
 
@@ -259,9 +263,7 @@ public sealed class SandevistanSystem : EntitySystem
     }
 
     #region Afterimage Methods
-    /// <summary>
-    /// Update afterimages for sandevistan user
-    /// </summary>
+
     public void UpdateAfterimages(EntityUid uid, SandevistanUserComponent comp)
     {
         if (_timing.CurTime >= comp.NextAfterimageTime)
@@ -342,6 +344,15 @@ public sealed class SandevistanSystem : EntitySystem
             comp.PlayingStream = null;
         }
     }
+
+    private void StopStartSound(SandevistanUserComponent comp)
+    {
+        if (comp.StartSoundStream != null)
+        {
+            _audio.Stop(comp.StartSoundStream.Value);
+            comp.StartSoundStream = null;
+        }
+    }
     #endregion
 
     #region Slowfield Methods
@@ -366,8 +377,8 @@ public sealed class SandevistanSystem : EntitySystem
             uid,
             shape,
             SlowfieldFixtureId,
-            collisionLayer: (int) CollisionGroup.ThrownItem,
-            collisionMask: (int) (CollisionGroup.MobMask | CollisionGroup.BulletImpassable | CollisionGroup.ThrownItem),
+            collisionLayer: (int) (CollisionGroup.ThrownItem | CollisionGroup.MobMask),
+            collisionMask: (int) (CollisionGroup.MobMask | CollisionGroup.BulletImpassable | CollisionGroup.ThrownItem | CollisionGroup.MobLayer),
             hard: false,
             body: physics);
     }
@@ -440,6 +451,12 @@ public sealed class SandevistanSystem : EntitySystem
             EnsureComp<DogVisionComponent>(target);
         }
 
+        else if (HasComp<VehicleComponent>(target))
+        {
+            slowed.SpeedMultiplier = comp.MobSpeedMultiplier;
+            _speed.RefreshMovementSpeedModifiers(target);
+        }
+
         // Bullets
         else if (TryComp<ProjectileComponent>(target, out _))
         {
@@ -501,6 +518,11 @@ public sealed class SandevistanSystem : EntitySystem
                 RemCompDeferred<DogVisionComponent>(ent);
         }
 
+        else if (HasComp<VehicleComponent>(ent))
+        {
+            _speed.RefreshMovementSpeedModifiers(ent);
+        }
+
         // Bullets
         else if (TryComp<PhysicsComponent>(ent, out var physics)
             && ent.Comp.OriginalLinearVelocity.LengthSquared() > 0.01f)
@@ -520,8 +542,14 @@ public sealed class SandevistanSystem : EntitySystem
 
     private void OnSlowedRefreshSpeed(Entity<SandevistanSlowedComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (HasComp<MobStateComponent>(ent) && ent.Comp.IsSlowed)
-            args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier);
+        if (ent.Comp.IsSlowed && (HasComp<MobStateComponent>(ent) || HasComp<MobMoverComponent>(ent) || HasComp<VehicleComponent>(ent)))
+            args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier, true);
+    }
+
+    private void OnSlowedRefreshWeightless(Entity<SandevistanSlowedComponent> ent, ref RefreshWeightlessModifiersEvent args)
+    {
+        if (ent.Comp.IsSlowed)
+            args.ModifyAcceleration(ent.Comp.SpeedMultiplier);
     }
 
     /// <summary>
@@ -532,8 +560,10 @@ public sealed class SandevistanSystem : EntitySystem
         var query = EntityQueryEnumerator<SandevistanSlowedComponent>();
         while (query.MoveNext(out var uid, out var slowed))
         {
-            if (!slowed.IsSlowed || !HasComp<ThrownItemComponent>(uid) || slowed.OriginalLinearVelocity.LengthSquared() <= 0.01f)
-                continue;
+        if (!slowed.IsSlowed
+            || (slowed.OriginalLinearVelocity.LengthSquared() <= 0.01f)
+            || (!HasComp<ThrownItemComponent>(uid) && !HasComp<ProjectileComponent>(uid)))
+            continue;
 
             var targetVelocity = slowed.OriginalLinearVelocity * slowed.SpeedMultiplier;
             if (TryComp<PhysicsComponent>(uid, out var physics)
