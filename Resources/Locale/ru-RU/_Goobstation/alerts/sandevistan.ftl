@@ -1,11 +1,11 @@
-alerts-sandevistan-load-name = [color=cyan]Cyberware Load[/color]
-alerts-sandevistan-load-desc = Current load level of your sandevistan implant. Higher values mean greater strain on your body.
+alerts-sandevistan-load-name = [color=cyan]Лимит имплантов[/color]
+alerts-sandevistan-load-desc = Текущий уровень нагрузки на ваш имплант сандевистан. Более высокие значения могут повлиять на ваш организм.
     { SANDE_LOAD_DESC() }
 
-sandevistan-effect-desc-warning = you will start receiving warnings.
-sandevistan-effect-desc-shaking = you will begin shaking uncontrollably.
-sandevistan-effect-desc-stamina = you will start losing stamina.
-sandevistan-effect-desc-damage = you will start taking physical damage.
-sandevistan-effect-desc-knockdown = you will be knocked down.
-sandevistan-effect-desc-disable = the implant will forcefully shut down.
-sandevistan-effect-desc-death = you will die.
+sandevistan-effect-desc-warning = вы начнете получать предупреждения.
+sandevistan-effect-desc-shaking = вы начнете трястись без остановки.
+sandevistan-effect-desc-stamina = вы начнете терять выносливость.
+sandevistan-effect-desc-damage = вы начнете получать физический урон.
+sandevistan-effect-desc-knockdown = вы упадете в нокаут.
+sandevistan-effect-desc-disable = имплант будет принудительно деактивирован.
+sandevistan-effect-desc-death = вы умрете.

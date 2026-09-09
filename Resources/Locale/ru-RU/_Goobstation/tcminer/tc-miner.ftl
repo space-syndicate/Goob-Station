@@ -1,2 +1,2 @@
-telecrystal-miner-announcement = Cryptographic analysis has detected unsanctioned illegal currency mining on station. Station personnel is commanded to destroy the device responsible.
-telecrystal-miner-announcement2 = The telecrystal harvesting device has been located near { $location }.
+telecrystal-miner-announcement = В ходе криптографического анализа, на станции были обнаруженны незаконные телекристальные майнеры. Экипажу станции приказывается немедленно уничтожить незаконные объекты.
+telecrystal-miner-announcement2 = Телекристальные майнеры были обнаружены вблизи { $location }.

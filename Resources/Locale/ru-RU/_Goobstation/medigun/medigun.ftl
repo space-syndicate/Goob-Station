@@ -1,4 +1,4 @@
-activate-medigun-uber-action-name = Activate Uber mode
-activate-medigun-uber-action-desc = Uber mode heals targets faster, but is enabled only for 10 seconds and drains battery faster.
-alerts-medigun-uber-name = Uber Charge
-alerts-medigun-uber-desc = Charge your medigun via healing living entities, fill this battery to 100%, and then you can enable Uber Mode!
+activate-medigun-uber-action-name = Активировать убер режим
+activate-medigun-uber-action-desc = Убер режим лечит все цели быстрее, но длится всего 10 секунд и значительнее расхудет заряд батарей.
+alerts-medigun-uber-name = Убер заряд
+alerts-medigun-uber-desc = Заряжайте свой лечебный луч исцеляя других существ. Когда уровень зяра достигнет 100%, вы сможете активировать убер!
