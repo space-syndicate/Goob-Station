@@ -1,5 +1,5 @@
 # Names
-chat-emote-name-belch = Belch
+chat-emote-name-belch = Отрыжка
 
 # Message
-chat-emote-msg-belch = belches.
+chat-emote-msg-belch = отрыгнул.

@@ -1,15 +1,15 @@
 # Locale from Sector-Umbra
 
-paper-component-verb-sign = Sign
+paper-component-verb-sign = Подписать
 
-paper-component-action-signed-self = You sign {THE($target)}.
-paper-component-action-signed-other = {CAPITALIZE(THE($user))} signs {THE($target)}.
+paper-component-action-signed-self = Вы подписали {THE($target)}.
+paper-component-action-signed-other = {CAPITALIZE(THE($user))} подписывает {THE($target)}.
 
-paper-component-examine-detail-signed-by = {CAPITALIZE(THE($paper))} {CONJUGATE-HAVE($paper)} been signed by: {$stamps}.
+paper-component-examine-detail-signed-by = {CAPITALIZE(THE($paper))} {CONJUGATE-HAVE($paper)} был подписан: {$stamps}.
 
 # Form and signature buttons
-paper-form-fill-button = Fill
-paper-signature-sign-button = Sign
-paper-form-dialog-ok = OK
-paper-form-dialog-cancel = Cancel
-paper-signature-unknown = Unknown
+paper-form-fill-button = Заполнить
+paper-signature-sign-button = Подписать
+paper-form-dialog-ok = ОК
+paper-form-dialog-cancel = Отменить
+paper-signature-unknown = Неизвестно
