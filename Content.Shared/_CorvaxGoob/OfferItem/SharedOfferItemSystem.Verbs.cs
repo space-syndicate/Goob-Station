@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
@@ -11,13 +9,13 @@ public abstract partial class SharedOfferItemSystem
 {
     private void InitializeVerbMenu()
     {
-        // Keep the context-menu entry separate from the keybind setup while sharing the same offer flow.
+        // Пункт контекстного меню отделён от настройки кейбинда, но использует тот же поток оффера.
         SubscribeLocalEvent<OfferItemComponent, GetVerbsEvent<InteractionVerb>>(OnGetOfferItemVerb);
     }
 
     private void OnGetOfferItemVerb(Entity<OfferItemComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
-        // Show the verb only for another valid character while the user is holding an active item.
+        // Показываем верб только для другого валидного персонажа, пока у пользователя активный предмет.
         if (!args.CanAccess ||
             args.Hands?.ActiveHandId is not { } hand ||
             args.Using is not { } used)
@@ -36,7 +34,7 @@ public abstract partial class SharedOfferItemSystem
         if (!CanOfferItem(user, target, item, handId))
             return;
 
-        // Copy values out of the ref event before creating the action; verb execution happens later.
+        // Копируем значения из ref-события до создания действия; верб выполняется позже.
         args.Verbs.Add(new InteractionVerb
         {
             Text = Loc.GetString("offer-item-verb"),
@@ -55,7 +53,7 @@ public abstract partial class SharedOfferItemSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        // Re-resolve components because hands, held item, or offer state may change while the menu is open.
+        // Повторно резолвим компоненты: руки, предмет или состояние оффера могли измениться, пока меню было открыто.
         if (!Resolve(user, ref user.Comp, false) ||
             !Resolve(target, ref target.Comp, false) ||
             !CanOfferItem(user, target, used, hand))
@@ -63,18 +61,13 @@ public abstract partial class SharedOfferItemSystem
             return;
         }
 
-        user.Comp.Item = used;
-        user.Comp.Hand = hand;
-        user.Comp.IsInOfferMode = true;
-        Dirty(user.Owner, user.Comp);
-
-        // Reuse the existing interact-using handler so popups, alerts, and acceptance stay identical.
-        var ev = new InteractUsingEvent(user.Owner, used, target.Owner, Transform(target.Owner).Coordinates);
-        SetInReceiveMode(target.Owner, target.Comp, ev);
+        // Тот же поток, что и у кейбинда: начинаем оффер, затем связываем обе стороны.
+        StartOffer(user.Owner, user.Comp, used, hand);
+        LinkOffer(user.Owner, user.Comp, target.Owner, target.Comp);
     }
 
-    // Shared guard for showing and executing the verb. The menu can stay open while state changes,
-    // so execution must pass the same checks again before starting an offer.
+    // Общая проверка предпосылок для показа и выполнения верба. Меню может оставаться открытым,
+    //пока состояние меняется, поэтому перед началом оффера те же проверки выполняются повторно.
     private bool CanOfferItem(
         Entity<OfferItemComponent?> user,
         Entity<OfferItemComponent?> target,
