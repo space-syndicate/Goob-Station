@@ -15,4 +15,4 @@ cosmiccolossus-titles-lone-dataset-3 = Легендарный
 cosmiccolossus-titles-lone-dataset-4 = Гаргантюа
 cosmiccolossus-titles-lone-dataset-5 = Монументальный
 
-name-format-colossus = {$part0}, {$part1}
+name-format-colossus = {$part0} {$part1}

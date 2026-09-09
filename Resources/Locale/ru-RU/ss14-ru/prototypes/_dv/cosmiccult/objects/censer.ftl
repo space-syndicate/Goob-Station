@@ -1,2 +1,2 @@
-ent-CosmicCenser = ardent censer
-    .desc = Cleanses and sanctifies the air around it. If used on another being, it would irreversibly wipe their memories.
+ent-CosmicCenser = пылающее кадило
+    .desc = Очищает воздух и душу рядом с собою. При использовании на игроке - безвозвратно стирает его память.

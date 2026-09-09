@@ -1,2 +1,2 @@
-ent-CosmicMedipen = malign injector
-    .desc = Previously a sterile injector, now corrupted beyond recognition. You can see the liquid inside it boiling and freezing at the same time.
+ent-CosmicMedipen = зловещий инжектор
+    .desc = Некогда это был обычный инжектор, но теперь он покрыт зловещей аурой. Видно, как внутри него, жидкость одновременно кипит и замерзает.
