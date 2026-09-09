@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionToggleGhostObserverHud
+  name: Toggle Observer HUD
+  description: Toggle the observer HUD display mode.
+  components:
+  - type: Action
+    icon:
+      sprite: _CorvaxGoob/Interface/Actions/ghost_sec_hud.rsi
+      state: grey_eye_32
+    iconOn:
+      sprite: _CorvaxGoob/Interface/Actions/ghost_sec_hud.rsi
+      state: red_eye_32
+    priority: 9
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ToggleGhostObserverHudActionEvent
