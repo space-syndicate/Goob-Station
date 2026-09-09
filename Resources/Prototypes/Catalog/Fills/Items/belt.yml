@@ -26,6 +26,7 @@
       storagebase: !type:AllSelector
         children:
         #- id: CrowbarYellow #CorvaxGoob
+        - id: Crowbar #CorvaxGoob: CrowbarYellow --> Crowbar
         - id: Wrench
         - id: Screwdriver
         - id: Wirecutter
@@ -34,7 +35,6 @@
         #Goob-Station - changes made by Jellygato 7/13/24
         - id: trayScanner
         - id: GasAnalyzer
-        - id: Crowbar #CorvaxGoob: CrowbarYellow --> Crowbar
 
 - type: entity
   id: ClothingBeltChiefEngineerFilled
@@ -45,13 +45,16 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: PowerDrill
+        #- id: PowerDrill #CorvaxGoob: Fix order
         - id: JawsOfLife
+        - id: PowerDrill #CorvaxGoob: Fix order
         - id: WelderExperimental
         - id: Multitool
-        - id: HolofanProjector
+        - id: trayScanner #CorvaxGoob: Fix order
+        #- id: HolofanProjector #CorvaxGoob: Fix order
         - id: GasAnalyzer
-        - id: trayScanner
+        #- id: trayScanner #CorvaxGoob: Fix order
+        - id: HolofanProjector #CorvaxGoob: Fix order
 
 - type: entityTable
   id: BeltSecurityEntityTable
