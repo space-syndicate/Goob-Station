@@ -120,6 +120,7 @@
   table: !type:AllSelector
     children:
     - id: AccessConfigurator
+    - id: CardPdaPainter # CorvaxGoob - ID-PDA painter
     - id: BoxEncryptionKeyPassenger
     - id: BoxEncryptionKeyService
     - id: BoxHeadset

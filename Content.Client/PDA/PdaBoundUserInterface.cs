@@ -79,13 +79,14 @@ namespace Content.Client.PDA
             _menu.OnUninstallButtonPressed += UninstallCartridge;
             _menu.ProgramCloseButton.OnPressed += _ => DeactivateActiveCartridge();
 
-            var borderColorComponent = GetBorderColorComponent();
+            /*var borderColorComponent = GetBorderColorComponent();
             if (borderColorComponent == null)
                 return;
 
             _menu.BorderColor = borderColorComponent.BorderColor;
             _menu.AccentHColor = borderColorComponent.AccentHColor;
-            _menu.AccentVColor = borderColorComponent.AccentVColor;
+            _menu.AccentVColor = borderColorComponent.AccentVColor;*/
+            ApplyBorderColors(); // CorvaxGoob Edit - ID-PDA painter
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
@@ -102,6 +103,7 @@ namespace Content.Client.PDA
             }
 
             _menu.UpdateState(updateState);
+            ApplyBorderColors(); // CorvaxGoob - ID-PDA painter
         }
 
         protected override void AttachCartridgeUI(Control cartridgeUIFragment, string? title)
@@ -129,5 +131,21 @@ namespace Content.Client.PDA
         {
             return EntMan.GetComponentOrNull<PdaBorderColorComponent>(Owner);
         }
+
+        // CorvaxGoob Edit Start - ID-PDA painter
+        private void ApplyBorderColors()
+        {
+            if (_menu == null)
+                return;
+
+            var borderColorComponent = GetBorderColorComponent();
+            if (borderColorComponent == null)
+                return;
+
+            _menu.BorderColor = borderColorComponent.BorderColor;
+            _menu.AccentHColor = borderColorComponent.AccentHColor;
+            _menu.AccentVColor = borderColorComponent.AccentVColor;
+        }
+        // CorvaxGoob End
     }
 }
