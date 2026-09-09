@@ -38,8 +38,6 @@
         cost: 50
       - id: MobGiantSpiderAngryRedspace
         cost: 55
-      - id: MobClownSpiderRedspace
-        cost: 55
       - id: MobCreatureWizardRedspace
         cost: 70
       - id: MobLavalandGoliathAncientRedspace

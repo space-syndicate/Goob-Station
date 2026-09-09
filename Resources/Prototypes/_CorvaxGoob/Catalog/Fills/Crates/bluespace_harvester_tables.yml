@@ -118,11 +118,8 @@
     - id: WeaponRevolverDeckard
     - id: WeaponRevolverInspector
     - id: WeaponPistolFlintlock
-    - !type:AllSelector
+    - id: WeaponRevolverMateba
       weight: 0.05
-      children:
-      - id: WeaponPistolDualetta
-      - id: WeaponPistolDualetta
 
 - type: entityTable
   id: BluespaceHarvesterDestructionArmorLoot
