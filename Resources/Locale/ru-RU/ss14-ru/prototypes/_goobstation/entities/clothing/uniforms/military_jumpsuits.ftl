@@ -1,11 +1,11 @@
 ent-ClothingUniformJumpsuitMilitarySalvageSpecialist = { ent-ClothingUniformJumpsuitSalvageSpecialist }
     .suffix = Военный
     .desc = { ent-ClothingUniformJumpsuitSalvageSpecialist.desc }
-ent-ClothingUniformJumpsuitMilitaryColorBlackAlt = чёрный комбенизон
-    .desc = Стандартный чёрный комбенизон без опознавательных наков.
+ent-ClothingUniformJumpsuitMilitaryColorBlackAlt = чёрный комбинезон
+    .desc = Стандартный чёрный комбинезон без опознавательных знаков.
     .suffix = Military, Alt
-ent-ClothingUniformJumpsuitMilitarySecurity = комбенизон офицера
-    .desc = Комбенизон из качественных материалов, покрытый неким робастным гелем.
+ent-ClothingUniformJumpsuitMilitarySecurity = комбинезон офицера
+    .desc = комбинезон из качественных материалов, покрытый неким робастным гелем.
     .suffix = Military
 ent-ClothingUniformJumpsuitMilitarySecuritySeniorOfficer = комбинезон старшего офицера
     .desc = Показатель мастерства и дисциплины в академии.
