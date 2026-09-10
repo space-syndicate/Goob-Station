@@ -317,7 +317,7 @@
     slots:
     - Snout
   - type: SpeakFontOverride # Goob - clown speaks pink comic sans
-    fontId: LDFComicSans
+    fontId: MSComicSans # CorvaxGoob: LDFComicSans > MSComicSans
     color: "#e93790"
 
 - type: entity
