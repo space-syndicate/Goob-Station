@@ -1,0 +1,9 @@
+paper-insert-helper-title = Вставить
+paper-insert-helper-station = Станция
+paper-insert-helper-time-date = Время, дата
+paper-insert-helper-own-name = Моё имя
+paper-insert-helper-own-job = Моя должность
+paper-insert-helper-manifest = Манифест
+paper-insert-helper-manifest-placeholder = Нет данных
+paper-insert-helper-manifest-name = имя
+paper-insert-helper-manifest-job = должность

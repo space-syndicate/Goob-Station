@@ -1,0 +1,9 @@
+paper-insert-helper-title = Insert
+paper-insert-helper-station = Station
+paper-insert-helper-time-date = Time, date
+paper-insert-helper-own-name = My name
+paper-insert-helper-own-job = My job
+paper-insert-helper-manifest = Manifest
+paper-insert-helper-manifest-placeholder = No entries
+paper-insert-helper-manifest-name = name
+paper-insert-helper-manifest-job = job

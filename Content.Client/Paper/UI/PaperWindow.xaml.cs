@@ -77,6 +77,8 @@ namespace Content.Client.Paper.UI
             // Hook up the close button:
             CloseButton.OnPressed += _ => Close();
 
+            InitializeInsertHelper(); // CorvaxGoob - Edit-documents-helper
+
             Input.OnKeyBindDown += args => // Solution while TextEdit don't have events
             {
                 if (args.Function == EngineKeyFunctions.MultilineTextSubmit)
@@ -271,6 +273,7 @@ namespace Content.Client.Paper.UI
             bool wasEditing = InputContainer.Visible;
             InputContainer.Visible = isEditing;
             EditButtons.Visible = isEditing;
+            SetInsertHelperEditingMode(isEditing, wasEditing); // CorvaxGoob - Edit-documents-helper
             // Starlight
             WrittenTextLabel.Visible = !isEditing;
             WrittenTextContainer.Visible = false;
