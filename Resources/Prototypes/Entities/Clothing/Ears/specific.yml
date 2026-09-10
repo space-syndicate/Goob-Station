@@ -16,4 +16,10 @@
     - type: ChameleonClothing
       slot: [ears]
       default: ClothingHeadsetGrey
+    - type: UserInterface # CorvaxGoob - radio-channel-sounds
+      interfaces:
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface
+        enum.HeadsetUiKey.Key:
+          type: HeadsetBoundUserInterface
     - type: HideContrabandContent #Goobstation-Contraband detector

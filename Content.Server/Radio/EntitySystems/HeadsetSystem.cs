@@ -10,10 +10,11 @@ using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes; // CorvaxGoob - radio-channel-sounds
 
 namespace Content.Server.Radio.EntitySystems;
 
-public sealed class HeadsetSystem : SharedHeadsetSystem
+public sealed partial class HeadsetSystem : SharedHeadsetSystem // CorvaxGoob Edit - made partial
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
@@ -28,11 +29,15 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
         SubscribeLocalEvent<WearingHeadsetComponent, EntitySpokeEvent>(OnSpeak);
         SubscribeLocalEvent<HeadsetComponent, RadioReceiveAttemptEvent>(OnHeadsetReceiveAttempt); // Goobstation - Whitelisted radio channel
+
+        InitializeRadioChannelSounds(); // CorvaxGoob - radio-channel-sounds
     }
 
     private void OnKeysChanged(EntityUid uid, HeadsetComponent component, EncryptionChannelsChangedEvent args)
     {
+        SanitizeChannelSettings((uid, component), args.Component); // CorvaxGoob - radio-channel-sounds
         UpdateRadioChannels(uid, component, args.Component);
+        UpdateUserInterface((uid, component), args.Component); // CorvaxGoob - radio-channel-sounds
     }
 
     private void UpdateRadioChannels(EntityUid uid, HeadsetComponent headset, EncryptionKeyHolderComponent? keyHolder = null)
@@ -44,18 +49,31 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         if (!Resolve(uid, ref keyHolder))
             return;
 
-        if (keyHolder.Channels.Count == 0)
+        // CorvaxGoob Edit Start - radio-channel-sounds
+        var activeChannels = new HashSet<ProtoId<RadioChannelPrototype>>(keyHolder.Channels);
+        ApplyHeadsetChannelSettings(headset, activeChannels);
+
+        if (activeChannels.Count == 0)
             RemComp<ActiveRadioComponent>(uid);
         else
-            EnsureComp<ActiveRadioComponent>(uid).Channels = new(keyHolder.Channels);
+            EnsureComp<ActiveRadioComponent>(uid).Channels = activeChannels;
+        // CorvaxGoob End
     }
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
     {
-        if (args.Channel != null
+        // CorvaxGoob Edit Start - radio-channel-sounds
+        if (args.Channel == null)
+            return;
+
+        var channelId = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+
+        if (TryComp(component.Headset, out HeadsetComponent? headset)
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
-            && keys.Channels.Contains(args.Channel.ID)
+            && keys.Channels.Contains(channelId)
+            && IsChannelEnabled(headset, channelId)
             && _whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid)) // Goobstation - Whitelisted channels
+        // CorvaxGoob End
         {
             _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
             args.Channel = null; // prevent duplicate messages from other listeners.
@@ -106,6 +124,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
+        // CorvaxGoob Start - radio-channel-sounds
+        var channelId = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+
+        if (!IsChannelEnabled(component, channelId))
+            return;
+        // CorvaxGoob End
+
         // TODO: change this when a code refactor is done
         // this is currently done this way because receiving radio messages on an entity otherwise requires that entity
         // to have an ActiveRadioComponent
@@ -127,6 +152,8 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+
+            TryPlayRadioReceiveSound(component, args, channelId, actor.PlayerSession.Channel); // CorvaxGoob - radio-channel-sounds
         }
         // Einstein Engines - Language end
     }
@@ -134,6 +161,10 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     // Goobstation - Whitelisted radio channel
     private void OnHeadsetReceiveAttempt(EntityUid uid, HeadsetComponent component, ref RadioReceiveAttemptEvent args)
     {
+        // CorvaxGoob Start - radio-channel-sounds
+        var channelId = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+        args.Cancelled |= !IsChannelEnabled(component, channelId);
+        // CorvaxGoob End
         args.Cancelled |= _whitelist.IsWhitelistFail(args.Channel.ReceiveWhitelist, uid);
     }
 }
