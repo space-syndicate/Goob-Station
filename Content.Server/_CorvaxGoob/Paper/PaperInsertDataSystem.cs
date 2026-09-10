@@ -16,9 +16,8 @@ using static Content.Shared.Paper.PaperComponent;
 namespace Content.Server.Paper;
 
 /// <summary>
-/// CorvaxGoob paper insert-helper data provider.
-/// The client only asks for "my current paper helper data"; this system performs all authority
-/// checks server-side and sends a private response back to the actor that owns the BUI session.
+/// Provides data for the paper insert helper.
+/// Checks the request on the server and sends the response only to the requesting player.
 /// </summary>
 public sealed partial class PaperInsertDataSystem : EntitySystem
 {
@@ -60,9 +59,8 @@ public sealed partial class PaperInsertDataSystem : EntitySystem
 
     private void SendInsertData(Entity<PaperComponent> ent, EntityUid actor)
     {
-        // ServerSendUiMessage is important here: the helper payload is private to the actor.
-        // Using shared BUI state would leak one user's station/name/job/manifest availability to
-        // every other client looking at the same paper window.
+        // Send player-specific helper data only to the requesting player.
+        // Shared BUI state would send it to everyone viewing the paper.
         _ui.ServerSendUiMessage(ent.Owner, PaperUiKey.Key, BuildInsertData(actor), actor);
     }
 
@@ -112,6 +110,9 @@ public sealed partial class PaperInsertDataSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Builds a limited manifest list for the station, cleans its text, and sorts entries by job title.
+    /// </summary>
     private PaperInsertManifestEntry[] BuildManifestEntries(EntityUid station)
     {
         var (_, manifest) = _crewManifest.GetCrewManifest(station);
