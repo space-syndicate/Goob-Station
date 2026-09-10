@@ -71,6 +71,13 @@
       weight: 0.5
     - id: SpaceCash
       weight: 0.1
+    # CorvaxGoob-changes-start:
+    - id: SpaceCashCounterfeit
+      weight: 0.1
+    - id: SpaceCashCounterfeit10
+      weight: 0.5
+    - id: SpaceCashCounterfeit50
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryJunkEntityTable
@@ -87,6 +94,44 @@
     - id: TrashBakedBananaPeel
     - id: TrashMimanaPeel
     - id: TrashBananiumPeel
+    # CorvaxGoob-changes-start:
+    - id: ShardCrystalRandom
+    - id: ShardGlassClockwork
+    - id: FoodCakeSuppermatterSlice
+      weight: 0.1
+    - id: WeaponMeleeNeedle
+    - id: AugmentPowerCellSlotCables
+      weight: 0.5
+    - id: ScrapFirelock3
+    - id: ScrapPAIGold
+    - id: PaperScrap
+    - id: CowToolbox
+      weight: 0.9
+    - id: CowToolboxFilled
+      weight: 0.6
+    - id: PaperAcquisitionSlipService
+    - id: FoodSnackLollypopTrash
+    - id: ParcelWrap
+    - id: Garbage
+    - id: TrashCherryPit
+    - id: ModularGrenade
+      weight: 0.5
+    - id: ClothingEyesGlassesBroken
+    - id: DrinkBottleVodka
+    - id: Ash
+    - id: Ashtray
+    - id: MobMouseDead
+    - id: ClothingOuterVestTank
+    - id: ScrapIntercom
+    - id: ScrapMedkit
+    - id: ScrapCamera
+    - id: BrokenEnergyShield
+      weight: 0.5
+    - id: VinylDiskBroken
+    - id: ScrapCanister1
+    - id: ScrapGeneratorFuelTank
+    - id: ScrapAirlock1
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryCanistersEntityTable
@@ -102,6 +147,15 @@
     - id: PlasmaCanister
     - id: TritiumCanister
     - id: WaterVaporCanister
+    # CorvaxGoob-changes-start:
+    - id: HealiumCanister
+      weight: 0.7
+    - id: PluoxiumCanister
+    - id: BZCanister
+      weight: 0.7
+    - id: GasCanisterBrokenBase
+      weight: 10
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryWeaponsEntityTable
@@ -134,6 +188,84 @@
     - id: WeaponTurretXeno
     - id: WeaponRifleFoam
       weight: 3
+    # CorvaxGoob-changes-start:
+    - id: WeaponSniperUncleStyopa
+      weight: 0.01
+    - id: ScalpelShiv
+      weight: 5
+    - id: UraniumShiv
+      weight: 5
+    - id: IncompleteBaseBallBat
+      weight: 5
+    - id: WeaponMechCombatFiredartLaser
+      weight: 0.06
+    - id: WeaponLauncherTaiwanPond
+    - id: WeaponTurretAllHostile
+      weight: 0.5
+    - id: ToolboxSyndicate
+      weight: 0.1
+    - id: ToolboxElectricalTurretFilled
+      weight: 0.03
+    - id: EnergyScalpelAbductor
+      weight: 0.5
+    - id: Chainsaw
+      weight: 5
+    - id: WeaponCrusherHammerFilledRandom
+      weight: 0.8
+    - id: HisGrace
+      weight: 0.01
+    - id: WeaponDislippler
+      weight: 0.08
+    - id: Stunprod
+    - id: WeaponDisabler
+      weight: 0.1
+    - id: WeaponDisablerPractice
+    - id: GrenadeDummy
+      weight: 0.7
+    - id: CleanerGrenade
+      weight: 0.7
+    - id: GlueGrenade
+      weight: 0.3
+    - id: WeaponRevolverDeckard
+      weight: 0.1
+    - id: WeaponProtoKineticAcceleratorSpace
+    - id: WeaponProtoKineticRepeater
+      weight: 0.5
+    - id: EnergySword
+      weight: 0.01
+    - id: BananiumSword
+      weight: 0.5
+    - id: ThrowingKnivesKit
+      weight: 0.1
+    - id: ThrowingKnife
+      weight: 0.3
+    - id: GrenadeToy
+    - id: SyndieTrickyBomb
+      weight: 0.1
+    - id: RubberPig
+    - id: ClothingHandsKnuckleDusters
+      weight: 0.5
+    - id: ClothingHandsKnuckleDustersBrass
+      weight: 0.5
+    - id: ClothingHandsKnuckleDustersSyndicate
+      weight: 0.1
+    - id: SpearTelescopic
+      weight: 0.3
+    - id: SpearSharkMinnow
+    - id: Terminus
+      weight: 0.5
+    - id: SyringePistol
+      weight: 0.5
+    - id: WeaponParticleDecelerator
+    - id: KnifePlastic
+    - id: BarberScissors
+    - id: ClothingBeltSheathFilled
+      weight: 0.1
+    - id: SawElectric
+    - id: VehicleClowncarAntag
+    - id: FoamThrongler
+      weight: 0.01
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryClothingEntityTable
@@ -165,6 +297,89 @@
     - id: ClothingHeadHatCardborg
     - id: ClothingUnderSocksCoder
     - id: ClothingUniformJumpskirtOfLife
+    # CorvaxGoob-changes-start:
+    - id: ClothingShoesWizardSkates
+      weight: 0.1
+    - id: ClothingBackpackDuffelSalvageSCAF
+      weight: 0.3
+    - id: ClothingOuterRobesJudge
+    - id: ClothingHeadHatPwig
+    - id: ClothingUniformJumpsuitResonant
+      weight: 0.5
+    - id: ClothingUniformJumpskirtSecGrey
+    - id: ClothingHeadHatUshankaBlueshield
+      weight: 0.5
+    - id: ClothingOuterArmorBasicSlim
+      weight: 0.5
+    - id: ClothingOuterHardsuitPirateCap
+      weight: 0.1
+    - id: ClothingOuterCoatAMG
+      weight: 0.5
+    - id: ClothingHeadHelmetPodWars
+      weight: 0.5
+    - id: ClothingBeltMilitaryWebbingCMO
+      weight: 0.5
+    - id: ClothingShoesBootsSalvage
+    - id: ClothingUniformJumpsuitHawaiBlue
+    - id: ClothingUniformJumpsuitHawaiRed
+    - id: ClothingShoesBootsMagEmergencyResponseTeam
+      weight: 0.2
+    - id: ClothingMaskGasSwat
+      weight: 0.5
+    - id: ClothingMaskGasSyndicate
+      weight: 0.5
+    - id: ClothingBeltSuspendersBlack
+    - id: ClothingBeltSuspendersRed
+    - id: ClothingOuterArmorScrap
+    - id: ClothingHeadHelmetScrap
+    - id: ClothingEyesGlassesSunglasses
+    - id: ClothingShoeSlippersDuck
+      weight: 0.7
+    - id: ClothingShoeSlippersLizard
+      weight: 0.7
+    - id: ClothingShoesSlippers
+      weight: 0.7
+    - id: ClothingNeckCloakCentcom
+      weight: 0.7
+    - id: BoxPerformer
+      weight: 0.7
+    - id: ClothingNeckCloakWeb
+    - id: ClothingNeckCloakHelldiver
+    - id: ClothingUniformEnvirosuitColorWhite
+    - id: ClothingOuterBioGeneral
+    - id: ClothingOuterSuitAtmosFire
+    - id: ClothingModsuitCaptain
+      weight: 0.1
+    - id: ClothingModsuitResponsoryJanitorial
+      weight: 0.05
+    - id: ClothingBackpackMessengerHolding
+      weight: 0.1
+    - id: ClothingBackpackSatchelSmugglerUnanchored
+    - id: ClothingUniformJumpsuitLawyerGood
+    - id: ClothingHeadsetRD
+      weight: 0.3
+    - id: ClothingUniformJumpsuitFlannel
+    - id: ClothingOuterFlannelGreen
+    - id: ClothingOuterFlannelRed
+    - id: ClothingNeckMantle
+    - id: ClothingNeckMantleCMO
+      weight: 0.3
+    - id: ClothingNeckMantleERTLeader
+      weight: 0.1
+    - id: ClothingHeadHatHoodMoth
+    - id: ClothingMaskMime
+    - id: ClothingMaskMimeSecurity
+      weight: 0.5
+    - id: ClothingMaskBear
+    - id: ClothingHeadHatSlasherMask
+      weight: 0.1
+    - id: ClothingEyesGlassesMedDiag
+      weight: 0.7
+    - id: ClothingEyesHudMedSec
+      weight: 0.5
+    - id: ClothingEyesHudMedOnion
+      weight: 0.3
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotterySwagEntityTable
@@ -186,6 +401,26 @@
     - id: ClothingEyesGlassesGarOrange
     - id: ClothingHeadHatChameleon
     - id: ClothingBeltChampion
+    # CorvaxGoob-changes-start:
+    - id: ClothingUniformJumpsuitChameleon
+      weight: 0.01
+    - id: DiamondOre
+      weight: 0.1
+    - id: GoldenPersonalAI
+    - id: ClothingHeadHelmetGoldenMusician
+      weight: 0.1
+    - id: ClothingHandsGlovesHeavyGoldenTrim
+    - id: GoldSlimeExtract
+      weight: 0.5
+    - id: GoldenPlunger
+    - id: ClothingHeadHatFancyCrown
+    - id: ClothingEyesHudFriedOnion
+    - id: ClothingEyesHudOnionBeer
+    - id: MaterialDiamond1
+      weight: 0.5
+    - id: MaterialDiamond
+      weight: 0.1
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryPlushiesEntityTable
@@ -207,6 +442,19 @@
     - id: PlushieLizardJobMultiweh # the exceedingly rare multiweh!
     - id: PlushieThrongler #hehe
       weight: 0.05
+    # CorvaxGoob-changes-start:
+    - id: PlushieBingleSmall
+    - id: PlushieBingle
+      weight: 0.5
+    - id: PlushieBongle
+      weight: 0.5
+    - id: PlushieAbductor
+      weight: 0.5
+    - id: PlushieHolocarp
+    - id: PlushieTheHolyCrusader
+    - id: PlushieSpaceLizard
+    - id: PlushieNuke
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryUsefulEntityTable
@@ -219,8 +467,6 @@
       weight: 0.1
     - id: ClothingEyesGlassesMeson
     - id: MechVim
-    - id: Chainsaw
-      weight: 0.1
     - id: Crowbar
     - id: WelderIndustrial
     - id: HydroponicsToolHatchet
@@ -228,6 +474,107 @@
     - id: Lamp
     - id: FloraTreeLarge
     - id: LightTree #Funny mobs maybe
+    # CorvaxGoob-changes-start:
+    - id: SyndicateJawsOfLife
+      weight: 0.5
+    - id: JawsOfLife
+    - id: BasicSpaceItalianTranslatorImplanter
+    - id: MindShieldImplanter
+    - id: NekomimeticTranslatorImplanter
+    - id: XenoCompatibilityImplanter
+      weight: 0.5
+    - id: RootSpeakTranslatorImplanter
+    - id: TrackingImplanter
+    - id: LightImplanter
+    - id: RadioImplanterCentcomm
+      weight: 0.1
+    - id: MacroBombImplanter
+      weight: 0.01
+    - id: ChameleonControllerImplanter
+      weight: 0.1
+    - id: NutrimentImplanter
+      weight: 0.1
+    - id: SpeedLoaderPistolPractice
+    - id: GorlexMatchbox
+      weight: 0.1
+    - id: SpeedLoaderMagnum
+    - id: SprayBottleSilverSulfadiazine
+    - id: SprayBottleStypticPowder
+    - id: DrinkMilkBottleFull
+    - id: CannonBallGlassshot
+    - id: FoodBakedVulpkaninPlate
+    - id: FoodPumpkin
+    - id: CarvedPumpkinLarge
+      weight: 0.1
+    - id: CarvedPumpkinSmall
+      weight: 0.1
+    - id: CarvedPumpkin
+    - id: BasicCyberneticHeart
+      weight: 0.1
+    - id: UpgradedCyberneticLungs
+      weight: 0.1
+    - id: OrganDionaLungs
+    - id: OrganXenomorphEyes
+      weight: 0.1
+    - id: DiagnosticCyberneticEyes
+    - id: ClothingBeltMilitaryWebbingMedFilled
+      weight: 0.1
+    - id: ClothingBeltSecurityWebbingFilled
+      weight: 0.5
+    - id: MachineBluespaceHarvesterCircuitboard
+      weight: 0.5
+    - id: MaterialBSCrystal1
+    - id: OreBagOfHolding
+    - id: ConstructionBagOfHolding
+    - id: BanjoInstrument
+    - id: BlueprintSeismicCharge
+    - id: BlueprintFulton
+    - id: BorgModuleCleaning
+    - id: MobCleanBot
+      weight: 0.5
+    - id: GygaxCentralElectronics
+      weight: 0.1
+    - id: GygaxPeripheralsElectronics
+      weight: 0.1
+    - id: GygaxTargetingElectronics
+      weight: 0.1
+    - id: MechGygaxSyndieBattery
+      weight: 0.01
+    - id: ScrewdriverAbductor
+    - id: MobSkeletonBiker
+      weight: 0.025
+    - id: MobSkeletonPirate
+      weight: 0.025
+    - id: CrateFunClownCarUplink
+      weight: 0.1
+    - id: BoxMagazineShotgunBeanbag
+    - id: BoxHeadset
+    - id: CrayonBox
+    - id: UplinkLighterBox
+    - id: MysteryLighterBox
+    - id: CardBoxSyndicate
+      weight: 0.5
+    - id: MysteryFigureBox
+    - id: BigBox
+    - id: StealthBox
+      weight: 0.1
+    - id: FoodSnackEnergy
+    - id: EnergySpeedloaderLethal
+      weight: 0.5
+    - id: MechClarke
+      weight: 0.1
+    - id: CrateCargoGambling
+      weight: 0.5
+    - id: ResearchDisk
+    - id: ResearchDisk5000
+      weight: 0.5
+    - id: ResearchDisk10000
+      weight: 0.3
+    - id: TechnologyDiskRare
+      weight: 0.5
+    - id: VinylSleeveNukeDisk
+    - id: MicroManipulatorStockPart
+    # CorvaxGoob-changes-end
 
 - type: entityTable
   id: LotteryNotUsefulEntityTable
@@ -254,3 +601,46 @@
       weight: 0.8
     - id: GrenadeFoamDart
       weight: 0.1
+    # CorvaxGoob-changes-start:
+    - id: MobHellspawn
+      weight: 0.1
+    - id: BeeChloralHydrate
+      weight: 0.1
+    - id: DrinkFourteenLokoCan
+    - id: DrinkMilkCartonMini
+    - id: MiniGravityGeneratorCircuitboard
+    - id: TaskBottle
+    - id: DrinkVodkaBottleFull
+    - id: PrintedDocumentDisposalReport
+    - id: MobSkeletonCommander
+      weight: 0.1
+    - id: LeftLegSkeleton
+    - id: GroinSkeleton
+    - id: RightFootSkeleton
+    - id: HeadSkeleton
+    - id: HeadSlime
+    - id: DubiousOrganSpawner
+      weight: 0.1
+    - id: FloorTileItemWhiteMarble
+    - id: FloorTileItemBluespace
+    - id: FloorTileItemGCircuit
+    - id: FoodBungo
+    - id: BoxPillCanister
+    - id: GlowstickBlue
+    - id: FeetAnimal
+    - id: ArrowRegular
+    - id: ArrowImprovisedPlasma
+      weight: 0.5
+    - id: NukeDiskFake
+      weight: 0.2
+    - id: DiskCase
+    - id: FishNukeDisk
+      weight: 0.5
+    - id: MobBrullbarKing
+      weight: 0.1
+    - id: EvidenceMarkerSeven
+    - id: OrganXenomorphEggSack
+      weight: 0.7
+    - id: OrganIPCPump
+    - id: MailingUnitElectronics
+    # CorvaxGoob-changes-end
