@@ -68,6 +68,10 @@
             sprite: _Shitmed/Mobs/Species/Abductor/displacement.rsi
             state: jumpsuit
   - type: OfferItem # CorvaxGoob-Offer
+  - type: MindLink # CorvaxGoob - direct mental communication
+  - type: ActionGrant
+    actions:
+    - ActionMindLink
 
 - type: entity
   save: false
