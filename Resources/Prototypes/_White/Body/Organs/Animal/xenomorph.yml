@@ -180,6 +180,21 @@
     - ActionSpawnResinNest
   # </Goobstation>
 
+# CorvaxGoob - xeno buff start
+- type: entity
+  parent: OrganXenomorphResinSpinner
+  id: OrganXenomorphResinSpinnerQueen
+  components:
+  - type: ResinSpinner
+  - type: OrganActions
+    actions:
+    - ActionSpawnWallResin
+    - ActionSpawnResinDoor
+    - ActionSpawnResinNest
+    - ActionSpawnWallResinThick
+    - ActionSpawnResinDoorThick
+# CorvaxGoob - xeno buff end
+
 - type: entity
   parent: BaseXenomorphOrgan
   id: OrganXenomorphHiveNode

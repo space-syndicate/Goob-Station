@@ -11,7 +11,7 @@
         brain: OrganXenomorphBrain
         eyes: OrganXenomorphEyes
         hive_node: OrganXenomorphHiveNode
-        resin_spinner: OrganXenomorphResinSpinner
+        resin_spinner: OrganXenomorphResinSpinnerQueen # CorvaxGoob - xeno buff
         neurotoxin_gland: OrganXenomorphNeurotoxinGland
         acid_gland: OrganXenomorphAcidGland
     chest:
