@@ -2154,7 +2154,5 @@ accent-dwarf-words-1082 = пермой
 accent-dwarf-words-replace-1082 = карцером
 accent-dwarf-words-1082 = пермы
 accent-dwarf-words-replace-1082 = карцера
-accent-dwarf-words-1082 = перму
-accent-dwarf-words-replace-1082 = карцер
 
 # Corvax-Goob-DwarfAccent-end
