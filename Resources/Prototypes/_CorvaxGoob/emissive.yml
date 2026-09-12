@@ -1,0 +1,4 @@
+- type: shader
+  id: Emissive
+  kind: source
+  path: "/Textures/_CorvaxGoob/Shaders/emissive.swsl"

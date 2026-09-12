@@ -243,6 +243,18 @@
       entity_storage:
         id: CrayonBox
 
+# corvax-goob
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateFunArtGlowSupplies
+  name: glowing art supplies
+  description: Make some happy little accidents with lots of glowing crayons!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: CrayonGlowingBox
+
 - type: entity
   parent: CrateGenericSteel
   id: CrateFunBoardGames

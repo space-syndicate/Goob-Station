@@ -31,7 +31,7 @@ public sealed class DecalPlacementOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var (decal, snap, rotation, color) = _placement.GetActiveDecal();
+        var (decal, snap, rotation, color, _, _, _) = _placement.GetActiveDecal();
 
         if (decal == null)
             return;
