@@ -89,3 +89,7 @@
     possibleSets:
     - VoidsuitSelectorRDVoidsuit
     - VoidsuitSelectorRDHardsuit
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.

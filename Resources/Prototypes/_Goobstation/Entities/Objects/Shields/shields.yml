@@ -104,6 +104,10 @@
     - type: Tag
       tags:
       - FitsInCharger
+# CorvaxGoob-start:
+    - type: CargoSellBlacklist
+    - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: BlueShieldShield

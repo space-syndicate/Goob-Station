@@ -227,6 +227,10 @@
         whitelist:
           tags:
             - EnergySpeedloader
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: advanced disabler
@@ -448,6 +452,10 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 50
     autoRechargePauseTime: 40
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: Ion Rifle
