@@ -53,6 +53,7 @@
 
 - type: markingPoints
   id: MobResomiMarkingLimits
+  onlyWhitelisted: true
   points:
     Hair:
       points: 1
