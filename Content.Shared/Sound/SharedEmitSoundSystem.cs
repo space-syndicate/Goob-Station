@@ -11,6 +11,7 @@ using Content.Shared.Sound.Components;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Content.Shared.Whitelist;
+using Content.Shared._CorvaxGoob.Sound.Components; // CorvaxGoob
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -53,7 +54,9 @@ public abstract class SharedEmitSoundSystem : EntitySystem
         SubscribeLocalEvent<EmitSoundOnDropComponent, DroppedEvent>(OnEmitSoundOnDrop);
         SubscribeLocalEvent<EmitSoundOnInteractUsingComponent, InteractUsingEvent>(OnEmitSoundOnInteractUsing);
         SubscribeLocalEvent<EmitSoundOnUIOpenComponent, AfterActivatableUIOpenEvent>(HandleEmitSoundOnUIOpen);
-
+        SubscribeLocalEvent<EmitAmbientOnUIOpenComponent, AfterActivatableUIOpenEvent>(HandleEmitAmbientOnUIOpen); // CorvaxGoob
+        SubscribeLocalEvent<EmitAmbientOnUIOpenComponent, BoundUIClosedEvent>(HandleEmitAmbientOnUIClose); // CorvaxGoob
+        SubscribeLocalEvent<EmitSoundOnUICloseComponent, BoundUIClosedEvent>(HandleEmitSoundOnUIClose);// CorvaxGoob
         SubscribeLocalEvent<EmitSoundOnCollideComponent, StartCollideEvent>(OnEmitSoundOnCollide);
 
         SubscribeLocalEvent<SoundWhileAliveComponent, MobStateChangedEvent>(OnMobState);
@@ -197,4 +200,24 @@ public abstract class SharedEmitSoundSystem : EntitySystem
     public virtual void SetEnabled(Entity<SpamEmitSoundComponent?> entity, bool enabled)
     {
     }
+
+    // CorvaxGoob start
+    private void HandleEmitAmbientOnUIOpen(EntityUid uid, EmitAmbientOnUIOpenComponent component, AfterActivatableUIOpenEvent args) {
+        if (_whitelistSystem.IsWhitelistFail(component.Blacklist, args.User))
+        {
+            if (TryComp<AmbientSoundComponent>(uid, out var ambient))
+              _ambient.SetAmbience(uid, true, ambient);
+        }
+    }
+
+    private void HandleEmitAmbientOnUIClose(EntityUid uid, EmitAmbientOnUIOpenComponent component, BoundUIClosedEvent args) {
+        if (TryComp<AmbientSoundComponent>(uid, out var ambient))
+          _ambient.SetAmbience(uid, false, ambient);
+    }
+
+    private void HandleEmitSoundOnUIClose(EntityUid uid, EmitSoundOnUICloseComponent component, BoundUIClosedEvent args) {
+        if (_whitelistSystem.IsWhitelistFail(component.Blacklist, args.Actor))
+          TryEmitSound(uid, component, args.Actor);
+    }
+    // CorvaxGoob end
 }
