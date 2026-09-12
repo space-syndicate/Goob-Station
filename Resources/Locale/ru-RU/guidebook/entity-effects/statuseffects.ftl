@@ -1,7 +1,7 @@
 entity-effect-status-effect-Stun = оглушение
 entity-effect-status-effect-KnockedDown = нокаут
 entity-effect-status-effect-Jitter = дрожание
-entity-effect-status-effect-TemporaryBlindness = blindness
+entity-effect-status-effect-TemporaryBlindness = слепота
 entity-effect-status-effect-SeeingRainbows = галлюцинации
 entity-effect-status-effect-Muted = невозможность говорить
 entity-effect-status-effect-Stutter = заикание

@@ -14,7 +14,7 @@ hud-chatbox-select-channel-OOC = OOC
 hud-chatbox-select-channel-Damage = Повреждения
 hud-chatbox-select-channel-Visual = Действия
 # Goobstation - Starlight collective mind port
-hud-chatbox-select-channel-CollectiveMind = Collective Mind
+hud-chatbox-select-channel-CollectiveMind = Коллективный разум
 hud-chatbox-select-channel-Radio = Рация
 hud-chatbox-channel-Admin = Админ Разное
 hud-chatbox-channel-AdminAlert = Админ Уведомления
@@ -30,7 +30,7 @@ hud-chatbox-channel-Notifications = Уведомления
 hud-chatbox-channel-Server = Сервер
 hud-chatbox-channel-Visual = Визуальный
 # Goobstation - Starlight collective mind port
-hud-chatbox-channel-CollectiveMind = Collective Mind
+hud-chatbox-channel-CollectiveMind = Коллективный разум
 hud-chatbox-channel-Damage = Повреждения
 hud-chatbox-channel-Unspecified = Неопределённый
 hud-chatbox-highlights = Выделения:
