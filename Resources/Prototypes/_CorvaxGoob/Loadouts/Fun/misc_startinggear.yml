@@ -31,7 +31,7 @@
   storage:
     back:
     - MedkitCombatFilled
-  inhand: 
+  inhand:
     - Scalpel
 
 - type: startingGear
@@ -93,3 +93,38 @@
     - SpaceCash2500
   inhand:
     - CombatKnife
+
+- type: startingGear
+  id: SyndicateRedspaceRaiderGear
+  equipment:
+    eyes: ClothingEyesHudSyndicateUnremoveable
+    ears: ClothingHeadsetAltSyndicateUnremoveable
+    neck: ClothingNeckSlayerCoatUnremoveable
+    mask: ClothingMaskGasSyndicateUnremoveable
+    jumpsuit: ClothingUniformJumpsuitTacticoolUnremoveable
+    outerClothing: ClothingOuterHardsuitContractorUnremoveable
+    gloves: ClothingHandsTacticalMaidGlovesUnremoveable
+    shoes: ClothingShoesBootsMagSyndieUnremoveable
+    belt: ClothingBeltSecurityWebbingContractorUnremoveable
+    back: ClothingBackpackSyndicateUnremoveable
+    id: SyndiOperativePDAUnremoveable
+    pocket1: DoubleEmergencyOxygenTankFilled
+  inhand:
+  - CombatKnife
+  - WeaponPistolViper
+  storage:
+    back:
+    - WeaponLaserGun
+    - AllTraitorCodesPaper
+    - BoxSurvivalSlotsSyndicate
+    - EmpGrenade
+    - C4
+    - C4
+    - SyndicateJawsOfLife
+    - Ointment
+    - Gauze
+    - Bloodpack
+    - FoodSnackLollypopWrappedSyndicate
+    - SyndicateBusinessCard
+    - MagazinePistolHighCapacity
+    - MagazinePistolHighCapacity

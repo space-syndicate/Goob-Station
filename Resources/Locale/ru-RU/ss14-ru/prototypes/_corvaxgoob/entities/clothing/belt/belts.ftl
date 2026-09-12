@@ -9,3 +9,6 @@ ent-ClothingBeltSurgicalBoardFilled = { ent-ClothingBeltSurgicalBoard }
     .suffix = Заполненный
 ent-ClothingBeltScience = научный пояс
     .desc = Укреплённый пояс, специально для учёных, под различные инструменты, способный выдержать на себе даже перчатку Г.О.Р.И.Л.Л.А.
+ent-ClothingBeltSecurityWebbingContractorUnremoveable = { ent-ClothingBeltSecurityWebbingContractor }
+    .suffix = Неснимаемый
+    .desc = { ent-ClothingBeltSecurityWebbingContractor.desc }

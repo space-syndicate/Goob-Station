@@ -1,0 +1,127 @@
+- type: entity
+  id: BluespaceChemistryVialOmnizine
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: omnizine
+  components:
+  - type: Label
+    currentLabel: reagent-name-omnizine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: Omnizine
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialProcenylLazide
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: procenyl lazide
+  components:
+  - type: Label
+    currentLabel: reagent-name-procenyl-lazide
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: ProcenylLazide
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialSyriniver
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: syriniver
+  components:
+  - type: Label
+    currentLabel: reagent-name-syriniver
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: Syriniver
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialEbifin
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: ebifin
+  components:
+  - type: Label
+    currentLabel: reagent-name-ebifin
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: Ebifin
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialStimulants
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: stimulants
+  components:
+  - type: Label
+    currentLabel: reagent-name-stimulants
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: Stimulants
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialIchor
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: ichor
+  components:
+  - type: Label
+    currentLabel: reagent-name-ichor
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: Ichor
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialWeh
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: weh
+  components:
+  - type: Label
+    currentLabel: reagent-name-weh
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: JuiceThatMakesYouWeh
+            Quantity: 50
+
+- type: entity
+  id: BluespaceChemistryVialHew
+  name: mini bluespace vial
+  parent: BluespaceChemistryVial
+  suffix: hew
+  components:
+  - type: Label
+    currentLabel: reagent-name-hew
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+          - ReagentId: JuiceThatMakesYouHew
+            Quantity: 50

@@ -6,3 +6,6 @@ ent-ClothingOuterHardsuitSecPilotFilled = { ent-ClothingOuterHardsuitSecPilot }
     .desc = { ent-ClothingOuterHardsuitSecPilot.desc }
 ent-ClothingOuterHardsuitCBURNLeader = экзокостюм командира отряда РХБЗЗ
     .desc = Легковесный но прочный экзокостюм, который используют специальные подразделения зачистки.
+ent-ClothingOuterHardsuitContractorUnremoveable = { ent-ClothingOuterHardsuitContractor }
+    .suffix = Неснимаемый
+    .desc = { ent-ClothingOuterHardsuitContractor.desc }

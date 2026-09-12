@@ -35,3 +35,23 @@
       rules: ghost-role-information-freeagent-rules
       raffle:
         settings: default
+
+- type: entity
+  name: syndicate redspace raider
+  parent: MobSyndicateFootsoldierPilot
+  id: MobSyndicateRedspaceRaider
+  components:
+  - type: GhostRole
+    name: ghost-role-information-syndicate-redspace-raider-name
+    description: ghost-role-information-syndicate-redspace-raider-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonistGoob
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes:
+    - SyndicateRedspaceRaiderGear
+  - type: AutoImplant
+    implants: [ RedspaceLifelineImplant ]

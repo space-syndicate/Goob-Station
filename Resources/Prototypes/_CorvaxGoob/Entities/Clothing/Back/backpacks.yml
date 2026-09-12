@@ -40,4 +40,10 @@
   components:
   - type: Sprite
     sprite: _CorvaxGoob/Clothing/Back/Backpacks/warden.rsi
-    
+
+- type: entity
+  id: ClothingBackpackSyndicateUnremoveable
+  parent: ClothingBackpackSyndicate
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

@@ -9,3 +9,10 @@
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: _CorvaxGoob/Clothing/Shoes/Boots/atmos-magboots.rsi
+
+- type: entity
+  id: ClothingShoesBootsMagSyndieUnremoveable
+  parent: ClothingShoesBootsMagSyndie
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

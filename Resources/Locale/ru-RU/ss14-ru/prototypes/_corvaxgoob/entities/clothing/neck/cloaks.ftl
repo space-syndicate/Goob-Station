@@ -12,3 +12,6 @@ ent-ClothingNeckCloakCentcomAdmiral = плащ адмирала
     .desc = Яркий зелёный плащ с золотым шитьём, который носят адмиралы флота NanoTrasen.
 ent-ClothingNeckCloakHosExperimental = экспериментальный плащ ГСБ
     .desc = Экспериментальный плащ ГСБ, обеспечивающий стиль и внушительный вид носителю.
+ent-ClothingNeckSlayerCoatUnremoveable = { ent-ClothingNeckSlayerCoat }
+    .suffix = Неснимаемый
+    .desc = { ent-ClothingNeckSlayerCoat.desc }
