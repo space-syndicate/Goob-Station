@@ -4,6 +4,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Utility;
 
 namespace Content.Client._CorvaxGoob.ImageVisuals.UI;
 
@@ -17,11 +18,10 @@ public sealed partial class ImageVisualsWindow : BaseWindow
         RobustXamlLoader.Load(this);
         CloseButton.OnPressed += _ => Close();
     }
-
-    public void SetImage(string imagePath, Vector2 imageSize)
+    public void SetImage(ResPath imagePath, Vector2 imageSize)
     {
+        ImageDisplay.TexturePath = imagePath.ToString();
         SetSize = imageSize;
-        ImageDisplay.TexturePath = imagePath;
     }
 
     protected override DragMode GetDragModeFor(Vector2 relativeMousePos)
@@ -45,8 +45,7 @@ public sealed partial class ImageVisualsWindow : BaseWindow
         {
             mode |= DragMode.Right;
         }
-
-        if(mode == DragMode.None)
+        if (mode == DragMode.None)
         {
             return DragMode.Move;
         }

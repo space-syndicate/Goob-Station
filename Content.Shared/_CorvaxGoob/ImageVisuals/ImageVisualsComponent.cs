@@ -1,6 +1,7 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._CorvaxGoob.ImageVisuals;
 
@@ -8,10 +9,10 @@ namespace Content.Shared._CorvaxGoob.ImageVisuals;
 public sealed partial class ImageVisualsComponent : Component
 {
     [DataField(required: true), AutoNetworkedField]
-    public string ImagePath = string.Empty;
+    public ResPath ImagePath;
 
     [DataField, AutoNetworkedField]
-    public Vector2 ImageSize = new(600, 900);
+    public Vector2 ImageSize = new Vector2(100, 100);
 }
 
 [Serializable, NetSerializable]
