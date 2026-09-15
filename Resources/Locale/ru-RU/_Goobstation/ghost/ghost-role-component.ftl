@@ -122,7 +122,7 @@ roles-slaughter-demon-name-token = Демон резни (Токен)
 roles-laughter-demon-name-token = Демон смеха (Токен)
 ghost-role-information-ancient-rogue-king-name-token = Древний ксено король-отступник (Токен)
 ghost-role-information-wraith-name-token = Фантом (Токен)
-ghost-role-information-slasher-token = Мясник (Токен)
+ghost-role-information-slasher-token = Маньяк (Токен)
 ghost-role-information-grey-tide-name = Грейтайд
 ghost-role-information-grey-tide-description = Против всего зла, что способен сотворить щиткур. Против всего порочного, что способна сотворить наука. Мы пошлём им только вас. Робастьте и изговните всё, пока дело не будет сделано. Мирного решения не будет...
 grey-tide-role-greeting = Давно забытый в глубинах техтоннелей, вы — [color=#880808]ГРЕЙТАЙД[/color]. Серый комбинезон и противогаз стали частью вас. Покажите им, кто истинный хозяин станции.
