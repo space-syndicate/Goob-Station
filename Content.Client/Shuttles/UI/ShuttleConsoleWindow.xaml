@@ -19,20 +19,20 @@ SPDX-License-Identifier: MIT
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    Text="NAV"
-                    Margin="5"/>
+                    Text="{Loc shuttle-console-Nav}"
+                    Margin="5"/><!--CorvaxGoob-Localization-->
             <Button Name="MapModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    Text="MAP"
-                    Margin="5"/>
+                    Text="{Loc shuttle-console-Map}"
+                    Margin="5"/><!--CorvaxGoob-Localization-->
             <Button Name="DockModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    Text="DOCK"
-                    Margin="5"/>
+                    Text="{Loc shuttle-console-Dock}"
+                    Margin="5"/><!--CorvaxGoob-Localization-->
         </BoxContainer>
         <!-- Contents box -->
         <BoxContainer Name="Contents"
