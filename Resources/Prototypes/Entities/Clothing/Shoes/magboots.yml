@@ -72,6 +72,11 @@
     price: 750
   - type: StealTarget
     stealGroup: ClothingShoesBootsMagAdv
+    # CorvaxGoob-start
+  - type: ClothingGrantComponent
+    component:
+    - type: MovementAlwaysTouching
+    # CorvaxGoob-start
 
 - type: entity
   parent: [ClothingShoesBootsMagBase]
