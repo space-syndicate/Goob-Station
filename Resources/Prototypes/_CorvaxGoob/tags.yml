@@ -10,6 +10,27 @@
   id: BagelCage
 
 - type: Tag
+  id: BlueprintCargoTechFab
+
+- type: Tag
+  id: BlueprintEngineeringTechFab
+
+- type: Tag
+  id: BlueprintExosuitFabricator
+
+- type: Tag
+  id: BlueprintMedicalTechFab
+
+- type: Tag
+  id: BlueprintSecurityTechFab
+
+- type: Tag
+  id: BlueprintScienceTechFab
+
+- type: Tag
+  id: BlueprintServiceTechFab
+
+- type: Tag
   id: BoneSetter
 
 - type: Tag

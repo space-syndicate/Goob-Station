@@ -417,6 +417,20 @@
   - type: GuideHelp
     guides:
     - Robotics
+  # CorvaxGoob-start
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintExosuitFabricator
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   id: Biofabricator
@@ -537,6 +551,20 @@
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
+  # CorvaxGoob-start
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintSecurityTechFab
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   id: AmmoTechFab
@@ -648,6 +676,20 @@
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Medical]
+  # CorvaxGoob-start
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintMedicalTechFab
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   parent: [BaseLatheLube]
