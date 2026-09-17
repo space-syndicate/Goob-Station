@@ -53,7 +53,7 @@
 
 - type: markingPoints
   id: MobResomiMarkingLimits
-  onlyWhitelisted: true
+  onlyWhitelisted: true # CorvaxGoob
   points:
     Hair:
       points: 1
