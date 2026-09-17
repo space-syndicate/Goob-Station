@@ -404,6 +404,10 @@
   - type: Tag
     tags:
       - HighRiskItem
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: ClothingModsuitResearchDirector
