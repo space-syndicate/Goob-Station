@@ -26,3 +26,6 @@ ent-ClothingUniformJumpsuitMagistrate = комбинезон магистрат�
     .desc = Это комбинезон судьи космического закона.
 ent-ClothingUniformJumpsuitMagistrateFormal = торжественный костюм магистрата
     .desc = Это комбинезон шикарного судьи космического закона.
+ent-ClothingUniformJumpsuitTacticoolUnremoveable = { ent-ClothingUniformJumpsuitTacticool }
+    .suffix = Неснимаемый
+    .desc = { ent-ClothingUniformJumpsuitTacticool.desc }

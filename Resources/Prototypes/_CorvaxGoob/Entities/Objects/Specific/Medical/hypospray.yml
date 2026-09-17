@@ -18,3 +18,21 @@
   - type: StaticPrice
     price: 550
   - type: RefillableSolution
+
+- type: entity
+  name: bluespace mini hypospray
+  parent: BaseHypospray
+  description: A smaller version of the hyposprey with a faster dispensing mechanism, but with a reduced capacity.
+  id: BluespaceMiniHypospray
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Medical/bluespacminihypo.rsi
+    state: hypo
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Medical/bluespacminihypo.rsi
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 2
+  - type: RefillableSolution

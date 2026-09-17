@@ -153,6 +153,10 @@
     tags:
       - HighRiskItem
       - ClothingBeltGeminiHoloProjector
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: [ ClothingBeltBaseCloneProjector, BaseCentcommContraband ]

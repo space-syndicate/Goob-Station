@@ -1,0 +1,1 @@
+redspace-rift-navmap-name = реδсп3▮с ρазλ0м
