@@ -709,6 +709,8 @@
     whitelist:
     - Clown
     - Mime
+    
+
 
 - type: listing
   id: UplinkClowncar
@@ -1629,6 +1631,22 @@
   - !type:BuyerJobCondition
     whitelist:
     - Chef
+    
+- type: listing
+  id: UplinkMimejutsuManualMime
+  name: uplink-mimejutsu-name
+  description: uplink-mimejutsu-desc
+  productEntity: MimejutsuManual
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Mime
 
 - type: listing
   id: UplinkCapoeiraManual
