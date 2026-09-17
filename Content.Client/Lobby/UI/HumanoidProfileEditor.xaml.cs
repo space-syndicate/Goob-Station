@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.IO;
-using System.Linq;
-using System.Numerics;
+using Content.Client._CorvaxGoob.CharacterEditor.UI; // CorvaxGoob-TTS
+using Content.Client._CorvaxGoob.Chat;
+using Content.Client._CorvaxGoob.TTS;
 using Content.Client.Humanoid;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
-using Content.Client.Stylesheets;
 using Content.Client.Sprite;
+using Content.Client.Stylesheets;
+using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._CorvaxGoob;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -35,12 +37,13 @@ using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Enums;
 using Robust.Shared.Physics;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.IO;
+using System.Linq;
+using System.Numerics;
 using Direction = Robust.Shared.Maths.Direction;
-using Content.Client._CorvaxGoob.TTS;
-using Content.Shared._CorvaxGoob; // CorvaxGoob-TTS
 
 namespace Content.Client.Lobby.UI
 {
@@ -69,6 +72,8 @@ namespace Content.Client.Lobby.UI
 
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
+
+        private HighlightProfileEditorMenu? _highlightEditor; // CorvaxGoob
 
         private TTSTab? _ttsTab;// CorvaxGoob-TTS
 
@@ -1120,6 +1125,28 @@ namespace Content.Client.Lobby.UI
                         Margin = new Thickness(3f, 3f, 0f, 0f),
                     };
 
+                    // CorvaxGoob-Start
+                    var highLightsWindowBtn = new Button()
+                    {
+                        HorizontalAlignment = HAlignment.Right,
+                        Margin = new Thickness(3f, 0f, 0f, 0f),
+                        MinWidth = 32
+                    };
+                    highLightsWindowBtn.AddChild(new TextureRect()
+                    {
+                        TexturePath = "/Textures/Interface/Nano/filter.svg.96dpi.png",
+                        HorizontalAlignment = HAlignment.Center,
+                        VerticalAlignment = VAlignment.Center,
+                        TextureScale = new Vector2(0.75f, 0.75f)
+                    });
+
+                    highLightsWindowBtn.OnPressed += args =>
+                    {
+                        _highlightEditor = new(job);
+                        _highlightEditor.OpenCentered();
+                    };
+                    // CorvaxGoob-End
+
                     var collection = IoCManager.Instance!;
                     var protoManager = collection.Resolve<IPrototypeManager>();
 
@@ -1152,6 +1179,7 @@ namespace Content.Client.Lobby.UI
                     _jobPriorities.Add((job.ID, selector));
                     jobContainer.AddChild(selector);
                     jobContainer.AddChild(loadoutWindowBtn);
+                    jobContainer.AddChild(highLightsWindowBtn);
                     category.AddChild(jobContainer);
                 }
             }
