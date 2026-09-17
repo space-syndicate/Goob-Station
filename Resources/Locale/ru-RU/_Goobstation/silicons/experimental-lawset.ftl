@@ -1,3 +1,3 @@
 experimental-law-provider-start = Начать тестирование экспериментальной платы законов цИИ. Очки исследования будут зачислены через: [bold]{ $timeLeft }[/bold] секунд.
-experimental-law-provider-success = Плата была успешно протестирована. Зачислено [bold]{ $amount }[/bold] очков исследований.
+experimental-law-provider-success = Законы были успешно протестированы. Зачислено [bold]{ $amount }[/bold] очков исследований.
 experimental-law-provider-fail = Тестирование экспериментальной платы законов было прервано, поскольку был изменён список законов.

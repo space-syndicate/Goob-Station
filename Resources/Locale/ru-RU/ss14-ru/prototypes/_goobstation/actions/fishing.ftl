@@ -1,4 +1,4 @@
-ent-ActionStartFishing = начать рыбачить
+ent-ActionStartFishing = Начать рыбачить
     .desc = Просто закиньте поплавок и ждите. Дальше всё зависит только от вашей удачи.
-ent-ActionStopFishing = прекратить рыбачить
+ent-ActionStopFishing = Прекратить рыбачить
     .desc = Сегодня не везёт, значит повезёт в следующий раз.

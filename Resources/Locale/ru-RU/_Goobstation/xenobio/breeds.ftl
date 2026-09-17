@@ -1,4 +1,4 @@
-xenobio-breed-undetermined = неопределенный слайм
+xenobio-breed-undetermined = неопознанный слайм
 xenobio-breed-grey = серый слайм
 xenobio-breed-orange = оранжевый слайм
 xenobio-breed-purple = фиолетовый слайм
