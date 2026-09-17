@@ -18,7 +18,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 
-namespace Content.Goobstation.Shared.MartialArts;
+namespace Content.Goobstation.Shared.MartialArts; // CorvaxGoob
 
 public partial class SharedMartialArtsSystem
 {

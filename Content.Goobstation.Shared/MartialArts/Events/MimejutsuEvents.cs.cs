@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Goobstation.Shared.MartialArts.Events;
+namespace Content.Goobstation.Shared.MartialArts.Events; // CorvaxGoob
 
 [Serializable, NetSerializable, DataDefinition]
 public sealed partial class MimejutsuSilentExecutionPerformedEvent : EntityEventArgs;
