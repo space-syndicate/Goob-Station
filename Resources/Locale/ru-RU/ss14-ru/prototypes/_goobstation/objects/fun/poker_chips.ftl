@@ -1,4 +1,4 @@
-ent-PokerChips = poker chips
+ent-PokerChips = фишки
     .desc = Игровые деньги для взрослых.
 ent-PokerChips10 = { ent-PokerChips }
     .suffix = 10
