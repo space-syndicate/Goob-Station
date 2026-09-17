@@ -15,3 +15,25 @@
   - type: Rehydratable
     possibleSpawns:
     - MobHydrakinRandom
+
+- type: entity
+  parent: MonkeyCube
+  id: ShadowCube
+  name: shadow cube
+  description: Drymate brand shadow cube. Just add water!
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobShadowRandom
+
+- type: entity
+  parent: MobShadow
+  id: MobShadowRandom
+  name: Urist McShadow
+  suffix: Random Appearance
+  components:
+  - type: RandomHumanoidAppearance
+  - type: RandomMetadata
+    nameSegments:
+    - NamesShadowkin
+    nameFormat: random-metadata-name-format-default

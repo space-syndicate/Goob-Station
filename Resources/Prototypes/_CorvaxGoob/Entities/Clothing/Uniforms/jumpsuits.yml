@@ -152,3 +152,9 @@
   - type: Clothing
     sprite: _CorvaxGoob/Clothing/Uniforms/Jumpsuit/magistrateformal.rsi
 
+- type: entity
+  id: ClothingUniformJumpsuitTacticoolUnremoveable
+  parent: ClothingUniformJumpsuitTacticool
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

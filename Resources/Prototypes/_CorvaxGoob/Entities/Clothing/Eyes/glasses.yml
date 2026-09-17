@@ -19,3 +19,10 @@
       sprite: _CorvaxGoob/Clothing/Eyes/Glasses/kim.rsi
     - type: Clothing
       sprite: _CorvaxGoob/Clothing/Eyes/Glasses/kim.rsi
+
+- type: entity
+  id: ClothingEyesHudSyndicateUnremoveable
+  parent: ClothingEyesHudSyndicate
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable
