@@ -14,3 +14,6 @@ uplink-dice-of-fate-name = Dice of Fate
 uplink-dice-of-fate-desc = A one-use d20. Roll it and find out your fate.
 uplink-toolbox-electrical-turret-name = Blueprint deployable ballistic turret
 uplink-toolbox-electrical-turret-desc = A blueprint, that allows the autolathe to print deployable ballistic turret.
+
+uplink-super-duper-surplus-bundle-name = Super duper surplus crate
+uplink-super-duper-surplus-bundle-desc = A crate containing 3000 telecrystals worth of completely random syndicate items.

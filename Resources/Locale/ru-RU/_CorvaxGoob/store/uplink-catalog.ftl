@@ -14,5 +14,9 @@ uplink-reinforcement-radio-syndicate-gorilla-name = Телепорт подкр�
 uplink-reinforcement-radio-syndicate-gorilla-desc = Призовите на помощь боевую гориллу синдиката.
 uplink-dice-of-fate-name = Кость судьбы
 uplink-dice-of-fate-desc = Одноразовая кость d20. Бросьте и узнайте свою судьбу.
+
 uplink-toolbox-electrical-turret-name = Чертёж разворачиваемой баллистической турели
 uplink-toolbox-electrical-turret-desc = Чертёж, который позволит автолату печатать разворачиваемую баллистическую турель.
+
+uplink-super-duper-surplus-bundle-name = Премиальный ящик припасов Синдиката
+uplink-super-duper-surplus-bundle-desc = Содержит огромный ассортимент предметов из аплинка Синдиката общей стоимостью 3000 телекристаллов. Только для ядерных оперативников.
