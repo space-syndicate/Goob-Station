@@ -92,7 +92,7 @@ public sealed partial class ChatHighlightsSystem : EntitySystem
 
             foreach (var highlight in Highlights)
             {
-                writer.WriteLine("  - Key:" + highlight.Key);
+                writer.WriteLine("  - Key: " + highlight.Key);
                 writer.WriteLine("    Value: \"" + highlight.Value + "\"");
             }
         }
