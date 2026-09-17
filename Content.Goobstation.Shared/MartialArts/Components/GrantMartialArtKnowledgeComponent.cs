@@ -112,7 +112,7 @@ public sealed partial class GrantHellRipComponent : GrantMartialArtKnowledgeComp
 }
 
 [RegisterComponent]
-public sealed partial class GrantMimejutsuComponent : GrantMartialArtKnowledgeComponent
+public sealed partial class GrantMimejutsuComponent : GrantMartialArtKnowledgeComponent // CorvaxGoob
 {
     [DataField]
     public override MartialArtsForms MartialArtsForm { get; set; } = MartialArtsForms.Mimejutsu;
