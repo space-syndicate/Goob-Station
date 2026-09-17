@@ -2,7 +2,7 @@ comp-kitchen-spike-deny-collect = { CAPITALIZE($this) } уже чем-то за�
 comp-kitchen-spike-deny-butcher = { CAPITALIZE($victim) } не может быть разделан на { $this }.
 comp-kitchen-spike-deny-butcher-knife = { CAPITALIZE($victim) } не может быть разделан на { $this }, используйте нож для разделки.
 comp-kitchen-spike-deny-changeling = { CAPITALIZE($victim) } сопротивляется своей участи { $this }.
-comp-kitchen-spike-deny-absorbed = { CAPITALIZE($victim) } не осталось ничего для нарезки.
+comp-kitchen-spike-deny-absorbed = { CAPITALIZE($victim) } не осталось ничего для разделки.
 comp-kitchen-spike-deny-not-dead =
     { CAPITALIZE($victim) } не может быть разделан. { CAPITALIZE(SUBJECT($victim)) } { GENDER($victim) ->
         [male] ещё жив

@@ -1,1 +1,1 @@
-devil-speech-grip = Тупой кадет!!
+devil-speech-grip = Stupete et cadite!!

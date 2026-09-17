@@ -17,4 +17,4 @@ accent-skeleton-words-replace-5 = дребезжу
 accent-skeleton-words-6 = убит
 accent-skeleton-words-replace-6 = отскелетирован
 accent-skeleton-words-7 = смешно
-accent-skeleton-words-replace-7 = Скелет сраный
+accent-skeleton-words-replace-7 = скелет сраный
