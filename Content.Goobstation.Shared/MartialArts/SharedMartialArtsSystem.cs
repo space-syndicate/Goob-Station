@@ -102,6 +102,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         InitializeDragon();
         InitializeNinjutsu();
         InitializeHellRip();
+        InitializeMimejutsu(); // CorvaxGoob
         InitializeCanPerformCombo();
 
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, ComponentShutdown>(OnShutdown);
@@ -274,6 +275,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 break;
             case MartialArtsForms.Capoeira:
                 OnCapoeiraAttackPerformed(ent, ref args);
+                break;
+            case MartialArtsForms.Mimejutsu: // CorvaxGoob
+                OnMimejustuAttackPerformed(ent, ref args);
                 break;
         }
     }
