@@ -1,1 +1,1 @@
-stack-poker-chips = poker chips
+stack-poker-chips = фишек

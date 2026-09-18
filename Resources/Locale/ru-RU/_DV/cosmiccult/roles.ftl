@@ -1,2 +1,2 @@
-role-subtype-cultist = Cultist
-role-subtype-colossus = Colossus
+role-subtype-cultist = Культист
+role-subtype-colossus = Колосс
