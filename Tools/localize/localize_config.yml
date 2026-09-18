@@ -7,6 +7,7 @@ ignored_paths: # Игнорирует указанные пути до папо�
 - "Resources/Locale/ru-RU/commands"
 - "Resources/Locale/ru-RU/cvar"
 - "Resources/Locale/ru-RU/lobby"
+- "Resources/Locale/ru-RU/_CorvaxGoob" #CorvaxGoob
 ignored_untranslated_paths: # Игнорирует предупреждения в указанных путях до папок/файлов
 - "Resources/Locale/ru-RU/robust-toolbox/input.ftl" # лучше просто это не трогать №2
 - "Resources/Locale/ru-RU/ss14-ru/prototypes/entities/mobs/player/humanoid.ftl" # её заприватил элюзив
