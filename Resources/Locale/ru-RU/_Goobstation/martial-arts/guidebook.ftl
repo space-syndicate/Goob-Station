@@ -7,4 +7,3 @@ guide-entry-corporate-judo = Корпоративное дзюдо
 guide-entry-capoeira = Капоэйра
 guide-entry-ninjutsu = Ниндзюцу
 guide-entry-dragon-kung-fu = Стиль Дракона (Кунг-фу)
-guide-entry-mimejutsu = Мимдзюцу
