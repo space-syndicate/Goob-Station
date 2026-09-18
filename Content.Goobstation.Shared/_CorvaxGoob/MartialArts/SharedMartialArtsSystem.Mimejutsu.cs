@@ -1,7 +1,8 @@
 using System.Linq;
 using Content.Goobstation.Common.MartialArts;
 using Content.Goobstation.Shared.MartialArts.Components;
-using Content.Goobstation.Shared.MartialArts.Events;
+using Content.Goobstation.Shared._CorvaxGoob.MartialArts.Components;
+using Content.Goobstation.Shared._CorvaxGoob.MartialArts.Events;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
@@ -18,7 +19,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 
-namespace Content.Goobstation.Shared.MartialArts; // CorvaxGoob
+namespace Content.Goobstation.Shared.MartialArts;
 
 public partial class SharedMartialArtsSystem
 {
@@ -50,7 +51,7 @@ public partial class SharedMartialArtsSystem
                 if (_random.Prob(0.20f))
                 {
                     _movementMod.TryUpdateMovementSpeedModDuration(args.Target, MartsGenericSlow, TimeSpan.FromSeconds(2), 0.5f, 0.5f);
-                    ComboPopup(ent, args.Target, Loc.GetString("martial-arts-combo-Silentpunch"));
+                    ComboPopup(ent, args.Target, "Silentpunch");
                 }
                 break;
         }

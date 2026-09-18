@@ -14,7 +14,6 @@ capoeira-success-learned = Вы освоили капоэйру. Учебник 
 dragon-success-learned = Вы освоили стиль Дракона (Кунг-фу). Учебник сгорает у вас в руках...
 ninjutsu-success-learned = Вы освоили ниндзюцу. Свиток сгорает у вас в руках...
 hellrip-success-learned = Вы освоили Адский разрыв. Свиток сгорает у вас в руках...
-mimejutsu-success-learned = Вы освоили мимдзюцу. Мануал сгорает у вас в руках...
 carp-scroll-waiting = Путь в тысячу миль начинается с одного шага, а путь мудрости проходит медленно, урок за уроком.
 carp-scroll-advance = Вы сделали ещё один шаг к мастерству Пути Спящего Карпа.
 carp-scroll-complete = Теперь вы мастер Пути Спящего Карпа.
@@ -103,9 +102,3 @@ alerts-sneak-attack-name = Скрытая атака
 alerts-sneak-attack-desc = Для истинного синоби первая и последняя атака — одно и то же.
 alerts-loss-of-surprise-name = Потеря элемента неожиданности
 alerts-loss-of-surprise-desc = Ваши намерения раскрыты! Потребуется время, чтобы снова скрытно атаковать.
-# Mimejutsu
-martial-arts-combo-Silentpunch = бесшумный удар
-martial-arts-combo-MimejutsuSilentExecution = бесшумная казнь
-martial-arts-combo-MimejutsuMimechucks = мимчаки
-martial-arts-combo-MimejutsuSilencer = глушитель
-martial-arts-combo-MimejutsuSilentPalm = бесшумная ладонь

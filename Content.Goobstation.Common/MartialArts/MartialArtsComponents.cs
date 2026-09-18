@@ -39,7 +39,7 @@ public sealed partial class MartialArtsKnowledgeComponent : GrabStagesOverrideCo
 
 }
 
-public enum MartialArtsForms // CorvaxGoob - Mimejutsu
+public enum MartialArtsForms
 {
     CorporateJudo,
     CloseQuartersCombat,
@@ -48,5 +48,5 @@ public enum MartialArtsForms // CorvaxGoob - Mimejutsu
     KungFuDragon,
     Ninjutsu,
     HellRip,
-    Mimejutsu,
+    Mimejutsu, // CorvaxGoob - Mimejutsu
 }
