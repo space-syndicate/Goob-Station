@@ -47,6 +47,9 @@ public sealed partial class SharedRestrictSystem : EntitySystem
 
     private void OnAttemptGunshot(Entity<RestrictGunshotsByUserTagComponent> ent, ref ShotAttemptedEvent args)
     {
+        if (args.User == ent.Owner) // CorvaxGoob-FireOnDrop
+            return;
+
         if(!_tagSystem.HasAllTags(args.User, ent.Comp.Contains) || _tagSystem.HasAnyTag(args.User, ent.Comp.DoesntContain))
         {
             var time = _timing.CurTime;

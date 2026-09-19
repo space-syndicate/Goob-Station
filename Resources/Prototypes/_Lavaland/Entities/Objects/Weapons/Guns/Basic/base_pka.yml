@@ -94,6 +94,7 @@
           tags:
           - PKAUpgradeSpace
   - type: Gun
+    fireOnDropChance: 1 # CorvaxGoob-FireOnDrop
     fireRate: 0.8
     selectedMode: SemiAuto
     minAngle: 1
