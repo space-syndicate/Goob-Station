@@ -41,7 +41,7 @@ public partial class SharedMartialArtsSystem
 
     private void OnMimejutsuSilentPunch(Entity<CanPerformComboComponent> ent, ref MimejutsuSilentPunchPerformedEvent args)
     {
-        if (!_netManager.IsServer
+        if (_netManager.IsClient
             || !_proto.TryIndex(ent.Comp.BeingPerformed, out var proto)
             || !TryUseMartialArt(ent, proto, out var target, out _)
             || !HasComp<StatusEffectsComponent>(target)
