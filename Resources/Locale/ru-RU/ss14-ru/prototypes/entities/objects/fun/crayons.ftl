@@ -31,3 +31,22 @@ ent-CrayonInfinite = бесконечный мелок
 
 ent-CrayonBorg = электрический мелок
     .desc = Вероятно вкуснейший тип мелков во всех вселенных. К сожалению, их нельзя есть.
+
+ent-CrayonGlowing = светящийся мелок
+    .dec = Красочный мелок, светится. Выглядит аппетитнее, чем оригинал. Мммм...
+ent-CrayonWhiteGlowing = светящийся белый мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonRedGlowing = светящийся красный мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonOrangeGlowing = светящийся оранжевый мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonYellowGlowing = светящийся жёлтый мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonGreenGlowing = светящийся зелёный мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonBlueGlowing = светящийся синий мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonPurpleGlowing = светящийся фиолетовый мелок
+    .desc = { ent-CrayonGlowing.desc }
+ent-CrayonGlowingBox = коробка для светящихся мелков
+    .desc = Это коробка со светящимися мелками.
