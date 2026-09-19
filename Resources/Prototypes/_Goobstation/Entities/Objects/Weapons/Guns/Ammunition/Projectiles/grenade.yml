@@ -10,4 +10,4 @@
     deleteOnCollide: true
     damage:
       types:
-        Piercing: 30
+        Piercing: 10 # CorvaxGoob 30 --> 10
