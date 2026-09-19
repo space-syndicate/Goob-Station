@@ -10,6 +10,7 @@ using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
 using Robust.Shared.Utility;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
+using Content.Client._CorvaxGoob.Chat;
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
@@ -20,6 +21,7 @@ namespace Content.Client.UserInterface.Systems.Chat;
 public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSystem>
 {
     [Dependency] private readonly ILocalizationManager _loc = default!;
+    [UISystemDependency] private readonly ChatHighlightsSystem _chatHighlights = default!; // CorvaxGoob
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
 
     // Goobstation - Highlight chat ping sound!
@@ -181,11 +183,21 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         if (newHighlights.Count(c => c == '-') > 1)
             newHighlights = newHighlights.Split('-')[0] + "\n@" + newHighlights.Split('-')[^1];
 
-        // Convert the job title to kebab-case and use it as a key for the loc file.
-        var jobKey = job.Replace(' ', '-').ToLower();
+        // CorvaxGoob-Start : Редактирование кода
+        if (_prototypeManager.TryIndex(job, out var jobPrototype))
+        {
+            if (_chatHighlights.TryGetSavedHighlights(jobPrototype.ID, out var highlights))
+                newHighlights += '\n' + highlights.Replace(", ", "\n");
+            else
+            {
+                // Convert the job title to kebab-case and use it as a key for the loc file.
+                var jobKey = jobPrototype.Name.Replace("job-name-", "").ToLower();
 
-        if (_loc.TryGetString($"highlights-{jobKey}", out var jobMatches))
-            newHighlights += '\n' + jobMatches.Replace(", ", "\n");
+                if (_loc.TryGetString($"highlights-{jobKey}", out var jobMatches))
+                    newHighlights += '\n' + jobMatches.Replace(", ", "\n");
+            }
+        }
+        // CorvaxGoob-End
 
         UpdateHighlights(newHighlights);
         HighlightsUpdated?.Invoke(newHighlights);
