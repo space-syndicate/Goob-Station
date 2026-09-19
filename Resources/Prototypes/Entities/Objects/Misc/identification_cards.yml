@@ -142,6 +142,10 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: CaptainIDCard
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: IDCardStandard

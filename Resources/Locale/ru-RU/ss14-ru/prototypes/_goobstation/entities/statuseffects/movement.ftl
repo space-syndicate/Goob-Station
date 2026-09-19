@@ -1,4 +1,4 @@
-ent-SlasherSlowdownStatusEffect = замедление от Мясника
+ent-SlasherSlowdownStatusEffect = замедление от маньяка
     .desc = { ent-StatusEffectSlowdown.desc }
 ent-TentacleSlowdownStatusEffect = замедление от щупалец
     .desc = { ent-StatusEffectSlowdown.desc }

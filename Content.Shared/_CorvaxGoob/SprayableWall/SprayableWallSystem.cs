@@ -31,6 +31,4 @@ public sealed class SprayableWallSystem : EntitySystem
 
         painted.AlwaysShowDetailPainted = true;
     }
-
-
 }

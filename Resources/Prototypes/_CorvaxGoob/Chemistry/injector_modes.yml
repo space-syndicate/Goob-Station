@@ -1,0 +1,4 @@
+- type: injectorMode
+  parent: [ BaseInstantHyposprayMode, BaseInjectMode ]
+  id: MedipenInjectMode
+  mobTime: 0.2

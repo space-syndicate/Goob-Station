@@ -34,3 +34,6 @@ tags = "lang:ru,rp:med,region:eu_e,tts"
 [replay]
 max_compressed_size = 1048576
 max_uncompressed_size = 8388608
+
+[ghost.go_lobby]
+enabled = false

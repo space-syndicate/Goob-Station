@@ -902,6 +902,10 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
     # not putting a BlockMovement component here cause that's funny.
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: advanced laser pistol # Goobstation
@@ -1117,6 +1121,10 @@
   - type: Battery
     maxCharge: 1200 # Goobstation
     startingCharge: 1200 # Goobstation
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: energy magnum
@@ -1164,6 +1172,10 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   name: temperature gun # Goobstation

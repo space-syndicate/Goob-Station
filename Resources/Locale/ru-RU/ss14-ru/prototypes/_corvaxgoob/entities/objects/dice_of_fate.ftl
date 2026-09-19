@@ -1,8 +1,8 @@
 ent-DiceOfFate = кость судьбы
     .desc = Одноразовая d20. Всё или ничего.
-ent-RandomDiceImplanter = random dice implanter
+ent-RandomDiceImplanter = случайный имплантер синдиката
     .desc = { ent-MarkerBase.desc }
-ent-RandomAggressiveAnimal = random aggressive animal
+ent-RandomAggressiveAnimal = случайное агрессивное животное
     .desc = { ent-MarkerBase.desc }
-ent-RandomSpellbook = random spellbook
+ent-RandomSpellbook = случайная книга заклинаний
     .desc = { ent-MarkerBase.desc }

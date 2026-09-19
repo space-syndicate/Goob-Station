@@ -48,7 +48,10 @@ public sealed class HailerSystem : EntitySystem
         if (args.SlotFlags == SlotFlags.MASK)
         {
             _actionsSystem.AddAction(args.Equipee, ref component.HailActionEntity, component.HailerAction, args.Equipee);
-            component.SelectedMode = component.AvailableModes.Keys.First(); // CorvaxGoob-HailerRework
+            // CorvaxGoob-HailerRework-start
+            if (component.AvailableModes.Count > 0)
+                component.SelectedMode = component.AvailableModes.Keys.First();
+            // CorvaxGoob-HailerRework-end
         }
     }
     private void OnGotUnequipped(EntityUid uid, HailerComponent component, GotUnequippedEvent args)

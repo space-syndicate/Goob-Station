@@ -106,3 +106,10 @@
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHelmetCBURNLeader
+
+- type: entity
+  id: ClothingOuterHardsuitContractorUnremoveable
+  parent: ClothingOuterHardsuitContractor
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

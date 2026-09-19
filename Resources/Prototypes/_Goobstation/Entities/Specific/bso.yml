@@ -18,6 +18,10 @@
   - type: GuideHelp
     guides:
     - DragonKungFu
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: [BaseItem, BaseCentcommContraband]

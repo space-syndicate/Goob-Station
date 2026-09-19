@@ -1,0 +1,197 @@
+- type: entity
+  abstract: true
+  id: ReagentSlimeRangedBase
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.0
+    rechargeSound:
+      collection: FootstepSlime
+  - type: Gun
+    fireRate: 0.5
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: desecration
+  - type: CustomShader
+    shader: Aura
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Blunt: -0.5
+        Slash: -0.5
+        Piercing: -0.5
+        Poison: -0.5
+        Heat: -0.5
+        Cold: -0.5
+        Shock: -0.5
+        Radiation: -0.5
+        Caustic: -0.5
+        Bloodloss: -0.5
+        Asphyxiation: -0.5
+  - type: PressureImmunity
+  - type: SpecialHighTempImmunity
+  - type: SpecialLowTempImmunity
+
+- type: entity
+  id: ReagentSlimeNocturineRanged
+  parent: [ ReagentSlimeNocturine, ReagentSlimeRangedBase ]
+  suffix: Nocturine Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeNocturine
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeBeerRanged
+  parent: [ ReagentSlimeBeer, ReagentSlimeRangedBase ]
+  suffix: Beer Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeBeer
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimePaxRanged
+  parent: [ ReagentSlimePax, ReagentSlimeRangedBase ]
+  suffix: Pax Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimePax
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeTHCRanged
+  parent: [ ReagentSlimeTHC, ReagentSlimeRangedBase ]
+  suffix: THC Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeTHC
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeBicaridineRanged
+  parent: [ ReagentSlimeBicaridine, ReagentSlimeRangedBase ]
+  suffix: Bicaridine Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeBicaridine
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeToxinRanged
+  parent: [ ReagentSlimeToxin, ReagentSlimeRangedBase ]
+  suffix: Toxin Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeToxin
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeNapalmRanged
+  parent: [ ReagentSlimeNapalm, ReagentSlimeRangedBase ]
+  suffix: Napalm Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeNapalm
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeOmnizineRanged
+  parent: [ ReagentSlimeOmnizine, ReagentSlimeRangedBase ]
+  suffix: Omnizine Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeOmnizine
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeMuteToxinRanged
+  parent: [ ReagentSlimeMuteToxin, ReagentSlimeRangedBase ]
+  suffix: Mute Toxin Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeMuteToxin
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeNorepinephricAcidRanged
+  parent: [ ReagentSlimeNorepinephricAcid, ReagentSlimeRangedBase ]
+  suffix: Norepinephric Acid Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeNorepinephricAcid
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeEphedrineRanged
+  parent: [ ReagentSlimeEphedrine, ReagentSlimeRangedBase ]
+  suffix: Ephedrine Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeEphedrine
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ReagentSlimeRobustHarvestRanged
+  parent: [ ReagentSlimeRobustHarvest, ReagentSlimeRangedBase ]
+  suffix: Robust Harvest Ranged
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: BasicEntityAmmoProvider
+    proto: BulletReagentSlimeRobustHarvest
+    capacity: 1
+    count: 1

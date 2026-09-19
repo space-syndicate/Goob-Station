@@ -27,7 +27,7 @@ ent-WallIce = ледяная стена
 ent-WallPlasma = плазменная стена
     .desc = { ent-BaseWall.desc }
 ent-WallPlastic = пластиковая стена
-    .desc = { ent-BaseWall.desc } Из-за своих свойств не обладает гермитичностью.
+    .desc = { ent-BaseWall.desc }
 ent-WallPlastitaniumIndestructible = пластитановая стена
     .suffix = Неразрушимый
     .desc = { ent-BaseWall.desc }
@@ -110,9 +110,8 @@ ent-Cardwall = картонная стена
 ent-WallAndesiteCobblebrick = андезитовая булыжниковая стена
     .desc = { ent-WallCobblebrick.desc }
 
-ent-WallXenoborg = ксеноборг-стена
+ent-WallXenoborg = мехадермическая стена
     .desc = { ent-WallPlastitanium.desc }
-    .suffix = { ent-WallPlastitanium.suffix }
 
 ent-WallSolidChitin = твёрдый хитин
     .desc = { ent-BaseWall.desc }

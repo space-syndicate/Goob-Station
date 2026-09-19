@@ -142,7 +142,11 @@ public partial record struct CyborgControlData
     public bool IsAiControllable;
     // Corvax-Next-AiRemoteControl-End
 
-    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable, bool isAiControllable) // Corvax-Next-AiRemoteControl
+    // CorvaxGoob-MutableLaws
+    [DataField]
+    public bool IsLawChangable;
+
+    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable, bool isAiControllable, bool isLawChangable) // Corvax-Next-AiRemoteControl && CorvaxGoob-MutableLaws
     {
         ChassisSprite = chassisSprite;
         ChassisName = chassisName;
@@ -153,6 +157,7 @@ public partial record struct CyborgControlData
         HasBrain = hasBrain;
         CanDisable = canDisable;
         IsAiControllable = isAiControllable; // Corvax-Next-AiRemoteControl
+        IsLawChangable = isLawChangable; // CorvaxGoob-MutableLaws
     }
 }
 
