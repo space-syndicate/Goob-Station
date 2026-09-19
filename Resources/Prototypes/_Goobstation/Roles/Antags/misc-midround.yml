@@ -85,6 +85,8 @@
     - MagazinePistolCaselessRifle
     - ChemistryBottleNocturine
     - Syringe
+  inhand: # CorvaxGoob
+  - MimejutsuManual
 
 - type: startingGear
   id: DarkPriestAntagGear
