@@ -1116,9 +1116,8 @@
     stock: 1
   - !type:BuyBeforeCondition
     whitelist:
-    - UplinkAutosurgeonRightMantisBlade
-    - UplinkAutosurgeonLeftMantisBlade
-    - UplinkAutosurgeonSandevistan
+    - UplinkAutosurgeonStatvekaSandevistan
+    - NukieUplinkAutosurgeonStatvekaSandevistan
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
