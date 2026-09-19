@@ -1,0 +1,14 @@
+card-pda-painter-window-title = ID card and PDA painter
+card-pda-painter-window-target = Target:
+card-pda-painter-window-insert = Insert
+card-pda-painter-window-eject = Eject
+card-pda-painter-window-no-target = No ID card or PDA inserted
+card-pda-painter-window-search = Search:
+card-pda-painter-window-apply = Repaint
+card-pda-painter-window-hint-empty = Insert an ID card or PDA to change its appearance.
+card-pda-painter-window-hint-id-card = Changes the appearance of the inserted ID card.
+card-pda-painter-window-hint-pda = Changes the appearance of the inserted PDA.
+card-pda-painter-window-no-selection = No job selected
+card-pda-painter-popup-success = The item has been repainted.
+card-pda-painter-popup-invalid-target = Insert an ID card or PDA.
+card-pda-painter-slot-name = ID card or PDA
