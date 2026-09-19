@@ -91,6 +91,9 @@ public abstract class SharedWieldableSystem : EntitySystem
 
     private void OnShootAttempt(EntityUid uid, GunRequiresWieldComponent component, ref ShotAttemptedEvent args)
     {
+        if (args.User == uid) // CorvaxGoob-FireOnDrop
+            return;
+
         if (TryComp<WieldableComponent>(uid, out var wieldable) &&
             !wieldable.Wielded &&
             !HasComp<NoWieldNeededComponent>(args.User) // Goobstation - Yowies

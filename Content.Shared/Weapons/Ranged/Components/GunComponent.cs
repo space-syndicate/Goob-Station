@@ -314,6 +314,15 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float GunExecutionTime = 3.5f;
+
+
+    /// <summary>
+    /// CorvaxGoob. The percentage chance of a given gun to accidentally discharge if violently thrown into a wall or person
+    /// </summary>
+    [DataField]
+    public float FireOnDropChance = 0.1f;
+
+
 }
 
 [Flags]

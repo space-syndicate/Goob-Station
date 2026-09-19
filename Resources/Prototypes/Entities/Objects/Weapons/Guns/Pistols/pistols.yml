@@ -30,6 +30,7 @@
     - Belt
   - type: Gun
     fireRate: 6
+    fireOnDropChance: 0.3 # CorvaxGoob-FireOnDrop
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
