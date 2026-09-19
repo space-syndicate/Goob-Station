@@ -12,6 +12,8 @@ ignored_paths: # Игнорирует указанные пути до папо�
 - "Resources/Locale/ru-RU/administration"
 - "Resources/Locale/ru-RU/_corvaxnext"
 - "Resources/Locale/ru-RU/_corvaxgoob"
+- "Resources/Locale/ru-RU/_Goobstation/datasets"
+- "Resources/Locale/ru-RU/_Goobstation/lobby"
 #CorvaxGoob end
 ignored_untranslated_paths: # Игнорирует предупреждения в указанных путях до папок/файлов
 - "Resources/Locale/ru-RU/robust-toolbox/input.ftl" # лучше просто это не трогать №2
