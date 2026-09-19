@@ -104,3 +104,9 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  # CorvaxGoob start
+  - type: CombatDoAfter
+    trigger: !type:CombatDoAfterThrownEvent
+    delay: 5
+    dropCancelDelay: 0.005
+  # CorvaxGoob end
