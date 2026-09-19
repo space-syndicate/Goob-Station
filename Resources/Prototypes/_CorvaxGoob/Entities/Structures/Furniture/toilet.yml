@@ -50,3 +50,36 @@
         reagents:
         - ReagentId: Water
           Quantity: 200
+
+- type: entity
+  id: ToiletDirty
+  parent: BaseToilet
+  name: dirty toilet
+  description: The HT-451, a torque rotation-based, waste disposal unit for small matter. This one looks disgustingly dirty.
+  suffix: Dirty
+  components:
+  - type: Construction
+    graph: Toilet
+    node: dirty
+  - type: Sprite
+    layers:
+    - state: condisposal
+      map: [ "enum.DisposalUnitVisualLayers.Unanchored" ]
+      color: "#8B7355"   # if Unanchored, it will be still dirty
+    - state: disposal
+      map: [ "enum.DisposalUnitVisualLayers.Base" ]
+      color: "#8B7355" #dirty tint - "говно"
+    - state: disposal-charging
+      map: [ "enum.DisposalUnitVisualLayers.BaseCharging" ]
+    - state: disposal-flush
+      map: [ "enum.DisposalUnitVisualLayers.OverlayFlush" ]
+    - state: dispover-charge
+      map: [ "enum.DisposalUnitVisualLayers.OverlayCharging" ]
+    - state: dispover-ready
+      map: [ "enum.DisposalUnitVisualLayers.OverlayReady" ]
+    - state: dispover-full
+      map: [ "enum.DisposalUnitVisualLayers.OverlayFull" ]
+    - state: dispover-handle
+      map: [ "enum.DisposalUnitVisualLayers.OverlayEngaged" ]
+    - map: [ "DoorVisualState.DoorOpen" ]
+    - map: [ "SeatVisualState.SeatUp" ]
