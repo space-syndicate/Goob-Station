@@ -11,7 +11,7 @@ namespace Content.Shared._Shitmed.Autodoc.Components;
 /// Component added while operating on a patient.
 /// Only usable serverside, only thing that can be predicted is a surgery being active.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedAutodocSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedAutodocSystem), typeof(AutodocSurgeryCompletionSystem))] // CorvaxGoob - добавлен доступ для AutodocSurgeryCompletionSystem
 [AutoGenerateComponentPause]
 public sealed partial class ActiveAutodocComponent : Component
 {
