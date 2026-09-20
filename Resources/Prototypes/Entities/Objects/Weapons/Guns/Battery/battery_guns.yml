@@ -1121,6 +1121,8 @@
   - type: Battery
     maxCharge: 1200 # Goobstation
     startingCharge: 1200 # Goobstation
+  - type: StealTarget # Goobstation
+    stealGroup: WeaponEnergyShotgun
 # CorvaxGoob-start:
   - type: CargoSellBlacklist
   - type: SupermatterImmune
@@ -1152,8 +1154,8 @@
     tags:
     - HighRiskItem
     - Sidearm
-  - type: StealTarget
-    stealGroup: WeaponEnergyMagnum
+#  - type: StealTarget # Goobstation - Remove Energy Magnum
+#    stealGroup: WeaponEnergyMagnum # Goobstation - Remove Energy Magnum
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg

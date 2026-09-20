@@ -3,7 +3,7 @@
 # Topical medicines
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: Ointment
   name: stack-ointment
   icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: ointment }
@@ -11,7 +11,7 @@
   maxCount: 15 # CorvaxGoob-Fixes
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: AloeCream
   name: stack-aloe-cream
   icon: { sprite: "/Textures/Objects/Specific/Hydroponics/aloe.rsi", state: cream }
@@ -19,7 +19,7 @@
   maxCount: 15 # CorvaxGoob-Fixes
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: Gauze
   name: stack-gauze
   icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: gauze }
@@ -27,7 +27,7 @@
   maxCount: 15 # CorvaxGoob-Fixes
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: Brutepack
   name: stack-brutepack
   icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: gauze }
@@ -35,7 +35,7 @@
   maxCount: 15 # CorvaxGoob-Fixes
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: Bloodpack
   name: stack-bloodpack
   icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: bloodpack }
@@ -43,7 +43,7 @@
   maxCount: 15 # CorvaxGoob-Fixes
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: MedicatedSuture
   name: stack-medicated-suture
   icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: medicated-suture }
@@ -51,7 +51,7 @@
   maxCount: 15 # CorvaxGoob-Fixes
 
 - type: stack
-  parent: BaseSmallStack
+  parent: BaseTopicalStack # goob
   id: RegenerativeMesh
   name: stack-regenerative-mesh
   icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: regenerative-mesh}
