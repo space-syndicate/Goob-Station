@@ -3,7 +3,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Random;
 
-namespace Content.Server.Weapons.Ranged.Systems;
+namespace Content.Server._CorvaxGoob.Weapons.Ranged.Systems;
 
 public sealed class FireOnDropSystem : EntitySystem
 {
@@ -14,13 +14,12 @@ public sealed class FireOnDropSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GunComponent, ThrowDoHitEvent>(HandleLand);
+        SubscribeLocalEvent<GunComponent, ThrowDoHitEvent>(OnHit);
     }
 
-    private void HandleLand(EntityUid uid, GunComponent component, ref ThrowDoHitEvent args)
+    private void OnHit(Entity<GunComponent> ent, ref ThrowDoHitEvent args)
     {
-        if (_random.Prob(component.FireOnDropChance))
-            _gun.AttemptShoot(uid, (uid, component), Transform(uid).Coordinates.Offset(Transform(uid).LocalRotation.ToVec()));
+        if (_random.Prob(ent.Comp.FireOnDropChance))
+            _gun.AttemptShoot(ent, ent, Transform(ent).Coordinates.Offset(Transform(ent).LocalRotation.ToVec()));
     }
-
 }

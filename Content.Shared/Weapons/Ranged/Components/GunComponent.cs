@@ -274,10 +274,13 @@ public sealed partial class GunComponent : Component
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
 
-    // CorvaxGoob-Skills-Start
+    // CorvaxGoob-Changes-Start
     [DataField]
     public bool RequiresSkill;
-    // CorvaxGoob-Skills-End
+
+    [DataField]
+    public float FireOnDropChance = 0.1f;
+    // CorvaxGoob-Changes-End
 
     /// <summary>
     /// Goobstation
@@ -314,15 +317,6 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float GunExecutionTime = 3.5f;
-
-
-    /// <summary>
-    /// CorvaxGoob. The percentage chance of a given gun to accidentally discharge if violently thrown into a wall or person
-    /// </summary>
-    [DataField]
-    public float FireOnDropChance = 0.1f;
-
-
 }
 
 [Flags]
