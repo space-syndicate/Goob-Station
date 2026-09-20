@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Damage; // CorvaxGoob-DiceOfFate
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Interaction;
@@ -32,7 +31,6 @@ namespace Content.Goobstation.Shared.SlotMachine
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly PrizeSystem _prize = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!; // CorvaxGoob-DiceOfFate
 
         public override void Initialize()
         {
@@ -99,32 +97,10 @@ namespace Content.Goobstation.Shared.SlotMachine
             if (!_itemSlots.TryGetSlot(ent.Owner, "money", out var slot)
                 || slot.Item is not { } item
                 || _stackSystem.GetCount(item) < ent.Comp.SpinCost)
-            // CorvaxGoob-DiceOfFate-start
-            if (comp.LimitSpins)
             {
                 _popupSystem.PopupPredicted(Loc.GetString("slotmachine-no-money"), ent.Owner, args.User); // No Money
                 return;
             }
-
-            if (comp.SpinDamage != null)
-            {
-                if (_net.IsServer)
-                    _damageable.TryChangeDamage(args.User, comp.SpinDamage, ignoreResistances: true);
-            }
-            else
-            {
-                if (!_itemSlots.TryGetSlot(uid, "money", out var slot)
-                    || slot.Item == null
-                    || !TryComp<StackComponent>(slot.Item.Value, out var stack)
-                    || stack.Count < comp.SpinCost)
-                {
-                    _popupSystem.PopupPredicted(Loc.GetString("slotmachine-no-money"), uid, uid, PopupType.Small); // No Money
-                    return;
-                }
-                _stackSystem.SetCount(stack.Owner, stack.Count - comp.SpinCost, stack);
-                Dirty(stack.Owner, stack);
-            }
-            // CorvaxGoob-DiceOfFate-end
 
             var doAfter =
              new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.DoAfterTime, new SlotMachineDoAfterEvent(), ent.Owner)
@@ -158,17 +134,6 @@ namespace Content.Goobstation.Shared.SlotMachine
                 Dirty(ent);
                 return;
             }
-            if (_random.Prob(comp.GodPotWinChance)) // THE GODPOT!!!
-            {
-                _audio.PlayPredicted(comp.GodPotWinSound, uid, args.User);
-                var coordinates = Transform(uid).Coordinates;
-                EntityManager.SpawnEntity(comp.GodPotPrize, coordinates);
-                _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("slotmachine-win-godpot"), InGameICChatType.Speak, hideChat: false, hideLog: true, checkRadioPrefix: false);
-                // CorvaxGoob-DiceOfFate-start
-                if (comp.DeleteGodPot && _net.IsServer)
-                    EntityManager.DeleteEntity(uid);
-                // CorvaxGoob-DiceOfFate-end
-                return;
 
             ent.Comp.IsSpinning = false;
             Dirty(ent);
