@@ -36,7 +36,7 @@ public abstract partial class SharedHumanoidAppearanceSystem
         targetHumanoid.MarkingSet.EnsureSexes(sourceHumanoid.Sex, _markingManager);
         targetHumanoid.MarkingSet.EnsureDefault(targetHumanoid.SkinColor, targetHumanoid.EyeColor, _markingManager);
 
-        SetBarkVoice(target, sourceHumanoid.BarkVoice, targetHumanoid);
+        // CorvaxGoob-Revert SetBarkVoice(target, sourceHumanoid.BarkVoice, targetHumanoid);
 
         if (TryComp<GrammarComponent>(target, out var grammar))
             _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);

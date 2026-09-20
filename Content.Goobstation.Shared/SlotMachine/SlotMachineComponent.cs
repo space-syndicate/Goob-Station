@@ -9,7 +9,6 @@ namespace Content.Goobstation.Shared.SlotMachine;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SlotMachineComponent : Component
 {
-    [DataField, AutoNetworkedField]
     // CorvaxGoob-DiceOfFate Start
 
     [DataField, AutoNetworkedField]

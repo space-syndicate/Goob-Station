@@ -392,14 +392,6 @@
 #      state: shy
 
 - type: marking
-  id: HumanHairShy
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: _Goobstation/Mobs/Customization/human_hair.rsi
-      state: shy
-
-- type: marking
   id: HumanHairTwinTail
   bodyPart: Hair
   markingCategory: Hair
