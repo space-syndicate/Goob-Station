@@ -12,7 +12,7 @@ public sealed partial class SlotMachineComponent : Component
     // CorvaxGoob-DiceOfFate Start
 
     [DataField, AutoNetworkedField]
-    public bool DeleteGodPot;
+    public bool DeleteOnWin;
 
     [DataField]
     public DamageSpecifier? SpinDamage;

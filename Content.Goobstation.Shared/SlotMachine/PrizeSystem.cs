@@ -60,7 +60,7 @@ public sealed partial class PrizeSystem : EntitySystem
     /// </summary>
     /// <param name="prizes"></param>
     /// <param name="uid">Whatever entity is spawning the prize</param>
-    public void HandlePrize(List<ProtoId<PrizePrototype>> prizes, EntityUid uid)
+    public PrizePrototype HandlePrize(List<ProtoId<PrizePrototype>> prizes, EntityUid uid) // CorvaxGoob-DiceOfFate
     {
         var prize = GetRandomPrize(prizes);
 
@@ -73,6 +73,8 @@ public sealed partial class PrizeSystem : EntitySystem
 
         HandleAnnouncement(prize, uid);
         _audio.PlayPredicted(prize.WinSound, uid, uid);
+
+        return prize; // CorvaxGoob-DiceOfFate
     }
 
     private void HandleAnnouncement(PrizePrototype prize, EntityUid uid)
