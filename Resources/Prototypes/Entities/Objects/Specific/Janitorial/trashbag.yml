@@ -24,11 +24,12 @@
       tags:
         - Trash
 # CorvaxGoob Start
-        - Organ
+        - Organ #Goob
         - Paper
       components:
         - BodyPart
         - SlimeExtract
+        - SpaceGarbage #Goob
     blacklist:
       tags:
         - Brain

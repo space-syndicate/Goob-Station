@@ -653,6 +653,7 @@
     - MedicalMiscRestricted
     - MedicalVehiclesAdvanced
     - MedicalBoards
+    - MedicalBoardsGoob
     - Janitor
     - Genetics
     - MedicalCloning
