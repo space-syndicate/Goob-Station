@@ -1,0 +1,35 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckShitSec
+  name: medal for “exceptional services”
+  description: A huge pancake from a barbell, given to officers as a reward for clinical idiocy.
+  suffix: Unremovable
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Neck/Special/shitsec.rsi
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Neck/Special/shitsec.rsi
+  - type: SelfUnremovableClothing
+  - type: SelfEquipOnly
+  - type: Tag
+    tags:
+    - IdioSec
+    - Medal
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: MultiHandedItem
+  - type: MeleeWeapon
+    animationRotation: -135
+    heavyStaminaCost: 15
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+        Structural: 7
