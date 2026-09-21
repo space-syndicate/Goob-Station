@@ -1,0 +1,8 @@
+- type: accent
+  id: ShitSec
+  fullReplacements:
+  - accent-words-shitsec-1
+  - accent-words-shitsec-2
+  - accent-words-shitsec-3
+  - accent-words-shitsec-4
+  - accent-words-shitsec-5

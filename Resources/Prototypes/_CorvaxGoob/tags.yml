@@ -4,10 +4,10 @@
   id: AdvancedRetractor
 
 - type: Tag
-  id: BagelTheatre
+  id: BagelCage
 
 - type: Tag
-  id: BagelCage
+  id: BagelTheatre
 
 - type: Tag
   id: BlueprintCargoTechFab
@@ -22,10 +22,10 @@
   id: BlueprintMedicalTechFab
 
 - type: Tag
-  id: BlueprintSecurityTechFab
+  id: BlueprintScienceTechFab
 
 - type: Tag
-  id: BlueprintScienceTechFab
+  id: BlueprintSecurityTechFab
 
 - type: Tag
   id: BlueprintServiceTechFab
@@ -61,10 +61,19 @@
   id: FlashlightSeclite
 
 - type: Tag
+  id: GasTurbineBlade
+
+- type: Tag
+  id: GasTurbineStator
+
+- type: Tag
   id: HandHeldMassScanner
 
 - type: Tag
   id: Hemostat
+
+- type: Tag
+  id: IdioSec
 
 - type: Tag
   id: IgnorGrab
@@ -131,9 +140,3 @@
 
 - type: Tag
   id: TelescopicShield
-
-- type: Tag
-  id: GasTurbineBlade
-
-- type: Tag
-  id: GasTurbineStator
