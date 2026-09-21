@@ -8,3 +8,6 @@ ent-ClothingShoesSchoolBlack = school black shoes
     .desc = Stylish and comfortable school shoes in dark color with stockings.
 ent-ClothingShoesSchoolWhite = school white shoes
     .desc = Stylish and comfortable school shoes in light color with stockings.
+ent-ClothingShoesShitSec = steel boots
+    .desc = A pair of boots issued to officers as a "reward" for the unfounded wearing of overshoes and magboots.
+    .suffix = Unremoveable

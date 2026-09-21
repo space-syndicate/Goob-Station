@@ -52,3 +52,50 @@
     sprite: _CorvaxGoob/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
   - type: Clothing
     sprite: _CorvaxGoob/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesShitSec
+  name: steel boots
+  description: A pair of boots issued to officers as a “reward” for unjustified wearing of galoshes and magboots.
+  suffix: Unremovable
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Shoes/Specific/shitsec.rsi
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Shoes/Specific/shitsec.rsi
+  - type: SelfUnremovableClothing
+  - type: SelfEquipOnly
+  - type: Tag
+    tags:
+    - IdioSec
+    - Medal
+  - type: Armor
+    coverage:
+    - Foot
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_pickup.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/shoes_drop.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/boots_drop.ogg
+      params:
+        volume: -5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: MetalPipe
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
