@@ -55,7 +55,7 @@ namespace Content.Shared.Decals
 
                         var chunkOrigin = SharedMapSystem.GetChunkIndices(coords, SharedDecalSystem.ChunkSize);
                         var chunk = dictionary.GetOrNew(chunkOrigin);
-                        // corvax-goob `glows` add
+                        // CorvaxGoob-Edit: Glowing-Decals
                         var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable, data.Glows, data.GlowTime, data.GlowEnergy);
 
                         nextIndex = Math.Max(nextIndex, dUid);
@@ -164,7 +164,7 @@ namespace Content.Shared.Decals
 
             [DataField("cleanable")]
             public bool Cleanable { get; init; }
-            // corvax-goob start
+            // CorvaxGoob-Start
             [DataField("glows")]
             public bool Glows { get; init; }
 
@@ -173,7 +173,8 @@ namespace Content.Shared.Decals
 
             [DataField("glowEnergy")]
             public float GlowEnergy { get; init; }
-            // corvax-goob end
+            // CorvaxGoob-End
+            // CorvaxGoob-Edit: Glowing-Decals
             public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
             {
                 Id = id;
@@ -181,9 +182,11 @@ namespace Content.Shared.Decals
                 Angle = angle;
                 ZIndex = zIndex;
                 Cleanable = cleanable;
+                // CorvaxGoob-Start
                 Glows = glows;
                 GlowTime = glowTime;
                 GlowEnergy = glowEnergy;
+                // CorvaxGoob-End
             }
 
             public DecalData(Decal decal)
@@ -193,11 +196,11 @@ namespace Content.Shared.Decals
                 Angle = decal.Angle;
                 ZIndex = decal.ZIndex;
                 Cleanable = decal.Cleanable;
-                // corvax-goob start
+                // CorvaxGoob-Start
                 Glows = decal.Glows;
                 GlowTime = decal.GlowTime;
                 GlowEnergy = decal.GlowEnergy;
-                // corvax-goob end
+                // CorvaxGoob-End
             }
 
             public bool Equals(DecalData other)
@@ -207,7 +210,11 @@ namespace Content.Shared.Decals
                        Angle.Equals(other.Angle) &&
                        ZIndex == other.ZIndex &&
                        Cleanable == other.Cleanable &&
-                       Glows == other.Glows; // corvax-goob
+                       // CorvacGoob-Start
+                       Glows == other.Glows &&
+                       GlowTime.Equals(other.GlowTime) &&
+                       GlowEnergy.Equals(other.GlowEnergy);
+                       // CorvacGoob-End
             }
 
             public override bool Equals(object? obj)
@@ -217,7 +224,7 @@ namespace Content.Shared.Decals
 
             public override int GetHashCode()
             {
-                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime);
+                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
             }
 
             public int CompareTo(DecalData other)
@@ -239,14 +246,22 @@ namespace Content.Shared.Decals
                 var zIndexComparison = ZIndex.CompareTo(other.ZIndex);
                 if (zIndexComparison != 0)
                     return zIndexComparison;
-                
-                // corvax-goob start
+
+                // CorvaxGoob-Start
                 var cleanableComparison = Cleanable.CompareTo(other.Cleanable);
                 if (cleanableComparison != 0)
                     return cleanableComparison;
 
-                return GlowTime.CompareTo(other.GlowTime);
-                // corvax-goob end
+                var glowsComparison = Glows.CompareTo(other.Glows);
+                if (glowsComparison != 0)
+                    return glowsComparison;
+
+                var glowTimeComparison = GlowTime.CompareTo(other.GlowTime);
+                if (glowTimeComparison != 0)
+                    return glowTimeComparison;
+
+                return GlowEnergy.CompareTo(other.GlowEnergy);
+                // CorvaxGoob-End
             }
         }
     }

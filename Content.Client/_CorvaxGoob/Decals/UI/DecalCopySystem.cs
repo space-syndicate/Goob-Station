@@ -37,9 +37,11 @@ public sealed class DecalCopySystem : EntitySystem
                     snap: _decalPlacementSystem.GetCurrentSnap(),
                     zIndex: decal.ZIndex,
                     cleanable: decal.Cleanable,
+                    // CorvaxGoob-Start
                     glows: decal.Glows,
                     glowTime: decal.GlowTime,
                     glowEnergy: decal.GlowEnergy
+                    // CorvaxGoob-End
                 );
 
                 if (decal.Color != null)

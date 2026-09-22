@@ -36,11 +36,11 @@ public sealed class DecalPlacementSystem : EntitySystem
     private bool _snap;
     private int _zIndex;
     private bool _cleanable;
-    // corvax-goob
+    // CorvaxGoob-Start
     private bool _glows;
     private float _glowTime;
     private float _glowEnergy;
-
+    // CorvaxGoob-End
     private bool _active;
     private bool _placing;
     private bool _erasing;
@@ -78,7 +78,7 @@ public sealed class DecalPlacementSystem : EntitySystem
 
                 if (!coords.IsValid(EntityManager))
                     return false;
-
+                // CorvaxGoob-Edit: Glowing-Decals
                 var decal = new Decal(coords.Position, _decalId, _decalColor, _decalAngle, _zIndex, _cleanable, _glows, _glowTime, _glowEnergy);
                 RaiseNetworkEvent(new RequestDecalPlacementEvent(decal, GetNetCoordinates(coords)));
 
@@ -143,10 +143,11 @@ public sealed class DecalPlacementSystem : EntitySystem
             Angle.FromDegrees(args.Rotation),
             args.ZIndex,
             args.Cleanable,
-	    // corvax-goob
+	    // CorvaxGoob-Start
             args.Glows,
             args.GlowDuration,
             args.GlowEnergy);
+        // CorvaxGoob-End
         RaiseNetworkEvent(new RequestDecalPlacementEvent(decal, GetNetCoordinates(args.Target)));
     }
 
@@ -168,8 +169,12 @@ public sealed class DecalPlacementSystem : EntitySystem
             Rotation = _decalAngle.Degrees,
             Snap = _snap,
             ZIndex = _zIndex,
+            // CorvaxGoob-Start
             Cleanable = _cleanable,
             Glows = _glows,
+            GlowDuration = _glowTime,
+            GlowEnergy = _glowEnergy,
+            // CorvaxGoob-End
         };
 
         var actionId = Spawn(DecalAction);
@@ -200,9 +205,11 @@ public sealed class DecalPlacementSystem : EntitySystem
         _snap = snap;
         _zIndex = zIndex;
         _cleanable = cleanable;
+        // CorvaxGoob-Start
         _glows = glows;
         _glowTime = glowTime;
         _glowEnergy = glowEnergy;
+        // CorvaxGoob-End
     }
 
     public void SetActive(bool active)

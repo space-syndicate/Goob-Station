@@ -37,11 +37,11 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
     private float _rotation;
     private bool _cleanable;
     private int _zIndex;
-    // corvax-goob start
+    // CorvaxGoob-Start
     private bool _glows;
     private float _glowTime;
     private float _glowEnergy;
-    // corvax-goob end
+    // CorvaxGoob-End
 
     private bool _auto;
 
@@ -139,7 +139,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             _zIndex = args.Value;
             UpdateDecalPlacementInfo();
         };
-	// corvax-goob start
+	// CorvaxGoob-Start
         EnableGlow.OnToggled += args =>
         {
             _glows = args.Pressed;
@@ -155,7 +155,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             _glowEnergy = args.Value / 100;
             UpdateDecalPlacementInfo();
         };
-	// corvax-goob end
+	// CorvaxGoob-End
     }
 
     private void OnColorPicked(Color color)

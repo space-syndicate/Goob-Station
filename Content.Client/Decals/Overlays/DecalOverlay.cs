@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Decals;
 using Robust.Client.GameObjects;
@@ -8,26 +9,30 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Decals.Overlays
 {
     public sealed class DecalOverlay : GridOverlay
     {
-        // corvax-goob
+        // CorvaxGoob-GlowDecals
         private static readonly ProtoId<ShaderPrototype> EmissiveShader = "Emissive";
 
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
-        private readonly IGameTiming _timing = default!; // corvax-goob
+        private readonly IGameTiming _timing = default!;  // CorvaxGoob-GlowDecals
 
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 
         private readonly List<(uint Id, Decal Decal)> _decals = new();
 
-        // corvax-goob
+        // CorvaxGoob-Start
         private readonly ShaderInstance _emissiveShader;
         private readonly Dictionary<uint, ShaderInstance> _glowingDecalsShaders = new();
+        private readonly HashSet<uint> _decalsIDs = new();
+        private readonly List<uint> _decalShadersToRemove = new();
+        // CorvaxGoob-End
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -37,7 +42,7 @@ namespace Content.Client.Decals.Overlays
             _sprites = sprites;
             _entManager = entManager;
             _prototypeManager = prototypeManager;
-            // corvax-goob
+            // CorvaxGoob-GlowDecals
             _emissiveShader = _prototypeManager.Index(EmissiveShader).InstanceUnique();
             _timing = IoCManager.Resolve<IGameTiming>();
         }
@@ -66,6 +71,8 @@ namespace Content.Client.Decals.Overlays
             var gridAABB = xformSystem.GetInvWorldMatrix(xform).TransformBox(args.WorldBounds.Enlarged(1f));
             var chunkEnumerator = new ChunkIndicesEnumerator(gridAABB, SharedDecalSystem.ChunkSize);
             _decals.Clear();
+            _decalsIDs.Clear(); // Corvax-Goob-GlowDecals
+            _decalShadersToRemove.Clear(); // Corvax-Goob-GlowDecals
 
             while (chunkEnumerator.MoveNext(out var index))
             {
@@ -78,6 +85,7 @@ namespace Content.Client.Decals.Overlays
                         continue;
 
                     _decals.Add((id, decal));
+                    _decalsIDs.Add(id); // Corvax-Goob-GlowDecals
                 }
             }
 
@@ -97,7 +105,21 @@ namespace Content.Client.Decals.Overlays
             var (_, worldRot, worldMatrix) = xformSystem.GetWorldPositionRotationMatrix(xform);
             handle.SetTransform(worldMatrix);
 
-            // corvax-goob
+            // CorvaxGoob-GlowDecals
+            foreach (var id in _glowingDecalsShaders.Keys)
+            {
+                if (!_decalsIDs.Contains(id))
+                {
+                    _decalShadersToRemove.Add(id);
+                }
+            }
+
+            foreach (var id in _decalShadersToRemove)
+            {
+                _glowingDecalsShaders.Remove(id);
+            }
+
+
             var defShader = handle.GetShader();
 
             foreach (var (decalId, decal) in _decals)
@@ -124,28 +146,44 @@ namespace Content.Client.Decals.Overlays
 
                 var angle = decal.Angle - cardinal;
 
-                //corvax-goob start
-                var timeRemained = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
-                if (decal.Glows && decal.GlowTime > 0)
+                // CorvaxGoob-Start
+                if (decal.Glows)
                 {
-                    var glowEnergy =  Math.Clamp(
-                        (float)(timeRemained / decal.GlowTime) * decal.GlowEnergy,
-                        0f,
-                        decal.GlowEnergy);
-                    if (timeRemained > 0.01)
+                    var drawGlow = true;
+                    float glowEnergy;
+
+                    if (decal.GlowUntil == TimeSpan.Zero)
                     {
-                        var decalShader = _glowingDecalsShaders.GetValueOrDefault(decalId, _emissiveShader.Duplicate());
-                        _glowingDecalsShaders.TryAdd(decalId, decalShader);
-                        handle.UseShader(decalShader);
-                        decalShader.SetParameter("glowEnergy", glowEnergy);
+                        glowEnergy = decal.GlowEnergy;
                     }
                     else
                     {
-                        _glowingDecalsShaders.Remove(decalId);
-                        decal.Glows = false;
+                        var remaining = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
+                        if (remaining <= 0.01)
+                        {
+                            _glowingDecalsShaders.Remove(decalId);
+                            drawGlow = false;
+                            glowEnergy = 0f;
+                        }
+                        else
+                        {
+                            glowEnergy = Math.Clamp(
+                                (float)(remaining / decal.GlowTime) * decal.GlowEnergy, 0f, decal.GlowEnergy);
+                        }
+                    }
+
+                    if (drawGlow)
+                    {
+                        if (!_glowingDecalsShaders.TryGetValue(decalId, out var decalShader))
+                        {
+                            decalShader = _emissiveShader.Duplicate();
+                            _glowingDecalsShaders[decalId] = decalShader;
+                        }
+                        handle.UseShader(decalShader);
+                        decalShader.SetParameter("glowEnergy", glowEnergy);
                     }
                 }
-                //corvax-goob end
+                // Corvax-Goob-End
 
                 if (angle.Equals(Angle.Zero))
                     handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Color);

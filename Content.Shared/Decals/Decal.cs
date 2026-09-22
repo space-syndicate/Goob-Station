@@ -17,7 +17,7 @@ namespace Content.Shared.Decals
         [DataField("angle")] public  Angle Angle = Angle.Zero;
         [DataField("zIndex")] public  int ZIndex;
         [DataField("cleanable")] public  bool Cleanable;
-        // corvax-goob start
+        //Corvax-Goob-Start
         [DataField("glows")] public  bool Glows;
         /// <summary>
         /// How long the decal should glow in seconds? For infinity set -1
@@ -32,7 +32,7 @@ namespace Content.Shared.Decals
         /// How strong should be the glow when decal was created? normalized
         /// </summary>
         [DataField("glowEnergy")] public float GlowEnergy = 0.25f;
-        //corvax-goob end
+        //Corvax-Goob-End
 
         public Decal() {}
 
@@ -56,10 +56,10 @@ namespace Content.Shared.Decals
         public Decal WithRotation(Angle angle) => new(Coordinates, Id, Color, angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
         public Decal WithZIndex(int zIndex) => new(Coordinates, Id, Color, Angle, zIndex, Cleanable, Glows, GlowTime, GlowEnergy);
         public Decal WithCleanable(bool cleanable) => new(Coordinates, Id, Color, Angle, ZIndex, cleanable, Glows, GlowTime, GlowEnergy);
-        // corvax-goob start
-	public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
+        // CorvaxGoob-Start
+	    public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
         public Decal WithGlowTime(float glowTime) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, glowTime, GlowEnergy);
         public Decal WithGlowEnergy(float glowEnergy) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, glowEnergy);
-        // corvax-goob end
+        // CorvaxGoob-End
     }
 }

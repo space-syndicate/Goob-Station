@@ -104,6 +104,27 @@
   id: ContrabandDetectorCircuitboard
 
 - type: Tag
+  id: CrayonBlueGlowing # ItemMapper: CrayonBox
+
+- type: Tag
+  id: CrayonGreenGlowing # ItemMapper: CrayonBox
+
+- type: Tag
+  id: CrayonOrangeGlowing # ItemMapper: CrayonBox
+
+- type: Tag
+  id: CrayonPurpleGlowing #  ItemMapper: CrayonBox
+
+- type: Tag
+  id: CrayonRedGlowing # ItemMapper: CrayonBox
+
+- type: Tag
+  id: CrayonWhiteGlowing # ItemMapper: CrayonBox
+
+- type: Tag
+  id: CrayonYellowGlowing #  ItemMapper: CrayonBox
+
+- type: Tag
   id: CursedAnimalMask
 
 - type: Tag

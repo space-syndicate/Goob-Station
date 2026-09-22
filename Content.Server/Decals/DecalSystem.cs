@@ -295,7 +295,7 @@ namespace Content.Server.Decals
             Angle? rotation = null,
             int zIndex = 0,
             bool cleanable = false,
-            //corvax-goob
+            // CorvaxGoob-GlowDecals
             bool glows = false,
             float glowTime = 1200,
             float glowEnergy = 0.3f
@@ -324,6 +324,10 @@ namespace Content.Server.Decals
             if (!TryComp(gridId, out DecalGridComponent? comp))
                 return false;
 
+            //CorvaxGoob-GlowDecals
+            if (decal.Glows)
+                decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
+
             decalId = comp.ChunkCollection.NextDecalId++;
             var chunkIndices = GetChunkIndices(decal.Coordinates);
             var chunk = comp.ChunkCollection.ChunkCollection.GetOrNew(chunkIndices);
@@ -335,10 +339,6 @@ namespace Content.Server.Decals
             var addedEv = new DecalAddedEvent(gridId.Value, decalId, decal);
             RaiseLocalEvent(gridId.Value, ref addedEv);
             // CorvaxGoob-End-Footprint-Refactoring
-
-            // corvax-goob
-            if (decal.Glows)
-                decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
 
             return true;
         }
@@ -448,13 +448,13 @@ namespace Content.Server.Decals
 
         public bool SetDecalCleanable(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithCleanable(value), comp);
-	// corvax-goob start
+	// CorvaxGoob-Start
         public bool SetDecalGlows(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithGlows(value), comp);
 
         public bool SetDecalGlowEnergy(EntityUid gridId, uint decalId, float value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithGlowEnergy(value), comp);
-	// corvax-goob end
+	// CorvaxGoob-End
 
         public bool SetDecalId(EntityUid gridId, uint decalId, string id, DecalGridComponent? comp = null)
         {
