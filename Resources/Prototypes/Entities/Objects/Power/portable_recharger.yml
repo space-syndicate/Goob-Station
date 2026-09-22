@@ -21,6 +21,7 @@
     quickEquip: false
     slots:
     - back
+    - suitStorage # CorvaxGoob
   - type: Charger
     slotId: charger_slot
     portable: true
@@ -35,10 +36,11 @@
   - type: ItemSlots
     slots:
       charger_slot:
-        ejectOnInteract: true
+        # ejectOnInteract: true # CorvaxGoob
         whitelist:
           components:
           - BatteryAmmoProvider
         blacklist: # Goobstation
           tags:
           - WizardWand
+          - CombatMech # CorvaxGoob
