@@ -171,7 +171,8 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             return;
 
         var color = _useColor ? _color : Color.White;
-        _decalPlacementSystem.UpdateDecalInfo(_selected, color, _rotation, _snap, _zIndex, _cleanable, _glows, _glowTime, _glowEnergy);
+        _decalPlacementSystem.UpdateDecalInfo(_selected, color, _rotation, _snap, _zIndex, _cleanable,
+            _glows, _glowTime, _glowEnergy); // CorvaxGoob-Edit: GlowingDecals
     }
 
     private void RefreshList()

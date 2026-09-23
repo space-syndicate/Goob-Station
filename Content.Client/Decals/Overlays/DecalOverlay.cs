@@ -29,9 +29,8 @@ namespace Content.Client.Decals.Overlays
 
         // CorvaxGoob-Start
         private readonly ShaderInstance _emissiveShader;
-        private readonly Dictionary<uint, ShaderInstance> _glowingDecalsShaders = new();
+        private readonly Dictionary<(EntityUid Grid, uint Id), ShaderInstance> _glowingDecalsShaders = new();
         private readonly HashSet<uint> _decalsIDs = new();
-        private readonly List<uint> _decalShadersToRemove = new();
         // CorvaxGoob-End
 
         public DecalOverlay(
@@ -71,8 +70,7 @@ namespace Content.Client.Decals.Overlays
             var gridAABB = xformSystem.GetInvWorldMatrix(xform).TransformBox(args.WorldBounds.Enlarged(1f));
             var chunkEnumerator = new ChunkIndicesEnumerator(gridAABB, SharedDecalSystem.ChunkSize);
             _decals.Clear();
-            _decalsIDs.Clear(); // Corvax-Goob-GlowDecals
-            _decalShadersToRemove.Clear(); // Corvax-Goob-GlowDecals
+            _decalsIDs.Clear(); // CorvaxGoob-GlowDecals
 
             while (chunkEnumerator.MoveNext(out var index))
             {
@@ -85,9 +83,17 @@ namespace Content.Client.Decals.Overlays
                         continue;
 
                     _decals.Add((id, decal));
-                    _decalsIDs.Add(id); // Corvax-Goob-GlowDecals
+                    _decalsIDs.Add(id); // CorvaxGoob-GlowDecals
                 }
             }
+
+            // CorvaxGoob-Start
+            foreach (var key in _glowingDecalsShaders.Keys)
+            {
+                if (key.Grid == owner && !_decalsIDs.Contains(key.Id))
+                    _glowingDecalsShaders.Remove(key);
+            }
+            // CorvaxGoob-End
 
             if (_decals.Count == 0)
                 return;
@@ -106,20 +112,6 @@ namespace Content.Client.Decals.Overlays
             handle.SetTransform(worldMatrix);
 
             // CorvaxGoob-GlowDecals
-            foreach (var id in _glowingDecalsShaders.Keys)
-            {
-                if (!_decalsIDs.Contains(id))
-                {
-                    _decalShadersToRemove.Add(id);
-                }
-            }
-
-            foreach (var id in _decalShadersToRemove)
-            {
-                _glowingDecalsShaders.Remove(id);
-            }
-
-
             var defShader = handle.GetShader();
 
             foreach (var (decalId, decal) in _decals)
@@ -161,7 +153,7 @@ namespace Content.Client.Decals.Overlays
                         var remaining = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
                         if (remaining <= 0.01)
                         {
-                            _glowingDecalsShaders.Remove(decalId);
+                            _glowingDecalsShaders.Remove((owner, decalId));
                             drawGlow = false;
                             glowEnergy = 0f;
                         }
@@ -174,10 +166,10 @@ namespace Content.Client.Decals.Overlays
 
                     if (drawGlow)
                     {
-                        if (!_glowingDecalsShaders.TryGetValue(decalId, out var decalShader))
+                        if (!_glowingDecalsShaders.TryGetValue((owner, decalId), out var decalShader))
                         {
                             decalShader = _emissiveShader.Duplicate();
-                            _glowingDecalsShaders[decalId] = decalShader;
+                            _glowingDecalsShaders[(owner, decalId)] = decalShader;
                         }
                         handle.UseShader(decalShader);
                         decalShader.SetParameter("glowEnergy", glowEnergy);

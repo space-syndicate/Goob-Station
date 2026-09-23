@@ -20,7 +20,7 @@ namespace Content.Shared.Decals
         //Corvax-Goob-Start
         [DataField("glows")] public  bool Glows;
         /// <summary>
-        /// How long the decal should glow in seconds? For infinity set -1
+        /// How long the decal should glow in seconds? For infinity set <=0
         /// </summary>
         [DataField]
         public float GlowTime = 1200;
@@ -60,6 +60,12 @@ namespace Content.Shared.Decals
 	    public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
         public Decal WithGlowTime(float glowTime) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, glowTime, GlowEnergy);
         public Decal WithGlowEnergy(float glowEnergy) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, glowEnergy);
+        public Decal WithGlowUntil(TimeSpan glowUntil)
+        {
+            var decal = new Decal(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
+            decal.GlowUntil = glowUntil;
+            return decal;
+        }
         // CorvaxGoob-End
     }
 }

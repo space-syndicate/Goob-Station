@@ -295,11 +295,10 @@ namespace Content.Server.Decals
             Angle? rotation = null,
             int zIndex = 0,
             bool cleanable = false,
-            // CorvaxGoob-GlowDecals
             bool glows = false,
             float glowTime = 1200,
             float glowEnergy = 0.3f
-            )
+            ) // CorvaxGoob-Edit: GlowingDecals
         {
             rotation ??= Angle.Zero;
             var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows, glowTime, glowEnergy);
@@ -325,7 +324,7 @@ namespace Content.Server.Decals
                 return false;
 
             //CorvaxGoob-GlowDecals
-            if (decal.Glows)
+            if (decal.Glows && decal.GlowTime > 0)
                 decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
 
             decalId = comp.ChunkCollection.NextDecalId++;
