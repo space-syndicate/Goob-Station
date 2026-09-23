@@ -10,6 +10,6 @@
   recipeUnlocks:
   - DiodeDiscElectroDisruptive
   - DiodeDiscElectroBehavioural
-  position: -1,-2
+  position: 1,-3 # CorvaxGoob changes
   technologyPrerequisites:
   - PowerGeneration
