@@ -295014,8 +295014,6 @@ entities:
       pos: 97.5,-88.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 42521
   - uid: 42510
