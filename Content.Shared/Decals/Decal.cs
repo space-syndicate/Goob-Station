@@ -2,7 +2,7 @@
 
 using System.Numerics;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; // CorvaxGoob-Edit: GlowingDecals
 
 namespace Content.Shared.Decals
 {
@@ -17,7 +17,7 @@ namespace Content.Shared.Decals
         [DataField("angle")] public  Angle Angle = Angle.Zero;
         [DataField("zIndex")] public  int ZIndex;
         [DataField("cleanable")] public  bool Cleanable;
-        //Corvax-Goob-Start
+        //CorvaxGoob-Start
         [DataField("glows")] public  bool Glows;
         /// <summary>
         /// How long the decal should glow in seconds? For infinity set <=0
@@ -32,7 +32,7 @@ namespace Content.Shared.Decals
         /// How strong should be the glow when decal was created? normalized
         /// </summary>
         [DataField("glowEnergy")] public float GlowEnergy = 0.25f;
-        //Corvax-Goob-End
+        //CorvaxGoob-End
 
         public Decal() {}
 
@@ -60,12 +60,7 @@ namespace Content.Shared.Decals
 	    public Decal WithGlows(bool glows) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, glows, GlowTime, GlowEnergy);
         public Decal WithGlowTime(float glowTime) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, glowTime, GlowEnergy);
         public Decal WithGlowEnergy(float glowEnergy) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, glowEnergy);
-        public Decal WithGlowUntil(TimeSpan glowUntil)
-        {
-            var decal = new Decal(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy);
-            decal.GlowUntil = glowUntil;
-            return decal;
-        }
+        public Decal WithGlowUntil(TimeSpan glowUntil) => new(Coordinates, Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy) {GlowUntil =  glowUntil};
         // CorvaxGoob-End
     }
 }

@@ -37,11 +37,9 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
     private float _rotation;
     private bool _cleanable;
     private int _zIndex;
-    // CorvaxGoob-Start
     private bool _glows;
     private float _glowTime;
-    private float _glowEnergy;
-    // CorvaxGoob-End
+    private float _glowEnergy;// CorvaxGoob-GlowingDecals
 
     private bool _auto;
 

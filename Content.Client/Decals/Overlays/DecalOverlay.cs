@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
 using System.Numerics;
 using Content.Shared.Decals;
 using Robust.Client.GameObjects;
@@ -8,20 +7,18 @@ using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
+using Robust.Shared.Timing;  // CorvaxGoob-GlowingDecals
 
 namespace Content.Client.Decals.Overlays
 {
     public sealed class DecalOverlay : GridOverlay
     {
-        // CorvaxGoob-GlowDecals
-        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "Emissive";
+        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "Emissive"; // CorvaxGoob-GlowingDecals
 
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
-        private readonly IGameTiming _timing = default!;  // CorvaxGoob-GlowDecals
+        private readonly IGameTiming _timing = default!;  // CorvaxGoob-GlowingDecals
 
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 
@@ -41,9 +38,8 @@ namespace Content.Client.Decals.Overlays
             _sprites = sprites;
             _entManager = entManager;
             _prototypeManager = prototypeManager;
-            // CorvaxGoob-GlowDecals
             _emissiveShader = _prototypeManager.Index(EmissiveShader).InstanceUnique();
-            _timing = IoCManager.Resolve<IGameTiming>();
+            _timing = IoCManager.Resolve<IGameTiming>(); // CorvaxGoob-GlowingDecals
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -70,7 +66,7 @@ namespace Content.Client.Decals.Overlays
             var gridAABB = xformSystem.GetInvWorldMatrix(xform).TransformBox(args.WorldBounds.Enlarged(1f));
             var chunkEnumerator = new ChunkIndicesEnumerator(gridAABB, SharedDecalSystem.ChunkSize);
             _decals.Clear();
-            _decalsIDs.Clear(); // CorvaxGoob-GlowDecals
+            _decalsIDs.Clear(); // CorvaxGoob-GlowingDecals
 
             while (chunkEnumerator.MoveNext(out var index))
             {
@@ -83,7 +79,7 @@ namespace Content.Client.Decals.Overlays
                         continue;
 
                     _decals.Add((id, decal));
-                    _decalsIDs.Add(id); // CorvaxGoob-GlowDecals
+                    _decalsIDs.Add(id); // CorvaxGoob-GlowingDecals
                 }
             }
 
@@ -111,8 +107,7 @@ namespace Content.Client.Decals.Overlays
             var (_, worldRot, worldMatrix) = xformSystem.GetWorldPositionRotationMatrix(xform);
             handle.SetTransform(worldMatrix);
 
-            // CorvaxGoob-GlowDecals
-            var defShader = handle.GetShader();
+            var defShader = handle.GetShader(); // CorvaxGoob-GlowingDecals
 
             foreach (var (decalId, decal) in _decals)
             {
@@ -182,7 +177,7 @@ namespace Content.Client.Decals.Overlays
                 else
                     handle.DrawTexture(cache.Texture, decal.Coordinates, angle, decal.Color);
 
-                handle.UseShader(defShader);
+                handle.UseShader(defShader); // CorvaxGoob-GlowingDecals
             }
 
             handle.SetTransform(Matrix3x2.Identity);

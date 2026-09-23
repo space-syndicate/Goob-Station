@@ -31,8 +31,7 @@ public sealed class DecalPlacementOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        // CorvaxGoob-Edit: Glowing-Decals
-        var (decal, snap, rotation, color, _, _, _) = _placement.GetActiveDecal();
+        var (decal, snap, rotation, color, _, _, _) = _placement.GetActiveDecal();  // CorvaxGoob-Edit: Glowing-Decals
 
         if (decal == null)
             return;

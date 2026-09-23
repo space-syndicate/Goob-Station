@@ -323,7 +323,7 @@ namespace Content.Server.Decals
             if (!TryComp(gridId, out DecalGridComponent? comp))
                 return false;
 
-            //CorvaxGoob-GlowDecals
+            //CorvaxGoob-GlowingDecals
             if (decal.Glows && decal.GlowTime > 0)
                 decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
 
@@ -449,7 +449,8 @@ namespace Content.Server.Decals
             => ModifyDecal(gridId, decalId, x => x.WithCleanable(value), comp);
 	// CorvaxGoob-Start
         public bool SetDecalGlows(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
-            => ModifyDecal(gridId, decalId, x => x.WithGlows(value), comp);
+            => ModifyDecal(gridId, decalId, x => x.WithGlows(value).WithGlowUntil(
+                value && x.GlowTime > 0 ? _timing.CurTime + TimeSpan.FromSeconds(x.GlowTime) : TimeSpan.Zero), comp);
 
         public bool SetDecalGlowEnergy(EntityUid gridId, uint decalId, float value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithGlowEnergy(value), comp);

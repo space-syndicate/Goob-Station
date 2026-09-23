@@ -25,7 +25,7 @@ Possible modes are:\n
 - clean <cleanable>
 - glows <glows>\n
 - glowEnergy <glowEnergy>
-"; // "glows" part, CorvaxGoob-GlowDecals
+"; // "glows" part, CorvaxGoob-GlowingDecals
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length < 4)

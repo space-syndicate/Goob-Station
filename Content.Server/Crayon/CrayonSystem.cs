@@ -78,8 +78,7 @@ public sealed class CrayonSystem : SharedCrayonSystem
                 out _,
                 component.Color,
                 cleanable: true,
-                // corvax-goob
-                glows: component.Glows))
+                glows: component.Glows)) // CorvaxGoob-Edit: GlowingDecals
             return;
 
         if (component.UseSound != null)

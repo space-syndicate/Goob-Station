@@ -32,11 +32,9 @@ public sealed partial class MappingScreen : InGameScreen
     private bool _decalSnap;
     private int _decalZIndex;
     private bool _decalCleanable;
-    // corvax-goob start
     private bool _decalGlows;
     private float _decalGlowTime;
-    private float _decalGlowEnergy;
-    // corvax-goob end
+    private float _decalGlowEnergy; // CorvaxGoob-GlowingDecals
 
     private bool _decalAuto;
 
@@ -95,7 +93,7 @@ public sealed partial class MappingScreen : InGameScreen
             _decalZIndex = args.Value;
             UpdateDecal();
         };
-    	// corvax-goob start
+    	// CorvaxGoob-Start
         DecalEnableGlow.OnToggled += args =>
         {
             _decalGlows = args.Pressed;
@@ -111,7 +109,7 @@ public sealed partial class MappingScreen : InGameScreen
             _decalGlowEnergy = args.Value / 100;
             UpdateDecal();
         };
-	// corvax-goob end
+	    // CorvaxGoob-End
         for (var i = 0; i < EntitySpawnWindow.InitOpts.Length; i++)
         {
             EntityPlacementMode.AddItem(EntitySpawnWindow.InitOpts[i], i);
@@ -170,7 +168,7 @@ public sealed partial class MappingScreen : InGameScreen
         if (_id is not { } id)
             return;
 
-        DecalSystem.UpdateDecalInfo(id, _decalColor, _decalRotation, _decalSnap, _decalZIndex, _decalCleanable, _decalGlows, _decalGlowTime, _decalGlowEnergy);
+        DecalSystem.UpdateDecalInfo(id, _decalColor, _decalRotation, _decalSnap, _decalZIndex, _decalCleanable, _decalGlows, _decalGlowTime, _decalGlowEnergy); // CorvaxGoob-Edit: GlowingDecals
     }
 
     public void SelectDecal(string decalId)

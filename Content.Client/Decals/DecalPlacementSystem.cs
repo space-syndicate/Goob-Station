@@ -36,11 +36,9 @@ public sealed class DecalPlacementSystem : EntitySystem
     private bool _snap;
     private int _zIndex;
     private bool _cleanable;
-    // CorvaxGoob-Start
     private bool _glows;
     private float _glowTime;
-    private float _glowEnergy;
-    // CorvaxGoob-End
+    private float _glowEnergy; // CorvaxGoob-Edit: GlowingDecals
     private bool _active;
     private bool _placing;
     private bool _erasing;
@@ -50,7 +48,7 @@ public sealed class DecalPlacementSystem : EntitySystem
     {
         return _active && _decalId != null ?
             (_protoMan.Index<DecalPrototype>(_decalId), _snap, _decalAngle, _decalColor, _glows, _glowDuration: _glowTime, _glowEnergy) : // CorvaxGoob-Edit: GlowingDecals
-            (null, false, Angle.Zero, Color.Wheat, false, 0, 0); // CorvaxGoob-Edit: GlowingDecals
+            (null, false, Angle.Zero, Color.Wheat, false, 0, 0);
     }
 
     public override void Initialize()
@@ -169,12 +167,10 @@ public sealed class DecalPlacementSystem : EntitySystem
             Rotation = _decalAngle.Degrees,
             Snap = _snap,
             ZIndex = _zIndex,
-            // CorvaxGoob-Start
             Cleanable = _cleanable,
             Glows = _glows,
             GlowDuration = _glowTime,
-            GlowEnergy = _glowEnergy,
-            // CorvaxGoob-End
+            GlowEnergy = _glowEnergy, // CorvaxGoob-Edit: GlowingDecals
         };
 
         var actionId = Spawn(DecalAction);
@@ -208,8 +204,7 @@ public sealed class DecalPlacementSystem : EntitySystem
         _cleanable = cleanable;
         _glows = glows;
         _glowTime = glowTime;
-        _glowEnergy = glowEnergy;
-        // CorvaxGoob-Edit: GlowingDecals
+        _glowEnergy = glowEnergy; // CorvaxGoob-Edit: GlowingDecals
     }
 
     public void SetActive(bool active)

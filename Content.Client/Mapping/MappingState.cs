@@ -572,7 +572,7 @@ public sealed class MappingState : GameplayStateBase
                 _placement.Clear();
 
                 _decal.SetActive(true);
-                _decal.UpdateDecalInfo(decal.ID, Color.White, 0, true, 0, false, false, 0, 0);
+                _decal.UpdateDecalInfo(decal.ID, Color.White, 0, true, 0, false, false, 0, 0); // CorvaxGoob-Edit: GlowingDecals
                 Screen.DecalContainer.Visible = true;
                 break;
             case ContentTileDefinition tile:
