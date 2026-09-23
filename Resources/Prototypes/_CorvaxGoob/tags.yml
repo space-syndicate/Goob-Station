@@ -34,6 +34,9 @@
   id: BoneSetter
 
 - type: Tag
+  id: Bola
+
+- type: Tag
   id: CarcTile
 
 - type: Tag
