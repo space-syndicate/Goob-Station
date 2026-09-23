@@ -323,7 +323,7 @@ namespace Content.Server.Decals
             if (!TryComp(gridId, out DecalGridComponent? comp))
                 return false;
 
-            //CorvaxGoob-GlowingDecals
+            // CorvaxGoob-GlowingDecals
             if (decal.Glows && decal.GlowTime > 0)
                 decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
 

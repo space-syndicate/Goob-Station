@@ -55,7 +55,7 @@ namespace Content.Shared.Decals
 
                         var chunkOrigin = SharedMapSystem.GetChunkIndices(coords, SharedDecalSystem.ChunkSize);
                         var chunk = dictionary.GetOrNew(chunkOrigin);
-                        var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable, data.Glows, data.GlowTime, data.GlowEnergy);// CorvaxGoob-Edit: Glowing-Decals
+                        var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable, data.Glows, data.GlowTime, data.GlowEnergy); // CorvaxGoob-Edit: GlowingDecals
 
                         nextIndex = Math.Max(nextIndex, dUid);
 
@@ -173,7 +173,7 @@ namespace Content.Shared.Decals
             [DataField("glowEnergy")]
             public float GlowEnergy { get; init; }
             // CorvaxGoob-End
-            // CorvaxGoob-Edit: Glowing-Decals
+            // CorvaxGoob-Edit: GlowingDecals
             public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
             {
                 Id = id;
@@ -217,7 +217,7 @@ namespace Content.Shared.Decals
 
             public override int GetHashCode()
             {
-                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy); // CorvaxGoob-Edit: Glowing-Decals
+                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy); // CorvaxGoob-Edit: GlowingDecals
             }
 
             public int CompareTo(DecalData other)

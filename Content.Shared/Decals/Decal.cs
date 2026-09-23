@@ -36,7 +36,7 @@ namespace Content.Shared.Decals
 
         public Decal() {}
 
-        public Decal(Vector2 coordinates, string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
+        public Decal(Vector2 coordinates, string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)  // CorvaxGoob-Edit: GlowingDecals
         {
             Coordinates = coordinates;
             Id = id;
@@ -44,7 +44,7 @@ namespace Content.Shared.Decals
             Angle = angle;
             ZIndex = zIndex;
             Cleanable = cleanable;
-            // corvax-goob
+            // CorvaxGoob-GlowingDecals
             Glows = glows;
             GlowTime = glowTime;
             GlowEnergy = glowEnergy;

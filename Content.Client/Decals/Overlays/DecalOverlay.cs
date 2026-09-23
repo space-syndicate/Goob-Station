@@ -109,7 +109,7 @@ namespace Content.Client.Decals.Overlays
 
             var defShader = handle.GetShader(); // CorvaxGoob-GlowingDecals
 
-            foreach (var (decalId, decal) in _decals)
+            foreach (var (decalId, decal) in _decals)  // CorvaxGoob-Edit: GlowingDecals
             {
                 if (!_cachedTextures.TryGetValue(decal.Id, out var cache))
                 {

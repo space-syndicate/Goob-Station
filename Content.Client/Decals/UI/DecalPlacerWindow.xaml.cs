@@ -39,7 +39,7 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
     private int _zIndex;
     private bool _glows;
     private float _glowTime;
-    private float _glowEnergy;// CorvaxGoob-GlowingDecals
+    private float _glowEnergy; // CorvaxGoob-GlowingDecals
 
     private bool _auto;
 
