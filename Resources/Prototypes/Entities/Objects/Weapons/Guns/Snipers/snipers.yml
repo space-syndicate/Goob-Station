@@ -21,6 +21,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    fireOnDropChance: 0.9 # CorvaxGoob-FireOnDrop
     fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
