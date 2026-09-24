@@ -277,7 +277,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 OnCapoeiraAttackPerformed(ent, ref args);
                 break;
             case MartialArtsForms.Mimejutsu: // CorvaxGoob
-                OnMimejustuAttackPerformed(ent, ref args);
+                OnMimejutsuAttackPerformed(ent, ref args);
                 break;
         }
     }

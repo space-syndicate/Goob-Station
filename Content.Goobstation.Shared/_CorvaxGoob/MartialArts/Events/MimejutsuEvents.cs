@@ -13,3 +13,6 @@ public sealed partial class MimejutsuSilencerPerformedEvent : EntityEventArgs;
 
 [Serializable, NetSerializable, DataDefinition]
 public sealed partial class MimejutsuSilentPalmPerformedEvent : EntityEventArgs;
+
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class MimejutsuSilentPunchPerformedEvent : EntityEventArgs;
