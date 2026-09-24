@@ -37,4 +37,4 @@ action-speech-spell-tile-toggle = ПР'КЛ'ТЬЕ ВМ'А!!!
 action-speech-spell-curse-of-byond = ПРОКЛЯТЬЕ БЬЙОНДА!!!
 action-speech-spell-rathen = АРС НАТХ!!!
 action-speech-spell-cluwne-goob = ВЛОНК ЕГ'НЕВЕР
-action-speech-spell-charge-goob = Д'РИС Т'ЕЛь
+action-speech-spell-charge-goob = Д'РИС Т'ЕЛЬ
