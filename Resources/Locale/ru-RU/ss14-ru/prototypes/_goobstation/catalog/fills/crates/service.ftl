@@ -12,3 +12,5 @@ ent-CrateRadioStationAds = ящик с рекламой
     .desc = Ящик, содержащий 6 эксклюзивных рекламных объявлений. Разве капитализм не прекрасен?
 ent-CrateRadioStationVinyls = ящик с виниловыми пластинками
     .desc = Ящик, содержащий 12 виниловых пластинок, чтобы вы НИКОГДА не проигрывали одну и ту же музыку дважды. Поставляются в пакетиках!
+ent-CrateCargoWalkieTalkie = handheld radio crate
+    .desc = Contains 5 handheld radios.

@@ -38,6 +38,7 @@ loadout-group-passenger-neck = Пассажир, шея
 loadout-group-bartender-head = Бармен, голова
 loadout-group-bartender-jumpsuit = Бармен, комбинезон
 loadout-group-bartender-outerclothing = Бармен, верхняя одежда
+loadout-group-bartender-shaker = Бармен, шейкер
 loadout-group-chef-head = Шеф-повар, голова
 loadout-group-chef-mask = Шеф-повар, маска
 loadout-group-chef-jumpsuit = Шеф-повар, комбинезон
@@ -49,6 +50,7 @@ loadout-group-chaplain-head = Священник, голова
 loadout-group-chaplain-mask = Священник, маска
 loadout-group-chaplain-jumpsuit = Священник, комбинезон
 loadout-group-chaplain-outerclothing = Священник, верхняя одежда
+loadout-group-chaplain-bible = Священная книга
 loadout-group-chaplain-neck = Священник, шея
 loadout-group-janitor-head = Уборщик, голова
 loadout-group-janitor-jumpsuit = Уборщик, комбинезон
@@ -83,6 +85,7 @@ loadout-group-cargo-technician-jumpsuit = Грузчик, комбинезон
 loadout-group-cargo-technician-backpack = Грузчик, рюкзак
 loadout-group-cargo-technician-outerclothing = Грузчик, верхняя одежда
 loadout-group-cargo-technician-shoes = Грузчик, обувь
+loadout-group-cargo-technician-id = Грузчик, ID
 loadout-group-salvage-specialist-backpack = Утилизатор, рюкзак
 loadout-group-salvage-specialist-outerclothing = Утилизатор, верхняя одежда
 loadout-group-salvage-specialist-shoes = Утилизатор, обувь
@@ -173,6 +176,5 @@ loadout-group-jobtrinkets = Безделушки должности
 
 loadout-group-survival-military = См. строку 14, никто не увидит это, так что :3
 
-loadout-group-chaplain-bible = Священная книга
 
-loadout-group-cargo-technician-id = Грузчик, ID
+

@@ -64,3 +64,6 @@ ent-CurtainsWhiteOpen = { ent-CurtainsWhite }
 ent-CurtainsSkyBlue = { ent-BaseCurtains }
     .desc = { ent-BaseCurtains.desc }
     .suffix = Красивые небесные
+ent-CurtainsSkyBlueOpen = { ent-CurtainsSkyBlue }
+    .desc = { ent-CurtainsSkyBlue.desc }
+    .suffix = Open, Fancy sky blue

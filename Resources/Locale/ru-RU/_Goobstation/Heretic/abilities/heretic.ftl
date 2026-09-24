@@ -18,6 +18,7 @@ heretic-ability-fail-tile-occupied = Плитка занята!
 heretic-ability-fail-rust-stage-low = У вас недостаточно силы, чтобы проржавить эту поверхность!
 heretic-ability-fail-target-ghoul = Цель уже является гулем!
 heretic-ability-fail-target-no-mind = Цель не имеет души!
+heretic-ability-lose-focus-shadow-cloak = Когда вы теряете сосредоточенность, вас вытягивает из теней!
 heretic-cosmic-rune-fail-star-mark = Заблокировано звездной меткой!
 heretic-cosmic-rune-fail-unlinked = Нет связанной руны!
 heretic-cosmic-rune-fail-range = Слишком далеко!

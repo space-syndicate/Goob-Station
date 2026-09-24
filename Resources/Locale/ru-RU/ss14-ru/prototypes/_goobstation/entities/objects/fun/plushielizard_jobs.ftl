@@ -1,0 +1,12 @@
+ent-PlushieLizardJobBlueshieldOfficer = blueshield officer lizard plushie
+    .desc = An adorable stuffed toy that resembles a lizardperson as a blueshield officer. One smack from this plushie is sure to ward off any evildoers.
+ent-PlushieLizardJobNanotrasenRepresentative = nanotrasen representative lizard plushie
+    .desc = An adorable stuffed toy that resembles a lizardperson as a nanotrasen representative. It seems to always be judgmental of you.
+ent-PlushieLizardJobShaftMiner = shaft miner lizard plushie
+    .desc = An adorable stuffed toy that resembles a lizardperson as a shaft miner. Smells faintly of ash. Many parts have been mended back after being set on fire.
+ent-PlushieLizardJobBrigmedic = brigmedic lizard plushie
+    .desc = An adorable stuffed toy that resembles a lizardperson as a brigmedic. Smells faintly of gunpowder and atropine.
+ent-PlushieLizardJobCentCommOfficial = centcomm official lizard plushie
+    .desc = An adorable stuffed toy that resembles a lizardperson as a centcomm officer. Wears its hat with pride. Or whatever emotion plushies feel.
+ent-PlushieLizardJobVirologist = virologist lizard plushie
+    .desc = An adorable stuffed toy that resembles a lizardperson as a virologist. It looks to be in pristine condition.

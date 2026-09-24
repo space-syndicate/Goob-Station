@@ -5,3 +5,4 @@ tiles-lattice-diagonal-SW = диагональная решётка ЮЗ
 tiles-lattice-diagonal-SE = диагональная решётка ЮВ
 tiles-flockzone-floor-steel = стальная волокнистая плита
 tiles-flockzone-floor-diagonal = диагональная волокнистая плита
+tiles-canvas-floor = холщовый пол

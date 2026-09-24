@@ -18,3 +18,7 @@ ent-ActionSlasherMassacre = РЕЗНЯ!
     .desc = Запускает цепочку жестоких атак. Чем больше ударов вы нанесёте по своей жертве, тем больше будет становится урон. После тринадцатого удара жертва будет обезглавлена.
 ent-ActionSlasherSoulSteal = Похищение души
     .desc = Похищает душу живой или мёртвой жертвы, усиливая урон вашего мачете, а также повышая защиту ваших элементов одежды. Чтобы похитить душу жертва должна быть без сил, висеть на крюке, либо же умереть. Души живых людей заметно эффективнее.
+ent-ActionSlasherNightVision = Enhanced Vision
+    .desc = You see through the darkness.
+ent-ActionSlasherRelentlessGrab = Relentless Grab
+    .desc = Your next melee attack will grab your target.

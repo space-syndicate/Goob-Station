@@ -83,3 +83,5 @@ ent-WeaponLaserGunXenoborg = лазерная винтовка ксенобор�
 
 ent-WeaponLaserCannonXenoborg = тяжёлая лазерная пушка ксеноборга
     .desc = { ent-WeaponLaserCannon.desc }
+ent-BaseLaserRifle = { ent-BaseWeaponBattery }
+    .desc = { ent-BaseWeaponBattery.desc }

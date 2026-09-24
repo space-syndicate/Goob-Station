@@ -120,3 +120,7 @@ ent-SurgeryLobotomize = Лоботомия
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryMendBrainTissue = Восстановить мозговую ткань
     .desc = { ent-SurgeryBase.desc }
+ent-SurgeryExtractForeignBody = Extract Foreign Body
+    .desc = { ent-BasePartSurgery.desc }
+ent-SurgeryRepairBrainDamage = Repair Brain Damage
+    .desc = { ent-BasePartSurgery.desc }

@@ -31,3 +31,6 @@ ent-VirologyServerMachineCircuitboard = сервер вирусологии (м�
 ent-InteractorCircuitboard = исполнитель (машинная плата)
     .desc = Печатная плата исполнителя.
     .suffix = { ent-BaseMachineCircuitboard.suffix }
+ent-ServiceEnergyChemMachineCircuitboard = energy food synthesizer machine board
+    .desc = A machine printed circuit board for a energy food synthesizer.
+    .suffix = { ent-BaseMachineCircuitboard.suffix }

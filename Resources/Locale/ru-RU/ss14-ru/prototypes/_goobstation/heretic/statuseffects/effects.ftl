@@ -6,3 +6,7 @@ ent-StatusEffectStarTouched = звёздное прикосновение
     .desc = { ent-MobStatusEffectBase.desc }
 ent-CarvingAlertedStatusEffect = предупреждён
     .desc = { ent-MobStatusEffectBase.desc }
+ent-ShadowCloakStatusEffect = shadow cloak
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-ShadowCloakRevealStatusEffect = shadow cloak revealed
+    .desc = { ent-StatusEffectSlowdown.desc }

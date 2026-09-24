@@ -23,3 +23,14 @@ cosmic-examine-glyph-cessation = [color=#4cabb3]Превращает перен�
 cosmic-examine-glyph-projection = [color=#4cabb3]Позволяет нам вознестись во временную астральную форму, чтобы шпионить за окружающими.[/color]
 cosmic-examine-glyph-blades = [color=#4cabb3]Превращает и выдавливает острые предметы в более смертоносное оружие.[/color]
 cosmic-examine-glyph-warding = [color=#4cabb3]Превращает стойкую к давлению одежду в энтропийное облачение.[/color]
+cosmic-examine-text-entities = [color=#4cabb3]Этой сущности не место на станции![/color]
+cosmic-examine-text-chantry = [color=#4cabb3]Вас охватывает ужасное чувство, будто внутри кто-то заперт![/color]
+cosmic-examine-text-effigy = [color=#4cabb3]Она излучает нестабильную аномальную энергию![/color]
+cosmic-examine-text-subtle-mark = [color=#4cabb3]В его глазах бурлит потусторонняя энергия![/color]
+cosmic-examine-text-injector = [color=#4cabb3]Вы чувствуете, что вколоть это себе будет вашей последней и очень плохой идеей.[/color]
+cosmic-examine-text-cultentity = [color=#4cabb3]Могущественный союзник.[/color]
+cosmic-examine-text-culteffigy = [color=#4cabb3]Это может оказаться полезным.[/color]
+cosmic-examine-transmutable = Это можно трансмутировать в [color=#4cabb3]{ $result }[/color], используя [color=#4cabb3]{ $glyph }[/color].
+cosmic-examine-transmutable-verb-text = Трансмутируемость.
+cosmic-examine-transmutable-error = Этот предмет должен быть трансмутируемым, но, похоже, это не работает.
+cosmic-examine-text-injector-cult = [color=#4cabb3]Мощная доза стимуляторов... или яда для наших врагов.[/color]

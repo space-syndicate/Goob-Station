@@ -54,3 +54,7 @@ ent-ClothingNeckCloakEnby = плащ кладоискателя
     .desc = Этот плащ принадлежал жадному искателю сокровищ.
 ent-ClothingNeckCloakPan = поварской плащ
     .desc = Предназначен для ношения вместе со сковородой.
+ent-ClothingNeckCloakWhiteCe = chief engineer's white cloak
+    .desc = A white cloak with orange adornments, given to those who proved themselves to master the precise art of engineering.
+ent-ClothingNeckCloakGreenCe = chief engineer's green cloak
+    .desc = A green cloak with yellow and blue adornments, given to those who proved themselves to master the precise art of engineering.

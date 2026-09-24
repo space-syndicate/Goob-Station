@@ -21,3 +21,5 @@ ent-RainbowBalloon = радужный шарик
     .desc = Самый злой шарик из всех. Не дайте обмануть себя красивыми цветами.
 ent-CeramicBalloon = карповый шарик
     .desc = Это смесь ДНК шарика и карпа? Или шарик в костюме карпа? Никто не знает.
+ent-BaseBalloonTD = base balloon
+    .desc = { ent-BaseStructureDynamic.desc }

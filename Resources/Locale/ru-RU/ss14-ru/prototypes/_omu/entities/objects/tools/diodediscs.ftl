@@ -1,0 +1,10 @@
+ent-BaseDiodeDisc = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-DiodeDiscElectroDisruptive = Electro-Disruptive Diode disc
+    .desc = A diode disc for use within an emitter, this one will trigger a causality rectifying event within a supermatter, causing it to repair itself.
+ent-DiodeDiscElectroBehavioural = Electro-Behavioural Diode disc
+    .desc = A diode disc for use within an emitter, this one will trigger a causality cascading event within a supermatter, causing damage but increasing energy output significantly. It also has a postive effect on patients health!
+ent-EmitterBoltElectroDisruptive = emitter bolt
+    .desc = { ent-EmitterBolt.desc }
+ent-EmitterBoltElectroBehavioural = emitter bolt
+    .desc = { ent-EmitterBolt.desc }

@@ -28,3 +28,5 @@ ent-AutosurgeonJumpstarter = автооперация синдиката (сер
     .desc = { ent-BaseAutosurgeonSyndicateSingle.desc }
 ent-AutosurgeonSandevistan = автооперация синдиката (сандевистан)
     .desc = { ent-BaseAutosurgeonSyndicate.desc }
+ent-AutosurgeonStatvekaSandevistan = syndicate autosurgeon (statveka sandevistan)
+    .desc = { ent-BaseAutosurgeonSyndicateSingle.desc }

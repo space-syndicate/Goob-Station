@@ -1,0 +1,10 @@
+ent-WeaponCudgelBase = base cudgel
+    .desc = A piece of wood sharpened for easier grip. A primitive hunters favorite, perfect for barbaric destruction!
+ent-WeaponCudgelWood = wood cudgel
+    .desc = { ent-WeaponCudgelBase.desc }
+ent-WeaponCudgelAshwood = ashwood cudgel
+    .desc = { ent-WeaponCudgelBase.desc }
+ent-IncompleteWoodCudgel = incomplete wooden cudgel
+    .desc = A few planks of wood stuck together.
+ent-IncompleteAshwoodCudgel = incomplete ashwood cudgel
+    .desc = A few planks of wood stuck together.

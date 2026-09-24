@@ -16,3 +16,7 @@ ent-Pitcher = металлический питчер
 
 ent-DrinkShakerGold = золотой шейкер
     .desc = Позолоченный шейкер, вручённый в знак благодарности за многолетнюю службу. Не влияет на вкус напитков.
+ent-DrinkShakeBase = { ent-DrinkBase }
+    .desc = { ent-DrinkBaseMaterialGlass.desc }
+ent-DrinkShakerBluespace = bluespace shaker
+    .desc = Mass-Mixing made easy!

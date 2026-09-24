@@ -30,4 +30,9 @@ humanoid-marking-modifier-base-layers = Базовый слой
 humanoid-marking-modifier-enable = Включить
 
 humanoid-marking-modifier-prototype-id = ID прототипа:
+humanoid-marking-modifier-force = Принудительно
+humanoid-marking-modifier-ignore-species = Игнорировать вид
+markings-category-SnoutCover = Морда (Покрытие)
+markings-category-UndergarmentTop = Нижнее бельё (Верх)
+markings-category-UndergarmentBottom = Нижнее бельё (Низ)
 

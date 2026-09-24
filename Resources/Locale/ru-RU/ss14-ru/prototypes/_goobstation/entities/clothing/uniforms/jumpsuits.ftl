@@ -71,3 +71,7 @@ ent-ClothingUniformJumpsuitCentralCommandLiaison = комбинезон пред
     .desc = Ходят слухи, что сотрудник Центрального Командования, впервые увидевший униформу Внешнего Командования, так завидовал, что окрасил её в зелёный своей завистью.
 ent-ClothingUniformJumpsuitVeteranSecurity = дышащий комбинезон СБ
     .desc = Дышащая версия стандартного комбинезона Службы Безопасности, обычно выдаётся в те смены, когда не хватает атмосов.
+ent-ClothingUniformJumpsuitGoldenLiaison = Golden Liaison CentCom Jumpsuit
+    .desc = A finely-tailored white-and-gold uniform worn by senior officials of Central Command.
+ent-ClothingUniformJumpsuitMonk = monk's trousers
+    .desc = Simple pants, not much better than an old sack.

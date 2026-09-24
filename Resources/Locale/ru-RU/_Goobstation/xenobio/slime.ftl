@@ -7,3 +7,5 @@ slime-examined-tamer = [color=green]Кажется, он рад вас виде�
 slime-interaction-tame = Похоже, вы теперь ему нравитесь!
 slime-interaction-tame-fail = Похоже, вы ему не интересны.
 slime-latch-fail-already-latched = Вы не можете прицепиться к { $ent }, к нему уже прицепился кто-то другой!
+slime-eat-corpse-success = { THE($eater) } пытается отгрызть что-то от { THE($target) }!
+slime-eat-corpse-fail = Невозможно съесть { THE($target) }!

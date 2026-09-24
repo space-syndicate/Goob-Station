@@ -234,3 +234,17 @@ ent-FloorTileItemXeno = ксенопол
 
 ent-FloorTileItemDarkSquiggly = тёмная волнистая стальная плитка
     .desc = { ent-FloorTileItemDark.desc }
+ent-FloorTileItemIronsandConcreteMono = iron sand concrete mono tile
+    .desc = { ent-FloorTileItemIronsandConcrete.desc }
+ent-FloorTileItemIronsandConcreteSmooth = iron sand concrete smooth
+    .desc = { ent-FloorTileItemIronsandConcrete.desc }
+ent-FloorTileItemAstroIronsandBorderless = borderless astro-ironsand
+    .desc = Fake red sand. Imported from fake Mars.
+ent-FloorTileItemXenoSteel = xeno steel floor
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemXenoSteelCorner = xeno steel corner floor
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemXenoMaint = xeno techmaint floor
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemXenoborg = xenoborg floor
+    .desc = { ent-FloorTileItemBase.desc }

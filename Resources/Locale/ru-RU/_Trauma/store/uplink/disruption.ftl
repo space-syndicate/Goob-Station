@@ -1,0 +1,10 @@
+uplink-syndicate-access-config-name = Конфигуратор CyberSun
+uplink-syndicate-access-config-desc = Конфигуратор доступа от CyberSun, совместимый со всеми ID-картами, кроме ID-карт NanoTrasen. Теперь с функцией быстрой замены!
+uplink-syndicate-remote-name = Пульт от шлюзов Синдиката
+uplink-syndicate-remote-desc = Пульт от шлюзов с символикой Синдиката, работает с доступами агентов Синдиката.
+uplink-shuttle-board-name = Плата консоли управления шаттла Синдиката
+uplink-shuttle-board-desc = Печатная плата консоли управления шаттла Синдиката.
+uplink-shuttle-bundle-name = Ящик шаттла Синдиката
+uplink-shuttle-bundle-desc = Самый необходимый минимум для шаттла.
+uplink-shuttle-iff-name = Плата консоли опознования Синдиката
+uplink-shuttle-iff-desc = Позволяет управлять опознованием и характеристиками скрытности шаттла.

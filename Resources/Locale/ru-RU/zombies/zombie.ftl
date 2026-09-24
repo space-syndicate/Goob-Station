@@ -8,3 +8,5 @@ zombie-role-rules = Вы - [color={ role-type-team-antagonist-color }][bold]{ ro
 zombie-permadeath = В этот раз вы мертвы по-настоящему.
 zombification-resistance-coefficient-value = - Шанс [color=violet]заражения[/color] уменьшен на [color=lightblue]{ $value }%[/color].
 zombie-roleban-ghosted = Вы стали призраком, так как вам запрещено играть за роль Зомби.
+zombie-cure-success = The zombie infection vanishes without a trace!
+zombie-cure-failed = The cure fails to take hold!

@@ -9,3 +9,6 @@ ent-SpaceCashCounterfeit250 = { ent-SpaceCashCounterfeit }
 ent-SpaceCashCounterfeit50 = { ent-SpaceCashCounterfeit }
     .suffix = 50
     .desc = { ent-SpaceCashCounterfeit.desc }
+ent-SpaceCash100000 = { ent-SpaceCash }
+    .desc = { ent-SpaceCash.desc }
+    .suffix = 100000

@@ -158,3 +158,5 @@ ent-BorgModuleC20r = модуль киборга с C-20r ROW
 
 ent-XenoborgModuleDoorControl = модуль контроля шлюзов ксеноборгов
     .desc = Модуль позволяющий ксеноборгам контролировать шлюзы.
+ent-BorgModuleConstructionMaterialPlaceholder = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }

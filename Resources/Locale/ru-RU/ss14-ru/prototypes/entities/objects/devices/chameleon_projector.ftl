@@ -6,3 +6,5 @@ ent-ActionDisguiseNoRot = Вкл\выкл вращение
     .desc = Используйте эту опцию, чтобы предотвратить вращение маскировки и затруднить своё обнаружение.
 ent-ActionDisguiseAnchor = Закрепить\открепить
     .desc = Для многих предметов, чтобы сразу не выдать себя, вам потребуется закрепиться.
+ent-ChameleonProjectorNoBattery = chameleon projector
+    .desc = Holoparasite technology used to create a hard-light replica of any object around you. Disguise is destroyed when picked up or deactivated.

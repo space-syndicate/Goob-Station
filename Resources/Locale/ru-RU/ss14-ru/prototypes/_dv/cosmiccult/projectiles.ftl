@@ -6,3 +6,5 @@ ent-ProjectileCosmicRazor = Астральный Болт
     .desc = Отмечает цель для дополнительного урона.
 ent-BulletImpactEffectCosmic = { "" }
     .desc = { "" }
+ent-ProjectileCosmic = Malign Bolt
+    .desc = Ouch.

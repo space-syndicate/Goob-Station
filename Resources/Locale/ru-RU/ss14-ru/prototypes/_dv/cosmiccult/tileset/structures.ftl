@@ -17,3 +17,5 @@ ent-AltarCosmic = космический алтарь
     .desc = Алтарь... чего-то.
 ent-CosmicTable = зловещий стол
     .desc = Непостижимо, космически... квадратный.
+ent-CosmicRadioJammer = multispectral inhibitor
+    .desc = Radiates powerful cosmic energy, preventing radio communications within a large area.

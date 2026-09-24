@@ -49,3 +49,5 @@ delivery-fragile-broken-examine = [color=red]{ $type } имеет хрупкое
 delivery-bomb-examine = Это [color=purple]{ $type }-бомба[/color]. О нет.
 
 delivery-bomb-primed-examine = Это [color=purple]{ $type }-бомба[/color]. Читать это – пустая трата вашего времени.
+delivery-unlocked = Вы разблокировали { $delivery } своим отпечатком пальца.
+delivery-opened = Вы открыли { $delivery }.

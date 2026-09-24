@@ -27,3 +27,5 @@ ent-ClothingOuterArmorHereticBladeCostume = { ent-ClothingOuterArmorHereticCostu
     .desc = { ent-ClothingOuterArmorHereticCostume.desc }
 ent-ClothingOuterSchemaMonk = монашеское облачение
     .desc = Знак полного отречения от мира и принятия подвига. Его носят те, кто избрал путь молитвы и борьбы за человеческую душу. В безмолвии космоса оно кажется особенно уместным.
+ent-ClothingOuterBrassArmor = brass armor
+    .desc = Old Slavic brass armor, like that of our ancestors.

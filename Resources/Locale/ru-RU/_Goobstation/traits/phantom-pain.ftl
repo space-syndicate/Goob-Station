@@ -1,0 +1,12 @@
+phantom-pain-line-1 = Это ПГ, чел
+phantom-pain-line-2 = Я ща админам напишу, чел
+phantom-pain-line-3 = Бля, ну может хватит?
+phantom-pain-line-4 = Я пишу ЖБ
+phantom-pain-line-5 = Я написал на тебя АХ 
+phantom-pain-line-6 = пишу ахелп кстати
+phantom-pain-line-7 = По нон-рп: не бей пж
+phantom-pain-line-8 = Я не буду это отыгрывать
+phantom-pain-line-9 = пишу на тебя жб
+phantom-pain-line-10 = СТОП-РП.
+phantom-pain-line-11 = Не ущемляй меня, алооооооо
+phantom-pain-line-12 = Бро, это П4

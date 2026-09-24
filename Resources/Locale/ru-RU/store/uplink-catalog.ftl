@@ -350,4 +350,6 @@ uplink-briefcase-gun-desc = Незаметный чемодан с очень к
 uplink-energycrossbow-name = мини-энергоарбалет
 
 uplink-energycrossbow-desc = Незаменимое личное оружие каждого оперативника, предпочитающего, чтобы его цели не двигались. Стреляет возобновляющимися ядовитыми зарядами, которые мгновенно сбивают жертву с ног.
+uplink-magazine-bulldog-pellet-name = Drum magazine (.50 pellet)
+uplink-magazine-bulldog-pellet-desc = Shotgun magazine with 8 shells filled with buckshot. Compatible with the Bulldog.
 

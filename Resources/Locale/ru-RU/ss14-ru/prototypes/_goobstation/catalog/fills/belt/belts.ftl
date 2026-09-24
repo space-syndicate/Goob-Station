@@ -41,3 +41,6 @@ ent-ClothingBeltMilitaryRigGrenadierFilled = { ent-ClothingBeltMilitaryRigGrenad
 ent-ClothingBeltMilitaryWebbingFilled = { ent-ClothingBeltMilitaryWebbing }
     .suffix = Filled, BSO
     .desc = { ent-ClothingBeltMilitaryWebbing.desc }
+ent-ClothingBeltMilitaryWebbingFilledERT = { ent-ClothingBeltMilitaryWebbingERT }
+    .desc = { ent-ClothingBeltMilitaryWebbingERT.desc }
+    .suffix = Filled

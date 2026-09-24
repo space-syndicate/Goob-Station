@@ -95,3 +95,6 @@ ent-RandomHumanoidSpawnerERTMedicalEVANoReq = ОБР медик
 ent-RandomHumanoidSpawnerCBURNUnitNoReq = Агент РХБЗЗ
     .suffix = Роль ОБР, Нет требований
     .desc = { "" }
+ent-MobHydrakinRandom = Urist McHydra
+    .desc = { ent-MobHydrakin.desc }
+    .suffix = Random Appearance

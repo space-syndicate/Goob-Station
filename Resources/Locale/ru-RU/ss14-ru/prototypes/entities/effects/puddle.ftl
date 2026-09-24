@@ -32,3 +32,6 @@ ent-Puddle = лужа
 ent-PuddleFluorosulfuricAcid = { ent-PuddleTemporary }
     .desc = { ent-PuddleTemporary.desc }
     .suffix = фторсерная кислота (15 ед.)
+ent-PuddleFluorosulfuricAcidSmall = { ent-PuddleTemporary }
+    .desc = { ent-PuddleTemporary.desc }
+    .suffix = FluorosulfuricAcid (5u)

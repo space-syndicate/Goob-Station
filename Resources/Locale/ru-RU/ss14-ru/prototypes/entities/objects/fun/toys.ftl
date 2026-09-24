@@ -42,3 +42,5 @@ ent-PlasticBanana = банан
     .suffix = Пластик
 ent-CrazyGlue = тюбик сумасшедшего клея
     .desc = Бутылка сумасшедшего клея производства компании Honk! Co.
+ent-CrazyLube = crazy lube
+    .desc = A bottle of super slipery crazy lube manufactured by Honk! Co.

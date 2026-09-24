@@ -36,3 +36,7 @@ ent-NerveDamage = { "" }
     .desc = { "" }
 ent-Dismemberment = { "" }
     .desc = { "" }
+ent-TraumaShrapnel = { "" }
+    .desc = { "" }
+ent-TraumaBraindeath = { "" }
+    .desc = { "" }

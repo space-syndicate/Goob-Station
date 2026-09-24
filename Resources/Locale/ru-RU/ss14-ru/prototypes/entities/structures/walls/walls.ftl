@@ -121,3 +121,6 @@ ent-WallReinforcedChitin = укреплённый хитин
 
 ent-WallIronsandCobblebrick = стена из железопесчаных кирпичей
     .desc = Светлые, округлые формы, из которых состоит эта стена, разительно отличаются от железистого песка, из которого, как утверждается, она была сделана.
+ent-WallXenoborgDiagonal = xenoborg wall
+    .desc = { ent-WallPlastitaniumDiagonal.desc }
+    .suffix = diagonal

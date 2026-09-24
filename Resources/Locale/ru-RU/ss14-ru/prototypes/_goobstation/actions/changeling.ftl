@@ -66,3 +66,5 @@ ent-ActionHivemindAccess = Доступ к коллективному разум
     .desc = Настраивает химические рецепторы для общения в улье.
 ent-ActionAbsorbBiomatter = Поглощение биомассы
     .desc = Поглощает пищу для восстановления химикатов.
+ent-ActionDarknessAdaption = Darkness Adaption
+    .desc = Toggle becoming translucent and gaining night vision in the darkness. Costs 10 chemicals.

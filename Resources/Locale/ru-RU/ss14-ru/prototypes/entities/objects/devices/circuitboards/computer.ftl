@@ -103,3 +103,5 @@ ent-WizardCommsComputerCircuitboard = консоль связи волшебни
 
 ent-StationAiFixerCircuitboard = консоль восстановления ИИ (консольная плата)
     .desc = Консольная плата для консоли восстановления ИИ.
+ent-ComputerXenoborgsControlCircuitboard = xenoborg control console board
+    .desc = A computer printed circuit board for a xenoborg control console.

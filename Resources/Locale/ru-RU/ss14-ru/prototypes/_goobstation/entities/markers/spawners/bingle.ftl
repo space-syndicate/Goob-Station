@@ -4,3 +4,6 @@ ent-SpawnPointGhostBingle = точка появления роли призра�
 ent-SpawnPointGhostBinglePrime = { ent-SpawnPointGhostBingle }
     .suffix = Prime
     .desc = { ent-SpawnPointGhostBingle.desc }
+ent-SpawnPointGhostTurkle = { ent-SpawnPointGhostBingle }
+    .desc = { ent-SpawnPointGhostBingle.desc }
+    .suffix = Turkle

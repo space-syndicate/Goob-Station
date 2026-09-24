@@ -72,3 +72,7 @@ ent-ActionShootWater = Пшикнуть водой!
 
 ent-ActionIntrinsicStore = Магазин
     .desc = Открыть магазин
+ent-BaseDoAfterAction = { ent-BaseAction }
+    .desc = { ent-BaseAction.desc }
+ent-ActionChangeVoiceMaskImplant = { ent-ActionChangeVoiceMask }
+    .desc = { ent-ActionChangeVoiceMask.desc }

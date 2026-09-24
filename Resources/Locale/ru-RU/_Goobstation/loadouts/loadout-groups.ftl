@@ -62,6 +62,7 @@ loadout-group-chief-engineer-envirogloves = Экоперчатки старше�
 loadout-group-security-officer-envirohelm = Экошлем офицера СБ
 loadout-group-security-officer-envirosuit = Экокостюм офицера СБ
 loadout-group-security-officer-envirogloves = Экоперчатки офицера СБ
+loadout-group-security-gloves = Перчатки, офицер СБ
 # Security Cadet
 loadout-group-security-cadet-envirohelm = Экошлем кадета
 loadout-group-security-cadet-envirosuit = Экокостюм кадета
@@ -113,6 +114,7 @@ loadout-group-mime-envirohelm = Экошлем мима
 loadout-group-mime-envirosuit = Экокостюм мима
 loadout-group-mime-envirogloves = Экоперчатки мима
 loadout-group-mime-gloves = Мим, перчатки
+loadout-group-mime-shoes = Мим, обувь
 # Assistant
 loadout-group-assistant-envirohelm = Экошлем пассажира
 loadout-group-assistant-envirosuit = Экокостюм пассажира
@@ -151,6 +153,7 @@ loadout-group-captain-envirohelm = Экошлем капитана
 loadout-group-captain-envirosuit = Экокостюм капитана
 loadout-group-captain-envirogloves = Экоперчатки капитана
 loadout-group-captain-gloves = Капитан, перчатки
+loadout-group-captain-shoes = Капитан, обувь
 # Salvage Specialist
 loadout-group-salvage-envirohelm = Экошлем утилизатора
 loadout-group-salvage-envirosuit = Экокостюм утилизатора
@@ -178,6 +181,7 @@ loadout-group-zookeeper-head = Зоотехник, шляпа
 # Boxer
 loadout-group-boxer-envirohelm = Экошлем боксёра
 loadout-group-boxer-envirosuit = Экокостюм боксёра
+loadout-group-boxer-helmet = Боксёр, шлем
 # Misc
 loadout-group-plasma-tank = Баллон с плазмой
 # Shaft Miner

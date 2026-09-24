@@ -5,3 +5,5 @@ ent-LegionnaireBonfire = легионерский костёр
 
 ent-BonfireStake = костёр с колом
     .desc = Зловещий костер с колом для... церемониальных целей. Лучше не спрашивать.
+ent-BaseBonfire = { ent-BaseStructure }
+    .desc = { ent-BaseStructure.desc }

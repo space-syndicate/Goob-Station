@@ -1,0 +1,1 @@
+plushie-bite-popup = { CAPITALIZE($plushie) } не узнаёт и кусает вас!

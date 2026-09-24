@@ -4,3 +4,5 @@ ent-SyndicateBerserkerHeart = Сердце берсерка
     .desc = Передовой боевой циркуляционный модуль, позволяющий пользователю входить в состояние берсерка, существенно повышая скорость и рефлексы на короткое время в обмен на выносливость и часть сопротивляемости боли. Крайне незаконно.
 ent-SyndicateJumpstarterHeart = Сердце стартера
     .desc = Передовой боевой циркуляционный модуль, который вводит большое количество омнизина в кровоток пользователя при критических повреждениях, спасая его от смерти. Крайне незаконно.
+ent-OrganHeartStatvekaSandevistan = mi13 statveka sandevistan
+    .desc = A cybernetic heart implant that drastically improves the user's speed and reflexes for a short duration, at the cost of endurance. Once used by a certain mercenary.

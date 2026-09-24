@@ -18,3 +18,5 @@ ent-ClothingUniformJumpskirtResearchDirectorAlt = юбка-комбинезон 
     .desc = Юбка, которую носят те, кому хватило знаний, чтобы занять должность научного руководителя. Её ткань обеспечивает незначительную защиту от биологических загрязнений.
 ent-ClothingUniformJumpskirtCommandMaid = форма горничной командования
     .desc = Стильная форма горничной, разработанная специльно для элитных горничных командования. Сочетает профессионализм и элегантность.
+ent-ClothingUniformJumpskirtCentcomPencilSkirt = centcom pencil skirt
+    .desc = An elegant green formal blouse paired with a sleek black pencil skirt, decorated with exquisite golden detailing.

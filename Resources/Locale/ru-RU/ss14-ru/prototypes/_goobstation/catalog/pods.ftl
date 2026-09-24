@@ -18,3 +18,5 @@ ent-SpawnArmamentsDraconic = костюм дракона
     .desc = { ent-SpawnSupplyEmpty.desc }
 ent-SpawnArmamentsInquisitor = доспехи инквизитора
     .desc = { ent-SpawnSupplyEmpty.desc }
+ent-SpawnSchemaMonk = monastic vestments
+    .desc = { ent-SpawnSupplyEmpty.desc }

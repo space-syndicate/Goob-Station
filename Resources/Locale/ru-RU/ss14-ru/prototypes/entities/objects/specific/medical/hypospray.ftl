@@ -46,3 +46,5 @@ ent-JetInjector = инъектор
 
 ent-AdvancedJetInjector = продвинутый инъектор
     .desc = Безупречный, стильный, высококачественный инъектор. Позволяет быстрее вводить препарат, обладая немного большей емкостью.
+ent-BaseHypospray = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }

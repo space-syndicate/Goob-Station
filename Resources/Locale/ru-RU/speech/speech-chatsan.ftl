@@ -136,3 +136,7 @@ chatsan-word-70 = sybau
 chatsan-replacement-70 = shut your bitch ass up
 chatsan-word-71 = icl
 chatsan-replacement-71 = i can't lie
+chatsan-word-72 = sybau
+chatsan-replacement-72 = shut your bitch ass up
+chatsan-word-73 = icl
+chatsan-replacement-73 = i can't lie

@@ -4,3 +4,7 @@ ent-BibleTanakh = Танах
     .desc = Выбирай жизнь, чтобы ты и потомки твои жили.
 ent-BibleSlabClockwork = заводная пластина
     .desc = Странная металлическая пластина, с постоянно вращающимися часами в центре.
+ent-BibleVeda = slavic-Aryan Vedas
+    .desc = A book of the new religious movement Ynglism, one of the Slavic neopaganisms.
+ent-BibleVelesBook = book of veles
+    .desc = It plays a significant role in many directions of Slavic neopaganism, where it is used as a basis and proof of neopagan religiosity.

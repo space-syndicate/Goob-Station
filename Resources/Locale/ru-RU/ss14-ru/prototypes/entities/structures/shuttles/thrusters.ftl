@@ -25,3 +25,5 @@ ent-ThrusterLarge = большой ракетный двигатель
 
 ent-RustedThruster = ржавый ракетный двигатель
     .desc = Неподлежащий ремонту двигатель, вышел из строя из-за износа. Пригоден только на металлолом.
+ent-ThrusterXenoborg = { ent-Thruster }
+    .desc = { ent-Thruster.desc }

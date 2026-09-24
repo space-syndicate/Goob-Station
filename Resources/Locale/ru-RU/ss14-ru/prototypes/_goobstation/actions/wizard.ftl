@@ -68,3 +68,5 @@ ent-ActionSummonStickmen = Призыв Стикменов
     .desc = Призывает верных стикменов-союзников для помощи в бою.
 ent-ActionTileToggle = Привязка к плиткам
     .desc = Переключает перемещение по плиткам для цели.
+ent-ActionRathenSpell = Rathen's Secret
+    .desc = Blast off any nearby victims ass.

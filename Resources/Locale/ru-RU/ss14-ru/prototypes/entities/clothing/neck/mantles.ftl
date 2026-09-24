@@ -14,3 +14,7 @@ ent-ClothingNeckMantleQM = мантия квартирмейстера
     .desc = Для властелина грузов и материалов, дабы властвовать над отделом, достойная мантия для демонстрации превосходства!
 ent-ClothingNeckMantle = мантия
     .desc = Мягкая мантия, изготовленная из того же "синтетического" меха животных, что и культовое зимнее пальто.
+ent-ClothingNeckMantleWhiteCE = chief engineer's white mantle
+    .desc = High visibility, check. RIG system, check. High capacity cell, check. Everything a chief engineer could need in a stylish mantle.
+ent-ClothingNeckMantleOrangeCE = chief engineer's orange mantle
+    .desc = High visibility, check. RIG system, check. High capacity cell, check. Everything a chief engineer could need in a stylish mantle.

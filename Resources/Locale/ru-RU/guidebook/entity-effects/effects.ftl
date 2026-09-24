@@ -505,19 +505,51 @@ entity-effect-guidebook-add-reagent-to-bloodstream =
         [1] Вводит
        *[other] вводят
     } { $quantity } { $reagent } напрямую в кровоток
+
 reagent-effect-guidebook-add-to-chemicals =
     { $chance ->
         [1]
             { $deltasign ->
-                [1] Adds
-               *[-1] Removes
+                [1] Добавляет
+               *[-1] Удаляет
             }
        *[other]
             { $deltasign ->
-                [1] add
-               *[-1] remove
+                [1] добавляют
+               *[-1] удаляют
             }
-    } { NATURALFIXED($amount, 2) }u of { $reagent } { $deltasign ->
-        [1] to
-       *[-1] from
-    } the solution
+    } { NATURALFIXED($amount, 2) } ед. { $reagent } { $deltasign ->
+        [1] в
+       *[-1] из
+    } раствор
+
+reagent-effect-guidebook-status-effect-delay =
+    { $type ->
+        [add]   { $chance ->
+                    [1] Вызывает
+                    *[other] вызывают
+                } { LOC($key) } как минимум на { NATURALFIXED($time, 3) } { MANY("секунду", $time) } с накоплением
+        *[set]  { $chance ->
+                    [1] Вызывает
+                    *[other] вызывают
+                } { LOC($key) } как минимум на { NATURALFIXED($time, 3) } { MANY("секунду", $time) } без накопления
+        [remove]{ $chance ->
+                    [1] Снимает
+                    *[other] снимают
+                } { NATURALFIXED($time, 3) } { MANY("секунду", $time) } эффекта { LOC($key) }
+    } после задержки в { NATURALFIXED($delay, 3) } секунд
+reagent-effect-guidebook-knockdown =
+    { $type ->
+        [add]   { $chance ->
+                    [1] Вызывает
+                    *[other] вызывают
+                } { LOC($key) } как минимум на { NATURALFIXED($time, 3) } { MANY("секунду", $time) } с накоплением
+        *[set]  { $chance ->
+                    [1] Вызывает
+                    *[other] вызывают
+                } { LOC($key) } как минимум на { NATURALFIXED($time, 3) } { MANY("секунду", $time) } без накопления
+        [remove]{ $chance ->
+                    [1] Снимает
+                    *[other] снимают
+                } { NATURALFIXED($time, 3) } { MANY("секунду", $time) } эффекта { LOC($key) }
+    } после задержки в { NATURALFIXED($delay, 3) } секунд

@@ -1,0 +1,12 @@
+ent-ReinforcementRadioSyndicateNukieMouse = suspicious moldy cheese
+    .desc = Moldy cheese with a little worm sticking out of it and a... blinking antenna? Might attract an odd mouse.
+ent-ReinforcementRadioSyndicateNukieCarp = syndicate carp reinforcement radio
+    .desc = Calls in a syndicate carp ready to assist you.
+ent-ReinforcementRadioSyndicateNukieSpider = inexplicably menacing egg
+    .desc = You're not sure if that's a radio transceiver or an eye blinking at you. Might attract an odd spider.
+ent-ReinforcementRadioSyndicateCyborgSaboteur = syndicate saboteur cyborg reinforcement radio
+    .desc = Calls in a saboteur borg with light weaponry and disruptive gear.
+ent-ReinforcementRadioSyndicateCyborgMedical = syndicate medical cyborg reinforcement radio
+    .desc = Calls in a medical borg with good support capabilities and disruptive gear.
+ent-ReinforcementRadioSyndicateBehonker = behonker reinforcement radio
+    .desc = Calls in a behonker to assist you in your tomfoolery.

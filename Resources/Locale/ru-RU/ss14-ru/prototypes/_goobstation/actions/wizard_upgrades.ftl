@@ -176,3 +176,7 @@ ent-ActionSummonSimiansIV = Призыв Приматов IV
     .desc = { ent-ActionSummonSimians.desc }
 ent-ActionSummonSimiansV = Призыв Приматов V
     .desc = { ent-ActionSummonSimians.desc }
+ent-ActionRathenSpellII = Rathen's Secret II
+    .desc = { ent-ActionRathenSpell.desc }
+ent-ActionRathenSpellIII = Rathen's Secret III
+    .desc = { ent-ActionRathenSpell.desc }

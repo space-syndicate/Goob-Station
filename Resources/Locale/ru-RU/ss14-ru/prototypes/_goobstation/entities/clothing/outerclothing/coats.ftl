@@ -16,3 +16,7 @@ ent-ClothingOuterCoatHoPLong = длинное пальто главы персо
     .desc = Стильное длинное пальто Главы Персонала.
 ent-ClothingOuterArmoredJacketOuterCommand = куртка ТСФ
     .desc = Пурпурная куртка с очень изысканными элементами. На спине изображена эмблема ТСФ.
+ent-ClothingOuterArmoredJacketCentralCommand = central command jacket
+    .desc = A formal green coat-like jacket accented with gilded shoulder armor and a high collar.
+ent-ClothingOuterJacketCentralCommandIke = central command ike jacket
+    .desc = A utilitarian green-and-black jacket featuring a sharp, military-inspired design, worn within Central Command.

@@ -25,3 +25,5 @@ crew-monitoring-ui-no-department-label = Неизвестно
 crew-monitoring-ui-no-station-label = Неизвестная станция
 
 crew-monitoring-ui-flavor-left-label = В случае экстренной ситуации, немедленно свяжитесь с медперсоналом станции.
+crew-monitoring-ui-job-label = Должность:
+crew-monitoring-ui-flavor-right-label = в1.7

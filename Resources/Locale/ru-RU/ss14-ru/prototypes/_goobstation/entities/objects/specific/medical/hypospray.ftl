@@ -41,3 +41,5 @@ ent-AmbuzolPlusMedipen = модифицированный антивирусны
     .suffix = НЕ МАППИТЬ
 ent-CentCommHypo = гипоспрей ЦК
     .desc = Предназначен для ведущих врачей NanoTrasen. В нем используется экспериментальная блюспейс технология.
+ent-RomerolMedipen = romerol auto-injector
+    .desc = A non-refillable medipen containing multiple doses of "Braaaains".

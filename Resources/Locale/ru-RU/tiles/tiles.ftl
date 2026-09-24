@@ -168,3 +168,4 @@ tiles-ironsand-concrete-smooth = гладкий бетонный пол из ж�
 tiles-ironsand-packed = утрамбованный железный песок
 
 tiles-ironsand-paved = асфальтированный железный песок
+tiles-astro-ironsand-borderless = borderless astro-ironsand

@@ -1,0 +1,3 @@
+emitter-electro-disrutpive = [color=cyan]Электро-разрушительный[/color]: [color=green]повышает целостность[/color] ценой [color=red]снижения внутренней энергии[/color].
+emitter-electro-behavioural = [color=cyan]Электро-поведенческий[/color]: [color=green]повышает внутреннюю энергию[/color] ценой [color=red]резкого снижения целостности![/color].
+research-technology-advanced-emitters = Технология диодно-дисковых эмиттеров

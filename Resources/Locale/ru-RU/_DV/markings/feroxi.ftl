@@ -192,3 +192,6 @@ marking-FeroxiLFootStripesTiger = Стопа с полосами
 marking-FeroxiLFootStripesTiger-feroxi-Lfoot-stripes-tiger = Полосы
 marking-FeroxiRFootStripesTiger = Стопа с полосами
 marking-FeroxiRFootStripesTiger-feroxi-Rfoot-stripes-tiger = Полосы
+marking-FeroxiLLegStripesBlitz = Полосы на голени (Левая)
+marking-FeroxiRFootTip = Контрастная ступня
+marking-FeroxiRFootTip-feroxi-Rfoot-tip = Контраст

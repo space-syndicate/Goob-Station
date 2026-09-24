@@ -1,0 +1,16 @@
+ent-BorgModuleStickyGrenadeLauncher = sticky grenade launcher cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateDoorControl = door control cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateJammer = jammer cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateDartgun = dart gun cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateTopical = topical cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateSurgery = surgery cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateRescue = rescue cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateChameleonProjector = chameleon projector cyborg module
+    .desc = { ent-BaseBorgModuleSyndicate.desc }

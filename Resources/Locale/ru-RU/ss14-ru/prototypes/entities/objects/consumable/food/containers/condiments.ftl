@@ -46,3 +46,5 @@ ent-FoodShakerSalt = солонка
     .desc = Соль. Из космических океанов, предположительно.
 ent-FoodShakerPepper = перечница
     .desc = Часто используется как приправа к пище, или чтобы заставить людей чихать.
+ent-BaseFoodCondimentPacketDrink = { ent-BaseFoodCondimentPacket }
+    .desc = { ent-BaseFoodCondimentPacket.desc }

@@ -8,3 +8,4 @@ station-beacon-ruin-small-outpost = Малый аванпост
 station-beacon-ruin-rouge-ai = Неизвестная лаборатория
 station-beacon-ruin-snow-biodome = Снежный биодом
 station-beacon-ruin-syndicate = Сигнал Синдиката
+station-beacon-ruin-lavaland = Лаваленд

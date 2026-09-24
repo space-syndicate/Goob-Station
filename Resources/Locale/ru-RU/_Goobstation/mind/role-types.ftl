@@ -11,3 +11,6 @@ role-subtype-slasher = Маньяк
 role-type-sentient-animal-name = Разумное животное
 role-type-sentient-animal-color = #ffff00
 role-subtype-contractor = Наёмник Синдиката
+role-subtype-gang-leader = Лидер банды
+role-subtype-gang-member = Участник банды
+role-subtype-gemini = Близнец

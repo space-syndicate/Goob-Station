@@ -17,3 +17,4 @@ cult-glyph-name-cessation = Согласие прекращения
 cult-glyph-description-cessation = Прекращение. Преобразует переносной скруббер в Пустотный шпиль.
 cult-glyph-name-truth = Согласие истины
 cult-glyph-description-truth = Истина. Прививает чистейшую, несмываемую истину. Может обратить абсолютно любого в наши ряды.
+cult-glyph-target-mindless = Глиф не активируется, так как цель в данный момент лишена разума.

@@ -40,3 +40,5 @@ ent-ClothingNeckGoldAutismPin = значок "аутизм"
 
 ent-SprayFlowerPin = значок с цветком
     .desc = Милый значок с цветком. Кажется, с ним что-то не так...
+ent-ClothingGenderPinBase = { ent-ClothingNeckPinBase }
+    .desc = { ent-ClothingNeckPinBase.desc }

@@ -1,0 +1,10 @@
+ent-BaseGangObjective = { ent-BaseObjective }
+    .desc = { ent-BaseObjective.desc }
+ent-GangLeaderRecruitObjective = { ent-BaseGangObjective }
+    .desc = { ent-BaseGangObjective.desc }
+ent-GangFirstPlaceObjective = Be in first place
+    .desc = Lead your gang to the top of the leaderboard by the end of the shift.
+ent-GangEarnPointsObjective = { ent-BaseGangObjective }
+    .desc = { ent-BaseGangObjective.desc }
+ent-GangMemberSurviveObjective = Survive
+    .desc = Stay alive until the end of the shift. Dead gangsters don't collect winnings.

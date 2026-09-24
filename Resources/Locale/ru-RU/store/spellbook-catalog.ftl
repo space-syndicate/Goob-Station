@@ -65,3 +65,5 @@ spellbook-polymorph-spider-name = Полиморф-паук
 spellbook-slip-name = Скользкая дорожка
 
 spellbook-slip-desc = Изучите древние приёмы уборщиков и прокляните вашу цель, чтобы та была скользкой.
+spellbook-item-recall-name = Item Recall
+spellbook-item-recall-description = Mark a held item and summon it back at any time with just a snap of your fingers!

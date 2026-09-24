@@ -1,0 +1,1 @@
+player-panel-account-age = Возраст аккаунта: { $days }д:{ $hours }ч:{ $minutes }м

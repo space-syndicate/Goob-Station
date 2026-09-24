@@ -12,3 +12,7 @@ ent-ActionBibleSummon = Призвать фамильяра
 
 ent-BibleRatvar = скрижаль Ратвара
     .desc = Святая реликвия Заводного Культа, благословлённая Заводной Справедливостью, Ратваром.
+ent-BibleQuran = quran
+    .desc = Prayer carpet not included
+ent-BibleSatanic = satanic bible
+    .desc = What could possibly go wrong?

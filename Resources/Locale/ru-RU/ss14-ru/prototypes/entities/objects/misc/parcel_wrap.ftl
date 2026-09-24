@@ -11,3 +11,5 @@ ent-ParcelWrapAdmeme = блюспейс обёрточная бумага
 
 ent-WrappedParcelHumanoid = завернутая посылка
     .desc = Что-то завёрнутое в бумагу. Подозрительно гуманоидной формы.
+ent-BaseWrappedParcel = wrapped parcel
+    .desc = Something wrapped up in paper. I wonder what's inside...

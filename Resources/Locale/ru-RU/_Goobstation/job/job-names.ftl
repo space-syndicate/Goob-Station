@@ -27,6 +27,7 @@ job-name-outercommander = офицер ТСФ
 job-name-inspector = инспектор ЦК
 job-name-nct = наставник ЦК
 job-name-special-operations-officer = офицер спецопераций
+job-name-bso = офицер "Синий Щит"
 
 # Syndicate
 
@@ -45,7 +46,6 @@ job-name-mercenarycaptain = капитан Наёмников
 
 # Role timers - Make these alphabetical or I cut you (dont listen to upstream, i copied and pasted this, make it very un-alphabetical :godo:)
 
-JobBlueshieldOfficer = офицер "Синий Щит"
 JobNanotrasenRepresentative = представитель NanoTrasen
 JobNanotrasenCareerTrainer = наставник ЦК
 JobHecuOperative = агент HECU
@@ -60,3 +60,4 @@ JobVirologist = вирусолог
 JobConquest = конквест
 JobInspector = инспектор ЦК
 JobMercenaryCaptain = капитан наёмников
+

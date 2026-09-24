@@ -23,3 +23,7 @@ ent-BigVapor = { ent-Vapor }
 ent-MegaSprayBottleSpaceCleaner = { ent-MegaSprayBottle }
     .desc = Непенящийся очиститель бренда BLAM!, теперь в увеличенной упаковке для больших луж крови!
     .suffix = Космический очиститель
+ent-SprayBottleBase = { ent-DrinkBase }
+    .desc = { ent-DrinkBaseMaterialPlastic.desc }
+ent-FlowerVapor = { ent-Vapor }
+    .desc = { ent-Vapor.desc }

@@ -7,3 +7,5 @@ ent-BottomlessLube = бездонная мензурка смазки
     .suffix = DEBUG
 ent-DrinkMopwataBottleRandom = вкуснейшая швабода
     .desc = Мутная коричневая бутылка с выцветшей этикеткой, на которой изображена швабра. Она наполнена мутным... винтажём.
+ent-BaseSqueezeBottle = { ent-DrinkBase }
+    .desc = { ent-DrinkBaseMaterialPlastic.desc }

@@ -22,3 +22,4 @@ set-game-preset-preset-set-finite-with-decoy = Установлен пресет
     [few] следующие { $rounds } раунда
     *[other] следующие { $rounds } раундов
 }, отображая в лобби { $decoy }.
+set-game-preset-command-hint-1 = <id>

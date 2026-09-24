@@ -254,3 +254,6 @@ ent-CutterMachineCircuitboard = Плиткорез 4000 (машинная пла
 ent-SmartFridgeCircuitboard = умный холодильник (машинная плата)
     .desc = Печатная плата для умного холодильника.
     .suffix = { ent-BaseMachineCircuitboard.suffix }
+ent-SurveillanceCameraWirelessRouterXenoborgCircuitboard = xenoborg camera wireless router
+    .desc = A machine printed circuit board for a xenoborg camera wireless router.
+    .suffix = { ent-BaseMachineCircuitboard.suffix }

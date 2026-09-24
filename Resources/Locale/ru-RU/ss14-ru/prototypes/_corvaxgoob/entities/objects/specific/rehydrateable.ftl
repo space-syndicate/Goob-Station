@@ -3,3 +3,8 @@ ent-OniCube = кубик Они
 
 ent-HydrakinCube = кубик гидракина
     .desc = { ent-MonkeyCube.desc }
+ent-ShadowCube = shadow cube
+    .desc = Drymate brand shadow cube. Just add water!
+ent-MobShadowRandom = Urist McShadow
+    .desc = { ent-MobShadow.desc }
+    .suffix = Random Appearance

@@ -30,3 +30,6 @@ ent-ClothingBeltSecurityWebbingContractorFilled = { ent-ClothingBeltSecurityWebb
 ent-ClothingBeltWhipping = батин ремен
     .suffix = Адмем
     .desc = Пьяный офицер специальных операций вернулся с работы домой к семье...
+ent-ClothingBeltMilitaryWebbingBSO = blueshield chest rig
+    .desc = A set of tactical webbing worn by Central Command support units.
+    .suffix = Empty

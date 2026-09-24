@@ -1,0 +1,15 @@
+uplink-reinforcement-radio-nukie-mouse-name = Телепорт ядерного оперативного мыша
+uplink-reinforcement-radio-nukie-mouse-desc = Вызывает специально обученного ядерного оперативного мыша вам в помощь.
+uplink-reinforcement-radio-nukie-carp-name = Телепорт ядерного оперативного карпа
+uplink-reinforcement-radio-nukie-carp-desc = Вызывает специально обученного ядерного оперативного карпа вам в помощь.
+uplink-reinforcement-radio-nukie-spider-name = Телепорт ядерного оперативного паука
+uplink-reinforcement-radio-nukie-spider-desc = Вызывает специально обученного ядерного оперативного паука вам в помощь.
+uplink-reinforcement-radio-cyborg-assault-name-trauma = Телепорт штурмового киборга
+uplink-reinforcement-radio-cyborg-saboteur-name = Телепорт киборга-диверсанта
+uplink-reinforcement-radio-cyborg-saboteur-desc = Вызывает легкобронированного киборга, специализирующегося на диверсиях и убийствах.
+uplink-reinforcement-radio-cyborg-medical-name = Телепорт медицинского киборга
+uplink-reinforcement-radio-cyborg-medical-desc = Вызывает легкобронированного киборга, специализирующегося на всём, что связано с медициной.
+uplink-magic-carp-dehydrated-name = Обезвоженный магический карп
+uplink-magic-carp-dehydrated-desc = Выглядит как плюшевый карп, но стоит добавить воды — и он становится настоящим магическим карпом!
+uplink-holo-carp-dehydrated-name = Обезвоженный голокарп
+uplink-holo-carp-dehydrated-desc = Выглядит как плюшевый карп, но стоит добавить воды — и он становится настоящим голокарпом!

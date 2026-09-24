@@ -1,0 +1,9 @@
+ghost-role-information-nukie-carp-name = Ядерный оперативный карп
+ghost-role-information-nukie-carp-description = Ядерный оперативный карп - подкрепление Синдиката.
+ghost-role-information-nukie-mouse-name = Ядерный оперативный мыш
+ghost-role-information-nukie-mouse-description = Ядерный оперативный мыш - подкрепление Синдиката.
+ghost-role-information-nukie-spider-name = Ядерный оперативный паук
+ghost-role-information-nukie-spider-description = Ядерный оперативный паук - подкрепление Синдиката.
+ghost-role-information-syndicate-cyborg-medical-name = Медицинский киборг Синдиката
+ghost-role-information-syndicate-behonker-name = Бехонкер Синдиката
+ghost-role-information-syndicate-behonker-desc = Ученик Матери Хонк нуждается в вас. Помогите ему в трудную минуту.
