@@ -18,4 +18,4 @@ research-console-prereqs-list-start = Требует:
 research-console-prereqs-list-entry = - [color=orchid]{ $text }[/color]
 research-console-no-access-popup = Нет доступа!
 # CorvaxGoob Edit
-research-console-unlock-technology-radio-broadcast = [color=DarkOrchid]Пользователь [bold]{ $approver }[/bold] исследовал [bold]{ $technology }[/bold], за [bold]{ $amount }[/bold] очков исследований.[/color]
+research-console-unlock-technology-radio-broadcast = [color=#76578a]Пользователь [bold]{ $approver }[/bold] исследовал [bold]{ $technology }[/bold], за [bold]{ $amount }[/bold] очков исследований.[/color]
