@@ -26,6 +26,7 @@
     - Belt
   - type: AmmoCounter
   - type: Gun
+    fireOnDropChance: 0.5 # CorvaxGoob-FireOnDrop
     selectedMode: SemiAuto
     fireRate: 2 # Goobstation
     availableModes:

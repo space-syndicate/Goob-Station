@@ -30,6 +30,7 @@
       - WeldingMask
       - RemoteSignaller
       - UtilityKnife
+      - HandHeldMassScanner # CorvaxGoob
       components:
       - StationMap
       - SprayPainter
@@ -400,6 +401,12 @@
       - MilitaryPowerCellSniper
       - MilitaryPowerCellRevolver
       - EnergyMagAmmo # Goob edit end
+# CorvaxGoob-start:
+      - Bola
+      - BolaEnergy
+      - TelescopicShield
+      - TelescopicBaton
+# CorvaxGoob.
       components:
       - Stunbaton
       - FlashOnTrigger

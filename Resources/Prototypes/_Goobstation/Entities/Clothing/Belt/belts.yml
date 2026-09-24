@@ -108,8 +108,11 @@
       - MilitaryPowerCell
       - EnergyMagAmmo
       - HandGrenade
-      - TelescopicBaton # CorvaxGoob
-      - TelescopicShield # CorvaxGoob
+# CorvaxGoob-start:
+      - TelescopicBaton
+      - TelescopicShield
+      - Bola
+# CorvaxGoob-end.
       components:
       - FlashOnTrigger
       - SmokeOnTrigger

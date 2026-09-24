@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Goobstation.Common.MartialArts;
 using Content.Goobstation.Shared.MartialArts.Components;
 using Content.Goobstation.Shared._CorvaxGoob.MartialArts.Components;
@@ -8,9 +7,6 @@ using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Body.Components;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.StatusEffect;
@@ -26,6 +22,7 @@ public partial class SharedMartialArtsSystem
 
     private void InitializeMimejutsu()
     {
+        SubscribeLocalEvent<CanPerformComboComponent, MimejutsuSilentPunchPerformedEvent>(OnMimejutsuSilentPunch);
         SubscribeLocalEvent<CanPerformComboComponent, MimejutsuSilentExecutionPerformedEvent>(OnMimejutsuSilentExecution);
         SubscribeLocalEvent<CanPerformComboComponent, MimejutsuMimechucksPerformedEvent>(OnMimejutsuMimechucks);
         SubscribeLocalEvent<CanPerformComboComponent, MimejutsuSilencerPerformedEvent>(OnMimejutsuSilencer);
@@ -34,27 +31,24 @@ public partial class SharedMartialArtsSystem
         SubscribeLocalEvent<GrantMimejutsuComponent, UseInHandEvent>(OnGrantCQCUse);
     }
 
-    private void OnMimejustuAttackPerformed(Entity<MartialArtsKnowledgeComponent> ent, ref ComboAttackPerformedEvent args)
+    private void OnMimejutsuAttackPerformed(Entity<MartialArtsKnowledgeComponent> ent, ref ComboAttackPerformedEvent args)
     {
-        if (args.Weapon != args.Performer || args.Target == args.Performer)
+        if (args.Type != ComboAttackType.Disarm || args.Weapon != args.Performer || args.Target == args.Performer)
             return;
 
-        switch (args.Type)
-        {
-            case ComboAttackType.Disarm:
-                _stamina.TakeStaminaDamage(args.Target, 25f);
-                break;
-            case ComboAttackType.Harm:
-                if (!TryComp(args.Target, out StatusEffectsComponent? status))
-                    break;
-                var random = new Random((int) _timing.CurTick.Value + (int) GetNetEntity(ent));
-                if (_random.Prob(0.20f))
-                {
-                    _movementMod.TryUpdateMovementSpeedModDuration(args.Target, MartsGenericSlow, TimeSpan.FromSeconds(2), 0.5f, 0.5f);
-                    ComboPopup(ent, args.Target, "Silentpunch");
-                }
-                break;
-        }
+        _stamina.TakeStaminaDamage(args.Target, 25f);
+    }
+
+    private void OnMimejutsuSilentPunch(Entity<CanPerformComboComponent> ent, ref MimejutsuSilentPunchPerformedEvent args)
+    {
+        if (_netManager.IsClient
+            || !_proto.TryIndex(ent.Comp.BeingPerformed, out var proto)
+            || !TryUseMartialArt(ent, proto, out var target, out _)
+            || !HasComp<StatusEffectsComponent>(target)
+            || !_random.Prob(0.20f))
+            return;
+
+        _movementMod.TryUpdateMovementSpeedModDuration(target, MartsGenericSlow, TimeSpan.FromSeconds(2), 0.5f, 0.5f);
     }
 
     private void OnMimejutsuSilentExecution(Entity<CanPerformComboComponent> ent, ref MimejutsuSilentExecutionPerformedEvent args)
@@ -66,9 +60,7 @@ public partial class SharedMartialArtsSystem
             return;
 
         var (partType, symmetry) = _body.ConvertTargetBodyPart(targeting.Target);
-        var targetedBodyPart = _body.GetBodyChildrenOfType(target, partType, body, symmetry)
-            .ToList()
-            .FirstOrNull();
+        var targetedBodyPart = _body.GetBodyChildrenOfType(target, partType, body, symmetry).FirstOrNull();
 
         if (targetedBodyPart == null ||
             !TryComp(targetedBodyPart.Value.Id, out WoundableComponent? woundable) ||
@@ -102,7 +94,7 @@ public partial class SharedMartialArtsSystem
     {
         if (!_proto.TryIndex(ent.Comp.BeingPerformed, out var proto)
             || !TryUseMartialArt(ent, proto, out var target, out _)
-            || !TryComp(target, out StatusEffectsComponent? status))
+            || !HasComp<StatusEffectsComponent>(target))
             return;
 
         _movementMod.TryUpdateMovementSpeedModDuration(target, MartsGenericSlow, TimeSpan.FromSeconds(3), 0.5f, 0.5f);
@@ -120,13 +112,13 @@ public partial class SharedMartialArtsSystem
     {
         if (!_proto.TryIndex(ent.Comp.BeingPerformed, out var proto)
             || !TryUseMartialArt(ent, proto, out var target, out _)
-            || !TryComp(target, out StatusEffectsComponent? status))
+            || !HasComp<StatusEffectsComponent>(target))
             return;
 
-        var mapPos = _transform.GetMapCoordinates(ent).Position;
-        var hitPos = _transform.GetMapCoordinates(target).Position;
+        var mapPos = Transform(ent).Coordinates.Position;
+        var hitPos = Transform(target).Coordinates.Position;
         var dir = hitPos - mapPos;
-        dir *= 3f / dir.Length();
+        dir *= 4f / dir.Length();
 
 
         if (TryComp<PullableComponent>(target, out var pullable))

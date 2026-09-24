@@ -7,10 +7,19 @@
 - type: comboList
   id: MimejutsuMoves
   combos:
+  - MimejutsuSilentPunch
   - MimejutsuSilentExecution
   - MimejutsuMimechucks
   - MimejutsuSilencer
   - MimejutsuSilentPalm
+
+- type: combo
+  id: MimejutsuSilentPunch
+  name: Silent punch
+  martialArtsForm: Mimejutsu
+  attacks:
+  - Harm
+  event: !type:MimejutsuSilentPunchPerformedEvent
 
 - type: combo
   id: MimejutsuSilentExecution

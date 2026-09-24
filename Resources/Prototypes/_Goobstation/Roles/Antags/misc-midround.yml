@@ -69,6 +69,7 @@
     shoes: ClothingShoesColorWhite
     id: MimePDA
     pocket1: CrayonMime
+    pocket2: MimejutsuManual # CorvaxGoob
     ears: ClothingHeadsetService
     jumpsuit: ClothingUniformJumpsuitMime
     mask: ClothingMaskMime

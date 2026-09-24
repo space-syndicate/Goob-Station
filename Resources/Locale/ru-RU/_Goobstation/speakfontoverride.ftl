@@ -1,3 +1,3 @@
 speakfontoverride-toggle = Переключить модуляцию
 speakfontoverride-enabled = Модуляция включена
-speakfontoverride-disabled = Модуляция выключена
+speakfontoverride-disabled = Модуляция отключена
