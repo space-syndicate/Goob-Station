@@ -241,7 +241,12 @@
   - type: Item
     storedOffset: 0,-2
   - type: Gun
-    fireRate: 5
+  # CorvaxGoob sec rebalance start
+    fireRate: 3.5
+    angleDecay: 8
+    maxAngle: 32
+    minAngle: 21
+  # CorvaxGoob sec rebalance end
     availableModes:
     - SemiAuto
     soundGunshot:

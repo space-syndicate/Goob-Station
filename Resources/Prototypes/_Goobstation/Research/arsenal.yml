@@ -61,7 +61,7 @@
   recipeUnlocks:
   - WeaponLaserCellSMG
   - PowerCellIRSMG
-  - PowerCellIonSMG
+  # - PowerCellIonSMG # CorvaxGoob sec rebalance
   position: 5,-1
   technologyPrerequisites:
   - WeaponizedLaserManipulation
@@ -106,7 +106,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponEnergyRifle
-  - EnergyMagRifleIon
+  # - EnergyMagRifleIon # CorvaxGoob sec rebalance
   - EnergyMagRifleDisabler
   - EnergyMagRifleLethal
   technologyPrerequisites:
@@ -127,7 +127,7 @@
   recipeUnlocks:
   - WeaponLaserCellSniper
   - PowerCellIRSniper
-  - PowerCellIonSniper
+  # - PowerCellIonSniper # CorvaxGoob sec rebalance
   position: 6,-1
   technologyPrerequisites:
   - WeaponLaserCellSMGTech
@@ -222,4 +222,5 @@
   technologyPrerequisites:
   - WeaponLaserCellLMGTech
   - WeaponLaserCellSniperTech
+  - BluespaceTheory
   position: 7, -1
