@@ -70,6 +70,11 @@ public sealed partial class EmergencyShuttleSystem
     /// </summary>
     public float AuthorizeTime;
 
+    /// <summary>
+    /// <see cref="CCVars.EmergencyShuttleLaunchWarningTime"/>
+    /// </summary>
+    public float LaunchWarningTime; // CorvaxGoob
+
     private CancellationTokenSource? _roundEndCancelToken;
 
     private static readonly ProtoId<AccessLevelPrototype> EmergencyRepealAllAccess = "EmergencyShuttleRepealAll";
@@ -98,6 +103,7 @@ public sealed partial class EmergencyShuttleSystem
     {
         Subs.CVar(ConfigManager, CCVars.EmergencyShuttleMinTransitTime, SetMinTransitTime, true);
         Subs.CVar(ConfigManager, CCVars.EmergencyShuttleMaxTransitTime, SetMaxTransitTime, true);
+        Subs.CVar(ConfigManager, CCVars.EmergencyShuttleLaunchWarningTime, SetLaunchWarningTime, true); // CorvaxGoob
         Subs.CVar(ConfigManager, CCVars.EmergencyShuttleAuthorizeTime, SetAuthorizeTime, true);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, ComponentStartup>(OnEmergencyStartup);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleAuthorizeMessage>(OnEmergencyAuthorize);
@@ -109,6 +115,13 @@ public sealed partial class EmergencyShuttleSystem
     {
         AuthorizeTime = obj;
     }
+
+    // CorvaxGoob Start
+    private void SetLaunchWarningTime(float obj)
+    {
+        LaunchWarningTime = obj;
+    }
+    // CorvaxGoob End
 
     private void SetMinTransitTime(float obj)
     {
@@ -147,12 +160,16 @@ public sealed partial class EmergencyShuttleSystem
 
         _consoleAccumulator -= frameTime;
 
+        // CorvaxGoob Edit Start
         // No early launch but we're under the timer.
-        if (!_launchedShuttles && _consoleAccumulator <= AuthorizeTime)
+        // if (!_launchedShuttles && _consoleAccumulator <= AuthorizeTime)
+        // Announce normal departure when the warning threshold is reached.
+        if (!_launchedShuttles && _consoleAccumulator <= LaunchWarningTime)
         {
             if (!EarlyLaunchAuthorized)
                 AnnounceLaunch();
         }
+        // CorvaxGoob End
 
         // Imminent departure
         if (!_launchedShuttles && _consoleAccumulator <= _shuttle.DefaultStartupTime)

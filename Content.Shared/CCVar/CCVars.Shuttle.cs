@@ -148,10 +148,16 @@ public sealed partial class CCVars
         CVarDef.Create("shuttle.emergency_dock_time_multiplier_no_dock", 2f, CVar.SERVERONLY);
 
     /// <summary>
+    ///     How long before normal departure the emergency shuttle launch warning is announced.
+    /// </summary>
+    public static readonly CVarDef<float> EmergencyShuttleLaunchWarningTime =
+        CVarDef.Create("shuttle.emergency_launch_warning_time", 30f, CVar.SERVERONLY); // CorvaxGoob
+
+    /// <summary>
     ///     How long after the console is authorized for the shuttle to early launch.
     /// </summary>
     public static readonly CVarDef<float> EmergencyShuttleAuthorizeTime =
-        CVarDef.Create("shuttle.emergency_authorize_time", 30f, CVar.SERVERONLY); // CorvaxGoob
+        CVarDef.Create("shuttle.emergency_authorize_time", 10f, CVar.SERVERONLY);
 
     /// <summary>
     ///     The minimum time for the emergency shuttle to arrive at centcomm.
