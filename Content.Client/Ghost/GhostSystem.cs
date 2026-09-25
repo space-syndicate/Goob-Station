@@ -2,7 +2,6 @@
 
 using Content.Client._Shitcode.Wizard.Systems;
 using Content.Client.Movement.Systems;
-using Content.Shared._CorvaxGoob.Events;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
 using Robust.Client.Console;
@@ -208,11 +207,6 @@ namespace Content.Client.Ghost
         public void GhostBarSpawn() // CorvaxGoob-GhostBar
         {
             RaiseNetworkEvent(new GhostBarSpawnEvent());
-        }
-
-        public void GhostGoLobby() // CorvaxGoob-Golobby
-        {
-            RaiseNetworkEvent(new GhostGoLobbyEvent());
         }
 
         public void ToggleGhostVisibility(bool? visibility = null)
