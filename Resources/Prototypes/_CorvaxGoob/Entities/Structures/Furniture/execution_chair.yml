@@ -1,35 +1,40 @@
 - type: entity
+  parent: SeatBase
   id: ExecutionChair
-  parent: BaseStructure
   name: execution chair
-  description: Looks comfy.
+  description: The most electrifying seat on the station.
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+    delay: 3
   - type: Sprite
     sprite: _CorvaxGoob/Structures/Furniture/execution_chair.rsi
     state: execution-chair
     noRot: true
-  - type: Rotatable
-  - type: InteractionOutline
   - type: Strap
-    position: Stand
-    buckleOffset: "0,-0.05"
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 100
-        mask:
-        - TableMask
-  - type: ExecutionChair
+    selfUnBuckleDelay: 30
   - type: ApcPowerReceiver
     powerLoad: 1500
+    powerDisabled: true
   - type: ExtensionCableReceiver
-  - type: Transform
-    anchored: true
-  - type: Damageable
-    damageModifierSet: Metallic
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+    - On
+    - Off
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+    onBump: false
+    onAttacked: false
+    onHandInteract: false
+    onInteractUsing: false
+    ignoreInsulation: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -37,7 +42,8 @@
         damage: 100
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts:
+        - Destruction
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
@@ -46,3 +52,6 @@
           SheetSteel:
             min: 5
             max: 5
+  - type: StaticPrice
+    price: 75
+  - type: ExecutionChair
