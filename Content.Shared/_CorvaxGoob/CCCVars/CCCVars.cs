@@ -167,4 +167,10 @@ public sealed class CCCVars
 
     public static readonly CVarDef<float> GhostGoLobbyDeathTimeMinutes =
         CVarDef.Create("ghost.go_lobby.death_time", 15f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// How long before normal departure the emergency shuttle launch warning is announced.
+    /// </summary>
+    public static readonly CVarDef<float> EmergencyShuttleLaunchWarningTime =
+        CVarDef.Create("shuttle.emergency_launch_warning_time", 30f, CVar.SERVERONLY);
 }

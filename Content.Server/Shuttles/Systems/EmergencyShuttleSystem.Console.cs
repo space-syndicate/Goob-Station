@@ -6,6 +6,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Access;
 using Content.Shared.CCVar;
+using Content.Shared._CorvaxGoob.CCCVars; // CorvaxGoob
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
@@ -71,7 +72,7 @@ public sealed partial class EmergencyShuttleSystem
     public float AuthorizeTime;
 
     /// <summary>
-    /// <see cref="CCVars.EmergencyShuttleLaunchWarningTime"/>
+    /// <see cref="CCCVars.EmergencyShuttleLaunchWarningTime"/>
     /// </summary>
     public float LaunchWarningTime; // CorvaxGoob
 
@@ -103,7 +104,7 @@ public sealed partial class EmergencyShuttleSystem
     {
         Subs.CVar(ConfigManager, CCVars.EmergencyShuttleMinTransitTime, SetMinTransitTime, true);
         Subs.CVar(ConfigManager, CCVars.EmergencyShuttleMaxTransitTime, SetMaxTransitTime, true);
-        Subs.CVar(ConfigManager, CCVars.EmergencyShuttleLaunchWarningTime, SetLaunchWarningTime, true); // CorvaxGoob
+        Subs.CVar(ConfigManager, CCCVars.EmergencyShuttleLaunchWarningTime, SetLaunchWarningTime, true); // CorvaxGoob
         Subs.CVar(ConfigManager, CCVars.EmergencyShuttleAuthorizeTime, SetAuthorizeTime, true);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, ComponentStartup>(OnEmergencyStartup);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleAuthorizeMessage>(OnEmergencyAuthorize);
