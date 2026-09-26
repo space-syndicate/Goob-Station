@@ -139,6 +139,8 @@
     sounds:
       Unsexed: UnisexSiliconXenoborg
     wilhelmProbability: 0
+  - type: TTS # CorvaxGoob-TTS
+    voice: Glados
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:

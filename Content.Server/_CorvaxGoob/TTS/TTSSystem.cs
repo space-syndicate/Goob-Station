@@ -252,9 +252,9 @@ public sealed partial class TTSSystem : EntitySystem
                 RaiseNetworkEvent(new PlayTTSEvent(originalSoundData, GetNetEntity(uid), pitch: pitch), pvsSession.AttachedEntity.Value);
         }
 
-        if (channel != null && originalSoundData != null)
+        if (channel != null)
         {
-            SendTTSToRadio(originalSoundData, uid, channel, false);
+            SendTTSToRadio(originalSoundData, obfuscatedSoundData, language, uid, channel, false, pitch);
         }
     }
 
@@ -279,8 +279,6 @@ public sealed partial class TTSSystem : EntitySystem
             if (distance > SharedChatSystem.WhisperClearRange)
                 continue;
 
-            var canUnderstand = _lang.CanUnderstand(session.AttachedEntity.Value, language);
-
             if (obfSoundData is not null)
                 if (HasComp<LanguageKnowledgeComponent>(session.AttachedEntity.Value))
                     if (!_lang.CanUnderstand(session.AttachedEntity.Value, language))
@@ -293,21 +291,22 @@ public sealed partial class TTSSystem : EntitySystem
                 RaiseNetworkEvent(new PlayTTSEvent(fullSoundData, GetNetEntity(uid), true, pitch: pitch), session);
         }
 
-        if (channel != null && fullSoundData != null)
+        if (channel != null)
         {
-            SendTTSToRadio(fullSoundData, uid, channel);
+            SendTTSToRadio(fullSoundData, obfSoundData, language, uid, channel, pitch: pitch);
         }
     }
 
-    private void SendTTSToRadio(byte[] soundData, EntityUid sourceUid, RadioChannelPrototype channel, bool isWhisper = true)
+    private void SendTTSToRadio(byte[]? soundData, byte[]? obfSoundData, LanguagePrototype language,
+        EntityUid sourceUid, RadioChannelPrototype channel, bool isWhisper = true, float? pitch = null)
     {
         var channelFlag = GetChannelFlag(channel.ID);
         if (channelFlag == RadioChannelFlag.None)
             return; // Unknown - Skip
 
         var netSource = GetNetEntity(sourceUid);
-        var ttsEvent = new PlayTTSEvent(soundData, netSource, isWhisper, true);
         var filter = Filter.Empty();
+        var obfFilter = Filter.Empty();
 
         var sourceMapId = Transform(sourceUid).MapID;
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
@@ -363,13 +362,21 @@ public sealed partial class TTSSystem : EntitySystem
             if (!playerFlag.HasFlag(channelFlag))
                 continue;
 
+            if (HasComp<LanguageKnowledgeComponent>(wearer.Value)
+                && !_lang.CanUnderstand(wearer.Value, language))
+            {
+                obfFilter.AddPlayer(session);
+                continue;
+            }
+
             filter.AddPlayer(session);
         }
 
-        if (!filter.Recipients.Any())
-            return;
+        if (soundData != null && filter.Recipients.Any())
+            RaiseNetworkEvent(new PlayTTSEvent(soundData, netSource, isWhisper, true, pitch), filter, recordReplay: false);
 
-        RaiseNetworkEvent(ttsEvent, filter, recordReplay: false);
+        if (obfSoundData != null && obfFilter.Recipients.Any())
+            RaiseNetworkEvent(new PlayTTSEvent(obfSoundData, netSource, isWhisper, true, pitch), obfFilter, recordReplay: false);
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>

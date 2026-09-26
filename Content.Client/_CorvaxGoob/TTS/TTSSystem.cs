@@ -10,6 +10,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Random;
+using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -41,6 +42,7 @@ public sealed partial class TTSSystem : EntitySystem
     private const float RadioRolloffMin = 1.5f;
     private const float RadioRolloffMax = 2.5f;
     private const float PlaybackDelay = 0.8f;
+    private static readonly float MinimalPitchToPlay = 0.3f;
 
     private float _lastRadioPitch = 0.98f;
     private float _radioVolume = 1.2f;
@@ -233,6 +235,9 @@ public sealed partial class TTSSystem : EntitySystem
             .WithVolume(AdjustVolume(ev.SourceUid == null, ev.IsWhisper, ev.IsRadio))
             .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
+        if (ev.Pitch.HasValue)
+            audioParams = audioParams.WithPitchScale(ev.Pitch.Value);
+
         var soundSpecifier = new ResolvedPathSpecifier(Prefix / filePath);
 
         (EntityUid Entity, AudioComponent Component)? audioResult = null;
@@ -244,6 +249,9 @@ public sealed partial class TTSSystem : EntitySystem
                 var pitch = GetRadioPitch();
                 var variation = GetRadioVariation();
                 var rolloff = GetRadioRolloff();
+
+                if (ev.Pitch.HasValue)
+                    pitch *= ev.Pitch.Value;
 
                 var radioParams = audioParams
                     .WithRolloffFactor(rolloff)
@@ -275,6 +283,15 @@ public sealed partial class TTSSystem : EntitySystem
                     ApplyVoiceEffect(audioResult.Value, _voiceEffectPreset);
                 }
             }
+
+            if (audioResult.HasValue
+                && ev.Pitch.HasValue
+                && ev.Pitch.Value != 1
+                && ev.Pitch.Value > MinimalPitchToPlay
+                && TryComp<TimedDespawnComponent>(audioResult.Value.Entity, out var timedDespawn))
+            {
+                timedDespawn.Lifetime = timedDespawn.Lifetime / ev.Pitch.Value;
+            }
         }
         finally
         {
@@ -282,6 +299,10 @@ public sealed partial class TTSSystem : EntitySystem
         }
 
         var duration = audioResource.AudioStream?.Length ?? TimeSpan.Zero;
+
+        if (ev.Pitch.HasValue && ev.Pitch.Value > MinimalPitchToPlay)
+            duration /= ev.Pitch.Value;
+
         var delay = duration + TimeSpan.FromSeconds(PlaybackDelay);
 
         Timer.Spawn(delay, () =>

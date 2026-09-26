@@ -127,6 +127,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         {
             var ttsTelephone = EnsureComp<TTSComponent>(speaker);
             ttsTelephone.VoicePrototypeId = ttsSpeaker.VoicePrototypeId;
+            ttsTelephone.Pitch = ttsSpeaker.Pitch;
         }
         else // Remove TTS if the speaker has no TTS
         {

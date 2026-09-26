@@ -6,6 +6,7 @@ namespace Content.Client._CorvaxGoob.TTS;
 
 public sealed partial class TTSSystem
 {
+    // TODO-Corvax: Если губы и мы обновимся до версии движка 283.0.0 посмотреть как этот файл устроен на ванилле и сделать также. 
     private EntityUid? _radioAuxiliaryEntity;
     private EntityUid? _voiceAuxiliaryEntity;
     private EntityUid? _cachedVoiceEffectEntity;
@@ -18,23 +19,14 @@ public sealed partial class TTSSystem
     /// </summary>
     private void ShutdownVoiceEffect()
     {
+        UnlinkAuxiliary(_voiceAuxiliaryEntity);
+
         if (_cachedVoiceEffectEntity != null && !TerminatingOrDeleted(_cachedVoiceEffectEntity.Value))
         {
             _audio.Stop(_cachedVoiceEffectEntity);
             Del(_cachedVoiceEffectEntity);
         }
         _cachedVoiceEffectEntity = null;
-
-        if (_voiceAuxiliaryEntity != null && !TerminatingOrDeleted(_voiceAuxiliaryEntity.Value))
-        {
-            if (TryComp<AudioAuxiliaryComponent>(_voiceAuxiliaryEntity.Value, out var auxComp))
-            {
-                auxComp.Auxiliary?.SetEffect(null);
-                auxComp.Auxiliary?.Dispose();
-            }
-            Del(_voiceAuxiliaryEntity);
-        }
-        _voiceAuxiliaryEntity = null;
     }
 
     /// <summary>
@@ -42,23 +34,14 @@ public sealed partial class TTSSystem
     /// </summary>
     private void ShutdownRadioEffect()
     {
+        UnlinkAuxiliary(_radioAuxiliaryEntity);
+
         if (_cachedRadioEffectEntity != null && !TerminatingOrDeleted(_cachedRadioEffectEntity.Value))
         {
             _audio.Stop(_cachedRadioEffectEntity);
             Del(_cachedRadioEffectEntity);
         }
         _cachedRadioEffectEntity = null;
-
-        if (_radioAuxiliaryEntity != null && !TerminatingOrDeleted(_radioAuxiliaryEntity.Value))
-        {
-            if (TryComp<AudioAuxiliaryComponent>(_radioAuxiliaryEntity.Value, out var auxComp))
-            {
-                auxComp.Auxiliary?.SetEffect(null);
-                auxComp.Auxiliary?.Dispose();
-            }
-            Del(_radioAuxiliaryEntity);
-        }
-        _radioAuxiliaryEntity = null;
     }
 
     /// <summary>
@@ -68,6 +51,12 @@ public sealed partial class TTSSystem
     {
         ShutdownVoiceEffect();
         ShutdownRadioEffect();
+    }
+
+    private void UnlinkAuxiliary(EntityUid? auxiliary)
+    {
+        if (auxiliary != null && TryComp<AudioAuxiliaryComponent>(auxiliary.Value, out var auxComp))
+            _audio.SetEffect(auxiliary.Value, auxComp, null);
     }
 
     private void ApplyVoiceEffect((EntityUid Entity, AudioComponent Component) audio, TTSVoiceEffectPreset effect)
@@ -121,10 +110,9 @@ public sealed partial class TTSSystem
     /// Creates an effect and an auxiliary, configures the preset, and links them.
     /// Rolls back everything created and returns null if any error occurs.
     /// </summary>
-    private (EntityUid Effect, EntityUid Auxiliary)? TryCreateEffectWithAuxiliary(ReverbProperties preset, string debugName)
+    private EntityUid? TryCreateEffect(ReverbProperties preset, ref EntityUid? auxiliary, string debugName)
     {
         EntityUid? effectUid = null;
-        EntityUid? auxUid = null;
 
         try
         {
@@ -133,25 +121,16 @@ public sealed partial class TTSSystem
 
             _audio.SetEffectPreset(effect, effectComp, preset);
 
-            var (aux, auxComp) = _audio.CreateAuxiliary();
-            auxUid = aux;
+            if (auxiliary == null || TerminatingOrDeleted(auxiliary.Value))
+                auxiliary = _audio.CreateAuxiliary().Entity;
 
-            _audio.SetEffect(aux, auxComp, effect);
+            _audio.SetEffect(auxiliary.Value, Comp<AudioAuxiliaryComponent>(auxiliary.Value), effect);
 
-            return (effect, aux);
+            return effect;
         }
         catch (Exception ex)
         {
             _sawmill.Warning($"Failed to initialize {debugName} effect: {ex.Message}");
-            if (auxUid != null && !TerminatingOrDeleted(auxUid.Value))
-            {
-                if (TryComp<AudioAuxiliaryComponent>(auxUid.Value, out var auxComp))
-                {
-                    auxComp.Auxiliary?.SetEffect(null);
-                    auxComp.Auxiliary?.Dispose();
-                }
-                Del(auxUid.Value);
-            }
 
             if (effectUid != null && !TerminatingOrDeleted(effectUid.Value))
             {
@@ -191,12 +170,11 @@ public sealed partial class TTSSystem
                 return false;
             }
 
-            var result = TryCreateEffectWithAuxiliary(GetVoicePreset(_voiceEffectPreset), $"voice ({_voiceEffectPreset})");
+            var result = TryCreateEffect(GetVoicePreset(_voiceEffectPreset), ref _voiceAuxiliaryEntity, $"voice ({_voiceEffectPreset})");
             if (result == null)
                 return false;
 
-            _cachedVoiceEffectEntity = result.Value.Effect;
-            _voiceAuxiliaryEntity = result.Value.Auxiliary;
+            _cachedVoiceEffectEntity = result;
 
             _sawmill.Info($"Voice effect initialized: {_voiceEffectPreset}");
             return true;
@@ -219,12 +197,11 @@ public sealed partial class TTSSystem
             if (_cachedRadioEffectEntity != null)
                 return true;
 
-            var result = TryCreateEffectWithAuxiliary(CreateRadioPreset(), "radio");
+            var result = TryCreateEffect(CreateRadioPreset(), ref _radioAuxiliaryEntity, "radio");
             if (result == null)
                 return false;
 
-            _cachedRadioEffectEntity = result.Value.Effect;
-            _radioAuxiliaryEntity = result.Value.Auxiliary;
+            _cachedRadioEffectEntity = result;
 
             return true;
         }
