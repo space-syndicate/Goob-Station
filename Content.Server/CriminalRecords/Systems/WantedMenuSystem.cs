@@ -185,10 +185,12 @@ public sealed partial class CriminalRecordsConsoleSystem
             _ => "not-wanted"
         };
 
+        // CorvaxGoob Edit Start
         TryAddSecHudStatusHistory(key.Value, msg.Status, statusString, reason, officer);
 
         _radio.SendRadioMessage(msg.Actor, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-{statusString}", args)),
-            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false);
+        // CorvaxGoob End
 
         UpdateUserInterface(ent);
     }

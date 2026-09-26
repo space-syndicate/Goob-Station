@@ -211,18 +211,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous", // Goobstation
             // person no longer demoted
             (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
-            // CorvaxGoob Start
-            // person has been marked as hostile
-            (_, SecurityStatus.Hostile) => "hostile",
-            // person has been marked as eliminated
-            (_, SecurityStatus.Eliminated) => "eliminated",
             // released marker removed
-            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged",
-            // person is no longer marked as hostile
-            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
-            // person's eliminated status has been cleared
-            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
-            // CorvaxGoob End
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged", // CorvaxGoob
             // this is impossible
             _ => "not-wanted"
         };
