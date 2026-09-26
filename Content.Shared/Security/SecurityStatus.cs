@@ -9,6 +9,7 @@ namespace Content.Shared.Security;
 /// Suspected - the person is suspected of doing something illegal
 /// Wanted - the person is being wanted by security
 /// Hostile - the person has been admitted as hostile
+/// Interrogation - the person has arrived for an interrogation.
 /// Detained - the person is detained by security
 /// Paroled - the person is on parole
 /// Discharged - the person has been released from prison
@@ -17,7 +18,6 @@ namespace Content.Shared.Security;
 /// Perma - the person has been sentenced to permanent imprisonment
 /// Dangerous - the person is highly dangerous and may resist arrest
 /// Demote - The person is about to be demoted
-/// Interrogation - the person has arrived for an interrogation.
 /// </summary>
 public enum SecurityStatus : byte
 {
@@ -25,6 +25,7 @@ public enum SecurityStatus : byte
     Suspected,
     Wanted,
     Hostile,
+    Interrogation, // CorvaxGoob - Interrogation-timer
     Detained,
     Paroled,
     Discharged,
@@ -32,6 +33,5 @@ public enum SecurityStatus : byte
     Search, // Goobstation
     Perma, // Goobstation
     Dangerous, // Goobstation
-    Demote, // Goobstation - Demotion
-    Interrogation // CorvaxGoob - Interrogation-timer
+    Demote // Goobstation - Demotion
 }

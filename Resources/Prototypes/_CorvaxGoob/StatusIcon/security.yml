@@ -5,15 +5,6 @@
   locationPreference: Left
   isShaded: true
 
-# CorvaxGoob Start - Interrogation-timer
-- type: securityIcon
-  parent: SecurityIcon
-  id: SecurityIconInterrogation
-  icon:
-    sprite: /Textures/Interface/Misc/security_icons.rsi
-    state: hud_interrogation
-# CorvaxGoob End
-
 - type: securityIcon
   parent: SecuritySquadIcon
   id: SecuritySquadIconAlpha
@@ -181,3 +172,11 @@
   icon:
     sprite: /Textures/_CorvaxGoob/Interface/Misc/security_icons.rsi
     state: omega
+
+# Interrogation-timer
+- type: securityIcon
+  parent: SecurityIcon
+  id: SecurityIconInterrogation
+  icon:
+    sprite: /Textures/Interface/Misc/security_icons.rsi
+    state: hud_interrogation
