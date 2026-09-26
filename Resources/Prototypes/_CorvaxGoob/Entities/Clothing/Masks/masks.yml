@@ -23,3 +23,54 @@
   suffix: Unremoveable
   components:
   - type: Unremoveable
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskGasShitSec
+  name: “Ustavnik” gas mask
+  description: A gas mask issued to officers as a “reward” for multiple violations of standard speech and swearing at their fellow soldiers.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Masks/shitsec.rsi
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Masks/shitsec.rsi
+  - type: BreathMask
+  - type: Tag
+    tags:
+    - IdioSec
+    - WhitelistChameleon
+    - GasMask
+    - GasMaskFullDefault
+    - Mask
+    - SecurityBreathMask
+    - Medal
+  - type: HideLayerClothing
+    layers:
+      Snout: Mask
+    hideOnToggle: true
+  - type: AddAccentClothing
+    accent: ReplacementAccent
+    replacement: ShitSec
+  - type: EmoteBlocker
+    blocksCategories:
+    - Vocal
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: RandomIntervalSound
+    requireEquipped: True
+    requireAlive: True
+    sound:
+      collection: SlasherBreathing
+      params:
+        volume: -3
+        maxDistance: 16
+  - type: SelfUnremovableClothing
+  - type: SelfEquipOnly
