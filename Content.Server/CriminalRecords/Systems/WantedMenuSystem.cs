@@ -163,6 +163,8 @@ public sealed partial class CriminalRecordsConsoleSystem
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake
             (SecurityStatus.Wanted, SecurityStatus.None) => "not-wanted",
+            // released marker removed
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged", // CorvaxGoob
             // person is no longer marked as hostile
             (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile", // CorvaxGoob
             // person's eliminated status has been cleared
@@ -195,8 +197,8 @@ public sealed partial class CriminalRecordsConsoleSystem
         }
         // CorvaxGoob End
 
-        _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(msg.Actor, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-{statusString}", args)),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         UpdateUserInterface(ent);
     }
@@ -255,8 +257,8 @@ public sealed partial class CriminalRecordsConsoleSystem
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
 
-        _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-detained", args),
-            ent.Comp.SecurityChannel, msg.Actor);
+        _radio.SendRadioMessage(msg.Actor, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-detained", args)),
+            ent.Comp.SecurityChannel, msg.Actor, escapeMarkup: false); // CorvaxGoob Edit
 
         UpdateUserInterface(ent);
     }

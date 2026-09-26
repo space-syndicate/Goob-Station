@@ -46,6 +46,13 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
+
+    private const string StatusChangeRadioColor = "#FF1A1A";
+
+    private static string ColorStatusChangeRadioMessage(string message)
+    {
+        return $"[color={StatusChangeRadioColor}]{Robust.Shared.Utility.FormattedMessage.EscapeText(message)}[/color]";
+    }
     // CorvaxGoob-SecurityFeatures-End
 
     public override void Initialize()
@@ -205,6 +212,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake
             (SecurityStatus.Wanted, SecurityStatus.None) => "not-wanted",
+            // released marker removed
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged", // CorvaxGoob
             // criminal status removed
             (SecurityStatus.Detained, SecurityStatus.None) => "released",
             // interrogation status removed
@@ -228,8 +237,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             ("status", Loc.GetString($"criminal-records-status-{statusString}")),
             ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: msg.Status);
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(ent, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-{statusString}", args)),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         UpdateUserInterface(ent);
     }
@@ -285,8 +294,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-detained", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(ent, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-detained", args)),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         if (msg.Print && entry is not null)
         {
@@ -346,8 +355,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             ("status", Loc.GetString($"criminal-records-status-wanted")),
             ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: SecurityStatus.Wanted);
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-wanted", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(ent, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-wanted", args)),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         if (msg.Print && entry is not null)
         {
