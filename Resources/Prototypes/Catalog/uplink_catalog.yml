@@ -1919,7 +1919,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
   cost:
-    Telecrystal: 50 # goob
+    Telecrystal: 30 # CorvaxGoob suits rabalance
   categories:
   - UplinkWearables
   #Goobstation
@@ -1928,7 +1928,25 @@
     blacklist:
       tags:
       - ContractorUplink
+      - NukeOpsUplink # CorvaxGoob suits rabalance
 
+ # CorvaxGoob suits rabalance start
+- type: listing
+  id: UplinkHardsuitSyndieNukeOps
+  name: uplink-hardsuit-syndie-name
+  description: uplink-hardsuit-syndie-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+ # CorvaxGoob suits rabalance end
 
 - type: listing
   id: UplinkClothingOuterArmorRaid
@@ -1954,7 +1972,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
-    Telecrystal: 75 # goob
+    Telecrystal: 50 # CorvaxGoob suits rabalance
   categories:
   - UplinkWearables
   #Goobstation
@@ -1963,12 +1981,25 @@
     blacklist:
       tags:
       - ContractorUplink
-  #conditions: # Goobstation - no fuck you
-  #- !type:StoreWhitelistCondition
-  #  whitelist:
-  #    tags:
-  #    - NukeOpsUplink
+      - NukeOpsUplink # CorvaxGoob suits rabalance
 
+ # CorvaxGoob suits rabalance start
+- type: listing
+  id: UplinkHardsuitSyndieEliteNukeOps
+  name: uplink-hardsuit-syndieelite-name
+  description: uplink-hardsuit-syndieelite-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
+  cost:
+    Telecrystal: 75
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+ # CorvaxGoob suits rabalance end
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut
@@ -1977,7 +2008,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/cybersun.rsi, state: icon } # goobstation - duke nukies
   productEntity: CrateCybersunJuggernautBundle
   cost:
-    Telecrystal: 75 # goob
+    Telecrystal: 50 # CorvaxGoob suits rabalance
   categories:
   - UplinkWearables
   #Goobstation
@@ -1986,12 +2017,25 @@
     blacklist:
       tags:
       - ContractorUplink
-  #conditions: # Goobstation - no fuck you
-  #- !type:StoreWhitelistCondition
-  # whitelist:
-  #    tags:
-  #    - NukeOpsUplink
+      - NukeOpsUplink # CorvaxGoob suits rabalance
 
+ # CorvaxGoob suits rabalance start
+- type: listing
+  id: UplinkClothingOuterHardsuitJuggernautNukeOps
+  name: uplink-clothing-outer-hardsuit-juggernaut-name
+  description: uplink-clothing-outer-hardsuit-juggernaut-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/cybersun.rsi, state: icon } # goobstation - duke nukies
+  productEntity: CrateCybersunJuggernautBundle
+  cost:
+    Telecrystal: 75
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+ # CorvaxGoob suits rabalance end
 
 - type: listing
   id: UplinkClothingEyesHudSyndicate
