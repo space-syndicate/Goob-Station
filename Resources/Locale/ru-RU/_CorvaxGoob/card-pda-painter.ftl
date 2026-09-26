@@ -1,0 +1,14 @@
+card-pda-painter-window-title = Декоратор ID-карт и КПК
+card-pda-painter-window-target = Цель:
+card-pda-painter-window-insert = Вставить
+card-pda-painter-window-eject = Извлечь
+card-pda-painter-window-no-target = ID-карта или КПК не вставлены
+card-pda-painter-window-search = Поиск:
+card-pda-painter-window-apply = Перекрасить
+card-pda-painter-window-hint-empty = Вставьте ID-карту или КПК, чтобы изменить внешний вид.
+card-pda-painter-window-hint-id-card = Изменяет внешний вид вставленной ID-карты.
+card-pda-painter-window-hint-pda = Изменяет внешний вид вставленного КПК.
+card-pda-painter-window-no-selection = Профессия не выбрана
+card-pda-painter-popup-success = Предмет перекрашен.
+card-pda-painter-popup-invalid-target = Вставьте ID-карту или КПК.
+card-pda-painter-slot-name = ID-карта или КПК
