@@ -16,32 +16,12 @@ public sealed class SprintingSystem : SharedSprintingSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SprinterComponent, StartCollideEvent>(OnCollide);
     }
 
     private void OnCollide(EntityUid uid, SprinterComponent sprinter, ref StartCollideEvent args)
     {
-        var otherUid = args.OtherEntity;
 
-        if (uid.Id < otherUid.Id)
-            return;
-
-        if (!sprinter.IsSprinting)
-        {
-            return;
-        }
-
-        if (!TryComp(otherUid, out SprinterComponent? otherSprinter)
-            || !otherSprinter.IsSprinting
-            || !HasComp<ActiveSandevistanUserComponent>(otherUid))
-        {
-            return;
-        }
-
-        _stunSystem.TryKnockdown(uid, sprinter.KnockdownDurationOnInterrupt, false, true);
-        _stunSystem.TryKnockdown(otherUid,
-            otherSprinter.KnockdownDurationOnInterrupt,
-            false,
-            true);
     }
 }
+
+//Тупо заглушка, неиспользуемая система не хочу нечего ломать, пусть другие разбираются.
