@@ -541,6 +541,7 @@
     # CorvaxGoob Packs
     - SecurityCaptureDevicePack # WeaponGrapplingGunHunter
     - WorkBeltsSecDynamic # WorkBelts-Techfab
+    - BodyBagsDynamic # CorvaxGoob sec rebalance
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic

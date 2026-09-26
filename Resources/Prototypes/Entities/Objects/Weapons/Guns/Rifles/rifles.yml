@@ -197,6 +197,7 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+  - type: GunRequiresWield # CorvaxGoob sec rebalance
   - type: Gun
     fireRate: 5 # Goobstation?
     soundGunshot:
