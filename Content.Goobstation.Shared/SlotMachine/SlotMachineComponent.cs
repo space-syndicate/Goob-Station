@@ -25,7 +25,7 @@ public sealed partial class SlotMachineComponent : Component
 
     // CorvaxGoob-DiceOfFate End
 
-    [DataField] 
+    [DataField, AutoNetworkedField]
     public int SpinCost = 250;
 
     public EntProtoId? EmagSpawnEntity;
