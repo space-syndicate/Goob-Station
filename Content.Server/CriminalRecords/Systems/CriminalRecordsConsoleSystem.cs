@@ -177,6 +177,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
         {
+            (_, SecurityStatus.Hostile) => "hostile",
+            (_, SecurityStatus.Eliminated) => "eliminated",
             // person has been detained
             (_, SecurityStatus.Detained) => "detained",
             // person did something sus
@@ -187,6 +189,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (_, SecurityStatus.Discharged) => "released",
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
+            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
+            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
             // person has been sentenced to perma
             (_, SecurityStatus.Perma) => "perma", // Goobstation
             // person needs to be searched
@@ -246,6 +250,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
                 return;
         }
 
+        // duration > 0 and <= 24h
         if (!IsValidDetainedDuration(msg.Duration))
             return;
 
