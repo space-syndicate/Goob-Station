@@ -172,13 +172,14 @@ namespace Content.Server.GameTicking
                 return;
 
             // CorvaxGoob-GoLobby-start
-            var selectedSlot = _ghostGoLobby.GetSelectedSlot(player.UserId);
-            if (!_ghostGoLobby.CanUseCharacter(player.UserId, selectedSlot))
+            if (_ghostGoLobby.IsCharacterUsed(character))
             {
-                _chatManager.DispatchServerMessage(player,Loc.GetString("ghost-go-lobby-used"));
+                _chatManager.DispatchServerMessage(player, Loc.GetString("ghost-go-lobby-used"));
                 return;
             }
-            // CorvaxGoob-GoLobby-end 
+
+            var originalCharacter = character;
+            // CorvaxGoob-GoLobby-end
 
             if (station == EntityUid.Invalid)
             {
@@ -233,6 +234,7 @@ namespace Content.Server.GameTicking
             // Do nothing, something else has handled spawning this player for us!
             if (bev.Handled)
             {
+                _ghostGoLobby.MarkCharacterUsed(originalCharacter); // CorvaxGoob-GoLobby
                 PlayerJoinGame(player, silent);
                 return;
             }
@@ -266,6 +268,8 @@ namespace Content.Server.GameTicking
                     Loc.GetString("game-ticker-player-no-jobs-available-when-joining"));
                 return;
             }
+
+            _ghostGoLobby.MarkCharacterUsed(originalCharacter); // CorvaxGoob-GoLobby
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 
