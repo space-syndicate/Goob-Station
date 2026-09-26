@@ -113,6 +113,7 @@ namespace Content.Client.Access.UI
             };
 
             JobPresetOptionButton.OnItemSelected += SelectJobPreset;
+            InitializeExtendedAccessButtons(); // CorvaxGoob - Extended-access
             _accessButtons.Populate(accessLevels, prototypeManager);
             AccessLevelControlContainer.AddChild(_accessButtons);
 
@@ -190,7 +191,7 @@ namespace Content.Client.Access.UI
                 state.IsPrivilegedIdPresent && state.IsPrivilegedIdAuthorized && state.IsTargetIdPresent;
 
             var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
-            var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle;
+		 // var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle; // CorvaxGoob Edit - Extended-access
 
             FullNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             FullNameLineEdit.Editable = interfaceEnabled;
@@ -203,6 +204,12 @@ namespace Content.Client.Access.UI
 
             JobTitleLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             JobTitleLineEdit.Editable = interfaceEnabled;
+
+            // CorvaxGoob Start - Extended-access
+            SyncJobTitleAfterExtendedAccess(state.TargetIdJobTitle ?? string.Empty);
+            var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle;
+            // CorvaxGoob End
+
             if (!jobTitleDirty)
             {
                 JobTitleLineEdit.Text = state.TargetIdJobTitle ?? string.Empty;
@@ -211,6 +218,7 @@ namespace Content.Client.Access.UI
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
+            SetExtendedAccessButtonsDisabled(!interfaceEnabled); // CorvaxGoob - Extended-access
 
             _accessButtons.UpdateState(state.TargetIdAccessList?.ToList() ??
                                        new List<ProtoId<AccessLevelPrototype>>(),
