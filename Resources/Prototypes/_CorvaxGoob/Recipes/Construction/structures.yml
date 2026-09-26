@@ -70,4 +70,34 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  objectType: Structure 
+  objectType: Structure
+
+ # enhance-secret-door
+- type: construction
+  name: construction-recipe-secret-door-airlock
+  description: construction-recipe-secret-door-airlock.desc
+  id: SolidSecretDoorAirlock
+  graph: Girder
+  startNode: start
+  targetNode: solidSecretDoorAirlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# enhance-secret-door
+- type: construction
+  name: construction-recipe-secret-door-reinforced-airlock
+  description: construction-recipe-secret-door-reinforced-airlock.desc
+  id: ReinforcedSecretDoorAirlock
+  graph: Girder
+  startNode: start
+  targetNode: ReinforcedSecretDoorAirlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
