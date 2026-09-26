@@ -304,6 +304,9 @@ public sealed partial class TTSSystem : EntitySystem
         if (channelFlag == RadioChannelFlag.None)
             return; // Unknown - Skip
 
+        if (!CanTransmitFrom(sourceUid, channel))
+            return;
+
         var netSource = GetNetEntity(sourceUid);
         var filter = Filter.Empty();
         var obfFilter = Filter.Empty();
@@ -377,6 +380,20 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (obfSoundData != null && obfFilter.Recipients.Any())
             RaiseNetworkEvent(new PlayTTSEvent(obfSoundData, netSource, isWhisper, true, pitch), obfFilter, recordReplay: false);
+    }
+
+    private bool CanTransmitFrom(EntityUid uid, RadioChannelPrototype channel)
+    {
+        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
+            return transmitter.Channels.Contains(channel.ID);
+
+        if (TryComp<WearingHeadsetComponent>(uid, out var wearing)
+            && TryComp<EncryptionKeyHolderComponent>(wearing.Headset, out var encryption))
+        {
+            return encryption.Channels.Contains(channel.ID);
+        }
+
+        return false;
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>
