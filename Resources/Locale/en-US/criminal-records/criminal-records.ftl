@@ -30,7 +30,6 @@ criminal-records-status-wanted = Wanted
 criminal-records-status-detained = Detained
 criminal-records-status-suspected = Suspect
 criminal-records-status-discharged = Discharged
-criminal-records-status-not-discharged = Discharged marker cleared
 criminal-records-status-paroled = Paroled
 criminal-records-status-hostile = Hostile
 criminal-records-status-eliminated = Eliminated
@@ -40,7 +39,6 @@ criminal-records-status-perma = Perma
 
 criminal-records-console-wanted-reason = Wanted Reason
 criminal-records-console-suspected-reason = Suspected Reason
-criminal-records-console-hostile-reason = Hostile Reason
 criminal-records-console-search-reason = Search Reason
 criminal-records-console-dangerous-reason = Dangerous Reason
 
@@ -65,7 +63,6 @@ criminal-records-console-suspected = {$officer} marked {$name} ({$job}) as suspi
 criminal-records-console-not-suspected = {$name} ({$job}) has been cleared of suspicion by {$officer}.
 criminal-records-console-detained = {$name} ({$job}) has been detained by {$officer}.
 criminal-records-console-released = {$name} ({$job}) has been released by {$officer}.
-criminal-records-console-not-discharged = The "Discharged" marker was removed from {$name} ({$job}) by {$officer}.
 criminal-records-console-paroled = {$name} ({$job}) has been released on parole by {$officer}.
 criminal-records-console-not-parole = {$officer} cleared the parole status of {$name} ({$job}).
 criminal-records-console-hostile = {$name} ({$job}) was marked as hostile by {$officer} for: {$reason}.

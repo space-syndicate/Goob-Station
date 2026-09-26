@@ -135,14 +135,8 @@ public sealed partial class CriminalRecordsConsoleSystem
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
         {
-            // person has been marked as hostile
-            (_, SecurityStatus.Hostile) => "hostile", // CorvaxGoob
-            // person has been marked as eliminated
-            (_, SecurityStatus.Eliminated) => "eliminated", // CorvaxGoob
             // person has been detained
             (_, SecurityStatus.Detained) => "detained",
-            // person has arrived for an interrogation
-            (_, SecurityStatus.Interrogation) => "interrogation", // CorvaxGoob - Interrogation-timer
             // person did something sus
             (_, SecurityStatus.Suspected) => "suspected",
             // released on parole
@@ -163,16 +157,8 @@ public sealed partial class CriminalRecordsConsoleSystem
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake
             (SecurityStatus.Wanted, SecurityStatus.None) => "not-wanted",
-            // released marker removed
-            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged", // CorvaxGoob
-            // person is no longer marked as hostile
-            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile", // CorvaxGoob
-            // person's eliminated status has been cleared
-            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated", // CorvaxGoob
             // criminal status removed
             (SecurityStatus.Detained, SecurityStatus.None) => "released",
-            // interrogation status removed
-            (SecurityStatus.Interrogation, SecurityStatus.None) => "not-interrogation", // CorvaxGoob - Interrogation-timer
             // criminal is no longer on parole
             (SecurityStatus.Paroled, SecurityStatus.None) => "not-parole",
             // criminal is no longer in perma
@@ -183,19 +169,27 @@ public sealed partial class CriminalRecordsConsoleSystem
             (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous",
             // person no longer demoted
             (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
+            // CorvaxGoob Start
+            // person has been marked as hostile
+            (_, SecurityStatus.Hostile) => "hostile",
+            // person has been marked as eliminated
+            (_, SecurityStatus.Eliminated) => "eliminated",
+            // person has arrived for an interrogation
+            (_, SecurityStatus.Interrogation) => "interrogation", // CorvaxGoob - Interrogation-timer
+            // released marker removed
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged",
+            // person is no longer marked as hostile
+            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
+            // person's eliminated status has been cleared
+            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
+            // interrogation status removed
+            (SecurityStatus.Interrogation, SecurityStatus.None) => "not-interrogation", // CorvaxGoob - Interrogation-timer
+            // CorvaxGoob End
             // this is impossible
             _ => "not-wanted"
         };
 
-        // CorvaxGoob Start - Interrogation-timer
-        // Record every status change made through the SecHUD except Detained, which has its own history entry.
-        if (msg.Status != SecurityStatus.Detained)
-        {
-            _criminalRecords.TryAddHistory(key.Value, Loc.GetString("criminal-records-console-history",
-                ("status", Loc.GetString($"criminal-records-status-{statusString}")),
-                ("reason", reason ?? Loc.GetString("criminal-records-console-unspecified"))), officer, status: msg.Status);
-        }
-        // CorvaxGoob End
+        TryAddSecHudStatusHistory(key.Value, msg.Status, statusString, reason, officer);
 
         _radio.SendRadioMessage(msg.Actor, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-{statusString}", args)),
             ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
@@ -221,8 +215,7 @@ public sealed partial class CriminalRecordsConsoleSystem
                 return;
         }
 
-        // Detention duration must be between 1 minute and 24 hours.
-        if (msg.Duration <= 0 || msg.Duration > 1440)
+        if (!IsValidDetainedDuration(msg.Duration))
             return;
 
         var oldStatus = record.Status;

@@ -46,13 +46,6 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
-
-    private const string StatusChangeRadioColor = "#FF1A1A";
-
-    private static string ColorStatusChangeRadioMessage(string message)
-    {
-        return $"[color={StatusChangeRadioColor}]{Robust.Shared.Utility.FormattedMessage.EscapeText(message)}[/color]";
-    }
     // CorvaxGoob-SecurityFeatures-End
 
     public override void Initialize()
@@ -184,12 +177,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
         {
-            (_, SecurityStatus.Hostile) => "hostile",
-            (_, SecurityStatus.Eliminated) => "eliminated",
             // person has been detained
             (_, SecurityStatus.Detained) => "detained",
-            // person has arrived for an interrogation
-            (_, SecurityStatus.Interrogation) => "interrogation", // CorvaxGoob - Interrogation-timer
             // person did something sus
             (_, SecurityStatus.Suspected) => "suspected",
             // released on parole
@@ -198,8 +187,6 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (_, SecurityStatus.Discharged) => "released",
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
-            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
-            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
             // person has been sentenced to perma
             (_, SecurityStatus.Perma) => "perma", // Goobstation
             // person needs to be searched
@@ -212,12 +199,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake
             (SecurityStatus.Wanted, SecurityStatus.None) => "not-wanted",
-            // released marker removed
-            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged", // CorvaxGoob
             // criminal status removed
             (SecurityStatus.Detained, SecurityStatus.None) => "released",
-            // interrogation status removed
-            (SecurityStatus.Interrogation, SecurityStatus.None) => "not-interrogation", // CorvaxGoob - Interrogation-timer
             // criminal is no longer on parole
             (SecurityStatus.Paroled, SecurityStatus.None) => "not-parole",
             // criminal is no longer in perma
@@ -228,6 +211,22 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous", // Goobstation
             // person no longer demoted
             (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
+            // CorvaxGoob Start
+            // person has been marked as hostile
+            (_, SecurityStatus.Hostile) => "hostile",
+            // person has been marked as eliminated
+            (_, SecurityStatus.Eliminated) => "eliminated",
+            // person has arrived for an interrogation
+            (_, SecurityStatus.Interrogation) => "interrogation", // CorvaxGoob - Interrogation-timer
+            // released marker removed
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged",
+            // person is no longer marked as hostile
+            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
+            // person's eliminated status has been cleared
+            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
+            // interrogation status removed
+            (SecurityStatus.Interrogation, SecurityStatus.None) => "not-interrogation", // CorvaxGoob - Interrogation-timer
+            // CorvaxGoob End
             // this is impossible
             _ => "not-wanted"
         };
@@ -261,8 +260,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
                 return;
         }
 
-        // Detention duration must be between 1 minute and 24 hours.
-        if (msg.Duration <= 0 || msg.Duration > 1440)
+        if (!IsValidDetainedDuration(msg.Duration))
             return;
 
         var name = _records.RecordName(key.Value);
