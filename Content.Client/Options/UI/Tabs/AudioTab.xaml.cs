@@ -32,13 +32,6 @@ public sealed partial class AudioTab : Control
             scale: ContentAudioSystem.MasterVolumeMultiplier);
         masterVolume.ImmediateValueChanged += OnMasterVolumeSliderChanged;
 
-        // CorvaxGoob-TTS-Start
-        Control.AddOptionPercentSlider(
-            CCCVars.TTSVolume,
-            SliderVolumeTts,
-            scale: ContentAudioSystem.TtsMultiplier);
-        // CorvaxGoob-TTS-End
-
         // CorvaxGoob-Announcements-Volume-Start
         Control.AddOptionPercentSlider(
             CCCVars.AnnouncementsSound,
@@ -106,6 +99,8 @@ public sealed partial class AudioTab : Control
         Control.AddOptionCheckBox(CCVars.EventMusicEnabled, EventMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.AdminSoundsEnabled, AdminSoundsCheckBox);
         Control.AddOptionCheckBox(CCVars.BwoinkSoundEnabled, BwoinkSoundCheckBox);
+
+        BuildTtsBlock(); // CorvaxGoob-TTS
 
         Control.Initialize();
     }
