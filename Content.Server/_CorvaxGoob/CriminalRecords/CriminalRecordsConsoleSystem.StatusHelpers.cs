@@ -8,7 +8,7 @@ namespace Content.Server.CriminalRecords.Systems;
 
 public sealed partial class CriminalRecordsConsoleSystem
 {
-    private const string StatusChangeRadioColor = "#FF1A1A";
+    private const string StatusChangeRadioColor = "#FF0D0D";
     private const int MaxDetainedDurationMinutes = 1440;
 
     private static string ColorStatusChangeRadioMessage(string message)
@@ -34,6 +34,9 @@ public sealed partial class CriminalRecordsConsoleSystem
 
         _criminalRecords.TryAddHistory(key, Loc.GetString("criminal-records-console-history",
             ("status", Loc.GetString($"criminal-records-status-{statusString}")),
-            ("reason", reason ?? Loc.GetString("criminal-records-console-unspecified"))), officer, status: status);
+            ("reason", reason ?? Loc.GetString("criminal-records-console-unspecified"))),
+            officer,
+            articles: status == SecurityStatus.Wanted ? reason : null,
+            status: status);
     }
 }
