@@ -30,4 +30,4 @@ research-console-prereqs-list-entry = - [color=orchid]{$text}[/color]
 
 research-console-no-access-popup = No access!
 # CorvaxGoob Edit
-research-console-unlock-technology-radio-broadcast = [color=mediumorchid]Unlocked [bold]{$technology}[/bold] for [bold]{$amount}[/bold] research by [bold]{$approver}[/bold].[/color]
+research-console-unlock-technology-radio-broadcast = [color=#76578a]Unlocked [bold]{$technology}[/bold] for [bold]{$amount}[/bold] research by [bold]{$approver}[/bold].[/color]
