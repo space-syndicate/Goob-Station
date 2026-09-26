@@ -172,11 +172,3 @@
   icon:
     sprite: /Textures/_CorvaxGoob/Interface/Misc/security_icons.rsi
     state: omega
-
-# Interrogation-timer
-- type: securityIcon
-  parent: SecurityIcon
-  id: SecurityIconInterrogation
-  icon:
-    sprite: /Textures/Interface/Misc/security_icons.rsi
-    state: hud_interrogation

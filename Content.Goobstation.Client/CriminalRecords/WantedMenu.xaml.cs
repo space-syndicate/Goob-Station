@@ -222,7 +222,6 @@ public sealed partial class WantedMenu : FancyWindow
             SecurityStatus.Perma => "hud_perma",
             SecurityStatus.Dangerous => "hud_dangerous",
             SecurityStatus.Demote => "hud_demote", // Goobstation
-            SecurityStatus.Interrogation => "hud_interrogation", // CorvaxGoob - Interrogation-timer
             _ => "SecurityIconNone"
         };
     }

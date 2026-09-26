@@ -216,16 +216,12 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (_, SecurityStatus.Hostile) => "hostile",
             // person has been marked as eliminated
             (_, SecurityStatus.Eliminated) => "eliminated",
-            // person has arrived for an interrogation
-            (_, SecurityStatus.Interrogation) => "interrogation", // CorvaxGoob - Interrogation-timer
             // released marker removed
             (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged",
             // person is no longer marked as hostile
             (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
             // person's eliminated status has been cleared
             (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
-            // interrogation status removed
-            (SecurityStatus.Interrogation, SecurityStatus.None) => "not-interrogation", // CorvaxGoob - Interrogation-timer
             // CorvaxGoob End
             // this is impossible
             _ => "not-wanted"
@@ -284,7 +280,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         if (tryGetIdentityShortInfoEvent.Title != null)
             officer = tryGetIdentityShortInfoEvent.Title;
 
-        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer, msg.Duration); // CorvaxGoob Edit - Interrogation-timer
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer);
 
         (string, object)[] args;
         if (articles != null)

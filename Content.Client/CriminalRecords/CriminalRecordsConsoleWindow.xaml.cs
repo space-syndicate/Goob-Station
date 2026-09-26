@@ -572,7 +572,6 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             SecurityStatus.Perma => "hud_perma",  // Goobstation
             SecurityStatus.Dangerous => "hud_dangerous",// Goobstation
             SecurityStatus.Demote => "hud_demote", // Goobstation
-            SecurityStatus.Interrogation => "hud_interrogation", // CorvaxGoob - Interrogation-timer
             _ => "SecurityIconNone"
         };
     }

@@ -3,9 +3,6 @@ criminal-records-console-initiator = Инициатор
 criminal-records-console-detained-record = Арестован по: { $articles } | СРОК: { $duration } мин
 criminal-records-console-detained-reason = Арестован по причине
 criminal-records-console-hostile-reason = Причина
-criminal-records-console-detained-expired = Срок заключения { $name } ({ $job }) истёк.
-
-criminal-records-examine-detained-timer = Оставшееся время заключения: { $time }
 
 criminal-records-console-history = { $status }: { $reason }
 

@@ -53,7 +53,6 @@ public abstract class SharedCriminalRecordsSystem : EntitySystem
             SecurityStatus.Search => "SecurityIconSearch", // Goobstation
             SecurityStatus.Dangerous => "SecurityIconDangerous", // Goobstation
             SecurityStatus.Demote => "SecurityIconDemoted", // Goobstation
-            SecurityStatus.Interrogation => "SecurityIconInterrogation", // CorvaxGoob - Interrogation-timer
             _ => record.StatusIcon
         };
 

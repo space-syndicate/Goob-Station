@@ -17,7 +17,4 @@ criminal-records-console-history = {$status}: {$reason}
 
 criminal-records-console-unspecified = <unspecified>
 
-criminal-records-console-detained-expired = {$name} ({$job})'s detention sentence has expired.
 criminal-records-console-not-discharged = The "Discharged" marker was removed from {$name} ({$job}) by {$officer}.
-
-criminal-records-examine-detained-timer = Detention time remaining: {$time}

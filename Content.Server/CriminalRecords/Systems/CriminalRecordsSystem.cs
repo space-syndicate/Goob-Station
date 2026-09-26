@@ -24,7 +24,7 @@ namespace Content.Server.CriminalRecords.Systems;
 ///         - See security officers' actions in Criminal Records in the radio
 ///         - See reasons for any action with no need to ask the officer personally
 /// </summary>
-public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem // CorvaxGoob Edit - made partial
+public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
 {
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
@@ -53,19 +53,14 @@ public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem 
     /// Reason should only be passed if status is Wanted, nullability isn't checked.
     /// </summary>
     /// <returns>True if the status is changed, false if not</returns>
-    public bool TryChangeStatus(StationRecordKey key, SecurityStatus status, string? reason, string? initiatorName = null, int? duration = null) // CorvaxGoob Edit - Interrogation-timer
+    public bool TryChangeStatus(StationRecordKey key, SecurityStatus status, string? reason, string? initiatorName = null)
     {
-        // CorvaxGoob Edit Start - Interrogation-timer
-        if (!_records.TryGetRecord<CriminalRecord>(key, out var record))
+        // don't do anything if its the same status
+        if (!_records.TryGetRecord<CriminalRecord>(key, out var record)
+            || status == record.Status)
             return false;
 
-        // Don't do anything if it is the same status, except when refreshing a Detained timer.
-        if (status == record.Status &&
-            (status != SecurityStatus.Detained || duration == null || duration <= 0))
-            return false;
-
-        OverwriteStatus(key, record, status, reason, initiatorName, duration);
-        // CorvaxGoob End
+        OverwriteStatus(key, record, status, reason, initiatorName);
 
         return true;
     }
@@ -73,14 +68,11 @@ public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem 
     /// <summary>
     /// Sets the status without checking previous status or reason nullability.
     /// </summary>
-    public void OverwriteStatus(StationRecordKey key, CriminalRecord record, SecurityStatus status, string? reason, string? initiatorName = null, int? duration = null) // CorvaxGoob Edit - Interrogation-timer
+    public void OverwriteStatus(StationRecordKey key, CriminalRecord record, SecurityStatus status, string? reason, string? initiatorName = null)
     {
         record.Status = status;
         record.Reason = reason;
         record.InitiatorName = initiatorName;
-        // CorvaxGoob Start - Interrogation-timer
-        UpdateStatusTimer(key, record, status, duration);
-        // CorvaxGoob End
 
         var name = _records.RecordName(key);
         if (name != string.Empty)

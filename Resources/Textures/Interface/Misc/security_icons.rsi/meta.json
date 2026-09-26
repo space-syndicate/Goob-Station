@@ -39,9 +39,6 @@
       },
       {
           "name": "hud_demote"
-      },
-      {
-          "name": "hud_interrogation"
       }
   ]
 }
