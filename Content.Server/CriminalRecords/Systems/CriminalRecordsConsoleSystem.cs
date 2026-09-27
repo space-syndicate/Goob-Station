@@ -168,11 +168,13 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         _criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer);
 
+        /*  CorvaxGoob Edit Start
         (string, object)[] args;
         if (reason != null)
             args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", reason), ("job", jobName) };
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+            CorvaxGoob End */
 
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
@@ -229,7 +231,11 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             articles: msg.Status == SecurityStatus.Wanted ? reason : null,
             status: msg.Status);
 
-        _radio.SendRadioMessage(ent, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-{statusString}", args)),
+        var radioStatusString = msg.Status == SecurityStatus.None
+            ? "cleared"
+            : statusString;
+
+        _radio.SendRadioMessage(ent, FormatStatusChangeRadioMessage(radioStatusString, name, officer, jobName, reason),
             ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         UpdateUserInterface(ent);
@@ -280,13 +286,15 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer);
 
+        /*  CorvaxGoob Edit Start
         (string, object)[] args;
         if (articles != null)
             args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", articles), ("job", jobName) };
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+            CorvaxGoob End */
 
-        _radio.SendRadioMessage(ent, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-detained", args)),
+        _radio.SendRadioMessage(ent, FormatStatusChangeRadioMessage("detained", name, officer, jobName, articles),
             ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         if (msg.Print && entry is not null)
@@ -350,7 +358,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             articles: reason,
             status: SecurityStatus.Wanted);
 
-        _radio.SendRadioMessage(ent, ColorStatusChangeRadioMessage(Loc.GetString($"criminal-records-console-wanted", args)),
+        _radio.SendRadioMessage(ent, FormatStatusChangeRadioMessage("wanted", name, officer, jobName, reason),
             ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         if (msg.Print && entry is not null)

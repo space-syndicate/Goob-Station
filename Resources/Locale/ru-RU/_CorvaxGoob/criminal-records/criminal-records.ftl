@@ -21,10 +21,13 @@ criminal-records-status-not-eliminated = Больше не помечен лик
 criminal-records-status-released = Освобождён
 criminal-records-status-not-suspected = Подозрение снято
 criminal-records-status-not-wanted = Розыск снят
-criminal-records-status-not-discharged = Метка Освобождён снята
+criminal-records-status-not-discharged = Отметка об освобождении снята
+criminal-records-status-cleared = Статус снят
 criminal-records-status-not-parole = Статус УДО снят
 criminal-records-status-not-perma = Освобождён из пермабрига
 criminal-records-status-not-search = Статус пропажи снят
 criminal-records-status-not-dangerous = Больше не считается опасным
 criminal-records-status-not-demoted = Статус понижения снят
-criminal-records-console-not-discharged = Метка Освобождён снята с { $name } ({ $job }), ответственный: { $officer }.
+
+criminal-records-console-radio-status = \[{ $status }\] { $name } ({ $job }), ответственный: { $officer }.
+criminal-records-console-radio-status-with-reason = \[{ $status }\] { $name } ({ $job }), причина: { $reason }, ответственный: { $officer }.
