@@ -156,6 +156,11 @@
 - type: Tag
   id: BotanyShovel # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
 
+# CorvaxGoob start
+- type: Tag
+  id: PlantAnalyzer # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
+# CorvaxGoob end
+
 - type: Tag # Used for specifically chemistry bottles.
   id: Bottle # Storage whitelist: ChemMaster, ChemBag, SmartFridge, ClothingBeltJanitor, ClothingBeltMedical, ClothingBeltPlant
 
