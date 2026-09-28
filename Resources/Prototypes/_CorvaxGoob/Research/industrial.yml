@@ -51,6 +51,7 @@
   - DiamondGasTurbineBlade
   - GoldGasTurbineStator
   - GoldGasTurbineBlade
+  - RadiationBlockingProjector # CorvaxGoob
   technologyPrerequisites:
   - NuclearPowerGeneration
   position: -1, -3
