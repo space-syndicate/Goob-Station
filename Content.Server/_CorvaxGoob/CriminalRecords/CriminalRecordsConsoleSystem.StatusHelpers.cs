@@ -8,7 +8,7 @@ namespace Content.Server.CriminalRecords.Systems;
 
 public sealed partial class CriminalRecordsConsoleSystem
 {
-    private const string StatusChangeRadioColor = "#FF0D0D";
+    private const string StatusChangeRadioColor = "#FFA726";
     private const int MaxDetainedDurationMinutes = 1440;
 
     // Formats security status change notifications sent to the security radio channel by the criminal records console and SecHUD.
