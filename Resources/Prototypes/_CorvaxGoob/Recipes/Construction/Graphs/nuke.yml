@@ -7,6 +7,8 @@
     entity: NuclearBombDeconstructed
     edges:
     - to: nuke
+      conditions:
+      - !type:WirePanel { }
       steps:
       - component: PlutoniumCore
         name: construction-graph-component-plutoniumcore

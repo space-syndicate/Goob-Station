@@ -8,7 +8,7 @@
     sprite: _CorvaxGoob/Objects/Specific/Nuke/plutonium_core.rsi
     state: icon
   - type: RadiationSource
-    intensity: 5
+    intensity: 2
   - type: Item
     size: Normal
     shape:
@@ -45,7 +45,7 @@
   parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: NuclearBombDeconstructed
   name: hollow nuclear fission explosive
-  description: You probably shouldn't stick around to see if this is armed. Looks damaged.
+  description: Empty metal body of the formed doom's day weapon.
   components:
   - type: Transform
     anchored: true
@@ -126,3 +126,4 @@
   name: tool-quality-drilling-name
   toolName: tool-quality-drilling-tool-name
   spawn: BloodRedDrill
+  icon: { sprite: _CorvaxGoob/Objects/Specific/Nuke/handdrill.rsi, state: icon }

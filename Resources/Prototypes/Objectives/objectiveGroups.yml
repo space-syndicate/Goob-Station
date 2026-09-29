@@ -32,6 +32,7 @@
     GeminiProjectorStealObjective: 0.5 # Goobstation
     ExecutiveBriefcaseStealObjective: 0.5 # Goobstation
     JusticeStealObjective: 0.5 # Goobstation
+    PlutoniumCoreStealObjective: 0.5 # CorvaxGoob objective playtest
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
