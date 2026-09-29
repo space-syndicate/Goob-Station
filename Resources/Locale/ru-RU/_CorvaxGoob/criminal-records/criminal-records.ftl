@@ -16,8 +16,8 @@ criminal-records-console-duration-placeholder = Пример: 10
 
 criminal-records-console-print = Распечатать
 
-criminal-records-status-not-hostile = Больше не помечен враждебным
-criminal-records-status-not-eliminated = Больше не помечен ликвидированным
+criminal-records-status-not-hostile = Отметка о враждебности снята
+criminal-records-status-not-eliminated = Отметка о ликвидации снята
 criminal-records-status-released = Освобождён
 criminal-records-status-not-suspected = Подозрение снято
 criminal-records-status-not-wanted = Розыск снят
