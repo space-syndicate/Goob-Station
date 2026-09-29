@@ -1,11 +1,12 @@
 - type: entity
-  parent: BaseStealObjective
+  parent: BaseCaptainObjective
   id: PlutoniumCoreStealObjective
   components:
+  - type: Objective
+    difficulty: 5 # Pretty hard I suppose?
   - type: StealCondition
     stealGroup: PlutoniumCore
-  - type: NotJobRequirement
-    jobs: [ Captain ] # Funny
+    owner: objective-condition-steal-station
   - type: StealPlutoniumCoreCondition
 
 - type: stealTargetGroup

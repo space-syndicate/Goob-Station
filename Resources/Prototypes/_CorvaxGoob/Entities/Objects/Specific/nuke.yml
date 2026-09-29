@@ -18,6 +18,8 @@
     radius: 4
     color: "#92f892"
   - type: PlutoniumCore
+  - type: StealTarget
+    stealGroup: WeaponAntiqueLaser
 
 - type: entity
   parent: BaseItem

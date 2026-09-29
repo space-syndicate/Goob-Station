@@ -9,3 +9,4 @@ tool-quality-drilling-name = сверление
 tool-quality-drilling-tool-name = кроваво-красная дрель
 uplink-bloodred-drill-name = Кроваво-красная Дрель
 uplink-bloodred-drill-desc = Невероятно мощная дрель, необходимая для похищения плутониумого ядра путём разбора ядерной боеголовки станции.
+store-category-objective = цели
