@@ -1,0 +1,128 @@
+- type: entity
+  parent: BaseItem
+  id: PlutoniumCore
+  name: plutonium core
+  description: Giant and very radioactive orb of pure plutonium. Why are you still looking at it?!
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Nuke/plutonium_core.rsi
+    state: icon
+  - type: RadiationSource
+    intensity: 5
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,4
+    sprite: _CorvaxGoob/Objects/Specific/Nuke/plutonium_core.rsi
+  - type: PointLight
+    radius: 4
+    color: "#92f892"
+  - type: PlutoniumCore
+
+- type: entity
+  parent: BaseItem
+  id: BloodRedDrill
+  name: blood-red drill
+  description: Unreasonably powerful drill that has enough force to deconstruct a whole nuclear bomb.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Nuke/handdrill.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Tool
+    qualities:
+    - Drilling
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 15
+        Structural: 15
+
+- type: entity
+  parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
+  id: NuclearBombDeconstructed
+  name: hollow nuclear fission explosive
+  description: You probably shouldn't stick around to see if this is armed. Looks damaged.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Objects/Devices/nuke.rsi
+    layers:
+    - state: nuclearbomb_base
+    - state: nukefestive
+      map: [ "christmas" ]
+      visible: false
+    - state: nuclearbomb_gay
+      map: [ "pride" ]
+      visible: false
+  - type: Appearance
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - FestiveSeason
+      pride:
+      - PrideMonth
+  - type: GenericVisualizer
+    visuals:
+      enum.HolidayVisuals.Holiday:
+        christmas:
+          festive: { visible: true }
+        pride:
+          pride: { visible: true }
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 255 # Has "bluespace technology" to make it lighter, whatever that means. Don't mind the fact that this is lighter then a high capacity fuel tank.
+        mask:
+        - MachineMask
+        layer:
+        - HalfWallLayer
+  - type: PointLight
+    enabled: false
+    radius: 4
+    energy: 2.0
+    color: "#FF4020"
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 120
+  - type: NavMapBeacon
+    color: "#ff0000"
+    text: nuclear fission explosive
+    enabled: false
+  - type: InteractionOutline
+  - type: StaticPrice
+    price: 50000 # YOU STOLE A NUCLEAR FISSION EXPLOSIVE?!
+  - type: CargoSellBlacklist
+  - type: ArrivalsBlacklist
+  - type: StealTarget
+    stealGroup: NuclearBomb
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: WarpPoint
+    follow: true
+    location: nuclear bomb
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: FTLSmashImmune
+  - type: SupermatterImmune # Goobstation
+  - type: WiresPanel
+  - type: Construction
+    graph: NuclearBomb
+    node: start
+
+- type: tool
+  id: Drilling
+  name: tool-quality-drilling-name
+  toolName: tool-quality-drilling-tool-name
+  spawn: BloodRedDrill

@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseStealObjective
+  id: PlutoniumCoreStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: PlutoniumCore
+  - type: NotJobRequirement
+    jobs: [ Captain ] # Funny
+  - type: StealPlutoniumCoreCondition
+
+- type: stealTargetGroup
+  id: PlutoniumCore
+  name: steal-target-groups-plutonium-core
+  sprite:
+    sprite: _CorvaxGoob/Objects/Specific/Nuke/plutonium_core.rsi
+    state: icon

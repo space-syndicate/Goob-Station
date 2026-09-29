@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: NuclearBomb
+  start: start
+  graph:
+
+  - node: start
+    entity: NuclearBombDeconstructed
+    edges:
+    - to: nuke
+      steps:
+      - component: PlutoniumCore
+        name: construction-graph-component-plutoniumcore
+        doAfter: 15
+
+  - node: nuke
+    entity: NuclearBomb
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: PlutoniumCore
+      - !type:EmptyAllContainers {}
+      conditions:
+      - !type:WirePanel { }
+      steps:
+      - tool: Drilling
+        doAfter: 15
