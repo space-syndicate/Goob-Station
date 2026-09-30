@@ -51,9 +51,13 @@
 # CorvaxGoob-changes-start:
           - SalvageScrap
           - Ingot
-# CorvaxGoob-changes end.
+          - SheetPlasma
+          - ConstructionMaterial
         components:
-          - FloorTile # CorvaxGoob
+          - FloorTile
+          - MachineBoard
+          - Flatpack
+# CorvaxGoob-changes end.
     - type: Dumpable
     - type: ItemToggle
       soundActivate:
