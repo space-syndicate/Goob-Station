@@ -2,7 +2,7 @@
   id: WeaponMusicianRockGuitar
   name: rock guitare
   description: musician-rock-guitar-description
-  suffix: [Синдикат]
+  suffix: Синдикат
   parent: [RockGuitarInstrument, BaseSyndicateContraband]
   components:
   - type: Sprite

@@ -1,7 +1,7 @@
 - type: entity
   id: WeaponMusicianSuperSynthesizer
   name: laser SuperSynthesizer
-  suffix: [Синдикат]
+  suffix: Синдикат
   description: musician-super-synthesizer-description
   parent: [BaseLaserRifle, BaseSyndicateContraband]
   components:
@@ -24,7 +24,7 @@
 - type: entity
   id: WeaponMusicianBassGuitar
   name: bass guitar
-  suffix: [Синдикат]
+  suffix: Синдикат
   description: musician-bass-guitar-description
   parent: [WeaponDisablerSyndicate]
   components:
