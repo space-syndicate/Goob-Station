@@ -47,7 +47,7 @@
   parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: NuclearBombDeconstructed
   name: hollow nuclear fission explosive
-  description: Empty metal body of the formed doom's day weapon.
+  description: Metal body of the former doom's day weapon.
   components:
   - type: Transform
     anchored: true

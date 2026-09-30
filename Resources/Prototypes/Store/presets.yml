@@ -20,6 +20,7 @@
     - UplinkJob
     - UplinkPointless
     - UplinkSales # WD EDIT
+    - UplinkObjective # Goobstation objectives
     currencyWhitelist:
     - Telecrystal
     balance:
