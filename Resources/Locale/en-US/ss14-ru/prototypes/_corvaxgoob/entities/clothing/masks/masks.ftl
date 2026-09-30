@@ -3,4 +3,4 @@ ent-ClothingMaskSecurityMedicalRespirator = security medical respirator
 
 ent-ClothingMaskGasShitSec = "Ustavnik" gas mask
     .suffix = Unremoveable
-    .desc = A gas mask issued to officers as a "reward" for multiple violations of standard speech and swearing at their fellow soldiers.
+    .desc = A gas mask issued to officers as a "reward" for multiple violations of formal speech and cussing at their fellow soldiers.
