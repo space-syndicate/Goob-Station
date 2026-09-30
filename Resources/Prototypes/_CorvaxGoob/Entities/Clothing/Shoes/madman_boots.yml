@@ -1,0 +1,22 @@
+- type: entity
+  parent: [ClothingShoesBootsLaceup, BaseSyndicateContraband]
+  id: ClothingShoesBootsMadman
+  name: boots madman
+  description:
+  components:
+  - type: TriggerOnGotEquipped
+    slotFlags: FEET
+  - type: AddComponentsOnTrigger
+    targetUser: true
+    components:
+    - type: Jump
+      jumpAction: ActionMadmanBoots
+  - type: TriggerOnGotUnequipped
+    slotFlags: FEET
+  - type: RemoveComponentsOnTrigger
+    targetUser: true
+    components:
+    - type: Jump
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: StepHeavyBoots

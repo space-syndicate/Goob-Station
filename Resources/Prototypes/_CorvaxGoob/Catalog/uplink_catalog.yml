@@ -99,6 +99,22 @@
     whitelist:
     - Musician
 
+- type: listing
+  id: UplinkMadmanBoots
+  name: uplink-madman-boots-name
+  description: uplink-madman-boots-desc
+  productEntity: ClothingShoesBootsMadman
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Musician
+
 # CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
 - type: listing
   id: UplinkDiceOfFate

@@ -22,3 +22,5 @@ uplink-dance-grenade-name = Танцевальная граната
 uplink-dance-grenade-desc = Заставляет всех в радиусе трёх тайлов танцевать от пола и терять сознание от истощения.
 uplink-musician-personal-weapon-case-name = Кейс персонального оружия музыканта
 uplink-musician-personal-weapon-case-desc = Позволяет выбрать одно из 3 уникальных оружий музыканта.
+uplink-madman-boots-name = Ботинки безумца
+uplink-madman-boots-desc = На вид это обычные чёрные туфли, но они позволяют совершить подкат и сбить цель с ног. В наличии одна пара.

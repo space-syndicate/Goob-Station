@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: ActionMadmanBoots
+  name: ent-ActionMadmanBoots
+  description: ent-ActionMadmanBoots.desc
+  components:
+  - type: Action
+    useDelay: 10
+    icon: { sprite: Clothing/Shoes/Boots/laceups.rsi, state: icon }
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
