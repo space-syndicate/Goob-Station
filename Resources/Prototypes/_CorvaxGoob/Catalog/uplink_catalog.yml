@@ -101,6 +101,7 @@
       whitelist:
       - Engineering
 
+- type: listing
   id: UplinkMimejutsuManualMime
   name: uplink-mimejutsu-name
   description: uplink-mimejutsu-desc
