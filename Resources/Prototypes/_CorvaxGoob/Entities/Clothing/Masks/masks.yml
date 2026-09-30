@@ -28,7 +28,7 @@
   parent: ClothingMaskBase
   id: ClothingMaskGasShitSec
   name: “Ustavnik” gas mask
-  description: A gas mask issued to officers as a “reward” for multiple violations of standard speech and swearing at their fellow soldiers.
+  description: A gas mask issued to officers as a "reward" for multiple violations of formal speech and cussing at their fellow soldiers.
   suffix: Unremoveable
   components:
   - type: Sprite
