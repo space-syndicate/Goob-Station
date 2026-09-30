@@ -2,7 +2,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckShitSec
   name: medal for “exceptional services”
-  description: A huge pancake from a barbell, given to officers as a reward for clinical idiocy.
+  description: A heavy weightlifting disc, given to officers as a reward for clinical idiocy.
   suffix: Unremovable
   components:
   - type: Item
