@@ -10,7 +10,7 @@
   - type: RadiationSource
     intensity: 2
   - type: Item
-    size: Normal
+    size: Huge
     shape:
     - 0,0,4,4
     sprite: _CorvaxGoob/Objects/Specific/Nuke/plutonium_core.rsi
