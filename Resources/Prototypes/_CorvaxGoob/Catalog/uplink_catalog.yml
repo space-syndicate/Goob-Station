@@ -69,6 +69,16 @@
       tags:
       - ContravendUplink
 
+- type: listing
+  id: UplinkDanceGrenade
+  name: uplink-dance-grenade-name
+  description: uplink-dance-grenade-desc
+  productEntity: DanceGrenade
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkExplosives
+
 # CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
 - type: listing
   id: UplinkDiceOfFate

@@ -1,0 +1,35 @@
+- type: entity
+  parent: [ GrenadeBase, BaseSyndicateContraband ]
+  id: DanceGrenade
+  name: dance grenade
+  description: Forces everyone nearby to dance until they pass out.
+  components:
+  - type: EmoteOnTrigger
+    keysIn:
+    - timer
+    radius: 3
+    emote: DanceFromTheFloor
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Weapons/Grenades/dance_grenade.rsi
+  - type: StaminaDrainOnTrigger
+    keysIn:
+    - timer
+    radius: 3
+    staminaDamagePerSecond: 30
+  - type: TimerTrigger
+    delay: 3
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: "/Audio/_CorvaxGoob/Effects/dance_grenade.ogg"
+    positional: true
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
