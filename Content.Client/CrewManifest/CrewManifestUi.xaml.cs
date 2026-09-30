@@ -16,6 +16,7 @@ public sealed partial class CrewManifestUi : DefaultWindow
         RobustXamlLoader.Load(this);
 
         StationName.AddStyleClass("LabelBig");
+        CrewManifestListing.SearchBar = SearchBar; // CorvaxGoob - crew-manifest-search
     }
 
     public void Populate(string name, CrewManifestEntries? entries)

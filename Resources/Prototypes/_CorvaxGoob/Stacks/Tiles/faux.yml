@@ -1,0 +1,11 @@
+- type: stack
+  parent: BaseTileStack
+  id: FauxTileAstroChromite
+  name: stack-astro-chromite
+  spawn: FloorTileItemAstroChromite
+
+- type: stack
+  parent: BaseTileStack
+  id: FauxTileAstroSnowDug
+  name: stack-astro-snow-dug
+  spawn: FloorTileItemAstroSnowDug

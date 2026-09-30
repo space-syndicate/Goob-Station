@@ -1,0 +1,35 @@
+- type: tile
+  id: FauxAstroChromite
+  parent: BaseStationTile
+  name: tiles-astro-chromite
+  sprite: /Textures/Tiles/chromite.png
+  variants: 7
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepAsteroid
+  itemDrop: FloorTileItemAstroChromite
+  tileRipResistance: 50 # Goob
+
+- type: tile
+  id: FauxAstroSnowDug
+  parent: BaseStationTile
+  name: tiles-astro-snow-dug
+  sprite: /Textures/Tiles/Planet/Snow/snow_dug.png
+  edgeSpritePriority: 1
+  edgeSprites:
+    South: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_south.png
+    East: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_east.png
+    North: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_north.png
+    West: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_west.png
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemAstroSnowDug
+  footstepSounds:
+    collection: FootstepSnow

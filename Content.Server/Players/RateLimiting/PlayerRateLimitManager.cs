@@ -60,10 +60,12 @@ public sealed class PlayerRateLimitManager : SharedPlayerRateLimitManager
         if (!datum.Announced)
         {
             registration.Registration.PlayerLimitedAction?.Invoke(player);
-            _adminLog.Add(
-                registration.Registration.AdminLogType,
-                LogImpact.Medium,
-                $"Player {player} breached '{key}' rate limit ");
+            // CorvaxGoob-Start
+            // _adminLog.Add(
+            //     registration.Registration.AdminLogType,
+            //     LogImpact.Medium,
+            //     $"Player {player} breached '{key}' rate limit ");
+            // CorvaxGoob-End
 
             datum.Announced = true;
         }

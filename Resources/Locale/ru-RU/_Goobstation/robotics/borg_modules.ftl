@@ -1,4 +1,4 @@
-borg-slot-WeaponProtoKineticAccelerator-empty-goob = Proto-Kinetic Accelerator
-borg-slot-organs-empty-goob = Organs
-borg-slot-medicaltools-empty-goob = Medical Tools
-borg-slot-advancedmedicaltools-empty-goob = Advanced Medical Tools
+borg-slot-WeaponProtoKineticAccelerator-empty-goob = Протокинетический ускоритель
+borg-slot-organs-empty-goob = Органы
+borg-slot-medicaltools-empty-goob = Медицинские инструменты
+borg-slot-advancedmedicaltools-empty-goob = Продвинутые медицинские инструменты

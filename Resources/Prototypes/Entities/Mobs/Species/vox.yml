@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  parent: [ MobBloodstream, MobRespirator, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseMobDisgust ] # Goobstation - unperishable voxes
+  parent: [ BaseMobSpeciesNonPerishable ] # Goobstation - unperishable voxes
   id: BaseMobVox
   abstract: true
   components:
@@ -121,6 +121,7 @@
         Slash: 5 # Reduce?
   - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
     layers:
+    - map: [ "enum.HumanoidVisualLayers.TailBehind" ] # Floof
     - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -144,7 +145,9 @@
     - map: [ "id" ]
     - map: [ "outerClothing" ]
     - map: [ "belt" ] #Goobedit - Belts over outerwear
+    - map: [ "enum.HumanoidVisualLayers.TailBehindBackpack" ] # imp
     - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOversuit" ] # Floof
     - map: [ "enum.HumanoidVisualLayers.Face" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ] # This is not in the default order
@@ -218,7 +221,6 @@
             state: outerClothing
   # Goobstation start - voxes are uncloneable but do not rot - all the stuff from BaseMobSpeciesOrganic
   - type: Uncloneable
-  - type: Absorbable # Goobstation - changelings
   - type: Barotrauma
     damage:
       types:
@@ -276,11 +278,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
-  - type: FootprintOwner # Corvax-Next-Footprints
-  - type: Carriable # Goobstation
-  - type: CPRTraining # Goobstation - Just give to everyone! This ain't MRP.
-  - type: GrabIntent # wilted rose
-  - type: Grabbable
+  - type: CorvaxFootprintOwner # CorvaxGoob-Footprint-Refactoring
   # Goobstation end
   - type: Hands
     leftHandDisplacement:

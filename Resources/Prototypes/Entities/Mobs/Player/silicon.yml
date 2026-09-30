@@ -474,6 +474,7 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
+    - CanPilot # CorvaxGoob-AiShuttle
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -515,6 +516,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -536,6 +538,7 @@
     - Sign
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
   - type: TTS # CorvaxGoob-TTS
     voice: Glados
   # CorvaxGoob-Revert : DB conflicts
@@ -632,6 +635,9 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        # <Trauma>
+        - BorgModuleStickyGrenadeLauncher
+        # </Trauma>
         - BorgModuleL6C
         - BorgModuleDoubleEsword
         - BorgModuleOperative
@@ -666,8 +672,14 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        # <Trauma>
+        - BorgModuleRCD
+        - BorgModuleSyndicateChameleonProjector
+        - BorgModuleSyndicateJammer
+        - BorgModuleSyndicateDoorControl
+        # </Trauma>
         - BorgModuleSyndicateWeapon
-        - BorgModuleTool
+        - BorgModuleAdvancedTool # Trauma - was BorgModuleTool
         - BorgModuleOperative
   - type: ItemSlots
     slots:

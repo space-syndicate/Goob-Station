@@ -1,0 +1,23 @@
+- type: latheRecipePack
+  id: FloorOther
+  recipes:
+  - FloorTileItemGold
+  - FloorTileItemSilver
+  - FloorTileItemRockVault
+  - FloorTileItemLino
+  - FloorTileItemArcadeBlue
+  - FloorTileItemArcadeBlue2
+  - FloorTileItemArcadeRed
+  - FloorTileItemCarpetClown
+  - FloorTileItemCarpetOffice
+
+- type: latheRecipePack
+  id: FloorShuttle
+  recipes:
+  - FloorTileItemShuttleWhite
+  - FloorTileItemShuttleRed
+  - FloorTileItemShuttleOrange
+  - FloorTileItemShuttleBlue
+  - FloorTileItemShuttleGrey
+  - FloorTileItemShuttleBlack
+  - FloorTileItemShuttlePurple

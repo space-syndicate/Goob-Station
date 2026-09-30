@@ -74,7 +74,7 @@
       Peckish: 125
       Starving: 50
       Dead: 0
-    baseDecayRate: 0.01666666666
+    # baseDecayRate: 0.01666666666 Goobstation
   - type: Thirst
     thresholds:
       OverHydrated: 600
@@ -82,7 +82,7 @@
       Thirsty: 300
       Parched: 150
       Dead: 0
-    baseDecayRate: 0.1
+    # baseDecayRate: 0.1 Goobstation
   - type: DamageStateVisuals
     states:
       Alive:
@@ -310,7 +310,7 @@
       Peckish: 100
       Starving: 50
       Dead: 0
-    baseDecayRate: 0.01666666666
+    # baseDecayRate: 0.01666666666 Goobstation
   - type: Thirst
     thresholds:
       OverHydrated: 600
@@ -318,7 +318,7 @@
       Thirsty: 300
       Parched: 150
       Dead: 0
-    baseDecayRate: 0.1
+    # baseDecayRate: 0.1 Goobstation
   - type: DamageStateVisuals
     states:
       Alive:

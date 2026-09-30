@@ -21,6 +21,7 @@
   - GruntishTranslator
   - XeeplianTranslator # CorvaxGoob
   - YowKriolTranslator # goob edit - yowie language
+  - HydraspeakTranslator # CorvaxGoob
 
 - type: latheRecipePack
   id: TranslatorImplanters
@@ -44,3 +45,4 @@
   - GruntishTranslatorImplanter
   - YowKriolTranslatorImplanter # goob edit - yowie language
   - SignTranslatorImplanter # goob edit
+  - HydraspeakTranslatorImplanter # CorvaxGoob

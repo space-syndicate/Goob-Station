@@ -60,7 +60,8 @@ public sealed partial class BorgSystem
                 chassis.ModuleCount,
                 hasBrain,
                 canDisable,
-                HasComp<AiRemoteControllerComponent>(uid)); // Corvax-Next-AiRemoteControl
+                HasComp<AiRemoteControllerComponent>(uid),
+                chassis.IsLawChangable); // Corvax-Next-AiRemoteControl
 
             var payload = new NetworkPayload()
             {
@@ -87,7 +88,8 @@ public sealed partial class BorgSystem
                 0,
                 hasBrain,
                 false, // Corvax-Next-AiRemoteControl
-                false);
+                false,
+                false); // Corvax-Goob-MutableLaws
 
             var payload = new NetworkPayload()
             {

@@ -1,2 +1,2 @@
-ent-CosmicEffigy = effigy of entropy
-    .desc = An abhorrent malign anomaly. Raw entropy oozes forth, betraying its instability.
+ent-CosmicEffigy = воплощение энтропии
+    .desc = Отвратно-зловещая аномалия. Наружу сочится первозданная энтропия, обнажая свою нестабильность.

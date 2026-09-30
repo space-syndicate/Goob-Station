@@ -124,6 +124,9 @@ public sealed class RoboticsConsoleSystem : SharedRoboticsConsoleSystem
         if (!ent.Comp.Cyborgs.TryGetValue(args.Address, out var data))
             return;
 
+        if (!data.IsLawChangable)
+            return;
+
         if (!_slots.TryGetSlot(ent, ent.Comp.CircuitBoardItemSlot, out var slot) || slot.Item is null)
             return;
         // Corvax-Next-AiRemoteControl-Start

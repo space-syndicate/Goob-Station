@@ -235,3 +235,17 @@
     maxCharges: 20
   - type: AutoRecharge
     rechargeDuration: 10
+
+  # CorvaxGoob start
+- type: entity
+  parent: SprayPainter
+  id: BorgSprayPainterRecharging
+  name: experimental spray painter
+  description: A spray painter that passively generates its own paint cartridges.
+  suffix: AutoRecharge
+  components:
+  - type: LimitedCharges
+    maxCharges: 15
+  - type: AutoRecharge
+    rechargeDuration: 5
+  # CorvaxGoob end

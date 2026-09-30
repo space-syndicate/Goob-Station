@@ -1,12 +1,12 @@
 ent-SlasherMachete = мачете
     .desc = Большой жуткий клинок, прекрасно режущий конечности ваших жертв.
-ent-ClothingHeadHatSlasherMask = маска мясника
+ent-ClothingHeadHatSlasherMask = маска маньяка
     .desc = Ржавая сварочная маска, прекрасно скрывающая лицо от посторонних глаз.
-ent-ClothingOuterSlasherApron = фартук мясника
+ent-ClothingOuterSlasherApron = фартук маньяка
     .desc = Необычный фартук для тех, кому нравится нести в этот мир боль и страдание.
-ent-ClothingHandsSlasherGloves = перчатки мясника
+ent-ClothingHandsSlasherGloves = перчатки маньяка
     .desc = Тяжелые чёрные перчатки, запятнанные кровью.
-ent-ClothingShoesSlasher = ботинки мясника
+ent-ClothingShoesSlasher = ботинки маньяка
     .desc = Старые кожаные ботинки, знавшие лучшие времена.
 ent-SlasherMeatSpike = зловещий мясной крюк
     .desc = Возможно, вам стоит бежать.

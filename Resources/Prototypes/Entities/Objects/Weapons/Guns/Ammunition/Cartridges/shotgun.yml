@@ -9,6 +9,7 @@
   - type: Tag
     tags:
     - ShellShotgun
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
@@ -130,10 +131,12 @@
     solutions:
       ammo:
         reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 7
+    # CorvaxGoob start
+        - ReagentId: Haloperidol
+          Quantity: 5
   - type: SolutionTransfer
-    maxTransferAmount: 7
+    maxTransferAmount: 5
+    # CorvaxGoob end
   - type: SpentAmmoVisuals
     state: "tranquilizer"
 

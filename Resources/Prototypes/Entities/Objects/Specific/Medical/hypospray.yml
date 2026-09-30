@@ -54,6 +54,10 @@
     maxFillLevels: 6
     fillBaseName: hypo_fill
     solutionName: hypospray
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: [BaseHypospray, BaseSyndicateContraband]
@@ -79,6 +83,8 @@
     maxFillLevels: 4
     fillBaseName: hypo_fill
     solutionName: hypospray
+  - type: StealTarget # CorvaxGoob
+    stealGroup: Hypospray
 
 - type: entity
   parent: BaseHypospray

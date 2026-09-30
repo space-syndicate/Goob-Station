@@ -125,7 +125,7 @@
     maxContactWalkSlowdown: 0.7
   - type: ClothingGrantComponent # Goobstation
     component:
-    - type: NoFootprints
+    - type: CannotLeaveTraces
 
 
 - type: entity

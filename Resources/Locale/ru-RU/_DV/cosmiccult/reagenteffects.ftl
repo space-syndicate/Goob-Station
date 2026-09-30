@@ -6,4 +6,4 @@ reagent-effect-guidebook-cleanse-cultist =
 entropy-effect-numb = Вы ощущаете тревожное оцепенение.
 reagent-name-entropy = жидкая энтропия
 reagent-desc-entropy = Тревожное, зловредное вещество.
-reagent-physical-desc-malign = зловредное
+reagent-physical-desc-malign = зловещее

@@ -84,6 +84,7 @@
     - suitStorage
     - Belt
   - type: Gun
+    fireOnDropChance: 0.3 # CorvaxGoob-FireOnDrop
     fireRate: 3
     availableModes:
       - SemiAuto

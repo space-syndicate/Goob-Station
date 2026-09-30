@@ -39,6 +39,7 @@
     solutionName: pen
     fillBaseName: medipen_solution-
     changeColor: true
+  - type: Medipen
   - type: Item
     sprite: _CorvaxGoob/Objects/Specific/Medical/medipen.rsi
     inhandVisuals:
@@ -56,9 +57,9 @@
   - type: Injector
     solutionName: pen
     currentTransferAmount: 15
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: MedipenInjectMode
     allowedModes:
-    - HyposprayInjectMode
+    - MedipenInjectMode
   - type: Appearance
   - type: PhysicalComposition
     materialComposition:
@@ -95,6 +96,8 @@
     - state: microstimpen_empty_visual
       map: ["enum.MedipenColorLayer.Empty"]
       visible: false
+  - type: Medipen
+    label: component-microstimpen-default-label
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     solutionName: pen
@@ -105,9 +108,9 @@
   - type: Injector
     solutionName: pen
     currentTransferAmount: 10
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: MedipenInjectMode
     allowedModes:
-    - HyposprayInjectMode
+    - MedipenInjectMode
   - type: SolutionContainerManager
     solutions:
       pen:

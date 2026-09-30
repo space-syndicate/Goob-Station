@@ -104,7 +104,7 @@ entities:
       skills: []
       mindRoles:
       - MindRoleGhostRoleNeutral
-      description: 'Вы, разумный лавовый кристалл, который должен сохранить свой вид и принести '
+      description: 'Вы, разумный лавовый кристалл, который должен сохранить свой вид и принести нирвану в этот мир.'
       name: Лавовый кристалл
 - proto: FloorLavaEntity
   entities:

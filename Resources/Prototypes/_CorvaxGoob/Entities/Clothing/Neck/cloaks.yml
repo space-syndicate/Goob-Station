@@ -64,3 +64,10 @@
   components:
     - type: Sprite
       sprite: _CorvaxGoob/Clothing/Neck/Cloaks/hos_experimental_cloak.rsi
+
+- type: entity
+  id: ClothingNeckSlayerCoatUnremoveable
+  parent: ClothingNeckSlayerCoat
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

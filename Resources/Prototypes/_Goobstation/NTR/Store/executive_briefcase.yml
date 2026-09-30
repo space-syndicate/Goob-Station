@@ -49,6 +49,10 @@
           path: /Audio/Machines/id_insert.ogg
   - type: NtrClientAccount
   - type: Speech
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   id: ExecutiveBriefcaseDebug
@@ -100,7 +104,7 @@
 
 - type: storeCategory
   id: NTREvil
-  name: ntr-executive-tier-4-name # CorvaxGoob-changes: Evil > ntr-executive-tier-4-name 
+  name: ntr-executive-tier-4-name # CorvaxGoob-changes: Evil > ntr-executive-tier-4-name
   priority: 3
   evil: true # lol
 

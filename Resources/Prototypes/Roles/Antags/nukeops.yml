@@ -82,7 +82,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    - DeathAcidifierImplanter
+    - RedspaceLifelineImplanter # CorvaxGoob edit
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -144,7 +144,7 @@
     - PinpointerSyndicateNuclear
     #- HandheldHealthAnalyzer # Goobstation
     - CombatMedipen
-    - DeathAcidifierImplanter
+    - RedspaceLifelineImplanter # CorvaxGoob edit
     - MedkitCombatFilled # Goobstation
 
 - type: chameleonOutfit

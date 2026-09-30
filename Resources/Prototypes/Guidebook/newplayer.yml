@@ -14,6 +14,7 @@
   text: "/ServerInfo/Guidebook/NewPlayer/Controls/Controls.xml"
   children:
   - Radio
+  - CommunicationChannels # CorvaxGoob - available-radio-channels-guide
 
 - type: guideEntry
   id: Radio

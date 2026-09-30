@@ -89,6 +89,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
         SubscribeLocalEvent<ElectrifiedComponent, StartCollideEvent>(OnElectrifiedStartCollide);
         SubscribeLocalEvent<ElectrifiedComponent, AttackedEvent>(OnElectrifiedAttacked);
+        SubscribeLocalEvent<ElectrifiedComponent, ActivateInWorldEvent>(OnElectrifiedActivate); // CorvaxGoob-Fixes
         SubscribeLocalEvent<ElectrifiedComponent, InteractHandEvent>(OnElectrifiedHandInteract);
         SubscribeLocalEvent<ElectrifiedComponent, InteractUsingEvent>(OnElectrifiedInteractUsing);
         SubscribeLocalEvent<RandomInsulationComponent, MapInitEvent>(OnRandomInsulationMapInit);
@@ -193,6 +194,12 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     }
 
     private void OnElectrifiedHandInteract(EntityUid uid, ElectrifiedComponent electrified, InteractHandEvent args)
+    {
+        if (electrified.OnHandInteract)
+            TryDoElectrifiedAct(uid, args.User, 1, electrified);
+    }
+
+    private void OnElectrifiedActivate(EntityUid uid, ElectrifiedComponent electrified, ActivateInWorldEvent args) // CorvaxGoob-Fixes
     {
         if (electrified.OnHandInteract)
             TryDoElectrifiedAct(uid, args.User, 1, electrified);

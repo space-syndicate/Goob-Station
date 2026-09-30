@@ -430,6 +430,12 @@ public sealed partial class LatheMenu : DefaultWindow
             textRect.Texture = _spriteSystem.Frame0(recipe.Icon);
             return textRect;
         }
+        else if (recipe.IconPath is { } iconPath) // CorvaxGoob
+        {
+            var textRect = new TextureRect();
+            textRect.Texture = _spriteSystem.Frame0(new SpriteSpecifier.Texture(iconPath));
+            return textRect;
+        }
 
         if (recipe.Result is { } result)
         {

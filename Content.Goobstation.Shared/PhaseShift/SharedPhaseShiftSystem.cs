@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Goobstation.Common.Footprints;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -18,7 +19,6 @@ using Content.Shared.Pointing;
 using Content.Shared.ProximityDetection;
 using Content.Shared.Standing;
 using Content.Shared.StepTrigger.Systems;
-using Content.Goobstation.Common.Footprints;
 using Content.Shared.Chat;
 
 namespace Content.Goobstation.Shared.PhaseShift;

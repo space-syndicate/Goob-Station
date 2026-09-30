@@ -20,6 +20,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    fireOnDropChance: 0.3 # CorvaxGoob-FireOnDrop
     minAngle: 2
     maxAngle: 16
     fireRate: 8

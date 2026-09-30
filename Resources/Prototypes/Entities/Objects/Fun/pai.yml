@@ -131,6 +131,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
     understands:
     - TauCetiBasic # Add individual languages so they can understand without understanding animals.
     - Canilunzt
@@ -152,6 +153,7 @@
     - Sign # Should know it but not speak it, for obvious reasons.
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
   # Einstein Engines - Language end
   - type: Vocal
     sounds:

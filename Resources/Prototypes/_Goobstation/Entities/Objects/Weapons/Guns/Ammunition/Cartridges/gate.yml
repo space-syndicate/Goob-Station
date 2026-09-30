@@ -17,6 +17,7 @@
     tags:
     - Cartridge
     - CartridgeG8
+    - IgnorGrab #CorvaxGoob
 
 - type: entity
   parent: BaseCartridgeG8

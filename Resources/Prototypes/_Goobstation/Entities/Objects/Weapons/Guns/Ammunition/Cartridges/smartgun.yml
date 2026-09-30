@@ -10,6 +10,7 @@
     tags:
     - Cartridge
     - CartridgeSmart
+    - IgnorGrab # CorvaxGoob
   - type: CartridgeAmmo
     deleteOnSpawn: true
     proto: BulletSmart

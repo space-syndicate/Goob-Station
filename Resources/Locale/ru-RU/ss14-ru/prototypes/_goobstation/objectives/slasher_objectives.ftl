@@ -1,4 +1,4 @@
 ent-SlasherAbsorbSoulsObjective = { "" }
     .desc = { "" }
 ent-SlasherSurviveObjective = Дожить до конца.
-    .desc = Вы бы не стали Мясником, если бы умерли.
+    .desc = Вы бы не стали Маньяком, если бы умерли.

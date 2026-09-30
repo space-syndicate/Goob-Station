@@ -282,6 +282,12 @@
         time: 3
         type: Remove
       - !type:GenericStatusEffect
+      #CorvaxGoob start
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+      #CorvaxGoob end
         key: Drowsiness
         time: 10
         type: Remove

@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 
 using System.Numerics;
-using Content.Goobstation.Common.Footprints;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -356,7 +355,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null, Angle.Zero, false);
 
-        RaiseLocalEvent(target, new FootprintCleanEvent()); // Corvax-Next-Footprints
+        // RaiseLocalEvent(target, new FootprintCleanEvent()); // CorvaxGoob-Footprints
 
         return true;
     }

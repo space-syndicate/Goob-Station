@@ -88,7 +88,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 5 # One sip at a time. No rushing at the water cooler
+        maxVol: 10 # Two sip at a time. Rushing at the water cooler # CorvaxGoob - buff Start
   - type: Item
     size: Tiny
   - type: Sprite

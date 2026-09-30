@@ -163,16 +163,23 @@ public sealed class CarryingSystem : EntitySystem
         if (xform.ParentUid == xform.GridUid)
             return;
 
+        if (!ent.Comp.Carried.IsValid()) // CorvaxGoob fix
+            return;
+
         DropCarried(ent, ent.Comp.Carried);
     }
 
     private void OnMobStateChanged(Entity<CarryingComponent> ent, ref MobStateChangedEvent args)
     {
+        if (!ent.Comp.Carried.IsValid()) // CorvaxGoob fix 
+            return;
         DropCarried(ent, ent.Comp.Carried);
     }
 
     private void OnBeforePolymorphed(Entity<CarryingComponent> ent, ref BeforePolymorphedEvent args)
     {
+        if (!ent.Comp.Carried.IsValid()) // CorvaxGoob fix
+            return;
         if (HasComp<MindContainerComponent>(ent.Comp.Carried))
             DropCarried(ent, ent.Comp.Carried);
     }
@@ -317,6 +324,8 @@ public sealed class CarryingSystem : EntitySystem
     public void DropCarried(EntityUid carrier, EntityUid carried)
     {
         Drop(carried);
+        if (!carrier.IsValid())// CorvaxGoob fix 
+            return;
         RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recursively fire that event
         RemComp<CarryingSlowdownComponent>(carrier);
         _virtualItem.DeleteInHandsMatching(carrier, carried);
@@ -325,6 +334,8 @@ public sealed class CarryingSystem : EntitySystem
 
     private void Drop(EntityUid carried)
     {
+        if (!Exists(carried)) // CorvaxGoob fix
+            return;
         RemComp<BeingCarriedComponent>(carried);
         if (!HasComp<LegsParalyzedComponent>(carried)) // CorvaxGoob edit
             RemComp<KnockedDownComponent>(carried);
@@ -372,7 +383,11 @@ public sealed class CarryingSystem : EntitySystem
     }
 
     private void OnDelete(Entity<BeingCarriedComponent> ent, ref EntityTerminatingEvent args)
-        => DropCarried(ent.Comp.Carrier, ent.Owner);
+    {
+        if (!ent.Comp.Carrier.IsValid()) // CorvaxGoob fix
+            return;
+        DropCarried(ent.Comp.Carrier, ent.Owner);
+    }
 
     public override void Update(float frameTime)
     {

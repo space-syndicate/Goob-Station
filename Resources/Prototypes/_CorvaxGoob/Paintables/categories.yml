@@ -1,0 +1,9 @@
+- type: paintableGroupCategory
+  id: Walls
+  groups:
+  - Walls
+
+- type: paintableGroupCategory
+  id: DiagonalWalls
+  groups:
+  - DiagonalWalls

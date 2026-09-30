@@ -49,6 +49,6 @@
   description: Audibly hail nearby crew, useful for giving quick orders.
   components:
   - type: Action
-    icon: { sprite: Clothing/Mask/gassecurity.rsi, state: icon }
+    icon: { sprite: Structures/Storage/closet.rsi, state: cardboard_special } # CorvaxGoob-HailerRework : Изменён спрайт
   - type: InstantAction
     event: !type:HailerActionEvent

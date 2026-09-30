@@ -23,6 +23,20 @@
     whitelist:
       tags:
         - Trash
+# CorvaxGoob Start
+        - Organ #Goob
+        - Paper
+      components:
+        - BodyPart
+        - SlimeExtract
+        - SpaceGarbage #Goob
+    blacklist:
+      tags:
+        - Brain
+        - Head
+      components:
+        - Cybernetics
+# CorvaxGoob End
   - type: UseDelay
     delay: 0.5
   - type: Tag

@@ -231,6 +231,9 @@ public abstract class SharedSprayPainterSystem : EntitySystem
     /// </summary>
     private void OnPainedExamined(Entity<PaintedComponent> ent, ref ExaminedEvent args)
     {
+        if (ent.Comp.AlwaysShowDetailPainted && args.IsInDetailsRange) // CorvaxGoob
+            args.PushText(Loc.GetString("spray-painter-on-examined-detail-painted-message"));
+
         // If the paint's dried, it isn't detectable.
         if (_timing.CurTime > ent.Comp.DryTime)
             return;

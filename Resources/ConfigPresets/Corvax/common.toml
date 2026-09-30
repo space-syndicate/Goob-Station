@@ -41,3 +41,6 @@ icons_enabled = true
 
 [misc]
 space_whale_spawn = false
+
+[ghost.go_lobby]
+enabled = true

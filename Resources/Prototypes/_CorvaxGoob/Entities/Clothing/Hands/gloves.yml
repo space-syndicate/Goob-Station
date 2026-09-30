@@ -88,3 +88,10 @@
       - state: blackwhite-equipped-HAND
   - type: Fiber
     fiberColor: fibers-grey
+
+- type: entity
+  id: ClothingHandsTacticalMaidGlovesUnremoveable
+  parent: ClothingHandsTacticalMaidGloves
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

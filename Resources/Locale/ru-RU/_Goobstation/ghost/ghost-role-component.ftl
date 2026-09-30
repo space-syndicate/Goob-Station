@@ -122,7 +122,7 @@ roles-slaughter-demon-name-token = Демон резни (Токен)
 roles-laughter-demon-name-token = Демон смеха (Токен)
 ghost-role-information-ancient-rogue-king-name-token = Древний ксено король-отступник (Токен)
 ghost-role-information-wraith-name-token = Фантом (Токен)
-ghost-role-information-slasher-token = Мясник (Токен)
+ghost-role-information-slasher-token = Маньяк (Токен)
 ghost-role-information-grey-tide-name = Грейтайд
 ghost-role-information-grey-tide-description = Против всего зла, что способен сотворить щиткур. Против всего порочного, что способна сотворить наука. Мы пошлём им только вас. Робастьте и изговните всё, пока дело не будет сделано. Мирного решения не будет...
 grey-tide-role-greeting = Давно забытый в глубинах техтоннелей, вы — [color=#880808]ГРЕЙТАЙД[/color]. Серый комбинезон и противогаз стали частью вас. Покажите им, кто истинный хозяин станции.
@@ -131,7 +131,7 @@ tide-objective-condition-kill-everyone-else-title = Заробастите вс�
 ghost-role-information-tunnel-clown-name = Тех-клоун
 ghost-role-information-tunnel-clown-description = Член клоунской банды, для которой технические тоннели стали новым домом.
 tunnel-clown-role-greeting = Вы — [color=#880808]Тех-клоун[/color], член клоунской банды, обосновавшийся в техтоннелях. Ознакомьтесь с панелью персонажа, чтобы узнать свои цели.
-tunnel-clown-objective-maints-slasher-desc = Техи этой станции были вашим домом столько, сколько вы себя помните. Раньше вы в страхе прятались в шкафчиках, но настала пора это изменить. Эти станционные крысы в последний раз вторглишь в ваши владения. Убейте каждого, кто вступит к вам на порог.
+tunnel-clown-objective-maints-slasher-desc = Техи этой станции были вашим домом столько, сколько вы себя помните. Раньше вы в страхе прятались в шкафчиках, но настала пора это изменить. Эти станционные крысы в последний раз вторглишь в ваши владения. Выгоните каждого, кто вступит к вам на порог. Вам запрещено убивать нарушителей, исключая случай самозащиты и невозможности решить вопрос нелетально.
 tunnel-clown-objective-condition-maints-slasher-title = Защищайте техтоннели.
 tunnel-clown-business-card = Тех-клоун с лицензией на убийство.
 ghost-role-information-Singuloth-Knight-name = Рыцарь Сингулота.

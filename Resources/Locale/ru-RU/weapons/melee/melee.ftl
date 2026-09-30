@@ -1,5 +1,5 @@
 # Goobstation - Armor resisting syringe gun
-melee-inject-failed-armor = Your { $weapon } cannot inject through armor!
+melee-inject-failed-armor = Ваш { $weapon } не может пробить броню для инъекции!
 melee-balloon-pop = { CAPITALIZE($balloon) } лопнул!
 melee-battery-examine =
     Заряда хватит на [color={ $color }]{ $count }[/color] { $count ->

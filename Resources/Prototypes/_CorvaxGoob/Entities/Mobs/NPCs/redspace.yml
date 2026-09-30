@@ -1,0 +1,146 @@
+- type: entity
+  abstract: true
+  id: RedspaceMonsterBase
+  name: redspace aberration
+  components:
+  - type: PressureImmunity
+  - type: BreathingImmunity
+  - type: SpecialHighTempImmunity
+  - type: SpecialLowTempImmunity
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: DeleteOnTrigger
+  - type: SpawnOnTrigger
+    proto: RedspaceLifeline
+
+- type: entity
+  id: MobFleshJaredRedspace
+  parent: [ RedspaceMonsterBase, MobFleshJared ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobFleshGolemRedspace
+  parent: [ RedspaceMonsterBase, MobFleshGolem ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobFleshClampRedspace
+  parent: [ RedspaceMonsterBase, MobFleshClamp ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobFleshLoverRedspace
+  parent: [ RedspaceMonsterBase, MobFleshLover ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobKangarooSpaceRedspace
+  parent: [ RedspaceMonsterBase, MobKangarooSpace ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobBearSpaceRedspace
+  parent: [ RedspaceMonsterBase, MobBearSpace ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobPurpleSnakeRedspace
+  parent: [ RedspaceMonsterBase, MobPurpleSnake ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobTickRedspace
+  parent: [ RedspaceMonsterBase, MobTick ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobWatcherLavalandRedspace
+  parent: [ RedspaceMonsterBase, MobWatcherLavaland ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobSpiderSpaceRedspace
+  parent: [ RedspaceMonsterBase, MobSpiderSpace ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobGiantSpiderAngryRedspace
+  parent: [ RedspaceMonsterBase, MobGiantSpiderAngry ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobBehonkerElectricalRedspace
+  parent: [ RedspaceMonsterBase, MobBehonkerElectrical ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobCreatureWizardRedspace
+  parent: [ RedspaceMonsterBase, MobCreatureWizard ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: MobLavalandGoliathAncientRedspace
+  parent: [ RedspaceMonsterBase, MobLavalandGoliathAncient ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: BaseMobGluttonRedspace
+  parent: [ RedspaceMonsterBase, BaseMobGlutton ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"
+
+- type: entity
+  id: NukeBotRedspace
+  parent: [ RedspaceMonsterBase, NukeBot ]
+  suffix: Redspace
+  components:
+  - type: Sprite
+    color: "#ad0725"

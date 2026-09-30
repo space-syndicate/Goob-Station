@@ -929,10 +929,10 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 150 # a ~2 tile radius
+    totalIntensity: 180 # a ~2 tile radius #CorvaxGoob - explosions nerf: 150 -> 180
     intensitySlope: 5
     maxIntensity: 10
-    canCreateVacuum: false
+    canCreateVacuum: true # CorvaxGoob - explosions nerf
   - type: SmartLinkBlacklist  # Goobstation
 
 - type: entity
@@ -967,7 +967,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 50
+    totalIntensity: 75 # CorvaxGoob - explosions nerf: 50 -> 75
     intensitySlope: 1
     maxIntensity: 5
     canCreateVacuum: false
@@ -977,7 +977,7 @@
   - type: ProjectileGrenade
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
-    capacity: 30
+    capacity: 45 # CorvaxGoob - explosions nerf: 30 ->45
   - type: SmartLinkBlacklist  # Goobstation
 
 - type: entity

@@ -75,6 +75,35 @@ public sealed class CriminalRecordChangeStatus : BoundUserInterfaceMessage
     }
 }
 
+// CorvaxGoob-SecurityFeatures
+[Serializable, NetSerializable]
+public sealed class CriminalRecordChangeDetainedStatus : BoundUserInterfaceMessage
+{
+    public readonly string? Articles;
+    public readonly int? Duration;
+    public readonly bool Print;
+
+    public CriminalRecordChangeDetainedStatus(string? articles, int? duration, bool print = false)
+    {
+        Articles = articles;
+        Duration = duration;
+        Print = print;
+    }
+}
+
+// CorvaxGoob-SecurityFeatures
+[Serializable, NetSerializable]
+public sealed class CriminalRecordChangeWantedStatus : BoundUserInterfaceMessage
+{
+    public readonly string? Reason;
+    public readonly bool Print;
+    public CriminalRecordChangeWantedStatus(string? reason, bool print = false)
+    {
+        Reason = reason;
+        Print = print;
+    }
+}
+
 /// <summary>
 /// Used to add a single line to the record's crime history.
 /// </summary>
@@ -98,6 +127,18 @@ public sealed class CriminalRecordDeleteHistory : BoundUserInterfaceMessage
     public readonly uint Index;
 
     public CriminalRecordDeleteHistory(uint index)
+    {
+        Index = index;
+    }
+}
+
+// CorvaxGoob-SecurityFeatures
+[Serializable, NetSerializable]
+public sealed class CriminalRecordPrint : BoundUserInterfaceMessage
+{
+    public readonly uint Index;
+
+    public CriminalRecordPrint(uint index)
     {
         Index = index;
     }

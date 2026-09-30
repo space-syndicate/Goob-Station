@@ -11,6 +11,9 @@ map_rotation = true
 # rules_file = "CorvaxLRPRuleset"
 lobby_name = "️🛰️ CorvaxGoob — Мейн 🚀 [MRP] [TTS]"
 
+[lobby]
+server_hub_enabled = true
+
 [game.panic_bunker]
 enabled = false
 show_reason = true

@@ -103,7 +103,7 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponRifleEstoc
-        - id: MagazineRifle
+        - id: MagazineLightRifle # CorvaxGoob: MagazineRifle > MagazineLightRifle
           amount: 2
 
 - type: entity

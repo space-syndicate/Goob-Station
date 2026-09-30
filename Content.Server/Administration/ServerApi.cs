@@ -10,6 +10,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server.Administration.Systems;
 using Content.Server.Administration.Managers;
+using Content.Server.Corvax.Api.AHelp; // Corvax-API
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
@@ -85,6 +86,7 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
 
         RegisterHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink); // Frontier - Discord Ahelp Reply
+        AHelpBotApiSystem.RegisterStatusHostHandler(_statusHost, _entitySystemManager); // Corvax-API
     }
 
     public void Initialize()

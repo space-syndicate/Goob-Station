@@ -5,3 +5,11 @@
   components:
     - type: Implanter
       implant: SkillsImplant
+
+- type: entity
+  id: TricordrazineCellImplanter
+  suffix: Tricordrazine Cell
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: TricordrazineCellImplant

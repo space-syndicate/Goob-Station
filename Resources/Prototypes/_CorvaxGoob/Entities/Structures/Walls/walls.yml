@@ -1,0 +1,39 @@
+- type: entity
+  parent: WallDiagonalBase
+  id: WallPlasticDiagonal
+  name: plastic wall
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _CorvaxGoob/Structures/Walls/plastic_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: _CorvaxGoob/Structures/Walls/plastic_diagonal.rsi
+    state: state0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Paintable
+    group: DiagonalWalls
+  - type: SprayableWall
+  - type: Appearance

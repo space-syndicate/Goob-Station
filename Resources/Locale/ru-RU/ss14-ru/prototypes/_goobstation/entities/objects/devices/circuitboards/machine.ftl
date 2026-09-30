@@ -1,8 +1,8 @@
 ent-MaterialSiloCircuitboard = сило (машинная плата)
     .desc = Печатная плата сило.
     .suffix = { ent-BaseMachineCircuitboard.suffix }
-ent-RoboticArmCircuitboard = робо-рука (машинная плата)
-    .desc = Печатная плата робо-руки.
+ent-RoboticArmCircuitboard = роботизированная рука (машинная плата)
+    .desc = Печатная плата роботизированной руки.
     .suffix = { ent-BaseMachineCircuitboard.suffix }
 ent-ConstructorCircuitboard = конструктор (машинная плата)
     .desc = Печатная плата конструктора.

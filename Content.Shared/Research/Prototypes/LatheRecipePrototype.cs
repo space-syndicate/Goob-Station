@@ -59,6 +59,13 @@ namespace Content.Shared.Research.Prototypes
         [DataField]
         public SpriteSpecifier? Icon;
 
+        // CorvaxGoob
+        /// <summary>
+        /// Альтернативный вариант поля <see cref="Icon"/> для ссылки на прямой путь до файла спрайта.
+        /// </summary>
+        [DataField]
+        public ResPath? IconPath;
+
         [DataField("completetime")]
         public TimeSpan CompleteTime = TimeSpan.FromSeconds(5);
 

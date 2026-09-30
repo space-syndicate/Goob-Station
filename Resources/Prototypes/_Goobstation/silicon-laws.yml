@@ -24,6 +24,7 @@
 
 - type: siliconLawset
   id: HelpimovLawset
+  name: law-helpimov-name # CorvaxGoob
   laws:
   - Helpimov1
   - Helpimov2
@@ -58,6 +59,7 @@
 
 - type: siliconLawset
   id: GambamovLawset
+  name: law-gambamov-name # CorvaxGoob
   laws:
   - Gambamov1
   - Gambamov2

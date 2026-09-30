@@ -156,6 +156,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnMeleeShotAttempted(EntityUid uid, MeleeWeaponComponent comp, ref ShotAttemptedEvent args)
     {
+        if (args.User == uid) // CorvaxGoob - FireOnDrop
+            return;
+
         if (comp.NextAttack > Timing.CurTime)
             args.Cancel();
     }

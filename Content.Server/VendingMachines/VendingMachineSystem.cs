@@ -17,7 +17,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.VendingMachines
 {
-    public sealed class VendingMachineSystem : SharedVendingMachineSystem
+    public sealed partial class VendingMachineSystem : SharedVendingMachineSystem // CorvaxGoob Edit - made partial
     {
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly PricingSystem _pricing = default!;
@@ -37,6 +37,8 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
+
+            InitializeVendingReturn(); // CorvaxGoob - Vending Return
         }
 
         private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
@@ -51,7 +53,14 @@ namespace Content.Server.VendingMachines
                     continue;
                 }
 
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                //price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                // CorvaxGoob Edit Start - Vending Return
+                var amount = entry.Amount - GetStoredReturnedItemCount(component, entry.ID);
+                if (amount <= 0)
+                    continue;
+
+                price += amount * _pricing.GetEstimatedPrice(proto);
+                // CorvaxGoob End
             }
 
             args.Price += price;
@@ -142,6 +151,15 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return;
 
+            // CorvaxGoob Edit Start - Vending Return
+            // Synchronize returned-item stock before random selection.
+            if (CleanupStaleReturnedInventory(vendComponent, updateInventory: true))
+            {
+                Dirty(uid, vendComponent);
+                UpdateUI((uid, vendComponent));
+            }
+            // CorvaxGoob End
+
             var availableItems = GetAvailableInventory(uid, vendComponent);
             if (availableItems.Count <= 0)
                 return;
@@ -189,7 +207,12 @@ namespace Content.Server.VendingMachines
                 spawnCoordinates = spawnCoordinates.Offset(offset);
             }
 
-            var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+            //var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+            // CorvaxGoob Edit Start - Vending Return
+            var ent = TryTakeReturnedItemForVend(vendComponent, vendComponent.NextItemToEject, spawnCoordinates, out var returned)
+                ? returned
+                : Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+            // CorvaxGoob End
 
             if (vendComponent.ThrowNextItem)
             {

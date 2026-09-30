@@ -232,6 +232,11 @@
           min: 1
         reagent: ChloralHydrate
         amount: -10
+      # CorvaxGoob-Start
+      - !type:AdjustReagent
+        reagent: Haloperidol
+        amount: -3.0
+      # CorvaxGoob-End
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
         time: 3
@@ -501,13 +506,13 @@
         conditions:
         - !type:ReagentCondition
           reagent: Nocturine
-          min: 8
+          min: 4
         - !type:MetabolizerTypeCondition # Goobstation - Yowie
           type: [ Yowie ]
           inverted: true
         effectProto: StatusEffectForcedSleeping
-        time: 6
-        delay: 5
+        time: 8
+        delay: 1
 
 - type: reagent
   id: MuteToxin

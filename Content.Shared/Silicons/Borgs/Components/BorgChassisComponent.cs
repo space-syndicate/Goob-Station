@@ -148,6 +148,13 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [DataField]
     public bool CanOpenSelfUi;
+
+    // CorvaxGoob-MutableLaws
+    /// <summary>
+    /// Могут ли законы изменены через консоль робототехника
+    /// </summary>
+    [DataField]
+    public bool IsLawChangable = true;
 }
 
 [Serializable, NetSerializable]

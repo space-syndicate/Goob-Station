@@ -1,0 +1,12 @@
+- type: paintableGroup
+  id: DiagonalWalls
+  time: 3
+  cost: 3
+  defaultStyle: basic
+  styles:
+    solid: WallSolidDiagonal
+    basic: WallPlasticDiagonal
+    mining: WallMiningDiagonal
+    reinforced: WallReinforcedDiagonal
+    shuttle: WallShuttleDiagonal
+    plastitanium: WallPlastitaniumDiagonal

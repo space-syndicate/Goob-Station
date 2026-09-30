@@ -12,6 +12,7 @@
     tags:
      - Cartridge
      - ShellShotgunHeavy
+     - IgnorGrab # CorvaxGoob
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Cartridges/highcaliber-shell.rsi
     layers:

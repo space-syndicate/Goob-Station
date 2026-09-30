@@ -1,1 +1,1 @@
-name-identifier-format-astral = ASTRAL-{$number}
+name-identifier-format-astral = АСТРАЛ-{$number}

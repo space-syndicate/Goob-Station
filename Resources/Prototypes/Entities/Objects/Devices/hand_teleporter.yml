@@ -16,6 +16,10 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: HandTeleporter
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   id: HandTeleporterAdmeme

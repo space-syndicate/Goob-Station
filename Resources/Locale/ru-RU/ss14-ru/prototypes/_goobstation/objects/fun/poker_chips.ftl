@@ -1,5 +1,5 @@
-ent-PokerChips = poker chips
-    .desc = Play money for adults
+ent-PokerChips = фишки
+    .desc = Игровые деньги для взрослых.
 ent-PokerChips10 = { ent-PokerChips }
     .suffix = 10
     .desc = { ent-PokerChips.desc }

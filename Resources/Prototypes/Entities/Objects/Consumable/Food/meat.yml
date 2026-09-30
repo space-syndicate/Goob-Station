@@ -375,6 +375,10 @@
       - state: corgi-inhand-left
       right:
       - state: corgi-inhand-right
+# CorvaxGoob-start:
+  - type: CargoSellBlacklist
+  - type: SupermatterImmune
+# CorvaxGoob-end.
 
 - type: entity
   parent: FoodMeatRawBase

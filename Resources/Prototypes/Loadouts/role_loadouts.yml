@@ -54,6 +54,8 @@
   id: JobStationAi
   nameDataset: NamesAI
   canCustomizeName: true
+  groups:  # CorvaxGoob - add-ai-law-loadout
+  - StationAiLaws
 
 # Civilian
 - type: roleLoadout
@@ -177,6 +179,7 @@
 
 - type: roleLoadout
   id: JobChaplain
+  canCustomizeName: true
   groups:
   - Inventory # CorvaxGoob-loadouts
   - GroupTankHarness

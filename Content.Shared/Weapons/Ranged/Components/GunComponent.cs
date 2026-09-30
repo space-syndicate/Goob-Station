@@ -274,10 +274,13 @@ public sealed partial class GunComponent : Component
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
 
-    // CorvaxGoob-Skills-Start
+    // CorvaxGoob-Changes-Start
     [DataField]
     public bool RequiresSkill;
-    // CorvaxGoob-Skills-End
+
+    [DataField]
+    public float FireOnDropChance = 0.1f;
+    // CorvaxGoob-Changes-End
 
     /// <summary>
     /// Goobstation

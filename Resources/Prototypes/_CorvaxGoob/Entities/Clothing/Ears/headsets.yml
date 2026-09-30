@@ -29,3 +29,10 @@
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/command.rsi
+
+- type: entity
+  id: ClothingHeadsetAltSyndicateUnremoveable
+  parent: ClothingHeadsetAltSyndicate
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable

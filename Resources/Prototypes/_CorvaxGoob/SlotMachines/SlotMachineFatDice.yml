@@ -19,16 +19,35 @@
   - type: Anchorable
     flags: Anchorable
   - type: SlotMachine
-    smallWinChance: 0
-    mediumWinChance: 0
-    bigWinChance: 0
-    jackPotWinChance: 0
-    godPotWinChance: 0.05
-    godPotPrize: DiceOfFate
-    deleteGodPot: true
+    prizes:
+    - DiceOfFateLose
+    - DiceOfFateWin
+    deleteOnWin: true
     limitSpins: true
     countSpins: 7
     spinDamage:
       types:
         Blunt: 30
         Cellular: 15
+
+
+- type: prize
+  id: DiceOfFateLose
+  weight: 0.95
+  winSound: !type:SoundPathSpecifier
+    path: /Audio/Machines/buzz-two.ogg
+
+- type: prize
+  id: DiceOfFateWin
+  weight: 0.05
+  winSound: !type:SoundPathSpecifier
+    path: /Audio/_Goobstation/Machines/SlotMachine/slotmachine_godpot.ogg
+  prizeTable: !type:NestedSelector
+    tableId: SlotMachineDiceOfFateWin
+  winMessage: slotmachine-win-godpot
+
+- type: entityTable
+  id: SlotMachineDiceOfFateWin
+  table: !type:AllSelector
+    children:
+    - id: DiceOfFate

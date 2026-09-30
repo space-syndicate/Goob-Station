@@ -110,9 +110,8 @@ ent-Cardwall = картонная стена
 ent-WallAndesiteCobblebrick = андезитовая булыжниковая стена
     .desc = { ent-WallCobblebrick.desc }
 
-ent-WallXenoborg = ксеноборг-стена
+ent-WallXenoborg = мехадермическая стена
     .desc = { ent-WallPlastitanium.desc }
-    .suffix = { ent-WallPlastitanium.suffix }
 
 ent-WallSolidChitin = твёрдый хитин
     .desc = { ent-BaseWall.desc }
