@@ -1,0 +1,51 @@
+- type: entity
+  id: WeaponMusicianSuperSynthesizer
+  name: laser SuperSynthesizer
+  suffix: [Синдикат]
+  description: musician-super-synthesizer-description
+  parent: [BaseLaserRifle, BaseSyndicateContraband]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Weapons/Guns/Battery/super_synthesizer.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_CorvaxGoob/Weapons/Gunshots/supersynth_shot.ogg
+  - type: BatteryAmmoProvider
+    proto: BulletMusicianSuperSynthesizer
+  - type: BatterySelfRecharger
+    autoRechargeRate: 5
+
+- type: entity
+  id: WeaponMusicianBassGuitar
+  name: bass guitar
+  suffix: [Синдикат]
+  description: musician-bass-guitar-description
+  parent: [WeaponDisablerSyndicate]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Fun/Instruments/bassguitar.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _CorvaxGoob/Objects/Fun/Instruments/bassguitar.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - suitStorage
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_CorvaxGoob/Weapons/Gunshots/bass_shot.ogg
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,1
+  - type: BatteryAmmoProvider
+    proto: BulletMusicianBassGuitar
+    fireCost: 100

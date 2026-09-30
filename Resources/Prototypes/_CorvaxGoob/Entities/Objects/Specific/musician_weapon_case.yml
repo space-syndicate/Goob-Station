@@ -1,0 +1,17 @@
+- type: entity
+  id: MusicianPersonalWeaponCase
+  name: musician-personal-weapon-case-name
+  description: musician-personal-weapon-case-description
+  parent: [BaseItem, BaseSetSelector, BaseSyndicateContraband]
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+  - type: SetSelector
+    possibleSets:
+    - MusicianWeaponSelectorSuperSynth
+    - MusicianWeaponSelectorRockGuitar
+    - MusicianWeaponSelectorBassGuitar
+    maxSelectedSets: 1

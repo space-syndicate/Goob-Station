@@ -1,0 +1,40 @@
+- type: entity
+  id: WeaponMusicianRockGuitar
+  name: rock guitare
+  description: musician-rock-guitar-description
+  suffix: [Синдикат]
+  parent: [RockGuitarInstrument, BaseSyndicateContraband]
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Fun/Instruments/rockguitar.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+    sprite: _CorvaxGoob/Objects/Fun/Instruments/rockguitar.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    animationRotation: -45
+    damage:
+      types:
+        Shock: 5
+        Slash: 5
+    bluntStaminaDamageFactor: 1.5
+    heavyStaminaCost: 15
+    angle: 90
+    soundHit:
+      path: /Audio/_CorvaxGoob/Weapons/Gunshots/rock_guitar_hit.ogg
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Shock: 10
+        Slash: 10
+        Structural: 35
+  - type: TriggerOnMeleeHit
+    targetIsUser: true
+  - type: JitterOnTrigger
+    targetUser: true
+    time: 1
+    amplitude: 80
+    frequency: 8

@@ -1,0 +1,44 @@
+- type: entity
+  id: BulletMusicianSuperSynthesizer
+  name: musician-super-synthesizer-projectile-name
+  parent: BulletHotshot
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+      color: "#FF3B45"
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Blunt: 2
+        Heat: 12
+  - type: IgniteOnCollide
+    fireStacks: 2
+
+- type: entity
+  id: BulletMusicianBassGuitar
+  name: musician-bass-guitar-projectile-name
+  parent: BulletSyndicateDisabler
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+      color: "#B44DDB"
+  - type: StaminaDamageOnCollide
+    damage: 25
+  - type: Slippery
+  - type: EntityEffectOnProjectileHit
+    effects:
+    - !type:GenericStatusEffect
+      key: Muted
+      component: Muted
+      type: Add
+      time: 5
+      refresh: true

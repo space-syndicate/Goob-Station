@@ -77,7 +77,27 @@
   cost:
     Telecrystal: 20
   categories:
-  - UplinkExplosives
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Musician
+
+- type: listing
+  id: UplinkMusicianPersonalWeaponCase
+  name: uplink-musician-personal-weapon-case-name
+  description: uplink-musician-personal-weapon-case-desc
+  productEntity: MusicianPersonalWeaponCase
+  cost:
+    Telecrystal: 60
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Musician
 
 # CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366) start
 - type: listing

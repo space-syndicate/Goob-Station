@@ -1,0 +1,29 @@
+- type: selectableSet
+  id: MusicianWeaponSelectorSuperSynth
+  name: musician-weapon-selector-super-synth-name
+  description: musician-weapon-selector-super-synth-description
+  sprite:
+    sprite: _CorvaxGoob/Objects/Weapons/Guns/Battery/super_synthesizer.rsi
+    state: icon
+  content:
+  - WeaponMusicianSuperSynthesizer
+
+- type: selectableSet
+  id: MusicianWeaponSelectorRockGuitar
+  name: musician-weapon-selector-rock-guitar-name
+  description: musician-weapon-selector-rock-guitar-description
+  sprite:
+    sprite: _CorvaxGoob/Objects/Fun/Instruments/rockguitar.rsi
+    state: icon
+  content:
+  - WeaponMusicianRockGuitar
+
+- type: selectableSet
+  id: MusicianWeaponSelectorBassGuitar
+  name: musician-weapon-selector-bass-guitar-name
+  description: musician-weapon-selector-bass-guitar-description
+  sprite:
+    sprite: _CorvaxGoob/Objects/Fun/Instruments/bassguitar.rsi
+    state: icon
+  content:
+  - WeaponMusicianBassGuitar
