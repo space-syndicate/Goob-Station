@@ -41,7 +41,7 @@ namespace Content.Goobstation.Shared.SlotMachine
             SubscribeLocalEvent<SlotMachineComponent, ActivateInWorldEvent>(OnInteractHandEvent);
             SubscribeLocalEvent<SlotMachineComponent, SlotMachineDoAfterEvent>(OnSlotMachineDoAfter);
             SubscribeLocalEvent<SlotMachineComponent, SlotMachineEmagDoAfterEvent>(OnSlotMachineEmagDoAfter);
-            SubscribeLocalEvent<SlotMachineComponent, GotEmaggedEvent>(OnEmagged);
+            // SubscribeLocalEvent<SlotMachineComponent, GotEmaggedEvent>(OnEmagged); // CorvaxGoob-Reverts
         }
 
         /// <summary>
