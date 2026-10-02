@@ -1,3 +1,5 @@
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Jittering;
@@ -7,6 +9,7 @@ using Content.Shared.Stunnable;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -83,6 +86,17 @@ public sealed partial class SandevistanDisableEffect : SandevistanEffect
         }
 
         audio.PlayPredicted(OverloadSound, uid, null);
+
+        var actions = entityManager.System<SharedActionsSystem>();
+        foreach (var action in actions.GetActions(uid))
+        {
+            if (entityManager.GetComponent<MetaDataComponent>(action.Owner).EntityPrototype?.ID == "ActionToggleSandevistan")
+            {
+                actions.SetCooldown((action.Owner, action.Comp), TimeSpan.FromSeconds(5));
+                break;
+            }
+        }
+
         entityManager.System<SandevistanSystem>().Disable(uid, comp);
     }
 }

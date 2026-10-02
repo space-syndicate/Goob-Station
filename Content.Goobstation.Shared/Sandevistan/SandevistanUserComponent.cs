@@ -68,6 +68,9 @@ public sealed partial class SandevistanUserComponent : Component
     public EntityUid? PlayingStream;
 
     [DataField]
+    public EntityUid? StartSoundStream;
+
+    [DataField]
     public SoundSpecifier? StartSound = new SoundPathSpecifier("/Audio/_Goobstation/Misc/sande_start.ogg");
 
     [DataField]
