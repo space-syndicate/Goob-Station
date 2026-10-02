@@ -45,3 +45,43 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Appearance
+
+ # CorvaxGoob - xeno buff start
+- type: entity
+  parent: WallResin
+  id: WallResinThick
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi
+  - type: Icon
+    sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi
+    state: thickresin
+  - type: IconSmooth
+    key: walls
+    base: thickresin
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 750
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+ # CorvaxGoob - xeno buff end
