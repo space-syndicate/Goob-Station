@@ -219,7 +219,7 @@
   - type: Gun
     # fireRate: 1 # goob
   - type: GunSpreadModifier
-    spread: 0.6
+    spread: 0.5 # CorvaxGoob sec rebalance
   - type: Tag
     tags:
     - WeaponShotgunKammerer
