@@ -1,17 +1,18 @@
 using Content.Shared.Chat;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared._CorvaxGoob.TTS;
+using Content.Shared.GameTicking;
 using Robust.Client.Audio;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Utility;
-using Content.Shared._CorvaxGoob;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Audio.Components;
+using Robust.Shared.Random;
 using Robust.Shared.Spawners;
+using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client._CorvaxGoob.TTS;
 
@@ -23,32 +24,39 @@ public sealed partial class TTSSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceManager _res = default!;
+    [Dependency] private readonly IRobustRandom _ran = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private ISawmill _sawmill = default!;
     private static MemoryContentRoot _contentRoot = new();
     private static readonly ResPath Prefix = ResPath.Root / "TTS";
-
-    private static readonly float MinimalPitchToPlay = 0.3f;
-
     private static bool _contentRootAdded;
 
-    /// <summary>
-    /// Reducing the volume of the TTS when whispering. Will be converted to logarithm.
-    /// </summary>
     private const float WhisperFade = 4f;
-
-    /// <summary>
-    /// The volume at which the TTS sound will not be heard.
-    /// </summary>
     private const float MinimalVolume = -10f;
+    private const float GlobalVolumeBonus = 1.5f;
+    private const float RadioPitchMin = 0.95f;
+    private const float RadioPitchMax = 1.02f;
+    private const float RadioVariationMin = 0.005f;
+    private const float RadioVariationMax = 0.025f;
+    private const float RadioRolloffMin = 1.5f;
+    private const float RadioRolloffMax = 2.5f;
+    private const float PlaybackDelay = 0.8f;
+    private static readonly float MinimalPitchToPlay = 0.3f;
 
-    private float _volume = 0.0f;
+    private float _lastRadioPitch = 0.98f;
+    private float _radioVolume = 1.2f;
+    private float _volume = 1.2f;
+
+    private readonly HashSet<NetEntity> _playingEntities = new();
+    private readonly Dictionary<NetEntity, Queue<PlayTTSEvent>> _entityQueues = new();
+    private TTSVoiceEffectPreset _voiceEffectPreset = TTSVoiceEffectPreset.None;
+    private bool _ttsEnabled;
     private int _fileIdx = 0;
 
     public override void Initialize()
     {
+        base.Initialize();
         if (!_contentRootAdded)
         {
             _contentRootAdded = true;
@@ -56,17 +64,63 @@ public sealed partial class TTSSystem : EntitySystem
         }
 
         _sawmill = Logger.GetSawmill("tts");
-        _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
-        _cfg.OnValueChanged(CCCVars.AnnouncementsSound, OnAnnouncementsVolumeChanged, true);
+        _cfg.OnValueChanged(CCCVars.TTSEnabled, OnTtsEnabledChanged, true);
+        _cfg.OnValueChanged(CCCVars.TTSVoiceEffect, OnVoiceEffectChanged, true);
+        _cfg.OnValueChanged(CCCVars.TTSRadioVolume, OnRadioVolumeChanged, true);
+        _cfg.OnValueChanged(CCCVars.TTSVolume, OnVolumeChanged, true);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
-        SubscribeNetworkEvent<TTSAnnouncedEvent>(OnAnnounced);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
-        _cfg.UnsubValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged);
-        _cfg.UnsubValueChanged(CCCVars.AnnouncementsSound, OnAnnouncementsVolumeChanged);
+
+        _cfg.UnsubValueChanged(CCCVars.TTSEnabled, OnTtsEnabledChanged);
+        _cfg.UnsubValueChanged(CCCVars.TTSVoiceEffect, OnVoiceEffectChanged);
+        _cfg.UnsubValueChanged(CCCVars.TTSRadioVolume, OnRadioVolumeChanged);
+        _cfg.UnsubValueChanged(CCCVars.TTSVolume, OnVolumeChanged);
+
+        _entityQueues.Clear();
+        _playingEntities.Clear();
+
+        ShutdownEffects();
+    }
+
+    private void OnTtsEnabledChanged(bool value)
+    {
+        _ttsEnabled = value;
+
+        if (!value)
+        {
+            ShutdownEffects();
+        }
+    }
+
+    private void OnVoiceEffectChanged(int newValue)
+    {
+        _voiceEffectPreset = (TTSVoiceEffectPreset)newValue;
+
+        ShutdownVoiceEffect();
+    }
+
+    private void OnVolumeChanged(float value)
+    {
+        _volume = value;
+    }
+
+    private void OnRadioVolumeChanged(float value)
+    {
+        _radioVolume = value;
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _entityQueues.Clear();
+        _playingEntities.Clear();
+
+        ShutdownEffects();
     }
 
     public void RequestPreviewTTS(string voiceId)
@@ -74,23 +128,111 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }
 
-    private void OnTtsVolumeChanged(float volume)
-    {
-        _volume = volume;
-    }
-
     private void OnPlayTTS(PlayTTSEvent ev)
     {
-        _sawmill.Verbose($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
+        if (!_ttsEnabled)
+            return;
 
+        // It will stop clogging up your memory if you turn off one of the sliders to 0
+        if (ev.IsRadio && _radioVolume <= 0)
+        {
+            _sawmill.Verbose("Radio TTS volume zero, skipping playback");
+            return;
+        }
+        else if (_volume <= 0)
+        {
+            _sawmill.Verbose("TTS volume zero, skipping playback");
+            return;
+        }
+
+        if (ev.SourceUid == null)
+        {
+            PlayTTSInternal(ev);
+            return;
+        }
+
+        var sourceUid = ev.SourceUid.Value;
+
+        lock (_entityQueues)
+        {
+            if (!_entityQueues.TryGetValue(sourceUid, out var queue))
+            {
+                queue = new Queue<PlayTTSEvent>();
+                _entityQueues[sourceUid] = queue;
+            }
+
+            if (queue.Count >= 6)
+            {
+                _sawmill.Verbose($"TTS queue for {sourceUid} is full, dropping old message");
+                queue.Dequeue();
+                queue.Enqueue(ev);
+                return;
+            }
+
+            queue.Enqueue(ev);
+            _sawmill.Verbose($"TTS added to queue for entity {sourceUid}. Queue size: {queue.Count}");
+        }
+
+        if (!_playingEntities.Contains(sourceUid))
+        {
+            ProcessNextInQueueForEntity(sourceUid);
+        }
+    }
+
+    private void ProcessNextInQueueForEntity(NetEntity entityUid)
+    {
+        PlayTTSEvent? ev = null;
+
+        lock (_entityQueues)
+        {
+            if (_entityQueues.TryGetValue(entityUid, out var queue) && queue.Count > 0)
+            {
+                ev = queue.Dequeue();
+                _playingEntities.Add(entityUid);
+            }
+            else
+            {
+                _playingEntities.Remove(entityUid);
+                if (queue != null && queue.Count == 0)
+                    _entityQueues.Remove(entityUid);
+
+                return;
+            }
+        }
+
+        if (ev == null)
+        {
+            _playingEntities.Remove(entityUid);
+            return;
+        }
+
+        try
+        {
+            PlayTTSInternal(ev, () =>
+            {
+                _playingEntities.Remove(entityUid);
+                ProcessNextInQueueForEntity(entityUid);
+            });
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Error playing TTS for entity {entityUid}: {ex.Message}");
+            _playingEntities.Remove(entityUid);
+
+            ProcessNextInQueueForEntity(entityUid);
+        }
+    }
+
+    private void PlayTTSInternal(PlayTTSEvent ev, Action? onComplete = null)
+    {
         var filePath = new ResPath($"{_fileIdx++}.ogg");
         _contentRoot.AddOrUpdateFile(filePath, ev.Data);
 
-        var audioResource = new AudioResource();
+        using var audioResource = new AudioResource();
         audioResource.Load(IoCManager.Instance!, Prefix / filePath);
 
         var audioParams = AudioParams.Default
-            .WithVolume(AdjustVolume(ev.IsWhisper))
+            .WithVolume(AdjustVolume(ev.SourceUid == null, ev.IsWhisper, ev.IsRadio))
             .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
         if (ev.Pitch.HasValue)
@@ -98,45 +240,108 @@ public sealed partial class TTSSystem : EntitySystem
 
         var soundSpecifier = new ResolvedPathSpecifier(Prefix / filePath);
 
-        (EntityUid Entity, AudioComponent Component)? audio;
+        (EntityUid Entity, AudioComponent Component)? audioResult = null;
 
-        if (ev.SourceUid != null)
+        try
         {
-            var sourceUid = GetEntity(ev.SourceUid.Value);
-
-            if (!Exists(sourceUid) || Deleted(sourceUid))
+            if (ev.IsRadio)
             {
-                _contentRoot.RemoveFile(filePath);
-                return;
+                var pitch = GetRadioPitch();
+                var variation = GetRadioVariation();
+                var rolloff = GetRadioRolloff();
+
+                if (ev.Pitch.HasValue)
+                    pitch *= ev.Pitch.Value;
+
+                var radioParams = audioParams
+                    .WithRolloffFactor(rolloff)
+                    .WithVariation(variation)
+                    .WithPitchScale(pitch);
+
+                PlayRadioWithEffectInternal(audioResource, soundSpecifier, radioParams);
+            }
+            else if (ev.SourceUid != null)
+            {
+                var sourceUid = GetEntity(ev.SourceUid.Value);
+                if (TerminatingOrDeleted(sourceUid))
+                {
+                    onComplete?.Invoke();
+                    return;
+                }
+
+                audioResult = _audio.PlayEntity(audioResource.AudioStream, sourceUid, soundSpecifier, audioParams);
+                if (audioResult != null && _voiceEffectPreset != 0)
+                {
+                    ApplyVoiceEffect(audioResult.Value, _voiceEffectPreset);
+                }
+            }
+            else
+            {
+                audioResult = _audio.PlayGlobal(audioResource.AudioStream, soundSpecifier, audioParams);
+                if (audioResult != null && _voiceEffectPreset != 0)
+                {
+                    ApplyVoiceEffect(audioResult.Value, _voiceEffectPreset);
+                }
             }
 
-            audio = _audio.PlayEntity(audioResource.AudioStream, sourceUid, soundSpecifier, audioParams);
+            if (audioResult.HasValue
+                && ev.Pitch.HasValue
+                && ev.Pitch.Value != 1
+                && ev.Pitch.Value > MinimalPitchToPlay
+                && TryComp<TimedDespawnComponent>(audioResult.Value.Entity, out var timedDespawn))
+            {
+                timedDespawn.Lifetime = timedDespawn.Lifetime / ev.Pitch.Value;
+            }
         }
-        else
+        finally
         {
-            audio = _audio.PlayGlobal(audioResource.AudioStream, soundSpecifier, audioParams);
+            _contentRoot.RemoveFile(filePath);
         }
 
-        // Edits TimedDespawn time property for correctly pitch appling
-        if (audio.HasValue
-            && ev.Pitch.HasValue
-            && ev.Pitch.Value != 1
-            && ev.Pitch.Value > MinimalPitchToPlay
-            && TryComp<TimedDespawnComponent>(audio.Value.Entity, out var timedDespawn))
-        {
-            timedDespawn.Lifetime = timedDespawn.Lifetime / ev.Pitch.Value;
-        }
+        var duration = audioResource.AudioStream?.Length ?? TimeSpan.Zero;
 
-        _contentRoot.RemoveFile(filePath);
+        if (ev.Pitch.HasValue && ev.Pitch.Value > MinimalPitchToPlay)
+            duration /= ev.Pitch.Value;
+
+        var delay = duration + TimeSpan.FromSeconds(PlaybackDelay);
+
+        Timer.Spawn(delay, () =>
+        {
+            onComplete?.Invoke();
+        });
     }
 
-    private float AdjustVolume(bool isWhisper)
+    private void PlayRadioWithEffectInternal(AudioResource audioResource, ResolvedPathSpecifier soundSpecifier,
+        AudioParams audioParams)
     {
-        var volume = MinimalVolume + SharedAudioSystem.GainToVolume(_volume);
+        var audioResult = _audio.PlayGlobal(audioResource.AudioStream, soundSpecifier, audioParams);
+        if (audioResult == null)
+            return;
+
+        ApplyRadioEffect(audioResult.Value);
+
+        var secondParams = audioParams
+            .WithPitchScale(audioParams.Pitch * (1 + _ran.NextFloat(0.02f, 0.05f)))
+            .WithVolume(audioParams.Volume - 4f)
+            .WithVariation(0.04f);
+
+        _audio.PlayGlobal(audioResource.AudioStream, soundSpecifier, secondParams);
+    }
+
+    #region Utility Methods
+
+    private float AdjustVolume(bool isGlobal, bool isWhisper, bool isRadio)
+    {
+        var volume = isRadio
+            ? MinimalVolume + SharedAudioSystem.GainToVolume(_radioVolume)
+            : MinimalVolume + SharedAudioSystem.GainToVolume(_volume);
+
+        if (isGlobal) return volume + SharedAudioSystem.GainToVolume(GlobalVolumeBonus);
 
         if (isWhisper)
         {
-            volume -= SharedAudioSystem.GainToVolume(WhisperFade);
+            var fade = isRadio ? WhisperFade * 0.15f : WhisperFade;
+            volume -= SharedAudioSystem.GainToVolume(fade);
         }
 
         return volume;
@@ -146,4 +351,23 @@ public sealed partial class TTSSystem : EntitySystem
     {
         return isWhisper ? SharedChatSystem.WhisperMuffledRange : SharedChatSystem.VoiceRange;
     }
+
+    private float GetRadioPitch()
+    {
+        var target = _ran.NextFloat(RadioPitchMin, RadioPitchMax);
+        _lastRadioPitch = _lastRadioPitch * 0.7f + target * 0.3f;
+        return _lastRadioPitch;
+    }
+
+    private float GetRadioVariation()
+    {
+        return _ran.NextFloat(RadioVariationMin, RadioVariationMax);
+    }
+
+    private float GetRadioRolloff()
+    {
+        return _ran.NextFloat(RadioRolloffMin, RadioRolloffMax);
+    }
+
+    #endregion
 }
