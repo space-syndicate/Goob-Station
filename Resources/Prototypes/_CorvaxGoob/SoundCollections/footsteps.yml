@@ -4,3 +4,9 @@
   - /Audio/_CorvaxGoob/Effects/Footsteps/boots1.ogg
   - /Audio/_CorvaxGoob/Effects/Footsteps/boots2.ogg
   - /Audio/_CorvaxGoob/Effects/Footsteps/boots3.ogg
+
+- type: soundCollection
+  id: MetalPipe
+  files:
+  - /Audio/_CorvaxGoob/Effects/Footsteps/metalpipe1.ogg
+  - /Audio/_CorvaxGoob/Effects/Footsteps/metalpipe2.ogg
