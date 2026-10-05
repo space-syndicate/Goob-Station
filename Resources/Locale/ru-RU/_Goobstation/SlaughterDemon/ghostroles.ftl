@@ -11,5 +11,7 @@ ghost-role-information-slaughter-demon-rules =
             ИМПЫ
             ТУПЫЕ ШАРИКИ, КОТОРЫХ МЫ НАЗЫВАЕМ ЛЮДЬМИ
     МОИ БРАТЬЯ-ДЕМОНЫ, ПОЖАЛУЙСТА, [color=red]НЕ УБИВАЙТЕ ДЬЯВОЛОВ[/color], ПОТОМУ ЧТО САТАНА ЖЕСТКО ВАС НАКАЖЕТ, КАК ТОЛЬКО ДЬЯВОЛ СДАДИТ ВАС В ПОДЗЕМНЫЙ МИР
+
+
 ghost-role-information-laughter-demon-name = демон смеха
 ghost-role-information-laughter-demon-description = НАСТАЛ ТВОЙ ЧАС! ОБНИМАЙ КАЖДОГО, КОГО ВИДИШЬ, И ПОКАЖИ ИМ, ЧТО ТАКОЕ НАСТОЯЩАЯ ЛЮБОВЬ!

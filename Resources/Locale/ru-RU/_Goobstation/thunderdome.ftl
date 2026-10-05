@@ -1,19 +1,22 @@
-# Худ гостов
+# Ghost HUD button
 thunderdome-ghost-button = Грозовой Ринг
 thunderdome-ghost-button-default = Грозовой Ринг
-# Окно лодаутов
+
+# Loadout window
 thunderdome-loadout-title = Снаряжение Грозового Ринга
 thunderdome-loadout-players = игроков на арене: { $count }
 thunderdome-loadout-subtitle = Выбери свой комплект оружия
 thunderdome-loadout-confirm = Зайти на арену
-# Категории вооружения
+
+# Weapon categories
 thunderdome-category-shotguns = Дробовики
 thunderdome-category-smgs = Пистолеты-пулемёты
 thunderdome-category-rifles = Винтовки
 thunderdome-category-revolvers = Револьверы
 thunderdome-category-snipers = Снайперские винтовки
 thunderdome-category-melee = Рукопашное
-# Название вооружения
+
+# Weapon names
 thunderdome-loadout-shotgun = Каммерер
 thunderdome-loadout-doublebarreled = Двустволка
 thunderdome-loadout-smg = Дрозд
@@ -26,7 +29,8 @@ thunderdome-loadout-hristov = Христов
 thunderdome-loadout-esword = Энергетический меч
 thunderdome-loadout-capo = Капоэйра
 thunderdome-loadout-mosin = Кардешёв-Мосина
-# Описание вооружения
+
+# Weapon descriptions (tooltips)
 thunderdome-desc-shotgun = Дробовик + 1 коробка картечи, 1 коробка ружейных патронов
 thunderdome-desc-doublebarreled = Двустволка + 2 коробки картечи
 thunderdome-desc-smg = Пистолет пулемёт + 2 пары магазинов
@@ -39,7 +43,8 @@ thunderdome-desc-hristov = Анти-материальная снайперск�
 thunderdome-desc-esword = Энергетический меч + 2 инъектора стимуляторов
 thunderdome-desc-capo = Пособие по Капоэйре + 2 автоинъектора
 thunderdome-desc-mosin = Кардешёв-Мосина + 2 магазинов + ушанка + ВОДКА
-# Объявления серий убийств
+
+# Kill streak announcements
 thunderdome-streak-3 = { $player } совершил серию убийств!
 thunderdome-streak-4 = { $player } доминирует!
 thunderdome-streak-5 = { $player } совершил Мега Убийство!
@@ -48,12 +53,14 @@ thunderdome-streak-7 = { $player } Ужасен!
 thunderdome-streak-8 = { $player } Монстр!
 thunderdome-streak-9 = { $player } БОЖЕСТВЕННЫЙ!
 thunderdome-streak-12 = { $player } ВЫШЕ БОГОВ!
-# Возрождение
+
+# Revival
 thunderdome-revival-title = Тело Воскрешено
 thunderdome-revival-offer = Ваше первоначальное тело восстановлено! Вернётесь в него?
 thunderdome-revival-accept = Вернуться в тело
 thunderdome-revival-decline = Остаться на арене
-# Чат/сообщения
+
+# Chat / messages
 thunderdome-join = { $player } вошёл на Грозовой ринг!
 thunderdome-leave = { $player } покинул Грозовой ринг.
 thunderdome-leave-01 = { $user } исчезает, устав убивать.

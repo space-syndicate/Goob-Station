@@ -7,4 +7,3 @@
 glasses-snap = Ваши очки разбиваются вдребезги!
 
 # Unused for now, but might be if i make glasses snapping actually work :godo:
-

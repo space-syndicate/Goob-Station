@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+# Goobstation - Fix spelling error.
 ipc-recharge-tip = Вы немного подзарядили свою батарею.
 dead-startup-button-verb = Перезагрузить
 dead-startup-system-reboot-success = Система { $target } была перезагружена.

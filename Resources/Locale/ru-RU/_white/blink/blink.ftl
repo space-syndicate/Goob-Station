@@ -6,5 +6,6 @@
 
 blink-component-control-active = прыжок: [color=green]активен[/color]
 blink-component-control-inactive = прыжок: [color=red]неактивен[/color]
+
 blink-activated-message = Прыжок активирован.
 blink-deactivated-message = Прыжок деактивирован.

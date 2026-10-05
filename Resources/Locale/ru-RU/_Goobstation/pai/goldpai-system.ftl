@@ -1,4 +1,3 @@
 pai-system-role-name-gold = Золотой пИИ
-pai-system-role-description-gold =
-    Стань электронным другом для кого-нибудь!
-    (Воспоминания *не* прилагаются.)
+pai-system-role-description-gold = Стань электронным другом для кого-нибудь!
+                              (Воспоминания *не* прилагаются.)

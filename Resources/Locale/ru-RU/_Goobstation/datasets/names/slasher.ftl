@@ -26,6 +26,9 @@ names-slasher-title-dataset-25 = Научный
 names-slasher-title-dataset-26 = Генетический
 names-slasher-title-dataset-27 = Роботехнический
 names-slasher-title-dataset-28 = Химический
+names-slasher-title-dataset-29 = Кожанный
+names-slasher-title-dataset-30 = Житомирский
+
 names-slasher-dataset-1 = Мясник
 names-slasher-dataset-2 = Резчик
 names-slasher-dataset-3 = Потрошитель
@@ -58,3 +61,4 @@ names-slasher-dataset-29 = Клоунорасщепитель
 names-slasher-dataset-30 = Жнец
 names-slasher-dataset-31 = Крушитель
 names-slasher-dataset-32 = Робаст
+names-slasher-dataset-33 = Зуб

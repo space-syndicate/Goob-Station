@@ -10,7 +10,9 @@ possession-fail-target-already-possessed = Кто-то уже овладел э�
 possession-fail-target-chaplain = Святая сила мешает тебе овладеть этой целью!
 possession-fail-target-immune = Необычный барьер блокирует вашу попытку вселения!
 possession-fail-target-polymorphed = Эта форма слишком нестабильна для вселения!
+
 possession-popup-others = Конечности { $target } искажаются в странной форме, глаза { POSS-ADJ($target) } закатываются.
 possession-popup-self = Вашу душу силой вытаскивают из тела!
 possession-end-popup = { $target } бьётся в конвульсиях и падает на землю без сознания.
+
 possessed-component-examined = У вас осталось { $timeremaining } секунд в этом теле.

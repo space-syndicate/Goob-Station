@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 advertisement-space-villain-1 = Достаточно ли вы круты, чтобы пройти эту игру?
 advertisement-space-villain-2 = Победите плохого парня и получите приз!
 advertisement-space-villain-3 = СРАЗИСЬ СО МНОЙ!
@@ -13,6 +19,7 @@ advertisement-space-villain-12 = БОЙСЯ МЕНЯ!
 advertisement-space-villain-13 = Осмелишься ли ты сразиться со мной?
 advertisement-space-villain-14 = Берегись, я живой!
 advertisement-space-villain-15 = Я голоден!
+
 thankyou-space-villain-1 = И куда это ты собрался, сопляк?
 thankyou-space-villain-2 = Это всё, на что ты способен?
 thankyou-space-villain-3 = Эта битва ещё не окончена!

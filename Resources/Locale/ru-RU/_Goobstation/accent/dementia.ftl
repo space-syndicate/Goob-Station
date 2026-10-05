@@ -10,16 +10,18 @@ accent-dementia-prefix-2 = Эй! Мхм... Я забыл. Что ж, ладно!
 accent-dementia-prefix-3 = Что это сейчас было?
 accent-dementia-prefix-4 = Эээ,
 accent-dementia-prefix-5 = Нуу,
+
 accent-dementia-suffix-1 = , подожди, что я сказал?
 accent-dementia-suffix-2 = , или что-то...
 accent-dementia-suffix-3 = , ты... Эээ... Кто ты?
 accent-dementia-suffix-4 = , думаю.
 accent-dementia-suffix-5 = . Кстати, где мои таблетки?
 accent-dementia-suffix-6 = . Эээ... Где я?
+
 accent-dementia-words-1 = сб
 accent-dementia-words-replace-1 = какой-то отдел
 accent-dementia-words-2 = мед
-accent-dementia-words-replace-2 = какой-то отдел
+accent-dementia-words-replace-2= какой-то отдел
 accent-dementia-words-3 = карго
 accent-dementia-words-replace-3 = какой-то отдел
 accent-dementia-words-4 = инженерный отдел
@@ -30,7 +32,7 @@ accent-dementia-words-6 = сервис
 accent-dementia-words-replace-6 = какой-то отдел
 accent-dementia-words-7 = командование
 accent-dementia-words-replace-7 = какой-то отдел
-accent-dementia-words-8 = сб
+accent-dementia-words-8= сб
 accent-dementia-words-replace-8 = какой-то отдел
 accent-dementia-words-9 = нио
 accent-dementia-words-replace-9 = какой-то отдел
@@ -42,6 +44,7 @@ accent-dementia-words-12 = инженеры
 accent-dementia-words-replace-12 = какой-то отдел
 accent-dementia-words-13 = медбей
 accent-dementia-words-replace-13 = какой-то отдел
+
 accent-dementia-words-14 = синди
 accent-dementia-words-replace-14 = какие-то плохие парни
 accent-dementia-words-15 = яо
@@ -68,6 +71,7 @@ accent-dementia-words-25 = деды
 accent-dementia-words-replace-25 = какие-то смелые парни
 accent-dementia-words-26 = вор
 accent-dementia-words-replace-26 = какой-то плохой парень
+
 accent-dementia-words-27 = бриг
 accent-dementia-words-replace-27 = какой-то отдел
 accent-dementia-words-28 = синдикат
@@ -84,6 +88,7 @@ accent-dementia-words-33 = маг
 accent-dementia-words-replace-33 = какой-то плохой парень
 accent-dementia-words-34 = волшебник
 accent-dementia-words-replace-34 = какой-то плохой парень
+
 accent-dementia-words-35 = юг
 accent-dementia-words-replace-35 = где-то
 accent-dementia-words-36 = север

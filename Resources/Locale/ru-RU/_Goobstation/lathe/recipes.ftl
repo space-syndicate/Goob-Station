@@ -1,4 +1,5 @@
 lathe-recipe-BaseTranslatorImplanter-name = имплантер перевода
+
 lathe-recipe-BasicGalaticCommonTranslatorImplanter-subname = Межгалактический
 lathe-recipe-AdvancedGalaticCommonTranslatorImplanter-subname = Продвинутый Межгалактический
 lathe-recipe-BubblishTranslatorImplanter-subname = Булькяз
@@ -16,6 +17,4 @@ lathe-recipe-SchechiTranslatorImplanter-subname = Шшечи
 lathe-recipe-NewKinPidginTranslatorImplanter-subname = Ка'ракк
 lathe-recipe-ChevalTranslatorImplanter-subname = Парнокопытный
 lathe-recipe-YowKriolTranslatorImplanter-subname = Йовикрол
-lathe-recipe-GruntishTranslatorImplanter-subname = Грунтич
-lathe-recipe-XenoCompatibilityImplanter = Ксено совместимость
 lathe-recipe-SignTranslatorImplanter-subname = Жесты

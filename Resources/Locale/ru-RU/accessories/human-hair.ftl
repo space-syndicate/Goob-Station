@@ -1,7 +1,29 @@
+# SPDX-FileCopyrightText: 2021 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 Bloody2372 <146976013+Bloody2372@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 KingFroozy <140668342+KingFroozy@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 MACMAN2003 <macman2003c@gmail.com>
+# SPDX-FileCopyrightText: 2023 liltenhead <104418166+liltenhead@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 Илья Стокалюк <darkelement237@mail.ru>
+# SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+# SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Futuristic-OK <141568243+Futuristic-OK@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 RenQ <164364533+ImRenQ@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 UnicornOnLSD <149102472+UnicornOnLSD@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 nao fujiwara <awkwarddryad@gmail.com>
+# SPDX-FileCopyrightText: 2024 ~DreamlyJack~ <148849095+DreamlyJack@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Арт <123451459+JustArt1m@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 marking-HumanHairAfro = Афро
 marking-HumanHairAfro2 = Афро 2
 marking-HumanHairBigafro = Афро (Большая)
 marking-HumanHairAntenna = Ахоге
+marking-HumanHairBaby = Малыш
 marking-HumanHairBalding = Лысеющий
 marking-HumanHairBedhead = Небрежная
 marking-HumanHairBedheadv2 = Небрежная 2
@@ -57,9 +79,9 @@ marking-HumanHairCornrows2 = Корнроу 2
 marking-HumanHairCornrowbun = Корнроу (Пучок)
 marking-HumanHairCornrowbraid = Корнроу (Косичка)
 marking-HumanHairCornrowtail = Корнроу (Хвостик)
-marking-HumanHairSpookyLong = Длинная (Зловещая)
 marking-HumanHairCrewcut = Крю-кат
 marking-HumanHairCrewcut2 = Крю-кат 2
+marking-HumanHairCube = Куб
 marking-HumanHairCurls = Завитки
 marking-HumanHairC = Подстриженная
 marking-HumanHairDandypompadour = Денди Помпадур
@@ -98,8 +120,8 @@ marking-HumanHairJade = Джейд
 marking-HumanHairJensen = Дженсен
 marking-HumanHairJoestar = Джостар
 marking-HumanHairKeanu = Киану
-marking-HumanHairLongBow = Длинная с бантом
 marking-HumanHairKusanagi = Кусанаги
+marking-HumanHairLongBow = Длинная с бантом
 marking-HumanHairLong = Длинная 1
 marking-HumanHairLong2 = Длинная 2
 marking-HumanHairLong3 = Длинная 3
@@ -147,11 +169,11 @@ marking-HumanHairSidetail2 = Хвостик (Сбоку) 2
 marking-HumanHairSidetail3 = Хвостик (Сбоку) 3
 marking-HumanHairSidetail4 = Хвостик (Сбоку) 4
 marking-HumanHairSpikyponytail = Хвостик (Шипастый)
-marking-HumanHairPulato = Пулато
 marking-HumanHairPoofy = Пышная
+marking-HumanHairPulato = Пулато
 marking-HumanHairQuiff = Квифф
-marking-HumanHairShaped = Фигурная
 marking-HumanHairRonin = Ронин
+marking-HumanHairShaped = Фигурная
 marking-HumanHairShaved = Бритая
 marking-HumanHairShavedpart = Бритая часть
 marking-HumanHairShortbangs = Каре (Чёлка)
@@ -172,6 +194,7 @@ marking-HumanHairProtagonist = Слегка длинная
 marking-HumanHairSpikey = Колючая
 marking-HumanHairSpiky = Колючая 2
 marking-HumanHairSpiky2 = Колючая 3
+marking-HumanHairSpookyLong = Длинная (Зловещая)
 marking-HumanHairSwept = Зачёс назад
 marking-HumanHairSwept2 = Зачёс назад 2
 marking-HumanHairTailed = Хвостатая
@@ -198,9 +221,4 @@ marking-HumanHairVlongfringe = Очень короткая (Чёлка)
 marking-HumanHairVolaju = Воладзю
 marking-HumanHairWisp = Пряди
 marking-HumanHairLongWithBangs = Длинная с чёлкой
-
-marking-HumanHairBaby = Малыш
-
-marking-HumanHairCube = Куб
-
 marking-HumanHairOverEyePigtail = Хвостик (Через глаз)

@@ -22,10 +22,14 @@ chat-language-Chittin-name = Читин
 chat-language-Xeeplian-name = Ксиплианский
 chat-language-Hydraspeak-name = Ги'драв'та
 
-# Дополнительные языки
+# Ported from Floofstation:
 
 chat-language-Schechi-name = Шшечи
 chat-language-NewKinPidgin-name = Ка'ракк
+
+
+# Additional languges
+
 chat-language-NalRasan-name = Наль'расаан
 chat-language-SiikTajr-name = Сиик'таджр
 chat-language-SiikMaas-name = Сиик'маас

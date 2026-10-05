@@ -12,6 +12,5 @@ mindcontrol-briefing-get = ВЫ ПОД КОНТРОЛЕМ РАЗУМА
 mindcontrol-briefing-get-master = Повинуйтесь { $master }
 
 ## uplink shop
-
 uplink-mindcontrol-implant-name = Имплантер Контроля Разума
 uplink-mindcontrol-implant-desc = Когда тебе просто нужен друг.

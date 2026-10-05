@@ -1,9 +1,14 @@
+# SPDX-FileCopyrightText: 2023 keronshb <54602815+keronshb@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ## Actions Commands loc
 
 ## Upgradeaction command loc
-
-upgradeaction-command-need-one-argument = Требует хотя бы один аргумент — UID действия. Второй аргумент необязателен и указывает конкретный уровень.
 upgradeaction-command-help = Использование: upgradeaction <entityUid> [уровень]
+upgradeaction-command-need-one-argument = Требует хотя бы один аргумент — UID действия. Второй аргумент необязателен и указывает конкретный уровень.
 upgradeaction-command-max-two-arguments = Принимает максимум два аргумента: UID действия и уровень (необязательно).
 upgradeaction-command-second-argument-not-number = Второй аргумент может быть только числом.
 upgradeaction-command-less-than-required-level = Не может принимать уровень 0 или меньше.

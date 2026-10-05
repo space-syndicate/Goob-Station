@@ -1,4 +1,4 @@
-# Кастомизации
+# Customizations
 station-ai-icon-not-malf = Не взломан
 station-ai-icon-firewall = Брандмауэр
 station-ai-icon-monochrome = Монохром

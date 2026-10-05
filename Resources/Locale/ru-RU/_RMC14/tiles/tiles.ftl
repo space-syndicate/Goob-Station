@@ -1,4 +1,3 @@
-tiles-cm-wood = крепкий деревянный пол
 tiles-rmc-asphalt = асфальт
 tiles-rmc-cement = цемент
 tiles-rmc-sidewalk = тротуар

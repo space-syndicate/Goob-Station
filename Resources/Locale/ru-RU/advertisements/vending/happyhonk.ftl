@@ -1,3 +1,11 @@
+# SPDX-FileCopyrightText: 2023 brainfood1183 <113240905+brainfood1183@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+# SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 advertisement-happyhonk-1 = Хонк! Хонк! Почему бы сегодня не заказать обед Хэппи Хонк?
 advertisement-happyhonk-2 = Клоуны заслуживают обнимашек, если вы увидите одного из них — обязательно выразите свою признательность.
 advertisement-happyhonk-3 = Если вы найдёте золотой хонкер, то помолитесь богам — вы счастливчик.

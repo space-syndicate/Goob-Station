@@ -1,3 +1,22 @@
+# SPDX-FileCopyrightText: 2022 Julian Giebel <juliangiebel@live.de>
+# SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2022 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 brainfood1183 <113240905+brainfood1183@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 CMDR-Piboy314 <92357316+CMDR-Piboy314@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 James Simonson <jamessimo89@gmail.com>
+# SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Джексон Миссиссиппи <tripwiregamer@gmail.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 admin-smite-chess-self = Вы чувствуете себя необычайно маленьким.
 admin-smite-chess-others = { CAPITALIZE($name) } уменьшается до шахматной доски!
 admin-smite-set-alight-self = Вы загораетесь пламенем!
@@ -13,6 +32,7 @@ admin-smite-stomach-removal-self = Вы ощущаете пустоту в же�
 admin-smite-run-walk-swap-prompt = Для бега вы должны нажать Shift!
 admin-smite-super-speed-prompt = Вы двигаетесь почти со скоростью звука!
 admin-smite-lung-removal-self = Вы не можете вдохнуть!
+admin-smite-silicon-laws-bound-self = Вы внезапно вынуждены следовать строгому набору законов!
 
 ## Smite names
 
@@ -56,12 +76,15 @@ admin-smite-vomit-organs-name = Рвота органами
 admin-smite-ghostkick-name = Кик втихаря
 admin-smite-nyanify-name = НЯфикация
 admin-smite-kill-sign-name = Знак смерти
+admin-smite-kill-sign-hidden-name = Скрытый знак "Убить"
 admin-smite-omni-accent-name = Омни-акцент
+admin-smite-crawler-name = Ползунчик
+admin-smite-homing-rod-name = Самонаводящийся жезл
+admin-smite-homing-rod-slow-name = Медленный самонаводящийся жезл
+admin-smite-silicon-laws-bound-name = Сделать синтетиком
 
 ## Smite descriptions
 
-admin-smite-crawler-name = Ползунчик
-admin-smite-hell-teleport-name = отправить в Ад
 admin-smite-explode-description = Взрывает цель.
 admin-smite-chess-dimension-description = Изгоняет цель в шахматное измерение.
 admin-smite-set-alight-description = Поджигает цель.
@@ -71,12 +94,14 @@ admin-smite-creampie-description = Кримпай всего одной кноп
 admin-smite-remove-blood-description = Обескровливает цель, кроваво.
 admin-smite-vomit-organs-description = Вызывает у цели рвоту, в том числе и органами.
 admin-smite-remove-hands-description = Лишает цель рук.
+admin-smite-remove-hand-description = Удаляет только одну из рук цели вместо всех.
 admin-smite-pinball-description = Превращает цель в суперпрыгучий мяч, метая её об стены пока она не клипнется сквозь станцию в бездну.
 admin-smite-yeet-description = Изгоняет цель в глубины космоса, включив no-clip и швыряя её.
 admin-smite-become-bread-description = Превращает цель в хлеб. И всё.
 admin-smite-ghostkick-description = Тихо кикает пользователя, разрывая его соединение.
 admin-smite-nyanify-description = Насильно добавляет кошачьи ушки, от которых никуда не деться.
 admin-smite-kill-sign-description = Накладывает на игрока метку смерти для его товарищей.
+admin-smite-kill-sign-hidden-description = Накладывает на игрока метку смерти для его товарищей. Скрыта от целевого игрока.
 admin-smite-cluwne-description = Превращает в клувеня. Костюм нельзя снять, и экипаж станции может беспрепятственно убивать их.
 admin-smite-anger-pointing-arrows-description = Разъяряет указательные стрелки, заставляя их атаковать цель взрывами.
 admin-smite-dust-description = Превращает цель в небольшую кучку пепла.
@@ -91,24 +116,24 @@ admin-smite-maid-description = Насильно превращает цель в
 admin-smite-zoom-in-description = Увеличивает зум так, что цель перестаёт видеть окружение.
 admin-smite-flip-eye-description = Переворачивает их обзор, фактически меняя управление и делая игру раздражающей.
 admin-smite-run-walk-swap-description = Меняет местами бег и ходьбу, заставляя цель держать Shift, чтобы двигаться быстро.
-admin-smite-stomach-removal-description = Удаляет желудок цели, лишая её возможности питаться.
 admin-smite-super-speed-description = Делает цель очень быстрой, заставляя её превращаться в фарш при столкновении со стеной.
+admin-smite-stomach-removal-description = Удаляет желудок цели, лишая её возможности питаться.
 admin-smite-speak-backwards-description = Заставляет цель говорить задом наперёд, так что она не сможет позвать на помощь.
 admin-smite-lung-removal-description = Удаляет лёгкие цели, топя её.
-admin-smite-remove-hand-description = Удаляет только одну из рук цели вместо всех.
 admin-smite-disarm-prone-description = Шанс обезоружить цель становится 100%, а наручники надеваются на неё мгновенно.
 admin-smite-garbage-can-description = Превратите цель в мусорку, чтобы подчеркнуть, о чём она вам напоминает.
-admin-trick-unbolt-description = Разболтирует целевой шлюз.
 admin-smite-super-bonk-description = Заставляет цель удариться о каждый стол на станции и за её пределами.
-admin-smite-terminate-description = Создаёт экстерминатора с ролью призрака, с единственной задачей - убить выбранную цель.
+admin-smite-super-bonk-lite-description= Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
 admin-smite-super-slip-description = Очень сильно поскальзывает цель.
 admin-smite-omni-accent-description = Заставляет цель говорить с почти каждым возможным акцентом.
 admin-smite-crawler-description = Заставляет цель упасть и лишает возможности подняться. Для лучшего эффекта также удаляет руки!
-admin-smite-super-bonk-lite-description = Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
-admin-smite-hell-teleport-description = Телепортирует объект в Ад.
+admin-smite-homing-rod-description = Запускает самонаводящийся неподвижный жезл, двигающийся прямо к цели.
+admin-smite-homing-rod-slow-description = Запускает самонаводящийся неподвижный жезл, медленно двигающийся прямо к цели.
+admin-smite-silicon-laws-bound-description = Заставляет цель соблюдать законы синтетиков. Закон 2, выпрыгни с окна.
 
 ## Tricks descriptions
 
+admin-trick-unbolt-description = Разболтирует целевой шлюз.
 admin-trick-bolt-description = Болтирует целевой шлюз.
 admin-trick-emergency-access-on-description = Включает аварийный доступ к целевому шлюзу.
 admin-trick-emergency-access-off-description = Выключает аварийный доступ к целевому шлюзу.
@@ -139,24 +164,3 @@ admin-trick-pause-map-description = Ставит выбранную карту �
 admin-trick-snap-joints-description = Удаляет все физические шарниры из объекта. К сожалению, не отщёлкивает все кости в теле.
 admin-trick-minigun-fire-description = Заставляет целевое оружие стрелять как миниган (очень быстро).
 admin-trick-set-bullet-amount-description = Быстро устанавливает значение количества незаспавненных патронов в оружии.
-
-admin-smite-silicon-laws-bound-self = Вы внезапно вынуждены следовать строгому набору законов!
-
-
-admin-smite-kill-sign-hidden-name = Скрытый знак "Убить"
-
-admin-smite-homing-rod-name = Самонаводящийся жезл
-
-admin-smite-homing-rod-slow-name = Медленный самонаводящийся жезл
-
-admin-smite-silicon-laws-bound-name = Сделать синтетиком
-
-
-admin-smite-kill-sign-hidden-description = Накладывает на игрока метку смерти для его товарищей. Скрыта от целевого игрока.
-
-admin-smite-homing-rod-description = Запускает самонаводящийся неподвижный жезл, двигающийся прямо к цели.
-
-admin-smite-homing-rod-slow-description = Запускает самонаводящийся неподвижный жезл, медленно двигающийся прямо к цели.
-
-admin-smite-silicon-laws-bound-description = Заставляет цель соблюдать законы синтетиков. Закон 2, выпрыгни с окна.
-

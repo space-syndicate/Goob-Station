@@ -13,6 +13,8 @@ nullrod-bulwark-untrained-usage-popup = Вы не в силах нести тя�
 nullrod-spear-untrained-usage-popup = НЕИСПРАВНОСТЬ.
 nullrod-dragontail-untrained-usage-popup = Хвост выходит из-под контроля и ударяет вас!
 nullrod-chainsword-untrained-usage-popup = ОН не принял вас.
+
 alternate-pray-prompt = Молиться { $item }
 alternate-pray-start = { $user } начинает шептать { $item }...
+
 nullrod-spelldenial-popup = БОЖЬЯ СИЛА ПРИНУЖДАЕТ ВАС!

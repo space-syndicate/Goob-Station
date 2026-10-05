@@ -1,4 +1,17 @@
-# Имена
+# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Minemoder5000 <minemoder50000@gmail.com>
+# SPDX-FileCopyrightText: 2024 Morb <14136326+Morb0@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Verm <32827189+Vermidia@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
+# SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Names
 chat-emote-name-scream = Кричать
 chat-emote-name-laugh = Смеяться
 chat-emote-name-honk = Хонк
@@ -32,7 +45,8 @@ chat-emote-name-monkeyscreeches = Обезьяньи крики
 chat-emote-name-robotbeep = Робот
 chat-emote-name-yawn = Зевать
 chat-emote-name-snore = Храпеть
-# Сообщение
+
+# Message
 chat-emote-msg-scream = кричит!
 chat-emote-msg-laugh = смеётся
 chat-emote-msg-honk = хонкает
@@ -50,8 +64,8 @@ chat-emote-msg-snap = щёлкает пальцами.
 chat-emote-msg-salute = салютует.
 chat-emote-msg-gasp = задыхается.
 chat-emote-msg-deathgasp = замирает и бездыханно оседает, { POSS-ADJ($entity) } глаза мертвы и безжизненны...
-chat-emote-msg-deathgasp-scurret = издаёт последнее "ва" и замирает...
 chat-emote-msg-deathgasp-monkey = издаёт слабый взвизг, оседает и замирает...
+chat-emote-msg-deathgasp-scurret = издаёт последнее "ва" и замирает...
 chat-emote-msg-buzz = жужжит!
 chat-emote-msg-weh = вехает!
 chat-emote-msg-hew = хевает!
@@ -67,4 +81,3 @@ chat-emote-msg-cathisses = шипит
 chat-emote-msg-monkeyscreeches = кричит
 chat-emote-msg-yawn = зевает
 chat-emote-msg-snore = храпит
-chat-emote-msg-mew = мурлыкает

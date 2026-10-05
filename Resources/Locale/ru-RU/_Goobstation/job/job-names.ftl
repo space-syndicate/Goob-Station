@@ -11,22 +11,21 @@ job-name-futureagent = агент будущего
 job-name-salvagediver = спасатель
 job-name-ntr = представитель NanoTrasen
 job-name-bs = офицер Синий Щит
+job-name-bso = Blueshield Officer
 job-name-overall = общее
 job-name-tider = грейтайд
+
 job-name-exec = служебный доступ
 
 # Navy Stuff
 
 job-name-navy-officer = офицер ЦК
-job-name-navyofficer = офицер ЦК
-job-name-navy-captain = капитан ВКФ
 job-name-navy-officer-undercover = офицер под прикрытием
-job-name-navycaptain = капитан ВКФ
+job-name-navy-captain = капитан ВКФ
 job-name-diplomat = дипломат NanoTrasen
-job-name-outercommander = офицер ТСФ
 job-name-inspector = инспектор ЦК
 job-name-nct = наставник ЦК
-job-name-special-operations-officer = офицер спецопераций
+job-name-outercommander = офицер ТСФ
 
 # Syndicate
 
@@ -36,12 +35,12 @@ job-name-highcommander = Офицер Синдиката
 
 job-name-hecu = агент HECU
 job-name-governmentman = G-Man
-job-name-radiohost = радиоведущий
 
 # Misc
 
 job-name-conquest = конквест
 job-name-mercenarycaptain = капитан Наёмников
+job-name-radiohost = радиоведущий
 
 # Role timers - Make these alphabetical or I cut you (dont listen to upstream, i copied and pasted this, make it very un-alphabetical :godo:)
 
@@ -53,10 +52,10 @@ JobNavyOfficer = офицер ЦК
 JobNavyOfficerUndercover = офицер под прикрытием
 JobNavyCaptain = капитан ВКФ
 JobDiplomat = дипломат NanoTrasen
-JobRoboticist = робототехник
 JobGovernmentMan = G-Man
-JobRadioHost = радиоведущий
-JobVirologist = вирусолог
 JobConquest = конквест
 JobInspector = инспектор ЦК
 JobMercenaryCaptain = капитан наёмников
+JobRoboticist = робототехник
+JobRadioHost = радиоведущий
+JobVirologist = вирусолог

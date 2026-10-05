@@ -1,4 +1,5 @@
 guide-entry-martial-arts = Боевые искусства
+
 guide-entry-cqc = Искусный ближний бой
 guide-entry-hell-rip = Адский разрыв
 guide-entry-sleeping-carp = Стиль "Спящего карпа"

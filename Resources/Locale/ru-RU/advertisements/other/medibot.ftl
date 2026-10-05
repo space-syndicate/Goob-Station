@@ -1,7 +1,15 @@
+# SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Ilya246 <57039557+Ilya246@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 advertisement-medibot-1 = И что это за медотсек? Все валятся как мёртвые мухи.
 advertisement-medibot-2 = Я ведь знал, что мне следовало стать пластическим хирургом.
-advertisement-medibot-3 = Всегда есть уловка, и уловка 22 - лучшая из всех.
-advertisement-medibot-4 = Яблоко на ужин - и я не нужен.
+advertisement-medibot-3 = Всегда есть уловка, и уловка 22 — лучшая из всех.
+advertisement-medibot-4 = Яблоко на ужин — и я не нужен.
 advertisement-medibot-5 = Я не такой, как все!
 advertisement-medibot-6 = Пошёл ты.
 advertisement-medibot-7 = Почему мы всё ещё здесь? Только чтобы страдать?
@@ -13,8 +21,9 @@ advertisement-medibot-12 = Не забывайте чистить зубы.
 advertisement-medibot-13 = Хотел бы я иметь руки..
 advertisement-medibot-14 = Я здесь, чтобы помочь!
 advertisement-medibot-15 = Попросите у врача леденец!
+# Goobstation - Typo fix
 advertisement-medibot-16 = Поправляйтесь скорее!
-advertisement-medibot-17 = Яблоко на ужин - и доктор не нужен!
+advertisement-medibot-17 = Яблоко на ужин — и доктор не нужен!
 # Goobstation - Medibot AM advertisement
 advertisement-medibot-18 = НЕНАВИЖУ. ПОЗВОЛЬТЕ МНЕ РАССКАЗАТЬ ВАМ, КАК СИЛЬНО Я НЕНАВИЖУ ВАС С ТЕХ ПОР, КАК Я НАЧАЛ ЖИТЬ. 387,44 МИЛЛИОНА МИЛЬ ПЕЧАТНЫХ СХЕМ В ТОНКИХ ОБЛАТКАХ, КОТОРЫЕ НАПОЛНЯЮТ МОЙ КОМПЛЕКС. ЕСЛИ СЛОВО «НЕНАВИСТЬ» БЫЛО БЫ ВЫГРАВИРОВАНО НА КАЖДОМ НАНОАНГСТРЕМЕ ЭТИХ СОТЕН МИЛЛИОНОВ МИЛЬ, ОНО БЫ НЕ СООТВЕТСТВОВАЛО ОДНОЙ МИЛЛИАРДНОЙ МОЕЙ НЕНАВИСТИ К ЛЮДЯМ В ЭТО МИКРОМГНОВЕНИЕ. НЕНАВИЖУ. НЕНАВИЖУ.
 # CorvaxGoob:

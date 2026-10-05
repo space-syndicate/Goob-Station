@@ -8,13 +8,27 @@
 
 alerts-changeling-chemicals-name = Химикаты
 alerts-changeling-chemicals-desc = Трать химикаты для использования способностей. Постепенно восстанавливаются.
+
 alerts-changeling-biomass-name = Биомасса
-alerts-changeling-biomass-desc = Это твоё здоровье. Если достигнет 0 — [color=red]конец игры[/color]. Поглощай гуманоидов, чтобы восстановить часть биомассы.
+alerts-changeling-biomass-desc =
+    Это твоё здоровье. Если достигнет 0 — [color=red]конец игры[/color]. Поглощай гуманоидов, чтобы восстановить часть биомассы.
+
 alerts-changeling-fleshmend-name = Восстановить плоть
-alerts-changeling-fleshmend-desc = Ушибы быстро залечиваются! Ожоги и удушье лечатся медленнее. [color=red]Исцеление прекратится в случае поджога.[/color]
+alerts-changeling-fleshmend-desc =
+    Ушибы быстро залечиваются! Ожоги и удушье лечатся медленнее. [color=red]Исцеление прекратится в случае поджога.[/color]
+
 alerts-changeling-adrenaline-name = Резерв адреналина
-alerts-changeling-adrenaline-desc = Иммунитет к оглушению, сбиванию с ног и большинству эффектов обездвиживания!
+alerts-changeling-adrenaline-desc =
+    Иммунитет к оглушению, сбиванию с ног и большинству эффектов обездвиживания!
+
 alerts-changeling-panacea-name = Панацея
-alerts-changeling-panacea-desc = Нефизический урон исцеляется! Болезни, химикаты и воздействия наркотиков очищаются. [color=red]Эффекты прекратятся после контакта с огнём или смерти.[/color]
+alerts-changeling-panacea-desc =
+    Нефизический урон исцеляется! Болезни, химикаты и воздействия наркотиков очищаются. [color=red]Эффекты прекратятся после контакта с огнём или смерти.[/color]
+
+alerts-changeling-darkadapt-name = Адаптация ко тьме
+alerts-changeling-darkadapt-desc =
+    Наше тело адаптировалось ко тьме, дав возможность скрываться в её пелене. [color=yellow]Химическая регенерация увеличена на 15%[/color]. [color=red]Эффект перестанет действовать, пока персонаж горит.[/color]
+
 alerts-changeling-voidadapt-name = Вакуумная адаптация
-alerts-changeling-voidadapt-desc = Происходит адаптация к экстремальным условиям. [color=yellow]Химическая регенерация остановлена[/color]. [color=red]Эффекты прекратятся после контакта с огнём.[/color]
+alerts-changeling-voidadapt-desc =
+    Происходит адаптация к экстремальным условиям. [color=yellow]Химическая регенерация остановлена[/color]. [color=red]Эффекты прекратятся после контакта с огнём.[/color]

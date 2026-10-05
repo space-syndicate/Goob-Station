@@ -1,5 +1,13 @@
+# SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+# SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 advertisement-boozeomat-1 = Надеюсь, никто не попросит у меня чёртову чашку чая...
-advertisement-boozeomat-2 = Алкоголь - друг человечества. Вы бы отказались от друга?
+advertisement-boozeomat-2 = Алкоголь — друг человечества. Вы бы отказались от друга?
 advertisement-boozeomat-3 = Очень рад вас обслужить!
 advertisement-boozeomat-4 = Никто на этой станции не хочет выпить?
 advertisement-boozeomat-5 = Выпьем!
@@ -20,3 +28,4 @@ advertisement-boozeomat-19 = Тост за прогресс!
 thankyou-boozeomat-1 = Пожалуйста, пейте ответственно!
 thankyou-boozeomat-2 = Пожалуйста, пейте безответственно!
 thankyou-boozeomat-3 = Пожалуйста, наслаждайтесь вашим напитком!
+

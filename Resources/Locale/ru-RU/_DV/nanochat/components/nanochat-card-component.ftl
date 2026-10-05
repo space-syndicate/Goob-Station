@@ -10,6 +10,7 @@
 # Examine
 nanochat-card-examine-no-number = На карте NanoChat ещё нет назначенного номера.
 nanochat-card-examine-number = На карте NanoChat отображается #{ $number }.
+
 # Microwave interactions
 nanochat-card-microwave-erased = { $card } пищит, и все сообщения стираются!
 nanochat-card-microwave-scrambled = { $card } потрескивает, пока её сообщения искажаются!

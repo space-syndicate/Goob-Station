@@ -1,26 +1,46 @@
+# THE UNKNOWN
+
 ghost-role-information-theunknown-name = Неизвестный
 ghost-role-information-theunknown-description = Космический Культ одержал победу. Фрагмент космической энергии вырывается в реальность.
 ghost-role-information-theunknown-rules = ...
-roles-antag-rogue-ascended-name = Астральный вознесённый
-roles-antag-rogue-ascended-objective = Судьба не должна быть отдана на волю случая. Используйте свои потусторонние силы, чтобы искажать сердца и умы тех, кто находится на станции.
-ghost-role-information-rogue-ascended-name = Астральный вознесённый
-ghost-role-information-rogue-ascended-description = Судьба не должна быть отдана на волю случая. Используйте свои потусторонние силы, чтобы искажать сердца и умы тех, кто находится на станции.
-ghost-role-information-rogue-ascended-rules = Вы — [color=red][bold]Командный антагонист[/bold][/color] со всеми присутствующими членами Космического культа.
-petting-success-rogue-ascended = Уворачиваясь от хлестких щупалец и волн астральной энергии, вы как-то гладите { $target }.
-petting-failure-rogue-ascended = Пространство-время искажается вокруг вашей руки, и в итоге вы гладите самого себя.
-rogue-ascended-dendrite-eaten = Зловещее свечение вспыхивает!
-rogue-ascended-infection-fail = Вам нужно ослабить цель, чтобы исказить её!
-rogue-ascended-infection-alreadyinfected = { CAPITALIZE($target) } уже искажён!
-rogue-ascended-infection-error = Вы не можете сделать это прямо сейчас.
-rogue-ascended-infection-notification = { CAPITALIZE($target) } протягивает свои щупальца { CAPITALIZE($target) }!
-rogue-ascended-infection-briefing =
-    Зловещая энергия пропитывает вашу душу. Вы были заражены Астральным вознесённым!
-    Вы должны действовать согласно своим настроениям максимально эффективно, независимо от того, являетесь ли вы антагонистом.
-rogue-ascended-shatter-fail = Вы не можете сделать это прямо сейчас.
-rogue-ascended-round-end-agent-name = Астральный вознесённый
-rogue-ascended-objective-issuer = [bold][color=#cae8e8]Неизвестный[/color][/bold]
-rogue-ascended-role-greeting =
-    Вы — Астральный вознесённый, тень выходящей за пределы всякого сознания сущности, отражённая в реальности.
-    Всё закончится так, как всё и вся в этом мире. Самым добродушным проявлением будет донести эту чистейшую истину до как можно большего числа людей.
-objective-condition-maligninfection-title = Исказить { $count } умов
-objective-condition-maligninfection-description = Ваше прикосновение может искажать разум. Пробудите чистейшую истину в { $count } существах на станции.
+
+# COLOSSUS
+
+ghost-role-information-colossus-name = Энтропический Колосс
+ghost-role-information-colossus-description = Призовите воплощение энтропии, чтобы продлить свое существование и ускорить наступление конца света! У вас есть на это 15 минут, иначе ваша энергия иссякнет.
+ghost-role-information-colossus-rules = Вы [color={ role-type-team-antagonist-color }][bold]{ role-type-team-antagonist-name }[/bold][/color] с любыми комическими культистами.
+
+terror-colossus = Внимание всему экипажу! Похоже, что то на вашей станции, привлекло внимание гигантской враждебной аномалии.
+
+ghost-role-colossus-charactermenu = Ты должен начать армагеддон. Сей неотвратную смерть надо всеми, кого встретишь на своем пути.
+ghost-role-colossus-objective = Призовите воплощение энтропии, и стойте до самого конца своего существования.
+ghost-role-colossus-briefing =
+    Вы энтропический Колосс!
+    Ваши цели указаны в меню персонажа.
+    Подробнее о вашей роли читайте в руководстве.
+
+ghost-role-colossus-death = Колосс коллапсирует, его свечение затухает.
+ghost-role-colossus-hibernate = Колосс начинает вбирать в себя энергию!
+ghost-role-colossus-effigy-confirm = Если место выглядит подходящим, нажмите ещё раз, чтобы призвать воплощение энтропии.
+
+ghost-role-colossus-effigy-error-grid = Недопустимое место! Воплощение энтропии можно призвать лишь на устойчивой поверхности.
+ghost-role-colossus-effigy-error-location = Недопустимое место! Воплощение энтропии должно быть размещенно рядом с { $LOCATION }.
+ghost-role-colossus-effigy-error-intersection = Слишком много сущностей! Воплощение энтропии требует пустого пространства 3X1.
+ghost-role-colossus-effigy-error-space = Слишком близко к космосу! Воплощение энтропии должно быть на расстоянии как минимум в { $DISTANCE }м от бесконечного ничего.
+
+objective-condition-effigy-no-target = Призовите воплощение энтропии в любое желаемое место.
+objective-condition-effigy = Призовите воплощение энтропии рядом с "{ $location }".
+
+# MINDSINK (Positronic Brain)
+
+ghost-role-mindsink-installed = С его поверхности доносится глухой шепот!
+ghost-role-mindsink-off = Оно лежит в спокойствии.
+ghost-role-mindsink-still-searching = Оно черпает из Ноосферы...
+ghost-role-mindsink-searching = Оно начало черпать из Ноосферы...
+ghost-role-mindsink-role-name = Опухоль мозга
+ghost-role-mindsink-role-description = Служи экипажу станции, не смотря на свое нетепичное происхождение.
+ghost-role-mindsink-wipe-device-verb-text = Стиреть память
+ghost-role-mindsink-wiped-device = Остановка мыслительного процесса.
+ghost-role-mindsink-stop-searching-verb-text = Прекратить искать
+ghost-role-mindsink-stopped-searching = Резонанс Ноосферы был остановлен.
+ghost-role-mindsink-slot-component-slot-name-brain = Мозг

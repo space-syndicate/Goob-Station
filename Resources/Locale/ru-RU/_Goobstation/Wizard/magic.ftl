@@ -35,20 +35,28 @@ spell-fail-mindswap-ghoul = Нельзя менять сознание с гул
 spell-fail-mindswap-ghost = Нельзя менять сознание с призраком!
 spell-fail-mindswap-temporary = Нельзя менять сознание с временными существами!
 spell-fail-mindswap-dead = Вы не особо хотите быть мёртвым!
+
 spell-requirements-failed-clothes = Для заклинания нужна мантия и шляпа мага.
 spell-requirements-failed-speech = Заклинание активируется голосом.
+
 instant-summons-item-marked = { $item } успешно отмечен.
 instant-summons-confirm-popup = Это действие удалит текущую метку! Используйте ещё раз для подтверждения.
+
 chuuni-invocation-confirm-popup = Это действие заставит вас носить неснимаемую повязку на глаз! Используйте ещё раз для подтверждения.
+
 spell-soul-tap-dead-message-others = { CAPITALIZE($uid) } внезапно умирает!
 spell-soul-tap-dead-message-user = Ваша ослабленная душа полностью поглощена!
 spell-soul-tap-almost-dead-message = Ваше тело невероятно истощено, а жжение трудно игнорировать!
 spell-soul-tap-message = Ваше тело истощается, и в груди ощущается жгучая боль.
+
 spell-charge-spells-charged-pulled = Вы чувствуете, как через вас течёт чистая магия. Приятное ощущение!
 spell-charge-no-spells-to-charge-pulled = Вы на мгновение почувствовали странное ощущение, но оно прошло.
 spell-charge-spells-charged-entity = { CAPITALIZE($entity) } внезапно становится тепло!
+
 spell-summon-simians-maxed-out-message = Ваша обезьянья сила достигла максимума! Теперь вы можете использовать это заклинание голым, а также получили заклинание превращения в гориллу!
+
+spell-rathen-gut-popup = У вас нет аппендикса, но чем-то всё же пришлось пожертвовать!
+
 ghosts-summoned-message = Призраки были вызваны!
 dimension-shift-message = Измерения сдвинулись!
 global-tile-movement-message = Начинает играть зловещий ритм!
-spell-rathen-gut-popup = У вас нет аппендикса, но чем-то всё же пришлось пожертвовать!

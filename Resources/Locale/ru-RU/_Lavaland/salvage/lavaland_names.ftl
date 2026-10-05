@@ -7,8 +7,10 @@
 lavaland-planet-name-unknown = Неизвестная планета
 lavaland-planet-name-lavaland = Лаваленд
 lavaland-planet-name-icemoon = Ледяная луна
-# GPS Сигналы
+
+# GPS Signals
 lavaland-planet-outpost = Главный форпост
+
 lavaland-ruin-unknown = Неизвестно
 lavaland-ruin-cargo = Грузовой обломок
 lavaland-ruin-arrivals-shuttle = Обломок шаттла прибытия
@@ -40,6 +42,7 @@ lavaland-ruin-generator = Кладбище генераторов
 lavaland-ruin-mug = Фабрика кружек
 lavaland-ruin-temple = Храм Нар'Си
 lavaland-ruin-flock-large = Странные стеклянные руины
+lavaland-ruin-reclaimer = NT-Reclaimer
 lavaland-ruin-lava_outpost = Лавовый аванпост
 lavaland-ruin-lava_clown_base = База клоунов
 lavaland-ruin-ratvar = Святилище Ратвара

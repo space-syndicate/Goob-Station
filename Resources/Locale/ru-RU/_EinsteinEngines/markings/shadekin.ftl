@@ -35,10 +35,12 @@ marking-EarsShadekinBull = Прямые уши
 marking-EarsShadekinBullSmooth = Прямые уши, контурные
 marking-EarsShadekinAqua = Аква-уши
 marking-EarsShadekinAquaIncolor = Аква-уши, цветные
+
 marking-TailShadekinShorter = Короткий хвост
 marking-TailShadekinShorterBrush = Короткий хвост, лохматый
 marking-TailShadekinMedium = Средний хвост
 marking-TailShadekinMediumTwoColored = Средний хвост, двухцветный
+
 marking-BodyShadekinArrow = Узор "Стрела"
 marking-BodyShadekinBlackHole = Узор "Чёрная дыра"
 marking-BodyShadekinBrace = Узор "Браслет"

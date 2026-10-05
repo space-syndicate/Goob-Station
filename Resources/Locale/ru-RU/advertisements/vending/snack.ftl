@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+# SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
 advertisement-snack-1 = Попробуйте наш новый батончик с нугой!
 advertisement-snack-2 = В два раза больше калорий за полцены!
 advertisement-snack-3 = Самый здоровый!

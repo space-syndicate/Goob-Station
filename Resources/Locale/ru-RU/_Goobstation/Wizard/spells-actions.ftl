@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 action-speech-spell-clown = Х'НК КЛ'ВН!!!
-action-speech-spell-cluwne = Х'НК КЛУ'ВН!!!
+action-speech-spell-cluwne-goob = NWOLC EGNEVER
 action-speech-spell-magic-missile = Щ'ТК'Р!!!
 action-speech-spell-emp = К'РСАР!!!
 action-speech-spell-repulse = Ф'С РО ДАА!!!
@@ -30,7 +30,7 @@ action-speech-spell-sanguine-strike = Л'ЛО'ОШК'А!!!
 action-speech-spell-soul-tap = ЛЮБОЙ ЦЕНОЙ!!!
 action-speech-spell-thrown-lightning = ШАБАДЫЫЫЩЬ!!!
 action-speech-spell-rod-form = ПАЛКА-Е'ЛКА!!!
-action-speech-spell-charge = ДЮР'СЭЛЛ!!!
+action-speech-spell-charge-goob = DI'RI CEL
 action-speech-spell-gorilla-form = БАНАНА Ж'Р!!!
 action-speech-spell-summon-stick-minions = Восстаньте, мои творения! Сойдите со страниц в этот мир!
 action-speech-spell-tile-toggle = ПР'КЛ'ТЬЕ ВМ'А!!!

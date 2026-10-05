@@ -1,8 +1,10 @@
 # General
 monument-interface-title = Монумент
 monument-interface-occupied = Кто-то уже использует это.
+
 # Progress bar
 monument-interface-progress-bar = { $percentage }%
+
 # Entropy
 monument-interface-entropy-title = Энтропия
 monument-interface-entropy-infused-label = Влито:
@@ -11,10 +13,12 @@ monument-interface-entropy-available-label = Доступно для испол�
 monument-interface-entropy-next-stage-title = Энтропии до следующего этапа:
 monument-interface-entropy-seperator = ИЛИ
 monument-interface-entropy-crew-convert-title = Преобразований до следующего этапа:
+
 # Glyphs
 monument-interface-glyphs-title = Глиф
 monument-interface-glyphs-button-scribe = Начертить глиф
 monument-interface-glyphs-button-unscribe = Стереть глиф
+
 # Influences
 monument-interface-influences-title = Влияния
 monument-interface-influences-unlocked = Разблокировано

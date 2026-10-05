@@ -7,5 +7,6 @@
 signal-port-name-contraband-detected = Обнаружение контрабанды
 signal-port-description-contraband-detected = Передаёт сигнал при обнаружении контрабандных предметов сканером.
 contraband-detector-popup-detected = Обнаружена контрабанда
+
 contraband-detector-construction-name = детектор контрабанды
 contraband-detector-construction-desc = Устройство безопасности, сканирующее на наличие контрабандных предметов.

@@ -19,10 +19,11 @@ time-transfer-panel-warning-transfer-process = Идет передача вре�
 time-transfer-panel-checkbox-group = Группа
 time-transfer-overall-checkbox = Общее
 time-transfer-panel-search-placeholder = Поиск ролей
+
+
 cmd-timetransferpanel-desc = Открыть меню передачи времени
 admin-player-actions-window-time-transfer = Передача времени
 time-transfer-panel-no-player-database-message = Игрок не найден в базе данных
 
 # Please change it if you really-really need to do it
-
 time-transfer-panel-author = ///

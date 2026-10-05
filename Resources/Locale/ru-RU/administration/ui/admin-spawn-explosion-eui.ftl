@@ -1,4 +1,12 @@
+# SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 admin-explosion-eui-title = Создание взрывов
+
 admin-explosion-eui-label-type = Тип взрыва
 admin-explosion-eui-label-mapid = ID карты
 admin-explosion-eui-label-xmap = X (Карты)
@@ -13,8 +21,10 @@ admin-explosion-eui-label-angle = Угол
 admin-explosion-eui-label-spread = Радиус
 admin-explosion-eui-label-distance = Дистанция
 admin-explosion-eui-label-spawn = Бабах!
+
 cmd-explosionui-desc = Открывает окно для удобного управления разрушением станции.
 cmd-explosionui-help = Использование: explosionui
+
 cmd-explosion-desc = Поезд сделал бум.
 cmd-explosion-help = Использование: explosion [intensity] [slope] [maxIntensity] [x y] [mapId] [prototypeId]
 cmd-explosion-failed-to-parse-intensity = Не удалось обработать значение интенсивности: { $value }

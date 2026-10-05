@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 advertisement-bruiseomat-1 = Я ГОЛОСУЮ ЗА ОБЪЯВЛЕНИЕ ВОЙНЫ!!!
 advertisement-bruiseomat-2 = Есть у кого ТК?
 advertisement-bruiseomat-3 = Кто-нибудь купил ЕМАГ?

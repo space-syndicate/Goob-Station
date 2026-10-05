@@ -1,54 +1,78 @@
+# SPDX-FileCopyrightText: 2022 Eoin Mcloughlin <helloworld@eoinrul.es>
+# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2022 eoineoineoin <eoin.mcloughlin+gh@gmail.com>
+# SPDX-FileCopyrightText: 2022 vulppine <vulppine@gmail.com>
+# SPDX-FileCopyrightText: 2023 Ilya246 <57039557+Ilya246@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 c4llv07e <38111072+c4llv07e@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2025 Southbridge <7013162+southbridge-fur@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # UI
 
 ## Window
 
 air-alarm-ui-title = Воздушная сигнализация
+
 air-alarm-ui-access-denied = Недостаточный уровень доступа!
+
 air-alarm-ui-window-pressure-label = Давление
 air-alarm-ui-window-temperature-label = Температура
 air-alarm-ui-window-alarm-state-label = Статус
+
 air-alarm-ui-window-address-label = Адрес
 air-alarm-ui-window-device-count-label = Всего устройств
 air-alarm-ui-window-resync-devices-label = Ресинхр
+
 air-alarm-ui-window-mode-label = Режим
 air-alarm-ui-window-mode-select-locked-label = [bold][color=red] Ошибка выбора режима! [/color][/bold]
 air-alarm-ui-window-auto-mode-label = Авто-режим
--air-alarm-state-name =
-    { $state ->
-        [normal] Нормально
-        [warning] Предупреждение
-        [danger] Опасно
-        [emagged] Взломано
-       *[invalid] Невалидно
-    }
-air-alarm-ui-window-listing-title = {$address} : {-air-alarm-state-name(state:$state)}
+
+-air-alarm-state-name = { $state ->
+    [normal] Нормально
+    [warning] Предупреждение
+    [danger] Опасно
+    [emagged] Взломано
+    *[invalid] Невалидно
+}
+
+air-alarm-ui-window-listing-title = { $address } : { -air-alarm-state-name(state:$state) }
 air-alarm-ui-window-pressure = { $pressure } кПа
 air-alarm-ui-window-pressure-indicator = Давление: [color={ $color }]{ $pressure } кПа[/color]
 air-alarm-ui-window-temperature = { $tempC } °C ({ $temperature } К)
 air-alarm-ui-window-temperature-indicator = Температура: [color={ $color }]{ $tempC } °C ({ $temperature } К)[/color]
-air-alarm-ui-window-alarm-state = [color={ $color }]{-air-alarm-state-name(state:$state)}[/color]
-air-alarm-ui-window-alarm-state-indicator = Статус: [color={ $color }]{-air-alarm-state-name(state:$state)}[/color]
+air-alarm-ui-window-alarm-state = [color={ $color }]{ -air-alarm-state-name(state:$state) }[/color]
+air-alarm-ui-window-alarm-state-indicator = Статус: [color={ $color }]{ -air-alarm-state-name(state:$state) }[/color]
+
 air-alarm-ui-window-tab-vents = Вентиляции
 air-alarm-ui-window-tab-scrubbers = Скрубберы
 air-alarm-ui-window-tab-sensors = Сенсоры
+
 air-alarm-ui-gases = { $gas }: { $amount } моль ({ $percentage }%)
 air-alarm-ui-gases-indicator = { $gas }: [color={ $color }]{ $amount } моль ({ $percentage }%)[/color]
+
 air-alarm-ui-mode-filtering = Фильтрация
 air-alarm-ui-mode-wide-filtering = Фильтрация (широкая)
 air-alarm-ui-mode-fill = Заполнение
 air-alarm-ui-mode-panic = Паника
 air-alarm-ui-mode-none = Нет
 
-## Widgets
 
 air-alarm-ui-pump-direction-siphoning = Откачка
 air-alarm-ui-pump-direction-scrubbing = Фильтрация
 air-alarm-ui-pump-direction-releasing = Выпуск
+
 air-alarm-ui-pressure-bound-nobound = Без ограничений
 air-alarm-ui-pressure-bound-internalbound = Внутреннее ограничение
 air-alarm-ui-pressure-bound-externalbound = Внешнее ограничение
 air-alarm-ui-pressure-bound-both = Оба ограничения
+
 air-alarm-ui-widget-gas-filters = Фильтр газов
+
+## Widgets
 
 ### General
 
@@ -70,11 +94,11 @@ air-alarm-ui-vent-internal-bound-label = Внутренняя граница
 air-alarm-ui-scrubber-pump-direction-label = Направление
 air-alarm-ui-scrubber-volume-rate-label = Объём (Л)
 air-alarm-ui-scrubber-wide-net-label = ШирокаяСеть
+air-alarm-ui-scrubber-select-all-gases-label = Включить все
+air-alarm-ui-scrubber-deselect-all-gases-label = Выключить все
 
 ### Thresholds
 
-air-alarm-ui-scrubber-select-all-gases-label = Включить все
-air-alarm-ui-scrubber-deselect-all-gases-label = Выключить все
 air-alarm-ui-sensor-gases = Газы
 air-alarm-ui-sensor-thresholds = Границы
 air-alarm-ui-thresholds-pressure-title = Границы (кПа)

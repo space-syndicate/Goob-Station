@@ -3,6 +3,7 @@ disease-swab-cant-swab = Вы не можете взять мазок с { $targ
 disease-swab-swabbed = Вы взяли мазок с { $target }.
 disease-swab-swabbed-by = { $user } взял мазок с вас.
 disease-swab-yourself = самого себя
+
 disease-analyzer-report-title = Отчет об анализе заболеваний
 disease-analyzer-report-genotype = Генотип: { $genotype }
 disease-analyzer-report-type = Тип болезни: { $type }
@@ -12,4 +13,5 @@ disease-analyzer-report-mutation-rate = Частота мутаций: { NATURAL
 disease-analyzer-report-complexity = Сложность: { NATURALFIXED($complexity, 1) }
 disease-analyzer-report-effects-header = Обнаруженные эффекты:
 disease-analyzer-report-effect-line = - { $effect } (Тяжесть { NATURALFIXED($severity, 2) }): { $description }
+
 disease-analyzer-unknown-effect = НЕИЗВЕСТНО

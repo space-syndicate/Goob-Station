@@ -15,18 +15,20 @@ guide-entry-rules-nrp = Правила NRP
 guide-entry-sm = Суперматерия
 guide-entry-automation = Автоматизация
 guide-entry-plumbing = Трубы
+
 guide-entry-alcoholic-drinks = Алкоголь
 guide-entry-non-alcoholic-drinks = Безалкоголь
 guide-entry-enchanting = Зачарования
+
 # Goob SOP
-# - Основные разделы
+# - Main Directories
 guide-entry-sop = СОП (Стандартные Операционные Процедуры)
 guide-entry-sop-alert-levels = Уровни угрозы
 guide-entry-sop-emergencies = Аварийные ситуации
 guide-entry-sop-jobs = Должности
 guide-entry-sop-legal = Юридическая часть
 guide-entry-sop-standards = Стандартные процедуры
-# - Подразделы
+# - Sub/Nested Directories
 guide-entry-sop-cargo = Грузовой отдел
 guide-entry-sop-command = Командование
 guide-entry-sop-engineering = Инженерия
@@ -34,7 +36,7 @@ guide-entry-sop-medical = Медицина
 guide-entry-sop-science = Наука
 guide-entry-sop-security = Охрана
 guide-entry-sop-service = Сервис
-# - Уровни тревоги
+# - Alert Levels
 guide-entry-sop-greenalert = Зелёный код
 guide-entry-sop-bluealert = Синий код
 guide-entry-sop-yellowalert = Жёлтый код
@@ -44,12 +46,12 @@ guide-entry-sop-epsilonalert = Эпсилон код
 guide-entry-sop-gammaalert = Гамма код
 guide-entry-sop-violetalert = Фиолетовый код
 guide-entry-sop-omicronalert = Омикрон код
-# - Стандартные процедуры
+# - Standard Procedures
 guide-entry-sop-demoting = Увольнение/понижение
 guide-entry-sop-evacuation = Ранняя эвакуация
 guide-entry-sop-hiring = Найм/перевод
 guide-entry-sop-succession = Цепочка командования
-# - Аварийные ситуации
+# - Emergencies
 guide-entry-sop-confirmedrevs = Революция
 guide-entry-sop-containmentfail = Нарушение содержания
 guide-entry-sop-firegasspill = Пожары/утечки газа
@@ -59,16 +61,16 @@ guide-entry-sop-supermatterdelam = Распад Суперматерии
 guide-entry-sop-wardeclaration = Объявление войны
 guide-entry-sop-zombieoutbreak = Вспышка зомби
 guide-entry-sop-emergencyresponseteam = ОБР (Отряд Быстрого Реагирования)
-# - Юридическая часть
+# - Legal
 guide-entry-sop-execution = Казни
 guide-entry-sop-permabrig = Пермабриг
 guide-entry-sop-punishments = Наказания
 guide-entry-sop-searches = Обыски
-# - Грузовой отдел
+# - Cargo
 guide-entry-sop-cargotech = Грузчик
 guide-entry-sop-salvage = Утилизатор
 guide-entry-sop-shaft-miner = Шахтёр
-# - Командование
+# - Command
 guide-entry-sop-ntr = Представитель NanoTrasen
 guide-entry-sop-bso = Офицер "Синий Щит"
 guide-entry-sop-captain = Капитан
@@ -78,21 +80,21 @@ guide-entry-sop-rd = Научный Руководитель
 guide-entry-sop-cmo = Главный Врач
 guide-entry-sop-ce = Старший Инженер
 guide-entry-sop-qm = Квартирмейстер
-# - Инженерия
+# - Engineering
 guide-entry-sop-atmostech = Атмосферный техник
 guide-entry-sop-stationengineer = Инженер станции
-# - Медицина
+# - Medical
 guide-entry-sop-chemist = Химик
 guide-entry-sop-doctorintern = Врач/Интерн
-# - Наука
+# - Science
 guide-entry-sop-roboticist = Робототехник
 guide-entry-sop-scientist = Ученый
-# - Охрана
+# - Security
 guide-entry-sop-brigmedic = Бригмедик
 guide-entry-sop-detective = Детектив
 guide-entry-sop-officercadet = Офицер/Кадет
 guide-entry-sop-warden = Смотритель
-# - Служба
+# - Service
 guide-entry-sop-bartender = Бармен
 guide-entry-sop-botanist = Ботаник
 guide-entry-sop-chef = Повар

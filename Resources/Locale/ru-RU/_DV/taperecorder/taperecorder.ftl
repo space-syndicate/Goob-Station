@@ -11,6 +11,7 @@ tape-recorder-locked = Невозможно извлечь кассету во �
 tape-recorder-voice-unknown = Неизвестный голос
 tape-recorder-voice-unintelligible = Невнятная речь
 tape-recorder-message-corruption = #
+
 tape-recorder-menu-title = Диктофон
 tape-recorder-menu-controls-label = Управление:
 tape-recorder-menu-stopped-button = Пауза
@@ -20,6 +21,7 @@ tape-recorder-menu-rewinding-button = Перемотка
 tape-recorder-menu-print-button = Распечатать расшифровку
 tape-recorder-menu-cassette-label = Кассета: { $cassetteName }
 tape-recorder-menu-no-cassette-label = Кассета не вставлена
+
 tape-recorder-print-start-text = [bold]Начало записи[/bold]
 tape-recorder-print-message-text = [bold][{ $time }] { $source }:[/bold] { $message }
 tape-recorder-print-end-text = [bold]Конец записи[/bold]

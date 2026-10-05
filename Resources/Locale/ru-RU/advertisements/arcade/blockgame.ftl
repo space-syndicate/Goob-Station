@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 advertisement-block-game-1 = Юридически разрешено!
 advertisement-block-game-2 = Что, чёрт побери, такое Т-спин?
 advertisement-block-game-3 = Эти блоки сами себя не расчистят!
@@ -11,6 +17,7 @@ advertisement-block-game-10 = NT-блоки это совершенно точн
 advertisement-block-game-11 = Теперь со взрывной обработкой!
 advertisement-block-game-12 = Наши юристы уже готовы!
 advertisement-block-game-13 = Это блочный дождь, аллилуйя!
+
 thankyou-block-game-1 = Сыграйте ещё раз!
 thankyou-block-game-2 = Неплохо сыграно!
 thankyou-block-game-3 = Ещё одну каточку?

@@ -4,6 +4,11 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+
+verb-trigger-timer-set = { $time } секунд
+verb-trigger-timer-set-current = { $time } секунд (сейчас)
+popup-trigger-timer-set = Таймер установлен на { $time } секунд.
+
 reverse-bear-trap-component-target-self = Вы начинаете надевать капкан на голову.
 reverse-bear-trap-component-start-cuffing-observer = { $user } надевает капкан на { $target }!
 reverse-bear-trap-component-start-cuffing-target = Вы начинаете надевать капкан на { $targetName }.

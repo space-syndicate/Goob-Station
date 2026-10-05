@@ -15,8 +15,8 @@ surgery-popup-step-SurgeryStepCloseBones = { $user } закрывает кост
 surgery-popup-step-SurgeryStepSealBones = { $user } запечатывает кости { $part } у { $target }.
 surgery-popup-step-SurgeryStepSealSkull = { $user } запечатывает череп { $part } у { $target }.
 surgery-popup-step-SurgeryStepSealRibcage = { $user } запечатывает грудную клетку { $part } у { $target }.
-surgery-popup-step-SurgeryStepMendRibcage = { $user } восстанавливает грудную клетку на { $part } у { $target }.
 surgery-popup-step-SurgeryStepCloseIncision = { $user } зашивает разрез на { $part } у { $target }.
+
 surgery-popup-step-SurgeryStepInsertFeature = { $user } вставляет что-то в { $part } у { $target }!
 surgery-popup-procedure-SurgeryAttachHead-step-SurgeryStepInsertFeature = { $user } прикрепляет голову к { $part } у { $target }!
 surgery-popup-procedure-SurgeryAttachLeftArm-step-SurgeryStepInsertFeature = { $user } прикрепляет левую руку к { $part } у { $target }!
@@ -30,6 +30,7 @@ surgery-popup-procedure-SurgeryAttachRightFoot-step-SurgeryStepInsertFeature = {
 surgery-popup-procedure-SurgeryAttachLegs-step-SurgeryStepInsertFeature = { $user } прикрепляет ноги к { $part } у { $target }!
 surgery-popup-procedure-SurgeryAttachHands-step-SurgeryStepInsertFeature = { $user } прикрепляет руки к { $part } у { $target }!
 surgery-popup-procedure-SurgeryAttachFeet-step-SurgeryStepInsertFeature = { $user } прикрепляет стопы к { $part } у { $target }!
+
 surgery-popup-step-SurgeryStepSealWounds = { $user } запечатывает раны на { $part } у { $target }.
 surgery-popup-step-SurgeryStepSawFeature = { $user } пилит кости на { $part } у { $target }.
 surgery-popup-step-SurgeryStepClampInternalBleeders = { $user } зажимает внутренние кровоточащие сосуды на { $part } у { $target }.
@@ -48,25 +49,31 @@ surgery-popup-step-SurgeryStepHealOrgans = { $user } лечит ткани ор�
 surgery-popup-step-SurgeryStepMendBones = { $user } восстанавливает костные ткани внутри { $part } у { $target }.
 surgery-popup-step-SurgeryStepRemoveOrgan = { $user } удаляет орган из { $part } у { $target }!
 surgery-popup-step-SurgeryStepInsertOrgan = { $user } вставляет орган в { $part } у { $target }!
+
 surgery-popup-step-SurgeryStepOpenOrganSlot = { $user } открывает полость в { $part } у { $target }!
+
 surgery-popup-procedure-SurgeryRemoveBrain-step-SurgeryStepRemoveOrgan = { $user } удаляет мозг из { $part } у { $target }!
-surgery-popup-procedure-SurgeryRemovePump-step-SurgeryStepRemoveOrgan = { $user } извлекает насос из { $part } у { $target }!
 surgery-popup-procedure-SurgeryRemoveHeart-step-SurgeryStepRemoveOrgan = { $user } удаляет сердце из { $part } у { $target }!
+surgery-popup-procedure-SurgeryRemovePump-step-SurgeryStepRemoveOrgan = { $user } извлекает насос из { $part } у { $target }!
 surgery-popup-procedure-SurgeryRemoveLiver-step-SurgeryStepRemoveOrgan = { $user } удаляет печень из { $part } у { $target }!
 surgery-popup-procedure-SurgeryRemoveLungs-step-SurgeryStepRemoveOrgan = { $user } удаляет лёгкие из { $part } у { $target }!
 surgery-popup-procedure-SurgeryRemoveEyes-step-SurgeryStepRemoveOrgan = { $user } удаляет глаза из { $part } у { $target }!
 surgery-popup-procedure-SurgeryRemoveStomach-step-SurgeryStepRemoveOrgan = { $user } удаляет желудок из { $part } у { $target }!
+
 surgery-popup-procedure-SurgeryInsertBrain-step-SurgeryStepInsertOrgan = { $user } вставляет мозг в { $part } у { $target }!
 surgery-popup-step-SurgeryStepInsertLungs = { $user } вставляет лёгкие в { $part } у { $target }!
 surgery-popup-step-SurgeryStepInsertLiver = { $user } вставляет печень в { $part } у { $target }!
 surgery-popup-step-SurgeryStepInsertEyes = { $user } вставляет глаза в { $part } у { $target }!
-surgery-popup-step-SurgeryStepInsertPump = { $user } вставляет насос в { $part } у { $target }!
 surgery-popup-step-SurgeryStepInsertHeart = { $user } вставляет сердце в { $part } у { $target }!
+surgery-popup-step-SurgeryStepInsertPump = { $user } вставляет насос в { $part } у { $target }!
 surgery-popup-step-SurgeryStepInsertStomach = { $user } вставляет желудок в { $part } у { $target }!
+
 surgery-popup-step-SurgeryStepSealOrganWound = { $user } запечатывает раны на { $part } у { $target }.
 surgery-popup-step-SurgeryStepLobotomize = { $user } делает лоботомию { $target }!
 surgery-popup-step-SurgeryStepMendBrainTissue = { $user } восстанавливает ткани мозга на { $part } у { $target }.
+
 surgery-popup-step-SurgeryStepRemoveOrgan-failed = Вам по какой-то причине не удалось удалить орган...
+
 surgery-step-acid-popup = Из { $part } { $target } брызжет кислотная кровь!
 surgery-popup-step-SurgeryStepXenoCutExoskeleton = { $user } делает надрез в экзоскелете { $part } { $target }.
 surgery-popup-step-SurgeryStepXenoClampBleeders = { $user } зажимает кислотные сосуды { $part } { $target }.

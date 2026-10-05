@@ -5,6 +5,9 @@
 
 reagent-name-eldritch = жуткая эссенция
 reagent-desc-eldritch = Странная жидкость, нарушающая законы физики. Заряжает энергией и исцеляет тех, кто способен заглянуть за пределы хрупкой реальности, но невероятно опасна для неверных.
+
 reagent-comp-condition-heretic-or-ghoul = еретик или гуль
+
 reagent-physical-desc-eldritch = жуткая
+
 flavor-complex-eldritch = Вл'к'с'ла
