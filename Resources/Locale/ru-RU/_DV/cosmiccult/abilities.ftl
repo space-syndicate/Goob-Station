@@ -6,7 +6,7 @@ cosmicability-siphon-cultist-success = Ваши попытки поглотит�
 cosmicability-siphon-success = Вы беззвучно поглощаете энтропию из { CAPITALIZE($target) }.
 cosmicability-siphon-fail = Вам не удаётся вытянуть энтропию из { CAPITALIZE($target) }.
 cosmicability-siphon-full = Вы не в силах вместить больше энтропии!
-cosmicability-siphon-crit = Глаза { CAPITALIZE($user) } озаряются яркой вспышкой, после чего ($target) падает замертво!
+cosmicability-siphon-crit = Глаза { CAPITALIZE($user) } озаряются яркой вспышкой, после чего {($target)} падает замертво!
 
 cosmicability-blank-begin = { CAPITALIZE($target) } пытается схватить вас!
 cosmicability-blank-success = Вы изгоняете разум { CAPITALIZE($target) } во космическую пустоту.
