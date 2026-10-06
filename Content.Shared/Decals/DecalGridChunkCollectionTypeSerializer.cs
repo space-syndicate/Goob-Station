@@ -55,7 +55,7 @@ namespace Content.Shared.Decals
 
                         var chunkOrigin = SharedMapSystem.GetChunkIndices(coords, SharedDecalSystem.ChunkSize);
                         var chunk = dictionary.GetOrNew(chunkOrigin);
-                        var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable);
+                        var decal = new Decal(coords, data.Id, data.Color, data.Angle, data.ZIndex, data.Cleanable, data.Glows, data.GlowTime, data.GlowEnergy); // CorvaxGoob-Edit: GlowingDecals
 
                         nextIndex = Math.Max(nextIndex, dUid);
 
@@ -163,14 +163,27 @@ namespace Content.Shared.Decals
 
             [DataField("cleanable")]
             public bool Cleanable { get; init; }
+            // CorvaxGoob-Start
+            [DataField("glows")]
+            public bool Glows { get; init; }
 
-            public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable)
+            [DataField("glowTime")]
+            public float GlowTime { get; init; }
+
+            [DataField("glowEnergy")]
+            public float GlowEnergy { get; init; }
+            // CorvaxGoob-End
+            // CorvaxGoob-Edit: GlowingDecals
+            public DecalData(string id, Color? color, Angle angle, int zIndex, bool cleanable, bool glows, float glowTime, float glowEnergy)
             {
                 Id = id;
                 Color = color;
                 Angle = angle;
                 ZIndex = zIndex;
                 Cleanable = cleanable;
+                Glows = glows;
+                GlowTime = glowTime;
+                GlowEnergy = glowEnergy; // CorvaxGoob-GlowingDecals
             }
 
             public DecalData(Decal decal)
@@ -180,6 +193,9 @@ namespace Content.Shared.Decals
                 Angle = decal.Angle;
                 ZIndex = decal.ZIndex;
                 Cleanable = decal.Cleanable;
+                Glows = decal.Glows;
+                GlowTime = decal.GlowTime;
+                GlowEnergy = decal.GlowEnergy; // CorvaxGoob-GlowingDecals
             }
 
             public bool Equals(DecalData other)
@@ -188,7 +204,10 @@ namespace Content.Shared.Decals
                        Nullable.Equals(Color, other.Color) &&
                        Angle.Equals(other.Angle) &&
                        ZIndex == other.ZIndex &&
-                       Cleanable == other.Cleanable;
+                       Cleanable == other.Cleanable &&
+                       Glows == other.Glows &&
+                       GlowTime.Equals(other.GlowTime) &&
+                       GlowEnergy.Equals(other.GlowEnergy); // CorvaxGoob-GlowingDecals
             }
 
             public override bool Equals(object? obj)
@@ -198,7 +217,7 @@ namespace Content.Shared.Decals
 
             public override int GetHashCode()
             {
-                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable);
+                return HashCode.Combine(Id, Color, Angle, ZIndex, Cleanable, Glows, GlowTime, GlowEnergy); // CorvaxGoob-Edit: GlowingDecals
             }
 
             public int CompareTo(DecalData other)
@@ -221,7 +240,21 @@ namespace Content.Shared.Decals
                 if (zIndexComparison != 0)
                     return zIndexComparison;
 
-                return Cleanable.CompareTo(other.Cleanable);
+                // CorvaxGoob-Start
+                var cleanableComparison = Cleanable.CompareTo(other.Cleanable);
+                if (cleanableComparison != 0)
+                    return cleanableComparison;
+
+                var glowsComparison = Glows.CompareTo(other.Glows);
+                if (glowsComparison != 0)
+                    return glowsComparison;
+
+                var glowTimeComparison = GlowTime.CompareTo(other.GlowTime);
+                if (glowTimeComparison != 0)
+                    return glowTimeComparison;
+
+                return GlowEnergy.CompareTo(other.GlowEnergy);
+                // CorvaxGoob-End
             }
         }
     }
