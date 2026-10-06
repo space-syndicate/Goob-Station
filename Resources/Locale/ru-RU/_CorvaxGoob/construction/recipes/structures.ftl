@@ -3,3 +3,4 @@ construction-recipe-diagonal-reinforced-girder = укреплённый карк
 construction-recipe-diagonal-wall = стена (диагональ)
 construction-recipe-diagonal-reinforced-wall = укреплённая стена (диагональ)
 construction-recipe-shuttle-window-diagonal = окно шаттла (диагональ)
+construction-graph-component-plutoniumcore = плутониумное ядро

@@ -121,6 +121,12 @@
       - GhostOnlyWarp
   - type: FTLSmashImmune
   - type: SupermatterImmune # Goobstation
+  # CorvaxGoob plutonium core objective start
+  - type: WiresPanel
+  - type: Construction
+    graph: NuclearBomb
+    node: nuke
+  # CorvaxGoob plutonium core objective end
 
 - type: entity
   parent: NuclearBomb
