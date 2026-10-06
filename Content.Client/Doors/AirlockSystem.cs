@@ -76,6 +76,7 @@ public sealed class AirlockSystem : SharedAirlockSystem
         });
     }
 
+    // CorvaxGoob upstream fix port
     private void OnAppearanceChange(EntityUid uid, AirlockComponent comp, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
