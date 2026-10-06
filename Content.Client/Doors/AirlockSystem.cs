@@ -82,9 +82,6 @@ public sealed class AirlockSystem : SharedAirlockSystem
         if (args.Sprite == null)
             return;
 
-        if (args.Sprite == null)
-            return;
-
         if (!_appearanceSystem.TryGetData<DoorState>(uid, DoorVisuals.State, out var state, args.Component))
             state = DoorState.Closed;
 
