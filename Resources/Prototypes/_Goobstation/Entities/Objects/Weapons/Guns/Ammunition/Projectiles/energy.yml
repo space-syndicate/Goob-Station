@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- type: entity 
+- type: entity
   name: Rifle energy bolt #yes it X-01 projectile modified for rifle usage-Creatorbot
   id: RifleBulletEnergyGunLethal
   parent: BaseBullet
@@ -30,15 +30,19 @@
         hard: false
         mask:
         - Opaque
+        # CorvaxGoob sec rebalance start
+        - Impassable
+        - BulletImpassable
+        # CorvaxGoob sec rebalance end
   - type: Projectile
     impactEffect: BulletImpactEffectRedDisabler
     damage:
       types:
-        Heat: 17 
+        Heat: 17
     soundHit:
       collection: MeatLaserImpact
 
-- type: entity 
+- type: entity
   name: Rifle ion bolt
   id: RifleBulletEnergyGunIon
   parent: BaseBullet
@@ -69,6 +73,10 @@
         hard: false
         mask:
         - Opaque
+        # CorvaxGoob sec rebalance start
+        - Impassable
+        - BulletImpassable
+        # CorvaxGoob sec rebalance end
   - type: Projectile
     impactEffect: BulletImpactEffectBlueDisabler
     damage:
@@ -78,7 +86,7 @@
     soundHit:
       collection: MeatLaserImpact
 
-- type: entity 
+- type: entity
   name: Rifle disabler bolt
   id: RifleBulletEnergyGunDisabler
   parent: BaseBullet
@@ -108,6 +116,10 @@
         hard: false
         mask:
         - Opaque
+        # CorvaxGoob sec rebalance start
+        - Impassable
+        - BulletImpassable
+        # CorvaxGoob sec rebalance end
   - type: StaminaDamageOnCollide
     damage: 20
   - type: Projectile
@@ -118,7 +130,7 @@
     soundHit:
       collection: MeatLaserImpact
 
-- type: entity 
+- type: entity
   name: ashified energy bolt #oh dear me
   suffix: DEBUG
   id: RifleBulletEnergyGunAsh
@@ -153,11 +165,11 @@
     impactEffect: BulletImpactEffectRedDisabler
     damage:
       types:
-        Heat: 99999 
+        Heat: 99999
     soundHit:
       collection: MeatLaserImpact
 
-- type: entity 
+- type: entity
   name: overcharge rifle energy bolt #nukie killer projectile part uh i lost count
   id: RifleBulletEnergyGunOverchargeLethal
   parent: BaseBulletIncendiary
@@ -188,6 +200,10 @@
         hard: false
         mask:
         - Opaque
+        # CorvaxGoob sec rebalance start
+        - Impassable
+        - BulletImpassable
+        # CorvaxGoob sec rebalance end
   - type: Projectile
     impactEffect: BulletImpactEffectRedDisabler
     damage:
