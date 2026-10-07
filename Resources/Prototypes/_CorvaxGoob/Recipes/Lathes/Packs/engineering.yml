@@ -76,3 +76,11 @@
   id: NuclearSafetyTools
   recipes:
   - RadiationBlockingProjector
+
+- type: latheRecipePack
+  id: GlassStaticPack
+  recipes:
+  - SheetUGlass
+  - SheetRUGlass
+  - SheetPGlass
+  - SheetRPGlass
