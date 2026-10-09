@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseItem
+  id: CardPdaPainter
+  name: ID/PDA painter
+  description: A compact painter for recoloring ID cards and PDAs without changing their stored data.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Tools/card_pda_painter.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _CorvaxGoob/Objects/Tools/card_pda_painter.rsi
+  - type: ActivatableUI
+    key: enum.CardPdaPainterUiKey.Key
+    singleUser: true
+    requireActiveHand: false
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: UserInterface
+    interfaces:
+      enum.CardPdaPainterUiKey.Key:
+        type: CardPdaPainterBoundUserInterface
+  - type: CardPdaPainter
+    targetSlot:
+      name: card-pda-painter-slot-name
+      insertSound: /Audio/Machines/id_insert.ogg
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      whitelist:
+        components:
+        - IdCard
+        - Pda
+      whitelistFailPopup: card-pda-painter-popup-invalid-target
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      CardPdaPainter-target: !type:ContainerSlot
+  - type: CargoSellBlacklist
+  - type: Contraband
+    severity: Restricted
+    allowedDepartments: [ Command ]
