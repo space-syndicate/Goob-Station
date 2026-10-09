@@ -20,7 +20,7 @@ public sealed class TTSManager
         "Timings of TTS API requests",
         new HistogramConfiguration()
         {
-            LabelNames = new[] {"type"},
+            LabelNames = new[] { "type" },
             Buckets = Histogram.ExponentialBuckets(.1, 1.5, 10),
         });
 
@@ -102,7 +102,8 @@ public sealed class TTSManager
             var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
             if (json.Results == null || json.Results.Count == 0)
             {
-                _sawmill.Error($"TTS API returned empty results for '{text}'");
+                var rawJson = await response.Content.ReadAsStringAsync(cancellationToken: cts.Token);
+                _sawmill.Error($"TTS API returned empty results for '{text}'. Response: {rawJson}");
                 return null;
             }
 
@@ -151,9 +152,12 @@ public sealed class TTSManager
 
     private string GenerateCacheKey(string speaker, string text)
     {
-        //var key = $"{speaker}/{text}";
-        //var bytes = System.Security.Cryptography.SHA256.HashData(Encoding.UTF8.GetBytes(key)); пробуем экономить цпу тайм
-        return $"{speaker}/{text.ToLowerInvariant()}"; //Convert.ToHexString(key);
+        var rawKey = $"{speaker}/{text.ToLowerInvariant()}";
+        if (rawKey.Length <= 32)
+            return rawKey;
+
+        var bytes = System.Security.Cryptography.MD5.HashData(Encoding.UTF8.GetBytes(rawKey));
+        return Convert.ToHexString(bytes);
     }
 
     private struct GenerateVoiceRequest
