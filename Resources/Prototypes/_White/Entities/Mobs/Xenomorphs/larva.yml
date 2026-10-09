@@ -43,10 +43,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      25: Dead
+      50: Dead # CorvaxGoob - xeno buff
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5
+    baseWalkSpeed: 3 # CorvaxGoob - xeno buff
+    baseSprintSpeed: 6 # CorvaxGoob - xeno buff
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/Xeno/alien_claw_flesh1.ogg
@@ -65,6 +65,13 @@
   # - type: GuideHelp
   #   guides:
   #   - XenomorphLarva
+# CorvaxGoob - xeno buff start
+  - type: Eye
+    drawFov: false
+  - type: ContentEye
+    maxZoom: 1.25, 1.25
+    targetZoom: 1.25, 1.25
+# CorvaxGoob - xeno buff end
 
 - type: entity
   parent: BaseMobXenomorphLarva

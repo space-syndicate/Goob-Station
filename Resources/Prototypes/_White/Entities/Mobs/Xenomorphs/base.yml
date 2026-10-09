@@ -10,10 +10,10 @@
   abstract: true
   components:
   - type: Xenomorph
-    weedHeal: # Goobstation - nerfed healing
+    weedHeal: # CorvaxGoob - xeno buff
       groups:
-        Burn: -3
-        Toxin: -5
+        Burn: -4
+        Toxin: -7
         Airloss: -10
         Brute: -4
   - type: Pinpointer
@@ -105,6 +105,8 @@
     damage:
       groups:
         Brute: 25
+      types:
+        Structural: 50  # CorvaxGoob - xeno buff
   - type: TypingIndicator
     proto: alien
   - type: AtmosExposed
@@ -154,6 +156,7 @@
   - type: Emoting
   - type: BodyEmotes
     soundsId: GeneralBodyEmotes
+  - type: MovementIgnoreGravity # CorvaxGoob - xeno buff
 
 
 - type: entity
