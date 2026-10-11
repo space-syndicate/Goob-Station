@@ -5,6 +5,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/granedlauncher/M32A1-gun/M32A1.rsi
     layers:
@@ -52,6 +61,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/granedlauncher/RPG7-gun/RPG7.rsi
     layers:

@@ -5,6 +5,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/pistols/Deagle-gun/Deagle.rsi
     layers:
@@ -64,6 +73,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/pistols/Igla-gun/Igla.rsi
     layers:
@@ -104,6 +122,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/pistols/Judge-gun/Judge.rsi
     layers:
@@ -144,6 +171,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/pistols/Milton-gun/Milton.rsi
     layers:
@@ -203,6 +239,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/pistols/PM-gun/PM.rsi
     layers:
@@ -262,6 +307,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/pistols/Stock-gun/Stock.rsi
     layers:

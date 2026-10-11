@@ -5,6 +5,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AUG-gun/AUG-gun.rsi
     layers:
@@ -80,6 +89,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/FAMAS-gun/FAMAS-gun.rsi
     layers:
@@ -155,6 +173,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/HK416-gun/HK416-gun.rsi
     layers:
@@ -248,6 +275,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/M4A1-gun/M4A1-gun.rsi
     layers:
@@ -341,6 +377,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/M16-gun/M16-gun.rsi
     layers:
@@ -425,6 +470,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/SIG-Sauer-gun/SIG-Sauer-gun.rsi
     layers:
@@ -500,6 +554,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AK12-gun/AK12-gun.rsi
     layers:
@@ -593,6 +656,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AR-57-gun/AR-57.rsi
     layers:
@@ -686,6 +758,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AR-15-gun/AR-15.rsi
     layers:
@@ -770,6 +851,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AK-74-gun/AK-74.rsi
     layers:

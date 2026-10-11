@@ -5,6 +5,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/rifles/PSL/PSL.rsi
     layers:
@@ -90,6 +99,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/rifles/M40/M40.rsi
     layers:
@@ -175,6 +193,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/rifles/BarretM82/BarretM82.rsi
     layers:
@@ -260,6 +287,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/rifles/AWM/AWM.rsi
     layers:

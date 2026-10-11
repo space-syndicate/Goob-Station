@@ -5,6 +5,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/shotgun/Beneli-gun/Beneli.rsi
     layers:
@@ -52,6 +61,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/shotgun/Microne-gun/Microne.rsi
     layers:
@@ -99,6 +117,15 @@
   description: .
   parent: [ BaseItem, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/shotgun/Obrez-gun/Obrez.rsi
     layers:
@@ -142,6 +169,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/shotgun/Remington-gun/Remington.rsi
     layers:
@@ -189,6 +225,15 @@
   description: .
   parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
   - type: Sprite
     sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/shotgun/SPAS-12-gun/SPAS-12.rsi
     layers:
