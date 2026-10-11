@@ -1,0 +1,116 @@
+- type: construction
+  id: PlatformWoodSide
+  name: construction-recipe-platform-wood
+  graph: PlatformWoodGraph
+  startNode: start
+  targetNode: side
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformWoodCorner
+  name: construction-recipe-platform-wood-corner
+  graph: PlatformWoodGraph
+  startNode: start
+  targetNode: corner
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformWoodCornerSmall
+  name: construction-recipe-platform-wood-corner-small
+  graph: PlatformWoodGraph
+  startNode: start
+  targetNode: cornerSmall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformSide
+  name: construction-recipe-platform
+  graph: PlatformGraph
+  startNode: start
+  targetNode: side
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformCorner
+  name: construction-recipe-platform-corner
+  graph: PlatformGraph
+  startNode: start
+  targetNode: corner
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformCornerSmall
+  name: construction-recipe-platform-corner-small
+  graph: PlatformGraph
+  startNode: start
+  targetNode: cornerSmall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformReinforcedSide
+  name: construction-recipe-platform-reinforced
+  graph: PlatformReinforcedGraph
+  startNode: start
+  targetNode: side
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformReinforcedCorner
+  name: construction-recipe-platform-reinforced-corner
+  graph: PlatformReinforcedGraph
+  startNode: start
+  targetNode: corner
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: PlatformReinforcedCornerSmall
+  name: construction-recipe-platform-reinforced-corner-small
+  graph: PlatformReinforcedGraph
+  startNode: start
+  targetNode: cornerSmall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

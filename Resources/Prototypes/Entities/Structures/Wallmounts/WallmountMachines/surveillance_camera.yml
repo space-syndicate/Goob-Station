@@ -71,6 +71,8 @@
           SheetSteel1:
             min: 0
             max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   # Aquila Change end
   - type: SlimPoweredLight
     enabled: false

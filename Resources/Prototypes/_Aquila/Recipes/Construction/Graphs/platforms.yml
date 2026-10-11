@@ -1,0 +1,200 @@
+- type: constructionGraph
+  id: PlatformWoodGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: side
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 2
+    - to: corner
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: WoodPlank
+        amount: 3
+        doAfter: 2.5
+    - to: cornerSmall
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: WoodPlank
+        amount: 1
+        doAfter: 2
+
+  - node: side
+    entity: PlatformWoodSide
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+  - node: corner
+    entity: PlatformWoodCorner
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 3
+      - !type:DeleteEntity
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+  - node: cornerSmall
+    entity: PlatformWoodCornerSmall
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 1
+      - !type:DeleteEntity
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+- type: constructionGraph
+  id: PlatformGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: side
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2
+    - to: corner
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 3
+        doAfter: 2.5
+    - to: cornerSmall
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 2
+
+  - node: side
+    entity: PlatformSide
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 2
+
+  - node: corner
+    entity: PlatformCorner
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 3
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 2
+
+  - node: cornerSmall
+    entity: PlatformCornerSmall
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 2
+
+- type: constructionGraph
+  id: PlatformReinforcedGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: side
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 4
+        doAfter: 2
+    - to: corner
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 6
+        doAfter: 2.5
+    - to: cornerSmall
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2
+
+  - node: side
+    entity: PlatformReinforcedSide
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 4
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 4
+
+  - node: corner
+    entity: PlatformReinforcedCorner
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 6
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 4
+
+  - node: cornerSmall
+    entity: PlatformReinforcedCornerSmall
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 4

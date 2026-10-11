@@ -1261,9 +1261,11 @@
     - id: FoodSnackLollypopCarpEvil
       orGroup: LollypopMystery
       prob: 0.20
-    - id: FoodSnackLollypopRomerol
-      orGroup: LollypopMystery
-      prob: 0.05
+    # Aquila Change start
+    # - id: FoodSnackLollypopRomerol
+    #   orGroup: LollypopMystery
+    #   prob: 0.05
+    # Aquila Change end
     sound:
       path: /Audio/Effects/unwrap.ogg
 

@@ -124,7 +124,7 @@ public sealed class CCCVars
     /// Will skills be applied to players.
     /// </summary>
     public static readonly CVarDef<bool> SkillsEnabled =
-        CVarDef.Create("skills.enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("skills.enabled", false, CVar.SERVERONLY); // Aquila Change
 
     /// <summary>
     /// Show MRP-designated jobs in the lobby and late join.

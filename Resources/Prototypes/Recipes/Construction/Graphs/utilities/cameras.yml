@@ -72,8 +72,10 @@
           conditions:
             - !type:AllWiresCut {}
             - !type:WirePanel {}
-            - !type:ContainerNotEmpty # goob
-              container: board
+            # Aquila Change start
+            # - !type:ContainerNotEmpty # goob
+            #   container: board
+            # Aquila Change end
           completed:
             - !type:GivePrototype
               prototype: SheetSteel1

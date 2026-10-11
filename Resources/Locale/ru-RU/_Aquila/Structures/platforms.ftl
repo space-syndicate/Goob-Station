@@ -33,3 +33,13 @@ ent-PlatformWoodCorner = {ent-BasePlatformWood}
 ent-PlatformWoodCornerSmall = {ent-BasePlatformWood}
     .desc = {ent-BasePlatform.desc}
     .suffix = М.Угловая
+
+construction-recipe-platform = платформа (прямая)
+construction-recipe-platform-corner = платформа (угловая)
+construction-recipe-platform-corner-small = платформа (малая угловая)
+construction-recipe-platform-reinforced = укреплённая платформа (прямая)
+construction-recipe-platform-reinforced-corner = укреплённая платформа (угловая)
+construction-recipe-platform-reinforced-corner-small = укреплённая платформа (малая угловая)
+construction-recipe-platform-wood = деревянная платформа (прямая)
+construction-recipe-platform-wood-corner = деревянная платформа (угловая)
+construction-recipe-platform-wood-corner-small = деревянная платформа (малая угловая)

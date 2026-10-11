@@ -4,6 +4,9 @@
   name: railing
   description: Basic railing meant to protect idiots like you from falling.
   components:
+  - type: Construction
+    graph: PlatformGraph
+    node: side
   - type: Sprite
     state: side
   - type: Icon
@@ -26,6 +29,9 @@
   name: railing
   description: Basic railing meant to protect idiots like you from falling.
   components:
+  - type: Construction
+    graph: PlatformGraph
+    node: corner
   - type: Sprite
     state: corner
   - type: Icon
@@ -57,6 +63,9 @@
   name: railing
   description: Basic railing meant to protect idiots like you from falling.
   components:
+  - type: Construction
+    graph: PlatformGraph
+    node: cornerSmall
   - type: Sprite
     state: corner_small
   - type: Icon
