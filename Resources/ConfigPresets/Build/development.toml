@@ -91,9 +91,6 @@ easy_mode = false
 [rules]
 time = 5.0
 
-[thunderdome]
-enabled = false
-
 [whitelist]
 enabled = false
 

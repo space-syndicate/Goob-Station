@@ -59,8 +59,10 @@ public sealed class CatEmoteSpamCountermeasureSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SpeechComponent, EmoteEvent>(OnEmoteEvent);
-        SubscribeLocalEvent<SpeechComponent, EmoteSoundPitchShiftEvent>(OnGetPitchShiftEvent);
+        // Aquila Change start
+        // SubscribeLocalEvent<SpeechComponent, EmoteEvent>(OnEmoteEvent);
+        // SubscribeLocalEvent<SpeechComponent, EmoteSoundPitchShiftEvent>(OnGetPitchShiftEvent);
+        // Aquila Change end
     }
 
     private void OnGetPitchShiftEvent(Entity<SpeechComponent> ent, ref EmoteSoundPitchShiftEvent ev)

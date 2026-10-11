@@ -7,4 +7,3 @@
   - type: Spectral
   - type: Ghost
     canTakeGhostRoles: false
-    canEnterGhostBar: false # CorvaxGoob-GhostBar

@@ -175,5 +175,5 @@ public sealed class CCCVars
     ///     Длительность до возможность возврадиться.
     /// </summary>
     public static readonly CVarDef<float> GhostGoLobbyDeathTimeMinutes =
-        CVarDef.Create("ghost.go_lobby.death_time", 15f, CVar.SERVERONLY);
+        CVarDef.Create("ghost.go_lobby.death_time", 5f, CVar.SERVERONLY); // Aquila Change
 }

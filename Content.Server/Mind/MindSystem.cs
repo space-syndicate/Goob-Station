@@ -22,7 +22,6 @@ using Content.Shared.Tag;
 using Content.Shared._Goobstation.Wizard.BindSoul;
 using Content.Shared.Mobs.Components;
 using Content.Goobstation.Shared.Mind.Components;
-using Content.Goobstation.Shared.MisandryBox.Thunderdome;
 
 
 namespace Content.Server.Mind;
@@ -232,7 +231,7 @@ public sealed class MindSystem : SharedMindSystem
                 ? _transform.ToMapCoordinates(_gameTicker.GetObserverSpawnPoint())
                 : _transform.GetMapCoordinates(mind.OwnedEntity.Value);
 
-            entity = Spawn(GameTicker.ObserverPrototypeName, position);
+            entity = Spawn(_ghosts.GetObserverPrototype(mind), position); // Aquila Change
             component = EnsureComp<MindContainerComponent>(entity.Value);
             var ghostComponent = Comp<GhostComponent>(entity.Value);
             _ghosts.SetCanReturnToBody((entity.Value, ghostComponent), false);

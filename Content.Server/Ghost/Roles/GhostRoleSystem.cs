@@ -9,7 +9,6 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Ghost.Roles.UI;
 using Content.Server.Popups;
-using Content.Shared._CorvaxGoob.GhostBar;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -65,7 +64,6 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SkillsSystem _skillsSystem = default!; // CorvaxGoob-Skills
-    [Dependency] private readonly GhostSystem _ghost = default!; // CorvaxGoob-GhostBarMoreFeatures
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -143,8 +141,7 @@ public sealed class GhostRoleSystem : EntitySystem
         if (session.AttachedEntity is not { Valid: true } attached) // Goob edit
             return;
 
-        if ((TryComp<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles)
-            || TryComp<GhostBarPlayerComponent>(attached, out var ghostBarPlayer)) // CorvaxGoob-GhostBar
+        if (TryComp<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles) // Aquila Change
         {
             if (_openUis.ContainsKey(session))
                 CloseEui(session);
@@ -293,7 +290,7 @@ public sealed class GhostRoleSystem : EntitySystem
             return false;
 
         // can't win if you are no longer a ghost (e.g. if you returned to your body)
-        if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity) && !HasComp<GhostBarPlayerComponent>(player.AttachedEntity))
+        if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity)) // Aquila Change
             return false;
 
         if (Takeover(player, identifier))
@@ -497,8 +494,7 @@ public sealed class GhostRoleSystem : EntitySystem
             return;
         }
 
-        if (HasComp<GhostBarPlayerComponent>(player.AttachedEntity) // CorvaxGoob-GhostBar
-            || EntityManager.TryGetComponent<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles)
+        if (EntityManager.TryGetComponent<GhostComponent>(attached, out var ghost) && ghost.CanTakeGhostRoles) // Aquila Change
         {
             if (roleEnt.Comp.RaffleConfig is not null)
             {
@@ -603,15 +599,6 @@ public sealed class GhostRoleSystem : EntitySystem
 
         CloseEui(player);
 
-        // CorvaxGoob-GhostBar-Start : auto clearing all player's characters
-        var ghostBarEntitiesQuery = EntityQueryEnumerator<GhostBarPlayerComponent>();
-        while (ghostBarEntitiesQuery.MoveNext(out var ent, out var ghostBar))
-        {
-            if (ghostBar.PlayerSession == player)
-                QueueDel(ent);
-        }
-        // CorvaxGoob-GhostBar-End
-
         return true;
     }
 
@@ -623,25 +610,8 @@ public sealed class GhostRoleSystem : EntitySystem
         if (player.AttachedEntity == null)
             return;
 
-        // CorvaxGoob-GhostBar-Start
-        if (HasComp<GhostBarPlayerComponent>(player.AttachedEntity) && _mindSystem.TryGetMind(player, out var mindId, out var mindComp))
-        {
-            var ghostEnt = Spawn(GameTicker.ObserverPrototypeName, _transform.GetMapCoordinates(player.AttachedEntity.Value));
-            _mindSystem.Visit(mindId, ghostEnt, mindComp);
-
-            _followerSystem.StartFollowingEntity(ghostEnt, role);
-
-            if (!TryComp<GhostComponent>(ghostEnt, out var visitingGhostComp))
-                return;
-
-            _ghost.SetCanReturnToBody((ghostEnt, visitingGhostComp), true);
-
-            return;
-        }
-
         if (!TryComp<GhostComponent>(player.AttachedEntity, out var ghost) || !ghost.CanTakeGhostRoles) // Goob edit
             return;
-        // CorvaxGoob-GhostBar-End
 
         _followerSystem.StartFollowingEntity(player.AttachedEntity.Value, role);
     }
