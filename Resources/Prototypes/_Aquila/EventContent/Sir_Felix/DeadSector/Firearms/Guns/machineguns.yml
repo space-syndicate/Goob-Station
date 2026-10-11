@@ -11,7 +11,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/machingun/Mk48-gun/Mk48-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -98,7 +97,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/machingun/PKM-gun/PKM-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -185,7 +183,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/machingun/RPK-gun/RPK-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item

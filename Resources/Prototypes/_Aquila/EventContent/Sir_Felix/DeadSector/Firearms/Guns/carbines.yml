@@ -11,7 +11,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AUG-gun/AUG-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -87,7 +86,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/FAMAS-gun/FAMAS-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -163,7 +161,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/HK416-gun/HK416-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -257,7 +254,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/M4A1-gun/M4A1-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -351,7 +347,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/M16-gun/M16-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -436,7 +431,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/SIG-Sauer-gun/SIG-Sauer-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -512,7 +506,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AK12-gun/AK12-gun-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -606,7 +599,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AR-57-gun/AR-57-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -700,7 +692,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AR-15-gun/AR-15-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -785,7 +776,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: _Aquila/EventContent/Sir_Felix/DeadSector/Firearms/Guns/carabins/AK-74-gun/AK-74-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
