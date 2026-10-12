@@ -8,9 +8,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     HorizontalExpand="True"
     VerticalExpand="True"
     StyleClasses="AngleRect">
-    <ScrollContainer Margin="-10"
+    <!-- Aquila Change start -->
+    <ScrollContainer StyleClasses="PdaScroll"
                      VerticalExpand="True"
-                     HorizontalExpand="True">
+                     HorizontalExpand="True"
+                     HScrollEnabled="False">
+    <!-- Aquila Change end -->
         <BoxContainer Name="ContactsList"
                       Orientation="Vertical"
                       VerticalExpand="True"

@@ -71,10 +71,11 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 1.7
+    radius: 2.7 # Aquila Change
     falloff: 3
     softness: 5
     autoRot: true
+    mask: /Textures/_Aquila/Effects/LightMasks/pda_cone.png # Aquila Change
   - type: Ringer
   - type: RingerUplink
   - type: DeviceNetwork

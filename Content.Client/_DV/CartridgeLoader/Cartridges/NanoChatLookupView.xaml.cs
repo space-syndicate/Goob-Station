@@ -30,26 +30,29 @@ public sealed partial class NanoChatLookupView : PanelContainer
         for (var idx = 0; idx < contacts.Count; idx++)
         {
             var contact = contacts[idx];
+            // Aquila Change start
             var nameLabel = new Label()
             {
                 Text = contact.Name,
-                HorizontalAlignment = HAlignment.Left,
-                HorizontalExpand = true
+                HorizontalExpand = true,
+                ClipText = true,
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(4, 0, 4, 0),
             };
             var numberLabel = new Label()
             {
                 Text = $"#{contacts[idx].Number:D4}",
-                HorizontalAlignment = HAlignment.Right,
-                Margin = new Thickness(0, 0, 36, 0),
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(0, 0, 4, 0),
             };
             var startChatButton = new Button()
             {
                 Text = "+",
-                HorizontalAlignment = HAlignment.Right,
                 MinSize = new Vector2(32, 32),
                 MaxSize = new Vector2(32, 32),
                 ToolTip = Loc.GetString("nano-chat-new-chat"),
             };
+            // Aquila Change end
             startChatButton.AddStyleClass("OpenBoth");
             if (contact.Number == state.OwnNumber || state.Recipients.ContainsKey(contact.Number) || state.MaxRecipients <= state.Recipients.Count)
             {
@@ -62,9 +65,17 @@ public sealed partial class NanoChatLookupView : PanelContainer
                 HorizontalExpand = true,
             };
 
-            panel.AddChild(nameLabel);
-            panel.AddChild(numberLabel);
-            panel.AddChild(startChatButton);
+            // Aquila Change start
+            var row = new BoxContainer()
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+            };
+            row.AddChild(nameLabel);
+            row.AddChild(numberLabel);
+            row.AddChild(startChatButton);
+            panel.AddChild(row);
+            // Aquila Change end
 
             var styleClass = idx % 2 == 0 ? "PanelBackgroundBaseDark" : "PanelBackgroundLight";
             panel.StyleClasses.Add(styleClass);

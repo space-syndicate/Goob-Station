@@ -175,6 +175,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <ScrollContainer Name="MessagesScroll" StyleClasses="PdaScroll"
                                          VerticalExpand="True"
                                          HorizontalExpand="True"
+                                         HScrollEnabled="False"
                                          Visible="False">
                             <BoxContainer Name="MessageList"
                                           Orientation="Vertical"

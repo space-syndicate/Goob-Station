@@ -89,6 +89,11 @@
       Hair: HEAD
       HeadTop: HEAD
       HeadSide: HEAD
+  - type: ToggleHideLayersClothing # Aquila Change
+    slots: HEAD # Aquila Change
+    groups:
+    - layers: [ Hair ] # Aquila Change
+      action: ActionToggleHideLayersHair # Aquila Change
 
 - type: entity
   parent: ClothingHeadHatHardhatBase

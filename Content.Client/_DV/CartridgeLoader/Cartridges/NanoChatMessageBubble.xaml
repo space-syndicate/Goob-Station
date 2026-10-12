@@ -22,7 +22,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <!-- Aquila Change start -->
             <PanelContainer Name="MessagePanel"
                             MaxWidth="320"
-                            HorizontalExpand="True">
+                            HorizontalExpand="True"
+                            RectClipContent="True">
                 <RichTextLabel Name="MessageText"
                                HorizontalExpand="True" />
             </PanelContainer>
