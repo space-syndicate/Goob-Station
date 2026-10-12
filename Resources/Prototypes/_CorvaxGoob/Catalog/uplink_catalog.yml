@@ -116,3 +116,22 @@
   - !type:BuyerJobCondition
     whitelist:
     - Mime
+
+- type: listing
+  id: UplinkBloodRedDrill
+  name: uplink-bloodred-drill-name
+  description: uplink-bloodred-drill-desc
+  productEntity: BloodRedDrill
+  categories:
+  - UplinkObjective
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+      - StealPlutoniumCoreCondition
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseCaptainObjective
+  id: PlutoniumCoreStealObjective
+  components:
+  - type: Objective
+    difficulty: 5 # Pretty hard I suppose?
+  - type: StealCondition
+    stealGroup: PlutoniumCore
+    owner: objective-condition-steal-station
+  - type: StealPlutoniumCoreCondition
+
+- type: stealTargetGroup
+  id: PlutoniumCore
+  name: steal-target-groups-plutonium-core
+  sprite:
+    sprite: _CorvaxGoob/Objects/Specific/Nuke/plutonium_core.rsi
+    state: icon
