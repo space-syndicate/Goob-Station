@@ -30,7 +30,7 @@ public sealed class EmojiTag : IMarkupTagHandler
             Texture = _resourceCache.GetResource<TextureResource>(path).Texture,
             Stretch = TextureRect.StretchMode.KeepAspectCentered,
             SetSize = new Vector2(18, 18),
-            Margin = new Thickness(1, 0),
+            Margin = new Thickness(0, 0),
             ToolTip = $":{name}:",
         };
         return true;

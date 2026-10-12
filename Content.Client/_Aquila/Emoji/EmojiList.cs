@@ -42,6 +42,7 @@ public static class EmojiList
         var message = new FormattedMessage();
         var buffer = new StringBuilder();
         var i = 0;
+        var lastWasEmoji = false;
 
         while (i < text.Length)
         {
@@ -52,13 +53,19 @@ public static class EmojiList
                     message.AddText(buffer.ToString());
                     buffer.Clear();
                 }
+                else if (lastWasEmoji)
+                {
+                    message.AddText(" ");
+                }
 
                 message.PushTag(new MarkupNode(EmojiTag.TagName, new MarkupParameter(name), null), selfClosing: true);
                 i += length;
+                lastWasEmoji = true;
                 continue;
             }
 
             buffer.Append(text[i]);
+            lastWasEmoji = false;
             i++;
         }
 
