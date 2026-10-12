@@ -12,6 +12,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._EinsteinEngines.Silicon.IPC; // DeltaV
 using Content.Shared.Whitelist; // Goobstation
+using Content.Shared._Aquila.PersonalLoadouts; // Aquila Change
 
 namespace Content.Shared.Station;
 
@@ -26,6 +27,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly InternalEncryptionKeySpawner _internalEncryption = default!; // DeltaV
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation
+    [Dependency] protected readonly PersonalLoadoutSystem PersonalLoadout = default!; // Aquila Change
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
     private EntityQuery<StorageComponent> _storageQuery;
@@ -43,11 +45,16 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// <summary>
     ///     Equips the data from a `RoleLoadout` onto an entity.
     /// </summary>
-    public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
+    public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto, bool equipPersonal = true) // Aquila Change
     {
         // Order loadout selections by the order they appear on the prototype.
         foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
         {
+            // Aquila Change start
+            if (group.Key == PersonalLoadoutSystem.Group)
+                continue;
+            // Aquila Change end
+
             foreach (var items in group.Value)
             {
                 if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
@@ -59,6 +66,11 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 EquipStartingGear(entity, loadoutProto, raiseEvent: false);
             }
         }
+
+        // Aquila Change start
+        if (equipPersonal)
+            PersonalLoadout.EquipPersonalLoadouts(entity, loadout);
+        // Aquila Change end
 
         EquipRoleName(entity, loadout, roleProto);
     }

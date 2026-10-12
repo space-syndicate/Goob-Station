@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Aquila.UserId; // Aquila Change
 using Content.Client.Changelog;
 /* CorvaxGoob-Coins-start
 using Content.Client._RMC14.LinkAccount; CorvaxGoob-Coins
@@ -64,6 +65,12 @@ namespace Content.Client.Info
             var changelogButton = new ChangelogButton();
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
             buttons.AddChild(changelogButton);
+
+            // Aquila Change start
+            var userIdButton = new Button { Text = Loc.GetString("user-id-button") };
+            userIdButton.OnPressed += _ => UserInterfaceManager.GetUIController<UserIdUIController>().ToggleWindow();
+            buttons.AddChild(userIdButton);
+            // Aquila Change end
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {

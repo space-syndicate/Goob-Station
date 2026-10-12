@@ -1,0 +1,46 @@
+# Личные лоадауты.
+
+#region Дисклеймер
+
+# ПРОШУ ВАС ПРОПИСЫВАТЬ В ЛОАДАУТ ТОЛЬКО НЕИМБОВЫЕ ПРЕДМЕТЫ, НЕ НУЖНО ДОБАВЛЯТЬ ВЕЩИ
+# КОТОРЫЕ ДАЮТ КАКОЕ-ЛИБО ПРЕИМУЩЕСТВО, НАПРИМЕР, ТЕЛЕСКОПИЧЕСКУЮ ДУБИНКУ, ЛИБО
+# ТЕЛЕКРИСТАЛЛЫ И Т.П.
+# МАКСИМУМ ВЫ МОЖЕТЕ В ЛИЧНЫХ ВЕЩАХ ВЫБРАТЬ ТОЛЬКО 5 ВЕЩЕЙ.
+
+# Каждый лоадаут появляется во вкладке "Мой инвентарь" любой станционной роли,
+# но виден и доступен только игрокам, чьи UUID указаны в PersonalLoadoutEffect.
+# Один лоадаут - один предмет: так у него будут своё название и иконка в меню.
+
+#endregion
+
+#region Пример
+
+- type: loadout
+  id: PersonalLoadoutExampleBeret # Пример
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 00000000-0000-0000-0000-000000000000 # Ваш UUID
+  equipment: # Наденется на вас, заменяя старую вещь, старая вещь кладётся в рюкзак, либо в руку, если места нет
+    head: ClothingHeadHatBeret
+
+- type: loadout
+  id: PersonalLoadoutExampleDuck # Пример
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 00000000-0000-0000-0000-000000000000 # Ваш UUID
+  storage: # Кладётся в хранилище/карман
+    back:
+    - ToyRubberDuck
+    # pocket1: Lighter
+
+#endregion
+
+#region Лоадауты
+
+# Ckey
+# something
+# Ckey
+
+#endregion

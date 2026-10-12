@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 
+using Content.Corvax.Interfaces.Shared; // Aquila Change
+using Content.Shared._Aquila.PersonalLoadouts; // Aquila Change
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Localizations;
 using Content.Shared.Tag;
@@ -16,6 +18,7 @@ namespace Content.Shared.IoC
             // Goob: to port EE Interaction Verbs. I hate this.
             deps.Register<EntityWhitelistSystem>();
             deps.Register<TagSystem>();
+            deps.Register<ISharedLoadoutsManager, PersonalLoadoutsManager>(); // Aquila Change
         }
     }
 }

@@ -40,18 +40,11 @@ namespace Content.Client.Lobby.UI
             {
                 case LobbyGuiState.Default:
                     DefaultState.Visible = true;
-                    RightSide.Visible = true;
+                    TogglePanel(true); // Aquila Change
                     break;
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
-
-                    var actualWidth = (float) UserInterfaceManager.RootControl.PixelWidth;
-                    var setupWidth = (float) LeftSide.PixelWidth;
-
-                    if (1 - (setupWidth / actualWidth) > 0.30)
-                    {
-                        RightSide.Visible = false;
-                    }
+                    TogglePanel(false); // Aquila Change
 
                     UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 

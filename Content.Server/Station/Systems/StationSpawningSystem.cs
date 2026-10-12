@@ -152,7 +152,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem 
 
         if (loadout != null)
         {
-            EquipRoleLoadout(entity.Value, loadout, roleProto!);
+            EquipRoleLoadout(entity.Value, loadout, roleProto!, equipPersonal: false); // Aquila Change
         }
 
         if (prototype?.StartingGear != null)
@@ -160,6 +160,11 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem 
             var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
+
+        // Aquila Change start
+        if (loadout != null)
+            PersonalLoadout.EquipPersonalLoadouts(entity.Value, loadout);
+        // Aquila Change end
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);

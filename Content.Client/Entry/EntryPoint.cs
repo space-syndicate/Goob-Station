@@ -26,6 +26,7 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
+using Content.Corvax.Interfaces.Shared; // Aquila Change
 using Content.Shared.Ame.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
@@ -97,6 +98,7 @@ namespace Content.Client.Entry
         {
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
+            Dependencies.Resolve<ISharedLoadoutsManager>().Initialize(); // Aquila Change
 
             _contentLoc.Initialize();
             _componentFactory.DoAutoRegistrations();

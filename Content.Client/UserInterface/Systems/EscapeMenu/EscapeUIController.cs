@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Aquila.UserId; // Aquila Change
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
@@ -145,6 +146,14 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
             CloseEscapeWindow();
             OpenCharacterSetup();
         };
+
+        // Aquila Change start
+        _escapeWindow.UserIdButton.OnPressed += _ =>
+        {
+            CloseEscapeWindow();
+            UIManager.GetUIController<UserIdUIController>().ToggleWindow();
+        };
+        // Aquila Change end
 
         _escapeWindow.QuitButton.OnPressed += _ =>
         {

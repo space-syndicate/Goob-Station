@@ -1,0 +1,13 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'user-id-window-title'}"
+                      Resizable="False"
+                      MinWidth="380">
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="6">
+        <Label Text="{Loc 'user-id-window-hint'}" StyleClasses="LabelSubText" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <LineEdit Name="UserIdEdit" Editable="False" HorizontalExpand="True" />
+            <Button Name="CopyButton" Text="{Loc 'user-id-window-copy'}" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

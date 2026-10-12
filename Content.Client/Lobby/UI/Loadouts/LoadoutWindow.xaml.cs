@@ -2,6 +2,7 @@
 
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
+using Content.Corvax.Interfaces.Shared; // Aquila Change
 using Content.Shared.CCVar;
 using Content.Shared.Dataset;
 using Content.Shared.Preferences;
@@ -74,6 +75,13 @@ public sealed partial class LoadoutWindow : FancyWindow
 
                 if (groupProto.Hidden)
                     continue;
+
+                // Aquila Change start
+                if (group == "Inventory"
+                    && collection.TryResolveType<ISharedLoadoutsManager>(out var loadoutsManager)
+                    && loadoutsManager.GetClientPrototypes().Count == 0)
+                    continue;
+                // Aquila Change end
 
                 var container = new LoadoutGroupContainer(profile, loadout, protoManager.Index(group), session, collection);
                 LoadoutGroupsContainer.AddTab(container, Loc.GetString(groupProto.Name));

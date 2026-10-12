@@ -130,6 +130,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             }
 
             // CorvaxGoob-Loadouts-Start
+            var groupLoadoutIds = groupProto.Loadouts; // Aquila Change
             if (collection.TryResolveType<ISharedLoadoutsManager>(out var loadoutsManager) && group.Id == "Inventory")
             {
                 var prototypes = new List<string>();
@@ -142,7 +143,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                     prototypes = protos;
                 }
 
-                groupProto.Loadouts.AddRange(prototypes.Select(id => (ProtoId<LoadoutPrototype>) id));
+                groupLoadoutIds = prototypes.Select(id => (ProtoId<LoadoutPrototype>) id).ToList(); // Aquila Change
             }
             // CorvaxGoob-Loadouts-End
 
@@ -161,7 +162,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 }
 
                 // Malicious client maybe, check the group even has it.
-                if (!groupProto.Loadouts.Contains(loadout.Prototype))
+                if (!groupLoadoutIds.Contains(loadout.Prototype)) // Aquila Change
                 {
                     loadouts.RemoveAt(i);
                     continue;
@@ -182,7 +183,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // If you put invalid ones first but that's your fault for not using sensible defaults
             if (loadouts.Count < groupProto.MinLimit)
             {
-                foreach (var protoId in groupProto.Loadouts)
+                foreach (var protoId in groupLoadoutIds) // Aquila Change
                 {
                     if (loadouts.Count >= groupProto.MinLimit)
                         break;

@@ -24,6 +24,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
+using Content.Corvax.Interfaces.Shared; // Aquila Change
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
@@ -100,6 +101,7 @@ namespace Content.Server.Entry
             base.Init();
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
+            Dependencies.Resolve<ISharedLoadoutsManager>().Initialize(); // Aquila Change
 
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
