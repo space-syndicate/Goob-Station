@@ -222,7 +222,7 @@
   abstract: true
   components:
   - type: RCDDeconstructable
-    deconstructable: true # Aquila Change
+    deconstructable: false
 
 - type: entity
   id: AirlockGlass
