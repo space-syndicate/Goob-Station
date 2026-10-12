@@ -108,6 +108,7 @@
       types:
         Heat: 20
     UntrainedUseString: nullrod-holyclaymore-untrained-usage-popup
+    recallType: Normal
   - type: UseDelay
     delay: 1
   - type: GunRequiresWield

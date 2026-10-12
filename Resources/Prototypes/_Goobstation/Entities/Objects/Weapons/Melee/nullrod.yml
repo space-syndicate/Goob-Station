@@ -735,7 +735,7 @@
   - type: Item
     size: Large # Goob edit
     shape: # Goob
-    - 0,0,8,0
+    - 0,0,3,0 # Aquila Change
     storedRotation: 45 # Goob
     sprite: _ShitChap/Objects/Weapons/Nullrod/ratvarian_spear.rsi
   - type: Sprite
