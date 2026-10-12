@@ -23,6 +23,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Goobstation.Common.Effects;
 
 namespace Content.Server.Store.Systems;
 
