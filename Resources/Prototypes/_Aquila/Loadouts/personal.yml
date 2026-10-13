@@ -39,6 +39,18 @@
 
 #region Лоадауты
 
+# CrookLv
+- type: loadout
+  id: PersonalLoadoutCrookLvPlushie # плюшевый Круки-Лим
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 2efe22d0-4ff1-4d5b-9cc7-324bf9452cff
+  storage:
+    back:
+    - PlushieCrookie
+# CrookLv
+
 # Ckey
 # something
 # Ckey
