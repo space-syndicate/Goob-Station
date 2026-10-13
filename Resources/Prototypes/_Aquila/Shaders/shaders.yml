@@ -1,0 +1,4 @@
+- type: shader
+  id: MansusMadness
+  kind: source
+  path: "/Textures/_Aquila/Shaders/mansus_madness.swsl"

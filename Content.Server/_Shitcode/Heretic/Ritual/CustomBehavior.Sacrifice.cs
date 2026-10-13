@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server._Aquila.Heretic; // Aquila Change
+using Content.Server.Station.Systems; // Aquila Change
 using Content.Goobstation.Common.Heretic;
 using Content.Server._Goobstation.Objectives.Components;
 using Content.Server.Body.Systems;
@@ -131,6 +133,14 @@ namespace Content.Server.Heretic.Ritual;
                 heretic.SacrificeTargets.Any(x => x.Entity == args.EntityManager.GetNetEntity(uid))
                     ? isCommand || isSec || isHeretic ? 3f : 2f
                     : 0f;
+
+            // Aquila Change start
+            if (heretic.SacrificeTargets.Any(x => x.Entity == args.EntityManager.GetNetEntity(uid)))
+            {
+                var station = args.EntityManager.System<StationSystem>().GetOwningStation(args.Platform);
+                args.EntityManager.System<MansusRealmSystem>().TrySendToMansus(uid, station);
+            }
+            // Aquila Change end
 
             try
             {

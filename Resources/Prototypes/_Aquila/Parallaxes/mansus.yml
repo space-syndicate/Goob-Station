@@ -1,0 +1,33 @@
+- type: parallax
+  id: AquilaMansus
+  layers:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_Aquila/Parallaxes/mansus.png"
+    slowness: 0.998
+    scale: "1, 1"
+    scrolling: "0.003, 0.0015"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_Aquila/Parallaxes/mansus_doors.png"
+    slowness: 0.985
+    scale: "1, 1"
+    scrolling: "-0.006, 0.003"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_Aquila/Parallaxes/mansus_structures.png"
+    slowness: 0.96
+    scale: "1, 1"
+    scrolling: "0.01, -0.006"
+  layersLQ:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_Aquila/Parallaxes/mansus.png"
+    slowness: 0.998
+    scale: "1, 1"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_Aquila/Parallaxes/mansus_structures.png"
+    slowness: 0.96
+    scale: "1, 1"
+  layersLQUseHQ: false

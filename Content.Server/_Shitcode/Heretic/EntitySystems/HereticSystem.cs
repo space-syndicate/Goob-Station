@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._Aquila.Heretic; // Aquila Change
 using Content.Server.Store.Systems;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Eye;
@@ -407,6 +408,11 @@ public sealed partial class HereticSystem : SharedHereticSystem
             if (!_mind.TryGetMind(session.AttachedEntity.Value, out var mind, out _) ||
                 mind == ent.Owner || !_job.MindTryGetJobId(mind, out _))
                 return false;
+
+            // Aquila Change start
+            if (HasComp<MansusTouchedComponent>(mind))
+                return false;
+            // Aquila Change end
 
             return !HasComp<HereticComponent>(mind);
         }

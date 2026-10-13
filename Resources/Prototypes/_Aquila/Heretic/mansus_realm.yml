@@ -1,0 +1,89 @@
+- type: entity
+  parent: BaseBullet
+  id: MansusHand
+  name: mansus hand
+  description: A grasping hand reaching out from the depths of the Mansus.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _Aquila/Heretic/mansus_hand.rsi
+    layers:
+    - state: hand_left
+      shader: unshaded
+  - type: Projectile
+    impactEffect: null
+    damage:
+      types:
+        Slash: 20
+        Blunt: 15
+  - type: MansusHand
+    armState: arm_left
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#9a3dff"
+    castShadows: false
+
+- type: entity
+  parent: MansusHand
+  id: MansusHandRight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MansusHand
+    armState: arm_right
+  - type: Sprite
+    layers:
+    - state: hand_right
+      shader: unshaded
+
+
+- type: entity
+  id: MansusRuneDormant
+  name: dormant sigil
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Goobstation/Heretic/Effects/effects.rsi
+    layers:
+    - state: small_rune_1
+      color: "#3b2a52"
+      map: [ "glyph" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MansusRuneVisuals.Glyph:
+        glyph:
+          "1": { state: small_rune_1 }
+          "2": { state: small_rune_2 }
+          "3": { state: small_rune_3 }
+          "4": { state: small_rune_4 }
+          "5": { state: small_rune_5 }
+          "6": { state: small_rune_6 }
+          "7": { state: small_rune_7 }
+          "8": { state: small_rune_8 }
+          "9": { state: small_rune_9 }
+          "10": { state: small_rune_10 }
+          "11": { state: small_rune_11 }
+          "12": { state: small_rune_12 }
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: MansusRuneDormant
+  id: MansusRuneLit
+  name: awakened sigil
+  components:
+  - type: Sprite
+    layers:
+    - state: small_rune_1
+      shader: unshaded
+      color: "#b67cff"
+      map: [ "glyph" ]
+  - type: PointLight
+    radius: 1.3
+    energy: 1.2
+    color: "#9a5cff"
+    castShadows: false

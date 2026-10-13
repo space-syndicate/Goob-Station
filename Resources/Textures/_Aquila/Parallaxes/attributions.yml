@@ -1,0 +1,4 @@
+- files: [ "mansus.png", "mansus_doors.png", "mansus_structures.png" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Procedurally generated for Aquila"
+  source: "https://github.com/space-wizards/space-station-14"
