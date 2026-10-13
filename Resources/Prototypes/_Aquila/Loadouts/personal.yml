@@ -22,21 +22,21 @@
     users:
     - 00000000-0000-0000-0000-000000000000 # Ваш UUID
   equipment: # Наденется на вас, заменяя старую вещь, старая вещь кладётся в рюкзак, либо в руку, если места нет
-    head: ClothingHeadHatBeret
-  # jumpsuit: ClothingUniformJumpsuitColorGrey
-  # outerClothing: ClothingOuterCoatJensen
-  # suitstorage: FlashlightLantern
-  # shoes: ClothingShoesColorBlack
-  # gloves: ClothingHandsGlovesColorBlack
-  # neck: ClothingNeckScarfStripedRed
-  # mask: ClothingMaskBandBlack
-  # eyes: ClothingEyesGlassesSunglasses
-  # ears: ClothingHeadsetGrey
-  # belt: ClothingBeltUtility
-  # back: ClothingBackpack
-  # pocket1: Lighter
-  # pocket2: Lighter
-  # id: PassengerPDA
+    head: ClothingHeadHatBeret # Слот головы
+  # jumpsuit: ClothingUniformJumpsuitColorGrey # Слот комбинезона
+  # outerClothing: ClothingOuterCoatJensen # Слот верхней одежды
+  # suitstorage: FlashlightLantern # Слот спины
+  # shoes: ClothingShoesColorBlack # Слот ног
+  # gloves: ClothingHandsGlovesColorBlack # Слот перчаток
+  # neck: ClothingNeckScarfStripedRed # Слот шеи
+  # mask: ClothingMaskBandBlack # Слот маски
+  # eyes: ClothingEyesGlassesSunglasses # Слот глаз
+  # ears: ClothingHeadsetGrey # Слот ушей
+  # belt: ClothingBeltUtility # Слот пояса
+  # back: ClothingBackpack # Слот сумки
+  # pocket1: Lighter # Слот левого кармана
+  # pocket2: Lighter # Слот правого кармана
+  # id: PassengerPDA # Слот ID
 
 - type: loadout
   id: PersonalLoadoutExampleDuck # Пример
@@ -44,10 +44,10 @@
   - !type:PersonalLoadoutEffect
     users:
     - 00000000-0000-0000-0000-000000000000 # Ваш UUID
-  storage: # Кладётся в хранилище/карман
-    back:
+  storage: # Кладётся в хранилище
+    back: # Сумка
     - ToyRubberDuck
-  # belt:
+  # belt: # Пояс
   # - Lighter
 
 #endregion
