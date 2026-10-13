@@ -9,7 +9,7 @@
 
 # Каждый лоадаут появляется во вкладке "Мой инвентарь" любой станционной роли,
 # но виден и доступен только игрокам, чьи UUID указаны в PersonalLoadoutEffect.
-# Один лоадаут - один предмет: так у него будут своё название и иконка в меню.
+# Один лоадаут - один предмет: так у него будут своё название и иконка в меню. СТРОГО СЛЕДОВАТЬ ЭТОМУ ПРАВИЛУ.
 
 #endregion
 
@@ -23,6 +23,20 @@
     - 00000000-0000-0000-0000-000000000000 # Ваш UUID
   equipment: # Наденется на вас, заменяя старую вещь, старая вещь кладётся в рюкзак, либо в руку, если места нет
     head: ClothingHeadHatBeret
+  # jumpsuit: ClothingUniformJumpsuitColorGrey
+  # outerClothing: ClothingOuterCoatJensen
+  # suitstorage: FlashlightLantern
+  # shoes: ClothingShoesColorBlack
+  # gloves: ClothingHandsGlovesColorBlack
+  # neck: ClothingNeckScarfStripedRed
+  # mask: ClothingMaskBandBlack
+  # eyes: ClothingEyesGlassesSunglasses
+  # ears: ClothingHeadsetGrey
+  # belt: ClothingBeltUtility
+  # back: ClothingBackpack
+  # pocket1: Lighter
+  # pocket2: Lighter
+  # id: PassengerPDA
 
 - type: loadout
   id: PersonalLoadoutExampleDuck # Пример
@@ -33,7 +47,8 @@
   storage: # Кладётся в хранилище/карман
     back:
     - ToyRubberDuck
-    # pocket1: Lighter
+  # belt:
+  # - Lighter
 
 #endregion
 
