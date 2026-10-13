@@ -1,3 +1,4 @@
+using Content.Goobstation.Server.Augments;
 using Content.Goobstation.Shared.Augments;
 using Content.Goobstation.Shared.MantisBlades;
 using Content.Shared.Actions;
@@ -9,10 +10,12 @@ using Content.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
-namespace Content.Server._Aquila.ArmImplants;
+namespace Content.Goobstation.Server._Aquila.ArmImplants;
 
 public sealed class ArmImplantHotkeySystem : EntitySystem
 {
+    [Dependency] private readonly AugmentPowerCellSystem _augmentPowerCell = default!;
+    [Dependency] private readonly AugmentToolPanelSystem _toolPanel = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -22,8 +25,9 @@ public sealed class ArmImplantHotkeySystem : EntitySystem
         base.Initialize();
 
         CommandBinds.Builder
-            .Bind(ContentKeyFunctions.UseItemInHand,
-                InputCmdHandler.FromDelegate(OnUseItemInHand, handle: false, outsidePrediction: false))
+            .BindBefore(ContentKeyFunctions.UseItemInHand,
+                InputCmdHandler.FromDelegate(OnUseItemInHand, handle: false, outsidePrediction: false),
+                typeof(SharedHandsSystem))
             .Register<ArmImplantHotkeySystem>();
     }
 
@@ -38,10 +42,11 @@ public sealed class ArmImplantHotkeySystem : EntitySystem
     {
         if (session?.AttachedEntity is not { } user
             || !TryComp<HandsComponent>(user, out var hands)
-            || !_hands.TryGetHand((user, hands), hands.ActiveHandId, out var hand))
+            || hands.ActiveHandId is not { } handId
+            || !_hands.TryGetHand((user, hands), handId, out var hand))
             return;
 
-        var held = _hands.GetHeldItem((user, hands), hands.ActiveHandId);
+        var held = _hands.GetHeldItem((user, hands), handId);
         var symmetry = hand.Value.Location switch
         {
             HandLocation.Left => BodyPartSymmetry.Left,
@@ -58,16 +63,24 @@ public sealed class ArmImplantHotkeySystem : EntitySystem
                 return;
             }
 
-            if (held != null)
+            if (held != null && !HasComp<AugmentToolPanelActiveItemComponent>(held))
                 continue;
 
             foreach (var (organId, _) in _body.GetPartOrgans(partId))
             {
-                if (!HasComp<AugmentToolPanelComponent>(organId)
+                if (!TryComp<AugmentToolPanelComponent>(organId, out var panel)
                     || !TryComp<AugmentActionComponent>(organId, out var augmentAction))
                     continue;
 
-                TryPerformAction(user, augmentAction.ActionEntity);
+                if (held == null)
+                {
+                    TryPerformAction(user, augmentAction.ActionEntity);
+                    return;
+                }
+
+                if (_augmentPowerCell.TryUseChargeBody(user, panel.SwitchCharge))
+                    _toolPanel.SwitchTool((organId, panel), null, user, handId);
+
                 return;
             }
         }
