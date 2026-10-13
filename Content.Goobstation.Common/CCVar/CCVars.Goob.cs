@@ -363,7 +363,7 @@ public sealed partial class GoobCVars
     ///     Toggles all MassContest functions. All mass contests output 1f when false
     /// </summary>
     public static readonly CVarDef<bool> DoMassContests =
-        CVarDef.Create("contests.do_mass_contests", true, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("contests.do_mass_contests", false, CVar.REPLICATED | CVar.SERVER); // Aquila Change
 
     /// <summary>
     ///     Toggles all StaminaContest functions. All stamina contests output 1f when false
