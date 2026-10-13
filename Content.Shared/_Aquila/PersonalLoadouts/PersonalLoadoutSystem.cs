@@ -4,7 +4,6 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
-using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Aquila.PersonalLoadouts;
@@ -26,7 +25,6 @@ public sealed class PersonalLoadoutSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     /// <summary>
     /// Выдаёт сущности все выбранные личные вещи из лоадаута роли.
@@ -42,19 +40,19 @@ public sealed class PersonalLoadoutSystem : EntitySystem
                 continue;
 
             if (_prototype.Resolve(proto.StartingGear, out var startingGear))
-                Equip(uid, startingGear);
+                Equip(uid, proto.ID, startingGear);
 
-            Equip(uid, proto);
+            Equip(uid, proto.ID, proto);
         }
     }
 
-    private void Equip(EntityUid uid, IEquipmentLoadout gear)
+    private void Equip(EntityUid uid, string loadoutId, IEquipmentLoadout gear)
     {
         var coords = Transform(uid).Coordinates;
 
         foreach (var (slot, protoId) in gear.Equipment)
         {
-            EquipToSlot(uid, slot, Spawn(protoId, coords));
+            EquipToSlot(uid, loadoutId, slot, Spawn(protoId, coords));
         }
 
         foreach (var protoId in gear.Inhand)
@@ -69,17 +67,32 @@ public sealed class PersonalLoadoutSystem : EntitySystem
             foreach (var protoId in protoIds)
             {
                 var spawned = Spawn(protoId, coords);
+                if (!_inventory.TryGetSlotEntity(uid, slot, out var slotEntity)
+                    || !HasComp<StorageComponent>(slotEntity))
+                {
+                    Log.Error($"Personal loadout {loadoutId}: slot '{slot}' of {ToPrettyString(uid)} has no storage for {ToPrettyString(spawned)}");
+                    Stash(uid, spawned);
+                    continue;
+                }
+
                 if (!TryInsertIntoSlotStorage(uid, slot, spawned))
                     Stash(uid, spawned);
             }
         }
     }
 
-    private void EquipToSlot(EntityUid uid, string slot, EntityUid item)
+    private void EquipToSlot(EntityUid uid, string loadoutId, string slot, EntityUid item)
     {
-        if (!_inventory.TryGetSlot(uid, slot, out var slotDefinition)
-            || slotDefinition.Whitelist != null && !_whitelist.IsWhitelistPass(slotDefinition.Whitelist, item))
+        if (!_inventory.TryGetSlot(uid, slot, out var slotDefinition))
         {
+            Log.Error($"Personal loadout {loadoutId}: {ToPrettyString(uid)} has no slot '{slot}' for {ToPrettyString(item)}");
+            Stash(uid, item);
+            return;
+        }
+
+        if (!_inventory.CanEquip(uid, uid, item, slot, out var reason, slotDefinition))
+        {
+            Log.Error($"Personal loadout {loadoutId}: {ToPrettyString(item)} cannot be equipped into slot '{slot}' of {ToPrettyString(uid)}: {Loc.GetString(reason)}");
             Stash(uid, item);
             return;
         }
