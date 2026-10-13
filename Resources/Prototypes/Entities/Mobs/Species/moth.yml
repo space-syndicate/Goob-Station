@@ -62,6 +62,10 @@
       Male: MaleMoth
       Female: FemaleMoth
       Unsexed: UnisexMoth
+  # Corvaxgoob - start
+  - type: ReplacementAccent
+    accent: moth
+  # Corvaxgoob - end
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 3 # Goobstation value
     baseWeightlessFriction: 1
