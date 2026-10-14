@@ -174,7 +174,7 @@ mob_pushing = 0
 emergency_early_launch_allowed = 1
 
 [worldgen]
-enabled = 1
+enabled = 0 # Aquila Change
 
 [admin]
 see_own_notes = 1
