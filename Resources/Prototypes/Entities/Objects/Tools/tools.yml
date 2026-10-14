@@ -459,6 +459,8 @@
     - FilterInline
     - RadiatorInline
     - RadiatorInlineBend
+    - PipeManifold
+    - PipePressureRegulator
     # </Goobstation>
     - Deconstruct
   - type: LimitedCharges

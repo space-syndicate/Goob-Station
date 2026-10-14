@@ -9,6 +9,8 @@ using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Damage.Components; // CorvaxGoob
+using Content.Shared.Damage.Systems; // CorvaxGoob
 using Content.Shared.Database;
 using Content.Shared._EinsteinEngines.Flight;
 using Content.Shared._Goobstation.Wizard.Mutate; // Goobstation
@@ -63,6 +65,7 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedHulkSystem _hulk = default!;
         [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+        [Dependency] private readonly SharedStaminaSystem _stamina = default!; // CorvaxGoob
 
         public override void Initialize()
         {
@@ -762,6 +765,11 @@ namespace Content.Shared.Cuffs
                 var eventArgs = new DisarmedEvent(target, user.Value, 1f);
                 RaiseLocalEvent(target, ref eventArgs);
                 shoved = true;
+
+                // CorvaxGoob-Start
+                if (TryComp<StaminaComponent>(target, out var stamina) && !stamina.Critical)
+                    _stamina.TakeStaminaDamage(target, stamina.CritThreshold, stamina, source: user);
+                // CorvaxGoob-End
             }
 
             if (cuffable.CuffedHandCount == 0)
