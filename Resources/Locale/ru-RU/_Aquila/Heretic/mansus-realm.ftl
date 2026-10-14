@@ -7,10 +7,6 @@ ent-MansusHand = рука Мансуса
 ent-MansusHandRight = { ent-MansusHand }
     .desc = { ent-MansusHand.desc }
 
-cmd-mansus-desc = Отправляет сущность в Мансус, как жертву ритуала еретика.
-cmd-mansus-help = Использование: mansus [ID сущности]
-cmd-mansus-no-target = Укажите сущность или вселитесь в персонажа.
-cmd-mansus-failed = Не удалось отправить в Мансус: нужен гуманоид с разумом.
 mansus-realm-leaving = Мансус отпускает вас...
 ent-MansusRuneDormant = погасшая печать
     .desc = { "" }
