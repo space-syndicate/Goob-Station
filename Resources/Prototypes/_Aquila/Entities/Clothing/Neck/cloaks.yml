@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: SquadLeadersCloak_sacerdos
+  name: Squad Leader's Cloak
+  description: Squad Leader's Cloak
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Neck/sacerdos_leader_cloak.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Neck/sacerdos_leader_cloak.rsi

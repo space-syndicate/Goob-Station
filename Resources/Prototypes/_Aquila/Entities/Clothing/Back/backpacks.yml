@@ -1,0 +1,49 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackCentCom
+  name: Centcom Backpack
+  suffix: Vl, ЦентКом
+  description: The standard backpack of bureaucrats.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/centcom_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCentCom
+  name: Centcom's Duffel Bag
+  suffix: Vl, ЦентКом
+  description: To transport thousands of papers.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/centcom_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelCentCom
+  name: Centcom's Bag
+  suffix: Vl, ЦентКом
+  description: On guard of bureaucratic fashion.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/centcom_satchel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelDSO
+  name: DSO Duffel Bag
+  suffix: Vl, ДСО
+  description: To transport tons of weapons, or corpses.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/dso_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelDSO
+  name: Satchel DSO
+  suffix: Vl, ДСО
+  description: For serial fashionistas.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/dso_satchel.rsi

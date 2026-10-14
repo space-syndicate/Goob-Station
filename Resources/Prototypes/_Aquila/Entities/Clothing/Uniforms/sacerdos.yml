@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Thejumpsuitofthesquadleader_sacerdos
+  name: The jumpsuit of the squad leader
+  suffix: Phantom4502, Sacerdos
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Uniforms/sacerdos_leader.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Uniforms/sacerdos_leader.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Theteamleadersjumpsuitskirt_sacerdos
+  name: The team leader's jumpsuit skirt
+  suffix: Phantom4502, Sacerdos
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Uniforms/sacerdos_leader_skirt.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Uniforms/sacerdos_leader_skirt.rsi

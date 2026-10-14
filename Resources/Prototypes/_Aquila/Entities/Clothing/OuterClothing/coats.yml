@@ -1,0 +1,35 @@
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: CentComEliteCoat
+  name: Elite CENTCOM Women's Winter coat
+  suffix: Vl, ЦентКом
+  description: The CENTCOM winter coat is extremely pleasant to the touch.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/centcom_elite_coat.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/centcom_elite_coat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: DSOEliteCoat
+  name: Luxury winter coat DSO
+  suffix: Vl, ДСО
+  description: Extremely pleasant to the touch winter coat DSO.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/dso_elite_coat.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/dso_elite_coat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: DSOMiniCoat
+  name: Black jacket
+  suffix: Vl, ДСО
+  description: Fashionable black officers' jacket.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/dso_jacket.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/dso_jacket.rsi

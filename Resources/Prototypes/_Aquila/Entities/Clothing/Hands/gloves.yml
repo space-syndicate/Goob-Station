@@ -1,0 +1,33 @@
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: WitchersPurpleGloves
+  name: Purple Witch Gloves
+  suffix: Ведьмы
+  description: Beautiful purple witch gloves.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Aquila/Clothing/Hands/witch_gloves_purple.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Hands/witch_gloves_purple.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: WitchersRedGloves
+  name: Scarlet Witch Gloves
+  suffix: Ведьмы
+  description: Beautiful scarlet witch gloves.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Aquila/Clothing/Hands/witch_gloves_scarlet.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Hands/witch_gloves_scarlet.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative

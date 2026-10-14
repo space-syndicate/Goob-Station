@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherDressvOne
+  name: The Dark Witch's Dress
+  suffix: Ведьмы
+  description: A beautiful long dress of a dark witch.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_dark.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_dark.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherDressvTwo
+  name: The Red Witch's Dress
+  suffix: Ведьмы
+  description: Beautiful long dress of the red witch.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_red.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_red.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherPurpleDress
+  name: The Purple Witch's Dress
+  suffix: Ведьмы
+  description: A beautiful long purple witch dress.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_purple.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_purple.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherRedDress
+  name: The Scarlet Witch's Dress
+  suffix: Ведьмы
+  description: A beautiful long scarlet witch dress.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_scarlet.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/OuterClothing/witch_dress_scarlet.rsi

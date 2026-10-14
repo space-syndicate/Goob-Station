@@ -1,0 +1,41 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerCentComEmerald
+  name: The Emerald Flower
+  suffix: Vl, ЦентКом
+  description: A beautiful, shiny emerald flower.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/flower_emerald.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/flower_emerald.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerCentComGold
+  name: Golden Flower
+  suffix: Vl, ЦентКом
+  description: A beautiful, shiny GOLDEN flower.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/flower_gold.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/flower_gold.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerDSOWhite
+  name: White Flower
+  suffix: Vl, ДСО
+  description: A colorless flower. It is ideal for giving respect to the dead on the spot.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/flower_white.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/flower_white.rsi

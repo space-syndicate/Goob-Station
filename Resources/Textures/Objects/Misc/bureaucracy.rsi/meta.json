@@ -7,7 +7,7 @@
     "y": 32
   },
   "states": [
-    {"name": "paper_stamp-research"}, {"name": "paper_stamp-fedadmin"}, {"name": "paper_stamp-fbc"}, {"name": "paper_stamp-finance"}, {"name": "paper_stamp-judge"}, {"name": "paper_stamp-elysiumlawyer"}, {"name": "paper_stamp-spacemilitary"}, {"name": "paper_stamp-policecpt"}, {"name": "paper_stamp-policecrim"}, {"name": "paper_stamp-policedet"}, {"name": "paper_stamp-policeinsp"}, {"name": "paper_stamp-prosecutor"}, {"name": "paper_stamp-security"}, 
+    {"name": "paper_stamp-research"}, {"name": "paper_stamp-fedadmin"}, {"name": "paper_stamp-fbc"}, {"name": "paper_stamp-finance"}, {"name": "paper_stamp-judge"}, {"name": "paper_stamp-elysiumlawyer"}, {"name": "paper_stamp-spacemilitary"}, {"name": "paper_stamp-policecpt"}, {"name": "paper_stamp-policecrim"}, {"name": "paper_stamp-policedet"}, {"name": "paper_stamp-policeinsp"}, {"name": "paper_stamp-prosecutor"}, {"name": "paper_stamp-security"}, {"name": "paper_stamp-DSO"}, 
     {
       "name": "acquisition_form"
     },

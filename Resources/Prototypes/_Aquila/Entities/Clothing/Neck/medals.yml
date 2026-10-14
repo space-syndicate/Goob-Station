@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckDSOMedal
+  name: Department of Special Operations Medal
+  suffix: Vl, ДСО
+  description: It is given to the best.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Neck/dso_medal.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Neck/dso_medal.rsi

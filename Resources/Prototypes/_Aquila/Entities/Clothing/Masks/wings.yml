@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingKrilBig
+  name: Big wings
+  suffix: Ведьмы
+  description: Overbearing...
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Aquila/Clothing/Mask/wings_big.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Mask/wings_big.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingKrilSmall
+  name: Small wings
+  suffix: Ведьмы
+  description: A little less, but still... Overbearing...
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Aquila/Clothing/Mask/wings_small.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Mask/wings_small.rsi

@@ -1,0 +1,20 @@
+- type: entity
+  name: The Red Scythe
+  suffix: Ведьмы
+  parent: BaseKnife
+  id: WitchersKosa
+  description: A bloody scythe used by witches.
+  components:
+  - type: Item
+    size: Large
+  - type: Tag
+    tags:
+    - Knife
+  - type: Sprite
+    sprite: _Aquila/Objects/Weapons/Melee/witch_scythe.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 30

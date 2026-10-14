@@ -1,0 +1,64 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBeretDSO
+  name: Black Beret
+  suffix: Vl, ДСО
+  description: The black beret is for no less black officers in the soul.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/dso_beret.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/dso_beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: WitchersHat
+  name: The Witch's Hat
+  suffix: Ведьмы
+  description: The red Witch's hat.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/witch_hat_red.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/witch_hat_red.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+
+- type: entity
+  parent: ClothingHeadBase
+  id: WitchersPurpleHat
+  name: The Witch's Hat
+  suffix: Ведьмы
+  description: The purple witch hat.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/witch_hat_purple.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/witch_hat_purple.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+
+- type: entity
+  parent: ClothingHeadBase
+  id: WitchersRedHat
+  name: The Witch's Hat
+  suffix: Ведьмы
+  description: The scarlet witch's hat.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Head/witch_hat_scarlet.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Head/witch_hat_scarlet.rsi
+  - type: Tag
+    tags:
+    - ClothMade

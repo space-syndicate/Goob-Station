@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtDressCentCom
+  name: Centcom Skirt
+  suffix: Vl, ЦентКом
+  description: A luxurious skirt for the most beautiful ladies of CENTCOM.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Uniforms/centcom_skirt.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Uniforms/centcom_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtDressDSO
+  name: Skirt DSO
+  suffix: Vl, ДСО
+  description: A beautiful skirt for the female officers of the Department of Special Operations.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Uniforms/dso_skirt.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Uniforms/dso_skirt.rsi

@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: WitcherKombvOne
+  name: Witch's Underwear
+  suffix: Ведьмы
+  description: Standard witch underwear.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Uniforms/witch_underwear.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Uniforms/witch_underwear.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: WitcherKombvTwo
+  name: The Red Witch's Underwear
+  suffix: Ведьмы
+  description: Standard witch underwear.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Aquila/Clothing/Uniforms/witch_underwear_red.rsi
+  - type: Clothing
+    sprite: _Aquila/Clothing/Uniforms/witch_underwear_red.rsi
