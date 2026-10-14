@@ -189,7 +189,7 @@
   - ChaplainJumpsuit
   - CommonBackpack
   - ChaplainOuterClothing
-  - ChaplainBible
+  # - ChaplainBible ## Goobstation chaplain gets a bible through ChaplainUndeterminedBible
   - Glasses
   - Survival
   - Trinkets
@@ -451,6 +451,7 @@
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
+  - AtmosphericTechnicianBelt # Goobstation
   - AtmosphericTechnicianShoes
   - EngineeringWelder # CorvaxGoob-loadouts
   - SurvivalExtended

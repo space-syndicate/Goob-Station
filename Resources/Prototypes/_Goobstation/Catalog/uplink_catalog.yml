@@ -676,7 +676,6 @@
     whitelist:
     - HijackShuttleObjective
     - NukeDiskStealObjective
-  saleLimit: 1
 
 
 - type: listing
