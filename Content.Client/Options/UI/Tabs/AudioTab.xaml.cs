@@ -2,6 +2,7 @@
 
 using Content.Client.Administration.Managers;
 using Content.Client.Audio;
+using Content.Shared._Aquila.CCVars; // Aquila Change
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared.CCVar;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
@@ -71,6 +72,12 @@ public sealed partial class AudioTab : Control
             CCVars.LobbyMusicVolume,
             SliderVolumeLobby,
             scale: ContentAudioSystem.LobbyMultiplier);
+
+        // Aquila Change start
+        Control.AddOptionPercentSlider(
+            AquilaCVars.RadioMusicVolume,
+            SliderVolumeRadioMusic);
+        // Aquila Change end
 
         Control.AddOptionPercentSlider(
             CCVars.InterfaceVolume,

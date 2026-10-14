@@ -22,6 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <ui:OptionSlider Name="SliderVolumeAmbientMusic" Title="{Loc 'ui-options-ambient-music-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeAmbience" Title="{Loc 'ui-options-ambience-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeLobby" Title="{Loc 'ui-options-lobby-volume'}" />
+                <ui:OptionSlider Name="SliderVolumeRadioMusic" Title="{Loc 'ui-options-radio-music-volume'}" /> <!-- Aquila Change -->
                 <ui:OptionSlider Name="SliderVolumeInterface" Title="{Loc 'ui-options-interface-volume'}" />
                 <!-- Deleted by CorvaxGoob
                 <ui:OptionSlider Name="SliderVolumeVoiceChat" Title="{Loc 'ui-options-voice-chat-volume'}" />

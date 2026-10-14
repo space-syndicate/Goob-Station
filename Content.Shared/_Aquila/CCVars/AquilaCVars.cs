@@ -17,4 +17,7 @@ public sealed class AquilaCVars
     /// </summary>
     public static readonly CVarDef<string> SotAllowedPresets =
         CVarDef.Create("aquila.sot_allowed_presets", "SoT", CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> RadioMusicVolume =
+        CVarDef.Create("aquila.radio_music_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
