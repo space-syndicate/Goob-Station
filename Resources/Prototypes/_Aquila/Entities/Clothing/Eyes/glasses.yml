@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingEyesGlassesCentComm
+  parent: ClothingEyesGlassesCentCommNoThermal
   id: ClothingCentComGlassesGreen
   name: CENTCOM's Green Glasses
   suffix: Vl, ЦентКом
@@ -11,7 +11,7 @@
     sprite: _Aquila/Clothing/Eyes/centcom_glasses_green.rsi
 
 - type: entity
-  parent: ClothingEyesGlassesCentComm
+  parent: ClothingEyesGlassesCentCommNoThermal
   id: ClothingCentComGlassesEmerald
   name: CENTCOM Emerald Glasses
   suffix: Vl, ЦентКом
@@ -23,7 +23,7 @@
     sprite: _Aquila/Clothing/Eyes/centcom_glasses_emerald.rsi
 
 - type: entity
-  parent: ClothingEyesGlassesCentComm
+  parent: ClothingEyesGlassesCentCommNoThermal
   id: ClothingCentComGlassesYellow
   name: CENTCOM Yellow Glasses
   suffix: Vl, ЦентКом
@@ -33,11 +33,9 @@
     sprite: _Aquila/Clothing/Eyes/centcom_glasses_yellow.rsi
   - type: Clothing
     sprite: _Aquila/Clothing/Eyes/centcom_glasses_yellow.rsi
-  - type: ThermalVision
-    color: "#e1ac0c"
 
 - type: entity
-  parent: ClothingEyesGlassesCentComm
+  parent: ClothingEyesGlassesCentCommNoThermal
   id: ClothingCentComGlassesGold
   name: CentCom Gold Glasses
   suffix: Vl, ЦентКом
@@ -47,8 +45,6 @@
     sprite: _Aquila/Clothing/Eyes/centcom_glasses_gold.rsi
   - type: Clothing
     sprite: _Aquila/Clothing/Eyes/centcom_glasses_gold.rsi
-  - type: ThermalVision
-    color: "#e1ac0c"
 
 - type: entity
   parent: ClothingEyesGlassesDeathsquad
