@@ -41,7 +41,7 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
 
         // CorvaxGoob-start
         // If the entity is a Humanoid, it deals poison damage.
-        if (TryComp<HumanoidAppearanceComponent>(entity, out _))
+        if (TryComp<HumanoidAppearanceComponent>(entity, out var humanoid) && humanoid.Species != "Monkey" && humanoid.Species != "Kobold")
         {
             var poisonDamage = new DamageSpecifier { DamageDict = { { "Poison", 3 } } };
             _damage.TryChangeDamage(entity.Owner, poisonDamage, ignoreResistances: true);
