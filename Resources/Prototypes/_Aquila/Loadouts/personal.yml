@@ -92,7 +92,7 @@
     users:
     - 39328e26-5588-4c9b-9211-29cd40c64183
   equipment:
-    eyes: ClothingCentComGlassesYellow
+    eyes: ClothingCentComGlassesYellowNoThermal
     
 - type: loadout
   id: PersonalLoadoutKeeynSatchel
