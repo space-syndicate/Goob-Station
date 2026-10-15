@@ -47,3 +47,33 @@
   components:
   - type: Sprite
     sprite: _Aquila/Clothing/Back/dso_satchel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelLeaderSacerdos
+  name: Squad Leader's Bag
+  suffix: Phantom4502, Sacerdos
+  description: The bag of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/sacerdos_leader_satchel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelLeaderSacerdos
+  name: The squad leader's duffel bag
+  suffix: Phantom4502, Sacerdos
+  description: The duffel bag of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/sacerdos_leader_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackLeaderSacerdos
+  name: Squad Leader's Backpack
+  suffix: Phantom4502, Sacerdos
+  description: Backpack of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: _Aquila/Clothing/Back/sacerdos_leader_backpack.rsi
