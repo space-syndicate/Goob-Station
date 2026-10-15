@@ -23,20 +23,20 @@
     - 00000000-0000-0000-0000-000000000000 # Ваш UUID
   equipment: # Наденется на вас, заменяя старую вещь, старая вещь кладётся в рюкзак, либо в руку, если места нет
     head: ClothingHeadHatBeret # Слот головы
-  # jumpsuit: ClothingUniformJumpsuitColorGrey # Слот комбинезона
-  # outerClothing: ClothingOuterCoatJensen # Слот верхней одежды
-  # suitstorage: FlashlightLantern # Слот спины
-  # shoes: ClothingShoesColorBlack # Слот ног
-  # gloves: ClothingHandsGlovesColorBlack # Слот перчаток
-  # neck: ClothingNeckScarfStripedRed # Слот шеи
-  # mask: ClothingMaskBandBlack # Слот маски
-  # eyes: ClothingEyesGlassesSunglasses # Слот глаз
-  # ears: ClothingHeadsetGrey # Слот ушей
-  # belt: ClothingBeltUtility # Слот пояса
-  # back: ClothingBackpack # Слот сумки
-  # pocket1: Lighter # Слот левого кармана
-  # pocket2: Lighter # Слот правого кармана
-  # id: PassengerPDA # Слот ID
+    # jumpsuit: ClothingUniformJumpsuitColorGrey # Слот комбинезона
+    # outerClothing: ClothingOuterCoatJensen # Слот верхней одежды
+    # suitstorage: FlashlightLantern # Слот спины
+    # shoes: ClothingShoesColorBlack # Слот ног
+    # gloves: ClothingHandsGlovesColorBlack # Слот перчаток
+    # neck: ClothingNeckScarfStripedRed # Слот шеи
+    # mask: ClothingMaskBandBlack # Слот маски
+    # eyes: ClothingEyesGlassesSunglasses # Слот глаз
+    # ears: ClothingHeadsetGrey # Слот ушей
+    # belt: ClothingBeltUtility # Слот пояса
+    # back: ClothingBackpack # Слот сумки
+    # pocket1: Lighter # Слот левого кармана
+    # pocket2: Lighter # Слот правого кармана
+    # id: PassengerPDA # Слот ID
 
 - type: loadout
   id: PersonalLoadoutExampleDuck # Пример
@@ -65,6 +65,44 @@
     back:
     - PlushieCrookie
 # CrookLv
+
+# KEEYN
+- type: loadout
+  id: PersonalLoadoutKeeynFlower
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 39328e26-5588-4c9b-9211-29cd40c64183
+  equipment:
+    head: ClothingHeadFlowerCentComGold
+
+- type: loadout
+  id: PersonalLoadoutKeeynSkirt
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 39328e26-5588-4c9b-9211-29cd40c64183
+  equipment:
+    jumpsuit: Theteamleadersjumpsuitskirt_sacerdos
+    
+- type: loadout
+  id: PersonalLoadoutKeeynGlasses
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 39328e26-5588-4c9b-9211-29cd40c64183
+  equipment:
+    eyes: ClothingCentComGlassesYellow
+    
+- type: loadout
+  id: PersonalLoadoutKeeynSatchel
+  effects:
+  - !type:PersonalLoadoutEffect
+    users:
+    - 39328e26-5588-4c9b-9211-29cd40c64183
+  equipment:
+    back: ClothingBackpackSatchelLeaderSacerdos
+# KEEYN
 
 # Ckey
 # something
