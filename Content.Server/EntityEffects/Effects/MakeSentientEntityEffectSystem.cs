@@ -43,7 +43,7 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
         // If the entity is a Humanoid, it deals poison damage.
         if (TryComp<HumanoidAppearanceComponent>(entity, out _))
         {
-            var poisonDamage = new DamageSpecifier { DamageDict = { { "Poison", 50 } } };
+            var poisonDamage = new DamageSpecifier { DamageDict = { { "Poison", 3 } } };
             _damage.TryChangeDamage(entity.Owner, poisonDamage, ignoreResistances: true);
             return;
         }
