@@ -38,8 +38,16 @@
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:
+      # Aquila Change start
       - !type:NestedEffect
-        proto: XenobioExtractFail
+        proto: XenobioExtractReagent
+      - !type:RelaySolution
+        name: extract
+        effects:
+        - !type:AdjustReagent
+          reagent: WeldingFuel
+          amount: 100
+      # Aquila Change end
   - type: Tag
     tags:
     - XenobiologyOilExtract

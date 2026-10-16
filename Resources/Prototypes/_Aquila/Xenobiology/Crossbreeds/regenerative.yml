@@ -1,0 +1,195 @@
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeGrey
+  name: regenerative grey extract
+  description: Squeeze it over a creature to mend its wounds. Also sates hunger and thirst.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#828282"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:SatiateHunger
+      factor: 50
+    - !type:SatiateThirst
+      factor: 50
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeOrange
+  name: regenerative orange extract
+  description: Squeeze it over a creature to mend its wounds. Also makes it immune to fire for a while.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ff9f1a"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectFireImmune
+      time: 120
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativePurple
+  name: regenerative purple extract
+  description: Squeeze it over a creature to mend its wounds. Twice as potent as other regenerative extracts.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#BF77F6"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeBlue
+  name: regenerative blue extract
+  description: Squeeze it over a creature to mend its wounds. Also restores lost blood and stops bleeding.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#79F6FC"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:ModifyBloodLevel
+      amount: 150
+    - !type:ModifyBleed
+      amount: -20
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeMetal
+  name: regenerative metal extract
+  description: Squeeze it over a creature to mend its wounds. Also knits broken bones back together.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#595959"
+      shader: XenoMetallic
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:AdjustBoneDamage
+      amount: -60
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeYellow
+  name: regenerative yellow extract
+  description: Squeeze it over a creature to mend its wounds. Also invigorates it for a short time.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ffff1a"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:MovementSpeedModifier
+      effectProto: StatusEffectXenobioHaste
+      walkSpeedModifier: 1.25
+      sprintSpeedModifier: 1.25
+      time: 30
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeDarkBlue
+  name: regenerative dark blue extract
+  description: Squeeze it over a creature to mend its wounds. Also protects it from cold for a while.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#1e8cfa"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectXenobioWarmth
+      time: 180
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeSilver
+  name: regenerative silver extract
+  description: Squeeze it over a creature to mend its wounds. Also purges chemicals from its bloodstream.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#c4c4c4"
+      shader: XenoMetallic
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:CleanBloodstream
+      cleanseRate: 100
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeCerulean
+  name: regenerative cerulean extract
+  description: Squeeze it over a creature to mend its wounds. Also fills its blood with oxygen.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#2A52BE"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:Oxygenate
+      factor: 10
+    - !type:EvenHealthChange
+      damage:
+        Airloss: -120
+
+- type: entity
+  parent: BaseSlimeCrossbreedRegenerative
+  id: CrossbreedRegenerativeMeat
+  name: regenerative meat extract
+  description: Squeeze it over a creature to mend its wounds. Also restores a great deal of lost blood and fills the stomach.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#9a2038"
+    - state: regenerative
+  - type: RegenerativeCrossbreed
+    effects:
+    - !type:NestedEffect
+      proto: XenobioRegenerativeHeal
+    - !type:ModifyBloodLevel
+      amount: 300
+    - !type:SatiateHunger
+      factor: 100

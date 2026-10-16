@@ -1,0 +1,35 @@
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectXenobioWarmth
+  name: slime warmth
+  components:
+  - type: GrantComponentsStatusEffect
+    components:
+    - type: SpecialLowTempImmunity
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectXenobioCooling
+  name: slime cooling
+  components:
+  - type: GrantComponentsStatusEffect
+    components:
+    - type: SpecialHighTempImmunity
+
+- type: entity
+  parent: StaminaModifierStatusEffect
+  id: StatusEffectXenobioStamina
+  name: slime endurance
+  components:
+  - type: StaminaModifierStatusEffect
+    modifier: 1.3
+
+- type: entity
+  parent: StatusEffectSpeed
+  id: StatusEffectXenobioHaste
+  name: slime haste
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: StatusEffectXenobioFrost
+  name: slime frost

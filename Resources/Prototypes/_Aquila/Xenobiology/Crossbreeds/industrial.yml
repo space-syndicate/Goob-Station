@@ -1,0 +1,131 @@
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialGrey
+  name: industrial grey extract
+  description: Every half a minute it produces monkey cubes, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#828282"
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - MonkeyCube
+    - MonkeyCube
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialPurple
+  name: industrial purple extract
+  description: Every half a minute it produces artifact fragments, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#BF77F6"
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - ArtifactFragment1
+    - ArtifactFragment1
+    - ArtifactFragment1
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialMetal
+  name: industrial metal extract
+  description: Every half a minute it produces steel and plasteel, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#595959"
+      shader: XenoMetallic
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - SheetSteel10
+    - SheetSteel10
+    - SheetPlasteel5
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialDarkPurple
+  name: industrial dark purple extract
+  description: Every half a minute it produces plasma sheets, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#8e0ff0"
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - SheetPlasma10
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialSilver
+  name: industrial silver extract
+  description: Every half a minute it produces silver, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#c4c4c4"
+      shader: XenoMetallic
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - IngotSilver5
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialGold
+  name: industrial gold extract
+  description: Every half a minute it produces gold, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#e8b923"
+      shader: XenoMetallic
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - IngotGold5
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialBluespace
+  name: industrial bluespace extract
+  description: Every half a minute it produces bluespace crystals, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#f0f8ff"
+      shader: XenoBluespace
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - MaterialBSCrystal1
+    - MaterialBSCrystal1
+    - MaterialBSCrystal1
+
+- type: entity
+  parent: BaseSlimeCrossbreedIndustrial
+  id: CrossbreedIndustrialMeat
+  name: industrial meat extract
+  description: Every half a minute it grows a few slabs of raw meat, until it runs dry.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#9a2038"
+    - state: industrial
+  - type: IndustrialCrossbreed
+    spawns:
+    - FoodMeat
+    - FoodMeat

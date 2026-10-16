@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "core and inhands taken from cev-eris at https://github.com/discordia-space/CEV-Eris/blob/2b969adc2dfd3e9621bf3597c5cbffeb3ac8c9f0/icons/obj/chemical.dmi, modified by Rubin for Xenobiology; crossbreed overlays made for Aquila",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "core"
+    },
+    {
+      "name": "regenerative"
+    },
+    {
+      "name": "stabilized"
+    },
+    {
+      "name": "burning"
+    },
+    {
+      "name": "industrial"
+    },
+    {
+      "name": "duplicating_core"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+- type: slimeDiet
+  id: SlimeDietDefault
+  reagents:
+    Protein:
+      offspringChance: 0.02
+    Vitamin:
+      yieldChance: 0.02
+    Sugar:
+      mitosisHunger: -0.4
+    CapsaicinOil:
+      mutationChance: 0.004
+    FrostOil:
+      mutationChance: -0.004

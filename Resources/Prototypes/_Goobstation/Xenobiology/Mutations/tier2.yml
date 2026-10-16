@@ -1,7 +1,7 @@
 - type: breed
   parent: BaseMutation
   id: YellowMutation
-  breedName: yellow slime
+  breedName: xenobio-breed-yellow # Aquila Change
   producedExtract: YellowSlimeExtract
   components:
   - type: Slime
@@ -17,7 +17,7 @@
 - type: breed
   parent: BaseMutation
   id: DarkPurpleMutation
-  breedName: dark purple slime
+  breedName: xenobio-breed-dark-purple # Aquila Change
   producedExtract: DarkPurpleSlimeExtract
   components:
   - type: Slime
@@ -33,7 +33,7 @@
 - type: breed
   parent: BaseMutation
   id: DarkBlueMutation
-  breedName: dark blue slime
+  breedName: xenobio-breed-dark-blue # Aquila Change
   producedExtract: DarkBlueSlimeExtract
   components:
   - type: Slime
@@ -49,7 +49,7 @@
 - type: breed
   parent: BaseMutation
   id: SilverMutation
-  breedName: silver slime
+  breedName: xenobio-breed-silver # Aquila Change
   producedExtract: SilverSlimeExtract
   components:
   - type: Slime
@@ -67,7 +67,7 @@
 - type: breed
   parent: BaseMutation
   id: BluespaceMutation
-  breedName: bluespace slime
+  breedName: xenobio-breed-bluespace # Aquila Change
   producedExtract: BluespaceSlimeExtract
   components:
   - type: Slime
@@ -83,7 +83,7 @@
 - type: breed
   parent: BaseMutation
   id: SepiaMutation
-  breedName: sepia slime
+  breedName: xenobio-breed-sepia # Aquila Change
   producedExtract: SepiaSlimeExtract
   components:
   - type: Slime
@@ -99,7 +99,7 @@
 - type: breed
   parent: BaseMutation
   id: CeruleanMutation
-  breedName: cerulean slime
+  breedName: xenobio-breed-cerulean # Aquila Change
   producedExtract: CeruleanSlimeExtract
   components:
   - type: Slime
@@ -113,7 +113,7 @@
 - type: breed
   parent: BaseMutation
   id: PyriteMutation
-  breedName: pyrite slime
+  breedName: xenobio-breed-pyrite # Aquila Change
   producedExtract: PyriteSlimeExtract
   components:
   - type: Slime

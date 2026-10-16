@@ -1,0 +1,170 @@
+- type: breed
+  parent: BaseMutation
+  id: RainbowMutation
+  breedName: xenobio-breed-rainbow
+  producedExtract: RainbowSlimeExtract
+  components:
+  - type: Slime
+    slimeColor: "#ffffff"
+    shouldHaveShader: true
+    shader: XenoRainbow
+    breed: RainbowMutation
+    maxOffspring: 4
+    mutationChance: 0.45
+    potentialMutations:
+    - RainbowMutation
+
+- type: entity
+  parent: MobSlimeXenobioBabyPending
+  id: MobSlimeXenobioBabyRainbow
+  name: rainbow slime
+  components:
+  - type: PendingSlimeSpawn
+    breed: RainbowMutation
+
+- type: entity
+  id: RainbowSlimeExtract
+  parent: BaseSlimeExtract
+  name: rainbow slime extract
+  description: Goo extracted from a rainbow slime. It shimmers with every colour at once.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Goobstation/Xenobiology/Specific/Xenobiology/extract.rsi
+      state: core
+      shader: XenoRainbow
+  - type: Reactive
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch, Injection ]
+      effects:
+      - !type:NestedEffect
+        proto: XenobioExtractReaction
+      - !type:SpawnEntity
+        entity: XenobioRareExtractSpawner
+        number: 3
+    - reagents: [ Plasma ]
+      methods: [ Touch, Injection ]
+      effects:
+      - !type:NestedEffect
+        proto: XenobioExtractReaction
+      - !type:Jitter
+        time: 3
+        frequency: 20
+      - !type:SpawnEntity
+        entity: XenobioSlimeAnySpawner
+    - reagents: [ Blood ]
+      methods: [ Touch, Injection ]
+      effects:
+      - !type:NestedEffect
+        proto: XenobioExtractReaction
+      - !type:RelayNearby
+        compName: SlimeGenes
+        range: 3
+        effect: !type:AddSlimeTrait
+  - type: Tag
+    tags:
+    - XenobiologyRainbowExtract
+
+- type: entity
+  parent: MarkerBase
+  id: XenobioCommonExtractSpawner
+  name: random common slime extract spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Goobstation/Xenobiology/Specific/Xenobiology/extract.rsi
+      state: core
+  - type: RandomSpawner
+    offset: 0.2
+    prototypes:
+    - OrangeSlimeExtract
+    - PurpleSlimeExtract
+    - BlueSlimeExtract
+    - MetalSlimeExtract
+    - YellowSlimeExtract
+    - DarkPurpleSlimeExtract
+    - DarkBlueSlimeExtract
+    - SilverSlimeExtract
+    - BluespaceSlimeExtract
+    - SepiaSlimeExtract
+    - CeruleanSlimeExtract
+    - PyriteSlimeExtract
+
+- type: entity
+  parent: XenobioCommonExtractSpawner
+  id: XenobioRareExtractSpawner
+  name: random rare slime extract spawner
+  components:
+  - type: RandomSpawner
+    offset: 0.2
+    prototypes:
+    - RedSlimeExtract
+    - GreenSlimeExtract
+    - PinkSlimeExtract
+    - GoldSlimeExtract
+    - BluespaceSlimeExtract
+    - SepiaSlimeExtract
+    - CeruleanSlimeExtract
+    - PyriteSlimeExtract
+    - OilSlimeExtract
+    - BlackSlimeExtract
+    - LightPinkSlimeExtract
+    - AdamantineSlimeExtract
+    - MeatSlimeExtract
+
+- type: entity
+  parent: MarkerBase
+  id: XenobioSlimeRareSpawner
+  name: random rare slime spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Goobstation/Xenobiology/Mobs/slimesBaby.rsi
+      state: base
+  - type: RandomSpawner
+    prototypes:
+    - MobSlimeXenobioBabyBluespace
+    - MobSlimeXenobioBabySepia
+    - MobSlimeXenobioBabyCerulean
+    - MobSlimeXenobioBabyPyrite
+    - MobSlimeXenobioBabyOil
+    - MobSlimeXenobioBabyBlack
+    - MobSlimeXenobioBabyLightPink
+    - MobSlimeXenobioBabyAdamantine
+    - MobSlimeXenobioBabyMeat
+
+- type: entity
+  parent: XenobioSlimeRareSpawner
+  id: XenobioSlimeAnySpawner
+  name: random slime spawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobSlimeXenobioBabyGrey
+    - MobSlimeXenobioBabyOrange
+    - MobSlimeXenobioBabyPurple
+    - MobSlimeXenobioBabyBlue
+    - MobSlimeXenobioBabyMetal
+    - MobSlimeXenobioBabyYellow
+    - MobSlimeXenobioBabyDarkPurple
+    - MobSlimeXenobioBabyDarkBlue
+    - MobSlimeXenobioBabySilver
+    - MobSlimeXenobioBabyBluespace
+    - MobSlimeXenobioBabySepia
+    - MobSlimeXenobioBabyCerulean
+    - MobSlimeXenobioBabyPyrite
+    - MobSlimeXenobioBabyRed
+    - MobSlimeXenobioBabyGreen
+    - MobSlimeXenobioBabyPink
+    - MobSlimeXenobioBabyGold
+    - MobSlimeXenobioBabyOil
+    - MobSlimeXenobioBabyLightPink
+    - MobSlimeXenobioBabyBlack
+    - MobSlimeXenobioBabyAdamantine
+    - MobSlimeXenobioBabyMeat
+    - MobSlimeXenobioBabyRainbow

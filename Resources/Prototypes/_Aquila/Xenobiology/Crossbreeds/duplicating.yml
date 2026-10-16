@@ -1,0 +1,66 @@
+- type: entity
+  parent: BaseSlimeCrossbreedDuplicating
+  id: CrossbreedDuplicatingGrey
+  name: duplicating grey extract
+  description: Apply it to an active slime extract to create a copy of it.
+  components:
+  - type: Sprite
+    layers:
+    - state: duplicating_core
+      color: "#828282"
+  - type: DuplicatingCrossbreed
+    copies: 1
+    uses: 1
+    whitelist:
+      requireAll: true
+      components:
+      - SlimeExtract
+      - Reactive
+    blacklist:
+      tags:
+      - XenobiologyRainbowExtract
+
+- type: entity
+  parent: BaseSlimeCrossbreedDuplicating
+  id: CrossbreedDuplicatingBluespace
+  name: duplicating bluespace extract
+  description: Apply it to an active slime extract to create two copies of it.
+  components:
+  - type: Sprite
+    layers:
+    - state: duplicating_core
+      color: "#f0f8ff"
+      shader: XenoBluespace
+  - type: DuplicatingCrossbreed
+    copies: 2
+    uses: 1
+    whitelist:
+      requireAll: true
+      components:
+      - SlimeExtract
+      - Reactive
+    blacklist:
+      tags:
+      - XenobiologyRainbowExtract
+
+- type: entity
+  parent: BaseSlimeCrossbreedDuplicating
+  id: CrossbreedDuplicatingRainbow
+  name: duplicating rainbow extract
+  description: Apply it to active slime extracts to copy them. It lasts for several uses.
+  components:
+  - type: Sprite
+    layers:
+    - state: duplicating_core
+      shader: XenoRainbow
+  - type: DuplicatingCrossbreed
+    copies: 1
+    uses: 4
+    whitelist:
+      requireAll: true
+      components:
+      - SlimeExtract
+      - Reactive
+    blacklist:
+      tags:
+      - XenobiologyRainbowExtract

@@ -1,0 +1,169 @@
+- type: entity
+  id: EffectXenobioRegenerative
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_small.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: regen
+      shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#8cffaa"
+  - type: LightFade
+    duration: 0.6
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: EffectXenobioRegenerativeRing
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_small.rsi
+    drawdepth: BelowMobs
+    noRot: true
+    layers:
+    - state: regen_ring
+      shader: unshaded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: EffectXenobioRegenerative
+  id: EffectXenobioBoil
+  components:
+  - type: TimedDespawn
+    lifetime: 0.48
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_small.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: boil
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#ff9a3c"
+  - type: LightFade
+    duration: 0.48
+
+- type: entity
+  id: EffectXenobioBurning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.45
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_burst.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: burst
+      shader: unshaded
+      color: "#ff9a3c"
+    - state: burst_core
+      shader: unshaded
+  - type: PointLight
+    radius: 5
+    energy: 6
+    color: "#ff9a3c"
+  - type: LightFade
+    duration: 0.45
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: EffectXenobioBurning
+  id: EffectXenobioBurningHeal
+  components:
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_burst.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: burst
+      shader: unshaded
+      color: "#8cffaa"
+    - state: burst_core
+      shader: unshaded
+  - type: PointLight
+    radius: 5
+    energy: 6
+    color: "#8cffaa"
+
+- type: entity
+  parent: EffectXenobioBurning
+  id: EffectXenobioBurningFrost
+  components:
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_burst.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: burst
+      shader: unshaded
+      color: "#a8f0ff"
+    - state: burst_core
+      shader: unshaded
+  - type: PointLight
+    radius: 5
+    energy: 6
+    color: "#a8f0ff"
+
+- type: entity
+  parent: EffectXenobioBurning
+  id: EffectXenobioBurningBluespace
+  components:
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_burst.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: burst
+      shader: unshaded
+      color: "#18abf5"
+    - state: burst_core
+      shader: unshaded
+  - type: PointLight
+    radius: 5
+    energy: 6
+    color: "#18abf5"
+
+- type: entity
+  id: EffectXenobioDuplicate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.45
+  - type: Sprite
+    sprite: _Aquila/Effects/xenobio_burst.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 0.45, 0.45
+    layers:
+    - state: burst
+      shader: unshaded
+      color: "#c9a0ff"
+    - state: burst_core
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    color: "#c9a0ff"
+  - type: LightFade
+    duration: 0.45
+  - type: Tag
+    tags:
+    - HideContextMenu

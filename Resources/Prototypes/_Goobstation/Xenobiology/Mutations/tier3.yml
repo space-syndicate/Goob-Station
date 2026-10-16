@@ -1,7 +1,7 @@
 - type: breed
   parent: BaseMutation
   id: RedMutation
-  breedName: red slime
+  breedName: xenobio-breed-red # Aquila Change
   producedExtract: RedSlimeExtract
   components:
   - type: Slime
@@ -12,11 +12,12 @@
     potentialMutations:
     - RedMutation
     - OilMutation
+    - MeatMutation # Aquila Change
 
 - type: breed
   parent: BaseMutation
   id: GreenMutation
-  breedName: green slime
+  breedName: xenobio-breed-green # Aquila Change
   producedExtract: GreenSlimeExtract
   components:
   - type: Slime
@@ -31,7 +32,7 @@
 - type: breed
   parent: BaseMutation
   id: PinkMutation
-  breedName: pink slime
+  breedName: xenobio-breed-pink # Aquila Change
   producedExtract: PinkSlimeExtract
   components:
   - type: Slime
@@ -46,7 +47,7 @@
 - type: breed
   parent: BaseMutation
   id: GoldMutation
-  breedName: gold slime
+  breedName: xenobio-breed-gold # Aquila Change
   producedExtract: GoldSlimeExtract
   components:
   - type: Slime

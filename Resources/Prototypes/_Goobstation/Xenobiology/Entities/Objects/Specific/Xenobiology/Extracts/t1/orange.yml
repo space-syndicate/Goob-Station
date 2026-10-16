@@ -22,7 +22,7 @@
         solution:
           reagents:
           - ReagentId: TearGas
-            Quantity: 20
+            Quantity: 40 # Aquila Change
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -30,12 +30,12 @@
         proto: XenobioExtractReaction
       - !type:RelayNearby
         compName: Flammable
-        range: 3
+        range: 4 # Aquila Change
         effect: !type:NestedEffect
           proto: Ignite5
       - !type:Flash
-        maxRange: 7
-        rangePerUnit: 1
+        maxRange: 5 # Aquila Change
+        rangePerUnit: 5 # Aquila Change
         sound: /Audio/_Goobstation/Wizard/zapbang.ogg
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
@@ -47,7 +47,7 @@
         effects:
         - !type:AdjustReagent
           reagent: CapsaicinOil
-          amount: 30
+          amount: 60 # Aquila Change
   - type: Tag
     tags:
     - XenobiologyOrangeExtract

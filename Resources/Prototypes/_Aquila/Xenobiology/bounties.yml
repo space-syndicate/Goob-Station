@@ -1,0 +1,115 @@
+- type: xenobiologyBounty
+  id: BountyCrossbreedAny
+  pointsAwarded: 6000
+  entries:
+  - name: bounty-item-crossbreed-any
+    amount: 1
+    whitelist:
+      tags:
+      - SlimeCrossbreed
+
+- type: xenobiologyBounty
+  id: BountyCrossbreedRegenerative
+  pointsAwarded: 9000
+  entries:
+  - name: bounty-item-crossbreed-regenerative
+    amount: 2
+    whitelist:
+      tags:
+      - SlimeCrossbreedRegenerative
+
+- type: xenobiologyBounty
+  id: BountyCrossbreedStabilized
+  pointsAwarded: 10000
+  entries:
+  - name: bounty-item-crossbreed-stabilized
+    amount: 1
+    whitelist:
+      tags:
+      - SlimeCrossbreedStabilized
+
+- type: xenobiologyBounty
+  id: BountyCrossbreedBurning
+  pointsAwarded: 9000
+  entries:
+  - name: bounty-item-crossbreed-burning
+    amount: 2
+    whitelist:
+      tags:
+      - SlimeCrossbreedBurning
+
+- type: xenobiologyBounty
+  id: BountyCrossbreedIndustrial
+  pointsAwarded: 8000
+  entries:
+  - name: bounty-item-crossbreed-industrial
+    amount: 1
+    whitelist:
+      tags:
+      - SlimeCrossbreedIndustrial
+
+- type: xenobiologyBounty
+  id: BountyRainbowExtract
+  pointsAwarded: 20000
+  entries:
+  - name: bounty-item-rainbow-extract
+    amount: 1
+    whitelist:
+      tags:
+      - XenobiologyRainbowExtract
+
+- type: xenobiologyBounty
+  id: BountyMeatExtract
+  pointsAwarded: 7500
+  entries:
+  - name: bounty-item-meat-extract
+    amount: 2
+    whitelist:
+      tags:
+      - XenobiologyMeatExtract
+
+- type: cargoBounty
+  id: BountyXenobioExtracts
+  reward: 3000
+  description: bounty-description-xenobio-extracts
+  entries:
+  - name: bounty-item-xenobio-extract
+    amount: 6
+    whitelist:
+      requireAll: true
+      components:
+      - SlimeExtract
+      - Reactive
+
+- type: cargoBounty
+  id: BountyXenobioRegenerative
+  reward: 6000
+  description: bounty-description-xenobio-regenerative
+  entries:
+  - name: bounty-item-crossbreed-regenerative
+    amount: 2
+    whitelist:
+      tags:
+      - SlimeCrossbreedRegenerative
+
+- type: cargoBounty
+  id: BountyXenobioStabilized
+  reward: 5000
+  description: bounty-description-xenobio-stabilized
+  entries:
+  - name: bounty-item-crossbreed-stabilized
+    amount: 1
+    whitelist:
+      tags:
+      - SlimeCrossbreedStabilized
+
+- type: cargoBounty
+  id: BountyXenobioIndustrial
+  reward: 5000
+  description: bounty-description-xenobio-industrial
+  entries:
+  - name: bounty-item-crossbreed-industrial
+    amount: 1
+    whitelist:
+      tags:
+      - SlimeCrossbreedIndustrial

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Shared._Aquila.Xenobiology.Systems; // Aquila Change
 using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Goobstation.Shared.Xenobiology.Systems;
 using Content.Server.Power.Components;
@@ -32,6 +33,7 @@ public sealed partial class SlimeGrinderSystem : EntitySystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly SlimeGeneticsSystem _genetics = default!; // Aquila Change
 
     public override void Initialize()
     {
@@ -125,7 +127,7 @@ public sealed partial class SlimeGrinderSystem : EntitySystem
         grinder.Comp.ProcessingTimer += physics.FixturesMass * grinder.Comp.ProcessingTimePerUnitMass;
 
         var extractProto = _xenobio.GetProducedExtract((toProcess, slime));
-        var extractQuantity = slime.ExtractsProduced;
+        var extractQuantity = _genetics.GetExtractYield((toProcess, slime)); // Aquila Change
 
         if (!grinder.Comp.YieldQueue.ContainsKey(extractProto))
             grinder.Comp.YieldQueue.Add(extractProto, extractQuantity);

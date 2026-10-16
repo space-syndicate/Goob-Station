@@ -13,8 +13,15 @@
     - reagents: [ Water ]
       methods: [ Touch, Injection ]
       effects:
+      # Aquila Change start
       - !type:NestedEffect
-        proto: XenobioExtractFail
+        proto: XenobioExtractEvil
+      - !type:Jitter
+        time: 3
+        frequency: 20
+      - !type:SpawnEntity
+        entity: XenobioSlimeRareSpawner
+      # Aquila Change end
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -29,8 +36,13 @@
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:
+      # Aquila Change start
       - !type:NestedEffect
-        proto: XenobioExtractFail
+        proto: XenobioExtractReaction
+      - !type:SpawnEntity
+        entity: XenobioCommonExtractSpawner
+        number: 2
+      # Aquila Change end
   - type: Tag
     tags:
     - XenobiologyBlackExtract

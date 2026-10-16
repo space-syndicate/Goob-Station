@@ -1,0 +1,136 @@
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedGrey
+  name: stabilized grey extract
+  description: While carried, it slowly nourishes its owner, keeping hunger and thirst at bay.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#828282"
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:SatiateHunger
+      factor: 0.1
+    - !type:SatiateThirst
+      factor: 0.3
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedOrange
+  name: stabilized orange extract
+  description: While carried, it keeps its owner warm, protecting them from the cold.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ff9f1a"
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectXenobioWarmth
+      time: 3
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedPurple
+  name: stabilized purple extract
+  description: While carried, it slowly heals its owner's bruises and burns.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#BF77F6"
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:EvenHealthChange
+      damage:
+        Brute: -1.2
+        Burn: -1.6
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedBlue
+  name: stabilized blue extract
+  description: While carried, it keeps its owner damp, quickly putting out any flames on them.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#79F6FC"
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:Extinguish
+      fireStacksAdjustment: -3
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedMetal
+  name: stabilized metal extract
+  description: While carried, it hardens its owner's body, increasing their stamina.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#595959"
+      shader: XenoMetallic
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectXenobioStamina
+      time: 3
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedYellow
+  name: stabilized yellow extract
+  description: It glows with a steady, bright light.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ffff1a"
+      shader: unshaded
+    - state: stabilized
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#ffff8a"
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedDarkBlue
+  name: stabilized dark blue extract
+  description: While carried, it keeps its owner cool, protecting them from the heat.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#1e8cfa"
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectXenobioCooling
+      time: 3
+
+- type: entity
+  parent: BaseSlimeCrossbreedStabilized
+  id: CrossbreedStabilizedCerulean
+  name: stabilized cerulean extract
+  description: While carried, it supplies its owner's blood with oxygen, letting them hold their breath for much longer.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#2A52BE"
+    - state: stabilized
+  - type: StabilizedCrossbreed
+    effects:
+    - !type:Oxygenate
+      factor: 1.6

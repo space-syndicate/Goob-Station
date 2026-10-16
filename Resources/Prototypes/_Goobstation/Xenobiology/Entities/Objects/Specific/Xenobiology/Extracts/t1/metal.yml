@@ -16,28 +16,35 @@
       effects:
       - !type:NestedEffect
         proto: XenobioExtractReaction
+      # Aquila Change start
       - !type:SpawnEntity
-        entity: SheetGlass1
-        number: 15
+        entity: SheetGlass10
+        number: 2
       - !type:SpawnEntity
         entity: SheetRGlass1
-        number: 5
+        number: 10
+      # Aquila Change end
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
       - !type:NestedEffect
         proto: XenobioExtractReaction
+      # Aquila Change start
       - !type:SpawnEntity
-        entity: SheetSteel1
-        number: 15
+        entity: SheetSteel10
+        number: 2
       - !type:SpawnEntity
-        entity: SheetPlasteel1
-        number: 5
+        entity: SheetPlasteel10
+      # Aquila Change end
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:
+      # Aquila Change start
       - !type:NestedEffect
-        proto: XenobioExtractFail
+        proto: XenobioExtractReaction
+      - !type:SpawnEntity
+        entity: XenobioSlimeArmorPlate
+      # Aquila Change end
   - type: Tag
     tags:
     - XenobiologyMetalExtract

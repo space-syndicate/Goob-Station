@@ -1,0 +1,28 @@
+- type: entity
+  parent: ArmorPlateBlunt
+  id: XenobioSlimeArmorPlate
+  name: slime armor plate
+  description: A light metal plate reinforced with hardened slime. It softens any physical blow a little. Can be attached to your jumpsuit.
+  components:
+  - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/metal.rsi
+    layers:
+    - state: plasteel
+      color: "#7ac7b1"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

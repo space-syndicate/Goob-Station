@@ -2,6 +2,7 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Goobstation.Shared._Aquila.Xenobiology.Components; // Aquila Change
 using Content.Goobstation.Shared.Nutrition.EntitySystems;
 using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Server.NPC;
@@ -64,11 +65,13 @@ public sealed partial class PickSlimeLatchTargetOperator : HTNOperator
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         var targets = new List<EntityUid>();
+        var predatory = _ent.HasComponent<SlimePredatoryComponent>(owner); // Aquila Change
 
         if (!blackboard.TryGetValue<float>(RangeKey, out var range, _ent)
         || !_slimeQuery.TryComp(owner, out var slimeComp)
         || !_growthQuery.TryComp(owner, out var growthComp)
-        || growthComp.IsFirstStage && _hunger.IsHungerAboveState(owner, HungerThreshold.Peckish) // babies only latch when very hungry
+        || growthComp.IsFirstStage && !predatory && _hunger.IsHungerAboveState(owner, HungerThreshold.Peckish) // babies only latch when very hungry // Aquila Change
+        || _ent.HasComponent<SlimeDocileComponent>(owner) && _hunger.IsHungerAboveState(owner, HungerThreshold.Starving) // Aquila Change
         || _latch.IsLatched((owner, slimeComp)))
             return (false, null);
 
@@ -77,7 +80,7 @@ public sealed partial class PickSlimeLatchTargetOperator : HTNOperator
             if (_latchedQuery.HasComp(entity)
             || _dotQuery.HasComp(entity) // it's taken
             || _mobSystem.IsDead(entity)
-            || growthComp.IsFirstStage && entity == slimeComp.Tamer) // no killing tamer
+            || growthComp.IsFirstStage && !predatory && entity == slimeComp.Tamer) // no killing tamer // Aquila Change
                 continue;
 
             targets.Add(entity);

@@ -20,7 +20,7 @@
         effects:
         - !type:AdjustReagent
           reagent: Epinephrine
-          amount: 15
+          amount: 30 # Aquila Change
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -39,7 +39,7 @@
         proto: XenobioExtractReaction
       - !type:SpawnEntity
         entity: MonkeyCube
-        number: 3
+        number: 6 # Aquila Change
   - type: Tag
     tags:
     - XenobiologyGreyExtract

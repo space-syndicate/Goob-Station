@@ -164,6 +164,8 @@
   - type: GuideHelp
     guides:
     - Xenobiology
+  - type: SlimeGenes # Aquila Change
+  - type: SlimeVoice # Aquila Change
 
 # Begin Slimes
 
@@ -189,10 +191,10 @@
       baby:
         nextStage: adult
         sprite: _Goobstation/Xenobiology/Mobs/slimesBaby.rsi
-        displayName: baby
+        displayName: mob-growth-stage-baby # Aquila Change
       adult:
         sprite: _Goobstation/Xenobiology/Mobs/slimesAdult.rsi
-        displayName: adult
+        displayName: mob-growth-stage-adult # Aquila Change
 
 - type: entity
   parent: MobSlimeXenobioBaby
@@ -209,10 +211,10 @@
       baby:
         nextStage: adult
         sprite: _Goobstation/Xenobiology/Mobs/slimesBaby.rsi
-        displayName: baby
+        displayName: mob-growth-stage-baby # Aquila Change
       adult:
         sprite: _Goobstation/Xenobiology/Mobs/slimesAdult.rsi
-        displayName: adult
+        displayName: mob-growth-stage-adult # Aquila Change
 
 - type: entity
   abstract: true

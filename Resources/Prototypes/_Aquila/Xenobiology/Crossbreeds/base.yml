@@ -1,0 +1,82 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseSlimeCrossbreed
+  name: slime crossbreed
+  description: A dense extract reformed inside a living slime.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Aquila/Objects/Specific/Xenobiology/crossbreed.rsi
+    state: core
+  - type: Tag
+    tags:
+    - SlimeCrossbreed
+  - type: StaticPrice
+    price: 500
+  - type: GuideHelp
+    guides:
+    - Xenobiology
+
+- type: entity
+  abstract: true
+  parent: BaseSlimeCrossbreed
+  id: BaseSlimeCrossbreedRegenerative
+  components:
+  - type: Tag
+    tags:
+    - SlimeCrossbreed
+    - SlimeCrossbreedRegenerative
+
+- type: entity
+  abstract: true
+  parent: BaseSlimeCrossbreed
+  id: BaseSlimeCrossbreedStabilized
+  components:
+  - type: Tag
+    tags:
+    - SlimeCrossbreed
+    - SlimeCrossbreedStabilized
+
+- type: entity
+  abstract: true
+  parent: BaseSlimeCrossbreed
+  id: BaseSlimeCrossbreedBurning
+  components:
+  - type: Tag
+    tags:
+    - SlimeCrossbreed
+    - SlimeCrossbreedBurning
+
+- type: entity
+  abstract: true
+  parent: BaseSlimeCrossbreed
+  id: BaseSlimeCrossbreedIndustrial
+  components:
+  - type: Tag
+    tags:
+    - SlimeCrossbreed
+    - SlimeCrossbreedIndustrial
+
+- type: entityEffect
+  id: XenobioRegenerativeHeal
+  effects:
+  - !type:EvenHealthChange
+    damage:
+      Brute: -120
+      Burn: -160
+      Toxin: -40
+      Airloss: -60
+  - !type:ModifyBleed
+    amount: -5
+
+- type: entity
+  abstract: true
+  parent: BaseSlimeCrossbreed
+  id: BaseSlimeCrossbreedDuplicating
+  components:
+  - type: Tag
+    tags:
+    - SlimeCrossbreed
+    - SlimeCrossbreedDuplicating

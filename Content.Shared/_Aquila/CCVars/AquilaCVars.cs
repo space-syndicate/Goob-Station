@@ -20,4 +20,7 @@ public sealed class AquilaCVars
 
     public static readonly CVarDef<float> RadioMusicVolume =
         CVarDef.Create("aquila.radio_music_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> XenobiologyShuffle =
+        CVarDef.Create("aquila.xenobiology_shuffle", true, CVar.SERVERONLY);
 }

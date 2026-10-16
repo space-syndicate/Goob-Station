@@ -40,6 +40,16 @@
         proto: XenobioExtractReaction
       - !type:SpawnEntity
         entity: FloorTileItemSepia30
+      # Aquila Change start
+      - !type:RelayNearby
+        compName: MobState
+        range: 5
+        effect: !type:MovementSpeedModifier
+          effectProto: StatusEffectXenobioFrost
+          walkSpeedModifier: 0.6
+          sprintSpeedModifier: 0.6
+          time: 10
+      # Aquila Change end
   - type: Tag
     tags:
     - XenobiologySepiaExtract

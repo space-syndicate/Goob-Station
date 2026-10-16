@@ -1,0 +1,13 @@
+void fragment() {
+    highp vec4 sprite = texture(TEXTURE, UV);
+
+    if (sprite.a == 0.0) {
+        discard;
+    }
+
+    highp float lum = dot(sprite.rgb, vec3(0.299, 0.587, 0.114));
+    highp float hue = fract(TIME * 0.2 + (UV.x + UV.y) * 8.0);
+    highp vec3 rainbow = clamp(abs(mod(hue * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+
+    COLOR = vec4(mix(rainbow, vec3(1.0), 0.25) * (0.35 + lum), sprite.a);
+}

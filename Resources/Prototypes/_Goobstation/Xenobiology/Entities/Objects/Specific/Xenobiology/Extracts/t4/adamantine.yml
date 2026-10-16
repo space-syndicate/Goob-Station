@@ -30,8 +30,15 @@
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:
+      # Aquila Change start
       - !type:NestedEffect
-        proto: XenobioExtractFail
+        proto: XenobioExtractReaction
+      - !type:SpawnEntity
+        entity: SheetPlasteel10
+        number: 2
+      - !type:SpawnEntity
+        entity: MaterialDiamond1
+      # Aquila Change end
   - type: Tag
     tags:
     - XenobiologyAdamantineExtract

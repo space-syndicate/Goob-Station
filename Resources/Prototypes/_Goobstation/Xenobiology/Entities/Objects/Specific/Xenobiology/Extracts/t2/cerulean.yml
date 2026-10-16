@@ -17,7 +17,7 @@
         proto: XenobioExtractReaction
       - !type:CreateGas
         gas: Pluoxium
-        moles: 55
+        moles: 100 # Aquila Change
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:

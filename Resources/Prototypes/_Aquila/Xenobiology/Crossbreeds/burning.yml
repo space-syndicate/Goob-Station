@@ -1,0 +1,180 @@
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningOrange
+  name: burning orange extract
+  description: Squeeze it to start the reaction, then throw it. A few seconds later it bursts into flames, setting everything nearby on fire.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ff9f1a"
+    - state: burning
+  - type: BurningCrossbreed
+    effects:
+    - !type:RelayNearby
+      compName: Flammable
+      range: 4
+      effect: !type:NestedEffect
+        proto: Ignite5
+    - !type:Flash
+      rangePerUnit: 5
+      maxRange: 5
+      sound: /Audio/_Goobstation/Wizard/zapbang.ogg
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningPurple
+  name: burning purple extract
+  description: Squeeze it to start the reaction. A few seconds later it releases a wave of healing goo that mends everyone nearby.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#BF77F6"
+    - state: burning
+  - type: BurningCrossbreed
+    effect: EffectXenobioBurningHeal
+    effects:
+    - !type:RelayNearby
+      compName: MobState
+      range: 4
+      effect: !type:EvenHealthChange
+        damage:
+          Brute: -75
+          Burn: -100
+          Toxin: -30
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningBlue
+  name: burning blue extract
+  description: Squeeze it to start the reaction, then throw it. A few seconds later it releases a freezing wave that slows everyone nearby and puts out fires.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#79F6FC"
+    - state: burning
+  - type: BurningCrossbreed
+    effect: EffectXenobioBurningFrost
+    effects:
+    - !type:RelayNearby
+      compName: MobState
+      range: 4
+      effect: !type:MovementSpeedModifier
+        effectProto: StatusEffectXenobioFrost
+        walkSpeedModifier: 0.5
+        sprintSpeedModifier: 0.5
+        time: 8
+    - !type:RelayNearby
+      compName: Flammable
+      range: 4
+      effect: !type:Extinguish
+        fireStacksAdjustment: -10
+    - !type:PlaySoundEffect
+      sound: /Audio/Effects/extinguish.ogg
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningYellow
+  name: burning yellow extract
+  description: Squeeze it to start the reaction, then throw it. A few seconds later it releases a powerful electromagnetic pulse.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ffff1a"
+    - state: burning
+  - type: BurningCrossbreed
+    effects:
+    - !type:Emp
+      rangeModifier: 6
+      maxRange: 6
+    - !type:Flash
+      rangePerUnit: 3
+      maxRange: 3
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningSilver
+  name: burning silver extract
+  description: Squeeze it to start the reaction. A few seconds later it turns into a hearty meal.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#c4c4c4"
+      shader: XenoMetallic
+    - state: burning
+  - type: BurningCrossbreed
+    effects:
+    - !type:SpawnEntity
+      entity: FoodPizzaMargherita
+    - !type:SpawnEntity
+      entity: FoodBoxDonut
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningBluespace
+  name: burning bluespace extract
+  description: Squeeze it to start the reaction. A few seconds later everyone close to it is teleported to random places nearby.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#f0f8ff"
+      shader: XenoBluespace
+    - state: burning
+  - type: BurningCrossbreed
+    effect: EffectXenobioBurningBluespace
+    effects:
+    - !type:RelayNearby
+      compName: MobState
+      blacklist:
+        components:
+        - BorgBrain
+      range: 2.5
+      effect: !type:RandomTeleport
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningPyrite
+  name: burning pyrite extract
+  description: Squeeze it to start the reaction. A few seconds later everyone close to it becomes nearly invisible for a while.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#dcaa4f"
+      shader: XenoMetallic
+    - state: burning
+  - type: BurningCrossbreed
+    effects:
+    - !type:RelayNearby
+      compName: StatusEffects
+      range: 3
+      effect: !type:ModifyStatusEffect
+        effectProto: ForcedStealthStatusEffect
+        time: 45
+
+- type: entity
+  parent: BaseSlimeCrossbreedBurning
+  id: CrossbreedBurningRed
+  name: burning red extract
+  description: Squeeze it to start the reaction. A few seconds later it fills everyone nearby with a burst of speed.
+  components:
+  - type: Sprite
+    layers:
+    - state: core
+      color: "#ff3333"
+    - state: burning
+  - type: BurningCrossbreed
+    effects:
+    - !type:RelayNearby
+      compName: MobState
+      range: 4
+      effect: !type:MovementSpeedModifier
+        effectProto: StatusEffectXenobioHaste
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.3
+        time: 30

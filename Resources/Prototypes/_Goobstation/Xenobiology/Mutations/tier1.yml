@@ -1,7 +1,7 @@
 - type: breed
   parent: BaseMutation
   id: OrangeMutation
-  breedName: orange slime
+  breedName: xenobio-breed-orange # Aquila Change
   producedExtract: OrangeSlimeExtract
   components:
   - type: Slime
@@ -18,7 +18,7 @@
 - type: breed
   parent: BaseMutation
   id: PurpleMutation
-  breedName: purple slime
+  breedName: xenobio-breed-purple # Aquila Change
   producedExtract: PurpleSlimeExtract
   components:
   - type: Slime
@@ -35,7 +35,7 @@
 - type: breed
   parent: BaseMutation
   id: BlueMutation
-  breedName: blue slime
+  breedName: xenobio-breed-blue # Aquila Change
   producedExtract: BlueSlimeExtract
   components:
   - type: Slime
@@ -52,7 +52,7 @@
 - type: breed
   parent: BaseMutation
   id: MetalMutation
-  breedName: metal slime
+  breedName: xenobio-breed-metal # Aquila Change
   producedExtract: MetalSlimeExtract
   components:
   - type: Slime

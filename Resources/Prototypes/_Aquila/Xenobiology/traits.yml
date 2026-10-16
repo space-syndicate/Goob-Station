@@ -1,0 +1,93 @@
+- type: slimeTrait
+  id: Docile
+  name: slime-trait-docile-name
+  description: slime-trait-docile-desc
+  color: "#8fd3ff"
+  appearChance: 0.03
+  conflicts:
+  - Predatory
+  components:
+  - type: SlimeDocile
+
+- type: slimeTrait
+  id: Predatory
+  name: slime-trait-predatory-name
+  description: slime-trait-predatory-desc
+  color: "#ff5c5c"
+  appearChance: 0.03
+  yieldBonus: 1
+  components:
+  - type: SlimePredatory
+
+- type: slimeTrait
+  id: Luminous
+  name: slime-trait-luminous-name
+  description: slime-trait-luminous-desc
+  color: "#fff59e"
+  appearChance: 0.04
+  inheritChance: 0.9
+  components:
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+
+- type: slimeTrait
+  id: Stable
+  name: slime-trait-stable-name
+  description: slime-trait-stable-desc
+  color: "#a0ffb0"
+  appearChance: 0.02
+  conflicts:
+  - Volatile
+  mutationChanceMultiplier: 0.2
+
+- type: slimeTrait
+  id: Volatile
+  name: slime-trait-volatile-name
+  description: slime-trait-volatile-desc
+  color: "#d18cff"
+  appearChance: 0.02
+  mutationChanceMultiplier: 1.75
+  yieldBonus: -1
+
+- type: slimeTrait
+  id: Waterproof
+  name: slime-trait-waterproof-name
+  description: slime-trait-waterproof-desc
+  color: "#5fd0ff"
+  appearChance: 0.025
+  components:
+  - type: SlimeDamageResistance
+    modifierSet: SlimeWaterproof
+
+- type: slimeTrait
+  id: Prolific
+  name: slime-trait-prolific-name
+  description: slime-trait-prolific-desc
+  color: "#ffd1f0"
+  appearChance: 0.02
+  offspringBonus: 1
+
+- type: slimeTrait
+  id: Precocious
+  name: slime-trait-precocious-name
+  description: slime-trait-precocious-desc
+  color: "#c6ff7a"
+  appearChance: 0.025
+  conflicts:
+  - Ravenous
+  mitosisHungerMultiplier: 0.85
+
+- type: slimeTrait
+  id: Ravenous
+  name: slime-trait-ravenous-name
+  description: slime-trait-ravenous-desc
+  color: "#ff8a5c"
+  appearChance: 0.025
+  yieldBonus: 1
+  mitosisHungerMultiplier: 1.15
+
+- type: damageModifierSet
+  id: SlimeWaterproof
+  coefficients:
+    Caustic: 0

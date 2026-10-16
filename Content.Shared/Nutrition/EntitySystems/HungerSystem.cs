@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Aquila.Nutrition; // Aquila Change
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Systems;
@@ -137,9 +138,15 @@ public sealed class HungerSystem : EntitySystem
         if (calculatedHungerThreshold == component.CurrentThreshold)
             return;
 
+        var previousThreshold = component.CurrentThreshold; // Aquila Change
         component.CurrentThreshold = calculatedHungerThreshold;
         DirtyField(uid, component, nameof(HungerComponent.CurrentThreshold));
         DoHungerThresholdEffects(uid, component);
+
+        // Aquila Change start
+        var ev = new HungerThresholdChangedEvent(previousThreshold, calculatedHungerThreshold);
+        RaiseLocalEvent(uid, ref ev);
+        // Aquila Change end
     }
 
     private void DoHungerThresholdEffects(EntityUid uid, HungerComponent? component = null, bool force = false)

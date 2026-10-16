@@ -19,6 +19,13 @@
         duration: 10
         spreadAmount: 75
         smokePrototype: Smoke
+      # Aquila Change start
+      - !type:RelayNearby
+        compName: Flammable
+        range: 6
+        effect: !type:Extinguish
+          fireStacksAdjustment: -10
+      # Aquila Change end
       - !type:PlaySoundEffect
         sound: /Audio/Effects/extinguish.ogg
     - reagents: [ Plasma ]
@@ -31,7 +38,7 @@
         effects:
         - !type:AdjustReagent
           reagent: FrostOil
-          amount: 30
+          amount: 60 # Aquila Change
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:

@@ -3,6 +3,8 @@
 using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Goobstation.Server.Xenobiology;
+using Content.Goobstation.Shared._Aquila.Xenobiology.Components; // Aquila Change
+using Content.Goobstation.Shared._Aquila.Xenobiology.Systems; // Aquila Change
 using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -24,6 +26,7 @@ public partial class XenobiologySystem
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly SlimeLatchSystem _latch = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SlimeGeneticsSystem _genetics = default!; // Aquila Change
 
     private List<EntityUid> _slimes = new();
     private EntityQuery<BloodstreamComponent> _bloodQuery;
@@ -52,6 +55,8 @@ public partial class XenobiologySystem
         s.ExtractsProduced += rand.Next(0, 2);
         s.MitosisHunger *= rand.NextFloat(.75f, 1.2f);
         Dirty(slime);
+
+        _genetics.RollTraits(slime.Owner, rand); // Aquila Change
     }
 
     private void OnSlimeMapInit(Entity<SlimeComponent> ent, ref MapInitEvent args)
@@ -71,7 +76,8 @@ public partial class XenobiologySystem
         {
             if (_timing.CurTime < slime.NextUpdateTime
                 || _mobState.IsDead(uid)
-                || growthComp.IsFirstStage)
+                || growthComp.IsFirstStage
+                || HasComp<SlimeCrossbreedingComponent>(uid)) // Aquila Change
                 continue;
 
             _splitting.Add((uid, slime, growthComp, hungerComp));
@@ -80,10 +86,11 @@ public partial class XenobiologySystem
 
         foreach (var ent in _splitting)
         {
-            if (_hunger.GetHunger(ent) > ent.Comp1.MitosisHunger - ent.Comp1.JitterDifference)
+            var mitosisHunger = _genetics.GetMitosisHunger((ent.Owner, ent.Comp1)); // Aquila Change
+            if (_hunger.GetHunger(ent) > mitosisHunger - ent.Comp1.JitterDifference) // Aquila Change
                 _jitter.DoJitter(ent, TimeSpan.FromSeconds(1), true);
 
-            if (_hunger.GetHunger(ent) < ent.Comp1.MitosisHunger)
+            if (_hunger.GetHunger(ent) < mitosisHunger) // Aquila Change
                 continue;
 
             DoMitosis(ent);
@@ -98,7 +105,8 @@ public partial class XenobiologySystem
     private void DoMitosis(Entity<SlimeComponent> ent)
     {
         var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent));
-        var offspringCount = rand.Next(1, ent.Comp.MaxOffspring + 1);
+        var offspringCount = rand.Next(1, _genetics.GetMaxOffspring(ent.AsNullable()) + 1); // Aquila Change
+        var mutationChance = _genetics.GetMutationChance(ent.AsNullable()); // Aquila Change
 
         if (_net.IsServer) // no local entity for PlayPredicted and i dont trust this israelgpt slop anyway
             _audio.PlayPvs(ent.Comp.MitosisSound, ent);
@@ -107,18 +115,15 @@ public partial class XenobiologySystem
         {
             var selectedBreed = ent.Comp.Breed;
 
-            if (rand.Prob(ent.Comp.MutationChance) && ent.Comp.PotentialMutations.Count > 0)
+            if (rand.Prob(mutationChance) && ent.Comp.PotentialMutations.Count > 0) // Aquila Change
                 selectedBreed = rand.Pick(ent.Comp.PotentialMutations);
 
             if (SpawnSlime(ent, ent.Comp.DefaultSlimeProto, selectedBreed) is { } sl)
             {
                 // carries over generations. type shit.
                 sl.Comp.Tamer = ent.Comp.Tamer;
-                sl.Comp.MutationChance = ent.Comp.MutationChance;
-                sl.Comp.MaxOffspring = ent.Comp.MaxOffspring;
-                sl.Comp.ExtractsProduced = ent.Comp.ExtractsProduced;
                 sl.Comp.Whitelist = ent.Comp.Whitelist;
-                Dirty(sl);
+                _genetics.Inherit(ent.AsNullable(), sl.AsNullable(), rand); // Aquila Change
             }
         }
 
@@ -185,7 +190,13 @@ public partial class XenobiologySystem
             _appearance.SetData(newEntityUid, XenoSlimeVisuals.Shader, newSlime.Shader);
 
         _appearance.SetData(newEntityUid, XenoSlimeVisuals.Color, newSlime.SlimeColor);
-        _meta.SetEntityName(newEntityUid, newBreed.BreedName);
+        // Aquila Change start
+        var breedName = Loc.GetString(newBreed.BreedName);
+        if (TryComp<MobGrowthComponent>(newEntityUid, out var growth))
+            growth.BaseEntityName = breedName;
+
+        _meta.SetEntityName(newEntityUid, breedName);
+        // Aquila Change end
 
         return (newEntityUid, newSlime);
     }

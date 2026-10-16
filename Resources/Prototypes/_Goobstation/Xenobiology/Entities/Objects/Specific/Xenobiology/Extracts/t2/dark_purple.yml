@@ -17,7 +17,7 @@
         proto: XenobioExtractReaction
       - !type:SpawnEntity
         entity: SheetPlastic10
-        number: 3
+        number: 5 # Aquila Change
         shouldScale: false
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
@@ -25,8 +25,8 @@
       - !type:NestedEffect
         proto: XenobioExtractReaction
       - !type:SpawnEntity
-        entity: SheetPlasma1
-        number: 3
+        entity: SheetPlasma10 # Aquila Change
+        number: 1 # Aquila Change
         shouldScale: false
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]

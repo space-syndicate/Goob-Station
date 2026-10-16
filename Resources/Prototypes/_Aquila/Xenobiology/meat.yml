@@ -1,0 +1,99 @@
+- type: breed
+  parent: BaseMutation
+  id: MeatMutation
+  breedName: xenobio-breed-meat
+  producedExtract: MeatSlimeExtract
+  components:
+  - type: Slime
+    slimeColor: "#ffffff"
+    breed: MeatMutation
+    maxOffspring: 4
+    mutationChance: 0.45
+    potentialMutations:
+    - MeatMutation
+  - type: MobGrowth
+    hungerRequired: 75
+    currentStage: baby
+    stages:
+      baby:
+        nextStage: adult
+        sprite: _Aquila/Mobs/Xenobiology/slimesMeatBaby.rsi
+        displayName: mob-growth-stage-baby
+      adult:
+        sprite: _Aquila/Mobs/Xenobiology/slimesMeatAdult.rsi
+        displayName: mob-growth-stage-adult
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+
+- type: entity
+  parent: MobSlimeXenobioBabyPending
+  id: MobSlimeXenobioBabyMeat
+  name: meat slime
+  components:
+  - type: PendingSlimeSpawn
+    breed: MeatMutation
+
+- type: entity
+  id: MeatSlimeExtract
+  parent: BaseSlimeExtract
+  name: meat slime extract
+  description: A warm, twitching lump of flesh extracted from a meat slime.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Objects/Specific/Xenobiology/meat_extract.rsi
+    layers:
+    - state: core
+  - type: Reactive
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch, Injection ]
+      effects:
+      - !type:NestedEffect
+        proto: XenobioExtractReaction
+      - !type:SpawnEntity
+        entity: FoodMeat
+        number: 6
+    - reagents: [ Plasma ]
+      methods: [ Touch, Injection ]
+      effects:
+      - !type:NestedEffect
+        proto: XenobioExtractEvil
+      - !type:Jitter
+        time: 3
+        frequency: 20
+      - !type:SpawnEntity
+        entity: MobFleshJared
+      - !type:SpawnEntity
+        entity: MobFleshClamp
+    - reagents: [ Blood ]
+      methods: [ Touch, Injection ]
+      effects:
+      - !type:NestedEffect
+        proto: XenobioExtractReaction
+      - !type:SpawnEntity
+        entity: XenobioOrganSpawner
+  - type: Tag
+    tags:
+    - XenobiologyMeatExtract
+
+- type: entity
+  parent: MarkerBase
+  id: XenobioOrganSpawner
+  name: random organ spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Species/Human/organs.rsi
+      state: heart-on
+  - type: RandomSpawner
+    prototypes:
+    - OrganHumanHeart
+    - OrganHumanLungs
+    - OrganHumanLiver
+    - OrganHumanKidneys
+    - OrganHumanStomach
+    - OrganHumanEyes

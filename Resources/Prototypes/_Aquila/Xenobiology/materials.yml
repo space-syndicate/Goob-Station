@@ -1,0 +1,30 @@
+- type: entity
+  parent: IngotGold
+  id: IngotGold5
+  suffix: 5
+  components:
+  - type: Sprite
+    state: gold_2
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: IngotSilver
+  id: IngotSilver5
+  suffix: 5
+  components:
+  - type: Sprite
+    state: silver_2
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: SheetPlasteel
+  id: SheetPlasteel5
+  suffix: 5
+  components:
+  - type: Sprite
+    state: plasteel_2
+  - type: Stack
+    stackType: Plasteel
+    count: 5

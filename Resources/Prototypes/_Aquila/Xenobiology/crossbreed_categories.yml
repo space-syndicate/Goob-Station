@@ -1,0 +1,76 @@
+- type: slimeCrossbreedCategory
+  id: Regenerative
+  name: slime-crossbreed-category-regenerative
+  color: "#8cffaa"
+  breed: PurpleMutation
+  required: 5
+  results:
+    GreySlimeExtract: CrossbreedRegenerativeGrey
+    OrangeSlimeExtract: CrossbreedRegenerativeOrange
+    PurpleSlimeExtract: CrossbreedRegenerativePurple
+    BlueSlimeExtract: CrossbreedRegenerativeBlue
+    MetalSlimeExtract: CrossbreedRegenerativeMetal
+    YellowSlimeExtract: CrossbreedRegenerativeYellow
+    DarkBlueSlimeExtract: CrossbreedRegenerativeDarkBlue
+    SilverSlimeExtract: CrossbreedRegenerativeSilver
+    CeruleanSlimeExtract: CrossbreedRegenerativeCerulean
+    MeatSlimeExtract: CrossbreedRegenerativeMeat
+
+- type: slimeCrossbreedCategory
+  id: Stabilized
+  name: slime-crossbreed-category-stabilized
+  color: "#a8f0ff"
+  breed: BlueMutation
+  required: 10
+  results:
+    GreySlimeExtract: CrossbreedStabilizedGrey
+    OrangeSlimeExtract: CrossbreedStabilizedOrange
+    PurpleSlimeExtract: CrossbreedStabilizedPurple
+    BlueSlimeExtract: CrossbreedStabilizedBlue
+    MetalSlimeExtract: CrossbreedStabilizedMetal
+    YellowSlimeExtract: CrossbreedStabilizedYellow
+    DarkBlueSlimeExtract: CrossbreedStabilizedDarkBlue
+    CeruleanSlimeExtract: CrossbreedStabilizedCerulean
+
+- type: slimeCrossbreedCategory
+  id: Burning
+  name: slime-crossbreed-category-burning
+  color: "#ff9a3c"
+  breed: OrangeMutation
+  required: 5
+  results:
+    OrangeSlimeExtract: CrossbreedBurningOrange
+    PurpleSlimeExtract: CrossbreedBurningPurple
+    BlueSlimeExtract: CrossbreedBurningBlue
+    YellowSlimeExtract: CrossbreedBurningYellow
+    SilverSlimeExtract: CrossbreedBurningSilver
+    BluespaceSlimeExtract: CrossbreedBurningBluespace
+    PyriteSlimeExtract: CrossbreedBurningPyrite
+    RedSlimeExtract: CrossbreedBurningRed
+
+- type: slimeCrossbreedCategory
+  id: Industrial
+  name: slime-crossbreed-category-industrial
+  color: "#c8ccd4"
+  breed: MetalMutation
+  required: 8
+  results:
+    GreySlimeExtract: CrossbreedIndustrialGrey
+    PurpleSlimeExtract: CrossbreedIndustrialPurple
+    MetalSlimeExtract: CrossbreedIndustrialMetal
+    DarkPurpleSlimeExtract: CrossbreedIndustrialDarkPurple
+    SilverSlimeExtract: CrossbreedIndustrialSilver
+    GoldSlimeExtract: CrossbreedIndustrialGold
+    BluespaceSlimeExtract: CrossbreedIndustrialBluespace
+    MeatSlimeExtract: CrossbreedIndustrialMeat
+
+- type: slimeCrossbreedCategory
+  id: Duplicating
+  name: slime-crossbreed-category-duplicating
+  color: "#c9a0ff"
+  breed: AdamantineMutation
+  required: 5
+  results:
+    GreySlimeExtract: CrossbreedDuplicatingGrey
+    BluespaceSlimeExtract: CrossbreedDuplicatingBluespace
+    RainbowSlimeExtract: CrossbreedDuplicatingRainbow

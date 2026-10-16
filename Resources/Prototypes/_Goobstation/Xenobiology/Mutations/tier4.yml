@@ -1,7 +1,7 @@
 - type: breed
   parent: BaseMutation
   id: OilMutation
-  breedName: oil slime
+  breedName: xenobio-breed-oil # Aquila Change
   producedExtract: OilSlimeExtract
   components:
   - type: Slime
@@ -13,11 +13,12 @@
     mutationChance: 0.45
     potentialMutations:
     - OilMutation
+    - RainbowMutation # Aquila Change
 
 - type: breed
   parent: BaseMutation
   id: LightPinkMutation
-  breedName: light pink slime
+  breedName: xenobio-breed-light-pink # Aquila Change
   producedExtract: LightPinkSlimeExtract
   components:
   - type: Slime
@@ -27,11 +28,12 @@
     mutationChance: 0.45
     potentialMutations:
     - LightPinkMutation
+    - RainbowMutation # Aquila Change
 
 - type: breed
   parent: BaseMutation
   id: BlackMutation
-  breedName: black slime
+  breedName: xenobio-breed-black # Aquila Change
   producedExtract: BlackSlimeExtract
   components:
   - type: Slime
@@ -41,11 +43,12 @@
     mutationChance: 0.45
     potentialMutations:
     - BlackMutation
+    - RainbowMutation # Aquila Change
 
 - type: breed
   parent: BaseMutation
   id: AdamantineMutation
-  breedName: adamantine slime
+  breedName: xenobio-breed-adamantine # Aquila Change
   producedExtract: AdamantineSlimeExtract
   components:
   - type: Slime
@@ -57,3 +60,4 @@
     mutationChance: 0.45
     potentialMutations:
     - AdamantineMutation
+    - RainbowMutation # Aquila Change

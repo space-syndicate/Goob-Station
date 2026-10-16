@@ -20,7 +20,7 @@
         effects:
         - !type:AdjustReagent
           reagent: XenobioJellyDarkBlue
-          amount: 1
+          amount: 5 # Aquila Change
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -39,7 +39,7 @@
         effects:
         - !type:AdjustReagent
           reagent: Leporazine
-          amount: 30
+          amount: 60 # Aquila Change
   - type: Tag
     tags:
     - XenobiologyDarkBlueExtract

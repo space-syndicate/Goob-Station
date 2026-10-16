@@ -13,8 +13,17 @@
     - reagents: [ Water ]
       methods: [ Touch, Injection ]
       effects:
+      # Aquila Change start
       - !type:NestedEffect
-        proto: XenobioExtractFail
+        proto: XenobioExtractReaction
+      - !type:RelayNearby
+        compName: Battery
+        range: 5
+        effect: !type:RechargeBattery
+          fraction: 0.5
+      - !type:PlaySoundEffect
+        sound: /Audio/Effects/sparks4.ogg
+      # Aquila Change end
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -28,7 +37,11 @@
       effects:
       - !type:NestedEffect
         proto: XenobioExtractReaction
+      # Aquila Change start
       - !type:Emp
+        rangeModifier: 5
+        maxRange: 5
+      # Aquila Change end
   - type: Tag
     tags:
     - XenobiologyYellowExtract

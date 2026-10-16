@@ -18,6 +18,11 @@
         proto: XenobioExtractReaction
       - !type:SpawnEntity
         entity: FloorTileItemBluespace30
+      # Aquila Change start
+      - !type:SpawnEntity
+        entity: MaterialBSCrystal1
+        number: 2
+      # Aquila Change end
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -25,7 +30,7 @@
         proto: XenobioExtractReaction
       - !type:SpawnEntity
         entity: MaterialBSCrystal1
-        number: 5
+        number: 8 # Aquila Change
     - reagents: [ Blood ]
       methods: [ Touch, Injection ]
       effects:

@@ -25,7 +25,7 @@ public sealed partial class BreedPrototype : IPrototype, IInheritingPrototype
     /// Used to set the slime's name.
     /// </summary>
     [DataField(required: true)]
-    public string BreedName = string.Empty;
+    public LocId BreedName = string.Empty; // Aquila Change
 
     /// <summary>
     /// The extract produced when this breed is ground.

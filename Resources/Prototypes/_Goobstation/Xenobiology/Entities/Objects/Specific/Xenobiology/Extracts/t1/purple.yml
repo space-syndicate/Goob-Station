@@ -17,7 +17,7 @@
         proto: XenobioExtractReaction
       - !type:SpawnEntity
         entity: ArtifactFragment1
-        number: 4
+        number: 6 # Aquila Change
     - reagents: [ Plasma ]
       methods: [ Touch, Injection ]
       effects:
@@ -39,7 +39,7 @@
         effects:
         - !type:AdjustReagent
           reagent: Omnizine
-          amount: 15
+          amount: 30 # Aquila Change
   - type: Tag
     tags:
     - XenobiologyPurpleExtract

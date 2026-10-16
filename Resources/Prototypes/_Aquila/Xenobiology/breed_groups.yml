@@ -1,0 +1,58 @@
+- type: slimeBreedGroup
+  id: XenobioTier1
+  discoveryPoints: 500
+  breeds:
+  - OrangeMutation
+  - PurpleMutation
+  - BlueMutation
+  - MetalMutation
+
+- type: slimeBreedGroup
+  id: XenobioTier2
+  discoveryPoints: 1500
+  breeds:
+  - YellowMutation
+  - DarkPurpleMutation
+  - DarkBlueMutation
+  - SilverMutation
+
+- type: slimeBreedGroup
+  id: XenobioTier2Rare
+  discoveryPoints: 2500
+  breeds:
+  - RedMutation
+  - GreenMutation
+  - PinkMutation
+  - GoldMutation
+
+- type: slimeBreedGroup
+  id: XenobioTier3
+  discoveryPoints: 3000
+  breeds:
+  - BluespaceMutation
+  - SepiaMutation
+  - CeruleanMutation
+  - PyriteMutation
+
+- type: slimeBreedGroup
+  id: XenobioTier4
+  discoveryPoints: 5000
+  breeds:
+  - OilMutation
+  - BlackMutation
+  - LightPinkMutation
+  - AdamantineMutation
+
+- type: slimeBreedGroup
+  id: XenobioTier5
+  discoveryPoints: 8000
+  shuffle: false
+  breeds:
+  - RainbowMutation
+
+- type: slimeBreedGroup
+  id: XenobioMeat
+  discoveryPoints: 3000
+  shuffle: false
+  breeds:
+  - MeatMutation
