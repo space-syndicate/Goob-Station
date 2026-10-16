@@ -22,4 +22,4 @@
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice
-    price: 20
+    price: 2 # CorvaxGoob: 20 > 2
