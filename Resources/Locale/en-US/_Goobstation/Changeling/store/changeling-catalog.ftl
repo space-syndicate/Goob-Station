@@ -1,12 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
-
 # combat
 
 evolutionmenu-combat-armblade-name = Arm Blade
@@ -147,7 +138,7 @@ evolutionmenu-utility-chameleon-desc =
     Costs 20 chemicals.
 
 evolutionmenu-utility-darkadapt-name = Darkness Adaption
-evolutionmenu-utility-darkadapt-desc = 
+evolutionmenu-utility-darkadapt-desc =
     Allows you to adapt and adjust your body to the shroud of darkness.
     While shrouded in the dark, become translucent and gain night vision.
     Passive adaption can be toggled.
