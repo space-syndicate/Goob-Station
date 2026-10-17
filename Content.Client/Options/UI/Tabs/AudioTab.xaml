@@ -23,6 +23,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <ui:OptionSlider Name="SliderVolumeAmbience" Title="{Loc 'ui-options-ambience-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeLobby" Title="{Loc 'ui-options-lobby-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeInterface" Title="{Loc 'ui-options-interface-volume'}" />
+                <!-- CorvaxGoob Start - radio-channel-sounds -->
+                <ui:OptionSlider Name="SliderVolumeRadioSound" Title="{Loc 'ui-options-radio-sound-volume'}" />
+                <ui:OptionSlider Name="SliderRadioSoundCooldown" Title="{Loc 'ui-options-radio-sound-cooldown'}" />
+                <!-- CorvaxGoob End -->
                 <!-- Deleted by CorvaxGoob
                 <ui:OptionSlider Name="SliderVolumeVoiceChat" Title="{Loc 'ui-options-voice-chat-volume'}" />
                 -->
