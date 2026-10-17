@@ -15,13 +15,19 @@
     - map: [ "pocket2" ]
   - type: Xenomorph
     caste: Queen
+    weedHeal: # CorvaxGoob - xeno buff
+      groups:
+        Burn: -6
+        Toxin: -9
+        Airloss: -12
+        Brute: -9
   - type: XenomorphQueen
   - type: TailLash
     tailDamage:
       groups:
-        Brute: 5
+        Brute: 25 # CorvaxGoob - xeno buff
     inject:
-      ChloralHydrate: 10 # Goobstation - new chemical
+      ChloralHydrate: 14 # CorvaxGoob - xeno buff
   #- type: ActionGrant # Goobstation - moved to organs
   #  actions:
   #  - ActionTransferPlasma
@@ -52,9 +58,11 @@
       750: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      600: 0.9
-      645: 0.7
-      690: 0.6
+    # CorvaxGoob - xeno buff start
+      600: 1.1
+      645: 1.2
+      690: 1.3
+    # CorvaxGoob - xeno buff end
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.5
@@ -62,6 +70,8 @@
     damage:
       groups:
         Brute: 50
+      types:
+        Structural: 100  # CorvaxGoob - xeno buff
   - type: Deathgasp
     prototype: XenomorphQueenDeathgasp
   - type: Speech
@@ -81,6 +91,11 @@
   # - type: GuideHelp
   #   guides:
   #   - XenomorphQueen
+# CorvaxGoob - xeno buff start
+  - type: ContentEye
+    maxZoom: 1.25, 1.25
+    targetZoom: 1.25, 1.25
+# CorvaxGoob - xeno buff end
 
 - type: entity
   parent: BaseMobXenomorphQueen
