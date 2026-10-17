@@ -133,9 +133,9 @@
         reagents:
     # CorvaxGoob start
         - ReagentId: Haloperidol
-          Quantity: 5
+          Quantity: 2
   - type: SolutionTransfer
-    maxTransferAmount: 5
+    maxTransferAmount: 2
     # CorvaxGoob end
   - type: SpentAmmoVisuals
     state: "tranquilizer"
