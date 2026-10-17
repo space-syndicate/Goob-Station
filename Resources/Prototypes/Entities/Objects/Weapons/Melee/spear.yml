@@ -54,6 +54,15 @@
     damage:
       types:
         Piercing: 24 # Goob edit
+  - type: MomentumMelee
+    damage:
+      types:
+        Piercing: 12
+    minimumSpeed: 4.5
+    speedDamageFactor: 1.0
+    embedOnHit: true
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     size: Large # Goob edit
     shape: # Goob
