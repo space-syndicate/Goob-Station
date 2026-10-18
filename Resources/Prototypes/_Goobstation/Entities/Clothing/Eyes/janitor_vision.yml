@@ -4,7 +4,7 @@
   parent: ClothingEyesBase
   id: ClothingEyesGlassesJanitor
   name: janitorial scanner goggles
-  description: Highlights loose trash in orange and puddles in blue through walls within eight metres. Wear them over your eyes and use the scanner action to toggle detection.
+  description: Highlights the shapes of loose trash and puddles through walls within eight metres using a thermal imaging palette. Wear them over your eyes and use the scanner action to toggle detection.
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/meson.rsi
@@ -21,7 +21,7 @@
   parent: BaseAction
   id: ActionToggleJanitorVision
   name: Toggle janitorial scanner
-  description: Highlights nearby loose trash and puddles through walls. Orange crosses mark trash; blue circles mark puddles.
+  description: Toggles thermal-style highlighting of nearby loose trash and puddles through walls.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

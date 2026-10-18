@@ -17,12 +17,6 @@ public sealed partial class JanitorVisionComponent : Component
     [DataField, AutoNetworkedField]
     public float Range = 8f;
 
-    [DataField, AutoNetworkedField]
-    public Color TrashColor = Color.FromHex("#FFB347");
-
-    [DataField, AutoNetworkedField]
-    public Color PuddleColor = Color.FromHex("#42D9FF");
-
     [DataField]
     public EntProtoId ToggleAction = "ActionToggleJanitorVision";
 
