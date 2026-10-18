@@ -2,11 +2,12 @@
 
 using Robust.Shared.Configuration;
 
-namespace Content.Goobstation.Common.CCVar;
+namespace Content.Shared._CorvaxGoob.JanitorVision;
 
-public sealed partial class GoobCVars
+[CVarDefs]
+public sealed class JanitorVisionCVars
 {
     /// <summary>Client preference for scanner silhouettes and the screen tint, from 0 to 1.</summary>
-    public static readonly CVarDef<float> JanitorVisionIntensity =
+    public static readonly CVarDef<float> Intensity =
         CVarDef.Create("accessibility.janitor_vision_intensity", 0.65f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

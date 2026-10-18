@@ -3,7 +3,7 @@
 - type: shader
   id: JanitorVisionThermal
   kind: source
-  path: "/Textures/_Goobstation/Shaders/janitor_thermal.swsl"
+  path: "/Textures/_CorvaxGoob/Shaders/janitor_thermal.swsl"
   params:
     pixelSize: 32.0
     strength: 1.0
@@ -11,6 +11,6 @@
 - type: shader
   id: JanitorVisionScene
   kind: source
-  path: "/Textures/_Goobstation/Shaders/janitor_scene.swsl"
+  path: "/Textures/_CorvaxGoob/Shaders/janitor_scene.swsl"
   params:
     strength: 1.0

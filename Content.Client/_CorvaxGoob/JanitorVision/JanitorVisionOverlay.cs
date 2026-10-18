@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
-using Content.Goobstation.Shared.JanitorVision;
-using Content.Goobstation.Common.CCVar;
+using Content.Shared._CorvaxGoob.JanitorVision;
 using Content.Shared.Decals;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Tag;
@@ -14,7 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
 
-namespace Content.Goobstation.Client.JanitorVision;
+namespace Content.Client._CorvaxGoob.JanitorVision;
 
 /// <summary>Renders the actual cleaning targets with a thermal palette above lighting and FOV.</summary>
 public sealed class JanitorVisionOverlay : Overlay
@@ -30,7 +29,7 @@ public sealed class JanitorVisionOverlay : Overlay
     [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _footprintTextures = new();
-    private readonly SharedJanitorVisionSystem _vision;
+    private readonly JanitorVisionDetectionSystem _vision;
     private readonly TransformSystem _transform;
     private readonly SpriteSystem _sprites;
     private readonly ShaderInstance _thermalShader;
@@ -41,19 +40,19 @@ public sealed class JanitorVisionOverlay : Overlay
     public override bool RequestScreenTexture => true;
     public JanitorVisionComponent? Component;
 
-    public float Intensity
+    private float Intensity
     {
         get
         {
-            var value = _configuration.GetCVar(GoobCVars.JanitorVisionIntensity);
-            return float.IsFinite(value) ? Math.Clamp(value, 0f, 1f) : GoobCVars.JanitorVisionIntensity.DefaultValue;
+            var value = _configuration.GetCVar(JanitorVisionCVars.Intensity);
+            return float.IsFinite(value) ? Math.Clamp(value, 0f, 1f) : JanitorVisionCVars.Intensity.DefaultValue;
         }
     }
 
     public JanitorVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _vision = _entities.System<SharedJanitorVisionSystem>();
+        _vision = _entities.System<JanitorVisionDetectionSystem>();
         _transform = _entities.System<TransformSystem>();
         _sprites = _entities.System<SpriteSystem>();
         _thermalShader = _prototypes.Index(ThermalShader).InstanceUnique();
@@ -141,7 +140,7 @@ public sealed class JanitorVisionOverlay : Overlay
 
                 foreach (var decal in chunk.Decals.Values)
                 {
-                    if (!_vision.TryGetFootprintTarget(observer, grid, decal, range, out _))
+                    if (!_vision.IsFootprintInRange(observer, grid, decal, range))
                         continue;
 
                     if (!_footprintTextures.TryGetValue(decal.Id, out var cache))
@@ -166,7 +165,7 @@ public sealed class JanitorVisionOverlay : Overlay
     private void DrawTarget(DrawingHandleWorld handle, Angle eyeRotation, EntityUid observer, EntityUid target,
         SpriteComponent sprite, JanitorVisionComponent comp)
     {
-        if (!sprite.Visible || !_vision.TryGetTarget(observer, target, comp.Range, out _, out var position))
+        if (!sprite.Visible || !_vision.TryGetTargetPosition(observer, target, comp.Range, out var position))
             return;
 
         var originalColor = sprite.Color;
@@ -212,8 +211,17 @@ public sealed class JanitorVisionOverlay : Overlay
                 _sprites.LayerSetColor((target, sprite), state.Index, state.Color);
                 _sprites.LayerSetVisible((target, sprite), state.Index, true);
             }
+            _layerStates.Clear();
             handle.UseShader(null);
         }
+    }
+
+    protected override void DisposeBehavior()
+    {
+        _sceneShader.Dispose();
+        _thermalShader.Dispose();
+        _footprintTextures.Clear();
+        base.DisposeBehavior();
     }
 
     private readonly record struct LayerState(

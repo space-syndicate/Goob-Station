@@ -4,12 +4,13 @@ using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Goobstation.Shared.JanitorVision;
+namespace Content.Shared._CorvaxGoob.JanitorVision;
 
-/// <summary>Equipment that highlights loose trash and puddles through walls.</summary>
+/// <summary>Equipment that highlights trash, footprints and non-evaporating puddles through walls.</summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class JanitorVisionComponent : Component
 {
+    /// <summary>Whether the wearer has enabled the scanner action.</summary>
     [DataField, AutoNetworkedField]
     public bool Enabled = true;
 
@@ -17,20 +18,16 @@ public sealed partial class JanitorVisionComponent : Component
     [DataField, AutoNetworkedField]
     public float Range = 8f;
 
+    /// <summary>Action granted only while equipped in the eyes slot.</summary>
     [DataField]
     public EntProtoId ToggleAction = "ActionToggleJanitorVision";
 
+    /// <summary>Action instance owned by these goggles and shared between successive wearers.</summary>
     [DataField, AutoNetworkedField]
     public EntityUid? ToggleActionEntity;
 }
 
 public sealed partial class ToggleJanitorVisionEvent : InstantActionEvent;
-
-public enum JanitorVisionTarget : byte
-{
-    Trash,
-    Puddle,
-}
 
 [ByRefEvent]
 public readonly record struct JanitorVisionChangedEvent;

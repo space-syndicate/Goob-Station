@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.Overlays;
-using Content.Goobstation.Shared.JanitorVision;
+using Content.Shared._CorvaxGoob.JanitorVision;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Client.Graphics;
 
-namespace Content.Goobstation.Client.JanitorVision;
+namespace Content.Client._CorvaxGoob.JanitorVision;
 
 public sealed class JanitorVisionSystem : EquipmentHudSystem<JanitorVisionComponent>
 {
-    [Dependency] private readonly IOverlayManager _overlays = default!;
+    [Dependency] private IOverlayManager _overlays = default!;
 
     private JanitorVisionOverlay _overlay = default!;
     protected override SlotFlags TargetSlots => SlotFlags.EYES;
@@ -26,6 +26,7 @@ public sealed class JanitorVisionSystem : EquipmentHudSystem<JanitorVisionCompon
     public override void Shutdown()
     {
         DeactivateInternal();
+        _overlay.Dispose();
         base.Shutdown();
     }
 
@@ -36,21 +37,18 @@ public sealed class JanitorVisionSystem : EquipmentHudSystem<JanitorVisionCompon
     protected override void OnRefreshComponentHud(Entity<JanitorVisionComponent> ent,
         ref RefreshEquipmentHudEvent<JanitorVisionComponent> args) { }
 
+    protected override void OnRefreshEquipmentHud(Entity<JanitorVisionComponent> ent,
+        ref InventoryRelayedEvent<RefreshEquipmentHudEvent<JanitorVisionComponent>> args)
+    {
+        // ComponentRemove is raised before the inventory slot stops referring to the goggles.
+        if (!ent.Comp.Deleted && ent.Comp.Enabled)
+            base.OnRefreshEquipmentHud(ent, ref args);
+    }
+
     protected override void UpdateInternal(RefreshEquipmentHudEvent<JanitorVisionComponent> args)
     {
-        _overlay.Component = null;
-        foreach (var comp in args.Components)
-        {
-            if (comp.Enabled)
-            {
-                _overlay.Component = comp;
-                break;
-            }
-        }
-
-        if (_overlay.Component == null)
-            _overlays.RemoveOverlay(_overlay);
-        else if (!_overlays.HasOverlay<JanitorVisionOverlay>())
+        _overlay.Component = args.Components[0];
+        if (!_overlays.HasOverlay<JanitorVisionOverlay>())
             _overlays.AddOverlay(_overlay);
     }
 

@@ -28,7 +28,6 @@ highp vec3 hsv2rgb(highp vec3 c) {
     return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
 }
 
-
 highp float getNeighbor(highp vec2 uv, lowp int x, lowp int y) {
     lowp float xdif = float(x) / pixelSize;
     lowp float ydif = float(y) / pixelSize;
@@ -40,10 +39,10 @@ highp float getNeighbor(highp vec2 uv, lowp int x, lowp int y) {
 }
 
 void fragment() {
-	highp vec4 sprite = zTexture(UV);
-	if (sprite.a == 0.0) {
-		discard;
-	}
+    highp vec4 sprite = zTexture(UV);
+    if (sprite.a == 0.0) {
+        discard;
+    }
     highp float s = 0.0;
     for(int y = -2; y <= 2; y++) {
         for(int x = -2; x <= 2; x++) {
@@ -52,7 +51,6 @@ void fragment() {
     }
     highp vec3 hsv = rgb2hsv(sprite.xyz);
     sprite.rgb = hsv2rgb(vec3(pow(hsv.z, 0.5), s, 1.0));
-    // sprite.rgb = sprite.rgb * vec3(1.0, 1.0, 0.5);
 
     COLOR = vec4(sprite.rgb, sprite.a * clamp(strength, 0.0, 1.0));
 }
