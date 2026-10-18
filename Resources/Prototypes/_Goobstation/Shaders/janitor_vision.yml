@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: shader
+  id: JanitorVisionThermal
+  kind: source
+  path: "/Textures/_Goobstation/Shaders/janitor_thermal.swsl"
+  params:
+    pixelSize: 32.0
+    strength: 1.0
+
+- type: shader
+  id: JanitorVisionScene
+  kind: source
+  path: "/Textures/_Goobstation/Shaders/janitor_scene.swsl"
+  params:
+    strength: 1.0

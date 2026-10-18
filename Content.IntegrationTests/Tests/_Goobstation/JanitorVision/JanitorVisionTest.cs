@@ -1,6 +1,16 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using System.Linq;
+using Content.Client.Options.UI;
+using Content.Client.Options.UI.Tabs;
+using Content.Goobstation.Common.CCVar;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Server.Fluids.EntitySystems;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Decals;
+using Content.Shared.Fluids.Components;
+using Robust.Shared.Configuration;
 using Content.Goobstation.Client.JanitorVision;
 using Content.Goobstation.Shared.JanitorVision;
 using Content.IntegrationTests.Tests.Interaction;
@@ -123,6 +133,116 @@ public sealed class JanitorVisionTest : InteractionTest
             Assert.That(vision.TryGetTarget(CPlayer, clientTrash, 8f, out _, out _), Is.False);
             Assert.That(vision.TryGetTarget(CPlayer, clientPuddle, 8f, out _, out _), Is.False);
         });
+    }
+
+    [Test]
+    public async Task IntensityPreferenceLoadsInOptionsAndUpdatesScanner()
+    {
+        await Client.WaitAssertion(() =>
+        {
+            var config = Client.ResolveDependency<IConfigurationManager>();
+            var oldValue = config.GetCVar(GoobCVars.JanitorVisionIntensity);
+            AccessibilityTab tab = null;
+            try
+            {
+                config.SetCVar(GoobCVars.JanitorVisionIntensity, 0.25f);
+                tab = new AccessibilityTab();
+                var slider = tab.FindControl<OptionSlider>("JanitorVisionIntensitySlider");
+                Assert.That(slider.Slider.Value, Is.EqualTo(0.25f).Within(0.001f));
+                var overlay = new JanitorVisionOverlay();
+                Assert.That(overlay.Intensity, Is.EqualTo(0.25f));
+
+                config.SetCVar(GoobCVars.JanitorVisionIntensity, 0f);
+                tab.Control.ReloadValues();
+                Assert.That(slider.Slider.Value, Is.Zero);
+                Assert.That(overlay.Intensity, Is.Zero);
+                config.SetCVar(GoobCVars.JanitorVisionIntensity, 1f);
+                Assert.That(overlay.Intensity, Is.EqualTo(1f));
+            }
+            finally
+            {
+                config.SetCVar(GoobCVars.JanitorVisionIntensity, oldValue);
+                tab?.Orphan();
+            }
+        });
+    }
+
+    [Test]
+    public async Task FootprintsSyncAndCleanWhileEvaporatingPuddlesAreExcluded()
+    {
+        var decals = Server.System<Content.Server.Decals.DecalSystem>();
+        var vision = Server.System<SharedJanitorVisionSystem>();
+        uint footId = 0;
+        uint bodyId = 0;
+        NetEntity gridNet = default;
+        NetEntity waterNet = default;
+        await Server.WaitAssertion(() =>
+        {
+            var grid = MapData.Grid.Owner;
+            gridNet = SEntMan.GetNetEntity(grid);
+            var origin = Transform.WithEntityId(SEntMan.GetCoordinates(PlayerCoords), grid);
+            var tile = new Tile(TileMan[Plating].TileId);
+            for (var x = 0; x <= 4; x++)
+                MapSystem.SetTile(MapData.Grid, origin.Offset(new Vector2(x, 0f)), tile);
+            SEntMan.SpawnEntity("WallSolid", origin.Offset(new Vector2(1f, 0f)));
+
+            Assert.That(decals.TryAddDecal("FootprintForward", origin.Offset(new Vector2(1.5f, -0.5f)),
+                out footId, cleanable: true), Is.True);
+            Assert.That(decals.TryAddDecal("FootprintBody", origin.Offset(new Vector2(2.5f, -0.5f)),
+                out bodyId, cleanable: true), Is.True);
+            var foot = ReadDecal(SEntMan, grid, footId);
+            var body = ReadDecal(SEntMan, grid, bodyId);
+            Assert.That(vision.TryGetFootprintTarget(SPlayer, grid, foot, 8f, out _), Is.True);
+            Assert.That(vision.TryGetFootprintTarget(SPlayer, grid, body, 8f, out _), Is.True);
+            Assert.That(vision.TryGetFootprintTarget(SPlayer, grid, foot, 1f, out _), Is.False);
+            Assert.That(vision.TryGetFootprintTarget(SPlayer, grid, foot.WithCleanable(false), 8f, out _), Is.False);
+
+            var water = new Solution("Water", FixedPoint2.New(40));
+            Assert.That(Server.System<PuddleSystem>().TrySpillAt(origin.Offset(new Vector2(4f, 0f)),
+                water, out var waterUid), Is.True);
+            waterNet = SEntMan.GetNetEntity(waterUid);
+            Assert.That(SEntMan.HasComponent<EvaporationComponent>(waterUid), Is.True);
+            Assert.That(vision.TryGetTarget(SPlayer, waterUid, 8f, out _, out _), Is.False);
+        });
+        await RunTicks(10);
+
+        await Client.WaitAssertion(() =>
+        {
+            var grid = CEntMan.GetEntity(gridNet);
+            var clientVision = Client.System<SharedJanitorVisionSystem>();
+            Assert.That(clientVision.TryGetFootprintTarget(CPlayer, grid, ReadDecal(CEntMan, grid, footId),
+                8f, out _), Is.True);
+            Assert.That(clientVision.TryGetFootprintTarget(CPlayer, grid, ReadDecal(CEntMan, grid, bodyId),
+                8f, out _), Is.True);
+            var water = CEntMan.GetEntity(waterNet);
+            Assert.That(CEntMan.HasComponent<EvaporationComponent>(water), Is.True);
+            Assert.That(clientVision.TryGetTarget(CPlayer, water, 8f, out _, out _), Is.False);
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(decals.RemoveDecal(MapData.Grid.Owner, footId), Is.True);
+            Assert.That(decals.RemoveDecal(MapData.Grid.Owner, bodyId), Is.True);
+        });
+        await RunTicks(10);
+        await Client.WaitAssertion(() =>
+        {
+            var comp = CEntMan.GetComponent<DecalGridComponent>(CEntMan.GetEntity(gridNet));
+            Assert.That(comp.ChunkCollection.ChunkCollection.Values.Any(chunk => chunk.Decals.ContainsKey(footId)), Is.False);
+            Assert.That(comp.ChunkCollection.ChunkCollection.Values.Any(chunk => chunk.Decals.ContainsKey(bodyId)), Is.False);
+        });
+    }
+
+    private static Decal ReadDecal(IEntityManager entities, EntityUid grid, uint id)
+    {
+        var comp = entities.GetComponent<DecalGridComponent>(grid);
+        foreach (var chunk in comp.ChunkCollection.ChunkCollection.Values)
+        {
+            if (chunk.Decals.TryGetValue(id, out var decal))
+                return decal;
+        }
+        Assert.Fail($"Decal {id} is missing from the grid");
+        return null;
     }
 
     private async Task AssertOverlay(bool enabled)

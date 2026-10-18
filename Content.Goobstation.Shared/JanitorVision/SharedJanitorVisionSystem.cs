@@ -2,6 +2,7 @@
 
 using System.Numerics;
 using Content.Shared.Actions;
+using Content.Shared.Decals;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -19,6 +20,8 @@ public sealed class SharedJanitorVisionSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
@@ -77,11 +80,34 @@ public sealed class SharedJanitorVisionSystem : EntitySystem
             return false;
 
         if (HasComp<PuddleComponent>(target))
+        {
+            if (HasComp<EvaporationComponent>(target))
+                return false;
             kind = JanitorVisionTarget.Puddle;
+        }
         else if (!_tags.HasTag(target, TrashTag))
             return false;
 
         position = _transform.GetWorldPosition(targetXform);
+        return Vector2.DistanceSquared(_transform.GetWorldPosition(observerXform), position) <= range * range;
+    }
+
+    /// <summary>Foot and body prints are cleanable grid decals, not sprite entities.</summary>
+    public bool TryGetFootprintTarget(EntityUid observer, EntityUid grid, Decal decal, float range,
+        out Vector2 position)
+    {
+        position = default;
+        if (range <= 0f || !decal.Cleanable || Deleted(observer) || Deleted(grid)
+            || !TryComp(observer, out TransformComponent? observerXform)
+            || !TryComp(grid, out TransformComponent? gridXform)
+            || observerXform.MapID == MapId.Nullspace || observerXform.MapID != gridXform.MapID
+            || (MetaData(grid).Flags & MetaDataFlags.Detached) != 0
+            || !_prototypes.TryIndex<DecalPrototype>(decal.Id, out var prototype)
+            || !prototype.Tags.Contains("footprint"))
+            return false;
+
+        // Decal coordinates refer to the lower-left corner of the one-tile texture quad.
+        position = Vector2.Transform(decal.Coordinates + new Vector2(0.5f), _transform.GetWorldMatrix(gridXform));
         return Vector2.DistanceSquared(_transform.GetWorldPosition(observerXform), position) <= range * range;
     }
 }

@@ -2,12 +2,16 @@
 
 using System.Numerics;
 using Content.Goobstation.Shared.JanitorVision;
+using Content.Goobstation.Common.CCVar;
+using Content.Shared.Decals;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Configuration;
+using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Client.JanitorVision;
@@ -20,9 +24,12 @@ public sealed class JanitorVisionOverlay : Overlay
     [Dependency] private readonly IEyeManager _eyes = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
-    private static readonly ProtoId<ShaderPrototype> ThermalShader = "ThermalVision";
-    private static readonly ProtoId<ShaderPrototype> SceneShader = "NightVision";
+    private static readonly ProtoId<ShaderPrototype> ThermalShader = "JanitorVisionThermal";
+    private static readonly ProtoId<ShaderPrototype> SceneShader = "JanitorVisionScene";
 
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
+
+    private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _footprintTextures = new();
     private readonly SharedJanitorVisionSystem _vision;
     private readonly TransformSystem _transform;
     private readonly SpriteSystem _sprites;
@@ -34,21 +41,28 @@ public sealed class JanitorVisionOverlay : Overlay
     public override bool RequestScreenTexture => true;
     public JanitorVisionComponent? Component;
 
+    public float Intensity
+    {
+        get
+        {
+            var value = _configuration.GetCVar(GoobCVars.JanitorVisionIntensity);
+            return float.IsFinite(value) ? Math.Clamp(value, 0f, 1f) : GoobCVars.JanitorVisionIntensity.DefaultValue;
+        }
+    }
+
     public JanitorVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
         _vision = _entities.System<SharedJanitorVisionSystem>();
         _transform = _entities.System<TransformSystem>();
         _sprites = _entities.System<SpriteSystem>();
-        _thermalShader = _prototypes.Index(ThermalShader).Instance();
+        _thermalShader = _prototypes.Index(ThermalShader).InstanceUnique();
         _sceneShader = _prototypes.Index(SceneShader).InstanceUnique();
-        _sceneShader.SetParameter("tint", new Vector3(0.12f, 0.38f, 0.12f));
-        _sceneShader.SetParameter("luminance_threshold", 2f);
-        _sceneShader.SetParameter("noise_amount", 0.15f);
         ZIndex = 1;
     }
 
-    protected override bool BeforeDraw(in OverlayDrawArgs args) => args.Viewport.Eye == _eyes.CurrentEye;
+    protected override bool BeforeDraw(in OverlayDrawArgs args) =>
+        Component is { Enabled: true } && Intensity > 0f && args.Viewport.Eye == _eyes.CurrentEye;
 
     protected override void Draw(in OverlayDrawArgs args)
     {
@@ -60,6 +74,12 @@ public sealed class JanitorVisionOverlay : Overlay
         if (!_entities.TryGetComponent(observer, out TransformComponent? xform) || eye.Position.MapId != xform.MapID)
             return;
 
+        var intensity = Intensity;
+        if (intensity <= 0f)
+            return;
+
+        _thermalShader.SetParameter("strength", intensity);
+        _sceneShader.SetParameter("strength", intensity);
         var handle = args.WorldHandle;
         handle.SetTransform(Matrix3x2.Identity);
         try
@@ -73,6 +93,8 @@ public sealed class JanitorVisionOverlay : Overlay
                 handle.DrawRect(args.WorldBounds, Color.White);
                 handle.UseShader(null);
             }
+
+            DrawFootprints(handle, observer, comp.Range, eye.Rotation);
 
             // Keep the same layering as the world: puddles below loose items.
             var puddles = _entities.EntityQueryEnumerator<PuddleComponent, SpriteComponent>();
@@ -91,6 +113,54 @@ public sealed class JanitorVisionOverlay : Overlay
             handle.UseShader(null);
             handle.SetTransform(Matrix3x2.Identity);
         }
+    }
+
+    private void DrawFootprints(DrawingHandleWorld handle, EntityUid observer, float range, Angle eyeRotation)
+    {
+        if (range <= 0f)
+            return;
+
+        var observerXform = _entities.GetComponent<TransformComponent>(observer);
+        var observerPosition = _transform.GetWorldPosition(observerXform);
+        var grids = _entities.EntityQueryEnumerator<DecalGridComponent, TransformComponent>();
+        while (grids.MoveNext(out var grid, out var decals, out var xform))
+        {
+            if (xform.MapID != observerXform.MapID)
+                continue;
+
+            var localPosition = Vector2.Transform(observerPosition, _transform.GetInvWorldMatrix(xform));
+            var extent = new Vector2(range + 1f);
+            var bounds = new Box2(localPosition - extent, localPosition + extent);
+            var chunks = new ChunkIndicesEnumerator(bounds, SharedDecalSystem.ChunkSize);
+            handle.SetTransform(_transform.GetWorldMatrix(xform));
+            handle.UseShader(_thermalShader);
+            while (chunks.MoveNext(out var index))
+            {
+                if (!decals.ChunkCollection.ChunkCollection.TryGetValue(index.Value, out var chunk))
+                    continue;
+
+                foreach (var decal in chunk.Decals.Values)
+                {
+                    if (!_vision.TryGetFootprintTarget(observer, grid, decal, range, out _))
+                        continue;
+
+                    if (!_footprintTextures.TryGetValue(decal.Id, out var cache))
+                    {
+                        var prototype = _prototypes.Index<DecalPrototype>(decal.Id);
+                        cache = (_sprites.Frame0(prototype.Sprite), prototype.SnapCardinals);
+                        _footprintTextures[decal.Id] = cache;
+                    }
+
+                    var cardinal = cache.SnapCardinals
+                        ? (eyeRotation + _transform.GetWorldRotation(xform)).GetCardinalDir().ToAngle()
+                        : Angle.Zero;
+                    handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Angle - cardinal, Color.White);
+                }
+            }
+        }
+
+        handle.UseShader(null);
+        handle.SetTransform(Matrix3x2.Identity);
     }
 
     private void DrawTarget(DrawingHandleWorld handle, Angle eyeRotation, EntityUid observer, EntityUid target,
