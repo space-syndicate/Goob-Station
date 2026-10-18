@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesJanitor
+  name: janitorial scanner goggles
+  description: Highlights loose trash in orange and puddles in blue through walls within eight metres. Wear them over your eyes and use the scanner action to toggle detection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+    color: "#D69EFF"
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+        color: "#D69EFF"
+  - type: JanitorVision
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleJanitorVision
+  name: Toggle janitorial scanner
+  description: Highlights nearby loose trash and puddles through walls. Orange crosses mark trash; blue circles mark puddles.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 1
+    icon:
+      sprite: Clothing/Eyes/Glasses/meson.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ToggleJanitorVisionEvent
