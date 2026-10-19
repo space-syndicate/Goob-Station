@@ -330,6 +330,7 @@ namespace Content.Server.Atmos.EntitySystems
             return (-quadraticB + MathF.Sqrt(quadraticB * quadraticB - 4 * quadraticA * quadraticC)) / (2 * quadraticA);
         }
 
+        // CorvaxGoob subframe fix port start
         /// <summary>
         /// Determines the fraction of gas to be removed and transferred from a source
         /// <see cref="GasMixture"/> to a target <see cref="GasMixture"/> to reach a target pressure
@@ -392,6 +393,7 @@ namespace Content.Server.Atmos.EntitySystems
             // Return the fraction of moles to transfer.
             return requiredMoles / mix1.TotalMoles;
         }
+        // CorvaxGoob subframe fix port start
 
         /// <summary>
         /// Determines the number of moles that need to be removed from a <see cref="GasMixture"/> to reach a target pressure threshold.

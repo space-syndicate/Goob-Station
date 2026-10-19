@@ -71,6 +71,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             if (pump.Blocked)
                 return;
 
+            // CorvaxGoob subframe fix port start
             // We multiply the transfer rate in L/s by the seconds passed since the last process to get the liters.
             var transferVol = pump.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
             var transferRatio = transferVol / inlet.Air.Volume;
@@ -82,6 +83,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             // `RemoveRatio` method
             var removedRatio = Math.Min(transferRatio, limitRatio);
             var removed = inlet.Air.RemoveRatio(removedRatio);
+            // CorvaxGoob subframe fix port end
 
             // Some of the gas from the mixture leaks when overclocked.
             if (pump.Overclocked)

@@ -75,6 +75,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             if (filter.FilteredGas.HasValue)
             {
+                // CorvaxGoob subframe fix port start
                 // Make sure we don't pump over the pressure limit.
                 var limitMolesFilter =
                     AtmosphereSystem.FractionToMaxPressure(removed, filterNode.Air, Atmospherics.MaxOutputPressure);
@@ -87,8 +88,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 inletNode.Air.AdjustMoles(filter.FilteredGas.Value, availableMoles - filteredMoles);
 
                 _ambientSoundSystem.SetAmbience(uid, filteredMoles > 0f);
+                // CorvaxGoob subframe fix port end
             }
 
+            // CorvaxGoob subframe fix port start
             // Fraction of `removed` that can be sent to outlet without exceeding max pressure.
             var limitRatioOutlet =
                 AtmosphereSystem.FractionToMaxPressure(removed, outletNode.Air, Atmospherics.MaxOutputPressure);
@@ -98,6 +101,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             _atmosphereSystem.Merge(outletNode.Air, passthrough);
             _atmosphereSystem.Merge(inletNode.Air, removed);
+            // CorvaxGoob subframe fix port end
         }
 
         private void OnFilterLeaveAtmosphere(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceDisabledEvent args)
