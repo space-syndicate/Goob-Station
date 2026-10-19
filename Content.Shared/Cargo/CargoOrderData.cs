@@ -77,6 +77,14 @@ namespace Content.Shared.Cargo
         [DataField]
         public ProtoId<CargoAccountPrototype> Account;
 
+        // Aquila Change start
+        /// <summary>
+        /// Номер личного счёта, с которого оплачивается заказ вместо бюджета отдела.
+        /// </summary>
+        [DataField]
+        public int? PersonalAccount;
+        // Aquila Change end
+
         // GoobStation - (cooldown parameter) cooldown on Cargo Orders (specifically gamba)
         // CorvaxGoob-CargoFeatures : Добавлен параметр доставки, заметки и защиты груза.
         public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string? deliveryDestination, string? note, ProtoId<CargoAccountPrototype> account, int cooldown, bool securedDelivery = false)

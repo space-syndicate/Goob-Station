@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Client.Cargo.UI;
+using Content.Shared._Aquila.CCVars; // Aquila Change
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -9,6 +10,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.IdentityManagement;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Shared.Configuration; // Aquila Change
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BaseButton;
@@ -18,6 +20,7 @@ namespace Content.Client.Cargo.BUI
     public sealed class CargoOrderConsoleBoundUserInterface : BoundUserInterface
     {
         [Dependency] private readonly IPrototypeManager _protoManager = default!; // CorvaxGoob-CargoFeatures
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Aquila Change
         private readonly SharedCargoSystem _cargoSystem;
 
         [ViewVariables]
@@ -81,6 +84,10 @@ namespace Content.Client.Cargo.BUI
                     return;
 
                 _orderMenu.ToggleDepartmentSecureCrate.Pressed = false; // CorvaxGoob-CargoFeatures : дефолт знач при каждом открытии
+                // Aquila Change start
+                _orderMenu.PersonalOrder.Pressed = false;
+                _orderMenu.PersonalOrder.Visible = _cfg.GetCVar(AquilaCVars.Economy);
+                // Aquila Change end
 
                 description.Clear();
                 description.PushColor(Color.White); // Rich text default color is grey
@@ -116,6 +123,7 @@ namespace Content.Client.Cargo.BUI
             _menu.OnOrderCanceled += RemoveOrder;
 
             _orderMenu.ToggleDepartmentSecureCrate.OnToggled += ToggleDepartmentSecureCrate_OnToggled; // CorvaxGoob-CargoFeatures
+            _orderMenu.PersonalOrder.OnToggled += OnPersonalOrderToggled; // Aquila Change
 
             _orderMenu.SubmitButton.OnPressed += (_) =>
             {
@@ -146,11 +154,29 @@ namespace Content.Client.Cargo.BUI
                 || !EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
                 return;
 
-            int cost = obj.Pressed ? _product.Cost + orderConsole.SecureOrderCost : _product.Cost; // Цена либо с защищённым либо нет
+            var productCost = _menu?.GetProductCost(_product) ?? _product.Cost; // Aquila Change
+            int cost = obj.Pressed ? productCost + orderConsole.SecureOrderCost : productCost; // Цена либо с защищённым либо нет // Aquila Change
 
             _orderMenu.PointCost.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", cost));
         }
         // CorvaxGoob-CargoFeatures-End
+
+        // Aquila Change start
+        private void OnPersonalOrderToggled(ButtonToggledEventArgs args)
+        {
+            if (_product is null
+                || _orderMenu is null
+                || _menu is null
+                || !EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
+                return;
+
+            _orderMenu.ToggleDepartmentSecureCrate.Pressed = false;
+            _orderMenu.ToggleDepartmentSecureCrate.Disabled = args.Pressed
+                || !_protoManager.TryIndex<EntityPrototype>(_product.Product, out var product)
+                || !_cargoSystem.CanBeSecuredDelivery((Owner, orderConsole), product);
+            _orderMenu.PointCost.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", _menu.GetProductCost(_product)));
+        }
+        // Aquila Change end
 
         private void Populate(List<CargoOrderData> orders)
         {
@@ -216,7 +242,10 @@ namespace Content.Client.Cargo.BUI
                 _orderMenu?.Note.Text == "" ? null : _orderMenu?.Note.Text, // CorvaxGoob-CargoFeatures
                 _product?.ID ?? "",
                 orderAmt,
-                _orderMenu?.ToggleDepartmentSecureCrate.Pressed ?? false)); // CorvaxGoob-CargoFeatures
+                _orderMenu?.ToggleDepartmentSecureCrate.Pressed ?? false) // CorvaxGoob-CargoFeatures // Aquila Change
+            {
+                Personal = _orderMenu?.PersonalOrder.Pressed ?? false, // Aquila Change
+            }); // Aquila Change
 
             return true;
         }

@@ -1,0 +1,87 @@
+<economy:BankUiFragment xmlns="https://spacestation14.io"
+                        xmlns:economy="clr-namespace:Content.Client._Aquila.Economy"
+                        Orientation="Vertical"
+                        HorizontalExpand="True"
+                        VerticalExpand="True">
+    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" StyleClasses="PdaScroll">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10 6 10 10">
+            <PanelContainer Name="NoAccountCard" StyleClasses="PdaCard" Margin="0 6 0 0" Visible="False">
+                <BoxContainer Orientation="Vertical" Margin="8 12" SeparationOverride="8">
+                    <Label Name="NoAccountLabel" HorizontalAlignment="Center" ClipText="True"/>
+                    <Button Name="OpenAccountButton" Text="{Loc 'bank-ui-open-account'}" StyleClasses="GreenPDAPalette" HorizontalAlignment="Center" Visible="False"/>
+                </BoxContainer>
+            </PanelContainer>
+
+            <BoxContainer Name="AccountContainer" Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc 'bank-ui-section-account'}" StyleClasses="PdaSectionHeader" Margin="4 6 0 4"/>
+                <PanelContainer StyleClasses="PdaCard">
+                    <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="2">
+                        <Label Name="BalanceLabel" StyleClasses="LabelHeading" ClipText="True"/>
+                        <Label Name="OwnerLabel" ClipText="True"/>
+                        <Label Name="NumberLabel" StyleClasses="LabelSubText" ClipText="True"/>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'bank-ui-section-transfer'}" StyleClasses="PdaSectionHeader" Margin="4 12 0 4"/>
+                <PanelContainer StyleClasses="PdaCard">
+                    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+                        <LineEdit Name="NumberInput" HorizontalExpand="True" PlaceHolder="{Loc 'bank-ui-transfer-number'}"/>
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                            <LineEdit Name="AmountInput" HorizontalExpand="True" PlaceHolder="{Loc 'bank-ui-transfer-amount'}"/>
+                            <Button Name="TransferButton" Text="{Loc 'bank-ui-transfer-button'}" StyleClasses="GreenPDAPalette" MinWidth="90"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <BoxContainer Name="ManageContainer" Orientation="Vertical" HorizontalExpand="True" Visible="False">
+                    <Label Text="{Loc 'bank-ui-section-manage'}" StyleClasses="PdaSectionHeader" Margin="4 12 0 4"/>
+                    <PanelContainer StyleClasses="PdaCard">
+                        <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+                            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="2">
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                                    <Label Text="{Loc 'bank-ui-manage-budget'}" StyleClasses="LabelSubText" VAlign="Center"/>
+                                    <Label Name="BudgetNameLabel" HorizontalExpand="True" Align="Right" ClipText="True"/>
+                                </BoxContainer>
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                                    <Label Text="{Loc 'bank-ui-manage-budget-balance'}" StyleClasses="LabelSubText" VAlign="Center"/>
+                                    <Label Name="BudgetBalanceLabel" HorizontalExpand="True" Align="Right" ClipText="True"/>
+                                </BoxContainer>
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                                    <Label Text="{Loc 'bank-ui-manage-bonus-left'}" StyleClasses="LabelSubText" VAlign="Center"/>
+                                    <Label Name="BonusLeftLabel" HorizontalExpand="True" Align="Right" ClipText="True"/>
+                                </BoxContainer>
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                                    <Label Text="{Loc 'bank-ui-manage-max-fine'}" StyleClasses="LabelSubText" VAlign="Center"/>
+                                    <Label Name="MaxFineLabel" HorizontalExpand="True" Align="Right" ClipText="True"/>
+                                </BoxContainer>
+                            </BoxContainer>
+                            <PanelContainer StyleClasses="PdaSeparator" SetHeight="1" Margin="0 4"/>
+                            <LineEdit Name="ManageNumberInput" HorizontalExpand="True" PlaceHolder="{Loc 'bank-ui-transfer-number'}"/>
+                            <LineEdit Name="ManageAmountInput" HorizontalExpand="True" PlaceHolder="{Loc 'bank-ui-transfer-amount'}"/>
+                            <LineEdit Name="ManageCommentInput" HorizontalExpand="True" PlaceHolder="{Loc 'bank-ui-manage-comment'}"/>
+                            <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                                <Button Name="BonusButton" Text="{Loc 'bank-ui-manage-bonus'}" HorizontalExpand="True" StyleClasses="GreenPDAPalette"/>
+                                <Button Name="FineButton" Text="{Loc 'bank-ui-manage-fine'}" HorizontalExpand="True" StyleClasses="GreenPDAPalette"/>
+                            </BoxContainer>
+                            <BoxContainer Name="RequestsContainer" Orientation="Vertical" SeparationOverride="6" Visible="False">
+                                <PanelContainer StyleClasses="PdaSeparator" SetHeight="1" Margin="0 4"/>
+                                <Label Text="{Loc 'bank-ui-manage-requests'}" StyleClasses="LabelSubText"/>
+                                <BoxContainer Name="RequestsList" Orientation="Vertical" SeparationOverride="8"/>
+                            </BoxContainer>
+                            <BoxContainer Name="FinesContainer" Orientation="Vertical" SeparationOverride="6" Visible="False">
+                                <PanelContainer StyleClasses="PdaSeparator" SetHeight="1" Margin="0 4"/>
+                                <Label Text="{Loc 'bank-ui-manage-fines'}" StyleClasses="LabelSubText"/>
+                                <BoxContainer Name="FinesList" Orientation="Vertical" SeparationOverride="8"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+                <Label Text="{Loc 'bank-ui-section-history'}" StyleClasses="PdaSectionHeader" Margin="4 12 0 4"/>
+                <PanelContainer StyleClasses="PdaCard">
+                    <BoxContainer Name="HistoryContainer" Orientation="Vertical" HorizontalExpand="True" Margin="0 4"/>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </ScrollContainer>
+</economy:BankUiFragment>

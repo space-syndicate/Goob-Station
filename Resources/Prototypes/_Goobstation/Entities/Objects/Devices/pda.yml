@@ -189,6 +189,7 @@
     - MedTekCartridge
     - AstroNavCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: NavyCaptainPDA
@@ -263,6 +264,7 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: BaseMedicalPDA

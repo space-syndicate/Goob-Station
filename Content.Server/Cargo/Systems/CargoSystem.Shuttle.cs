@@ -47,9 +47,14 @@ public sealed partial class CargoSystem
         }
         GetPalletGoods(gridUid, out var toSell, out var goods);
         var totalAmount = goods.Sum(t => t.Item3);
+        // Aquila Change start
+        var payout = _station.GetOwningStation(uid) is { } station
+            ? _market.Appraise(station, goods.Select(good => (good.Item1, good.Item3)))
+            : totalAmount;
         _uiSystem.SetUiState(uid,
             CargoPalletConsoleUiKey.Sale,
-            new CargoPalletConsoleInterfaceState((int) totalAmount, toSell.Count, true));
+            new CargoPalletConsoleInterfaceState((int) totalAmount, toSell.Count, true) { Payout = (int) payout });
+        // Aquila Change end
     }
 
     private void OnPalletUIOpen(EntityUid uid, CargoPalletConsoleComponent component, BoundUIOpenedEvent args)
@@ -141,6 +146,8 @@ public sealed partial class CargoSystem
 
         if (toSell.Count == 0)
             return false;
+
+        goods = goods.Select(good => (good.Item1, good.Item2, _market.Sell(station, good.Item1, good.Item3))).ToHashSet(); // Aquila Change
 
         var ev = new EntitySoldEvent(toSell, station);
         RaiseLocalEvent(ref ev);
@@ -261,6 +268,7 @@ public sealed partial class CargoSystem
         Dirty(station, bankAccount);
         _audio.PlayPvs(ApproveSound, uid);
         UpdatePalletConsoleInterface(uid);
+        UpdateOrders(station); // Aquila Change
     }
 
     #endregion

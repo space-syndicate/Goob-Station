@@ -32,6 +32,14 @@ public sealed partial class CargoSlipComponent : Component
     public bool SecuredDelivery;
     // CorvaxGoob-CargoFeatures-End
 
+    // Aquila Change start
+    /// <summary>
+    /// Номер личного счёта, с которого оплачивается заказ вместо бюджета отдела.
+    /// </summary>
+    [DataField]
+    public int? PersonalAccount;
+    // Aquila Change end
+
     /// <summary>
     /// How many of the product to order
     /// </summary>

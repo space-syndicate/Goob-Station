@@ -44,6 +44,7 @@ public sealed class CargoPalletConsoleBoundUserInterface : BoundUserInterface
 
         _menu?.SetEnabled(palletState.Enabled);
         _menu?.SetAppraisal(palletState.Appraisal);
+        _menu?.SetPayout(palletState.Payout, palletState.Appraisal); // Aquila Change
         _menu?.SetCount(palletState.Count);
     }
 }

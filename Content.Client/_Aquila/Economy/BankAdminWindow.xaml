@@ -1,0 +1,53 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'bank-admin-title'}"
+                      SetSize="1000 620"
+                      MinSize="760 420">
+    <BoxContainer Orientation="Horizontal" Margin="8" SeparationOverride="8">
+        <BoxContainer Orientation="Vertical" MinWidth="320" SeparationOverride="6">
+            <LineEdit Name="SearchInput" PlaceHolder="{Loc 'bank-admin-search'}"/>
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                <BoxContainer Name="AccountsList" Orientation="Vertical" SeparationOverride="2"/>
+            </ScrollContainer>
+            <Button Name="RefreshButton" Text="{Loc 'bank-admin-refresh'}"/>
+        </BoxContainer>
+
+        <TabContainer Name="Tabs" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+                <Label Name="NoAccountLabel" Text="{Loc 'bank-admin-no-account'}" StyleClasses="LabelSubText"/>
+                <BoxContainer Name="AccountContainer" Orientation="Vertical" SeparationOverride="6" VerticalExpand="True" Visible="False">
+                    <Label Name="AccountTitle" StyleClasses="LabelHeading" ClipText="True"/>
+                    <Label Name="AccountBalance"/>
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                        <LineEdit Name="AmountInput" MinWidth="120" PlaceHolder="{Loc 'bank-admin-amount'}"/>
+                        <LineEdit Name="CommentInput" HorizontalExpand="True" PlaceHolder="{Loc 'bank-admin-comment'}"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                        <Button Name="BonusButton" Text="{Loc 'bank-admin-bonus'}" HorizontalExpand="True" StyleClasses="OpenRight"/>
+                        <Button Name="FineButton" Text="{Loc 'bank-admin-fine'}" HorizontalExpand="True" StyleClasses="OpenBoth"/>
+                        <Button Name="SetBalanceButton" Text="{Loc 'bank-admin-set-balance'}" HorizontalExpand="True" StyleClasses="OpenLeft"/>
+                    </BoxContainer>
+                    <Label Text="{Loc 'bank-admin-revert-hint'}" StyleClasses="LabelSubText"/>
+                    <PanelContainer StyleClasses="LowDivider"/>
+                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                        <BoxContainer Name="HistoryList" Orientation="Vertical" SeparationOverride="4"/>
+                    </ScrollContainer>
+                </BoxContainer>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+                <Label Name="NoRequestsLabel" Text="{Loc 'bank-admin-no-requests'}" StyleClasses="LabelSubText"/>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="RequestsList" Orientation="Vertical" SeparationOverride="8"/>
+                </ScrollContainer>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+                <Label Name="NoFinesLabel" Text="{Loc 'bank-admin-no-fines'}" StyleClasses="LabelSubText"/>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="FinesList" Orientation="Vertical" SeparationOverride="8"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </TabContainer>
+    </BoxContainer>
+</controls:FancyWindow>

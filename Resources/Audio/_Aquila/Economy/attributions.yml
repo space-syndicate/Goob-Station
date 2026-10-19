@@ -1,0 +1,9 @@
+- files: ["coindrop.ogg", "terminal_success.ogg", "terminal_prompt_deny.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, converted to mono"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines"
+
+- files: ["cashregister.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, converted to mono"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/effects"

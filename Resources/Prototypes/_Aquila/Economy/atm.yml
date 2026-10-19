@@ -1,0 +1,40 @@
+- type: entity
+  parent: [ BaseWallmountMachine, StructureHealthMachineWeak ]
+  id: Atm
+  name: ATM
+  description: Withdraws credits from your bank account as cash and accepts cash deposits.
+  components:
+  - type: Sprite
+    sprite: _Aquila/Structures/Wallmounts/atm.rsi
+    offset: 0, -0.25
+    layers:
+    - state: atm_off
+    - state: atm
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+    - state: atm_lightmask
+      shader: unshaded
+      map: [ "atm-light" ]
+  - type: Icon
+    sprite: _Aquila/Structures/Wallmounts/atm.rsi
+    state: atm_off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+        atm-light:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ActivatableUIRequiresPower
+  - type: ActivatableUI
+    key: enum.AtmUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.AtmUiKey.Key:
+        type: AtmBoundUserInterface
+  - type: Atm

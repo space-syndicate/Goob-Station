@@ -23,4 +23,7 @@ public sealed class AquilaCVars
 
     public static readonly CVarDef<bool> XenobiologyShuffle =
         CVarDef.Create("aquila.xenobiology_shuffle", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> Economy =
+        CVarDef.Create("aquila.economy", true, CVar.SERVER | CVar.REPLICATED);
 }

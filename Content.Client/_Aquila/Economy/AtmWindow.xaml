@@ -1,0 +1,24 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      MinSize="320 180">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+        <Label Name="NoAccountLabel"
+               Text="{Loc 'atm-ui-no-account'}"
+               HorizontalAlignment="Center"
+               Visible="False"/>
+        <Button Name="OpenAccountButton"
+                Text="{Loc 'bank-ui-open-account'}"
+                HorizontalAlignment="Center"
+                Visible="False"/>
+        <BoxContainer Name="AccountContainer" Orientation="Vertical" SeparationOverride="4">
+            <Label Name="OwnerLabel" StyleClasses="LabelHeading" ClipText="True"/>
+            <Label Name="NumberLabel" StyleClasses="LabelSubText"/>
+            <Label Name="BalanceLabel" StyleClasses="LabelBig"/>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4" Margin="0 4 0 0">
+                <LineEdit Name="AmountInput" HorizontalExpand="True" PlaceHolder="{Loc 'atm-ui-amount'}"/>
+                <Button Name="WithdrawButton" Text="{Loc 'atm-ui-withdraw'}"/>
+            </BoxContainer>
+        </BoxContainer>
+        <Label Text="{Loc 'atm-ui-deposit-hint'}" StyleClasses="LabelSubText"/>
+    </BoxContainer>
+</controls:FancyWindow>

@@ -23,4 +23,15 @@ public sealed partial class VendingMachineItem : BoxContainer
     {
         NameLabel.Text = text;
     }
+
+    // Aquila Change start
+    /// <summary>
+    /// Показывает цену товара справа от названия.
+    /// </summary>
+    public void SetPrice(string text)
+    {
+        PriceLabel.Text = text;
+        PriceLabel.Visible = true;
+    }
+    // Aquila Change end
 }

@@ -1,0 +1,48 @@
+- type: cargoMarketCategory
+  id: Cash
+  priority: 100
+  components:
+  - Cash
+
+- type: cargoMarketCategory
+  id: Gases
+  priority: 50
+  freeVolume: 50000
+  capacity: 100000
+  components:
+  - GasCanister
+  - GasTank
+
+- type: cargoMarketCategory
+  id: Ores
+  priority: 40
+  freeVolume: 20000
+  capacity: 40000
+  tags:
+  - Ore
+
+- type: cargoMarketCategory
+  id: Materials
+  priority: 30
+  freeVolume: 20000
+  capacity: 40000
+  components:
+  - Material
+
+- type: cargoMarketCategory
+  id: Artifacts
+  priority: 20
+  freeVolume: 30000
+  capacity: 60000
+  components:
+  - XenoArtifact
+
+- type: entity
+  parent: CratePrivateSecure
+  id: CratePersonalOrder
+  name: personal order crate
+  description: A crate with a personal order. Only the buyer's ID card can open it.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]

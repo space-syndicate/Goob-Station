@@ -7,4 +7,5 @@ cargo-console-order-menu-note = Примечание:
 cargo-console-menu-order-requester-format = { $name }, { $job }
 cargo-console-bounty-manifest-name = этикетка запроса ({ $entries })
 cargo-console-bounty-manifest-name-entry = { $detailName } x { $detailQuantity }
-cargo-console-secure-order-checkbox = Поместить заказ в защищенный ящик отдела? (+{ $cost }cr)
+# Aquila Change
+cargo-console-secure-order-checkbox = Поместить заказ в защищенный ящик отдела? (+{ $cost } кр.)

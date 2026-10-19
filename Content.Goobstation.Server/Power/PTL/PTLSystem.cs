@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Power.PTL;
+using Content.Server.Cargo.Systems; // Aquila Change
 using Content.Server.Flash;
+using Content.Server.Station.Systems; // Aquila Change
+using Content.Shared._Aquila.CCVars; // Aquila Change
+using Content.Shared.Cargo.Components; // Aquila Change
+using Robust.Shared.Configuration; // Aquila Change
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.SMES;
@@ -39,6 +44,9 @@ public sealed partial class PTLSystem : EntitySystem
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly AudioSystem _aud = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Aquila Change
+    [Dependency] private readonly CargoSystem _cargo = default!; // Aquila Change
+    [Dependency] private readonly StationSystem _station = default!; // Aquila Change
 
     private static readonly ProtoId<TagPrototype> _tagScrewdriver = "Screwdriver";
     private static readonly ProtoId<TagPrototype> _tagMultitool = "Multitool";
@@ -197,6 +205,27 @@ public sealed partial class PTLSystem : EntitySystem
         {
             if (!Transform(ent).Anchored) // Check if Anchored.
                 return;
+
+            // Aquila Change start
+            if (_cfg.GetCVar(AquilaCVars.Economy))
+            {
+                args.Handled = true;
+                if (_station.GetOwningStation(ent) is not { } station
+                    || !TryComp<StationBankAccountComponent>(station, out var bank))
+                {
+                    _popup.PopupEntity(Loc.GetString("ptl-interact-no-budget"), ent);
+                    return;
+                }
+
+                _cargo.UpdateBankAccount((station, bank), (int) ent.Comp.SpesosHeld, ent.Comp.Account);
+                ent.Comp.SpesosHeld = 0;
+                Dirty(ent);
+                _popup.PopupEntity(Loc.GetString("ptl-interact-budget"), ent);
+                _aud.PlayPvs(_soundKaching, args.User);
+                return;
+            }
+            // Aquila Change end
+
             var spesos = Spawn("SpaceCash", Transform(args.User).Coordinates);
             _stack.SetCount(spesos, (int) ent.Comp.SpesosHeld);
             ent.Comp.SpesosHeld = 0;

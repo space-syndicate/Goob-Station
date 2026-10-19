@@ -8,6 +8,7 @@
   description: Just add capitalism!
   abstract: true
   components:
+  - type: PaidVendingMachine # Aquila Change
   - type: ActionGrant
     actions:
     - ActionVendingThrow

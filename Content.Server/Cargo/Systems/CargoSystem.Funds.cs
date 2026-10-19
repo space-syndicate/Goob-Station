@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Aquila.CCVars; // Aquila Change
 using Content.Shared.Cargo.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -37,6 +38,15 @@ public sealed partial class CargoSystem
 
         if (Timing.CurTime < ent.Comp.NextAccountActionTime)
             return;
+
+        // Aquila Change start
+        if (args.Account == null && _cfg.GetCVar(AquilaCVars.Economy))
+        {
+            ConsolePopup(args.Actor, Loc.GetString("cargo-console-withdraw-disabled"));
+            PlayDenySound(ent, ent.Comp);
+            return;
+        }
+        // Aquila Change end
 
         if (!_accessReaderSystem.IsAllowed(args.Actor, ent))
         {

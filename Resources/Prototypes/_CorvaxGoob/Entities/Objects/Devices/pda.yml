@@ -144,6 +144,7 @@
       - NanoChatCartridge
       #- MailMetricsCartridge CorvaxGoob временно вырезано оффгубами - Марти. Искать по todo <mailfix>
       - WantedListCartridge
+      - BankCartridge # Aquila Change
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge

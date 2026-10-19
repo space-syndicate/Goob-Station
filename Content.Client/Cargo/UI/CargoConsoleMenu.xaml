@@ -60,6 +60,22 @@ SPDX-License-Identifier: MIT
                           <Label Name="ShuttleCapacityLabel"
                               Text="0/20"
                               Margin="4 0"/>
+
+                          <!-- Aquila Change start -->
+                          <Label Name="MarketInflationTitle"
+                              Text="{Loc 'cargo-console-menu-market-inflation-label'}"
+                              StyleClasses="LabelKeyText"
+                              Visible="False"/>
+
+                          <PanelContainer Name="MarketInflationDivider"
+                              StyleClasses="LowDivider"
+                              Margin="0 -2 0 -1"
+                              Visible="False"/>
+
+                          <Label Name="MarketInflationLabel"
+                              Margin="4 0"
+                              Visible="False"/>
+                          <!-- Aquila Change end -->
                       </GridContainer>
 
                       <PanelContainer StyleClasses="LowDivider" Margin="0 4.5 -8 0"/>

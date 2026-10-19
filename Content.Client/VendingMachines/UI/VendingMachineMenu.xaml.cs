@@ -34,6 +34,11 @@ namespace Content.Client.VendingMachines.UI
 
         public event Action<GUIBoundKeyEventArgs, ListData>? OnItemSelected;
 
+        // Aquila Change start
+        public Func<EntProtoId, InventoryType, string?>? GetPriceLabel;
+        private readonly Dictionary<EntProtoId, InventoryType> _types = new();
+        // Aquila Change end
+
         public VendingMachineMenu()
         {
             MinSize = SetSize = new Vector2(250, 150);
@@ -79,6 +84,10 @@ namespace Content.Client.VendingMachines.UI
                 return;
 
             var item = new VendingMachineItem(protoID, text);
+            // Aquila Change start
+            if (GetPriceLabel?.Invoke(protoID, _types.GetValueOrDefault(protoID)) is { } priceLabel)
+                item.SetPrice(priceLabel);
+            // Aquila Change end
             _listItems[protoID] = (button, item);
             button.AddChild(item);
             button.AddStyleClass(StyleClass.ButtonSquare);
@@ -94,6 +103,7 @@ namespace Content.Client.VendingMachines.UI
             _enabled = enabled;
             _listItems.Clear();
             _amounts.Clear();
+            _types.Clear(); // Aquila Change
 
             if (inventory.Count == 0 && VendingContents.Visible)
             {
@@ -138,6 +148,7 @@ namespace Content.Client.VendingMachines.UI
                 var itemName = Identity.Name(dummy, _entityManager);
                 var itemText = $"{itemName} [{entry.Amount}]";
                 _amounts[entry.ID] = entry.Amount;
+                _types[entry.ID] = entry.Type; // Aquila Change
 
                 if (itemText.Length > longestEntry.Length)
                     longestEntry = itemText;

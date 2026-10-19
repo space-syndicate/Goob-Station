@@ -93,6 +93,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -176,6 +177,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: BasePDA
@@ -191,6 +193,7 @@
       - NewsReaderCartridge
       - MedTekCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: BasePDA
@@ -507,6 +510,7 @@
     - NewsReaderCartridge
     - AstroNavCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: BasePDA
@@ -553,6 +557,7 @@
       - NewsReaderCartridge
       - AstroNavCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: BasePDA
@@ -904,6 +909,7 @@
     - WantedListCartridge
     - LogProbeCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: BaseSecurityPDA
@@ -977,6 +983,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: CentcomPDA
@@ -1005,6 +1012,7 @@
       - MedTekCartridge
       - AstroNavCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1149,6 +1157,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1231,6 +1240,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1302,6 +1312,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1385,6 +1396,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - NanoChatCartridge
+      - BankCartridge # Aquila Change
 # CorvaxGoob-changes-end.
 
 - type: entity
@@ -1456,6 +1468,7 @@
     - WantedListCartridge
     - LogProbeCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1485,6 +1498,7 @@
     - WantedListCartridge
     - MedTekCartridge
     - NanoChatCartridge # DeltaV
+    - BankCartridge # Aquila Change
 
 - type: entity
   parent: ClownPDA
@@ -1668,6 +1682,7 @@
       - NanoTaskCartridge
       - MedTekCartridge
       - NanoChatCartridge # DeltaV
+      - BankCartridge # Aquila Change
 
 - type: entity
   parent: [BasePDA, SelectableLock]

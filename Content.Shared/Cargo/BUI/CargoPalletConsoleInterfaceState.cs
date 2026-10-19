@@ -22,6 +22,8 @@ public sealed class CargoPalletConsoleInterfaceState : BoundUserInterfaceState
     /// </summary>
     public bool Enabled;
 
+    public int Payout; // Aquila Change
+
     public CargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled)
     {
         Appraisal = appraisal;

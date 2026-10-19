@@ -21,7 +21,8 @@ cargo-console-menu-account-name-format = [bold][color={$color}]{$name}[/color][/
 cargo-console-menu-shuttle-name-label = Shuttle name:{" "}
 cargo-console-menu-shuttle-name-none-text = None
 cargo-console-menu-points-label = Balance:{" "}
-cargo-console-menu-points-amount = ${$amount}
+# Aquila Change
+cargo-console-menu-points-amount = {$amount} cr.
 cargo-console-menu-shuttle-status-label = Shuttle status:{" "}
 cargo-console-menu-shuttle-status-away-text = Away
 cargo-console-menu-order-capacity-label = Order capacity:{" "}
@@ -31,7 +32,8 @@ cargo-console-menu-categories-label = Categories:{" "}
 cargo-console-menu-search-bar-placeholder = Search
 cargo-console-menu-requests-label = Requests
 cargo-console-menu-orders-label = Orders
-cargo-console-menu-order-row-title = {$productName} (x{$orderAmount} for {$orderPrice}$)
+# Aquila Change
+cargo-console-menu-order-row-title = {$productName} (x{$orderAmount} for {$orderPrice} cr.)
 cargo-console-menu-populate-orders-cargo-order-row-product-name-text = Requested by: {$orderRequester} from [color={$accountColor}]{$account}[/color]
 cargo-console-menu-order-row-product-description = Reason: {$orderReason}
 cargo-console-menu-order-row-button-approve = Approve
@@ -42,10 +44,12 @@ cargo-console-menu-populate-categories-all-text = All
 cargo-console-menu-tab-title-orders = Orders
 cargo-console-menu-tab-title-funds = Transfers
 cargo-console-menu-account-action-transfer-limit = Transfer Limit:
-cargo-console-menu-account-action-transfer-limit-amount = ${$amount}
+# Aquila Change
+cargo-console-menu-account-action-transfer-limit-amount = {$amount} cr.
 cargo-console-menu-account-action-transfer-limit-unlimited-notifier = [color=gold](Unlimited)[/color]
 cargo-console-menu-account-action-select = [bold]Account Action:[/bold]
-cargo-console-menu-account-action-amount = [bold]Amount:[/bold] $
+# Aquila Change
+cargo-console-menu-account-action-amount = [bold]Amount (cr.):[/bold]
 cargo-console-menu-account-action-button = Transfer
 cargo-console-menu-toggle-account-lock-button = Toggle Transfer Limit
 cargo-console-menu-account-action-option-withdraw = Withdraw Cash
@@ -61,8 +65,10 @@ cargo-console-insufficient-funds = Insufficient funds (require {$cost})
 cargo-console-unfulfilled = No room to fulfill order
 cargo-console-trade-station = Sent to {$destination}
 cargo-console-unlock-approved-order-broadcast = [bold]{$productName} x{$orderAmount}[/bold], which cost [bold]{$cost}[/bold], was approved by [bold]{$approver}[/bold]
-cargo-console-fund-withdraw-broadcast = [bold]{$name} withdrew {$amount} spesos from {$name1} \[{$code1}\]
-cargo-console-fund-transfer-broadcast = [bold]{$name} transferred {$amount} spesos from {$name1} \[{$code1}\] to {$name2} \[{$code2}\][/bold]
+# Aquila Change
+cargo-console-fund-withdraw-broadcast = [bold]{$name} withdrew {$amount} credits from {$name1} \[{$code1}\]
+# Aquila Change
+cargo-console-fund-transfer-broadcast = [bold]{$name} transferred {$amount} credits from {$name1} \[{$code1}\] to {$name2} \[{$code2}\][/bold]
 cargo-console-fund-transfer-user-unknown = Unknown
 
 # GoobStation - cooldown on Cargo Orders (specifically gamba)
@@ -107,12 +113,13 @@ cargo-funding-alloc-console-label-save-fail = [bold]Revenue Divisions Invalid![/
 }{$val}%)[/color]
 
 # Slip template
+# Aquila Change
 cargo-acquisition-slip-body = [head=3]Asset Detail[/head]
     {"[bold]Product:[/bold]"} {$product}
     {"[bold]Description:[/bold]"} {$description}
-    {"[bold]Unit cost:[/bold"}] ${$unit}
+    {"[bold]Unit cost:[/bold"}] {$unit} cr.
     {"[bold]Amount:[/bold]"} {$amount}
-    {"[bold]Cost:[/bold]"} ${$cost}
+    {"[bold]Cost:[/bold]"} {$cost} cr.
 
     {"[head=3]Purchase Detail[/head]"}
     {"[bold]Orderer:[/bold]"} {$orderer}

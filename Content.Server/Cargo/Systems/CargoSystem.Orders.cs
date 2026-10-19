@@ -101,6 +101,12 @@ namespace Content.Server.Cargo.Systems
             // CorvaxGoob-CargoFeatures : Добавлено поле доставки, примечания, защищённости и наценка за безопасную доставку 
             var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost + (slip.SecuredDelivery ? ent.Comp.SecureOrderCost : 0), slip.OrderQuantity, slip.Requester, slip.DeliveryDestination, slip.Note, slip.Account, product.Cooldown, slip.SecuredDelivery);
 
+            // Aquila Change start
+            data.Price += _market.GetMarkup(stationUid.Value, product.Cost);
+            if (slip.PersonalAccount is { } payer)
+                _personalOrders.MakePersonal(data, payer);
+            // Aquila Change end
+
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
                 PlayDenySound(ent, ent.Comp);
@@ -246,12 +252,21 @@ namespace Content.Server.Cargo.Systems
             var accountBalance = GetBalanceFromAccount((station.Value, bank), order.Account);
 
             // Not enough balance
-            if (cost > accountBalance)
+            if (order.PersonalAccount == null && cost > accountBalance) // Aquila Change
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
                 PlayDenySound(uid, component);
                 return;
             }
+
+            // Aquila Change start
+            if (order.PersonalAccount != null && !_personalOrders.CanAfford(station.Value, order, cost))
+            {
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-personal-insufficient-funds", ("cost", cost)));
+                PlayDenySound(uid, component);
+                return;
+            }
+            // Aquila Change end
 
             // GoobStation - cooldown on Cargo Orders (specifically gamba)
             if (order.Cooldown > 0)
@@ -322,7 +337,12 @@ namespace Content.Server.Cargo.Systems
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, deliveryDestination: {order.DeliveryDestination}, note:{order.Note}] on account {order.Account} with balance at {accountBalance}");
 
             orderDatabase.Orders[component.Account].Remove(order);
-            UpdateBankAccount((station.Value, bank), -cost, order.Account);
+            // Aquila Change start
+            if (order.PersonalAccount != null)
+                _personalOrders.Pay(station.Value, order, cost);
+            else
+                UpdateBankAccount((station.Value, bank), -cost, order.Account);
+            // Aquila Change end
             UpdateOrders(station.Value);
         }
 
@@ -403,7 +423,7 @@ namespace Content.Server.Cargo.Systems
             RemoveOrder(station.Value, component.Account, args.OrderId, orderDatabase);
         }
 
-        private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product, string requester) // CorvaxGoob-CargoFeatures : Добавлено арг requester
+        private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product, string requester, EntityUid station, int? personalAccount) // CorvaxGoob-CargoFeatures : Добавлено арг requester // Aquila Change
         {
             if (!_protoMan.Resolve(component.Account, out var account))
                 return;
@@ -417,13 +437,14 @@ namespace Content.Server.Cargo.Systems
 
             var paper = EnsureComp<PaperComponent>(label);
             var msg = new FormattedMessage();
+            var unitCost = product.Cost + _market.GetMarkup(station, product.Cost); // Aquila Change
 
             msg.AddMarkupPermissive(Loc.GetString("cargo-acquisition-slip-body",
                 ("product", product.Name),
                 ("description", product.Description),
-                ("unit", product.Cost),
+                ("unit", unitCost), // Aquila Change
                 ("amount", args.Amount),
-                ("cost", product.Cost * args.Amount + (args.SecuredDelivery ? component.SecureOrderCost : 0)), // CorvaxGoob-CargoFeatures-Start : доп.цена
+                ("cost", unitCost * args.Amount + (args.SecuredDelivery ? component.SecureOrderCost : 0)), // CorvaxGoob-CargoFeatures-Start : доп.цена // Aquila Change
                 ("orderer", requester),
                 ("destination", args.DeliveryDestination ?? Loc.GetString("cargo-console-paper-delivery-destination-default")),
                 ("note", args.Note ?? Loc.GetString("cargo-console-paper-note-default")))); // CorvaxGoob-CargoFeatures-End
@@ -441,6 +462,7 @@ namespace Content.Server.Cargo.Systems
 
             slip.OrderQuantity = args.Amount;
             slip.Account = component.Account;
+            slip.PersonalAccount = personalAccount; // Aquila Change
         }
 
         private void OnAddOrderMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args)
@@ -480,16 +502,31 @@ namespace Content.Server.Cargo.Systems
                 requester = GenerateRequesterName((uid, component), args.Actor);
             // CorvaxGoob-CargoFeatures-End
 
+            // Aquila Change start
+            var personalAccount = args.Personal ? _personalOrders.GetPayerAccount(stationUid.Value, player) : null;
+            if (args.Personal && personalAccount == null)
+            {
+                ConsolePopup(player, Loc.GetString("cargo-console-personal-no-account"));
+                PlayDenySound(uid, component);
+                return;
+            }
+            // Aquila Change end
+
             if (component.Mode == CargoOrderConsoleMode.PrintSlip)
             {
-                OnAddOrderMessageSlipPrinter(uid, component, args, product, requester); // CorvaxGoob-CargoFeatures : арг. requester
+                OnAddOrderMessageSlipPrinter(uid, component, args, product, requester, stationUid.Value, personalAccount); // CorvaxGoob-CargoFeatures : арг. requester // Aquila Change
                 return;
             }
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
             // CorvaxGoob-CargoFeatures : Добавлены новые аргументы
-            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account, requester, args.SecuredDelivery ? component.SecureOrderCost : default);
+            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account, requester, (args.SecuredDelivery ? component.SecureOrderCost : default) + _market.GetMarkup(stationUid.Value, product.Cost)); // Aquila Change
+
+            // Aquila Change start
+            if (personalAccount is { } payer)
+                _personalOrders.MakePersonal(data, payer);
+            // Aquila Change end
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -752,7 +789,7 @@ namespace Content.Server.Cargo.Systems
             else if (order.SecuredDelivery && accountProto.SecureCratePrototype is not null // Если поставлена галочка на защиту заказа
                 && (productProto.TryGetComponent<ItemComponent>(out var itemComponent, Factory) || productProto.HasComponent<EntityStorageComponent>())) // и может ли этот заказ быть помещен в ящик?
             {
-                item = Spawn(accountProto.SecureCratePrototype, spawn);
+                item = _personalOrders.SpawnCrate(order, spawn) ?? Spawn(accountProto.SecureCratePrototype, spawn); // Aquila Change
 
                 if (itemComponent is not null) // Если это обычный предмет — спавним его и помещаем в ящик
                     _entityStorage.Insert(Spawn(productProto.ID), item.Value);

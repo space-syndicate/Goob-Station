@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using Content.Shared.Cargo.Prototypes; // Aquila Change
 using Content.Shared.Damage;
 using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes; // Aquila Change
 
 namespace Content.Goobstation.Shared.Power.PTL;
 
@@ -13,6 +15,14 @@ public sealed partial class PTLComponent : Component
     [DataField, AutoNetworkedField] public bool Active = false;
 
     [DataField, AutoNetworkedField] public double SpesosHeld = 0f;
+
+    // Aquila Change start
+    /// <summary>
+    /// Счёт бюджета станции, куда при включённой экономике уходит выручка вместо наличных.
+    /// </summary>
+    [DataField]
+    public ProtoId<CargoAccountPrototype> Account = "Engineering";
+    // Aquila Change end
 
     [DataField] public double MinShootPower = 1e6f; // 1 MJ
     [DataField] public double MaxEnergyPerShot = 5e6; // 5 MJ

@@ -1,0 +1,43 @@
+# Запасные ценовые категории торгоматов.
+# Основные цены задаются в vending_price_list.yml, а эти правила срабатывают только для предметов,
+# у которых ни у самих, ни у их предков нет цены в прайс-листе (например, новые предметы из апстрима).
+
+- type: vendingPriceCategory
+  id: VendingPriceCash
+  price: 100
+  priority: 300
+  components: [ Cash ]
+
+- type: vendingPriceCategory
+  id: VendingPriceGun
+  price: 150
+  priority: 200
+  components: [ Gun ]
+
+- type: vendingPriceCategory
+  id: VendingPriceClothing
+  price: 12
+  priority: 100
+  slots: [ head, eyes, ears, mask, outerclothing, innerclothing, neck, back, belt, gloves, feet ]
+
+- type: vendingPriceCategory
+  id: VendingPriceSnack
+  price: 5
+  priority: 60
+  tags: [ FoodSnack ]
+
+- type: vendingPriceCategory
+  id: VendingPriceDrink
+  price: 5
+  priority: 55
+  components: [ Edible, Spillable ]
+
+- type: vendingPriceCategory
+  id: VendingPriceFood
+  price: 5
+  priority: 50
+  components: [ Edible ]
+
+- type: vendingPriceCategory
+  id: VendingPriceDefault
+  price: 10

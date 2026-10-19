@@ -1,0 +1,41 @@
+- type: stack
+  id: Holochip
+  name: stack-holochip
+  icon: { sprite: /Textures/_Aquila/Objects/Economy/holochip.rsi, state: holochip }
+  spawn: Holochip
+
+- type: entity
+  parent: BaseItem
+  id: Holochip
+  name: holochip
+  description: A hard-light chip that stores credits. Use it on an ID card or PDA to deposit them.
+  components:
+  - type: Holochip
+  - type: Cash
+  - type: Item
+    size: Tiny
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 1
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: Holochip
+    count: 1
+    baseLayer: base
+    layerStates:
+    - holochip
+    - holochip_kilo
+    - holochip_mega
+    - holochip_giga
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [1000, 1000000, 1000000000]
+  - type: Sprite
+    sprite: _Aquila/Objects/Economy/holochip.rsi
+    state: holochip
+    layers:
+    - state: holochip
+      map: ["base"]
+  - type: Appearance

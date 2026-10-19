@@ -17,6 +17,8 @@ public sealed class CargoConsoleAddOrderMessage : BoundUserInterfaceMessage
     public bool SecuredDelivery;
     // CorvaxGoob-CargoFeatures-End
 
+    public bool Personal; // Aquila Change
+
     public string CargoProductId;
     public int Amount;
 

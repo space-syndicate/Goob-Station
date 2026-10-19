@@ -17,4 +17,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             SizeFlagsStretchRatio="3"
             HorizontalExpand="True"
             ClipText="True"/>
+    <!-- Aquila Change -->
+    <Label Name="PriceLabel"
+            Margin="0 0 4 0"
+            Visible="False"/>
 </BoxContainer>

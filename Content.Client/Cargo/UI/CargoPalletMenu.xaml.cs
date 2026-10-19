@@ -25,6 +25,20 @@ public sealed partial class CargoPalletMenu : FancyWindow
         AppraisalLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
+    // Aquila Change start
+    /// <summary>
+    /// Показывает, сколько станция выручит за товары с учётом насыщения рынка.
+    /// </summary>
+    public void SetPayout(int payout, int appraisal)
+    {
+        PayoutLabel.Text = appraisal > 0 && payout < appraisal
+            ? Loc.GetString("cargo-pallet-menu-payout-saturated",
+                ("amount", payout.ToString()),
+                ("saturation", (int) MathF.Round(100f * (appraisal - payout) / appraisal)))
+            : Loc.GetString("cargo-console-menu-points-amount", ("amount", payout.ToString()));
+    }
+    // Aquila Change end
+
     public void SetCount(int count)
     {
         CountLabel.Text = count.ToString();

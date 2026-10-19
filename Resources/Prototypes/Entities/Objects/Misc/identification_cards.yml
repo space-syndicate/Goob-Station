@@ -19,6 +19,7 @@
     storedRotation: -90
   - type: Access
   - type: IdCard
+  - type: BankCard # Aquila Change
   - type: StationRecordKeyStorage
   - type: Tag
     tags:

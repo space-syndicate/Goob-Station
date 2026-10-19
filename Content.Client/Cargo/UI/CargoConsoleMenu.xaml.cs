@@ -3,6 +3,8 @@
 using Content.Client.Cargo.Systems;
 using Content.Client.Message;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._Aquila.CCVars; // Aquila Change
+using Content.Shared._Aquila.Economy.Systems; // Aquila Change
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
@@ -11,6 +13,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics; // Goobstation
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Configuration; // Aquila Change
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
@@ -23,10 +26,12 @@ namespace Content.Client.Cargo.UI
     public sealed partial class CargoConsoleMenu : FancyWindow
     {
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Aquila Change
 
         private readonly IEntityManager _entityManager;
         private readonly IPrototypeManager _protoManager;
         private readonly CargoSystem _cargoSystem;
+        private readonly SharedCargoMarketSystem _market; // Aquila Change
         private readonly SpriteSystem _spriteSystem;
         private EntityUid _owner;
         private EntityUid? _station;
@@ -59,6 +64,7 @@ namespace Content.Client.Cargo.UI
             _entityManager = entMan;
             _protoManager = protoManager;
             _cargoSystem = entMan.System<CargoSystem>();
+            _market = entMan.System<SharedCargoMarketSystem>(); // Aquila Change
             _spriteSystem = spriteSystem;
             _owner = owner;
 
@@ -66,6 +72,13 @@ namespace Content.Client.Cargo.UI
             _bankQuery = _entityManager.GetEntityQuery<StationBankAccountComponent>();
 
             Title = entMan.GetComponent<MetaDataComponent>(owner).EntityName;
+
+            // Aquila Change start
+            var economy = _cfg.GetCVar(AquilaCVars.Economy);
+            MarketInflationTitle.Visible = economy;
+            MarketInflationDivider.Visible = economy;
+            MarketInflationLabel.Visible = economy;
+            // Aquila Change end
 
             SearchBar.OnTextChanged += OnSearchBarTextChanged;
             Categories.OnItemSelected += OnCategoryItemSelected;
@@ -175,7 +188,7 @@ namespace Content.Client.Cargo.UI
                         Product = prototype,
                         ProductName = { Text = prototype.Name },
                         MainButton = { ToolTip = prototype.Description },
-                        PointCost = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Cost.ToString())) },
+                        PointCost = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", GetProductCost(prototype).ToString())) }, // Aquila Change
                         Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
                     };
                     button.MainButton.OnPressed += args =>
@@ -299,6 +312,15 @@ namespace Content.Client.Cargo.UI
                     // CorvaxGoob-CargoFeatures-End
                 };
 
+                // Aquila Change start
+                if (order.PersonalAccount is { } personalAccount)
+                {
+                    row.ProductName.Text = Loc.GetString("cargo-console-menu-order-row-personal",
+                        ("orderRequester", requester),
+                        ("number", personalAccount.ToString()));
+                }
+                // Aquila Change end
+
                 row.Cancel.OnPressed += (args) => { OnOrderCanceled?.Invoke(args); };
 
                 // TODO: Disable based on access.
@@ -316,8 +338,13 @@ namespace Content.Client.Cargo.UI
 
             var i = 0;
             ActionOptions.Clear();
-            ActionOptions.AddItem(Loc.GetString("cargo-console-menu-account-action-option-withdraw"), i);
-            i++;
+            // Aquila Change start
+            if (!_cfg.GetCVar(AquilaCVars.Economy))
+            {
+                ActionOptions.AddItem(Loc.GetString("cargo-console-menu-account-action-option-withdraw"), i);
+                i++;
+            }
+            // Aquila Change end
             foreach (var account in bank.Accounts.Keys)
             {
                 if (account == console.Account)
@@ -426,6 +453,18 @@ namespace Content.Client.Cargo.UI
             _station = station;
         }
 
+        // Aquila Change start
+        /// <summary>
+        /// Возвращает цену товара с учётом роста цен на рынке станции.
+        /// </summary>
+        public int GetProductCost(CargoProductPrototype product)
+        {
+            return _station is { } station
+                ? product.Cost + _market.GetMarkup(station, product.Cost)
+                : product.Cost;
+        }
+        // Aquila Change end
+
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
@@ -439,6 +478,7 @@ namespace Content.Client.Cargo.UI
             var balance = _cargoSystem.GetBalanceFromAccount((_station.Value, bankAccount), orderConsole.Account);
             PointsLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance));
             PointsLabelFundsTransfer.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance)); // Goobstation
+            MarketInflationLabel.Text = Loc.GetString("cargo-console-menu-market-inflation-amount", ("percent", (int) MathF.Round(_market.GetInflation(_station.Value) * 100))); // Aquila Change
             TransferLimitLabel.Text = Loc.GetString("cargo-console-menu-account-action-transfer-limit-amount", ("amount", Math.Floor(balance * orderConsole.TransferLimit))); // Goobstation
 
             UnlimitedNotifier.Visible = orderConsole.TransferUnbounded;

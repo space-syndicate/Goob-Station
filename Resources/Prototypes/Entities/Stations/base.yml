@@ -21,6 +21,9 @@
         Service: [ ]
     - type: StationCargoBountyDatabase
     - type: StationXenobiologyBountyDatabase # Goobstaton
+    - type: CargoMarket # Aquila Change
+    - type: PersonalCargoOrders # Aquila Change
+    - type: StationBankManagement # Aquila Change
 
 - type: entity
   id: BaseStationJobsSpawning

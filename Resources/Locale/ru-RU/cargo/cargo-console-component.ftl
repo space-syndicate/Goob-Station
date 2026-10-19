@@ -9,7 +9,8 @@ cargo-console-menu-account-name-format = [bold][color={ $color }]{ $name }[/colo
 cargo-console-menu-shuttle-name-label = Название шаттла:{ " " }
 cargo-console-menu-shuttle-name-none-text = Нет
 cargo-console-menu-points-label = Баланс:{ " " }
-cargo-console-menu-points-amount = ${ $amount }
+# Aquila Change
+cargo-console-menu-points-amount = { $amount } кр.
 cargo-console-menu-shuttle-status-label = Статус шаттла:{ " " }
 cargo-console-menu-shuttle-status-away-text = Отбыл
 cargo-console-menu-order-capacity-label = Объём заказов:{ " " }
@@ -20,7 +21,8 @@ cargo-console-menu-search-bar-placeholder = Поиск
 cargo-console-menu-requests-label = Запросы
 cargo-console-menu-orders-label = Заказы
 cargo-console-menu-order-reason-description = Причина: { $reason }
-cargo-console-menu-order-row-title = { $productName } (x{ $orderAmount } за { $orderPrice }$)
+# Aquila Change
+cargo-console-menu-order-row-title = { $productName } (x{ $orderAmount } за { $orderPrice } кр.)
 cargo-console-menu-populate-categories-all-text = Все
 cargo-console-menu-order-row-product-description = Причина: { $orderReason }
 cargo-console-menu-order-row-button-approve = Одобрить
@@ -29,12 +31,14 @@ cargo-console-menu-order-row-alerts-reason-absent = Причина не указ
 cargo-console-menu-order-row-alerts-requester-unknown = Неизвестно
 cargo-console-menu-populate-orders-cargo-order-row-product-name-text = Заказ от { $orderRequester } со счёта [color={ $accountColor }]{ $account }[/color]
 cargo-console-menu-tab-title-orders = Заказы
-cargo-console-menu-account-action-transfer-limit-amount = ${ $amount }
+# Aquila Change
+cargo-console-menu-account-action-transfer-limit-amount = { $amount } кр.
 cargo-console-menu-tab-title-funds = Переводы
 cargo-console-menu-account-action-transfer-limit = Лимит перевода:
 cargo-console-menu-account-action-transfer-limit-unlimited-notifier = [color=gold](Безлимитно)[/color]
 cargo-console-menu-account-action-select = [bold]Действие аккаунта:[/bold]
-cargo-console-menu-account-action-amount = [bold]Сумма:[/bold] $
+# Aquila Change
+cargo-console-menu-account-action-amount = [bold]Сумма (кр.):[/bold]
 cargo-console-menu-account-action-button = Перевести
 cargo-console-menu-toggle-account-lock-button = Переключить лимит перевода
 cargo-console-menu-account-action-option-withdraw = Обналичить
@@ -45,7 +49,8 @@ cargo-console-station-not-found = Нет доступной станции
 cargo-console-invalid-product = Неверный ID продукта
 cargo-console-too-many = Слишком много одобренных заказов
 cargo-console-snip-snip = Заказ урезан до вместимости
-cargo-console-insufficient-funds = Недостаточно средств (требуется { $cost })
+# Aquila Change
+cargo-console-insufficient-funds = Недостаточно средств (требуется { $cost } кр.)
 cargo-console-unfulfilled = Нет места для выполнения заказа
 cargo-console-trade-station = Отправлено на { $destination }
 cargo-console-unlock-approved-order-broadcast = [bold]Заказ на { $productName } x{ $orderAmount }[/bold], стоимостью [bold]{ $cost }[/bold], был одобрен [bold]{ $approver }[/bold]
@@ -88,12 +93,13 @@ cargo-funding-alloc-console-label-save-fail = [bold]Разделение выр�
        *[-1] -
     }{ $val }%)[/color]
 # Slip template
+# Aquila Change
 cargo-acquisition-slip-body = [head=3]Детали актива[/head]
     { "[bold]Товар:[/bold]" } { $product }
     { "[bold]Описание:[/bold]" } { $description }
-    { "[bold]Цена за единицу:[/bold" }] ${ $unit }
+    { "[bold]Цена за единицу:[/bold" }] { $unit } кр.
     { "[bold]Количество:[/bold]" } { $amount }
-    { "[bold]Сумма:[/bold]" } ${ $cost }
+    { "[bold]Сумма:[/bold]" } { $cost } кр.
     
     { "[head=3]Детали покупки[/head]" }
     { "[bold]Заказчик:[/bold]" } { $orderer }

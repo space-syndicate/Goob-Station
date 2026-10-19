@@ -1,0 +1,107 @@
+- type: entity
+  id: BankAccount
+  name: bank account
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BankAccount
+    startingPaychecks: 3
+    defaultSalary: 20
+    salaries:
+      Captain: 150
+      HeadOfPersonnel: 100
+      HeadOfSecurity: 100
+      ChiefEngineer: 100
+      ChiefMedicalOfficer: 100
+      ResearchDirector: 100
+      Quartermaster: 100
+      NanotrasenRepresentative: 100
+      Magistrate: 100
+      BlueshieldOfficer: 75
+      Warden: 75
+      Detective: 75
+      AtmosphericTechnician: 50
+      StationEngineer: 50
+      MedicalDoctor: 50
+      Surgeon: 50
+      Chemist: 50
+      Paramedic: 50
+      Virologist: 50
+      Psychologist: 50
+      Brigmedic: 50
+      Scientist: 50
+      Roboticist: 50
+      SecurityOfficer: 50
+      CargoTechnician: 50
+      SalvageSpecialist: 50
+      ShaftMiner: 50
+      Pilot: 50
+      Bartender: 50
+      Chef: 50
+      Botanist: 50
+      Janitor: 50
+      Chaplain: 50
+      Lawyer: 50
+      Librarian: 50
+      Reporter: 50
+      RadioHost: 50
+      Musician: 50
+      Clown: 50
+      Mime: 50
+      ServiceWorker: 50
+      CommandMaid: 50
+      MedicalIntern: 30
+      ResearchAssistant: 30
+      TechnicalAssistant: 30
+      SecurityCadet: 30
+      WardenHelper: 30
+
+- type: entity
+  parent: BasePDACartridge
+  id: BankCartridge
+  name: bank cartridge
+  description: A program for managing a personal bank account.
+  components:
+  - type: Sprite
+    state: cart-y
+  - type: UIFragment
+    ui: !type:BankUi
+  - type: Cartridge
+    programName: bank-program-name
+    icon:
+      sprite: _Aquila/Interface/Misc/program_icons.rsi
+      state: bank
+  - type: BankCartridge
+    approvers:
+    - Captain
+    - HeadOfPersonnel
+    - HeadOfSecurity
+    - ChiefEngineer
+    - ChiefMedicalOfficer
+    - ResearchDirector
+    - Quartermaster
+    authorities:
+    - job: Magistrate
+      budget: Security
+      bonusLimit: 0
+      unlimitedFine: true
+      revokeFines: true
+    - access: Captain
+      budget: Cargo
+      bonusLimit: 600
+      maxFine: 400
+      revokeFines: true
+    - access: HeadOfPersonnel
+      budget: Service
+      bonusLimit: 400
+      maxFine: 300
+    - access: HeadOfSecurity
+      budget: Security
+      maxFine: 300
+    - access: ChiefEngineer
+      budget: Engineering
+    - access: ChiefMedicalOfficer
+      budget: Medical
+    - access: ResearchDirector
+      budget: Science
+    - access: Quartermaster
+      budget: Cargo
