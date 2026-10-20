@@ -4,14 +4,6 @@
   id: WeaponPistolMk58Empty
   suffix: Empty
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-      visible: false
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -29,6 +21,7 @@
         whitelist:
           tags:
             - CartridgePistol
+      flashlight: !type:ContainerSlot
   - type: MagazineVisuals
     magState: mag
     steps: 1
