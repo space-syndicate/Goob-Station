@@ -55,5 +55,5 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 15
+        Radiation: 5 # CorvaxGoob sec rebalance
         Piercing: 20
