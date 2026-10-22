@@ -162,6 +162,7 @@
       - RawMaterial
       - ConstructionMaterial
       - DroneUsable # Goobstation
+      - SiloMaterialCloth # CorvaxGoob - dept-techfab-tools-materials
   - type: Construction
     graph: WebObjects # not sure if I should either keep this here or just make another prototype. Will keep it here just in case.
     node: cloth
@@ -234,6 +235,7 @@
       - RawMaterial
       - ConstructionMaterial
       - DroneUsable # Goobstation
+      - SiloMaterialCloth # CorvaxGoob - dept-techfab-tools-materials
   - type: Item
     heldPrefix: durathread
 
@@ -283,6 +285,7 @@
     - RawMaterial
     - ConstructionMaterial
     - DroneUsable # Goobstation
+    - SiloMaterialWood # CorvaxGoob - dept-techfab-tools-materials
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager
