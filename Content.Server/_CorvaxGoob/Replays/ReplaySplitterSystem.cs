@@ -1,22 +1,13 @@
-using System;
 using Content.Server.GameTicking;
+using Content.Shared._CorvaxGoob.CCCVars;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Replays;
+using System;
 
 namespace Content.Server.Replays;
-
-[CVarDefs]
-public sealed class ReplaySplitterCVars
-{
-    public static readonly CVarDef<int> SplitCompressedSize =
-        CVarDef.Create("replay.split_compressed_size", 200 * 1024, CVar.SERVERONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> SplitUncompressedSize =
-        CVarDef.Create("replay.split_uncompressed_size", 800 * 1024, CVar.SERVERONLY | CVar.ARCHIVE);
-}
 
 /// <summary>
 /// A system for automatically splitting large server replays into parts.
@@ -37,8 +28,8 @@ public sealed class ReplaySplitterSystem : EntitySystem
     {
         base.Initialize();
 
-        Subs.CVar(_cfg, ReplaySplitterCVars.SplitCompressedSize, v => _maxCompressedBytes = v * 1024L, true);
-        Subs.CVar(_cfg, ReplaySplitterCVars.SplitUncompressedSize, v => _maxUncompressedBytes = v * 1024L, true);
+        Subs.CVar(_cfg, CCCVars.SplitCompressedSize, v => _maxCompressedBytes = v * 1024L, true);
+        Subs.CVar(_cfg, CCCVars.SplitUncompressedSize, v => _maxUncompressedBytes = v * 1024L, true);
     }
 
     public override void Update(float frameTime)
