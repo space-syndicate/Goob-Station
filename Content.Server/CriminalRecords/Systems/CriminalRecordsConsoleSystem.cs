@@ -168,11 +168,13 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         _criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer);
 
+        /*  CorvaxGoob Edit Start
         (string, object)[] args;
         if (reason != null)
             args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", reason), ("job", jobName) };
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+            CorvaxGoob End */
 
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
@@ -215,6 +217,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous", // Goobstation
             // person no longer demoted
             (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
+            // released marker removed
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged", // CorvaxGoob
             // this is impossible
             _ => "not-wanted"
         };
@@ -222,10 +226,17 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // CorvaxGoob-SecurityFeatures : Записывается любое изменение статуса
         _criminalRecords.TryAddHistory(key.Value, Loc.GetString($"criminal-records-console-history",
             ("status", Loc.GetString($"criminal-records-status-{statusString}")),
-            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: msg.Status);
+            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))),
+            officer,
+            articles: msg.Status == SecurityStatus.Wanted ? reason : null,
+            status: msg.Status);
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
+        var radioStatusString = msg.Status == SecurityStatus.None
+            ? "cleared"
+            : statusString;
+
+        _radio.SendRadioMessage(ent, FormatStatusChangeRadioMessage(radioStatusString, name, officer, jobName, reason),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         UpdateUserInterface(ent);
     }
@@ -248,11 +259,9 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
                 return;
         }
 
-        if (msg.Duration is not null)
-        {
-            if (msg.Duration <= 0)
-                return;
-        }
+        // duration > 0 and <= 24h
+        if (!IsValidDetainedDuration(msg.Duration))
+            return;
 
         var name = _records.RecordName(key.Value);
         GetOfficer(mob.Value, out var officer);
@@ -277,14 +286,16 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer);
 
+        /*  CorvaxGoob Edit Start
         (string, object)[] args;
         if (articles != null)
             args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", articles), ("job", jobName) };
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+            CorvaxGoob End */
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-detained", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(ent, FormatStatusChangeRadioMessage("detained", name, officer, jobName, articles),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         if (msg.Print && entry is not null)
         {
@@ -342,16 +353,19 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
 
         _criminalRecords.TryAddHistory(key.Value, Loc.GetString($"criminal-records-console-history",
             ("status", Loc.GetString($"criminal-records-status-wanted")),
-            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: SecurityStatus.Wanted);
+            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))),
+            officer,
+            articles: reason,
+            status: SecurityStatus.Wanted);
 
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-wanted", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(ent, FormatStatusChangeRadioMessage("wanted", name, officer, jobName, reason),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false); // CorvaxGoob Edit
 
         if (msg.Print && entry is not null)
         {
             ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintCooldown;
 
-            PrintWantedDocument(ent, msg.Actor, entry);
+            PrintWantedDocument(ent, msg.Actor, entry, reason);
             Dirty(ent);
         }
 
@@ -395,7 +409,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     }
 
     // CorvaxGoob-SecurityFeatures
-    private void PrintWantedDocument(Entity<CriminalRecordsConsoleComponent> ent, EntityUid officer, GeneralStationRecord record)
+    private void PrintWantedDocument(Entity<CriminalRecordsConsoleComponent> ent, EntityUid officer, GeneralStationRecord record, string? reason)
     {
         var content = Loc.GetString("doc-text-printer-closing-indictment");
 
@@ -414,6 +428,15 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             .Replace(Loc.GetString("doc-var-name"), idCard.Comp.FullName ?? Loc.GetString("doc-text-printer-default-name"))
             .Replace(Loc.GetString("doc-var-job"), idCard.Comp.LocalizedJobTitle ?? Loc.GetString("doc-text-printer-default-job"));
         }
+
+        var reasonText = string.IsNullOrWhiteSpace(reason)
+            ? Loc.GetString("criminal-records-console-unspecified")
+            : reason.Trim();
+
+        content = content
+            .Replace("(ФИО)", record.Name)
+            .Replace("(полное наименование должности)", record.JobTitle)
+            .Replace("правонарушений:", $"правонарушений: {reasonText}");
 
         var printed = Spawn("Paper", Transform(ent).Coordinates);
 
@@ -479,7 +502,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
                 PrintDetainedDocument(ent, msg.Actor, entry, crimeHistory.Value.Articles, crimeHistory.Value.Duration);
                 break;
             case SecurityStatus.Wanted:
-                PrintWantedDocument(ent, msg.Actor, entry);
+                PrintWantedDocument(ent, msg.Actor, entry, crimeHistory.Value.Articles);
                 break;
             default:
                 break;
